@@ -3,7 +3,7 @@
 Javascript client. Work in progress.
 
 
-#Update client
+# Update client
 
 to update the client clone `gen` repo and run this command:
 
