@@ -7,5 +7,6 @@ Javascript client. Work in progress.
 
 to update the client clone `gen` repo and run this command:
 
+```bash
 ${GEN_REPO_BASE}/openapi/javascript.sh ${CLIENT_ROOT}/kubernetes ./settings
-
+```
