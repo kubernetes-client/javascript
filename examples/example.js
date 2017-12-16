@@ -1,4 +1,4 @@
-const k8s = require('@kubernetes/typescript-node');
+const k8s = require('@kubernetes/client-node');
 
 let k8sApi = k8s.Config.defaultClient();
 k8sApi.listNamespacedPod('default')

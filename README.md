@@ -1,13 +1,18 @@
 # Javascript Kubernetes Client information
 
-The Javascript clients for Kubernetes simply uses the 
-[typescript client for kubernetes](https://github.com/kubernetes-client/typescript) from
-vanilla Javascript.
+The Javascript clients for Kubernetes is implemented in 
+[typescript](https://typescriptlang.org), but can be called from either
+Javascript or Typescript.
+
+For now, the client is implemented for server-side use with node 
+using the `request` library.
+
+There are future plans to also build a jQuery compatible library but
+for now, all of the examples and instructions assume the node client.
 
 # Installation
 ```sh
-# Don't worry, you can call Typescript code from Javascript too...
-$ npm install @kubernetes/typescript-node
+$ npm install @kubernetes/client-node
 ```
 
 # Example code
@@ -50,5 +55,26 @@ k8sApi.createNamespace(namespace).then(
     console.log('Error!: ' + err);
   }
 );
+```
+
+# Development
+
+All dependencies of this project are expressed in its 
+[`package.json` file](./package.json). Before you start developing, ensure
+that you have [NPM](https://www.npmjs.com/) installed, then run:
+
+```console
+npm install
+```
+
+# Testing
+
+Tests are written using the [Chai](http://chaijs.com/) library. See
+[`config_test.ts`](./config_test.ts) for an example.
+
+To run tests, execute the following:
+
+```console
+npm test
 ```
 
