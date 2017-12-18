@@ -1,12 +1,80 @@
-# javascript
+# Javascript Kubernetes Client information
 
-Javascript client. Work in progress.
+The Javascript clients for Kubernetes is implemented in 
+[typescript](https://typescriptlang.org), but can be called from either
+Javascript or Typescript.
 
+For now, the client is implemented for server-side use with node 
+using the `request` library.
 
-# Update client
+There are future plans to also build a jQuery compatible library but
+for now, all of the examples and instructions assume the node client.
 
-to update the client clone `gen` repo and run this command:
-
-```bash
-${GEN_REPO_BASE}/openapi/javascript.sh ${CLIENT_ROOT}/kubernetes ./settings
+# Installation
+```sh
+$ npm install @kubernetes/client-node
 ```
+
+# Example code
+
+## List all pods
+```javascript
+const k8s = require('@kubernetes/typescript-node');
+
+var k8sApi = k8s.Config.defaultClient();
+k8sApi.listNamespacedPod('default')
+    .then((res) => {
+        console.log(res.body);
+    });
+```
+
+## Create a new namespace
+```javascript
+const k8s = require('@kubernetes/typescript-node');
+
+var k8sApi = k8s.Config.defaultClient();
+
+var namespace = {
+  metadata: {
+    name: 'test'
+  }
+};
+
+k8sApi.createNamespace(namespace).then(
+  (response) => {
+    console.log('Created namespace');
+    console.log(response);
+    k8sApi.readNamespace(namespace.metadata.name).then(
+      (response) => {
+        console.log(response);
+        k8sApi.deleteNamespace(
+          namespace.metadata.name, {} /* delete options */);
+      });
+  },
+  (err) => {
+    console.log('Error!: ' + err);
+  }
+);
+```
+
+# Development
+
+All dependencies of this project are expressed in its 
+[`package.json` file](./package.json). Before you start developing, ensure
+that you have [NPM](https://www.npmjs.com/) installed, then run:
+
+```console
+npm install
+```
+
+# Testing
+
+Tests are written using the [Chai](http://chaijs.com/) library. See
+[`config_test.ts`](./config_test.ts) for an example.
+
+To run tests, execute the following:
+
+```console
+npm test
+```
+
