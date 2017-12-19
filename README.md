@@ -57,6 +57,9 @@ k8sApi.createNamespace(namespace).then(
 );
 ```
 
+# Additional Examples
+There are several more examples in the [examples](/kubernetes-client/javascript/tree/master/examples) directory.
+
 # Development
 
 All dependencies of this project are expressed in its 
