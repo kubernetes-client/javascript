@@ -14,7 +14,7 @@
   "scripts": {
     "clean": "rm -Rf node_modules/ dist/",
     "build": "tsc",
-    "test": "mocha -r ts-node/register *_test.ts"
+    "test": "mocha -r ts-node/register src/**/*_test.ts"
   },
   "author": "Kubernetes Authors",
   "license": "Apache-2.0",
@@ -22,10 +22,8 @@
     "base-64": "^0.1.0",
     "bluebird": "^3.3.5",
     "byline": "^5.0.0",
-    "chai": "^4.1.0",
     "js-yaml": "^3.5.2",
     "jsonpath": "^0.2.11",
-    "mocha": "^3.4.2",
     "request": "^2.72.0",
     "shelljs": "^0.7.8 ",
     "underscore": "^1.8.3",

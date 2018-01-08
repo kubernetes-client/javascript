@@ -1,6 +1,6 @@
 import { KubeConfig, Config } from './config';
 import { expect } from 'chai';
-import { describe, it } from 'jasmine';
+import 'mocha';
 
 const kcFileName = "testdata/kubeconfig.yaml";
 
