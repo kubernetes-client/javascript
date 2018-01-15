@@ -1,8 +1,9 @@
 import stream = require('stream');
 
 import ws = require('websocket');
-import { KubeConfig } from '@kubernetes/client-node';
-import { V1Status } from '@kubernetes/client-node';
+import { KubeConfig } from './config';
+import { V1Status } from './api';
+
 
 const protocols = [
     "v4.channel.k8s.io",

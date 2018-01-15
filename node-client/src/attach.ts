@@ -2,7 +2,7 @@ import querystring = require('querystring');
 import stream = require('stream');
 
 import { WebSocketHandler } from './web-socket-handler';
-import { KubeConfig } from '@kubernetes/client-node';
+import { KubeConfig } from './config';
 
 export class Attach {
     'handler': WebSocketHandler;

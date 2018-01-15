@@ -1,6 +1,6 @@
 import request = require('request');
 import { LineStream } from 'byline';
-import { KubeConfig } from '@kubernetes/client-node';
+import { KubeConfig } from './config';
 
 export class Watch {
     'config': KubeConfig;
