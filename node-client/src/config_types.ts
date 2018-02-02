@@ -15,10 +15,13 @@ export function newClusters(a: any): Cluster[] {
 
 function clusterIterator(): u.ListIterator<any, Cluster> {
     return function (elt: any, i: number, list: u.List<any>): Cluster {
+
+        const skipTLSVerify = !!elt.cluster['insecure-skip-tls-verify'];
+
         if (!elt['name']) {
             throw new Error(`clusters${i}.name is missing`);
         }
-        if (!elt.cluster['certificate-authority-data'] && !elt.cluster['certificate-authority']) {
+        if (!skipTLSVerify && (!elt.cluster['certificate-authority-data'] && !elt.cluster['certificate-authority'])) {
             throw new Error(`clusters[${i}].cluster.[certificate-authority-data, certificate-authority] is missing`);
         }
         if (!elt.cluster['server']) {
@@ -29,7 +32,7 @@ function clusterIterator(): u.ListIterator<any, Cluster> {
             caData: elt.cluster['certificate-authority-data'],
             caFile: elt.cluster['certificate-authority'],
             server: elt.cluster['server'],
-            skipTLSVerify: elt.cluster['insecure-skip-tls-verify'] == 'true'
+            skipTLSVerify: skipTLSVerify
         };
     }
 }
