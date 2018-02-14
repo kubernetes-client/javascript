@@ -60,7 +60,7 @@ k8sApi.createNamespace(namespace).then(
 # Development
 
 All dependencies of this project are expressed in its 
-[`package.json` file](./package.json). Before you start developing, ensure
+[`package.json` file](node-client/package.json). Before you start developing, ensure
 that you have [NPM](https://www.npmjs.com/) installed, then run:
 
 ```console
