@@ -18,9 +18,6 @@ function clusterIterator(): u.ListIterator<any, Cluster> {
         if (!elt['name']) {
             throw new Error(`clusters${i}.name is missing`);
         }
-        if (!elt.cluster['certificate-authority-data'] && !elt.cluster['certificate-authority']) {
-            throw new Error(`clusters[${i}].cluster.[certificate-authority-data, certificate-authority] is missing`);
-        }
         if (!elt.cluster['server']) {
             throw new Error(`clusters[${i}].cluster.server is missing`);
         }
