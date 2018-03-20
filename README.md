@@ -70,6 +70,15 @@ that you have [NPM](https://www.npmjs.com/) installed, then run:
 npm install
 ```
 
+## (re) Generating code
+
+```
+cd ../
+git clone https://github.com/kubernetes-client/gen
+cd javascript
+../gen/openapi/javascript.sh node-client/src settings
+```
+
 # Testing
 
 Tests are written using the [Chai](http://chaijs.com/) library. See
