@@ -117,8 +117,8 @@ export class KubeConfig {
         opts.cert = this.bufferFromFileOrString(user.certFile, user.certData);
         opts.key = this.bufferFromFileOrString(user.keyFile, user.keyData);
         let token = null;
-        if (user['auth-provider'] && user['auth-provider']['config']) {
-            let config = user['auth-provider']['config'];
+        if (user.authProvider && user.authProvider.config) {
+            let config = user.authProvider.config;
             // This should probably be extracted as auth-provider specific plugins...
             token = 'Bearer ' + config['access-token'];
             let expiry = config['expiry'];
