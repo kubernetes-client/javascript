@@ -1,16 +1,18 @@
 {
   "name": "@kubernetes/client-node",
-  "version": "0.1.3",
+  "version": "0.2.0",
   "description": "NodeJS client for kubernetes",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kubernetes-client/javascript.git"
   },
   "files": [
-    "*.ts",
-    "*.js"
+    "dist/src/*.ts",
+    "dist/src/*.js",
+    "index.ts"
   ],
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "clean": "rm -Rf node_modules/ dist/",
     "build": "tsc",

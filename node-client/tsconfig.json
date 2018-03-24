@@ -5,7 +5,7 @@
         "suppressImplicitAnyIndexErrors": true,
         "target": "es6",
         "moduleResolution": "node",
-        "removeComments": true,
+        "removeComments": false,
         "sourceMap": true,
         "noLib": false,
         "declaration": true,

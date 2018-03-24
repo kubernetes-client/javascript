@@ -57,6 +57,9 @@ k8sApi.createNamespace(namespace).then(
 );
 ```
 
+# Additional Examples
+There are several more examples in the [examples](/kubernetes-client/javascript/tree/master/examples) directory.
+
 # Development
 
 All dependencies of this project are expressed in its 
@@ -65,6 +68,15 @@ that you have [NPM](https://www.npmjs.com/) installed, then run:
 
 ```console
 npm install
+```
+
+## (re) Generating code
+
+```
+cd ../
+git clone https://github.com/kubernetes-client/gen
+cd javascript
+../gen/openapi/javascript.sh node-client/src settings
 ```
 
 # Testing
