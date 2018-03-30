@@ -1,3 +1,4 @@
+import https = require('https');
 import fs = require('fs');
 import os = require('os');
 import path = require('path');
@@ -106,16 +107,8 @@ export class KubeConfig {
         return null;
     }
 
-    public applyToRequest(opts: request.Options) {
-        let cluster = this.getCurrentCluster();
+    private getAuthorizationToken(): string | null {
         let user = this.getCurrentUser();
-
-        if (cluster.skipTLSVerify) {
-            opts.strictSSL = false
-        }
-        opts.ca = this.bufferFromFileOrString(cluster.caFile, cluster.caData);
-        opts.cert = this.bufferFromFileOrString(user.certFile, user.certData);
-        opts.key = this.bufferFromFileOrString(user.keyFile, user.keyData);
         let token = null;
         if (user.authProvider && user.authProvider.config) {
             let config = user.authProvider.config;
@@ -152,6 +145,47 @@ export class KubeConfig {
         if (user.token) {
             token = 'Bearer ' + user.token;
         }
+        return token;
+    }
+
+    private getHttpsCredentials() {
+        const cluster = this.getCurrentCluster();
+        const user = this.getCurrentUser();
+
+        return {
+            ca: this.bufferFromFileOrString(cluster.caFile, cluster.caData),
+            cert: this.bufferFromFileOrString(user.certFile, user.certData),
+            key: this.bufferFromFileOrString(user.keyFile, user.keyData),
+        };
+    }
+
+    public applyToHttpsOptions(opts: https.RequestOptions) {
+        const user = this.getCurrentUser();
+        const { ca, cert, key } = this.getHttpsCredentials();
+        opts.ca = ca;
+        opts.cert = cert;
+        opts.key = key;
+        const token = this.getAuthorizationToken();
+        if (token) {
+            opts.headers['Authorization'] = token;
+        }
+        if (user.username) {
+          opts.auth = `${user.username}:${user.password}`;
+        }
+    }
+
+    public applyToRequest(opts: request.Options) {
+        let cluster = this.getCurrentCluster();
+        let user = this.getCurrentUser();
+
+        if (cluster.skipTLSVerify) {
+            opts.strictSSL = false
+        }
+        const { ca, cert, key } = this.getHttpsCredentials();
+        opts.ca = ca;
+        opts.cert = cert;
+        opts.key = key;
+        const token = this.getAuthorizationToken();
         if (token) {
             opts.headers['Authorization'] = token;
         }
