@@ -8,8 +8,7 @@
   },
   "files": [
     "dist/src/*.ts",
-    "dist/src/*.js",
-    "index.ts"
+    "dist/src/*.js"
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
