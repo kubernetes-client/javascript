@@ -7,9 +7,8 @@
     "url": "git+https://github.com/kubernetes-client/javascript.git"
   },
   "files": [
-    "dist/src/*.ts",
-    "dist/src/*.js",
-    "index.ts"
+    "dist/*.ts",
+    "dist/*.js"
   ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
