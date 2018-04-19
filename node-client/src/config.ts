@@ -165,12 +165,12 @@ export class KubeConfig {
 
     public loadFromString(config: string) {
         var obj = yaml.safeLoad(config);
-        if (obj.apiVersion != 'v1') {
-            throw new TypeError('unknown version: ' + obj.apiVersion);
+        if (obj['apiVersion'] != 'v1') {
+            throw new TypeError('unknown version: ' + obj['apiVersion']);
         }
-        this.clusters = newClusters(obj.clusters);
-        this.contexts = newContexts(obj.contexts);
-        this.users = newUsers(obj.users);
+        this.clusters = newClusters(obj['clusters']);
+        this.contexts = newContexts(obj['contexts']);
+        this.users = newUsers(obj['users']);
         this.currentContext = obj['current-context'];
     }
 }
