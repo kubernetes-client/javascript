@@ -1,6 +1,7 @@
 import querystring = require('querystring');
 import stream = require('stream');
 
+import { connection as wsConnection } from 'websocket';
 import { WebSocketHandler } from './web-socket-handler';
 import { KubeConfig } from './config';
 
@@ -12,7 +13,7 @@ export class Exec {
     }        
 
     // TODO: make command an array and support multiple args
-    public async exec(namespace: string, podName: string, containerName: string, command: string, stdout: stream.Writable | any, stderr: stream.Writable | any, stdin: stream.Readable | any, tty: boolean): Promise<WebSocket> {
+    public async exec(namespace: string, podName: string, containerName: string, command: string, stdout: stream.Writable | any, stderr: stream.Writable | any, stdin: stream.Readable | any, tty: boolean): Promise<wsConnection> {
         var query = {
             stdout: stdout != null,
             stderr: stderr != null,
@@ -29,6 +30,6 @@ export class Exec {
         if (stdin != null) {
             WebSocketHandler.handleStandardInput(conn, stdin);
         }
-        return conn as WebSocket;
+        return conn;
     }
 }

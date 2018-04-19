@@ -1,6 +1,7 @@
+import https = require('https');
 import stream = require('stream');
 
-import ws = require('websocket');
+import { connection as wsConnection, client as wsClient } from 'websocket';
 import { KubeConfig } from './config';
 import { V1Status } from './api';
 
@@ -26,10 +27,10 @@ export class WebSocketHandler {
 
     public connect(path: string,
                    textHandler: (text: string) => void,
-                   binaryHandler: (stream: number, buff: Buffer) => void): Promise<ws.connection> {
-        let opts = {};
-        this.config.applyToRequest(opts);
-        let client = new ws.client({ 'tlsOptions': opts });
+                   binaryHandler: (stream: number, buff: Buffer) => void): Promise<wsConnection> {
+        let opts: https.RequestOptions = {};
+        this.config.applyToHttpsOptions(opts);
+        let client = new wsClient({ 'tlsOptions': opts });
 
         return new Promise((resolve, reject) => {
             client.on('connect', (connection) => {
@@ -41,7 +42,7 @@ export class WebSocketHandler {
                     }
                     else if (message.type === 'binary') {
                         if (binaryHandler) {
-                            let stream = message.binaryData.readInt8();
+                            let stream = message.binaryData.readInt8(0);
                             binaryHandler(stream, message.binaryData.slice(1));
                         }
                     }
@@ -87,7 +88,7 @@ export class WebSocketHandler {
         return null;
     }
 
-    public static handleStandardInput(conn: ws.connection, stdin: stream.Readable | any) {
+    public static handleStandardInput(conn: wsConnection, stdin: stream.Readable | any) {
         stdin.on('data', (data) => {
             let buff = new Buffer(data.length + 1);
             buff.writeInt8(0, 0);
@@ -100,7 +101,7 @@ export class WebSocketHandler {
         });
 
         stdin.on('end', () => {
-            conn.close(ws.connection.CLOSE_REASON_NORMAL);
+            conn.close();
         });
     }
 }
