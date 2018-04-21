@@ -22,9 +22,7 @@
   "dependencies": {
     "@types/base-64": "^0.1.2",
     "@types/bluebird": "^3.5.7",
-    "@types/chai": "^4.0.1",
     "@types/js-yaml": "^3.5.31",
-    "@types/mocha": "^2.2.41",
     "@types/node": "^8.0.2",
     "@types/underscore": "^1.8.1",
     "base-64": "^0.1.0",
@@ -38,6 +36,8 @@
     "websocket": "^1.0.25"
   },
   "devDependencies": {
+    "@types/chai": "^4.0.1",
+    "@types/mocha": "^2.2.41",
     "chai": "^4.0.2",
     "jasmine": "^2.8.0",
     "mocha": "^3.4.2",
