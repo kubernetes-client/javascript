@@ -27,6 +27,7 @@
     "@types/node": "^8.0.2",
     "@types/request": "^2.47.0",
     "@types/underscore": "^1.8.1",
+    "@types/websocket": "0.0.38",
     "base-64": "^0.1.0",
     "bluebird": "^3.3.5",
     "byline": "^5.0.0",

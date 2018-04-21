@@ -31,10 +31,8 @@ export class WebSocketHandler {
         const server = this.config.getCurrentCluster().server;
         const target = server.startsWith('https://') ? server.substr(8) : server.substr(7);
         const uri = `wss://${target}${path}`;
-        const opts = { uri };
 
-        this.config.applyToRequest(opts);
-        let client = new ws.client({ 'tlsOptions': opts });
+        const client = new ws.client();
 
         return new Promise((resolve, reject) => {
             client.on('connect', (connection) => {
@@ -46,7 +44,7 @@ export class WebSocketHandler {
                     }
                     else if (message.type === 'binary') {
                         if (binaryHandler) {
-                            let stream = message.binaryData.readInt8();
+                            let stream = message.binaryData.readInt8(0);
                             binaryHandler(stream, message.binaryData.slice(1));
                         }
                     }
@@ -98,7 +96,7 @@ export class WebSocketHandler {
         });
 
         stdin.on('end', () => {
-            conn.close(ws.connection.CLOSE_REASON_NORMAL);
+            conn.close();
         });
     }
 }
