@@ -15,6 +15,7 @@
   "scripts": {
     "clean": "rm -Rf node_modules/ dist/",
     "build": "tsc",
+    "watch": "tsc --watch",
     "test": "mocha -r ts-node/register src/**/*_test.ts"
   },
   "author": "Kubernetes Authors",
@@ -24,6 +25,7 @@
     "@types/bluebird": "^3.5.7",
     "@types/js-yaml": "^3.5.31",
     "@types/node": "^8.0.2",
+    "@types/request": "^2.47.0",
     "@types/underscore": "^1.8.1",
     "base-64": "^0.1.0",
     "bluebird": "^3.3.5",
@@ -42,7 +44,7 @@
     "jasmine": "^2.8.0",
     "mocha": "^3.4.2",
     "ts-node": "^3.1.0",
-    "typescript": "^2.3.4"
+    "typescript": "^2.6.2"
   },
   "bugs": {
     "url": "https://github.com/kubernetes-client/javascript/issues"
