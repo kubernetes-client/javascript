@@ -37,7 +37,7 @@ export interface User {
     readonly certFile: string
     readonly keyData: string
     readonly keyFile: string
-    readonly authProvider: Object
+    readonly authProvider: any
     readonly token: string
     readonly username: string
     readonly password: string

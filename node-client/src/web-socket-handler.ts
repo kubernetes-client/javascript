@@ -1,4 +1,5 @@
 import stream = require('stream');
+import https = require('https');
 
 import ws = require('websocket');
 import { KubeConfig } from './config';
@@ -32,7 +33,10 @@ export class WebSocketHandler {
         const target = server.startsWith('https://') ? server.substr(8) : server.substr(7);
         const uri = `wss://${target}${path}`;
 
-        const client = new ws.client();
+        const opts : https.RequestOptions = {};
+        this.config.applytoHTTPsOptions(opts)
+
+        const client = new ws.client({ tlsOptions: opts } );
 
         return new Promise((resolve, reject) => {
             client.on('connect', (connection) => {
