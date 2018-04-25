@@ -27,9 +27,12 @@ export class WebSocketHandler {
     public connect(path: string,
                    textHandler: (text: string) => void,
                    binaryHandler: (stream: number, buff: Buffer) => void): Promise<ws.connection> {
-        let opts = {};
-        this.config.applyToRequest(opts);
-        let client = new ws.client({ 'tlsOptions': opts });
+
+        const server = this.config.getCurrentCluster().server;
+        const target = server.startsWith('https://') ? server.substr(8) : server.substr(7);
+        const uri = `wss://${target}${path}`;
+
+        const client = new ws.client();
 
         return new Promise((resolve, reject) => {
             client.on('connect', (connection) => {
@@ -41,26 +44,19 @@ export class WebSocketHandler {
                     }
                     else if (message.type === 'binary') {
                         if (binaryHandler) {
-                            let stream = message.binaryData.readInt8();
+                            let stream = message.binaryData.readInt8(0);
                             binaryHandler(stream, message.binaryData.slice(1));
                         }
                     }
                 });
                 resolve(connection);
             });
-            
+
             client.on('connectFailed', (err) => {
                 reject(err);
             });
 
-            var url;
-            var server = this.config.getCurrentCluster().server;
-            if (server.startsWith('https://')) {
-                url = 'wss://' + server.substr(8) + path;
-            } else {
-                url = 'ws://' + server.substr(7) + path;
-            }
-            client.connect(url, protocols);    
+            client.connect(uri, protocols);
         });
     }
 
@@ -96,11 +92,11 @@ export class WebSocketHandler {
             } else {
                 buff.write(data, 1);
             }
-            conn.send(buff);        
+            conn.send(buff);
         });
 
         stdin.on('end', () => {
-            conn.close(ws.connection.CLOSE_REASON_NORMAL);
+            conn.close();
         });
     }
 }
