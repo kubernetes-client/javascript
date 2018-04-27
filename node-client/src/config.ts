@@ -169,7 +169,7 @@ export class KubeConfig {
         this.applyAuthorizationHeader(opts);
     }
 
-    public applytoHTTPsOptions(opts: https.RequestOptions) {
+    public applytoHTTPSOptions(opts: https.RequestOptions) {
         const user = this.getCurrentUser();
 
         this.applyOptions(opts);
