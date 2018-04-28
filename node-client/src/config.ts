@@ -1,6 +1,7 @@
 import fs = require('fs');
 import os = require('os');
 import path = require('path');
+import https = require('https');
 
 import base64 = require('base-64');
 import jsonpath = require('jsonpath');
@@ -80,7 +81,7 @@ export class KubeConfig {
         return this.getCluster(this.getCurrentContextObject()['cluster']);
     }
 
-    public getCluster(name: string) {
+    public getCluster(name: string): Cluster {
         return KubeConfig.findObject(this.clusters, name, 'cluster');
     }
 
@@ -88,7 +89,7 @@ export class KubeConfig {
         return this.getUser(this.getCurrentContextObject()['user']);
     }
 
-    public getUser(name: string) {
+    public getUser(name: string): User {
         return KubeConfig.findObject(this.users, name, 'user');
     }
 
@@ -106,22 +107,25 @@ export class KubeConfig {
         return null;
     }
 
-    public applyToRequest(opts: request.Options) {
-        let cluster = this.getCurrentCluster();
-        let user = this.getCurrentUser();
+    private applyHTTPSOptions(opts: request.Options | https.RequestOptions) {
+        const cluster = this.getCurrentCluster();
+        const user = this.getCurrentUser();
 
-        if (cluster.skipTLSVerify) {
-            opts.strictSSL = false
-        }
         opts.ca = this.bufferFromFileOrString(cluster.caFile, cluster.caData);
         opts.cert = this.bufferFromFileOrString(user.certFile, user.certData);
         opts.key = this.bufferFromFileOrString(user.keyFile, user.keyData);
+    }
+
+    private applyAuthorizationHeader(opts: request.Options | https.RequestOptions) {
+        const user = this.getCurrentUser();
         let token = null;
+
         if (user.authProvider && user.authProvider.config) {
-            let config = user.authProvider.config;
+            const config = user.authProvider.config;
             // This should probably be extracted as auth-provider specific plugins...
             token = 'Bearer ' + config['access-token'];
-            let expiry = config['expiry'];
+            const expiry = config['expiry'];
+
             if (expiry) {
                 let expiration = Date.parse(expiry);
                 if (expiration < Date.now()) {
@@ -131,7 +135,7 @@ export class KubeConfig {
                             cmd = cmd + ' ' + config['cmd-args'];
                         }
                         // TODO: Cache to file?
-                        let result = shelljs.exec(cmd, { silent: true });
+                        const result = shelljs.exec(cmd, { silent: true });
                         if (result['code'] != 0) {
                             throw new Error('Failed to refresh token: ' + result);
                         }
@@ -148,13 +152,43 @@ export class KubeConfig {
                     }
                 }
             }
+
         }
+
         if (user.token) {
             token = 'Bearer ' + user.token;
         }
+
         if (token) {
             opts.headers['Authorization'] = token;
         }
+    }
+
+    private applyOptions(opts: request.Options | https.RequestOptions) {
+        this.applyHTTPSOptions(opts);
+        this.applyAuthorizationHeader(opts);
+    }
+
+    public applytoHTTPSOptions(opts: https.RequestOptions) {
+        const user = this.getCurrentUser();
+
+        this.applyOptions(opts);
+
+        if (user.username) {
+            opts.auth = `${user.username}:${user.password}`;
+        }
+    }
+
+    public applyToRequest(opts: request.Options) {
+        const cluster = this.getCurrentCluster();
+        const user = this.getCurrentUser();
+
+        this.applyOptions(opts);
+
+        if (cluster.skipTLSVerify) {
+            opts.strictSSL = false
+        }
+
         if (user.username) {
             opts.auth = {
                 username: user.username,

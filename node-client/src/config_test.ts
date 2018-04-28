@@ -1,6 +1,10 @@
-import { KubeConfig, Config } from './config';
-import { expect } from 'chai';
 import 'mocha';
+
+import { expect } from 'chai';
+import * as https from 'https';
+import * as base64 from 'base-64';
+
+import { KubeConfig, Config } from './config';
 
 const kcFileName = "testdata/kubeconfig.yaml";
 
@@ -51,10 +55,10 @@ describe("KubeConfig", () => {
             let cluster1 = kc.clusters[0];
             let cluster2 = kc.clusters[1];
             expect(cluster1.name).to.equal("cluster1");
-            expect(cluster1.caData).to.equal("CADATA");
+            expect(cluster1.caData).to.equal("Q0FEQVRB");
             expect(cluster1.server).to.equal("http://example.com");
             expect(cluster2.name).to.equal("cluster2");
-            expect(cluster2.caData).to.equal("CADATA2");
+            expect(cluster2.caData).to.equal("Q0FEQVRBMg==");
             expect(cluster2.server).to.equal("http://example2.com");
 
             // check users
@@ -62,11 +66,11 @@ describe("KubeConfig", () => {
             let user1 = kc.users[0];
             let user2 = kc.users[1];
             expect(user1.name).to.equal("user1");
-            expect(user1.certData).to.equal("USER_CADATA");
-            expect(user1.keyData).to.equal("USER_CKDATA");
+            expect(user1.certData).to.equal("VVNFUl9DQURBVEE=");
+            expect(user1.keyData).to.equal("VVNFUl9DS0RBVEE=");
             expect(user2.name).to.equal("user2");
-            expect(user2.certData).to.equal("USER2_CADATA");
-            expect(user2.keyData).to.equal("USER2_CKDATA");
+            expect(user2.certData).to.equal("VVNFUjJfQ0FEQVRB");
+            expect(user2.keyData).to.equal("VVNFUjJfQ0tEQVRB");
 
             // check contexts
             expect(kc.contexts.length).to.equal(2);
@@ -85,6 +89,22 @@ describe("KubeConfig", () => {
             // TODO: make the error check work
             // let kc = new KubeConfig();
             // expect(kc.loadFromFile("missing.yaml")).to.throw();
+        });
+    });
+
+    describe("applyHTTPSOptions", () => {
+        it("should apply cert configs", () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcFileName);
+
+            const opts: https.RequestOptions = {};
+            kc.applytoHTTPSOptions(opts);
+
+            expect(opts).to.deep.equal({
+                ca: new Buffer('CADATA2', 'utf-8'),
+                cert: new Buffer('USER2_CADATA', 'utf-8'),
+                key: new Buffer('USER2_CKDATA', 'utf-8'),
+            });
         });
     });
 });
