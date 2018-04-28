@@ -160,6 +160,9 @@ export class KubeConfig {
         }
 
         if (token) {
+            if (!opts.headers) {
+                opts.headers = [];
+            }
             opts.headers['Authorization'] = token;
         }
     }
@@ -239,6 +242,9 @@ export class Config {
         k8sApi.setDefaultAuthentication({
             'applyToRequest': (opts) => {
                 opts.ca = caCert;
+                if (!opts.headers) {
+                    opts.headers = [];
+                }
                 opts.headers['Authorization'] = 'Bearer ' + token;
             }
         });
