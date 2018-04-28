@@ -34,7 +34,7 @@ export class WebSocketHandler {
         const uri = `wss://${target}${path}`;
 
         const opts : https.RequestOptions = {};
-        this.config.applytoHTTPsOptions(opts)
+        this.config.applytoHTTPSOptions(opts)
 
         const client = new ws.client({ tlsOptions: opts } );
 
