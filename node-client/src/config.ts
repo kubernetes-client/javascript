@@ -130,7 +130,7 @@ export class KubeConfig {
                 let expiration = Date.parse(expiry);
                 if (expiration < Date.now()) {
                     if (config['cmd-path']) {
-                        let cmd = config['cmd-path'];
+                        let cmd = '"' + config['cmd-path'] + '"';
                         if (config['cmd-args']) {
                             cmd = cmd + ' ' + config['cmd-args'];
                         }
