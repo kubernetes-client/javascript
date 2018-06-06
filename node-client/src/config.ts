@@ -137,7 +137,7 @@ export class KubeConfig {
                         // TODO: Cache to file?
                         const result = shelljs.exec(cmd, { silent: true });
                         if (result['code'] != 0) {
-                            throw new Error('Failed to refresh token: ' + result);
+                            throw new Error('Failed to refresh token: ' + result.stderr);
                         }
                         let resultObj = JSON.parse(result.stdout.toString());
 
