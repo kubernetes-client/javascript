@@ -1,7 +1,7 @@
 {
   "name": "@kubernetes/client-node",
-  "version": "0.2.1",
-  "description": "NodeJS client for kubernetes",
+  "version": "0.4.0-SNAPSHOT",
+  "description": "NodeJS client for kubernetes.",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kubernetes-client/javascript.git"
@@ -16,7 +16,7 @@
     "clean": "rm -Rf node_modules/ dist/",
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "mocha -r ts-node/register src/**/*_test.ts"
+    "test": "mocha -r ts-node/register kubernetes/**/*_test.ts"
   },
   "author": "Kubernetes Authors",
   "license": "Apache-2.0",
@@ -45,7 +45,7 @@
     "jasmine": "^2.8.0",
     "mocha": "^3.4.2",
     "ts-node": "^3.1.0",
-    "typescript": "^2.6.2"
+    "typescript": "^2.9.2"
   },
   "bugs": {
     "url": "https://github.com/kubernetes-client/javascript/issues"
