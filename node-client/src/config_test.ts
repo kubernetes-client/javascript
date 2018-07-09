@@ -60,6 +60,7 @@ describe("KubeConfig", () => {
             expect(cluster2.name).to.equal("cluster2");
             expect(cluster2.caData).to.equal("Q0FEQVRBMg==");
             expect(cluster2.server).to.equal("http://example2.com");
+            expect(cluster2.skipTLSVerify).to.equal(true);
 
             // check users
             expect(kc.users.length).to.equal(2);

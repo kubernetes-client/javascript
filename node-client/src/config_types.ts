@@ -26,7 +26,7 @@ function clusterIterator(): u.ListIterator<any, Cluster> {
             caData: elt.cluster['certificate-authority-data'],
             caFile: elt.cluster['certificate-authority'],
             server: elt.cluster['server'],
-            skipTLSVerify: elt.cluster['insecure-skip-tls-verify'] == 'true'
+            skipTLSVerify: elt.cluster['insecure-skip-tls-verify'] === true
         };
     }
 }
