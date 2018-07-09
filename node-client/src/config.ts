@@ -130,14 +130,14 @@ export class KubeConfig {
                 let expiration = Date.parse(expiry);
                 if (expiration < Date.now()) {
                     if (config['cmd-path']) {
-                        let cmd = config['cmd-path'];
+                        let cmd = '"' + config['cmd-path'] + '"';
                         if (config['cmd-args']) {
                             cmd = cmd + ' ' + config['cmd-args'];
                         }
                         // TODO: Cache to file?
                         const result = shelljs.exec(cmd, { silent: true });
                         if (result['code'] != 0) {
-                            throw new Error('Failed to refresh token: ' + result);
+                            throw new Error('Failed to refresh token: ' + result.stderr);
                         }
                         let resultObj = JSON.parse(result.stdout.toString());
 
