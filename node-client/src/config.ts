@@ -135,18 +135,23 @@ export class KubeConfig {
                             cmd = cmd + ' ' + config['cmd-args'];
                         }
                         // TODO: Cache to file?
-                        const result = shelljs.exec(cmd, { silent: true });
-                        if (result['code'] != 0) {
-                            throw new Error('Failed to refresh token: ' + result.stderr);
-                        }
-                        let resultObj = JSON.parse(result.stdout.toString());
+                        const command = shelljs.exec(cmd, { silent: true, async: true });
 
-                        let path = config['token-key'];
-                        // Format in file is {<query>}, so slice it out and add '$'
-                        path = '$' + path.slice(1, -1);
+                        command.stdout.on('data', (data) => {
+                            let resultObj = JSON.parse(data.toString());
+                            let path = config['token-key'];
 
-                        config['access-token'] = jsonpath.query(resultObj, path);
-                        token = 'Bearer ' + config['access-token'];
+                            // Format in file is {<query>}, so slice it out and add '$'
+                            path = '$' + path.slice(1, -1);
+    
+                            config['access-token'] = jsonpath.query(resultObj, path);
+                            token = 'Bearer ' + config['access-token'];
+                        })
+
+                        command.stderr.on('data', (data) => {
+                            throw new Error('Failed to refresh token: ' + data);
+                        });
+
                     } else {
                         throw new Error('Token is expired!');
                     }
