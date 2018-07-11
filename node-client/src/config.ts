@@ -210,6 +210,51 @@ export class KubeConfig {
         this.users = newUsers(obj['users']);
         this.currentContext = obj['current-context'];
     }
+
+    public loadFromCluster() {
+        const host = process.env.KUBERNETES_SERVICE_HOST;
+        const port = process.env.KUBERNETES_SERVICE_PORT;
+        const clusterName = 'inCluster';
+        const userName = 'inClusterUser';
+        const contextName = 'inClusterContext';
+
+        let scheme = 'https';
+        if (port === '80' || port === '8080' || port === '8001') {
+            scheme = 'http';
+        }
+
+        this.clusters = [
+            {
+                name: clusterName,
+                caFile: Config.SERVICEACCOUNT_CA_PATH,
+                caData: null,
+                server: `${scheme}://${host}:${port}`,
+                skipTLSVerify: false
+            }
+        ]
+        this.users = [
+            {
+                name: userName,
+                token: fs.readFileSync(Config.SERVICEACCOUNT_TOKEN_PATH).toString(),
+                // empty defaults, fields are required...
+                certData: null,
+                certFile: null,
+                keyData: null,
+                keyFile: null,
+                authProvider: null,
+                username: null,
+                password: null
+            }
+        ]
+        this.contexts = [
+            {
+                cluster: clusterName,
+                user: userName,
+                name: contextName
+            }
+        ];
+        this.currentContext = contextName;
+    }
 }
 
 export class Config {
