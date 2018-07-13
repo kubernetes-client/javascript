@@ -326,23 +326,11 @@ export class Config {
     }
 
     public static fromCluster(): api.Core_v1Api {
-        const host = process.env.KUBERNETES_SERVICE_HOST;
-        const port = process.env.KUBERNETES_SERVICE_PORT;
+        const kc = new KubeConfig();
+        kc.loadFromCluster();
 
-        // TODO: better error checking here.
-        const caCert = fs.readFileSync(Config.SERVICEACCOUNT_CA_PATH);
-        const token = fs.readFileSync(Config.SERVICEACCOUNT_TOKEN_PATH);
-
-        const k8sApi = new api.Core_v1Api('https://' + host + ':' + port);
-        k8sApi.setDefaultAuthentication({
-            applyToRequest: (opts) => {
-                opts.ca = caCert;
-                if (!opts.headers) {
-                    opts.headers = [];
-                }
-                opts.headers.Authorization = 'Bearer ' + token;
-            },
-        });
+        const k8sApi = new client.Core_v1Api(kc.getCurrentCluster().server);
+        k8sApi.setDefaultAuthentication(kc);
 
         return k8sApi;
     }
