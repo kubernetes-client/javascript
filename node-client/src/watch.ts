@@ -1,31 +1,33 @@
-import request = require('request');
 import { LineStream } from 'byline';
+import request = require('request');
 import { KubeConfig } from './config';
 
 export class Watch {
-    'config': KubeConfig;
+    public 'config': KubeConfig;
 
     public constructor(config: KubeConfig) {
         this.config = config;
     }
 
-    public watch(path: string, queryParams: any, callback: (phase: string, obj: any) => void, done: (err: any) => void): any {
-        let url = this.config.getCurrentCluster().server + path;
+    public watch(path: string, queryParams: any,
+                 callback: (phase: string, obj: any) => void,
+                 done: (err: any) => void): any {
+        const url = this.config.getCurrentCluster().server + path;
 
-        queryParams['watch'] = true;
-        let headerParams: any = {};
+        queryParams.watch = true;
+        const headerParams: any = {};
 
-        let requestOptions: request.Options = {
+        const requestOptions: request.Options = {
             method: 'GET',
             qs: queryParams,
             headers: headerParams,
             uri: url,
             useQuerystring: true,
-            json: true
+            json: true,
         };
         this.config.applyToRequest(requestOptions);
-        
-        let stream = new LineStream();
+
+        const stream = new LineStream();
         stream.on('data', (data) => {
             let obj = null;
             if (data instanceof Buffer) {
@@ -33,14 +35,14 @@ export class Watch {
             } else {
                 obj = JSON.parse(data);
             }
-            if (obj['type'] && obj['object']) {
-                callback(obj['type'], obj['object']);
+            if (obj.type && obj.object) {
+                callback(obj.type, obj.object);
             } else {
-                console.log('unexpected object: ' + obj);
+                throw new Error(`unexpected object: ${obj}`);
             }
         });
 
-        let req = request(requestOptions, (error, response, body) => {
+        const req = request(requestOptions, (error, response, body) => {
             if (error) {
                 done(error);
             }

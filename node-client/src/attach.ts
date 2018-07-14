@@ -1,28 +1,30 @@
 import querystring = require('querystring');
 import stream = require('stream');
 
-import { WebSocketHandler } from './web-socket-handler';
 import { KubeConfig } from './config';
+import { WebSocketHandler } from './web-socket-handler';
 
 export class Attach {
-    'handler': WebSocketHandler;
+    public 'handler': WebSocketHandler;
 
     public constructor(config: KubeConfig) {
         this.handler = new WebSocketHandler(config);
-    }        
+    }
 
-    public attach(namespace: string, podName: string, containerName: string, stdout: stream.Writable | any, stderr: stream.Writable | any, stdin: stream.Readable | any, tty: boolean) {
-        var query = {
-            stdout: stdout != null,
+    public attach(namespace: string, podName: string, containerName: string,
+                  stdout: stream.Writable | any, stderr: stream.Writable | any, stdin: stream.Readable | any,
+                  tty: boolean) {
+        const query = {
+            container: containerName,
             stderr: stderr != null,
             stdin: stdin != null,
-            tty: tty,
-            container: containerName
-        }
-        var queryStr = querystring.stringify(query);
-        var path = `/api/v1/namespaces/${namespace}/pods/${podName}/attach?${queryStr}`;        
-        this.handler.connect(path, null, (stream: number, buff: Buffer) => {
-            WebSocketHandler.handleStandardStreams(stream, buff, stdout, stderr);
+            stdout: stdout != null,
+            tty,
+        };
+        const queryStr = querystring.stringify(query);
+        const path = `/api/v1/namespaces/${namespace}/pods/${podName}/attach?${queryStr}`;
+        this.handler.connect(path, null, (streamNum: number, buff: Buffer) => {
+            WebSocketHandler.handleStandardStreams(streamNum, buff, stdout, stderr);
         });
     }
 }

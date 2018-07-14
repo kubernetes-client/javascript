@@ -1,0 +1,19 @@
+{
+    "extends": "tslint:recommended",
+    "defaultSeverity": "error",
+    "linterOptions": {
+        "exclude": [
+            "src/api.ts",
+            "dist",
+            "node_modules"
+         ]
+    },
+    "jsRules": {},
+    "rules": {
+        "quotemark": [true, "single", "avoid-escape", "avoid-template"],
+        "interface-name": [true, "never-prefix"],
+        "object-literal-sort-keys": false,
+        "max-classes-per-file": false
+    },
+    "rulesDirectory": []
+}
