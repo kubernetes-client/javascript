@@ -89,7 +89,7 @@ export class WebSocketHandler {
 
     public static handleStandardInput(conn: ws.connection, stdin: stream.Readable | any) {
         stdin.on('data', (data) => {
-            let buff = new Buffer(data.length + 1);
+            let buff = Buffer.from(data.length + 1);
             buff.writeInt8(0, 0);
             if (data instanceof Buffer) {
                 data.copy(buff, 1);
