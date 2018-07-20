@@ -13,6 +13,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "lint": "tslint --project \".\"",
     "clean": "rm -Rf node_modules/ dist/",
     "build": "tsc",
     "watch": "tsc --watch",
@@ -45,6 +46,7 @@
     "jasmine": "^2.8.0",
     "mocha": "^3.4.2",
     "ts-node": "^3.1.0",
+    "tslint": "^5.10.0",
     "typescript": "^2.6.2"
   },
   "bugs": {
