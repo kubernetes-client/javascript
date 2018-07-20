@@ -10,8 +10,8 @@
         "build": "tsc",
         "test": "npm run build && node client.js"
     },
-    "author": "Swagger Codegen Contributors",
-    "license": "Unlicense",
+    "author": "Kubernetes Authors",
+    "license": "Apache-2.0",
     "dependencies": {
         "bluebird": "^3.3.5",
         "request": "^2.72.0"
