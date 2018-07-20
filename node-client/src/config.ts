@@ -185,7 +185,7 @@ export class KubeConfig {
             return fs.readFileSync(file);
         }
         if (data) {
-            return new Buffer(base64.decode(data), 'utf-8');
+            return Buffer.from(base64.decode(data), 'utf-8');
         }
         return null;
     }
