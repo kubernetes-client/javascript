@@ -3,6 +3,7 @@ import api = require('./api');
 // These wrappers are needed until we update the swagger->TypeScript generator
 
 // Add the ability to extend auth.
+/* tslint:disable: class-name */
 export class Core_v1Api extends api.Core_v1Api {
     constructor(baseUri: string) {
         super(baseUri);
@@ -12,6 +13,7 @@ export class Core_v1Api extends api.Core_v1Api {
     }
 }
 
+/* tslint:disable: class-name */
 export class Extensions_v1beta1Api extends api.Extensions_v1beta1Api {
     constructor(baseUri: string) {
         super(baseUri);
@@ -22,4 +24,3 @@ export class Extensions_v1beta1Api extends api.Extensions_v1beta1Api {
 }
 
 // TODO: Add other API objects here
-

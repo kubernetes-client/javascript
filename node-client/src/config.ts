@@ -1,40 +1,52 @@
 import fs = require('fs');
+import https = require('https');
 import os = require('os');
 import path = require('path');
-import https = require('https');
 
 import base64 = require('base-64');
+import yaml = require('js-yaml');
 import jsonpath = require('jsonpath');
 import request = require('request');
 import shelljs = require('shelljs');
-import yaml = require('js-yaml');
 import api = require('./api');
-import { Cluster, newClusters, User, newUsers, Context, newContexts } from './config_types';
+import { Cluster, Context, newClusters, newContexts, newUsers, User } from './config_types';
 
 import client = require('./auth-wrapper');
 
 export class KubeConfig {
+
+    // Only really public for testing...
+    public static findObject(list: any[], name: string, key: string) {
+        for (const obj of list) {
+            if (obj.name === name) {
+                if (obj[key]) {
+                    return obj[key];
+                }
+                return obj;
+            }
+        }
+        return null;
+    }
+
     /**
      * The list of all known clusters
      */
-    'clusters': Cluster[];
+    public 'clusters': Cluster[];
 
     /**
      * The list of all known users
      */
-    'users': User[];
+    public 'users': User[];
 
     /**
      * The list of all known contexts
      */
-    'contexts': Context[];
+    public 'contexts': Context[];
 
     /**
      * The name of the current context
      */
-    'currentContext': string;
-
-    constructor() { }
+    public 'currentContext': string;
 
     public getContexts() {
         return this.contexts;
@@ -56,29 +68,12 @@ export class KubeConfig {
         this.currentContext = context;
     }
 
-    // Only really public for testing...
-    public static findObject(list: Object[], name: string, key: string) {
-        for (let obj of list) {
-            if (obj['name'] == name) {
-                if (obj[key]) {
-                    return obj[key];
-                }
-                return obj;
-            }
-        }
-        return null;
-    }
-
-    private getCurrentContextObject() {
-        return this.getContextObject(this.currentContext);
-    }
-
     public getContextObject(name: string) {
         return KubeConfig.findObject(this.contexts, name, 'context');
     }
 
     public getCurrentCluster() {
-        return this.getCluster(this.getCurrentContextObject()['cluster']);
+        return this.getCluster(this.getCurrentContextObject().cluster);
     }
 
     public getCluster(name: string): Cluster {
@@ -86,7 +81,7 @@ export class KubeConfig {
     }
 
     public getCurrentUser() {
-        return this.getUser(this.getCurrentContextObject()['user']);
+        return this.getUser(this.getCurrentContextObject().user);
     }
 
     public getUser(name: string): User {
@@ -95,6 +90,94 @@ export class KubeConfig {
 
     public loadFromFile(file: string) {
         this.loadFromString(fs.readFileSync(file, 'utf8'));
+    }
+
+    public applytoHTTPSOptions(opts: https.RequestOptions) {
+        const user = this.getCurrentUser();
+
+        this.applyOptions(opts);
+
+        if (user.username) {
+            opts.auth = `${user.username}:${user.password}`;
+        }
+    }
+
+    public applyToRequest(opts: request.Options) {
+        const cluster = this.getCurrentCluster();
+        const user = this.getCurrentUser();
+
+        this.applyOptions(opts);
+
+        if (cluster.skipTLSVerify) {
+            opts.strictSSL = false;
+        }
+
+        if (user.username) {
+            opts.auth = {
+                password: user.password,
+                username: user.username,
+            };
+        }
+    }
+
+    public loadFromString(config: string) {
+        const obj = yaml.safeLoad(config) as any;
+        if (obj.apiVersion !== 'v1') {
+            throw new TypeError('unknown version: ' + obj.apiVersion);
+        }
+        this.clusters = newClusters(obj.clusters);
+        this.contexts = newContexts(obj.contexts);
+        this.users = newUsers(obj.users);
+        this.currentContext = obj['current-context'];
+    }
+
+    public loadFromCluster() {
+        const host = process.env.KUBERNETES_SERVICE_HOST;
+        const port = process.env.KUBERNETES_SERVICE_PORT;
+        const clusterName = 'inCluster';
+        const userName = 'inClusterUser';
+        const contextName = 'inClusterContext';
+
+        let scheme = 'https';
+        if (port === '80' || port === '8080' || port === '8001') {
+            scheme = 'http';
+        }
+
+        this.clusters = [
+            {
+                name: clusterName,
+                caFile: Config.SERVICEACCOUNT_CA_PATH,
+                caData: null,
+                server: `${scheme}://${host}:${port}`,
+                skipTLSVerify: false,
+            },
+        ];
+        this.users = [
+            {
+                name: userName,
+                token: fs.readFileSync(Config.SERVICEACCOUNT_TOKEN_PATH).toString(),
+                // empty defaults, fields are required...
+                certData: null,
+                certFile: null,
+                keyData: null,
+                keyFile: null,
+                authProvider: null,
+                username: null,
+                password: null,
+            },
+        ];
+        this.contexts = [
+            {
+                cluster: clusterName,
+                name: contextName,
+                user: userName,
+            },
+        ];
+        this.currentContext = contextName;
+    }
+
+    private getCurrentContextObject() {
+        return this.getContextObject(this.currentContext);
     }
 
     private bufferFromFileOrString(file: string, data: string) {
@@ -124,10 +207,10 @@ export class KubeConfig {
             const config = user.authProvider.config;
             // This should probably be extracted as auth-provider specific plugins...
             token = 'Bearer ' + config['access-token'];
-            const expiry = config['expiry'];
+            const expiry = config.expiry;
 
             if (expiry) {
-                let expiration = Date.parse(expiry);
+                const expiration = Date.parse(expiry);
                 if (expiration < Date.now()) {
                     if (config['cmd-path']) {
                         let cmd = '"' + config['cmd-path'] + '"';
@@ -136,14 +219,14 @@ export class KubeConfig {
                         }
                         // TODO: Cache to file?
                         const result = shelljs.exec(cmd, { silent: true });
-                        if (result['code'] != 0) {
+                        if (result.code !== 0) {
                             throw new Error('Failed to refresh token: ' + result.stderr);
                         }
-                        let resultObj = JSON.parse(result.stdout.toString());
+                        const resultObj = JSON.parse(result.stdout.toString());
 
-                        let path = config['token-key'];
+                        let pathKey = config['token-key'];
                         // Format in file is {<query>}, so slice it out and add '$'
-                        path = '$' + path.slice(1, -1);
+                        pathKey = '$' + pathKey.slice(1, -1);
 
                         config['access-token'] = jsonpath.query(resultObj, path);
                         token = 'Bearer ' + config['access-token'];
@@ -163,97 +246,13 @@ export class KubeConfig {
             if (!opts.headers) {
                 opts.headers = [];
             }
-            opts.headers['Authorization'] = token;
+            opts.headers.Authorization = token;
         }
     }
 
     private applyOptions(opts: request.Options | https.RequestOptions) {
         this.applyHTTPSOptions(opts);
         this.applyAuthorizationHeader(opts);
-    }
-
-    public applytoHTTPSOptions(opts: https.RequestOptions) {
-        const user = this.getCurrentUser();
-
-        this.applyOptions(opts);
-
-        if (user.username) {
-            opts.auth = `${user.username}:${user.password}`;
-        }
-    }
-
-    public applyToRequest(opts: request.Options) {
-        const cluster = this.getCurrentCluster();
-        const user = this.getCurrentUser();
-
-        this.applyOptions(opts);
-
-        if (cluster.skipTLSVerify) {
-            opts.strictSSL = false
-        }
-
-        if (user.username) {
-            opts.auth = {
-                username: user.username,
-                password: user.password
-            }
-        }
-    }
-
-    public loadFromString(config: string) {
-        var obj = yaml.safeLoad(config);
-        if (obj['apiVersion'] != 'v1') {
-            throw new TypeError('unknown version: ' + obj['apiVersion']);
-        }
-        this.clusters = newClusters(obj['clusters']);
-        this.contexts = newContexts(obj['contexts']);
-        this.users = newUsers(obj['users']);
-        this.currentContext = obj['current-context'];
-    }
-
-    public loadFromCluster() {
-        const host = process.env.KUBERNETES_SERVICE_HOST;
-        const port = process.env.KUBERNETES_SERVICE_PORT;
-        const clusterName = 'inCluster';
-        const userName = 'inClusterUser';
-        const contextName = 'inClusterContext';
-
-        let scheme = 'https';
-        if (port === '80' || port === '8080' || port === '8001') {
-            scheme = 'http';
-        }
-
-        this.clusters = [
-            {
-                name: clusterName,
-                caFile: Config.SERVICEACCOUNT_CA_PATH,
-                caData: null,
-                server: `${scheme}://${host}:${port}`,
-                skipTLSVerify: false
-            }
-        ]
-        this.users = [
-            {
-                name: userName,
-                token: fs.readFileSync(Config.SERVICEACCOUNT_TOKEN_PATH).toString(),
-                // empty defaults, fields are required...
-                certData: null,
-                certFile: null,
-                keyData: null,
-                keyFile: null,
-                authProvider: null,
-                username: null,
-                password: null
-            }
-        ]
-        this.contexts = [
-            {
-                cluster: clusterName,
-                user: userName,
-                name: contextName
-            }
-        ];
-        this.currentContext = contextName;
     }
 }
 
@@ -266,32 +265,32 @@ export class Config {
     Config.SERVICEACCOUNT_ROOT + '/token';
 
     public static fromFile(filename: string): api.Core_v1Api {
-        let kc = new KubeConfig();
+        const kc = new KubeConfig();
         kc.loadFromFile(filename);
 
-        let k8sApi = new client.Core_v1Api(kc.getCurrentCluster()['server']);
+        const k8sApi = new client.Core_v1Api(kc.getCurrentCluster().server);
         k8sApi.setDefaultAuthentication(kc);
 
         return k8sApi;
     }
 
     public static fromCluster(): api.Core_v1Api {
-        let host = process.env.KUBERNETES_SERVICE_HOST
-        let port = process.env.KUBERNETES_SERVICE_PORT
+        const host = process.env.KUBERNETES_SERVICE_HOST;
+        const port = process.env.KUBERNETES_SERVICE_PORT;
 
         // TODO: better error checking here.
-        let caCert = fs.readFileSync(Config.SERVICEACCOUNT_CA_PATH);
-        let token = fs.readFileSync(Config.SERVICEACCOUNT_TOKEN_PATH);
+        const caCert = fs.readFileSync(Config.SERVICEACCOUNT_CA_PATH);
+        const token = fs.readFileSync(Config.SERVICEACCOUNT_TOKEN_PATH);
 
-        let k8sApi = new client.Core_v1Api('https://' + host + ':' + port);
+        const k8sApi = new client.Core_v1Api('https://' + host + ':' + port);
         k8sApi.setDefaultAuthentication({
-            'applyToRequest': (opts) => {
+            applyToRequest: (opts) => {
                 opts.ca = caCert;
                 if (!opts.headers) {
                     opts.headers = [];
                 }
-                opts.headers['Authorization'] = 'Bearer ' + token;
-            }
+                opts.headers.Authorization = 'Bearer ' + token;
+            },
         });
 
         return k8sApi;
@@ -302,7 +301,7 @@ export class Config {
             return Config.fromFile(process.env.KUBECONFIG);
         }
 
-        let config = path.join(process.env.HOME, ".kube", "config");
+        const config = path.join(process.env.HOME, '.kube', 'config');
         if (fs.existsSync(config)) {
             return Config.fromFile(config);
         }
