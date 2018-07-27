@@ -1,10 +1,10 @@
 # Javascript Kubernetes Client information
 
-The Javascript clients for Kubernetes is implemented in 
+The Javascript clients for Kubernetes is implemented in
 [typescript](https://typescriptlang.org), but can be called from either
 Javascript or Typescript.
 
-For now, the client is implemented for server-side use with node 
+For now, the client is implemented for server-side use with node
 using the `request` library.
 
 There are future plans to also build a jQuery compatible library but
@@ -62,7 +62,7 @@ There are several more examples in the [examples](https://github.com/kubernetes-
 
 # Development
 
-All dependencies of this project are expressed in its 
+All dependencies of this project are expressed in its
 [`package.json` file](node-client/package.json). Before you start developing, ensure
 that you have [NPM](https://www.npmjs.com/) installed, then run:
 
@@ -76,7 +76,7 @@ npm install
 cd ../
 git clone https://github.com/kubernetes-client/gen
 cd javascript
-../gen/openapi/javascript.sh node-client/src settings
+../gen/openapi/typescript.sh node-client/src settings
 ```
 
 # Testing
@@ -89,4 +89,3 @@ To run tests, execute the following:
 ```console
 npm test
 ```
-

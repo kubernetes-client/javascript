@@ -1,2 +1,8 @@
 dist
 node_modules
+/node-client/src/.gitignore
+/node-client/src/package.json
+/node-client/src/git_push.sh
+/node-client/src/tsconfig.json
+/node-client/src/typings.json
+
