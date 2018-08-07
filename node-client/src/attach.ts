@@ -3,6 +3,8 @@ import stream = require('stream');
 
 import { KubeConfig } from './config';
 import { WebSocketHandler } from './web-socket-handler';
+import { connection } from 'websocket';
+import { resolve } from 'url';
 
 export class Attach {
     public 'handler': WebSocketHandler;
@@ -13,7 +15,7 @@ export class Attach {
 
     public attach(namespace: string, podName: string, containerName: string,
                   stdout: stream.Writable | any, stderr: stream.Writable | any, stdin: stream.Readable | any,
-                  tty: boolean) {
+                  tty: boolean): Promise<void> {
         const query = {
             container: containerName,
             stderr: stderr != null,
@@ -23,8 +25,12 @@ export class Attach {
         };
         const queryStr = querystring.stringify(query);
         const path = `/api/v1/namespaces/${namespace}/pods/${podName}/attach?${queryStr}`;
-        this.handler.connect(path, null, (streamNum: number, buff: Buffer) => {
+        const promise = this.handler.connect(path, null, (streamNum: number, buff: Buffer) => {
             WebSocketHandler.handleStandardStreams(streamNum, buff, stdout, stderr);
         });
+        const result = new Promise<void>((resolvePromise, reject) => {
+            promise.then(() => resolvePromise(), (err) => reject(err));
+        });
+        return result;
     }
 }

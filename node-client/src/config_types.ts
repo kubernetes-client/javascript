@@ -53,22 +53,24 @@ function userIterator(): u.ListIterator<any, User> {
             throw new Error(`users[${i}].name is missing`);
         }
         let token = null;
-        if (elt.user.token) {
-            token = elt.user.token;
-        }
-        if (elt.user['token-file']) {
-            token = fs.readFileSync(elt.user['token-file']);
+        if (elt.user) {
+            if (elt.user.token) {
+                token = elt.user.token;
+            }
+            if (elt.user['token-file']) {
+                token = fs.readFileSync(elt.user['token-file']);
+            }
         }
         return {
-            authProvider: elt.user['auth-provider'],
-            certData: elt.user['client-certificate-data'],
-            certFile: elt.user['client-certificate'],
-            keyData: elt.user['client-key-data'],
-            keyFile: elt.user['client-key'],
+            authProvider: elt.user ? elt.user['auth-provider'] : null,
+            certData: elt.user ? elt.user['client-certificate-data'] : null,
+            certFile: elt.user ? elt.user['client-certificate'] : null,
+            keyData: elt.user ? elt.user['client-key-data'] : null,
+            keyFile: elt.user ? elt.user['client-key'] :  null,
             name: elt.name,
-            password: elt.user.password,
+            password: elt.user ? elt.user.password : null,
             token,
-            username: elt.user.username,
+            username: elt.user ? elt.user.username : null,
         };
     };
 }
