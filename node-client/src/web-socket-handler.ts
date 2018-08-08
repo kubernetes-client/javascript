@@ -69,8 +69,10 @@ export class WebSocketHandler {
                    binaryHandler: (stream: number, buff: Buffer) => void): Promise<ws.connection> {
 
         const server = this.config.getCurrentCluster().server;
-        const target = server.startsWith('https://') ? server.substr(8) : server.substr(7);
-        const uri = `wss://${target}${path}`;
+        const ssl = server.startsWith('https://');
+        const target = ssl ? server.substr(8) : server.substr(7);
+        const proto = ssl ? 'wss' : 'ws';
+        const uri = `${proto}://${target}${path}`;
 
         const opts: https.RequestOptions = {};
         this.config.applytoHTTPSOptions(opts);
@@ -97,8 +99,7 @@ export class WebSocketHandler {
             client.on('connectFailed', (err) => {
                 reject(err);
             });
-
-            client.connect(uri, protocols);
+            client.connect(uri, protocols); 
         });
     }
 }
