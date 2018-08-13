@@ -228,7 +228,7 @@ export class KubeConfig {
                         // Format in file is {<query>}, so slice it out and add '$'
                         pathKey = '$' + pathKey.slice(1, -1);
 
-                        config['access-token'] = jsonpath.query(resultObj, path);
+                        config['access-token'] = jsonpath.query(resultObj, pathKey);
                         token = 'Bearer ' + config['access-token'];
                     } else {
                         throw new Error('Token is expired!');
