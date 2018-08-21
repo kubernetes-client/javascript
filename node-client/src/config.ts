@@ -131,6 +131,26 @@ export class KubeConfig {
         this.currentContext = obj['current-context'];
     }
 
+    public loadFromOptions(options: any) {
+        this.clusters = options.clusters;
+        this.contexts = options.contexts;
+        this.users = options.users;
+        this.currentContext = options.currentContext;
+    }
+
+    public loadFromClusterAndUser(cluster: Cluster, user: User) {
+        this.clusters = [cluster];
+        this.users = [user];
+        this.currentContext = 'loaded-context';
+        this.contexts = [
+            {
+                cluster: cluster.name,
+                user: user.name,
+                name: this.currentContext,
+            } as Context,
+        ];
+    }
+
     public loadFromCluster() {
         const host = process.env.KUBERNETES_SERVICE_HOST;
         const port = process.env.KUBERNETES_SERVICE_PORT;

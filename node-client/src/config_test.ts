@@ -4,7 +4,8 @@ import * as base64 from 'base-64';
 import { expect } from 'chai';
 import * as https from 'https';
 
-import { Config, KubeConfig } from './config';
+import { KubeConfig } from './config';
+import { Cluster, Context, User } from './config_types';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
 
@@ -44,6 +45,64 @@ describe('KubeConfig', () => {
             expect(obj3).to.equal(null);
         });
     });
+
+    describe('loadFromClusterAndUser', () => {
+        it('should load from cluster and user', () => {
+            const kc = new KubeConfig();
+            const cluster = {
+                name: 'foo',
+                server: 'http://server.com',
+            } as Cluster;
+
+            const user = {
+                name: 'my-user',
+                password: 'some-password',
+            } as User;
+
+            kc.loadFromClusterAndUser(cluster, user);
+
+            const clusterOut = kc.getCurrentCluster();
+            expect(clusterOut).to.equal(cluster);
+
+            const userOut = kc.getCurrentUser();
+            expect(userOut).to.equal(user);
+        });
+    });
+
+    describe('clusterConstructor', () => {
+        it('should load from options', () => {
+            const cluster = {
+                name: 'foo',
+                server: 'http://server.com',
+            } as Cluster;
+
+            const user = {
+                name: 'my-user',
+                password: 'some-password',
+            } as User;
+
+            const context = {
+                name: 'my-context',
+                user: user.name,
+                cluster: cluster.name,
+            };
+
+            const kc = new KubeConfig();
+            kc.loadFromOptions({
+                clusters: [cluster],
+                users: [user],
+                contexts: [context],
+                currentContext: context.name,
+            });
+
+            const clusterOut = kc.getCurrentCluster();
+            expect(clusterOut).to.equal(cluster);
+
+            const userOut = kc.getCurrentUser();
+            expect(userOut).to.equal(user);
+        });
+    });
+
     describe('loadFromFile', () => {
         it('should load the kubeconfig file properly', () => {
             const kc = new KubeConfig();
