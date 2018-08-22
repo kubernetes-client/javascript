@@ -3,8 +3,6 @@ import stream = require('stream');
 
 import { KubeConfig } from './config';
 import { WebSocketHandler } from './web-socket-handler';
-import { connection } from 'websocket';
-import { resolve } from 'url';
 
 export class Attach {
     public 'handler': WebSocketHandler;
