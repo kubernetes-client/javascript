@@ -99,7 +99,7 @@ export class WebSocketHandler {
             client.on('connectFailed', (err) => {
                 reject(err);
             });
-            client.connect(uri, protocols); 
+            client.connect(uri, protocols);
         });
     }
 }
