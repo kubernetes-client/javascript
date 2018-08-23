@@ -7,4 +7,5 @@ node_modules
 /node-client/src/typings.json
 .vscode/*
 examples/package-lock.json
+node-client/.nyc_output
 
