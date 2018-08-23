@@ -196,6 +196,36 @@ export class KubeConfig {
         this.currentContext = contextName;
     }
 
+    public loadFromDefault() {
+        if (process.env.KUBECONFIG) {
+            this.loadFromFile(process.env.KUBECONFIG);
+            return;
+        }
+
+        const config = path.join(process.env.HOME, '.kube', 'config');
+        if (fs.existsSync(config)) {
+            this.loadFromFile(config);
+            return;
+        }
+
+        if (fs.existsSync(Config.SERVICEACCOUNT_TOKEN_PATH)) {
+            this.loadFromCluster();
+            return;
+        }
+
+        this.loadFromClusterAndUser(
+            {name: 'cluster', server: 'http://localhost:8080'} as Cluster,
+            {name: 'user'} as User,
+        );
+    }
+
+    public makeApiClient<T extends ApiType>(apiClientType: { new(server: string): T}) {
+        const apiClient = new apiClientType(this.getCurrentCluster().server);
+        apiClient.setDefaultAuthentication(this);
+
+        return apiClient;
+    }
+
     private getCurrentContextObject() {
         return this.getContextObject(this.currentContext);
     }
@@ -276,6 +306,11 @@ export class KubeConfig {
     }
 }
 
+export interface ApiType {
+    setDefaultAuthentication(config: KubeConfig);
+}
+
+// This class is deprecated and will eventually be removed.
 export class Config {
     public static SERVICEACCOUNT_ROOT =
     '/var/run/secrets/kubernetes.io/serviceaccount';
@@ -288,10 +323,7 @@ export class Config {
         const kc = new KubeConfig();
         kc.loadFromFile(filename);
 
-        const k8sApi = new client.Core_v1Api(kc.getCurrentCluster().server);
-        k8sApi.setDefaultAuthentication(kc);
-
-        return k8sApi;
+        return kc.makeApiClient(api.Core_v1Api);
     }
 
     public static fromCluster(): api.Core_v1Api {
@@ -317,19 +349,9 @@ export class Config {
     }
 
     public static defaultClient(): api.Core_v1Api {
-        if (process.env.KUBECONFIG) {
-            return Config.fromFile(process.env.KUBECONFIG);
-        }
+        const kc = new KubeConfig();
+        kc.loadFromDefault();
 
-        const config = path.join(process.env.HOME, '.kube', 'config');
-        if (fs.existsSync(config)) {
-            return Config.fromFile(config);
-        }
-
-        if (fs.existsSync(Config.SERVICEACCOUNT_TOKEN_PATH)) {
-            return Config.fromCluster();
-        }
-
-        return new client.Core_v1Api('http://localhost:8080');
+        return kc.makeApiClient(api.Core_v1Api);
     }
 }

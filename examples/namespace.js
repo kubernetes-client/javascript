@@ -1,6 +1,9 @@
 const k8s = require('@kubernetes/client-node');
 
-var k8sApi = k8s.Config.defaultClient();
+const kc = new k8s.KubeConfig();
+kc.loadFromDefault();
+
+const k8sApi = kc.makeApiClient(k8s.Core_v1Api);
 
 var namespace = {
   metadata: {
