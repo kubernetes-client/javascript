@@ -1,7 +1,7 @@
 import k8s = require('@kubernetes/client-node');
 
 let kc = new k8s.KubeConfig();
-kc.loadFromFile(process.env['HOME'] + '/.kube/config');
+kc.loadFromDefault();
 
 let watch = new k8s.Watch(kc);
 let req = watch.watch('/api/v1/namespaces',
