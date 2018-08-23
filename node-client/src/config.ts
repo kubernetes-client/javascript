@@ -8,10 +8,9 @@ import yaml = require('js-yaml');
 import jsonpath = require('jsonpath');
 import request = require('request');
 import shelljs = require('shelljs');
+
 import api = require('./api');
 import { Cluster, Context, newClusters, newContexts, newUsers, User } from './config_types';
-
-import client = require('./auth-wrapper');
 
 export class KubeConfig {
 
@@ -334,7 +333,7 @@ export class Config {
         const caCert = fs.readFileSync(Config.SERVICEACCOUNT_CA_PATH);
         const token = fs.readFileSync(Config.SERVICEACCOUNT_TOKEN_PATH);
 
-        const k8sApi = new client.Core_v1Api('https://' + host + ':' + port);
+        const k8sApi = new api.Core_v1Api('https://' + host + ':' + port);
         k8sApi.setDefaultAuthentication({
             applyToRequest: (opts) => {
                 opts.ca = caCert;
