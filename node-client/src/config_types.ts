@@ -16,7 +16,10 @@ export function newClusters(a: any): Cluster[] {
 function clusterIterator(): u.ListIterator<any, Cluster> {
     return (elt: any, i: number, list: u.List<any>): Cluster => {
         if (!elt.name) {
-            throw new Error(`clusters${i}.name is missing`);
+            throw new Error(`clusters[${i}].name is missing`);
+        }
+        if (!elt.cluster) {
+            throw new Error(`clusters[${i}].cluster is missing`);
         }
         if (!elt.cluster.server) {
             throw new Error(`clusters[${i}].cluster.server is missing`);
@@ -58,7 +61,7 @@ function userIterator(): u.ListIterator<any, User> {
                 token = elt.user.token;
             }
             if (elt.user['token-file']) {
-                token = fs.readFileSync(elt.user['token-file']);
+                token = fs.readFileSync(elt.user['token-file']).toString();
             }
         }
         return {
@@ -90,11 +93,14 @@ function contextIterator(): u.ListIterator<any, Context> {
         if (!elt.name) {
             throw new Error(`contexts[${i}].name is missing`);
         }
+        if (!elt.context) {
+            throw new Error(`contexts[${i}].context is missing`);
+        }
         if (!elt.context.cluster) {
             throw new Error(`contexts[${i}].context.cluster is missing`);
         }
         if (!elt.context.user) {
-            throw new Error(`context[${i}].context.user is missing`);
+            throw new Error(`contexts[${i}].context.user is missing`);
         }
         return {
             cluster: elt.context.cluster,
