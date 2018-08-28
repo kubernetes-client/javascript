@@ -1,6 +1,5 @@
 import fs = require('fs');
 import https = require('https');
-import os = require('os');
 import path = require('path');
 
 import base64 = require('base-64');
@@ -197,7 +196,7 @@ export class KubeConfig {
     }
 
     public loadFromDefault() {
-        if (process.env.KUBECONFIG) {
+        if (process.env.KUBECONFIG && process.env.KUBECONFIG.length > 0) {
             this.loadFromFile(process.env.KUBECONFIG);
             return;
         }
@@ -272,7 +271,8 @@ export class KubeConfig {
                         if (result.code !== 0) {
                             throw new Error('Failed to refresh token: ' + result.stderr);
                         }
-                        const resultObj = JSON.parse(result.stdout.toString());
+                        const output = result.stdout.toString();
+                        const resultObj = JSON.parse(output);
 
                         let pathKey = config['token-key'];
                         // Format in file is {<query>}, so slice it out and add '$'

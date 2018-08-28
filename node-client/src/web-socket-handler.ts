@@ -75,6 +75,7 @@ export class WebSocketHandler {
         const uri = `${proto}://${target}${path}`;
 
         const opts: https.RequestOptions = {};
+        // TODO: This doesn't set insecureSSL if skipTLSVerify is set...
         this.config.applytoHTTPSOptions(opts);
 
         const client = new ws.client({ tlsOptions: opts } );
