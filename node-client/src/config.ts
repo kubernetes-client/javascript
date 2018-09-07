@@ -329,7 +329,7 @@ export class Config {
         const kc = new KubeConfig();
         kc.loadFromCluster();
 
-        const k8sApi = new client.Core_v1Api(kc.getCurrentCluster().server);
+        const k8sApi = new api.Core_v1Api(kc.getCurrentCluster().server);
         k8sApi.setDefaultAuthentication(kc);
 
         return k8sApi;
