@@ -217,7 +217,7 @@ export class KubeConfig {
         );
     }
 
-    public makeApiClient<T extends ApiType>(apiClientType: { new(server: string): T}) {
+    public makeApiClient<T extends ApiType>(apiClientType: ApiConstructor<T>) {
         const apiClient = new apiClientType(this.getCurrentCluster().server);
         apiClient.setDefaultAuthentication(this);
 
@@ -306,7 +306,11 @@ export class KubeConfig {
 }
 
 export interface ApiType {
-    setDefaultAuthentication(config: KubeConfig);
+    setDefaultAuthentication(config: api.Authentication);
+}
+
+export interface ApiConstructor<T extends ApiType> {
+    new (server: string): T;
 }
 
 // This class is deprecated and will eventually be removed.
@@ -319,26 +323,36 @@ export class Config {
     Config.SERVICEACCOUNT_ROOT + '/token';
 
     public static fromFile(filename: string): api.Core_v1Api {
-        const kc = new KubeConfig();
-        kc.loadFromFile(filename);
-
-        return kc.makeApiClient(api.Core_v1Api);
+        return Config.apiFromFile(filename, api.Core_v1Api);
     }
 
     public static fromCluster(): api.Core_v1Api {
+        return Config.apiFromCluster(api.Core_v1Api);
+    }
+
+    public static defaultClient(): api.Core_v1Api {
+        return Config.apiFromDefaultClient(api.Core_v1Api);
+    }
+
+    public static apiFromFile<T extends ApiType>(filename: string, apiClientType: ApiConstructor<T>): T {
+        const kc = new KubeConfig();
+        kc.loadFromFile(filename);
+        return kc.makeApiClient(apiClientType);
+    }
+
+    public static apiFromCluster<T extends ApiType>(apiClientType: ApiConstructor<T>): T {
         const kc = new KubeConfig();
         kc.loadFromCluster();
 
-        const k8sApi = new api.Core_v1Api(kc.getCurrentCluster().server);
+        const k8sApi = new apiClientType(kc.getCurrentCluster().server);
         k8sApi.setDefaultAuthentication(kc);
 
         return k8sApi;
     }
 
-    public static defaultClient(): api.Core_v1Api {
+    public static apiFromDefaultClient<T extends ApiType>(apiClientType: ApiConstructor<T>): T {
         const kc = new KubeConfig();
         kc.loadFromDefault();
-
-        return kc.makeApiClient(api.Core_v1Api);
+        return kc.makeApiClient(apiClientType);
     }
 }
