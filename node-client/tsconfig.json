@@ -9,7 +9,14 @@
         "sourceMap": true,
         "noLib": false,
         "declaration": true,
-        "outDir": "dist"
+        "outDir": "dist",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "importHelpers": true,
+        "declarationMap": true
+
     },
     "exclude": [
         "node_modules",
