@@ -2,6 +2,11 @@ import { LineStream } from 'byline';
 import request = require('request');
 import { KubeConfig } from './config';
 
+export interface WatchUpdate {
+    type: string;
+    object: object;
+}
+
 export class Watch {
     public 'config': KubeConfig;
 
@@ -29,11 +34,11 @@ export class Watch {
 
         const stream = new LineStream();
         stream.on('data', (data) => {
-            let obj = null;
+            let obj: WatchUpdate;
             if (data instanceof Buffer) {
-                obj = JSON.parse(data.toString());
+                obj = JSON.parse(data.toString()) as WatchUpdate;
             } else {
-                obj = JSON.parse(data);
+                obj = JSON.parse(data) as WatchUpdate;
             }
             if (obj.type && obj.object) {
                 callback(obj.type, obj.object);

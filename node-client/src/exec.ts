@@ -26,7 +26,7 @@ export class Exec {
         };
         const queryStr = querystring.stringify(query);
         const path = `/api/v1/namespaces/${namespace}/pods/${podName}/exec?${queryStr}`;
-        const conn = await this.handler.connect(path, null, (streamNum: number, buff: Buffer) => {
+        const conn = await this.handler.connect(path, (text) => { return; }, (streamNum: number, buff: Buffer) => {
             WebSocketHandler.handleStandardStreams(streamNum, buff, stdout, stderr);
         });
         if (stdin != null) {

@@ -3,8 +3,8 @@ import * as u from 'underscore';
 
 export interface Cluster {
     readonly name: string;
-    readonly caData: string;
-    readonly caFile: string;
+    readonly caData?: string;
+    readonly caFile?: string;
     readonly server: string;
     readonly skipTLSVerify: boolean;
 }
@@ -36,14 +36,14 @@ function clusterIterator(): u.ListIterator<any, Cluster> {
 
 export interface User {
     readonly name: string;
-    readonly certData: string;
-    readonly certFile: string;
-    readonly keyData: string;
-    readonly keyFile: string;
-    readonly authProvider: any;
-    readonly token: string;
-    readonly username: string;
-    readonly password: string;
+    readonly certData?: string;
+    readonly certFile?: string;
+    readonly keyData?: string;
+    readonly keyFile?: string;
+    readonly authProvider?: any;
+    readonly token?: string;
+    readonly username?: string;
+    readonly password?: string;
 }
 
 export function newUsers(a: any): User[] {
@@ -55,15 +55,6 @@ function userIterator(): u.ListIterator<any, User> {
         if (!elt.name) {
             throw new Error(`users[${i}].name is missing`);
         }
-        let token = null;
-        if (elt.user) {
-            if (elt.user.token) {
-                token = elt.user.token;
-            }
-            if (elt.user['token-file']) {
-                token = fs.readFileSync(elt.user['token-file']).toString();
-            }
-        }
         return {
             authProvider: elt.user ? elt.user['auth-provider'] : null,
             certData: elt.user ? elt.user['client-certificate-data'] : null,
@@ -71,11 +62,22 @@ function userIterator(): u.ListIterator<any, User> {
             keyData: elt.user ? elt.user['client-key-data'] : null,
             keyFile: elt.user ? elt.user['client-key'] :  null,
             name: elt.name,
+            token: findToken(elt.user),
             password: elt.user ? elt.user.password : null,
-            token,
             username: elt.user ? elt.user.username : null,
         };
     };
+}
+
+function findToken(user: User | undefined): string | undefined {
+    if (user) {
+        if (user.token) {
+            return user.token;
+        }
+        if (user['token-file']) {
+            return fs.readFileSync(user['token-file']).toString();
+        }
+    }
 }
 
 export interface Context {

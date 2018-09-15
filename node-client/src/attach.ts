@@ -23,7 +23,7 @@ export class Attach {
         };
         const queryStr = querystring.stringify(query);
         const path = `/api/v1/namespaces/${namespace}/pods/${podName}/attach?${queryStr}`;
-        const promise = this.handler.connect(path, null, (streamNum: number, buff: Buffer) => {
+        const promise = this.handler.connect(path, () => { return; }, (streamNum: number, buff: Buffer) => {
             WebSocketHandler.handleStandardStreams(streamNum, buff, stdout, stderr);
         });
         const result = new Promise<void>((resolvePromise, reject) => {

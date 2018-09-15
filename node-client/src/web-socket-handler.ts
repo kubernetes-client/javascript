@@ -18,7 +18,7 @@ export class WebSocketHandler {
     public static readonly StderrStream = 2;
     public static readonly StatusStream = 3;
 
-    public static handleStandardStreams(streamNum: number, buff: Buffer, stdout: any, stderr: any): V1Status {
+    public static handleStandardStreams(streamNum: number, buff: Buffer, stdout: any, stderr: any): V1Status | null {
         if (buff.length < 1) {
             return null;
         }
@@ -82,12 +82,12 @@ export class WebSocketHandler {
 
         return new Promise((resolve, reject) => {
             client.on('connect', (connection) => {
-                connection.on('message', (message) => {
-                    if (message.type === 'utf8') {
+                connection.on('message', (message: ws.IMessage) => {
+                    if (message.type === 'utf8' && message.utf8Data) {
                         if (textHandler) {
                             textHandler(message.utf8Data);
                         }
-                    } else if (message.type === 'binary') {
+                    } else if (message.type === 'binary' && message.binaryData) {
                         if (binaryHandler) {
                             const streamNum = message.binaryData.readInt8(0);
                             binaryHandler(streamNum, message.binaryData.slice(1));

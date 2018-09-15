@@ -14,9 +14,9 @@
         "allowSyntheticDefaultImports": true,
         "strict": true,
         "forceConsistentCasingInFileNames": true,
-        "importHelpers": true,
-        "declarationMap": true
-
+        "importHelpers": true
+        // enable this when it works with tslint, or we switch to prettier
+        // "declarationMap": true
     },
     "exclude": [
         "node_modules",
