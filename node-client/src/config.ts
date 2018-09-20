@@ -149,7 +149,7 @@ export class KubeConfig {
         ];
     }
 
-    public loadFromCluster() {
+    public loadFromCluster(pathPrefix: string = '') {
         const host = process.env.KUBERNETES_SERVICE_HOST;
         const port = process.env.KUBERNETES_SERVICE_PORT;
         const clusterName = 'inCluster';
@@ -164,7 +164,7 @@ export class KubeConfig {
         this.clusters = [
             {
                 name: clusterName,
-                caFile: Config.SERVICEACCOUNT_CA_PATH,
+                caFile: `${pathPrefix}${Config.SERVICEACCOUNT_CA_PATH}`,
                 caData: null,
                 server: `${scheme}://${host}:${port}`,
                 skipTLSVerify: false,
@@ -173,7 +173,7 @@ export class KubeConfig {
         this.users = [
             {
                 name: userName,
-                token: fs.readFileSync(Config.SERVICEACCOUNT_TOKEN_PATH).toString(),
+                token: fs.readFileSync(`${pathPrefix}${Config.SERVICEACCOUNT_TOKEN_PATH}`).toString(),
                 // empty defaults, fields are required...
                 certData: null,
                 certFile: null,
