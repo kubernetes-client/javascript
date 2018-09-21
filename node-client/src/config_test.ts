@@ -3,7 +3,7 @@ import * as https from 'https';
 import { join } from 'path';
 
 import { expect } from 'chai';
-import * as mockfs from 'mock-fs';
+import mockfs = require('mock-fs');
 import * as requestlib from 'request';
 
 import { Core_v1Api } from './api';
@@ -424,8 +424,12 @@ describe('KubeConfig', () => {
 
             config.applyToRequest(opts);
 
-            expect(opts.auth.username).to.equal(user);
-            expect(opts.auth.password).to.equal(passwd);
+            /* tslint:disable no-unused-expression*/
+            expect(opts.auth).to.not.be.undefined;
+            if (opts.auth) {
+                expect(opts.auth.username).to.equal(user);
+                expect(opts.auth.password).to.equal(passwd);
+            }
             expect(opts.strictSSL).to.equal(false);
         });
         it('should not populate strict ssl', () => {
@@ -451,7 +455,10 @@ describe('KubeConfig', () => {
             const opts = {} as requestlib.Options;
 
             config.applyToRequest(opts);
-            expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+            expect(opts.headers).to.not.be.undefined;
+            if (opts.headers) {
+                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+            }
         });
         it('should populate from auth provider', () => {
             const config = new KubeConfig();
@@ -469,8 +476,10 @@ describe('KubeConfig', () => {
             const opts = {} as requestlib.Options;
 
             config.applyToRequest(opts);
-            expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-
+            expect(opts.headers).to.not.be.undefined;
+            if (opts.headers) {
+                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+            }
             opts.headers = [];
             opts.headers.Host = 'foo.com';
             config.applyToRequest(opts);
@@ -491,7 +500,10 @@ describe('KubeConfig', () => {
             const opts = {} as requestlib.Options;
 
             config.applyToRequest(opts);
-            expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+            expect(opts.headers).to.not.be.undefined;
+            if (opts.headers) {
+                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+            }
         });
 
         it('should throw with expired token and no cmd', () => {
@@ -545,7 +557,10 @@ describe('KubeConfig', () => {
                 } as User);
             const opts = {} as requestlib.Options;
             config.applyToRequest(opts);
-            expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+            expect(opts.headers).to.not.be.undefined;
+            if (opts.headers) {
+                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+            }
         });
     });
 

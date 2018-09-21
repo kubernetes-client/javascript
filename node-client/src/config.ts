@@ -165,7 +165,6 @@ export class KubeConfig {
             {
                 name: clusterName,
                 caFile: `${pathPrefix}${Config.SERVICEACCOUNT_CA_PATH}`,
-                caData: null,
                 server: `${scheme}://${host}:${port}`,
                 skipTLSVerify: false,
             },
@@ -174,14 +173,6 @@ export class KubeConfig {
             {
                 name: userName,
                 token: fs.readFileSync(`${pathPrefix}${Config.SERVICEACCOUNT_TOKEN_PATH}`).toString(),
-                // empty defaults, fields are required...
-                certData: null,
-                certFile: null,
-                keyData: null,
-                keyFile: null,
-                authProvider: null,
-                username: null,
-                password: null,
             },
         ];
         this.contexts = [
@@ -199,11 +190,12 @@ export class KubeConfig {
             this.loadFromFile(process.env.KUBECONFIG);
             return;
         }
-
-        const config = path.join(process.env.HOME, '.kube', 'config');
-        if (fs.existsSync(config)) {
-            this.loadFromFile(config);
-            return;
+        if (process.env.HOME) {
+            const config = path.join(process.env.HOME, '.kube', 'config');
+            if (fs.existsSync(config)) {
+                this.loadFromFile(config);
+                return;
+            }
         }
 
         if (fs.existsSync(Config.SERVICEACCOUNT_TOKEN_PATH)) {
@@ -228,7 +220,7 @@ export class KubeConfig {
         return this.getContextObject(this.currentContext);
     }
 
-    private bufferFromFileOrString(file: string, data: string) {
+    private bufferFromFileOrString(file?: string, data?: string): Buffer | null {
         if (file) {
             return fs.readFileSync(file);
         }
@@ -242,14 +234,23 @@ export class KubeConfig {
         const cluster = this.getCurrentCluster();
         const user = this.getCurrentUser();
 
-        opts.ca = this.bufferFromFileOrString(cluster.caFile, cluster.caData);
-        opts.cert = this.bufferFromFileOrString(user.certFile, user.certData);
-        opts.key = this.bufferFromFileOrString(user.keyFile, user.keyData);
+        const ca = this.bufferFromFileOrString(cluster.caFile, cluster.caData);
+        if (ca) {
+            opts.ca = ca;
+        }
+        const cert = this.bufferFromFileOrString(user.certFile, user.certData);
+        if (cert) {
+            opts.cert = cert;
+        }
+        const key = this.bufferFromFileOrString(user.keyFile, user.keyData);
+        if (key) {
+            opts.key = key;
+        }
     }
 
     private applyAuthorizationHeader(opts: request.Options | https.RequestOptions) {
         const user = this.getCurrentUser();
-        let token = null;
+        let token: string | null = null;
 
         if (user.authProvider && user.authProvider.config) {
             const config = user.authProvider.config;
