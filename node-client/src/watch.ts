@@ -43,7 +43,7 @@ export class Watch {
             if (obj.type && obj.object) {
                 callback(obj.type, obj.object);
             } else {
-                throw new Error(`unexpected object: ${obj}`);
+                throw new Error(`unexpected object: ${JSON.stringify(obj)}`);
             }
         });
 
