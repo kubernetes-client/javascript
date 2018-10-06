@@ -23,8 +23,9 @@ export class Attach {
         };
         const queryStr = querystring.stringify(query);
         const path = `/api/v1/namespaces/${namespace}/pods/${podName}/attach?${queryStr}`;
-        const promise = this.handler.connect(path, () => { return; }, (streamNum: number, buff: Buffer) => {
+        const promise = this.handler.connect(path, null, (streamNum: number, buff: Buffer): boolean => {
             WebSocketHandler.handleStandardStreams(streamNum, buff, stdout, stderr);
+            return true;
         });
         const result = new Promise<void>((resolvePromise, reject) => {
             promise.then(() => resolvePromise(), (err) => reject(err));

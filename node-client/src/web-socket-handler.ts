@@ -1,7 +1,7 @@
 import https = require('https');
 import stream = require('stream');
-
 import ws = require('websocket');
+
 import { V1Status } from './api';
 import { KubeConfig } from './config';
 
@@ -12,13 +12,20 @@ const protocols = [
     'channel.k8s.io',
 ];
 
-export class WebSocketHandler {
+export interface WebSocketInterface {
+    connect(path: string,
+            textHandler: ((text: string) => boolean) | null,
+            binaryHandler: ((stream: number, buff: Buffer) => boolean) | null): Promise<ws.connection>;
+}
+
+export class WebSocketHandler implements WebSocketInterface {
     public static readonly StdinStream = 0;
     public static readonly StdoutStream = 1;
     public static readonly StderrStream = 2;
     public static readonly StatusStream = 3;
 
-    public static handleStandardStreams(streamNum: number, buff: Buffer, stdout: any, stderr: any): V1Status | null {
+    public static handleStandardStreams(streamNum: number, buff: Buffer,
+                                        stdout: stream.Writable, stderr: stream.Writable): V1Status | null {
         if (buff.length < 1) {
             return null;
         }
@@ -41,10 +48,11 @@ export class WebSocketHandler {
         return null;
     }
 
-    public static handleStandardInput(conn: ws.connection, stdin: stream.Readable | any) {
+    public static handleStandardInput(conn: ws.connection,
+                                      stdin: stream.Readable | any, streamNum: number = 0): boolean {
         stdin.on('data', (data) => {
             const buff = Buffer.alloc(data.length + 1);
-            buff.writeInt8(0, 0);
+            buff.writeInt8(streamNum, 0);
             if (data instanceof Buffer) {
                 data.copy(buff, 1);
             } else {
@@ -56,6 +64,8 @@ export class WebSocketHandler {
         stdin.on('end', () => {
             conn.close();
         });
+        // Keep the stream open
+        return true;
     }
 
     public 'config': KubeConfig;
@@ -64,9 +74,17 @@ export class WebSocketHandler {
         this.config = config;
     }
 
+    /**
+     * Connect to a web socket endpoint.
+     * @param path The HTTP Path to connect to on the server.
+     * @param textHandler Callback for text over the web socket.
+     *      Returns true if the connection should be kept alive, false to disconnect.
+     * @param binaryHandler Callback for binary data over the web socket.
+     *      Returns true if the connection should be kept alive, false to disconnect.
+     */
     public connect(path: string,
-                   textHandler: (text: string) => void,
-                   binaryHandler: (stream: number, buff: Buffer) => void): Promise<ws.connection> {
+                   textHandler: ((text: string) => boolean) | null,
+                   binaryHandler: ((stream: number, buff: Buffer) => boolean) | null): Promise<ws.connection> {
 
         const server = this.config.getCurrentCluster().server;
         const ssl = server.startsWith('https://');
@@ -78,19 +96,23 @@ export class WebSocketHandler {
         // TODO: This doesn't set insecureSSL if skipTLSVerify is set...
         this.config.applytoHTTPSOptions(opts);
 
-        const client = new ws.client({ tlsOptions: opts } );
+        const client = new ws.client({ tlsOptions: opts });
 
         return new Promise((resolve, reject) => {
             client.on('connect', (connection) => {
                 connection.on('message', (message: ws.IMessage) => {
                     if (message.type === 'utf8' && message.utf8Data) {
                         if (textHandler) {
-                            textHandler(message.utf8Data);
+                            if (!textHandler(message.utf8Data)) {
+                                connection.close();
+                            }
                         }
                     } else if (message.type === 'binary' && message.binaryData) {
                         if (binaryHandler) {
                             const streamNum = message.binaryData.readInt8(0);
-                            binaryHandler(streamNum, message.binaryData.slice(1));
+                            if (!binaryHandler(streamNum, message.binaryData.slice(1))) {
+                                connection.close();
+                            }
                         }
                     }
                 });
