@@ -27,12 +27,14 @@ describe('WebSocket', () => {
         expect(osStream.size()).to.equal(1024);
         expect(errStream.size()).to.equal(512);
 
+        const outputBuffer1 = osStream.getContents() as Buffer;
         for (let i = 0; i < 1024; i++) {
-            expect(osStream.getContents()[0]).to.equal(fill1);
+            expect(outputBuffer1[i]).to.equal(fill1);
         }
 
+        const outputBuffer2 = errStream.getContents() as Buffer;
         for (let i = 0; i < 512; i++) {
-            expect(errStream.getContents()[0]).to.equal(fill2);
+            expect(outputBuffer2[i]).to.equal(fill2);
         }
     });
 });
