@@ -7,17 +7,37 @@ export interface WatchUpdate {
     object: object;
 }
 
-export class Watch {
-    public 'config': KubeConfig;
+export interface RequestInterface {
+    webRequest(opts: request.Options, callback: (err, response, body) => void): any;
+}
 
-    public constructor(config: KubeConfig) {
+export class DefaultRequest implements RequestInterface {
+    public webRequest(opts: request.Options, callback: (err, response, body) => void): any {
+        return request(opts, callback);
+    }
+}
+
+export class Watch {
+    public config: KubeConfig;
+    private readonly requestImpl: RequestInterface;
+
+    public constructor(config: KubeConfig, requestImpl?: RequestInterface) {
         this.config = config;
+        if (requestImpl) {
+            this.requestImpl = requestImpl;
+        } else {
+            this.requestImpl = new DefaultRequest();
+        }
     }
 
     public watch(path: string, queryParams: any,
                  callback: (phase: string, obj: any) => void,
                  done: (err: any) => void): any {
-        const url = this.config.getCurrentCluster().server + path;
+        const cluster = this.config.getCurrentCluster();
+        if (!cluster) {
+            throw new Error('No currently active cluster');
+        }
+        const url = cluster.server + path;
 
         queryParams.watch = true;
         const headerParams: any = {};
@@ -47,11 +67,12 @@ export class Watch {
             }
         });
 
-        const req = request(requestOptions, (error, response, body) => {
+        const req = this.requestImpl.webRequest(requestOptions, (error, response, body) => {
             if (error) {
                 done(error);
+            } else {
+                done(null);
             }
-            done(null);
         });
         req.pipe(stream);
         return req;

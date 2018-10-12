@@ -611,8 +611,13 @@ describe('KubeConfig', () => {
             delete process.env.KUBERNETES_SERVICE_HOST;
             delete process.env.KUBERNETES_SERVICE_PORT;
 
-            expect(kc.getCurrentCluster().caFile).to.equal('/var/run/secrets/kubernetes.io/serviceaccount/ca.crt');
-            expect(kc.getCurrentCluster().server).to.equal('https://kubernetes:443');
+            const cluster = kc.getCurrentCluster();
+            expect(cluster).to.not.be.null;
+            if (!cluster) {
+                return;
+            }
+            expect(cluster.caFile).to.equal('/var/run/secrets/kubernetes.io/serviceaccount/ca.crt');
+            expect(cluster.server).to.equal('https://kubernetes:443');
             expect(kc.getCurrentUser().token).to.equal(token);
         });
 
@@ -634,7 +639,12 @@ describe('KubeConfig', () => {
             delete process.env.KUBERNETES_SERVICE_HOST;
             delete process.env.KUBERNETES_SERVICE_PORT;
 
-            expect(kc.getCurrentCluster().server).to.equal('http://kubernetes:80');
+            const cluster = kc.getCurrentCluster();
+            expect(cluster).to.not.be.null;
+            if (!cluster) {
+                return;
+            }
+            expect(cluster.server).to.equal('http://kubernetes:80');
         });
 
         it('should default to localhost', () => {
@@ -644,8 +654,13 @@ describe('KubeConfig', () => {
             kc.loadFromDefault();
             process.env.HOME = currentHome;
 
+            const cluster = kc.getCurrentCluster();
+            expect(cluster).to.not.be.null;
+            if (!cluster) {
+                return;
+            }
             expect(kc.getCurrentUser().name).to.equal('user');
-            expect(kc.getCurrentCluster().server).to.equal('http://localhost:8080');
+            expect(cluster.server).to.equal('http://localhost:8080');
         });
     });
 

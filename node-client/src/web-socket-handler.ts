@@ -86,7 +86,11 @@ export class WebSocketHandler implements WebSocketInterface {
                    textHandler: ((text: string) => boolean) | null,
                    binaryHandler: ((stream: number, buff: Buffer) => boolean) | null): Promise<ws.connection> {
 
-        const server = this.config.getCurrentCluster().server;
+        const cluster = this.config.getCurrentCluster();
+        if (!cluster) {
+            throw new Error('No cluster is defined.');
+        }
+        const server = cluster.server;
         const ssl = server.startsWith('https://');
         const target = ssl ? server.substr(8) : server.substr(7);
         const proto = ssl ? 'wss' : 'ws';
