@@ -43,7 +43,7 @@ export class WebSocketHandler implements WebSocketInterface {
             }
             return JSON.parse(buff.toString('utf8')) as V1Status;
         } else {
-            throw new Error('Unknown stream: ' + stream);
+            throw new Error('Unknown stream: ' + streamNum);
         }
         return null;
     }
