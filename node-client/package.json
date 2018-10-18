@@ -4,7 +4,7 @@
   "description": "NodeJS client for kubernetes",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kubernetes-client/javascript.git"
+    "url": "https://github.com/kubernetes-client/javascript.git"
   },
   "files": [
     "dist/*.ts",
@@ -57,7 +57,7 @@
     "byline": "^5.0.0",
     "js-yaml": "^3.5.2",
     "jsonpath": "^1.0.0",
-    "request": "^2.72.0",
+    "request": "^2.88.0",
     "shelljs": "^0.7.8 ",
     "underscore": "^1.8.3",
     "websocket": "^1.0.25"
