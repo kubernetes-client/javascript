@@ -67,11 +67,18 @@ export class KubeConfig {
     }
 
     public getContextObject(name: string) {
+        if (!this.contexts) {
+            return null;
+        }
         return KubeConfig.findObject(this.contexts, name, 'context');
     }
 
-    public getCurrentCluster() {
-        return this.getCluster(this.getCurrentContextObject().cluster);
+    public getCurrentCluster(): Cluster | null {
+        const context = this.getCurrentContextObject();
+        if (!context) {
+            return null;
+        }
+        return this.getCluster(context.cluster);
     }
 
     public getCluster(name: string): Cluster {
@@ -106,7 +113,7 @@ export class KubeConfig {
 
         this.applyOptions(opts);
 
-        if (cluster.skipTLSVerify) {
+        if (cluster && cluster.skipTLSVerify) {
             opts.strictSSL = false;
         }
 
@@ -210,7 +217,11 @@ export class KubeConfig {
     }
 
     public makeApiClient<T extends ApiType>(apiClientType: ApiConstructor<T>) {
-        const apiClient = new apiClientType(this.getCurrentCluster().server);
+        const cluster = this.getCurrentCluster();
+        if (!cluster) {
+            throw new Error('No active cluster!');
+        }
+        const apiClient = new apiClientType(cluster.server);
         apiClient.setDefaultAuthentication(this);
 
         return apiClient;
@@ -234,7 +245,7 @@ export class KubeConfig {
         const cluster = this.getCurrentCluster();
         const user = this.getCurrentUser();
 
-        const ca = this.bufferFromFileOrString(cluster.caFile, cluster.caData);
+        const ca = cluster != null ? this.bufferFromFileOrString(cluster.caFile, cluster.caData) : null;
         if (ca) {
             opts.ca = ca;
         }
@@ -345,7 +356,12 @@ export class Config {
         const kc = new KubeConfig();
         kc.loadFromCluster();
 
-        const k8sApi = new apiClientType(kc.getCurrentCluster().server);
+        const cluster = kc.getCurrentCluster();
+        if (!cluster) {
+            throw new Error('No active cluster!');
+        }
+
+        const k8sApi = new apiClientType(cluster.server);
         k8sApi.setDefaultAuthentication(kc);
 
         return k8sApi;
