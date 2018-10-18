@@ -3,13 +3,17 @@ import stream = require('stream');
 import ws = require('websocket');
 
 import { KubeConfig } from './config';
-import { WebSocketHandler } from './web-socket-handler';
+import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
 
 export class Exec {
-    public 'handler': WebSocketHandler;
+    public 'handler': WebSocketInterface;
 
-    public constructor(config: KubeConfig) {
-        this.handler = new WebSocketHandler(config);
+    public constructor(config: KubeConfig, wsInterface?: WebSocketInterface) {
+        if (wsInterface) {
+            this.handler = wsInterface;
+        } else {
+            this.handler = new WebSocketHandler(config);
+        }
     }
 
     // TODO: make command an array and support multiple args
