@@ -7,7 +7,11 @@ export class ProtoClient {
     public readonly 'config': KubeConfig;
 
     public async get(msgType: any, requestPath: string): Promise<any> {
-        const server = this.config.getCurrentCluster().server;
+	const cluster = this.config.getCurrentCluster();
+	if (!cluster) {
+            throw new Error('No configured cluster');
+        }
+	const server = cluster.server;
         const u = new url.URL(server);
         const options = {
             path: requestPath,
