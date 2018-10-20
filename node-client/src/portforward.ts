@@ -1,6 +1,6 @@
 import querystring = require('querystring');
 import stream = require('stream');
-import ws = require('websocket');
+import WebSocket = require('ws');
 
 import { KubeConfig } from './config';
 import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
@@ -20,9 +20,12 @@ export class PortForward {
     }
 
     // TODO: support multiple ports for real...
-    public async portForward(namespace: string, podName: string, targetPorts: number[],
-                             output: stream.Writable, err: stream.Writable,
-                             input: stream.Readable): Promise<ws.connection> {
+    public async portForward(
+        namespace: string, podName: string, targetPorts: number[],
+        output: stream.Writable, err: stream.Writable,
+        input: stream.Readable,
+    ): Promise<WebSocket> {
+
         if (targetPorts.length === 0) {
             throw new Error('You must provide at least one port to forward to.');
         }

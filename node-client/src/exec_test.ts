@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
 import { anyFunction, capture, instance, mock, verify, when } from 'ts-mockito';
-import ws = require('websocket');
+import WebSocket = require('ws');
 
 import { KubeConfig } from './config';
 import { Exec } from './exec';
@@ -65,7 +65,7 @@ describe('Exec', () => {
             const path = `/api/v1/namespaces/${namespace}/pods/${pod}/exec`;
             const args = `stdout=true&stderr=true&stdin=true&tty=false&command=${cmd}&container=${container}`;
 
-            const fakeConn: ws.connection = mock(ws.connection);
+            const fakeConn: WebSocket = mock(WebSocket);
             when(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).thenResolve(fakeConn);
 
             await exec.exec(
