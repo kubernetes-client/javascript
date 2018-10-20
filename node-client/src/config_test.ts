@@ -536,7 +536,7 @@ describe('KubeConfig', () => {
                 } as User);
             const opts = {} as requestlib.Options;
             expect(() => config.applyToRequest(opts)).to.throw(
-                'Failed to refresh token: /bin/sh: 1: non-existent-command: not found');
+                'Failed to refresh token: spawnSync non-existent-command ENOENT');
         });
 
         it('should exec with expired token', () => {
@@ -550,7 +550,7 @@ describe('KubeConfig', () => {
                         config: {
                             'expiry': 'Aug 24 07:32:05 PDT 2017',
                             'cmd-path': 'echo',
-                            'cmd-args': `'${responseStr}'`,
+                            'cmd-args': `${responseStr}`,
                             'token-key': '{.token.accessToken}',
                         },
                     },
