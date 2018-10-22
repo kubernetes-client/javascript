@@ -5,7 +5,8 @@ import path = require('path');
 import base64 = require('base-64');
 import execa = require('execa');
 import yaml = require('js-yaml');
-import jsonpath = require('jsonpath');
+// workaround for issue https://github.com/dchester/jsonpath/issues/96
+import jsonpath = require('jsonpath/jsonpath.min');
 import request = require('request');
 
 import api = require('./api');
