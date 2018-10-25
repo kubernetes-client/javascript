@@ -1,7 +1,7 @@
 import { expect } from 'chai';
+import WebSocket = require('isomorphic-ws');
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
 import { anyFunction, anything, capture, instance, mock, verify, when } from 'ts-mockito';
-import WebSocket = require('ws');
 
 import { Attach } from './attach';
 import { KubeConfig } from './config';

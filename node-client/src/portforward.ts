@@ -1,6 +1,6 @@
+import WebSocket = require('isomorphic-ws');
 import querystring = require('querystring');
 import stream = require('stream');
-import WebSocket = require('ws');
 
 import { KubeConfig } from './config';
 import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
