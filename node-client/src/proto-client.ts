@@ -7,7 +7,7 @@ export class ProtoClient {
     public readonly 'config': KubeConfig;
 
     public async get(msgType: any, requestPath: string): Promise<any> {
-        const server = this.config.getCurrentCluster().server;
+        const server = this.config.getCurrentCluster()!.server;
         const u = new url.URL(server);
         const options = {
             path: requestPath,
