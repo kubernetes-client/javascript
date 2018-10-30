@@ -1,6 +1,5 @@
-import https = require('https');
+import WebSocket = require('isomorphic-ws');
 import stream = require('stream');
-import ws = require('websocket');
 
 import { V1Status } from './api';
 import { KubeConfig } from './config';
@@ -13,9 +12,11 @@ const protocols = [
 ];
 
 export interface WebSocketInterface {
-    connect(path: string,
-            textHandler: ((text: string) => boolean) | null,
-            binaryHandler: ((stream: number, buff: Buffer) => boolean) | null): Promise<ws.connection>;
+    connect(
+        path: string,
+        textHandler: ((text: string) => boolean) | null,
+        binaryHandler: ((stream: number, buff: Buffer) => boolean) | null,
+    ): Promise<WebSocket>;
 }
 
 export class WebSocketHandler implements WebSocketInterface {
@@ -24,8 +25,10 @@ export class WebSocketHandler implements WebSocketInterface {
     public static readonly StderrStream = 2;
     public static readonly StatusStream = 3;
 
-    public static handleStandardStreams(streamNum: number, buff: Buffer,
-                                        stdout: stream.Writable, stderr: stream.Writable): V1Status | null {
+    public static handleStandardStreams(
+        streamNum: number, buff: Buffer,
+        stdout: stream.Writable, stderr: stream.Writable,
+    ): V1Status | null {
         if (buff.length < 1) {
             return null;
         }
@@ -48,8 +51,11 @@ export class WebSocketHandler implements WebSocketInterface {
         return null;
     }
 
-    public static handleStandardInput(conn: ws.connection,
-                                      stdin: stream.Readable | any, streamNum: number = 0): boolean {
+    public static handleStandardInput(
+        ws: WebSocket,
+        stdin: stream.Readable | any,
+        streamNum: number = 0,
+    ): boolean {
         stdin.on('data', (data) => {
             const buff = Buffer.alloc(data.length + 1);
             buff.writeInt8(streamNum, 0);
@@ -58,11 +64,11 @@ export class WebSocketHandler implements WebSocketInterface {
             } else {
                 buff.write(data, 1);
             }
-            conn.send(buff);
+            ws.send(buff);
         });
 
         stdin.on('end', () => {
-            conn.close();
+            ws.close();
         });
         // Keep the stream open
         return true;
@@ -82,9 +88,11 @@ export class WebSocketHandler implements WebSocketInterface {
      * @param binaryHandler Callback for binary data over the web socket.
      *      Returns true if the connection should be kept alive, false to disconnect.
      */
-    public connect(path: string,
-                   textHandler: ((text: string) => boolean) | null,
-                   binaryHandler: ((stream: number, buff: Buffer) => boolean) | null): Promise<ws.connection> {
+    public connect(
+        path: string,
+        textHandler: ((text: string) => boolean) | null,
+        binaryHandler: ((stream: number, buff: Buffer) => boolean) | null,
+    ): Promise<WebSocket> {
 
         const cluster = this.config.getCurrentCluster();
         if (!cluster) {
@@ -96,37 +104,38 @@ export class WebSocketHandler implements WebSocketInterface {
         const proto = ssl ? 'wss' : 'ws';
         const uri = `${proto}://${target}${path}`;
 
-        const opts: https.RequestOptions = {};
+        const opts: WebSocket.ClientOptions = {};
         // TODO: This doesn't set insecureSSL if skipTLSVerify is set...
         this.config.applytoHTTPSOptions(opts);
 
-        const client = new ws.client({ tlsOptions: opts });
-
         return new Promise((resolve, reject) => {
-            client.on('connect', (connection) => {
-                connection.on('message', (message: ws.IMessage) => {
-                    if (message.type === 'utf8' && message.utf8Data) {
-                        if (textHandler) {
-                            if (!textHandler(message.utf8Data)) {
-                                connection.close();
-                            }
-                        }
-                    } else if (message.type === 'binary' && message.binaryData) {
-                        if (binaryHandler) {
-                            const streamNum = message.binaryData.readInt8(0);
-                            if (!binaryHandler(streamNum, message.binaryData.slice(1))) {
-                                connection.close();
-                            }
-                        }
-                    }
-                });
-                resolve(connection);
-            });
+            const client = new WebSocket(uri, opts);
+            let resolved = false;
 
-            client.on('connectFailed', (err) => {
-                reject(err);
-            });
-            client.connect(uri, protocols);
+            client.onopen = () => {
+                resolved = true;
+                resolve(client);
+            };
+
+            client.onerror = (err) => {
+                if (!resolved) {
+                    reject(err);
+                }
+            };
+
+            client.onmessage = ({ data }: { data: WebSocket.Data }) => {
+                // TODO: support ArrayBuffer and Buffer[] data types?
+                if (typeof data === 'string') {
+                    if (textHandler && !textHandler(data)) {
+                        client.close();
+                    }
+                } else if (data instanceof Buffer) {
+                    const streamNum = data.readInt8(0);
+                    if (binaryHandler && !binaryHandler(streamNum, data.slice(1))) {
+                        client.close();
+                    }
+                }
+            };
         });
     }
 }

@@ -1,7 +1,7 @@
 import { expect } from 'chai';
+import WebSocket = require('isomorphic-ws');
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
 import { anyFunction, anything, capture, instance, mock, verify, when } from 'ts-mockito';
-import ws = require('websocket');
 
 import { Attach } from './attach';
 import { KubeConfig } from './config';
@@ -64,7 +64,7 @@ describe('Attach', () => {
             const path = `/api/v1/namespaces/${namespace}/pods/${pod}/attach`;
             const args = `container=${container}&stderr=true&stdin=true&stdout=true&tty=false`;
 
-            const fakeConn: ws.connection = mock(ws.connection);
+            const fakeConn: WebSocket = mock(WebSocket);
             when(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).thenResolve(fakeConn);
 
             await attach.attach(

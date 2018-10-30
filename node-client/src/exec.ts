@@ -1,6 +1,6 @@
+import WebSocket = require('isomorphic-ws');
 import querystring = require('querystring');
 import stream = require('stream');
-import ws = require('websocket');
 
 import { KubeConfig } from './config';
 import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
@@ -19,7 +19,7 @@ export class Exec {
     // TODO: make command an array and support multiple args
     public async exec(namespace: string, podName: string, containerName: string, command: string,
                       stdout: stream.Writable | any, stderr: stream.Writable | any, stdin: stream.Readable | any,
-                      tty: boolean): Promise<ws.connection> {
+                      tty: boolean): Promise<WebSocket> {
         const query = {
             stdout: stdout != null,
             stderr: stderr != null,

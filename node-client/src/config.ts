@@ -3,10 +3,11 @@ import https = require('https');
 import path = require('path');
 
 import base64 = require('base-64');
+import execa = require('execa');
 import yaml = require('js-yaml');
-import jsonpath = require('jsonpath');
+// workaround for issue https://github.com/dchester/jsonpath/issues/96
+import jsonpath = require('jsonpath/jsonpath.min');
 import request = require('request');
-import shelljs = require('shelljs');
 
 import api = require('./api');
 import { Cluster, Context, newClusters, newContexts, newUsers, User } from './config_types';
@@ -273,15 +274,17 @@ export class KubeConfig {
                 const expiration = Date.parse(expiry);
                 if (expiration < Date.now()) {
                     if (config['cmd-path']) {
-                        let cmd = '"' + config['cmd-path'] + '"';
-                        if (config['cmd-args']) {
-                            cmd = cmd + ' ' + config['cmd-args'];
-                        }
+                        const args = config['cmd-args'] ? [config['cmd-args']] : [];
                         // TODO: Cache to file?
-                        const result = shelljs.exec(cmd, { silent: true });
-                        if (result.code !== 0) {
-                            throw new Error('Failed to refresh token: ' + result.stderr);
+                        // TODO: do this asynchronously
+                        let result: execa.ExecaReturns;
+
+                        try {
+                            result = execa.sync(config['cmd-path'], args);
+                        } catch (err) {
+                            throw new Error('Failed to refresh token: ' + err.message);
                         }
+
                         const output = result.stdout.toString();
                         const resultObj = JSON.parse(output);
 
