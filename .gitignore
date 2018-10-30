@@ -1,12 +1,12 @@
 dist
 node_modules
-node-client/src/.gitignore
-node-client/src/package.json
-node-client/src/git_push.sh
-node-client/src/tsconfig.json
-node-client/src/typings.json
-node-client/coverage/*
+src/.gitignore
+src/package.json
+src/git_push.sh
+src/tsconfig.json
+src/typings.json
+coverage/*
 .vscode/*
 examples/package-lock.json
-node-client/.nyc_output
+.nyc_output
 
