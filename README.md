@@ -76,7 +76,7 @@ There are several more examples in the [examples](https://github.com/kubernetes-
 # Development
 
 All dependencies of this project are expressed in its
-[`package.json` file](node-client/package.json). Before you start developing, ensure
+[`package.json` file](package.json). Before you start developing, ensure
 that you have [NPM](https://www.npmjs.com/) installed, then run:
 
 ```console
@@ -89,7 +89,7 @@ npm install
 cd ../
 git clone https://github.com/kubernetes-client/gen
 cd javascript
-../gen/openapi/typescript.sh node-client/src settings
+../gen/openapi/typescript.sh src settings
 ```
 
 # Testing
