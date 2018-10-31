@@ -8,6 +8,7 @@ import yaml = require('js-yaml');
 // workaround for issue https://github.com/dchester/jsonpath/issues/96
 import jsonpath = require('jsonpath/jsonpath.min');
 import request = require('request');
+import shelljs = require('shelljs');
 
 import api = require('./api');
 import { Cluster, Context, newClusters, newContexts, newUsers, User } from './config_types';
@@ -202,6 +203,13 @@ export class KubeConfig {
             const config = path.join(process.env.HOME, '.kube', 'config');
             if (fs.existsSync(config)) {
                 this.loadFromFile(config);
+                return;
+            }
+        }
+        if (process.platform === 'win32' && shelljs.which('wsl.exe')) {
+            const result = shelljs.exec('wsl.exe cat $HOME/.kube/config', { silent: true });
+            if (result.code === 0) {
+                this.loadFromString(result.stdout);
                 return;
             }
         }
