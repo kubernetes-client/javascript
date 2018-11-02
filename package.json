@@ -18,7 +18,8 @@
     "clean": "rm -Rf node_modules/ dist/",
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "nyc mocha"
+    "test": "nyc mocha",
+    "prepare": "npm run build"
   },
   "nyc": {
     "include": [
