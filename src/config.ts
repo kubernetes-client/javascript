@@ -118,7 +118,7 @@ export class KubeConfig {
             opts.strictSSL = false;
         }
 
-        if (user.username) {
+        if (user && user.username) {
             opts.auth = {
                 password: user.password,
                 username: user.username,
@@ -245,7 +245,9 @@ export class KubeConfig {
     private applyHTTPSOptions(opts: request.Options | https.RequestOptions) {
         const cluster = this.getCurrentCluster();
         const user = this.getCurrentUser();
-
+        if (!user) {
+            return;
+        }
         const ca = cluster != null ? this.bufferFromFileOrString(cluster.caFile, cluster.caData) : null;
         if (ca) {
             opts.ca = ca;
@@ -262,6 +264,9 @@ export class KubeConfig {
 
     private applyAuthorizationHeader(opts: request.Options | https.RequestOptions) {
         const user = this.getCurrentUser();
+        if (!user) {
+            return;
+        }
         let token: string | null = null;
 
         if (user.authProvider && user.authProvider.config) {

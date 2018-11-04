@@ -101,13 +101,10 @@ function contextIterator(): u.ListIterator<any, Context> {
         if (!elt.context.cluster) {
             throw new Error(`contexts[${i}].context.cluster is missing`);
         }
-        if (!elt.context.user) {
-            throw new Error(`contexts[${i}].context.user is missing`);
-        }
         return {
             cluster: elt.context.cluster,
             name: elt.name,
-            user: elt.context.user,
+            user: (elt.context.user ? elt.context.user : undefined),
         };
     };
 }
