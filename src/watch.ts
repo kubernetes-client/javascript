@@ -60,10 +60,10 @@ export class Watch {
             } else {
                 obj = JSON.parse(data) as WatchUpdate;
             }
-            if (obj.type && obj.object) {
+            if (typeof obj === 'object' && obj.object) {
                 callback(obj.type, obj.object);
             } else {
-                throw new Error(`unexpected object: ${JSON.stringify(obj)}`);
+                throw new Error(`unexpected ${typeof obj}: ${JSON.stringify(obj)}`);
             }
         });
 
