@@ -355,25 +355,6 @@ describe('KubeConfig', () => {
                 ]);
             }).to.throw('contexts[1].context is missing');
         });
-        it('should fail if user is missing from context', () => {
-            expect(() => {
-                newContexts([
-                    {
-                        name: 'some-cluster',
-                        context: {
-                            cluster: 'foo',
-                            user: 'bar',
-                        },
-                    },
-                    {
-                        name: 'bar',
-                        context: {
-                            cluster: 'baz',
-                        },
-                    },
-                ]);
-            }).to.throw('contexts[1].context.user is missing');
-        });
         it('should fail if context is missing from context', () => {
             expect(() => {
                 newContexts([
