@@ -14,6 +14,27 @@ import api = require('./api');
 import { Cluster, Context, newClusters, newContexts, newUsers, User } from './config_types';
 
 export class KubeConfig {
+    // Only public for testing.
+    public static findHomeDir(): string | null {
+        if (process.env.HOME) {
+            if (fs.existsSync(process.env.HOME)) {
+                return process.env.HOME;
+            }
+        }
+        if (process.platform !== 'win32') {
+            return null;
+        }
+        if (process.env.HOMEDRIVE && process.env.HOMEPATH) {
+            const dir = path.join(process.env.HOMEDRIVE, process.env.HOMEPATH);
+            if (fs.existsSync(dir)) {
+                return dir;
+            }
+        }
+        if (process.env.USERPROFILE && fs.existsSync(process.env.USERPROFILE)) {
+            return process.env.USERPROFILE;
+        }
+        return null;
+    }
 
     // Only really public for testing...
     public static findObject(list: any[], name: string, key: string) {
@@ -199,14 +220,16 @@ export class KubeConfig {
             this.loadFromFile(process.env.KUBECONFIG);
             return;
         }
-        if (process.env.HOME) {
-            const config = path.join(process.env.HOME, '.kube', 'config');
+        const home = KubeConfig.findHomeDir();
+        if (home) {
+            const config = path.join(home, '.kube', 'config');
             if (fs.existsSync(config)) {
                 this.loadFromFile(config);
                 return;
             }
         }
         if (process.platform === 'win32' && shelljs.which('wsl.exe')) {
+            // TODO: Handle if someome set $KUBECONFIG in wsl here...
             const result = shelljs.exec('wsl.exe cat $HOME/.kube/config', { silent: true });
             if (result.code === 0) {
                 this.loadFromString(result.stdout);

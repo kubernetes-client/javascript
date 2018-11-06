@@ -322,6 +322,81 @@ describe('KubeConfig', () => {
         });
     });
 
+    describe('findHome', () => {
+        it('should load from HOME if present', () => {
+            const currentHome = process.env.HOME;
+            const expectedHome = 'foobar';
+            process.env.HOME = expectedHome;
+            const dir = join(process.env.HOME, '.kube');
+            const arg = {};
+            arg[dir] = { config: 'data' };
+            mockfs(arg);
+
+            const home = KubeConfig.findHomeDir();
+
+            mockfs.restore();
+            process.env.HOME = currentHome;
+
+            expect(home).to.equal(expectedHome);
+        });
+    });
+
+    describe('win32HomeDirTests', () => {
+        let originalPlatform: string;
+
+        before(() => {
+            originalPlatform = process.platform;
+            Object.defineProperty(process, 'platform', {
+                value: 'win32',
+            });
+        });
+
+        after(() => {
+            Object.defineProperty(process, 'platform', {
+                value: originalPlatform,
+            });
+        });
+
+        it('should load from HOMEDRIVE/HOMEPATH if present', () => {
+            const currentHome = process.env.HOME;
+
+            delete process.env.HOME;
+            process.env.HOMEDRIVE = 'foo';
+            process.env.HOMEPATH = 'bar';
+            const dir = join(process.env.HOMEDRIVE, process.env.HOMEPATH);
+            const arg = {};
+            arg[dir] = { config: 'data' };
+            mockfs(arg);
+
+            const home = KubeConfig.findHomeDir();
+
+            mockfs.restore();
+            process.env.HOME = currentHome;
+
+            expect(home).to.equal(dir);
+        });
+
+        it('should load from USERPROFILE if present', () => {
+            const currentHome = process.env.HOME;
+            const dir = 'someplace';
+
+            delete process.env.HOME;
+            process.env.HOMEDRIVE = 'foo';
+            process.env.HOMEPATH = 'bar';
+            process.env.USERPROFILE = dir;
+            const arg = {};
+            arg[dir] = { config: 'data' };
+            mockfs(arg);
+
+            const home = KubeConfig.findHomeDir();
+
+            mockfs.restore();
+            process.env.HOME = currentHome;
+
+            expect(home).to.equal(dir);
+        });
+    });
+
     describe('loadContextConfigObjects', () => {
         it('should fail if name is missing from context', () => {
             expect(() => {
@@ -581,7 +656,7 @@ describe('KubeConfig', () => {
             const data = readFileSync(kcFileName);
             const dir = join(process.env.HOME, '.kube');
             const arg = {};
-            arg[dir] = {config: data};
+            arg[dir] = { config: data };
             mockfs(arg);
 
             const kc = new KubeConfig();
