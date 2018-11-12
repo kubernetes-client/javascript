@@ -27,6 +27,7 @@
     ],
     "exclude": [
       "src/api.ts",
+      "src/index.ts",
       "src/*_test.ts"
     ],
     "extension": [
