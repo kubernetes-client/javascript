@@ -74,10 +74,10 @@ export class WebSocketHandler implements WebSocketInterface {
         return true;
     }
 
-    public 'config': KubeConfig;
-
-    public constructor(config: KubeConfig) {
-        this.config = config;
+    // factory is really just for test injection
+    public constructor(readonly config: KubeConfig,
+                       readonly socketFactory?:
+                         (uri: string, opts: WebSocket.ClientOptions) => WebSocket) {
     }
 
     /**
@@ -109,7 +109,7 @@ export class WebSocketHandler implements WebSocketInterface {
         this.config.applytoHTTPSOptions(opts);
 
         return new Promise((resolve, reject) => {
-            const client = new WebSocket(uri, opts);
+            const client = (this.socketFactory ? this.socketFactory(uri, opts) : new WebSocket(uri, opts));
             let resolved = false;
 
             client.onopen = () => {
