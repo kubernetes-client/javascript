@@ -11,6 +11,7 @@ import { KubeConfig } from './config';
 import { Cluster, newClusters, newContexts, newUsers, User } from './config_types';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
+const kcNoUserFileName = 'testdata/empty-user-kubeconfig.yaml';
 
 /* tslint:disable: no-empty */
 describe('Config', () => { });
@@ -162,6 +163,13 @@ describe('KubeConfig', () => {
             // TODO: make the error check work
             // let kc = new KubeConfig();
             // expect(kc.loadFromFile("missing.yaml")).to.throw();
+        });
+    });
+
+    describe('loadEmptyUser', () => {
+        it('should load a kubeconfig with an empty user', () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcNoUserFileName);
         });
     });
 
