@@ -46439,7 +46439,7 @@ export class Core_v1Api {
             .replace('{' + 'name' + '}', String(name))
             .replace('{' + 'namespace' + '}', String(namespace));
         let queryParameters: any = {};
-        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let headerParams: any = (<any>Object).assign({}, this.defaultHeaders, { 'Content-Type': 'application/merge-patch+json' });
         let formParams: any = {};
 
 
