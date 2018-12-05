@@ -3,15 +3,15 @@ import https = require('https');
 import path = require('path');
 
 import base64 = require('base-64');
-import execa = require('execa');
 import yaml = require('js-yaml');
-// workaround for issue https://github.com/dchester/jsonpath/issues/96
-import jsonpath = require('jsonpath/jsonpath.min');
 import request = require('request');
 import shelljs = require('shelljs');
 
-import api = require('./api');
+import * as api from './api';
+import { Authenticator } from './auth';
+import { CloudAuth } from './cloud_auth';
 import { Cluster, Context, newClusters, newContexts, newUsers, User } from './config_types';
+import { ExecAuth } from './exec_auth';
 
 export class KubeConfig {
     // Only public for testing.
@@ -48,6 +48,11 @@ export class KubeConfig {
         }
         return null;
     }
+
+    private static authenticators: Authenticator[] = [
+        new CloudAuth(),
+        new ExecAuth(),
+    ];
 
     /**
      * The list of all known clusters
@@ -301,41 +306,12 @@ export class KubeConfig {
         let token: string | null = null;
 
         if (user.authProvider && user.authProvider.config) {
-            const config = user.authProvider.config;
-            // This should probably be extracted as auth-provider specific plugins...
-            token = 'Bearer ' + config['access-token'];
-            const expiry = config.expiry;
-
-            if (expiry) {
-                const expiration = Date.parse(expiry);
-                if (expiration < Date.now()) {
-                    if (config['cmd-path']) {
-                        const args = config['cmd-args'] ? [config['cmd-args']] : [];
-                        // TODO: Cache to file?
-                        // TODO: do this asynchronously
-                        let result: execa.ExecaReturns;
-
-                        try {
-                            result = execa.sync(config['cmd-path'], args);
-                        } catch (err) {
-                            throw new Error('Failed to refresh token: ' + err.message);
-                        }
-
-                        const output = result.stdout.toString();
-                        const resultObj = JSON.parse(output);
-
-                        let pathKey = config['token-key'];
-                        // Format in file is {<query>}, so slice it out and add '$'
-                        pathKey = '$' + pathKey.slice(1, -1);
-
-                        config['access-token'] = jsonpath.query(resultObj, pathKey);
-                        token = 'Bearer ' + config['access-token'];
-                    } else {
-                        throw new Error('Token is expired!');
+            KubeConfig.authenticators.forEach(
+                (authenticator: Authenticator) => {
+                    if (authenticator.isAuthProvider(user)) {
+                        token = authenticator.getToken(user);
                     }
-                }
-            }
-
+                });
         }
 
         if (user.token) {

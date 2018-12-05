@@ -523,6 +523,7 @@ describe('KubeConfig', () => {
                 { skipTLSVerify: false } as Cluster,
                 {
                     authProvider: {
+                        name: 'azure',
                         config: {
                             'access-token': token,
                             'expiry': 'Fri Aug 24 07:32:05 PDT 3018',
@@ -548,6 +549,7 @@ describe('KubeConfig', () => {
                 { skipTLSVerify: false } as Cluster,
                 {
                     authProvider: {
+                        name: 'azure',
                         config: {
                             'access-token': token,
                         },
@@ -568,6 +570,7 @@ describe('KubeConfig', () => {
                 { skipTLSVerify: false } as Cluster,
                 {
                     authProvider: {
+                        name: 'azure',
                         config: {
                             expiry: 'Aug 24 07:32:05 PDT 2017',
                         },
@@ -584,6 +587,7 @@ describe('KubeConfig', () => {
                 { skipTLSVerify: false } as Cluster,
                 {
                     authProvider: {
+                        name: 'azure',
                         config: {
                             'expiry': 'Aug 24 07:32:05 PDT 2017',
                             'cmd-path': 'non-existent-command',
@@ -592,7 +596,7 @@ describe('KubeConfig', () => {
                 } as User);
             const opts = {} as requestlib.Options;
             expect(() => config.applyToRequest(opts)).to.throw(
-                'Failed to refresh token: spawnSync non-existent-command ENOENT');
+                'Failed to refresh token: /bin/sh: 1: non-existent-command: not found');
         });
 
         it('should exec with expired token', () => {
@@ -603,14 +607,47 @@ describe('KubeConfig', () => {
                 { skipTLSVerify: false } as Cluster,
                 {
                     authProvider: {
+                        name: 'azure',
                         config: {
                             'expiry': 'Aug 24 07:32:05 PDT 2017',
                             'cmd-path': 'echo',
-                            'cmd-args': `${responseStr}`,
+                            'cmd-args': `'${responseStr}'`,
                             'token-key': '{.token.accessToken}',
                         },
                     },
                 } as User);
+            const opts = {} as requestlib.Options;
+            config.applyToRequest(opts);
+            expect(opts.headers).to.not.be.undefined;
+            if (opts.headers) {
+                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+            }
+        });
+
+        it('should exec with exec auth', () => {
+            const config = new KubeConfig();
+            const token = 'token';
+            const responseStr = `'{ "token": "${token}" }'`;
+            config.loadFromClusterAndUser(
+                { skipTLSVerify: false } as Cluster,
+                {
+                    authProvider: {
+                        name: 'exec',
+                        config: {
+                            exec: {
+                                command: 'echo',
+                                args: [`${responseStr}`],
+                                env: [
+                                    {
+                                        name: 'foo',
+                                        value: 'bar',
+                                    },
+                                ],
+                            },
+                        },
+                    },
+                } as User);
+            // TODO: inject the exec command here?
             const opts = {} as requestlib.Options;
             config.applyToRequest(opts);
             expect(opts.headers).to.not.be.undefined;
