@@ -14,49 +14,6 @@ import { Cluster, Context, newClusters, newContexts, newUsers, User } from './co
 import { ExecAuth } from './exec_auth';
 
 export class KubeConfig {
-    // Only public for testing.
-    public static findHomeDir(): string | null {
-        if (process.env.HOME) {
-            try {
-                fs.accessSync(process.env.HOME);
-                return process.env.HOME;
-            // tslint:disable-next-line:no-empty
-            } catch (ignore) {}
-        }
-        if (process.platform !== 'win32') {
-            return null;
-        }
-        if (process.env.HOMEDRIVE && process.env.HOMEPATH) {
-            const dir = path.join(process.env.HOMEDRIVE, process.env.HOMEPATH);
-            try {
-                fs.accessSync(dir);
-                return dir;
-            // tslint:disable-next-line:no-empty
-            } catch (ignore) {}
-        }
-        if (process.env.USERPROFILE) {
-            try {
-                fs.accessSync(process.env.USERPROFILE);
-                return process.env.USERPROFILE;
-            // tslint:disable-next-line:no-empty
-            } catch (ignore) {}
-        }
-        return null;
-    }
-
-    // Only really public for testing...
-    public static findObject(list: any[], name: string, key: string) {
-        for (const obj of list) {
-            if (obj.name === name) {
-                if (obj[key]) {
-                    return obj[key];
-                }
-                return obj;
-            }
-        }
-        return null;
-    }
-
     private static authenticators: Authenticator[] = [
         new CloudAuth(),
         new ExecAuth(),
@@ -106,7 +63,7 @@ export class KubeConfig {
         if (!this.contexts) {
             return null;
         }
-        return KubeConfig.findObject(this.contexts, name, 'context');
+        return findObject(this.contexts, name, 'context');
     }
 
     public getCurrentCluster(): Cluster | null {
@@ -117,16 +74,20 @@ export class KubeConfig {
         return this.getCluster(context.cluster);
     }
 
-    public getCluster(name: string): Cluster {
-        return KubeConfig.findObject(this.clusters, name, 'cluster');
+    public getCluster(name: string): Cluster | null {
+        return findObject(this.clusters, name, 'cluster');
     }
 
-    public getCurrentUser() {
-        return this.getUser(this.getCurrentContextObject().user);
+    public getCurrentUser(): User | null {
+        const ctx = this.getCurrentContextObject();
+        if (!ctx) {
+            return null;
+        }
+        return this.getUser(ctx.user);
     }
 
-    public getUser(name: string): User {
-        return KubeConfig.findObject(this.users, name, 'user');
+    public getUser(name: string): User | null {
+        return findObject(this.users, name, 'user');
     }
 
     public loadFromFile(file: string) {
@@ -138,7 +99,7 @@ export class KubeConfig {
 
         this.applyOptions(opts);
 
-        if (user.username) {
+        if (user && user.username) {
             opts.auth = `${user.username}:${user.password}`;
         }
     }
@@ -233,7 +194,7 @@ export class KubeConfig {
             this.loadFromFile(process.env.KUBECONFIG);
             return;
         }
-        const home = KubeConfig.findHomeDir();
+        const home = findHomeDir();
         if (home) {
             const config = path.join(home, '.kube', 'config');
             try {
@@ -260,8 +221,8 @@ export class KubeConfig {
         } catch (ignore) {}
 
         this.loadFromClusterAndUser(
-            {name: 'cluster', server: 'http://localhost:8080'} as Cluster,
-            {name: 'user'} as User,
+            { name: 'cluster', server: 'http://localhost:8080' } as Cluster,
+            { name: 'user' } as User,
         );
     }
 
@@ -280,31 +241,21 @@ export class KubeConfig {
         return this.getContextObject(this.currentContext);
     }
 
-    private bufferFromFileOrString(file?: string, data?: string): Buffer | null {
-        if (file) {
-            return fs.readFileSync(file);
-        }
-        if (data) {
-            return Buffer.from(base64.decode(data), 'utf-8');
-        }
-        return null;
-    }
-
     private applyHTTPSOptions(opts: request.Options | https.RequestOptions) {
         const cluster = this.getCurrentCluster();
         const user = this.getCurrentUser();
         if (!user) {
             return;
         }
-        const ca = cluster != null ? this.bufferFromFileOrString(cluster.caFile, cluster.caData) : null;
+        const ca = cluster != null ? bufferFromFileOrString(cluster.caFile, cluster.caData) : null;
         if (ca) {
             opts.ca = ca;
         }
-        const cert = this.bufferFromFileOrString(user.certFile, user.certData);
+        const cert = bufferFromFileOrString(user.certFile, user.certData);
         if (cert) {
             opts.cert = cert;
         }
-        const key = this.bufferFromFileOrString(user.keyFile, user.keyData);
+        const key = bufferFromFileOrString(user.keyFile, user.keyData);
         if (key) {
             opts.key = key;
         }
@@ -349,17 +300,17 @@ export interface ApiType {
 }
 
 export interface ApiConstructor<T extends ApiType> {
-    new (server: string): T;
+    new(server: string): T;
 }
 
 // This class is deprecated and will eventually be removed.
 export class Config {
     public static SERVICEACCOUNT_ROOT =
-    '/var/run/secrets/kubernetes.io/serviceaccount';
+        '/var/run/secrets/kubernetes.io/serviceaccount';
     public static SERVICEACCOUNT_CA_PATH =
-    Config.SERVICEACCOUNT_ROOT + '/ca.crt';
+        Config.SERVICEACCOUNT_ROOT + '/ca.crt';
     public static SERVICEACCOUNT_TOKEN_PATH =
-    Config.SERVICEACCOUNT_ROOT + '/token';
+        Config.SERVICEACCOUNT_ROOT + '/token';
 
     public static fromFile(filename: string): api.Core_v1Api {
         return Config.apiFromFile(filename, api.Core_v1Api);
@@ -399,4 +350,62 @@ export class Config {
         kc.loadFromDefault();
         return kc.makeApiClient(apiClientType);
     }
+}
+
+// This is public really only for testing.
+export function bufferFromFileOrString(file ?: string, data ?: string): Buffer | null {
+    if (file) {
+        return fs.readFileSync(file);
+    }
+    if (data) {
+        return Buffer.from(base64.decode(data), 'utf-8');
+    }
+    return null;
+}
+
+// Only public for testing.
+export function findHomeDir(): string | null {
+    if (process.env.HOME) {
+        try {
+            fs.accessSync(process.env.HOME);
+            return process.env.HOME;
+            // tslint:disable-next-line:no-empty
+        } catch (ignore) { }
+    }
+    if (process.platform !== 'win32') {
+        return null;
+    }
+    if (process.env.HOMEDRIVE && process.env.HOMEPATH) {
+        const dir = path.join(process.env.HOMEDRIVE, process.env.HOMEPATH);
+        try {
+            fs.accessSync(dir);
+            return dir;
+            // tslint:disable-next-line:no-empty
+        } catch (ignore) { }
+    }
+    if (process.env.USERPROFILE) {
+        try {
+            fs.accessSync(process.env.USERPROFILE);
+            return process.env.USERPROFILE;
+        // tslint:disable-next-line:no-empty
+        } catch (ignore) {}
+    }
+    return null;
+}
+
+export interface Named {
+    name: string;
+}
+
+// Only really public for testing...
+export function findObject<T extends Named>(list: T[], name: string, key: string): T | null {
+    for (const obj of list) {
+        if (obj.name === name) {
+            if (obj[key]) {
+                return obj[key];
+            }
+            return obj;
+        }
+    }
+    return null;
 }

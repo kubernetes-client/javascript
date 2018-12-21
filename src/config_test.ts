@@ -7,7 +7,7 @@ import mockfs = require('mock-fs');
 import * as requestlib from 'request';
 
 import { Core_v1Api } from './api';
-import { KubeConfig } from './config';
+import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, Named } from './config';
 import { Cluster, newClusters, newContexts, newUsers, User } from './config_types';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
@@ -56,33 +56,42 @@ function validateFileLoad(kc: KubeConfig) {
 describe('KubeConfig', () => {
     describe('findObject', () => {
         it('should find objects', () => {
-            const list = [
+            interface MyNamed {
+                name: string;
+                some: any;
+                cluster: any;
+            }
+            const list: MyNamed[] = [
                 {
                     name: 'foo',
                     cluster: {
                         some: 'sub-object',
                     },
                     some: 'object',
-                },
+                } as MyNamed,
                 {
                     name: 'bar',
                     some: 'object',
                     cluster: {
-                        sone: 'sub-object',
+                        some: 'sub-object',
                     },
-                },
+                } as MyNamed,
             ];
 
             // Validate that if the named object ('cluster' in this case) is inside we pick it out
-            const obj1 = KubeConfig.findObject(list, 'foo', 'cluster');
-            expect(obj1.some).to.equal('sub-object');
-
+            const obj1 = findObject(list, 'foo', 'cluster');
+            expect(obj1).to.not.equal(null);
+            if (obj1) {
+                expect(obj1.some).to.equal('sub-object');
+            }
             // Validate that if the named object is missing, we just return the full object
-            const obj2 = KubeConfig.findObject(list, 'bar', 'context');
-            expect(obj2.some).to.equal('object');
-
+            const obj2 = findObject(list, 'bar', 'context');
+            expect(obj2).to.not.equal(null);
+            if (obj2) {
+                expect(obj2.some).to.equal('object');
+            }
             // validate that we do the right thing if it is missing
-            const obj3 = KubeConfig.findObject(list, 'nonexistent', 'context');
+            const obj3 = findObject(list, 'nonexistent', 'context');
             expect(obj3).to.equal(null);
         });
     });
@@ -332,7 +341,7 @@ describe('KubeConfig', () => {
             arg[dir] = { config: 'data' };
             mockfs(arg);
 
-            const home = KubeConfig.findHomeDir();
+            const home = findHomeDir();
 
             mockfs.restore();
             process.env.HOME = currentHome;
@@ -343,24 +352,41 @@ describe('KubeConfig', () => {
 
     describe('win32HomeDirTests', () => {
         let originalPlatform: string;
+        const originalEnvVars: any = {};
 
         before(() => {
             originalPlatform = process.platform;
             Object.defineProperty(process, 'platform', {
                 value: 'win32',
             });
+            originalEnvVars.HOME = process.env.HOME;
+            originalEnvVars.USERPROFILE = process.env.USERPROFILE;
+            originalEnvVars.HOMEDRIVE = process.env.HOMEDRIVE;
+            originalEnvVars.HOMEPATH = process.env.HOMEPATH;
+
+            delete process.env.HOME;
+            delete process.env.USERPROFILE;
+            delete process.env.HOMEDRIVE;
+            delete process.env.HOMEPATH;
         });
 
         after(() => {
             Object.defineProperty(process, 'platform', {
                 value: originalPlatform,
             });
+
+            process.env.HOME = originalEnvVars.HOME;
+            process.env.USERPROFILE = originalEnvVars.USERPROFILE;
+            process.env.HOMEDRIVE = originalEnvVars.HOMEDRIVE;
+            process.env.HOMEPATH = originalEnvVars.HOMEPATH;
+        });
+
+        it('should return null if no home is present', () => {
+            const dir = findHomeDir();
+            expect(dir).to.equal(null);
         });
 
         it('should load from HOMEDRIVE/HOMEPATH if present', () => {
-            const currentHome = process.env.HOME;
-
-            delete process.env.HOME;
             process.env.HOMEDRIVE = 'foo';
             process.env.HOMEPATH = 'bar';
             const dir = join(process.env.HOMEDRIVE, process.env.HOMEPATH);
@@ -368,19 +394,15 @@ describe('KubeConfig', () => {
             arg[dir] = { config: 'data' };
             mockfs(arg);
 
-            const home = KubeConfig.findHomeDir();
+            const home = findHomeDir();
 
             mockfs.restore();
-            process.env.HOME = currentHome;
-
             expect(home).to.equal(dir);
         });
 
         it('should load from USERPROFILE if present', () => {
-            const currentHome = process.env.HOME;
             const dir = 'someplace';
 
-            delete process.env.HOME;
             process.env.HOMEDRIVE = 'foo';
             process.env.HOMEPATH = 'bar';
             process.env.USERPROFILE = dir;
@@ -388,11 +410,9 @@ describe('KubeConfig', () => {
             arg[dir] = { config: 'data' };
             mockfs(arg);
 
-            const home = KubeConfig.findHomeDir();
+            const home = findHomeDir();
 
             mockfs.restore();
-            process.env.HOME = currentHome;
-
             expect(home).to.equal(dir);
         });
     });
@@ -623,8 +643,7 @@ describe('KubeConfig', () => {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
             }
         });
-
-        it('should exec with exec auth', () => {
+        it('should exec with exec auth and env vars', () => {
             const config = new KubeConfig();
             const token = 'token';
             const responseStr = `'{ "token": "${token}" }'`;
@@ -647,6 +666,31 @@ describe('KubeConfig', () => {
                         },
                     },
                 } as User);
+            // TODO: inject the exec command here and validate env vars?
+            const opts = {} as requestlib.Options;
+            config.applyToRequest(opts);
+            expect(opts.headers).to.not.be.undefined;
+            if (opts.headers) {
+                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+            }
+        });
+        it('should exec with exec auth', () => {
+            const config = new KubeConfig();
+            const token = 'token';
+            const responseStr = `'{ "token": "${token}" }'`;
+            config.loadFromClusterAndUser(
+                { skipTLSVerify: false } as Cluster,
+                {
+                    authProvider: {
+                        name: 'exec',
+                        config: {
+                            exec: {
+                                command: 'echo',
+                                args: [`${responseStr}`],
+                            },
+                        },
+                    },
+                } as User);
             // TODO: inject the exec command here?
             const opts = {} as requestlib.Options;
             config.applyToRequest(opts);
@@ -654,6 +698,22 @@ describe('KubeConfig', () => {
             if (opts.headers) {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
             }
+        });
+        it('should throw with no command.', () => {
+            const config = new KubeConfig();
+            config.loadFromClusterAndUser(
+                { skipTLSVerify: false } as Cluster,
+                {
+                    authProvider: {
+                        name: 'exec',
+                        config: {
+                            exec: {
+                            },
+                        },
+                    },
+                } as User);
+            const opts = {} as requestlib.Options;
+            expect(() => config.applyToRequest(opts)).to.throw('No command was specified for exec authProvider!');
         });
     });
 
@@ -711,7 +771,11 @@ describe('KubeConfig', () => {
             }
             expect(cluster.caFile).to.equal('/var/run/secrets/kubernetes.io/serviceaccount/ca.crt');
             expect(cluster.server).to.equal('https://kubernetes:443');
-            expect(kc.getCurrentUser().token).to.equal(token);
+            const user = kc.getCurrentUser();
+            expect(user).to.not.be.null;
+            if (user) {
+                expect(user.token).to.equal(token);
+            }
         });
 
         it('should load from cluster with http port', () => {
@@ -752,8 +816,14 @@ describe('KubeConfig', () => {
             if (!cluster) {
                 return;
             }
-            expect(kc.getCurrentUser().name).to.equal('user');
+            expect(cluster.name).to.equal('cluster');
             expect(cluster.server).to.equal('http://localhost:8080');
+
+            const user = kc.getCurrentUser();
+            expect(user).to.not.be.null;
+            if (user) {
+                expect(user.name).to.equal('user');
+            }
         });
     });
 
@@ -764,6 +834,50 @@ describe('KubeConfig', () => {
 
             const client = kc.makeApiClient(Core_v1Api);
             expect(client instanceof Core_v1Api).to.equal(true);
+        });
+    });
+
+    describe('EmptyConfig', () => {
+        const emptyConfig = new KubeConfig();
+        it('should throw if you try to make a client', () => {
+            expect(() => emptyConfig.makeApiClient(Core_v1Api)).to.throw('No active cluster!');
+        });
+
+        it('should get a null current cluster', () => {
+            expect(emptyConfig.getCurrentCluster()).to.equal(null);
+        });
+
+        it('should get empty user', () => {
+            expect(emptyConfig.getCurrentUser()).to.equal(null);
+        });
+
+        it('should get empty cluster', () => {
+            expect(emptyConfig.getCurrentCluster()).to.equal(null);
+        });
+
+        it('should get empty context', () => {
+            expect(emptyConfig.getCurrentContext()).to.be.undefined;
+        });
+
+        it('should apply to request', () => {
+            const opts = {} as requestlib.Options;
+            emptyConfig.applyToRequest(opts);
+        });
+    });
+
+    describe('BufferOrFile', () => {
+        it('should load from a file if present', () => {
+            const data = 'some data for file';
+            const arg: any = {
+                config: data,
+            };
+            mockfs(arg);
+            const inputData = bufferFromFileOrString('config');
+            expect(inputData).to.not.equal(null);
+            if (inputData) {
+                expect(inputData.toString()).to.equal(data);
+            }
+            mockfs.restore();
         });
     });
 });
