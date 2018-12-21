@@ -17,21 +17,29 @@ export class KubeConfig {
     // Only public for testing.
     public static findHomeDir(): string | null {
         if (process.env.HOME) {
-            if (fs.existsSync(process.env.HOME)) {
+            try {
+                fs.accessSync(process.env.HOME);
                 return process.env.HOME;
-            }
+            // tslint:disable-next-line:no-empty
+            } catch (ignore) {}
         }
         if (process.platform !== 'win32') {
             return null;
         }
         if (process.env.HOMEDRIVE && process.env.HOMEPATH) {
             const dir = path.join(process.env.HOMEDRIVE, process.env.HOMEPATH);
-            if (fs.existsSync(dir)) {
+            try {
+                fs.accessSync(dir);
                 return dir;
-            }
+            // tslint:disable-next-line:no-empty
+            } catch (ignore) {}
         }
-        if (process.env.USERPROFILE && fs.existsSync(process.env.USERPROFILE)) {
-            return process.env.USERPROFILE;
+        if (process.env.USERPROFILE) {
+            try {
+                fs.accessSync(process.env.USERPROFILE);
+                return process.env.USERPROFILE;
+            // tslint:disable-next-line:no-empty
+            } catch (ignore) {}
         }
         return null;
     }
@@ -228,10 +236,12 @@ export class KubeConfig {
         const home = KubeConfig.findHomeDir();
         if (home) {
             const config = path.join(home, '.kube', 'config');
-            if (fs.existsSync(config)) {
+            try {
+                fs.accessSync(config);
                 this.loadFromFile(config);
                 return;
-            }
+            // tslint:disable-next-line:no-empty
+            } catch (ignore) {}
         }
         if (process.platform === 'win32' && shelljs.which('wsl.exe')) {
             // TODO: Handle if someome set $KUBECONFIG in wsl here...
@@ -242,10 +252,12 @@ export class KubeConfig {
             }
         }
 
-        if (fs.existsSync(Config.SERVICEACCOUNT_TOKEN_PATH)) {
+        try {
+            fs.accessSync(Config.SERVICEACCOUNT_TOKEN_PATH);
             this.loadFromCluster();
             return;
-        }
+        // tslint:disable-next-line:no-empty
+        } catch (ignore) {}
 
         this.loadFromClusterAndUser(
             {name: 'cluster', server: 'http://localhost:8080'} as Cluster,
