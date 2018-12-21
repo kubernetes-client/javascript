@@ -32,7 +32,7 @@ export class CloudAuth implements Authenticator {
                         }
                         result = shelljs.exec(cmd);
                         if (result.code !== 0) {
-                            throw new Error(`Failed to refresh token: ${result.stderr}`);
+                            throw new Error(result.stderr);
                         }
                     } catch (err) {
                         throw new Error('Failed to refresh token: ' + err.message);

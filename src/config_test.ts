@@ -596,7 +596,7 @@ describe('KubeConfig', () => {
                 } as User);
             const opts = {} as requestlib.Options;
             expect(() => config.applyToRequest(opts)).to.throw(
-                'Failed to refresh token: /bin/sh: 1: non-existent-command: not found');
+                'Failed to refresh token: /bin/sh: non-existent-command: command not found');
         });
 
         it('should exec with expired token', () => {
