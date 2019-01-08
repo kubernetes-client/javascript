@@ -4,3 +4,4 @@ export * from './attach';
 export * from './watch';
 export * from './exec';
 export * from './portforward';
+export * from './yaml';
