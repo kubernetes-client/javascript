@@ -51,7 +51,7 @@ export class CloudAuth implements Authenticator {
             if (args) {
                 cmd = `${cmd} ${args}`;
             }
-            result = shelljs.exec(cmd);
+            result = shelljs.exec(cmd, {silent: true});
             if (result.code !== 0) {
                 throw new Error(result.stderr);
             }
