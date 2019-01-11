@@ -12,17 +12,17 @@ const yamlString = k8s.dumpYaml({
   }
 });
 
-const yamlNamespace = k8s.loadYaml(k8s.dumpYaml(yamlString));
+const yamlNamespace = k8s.loadYaml(yamlString);
 
 k8sApi.createNamespace(yamlNamespace).then(
   (response) => {
     console.log('Created namespace');
     console.log(response);
-    k8sApi.readNamespace(namespace.metadata.name).then(
+    k8sApi.readNamespace(yamlNamespace.metadata.name).then(
       (response) => {
         console.log(response);
-	k8sApi.deleteNamespace(
-          namespace.metadata.name, {} /* delete options */);
+        k8sApi.deleteNamespace(
+          yamlNamespace.metadata.name, {} /* delete options */);
       });
   },
   (err) => {
