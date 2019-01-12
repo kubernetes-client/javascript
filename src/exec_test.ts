@@ -8,6 +8,9 @@ import { Exec } from './exec';
 import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
 
 describe('Exec', () => {
+    // tslint:disable-next-line:no-empty
+    const nop = () => {};
+
     describe('basic', () => {
         it('should correctly exec to a url', async () => {
             const kc = new KubeConfig();
@@ -24,27 +27,27 @@ describe('Exec', () => {
             const path = `/api/v1/namespaces/${namespace}/pods/${pod}/exec`;
 
             await exec.exec(
-                namespace, pod, container, cmd, osStream, errStream, isStream, false);
+                namespace, pod, container, cmd, osStream, errStream, isStream, nop, false);
             let args = `stdout=true&stderr=true&stdin=true&tty=false&command=${cmd}&container=${container}`;
             verify(fakeWebSocket.connect(`${path}?${args}`, null,  anyFunction())).called();
 
             await exec.exec(
-                namespace, pod, container, cmd, null, errStream, isStream, false);
+                namespace, pod, container, cmd, null, errStream, isStream, nop, false);
             args = `stdout=false&stderr=true&stdin=true&tty=false&command=${cmd}&container=${container}`;
             verify(fakeWebSocket.connect(`${path}?${args}`, null,  anyFunction())).called();
 
             await exec.exec(
-                namespace, pod, container, cmd, null, null, isStream, false);
+                namespace, pod, container, cmd, null, null, isStream, nop, false);
             args = `stdout=false&stderr=false&stdin=true&tty=false&command=${cmd}&container=${container}`;
             verify(fakeWebSocket.connect(`${path}?${args}`, null,  anyFunction())).called();
 
             await exec.exec(
-                namespace, pod, container, cmd, null, null, null, false);
+                namespace, pod, container, cmd, null, null, null, nop, false);
             args = `stdout=false&stderr=false&stdin=false&tty=false&command=${cmd}&container=${container}`;
             verify(fakeWebSocket.connect(`${path}?${args}`, null,  anyFunction())).called();
 
             await exec.exec(
-                namespace, pod, container, cmd, null, errStream, isStream, true);
+                namespace, pod, container, cmd, null, errStream, isStream, nop, true);
             args = `stdout=false&stderr=true&stdin=true&tty=true&command=${cmd}&container=${container}`;
             verify(fakeWebSocket.connect(`${path}?${args}`, null,  anyFunction())).called();
         });
@@ -69,7 +72,7 @@ describe('Exec', () => {
             when(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).thenResolve(fakeConn);
 
             await exec.exec(
-                namespace, pod, container, cmd, osStream, errStream, isStream, false);
+                namespace, pod, container, cmd, osStream, errStream, isStream, nop, false);
 
             const [, , outputFn] = capture(fakeWebSocket.connect).last();
 
