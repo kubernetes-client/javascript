@@ -676,8 +676,30 @@ describe('KubeConfig', () => {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
             }
         });
+        it('should exec without access-token', () => {
+            const config = new KubeConfig();
+            const token = 'token';
+            const responseStr = `{ "token": { "accessToken": "${token}" } }`;
+            config.loadFromClusterAndUser(
+                { skipTLSVerify: false } as Cluster,
+                {
+                    authProvider: {
+                        name: 'azure',
+                        config: {
+                            'cmd-path': 'echo',
+                            'cmd-args': `'${responseStr}'`,
+                            'token-key': '{.token.accessToken}',
+                        },
+                    },
+                } as User);
+            const opts = {} as requestlib.Options;
+            config.applyToRequest(opts);
+            expect(opts.headers).to.not.be.undefined;
+            if (opts.headers) {
+                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+            }
+        });
         it('should exec with exec auth and env vars', () => {
-
             const config = new KubeConfig();
             const token = 'token';
             const responseStr = `'{ "token": "${token}" }'`;
