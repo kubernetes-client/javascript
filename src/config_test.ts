@@ -570,6 +570,7 @@ describe('KubeConfig', () => {
             config.applyToRequest(opts);
             expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
         });
+
         it('should populate from auth provider without expirty', () => {
             const config = new KubeConfig();
             const token = 'token';
@@ -617,6 +618,7 @@ describe('KubeConfig', () => {
                     authProvider: {
                         name: 'azure',
                         config: {
+                            'access-token': 'token',
                             'expiry': 'Aug 24 07:32:05 PDT 2017',
                             'cmd-path': 'non-existent-command',
                         },
@@ -624,7 +626,7 @@ describe('KubeConfig', () => {
                 } as User);
             const opts = {} as requestlib.Options;
             expect(() => config.applyToRequest(opts)).to.throw(
-                'Failed to refresh token: /bin/sh: 1: non-existent-command: not found');
+                /Failed to refresh token/);
         });
 
         it('should exec with expired token', () => {
@@ -651,7 +653,31 @@ describe('KubeConfig', () => {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
             }
         });
+        it('should exec without access-token', () => {
+            const config = new KubeConfig();
+            const token = 'token';
+            const responseStr = `{ "token": { "accessToken": "${token}" } }`;
+            config.loadFromClusterAndUser(
+                { skipTLSVerify: false } as Cluster,
+                {
+                    authProvider: {
+                        name: 'azure',
+                        config: {
+                            'cmd-path': 'echo',
+                            'cmd-args': `'${responseStr}'`,
+                            'token-key': '{.token.accessToken}',
+                        },
+                    },
+                } as User);
+            const opts = {} as requestlib.Options;
+            config.applyToRequest(opts);
+            expect(opts.headers).to.not.be.undefined;
+            if (opts.headers) {
+                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+            }
+        });
         it('should exec with exec auth and env vars', () => {
+
             const config = new KubeConfig();
             const token = 'token';
             const responseStr = `'{ "token": "${token}" }'`;
