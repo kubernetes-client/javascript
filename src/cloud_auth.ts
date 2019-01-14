@@ -22,13 +22,13 @@ export class CloudAuth implements Authenticator {
     }
 
     private isExpired(config) {
-        const token = config['access-token']
+        const token = config['access-token'];
         const expiry = config.expiry;
         if (!token) {
             return true;
         }
-        if(!expiry) {
-            return false
+        if (!expiry) {
+            return false;
         }
 
         const expiration = Date.parse(expiry);
@@ -70,6 +70,6 @@ export class CloudAuth implements Authenticator {
         expiryPathKey = '$' + expiryPathKey.slice(1, -1);
 
         config['access-token'] = jsonpath.query(resultObj, tokenPathKey);
-        config['expiry'] = jsonpath.query(resultObj, expiryPathKey);
+        config.expiry = jsonpath.query(resultObj, expiryPathKey);
     }
 }
