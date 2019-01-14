@@ -13,6 +13,16 @@ import { CloudAuth } from './cloud_auth';
 import { Cluster, Context, newClusters, newContexts, newUsers, User } from './config_types';
 import { ExecAuth } from './exec_auth';
 
+// fs.existsSync was removed in node 10
+function fileExists(filepath: string): boolean {
+    try {
+        fs.accessSync(filepath);
+        return true;
+    // tslint:disable-next-line:no-empty
+    } catch (ignore) { }
+    return false;
+}
+
 export class KubeConfig {
     private static authenticators: Authenticator[] = [
         new CloudAuth(),
@@ -197,12 +207,10 @@ export class KubeConfig {
         const home = findHomeDir();
         if (home) {
             const config = path.join(home, '.kube', 'config');
-            try {
-                fs.accessSync(config);
+            if (fileExists(config)) {
                 this.loadFromFile(config);
                 return;
-            // tslint:disable-next-line:no-empty
-            } catch (ignore) {}
+            }
         }
         if (process.platform === 'win32' && shelljs.which('wsl.exe')) {
             // TODO: Handle if someome set $KUBECONFIG in wsl here...
@@ -213,12 +221,10 @@ export class KubeConfig {
             }
         }
 
-        try {
-            fs.accessSync(Config.SERVICEACCOUNT_TOKEN_PATH);
+        if (fileExists(Config.SERVICEACCOUNT_TOKEN_PATH)) {
             this.loadFromCluster();
             return;
-        // tslint:disable-next-line:no-empty
-        } catch (ignore) {}
+        }
 
         this.loadFromClusterAndUser(
             { name: 'cluster', server: 'http://localhost:8080' } as Cluster,

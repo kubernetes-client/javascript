@@ -4,7 +4,7 @@ import { Authenticator } from './auth';
 import { User } from './config_types';
 
 export class ExecAuth implements Authenticator {
-    private tokenCache: any = {};
+    private readonly tokenCache: { [key: string]: any } = {};
 
     public isAuthProvider(user: User) {
         return user.authProvider.name === 'exec' ||
@@ -15,11 +15,12 @@ export class ExecAuth implements Authenticator {
         // TODO: Handle client cert auth here, requires auth refactor.
         // See https://kubernetes.io/docs/reference/access-authn-authz/authentication/#input-and-output-formats
         // for details on this protocol.
+        // TODO: Add a unit test for token caching.
         const cachedToken = this.tokenCache[user.name];
         if (cachedToken) {
             const date = Date.parse(cachedToken.status.expirationTimestamp);
             if (date < Date.now()) {
-                return cachedToken.status.token;
+                return `Bearer ${cachedToken.status.token}`;
             }
             this.tokenCache[user.name] = null;
         }
@@ -40,6 +41,7 @@ export class ExecAuth implements Authenticator {
         const result = shell.exec(cmd, opts);
         if (result.code === 0) {
             const obj = JSON.parse(result.stdout);
+            this.tokenCache[user.name] = obj.status.token;
             return `Bearer ${obj.status.token}`;
         }
         throw new Error(result.stderr);
