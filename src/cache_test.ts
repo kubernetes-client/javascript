@@ -60,7 +60,7 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Namespace);
         expect(cache.list().length).to.equal(2);
-        expect(cache.get('name2')).to.equal(null);
+        expect(cache.get('name2')).to.equal(undefined);
     });
 
     it('should perform namespace caching', () => {
@@ -138,7 +138,7 @@ describe('ListWatchCache', () => {
         } as V1Pod);
         expect(cache.list().length).to.equal(2);
         expect(cache.list('ns2').length).to.equal(0);
-        expect(cache.get('name2', 'ns2')).to.equal(null);
+        expect(cache.get('name2', 'ns2')).to.equal(undefined);
     });
     it('should delete an object correctly', () => {
         const list: V1Pod[] = [

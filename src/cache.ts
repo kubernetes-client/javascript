@@ -2,42 +2,36 @@ import { KubernetesObject } from './types';
 import { Watch } from './watch';
 
 export interface ObjectCache<T> {
-    get(name: string, namespace?: string): T | null;
-    list(namespace?: string): T[];
+    get(name: string, namespace?: string): T | undefined;
+    list(namespace?: string): ReadonlyArray<T>;
 }
 
 export type ListCallback<T extends KubernetesObject> = (list: T[]) => void;
 
 export class ListWatch<T extends KubernetesObject> implements ObjectCache<T> {
     private objects: T[] = [];
-    private indexCache: any = {};
-    private path: string;
-    private watch: Watch;
-    private listFn: (callback: ListCallback<T>) => void;
+    private readonly indexCache: { [key: string]: T[] } = {};
 
-    public constructor(path: string, watch: Watch, listFn: (callback: ListCallback<T>) => void) {
+    public constructor(private readonly path: string,
+                       private readonly watch: Watch,
+                       private readonly listFn: (callback: ListCallback<T>) => void) {
         this.watch = watch;
         this.listFn = listFn;
-        this.path = path;
         this.doneHandler(null);
     }
 
-    public get(name: string, namespace?: string): T | null {
-        let result: T | null = null;
-        for (const element of this.objects) {
-            if (element.metadata.name === name &&
-                (!namespace || element.metadata.namespace === namespace)) {
-                result = element;
-            }
-        }
-        return result;
+    public get(name: string, namespace?: string): T | undefined {
+        return this.objects.find((obj: T): boolean => {
+            return (obj.metadata.name === name &&
+                    (!namespace || obj.metadata.namespace === namespace));
+        });
     }
 
-    public list(namespace?: string | undefined): T[] {
+    public list(namespace?: string | undefined): ReadonlyArray<T> {
         if (!namespace) {
             return this.objects;
         }
-        return this.indexCache[namespace] as T[];
+        return this.indexCache[namespace] as ReadonlyArray<T>;
     }
 
     private doneHandler(err: any) {
@@ -83,7 +77,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T> {
 
 // Only public for testing.
 export function addOrUpdateObject<T extends KubernetesObject>(objects: T[], obj: T) {
-    const ix = findObject(objects, obj);
+    const ix = findKubernetesObject(objects, obj);
     if (ix === -1) {
         objects.push(obj);
     } else {
@@ -91,23 +85,20 @@ export function addOrUpdateObject<T extends KubernetesObject>(objects: T[], obj:
     }
 }
 
-// Public for testing.
-export function findObject<T extends KubernetesObject>(objects: T[], obj: T): number {
-    for (let ix = 0; ix < objects.length; ix++) {
-        const elt = objects[ix];
-        if (obj.metadata.name !== elt.metadata.name) {
-            continue;
-        }
-        if (obj.metadata.namespace === elt.metadata.namespace) {
-            return ix;
-        }
-    }
-    return -1;
+function isSameObject<T extends KubernetesObject>(o1: T, o2: T): boolean {
+    return o1.metadata.name === o2.metadata.name &&
+           o1.metadata.namespace === o2.metadata.namespace;
+}
+
+function findKubernetesObject<T extends KubernetesObject>(objects: T[], obj: T): number {
+    return objects.findIndex((elt: T) => {
+        return isSameObject(elt, obj);
+    });
 }
 
 // Public for testing.
 export function deleteObject<T extends KubernetesObject>(objects: T[], obj: T) {
-    const ix = findObject(objects, obj);
+    const ix = findKubernetesObject(objects, obj);
     if (ix !== -1) {
         objects.splice(ix, 1);
     }
