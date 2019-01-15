@@ -1,6 +1,6 @@
 {
   "name": "@kubernetes/client-node",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "NodeJS client for kubernetes",
   "repository": {
     "type": "git",
@@ -46,6 +46,8 @@
   "author": "Kubernetes Authors",
   "license": "Apache-2.0",
   "dependencies": {
+    "@types/node": "^10.12.0",
+    "@types/request": "^2.47.1",
     "base-64": "^0.1.0",
     "bluebird": "^3.5.2",
     "byline": "^5.0.0",
@@ -66,8 +68,6 @@
     "@types/js-yaml": "^3.11.2",
     "@types/mocha": "^5.2.5",
     "@types/mock-fs": "^3.6.30",
-    "@types/node": "^10.12.0",
-    "@types/request": "^2.47.1",
     "@types/underscore": "^1.8.9",
     "@types/ws": "^6.0.1",
     "chai": "^4.2.0",
