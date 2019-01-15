@@ -41,7 +41,7 @@ export class ExecAuth implements Authenticator {
         const result = shell.exec(cmd, opts);
         if (result.code === 0) {
             const obj = JSON.parse(result.stdout);
-            this.tokenCache[user.name] = obj.status.token;
+            this.tokenCache[user.name] = obj;
             return `Bearer ${obj.status.token}`;
         }
         throw new Error(result.stderr);
