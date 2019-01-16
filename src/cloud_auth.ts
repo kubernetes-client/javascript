@@ -5,6 +5,18 @@ import * as shelljs from 'shelljs';
 import { Authenticator } from './auth';
 import { User } from './config_types';
 
+/* FIXME: maybe we can extend the User and User.authProvider type to have a proper type.
+Currently user.authProvider has `any` type and so we don't have a type for user.authProvider.config.
+We therefore define its type here
+*/
+interface Config {
+    expiry: string;
+    ['cmd-args']?: string;
+    ['cmd-path']?: string;
+    ['token-key']: string;
+    ['expiry-key']: string;
+    ['access-token']?: string;
+}
 export class CloudAuth implements Authenticator {
     public isAuthProvider(user: User): boolean {
         return (
@@ -21,7 +33,7 @@ export class CloudAuth implements Authenticator {
         return 'Bearer ' + config['access-token'];
     }
 
-    private isExpired(config) {
+    private isExpired(config: Config) {
         const token = config['access-token'];
         const expiry = config.expiry;
         if (!token) {
@@ -38,7 +50,7 @@ export class CloudAuth implements Authenticator {
         return false;
     }
 
-    private updateAccessToken(config) {
+    private updateAccessToken(config: Config) {
         if (!config['cmd-path']) {
             throw new Error('Token is expired!');
         }
@@ -51,7 +63,7 @@ export class CloudAuth implements Authenticator {
             if (args) {
                 cmd = `${cmd} ${args}`;
             }
-            result = shelljs.exec(cmd, {silent: true});
+            result = shelljs.exec(cmd, { silent: true });
             if (result.code !== 0) {
                 throw new Error(result.stderr);
             }
@@ -64,7 +76,7 @@ export class CloudAuth implements Authenticator {
 
         let tokenPathKey = config['token-key'];
 
-        let expiryPathKey = config['token-key'];
+        let expiryPathKey = config['expiry-key'];
         // Format in file is {<query>}, so slice it out and add '$'
         tokenPathKey = '$' + tokenPathKey.slice(1, -1);
         expiryPathKey = '$' + expiryPathKey.slice(1, -1);
