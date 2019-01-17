@@ -16,8 +16,8 @@ There are future plans to also build a jQuery compatible library but
 for now, all of the examples and instructions assume the node client.
 
 # Installation
-```sh
-$ npm install @kubernetes/client-node
+```console
+npm install @kubernetes/client-node
 ```
 
 # Example code
@@ -85,7 +85,7 @@ npm install
 
 ## (re) Generating code
 
-```
+```console
 cd ../
 git clone https://github.com/kubernetes-client/gen
 cd javascript
@@ -95,7 +95,7 @@ cd javascript
 # Testing
 
 Tests are written using the [Chai](http://chaijs.com/) library. See
-[`config_test.ts`](./config_test.ts) for an example.
+[`config_test.ts`](./src/config_test.ts) for an example.
 
 To run tests, execute the following:
 
