@@ -253,6 +253,10 @@ export class KubeConfig {
         if (!user) {
             return;
         }
+
+        if (cluster != null && cluster.skipTLSVerify) {
+            opts.rejectUnauthorized = false;
+        }
         const ca = cluster != null ? bufferFromFileOrString(cluster.caFile, cluster.caData) : null;
         if (ca) {
             opts.ca = ca;
