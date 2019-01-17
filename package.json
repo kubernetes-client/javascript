@@ -15,6 +15,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "lint": "tslint --project \".\"",
+    "lint-examples": "tslint --project \"./examples/typescript\"",
     "clean": "rm -Rf node_modules/ dist/",
     "build": "tsc",
     "watch": "tsc --watch",

@@ -10,19 +10,24 @@ const req = watch.watch('/api/v1/namespaces',
     // callback is called for each received object.
     (type, obj) => {
         if (type === 'ADDED') {
+            // tslint:disable-next-line:no-console
             console.log('new object:');
         } else if (type === 'MODIFIED') {
+            // tslint:disable-next-line:no-console
             console.log('changed object:');
         } else if (type === 'DELETED') {
+            // tslint:disable-next-line:no-console
             console.log('deleted object:');
         } else {
+            // tslint:disable-next-line:no-console
             console.log('unknown type: ' + type);
         }
-
+        // tslint:disable-next-line:no-console
         console.log(obj);
     },
     // done callback is called if the watch terminates normally
     (err) => {
+        // tslint:disable-next-line:no-console
         console.log(err);
     });
 
