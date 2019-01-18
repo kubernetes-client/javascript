@@ -105,7 +105,7 @@ export class WebSocketHandler implements WebSocketInterface {
         const uri = `${proto}://${target}${path}`;
 
         const opts: WebSocket.ClientOptions = {};
-        // TODO: This doesn't set insecureSSL if skipTLSVerify is set...
+
         this.config.applytoHTTPSOptions(opts);
 
         return new Promise((resolve, reject) => {

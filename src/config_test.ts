@@ -194,6 +194,7 @@ describe('KubeConfig', () => {
                 ca: new Buffer('CADATA2', 'utf-8'),
                 cert: new Buffer('USER2_CADATA', 'utf-8'),
                 key: new Buffer('USER2_CKDATA', 'utf-8'),
+                rejectUnauthorized: false,
             });
         });
     });
@@ -590,6 +591,46 @@ describe('KubeConfig', () => {
             if (opts.headers) {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
             }
+        });
+
+        it('should populate rejectUnauthorized=false when skipTLSVerify is set', () => {
+            const config = new KubeConfig();
+            const token = 'token';
+            config.loadFromClusterAndUser(
+                { skipTLSVerify: true } as Cluster,
+                {
+                    authProvider: {
+                        name: 'azure',
+                        config: {
+                            'access-token': token,
+                        },
+                    },
+                } as User);
+            const opts = {} as requestlib.Options;
+
+            config.applyToRequest(opts);
+            expect(opts.rejectUnauthorized).to.equal(false);
+        });
+
+        it('should not set rejectUnauthorized if skipTLSVerify is not set', () => {
+            // This test is just making 100% sure we validate certs unless we explictly set
+            // skipTLSVerify = true
+            const config = new KubeConfig();
+            const token = 'token';
+            config.loadFromClusterAndUser(
+                {  } as Cluster,
+                {
+                    authProvider: {
+                        name: 'azure',
+                        config: {
+                            'access-token': token,
+                        },
+                    },
+                } as User);
+            const opts = {} as requestlib.Options;
+
+            config.applyToRequest(opts);
+            expect(opts.rejectUnauthorized).to.equal(undefined);
         });
 
         it('should throw with expired token and no cmd', () => {
