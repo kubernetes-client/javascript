@@ -27,21 +27,21 @@ export class WebSocketHandler implements WebSocketInterface {
 
     public static handleStandardStreams(
         streamNum: number, buff: Buffer,
-        stdout: stream.Writable, stderr: stream.Writable,
+        stdout: stream.Writable | null, stderr: stream.Writable | null,
     ): V1Status | null {
         if (buff.length < 1) {
             return null;
         }
-        if (streamNum === WebSocketHandler.StdoutStream) {
+        if (stdout && streamNum === WebSocketHandler.StdoutStream) {
             stdout.write(buff);
-        } else if (streamNum === WebSocketHandler.StderrStream) {
+        } else if (stderr && streamNum === WebSocketHandler.StderrStream) {
             stderr.write(buff);
         } else if (streamNum === WebSocketHandler.StatusStream) {
             // stream closing.
-            if (stdout) {
+            if (stdout && stdout !== process.stdout) {
                 stdout.end();
             }
-            if (stderr) {
+            if (stderr && stderr !== process.stderr) {
                 stderr.end();
             }
             return JSON.parse(buff.toString('utf8')) as V1Status;
@@ -109,7 +109,7 @@ export class WebSocketHandler implements WebSocketInterface {
         this.config.applytoHTTPSOptions(opts);
 
         return new Promise((resolve, reject) => {
-            const client = (this.socketFactory ? this.socketFactory(uri, opts) : new WebSocket(uri, opts));
+            const client = (this.socketFactory ? this.socketFactory(uri, opts) : new WebSocket(uri, protocols, opts));
             let resolved = false;
 
             client.onopen = () => {

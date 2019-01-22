@@ -3,6 +3,7 @@ import WebSocket = require('isomorphic-ws');
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
 import { anyFunction, capture, instance, mock, verify, when } from 'ts-mockito';
 
+import { V1Status } from './api';
 import { KubeConfig } from './config';
 import { Exec } from './exec';
 import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
@@ -65,11 +66,15 @@ describe('Exec', () => {
             const path = `/api/v1/namespaces/${namespace}/pods/${pod}/exec`;
             const args = `stdout=true&stderr=true&stdin=true&tty=false&command=${cmd}&container=${container}`;
 
+            let statusOut = {} as V1Status;
+
             const fakeConn: WebSocket = mock(WebSocket);
             when(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).thenResolve(fakeConn);
 
             await exec.exec(
-                namespace, pod, container, cmd, osStream, errStream, isStream, false);
+                namespace, pod, container, cmd, osStream, errStream, isStream, false, (status: V1Status) => {
+                    statusOut = status;
+                });
 
             const [, , outputFn] = capture(fakeWebSocket.connect).last();
 
@@ -101,6 +106,14 @@ describe('Exec', () => {
             const msg = 'This is test data';
             isStream.put(msg);
             verify(fakeConn.send(msg));
+
+            const statusIn = {
+                code: 100,
+                message: 'this is a test',
+            } as V1Status;
+
+            outputFn(WebSocketHandler.StatusStream, Buffer.from(JSON.stringify(statusIn)));
+            expect(statusOut).to.deep.equal(statusIn);
 
             isStream.stop();
             verify(fakeConn.close());
