@@ -84,6 +84,7 @@ export interface Context {
     readonly cluster: string;
     readonly user: string;
     readonly name: string;
+    readonly namespace?: string;
 }
 
 export function newContexts(a: any): Context[] {
@@ -105,6 +106,7 @@ function contextIterator(): u.ListIterator<any, Context> {
             cluster: elt.context.cluster,
             name: elt.name,
             user: (elt.context.user ? elt.context.user : undefined),
+            namespace: elt.context.namespace || undefined,
         };
     };
 }
