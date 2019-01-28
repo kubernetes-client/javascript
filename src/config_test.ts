@@ -46,9 +46,11 @@ function validateFileLoad(kc: KubeConfig) {
     const context2 = kc.contexts[1];
     expect(context1.name).to.equal('context1');
     expect(context1.user).to.equal('user1');
+    expect(context1.namespace).to.equal(undefined);
     expect(context1.cluster).to.equal('cluster1');
     expect(context2.name).to.equal('context2');
     expect(context2.user).to.equal('user2');
+    expect(context2.namespace).to.equal('namespace2');
     expect(context2.cluster).to.equal('cluster2');
 
     expect(kc.getCurrentContext()).to.equal('context2');
