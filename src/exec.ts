@@ -17,12 +17,11 @@ export class Exec {
         }
     }
 
-    // TODO: make command an array and support multiple args
     /**
      * @param {string}  namespace - The namespace of the pod to exec the command inside.
      * @param {string} podName - The name of the pod to exec the command inside.
      * @param {string} containerName - The name of the container in the pod to exec the command inside.
-     * @param {string} command - The command to execute.
+     * @param {(string|string[])} command - The command or command and arguments to execute.
      * @param {stream.Writable} stdout - The stream to write stdout data from the command.
      * @param {stream.Writable} stderr - The stream to write stderr data from the command.
      * @param {stream.Readable} stdin - The strream to write stdin data into the command.
@@ -31,7 +30,7 @@ export class Exec {
      *       A callback to received the status (e.g. exit code) from the command, optional.
      * @return {string} This is the result
      */
-    public async exec(namespace: string, podName: string, containerName: string, command: string,
+    public async exec(namespace: string, podName: string, containerName: string, command: string | string[],
                       stdout: stream.Writable | null, stderr: stream.Writable | null, stdin: stream.Readable | null,
                       tty: boolean,
                       statusCallback?: (status: V1Status) => void): Promise<WebSocket> {
