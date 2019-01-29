@@ -34,5 +34,7 @@ export class Attach {
         if (stdin != null) {
             WebSocketHandler.handleStandardInput(conn, stdin);
         }
+
+        return conn
     }
 }
