@@ -1,4 +1,4 @@
-import WebSocket = require('isomorphic-ws')
+import WebSocket = require('isomorphic-ws');
 import querystring = require('querystring');
 import stream = require('stream');
 
