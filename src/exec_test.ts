@@ -22,6 +22,7 @@ describe('Exec', () => {
             const pod = 'somepod';
             const container = 'container';
             const cmd = 'command';
+            const cmdArray = ['command', 'arg1', 'arg2'];
             const path = `/api/v1/namespaces/${namespace}/pods/${pod}/exec`;
 
             await exec.exec(
@@ -48,6 +49,12 @@ describe('Exec', () => {
                 namespace, pod, container, cmd, null, errStream, isStream, true);
             args = `stdout=false&stderr=true&stdin=true&tty=true&command=${cmd}&container=${container}`;
             verify(fakeWebSocket.connect(`${path}?${args}`, null,  anyFunction())).called();
+
+            await exec.exec(
+                namespace, pod, container, cmdArray, null, errStream, isStream, true);
+            // tslint:disable-next-line:max-line-length
+            args = `stdout=false&stderr=true&stdin=true&tty=true&command=${cmdArray[0]}&command=${cmdArray[1]}&command=${cmdArray[2]}&container=${container}`;
+            verify(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).called();
         });
 
         it('should correctly attach to streams', async () => {
