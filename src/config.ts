@@ -2,7 +2,6 @@ import fs = require('fs');
 import https = require('https');
 import path = require('path');
 
-import base64 = require('base-64');
 import yaml = require('js-yaml');
 import request = require('request');
 import shelljs = require('shelljs');
@@ -368,7 +367,7 @@ export function bufferFromFileOrString(file ?: string, data ?: string): Buffer |
         return fs.readFileSync(file);
     }
     if (data) {
-        return Buffer.from(base64.decode(data), 'utf-8');
+        return Buffer.from(data, 'base64');
     }
     return null;
 }

@@ -49,7 +49,6 @@
   "dependencies": {
     "@types/node": "^10.12.0",
     "@types/request": "^2.47.1",
-    "base-64": "^0.1.0",
     "bluebird": "^3.5.2",
     "byline": "^5.0.0",
     "isomorphic-ws": "^4.0.1",
@@ -62,10 +61,8 @@
     "ws": "^6.1.0"
   },
   "devDependencies": {
-    "@types/base-64": "^0.1.2",
     "@types/bluebird": "^3.5.24",
     "@types/chai": "^4.1.6",
-    "@types/execa": "^0.9.0",
     "@types/js-yaml": "^3.11.2",
     "@types/mocha": "^5.2.5",
     "@types/mock-fs": "^3.6.30",
