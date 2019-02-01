@@ -12,7 +12,6 @@
 
 import request = require('request');
 import http = require('http');
-import Promise = require('bluebird');
 
 let defaultBasePath = 'https://localhost';
 
