@@ -28,7 +28,8 @@ export class PortForward {
         output: stream.Writable,
         err: stream.Writable | null,
         input: stream.Readable,
-    ): Promise<WebSocket> {
+        retryCount: number = 0,
+    ): Promise<WebSocket | (() => WebSocket | null)> {
         if (targetPorts.length === 0) {
             throw new Error('You must provide at least one port to forward to.');
         }
@@ -45,29 +46,37 @@ export class PortForward {
             needsToReadPortNumber[index * 2 + 1] = true;
         });
         const path = `/api/v1/namespaces/${namespace}/pods/${podName}/portforward?${queryStr}`;
-        const conn = await this.handler.connect(
-            path,
-            null,
-            (streamNum: number, buff: Buffer | string): boolean => {
-                if (streamNum >= targetPorts.length * 2) {
-                    return !this.disconnectOnErr;
-                }
-                // First two bytes of each stream are the port number
-                if (needsToReadPortNumber[streamNum]) {
-                    buff = buff.slice(2);
-                    needsToReadPortNumber[streamNum] = false;
-                }
-                if (streamNum % 2 === 1) {
-                    if (err) {
-                        err.write(buff);
+        const createWebSocket = (): Promise<WebSocket> => {
+            return this.handler.connect(
+                path,
+                null,
+                (streamNum: number, buff: Buffer | string): boolean => {
+                    if (streamNum >= targetPorts.length * 2) {
+                        return !this.disconnectOnErr;
                     }
-                } else {
-                    output.write(buff);
-                }
-                return true;
-            },
-        );
-        WebSocketHandler.handleStandardInput(conn, input, 0);
-        return conn;
+                    // First two bytes of each stream are the port number
+                    if (needsToReadPortNumber[streamNum]) {
+                        buff = buff.slice(2);
+                        needsToReadPortNumber[streamNum] = false;
+                    }
+                    if (streamNum % 2 === 1) {
+                        if (err) {
+                            err.write(buff);
+                        }
+                    } else {
+                        output.write(buff);
+                    }
+                    return true;
+                },
+            );
+        };
+
+        if (retryCount < 1) {
+            const ws = await createWebSocket();
+            WebSocketHandler.handleStandardInput(ws, input, 0);
+            return ws;
+        }
+
+        return WebSocketHandler.restartableHandleStandardInput(createWebSocket, input, 0, retryCount);
     }
 }
