@@ -30,9 +30,12 @@ export class Watch {
         }
     }
 
-    public watch(path: string, queryParams: any,
-                 callback: (phase: string, obj: any) => void,
-                 done: (err: any) => void): any {
+    public watch(
+        path: string,
+        queryParams: any,
+        callback: (phase: string, obj: any) => void,
+        done: (err: any) => void,
+    ): any {
         const cluster = this.config.getCurrentCluster();
         if (!cluster) {
             throw new Error('No currently active cluster');

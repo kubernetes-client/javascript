@@ -7,8 +7,9 @@ export class ExecAuth implements Authenticator {
     private readonly tokenCache: { [key: string]: any } = {};
 
     public isAuthProvider(user: User) {
-        return user.authProvider.name === 'exec' ||
-            (user.authProvider.config && user.authProvider.config.exec);
+        return (
+            user.authProvider.name === 'exec' || (user.authProvider.config && user.authProvider.config.exec)
+        );
     }
 
     public getToken(user: User): string | null {
@@ -35,7 +36,7 @@ export class ExecAuth implements Authenticator {
         let opts: shell.ExecOpts;
         if (config.exec.env) {
             const env = {};
-            config.exec.env.forEach((elt) => env[elt.name] = elt.value);
+            config.exec.env.forEach((elt) => (env[elt.name] = elt.value));
             opts = { env };
         }
         const result = shell.exec(cmd, opts);

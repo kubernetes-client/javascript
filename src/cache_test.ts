@@ -31,7 +31,7 @@ describe('ListWatchCache', () => {
         expect(cache.get('name1')).to.equal(list[0]);
         expect(cache.get('name2')).to.equal(list[1]);
 
-        watchHandler('ADDED',  {
+        watchHandler('ADDED', {
             metadata: {
                 name: 'name3',
             } as V1ObjectMeta,
@@ -40,7 +40,7 @@ describe('ListWatchCache', () => {
         expect(cache.list().length).to.equal(3);
         expect(cache.get('name3')).to.not.equal(null);
 
-        watchHandler('MODIFIED',  {
+        watchHandler('MODIFIED', {
             metadata: {
                 name: 'name3',
                 resourceVersion: 'baz',
@@ -96,7 +96,7 @@ describe('ListWatchCache', () => {
         expect(cache.list('ns2').length).to.equal(1);
         expect(cache.list('ns2')[0].metadata.name).to.equal('name2');
 
-        watchHandler('ADDED',  {
+        watchHandler('ADDED', {
             metadata: {
                 name: 'name3',
                 namespace: 'ns3',
@@ -106,7 +106,7 @@ describe('ListWatchCache', () => {
         expect(cache.list().length).to.equal(3);
         expect(cache.get('name3', 'ns3')).to.not.equal(null);
 
-        watchHandler('MODIFIED',  {
+        watchHandler('MODIFIED', {
             metadata: {
                 name: 'name3',
                 namespace: 'ns3',

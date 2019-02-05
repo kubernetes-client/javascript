@@ -19,10 +19,7 @@ interface Config {
 }
 export class CloudAuth implements Authenticator {
     public isAuthProvider(user: User): boolean {
-        return (
-            user.authProvider.name === 'azure' ||
-            user.authProvider.name === 'gcp'
-        );
+        return user.authProvider.name === 'azure' || user.authProvider.name === 'gcp';
     }
 
     public getToken(user: User): string | null {

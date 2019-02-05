@@ -17,16 +17,13 @@ function fileExists(filepath: string): boolean {
     try {
         fs.accessSync(filepath);
         return true;
-    // tslint:disable-next-line:no-empty
-    } catch (ignore) { }
+        // tslint:disable-next-line:no-empty
+    } catch (ignore) {}
     return false;
 }
 
 export class KubeConfig {
-    private static authenticators: Authenticator[] = [
-        new CloudAuth(),
-        new ExecAuth(),
-    ];
+    private static authenticators: Authenticator[] = [new CloudAuth(), new ExecAuth()];
 
     /**
      * The list of all known clusters
@@ -213,7 +210,9 @@ export class KubeConfig {
         }
         if (process.platform === 'win32' && shelljs.which('wsl.exe')) {
             // TODO: Handle if someome set $KUBECONFIG in wsl here...
-            const result = shelljs.exec('wsl.exe cat $HOME/.kube/config', { silent: true });
+            const result = shelljs.exec('wsl.exe cat $HOME/.kube/config', {
+                silent: true,
+            });
             if (result.code === 0) {
                 this.loadFromString(result.stdout);
                 return;
@@ -278,12 +277,11 @@ export class KubeConfig {
         let token: string | null = null;
 
         if (user.authProvider && user.authProvider.config) {
-            KubeConfig.authenticators.forEach(
-                (authenticator: Authenticator) => {
-                    if (authenticator.isAuthProvider(user)) {
-                        token = authenticator.getToken(user);
-                    }
-                });
+            KubeConfig.authenticators.forEach((authenticator: Authenticator) => {
+                if (authenticator.isAuthProvider(user)) {
+                    token = authenticator.getToken(user);
+                }
+            });
         }
 
         if (user.token) {
@@ -309,17 +307,14 @@ export interface ApiType {
 }
 
 export interface ApiConstructor<T extends ApiType> {
-    new(server: string): T;
+    new (server: string): T;
 }
 
 // This class is deprecated and will eventually be removed.
 export class Config {
-    public static SERVICEACCOUNT_ROOT =
-        '/var/run/secrets/kubernetes.io/serviceaccount';
-    public static SERVICEACCOUNT_CA_PATH =
-        Config.SERVICEACCOUNT_ROOT + '/ca.crt';
-    public static SERVICEACCOUNT_TOKEN_PATH =
-        Config.SERVICEACCOUNT_ROOT + '/token';
+    public static SERVICEACCOUNT_ROOT = '/var/run/secrets/kubernetes.io/serviceaccount';
+    public static SERVICEACCOUNT_CA_PATH = Config.SERVICEACCOUNT_ROOT + '/ca.crt';
+    public static SERVICEACCOUNT_TOKEN_PATH = Config.SERVICEACCOUNT_ROOT + '/token';
 
     public static fromFile(filename: string): api.Core_v1Api {
         return Config.apiFromFile(filename, api.Core_v1Api);
@@ -362,7 +357,7 @@ export class Config {
 }
 
 // This is public really only for testing.
-export function bufferFromFileOrString(file ?: string, data ?: string): Buffer | null {
+export function bufferFromFileOrString(file?: string, data?: string): Buffer | null {
     if (file) {
         return fs.readFileSync(file);
     }
@@ -379,7 +374,7 @@ export function findHomeDir(): string | null {
             fs.accessSync(process.env.HOME);
             return process.env.HOME;
             // tslint:disable-next-line:no-empty
-        } catch (ignore) { }
+        } catch (ignore) {}
     }
     if (process.platform !== 'win32') {
         return null;
@@ -390,13 +385,13 @@ export function findHomeDir(): string | null {
             fs.accessSync(dir);
             return dir;
             // tslint:disable-next-line:no-empty
-        } catch (ignore) { }
+        } catch (ignore) {}
     }
     if (process.env.USERPROFILE) {
         try {
             fs.accessSync(process.env.USERPROFILE);
             return process.env.USERPROFILE;
-        // tslint:disable-next-line:no-empty
+            // tslint:disable-next-line:no-empty
         } catch (ignore) {}
     }
     return null;

@@ -60,7 +60,7 @@ function userIterator(): u.ListIterator<any, User> {
             certData: elt.user ? elt.user['client-certificate-data'] : null,
             certFile: elt.user ? elt.user['client-certificate'] : null,
             keyData: elt.user ? elt.user['client-key-data'] : null,
-            keyFile: elt.user ? elt.user['client-key'] :  null,
+            keyFile: elt.user ? elt.user['client-key'] : null,
             name: elt.name,
             token: findToken(elt.user),
             password: elt.user ? elt.user.password : null,

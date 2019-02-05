@@ -21,30 +21,25 @@ describe('Attach', () => {
             const pod = 'somepod';
             const container = 'somecontainer';
 
-            await attach.attach(
-                namespace, pod, container, osStream, errStream, isStream, false);
+            await attach.attach(namespace, pod, container, osStream, errStream, isStream, false);
 
             const path = `/api/v1/namespaces/${namespace}/pods/${pod}/attach`;
             let args = `container=${container}&stderr=true&stdin=true&stdout=true&tty=false`;
             verify(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).called();
 
-            await attach.attach(
-                namespace, pod, container, null, null, null, false);
+            await attach.attach(namespace, pod, container, null, null, null, false);
             args = `container=${container}&stderr=false&stdin=false&stdout=false&tty=false`;
             verify(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).called();
 
-            await attach.attach(
-                namespace, pod, container, osStream, null, null, false);
+            await attach.attach(namespace, pod, container, osStream, null, null, false);
             args = `container=${container}&stderr=false&stdin=false&stdout=true&tty=false`;
             verify(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).called();
 
-            await attach.attach(
-                namespace, pod, container, osStream, errStream, null, false);
+            await attach.attach(namespace, pod, container, osStream, errStream, null, false);
             args = `container=${container}&stderr=true&stdin=false&stdout=true&tty=false`;
             verify(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).called();
 
-            await attach.attach(
-                namespace, pod, container, osStream, errStream, null, true);
+            await attach.attach(namespace, pod, container, osStream, errStream, null, true);
             args = `container=${container}&stderr=true&stdin=false&stdout=true&tty=true`;
             verify(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).called();
         });
@@ -67,8 +62,7 @@ describe('Attach', () => {
             const fakeConn: WebSocket = mock(WebSocket);
             when(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).thenResolve(fakeConn);
 
-            await attach.attach(
-                namespace, pod, container, osStream, errStream, isStream, false);
+            await attach.attach(namespace, pod, container, osStream, errStream, isStream, false);
             const [, , outputFn] = capture(fakeWebSocket.connect).last();
 
             /* tslint:disable:no-unused-expression */

@@ -25,35 +25,31 @@ describe('Exec', () => {
             const cmdArray = ['command', 'arg1', 'arg2'];
             const path = `/api/v1/namespaces/${namespace}/pods/${pod}/exec`;
 
-            await exec.exec(
-                namespace, pod, container, cmd, osStream, errStream, isStream, false);
+            await exec.exec(namespace, pod, container, cmd, osStream, errStream, isStream, false);
             let args = `stdout=true&stderr=true&stdin=true&tty=false&command=${cmd}&container=${container}`;
-            verify(fakeWebSocket.connect(`${path}?${args}`, null,  anyFunction())).called();
+            verify(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).called();
 
-            await exec.exec(
-                namespace, pod, container, cmd, null, errStream, isStream, false);
+            await exec.exec(namespace, pod, container, cmd, null, errStream, isStream, false);
             args = `stdout=false&stderr=true&stdin=true&tty=false&command=${cmd}&container=${container}`;
-            verify(fakeWebSocket.connect(`${path}?${args}`, null,  anyFunction())).called();
+            verify(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).called();
 
-            await exec.exec(
-                namespace, pod, container, cmd, null, null, isStream, false);
+            await exec.exec(namespace, pod, container, cmd, null, null, isStream, false);
             args = `stdout=false&stderr=false&stdin=true&tty=false&command=${cmd}&container=${container}`;
-            verify(fakeWebSocket.connect(`${path}?${args}`, null,  anyFunction())).called();
+            verify(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).called();
 
-            await exec.exec(
-                namespace, pod, container, cmd, null, null, null, false);
+            await exec.exec(namespace, pod, container, cmd, null, null, null, false);
             args = `stdout=false&stderr=false&stdin=false&tty=false&command=${cmd}&container=${container}`;
-            verify(fakeWebSocket.connect(`${path}?${args}`, null,  anyFunction())).called();
+            verify(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).called();
 
-            await exec.exec(
-                namespace, pod, container, cmd, null, errStream, isStream, true);
+            await exec.exec(namespace, pod, container, cmd, null, errStream, isStream, true);
             args = `stdout=false&stderr=true&stdin=true&tty=true&command=${cmd}&container=${container}`;
-            verify(fakeWebSocket.connect(`${path}?${args}`, null,  anyFunction())).called();
+            verify(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).called();
 
-            await exec.exec(
-                namespace, pod, container, cmdArray, null, errStream, isStream, true);
+            await exec.exec(namespace, pod, container, cmdArray, null, errStream, isStream, true);
             // tslint:disable-next-line:max-line-length
-            args = `stdout=false&stderr=true&stdin=true&tty=true&command=${cmdArray[0]}&command=${cmdArray[1]}&command=${cmdArray[2]}&container=${container}`;
+            args = `stdout=false&stderr=true&stdin=true&tty=true&command=${cmdArray[0]}&command=${
+                cmdArray[1]
+            }&command=${cmdArray[2]}&container=${container}`;
             verify(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).called();
         });
 
@@ -79,9 +75,18 @@ describe('Exec', () => {
             when(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).thenResolve(fakeConn);
 
             await exec.exec(
-                namespace, pod, container, cmd, osStream, errStream, isStream, false, (status: V1Status) => {
+                namespace,
+                pod,
+                container,
+                cmd,
+                osStream,
+                errStream,
+                isStream,
+                false,
+                (status: V1Status) => {
                     statusOut = status;
-                });
+                },
+            );
 
             const [, , outputFn] = capture(fakeWebSocket.connect).last();
 

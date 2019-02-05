@@ -16,9 +16,15 @@ export class Attach {
         }
     }
 
-    public async attach(namespace: string, podName: string, containerName: string,
-                        stdout: stream.Writable | any, stderr: stream.Writable | any, stdin: stream.Readable | any,
-                        tty: boolean): Promise<WebSocket> {
+    public async attach(
+        namespace: string,
+        podName: string,
+        containerName: string,
+        stdout: stream.Writable | any,
+        stderr: stream.Writable | any,
+        stdin: stream.Readable | any,
+        tty: boolean,
+    ): Promise<WebSocket> {
         const query = {
             container: containerName,
             stderr: stderr != null,
@@ -28,10 +34,14 @@ export class Attach {
         };
         const queryStr = querystring.stringify(query);
         const path = `/api/v1/namespaces/${namespace}/pods/${podName}/attach?${queryStr}`;
-        const conn = await this.handler.connect(path, null, (streamNum: number, buff: Buffer): boolean => {
-            WebSocketHandler.handleStandardStreams(streamNum, buff, stdout, stderr);
-            return true;
-        });
+        const conn = await this.handler.connect(
+            path,
+            null,
+            (streamNum: number, buff: Buffer): boolean => {
+                WebSocketHandler.handleStandardStreams(streamNum, buff, stdout, stderr);
+                return true;
+            },
+        );
         if (stdin != null) {
             WebSocketHandler.handleStandardInput(conn, stdin);
         }
