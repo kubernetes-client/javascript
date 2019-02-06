@@ -1,3 +1,4 @@
+import WebSocket = require('isomorphic-ws');
 import querystring = require('querystring');
 import stream = require('stream');
 
@@ -17,7 +18,7 @@ export class Attach {
 
     public async attach(namespace: string, podName: string, containerName: string,
                         stdout: stream.Writable | any, stderr: stream.Writable | any, stdin: stream.Readable | any,
-                        tty: boolean): Promise<void> {
+                        tty: boolean): Promise<WebSocket> {
         const query = {
             container: containerName,
             stderr: stderr != null,
@@ -34,5 +35,7 @@ export class Attach {
         if (stdin != null) {
             WebSocketHandler.handleStandardInput(conn, stdin);
         }
+
+        return conn;
     }
 }
