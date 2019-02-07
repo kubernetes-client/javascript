@@ -74,12 +74,12 @@ export class CloudAuth implements Authenticator {
         const output = result.stdout.toString();
         const resultObj = JSON.parse(output);
 
-        let tokenPathKey = config['token-key'];
+        const tokenPathKeyInConfig = config['token-key'];
+        const expiryPathKeyInConfig = config['expiry-key'];
 
-        let expiryPathKey = config['expiry-key'];
         // Format in file is {<query>}, so slice it out and add '$'
-        tokenPathKey = '$' + tokenPathKey.slice(1, -1);
-        expiryPathKey = '$' + expiryPathKey.slice(1, -1);
+        const tokenPathKey = '$' + tokenPathKeyInConfig.slice(1, -1);
+        const expiryPathKey = '$' + expiryPathKeyInConfig.slice(1, -1);
 
         config['access-token'] = jsonpath.query(resultObj, tokenPathKey);
         config.expiry = jsonpath.query(resultObj, expiryPathKey);

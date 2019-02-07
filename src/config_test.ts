@@ -643,6 +643,7 @@ describe('KubeConfig', () => {
                             'cmd-path': 'echo',
                             'cmd-args': `'${responseStr}'`,
                             'token-key': '{.token.accessToken}',
+                            'expiry-key': '{.token.token_expiry}',
                         },
                     },
                 } as User);
@@ -666,6 +667,7 @@ describe('KubeConfig', () => {
                             'cmd-path': 'echo',
                             'cmd-args': `'${responseStr}'`,
                             'token-key': '{.token.accessToken}',
+                            'expiry-key': '{.token.token_expiry}',
                         },
                     },
                 } as User);
@@ -689,6 +691,7 @@ describe('KubeConfig', () => {
                             'cmd-path': 'echo',
                             'cmd-args': `'${responseStr}'`,
                             'token-key': '{.token.accessToken}',
+                            'expiry-key': '{.token.token_expiry}',
                         },
                     },
                 } as User);
