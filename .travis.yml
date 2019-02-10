@@ -3,6 +3,11 @@ node_js:
   - "8"
   - "10"
 
+before_install:
+  # Pre check to check that version matches package-lock.json
+  # needs to happen before npm install
+  - node version-check.js
+
 install:
   - 'npm install'
 script:
