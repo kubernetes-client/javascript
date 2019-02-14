@@ -30,10 +30,17 @@ export class Exec {
      *       A callback to received the status (e.g. exit code) from the command, optional.
      * @return {string} This is the result
      */
-    public async exec(namespace: string, podName: string, containerName: string, command: string | string[],
-                      stdout: stream.Writable | null, stderr: stream.Writable | null, stdin: stream.Readable | null,
-                      tty: boolean,
-                      statusCallback?: (status: V1Status) => void): Promise<WebSocket> {
+    public async exec(
+        namespace: string,
+        podName: string,
+        containerName: string,
+        command: string | string[],
+        stdout: stream.Writable | null,
+        stderr: stream.Writable | null,
+        stdin: stream.Readable | null,
+        tty: boolean,
+        statusCallback?: (status: V1Status) => void,
+    ): Promise<WebSocket> {
         const query = {
             stdout: stdout != null,
             stderr: stderr != null,
@@ -44,16 +51,20 @@ export class Exec {
         };
         const queryStr = querystring.stringify(query);
         const path = `/api/v1/namespaces/${namespace}/pods/${podName}/exec?${queryStr}`;
-        const conn = await this.handler.connect(path, null, (streamNum: number, buff: Buffer): boolean => {
-            const status = WebSocketHandler.handleStandardStreams(streamNum, buff, stdout, stderr);
-            if (status != null) {
-                if (statusCallback) {
-                    statusCallback(status);
+        const conn = await this.handler.connect(
+            path,
+            null,
+            (streamNum: number, buff: Buffer): boolean => {
+                const status = WebSocketHandler.handleStandardStreams(streamNum, buff, stdout, stderr);
+                if (status != null) {
+                    if (statusCallback) {
+                        statusCallback(status);
+                    }
+                    return false;
                 }
-                return false;
-            }
-            return true;
-        });
+                return true;
+            },
+        );
         if (stdin != null) {
             WebSocketHandler.handleStandardInput(conn, stdin);
         }

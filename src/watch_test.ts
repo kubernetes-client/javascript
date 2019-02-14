@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import request = require('request');
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
-import { anyFunction, anything, capture, instance, mock, reset, verify, when  } from 'ts-mockito';
+import { anyFunction, anything, capture, instance, mock, reset, verify, when } from 'ts-mockito';
 
 import { KubeConfig } from './config';
 import { Cluster, Context, User } from './config_types';
@@ -66,13 +66,18 @@ describe('Watch', () => {
         let doneCalled = false;
         let doneErr: any;
 
-        watch.watch(path, {}, (phase: string, obj: string) => {
-            receivedTypes.push(phase);
-            receivedObjects.push(obj);
-        }, (err: any) => {
-            doneCalled = true;
-            doneErr = err;
-        });
+        watch.watch(
+            path,
+            {},
+            (phase: string, obj: string) => {
+                receivedTypes.push(phase);
+                receivedObjects.push(obj);
+            },
+            (err: any) => {
+                doneCalled = true;
+                doneErr = err;
+            },
+        );
 
         verify(fakeRequestor.webRequest(anything(), anyFunction()));
 
@@ -93,7 +98,7 @@ describe('Watch', () => {
         expect(doneCalled).to.equal(true);
         expect(doneErr).to.equal(null);
 
-        const errIn = {error: 'err'};
+        const errIn = { error: 'err' };
         doneCallback(errIn, null, null);
         expect(doneErr).to.deep.equal(errIn);
     });

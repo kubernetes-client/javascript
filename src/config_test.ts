@@ -14,7 +14,7 @@ const kcFileName = 'testdata/kubeconfig.yaml';
 const kcNoUserFileName = 'testdata/empty-user-kubeconfig.yaml';
 
 /* tslint:disable: no-empty */
-describe('Config', () => { });
+describe('Config', () => {});
 
 function validateFileLoad(kc: KubeConfig) {
     // check clusters
@@ -256,8 +256,7 @@ describe('KubeConfig', () => {
                 newUsers([
                     {
                         name: 'some-user',
-                        user: {
-                        },
+                        user: {},
                     },
                     {
                         foo: 'bar',
@@ -326,8 +325,8 @@ describe('KubeConfig', () => {
                         'client-certificate': certFile,
                         'client-key-data': keyData,
                         'client-key': keyFile,
-                        'password': password,
-                        'username': username,
+                        password,
+                        username,
                     },
                 },
             ]);
@@ -506,7 +505,8 @@ describe('KubeConfig', () => {
                 {
                     username: user,
                     password: passwd,
-                } as User);
+                } as User,
+            );
             const opts = {} as requestlib.Options;
 
             config.applyToRequest(opts);
@@ -522,9 +522,7 @@ describe('KubeConfig', () => {
         it('should not populate strict ssl', () => {
             const config = new KubeConfig();
 
-            config.loadFromClusterAndUser(
-                { skipTLSVerify: false } as Cluster,
-                {} as User);
+            config.loadFromClusterAndUser({ skipTLSVerify: false } as Cluster, {} as User);
             const opts = {} as requestlib.Options;
 
             config.applyToRequest(opts);
@@ -538,7 +536,8 @@ describe('KubeConfig', () => {
                 { skipTLSVerify: false } as Cluster,
                 {
                     token,
-                } as User);
+                } as User,
+            );
             const opts = {} as requestlib.Options;
 
             config.applyToRequest(opts);
@@ -557,10 +556,11 @@ describe('KubeConfig', () => {
                         name: 'azure',
                         config: {
                             'access-token': token,
-                            'expiry': 'Fri Aug 24 07:32:05 PDT 3018',
+                            expiry: 'Fri Aug 24 07:32:05 PDT 3018',
                         },
                     },
-                } as User);
+                } as User,
+            );
             const opts = {} as requestlib.Options;
 
             config.applyToRequest(opts);
@@ -586,7 +586,8 @@ describe('KubeConfig', () => {
                             'access-token': token,
                         },
                     },
-                } as User);
+                } as User,
+            );
             const opts = {} as requestlib.Options;
 
             config.applyToRequest(opts);
@@ -608,7 +609,8 @@ describe('KubeConfig', () => {
                             'access-token': token,
                         },
                     },
-                } as User);
+                } as User,
+            );
             const opts = {} as requestlib.Options;
 
             config.applyToRequest(opts);
@@ -621,7 +623,7 @@ describe('KubeConfig', () => {
             const config = new KubeConfig();
             const token = 'token';
             config.loadFromClusterAndUser(
-                {  } as Cluster,
+                {} as Cluster,
                 {
                     authProvider: {
                         name: 'azure',
@@ -629,7 +631,8 @@ describe('KubeConfig', () => {
                             'access-token': token,
                         },
                     },
-                } as User);
+                } as User,
+            );
             const opts = {} as requestlib.Options;
 
             config.applyToRequest(opts);
@@ -647,7 +650,8 @@ describe('KubeConfig', () => {
                             expiry: 'Aug 24 07:32:05 PDT 2017',
                         },
                     },
-                } as User);
+                } as User,
+            );
             const opts = {} as requestlib.Options;
 
             expect(() => config.applyToRequest(opts)).to.throw('Token is expired!');
@@ -662,14 +666,14 @@ describe('KubeConfig', () => {
                         name: 'azure',
                         config: {
                             'access-token': 'token',
-                            'expiry': 'Aug 24 07:32:05 PDT 2017',
+                            expiry: 'Aug 24 07:32:05 PDT 2017',
                             'cmd-path': 'non-existent-command',
                         },
                     },
-                } as User);
+                } as User,
+            );
             const opts = {} as requestlib.Options;
-            expect(() => config.applyToRequest(opts)).to.throw(
-                /Failed to refresh token/);
+            expect(() => config.applyToRequest(opts)).to.throw(/Failed to refresh token/);
         });
 
         it('should exec with expired token', () => {
@@ -682,14 +686,15 @@ describe('KubeConfig', () => {
                     authProvider: {
                         name: 'azure',
                         config: {
-                            'expiry': 'Aug 24 07:32:05 PDT 2017',
+                            expiry: 'Aug 24 07:32:05 PDT 2017',
                             'cmd-path': 'echo',
                             'cmd-args': `'${responseStr}'`,
                             'token-key': '{.token.accessToken}',
                             'expiry-key': '{.token.token_expiry}',
                         },
                     },
-                } as User);
+                } as User,
+            );
             const opts = {} as requestlib.Options;
             config.applyToRequest(opts);
             expect(opts.headers).to.not.be.undefined;
@@ -713,7 +718,8 @@ describe('KubeConfig', () => {
                             'expiry-key': '{.token.token_expiry}',
                         },
                     },
-                } as User);
+                } as User,
+            );
             const opts = {} as requestlib.Options;
             config.applyToRequest(opts);
             expect(opts.headers).to.not.be.undefined;
@@ -737,7 +743,8 @@ describe('KubeConfig', () => {
                             'expiry-key': '{.token.token_expiry}',
                         },
                     },
-                } as User);
+                } as User,
+            );
             const opts = {} as requestlib.Options;
             config.applyToRequest(opts);
             expect(opts.headers).to.not.be.undefined;
@@ -767,7 +774,8 @@ describe('KubeConfig', () => {
                             },
                         },
                     },
-                } as User);
+                } as User,
+            );
             // TODO: inject the exec command here and validate env vars?
             const opts = {} as requestlib.Options;
             config.applyToRequest(opts);
@@ -798,7 +806,8 @@ describe('KubeConfig', () => {
                             },
                         },
                     },
-                } as User);
+                } as User,
+            );
             // TODO: inject the exec command here?
             const opts = {} as requestlib.Options;
             config.applyToRequest(opts);
@@ -815,13 +824,15 @@ describe('KubeConfig', () => {
                     authProvider: {
                         name: 'exec',
                         config: {
-                            exec: {
-                            },
+                            exec: {},
                         },
                     },
-                } as User);
+                } as User,
+            );
             const opts = {} as requestlib.Options;
-            expect(() => config.applyToRequest(opts)).to.throw('No command was specified for exec authProvider!');
+            expect(() => config.applyToRequest(opts)).to.throw(
+                'No command was specified for exec authProvider!',
+            );
         });
     });
 
@@ -859,7 +870,7 @@ describe('KubeConfig', () => {
             mockfs({
                 '/var/run/secrets/kubernetes.io/serviceaccount': {
                     'ca.crt': cert,
-                    'token': token,
+                    token,
                 },
             });
 
@@ -892,7 +903,7 @@ describe('KubeConfig', () => {
             mockfs({
                 '/var/run/secrets/kubernetes.io/serviceaccount': {
                     'ca.crt': cert,
-                    'token': token,
+                    token,
                 },
             });
 

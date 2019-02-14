@@ -5,10 +5,7 @@ import { dumpYaml, loadAllYaml, loadYaml } from './yaml';
 
 describe('yaml', () => {
     it('should load safely', () => {
-        const yaml = 'apiVersion: v1\n' +
-                     'kind: Namespace\n' +
-                     'metadata:\n'       +
-                     '  name: some-namespace\n';
+        const yaml = 'apiVersion: v1\n' + 'kind: Namespace\n' + 'metadata:\n' + '  name: some-namespace\n';
         const ns = loadYaml<V1Namespace>(yaml);
 
         expect(ns.apiVersion).to.equal('v1');
@@ -16,16 +13,17 @@ describe('yaml', () => {
         expect(ns.metadata.name).to.equal('some-namespace');
     });
     it('should load all safely', () => {
-        const yaml = 'apiVersion: v1\n' +
-                     'kind: Namespace\n' +
-                     'metadata:\n'       +
-                     '  name: some-namespace\n' +
-                     '---\n' +
-                     'apiVersion: v1\n' +
-                     'kind: Pod\n' +
-                     'metadata:\n' +
-                     '  name: some-pod\n' +
-                     '  namespace: some-ns\n';
+        const yaml =
+            'apiVersion: v1\n' +
+            'kind: Namespace\n' +
+            'metadata:\n' +
+            '  name: some-namespace\n' +
+            '---\n' +
+            'apiVersion: v1\n' +
+            'kind: Pod\n' +
+            'metadata:\n' +
+            '  name: some-pod\n' +
+            '  namespace: some-ns\n';
         const objects = loadAllYaml(yaml);
 
         expect(objects.length).to.equal(2);
@@ -38,9 +36,9 @@ describe('yaml', () => {
     it('should round trip successfully', () => {
         const expected = {
             metadata: {
-              name: 'test',
+                name: 'test',
             },
-          };
+        };
         const yamlString = dumpYaml(expected);
         const actual = loadYaml(yamlString);
         expect(actual).to.deep.equal(expected);

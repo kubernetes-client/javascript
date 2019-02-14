@@ -12,19 +12,22 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T> {
     private objects: T[] = [];
     private readonly indexCache: { [key: string]: T[] } = {};
 
-    public constructor(private readonly path: string,
-                       private readonly watch: Watch,
-                       private readonly listFn: (callback: ListCallback<T>) => void) {
+    public constructor(
+        private readonly path: string,
+        private readonly watch: Watch,
+        private readonly listFn: (callback: ListCallback<T>) => void,
+    ) {
         this.watch = watch;
         this.listFn = listFn;
         this.doneHandler(null);
     }
 
     public get(name: string, namespace?: string): T | undefined {
-        return this.objects.find((obj: T): boolean => {
-            return (obj.metadata.name === name &&
-                    (!namespace || obj.metadata.namespace === namespace));
-        });
+        return this.objects.find(
+            (obj: T): boolean => {
+                return obj.metadata.name === name && (!namespace || obj.metadata.namespace === namespace);
+            },
+        );
     }
 
     public list(namespace?: string | undefined): ReadonlyArray<T> {
@@ -86,8 +89,7 @@ export function addOrUpdateObject<T extends KubernetesObject>(objects: T[], obj:
 }
 
 function isSameObject<T extends KubernetesObject>(o1: T, o2: T): boolean {
-    return o1.metadata.name === o2.metadata.name &&
-           o1.metadata.namespace === o2.metadata.namespace;
+    return o1.metadata.name === o2.metadata.name && o1.metadata.namespace === o2.metadata.namespace;
 }
 
 function findKubernetesObject<T extends KubernetesObject>(objects: T[], obj: T): number {

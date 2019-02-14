@@ -4,12 +4,7 @@ import stream = require('stream');
 import { V1Status } from './api';
 import { KubeConfig } from './config';
 
-const protocols = [
-    'v4.channel.k8s.io',
-    'v3.channel.k8s.io',
-    'v2.channel.k8s.io',
-    'channel.k8s.io',
-];
+const protocols = ['v4.channel.k8s.io', 'v3.channel.k8s.io', 'v2.channel.k8s.io', 'channel.k8s.io'];
 
 export interface WebSocketInterface {
     connect(
@@ -26,8 +21,10 @@ export class WebSocketHandler implements WebSocketInterface {
     public static readonly StatusStream = 3;
 
     public static handleStandardStreams(
-        streamNum: number, buff: Buffer,
-        stdout: stream.Writable | null, stderr: stream.Writable | null,
+        streamNum: number,
+        buff: Buffer,
+        stdout: stream.Writable | null,
+        stderr: stream.Writable | null,
     ): V1Status | null {
         if (buff.length < 1) {
             return null;
@@ -75,10 +72,10 @@ export class WebSocketHandler implements WebSocketInterface {
     }
 
     // factory is really just for test injection
-    public constructor(readonly config: KubeConfig,
-                       readonly socketFactory?:
-                         (uri: string, opts: WebSocket.ClientOptions) => WebSocket) {
-    }
+    public constructor(
+        readonly config: KubeConfig,
+        readonly socketFactory?: (uri: string, opts: WebSocket.ClientOptions) => WebSocket,
+    ) {}
 
     /**
      * Connect to a web socket endpoint.
@@ -93,7 +90,6 @@ export class WebSocketHandler implements WebSocketInterface {
         textHandler: ((text: string) => boolean) | null,
         binaryHandler: ((stream: number, buff: Buffer) => boolean) | null,
     ): Promise<WebSocket> {
-
         const cluster = this.config.getCurrentCluster();
         if (!cluster) {
             throw new Error('No cluster is defined.');
@@ -109,7 +105,9 @@ export class WebSocketHandler implements WebSocketInterface {
         this.config.applytoHTTPSOptions(opts);
 
         return new Promise((resolve, reject) => {
-            const client = (this.socketFactory ? this.socketFactory(uri, opts) : new WebSocket(uri, protocols, opts));
+            const client = this.socketFactory
+                ? this.socketFactory(uri, opts)
+                : new WebSocket(uri, protocols, opts);
             let resolved = false;
 
             client.onopen = () => {

@@ -14,7 +14,8 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "lint": "tslint --project \".\"",
+    "format": "prettier --loglevel error --write './src/**/*.ts'",
+    "lint": "tslint --project \".\" && prettier --check './src/**/*.ts'",
     "lint-examples": "tslint --project \"./examples/typescript\"",
     "clean": "rm -Rf node_modules/ dist/",
     "build": "tsc",
@@ -71,6 +72,7 @@
     "mocha": "^5.2.0",
     "mock-fs": "^4.7.0",
     "nyc": "^13.1.0",
+    "prettier": "~1.16.4",
     "source-map-support": "^0.5.9",
     "stream-buffers": "^3.0.2",
     "ts-mockito": "^2.3.1",
@@ -85,5 +87,12 @@
   "keywords": [
     "kubernetes",
     "client"
-  ]
+  ],
+  "prettier": {
+    "tabWidth": 4,
+    "printWidth": 110,
+    "trailingComma": "all",
+    "singleQuote": true,
+    "arrowParens": "always"
+  }
 }

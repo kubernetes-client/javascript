@@ -49,8 +49,7 @@ describe('OIDCAuth', () => {
         const user = {
             authProvider: {
                 name: 'oidc',
-                config: {
-                },
+                config: {},
             },
         } as User;
 

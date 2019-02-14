@@ -19,8 +19,7 @@ describe('PortForward', () => {
         const pod = 'somepod';
         const port = 8080;
 
-        await portForward.portForward(
-            namespace, pod, [port], osStream, errStream, isStream);
+        await portForward.portForward(namespace, pod, [port], osStream, errStream, isStream);
 
         const path = `/api/v1/namespaces/${namespace}/pods/${pod}/portforward?ports=${port}`;
         verify(fakeWebSocket.connect(path, null, anyFunction())).called();
@@ -33,8 +32,7 @@ describe('PortForward', () => {
         const osStream = new WritableStreamBuffer();
         const isStream = new ReadableStreamBuffer();
 
-        const conn = await portForward.portForward(
-            'ns', 'p', [8000], osStream, null, isStream);
+        const conn = await portForward.portForward('ns', 'p', [8000], osStream, null, isStream);
 
         const [, , outputFn] = capture(fakeWebSocket.connect).last();
 
@@ -61,8 +59,7 @@ describe('PortForward', () => {
         const osStream = new WritableStreamBuffer();
         const isStream = new ReadableStreamBuffer();
 
-        await portForward.portForward(
-            'ns', 'p', [8000], osStream, null, isStream);
+        await portForward.portForward('ns', 'p', [8000], osStream, null, isStream);
 
         const [, , outputFn] = capture(fakeWebSocket.connect).last();
 
@@ -88,8 +85,7 @@ describe('PortForward', () => {
         const errStream = new WritableStreamBuffer();
         const isStream = new ReadableStreamBuffer();
 
-        await portForward.portForward(
-            'ns', 'p', [8000], osStream, errStream, isStream);
+        await portForward.portForward('ns', 'p', [8000], osStream, errStream, isStream);
 
         const [, , outputFn] = capture(fakeWebSocket.connect).last();
 

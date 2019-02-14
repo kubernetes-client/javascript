@@ -15,8 +15,9 @@ describe('WebSocket', () => {
         const buff = Buffer.alloc(30, 20);
         const badStream = 10;
 
-        expect(() => WebSocketHandler.handleStandardStreams(badStream, buff, osStream, errStream))
-            .to.throw(`Unknown stream: ${badStream}`);
+        expect(() => WebSocketHandler.handleStandardStreams(badStream, buff, osStream, errStream)).to.throw(
+            `Unknown stream: ${badStream}`,
+        );
     });
     it('should handle a status to end', () => {
         const osStream = new WritableStreamBuffer();
@@ -30,7 +31,12 @@ describe('WebSocket', () => {
         const buff = Buffer.alloc(data.length);
         buff.write(data);
 
-        const output = WebSocketHandler.handleStandardStreams(WebSocketHandler.StatusStream, buff, osStream, errStream);
+        const output = WebSocketHandler.handleStandardStreams(
+            WebSocketHandler.StatusStream,
+            buff,
+            osStream,
+            errStream,
+        );
 
         expect(osStream.size()).to.equal(0);
         expect(errStream.size()).to.equal(0);
@@ -106,10 +112,13 @@ describe('WebSocket', () => {
         const mockWs = {} as WebSocket;
         let uriOut = '';
 
-        const handler = new WebSocketHandler(kc, (uri: string, opts: WebSocket.ClientOptions): WebSocket => {
-            uriOut = uri;
-            return mockWs as WebSocket;
-        });
+        const handler = new WebSocketHandler(
+            kc,
+            (uri: string, opts: WebSocket.ClientOptions): WebSocket => {
+                uriOut = uri;
+                return mockWs as WebSocket;
+            },
+        );
         const path = '/some/path';
 
         const promise = handler.connect(path, null, null);
@@ -154,10 +163,13 @@ describe('WebSocket', () => {
         const mockWs = {} as WebSocket;
         let uriOut = '';
 
-        const handler = new WebSocketHandler(kc, (uri: string, opts: WebSocket.ClientOptions): WebSocket => {
-            uriOut = uri;
-            return mockWs as WebSocket;
-        });
+        const handler = new WebSocketHandler(
+            kc,
+            (uri: string, opts: WebSocket.ClientOptions): WebSocket => {
+                uriOut = uri;
+                return mockWs as WebSocket;
+            },
+        );
         const path = '/some/path';
 
         const promise = handler.connect(path, null, null);
@@ -212,14 +224,19 @@ describe('WebSocket', () => {
 
         let closeCount = 0;
         const mockWs = {
-            close: () => { closeCount++; },
+            close: () => {
+                closeCount++;
+            },
         } as WebSocket;
         let uriOut = '';
 
-        const handler = new WebSocketHandler(kc, (uri: string, opts: WebSocket.ClientOptions): WebSocket => {
-            uriOut = uri;
-            return mockWs as WebSocket;
-        });
+        const handler = new WebSocketHandler(
+            kc,
+            (uri: string, opts: WebSocket.ClientOptions): WebSocket => {
+                uriOut = uri;
+                return mockWs as WebSocket;
+            },
+        );
         const path = '/some/path';
 
         let textReceived = '';

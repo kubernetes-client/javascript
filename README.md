@@ -4,7 +4,6 @@
 [![Client Capabilities](https://img.shields.io/badge/Kubernetes%20client-Silver-blue.svg?style=flat&colorB=C0C0C0&colorA=306CE8)](http://bit.ly/kubernetes-client-capabilities-badge)
 [![Client Support Level](https://img.shields.io/badge/kubernetes%20client-beta-green.svg?style=flat&colorA=306CE8)](http://bit.ly/kubernetes-client-support-badge)
 
-
 The Javascript clients for Kubernetes is implemented in
 [typescript](https://typescriptlang.org), but can be called from either
 Javascript or Typescript.
@@ -16,6 +15,7 @@ There are future plans to also build a jQuery compatible library but
 for now, all of the examples and instructions assume the node client.
 
 # Installation
+
 ```console
 npm install @kubernetes/client-node
 ```
@@ -23,22 +23,22 @@ npm install @kubernetes/client-node
 # Example code
 
 ## List all pods
+
 ```javascript
 const k8s = require('@kubernetes/client-node');
-
 
 const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
 
 const k8sApi = kc.makeApiClient(k8s.Core_v1Api);
 
-k8sApi.listNamespacedPod('default')
-    .then((res) => {
-        console.log(res.body);
-    });
+k8sApi.listNamespacedPod('default').then((res) => {
+    console.log(res.body);
+});
 ```
 
 ## Create a new namespace
+
 ```javascript
 const k8s = require('@kubernetes/client-node');
 
@@ -48,29 +48,28 @@ kc.loadFromDefault();
 const k8sApi = kc.makeApiClient(k8s.Core_v1Api);
 
 var namespace = {
-  metadata: {
-    name: 'test'
-  }
+    metadata: {
+        name: 'test',
+    },
 };
 
 k8sApi.createNamespace(namespace).then(
-  (response) => {
-    console.log('Created namespace');
-    console.log(response);
-    k8sApi.readNamespace(namespace.metadata.name).then(
-      (response) => {
+    (response) => {
+        console.log('Created namespace');
         console.log(response);
-        k8sApi.deleteNamespace(
-          namespace.metadata.name, {} /* delete options */);
-      });
-  },
-  (err) => {
-    console.log('Error!: ' + err);
-  }
+        k8sApi.readNamespace(namespace.metadata.name).then((response) => {
+            console.log(response);
+            k8sApi.deleteNamespace(namespace.metadata.name, {} /* delete options */);
+        });
+    },
+    (err) => {
+        console.log('Error!: ' + err);
+    },
 );
 ```
 
 # Additional Examples
+
 There are several more examples in the [examples](https://github.com/kubernetes-client/javascript/tree/master/examples) directory.
 
 # Development
@@ -91,6 +90,14 @@ git clone https://github.com/kubernetes-client/gen
 cd javascript
 ../gen/openapi/typescript.sh src settings
 ```
+
+## Formatting
+
+Run `npm run format` or install an editor plugin like https://github.com/prettier/prettier-vscode.
+
+## Linting
+
+Run `npm run lint` or install an editor plugin like https://github.com/Microsoft/vscode-typescript-tslint-plugin
 
 # Testing
 
