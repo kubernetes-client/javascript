@@ -19,6 +19,9 @@ interface Config {
 }
 export class CloudAuth implements Authenticator {
     public isAuthProvider(user: User): boolean {
+        if (!user || !user.authProvider) {
+            return false;
+        }
         return user.authProvider.name === 'azure' || user.authProvider.name === 'gcp';
     }
 

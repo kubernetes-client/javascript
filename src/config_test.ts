@@ -816,6 +816,33 @@ describe('KubeConfig', () => {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
             }
         });
+        it('should exec with exec auth (other location)', () => {
+            const config = new KubeConfig();
+            const token = 'token';
+            const responseStr = `'{
+                "apiVersion": "client.authentication.k8s.io/v1beta1",
+                "kind": "ExecCredential",
+                "status": {
+                  "token": "${token}"
+                }
+              }'`;
+            config.loadFromClusterAndUser(
+                { skipTLSVerify: false } as Cluster,
+                {
+                    exec: {
+                        command: 'echo',
+                        args: [`${responseStr}`],
+                    },
+                } as User,
+            );
+            // TODO: inject the exec command here?
+            const opts = {} as requestlib.Options;
+            config.applyToRequest(opts);
+            expect(opts.headers).to.not.be.undefined;
+            if (opts.headers) {
+                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+            }
+        });
         it('should throw with no command.', () => {
             const config = new KubeConfig();
             config.loadFromClusterAndUser(

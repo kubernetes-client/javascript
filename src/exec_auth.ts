@@ -7,6 +7,15 @@ export class ExecAuth implements Authenticator {
     private readonly tokenCache: { [key: string]: any } = {};
 
     public isAuthProvider(user: User) {
+        if (!user) {
+            return false;
+        }
+        if (user.exec) {
+            return true;
+        }
+        if (!user.authProvider) {
+            return false;
+        }
         return (
             user.authProvider.name === 'exec' || (user.authProvider.config && user.authProvider.config.exec)
         );
@@ -25,18 +34,27 @@ export class ExecAuth implements Authenticator {
             }
             this.tokenCache[user.name] = null;
         }
-        const config = user.authProvider.config;
-        if (!config.exec.command) {
+        let exec: any = null;
+        if (user.authProvider && user.authProvider.config) {
+            exec = user.authProvider.config.exec;
+        }
+        if (user.exec) {
+            exec = user.exec;
+        }
+        if (!exec) {
+            return null;
+        }
+        if (!exec.command) {
             throw new Error('No command was specified for exec authProvider!');
         }
-        let cmd = config.exec.command;
-        if (config.exec.args) {
-            cmd = `${cmd} ${config.exec.args.join(' ')}`;
+        let cmd = exec.command;
+        if (exec.args) {
+            cmd = `${cmd} ${exec.args.join(' ')}`;
         }
         let opts: shell.ExecOpts;
-        if (config.exec.env) {
+        if (exec.env) {
             const env = {};
-            config.exec.env.forEach((elt) => (env[elt.name] = elt.value));
+            exec.env.forEach((elt) => (env[elt.name] = elt.value));
             opts = { env };
         }
         const result = shell.exec(cmd, opts);
