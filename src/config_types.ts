@@ -61,6 +61,7 @@ function userIterator(): u.ListIterator<any, User> {
             authProvider: elt.user ? elt.user['auth-provider'] : null,
             certData: elt.user ? elt.user['client-certificate-data'] : null,
             certFile: elt.user ? elt.user['client-certificate'] : null,
+            exec: elt.user ? elt.user.exec : null,
             keyData: elt.user ? elt.user['client-key-data'] : null,
             keyFile: elt.user ? elt.user['client-key'] : null,
             name: elt.name,
