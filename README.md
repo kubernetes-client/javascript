@@ -68,6 +68,37 @@ k8sApi.createNamespace(namespace).then(
 );
 ```
 
+## Create a cluster configuration programatically
+```javascript
+const k8s = require('@kubernetes/client-node');
+
+const cluster = {
+    name: 'my-server',
+    server: 'http://server.com',
+};
+
+const user = {
+    name: 'my-user',
+    password: 'some-password',
+};
+
+const context = {
+    name: 'my-context',
+    user: user.name,
+    cluster: cluster.name,
+};
+
+const kc = new k8s.KubeConfig();
+kc.loadFromOptions({
+    clusters: [cluster],
+    users: [user],
+    contexts: [context],
+    currentContext: context.name,
+});
+const k8sApi = kc.makeApiClient(k8s.Core_v1Api);
+...
+```
+
 # Additional Examples
 
 There are several more examples in the [examples](https://github.com/kubernetes-client/javascript/tree/master/examples) directory.
