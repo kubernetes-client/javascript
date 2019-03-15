@@ -9,4 +9,5 @@ coverage/*
 .vscode/*
 examples/package-lock.json
 .nyc_output
+kubernetes-client-node-*.tgz
 
