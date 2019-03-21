@@ -45,6 +45,11 @@ export class KubeConfig {
      */
     public 'currentContext': string;
 
+    /**
+     * Root directory for a config file driven config. Used for loading relative cert paths.
+     */
+    public 'rootDirectory': string;
+
     public getContexts() {
         return this.contexts;
     }
@@ -97,6 +102,7 @@ export class KubeConfig {
     }
 
     public loadFromFile(file: string) {
+        this.rootDirectory = path.dirname(file);
         this.loadFromString(fs.readFileSync(file, 'utf8'));
     }
 
@@ -255,15 +261,18 @@ export class KubeConfig {
         if (cluster != null && cluster.skipTLSVerify) {
             opts.rejectUnauthorized = false;
         }
-        const ca = cluster != null ? bufferFromFileOrString(cluster.caFile, cluster.caData) : null;
+        const ca =
+            cluster != null
+                ? bufferFromFileOrString(this.rootDirectory, cluster.caFile, cluster.caData)
+                : null;
         if (ca) {
             opts.ca = ca;
         }
-        const cert = bufferFromFileOrString(user.certFile, user.certData);
+        const cert = bufferFromFileOrString(this.rootDirectory, user.certFile, user.certData);
         if (cert) {
             opts.cert = cert;
         }
-        const key = bufferFromFileOrString(user.keyFile, user.keyData);
+        const key = bufferFromFileOrString(this.rootDirectory, user.keyFile, user.keyData);
         if (key) {
             opts.key = key;
         }
@@ -355,8 +364,11 @@ export class Config {
 }
 
 // This is public really only for testing.
-export function bufferFromFileOrString(file?: string, data?: string): Buffer | null {
+export function bufferFromFileOrString(root?: string, file?: string, data?: string): Buffer | null {
     if (file) {
+        if (!path.isAbsolute(file) && root) {
+            file = path.join(root, file);
+        }
         return fs.readFileSync(file);
     }
     if (data) {
