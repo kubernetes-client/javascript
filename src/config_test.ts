@@ -1,6 +1,6 @@
 import { readFileSync } from 'fs';
 import * as https from 'https';
-import { join } from 'path';
+import { dirname, join } from 'path';
 
 import { expect } from 'chai';
 import mockfs = require('mock-fs');
@@ -167,7 +167,7 @@ describe('KubeConfig', () => {
         it('should load the kubeconfig file properly', () => {
             const kc = new KubeConfig();
             kc.loadFromFile(kcFileName);
-
+            expect(kc.rootDirectory).to.equal(dirname(kcFileName));
             validateFileLoad(kc);
         });
         it('should fail to load a missing kubeconfig file', () => {
@@ -1012,13 +1012,28 @@ describe('KubeConfig', () => {
     });
 
     describe('BufferOrFile', () => {
+        it('should load from root if present', () => {
+            const data = 'some data for file';
+            const arg: any = {
+                configDir: {
+                    config: data,
+                },
+            };
+            mockfs(arg);
+            const inputData = bufferFromFileOrString('configDir', 'config');
+            expect(inputData).to.not.equal(null);
+            if (inputData) {
+                expect(inputData.toString()).to.equal(data);
+            }
+            mockfs.restore();
+        });
         it('should load from a file if present', () => {
             const data = 'some data for file';
             const arg: any = {
                 config: data,
             };
             mockfs(arg);
-            const inputData = bufferFromFileOrString('config');
+            const inputData = bufferFromFileOrString(undefined, 'config');
             expect(inputData).to.not.equal(null);
             if (inputData) {
                 expect(inputData.toString()).to.equal(data);
