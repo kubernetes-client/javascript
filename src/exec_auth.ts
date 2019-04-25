@@ -29,7 +29,7 @@ export class ExecAuth implements Authenticator {
         const cachedToken = this.tokenCache[user.name];
         if (cachedToken) {
             const date = Date.parse(cachedToken.status.expirationTimestamp);
-            if (date < Date.now()) {
+            if (date > Date.now()) {
                 return `Bearer ${cachedToken.status.token}`;
             }
             this.tokenCache[user.name] = null;
