@@ -4,6 +4,7 @@ import stream = require('stream');
 
 import { V1Status } from './api';
 import { KubeConfig } from './config';
+import { TerminalSizeQueue } from './terminal-size-queue';
 import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
 
 export class Exec {
@@ -40,6 +41,7 @@ export class Exec {
         stdin: stream.Readable | null,
         tty: boolean,
         statusCallback?: (status: V1Status) => void,
+        terminalSizeQueue?: TerminalSizeQueue,
     ): Promise<WebSocket> {
         const query = {
             stdout: stdout != null,
@@ -66,7 +68,10 @@ export class Exec {
             },
         );
         if (stdin != null) {
-            WebSocketHandler.handleStandardInput(conn, stdin);
+            WebSocketHandler.handleStandardInput(conn, stdin, WebSocketHandler.StdinStream);
+        }
+        if (terminalSizeQueue != null) {
+            WebSocketHandler.handleStandardInput(conn, terminalSizeQueue, WebSocketHandler.ResizeStream);
         }
         return conn;
     }

@@ -1,11 +1,13 @@
 import { expect } from 'chai';
 import WebSocket = require('isomorphic-ws');
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
-import { anyFunction, capture, instance, mock, verify, when } from 'ts-mockito';
+import { anyFunction, anything, capture, instance, mock, verify, when } from 'ts-mockito';
 
+import { CallAwaiter, matchBuffer } from '../test';
 import { V1Status } from './api';
 import { KubeConfig } from './config';
 import { Exec } from './exec';
+import { TerminalSize, TerminalSizeQueue } from './terminal-size-queue';
 import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
 
 describe('Exec', () => {
@@ -55,11 +57,14 @@ describe('Exec', () => {
 
         it('should correctly attach to streams', async () => {
             const kc = new KubeConfig();
-            const fakeWebSocket: WebSocketInterface = mock(WebSocketHandler);
-            const exec = new Exec(kc, instance(fakeWebSocket));
+            const fakeWebSocketInterface: WebSocketInterface = mock(WebSocketHandler);
+            const fakeWebSocket: WebSocket = mock(WebSocket);
+            const callAwaiter: CallAwaiter = new CallAwaiter();
+            const exec = new Exec(kc, instance(fakeWebSocketInterface));
             const osStream = new WritableStreamBuffer();
             const errStream = new WritableStreamBuffer();
             const isStream = new ReadableStreamBuffer();
+            const terminalSizeQueue = new TerminalSizeQueue();
 
             const namespace = 'somenamespace';
             const pod = 'somepod';
@@ -71,8 +76,12 @@ describe('Exec', () => {
 
             let statusOut = {} as V1Status;
 
-            const fakeConn: WebSocket = mock(WebSocket);
-            when(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).thenResolve(fakeConn);
+            const fakeConn: WebSocket = instance(fakeWebSocket);
+            when(fakeWebSocketInterface.connect(`${path}?${args}`, null, anyFunction())).thenResolve(
+                fakeConn,
+            );
+            when(fakeWebSocket.send(anything())).thenCall(callAwaiter.resolveCall('send'));
+            when(fakeWebSocket.close()).thenCall(callAwaiter.resolveCall('close'));
 
             await exec.exec(
                 namespace,
@@ -86,9 +95,10 @@ describe('Exec', () => {
                 (status: V1Status) => {
                     statusOut = status;
                 },
+                terminalSizeQueue,
             );
 
-            const [, , outputFn] = capture(fakeWebSocket.connect).last();
+            const [, , outputFn] = capture(fakeWebSocketInterface.connect).last();
 
             /* tslint:disable:no-unused-expression */
             expect(outputFn).to.not.be.null;
@@ -116,19 +126,30 @@ describe('Exec', () => {
             }
 
             const msg = 'This is test data';
+            const inputPromise = callAwaiter.awaitCall('send');
             isStream.put(msg);
-            verify(fakeConn.send(msg));
+            await inputPromise;
+            verify(fakeWebSocket.send(matchBuffer(WebSocketHandler.StdinStream, msg))).called();
+
+            const terminalSize: TerminalSize = { height: 80, width: 120 };
+            const resizePromise = callAwaiter.awaitCall('send');
+            terminalSizeQueue.resize(terminalSize);
+            await resizePromise;
+            verify(
+                fakeWebSocket.send(matchBuffer(WebSocketHandler.ResizeStream, JSON.stringify(terminalSize))),
+            ).called();
 
             const statusIn = {
                 code: 100,
                 message: 'this is a test',
             } as V1Status;
-
             outputFn(WebSocketHandler.StatusStream, Buffer.from(JSON.stringify(statusIn)));
             expect(statusOut).to.deep.equal(statusIn);
 
+            const closePromise = callAwaiter.awaitCall('close');
             isStream.stop();
-            verify(fakeConn.close());
+            await closePromise;
+            verify(fakeWebSocket.close()).called();
         });
     });
 });

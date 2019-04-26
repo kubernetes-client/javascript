@@ -1,10 +1,13 @@
 import { expect } from 'chai';
+import { EventEmitter } from 'events';
 import WebSocket = require('isomorphic-ws');
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
 import { anyFunction, anything, capture, instance, mock, verify, when } from 'ts-mockito';
+import { CallAwaiter, matchBuffer } from '../test';
 
 import { Attach } from './attach';
 import { KubeConfig } from './config';
+import { TerminalSize, TerminalSizeQueue } from './terminal-size-queue';
 import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
 
 describe('Attach', () => {
@@ -46,11 +49,14 @@ describe('Attach', () => {
 
         it('should correctly attach to streams', async () => {
             const kc = new KubeConfig();
-            const fakeWebSocket: WebSocketInterface = mock(WebSocketHandler);
-            const attach = new Attach(kc, instance(fakeWebSocket));
+            const fakeWebSocketInterface: WebSocketInterface = mock(WebSocketHandler);
+            const fakeWebSocket: WebSocket = mock(WebSocket);
+            const callAwaiter: CallAwaiter = new CallAwaiter();
+            const attach = new Attach(kc, instance(fakeWebSocketInterface));
             const osStream = new WritableStreamBuffer();
             const errStream = new WritableStreamBuffer();
             const isStream = new ReadableStreamBuffer();
+            const terminalSizeQueue = new TerminalSizeQueue();
 
             const namespace = 'somenamespace';
             const pod = 'somepod';
@@ -59,11 +65,24 @@ describe('Attach', () => {
             const path = `/api/v1/namespaces/${namespace}/pods/${pod}/attach`;
             const args = `container=${container}&stderr=true&stdin=true&stdout=true&tty=false`;
 
-            const fakeConn: WebSocket = mock(WebSocket);
-            when(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).thenResolve(fakeConn);
+            const fakeConn: WebSocket = instance(fakeWebSocket);
+            when(fakeWebSocketInterface.connect(`${path}?${args}`, null, anyFunction())).thenResolve(
+                fakeConn,
+            );
+            when(fakeWebSocket.send(anything())).thenCall(callAwaiter.resolveCall('send'));
+            when(fakeWebSocket.close()).thenCall(callAwaiter.resolveCall('close'));
 
-            await attach.attach(namespace, pod, container, osStream, errStream, isStream, false);
-            const [, , outputFn] = capture(fakeWebSocket.connect).last();
+            await attach.attach(
+                namespace,
+                pod,
+                container,
+                osStream,
+                errStream,
+                isStream,
+                false,
+                terminalSizeQueue,
+            );
+            const [, , outputFn] = capture(fakeWebSocketInterface.connect).last();
 
             /* tslint:disable:no-unused-expression */
             expect(outputFn).to.not.be.null;
@@ -91,11 +110,23 @@ describe('Attach', () => {
             }
 
             const msg = 'This is test data';
+            const inputPromise = callAwaiter.awaitCall('send');
             isStream.put(msg);
-            verify(fakeConn.send(msg));
+            await inputPromise;
+            verify(fakeWebSocket.send(matchBuffer(WebSocketHandler.StdinStream, msg))).called();
 
+            const terminalSize: TerminalSize = { height: 80, width: 120 };
+            const resizePromise = callAwaiter.awaitCall('send');
+            terminalSizeQueue.resize(terminalSize);
+            await resizePromise;
+            verify(
+                fakeWebSocket.send(matchBuffer(WebSocketHandler.ResizeStream, JSON.stringify(terminalSize))),
+            ).called();
+
+            const closePromise = callAwaiter.awaitCall('close');
             isStream.stop();
-            verify(fakeConn.close());
+            await closePromise;
+            verify(fakeWebSocket.close()).called();
         });
     });
 });

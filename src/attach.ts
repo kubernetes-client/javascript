@@ -3,6 +3,7 @@ import querystring = require('querystring');
 import stream = require('stream');
 
 import { KubeConfig } from './config';
+import { TerminalSizeQueue } from './terminal-size-queue';
 import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
 
 export class Attach {
@@ -24,6 +25,7 @@ export class Attach {
         stderr: stream.Writable | any,
         stdin: stream.Readable | any,
         tty: boolean,
+        terminalSizeQueue?: TerminalSizeQueue,
     ): Promise<WebSocket> {
         const query = {
             container: containerName,
@@ -43,9 +45,12 @@ export class Attach {
             },
         );
         if (stdin != null) {
-            WebSocketHandler.handleStandardInput(conn, stdin);
+            WebSocketHandler.handleStandardInput(conn, stdin, WebSocketHandler.StdinStream);
         }
 
+        if (terminalSizeQueue != null) {
+            WebSocketHandler.handleStandardInput(conn, terminalSizeQueue, WebSocketHandler.ResizeStream);
+        }
         return conn;
     }
 }
