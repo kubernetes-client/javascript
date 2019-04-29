@@ -1,13 +1,12 @@
 import { expect } from 'chai';
-import { EventEmitter } from 'events';
 import WebSocket = require('isomorphic-ws');
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
 import { anyFunction, anything, capture, instance, mock, verify, when } from 'ts-mockito';
-import { CallAwaiter, matchBuffer } from '../test';
 
+import { CallAwaiter, matchBuffer, ResizableWriteableStreamBuffer } from '../test';
 import { Attach } from './attach';
 import { KubeConfig } from './config';
-import { TerminalSize, TerminalSizeQueue } from './terminal-size-queue';
+import { TerminalSize } from './terminal-size-queue';
 import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
 
 describe('Attach', () => {
@@ -53,10 +52,9 @@ describe('Attach', () => {
             const fakeWebSocket: WebSocket = mock(WebSocket);
             const callAwaiter: CallAwaiter = new CallAwaiter();
             const attach = new Attach(kc, instance(fakeWebSocketInterface));
-            const osStream = new WritableStreamBuffer();
+            const osStream = new ResizableWriteableStreamBuffer();
             const errStream = new WritableStreamBuffer();
             const isStream = new ReadableStreamBuffer();
-            const terminalSizeQueue = new TerminalSizeQueue();
 
             const namespace = 'somenamespace';
             const pod = 'somepod';
@@ -72,16 +70,7 @@ describe('Attach', () => {
             when(fakeWebSocket.send(anything())).thenCall(callAwaiter.resolveCall('send'));
             when(fakeWebSocket.close()).thenCall(callAwaiter.resolveCall('close'));
 
-            await attach.attach(
-                namespace,
-                pod,
-                container,
-                osStream,
-                errStream,
-                isStream,
-                false,
-                terminalSizeQueue,
-            );
+            await attach.attach(namespace, pod, container, osStream, errStream, isStream, false);
             const [, , outputFn] = capture(fakeWebSocketInterface.connect).last();
 
             /* tslint:disable:no-unused-expression */
@@ -109,6 +98,14 @@ describe('Attach', () => {
                 expect(buff[i]).to.equal(20);
             }
 
+            const initialTerminalSize: TerminalSize = { height: 0, width: 0 };
+            await callAwaiter.awaitCall('send');
+            verify(
+                fakeWebSocket.send(
+                    matchBuffer(WebSocketHandler.ResizeStream, JSON.stringify(initialTerminalSize)),
+                ),
+            ).called();
+
             const msg = 'This is test data';
             const inputPromise = callAwaiter.awaitCall('send');
             isStream.put(msg);
@@ -117,7 +114,9 @@ describe('Attach', () => {
 
             const terminalSize: TerminalSize = { height: 80, width: 120 };
             const resizePromise = callAwaiter.awaitCall('send');
-            terminalSizeQueue.resize(terminalSize);
+            osStream.rows = terminalSize.height;
+            osStream.columns = terminalSize.width;
+            osStream.emit('resize');
             await resizePromise;
             verify(
                 fakeWebSocket.send(matchBuffer(WebSocketHandler.ResizeStream, JSON.stringify(terminalSize))),
