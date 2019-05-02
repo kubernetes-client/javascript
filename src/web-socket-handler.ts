@@ -19,6 +19,7 @@ export class WebSocketHandler implements WebSocketInterface {
     public static readonly StdoutStream = 1;
     public static readonly StderrStream = 2;
     public static readonly StatusStream = 3;
+    public static readonly ResizeStream = 4;
 
     public static handleStandardStreams(
         streamNum: number,

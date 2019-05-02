@@ -4,10 +4,13 @@ import stream = require('stream');
 
 import { V1Status } from './api';
 import { KubeConfig } from './config';
+import { isResizable, ResizableStream, TerminalSizeQueue } from './terminal-size-queue';
 import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
 
 export class Exec {
     public 'handler': WebSocketInterface;
+
+    private terminalSizeQueue?: TerminalSizeQueue;
 
     public constructor(config: KubeConfig, wsInterface?: WebSocketInterface) {
         if (wsInterface) {
@@ -66,7 +69,12 @@ export class Exec {
             },
         );
         if (stdin != null) {
-            WebSocketHandler.handleStandardInput(conn, stdin);
+            WebSocketHandler.handleStandardInput(conn, stdin, WebSocketHandler.StdinStream);
+        }
+        if (isResizable(stdout)) {
+            this.terminalSizeQueue = new TerminalSizeQueue();
+            WebSocketHandler.handleStandardInput(conn, this.terminalSizeQueue, WebSocketHandler.ResizeStream);
+            this.terminalSizeQueue.handleResizes((stdout as any) as ResizableStream);
         }
         return conn;
     }

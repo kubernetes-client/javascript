@@ -67,6 +67,7 @@
     "@types/chai": "^4.1.6",
     "@types/mocha": "^5.2.5",
     "@types/mock-fs": "^3.6.30",
+    "@types/stream-buffers": "^3.0.3",
     "chai": "^4.2.0",
     "jasmine": "^3.3.0",
     "mocha": "^5.2.0",
