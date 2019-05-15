@@ -1,0 +1,12 @@
+{
+  "kind": "DeploymentNotifier",
+  "apiVersion": "kubernetes-client.io/v1",
+  "metadata": {
+    "name": "nginx"
+  },
+  "deploymentName": "nginx-deployment",
+  "notify": {
+    "accountId": "myAccount",
+    "key": "myKey"
+  }
+}

@@ -1,0 +1,15 @@
+  interface {{tsName}} {
+    // Path templating
+  {{#callable}}
+    ({{name}}: string): {{type}}
+  {{/callable}}
+    // Sub-paths
+  {{#properties}}
+    '{{name}}': {{type}}
+  {{/properties}}
+    // Calls
+  {{#calls}}
+    {{method}}(options ?: {{parameterType}}): {{returnType}}
+  {{/calls}}
+    addCustomResourceDefinition(schema: object): void
+  }

@@ -1,0 +1,64 @@
+{
+  "name": "kubernetes-client",
+  "version": "7.0.1",
+  "description": "Simplified Kubernetes API client.",
+  "main": "lib/index.js",
+  "types": "./typings/index.d.ts",
+  "scripts": {
+    "coverage": "nyc mocha 'lib/**/*.test.js'",
+    "docs": "node scripts/docs.js --builtins",
+    "typings": "node scripts/typings.js --spec lib/specs/swagger-1.13.json.gz --output typings/index.d.ts",
+    "lint": "standard --fix",
+    "release": "standard-version --tag-prefix=''",
+    "test": "standard && mocha 'lib/**/*.test.js' && npm run test-typings && npm run test-generated",
+    "test-generated": "scripts/test-generated.sh",
+    "test-typings": "tsc --project ./typings"
+  },
+  "repository": {
+    "type" : "git",
+    "url": "https://github.com/kubernetes-client/javascript.git",
+    "directory": "fluent"
+  },
+  "keywords": [
+    "kubernetes",
+    "kubectl",
+    "containers"
+  ],
+  "author": "GoDaddy Operating Company, LLC",
+  "license": "MIT",
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "lib",
+    "typings"
+  ],
+  "dependencies": {
+    "deepmerge": "^3.2.0",
+    "js-yaml": "^3.13.1",
+    "openid-client": "^3.1.0",
+    "qs": "^6.7.0",
+    "request": "^2.88.0",
+    "swagger-fluent": "^3.1.3",
+    "url-join": "^4.0.0",
+    "ws": "^7.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^12.0.0",
+    "chai": "^4.1.2",
+    "mocha": "^6.1.4",
+    "mustache": "^3.0.1",
+    "nock": "^10.0.6",
+    "nyc": "^14.0.0",
+    "sinon": "7.3.2",
+    "standard": "^12.0.1",
+    "standard-version": "^6.0.1",
+    "typescript": "^2.6.1",
+    "yargs": "^13.2.4"
+  },
+  "nyc": {
+    "check-coverage": true,
+    "lines": 80,
+    "functions": 70
+  }
+}

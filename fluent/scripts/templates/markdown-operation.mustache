@@ -1,0 +1,40 @@
+### {{#jsName}}{{/jsName}}
+
+{{&description}}
+{{#hasPathParameters}}
+
+#### Path
+
+| Parameter | Description |
+| --------- | ----------- |
+{{#parameters}}
+{{#isPathParameter}}
+| `{{name}}` | {{description}} |
+{{/isPathParameter}}
+{{/parameters}}    
+{{/hasPathParameters}}
+{{#hasQueryParameters}}
+
+#### Query
+
+| Parameter | Description |
+| --------- | ----------- |
+| `qs` | Querystring object |
+{{#parameters}}
+{{#isQueryParameter}}
+| `qs.{{name}}` | {{#markdownBreaks}}{{description}}{{/markdownBreaks}} |
+{{/isQueryParameter}}
+{{/parameters}}    
+{{/hasQueryParameters}}
+{{#hasBodyParameters}}
+
+#### Body
+
+| Parameter | Description |
+| --------- | ----------- |
+{{#parameters}}
+{{#isBodyParameter}}
+| `body` | {{#markdownBreaks}}{{#schema}}{{$ref}}{{/schema}}{{/markdownBreaks}} |
+{{/isBodyParameter}}
+{{/parameters}}    
+{{/hasBodyParameters}}

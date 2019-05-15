@@ -1,0 +1,38 @@
+{
+  "kind": "Deployment",
+  "spec": {
+    "replicas": 1,
+    "template": {
+      "spec": {
+        "containers": [
+          {
+            "image": "nginx:1.7.9",
+            "name": "nginx",
+            "ports": [
+              {
+                "containerPort": 80
+              }
+            ]
+          }
+        ]
+      },
+      "metadata": {
+        "labels": {
+          "app": "nginx"
+        }
+      }
+    },
+    "selector": {
+      "matchLabels": {
+        "app": "nginx"
+      }
+    }
+  },
+  "apiVersion": "apps/v1",
+  "metadata": {
+    "labels": {
+      "app": "nginx"
+    },
+    "name": "nginx-deployment"
+  }
+}

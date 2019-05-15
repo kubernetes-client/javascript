@@ -1,0 +1,20 @@
+{
+  "kind": "CustomResourceDefinition", 
+  "spec": {
+    "scope": "Namespaced", 
+    "version": "v1", 
+    "group": "kubernetes-client.io", 
+    "names": {
+      "shortNames": [
+        "dn"
+      ], 
+      "kind": "DeploymentNotifier", 
+      "plural": "deploymentnotifiers", 
+      "singular": "deploymentnotifier"
+    }
+  }, 
+  "apiVersion": "apiextensions.k8s.io/v1beta1", 
+  "metadata": {
+    "name": "deploymentnotifiers.kubernetes-client.io"
+  }
+}

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Config
+preferences: {}
+
+contexts:
+- context:
+    cluster: foo-cluster-1
+    namespace: ramp
+    user: developer
+  name: foo-ramp-up
+current-context: foo-ramp-up
