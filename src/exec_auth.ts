@@ -5,6 +5,7 @@ import { User } from './config_types';
 
 export class ExecAuth implements Authenticator {
     private readonly tokenCache: { [key: string]: any } = {};
+    private execFn: (cmd: string, opts: shell.ExecOpts) => shell.ShellReturnValue = shell.exec;
 
     public isAuthProvider(user: User) {
         if (!user) {
@@ -53,11 +54,11 @@ export class ExecAuth implements Authenticator {
         }
         let opts: shell.ExecOpts;
         if (exec.env) {
-            const env = {};
+            const env = process.env;
             exec.env.forEach((elt) => (env[elt.name] = elt.value));
             opts = { env };
         }
-        const result = shell.exec(cmd, opts);
+        const result = this.execFn(cmd, opts);
         if (result.code === 0) {
             const obj = JSON.parse(result.stdout);
             this.tokenCache[user.name] = obj;
