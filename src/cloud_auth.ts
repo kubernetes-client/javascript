@@ -1,5 +1,4 @@
-// workaround for issue https://github.com/dchester/jsonpath/issues/96
-import jsonpath = require('jsonpath/jsonpath.min');
+import * as jsonpath from 'jsonpath-plus';
 import * as shelljs from 'shelljs';
 
 import { Authenticator } from './auth';
@@ -81,7 +80,7 @@ export class CloudAuth implements Authenticator {
         const tokenPathKey = '$' + tokenPathKeyInConfig.slice(1, -1);
         const expiryPathKey = '$' + expiryPathKeyInConfig.slice(1, -1);
 
-        config['access-token'] = jsonpath.query(resultObj, tokenPathKey);
-        config.expiry = jsonpath.query(resultObj, expiryPathKey);
+        config['access-token'] = jsonpath.JSONPath(tokenPathKey, resultObj);
+        config.expiry = jsonpath.JSONPath(expiryPathKey, resultObj);
     }
 }
