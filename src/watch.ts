@@ -1,4 +1,4 @@
-import { LineStream } from 'byline';
+import JSONStream from 'json-stream';
 import request = require('request');
 import { KubeConfig } from './config';
 
@@ -55,21 +55,8 @@ export class Watch {
         };
         this.config.applyToRequest(requestOptions);
 
-        const stream = new LineStream();
-        stream.on('data', (data) => {
-            let obj: WatchUpdate;
-            if (data instanceof Buffer) {
-                obj = JSON.parse(data.toString()) as WatchUpdate;
-            } else {
-                obj = JSON.parse(data) as WatchUpdate;
-            }
-            if (typeof obj === 'object' && obj.object) {
-                callback(obj.type, obj.object);
-            } else {
-                throw new Error(`unexpected ${typeof obj}: ${JSON.stringify(obj)}`);
-            }
-        });
-
+        const stream = new JSONStream();
+        stream.on('data', (data) => callback(data.type, data.object));
         const req = this.requestImpl.webRequest(requestOptions, (error, response, body) => {
             if (error) {
                 done(error);
