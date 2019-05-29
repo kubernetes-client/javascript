@@ -52,11 +52,11 @@ export class ExecAuth implements Authenticator {
         if (exec.args) {
             cmd = `${cmd} ${exec.args.join(' ')}`;
         }
-        let opts: shell.ExecOpts;
+        let opts: shell.ExecOpts = { silent: true };
         if (exec.env) {
             const env = process.env;
             exec.env.forEach((elt) => (env[elt.name] = elt.value));
-            opts = { env };
+            opts = { ...opts, env };
         }
         const result = this.execFn(cmd, opts);
         if (result.code === 0) {
