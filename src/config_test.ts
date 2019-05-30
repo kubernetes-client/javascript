@@ -3,7 +3,7 @@ import * as https from 'https';
 import { dirname, join } from 'path';
 
 import { expect } from 'chai';
-import mockfs = require('mock-fs');
+import mockfs from 'mock-fs';
 import * as requestlib from 'request';
 
 import { Core_v1Api } from './api';
@@ -30,20 +30,24 @@ function validateFileLoad(kc: KubeConfig) {
     expect(cluster2.skipTLSVerify).to.equal(true);
 
     // check users
-    expect(kc.users.length).to.equal(2, 'there are 2 users');
+    expect(kc.users.length).to.equal(3, 'there are 3 users');
     const user1 = kc.users[0];
     const user2 = kc.users[1];
+    const user3 = kc.users[2];
     expect(user1.name).to.equal('user1');
     expect(user1.certData).to.equal('VVNFUl9DQURBVEE=');
     expect(user1.keyData).to.equal('VVNFUl9DS0RBVEE=');
     expect(user2.name).to.equal('user2');
     expect(user2.certData).to.equal('VVNFUjJfQ0FEQVRB');
     expect(user2.keyData).to.equal('VVNFUjJfQ0tEQVRB');
-
+    expect(user3.name).to.equal('user3');
+    expect(user3.username).to.equal('foo');
+    expect(user3.password).to.equal('bar');
     // check contexts
-    expect(kc.contexts.length).to.equal(2, 'there are two contexts');
+    expect(kc.contexts.length).to.equal(3, 'there are three contexts');
     const context1 = kc.contexts[0];
     const context2 = kc.contexts[1];
+    const context3 = kc.contexts[2];
     expect(context1.name).to.equal('context1');
     expect(context1.user).to.equal('user1');
     expect(context1.namespace).to.equal(undefined);
@@ -52,6 +56,9 @@ function validateFileLoad(kc: KubeConfig) {
     expect(context2.user).to.equal('user2');
     expect(context2.namespace).to.equal('namespace2');
     expect(context2.cluster).to.equal('cluster2');
+    expect(context3.name).to.equal('passwd');
+    expect(context3.user).to.equal('user3');
+    expect(context3.cluster).to.equal('cluster2');
 
     expect(kc.getCurrentContext()).to.equal('context2');
 }
@@ -196,6 +203,26 @@ describe('KubeConfig', () => {
                 ca: new Buffer('CADATA2', 'utf-8'),
                 cert: new Buffer('USER2_CADATA', 'utf-8'),
                 key: new Buffer('USER2_CKDATA', 'utf-8'),
+                rejectUnauthorized: false,
+            });
+        });
+        it('should apply password', () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcFileName);
+            kc.setCurrentContext('passwd');
+
+            const opts: requestlib.Options = {
+                url: 'https://company.com',
+            };
+            kc.applyToRequest(opts);
+            expect(opts).to.deep.equal({
+                ca: new Buffer('CADATA2', 'utf-8'),
+                auth: {
+                    username: 'foo',
+                    password: 'bar',
+                },
+                url: 'https://company.com',
+                strictSSL: false,
                 rejectUnauthorized: false,
             });
         });
