@@ -15,8 +15,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "format": "prettier --loglevel error --write './src/**/*.ts'",
-    "lint": "tslint --project \".\" && prettier --check './src/**/*.ts'",
-    "lint-examples": "tslint --project \"./examples/typescript\"",
+    "lint": "tslint --project \".\" && prettier --check './src/**/*.ts' && tslint --project \"./examples/typescript\"",
     "clean": "rm -Rf node_modules/ dist/",
     "build": "tsc",
     "watch": "tsc --watch",
@@ -71,6 +70,7 @@
     "@types/stream-buffers": "^3.0.3",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
+    "husky": "^2.3.0",
     "jasmine": "^3.3.0",
     "mocha": "^5.2.0",
     "mock-fs": "^4.7.0",
@@ -98,5 +98,10 @@
     "trailingComma": "all",
     "singleQuote": true,
     "arrowParens": "always"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "npm test && npm run lint"
+    }
   }
 }
