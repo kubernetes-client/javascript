@@ -10,6 +10,7 @@
         "noLib": false,
         "declaration": true,
         "outDir": "dist",
+        "rootDir": "src",
         "esModuleInterop": true,
         "allowSyntheticDefaultImports": true,
         "strict": true,
@@ -20,6 +21,7 @@
     },
     "exclude": [
         "node_modules",
+        "src/*_test.ts",
         "dist"
     ],
     "include": [
