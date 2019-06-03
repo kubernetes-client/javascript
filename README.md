@@ -79,6 +79,7 @@ const cluster = {
 
 const user = {
     name: 'my-user',
+    username: 'a-username',
     password: 'some-password',
 };
 
