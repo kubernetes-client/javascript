@@ -60,7 +60,7 @@ export class CloudAuth implements Authenticator {
         try {
             let cmd = config['cmd-path'];
             if (args) {
-                cmd = `${cmd} ${args}`;
+                cmd = `"${cmd}" ${args}`;
             }
             result = shelljs.exec(cmd, { silent: true });
             if (result.code !== 0) {
