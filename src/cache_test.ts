@@ -50,8 +50,8 @@ describe('ListWatchCache', () => {
         const obj3 = cache.get('name3');
         expect(obj3).to.not.equal(null);
         if (obj3) {
-            expect(obj3.metadata.name).to.equal('name3');
-            expect(obj3.metadata.resourceVersion).to.equal('baz');
+            expect(obj3.metadata!.name).to.equal('name3');
+            expect(obj3.metadata!.resourceVersion).to.equal('baz');
         }
 
         watchHandler('DELETED', {
@@ -91,10 +91,10 @@ describe('ListWatchCache', () => {
         expect(cache.get('name2')).to.equal(list[1]);
 
         expect(cache.list('ns1').length).to.equal(1);
-        expect(cache.list('ns1')[0].metadata.name).to.equal('name1');
+        expect(cache.list('ns1')[0].metadata!.name).to.equal('name1');
 
         expect(cache.list('ns2').length).to.equal(1);
-        expect(cache.list('ns2')[0].metadata.name).to.equal('name2');
+        expect(cache.list('ns2')[0].metadata!.name).to.equal('name2');
 
         watchHandler('ADDED', {
             metadata: {
@@ -117,8 +117,8 @@ describe('ListWatchCache', () => {
         const obj3 = cache.get('name3', 'ns3');
         expect(obj3).to.not.equal(null);
         if (obj3) {
-            expect(obj3.metadata.name).to.equal('name3');
-            expect(obj3.metadata.resourceVersion).to.equal('baz');
+            expect(obj3.metadata!.name).to.equal('name3');
+            expect(obj3.metadata!.resourceVersion).to.equal('baz');
         }
 
         watchHandler('DELETED', {
