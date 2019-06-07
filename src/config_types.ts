@@ -5,7 +5,7 @@ import { ExtensionsV1beta1RollbackConfig } from './api';
 export interface Cluster {
     readonly name: string;
     readonly caData?: string;
-    readonly caFile?: string;
+    caFile?: string;
     readonly server: string;
     readonly skipTLSVerify: boolean;
 }
@@ -38,10 +38,10 @@ function clusterIterator(): u.ListIterator<any, Cluster> {
 export interface User {
     readonly name: string;
     readonly certData?: string;
-    readonly certFile?: string;
+    certFile?: string;
     readonly exec?: any;
     readonly keyData?: string;
-    readonly keyFile?: string;
+    keyFile?: string;
     readonly authProvider?: any;
     readonly token?: string;
     readonly username?: string;

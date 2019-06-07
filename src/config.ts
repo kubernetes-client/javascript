@@ -45,11 +45,6 @@ export class KubeConfig {
      */
     public 'currentContext': string;
 
-    /**
-     * Root directory for a config file driven config. Used for loading relative cert paths.
-     */
-    public 'rootDirectory': string;
-
     public getContexts() {
         return this.contexts;
     }
@@ -102,8 +97,9 @@ export class KubeConfig {
     }
 
     public loadFromFile(file: string) {
-        this.rootDirectory = path.dirname(file);
+        const rootDirectory = path.dirname(file);
         this.loadFromString(fs.readFileSync(file, 'utf8'));
+        this.makePathsAbsolute(rootDirectory);
     }
 
     public applytoHTTPSOptions(opts: https.RequestOptions) {
@@ -201,9 +197,55 @@ export class KubeConfig {
         this.currentContext = contextName;
     }
 
+    public mergeConfig(config: KubeConfig) {
+        this.currentContext = config.currentContext;
+        config.clusters.forEach((cluster: Cluster) => {
+            this.addCluster(cluster);
+        });
+        config.users.forEach((user: User) => {
+            this.addUser(user);
+        });
+        config.contexts.forEach((ctx: Context) => {
+            this.addContext(ctx);
+        });
+    }
+
+    public addCluster(cluster: Cluster) {
+        this.clusters.forEach((c: Cluster, ix: number) => {
+            if (c.name === cluster.name) {
+                throw new Error(`Duplicate cluster: ${c.name}`);
+            }
+        });
+        this.clusters.push(cluster);
+    }
+
+    public addUser(user: User) {
+        this.users.forEach((c: User, ix: number) => {
+            if (c.name === user.name) {
+                throw new Error(`Duplicate user: ${c.name}`);
+            }
+        });
+        this.users.push(user);
+    }
+
+    public addContext(ctx: Context) {
+        this.contexts.forEach((c: Context, ix: number) => {
+            if (c.name === ctx.name) {
+                throw new Error(`Duplicate context: ${c.name}`);
+            }
+        });
+        this.contexts.push(ctx);
+    }
+
     public loadFromDefault() {
         if (process.env.KUBECONFIG && process.env.KUBECONFIG.length > 0) {
-            this.loadFromFile(process.env.KUBECONFIG);
+            const files = process.env.KUBECONFIG.split(path.delimiter);
+            this.loadFromFile(files[0]);
+            for (let i = 1; i < files.length; i++) {
+                const kc = new KubeConfig();
+                kc.loadFromFile(files[i]);
+                this.mergeConfig(kc);
+            }
             return;
         }
         const home = findHomeDir();
@@ -247,6 +289,22 @@ export class KubeConfig {
         return apiClient;
     }
 
+    public makePathsAbsolute(rootDirectory: string) {
+        this.clusters.forEach((cluster: Cluster) => {
+            if (cluster.caFile) {
+                cluster.caFile = makeAbsolutePath(rootDirectory, cluster.caFile);
+            }
+        });
+        this.users.forEach((user: User) => {
+            if (user.certFile) {
+                user.certFile = makeAbsolutePath(rootDirectory, user.certFile);
+            }
+            if (user.keyFile) {
+                user.keyFile = makeAbsolutePath(rootDirectory, user.keyFile);
+            }
+        });
+    }
+
     private getCurrentContextObject() {
         return this.getContextObject(this.currentContext);
     }
@@ -261,18 +319,15 @@ export class KubeConfig {
         if (cluster != null && cluster.skipTLSVerify) {
             opts.rejectUnauthorized = false;
         }
-        const ca =
-            cluster != null
-                ? bufferFromFileOrString(this.rootDirectory, cluster.caFile, cluster.caData)
-                : null;
+        const ca = cluster != null ? bufferFromFileOrString(cluster.caFile, cluster.caData) : null;
         if (ca) {
             opts.ca = ca;
         }
-        const cert = bufferFromFileOrString(this.rootDirectory, user.certFile, user.certData);
+        const cert = bufferFromFileOrString(user.certFile, user.certData);
         if (cert) {
             opts.cert = cert;
         }
-        const key = bufferFromFileOrString(this.rootDirectory, user.keyFile, user.keyData);
+        const key = bufferFromFileOrString(user.keyFile, user.keyData);
         if (key) {
             opts.key = key;
         }
@@ -363,12 +418,16 @@ export class Config {
     }
 }
 
+export function makeAbsolutePath(root: string, file: string): string {
+    if (!root || path.isAbsolute(file)) {
+        return file;
+    }
+    return path.join(root, file);
+}
+
 // This is public really only for testing.
-export function bufferFromFileOrString(root?: string, file?: string, data?: string): Buffer | null {
+export function bufferFromFileOrString(file?: string, data?: string): Buffer | null {
     if (file) {
-        if (!path.isAbsolute(file) && root) {
-            file = path.join(root, file);
-        }
         return fs.readFileSync(file);
     }
     if (data) {
