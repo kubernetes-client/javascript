@@ -25,7 +25,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T> {
     public get(name: string, namespace?: string): T | undefined {
         return this.objects.find(
             (obj: T): boolean => {
-                return obj.metadata.name === name && (!namespace || obj.metadata.namespace === namespace);
+                return obj.metadata!.name === name && (!namespace || obj.metadata!.namespace === namespace);
             },
         );
     }
@@ -48,10 +48,10 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T> {
     }
 
     private indexObj(obj: T) {
-        let namespaceList = this.indexCache[obj.metadata.namespace] as T[];
+        let namespaceList = this.indexCache[obj.metadata!.namespace!] as T[];
         if (!namespaceList) {
             namespaceList = [];
-            this.indexCache[obj.metadata.namespace] = namespaceList;
+            this.indexCache[obj.metadata!.namespace!] = namespaceList;
         }
         addOrUpdateObject(namespaceList, obj);
     }
@@ -61,14 +61,14 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T> {
             case 'ADDED':
             case 'MODIFIED':
                 addOrUpdateObject(this.objects, obj);
-                if (obj.metadata.namespace) {
+                if (obj.metadata!.namespace) {
                     this.indexObj(obj);
                 }
                 break;
             case 'DELETED':
                 deleteObject(this.objects, obj);
-                if (obj.metadata.namespace) {
-                    const namespaceList = this.indexCache[obj.metadata.namespace] as T[];
+                if (obj.metadata!.namespace) {
+                    const namespaceList = this.indexCache[obj.metadata!.namespace!] as T[];
                     if (namespaceList) {
                         deleteObject(namespaceList, obj);
                     }
@@ -89,7 +89,7 @@ export function addOrUpdateObject<T extends KubernetesObject>(objects: T[], obj:
 }
 
 function isSameObject<T extends KubernetesObject>(o1: T, o2: T): boolean {
-    return o1.metadata.name === o2.metadata.name && o1.metadata.namespace === o2.metadata.namespace;
+    return o1.metadata!.name === o2.metadata!.name && o1.metadata!.namespace === o2.metadata!.namespace;
 }
 
 function findKubernetesObject<T extends KubernetesObject>(objects: T[], obj: T): number {

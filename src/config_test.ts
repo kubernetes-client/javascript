@@ -6,7 +6,7 @@ import { expect } from 'chai';
 import mockfs from 'mock-fs';
 import * as requestlib from 'request';
 
-import { Core_v1Api } from './api';
+import { CoreV1Api } from './api';
 import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, Named } from './config';
 import { Cluster, newClusters, newContexts, newUsers, User } from './config_types';
 
@@ -1005,15 +1005,15 @@ describe('KubeConfig', () => {
             const kc = new KubeConfig();
             kc.loadFromFile(kcFileName);
 
-            const client = kc.makeApiClient(Core_v1Api);
-            expect(client instanceof Core_v1Api).to.equal(true);
+            const client = kc.makeApiClient(CoreV1Api);
+            expect(client instanceof CoreV1Api).to.equal(true);
         });
     });
 
     describe('EmptyConfig', () => {
         const emptyConfig = new KubeConfig();
         it('should throw if you try to make a client', () => {
-            expect(() => emptyConfig.makeApiClient(Core_v1Api)).to.throw('No active cluster!');
+            expect(() => emptyConfig.makeApiClient(CoreV1Api)).to.throw('No active cluster!');
         });
 
         it('should get a null current cluster', () => {

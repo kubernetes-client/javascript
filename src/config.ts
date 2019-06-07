@@ -323,16 +323,16 @@ export class Config {
     public static SERVICEACCOUNT_CA_PATH = Config.SERVICEACCOUNT_ROOT + '/ca.crt';
     public static SERVICEACCOUNT_TOKEN_PATH = Config.SERVICEACCOUNT_ROOT + '/token';
 
-    public static fromFile(filename: string): api.Core_v1Api {
-        return Config.apiFromFile(filename, api.Core_v1Api);
+    public static fromFile(filename: string): api.CoreV1Api {
+        return Config.apiFromFile(filename, api.CoreV1Api);
     }
 
-    public static fromCluster(): api.Core_v1Api {
-        return Config.apiFromCluster(api.Core_v1Api);
+    public static fromCluster(): api.CoreV1Api {
+        return Config.apiFromCluster(api.CoreV1Api);
     }
 
-    public static defaultClient(): api.Core_v1Api {
-        return Config.apiFromDefaultClient(api.Core_v1Api);
+    public static defaultClient(): api.CoreV1Api {
+        return Config.apiFromDefaultClient(api.CoreV1Api);
     }
 
     public static apiFromFile<T extends ApiType>(filename: string, apiClientType: ApiConstructor<T>): T {

@@ -2,7 +2,7 @@ import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import nock from 'nock';
 
-import { Core_v1Api } from './api';
+import { CoreV1Api } from './api';
 import { KubeConfig } from './config';
 import { Cluster, User } from './config_types';
 
@@ -26,11 +26,12 @@ describe('FullRequest', () => {
 
             kc.loadFromClusterAndUser(cluster, user);
 
-            const k8sApi = kc.makeApiClient(Core_v1Api);
+            const k8sApi = kc.makeApiClient(CoreV1Api);
             const result = {
                 kind: 'PodList',
                 apiVersion: 'v1',
                 items: [],
+                metadata: undefined,
             };
             const auth = Buffer.from(`${username}:${password}`).toString('base64');
             nock('https://nowhere.foo:443', {

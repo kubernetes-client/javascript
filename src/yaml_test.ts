@@ -10,7 +10,7 @@ describe('yaml', () => {
 
         expect(ns.apiVersion).to.equal('v1');
         expect(ns.kind).to.equal('Namespace');
-        expect(ns.metadata.name).to.equal('some-namespace');
+        expect(ns.metadata!.name).to.equal('some-namespace');
     });
     it('should load all safely', () => {
         const yaml =
