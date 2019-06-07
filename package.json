@@ -47,7 +47,7 @@
   "author": "Kubernetes Authors",
   "license": "Apache-2.0",
   "dependencies": {
-    "@types/js-yaml": "^3.11.2",
+    "@types/js-yaml": "^3.12.1",
     "@types/node": "^10.12.0",
     "@types/request": "^2.47.1",
     "@types/underscore": "^1.8.9",
