@@ -3,7 +3,7 @@ const k8s = require('@kubernetes/client-node');
 const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
 
-const k8sApi = kc.makeApiClient(k8s.Core_v1Api);
+const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
 const path = '/api/v1/namespaces/default/pods';
 const watch = new k8s.Watch(kc);
