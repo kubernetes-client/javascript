@@ -124,7 +124,7 @@ cd javascript
 
 ## Formatting
 
-Run `npm run format` or install an editor plugin like https://github.com/prettier/prettier-vscode.
+Run `npm run format` or install an editor plugin like https://github.com/prettier/prettier-vscode and https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
 
 ## Linting
 
