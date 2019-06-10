@@ -30,7 +30,7 @@ const k8s = require('@kubernetes/client-node');
 const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
 
-const k8sApi = kc.makeApiClient(k8s.Core_v1Api);
+const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
 k8sApi.listNamespacedPod('default').then((res) => {
     console.log(res.body);
@@ -45,7 +45,7 @@ const k8s = require('@kubernetes/client-node');
 const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
 
-const k8sApi = kc.makeApiClient(k8s.Core_v1Api);
+const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
 var namespace = {
     metadata: {
@@ -95,7 +95,7 @@ kc.loadFromOptions({
     contexts: [context],
     currentContext: context.name,
 });
-const k8sApi = kc.makeApiClient(k8s.Core_v1Api);
+const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 ...
 ```
 
