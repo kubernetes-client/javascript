@@ -4,7 +4,7 @@ const fs = require('fs');
 const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
 
-const k8sApi = kc.makeApiClient(k8s.Core_v1Api);
+const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
 const yamlString = k8s.dumpYaml({
   metadata: {
