@@ -10,7 +10,8 @@ const watch = new k8s.Watch(kc);
 const listFn = (fn) => {
     k8sApi.listNamespacedPod('default')
         .then((res) => {
-            fn(res.body.items);
+            const podList = res.body;
+            fn(podList.items, podList.metadata.resourceVersin);
         })
         .catch((err) => {
             console.log(err);
