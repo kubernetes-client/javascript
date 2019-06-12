@@ -1,4 +1,4 @@
-import { default as request } from 'request';
+import request = require('request');
 import { Writable } from 'stream';
 
 import { KubeConfig } from './config';
