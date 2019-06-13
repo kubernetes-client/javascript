@@ -1,12 +1,20 @@
-import { expect } from 'chai';
+import { expect, use } from 'chai';
+import chaiAsPromised from 'chai-as-promised';
+
 import * as mock from 'ts-mockito';
 
-import { V1Namespace, V1ObjectMeta, V1Pod } from './api';
-import { deleteObject, ListCallback, ListWatch } from './cache';
+import http = require('http');
+
+import { V1Namespace, V1NamespaceList, V1ObjectMeta, V1Pod, V1ListMeta } from './api';
+import { deleteObject, ListWatch } from './cache';
+import { ListCallback, ADD, UPDATE, DELETE, ListPromise } from './informer';
+
+use(chaiAsPromised);
+
 import { Watch } from './watch';
 
 describe('ListWatchCache', () => {
-    it('should perform basic caching', () => {
+    it('should perform basic caching', async () => {
         const fakeWatch = mock.mock(Watch);
         const list: V1Namespace[] = [
             {
@@ -20,10 +28,32 @@ describe('ListWatchCache', () => {
                 } as V1ObjectMeta,
             } as V1Namespace,
         ];
-        const listFn = (callback: ListCallback<V1Namespace>) => {
-            callback(list);
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+            response: http.IncomingMessage;
+            body: V1NamespaceList;
+        }> {
+            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
+                (resolve, reject) => {
+                    resolve({ response: {} as http.IncomingMessage, body: listObj });
+                },
+            );
         };
+        const promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve();
+            });
+        });
         const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
+        await promise;
         const [pathOut, , watchHandler] = mock.capture(fakeWatch.watch).last();
         expect(pathOut).to.equal('/some/path');
         expect(cache.list()).to.deep.equal(list);
@@ -63,7 +93,171 @@ describe('ListWatchCache', () => {
         expect(cache.get('name2')).to.equal(undefined);
     });
 
-    it('should perform namespace caching', () => {
+    it('should perform work as an informer', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const list: V1Namespace[] = [
+            {
+                metadata: {
+                    name: 'name1',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+            {
+                metadata: {
+                    name: 'name2',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+        ];
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+            response: http.IncomingMessage;
+            body: V1NamespaceList;
+        }> {
+            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
+                (resolve, reject) => {
+                    resolve({ response: {} as http.IncomingMessage, body: listObj });
+                },
+            );
+        };
+        const promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve();
+            });
+        });
+        const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
+        await promise;
+        const [pathOut, , watchHandler] = mock.capture(fakeWatch.watch).last();
+        expect(pathOut).to.equal('/some/path');
+
+        const addPromise = new Promise<V1Namespace>((resolve: (V1Namespace) => void) => {
+            informer.on(ADD, (obj: V1Namespace) => {
+                resolve(obj);
+            });
+        });
+
+        const updatePromise = new Promise<V1Namespace>((resolve: (V1Namespace) => void) => {
+            informer.on(UPDATE, (obj: V1Namespace) => {
+                resolve(obj);
+            });
+        });
+
+        const deletePromise = new Promise<V1Namespace>((resolve: (V1Namespace) => void) => {
+            informer.on(DELETE, (obj: V1Namespace) => {
+                resolve(obj);
+            });
+        });
+
+        watchHandler('ADDED', {
+            metadata: {
+                name: 'name3',
+            } as V1ObjectMeta,
+        } as V1Namespace);
+
+        watchHandler('MODIFIED', {
+            metadata: {
+                name: 'name3',
+                resourceVersion: 'baz',
+            } as V1ObjectMeta,
+        } as V1Namespace);
+
+        watchHandler('DELETED', {
+            metadata: {
+                name: 'name2',
+            } as V1ObjectMeta,
+        } as V1Namespace);
+
+        return Promise.all([
+            expect(addPromise)
+                .to.eventually.have.property('metadata')
+                .that.deep.equals({ name: 'name3' }),
+            expect(updatePromise)
+                .to.eventually.have.property('metadata')
+                .that.deep.equals({ name: 'name3', resourceVersion: 'baz' }),
+            expect(deletePromise)
+                .to.eventually.have.property('metadata')
+                .that.deep.equals({ name: 'name2' }),
+        ]);
+    });
+
+    it('should perform work as an informer with multiple handlers', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const list: V1Namespace[] = [
+            {
+                metadata: {
+                    name: 'name1',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+            {
+                metadata: {
+                    name: 'name2',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+        ];
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+            response: http.IncomingMessage;
+            body: V1NamespaceList;
+        }> {
+            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
+                (resolve, reject) => {
+                    resolve({ response: {} as http.IncomingMessage, body: listObj });
+                },
+            );
+        };
+        const promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve();
+            });
+        });
+        const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
+        await promise;
+        const [pathOut, , watchHandler] = mock.capture(fakeWatch.watch).last();
+        expect(pathOut).to.equal('/some/path');
+
+        const addPromise = new Promise<V1Namespace>((resolve: (V1Namespace) => void) => {
+            informer.on(ADD, (obj: V1Namespace) => {
+                resolve(obj);
+            });
+        });
+
+        const addPromise2 = new Promise<V1Namespace>((resolve: (V1Namespace) => void) => {
+            informer.on(ADD, (obj: V1Namespace) => {
+                resolve(obj);
+            });
+        });
+
+        watchHandler('ADDED', {
+            metadata: {
+                name: 'name3',
+            } as V1ObjectMeta,
+        } as V1Namespace);
+
+        return Promise.all([
+            expect(addPromise)
+                .to.eventually.have.property('metadata')
+                .that.deep.equals({ name: 'name3' }),
+            expect(addPromise2)
+                .to.eventually.have.property('metadata')
+                .that.deep.equals({ name: 'name3' }),
+        ]);
+    });
+
+    it('should perform namespace caching', async () => {
         const fakeWatch = mock.mock(Watch);
         const list: V1Pod[] = [
             {
@@ -79,10 +273,32 @@ describe('ListWatchCache', () => {
                 } as V1ObjectMeta,
             } as V1Pod,
         ];
-        const listFn = (callback: ListCallback<V1Pod>) => {
-            callback(list);
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+            response: http.IncomingMessage;
+            body: V1NamespaceList;
+        }> {
+            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
+                (resolve, reject) => {
+                    resolve({ response: {} as http.IncomingMessage, body: listObj });
+                },
+            );
         };
+        const promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve();
+            });
+        });
         const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
+        await promise;
         const [pathOut, , watchHandler] = mock.capture(fakeWatch.watch).last();
         expect(pathOut).to.equal('/some/path');
         expect(cache.list()).to.deep.equal(list);
