@@ -5,12 +5,18 @@ import { dirname, join } from 'path';
 import { expect } from 'chai';
 import mockfs from 'mock-fs';
 import * as requestlib from 'request';
+import * as path from 'path';
 
 import { CoreV1Api } from './api';
-import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, Named } from './config';
+import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolutePath } from './config';
 import { Cluster, newClusters, newContexts, newUsers, User } from './config_types';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
+const kc2FileName = 'testdata/kubeconfig-2.yaml';
+const kcDupeCluster = 'testdata/kubeconfig-dupe-cluster.yaml';
+const kcDupeContext = 'testdata/kubeconfig-dupe-context.yaml';
+const kcDupeUser = 'testdata/kubeconfig-dupe-user.yaml';
+
 const kcNoUserFileName = 'testdata/empty-user-kubeconfig.yaml';
 
 /* tslint:disable: no-empty */
@@ -174,7 +180,6 @@ describe('KubeConfig', () => {
         it('should load the kubeconfig file properly', () => {
             const kc = new KubeConfig();
             kc.loadFromFile(kcFileName);
-            expect(kc.rootDirectory).to.equal(dirname(kcFileName));
             validateFileLoad(kc);
         });
         it('should fail to load a missing kubeconfig file', () => {
@@ -890,6 +895,52 @@ describe('KubeConfig', () => {
         });
     });
 
+    describe('load from multi $KUBECONFIG', () => {
+        it('should load from multiple files', () => {
+            process.env.KUBECONFIG = kcFileName + path.delimiter + kc2FileName;
+
+            const kc = new KubeConfig();
+            kc.loadFromDefault();
+
+            // 2 in the first config, 1 in the second config
+            expect(kc.clusters.length).to.equal(3);
+            expect(kc.users.length).to.equal(6);
+            expect(kc.contexts.length).to.equal(4);
+            expect(kc.getCurrentContext()).to.equal('contextA');
+        });
+        it('should throw with duplicate clusters', () => {
+            process.env.KUBECONFIG = kcFileName + path.delimiter + kcDupeCluster;
+
+            const kc = new KubeConfig();
+            expect(() => kc.loadFromDefault()).to.throw('Duplicate cluster: cluster1');
+        });
+
+        it('should throw with duplicate contexts', () => {
+            process.env.KUBECONFIG = kcFileName + path.delimiter + kcDupeContext;
+
+            const kc = new KubeConfig();
+            expect(() => kc.loadFromDefault()).to.throw('Duplicate context: context1');
+        });
+
+        it('should throw with duplicate users', () => {
+            process.env.KUBECONFIG = kcFileName + path.delimiter + kcDupeUser;
+
+            const kc = new KubeConfig();
+            expect(() => kc.loadFromDefault()).to.throw('Duplicate user: user1');
+        });
+    });
+
+    describe('MakeAbsolutePaths', () => {
+        it('should correctly make absolute paths', () => {
+            const relative = 'foo/bar';
+            const absolute = '/tmp/foo/bar';
+            const root = '/usr/';
+
+            expect(makeAbsolutePath(root, relative)).to.equal('/usr/foo/bar');
+            expect(makeAbsolutePath(root, absolute)).to.equal(absolute);
+        });
+    });
+
     describe('loadFromDefault', () => {
         it('should load from $KUBECONFIG', () => {
             process.env.KUBECONFIG = kcFileName;
@@ -1047,7 +1098,7 @@ describe('KubeConfig', () => {
                 },
             };
             mockfs(arg);
-            const inputData = bufferFromFileOrString('configDir', 'config');
+            const inputData = bufferFromFileOrString('configDir/config');
             expect(inputData).to.not.equal(null);
             if (inputData) {
                 expect(inputData.toString()).to.equal(data);
@@ -1060,7 +1111,7 @@ describe('KubeConfig', () => {
                 config: data,
             };
             mockfs(arg);
-            const inputData = bufferFromFileOrString(undefined, 'config');
+            const inputData = bufferFromFileOrString('config');
             expect(inputData).to.not.equal(null);
             if (inputData) {
                 expect(inputData.toString()).to.equal(data);
