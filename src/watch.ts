@@ -1,4 +1,4 @@
-import JSONStream from 'json-stream';
+import JSONStream = require('json-stream');
 import request = require('request');
 import { KubeConfig } from './config';
 
