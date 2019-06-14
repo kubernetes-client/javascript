@@ -313,9 +313,7 @@ export interface ApiType {
     setDefaultAuthentication(config: api.Authentication);
 }
 
-export interface ApiConstructor<T extends ApiType> {
-    new (server: string): T;
-}
+type ApiConstructor<T extends ApiType> = new (server: string) => T;
 
 // This class is deprecated and will eventually be removed.
 export class Config {
