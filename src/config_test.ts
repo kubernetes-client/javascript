@@ -3,7 +3,7 @@ import * as https from 'https';
 import { dirname, join } from 'path';
 
 import { expect } from 'chai';
-import mockfs from 'mock-fs';
+import mockfs = require('mock-fs');
 import * as requestlib from 'request';
 import * as path from 'path';
 

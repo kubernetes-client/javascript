@@ -1,6 +1,6 @@
 import { expect, use } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
-import nock from 'nock';
+import chaiAsPromised = require('chai-as-promised');
+import nock = require('nock');
 
 import { CoreV1Api } from './api';
 import { KubeConfig } from './config';
