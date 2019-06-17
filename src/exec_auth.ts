@@ -1,10 +1,9 @@
 import * as shell from 'shelljs';
 
-import { Authenticator } from './auth';
+import { Authenticator, Credentials } from './auth';
 import { User } from './config_types';
 
-export class ExecAuth implements Authenticator {
-    private readonly tokenCache: { [key: string]: any } = {};
+export class ExecAuth extends Authenticator {
     private execFn: (cmd: string, opts: shell.ExecOpts) => shell.ShellReturnValue = shell.exec;
 
     public isAuthProvider(user: User) {
@@ -22,18 +21,20 @@ export class ExecAuth implements Authenticator {
         );
     }
 
-    public getToken(user: User): string | null {
-        // TODO: Handle client cert auth here, requires auth refactor.
-        // See https://kubernetes.io/docs/reference/access-authn-authz/authentication/#input-and-output-formats
-        // for details on this protocol.
+    public getCredentials(user: User) {
         // TODO: Add a unit test for token caching.
-        const cachedToken = this.tokenCache[user.name];
-        if (cachedToken) {
-            const date = Date.parse(cachedToken.status.expirationTimestamp);
-            if (date > Date.now()) {
-                return `Bearer ${cachedToken.status.token}`;
+        // TODO: Move caching logic into base class
+        const cached = this.cache[user.name];
+        if (cached) {
+            if (cached.expirationTimestamp) {
+                const date = Date.parse(cached.expirationTimestamp);
+                if (date > Date.now()) {
+                    return cached;
+                }
+                delete this.cache[user.name];
+            } else {
+                return cached;
             }
-            this.tokenCache[user.name] = null;
         }
         let exec: any = null;
         if (user.authProvider && user.authProvider.config) {
@@ -61,8 +62,22 @@ export class ExecAuth implements Authenticator {
         const result = this.execFn(cmd, opts);
         if (result.code === 0) {
             const obj = JSON.parse(result.stdout);
-            this.tokenCache[user.name] = obj;
-            return `Bearer ${obj.status.token}`;
+            const creds = obj.status;
+
+            // Explicitly setting types here, for type-safety
+            if (creds.token) {
+                this.cache[user.name] = {
+                    type: 'token',
+                    ...creds,
+                };
+            } else if (creds.clientKeyData) {
+                this.cache[user.name] = {
+                    type: 'client-cert',
+                    ...creds,
+                };
+            }
+
+            return this.cache[user.name];
         }
         throw new Error(result.stderr);
     }

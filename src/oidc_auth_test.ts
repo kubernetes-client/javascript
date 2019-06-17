@@ -42,7 +42,7 @@ describe('OIDCAuth', () => {
             },
         } as User;
 
-        expect(auth.getToken(user)).to.equal(`Bearer ${token}`);
+        expect(auth.getCredentials(user)).to.eql({ type: 'token', token });
     });
 
     it('get null if token missing', () => {
@@ -53,6 +53,6 @@ describe('OIDCAuth', () => {
             },
         } as User;
 
-        expect(auth.getToken(user)).to.equal(null);
+        expect(auth.getCredentials(user)).to.equal(null);
     });
 });

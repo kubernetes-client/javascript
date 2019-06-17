@@ -7,7 +7,7 @@ import request = require('request');
 import shelljs = require('shelljs');
 
 import * as api from './api';
-import { Authenticator } from './auth';
+import { Authenticator, Credentials } from './auth';
 import { CloudAuth } from './cloud_auth';
 import { Cluster, Context, newClusters, newContexts, newUsers, User } from './config_types';
 import { ExecAuth } from './exec_auth';
@@ -23,7 +23,7 @@ function fileExists(filepath: string): boolean {
 }
 
 export class KubeConfig {
-    private static authenticators: Authenticator[] = [new CloudAuth(), new ExecAuth()];
+    public static authenticators: Authenticator[] = [new CloudAuth(), new ExecAuth()];
 
     /**
      * The list of all known clusters
@@ -333,34 +333,40 @@ export class KubeConfig {
         }
     }
 
-    private applyAuthorizationHeader(opts: request.Options | https.RequestOptions) {
+    private applyAuthentication(opts: request.Options | https.RequestOptions) {
         const user = this.getCurrentUser();
         if (!user) {
             return;
         }
-        let token: string | null = null;
 
-        KubeConfig.authenticators.forEach((authenticator: Authenticator) => {
+        let credentials: Credentials | null = null;
+
+        for (const authenticator of KubeConfig.authenticators) {
             if (authenticator.isAuthProvider(user)) {
-                token = authenticator.getToken(user);
+                credentials = authenticator.getCredentials(user);
             }
-        });
-
-        if (user.token) {
-            token = 'Bearer ' + user.token;
         }
+
+        // Apply bearer token, if provided
+        const token = user.token || (credentials && credentials.type === 'token' && credentials.token);
 
         if (token) {
             if (!opts.headers) {
                 opts.headers = [];
             }
-            opts.headers.Authorization = token;
+            opts.headers.Authorization = `Bearer ${token}`;
+        }
+
+        // Apply client cert auth, if provided
+        if (credentials && credentials.type === 'client-cert') {
+            opts.cert = credentials.clientCertificateData;
+            opts.key = credentials.clientKeyData;
         }
     }
 
     private applyOptions(opts: request.Options | https.RequestOptions) {
         this.applyHTTPSOptions(opts);
-        this.applyAuthorizationHeader(opts);
+        this.applyAuthentication(opts);
     }
 }
 

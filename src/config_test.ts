@@ -4,8 +4,8 @@ import { dirname, join } from 'path';
 
 import { expect } from 'chai';
 import mockfs = require('mock-fs');
-import * as requestlib from 'request';
 import * as path from 'path';
+import * as requestlib from 'request';
 
 import { CoreV1Api } from './api';
 import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolutePath } from './config';
@@ -70,6 +70,10 @@ function validateFileLoad(kc: KubeConfig) {
 }
 
 describe('KubeConfig', () => {
+    beforeEach(() => {
+        KubeConfig.authenticators.map((a) => a.clearCache());
+    });
+
     describe('findObject', () => {
         it('should find objects', () => {
             interface MyNamed {
@@ -563,7 +567,7 @@ describe('KubeConfig', () => {
         });
         it('should populate from token', () => {
             const config = new KubeConfig();
-            const token = 'token';
+            const token = 'my-token';
             config.loadFromClusterAndUser(
                 { skipTLSVerify: false } as Cluster,
                 {
@@ -606,7 +610,7 @@ describe('KubeConfig', () => {
             expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
         });
 
-        it('should populate from auth provider without expirty', () => {
+        it('should populate from auth provider without expiry', () => {
             const config = new KubeConfig();
             const token = 'token';
             config.loadFromClusterAndUser(
@@ -847,6 +851,38 @@ describe('KubeConfig', () => {
             if (opts.headers) {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
             }
+        });
+        it('should apply client cert credentials', () => {
+            const config = new KubeConfig();
+            const responseStr = JSON.stringify({
+                apiVersion: 'client.authentication.k8s.io/v1beta1',
+                kind: 'ExecCredential',
+                status: {
+                    clientCertificateData: 'foo',
+                    clientKeyData: 'bar',
+                },
+            });
+            config.loadFromClusterAndUser(
+                { skipTLSVerify: false } as Cluster,
+                {
+                    authProvider: {
+                        name: 'exec',
+                        config: {
+                            exec: {
+                                command: 'echo',
+                                args: [`'${responseStr}'`],
+                            },
+                        },
+                    },
+                } as User,
+            );
+            // TODO: inject the exec command here?
+            const opts = {} as requestlib.Options;
+            config.applyToRequest(opts);
+
+            expect(opts.headers).to.be.undefined;
+            expect(opts.cert).to.equal('foo');
+            expect(opts.key).to.equal('bar');
         });
         it('should exec with exec auth (other location)', () => {
             const config = new KubeConfig();

@@ -1,7 +1,7 @@
 import * as jsonpath from 'jsonpath-plus';
 import * as shelljs from 'shelljs';
 
-import { Authenticator } from './auth';
+import { Authenticator, TokenCredentials } from './auth';
 import { User } from './config_types';
 
 /* FIXME: maybe we can extend the User and User.authProvider type to have a proper type.
@@ -16,7 +16,7 @@ interface Config {
     ['expiry-key']: string;
     ['access-token']?: string;
 }
-export class CloudAuth implements Authenticator {
+export class CloudAuth extends Authenticator {
     public isAuthProvider(user: User): boolean {
         if (!user || !user.authProvider) {
             return false;
@@ -24,12 +24,15 @@ export class CloudAuth implements Authenticator {
         return user.authProvider.name === 'azure' || user.authProvider.name === 'gcp';
     }
 
-    public getToken(user: User): string | null {
+    public getCredentials(user: User): TokenCredentials {
         const config = user.authProvider.config;
         if (this.isExpired(config)) {
             this.updateAccessToken(config);
         }
-        return 'Bearer ' + config['access-token'];
+        return {
+            type: 'token',
+            token: config['access-token'],
+        };
     }
 
     private isExpired(config: Config) {

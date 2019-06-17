@@ -1,7 +1,7 @@
-import { Authenticator } from './auth';
+import { Authenticator, TokenCredentials } from './auth';
 import { User } from './config_types';
 
-export class OpenIDConnectAuth implements Authenticator {
+export class OpenIDConnectAuth extends Authenticator {
     public isAuthProvider(user: User): boolean {
         if (!user.authProvider) {
             return false;
@@ -9,12 +9,14 @@ export class OpenIDConnectAuth implements Authenticator {
         return user.authProvider.name === 'oidc';
     }
 
-    public getToken(user: User): string | null {
+    public getCredentials(user: User): TokenCredentials | null {
         if (!user.authProvider.config || !user.authProvider.config['id-token']) {
             return null;
         }
         // TODO: Handle expiration and refresh here...
-        // TODO: Extract the 'Bearer ' to config.ts?
-        return `Bearer ${user.authProvider.config['id-token']}`;
+        return {
+            type: 'token',
+            token: user.authProvider.config['id-token'],
+        };
     }
 }
