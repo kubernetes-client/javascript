@@ -1,3 +1,4 @@
+import * as execa from 'execa';
 import * as jsonpath from 'jsonpath-plus';
 import * as shelljs from 'shelljs';
 
@@ -58,11 +59,8 @@ export class CloudAuth implements Authenticator {
         // TODO: do this asynchronously
         let result: any;
         try {
-            let cmd = config['cmd-path'];
-            if (args) {
-                cmd = `"${cmd}" ${args}`;
-            }
-            result = shelljs.exec(cmd, { silent: true });
+            const cmd = config['cmd-path'];
+            result = execa.sync(cmd, [args]);
             if (result.code !== 0) {
                 throw new Error(result.stderr);
             }

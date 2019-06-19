@@ -720,7 +720,7 @@ describe('KubeConfig', () => {
                         config: {
                             expiry: 'Aug 24 07:32:05 PDT 2017',
                             'cmd-path': 'echo',
-                            'cmd-args': `'${responseStr}'`,
+                            'cmd-args': `${responseStr}`,
                             'token-key': '{.token.accessToken}',
                             'expiry-key': '{.token.token_expiry}',
                         },
@@ -745,7 +745,7 @@ describe('KubeConfig', () => {
                         name: 'azure',
                         config: {
                             'cmd-path': 'echo',
-                            'cmd-args': `'${responseStr}'`,
+                            'cmd-args': `${responseStr}`,
                             'token-key': '{.token.accessToken}',
                             'expiry-key': '{.token.token_expiry}',
                         },
@@ -770,7 +770,7 @@ describe('KubeConfig', () => {
                         name: 'azure',
                         config: {
                             'cmd-path': 'echo',
-                            'cmd-args': `'${responseStr}'`,
+                            'cmd-args': `${responseStr}`,
                             'token-key': '{.token.accessToken}',
                             'expiry-key': '{.token.token_expiry}',
                         },
