@@ -1,11 +1,12 @@
-import * as shell from 'shelljs';
+import execa = require('execa');
 
 import { Authenticator } from './auth';
 import { User } from './config_types';
 
 export class ExecAuth implements Authenticator {
     private readonly tokenCache: { [key: string]: any } = {};
-    private execFn: (cmd: string, opts: shell.ExecOpts) => shell.ShellReturnValue = shell.exec;
+    private execFn: (cmd: string, args: string[], opts: execa.SyncOptions) => execa.ExecaSyncReturnValue =
+        execa.sync;
 
     public isAuthProvider(user: User) {
         if (!user) {
@@ -48,17 +49,13 @@ export class ExecAuth implements Authenticator {
         if (!exec.command) {
             throw new Error('No command was specified for exec authProvider!');
         }
-        let cmd = exec.command;
-        if (exec.args) {
-            cmd = `${cmd} ${exec.args.join(' ')}`;
-        }
-        let opts: shell.ExecOpts = { silent: true };
+        let opts = {};
         if (exec.env) {
             const env = process.env;
             exec.env.forEach((elt) => (env[elt.name] = elt.value));
             opts = { ...opts, env };
         }
-        const result = this.execFn(cmd, opts);
+        const result = this.execFn(exec.command, exec.args, opts);
         if (result.code === 0) {
             const obj = JSON.parse(result.stdout);
             this.tokenCache[user.name] = obj;

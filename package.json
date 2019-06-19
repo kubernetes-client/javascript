@@ -52,6 +52,7 @@
     "@types/request": "^2.47.1",
     "@types/underscore": "^1.8.9",
     "@types/ws": "^6.0.1",
+    "execa": "1.0.0",
     "isomorphic-ws": "^4.0.1",
     "js-yaml": "^3.13.1",
     "json-stream": "^1.0.0",

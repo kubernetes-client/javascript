@@ -787,7 +787,7 @@ describe('KubeConfig', () => {
         it('should exec with exec auth and env vars', () => {
             const config = new KubeConfig();
             const token = 'token';
-            const responseStr = `'{"status": { "token": "${token}" }}'`;
+            const responseStr = `{"status": { "token": "${token}" }}`;
             config.loadFromClusterAndUser(
                 { skipTLSVerify: false } as Cluster,
                 {
@@ -819,13 +819,13 @@ describe('KubeConfig', () => {
         it('should exec with exec auth', () => {
             const config = new KubeConfig();
             const token = 'token';
-            const responseStr = `'{
+            const responseStr = `{
                 "apiVersion": "client.authentication.k8s.io/v1beta1",
                 "kind": "ExecCredential",
                 "status": {
                   "token": "${token}"
                 }
-              }'`;
+              }`;
             config.loadFromClusterAndUser(
                 { skipTLSVerify: false } as Cluster,
                 {
@@ -851,13 +851,13 @@ describe('KubeConfig', () => {
         it('should exec with exec auth (other location)', () => {
             const config = new KubeConfig();
             const token = 'token';
-            const responseStr = `'{
+            const responseStr = `{
                 "apiVersion": "client.authentication.k8s.io/v1beta1",
                 "kind": "ExecCredential",
                 "status": {
                   "token": "${token}"
                 }
-              }'`;
+              }`;
             config.loadFromClusterAndUser(
                 { skipTLSVerify: false } as Cluster,
                 {

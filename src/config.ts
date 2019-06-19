@@ -1,3 +1,4 @@
+import execa = require('execa');
 import fs = require('fs');
 import https = require('https');
 import path = require('path');
@@ -258,12 +259,14 @@ export class KubeConfig {
         }
         if (process.platform === 'win32' && shelljs.which('wsl.exe')) {
             // TODO: Handle if someome set $KUBECONFIG in wsl here...
-            const result = shelljs.exec('wsl.exe cat $HOME/.kube/config', {
-                silent: true,
-            });
-            if (result.code === 0) {
-                this.loadFromString(result.stdout);
-                return;
+            try {
+                const result = execa.sync('wsl.exe', ['cat', shelljs.homedir() + '/.kube/config']);
+                if (result.code === 0) {
+                    this.loadFromString(result.stdout);
+                    return;
+                }
+            } catch (err) {
+                // Falling back to alternative auth
             }
         }
 
