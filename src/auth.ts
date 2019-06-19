@@ -1,24 +1,30 @@
 import { User } from './config_types';
 
-interface CredentialsBase {
+interface CredentialBase {
     expirationTimestamp?: string;
 }
 
-export interface TokenCredentials extends CredentialsBase {
-    type: 'token';
+export interface TokenCredential extends CredentialBase {
     token: string;
 }
 
-export interface ClientCertCredentials extends CredentialsBase {
-    type: 'client-cert';
+export interface ClientCertCredential extends CredentialBase {
     clientCertificateData: string;
     clientKeyData: string;
 }
 
-export type Credentials = TokenCredentials | ClientCertCredentials;
+export type Credential = TokenCredential | ClientCertCredential;
+
+export function isTokenCredential(c: Credential | null): c is TokenCredential {
+    return c !== null && 'token' in c;
+}
+
+export function isClientCertCredential(c: Credential | null): c is ClientCertCredential {
+    return c !== null && 'clientKeyData' in c && 'clientCertificateData' in c;
+}
 
 export abstract class Authenticator {
-    protected cache: { [key: string]: Credentials };
+    protected cache: { [key: string]: Credential };
 
     constructor() {
         this.cache = {};
@@ -29,5 +35,5 @@ export abstract class Authenticator {
     }
 
     public abstract isAuthProvider(user: User): boolean;
-    public abstract getCredentials(user: User): Credentials | null;
+    public abstract getCredential(user: User): Credential | null;
 }

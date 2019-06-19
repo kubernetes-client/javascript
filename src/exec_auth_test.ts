@@ -13,7 +13,7 @@ describe('ExecAuth', () => {
             } as shell.ShellReturnValue;
         };
 
-        const creds = auth.getCredentials({
+        const creds = auth.getCredential({
             name: 'user',
             authProvider: {
                 config: {
@@ -23,7 +23,7 @@ describe('ExecAuth', () => {
                 },
             },
         });
-        expect(creds).to.eql({ type: 'token', token: 'foo' });
+        expect(creds).to.eql({ token: 'foo' });
     });
 
     it('should accept client cert credentials', async () => {
@@ -35,7 +35,7 @@ describe('ExecAuth', () => {
             } as shell.ShellReturnValue;
         };
 
-        const creds = auth.getCredentials({
+        const creds = auth.getCredential({
             name: 'user',
             authProvider: {
                 config: {
@@ -45,7 +45,7 @@ describe('ExecAuth', () => {
                 },
             },
         });
-        expect(creds).to.eql({ type: 'client-cert', clientKeyData: 'foo', clientCertificateData: 'bar' });
+        expect(creds).to.eql({ clientKeyData: 'foo', clientCertificateData: 'bar' });
     });
 
     it('should exec with env vars', async () => {
@@ -59,7 +59,7 @@ describe('ExecAuth', () => {
             } as shell.ShellReturnValue;
         };
         process.env.BLABBLE = 'flubble';
-        auth.getCredentials({
+        auth.getCredential({
             name: 'user',
             authProvider: {
                 config: {

@@ -1,6 +1,6 @@
 import * as shell from 'shelljs';
 
-import { Authenticator, Credentials } from './auth';
+import { Authenticator } from './auth';
 import { User } from './config_types';
 
 export class ExecAuth extends Authenticator {
@@ -21,7 +21,7 @@ export class ExecAuth extends Authenticator {
         );
     }
 
-    public getCredentials(user: User) {
+    public getCredential(user: User) {
         // TODO: Add a unit test for token caching.
         // TODO: Move caching logic into base class
         const cached = this.cache[user.name];
@@ -62,21 +62,7 @@ export class ExecAuth extends Authenticator {
         const result = this.execFn(cmd, opts);
         if (result.code === 0) {
             const obj = JSON.parse(result.stdout);
-            const creds = obj.status;
-
-            // Explicitly setting types here, for type-safety
-            if (creds.token) {
-                this.cache[user.name] = {
-                    type: 'token',
-                    ...creds,
-                };
-            } else if (creds.clientKeyData) {
-                this.cache[user.name] = {
-                    type: 'client-cert',
-                    ...creds,
-                };
-            }
-
+            this.cache[user.name] = obj.status;
             return this.cache[user.name];
         }
         throw new Error(result.stderr);

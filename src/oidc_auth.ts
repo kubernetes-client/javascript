@@ -1,4 +1,4 @@
-import { Authenticator, TokenCredentials } from './auth';
+import { Authenticator, TokenCredential } from './auth';
 import { User } from './config_types';
 
 export class OpenIDConnectAuth extends Authenticator {
@@ -9,13 +9,12 @@ export class OpenIDConnectAuth extends Authenticator {
         return user.authProvider.name === 'oidc';
     }
 
-    public getCredentials(user: User): TokenCredentials | null {
+    public getCredential(user: User): TokenCredential | null {
         if (!user.authProvider.config || !user.authProvider.config['id-token']) {
             return null;
         }
         // TODO: Handle expiration and refresh here...
         return {
-            type: 'token',
             token: user.authProvider.config['id-token'],
         };
     }

@@ -7,7 +7,7 @@ import request = require('request');
 import shelljs = require('shelljs');
 
 import * as api from './api';
-import { Authenticator, Credentials } from './auth';
+import { Authenticator, Credential, isClientCertCredential, isTokenCredential } from './auth';
 import { CloudAuth } from './cloud_auth';
 import { Cluster, Context, newClusters, newContexts, newUsers, User } from './config_types';
 import { ExecAuth } from './exec_auth';
@@ -339,16 +339,16 @@ export class KubeConfig {
             return;
         }
 
-        let credentials: Credentials | null = null;
+        let credential: Credential | null = null;
 
         for (const authenticator of KubeConfig.authenticators) {
             if (authenticator.isAuthProvider(user)) {
-                credentials = authenticator.getCredentials(user);
+                credential = authenticator.getCredential(user);
             }
         }
 
         // Apply bearer token, if provided
-        const token = user.token || (credentials && credentials.type === 'token' && credentials.token);
+        const token = user.token || (isTokenCredential(credential) && credential.token);
 
         if (token) {
             if (!opts.headers) {
@@ -358,9 +358,9 @@ export class KubeConfig {
         }
 
         // Apply client cert auth, if provided
-        if (credentials && credentials.type === 'client-cert') {
-            opts.cert = credentials.clientCertificateData;
-            opts.key = credentials.clientKeyData;
+        if (isClientCertCredential(credential)) {
+            opts.cert = credential.clientCertificateData;
+            opts.key = credential.clientKeyData;
         }
     }
 
