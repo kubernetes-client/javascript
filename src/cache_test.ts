@@ -305,11 +305,92 @@ describe('ListWatchCache', () => {
                 resolve();
             });
         });
-        console.log('calling done again.');
         doneHandler(null);
         await promise;
         expect(addObjects).to.deep.equal(list);
         expect(updateObjects).to.deep.equal(list);
+    });
+
+    it('should perform work as an informer with initial list and delete after', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const list: V1Namespace[] = [
+            {
+                metadata: {
+                    name: 'name1',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+            {
+                metadata: {
+                    name: 'name2',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+        ];
+        const list2: V1Namespace[] = [
+            {
+                metadata: {
+                    name: 'name1',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+        ];
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+            response: http.IncomingMessage;
+            body: V1NamespaceList;
+        }> {
+            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
+                (resolve, reject) => {
+                    resolve({ response: {} as http.IncomingMessage, body: listObj });
+                },
+            );
+        };
+        let promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve();
+            });
+        });
+        const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
+
+        const addObjects: V1Namespace[] = [];
+        informer.on(ADD, (obj: V1Namespace) => addObjects.push(obj));
+        const updateObjects: V1Namespace[] = [];
+        informer.on(UPDATE, (obj: V1Namespace) => updateObjects.push(obj));
+        const deleteObjects: V1Namespace[] = [];
+        informer.on(DELETE, (obj: V1Namespace) => deleteObjects.push(obj));
+        informer.start();
+        await promise;
+        const [pathOut, , , doneHandler] = mock.capture(fakeWatch.watch).last();
+
+        expect(pathOut).to.equal('/some/path');
+        expect(addObjects).to.deep.equal(list);
+        expect(updateObjects).to.deep.equal([]);
+
+        promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve();
+            });
+        });
+        listObj.items = list2;
+        doneHandler(null);
+        await promise;
+        expect(addObjects).to.deep.equal(list);
+        expect(updateObjects).to.deep.equal(list2);
+        expect(deleteObjects).to.deep.equal([
+            {
+                metadata: {
+                    name: 'name2',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+        ]);
     });
 
     it('should perform namespace caching', async () => {
