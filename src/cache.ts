@@ -1,3 +1,4 @@
+import { ADD, DELETE, Informer, ListPromise, ObjectCallback, UPDATE } from './informer';
 import { KubernetesObject } from './types';
 import { Watch } from './watch';
 
@@ -6,20 +7,36 @@ export interface ObjectCache<T> {
     list(namespace?: string): ReadonlyArray<T>;
 }
 
-export type ListCallback<T extends KubernetesObject> = (list: T[]) => void;
-
-export class ListWatch<T extends KubernetesObject> implements ObjectCache<T> {
+export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, Informer<T> {
     private objects: T[] = [];
     private readonly indexCache: { [key: string]: T[] } = {};
+    private readonly callbackCache: { [key: string]: Array<ObjectCallback<T>> } = {};
 
     public constructor(
         private readonly path: string,
         private readonly watch: Watch,
-        private readonly listFn: (callback: ListCallback<T>) => void,
+        private readonly listFn: ListPromise<T>,
+        autoStart: boolean = true,
     ) {
         this.watch = watch;
         this.listFn = listFn;
+        if (autoStart) {
+            this.doneHandler(null);
+        }
+    }
+
+    public start() {
         this.doneHandler(null);
+    }
+
+    public on(verb: string, cb: ObjectCallback<T>) {
+        if (verb !== ADD && verb !== UPDATE && verb !== DELETE) {
+            throw new Error(`Unknown verb: ${verb}`);
+        }
+        if (!this.callbackCache[verb]) {
+            this.callbackCache[verb] = [];
+        }
+        this.callbackCache[verb].push(cb);
     }
 
     public get(name: string, namespace?: string): T | undefined {
@@ -37,13 +54,26 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T> {
         return this.indexCache[namespace] as ReadonlyArray<T>;
     }
 
-    private doneHandler(err: any) {
-        this.listFn((result: T[]) => {
-            this.objects = result;
-            for (const elt of this.objects) {
-                this.indexObj(elt);
+    private async doneHandler(err: any) {
+        const promise = this.listFn();
+        const result = await promise;
+        const list = result.body;
+        deleteItems(this.objects, list.items, this.callbackCache[DELETE]);
+        this.addOrUpdateItems(list.items);
+        this.watch.watch(
+            this.path,
+            { resourceVersion: list.metadata!.resourceVersion },
+            this.watchHandler.bind(this),
+            this.doneHandler.bind(this),
+        );
+    }
+
+    private addOrUpdateItems(items: T[]) {
+        items.forEach((obj: T) => {
+            addOrUpdateObject(this.objects, obj, this.callbackCache[ADD], this.callbackCache[UPDATE]);
+            if (obj.metadata!.namespace) {
+                this.indexObj(obj);
             }
-            this.watch.watch(this.path, {}, this.watchHandler.bind(this), this.doneHandler.bind(this));
         });
     }
 
@@ -60,13 +90,13 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T> {
         switch (phase) {
             case 'ADDED':
             case 'MODIFIED':
-                addOrUpdateObject(this.objects, obj);
+                addOrUpdateObject(this.objects, obj, this.callbackCache[ADD], this.callbackCache[UPDATE]);
                 if (obj.metadata!.namespace) {
                     this.indexObj(obj);
                 }
                 break;
             case 'DELETED':
-                deleteObject(this.objects, obj);
+                deleteObject(this.objects, obj, this.callbackCache[DELETE]);
                 if (obj.metadata!.namespace) {
                     const namespaceList = this.indexCache[obj.metadata!.namespace!] as T[];
                     if (namespaceList) {
@@ -78,13 +108,41 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T> {
     }
 }
 
+// external for testing
+export function deleteItems<T extends KubernetesObject>(
+    oldObjects: T[],
+    newObjects: T[],
+    deleteCallback?: Array<ObjectCallback<T>>,
+): T[] {
+    return oldObjects.filter((obj: T) => {
+        if (findKubernetesObject(newObjects, obj) === -1) {
+            if (deleteCallback) {
+                deleteCallback.forEach((fn: ObjectCallback<T>) => fn(obj));
+            }
+            return false;
+        }
+        return true;
+    });
+}
+
 // Only public for testing.
-export function addOrUpdateObject<T extends KubernetesObject>(objects: T[], obj: T) {
+export function addOrUpdateObject<T extends KubernetesObject>(
+    objects: T[],
+    obj: T,
+    addCallback?: Array<ObjectCallback<T>>,
+    updateCallback?: Array<ObjectCallback<T>>,
+) {
     const ix = findKubernetesObject(objects, obj);
     if (ix === -1) {
         objects.push(obj);
+        if (addCallback) {
+            addCallback.forEach((elt: ObjectCallback<T>) => elt(obj));
+        }
     } else {
         objects[ix] = obj;
+        if (updateCallback) {
+            updateCallback.forEach((elt: ObjectCallback<T>) => elt(obj));
+        }
     }
 }
 
@@ -99,9 +157,16 @@ function findKubernetesObject<T extends KubernetesObject>(objects: T[], obj: T):
 }
 
 // Public for testing.
-export function deleteObject<T extends KubernetesObject>(objects: T[], obj: T) {
+export function deleteObject<T extends KubernetesObject>(
+    objects: T[],
+    obj: T,
+    deleteCallback?: Array<ObjectCallback<T>>,
+) {
     const ix = findKubernetesObject(objects, obj);
     if (ix !== -1) {
         objects.splice(ix, 1);
+        if (deleteCallback) {
+            deleteCallback.forEach((elt: ObjectCallback<T>) => elt(obj));
+        }
     }
 }
