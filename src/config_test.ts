@@ -711,7 +711,7 @@ describe('KubeConfig', () => {
         it('should exec with expired token', () => {
             const config = new KubeConfig();
             const token = 'token';
-            const responseStr = `{ "token": { "accessToken": "${token}" } }`;
+            const responseStr = `{"token":{"accessToken":"${token}"}}`;
             config.loadFromClusterAndUser(
                 { skipTLSVerify: false } as Cluster,
                 {
@@ -737,7 +737,7 @@ describe('KubeConfig', () => {
         it('should exec without access-token', () => {
             const config = new KubeConfig();
             const token = 'token';
-            const responseStr = `{ "token": { "accessToken": "${token}" } }`;
+            const responseStr = `{"token":{"accessToken":"${token}"}}`;
             config.loadFromClusterAndUser(
                 { skipTLSVerify: false } as Cluster,
                 {
@@ -762,7 +762,7 @@ describe('KubeConfig', () => {
         it('should exec without access-token', () => {
             const config = new KubeConfig();
             const token = 'token';
-            const responseStr = `{ "token": { "accessToken": "${token}" } }`;
+            const responseStr = `{"token":{"accessToken":"${token}"}}`;
             config.loadFromClusterAndUser(
                 { skipTLSVerify: false } as Cluster,
                 {

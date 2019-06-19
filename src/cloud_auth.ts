@@ -54,13 +54,17 @@ export class CloudAuth implements Authenticator {
         if (!config['cmd-path']) {
             throw new Error('Token is expired!');
         }
-        const args = config['cmd-args'];
+        let args: string[] = [];
+        const cmdargs = config['cmd-args'];
+        if (cmdargs) {
+            args = cmdargs.split(' ');
+        }
         // TODO: Cache to file?
         // TODO: do this asynchronously
         let result: any;
         try {
             const cmd = config['cmd-path'];
-            result = execa.sync(cmd, [args]);
+            result = execa.sync(cmd, args);
             if (result.code !== 0) {
                 throw new Error(result.stderr);
             }
