@@ -10,6 +10,8 @@ const listFn = () => k8sApi.listPodForAllNamespaces();
 
 const informer = k8s.makeInformer(kc, '/api/v1/namespaces/default/pods', listFn);
 
-informer.on('add', (obj) => { console.log(`Added: ${obj}`); });
-informer.on('update', (obj) => { console.log(`Updated: ${obj}`); });
-informer.on('delete', (obj) => { console.log(`Deleted: ${obj}`); });
+informer.on('add', (obj: k8s.V1Pod) => { console.log(`Added: ${obj.metadata!.name}`); });
+informer.on('update', (obj: k8s.V1Pod) => { console.log(`Updated: ${obj.metadata!.name}`); });
+informer.on('delete', (obj: k8s.V1Pod) => { console.log(`Deleted: ${obj.metadata!.name}`); });
+
+informer.start();

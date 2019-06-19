@@ -18,6 +18,7 @@ export const DELETE: string = 'delete';
 
 export interface Informer<T> {
     on(verb: string, fn: ObjectCallback<T>);
+    start();
 }
 
 export function makeInformer<T>(
@@ -26,5 +27,5 @@ export function makeInformer<T>(
     listPromiseFn: ListPromise<T>,
 ): Informer<T> {
     const watch = new Watch(kubeconfig);
-    return new ListWatch<T>(path, watch, listPromiseFn);
+    return new ListWatch<T>(path, watch, listPromiseFn, false);
 }

@@ -16,9 +16,16 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         private readonly path: string,
         private readonly watch: Watch,
         private readonly listFn: ListPromise<T>,
+        autoStart: boolean = true,
     ) {
         this.watch = watch;
         this.listFn = listFn;
+        if (autoStart) {
+            this.doneHandler(null);
+        }
+    }
+
+    public start() {
         this.doneHandler(null);
     }
 
@@ -51,16 +58,23 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         const promise = this.listFn();
         const result = await promise;
         const list = result.body;
-        this.objects = list.items;
-        list.items.forEach((element: T) => {
-            this.indexObj(element);
-        });
+        deleteItems(this.objects, list.items, this.callbackCache[DELETE]);
+        this.addOrUpdateItems(list.items);
         this.watch.watch(
             this.path,
             { resourceVersion: list.metadata!.resourceVersion },
             this.watchHandler.bind(this),
             this.doneHandler.bind(this),
         );
+    }
+
+    private addOrUpdateItems(items: T[]) {
+        items.forEach((obj: T) => {
+            addOrUpdateObject(this.objects, obj, this.callbackCache[ADD], this.callbackCache[UPDATE]);
+            if (obj.metadata!.namespace) {
+                this.indexObj(obj);
+            }
+        });
     }
 
     private indexObj(obj: T) {
@@ -92,6 +106,23 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
                 break;
         }
     }
+}
+
+// external for testing
+export function deleteItems<T extends KubernetesObject>(
+    oldObjects: T[],
+    newObjects: T[],
+    deleteCallback?: Array<ObjectCallback<T>>,
+): T[] {
+    return oldObjects.filter((obj: T) => {
+        if (findKubernetesObject(newObjects, obj) === -1) {
+            if (deleteCallback) {
+                deleteCallback.forEach((fn: ObjectCallback<T>) => fn(obj));
+            }
+            return false;
+        }
+        return true;
+    });
 }
 
 // Only public for testing.
