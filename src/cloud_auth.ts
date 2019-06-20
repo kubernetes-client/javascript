@@ -1,6 +1,5 @@
-import * as execa from 'execa';
+import * as proc from 'child_process';
 import * as jsonpath from 'jsonpath-plus';
-import * as shelljs from 'shelljs';
 
 import { Authenticator } from './auth';
 import { User } from './config_types';
@@ -51,28 +50,23 @@ export class CloudAuth implements Authenticator {
     }
 
     private updateAccessToken(config: Config) {
-        if (!config['cmd-path']) {
+        let cmd = config['cmd-path'];
+        if (!cmd) {
             throw new Error('Token is expired!');
         }
-        let args: string[] = [];
-        const cmdargs = config['cmd-args'];
-        if (cmdargs) {
-            args = cmdargs.split(' ');
+        const args = config['cmd-args'];
+        if (args) {
+            cmd = cmd + ' ' + args;
         }
         // TODO: Cache to file?
         // TODO: do this asynchronously
-        let result: any;
+        let output: any;
         try {
-            const cmd = config['cmd-path'];
-            result = execa.sync(cmd, args);
-            if (result.code !== 0) {
-                throw new Error(result.stderr);
-            }
+            output = proc.execSync(cmd);
         } catch (err) {
             throw new Error('Failed to refresh token: ' + err.message);
         }
 
-        const output = result.stdout.toString();
         const resultObj = JSON.parse(output);
 
         const tokenPathKeyInConfig = config['token-key'];
