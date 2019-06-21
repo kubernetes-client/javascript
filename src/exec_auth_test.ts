@@ -1,16 +1,21 @@
 import { expect } from 'chai';
 import * as shell from 'shelljs';
 
+import execa = require('execa');
 import { ExecAuth } from './exec_auth';
 
 describe('ExecAuth', () => {
     it('should correctly exec', async () => {
         const auth = new ExecAuth();
-        (auth as any).execFn = (command: string, opts: shell.ExecOpts): shell.ShellReturnValue => {
+        (auth as any).execFn = (
+            command: string,
+            args: string[],
+            opts: execa.SyncOptions,
+        ): execa.ExecaSyncReturnValue => {
             return {
                 code: 0,
                 stdout: JSON.stringify({ status: { token: 'foo' } }),
-            } as shell.ShellReturnValue;
+            } as execa.ExecaSyncReturnValue;
         };
 
         const token = auth.getToken({
@@ -29,12 +34,16 @@ describe('ExecAuth', () => {
     it('should exec with env vars', async () => {
         const auth = new ExecAuth();
         let optsOut: shell.ExecOpts = {};
-        (auth as any).execFn = (command: string, opts: shell.ExecOpts): shell.ShellReturnValue => {
+        (auth as any).execFn = (
+            command: string,
+            args: string[],
+            opts: execa.SyncOptions,
+        ): execa.ExecaSyncReturnValue => {
             optsOut = opts;
             return {
                 code: 0,
                 stdout: JSON.stringify({ status: { token: 'foo' } }),
-            } as shell.ShellReturnValue;
+            } as execa.ExecaSyncReturnValue;
         };
         process.env.BLABBLE = 'flubble';
         const token = auth.getToken({
