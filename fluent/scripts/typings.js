@@ -38,7 +38,7 @@ function walk (component, interfaces) {
       properties.push({ name: child, type })
     })
   }
-  if (component.template) {
+  if (component.templated) {
     const type = walk(component('name'), interfaces)
     callable = { name: 'name', type }
   }
@@ -83,7 +83,8 @@ function main (args) {
   }
   const interfaces = []
 
-  const client = new Client({ spec, config: {} })
+  const backend = {}
+  const client = new Client({ backend, spec })
   walk(client, interfaces)
 
   const templateOptions = {

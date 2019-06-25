@@ -1,6 +1,113 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [8.3.0](https://github.com/godaddy/kubernetes-client/compare/8.2.1...8.3.0) (2019-06-25)
+
+
+### Features
+
+* **KubeConfig:** switch to using `KubeConfig` for config handling ([#506](https://github.com/godaddy/kubernetes-client/issues/506)) ([cb94f02](https://github.com/godaddy/kubernetes-client/commit/cb94f02))
+
+
+
+### [8.2.1](https://github.com/godaddy/kubernetes-client/compare/8.2.0...8.2.1) (2019-06-22)
+
+
+### Bug Fixes
+
+* **backend:** kubernetes-client-node backend support for patch ([#500](https://github.com/godaddy/kubernetes-client/issues/500)) ([43bb7fc](https://github.com/godaddy/kubernetes-client/commit/43bb7fc))
+* **client-node:** fixes to @kubernetes/client-node backend ([#498](https://github.com/godaddy/kubernetes-client/issues/498)) ([66e0328](https://github.com/godaddy/kubernetes-client/commit/66e0328))
+* **package:** update @kubernetes/client-node to version 0.10.0 ([#495](https://github.com/godaddy/kubernetes-client/issues/495)) ([eb83d4a](https://github.com/godaddy/kubernetes-client/commit/eb83d4a))
+* **package:** update @kubernetes/client-node to version 0.10.2 ([#503](https://github.com/godaddy/kubernetes-client/issues/503)) ([76dc3a7](https://github.com/godaddy/kubernetes-client/commit/76dc3a7))
+
+
+### Tests
+
+* **patch:** add integration test for `.patch` ([#492](https://github.com/godaddy/kubernetes-client/issues/492)) ([92d9729](https://github.com/godaddy/kubernetes-client/commit/92d9729))
+
+
+
+## [8.2.0](https://github.com/godaddy/kubernetes-client/compare/8.1.3...8.2.0) (2019-05-31)
+
+
+### Bug Fixes
+
+* **package:** update @kubernetes/client-node to version 0.9.0 ([#487](https://github.com/godaddy/kubernetes-client/issues/487)) ([238fbb6](https://github.com/godaddy/kubernetes-client/commit/238fbb6))
+
+
+### Features
+
+* **client-node:** add support for watch streaming ([#486](https://github.com/godaddy/kubernetes-client/issues/486)) ([abdaa2a](https://github.com/godaddy/kubernetes-client/commit/abdaa2a))
+* **log:** node-client support for streaming logs ([#488](https://github.com/godaddy/kubernetes-client/issues/488)) ([8be6b5a](https://github.com/godaddy/kubernetes-client/commit/8be6b5a))
+
+
+
+### [8.1.3](https://github.com/godaddy/kubernetes-client/compare/8.1.2...8.1.3) (2019-05-29)
+
+
+### Bug Fixes
+
+* **CRDs:** Use `versions` list for spec paths ([#484](https://github.com/godaddy/kubernetes-client/issues/484)) ([3c3111c](https://github.com/godaddy/kubernetes-client/commit/3c3111c)), closes [#458](https://github.com/godaddy/kubernetes-client/issues/458)
+
+
+
+### [8.1.2](https://github.com/godaddy/kubernetes-client/compare/8.1.1...8.1.2) (2019-05-23)
+
+
+### Bug Fixes
+
+* **auth-provider:** update auth-provider path ([#481](https://github.com/godaddy/kubernetes-client/issues/481)) ([5149309](https://github.com/godaddy/kubernetes-client/commit/5149309))
+
+
+### Tests
+
+* **integration:** add more integration tests ([#480](https://github.com/godaddy/kubernetes-client/issues/480)) ([1d3948a](https://github.com/godaddy/kubernetes-client/commit/1d3948a))
+* **integration:** add start of integration testing framework ([#477](https://github.com/godaddy/kubernetes-client/issues/477)) ([d9543a1](https://github.com/godaddy/kubernetes-client/commit/d9543a1))
+
+
+
+### [8.1.1](https://github.com/godaddy/kubernetes-client/compare/8.1.0...8.1.1) (2019-05-20)
+
+
+
+## [8.1.0](https://github.com/godaddy/kubernetes-client/compare/8.0.0...8.1.0) (2019-05-19)
+
+
+### Features
+
+* **backends:** @kubernetes/client-node ([#394](https://github.com/godaddy/kubernetes-client/issues/394)) ([7faef3e](https://github.com/godaddy/kubernetes-client/commit/7faef3e))
+* **Client:** support passing `undefined` to `Client` ([#474](https://github.com/godaddy/kubernetes-client/issues/474)) ([1fd10c4](https://github.com/godaddy/kubernetes-client/commit/1fd10c4))
+
+
+### Tests
+
+* **update:** use  new config handling API ([#475](https://github.com/godaddy/kubernetes-client/issues/475)) ([669352b](https://github.com/godaddy/kubernetes-client/commit/669352b))
+
+
+
+## [8.0.0](https://github.com/godaddy/kubernetes-client/compare/7.0.1...8.0.0) (2019-05-19)
+
+
+### Bug Fixes
+
+* **CRDs:** malformed watch paths for namespaced CRDs ([#470](https://github.com/godaddy/kubernetes-client/issues/470)) ([0652b14](https://github.com/godaddy/kubernetes-client/commit/0652b14)), closes [#468](https://github.com/godaddy/kubernetes-client/issues/468)
+* **package:** update openid-client to version 3.0.0 ([#459](https://github.com/godaddy/kubernetes-client/issues/459)) ([66d5b73](https://github.com/godaddy/kubernetes-client/commit/66d5b73))
+* **package:** update openid-client to version 3.1.0 ([#463](https://github.com/godaddy/kubernetes-client/issues/463)) ([2211ed2](https://github.com/godaddy/kubernetes-client/commit/2211ed2))
+* **package:** update ws to version 7.0.0 ([#453](https://github.com/godaddy/kubernetes-client/issues/453)) ([1d507c4](https://github.com/godaddy/kubernetes-client/commit/1d507c4))
+
+
+### chore
+
+* **support:** drop support for Node 6 ([#465](https://github.com/godaddy/kubernetes-client/issues/465)) ([523800d](https://github.com/godaddy/kubernetes-client/commit/523800d))
+
+
+### BREAKING CHANGES
+
+* **support:** this doesn't include any breaking changes, but our CI integrations
+will begin accepting code and using dependencies that are incompatible with Node 6.
+
+
 
 ## [7.0.1](https://github.com/godaddy/kubernetes-client/compare/7.0.0...7.0.1) (2019-05-07)
 

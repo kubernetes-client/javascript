@@ -4,9 +4,14 @@
 const { expect } = require('chai')
 const nock = require('nock')
 
-const Request = require('./request')
+const KubeConfig = require('../../lib/config')
+const Request = require('./client')
 
 const url = 'http://mock.kube.api'
+const kubeconfig = new KubeConfig()
+kubeconfig.loadFromClusterAndUser(
+  { name: 'cluster', server: url },
+  { name: 'user' })
 
 describe('lib.backends.request', () => {
   describe('Request', () => {
@@ -15,7 +20,7 @@ describe('lib.backends.request', () => {
         .get('/foo')
         .reply(200)
 
-      const backend = new Request({ url })
+      const backend = new Request({ kubeconfig })
       backend.http({
         method: 'GET',
         pathname: '/foo'

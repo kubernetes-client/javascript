@@ -9,7 +9,7 @@ const yaml = require('js-yaml')
 
 const config = require('../config')
 
-describe('Config', () => {
+describe('Config (deprecated)', () => {
   let sandbox
 
   beforeEach(() => {
@@ -58,8 +58,8 @@ describe('Config', () => {
 
   describe('.loadKubeconfig', () => {
     const cfgPaths = [
-      './lib/config.test/fixtures/kube-fixture.yml',
-      './lib/config.test/fixtures/kube-fixture-two.yml'
+      './backends/request/config.test/fixtures/kube-fixture.yml',
+      './backends/request/config.test/fixtures/kube-fixture-two.yml'
     ]
 
     it('supports multiple config files', () => {
@@ -522,14 +522,14 @@ describe('Config', () => {
     })
 
     it('load kubeconfig from provided path', () => {
-      const args = config.fromKubeconfig('./lib/config.test/fixtures/kube-fixture.yml')
+      const args = config.fromKubeconfig('./backends/request/config.test/fixtures/kube-fixture.yml')
       expect(args.url).equals('https://192.168.42.121:8443')
     })
 
     it('load kubeconfig from provided array of paths', () => {
       const cfgPaths = [
-        './lib/config.test/fixtures/kube-fixture.yml',
-        './lib/config.test/fixtures/kube-fixture-two.yml'
+        './backends/request/config.test/fixtures/kube-fixture.yml',
+        './backends/request/config.test/fixtures/kube-fixture-two.yml'
       ]
       const args = config.fromKubeconfig(cfgPaths)
       expect(args.url).equals('https://192.168.42.121:8443')

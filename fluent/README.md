@@ -1,12 +1,6 @@
 # kubernetes-client
 
-[![Join Slack](https://img.shields.io/badge/Join%20us%20on-Slack-e01563.svg)](https://godaddy-oss-slack.herokuapp.com/)
-[![Build Status][build]](https://travis-ci.org/godaddy/kubernetes-client) [![Greenkeeper badge][greenkeeper]](https://greenkeeper.io/)
-
-[greenkeeper]: https://badges.greenkeeper.io/godaddy/kubernetes-client.svg
-[build]: https://travis-ci.org/godaddy/kubernetes-client.svg?branch=master
-
-Simplified [Kubernetes API](http://kubernetes.io/) client for Node.js.
+Fluent [Kubernetes API](http://kubernetes.io/) client for Node.js.
 
 ## Installation
 
@@ -24,104 +18,69 @@ the cluster's kubeconfig file and that cluster's API specification.
 
 To create the config required to make a client, you can either:
 
-let kubernetes-client load the file automatically through the `KUBECONFIG`
-env
+let kubernetes-client configure automatically by trying the `KUBECONFIG`
+environment variable first, then `~/.kube/config`, then an in-cluster
+service account, and lastly settling on a default proxy configuration:
 
 ```js
-const K8sConfig = require('kubernetes-client').config
-const config = K8sConfig.fromKubeconfig()
+const client = new Client({ version: '1.13' })
 ```
 
 provide your own path to a file:
 
 ```js
-const K8sConfig = require('kubernetes-client').config
-const path = '~/some/path'
-const config = K8sConfig.fromKubeconfig(path)
+const { KubeConfig } = require('kubernetes-client')
+const kubeconfig = new KubeConfig()
+kubeconfig.loadFromFile('~/some/path')
+const Request = require('kubernetes-client/backends/request')
+
+const backend = new Request({ kubeconfig })
+const client = new Client({ backend, version: '1.13' })
 ```
 
-provide a kubeconfig object from memory:
+provide a configuration object from memory:
 
 ```js
-const K8sConfig = require('kubernetes-client').config
 // Should match the kubeconfig file format exactly
-const kubeconfig = {
-	apiVersion: 'v1',
-	clusters: [],
-	contexts: [],
-	'current-context': '',
-	kind: 'Config',
-	users: []
+const config = {
+  apiVersion: 'v1',
+  clusters: [],
+  contexts: [],
+  'current-context': '',
+  kind: 'Config',
+  users: []
 }
-const config = K8sConfig.fromKubeconfig(kubeconfig)
+const { KubeConfig } = require('kubernetes-client')
+const kubeconfig = new KubeConfig()
+kubeconfig.loadFromString(JSON.stringify(config))
+
+const Request = require('kubernetes-client/backends/request')
+const backend = new Request({ kubeconfig })
+const client = new Client({ backend, version: '1.13' })
 ```
 
-and you can also specify the kubeconfig context by passing it as the
-second argument to `fromKubeconfig()`:
-
-```
-const config = K8sConfig.fromKubeconfig(null, 'dev')
-```
-
-Once you've built a config object, you can combine it with an API
-spec to build the client, using specifications included with kubernetes-client:
+and you can also specify the context by setting it in the `kubeconfig`
+object:
 
 ```js
-const Client = require('kubernetes-client').Client
-const config = require('kubernetes-client').config
-const client = new Client({ config: config.fromKubeconfig(), version: '1.9' })
+kubeconfig.setCurrentContext('dev')
 ```
 
-or from a local OpenAPI/Swagger specification:
+You can also elide the `.version` and pass an OpenAPI specification:
 
 ```js
-const Client = require('kubernetes-client').Client
-const config = require('kubernetes-client').config
 const spec = require('./swagger.json')
-const client = new Client({ config: config.fromKubeconfig(), spec})
-
+const client = new Client({ spec })
 ```
 
-or from the `/swagger.json` endpoint on your kube-apiserver:
+or load a specification dynamically from the kube-apiserver:
 
 ```js
-const Client = require('kubernetes-client').Client
-const config = require('kubernetes-client').config
-const client = new Client({ config: config.fromKubeconfig() })
+const client = new Client()
 await client.loadSpec()
 ```
 
-or using basic auth:
-
-```js
-const Client = require('kubernetes-client').Client
-const client = new Client({
-  config: {
-    url: 'CLUSTER_URL',
-    auth: {
-      user: 'admin',
-      pass: 'YOUR_PASSWORD',
-    },
-    insecureSkipTlsVerify: true,
-  }
-})
-```
-
-or from within a Pod using `getInCluster`:
-
-```js
-const Client = require('kubernetes-client').Client
-const config = require('kubernetes-client').config
-const client = new Client({ config: config.getInCluster() })
-await client.loadSpec()
-```
-
-kubernetes-client supports reading the [service account
-credentials](https://kubernetes.io/docs/tasks/access-application-cluster/access-cluster/#accessing-the-api-from-a-pod)
-from different locations by setting the
-`KUBERNETES_CLIENT_SERVICEACCOUNT_ROOT` environment variable. This is
-useful, for example, when running
-[Telepresence](https://www.telepresence.io/howto/volumes).
+See [Examples](#examples) for more configuration examples.
 
 ## Basic usage
 
@@ -189,7 +148,7 @@ const client = new Client({ config: config.fromKubeconfig() });
 When using TypeScript, kubernetes-client does not support dynamically
 generating a client via `.loadSpec()`.
 
-## More examples
+## Examples
 
 [examples/](examples/) has snippets for using kubernetes-client:
 
@@ -219,14 +178,12 @@ generating a client via `.loadSpec()`.
   [kubernetes-badges](https://github.com/silasbw/kubernetes-badges)
 * Create a deployment, patch a change, and rollback to the original version:
   [deployment-create-patch-rollback.js](./examples/deployment-create-patch-rollback.js)
-* Access [VerticalPodAutoscalers](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler):
-  [examples/vpas](./examples/vpas)
+* Access [VerticalPodAutoscalers](https://github.com/kubernetes/autoscaler/tree/master/vertical-pod-autoscaler): [vpas/](./examples/vpas)
+* Create a `client` using an in-cluster configuration: [in-cluster-auth.js](./examples/in-cluster-auth.js)
 
 ## Contributing
 
-See the kubernetes-client [Issues](./issues) if you're interested in
-helping out; and look over the [CONTRIBUTING.md](./CONTRIBUTING.md)
-before submitting new Issues and Pull Requests.
+See [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 ## Testing
 
@@ -236,14 +193,17 @@ Run the unit tests:
 npm test
 ```
 
-## References
+The integration tests use the `current-context` in your kubeconfig file. Run the integration tests:
 
-* [An Intuitive Node.js Client for the Kubernetes API](https://godaddy.github.io/2018/04/10/an-intuitive-nodejs-client-for-the-kubernetes-api/)
-* [Kubernetes Reference Documentation](https://kubernetes.io/docs/reference/)
+```
+npm run test-integration
+```
 
-## License
+Run integration tests with the `@kubernetes/client-node` backend:
 
-[MIT](LICENSE)
+```
+KUBERNETES_CLIENT_BACKEND=client-node npm run test-integration
+```
 
 [1]: https://swagger.io/specification/#pathItemObject
 [2]: https://swagger.io/specification/#pathTemplating

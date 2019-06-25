@@ -6,8 +6,14 @@ const expect = require('chai').expect
 const nock = require('nock')
 
 const Client = require('./swagger-client').Client
+const KubeConfig = require('./config')
+const Request = require('../backends/request')
 
 const url = 'http://mock.kube.api'
+const kubeconfig = new KubeConfig()
+kubeconfig.loadFromClusterAndUser(
+  { name: 'cluster', server: url },
+  { name: 'user' })
 
 describe('lib.swagger-client', () => {
   describe('.Client', () => {
@@ -28,8 +34,8 @@ describe('lib.swagger-client', () => {
         })
 
         it('creates a dynamically generated client', done => {
-          const config = { url }
-          const client = new Client({ config })
+          const backend = new Request({ kubeconfig })
+          const client = new Client({ backend })
           client.loadSpec()
             .then(() => {
               expect(client.api.get).is.a('function')
@@ -59,8 +65,8 @@ describe('lib.swagger-client', () => {
         })
 
         it('creates a dynamically generated client', (done) => {
-          const config = { url }
-          const client = new Client({ config })
+          const backend = new Request({ kubeconfig })
+          const client = new Client({ backend })
           client.loadSpec()
             .then(() => {
               expect(client.api.get).is.a('function')
@@ -90,8 +96,8 @@ describe('lib.swagger-client', () => {
         })
 
         it('returns an error message with the status code', (done) => {
-          const config = { url }
-          const client = new Client({ config })
+          const backend = new Request({ kubeconfig })
+          const client = new Client({ backend })
           client.loadSpec()
             .then(() => {
               const err = new Error('This test should have caused an error')
@@ -124,8 +130,8 @@ describe('lib.swagger-client', () => {
         })
 
         it('returns an error message with the status code', (done) => {
-          const config = { url }
-          const client = new Client({ config })
+          const backend = new Request({ kubeconfig })
+          const client = new Client({ backend })
           client.loadSpec()
             .then(() => {
               const err = new Error('This test should have caused an error')
@@ -139,10 +145,56 @@ describe('lib.swagger-client', () => {
       })
     })
 
+    describe('._getByteStream', () => {
+      it('logs returns HTTP stream', async () => {
+        nock(url)
+          .get('/api/v1/namespaces/foo/pods/bar/log')
+          .reply(200, 'hello')
+
+        const backend = new Request({ kubeconfig })
+        const client = new Client({ backend, version: '1.9' })
+        const stream = await client.api.v1.namespaces('foo').pods('bar').log.getByteStream()
+        return new Promise((resolve, reject) => {
+          stream.on('data', data => {
+            expect(data.toString()).to.equal('hello')
+            stream.destroy()
+            resolve()
+          })
+          stream.on('error', err => {
+            reject(err)
+          })
+        })
+      })
+    })
+
+    describe('._getObjectStream', () => {
+      it('watch endpoint returns HTTP stream', async () => {
+        nock(url)
+          .get('/api/v1/watch/namespaces')
+          .reply(200, {
+            type: 'ADDED'
+          })
+
+        const backend = new Request({ kubeconfig })
+        const client = new Client({ backend, version: '1.9' })
+        const stream = await client.api.v1.watch.namespaces.getObjectStream()
+        return new Promise((resolve, reject) => {
+          stream.on('data', obj => {
+            expect(obj).to.deep.equal({ type: 'ADDED' })
+            stream.destroy()
+            resolve()
+          })
+          stream.on('error', err => {
+            reject(err)
+          })
+        })
+      })
+    })
+
     describe('.constructor', () => {
       it('creates a dynamically generated client synchronously based on version', () => {
-        const options = { config: {}, version: '1.9' }
-        const client = new Client(options)
+        const backend = new Request({ kubeconfig })
+        const client = new Client({ backend, version: '1.9' })
         expect(client.api.get).is.a('function')
       })
 
@@ -164,6 +216,85 @@ describe('lib.swagger-client', () => {
 
       it('adds functions for Namespaced CustomResourceDefinitions', () => {
         const client = new Client({ spec: { paths: {} }, backend: {} })
+        const versions = [
+          {
+            name: 'v1beta1',
+            served: true,
+            storage: false
+          },
+          {
+            'name': 'v1beta2',
+            'served': true,
+            'storage': true
+          }
+        ]
+        const crd = {
+          spec: {
+            scope: 'Namespaced',
+            group: 'stable.example.com',
+            versions,
+            names: {
+              plural: 'foos'
+            }
+          }
+        }
+        client.addCustomResourceDefinition(crd)
+        versions.forEach(({ name: version }) => {
+          expect(client.apis['stable.example.com'][version].foos.get).is.a('function')
+          expect(client.apis['stable.example.com'][version].namespaces('default').foos.get).is.a('function')
+          expect(client.apis['stable.example.com'][version].namespaces('default').foos.post).is.a('function')
+          expect(client.apis['stable.example.com'][version].namespaces('default').foos('blah').get).is.a('function')
+          expect(client.apis['stable.example.com'][version].namespaces('default').foos('blah').delete).is.a('function')
+          expect(client.apis['stable.example.com'][version].namespaces('default').foos('blah').get).is.a('function')
+          expect(client.apis['stable.example.com'][version].namespaces('default').foos('blah').patch).is.a('function')
+          expect(client.apis['stable.example.com'][version].namespaces('default').foos('blah').put).is.a('function')
+          expect(client.apis['stable.example.com'][version].watch.foos.getStream).is.a('function')
+          expect(client.apis['stable.example.com'][version].watch.namespaces('default').foos.getStream).is.a('function')
+          expect(client.apis['stable.example.com'][version].watch.namespaces('default').foos('blah').getStream).is.a('function')
+        })
+      })
+
+      it('adds functions for Cluster CustomResourceDefinitions', () => {
+        const client = new Client({ spec: { paths: {} }, backend: {} })
+        const versions = [
+          {
+            name: 'v1beta1',
+            served: true,
+            storage: false
+          },
+          {
+            'name': 'v1beta2',
+            'served': true,
+            'storage': true
+          }
+        ]
+        const crd = {
+          spec: {
+            scope: 'Cluster',
+            group: 'stable.example.com',
+            versions,
+            names: {
+              plural: 'foos'
+            }
+          }
+        }
+        client.addCustomResourceDefinition(crd)
+        versions.forEach(({ name: version }) => {
+          expect(client.apis['stable.example.com'][version].foos.get).is.a('function')
+          expect(client.apis['stable.example.com'][version].foos.post).is.a('function')
+          expect(client.apis['stable.example.com'][version].foos('blah').get).is.a('function')
+          expect(client.apis['stable.example.com'][version].foos('blah').delete).is.a('function')
+          expect(client.apis['stable.example.com'][version].foos('blah').get).is.a('function')
+          expect(client.apis['stable.example.com'][version].foos('blah').patch).is.a('function')
+          expect(client.apis['stable.example.com'][version].foos('blah').put).is.a('function')
+          expect(client.apis['stable.example.com'][version].watch.foos.getStream).is.a('function')
+          expect(client.apis['stable.example.com'][version].watch.foos.getStream).is.a('function')
+          expect(client.apis['stable.example.com'][version].watch.foos('blah').getStream).is.a('function')
+        })
+      })
+
+      it('supports deprecated "version" field for Namespaced CustomResourceDefinitions', () => {
+        const client = new Client({ spec: { paths: {} }, backend: {} })
         const crd = {
           spec: {
             scope: 'Namespaced',
@@ -184,11 +315,11 @@ describe('lib.swagger-client', () => {
         expect(client.apis['stable.example.com'].v1.namespaces('default').foos('blah').patch).is.a('function')
         expect(client.apis['stable.example.com'].v1.namespaces('default').foos('blah').put).is.a('function')
         expect(client.apis['stable.example.com'].v1.watch.foos.getStream).is.a('function')
-        expect(client.apis['stable.example.com'].v1.namespaces('default').watch.foos.getStream).is.a('function')
-        expect(client.apis['stable.example.com'].v1.namespaces('default').watch.foos('blah').getStream).is.a('function')
+        expect(client.apis['stable.example.com'].v1.watch.namespaces('default').foos.getStream).is.a('function')
+        expect(client.apis['stable.example.com'].v1.watch.namespaces('default').foos('blah').getStream).is.a('function')
       })
 
-      it('adds functions for Cluster CustomResourceDefinitions', () => {
+      it('supports deprecated "version" field for Cluster CustomResourceDefinitions', () => {
         const client = new Client({ spec: { paths: {} }, backend: {} })
         const crd = {
           spec: {

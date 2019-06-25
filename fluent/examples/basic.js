@@ -3,13 +3,12 @@
 // Demonstrate some of the basics.
 //
 const Client = require('kubernetes-client').Client
-const config = require('kubernetes-client').config
 
 const deploymentManifest = require('./nginx-deployment.json')
 
 async function main () {
   try {
-    const client = new Client({ config: config.fromKubeconfig(), version: '1.9' })
+    const client = new Client({ version: '1.9' })
 
     //
     // Get all the Namespaces.
