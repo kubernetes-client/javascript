@@ -52,10 +52,10 @@
     "@types/request": "^2.47.1",
     "@types/underscore": "^1.8.9",
     "@types/ws": "^6.0.1",
+    "byline": "^5.0.0",
     "execa": "1.0.0",
     "isomorphic-ws": "^4.0.1",
     "js-yaml": "^3.13.1",
-    "json-stream": "^1.0.0",
     "jsonpath-plus": "^0.19.0",
     "request": "^2.88.0",
     "shelljs": "^0.8.2",
@@ -64,6 +64,7 @@
     "ws": "^6.1.0"
   },
   "devDependencies": {
+    "@types/byline": "^4.2.31",
     "@types/chai": "^4.1.6",
     "@types/chai-as-promised": "^7.1.0",
     "@types/mocha": "^5.2.7",

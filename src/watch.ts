@@ -1,4 +1,4 @@
-import JSONStream = require('json-stream');
+import byline = require('byline');
 import request = require('request');
 import { KubeConfig } from './config';
 
@@ -55,8 +55,15 @@ export class Watch {
         };
         this.config.applyToRequest(requestOptions);
 
-        const stream = new JSONStream();
-        stream.on('data', (data) => callback(data.type, data.object));
+        const stream = byline.createStream();
+        stream.on('data', (line) => {
+            try {
+                const data = JSON.parse(line);
+                callback(data.type, data.object);
+            } catch (ignore) {
+                // ignore parse errors
+            }
+        });
         const req = this.requestImpl.webRequest(requestOptions, (error, response, body) => {
             if (error) {
                 done(error);
