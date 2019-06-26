@@ -10,6 +10,8 @@ before_install:
 
 install:
   - 'npm install'
+  - '(cd fluent; npm install)'
 script:
   - 'npm test'
   - 'npm run lint'
+  - 'npm run test-fluent'
