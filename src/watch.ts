@@ -67,6 +67,8 @@ export class Watch {
         const req = this.requestImpl.webRequest(requestOptions, (error, response, body) => {
             if (error) {
                 done(error);
+            } else if (response && response.statusCode !== 200) {
+                done(new Error(response.StatusMessage));
             } else {
                 done(null);
             }
