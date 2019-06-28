@@ -15,12 +15,11 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "format": "prettier --loglevel error --write './src/**/*.ts'",
-    "lint": "tslint --project \".\" && prettier --check './src/**/*.ts' && tslint --project \"./examples/typescript\"",
+    "lint": "tslint --project \".\" && prettier --check './src/**/*.ts' && tslint --project \"./examples/typescript\" && cd fluent && npm run lint",
     "clean": "rm -Rf node_modules/ dist/",
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "nyc mocha",
-    "test-fluent": "cd fluent; npm test",
+    "test": "nyc mocha && cd fluent && npm test",
     "prepare": "npm run build"
   },
   "nyc": {
@@ -104,7 +103,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm test && npm run lint && npm run test-fluent"
+      "pre-push": "npm test && npm run lint"
     }
   }
 }
