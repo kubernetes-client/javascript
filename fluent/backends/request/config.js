@@ -1,6 +1,7 @@
 'use strict'
 /* eslint no-process-env: 0 no-sync:0 */
 
+const deprecate = require('depd')('kubernetes-client')
 const fs = require('fs')
 const path = require('path')
 const yaml = require('js-yaml')
@@ -10,48 +11,6 @@ const root = process.env.KUBERNETES_CLIENT_SERVICEACCOUNT_ROOT || '/var/run/secr
 const caPath = path.join(root, 'ca.crt')
 const tokenPath = path.join(root, 'token')
 const namespacePath = path.join(root, 'namespace')
-
-function defaultConfigPaths () {
-  if (process.env.KUBECONFIG) {
-    // From https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/#set-the-kubeconfig-environment-variable
-    // KUBECONFIG can support multiple config files.
-    const delimiter = process.platform === 'win32' ? ';' : ':'
-    return process.env.KUBECONFIG.split(delimiter)
-  }
-  const homeDir = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
-  return [path.join(homeDir, '.kube', 'config')]
-}
-
-/**
-* Returns with in cluster config
-* Based on: https://github.com/kubernetes/client-go/blob/124670e99da15091e13916f0ad4b2b2df2a39cd5/rest/config.go#L274
-* and http://kubernetes.io/docs/user-guide/accessing-the-cluster/#accessing-the-api-from-a-pod
-*
-* @function getInCluster
-* @returns {Object} { url, cert, auth, namespace }
-*/
-function getInCluster () {
-  const host = process.env.KUBERNETES_SERVICE_HOST
-  const port = process.env.KUBERNETES_SERVICE_PORT
-  if (!host || !port) {
-    throw new TypeError(
-      'Unable to load in-cluster configuration, KUBERNETES_SERVICE_HOST' +
-      ' and KUBERNETES_SERVICE_PORT must be defined')
-  }
-
-  const ca = fs.readFileSync(caPath, 'utf8')
-  const bearer = fs.readFileSync(tokenPath, 'utf8')
-  const namespace = fs.readFileSync(namespacePath, 'utf8')
-
-  return {
-    url: `https://${host}:${port}`,
-    ca,
-    auth: { bearer },
-    namespace
-  }
-}
-
-module.exports.getInCluster = getInCluster
 
 function convertKubeconfig (kubeconfig) {
   const context = kubeconfig.getCurrentContext()
@@ -161,6 +120,50 @@ function convertKubeconfig (kubeconfig) {
 }
 
 module.exports.convertKubeconfig = convertKubeconfig
+
+function defaultConfigPaths () {
+  if (process.env.KUBECONFIG) {
+    // From https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/#set-the-kubeconfig-environment-variable
+    // KUBECONFIG can support multiple config files.
+    const delimiter = process.platform === 'win32' ? ';' : ':'
+    return process.env.KUBECONFIG.split(delimiter)
+  }
+  const homeDir = process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
+  return [path.join(homeDir, '.kube', 'config')]
+}
+
+/**
+* Returns with in cluster config
+* Based on: https://github.com/kubernetes/client-go/blob/124670e99da15091e13916f0ad4b2b2df2a39cd5/rest/config.go#L274
+* and http://kubernetes.io/docs/user-guide/accessing-the-cluster/#accessing-the-api-from-a-pod
+*
+* @function getInCluster
+* @returns {Object} { url, cert, auth, namespace }
+*/
+function getInCluster () {
+  const host = process.env.KUBERNETES_SERVICE_HOST
+  const port = process.env.KUBERNETES_SERVICE_PORT
+  if (!host || !port) {
+    throw new TypeError(
+      'Unable to load in-cluster configuration, KUBERNETES_SERVICE_HOST' +
+      ' and KUBERNETES_SERVICE_PORT must be defined')
+  }
+
+  const ca = fs.readFileSync(caPath, 'utf8')
+  const bearer = fs.readFileSync(tokenPath, 'utf8')
+  const namespace = fs.readFileSync(namespacePath, 'utf8')
+
+  return {
+    url: `https://${host}:${port}`,
+    ca,
+    auth: { bearer },
+    namespace
+  }
+}
+
+module.exports.getInCluster = deprecate.function(
+  getInCluster,
+  'getInCluster see https://github.com/godaddy/kubernetes-client/blob/master/merging-with-kubernetes.md#request-kubeconfig-')
 
 //
 // Accept a manually specified current-context to take precedence over
@@ -291,7 +294,9 @@ function fromKubeconfig (kubeconfig, current) {
 }
 /* eslint-enable complexity, max-statements */
 
-module.exports.fromKubeconfig = fromKubeconfig
+module.exports.fromKubeconfig = deprecate.function(
+  fromKubeconfig,
+  'fromKubeconfig see https://github.com/godaddy/kubernetes-client/blob/master/merging-with-kubernetes.md#request-kubeconfig-')
 
 function mapCertificates (cfgPath, config) {
   const configDir = path.dirname(cfgPath)
@@ -334,4 +339,6 @@ function loadKubeconfig (cfgPath) {
   return merge.all(configs)
 }
 
-module.exports.loadKubeconfig = loadKubeconfig
+module.exports.loadKubeconfig = deprecate.function(
+  loadKubeconfig,
+  'loadKubeconfig see https://github.com/godaddy/kubernetes-client/blob/master/merging-with-kubernetes.md#request-kubeconfig-')
