@@ -17,7 +17,7 @@ const WebSocket = require('ws')
  */
 function refreshAuth (type, config) {
   return new Promise((resolve, reject) => {
-    const provider = require(`../../lib/auth-providers/${type}.js`)
+    const provider = require(`./auth-providers/${type}.js`)
     provider.refresh(config)
       .then(result => {
         const auth = {
