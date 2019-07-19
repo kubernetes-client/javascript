@@ -12,6 +12,7 @@ import { Authenticator } from './auth';
 import { CloudAuth } from './cloud_auth';
 import { Cluster, Context, newClusters, newContexts, newUsers, User } from './config_types';
 import { ExecAuth } from './exec_auth';
+import { OpenIDConnectAuth } from './oidc_auth';
 
 // fs.existsSync was removed in node 10
 function fileExists(filepath: string): boolean {
@@ -24,7 +25,11 @@ function fileExists(filepath: string): boolean {
 }
 
 export class KubeConfig {
-    private static authenticators: Authenticator[] = [new CloudAuth(), new ExecAuth()];
+    private static authenticators: Authenticator[] = [
+        new CloudAuth(),
+        new ExecAuth(),
+        new OpenIDConnectAuth(),
+    ];
 
     /**
      * The list of all known clusters
