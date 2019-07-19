@@ -12,11 +12,7 @@ export class PortForward {
 
     // handler is a parameter really only for injecting for testing.
     constructor(config: KubeConfig, disconnectOnErr?: boolean, handler?: WebSocketInterface) {
-        if (!handler) {
-            this.handler = new WebSocketHandler(config);
-        } else {
-            this.handler = handler;
-        }
+        this.handler = handler || new WebSocketHandler(config);
         this.disconnectOnErr = isUndefined(disconnectOnErr) ? true : disconnectOnErr;
     }
 

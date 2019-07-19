@@ -13,11 +13,7 @@ export class Exec {
     private terminalSizeQueue?: TerminalSizeQueue;
 
     public constructor(config: KubeConfig, wsInterface?: WebSocketInterface) {
-        if (wsInterface) {
-            this.handler = wsInterface;
-        } else {
-            this.handler = new WebSocketHandler(config);
-        }
+        this.handler = wsInterface || new WebSocketHandler(config);
     }
 
     /**

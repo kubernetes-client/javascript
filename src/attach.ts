@@ -12,11 +12,7 @@ export class Attach {
     private terminalSizeQueue?: TerminalSizeQueue;
 
     public constructor(config: KubeConfig, websocketInterface?: WebSocketInterface) {
-        if (websocketInterface) {
-            this.handler = websocketInterface;
-        } else {
-            this.handler = new WebSocketHandler(config);
-        }
+        this.handler = websocketInterface || new WebSocketHandler(config);
     }
 
     public async attach(
