@@ -1,5 +1,7 @@
 import * as proc from 'child_process';
+import https = require('https');
 import * as jsonpath from 'jsonpath-plus';
+import request = require('request');
 
 import { Authenticator } from './auth';
 import { User } from './config_types';
@@ -30,6 +32,10 @@ export class CloudAuth implements Authenticator {
             this.updateAccessToken(config);
         }
         return 'Bearer ' + config['access-token'];
+    }
+
+    public applyAuthentication(user: User, opts: request.Options | https.RequestOptions) {
+        // pass
     }
 
     private isExpired(config: Config) {

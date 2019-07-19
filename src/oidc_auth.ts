@@ -1,3 +1,6 @@
+import https = require('https');
+import request = require('request');
+
 import { Authenticator } from './auth';
 import { User } from './config_types';
 
@@ -16,5 +19,9 @@ export class OpenIDConnectAuth implements Authenticator {
         // TODO: Handle expiration and refresh here...
         // TODO: Extract the 'Bearer ' to config.ts?
         return `Bearer ${user.authProvider.config['id-token']}`;
+    }
+
+    public async applyAuthentication(user: User, opts: request.Options | https.RequestOptions) {
+        // pass
     }
 }
