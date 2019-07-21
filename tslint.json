@@ -4,6 +4,8 @@
   "linterOptions": {
     "exclude": [
       "src/api.ts",
+      "src/api/*",
+      "src/model/*",
       "dist",
       "node_modules"
     ]

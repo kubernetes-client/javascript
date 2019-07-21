@@ -23,6 +23,3 @@ export CLIENT_VERSION="0.8-SNAPSHOT"
 
 # Name of the release package
 export PACKAGE_NAME="@kubernetes/node-client"
-
-# Swagger Codegen version: use last v2.
-export SWAGGER_CODEGEN_COMMIT="v2.4.5"

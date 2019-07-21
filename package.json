@@ -28,6 +28,8 @@
     ],
     "exclude": [
       "src/api.ts",
+      "src/api/*.ts",
+      "src/model/*.ts",
       "src/index.ts",
       "src/*_test.ts"
     ],
