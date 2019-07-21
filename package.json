@@ -27,7 +27,7 @@
       "src/**/*.ts"
     ],
     "exclude": [
-      "src/api.ts",
+      "src/gen/*/**.ts",
       "src/index.ts",
       "src/*_test.ts"
     ],

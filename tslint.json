@@ -3,7 +3,7 @@
   "defaultSeverity": "error",
   "linterOptions": {
     "exclude": [
-      "src/api.ts",
+      "src/gen/**/*.ts",
       "dist",
       "node_modules"
     ]
