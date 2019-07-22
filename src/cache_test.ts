@@ -14,6 +14,26 @@ use(chaiAsPromised);
 import { Watch } from './watch';
 
 describe('ListWatchCache', () => {
+    it('should throw on unknown update', () => {
+        const fake = mock.mock(Watch);
+        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+            response: http.IncomingMessage;
+            body: V1NamespaceList;
+        }> {
+            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
+                (resolve, reject) => {
+                    resolve({
+                        response: {} as http.IncomingMessage,
+                        body: {} as V1NamespaceList,
+                    });
+                },
+            );
+        };
+        const lw = new ListWatch('/some/path', fake, listFn);
+        const verb = 'FOOBAR';
+        expect(() => lw.on(verb, (obj: V1Namespace) => {})).to.throw(`Unknown verb: ${verb}`);
+    });
+
     it('should perform basic caching', async () => {
         const fakeWatch = mock.mock(Watch);
         const list: V1Namespace[] = [

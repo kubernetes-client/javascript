@@ -8,7 +8,7 @@ export class ExecAuth implements Authenticator {
     private execFn: (cmd: string, args: string[], opts: execa.SyncOptions) => execa.ExecaSyncReturnValue =
         execa.sync;
 
-    public isAuthProvider(user: User) {
+    public isAuthProvider(user: User): boolean {
         if (!user) {
             return false;
         }
@@ -19,7 +19,7 @@ export class ExecAuth implements Authenticator {
             return false;
         }
         return (
-            user.authProvider.name === 'exec' || (user.authProvider.config && user.authProvider.config.exec)
+            user.authProvider.name === 'exec' || !!(user.authProvider.config && user.authProvider.config.exec)
         );
     }
 
