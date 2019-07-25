@@ -2,6 +2,8 @@ import { expect } from 'chai';
 import * as shell from 'shelljs';
 
 import execa = require('execa');
+import request = require('request');
+
 import { ExecAuth } from './exec_auth';
 import { User } from './config_types';
 
@@ -71,6 +73,38 @@ describe('ExecAuth', () => {
             },
         });
         expect(token).to.equal('Bearer foo');
+    });
+
+    it('should correctly exec for certs', async () => {
+        const auth = new ExecAuth();
+        (auth as any).execFn = (
+            command: string,
+            args: string[],
+            opts: execa.SyncOptions,
+        ): execa.ExecaSyncReturnValue => {
+            return {
+                code: 0,
+                stdout: JSON.stringify({ status: { clientCertificateData: 'foo', clientKeyData: 'bar' } }),
+            } as execa.ExecaSyncReturnValue;
+        };
+
+        const user = {
+            name: 'user',
+            authProvider: {
+                config: {
+                    exec: {
+                        command: 'echo',
+                    },
+                },
+            },
+        };
+        const token = auth.getToken(user);
+        expect(token).to.be.null;
+
+        const opts = {} as request.Options;
+        auth.applyAuthentication(user, opts);
+        expect(opts.cert).to.equal('foo');
+        expect(opts.key).to.equal('bar');
     });
 
     it('should correctly exec and cache', async () => {

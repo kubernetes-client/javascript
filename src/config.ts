@@ -346,13 +346,15 @@ export class KubeConfig {
         if (!user) {
             return;
         }
-        let token: string | null = null;
-
-        KubeConfig.authenticators.forEach((authenticator: Authenticator) => {
-            if (authenticator.isAuthProvider(user)) {
-                token = authenticator.getToken(user);
-            }
+        const authenticator = KubeConfig.authenticators.find((elt: Authenticator) => {
+            return elt.isAuthProvider(user);
         });
+
+        let token: string | null = null;
+        if (authenticator) {
+            token = authenticator.getToken(user);
+            authenticator.applyAuthentication(user, opts);
+        }
 
         if (user.token) {
             token = 'Bearer ' + user.token;
