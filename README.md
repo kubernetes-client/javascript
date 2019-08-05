@@ -119,7 +119,7 @@ npm install
 cd ../
 git clone https://github.com/kubernetes-client/gen
 cd javascript
-../gen/openapi/typescript.sh src settings
+../gen/openapi/typescript.sh src/gen settings
 ```
 
 ## Formatting
