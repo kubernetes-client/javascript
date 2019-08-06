@@ -68,7 +68,7 @@ export class Watch {
             if (error) {
                 done(error);
             } else if (response && response.statusCode !== 200) {
-                done(new Error(response.StatusMessage));
+                done(new Error(response.statusMessage));
             } else {
                 done(null);
             }
