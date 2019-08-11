@@ -19,7 +19,7 @@ export const DELETE: string = 'delete';
 export interface Informer<T> {
     on(verb: string, fn: ObjectCallback<T>);
     off(verb: string, fn: ObjectCallback<T>);
-    start();
+    start(): Promise<void>;
 }
 
 export function makeInformer<T>(

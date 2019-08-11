@@ -28,8 +28,8 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         }
     }
 
-    public start() {
-        this.doneHandler(null);
+    public async start(): Promise<void> {
+        await this.doneHandler(null);
     }
 
     public on(verb: string, cb: ObjectCallback<T>) {
