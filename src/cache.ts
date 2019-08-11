@@ -20,6 +20,9 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     ) {
         this.watch = watch;
         this.listFn = listFn;
+        this.callbackCache[ADD] = [];
+        this.callbackCache[UPDATE] = [];
+        this.callbackCache[DELETE] = [];
         if (autoStart) {
             this.doneHandler(null);
         }
@@ -30,13 +33,23 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     }
 
     public on(verb: string, cb: ObjectCallback<T>) {
-        if (verb !== ADD && verb !== UPDATE && verb !== DELETE) {
+        if (this.callbackCache[verb] === undefined) {
             throw new Error(`Unknown verb: ${verb}`);
         }
-        if (!this.callbackCache[verb]) {
-            this.callbackCache[verb] = [];
-        }
         this.callbackCache[verb].push(cb);
+    }
+
+    public off(verb: string, cb: ObjectCallback<T>) {
+        if (this.callbackCache[verb] === undefined) {
+            throw new Error(`Unknown verb: ${verb}`);
+        }
+        const indexToRemove: number = this.callbackCache[verb].findIndex(
+            (cachedCb: ObjectCallback<T>) => cachedCb === cb,
+        );
+        if (indexToRemove === -1) {
+            return;
+        }
+        this.callbackCache[verb].splice(indexToRemove, 1);
     }
 
     public get(name: string, namespace?: string): T | undefined {
@@ -58,7 +71,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         const promise = this.listFn();
         const result = await promise;
         const list = result.body;
-        deleteItems(this.objects, list.items, this.callbackCache[DELETE]);
+        deleteItems(this.objects, list.items, this.callbackCache[DELETE].slice());
         this.addOrUpdateItems(list.items);
         this.watch.watch(
             this.path,
@@ -70,7 +83,12 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
 
     private addOrUpdateItems(items: T[]) {
         items.forEach((obj: T) => {
-            addOrUpdateObject(this.objects, obj, this.callbackCache[ADD], this.callbackCache[UPDATE]);
+            addOrUpdateObject(
+                this.objects,
+                obj,
+                this.callbackCache[ADD].slice(),
+                this.callbackCache[UPDATE].slice(),
+            );
             if (obj.metadata!.namespace) {
                 this.indexObj(obj);
             }
@@ -90,13 +108,18 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         switch (phase) {
             case 'ADDED':
             case 'MODIFIED':
-                addOrUpdateObject(this.objects, obj, this.callbackCache[ADD], this.callbackCache[UPDATE]);
+                addOrUpdateObject(
+                    this.objects,
+                    obj,
+                    this.callbackCache[ADD].slice(),
+                    this.callbackCache[UPDATE].slice(),
+                );
                 if (obj.metadata!.namespace) {
                     this.indexObj(obj);
                 }
                 break;
             case 'DELETED':
-                deleteObject(this.objects, obj, this.callbackCache[DELETE]);
+                deleteObject(this.objects, obj, this.callbackCache[DELETE].slice());
                 if (obj.metadata!.namespace) {
                     const namespaceList = this.indexCache[obj.metadata!.namespace!] as T[];
                     if (namespaceList) {
