@@ -549,6 +549,113 @@ describe('ListWatchCache', () => {
         } as V1Pod);
         expect(list.length).to.equal(1);
     });
+    it('should not call handlers which have been unregistered', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const list: V1Namespace[] = [];
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+            response: http.IncomingMessage;
+            body: V1NamespaceList;
+        }> {
+            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>((resolve) => {
+                resolve({ response: {} as http.IncomingMessage, body: listObj });
+            });
+        };
+        const watchCalled = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(resolve);
+        });
+        const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
+
+        const addedList1: V1Namespace[] = [];
+        const addToList1Fn = function(obj: V1Namespace) {
+            addedList1.push(obj);
+        };
+        const addedList2: V1Namespace[] = [];
+        const addToList2Fn = function(obj: V1Namespace) {
+            addedList2.push(obj);
+        };
+
+        informer.start();
+
+        await watchCalled;
+        const [, , watchHandler] = mock.capture(fakeWatch.watch).last();
+
+        informer.on(ADD, addToList1Fn);
+        informer.on(ADD, addToList2Fn);
+
+        watchHandler('ADDED', {
+            metadata: {
+                name: 'name1',
+            } as V1ObjectMeta,
+        } as V1Namespace);
+
+        informer.off(ADD, addToList2Fn);
+
+        watchHandler('ADDED', {
+            metadata: {
+                name: 'name2',
+            } as V1ObjectMeta,
+        } as V1Namespace);
+
+        expect(addedList1.length).to.equal(2);
+        expect(addedList2.length).to.equal(1);
+    });
+
+    it('mutating handlers in a callback should not affect those which remain', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const list: V1Namespace[] = [];
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+            response: http.IncomingMessage;
+            body: V1NamespaceList;
+        }> {
+            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>((resolve) => {
+                resolve({ response: {} as http.IncomingMessage, body: listObj });
+            });
+        };
+        const watchCalled = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(resolve);
+        });
+        const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
+
+        const addedList: V1Namespace[] = [];
+        const addToListFn = function(obj: V1Namespace) {
+            addedList.push(obj);
+        };
+        const removeSelf = function() {
+            informer.off(ADD, removeSelf);
+        };
+
+        informer.start();
+
+        await watchCalled;
+        const [, , watchHandler] = mock.capture(fakeWatch.watch).last();
+
+        informer.on(ADD, removeSelf);
+        informer.on(ADD, addToListFn);
+
+        watchHandler('ADDED', {
+            metadata: {
+                name: 'name1',
+            } as V1ObjectMeta,
+        } as V1Namespace);
+
+        expect(addedList.length).to.equal(1);
+    });
 });
 
 describe('delete items', () => {
