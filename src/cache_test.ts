@@ -656,7 +656,7 @@ describe('ListWatchCache', () => {
 
         expect(addedList.length).to.equal(1);
     });
-     it('should resolve start promise after seeding the cache', async () => {
+    it('should resolve start promise after seeding the cache', async () => {
         const fakeWatch = mock.mock(Watch);
         const list: V1Namespace[] = [
             {
