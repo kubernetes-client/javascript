@@ -18,13 +18,13 @@ export class RuntimeRawExtension {
     /**
     * Raw is the underlying serialization of this object.
     */
-    'raw': string;
+    'Raw': string;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "raw",
+            "name": "Raw",
             "baseName": "Raw",
             "type": "string"
         }    ];

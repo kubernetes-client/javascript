@@ -18,13 +18,13 @@ export class V1DaemonEndpoint {
     /**
     * Port number of the given endpoint.
     */
-    'port': number;
+    'Port': number;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "port",
+            "name": "Port",
             "baseName": "Port",
             "type": "number"
         }    ];

@@ -18,7 +18,7 @@ export class V1beta1CustomResourceColumnDefinition {
     /**
     * JSONPath is a simple JSON path, i.e. with array notation.
     */
-    'jSONPath': string;
+    'JSONPath': string;
     /**
     * description is a human readable description of this column.
     */
@@ -44,7 +44,7 @@ export class V1beta1CustomResourceColumnDefinition {
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "jSONPath",
+            "name": "JSONPath",
             "baseName": "JSONPath",
             "type": "string"
         },
