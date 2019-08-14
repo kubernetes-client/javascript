@@ -656,6 +656,44 @@ describe('ListWatchCache', () => {
 
         expect(addedList.length).to.equal(1);
     });
+    it('should resolve start promise after seeding the cache', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const list: V1Namespace[] = [
+            {
+                metadata: {
+                    name: 'name1',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+            {
+                metadata: {
+                    name: 'name2',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+        ];
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+            response: http.IncomingMessage;
+            body: V1NamespaceList;
+        }> {
+            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>((resolve) => {
+                // setImmediate will defer the resolve to the next message loop to keep the list from being immediately available
+                setImmediate(() => {
+                    resolve({ response: {} as http.IncomingMessage, body: listObj });
+                });
+            });
+        };
+        const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
+        const startPromise: Promise<void> = cache.start();
+        expect(cache.list().length).to.equal(0);
+        await startPromise;
+        expect(cache.list().length).to.equal(2);
+    });
 });
 
 describe('delete items', () => {
