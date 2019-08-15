@@ -25,3 +25,5 @@ export CLIENT_VERSION="0.8-SNAPSHOT"
 export PACKAGE_NAME="@kubernetes/node-client"
 
 export OPENAPI_GENERATOR_COMMIT=v4.1.0
+
+export KUBERNETES_BRANCH="release-1.13"
