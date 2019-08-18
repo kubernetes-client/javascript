@@ -137,7 +137,7 @@ export class WebSocketHandler implements WebSocketInterface {
      * @param binaryHandler Callback for binary data over the web socket.
      *      Returns true if the connection should be kept alive, false to disconnect.
      */
-    public connect(
+    public async connect(
         path: string,
         textHandler: ((text: string) => boolean) | null,
         binaryHandler: ((stream: number, buff: Buffer) => boolean) | null,
@@ -154,9 +154,9 @@ export class WebSocketHandler implements WebSocketInterface {
 
         const opts: WebSocket.ClientOptions = {};
 
-        this.config.applytoHTTPSOptions(opts);
+        await this.config.applytoHTTPSOptions(opts);
 
-        return new Promise((resolve, reject) => {
+        return await new Promise<WebSocket>((resolve, reject) => {
             const client = this.socketFactory
                 ? this.socketFactory(uri, opts)
                 : new WebSocket(uri, protocols, opts);

@@ -1,3 +1,4 @@
+import { promisify } from 'util';
 import { expect } from 'chai';
 import WebSocket = require('isomorphic-ws');
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
@@ -7,6 +8,8 @@ import { V1Status } from './api';
 import { KubeConfig } from './config';
 import { Cluster, Context, User } from './config_types';
 import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
+
+const setImmediatePromise = promisify(setImmediate);
 
 describe('WebSocket', () => {
     it('should throw on unknown code', () => {
@@ -86,7 +89,9 @@ describe('WebSocket', () => {
     it('should throw on a config with no cluster', () => {
         const config = new KubeConfig();
         const handler = new WebSocketHandler(config);
-        expect(() => handler.connect('/some/path', null, null)).to.throw('No cluster is defined.');
+        return expect(handler.connect('/some/path', null, null)).to.eventually.be.rejectedWith(
+            'No cluster is defined.',
+        );
     });
     it('should error on bad connection', async () => {
         const kc = new KubeConfig();
@@ -122,6 +127,7 @@ describe('WebSocket', () => {
         const path = '/some/path';
 
         const promise = handler.connect(path, null, null);
+        await setImmediatePromise();
 
         mockWs.onerror({
             error: 'some error',
@@ -173,6 +179,7 @@ describe('WebSocket', () => {
         const path = '/some/path';
 
         const promise = handler.connect(path, null, null);
+        await setImmediatePromise();
 
         expect(uriOut).to.equal(`wss://${host}${path}`);
 
@@ -254,6 +261,7 @@ describe('WebSocket', () => {
         };
 
         const promise = handler.connect(path, textHandler, binaryHandler);
+        await setImmediatePromise();
 
         expect(uriOut).to.equal(`wss://${host}${path}`);
 
