@@ -18,6 +18,7 @@
     "lint": "tslint --project \".\" && prettier --check './src/**/*.ts' && tslint --project \"./examples/typescript\"",
     "clean": "rm -Rf node_modules/ dist/",
     "build": "tsc",
+    "generate": "USERNAME=kubernetes GEN_COMMIT=7959939 ./generate-client.sh",
     "watch": "tsc --watch",
     "test": "nyc mocha",
     "prepare": "npm run build"

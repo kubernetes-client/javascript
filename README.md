@@ -116,10 +116,7 @@ npm install
 ## (re) Generating code
 
 ```console
-cd ../
-git clone https://github.com/kubernetes-client/gen
-cd javascript
-../gen/openapi/typescript.sh src/gen settings
+npm run generate
 ```
 
 ## Formatting
