@@ -4,6 +4,8 @@ set -o errexit
 set -o nounset
 set -o pipefail
 
+. settings
+
 if [[ -z ${GEN_ROOT:-} ]]; then
     TEMP_FOLDER=$(mktemp -d)
     trap "rm -rf ${TEMP_FOLDER}" EXIT SIGINT

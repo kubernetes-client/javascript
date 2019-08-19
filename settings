@@ -14,6 +14,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# kubernetes-client/gen commit to use for code generation.
+export GEN_COMMIT=7959939
+
+# GitHub username/organization to clone kubernetes repo from.
+export USERNAME=kubernetes
+
 # Kubernetes branch to get the OpenAPI spec from.
 export KUBERNETES_BRANCH="release-1.13"
 
