@@ -108,21 +108,21 @@ export class KubeConfig {
         this.makePathsAbsolute(rootDirectory);
     }
 
-    public applytoHTTPSOptions(opts: https.RequestOptions) {
+    public async applytoHTTPSOptions(opts: https.RequestOptions) {
         const user = this.getCurrentUser();
 
-        this.applyOptions(opts);
+        await this.applyOptions(opts);
 
         if (user && user.username) {
             opts.auth = `${user.username}:${user.password}`;
         }
     }
 
-    public applyToRequest(opts: request.Options) {
+    public async applyToRequest(opts: request.Options) {
         const cluster = this.getCurrentCluster();
         const user = this.getCurrentUser();
 
-        this.applyOptions(opts);
+        await this.applyOptions(opts);
 
         if (cluster && cluster.skipTLSVerify) {
             opts.strictSSL = false;
@@ -341,7 +341,7 @@ export class KubeConfig {
         }
     }
 
-    private applyAuthorizationHeader(opts: request.Options | https.RequestOptions) {
+    private async applyAuthorizationHeader(opts: request.Options | https.RequestOptions) {
         const user = this.getCurrentUser();
         if (!user) {
             return;
@@ -353,7 +353,7 @@ export class KubeConfig {
         let token: string | null = null;
         if (authenticator) {
             token = authenticator.getToken(user);
-            authenticator.applyAuthentication(user, opts);
+            await authenticator.applyAuthentication(user, opts);
         }
 
         if (user.token) {
@@ -368,9 +368,9 @@ export class KubeConfig {
         }
     }
 
-    private applyOptions(opts: request.Options | https.RequestOptions) {
+    private async applyOptions(opts: request.Options | https.RequestOptions) {
         this.applyHTTPSOptions(opts);
-        this.applyAuthorizationHeader(opts);
+        await this.applyAuthorizationHeader(opts);
     }
 }
 

@@ -14,10 +14,10 @@ export class ProtoClient {
             hostname: u.hostname,
             protocol: u.protocol,
         };
-        this.config.applytoHTTPSOptions(options);
+        await this.config.applytoHTTPSOptions(options);
         const req = http.request(options);
 
-        const result = new Promise<any>((resolve, reject) => {
+        const result = await new Promise<any>((resolve, reject) => {
             let data = '';
             req.on('data', (chunk) => {
                 data = data + chunk;

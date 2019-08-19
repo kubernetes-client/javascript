@@ -34,7 +34,7 @@ export class CloudAuth implements Authenticator {
         return 'Bearer ' + config['access-token'];
     }
 
-    public applyAuthentication(user: User, opts: request.Options | https.RequestOptions) {
+    public async applyAuthentication(user: User, opts: request.Options | https.RequestOptions) {
         // pass
     }
 
