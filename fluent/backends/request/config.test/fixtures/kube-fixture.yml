@@ -1,0 +1,21 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: foo-auth-data
+    server: https://192.168.42.121:8443
+  name: foo-cluster-1
+contexts:
+- context:
+    cluster: foo-cluster-1
+    namespace: default
+    user: foo-user
+  name: foo-context-1
+current-context: foo-context-1
+kind: Config
+preferences: {}
+users:
+- name: foo-user
+  user:
+    client-certificate-data: foo-cert-data
+    client-key-data: foo-cert-key
+

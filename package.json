@@ -15,12 +15,12 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "format": "prettier --loglevel error --write './src/**/*.ts'",
-    "lint": "tslint --project \".\" && prettier --check './src/**/*.ts' && tslint --project \"./examples/typescript\"",
+    "lint": "tslint --project \".\" && prettier --check './src/**/*.ts' && tslint --project \"./examples/typescript\" && cd fluent && npm run lint",
     "clean": "rm -Rf node_modules/ dist/",
     "build": "tsc",
     "generate": "./generate-client.sh",
     "watch": "tsc --watch",
-    "test": "nyc mocha",
+    "test": "nyc mocha && cd fluent && npm test",
     "prepare": "npm run build"
   },
   "nyc": {
