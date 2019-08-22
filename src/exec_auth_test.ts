@@ -1,4 +1,7 @@
-import { expect } from 'chai';
+import { expect, use } from 'chai';
+import chaiAsPromised = require('chai-as-promised');
+use(chaiAsPromised);
+
 import * as shell from 'shelljs';
 
 import execa = require('execa');
@@ -61,18 +64,22 @@ describe('ExecAuth', () => {
                 stdout: JSON.stringify({ status: { token: 'foo' } }),
             } as execa.ExecaSyncReturnValue;
         };
-
-        const token = auth.getToken({
-            name: 'user',
-            authProvider: {
-                config: {
-                    exec: {
-                        command: 'echo',
+        const opts = {} as request.Options;
+        opts.headers = [];
+        auth.applyAuthentication(
+            {
+                name: 'user',
+                authProvider: {
+                    config: {
+                        exec: {
+                            command: 'echo',
+                        },
                     },
                 },
             },
-        });
-        expect(token).to.equal('Bearer foo');
+            opts,
+        );
+        expect(opts.headers.Authorization).to.equal('Bearer foo');
     });
 
     it('should correctly exec for certs', async () => {
@@ -98,11 +105,11 @@ describe('ExecAuth', () => {
                 },
             },
         };
-        const token = auth.getToken(user);
-        expect(token).to.be.null;
-
         const opts = {} as request.Options;
+        opts.headers = [];
+
         auth.applyAuthentication(user, opts);
+        expect(opts.headers.Authorization).to.be.undefined;
         expect(opts.cert).to.equal('foo');
         expect(opts.key).to.equal('bar');
     });
@@ -136,28 +143,35 @@ describe('ExecAuth', () => {
                 },
             },
         };
-        var token = auth.getToken(user);
-        expect(token).to.equal(`Bearer ${tokenValue}`);
+
+        const opts = {} as request.Options;
+        opts.headers = [];
+
+        await auth.applyAuthentication(user, opts);
+        expect(opts.headers.Authorization).to.equal(`Bearer ${tokenValue}`);
         expect(execCount).to.equal(1);
 
         // old token should be expired, set expiration for the new token for the future.
         expire = '29 Mar 2095 00:00:00 GMT';
         tokenValue = 'bar';
-        token = auth.getToken(user);
-        expect(token).to.equal(`Bearer ${tokenValue}`);
+        await auth.applyAuthentication(user, opts);
+        expect(opts.headers.Authorization).to.equal(`Bearer ${tokenValue}`);
         expect(execCount).to.equal(2);
 
         // Should use cached token, execCount should stay at two, token shouldn't change
         tokenValue = 'baz';
-        token = auth.getToken(user);
-        expect(token).to.equal('Bearer bar');
+        await auth.applyAuthentication(user, opts);
+        expect(opts.headers.Authorization).to.equal('Bearer bar');
         expect(execCount).to.equal(2);
     });
 
-    it('should return null on no exec info', () => {
+    it('should return null on no exec info', async () => {
         const auth = new ExecAuth();
-        const token = auth.getToken({} as User);
-        expect(token).to.be.null;
+        const opts = {} as request.Options;
+        opts.headers = [];
+
+        await auth.applyAuthentication({} as User, opts);
+        expect(opts.headers.Authorization).to.be.undefined;
     });
 
     it('should throw on exec errors', () => {
@@ -184,8 +198,11 @@ describe('ExecAuth', () => {
                 },
             },
         };
+        const opts = {} as request.Options;
+        opts.headers = [];
 
-        expect(() => auth.getToken(user)).to.throw('Some error!');
+        const promise = auth.applyAuthentication(user, opts);
+        return expect(promise).to.eventually.be.rejected;
     });
 
     it('should exec with env vars', async () => {
@@ -203,22 +220,28 @@ describe('ExecAuth', () => {
             } as execa.ExecaSyncReturnValue;
         };
         process.env.BLABBLE = 'flubble';
-        const token = auth.getToken({
-            name: 'user',
-            authProvider: {
-                config: {
-                    exec: {
-                        command: 'echo',
-                        env: [
-                            {
-                                name: 'foo',
-                                value: 'bar',
-                            },
-                        ],
+        const opts = {} as request.Options;
+        opts.headers = [];
+
+        await auth.applyAuthentication(
+            {
+                name: 'user',
+                authProvider: {
+                    config: {
+                        exec: {
+                            command: 'echo',
+                            env: [
+                                {
+                                    name: 'foo',
+                                    value: 'bar',
+                                },
+                            ],
+                        },
                     },
                 },
             },
-        });
+            opts,
+        );
         expect(optsOut.env.foo).to.equal('bar');
         expect(optsOut.env.PATH).to.equal(process.env.PATH);
         expect(optsOut.env.BLABBLE).to.equal(process.env.BLABBLE);

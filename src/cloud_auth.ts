@@ -26,16 +26,19 @@ export class CloudAuth implements Authenticator {
         return user.authProvider.name === 'azure' || user.authProvider.name === 'gcp';
     }
 
-    public getToken(user: User): string | null {
+    public async applyAuthentication(user: User, opts: request.Options | https.RequestOptions) {
+        const token = this.getToken(user);
+        if (token) {
+            opts.headers!.Authorization = `Bearer ${token}`;
+        }
+    }
+
+    private getToken(user: User): string | null {
         const config = user.authProvider.config;
         if (this.isExpired(config)) {
             this.updateAccessToken(config);
         }
-        return 'Bearer ' + config['access-token'];
-    }
-
-    public async applyAuthentication(user: User, opts: request.Options | https.RequestOptions) {
-        // pass
+        return config['access-token'];
     }
 
     private isExpired(config: Config) {

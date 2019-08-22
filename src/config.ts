@@ -12,6 +12,7 @@ import { Authenticator } from './auth';
 import { CloudAuth } from './cloud_auth';
 import { Cluster, Context, newClusters, newContexts, newUsers, User } from './config_types';
 import { ExecAuth } from './exec_auth';
+import { FileAuth } from './file_auth';
 import { OpenIDConnectAuth } from './oidc_auth';
 
 // fs.existsSync was removed in node 10
@@ -28,6 +29,7 @@ export class KubeConfig {
     private static authenticators: Authenticator[] = [
         new CloudAuth(),
         new ExecAuth(),
+        new FileAuth(),
         new OpenIDConnectAuth(),
     ];
 
@@ -190,7 +192,12 @@ export class KubeConfig {
         this.users = [
             {
                 name: userName,
-                token: fs.readFileSync(`${pathPrefix}${Config.SERVICEACCOUNT_TOKEN_PATH}`).toString(),
+                authProvider: {
+                    name: 'tokenFile',
+                    config: {
+                        tokenFile: `${pathPrefix}${Config.SERVICEACCOUNT_TOKEN_PATH}`,
+                    },
+                },
             },
         ];
         this.contexts = [
@@ -350,21 +357,15 @@ export class KubeConfig {
             return elt.isAuthProvider(user);
         });
 
-        let token: string | null = null;
+        if (!opts.headers) {
+            opts.headers = [];
+        }
         if (authenticator) {
-            token = authenticator.getToken(user);
             await authenticator.applyAuthentication(user, opts);
         }
 
         if (user.token) {
-            token = 'Bearer ' + user.token;
-        }
-
-        if (token) {
-            if (!opts.headers) {
-                opts.headers = [];
-            }
-            opts.headers.Authorization = token;
+            opts.headers.Authorization = `Bearer ${user.token}`;
         }
     }
 

@@ -12,16 +12,19 @@ export class OpenIDConnectAuth implements Authenticator {
         return user.authProvider.name === 'oidc';
     }
 
-    public getToken(user: User): string | null {
+    public async applyAuthentication(user: User, opts: request.Options | https.RequestOptions) {
+        const token = this.getToken(user);
+        if (token) {
+            opts.headers!.Authorization = `Bearer ${token}`;
+        }
+    }
+
+    private getToken(user: User): string | null {
         if (!user.authProvider.config || !user.authProvider.config['id-token']) {
             return null;
         }
         // TODO: Handle expiration and refresh here...
         // TODO: Extract the 'Bearer ' to config.ts?
-        return `Bearer ${user.authProvider.config['id-token']}`;
-    }
-
-    public async applyAuthentication(user: User, opts: request.Options | https.RequestOptions) {
-        // pass
+        return user.authProvider.config['id-token'];
     }
 }
