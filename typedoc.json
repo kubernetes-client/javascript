@@ -1,0 +1,5 @@
+{
+  "mode": "file",
+  "out": "docs",
+  "excludeExternals": true
+}
