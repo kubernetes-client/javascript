@@ -22,7 +22,7 @@
     "watch": "tsc --watch",
     "test": "nyc mocha",
     "prepare": "npm run build",
-    "docs": "typedoc src/gen/api/coreV1Api.ts"
+    "docs": "typedoc src/gen/api"
   },
   "nyc": {
     "include": [

@@ -1,5 +1,4 @@
 {
   "mode": "file",
-  "out": "docs",
-  "excludeExternals": true
+  "out": "docs"
 }
