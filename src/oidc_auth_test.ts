@@ -1,4 +1,5 @@
 import { expect } from 'chai';
+import * as request from 'request';
 
 import { User } from './config_types';
 import { OpenIDConnectAuth } from './oidc_auth';
@@ -31,7 +32,7 @@ describe('OIDCAuth', () => {
         expect(auth.isAuthProvider(user)).to.equal(false);
     });
 
-    it('get a token if present', () => {
+    it('get a token if present', async () => {
         const token = 'some token';
         const user = {
             authProvider: {
@@ -42,10 +43,13 @@ describe('OIDCAuth', () => {
             },
         } as User;
 
-        expect(auth.getToken(user)).to.equal(`Bearer ${token}`);
+        const opts = {} as request.Options;
+        opts.headers = [];
+        await auth.applyAuthentication(user, opts);
+        expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
     });
 
-    it('get null if token missing', () => {
+    it('get null if token missing', async () => {
         const user = {
             authProvider: {
                 name: 'oidc',
@@ -53,6 +57,9 @@ describe('OIDCAuth', () => {
             },
         } as User;
 
-        expect(auth.getToken(user)).to.equal(null);
+        const opts = {} as request.Options;
+        opts.headers = [];
+        await auth.applyAuthentication(user, opts);
+        expect(opts.headers.Authorization).to.be.undefined;
     });
 });

@@ -36,17 +36,6 @@ export class ExecAuth implements Authenticator {
         );
     }
 
-    public getToken(user: User): string | null {
-        const credential = this.getCredential(user);
-        if (!credential) {
-            return null;
-        }
-        if (credential.status.token) {
-            return `Bearer ${credential.status.token}`;
-        }
-        return null;
-    }
-
     public async applyAuthentication(user: User, opts: request.Options | https.RequestOptions) {
         const credential = this.getCredential(user);
         if (!credential) {
@@ -58,6 +47,20 @@ export class ExecAuth implements Authenticator {
         if (credential.status.clientKeyData) {
             opts.key = credential.status.clientKeyData;
         }
+        const token = this.getToken(credential);
+        if (token) {
+            opts.headers!.Authorization = `Bearer ${token}`;
+        }
+    }
+
+    private getToken(credential: Credential): string | null {
+        if (!credential) {
+            return null;
+        }
+        if (credential.status.token) {
+            return credential.status.token;
+        }
+        return null;
     }
 
     private getCredential(user: User): Credential | null {
