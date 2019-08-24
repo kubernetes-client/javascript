@@ -119,6 +119,16 @@ npm install
 npm run generate
 ```
 
+## Documentation
+
+Documentation is generated via typedoc:
+
+```
+npm run docs
+```
+
+To view the generated documentation, open `docs/index.html`
+
 ## Formatting
 
 Run `npm run format` or install an editor plugin like https://github.com/prettier/prettier-vscode and https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
