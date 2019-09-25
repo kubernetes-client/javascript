@@ -9,6 +9,10 @@
   "files": [
     "dist/*.ts",
     "dist/*.js",
+    "dist/gen/*.ts",
+    "dist/gen/*.js",
+    "dist/gen/**/*.ts",
+    "dist/gen/**/*.js",
     "README.md"
   ],
   "main": "dist/index.js",
