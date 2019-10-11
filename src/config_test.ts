@@ -792,14 +792,6 @@ describe('KubeConfig', () => {
             }
         });
         it('should exec succesfully with spaces in cmd', async () => {
-            /**
-             *
-             * to test this, symlink echo to dir that has spaces:
-             * mkdir -p /tmp/foo\ bar/
-             * ln -s /bin/echo /tmp/foo\ bar/echo
-             *
-             * FIXME: Figure out a "portable" way to dynamically do this sort of symlink as part of the test case
-             */
             const config = new KubeConfig();
             const token = 'token';
             const responseStr = `{"token":{"accessToken":"${token}"}}`;
@@ -807,9 +799,9 @@ describe('KubeConfig', () => {
                 { skipTLSVerify: false } as Cluster,
                 {
                     authProvider: {
-                        name: 'azure', // aplias to gcp too as they are both handled by CloudAuth class
+                        name: 'azure', // applies to gcp too as they are both handled by CloudAuth class
                         config: {
-                            'cmd-path': '/tmp/foo bar/echo',
+                            'cmd-path': path.join(__dirname, '..', 'test', 'echo space.js'),
                             'cmd-args': `'${responseStr}'`,
                             'token-key': '{.token.accessToken}',
                             'expiry-key': '{.token.token_expiry}',
