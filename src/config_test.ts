@@ -4,9 +4,12 @@ import { dirname, join } from 'path';
 
 import { expect } from 'chai';
 import mockfs = require('mock-fs');
-import * as requestlib from 'request';
 import * as path from 'path';
+import * as requestlib from 'request';
 
+import * as filesystem from 'fs';
+import { fs } from 'mock-fs';
+import * as os from 'os';
 import { CoreV1Api } from './api';
 import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolutePath } from './config';
 import { Cluster, newClusters, newContexts, newUsers, User } from './config_types';
@@ -774,6 +777,31 @@ describe('KubeConfig', () => {
                         name: 'azure',
                         config: {
                             'cmd-path': 'echo',
+                            'cmd-args': `'${responseStr}'`,
+                            'token-key': '{.token.accessToken}',
+                            'expiry-key': '{.token.token_expiry}',
+                        },
+                    },
+                } as User,
+            );
+            const opts = {} as requestlib.Options;
+            await config.applyToRequest(opts);
+            expect(opts.headers).to.not.be.undefined;
+            if (opts.headers) {
+                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+            }
+        });
+        it('should exec succesfully with spaces in cmd', async () => {
+            const config = new KubeConfig();
+            const token = 'token';
+            const responseStr = `{"token":{"accessToken":"${token}"}}`;
+            config.loadFromClusterAndUser(
+                { skipTLSVerify: false } as Cluster,
+                {
+                    authProvider: {
+                        name: 'azure', // applies to gcp too as they are both handled by CloudAuth class
+                        config: {
+                            'cmd-path': path.join(__dirname, '..', 'test', 'echo space.js'),
                             'cmd-args': `'${responseStr}'`,
                             'token-key': '{.token.accessToken}',
                             'expiry-key': '{.token.token_expiry}',

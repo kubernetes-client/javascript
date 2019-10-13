@@ -63,6 +63,8 @@ export class CloudAuth implements Authenticator {
         if (!cmd) {
             throw new Error('Token is expired!');
         }
+        // Wrap cmd in quotes to make it cope with spaces in path
+        cmd = `"${cmd}"`;
         const args = config['cmd-args'];
         if (args) {
             cmd = cmd + ' ' + args;
