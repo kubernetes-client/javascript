@@ -6,9 +6,11 @@ import * as shell from 'shelljs';
 
 import execa = require('execa');
 import request = require('request');
+import https = require('https');
 
 import { ExecAuth } from './exec_auth';
 import { User } from './config_types';
+import { fail } from 'assert';
 
 describe('ExecAuth', () => {
     it('should claim correctly', () => {
@@ -245,5 +247,38 @@ describe('ExecAuth', () => {
         expect(optsOut.env.foo).to.equal('bar');
         expect(optsOut.env.PATH).to.equal(process.env.PATH);
         expect(optsOut.env.BLABBLE).to.equal(process.env.BLABBLE);
+    });
+
+    it('should handle empty headers array correctly', async () => {
+        const auth = new ExecAuth();
+        (auth as any).execFn = (
+            command: string,
+            args: string[],
+            opts: execa.SyncOptions,
+        ): execa.ExecaSyncReturnValue => {
+            return {
+                code: 0,
+                stdout: JSON.stringify({ status: { token: 'foo' } }),
+            } as execa.ExecaSyncReturnValue;
+        };
+        const opts = {} as https.RequestOptions;
+        auth.applyAuthentication(
+            {
+                name: 'user',
+                authProvider: {
+                    config: {
+                        exec: {
+                            command: 'echo',
+                        },
+                    },
+                },
+            },
+            opts,
+        );
+        if (!opts.headers) {
+            fail('unexpected null headers!');
+        } else {
+            expect(opts.headers.Authorization).to.equal('Bearer foo');
+        }
     });
 });
