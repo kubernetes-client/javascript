@@ -2878,7 +2878,7 @@ export class AppsV1Api {
             .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
             .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
         let localVarQueryParameters: any = {};
-        let localVarHeaderParams: any = (<any>Object).assign({}, this.defaultHeaders);
+        let localVarHeaderParams: any = (<any>Object).assign({'Content-Type':'application/strategic-merge-patch+json'}, this.defaultHeaders);
         let localVarFormParams: any = {};
 
         // verify required parameter 'name' is not null or undefined
