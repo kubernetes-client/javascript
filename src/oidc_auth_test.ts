@@ -171,11 +171,14 @@ describe('OIDCAuth', () => {
                 return {
                     expires_at: newExpiration,
                     id_token: 'newToken',
+                    refresh_token: 'newRefreshToken',
                 };
             },
         });
         expect(opts.headers.Authorization).to.equal('Bearer newToken');
         expect((auth as any).currentTokenExpiration).to.equal(newExpiration);
+        // Check also the new refresh token sticks in the user config
+        expect(user.authProvider.config['refresh-token']).to.equal('newRefreshToken');
     });
 
     it('return a new token when the its the first time we see this user', async () => {

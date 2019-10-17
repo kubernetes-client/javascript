@@ -51,6 +51,7 @@ export class OpenIDConnectAuth implements Authenticator {
         if (Date.now() / 1000 > this.currentTokenExpiration) {
             const newToken = await client.refresh(user.authProvider.config['refresh-token']);
             user.authProvider.config['id-token'] = newToken.id_token;
+            user.authProvider.config['refresh-token'] = newToken.refresh_token;
             this.currentTokenExpiration = newToken.expires_at || 0;
         }
         return user.authProvider.config['id-token'];
