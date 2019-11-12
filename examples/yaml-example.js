@@ -1,5 +1,4 @@
 const k8s = require('@kubernetes/client-node');
-const fs = require('fs');
 
 const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
