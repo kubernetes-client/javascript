@@ -1123,6 +1123,31 @@ describe('KubeConfig', () => {
         });
     });
 
+    describe('Programmatic', () => {
+        it('should be able to generate a valid config from code', () => {
+            const kc = new KubeConfig();
+            kc.addCluster({
+                name: 'testCluster',
+                server: `https://localhost:9889`,
+                skipTLSVerify: true,
+            });
+            kc.addUser({
+                token: 'token',
+                username: 'username',
+                name: 'testUser',
+            });
+            kc.addContext({
+                cluster: 'testCluster',
+                name: 'test',
+                user: 'testUser',
+            });
+            kc.setCurrentContext('test');
+
+            expect(kc.getCurrentCluster()!.name).to.equal('testCluster');
+            expect(kc.getCurrentUser()!.username).to.equal('username');
+        });
+    });
+
     describe('BufferOrFile', () => {
         it('should load from root if present', () => {
             const data = 'some data for file';

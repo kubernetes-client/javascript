@@ -53,6 +53,12 @@ export class KubeConfig {
      */
     public 'currentContext': string;
 
+    constructor() {
+        this.contexts = [];
+        this.clusters = [];
+        this.users = [];
+    }
+
     public getContexts() {
         return this.contexts;
     }
@@ -224,6 +230,9 @@ export class KubeConfig {
     }
 
     public addCluster(cluster: Cluster) {
+        if (!this.clusters) {
+            this.clusters = [];
+        }
         this.clusters.forEach((c: Cluster, ix: number) => {
             if (c.name === cluster.name) {
                 throw new Error(`Duplicate cluster: ${c.name}`);
@@ -233,6 +242,9 @@ export class KubeConfig {
     }
 
     public addUser(user: User) {
+        if (!this.users) {
+            this.users = [];
+        }
         this.users.forEach((c: User, ix: number) => {
             if (c.name === user.name) {
                 throw new Error(`Duplicate user: ${c.name}`);
@@ -242,6 +254,9 @@ export class KubeConfig {
     }
 
     public addContext(ctx: Context) {
+        if (!this.contexts) {
+            this.contexts = [];
+        }
         this.contexts.forEach((c: Context, ix: number) => {
             if (c.name === ctx.name) {
                 throw new Error(`Duplicate context: ${c.name}`);
