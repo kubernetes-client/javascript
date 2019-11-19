@@ -33,11 +33,16 @@ export class OpenIDConnectAuth implements Authenticator {
     }
 
     private async getToken(user: User, overrideClient?: Client): Promise<string | null> {
+        if (!user.authProvider.config) {
+            return null;
+        }
+        if (!user.authProvider.config['client-secret']) {
+            user.authProvider.config['client-secret'] = '';
+        }
         if (
             !user.authProvider.config ||
             !user.authProvider.config['id-token'] ||
             !user.authProvider.config['client-id'] ||
-            !user.authProvider.config['client-secret'] ||
             !user.authProvider.config['refresh-token'] ||
             !user.authProvider.config['idp-issuer-url']
         ) {
