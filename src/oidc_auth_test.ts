@@ -70,7 +70,7 @@ describe('OIDCAuth', () => {
         expect(opts.headers.Authorization).to.be.undefined;
     });
 
-    it('authorization should be undefined if client-secret missing', async () => {
+    it('authorization should be work if client-secret missing', async () => {
         const user = {
             authProvider: {
                 name: 'oidc',
@@ -85,8 +85,9 @@ describe('OIDCAuth', () => {
 
         const opts = {} as request.Options;
         opts.headers = [];
-        await auth.applyAuthentication(user, opts);
-        expect(opts.headers.Authorization).to.be.undefined;
+        (auth as any).currentTokenExpiration = Date.now() / 1000 + 1000;
+        await auth.applyAuthentication(user, opts, {});
+        expect(opts.headers.Authorization).to.equal('Bearer fakeToken');
     });
 
     it('authorization should be undefined if refresh-token missing', async () => {
