@@ -18,6 +18,7 @@ export class DefaultRequest implements RequestInterface {
 }
 
 export class Watch {
+    public static SERVER_SIDE_CLOSE = { error: 'Connection closed on server' };
     public config: KubeConfig;
     private readonly requestImpl: RequestInterface;
 
@@ -64,6 +65,10 @@ export class Watch {
                 // ignore parse errors
             }
         });
+        stream.on('error', (err) => {
+            done(err);
+        });
+        stream.on('close', () => done(null));
         const req = this.requestImpl.webRequest(requestOptions, (error, response, body) => {
             if (error) {
                 done(error);

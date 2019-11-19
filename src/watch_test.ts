@@ -112,6 +112,123 @@ describe('Watch', () => {
         expect(doneErr).to.deep.equal(errIn);
     });
 
+    it('should handle errors correctly', () => {
+        const kc = new KubeConfig();
+        Object.assign(kc, fakeConfig);
+        const fakeRequestor = mock(DefaultRequest);
+        const watch = new Watch(kc, instance(fakeRequestor));
+
+        const obj1 = {
+            type: 'ADDED',
+            object: {
+                foo: 'bar',
+            },
+        };
+
+        const errIn = { error: 'err' };
+        const fakeRequest = {
+            pipe: (stream) => {
+                stream.write(JSON.stringify(obj1) + '\n');
+                stream.emit('error', errIn);
+            },
+        };
+
+        when(fakeRequestor.webRequest(anything(), anyFunction())).thenReturn(fakeRequest);
+
+        const path = '/some/path/to/object';
+
+        const receivedTypes: string[] = [];
+        const receivedObjects: string[] = [];
+        let doneCalled = false;
+        let doneErr: any;
+
+        watch.watch(
+            path,
+            {},
+            (phase: string, obj: string) => {
+                receivedTypes.push(phase);
+                receivedObjects.push(obj);
+            },
+            (err: any) => {
+                doneCalled = true;
+                doneErr = err;
+            },
+        );
+
+        verify(fakeRequestor.webRequest(anything(), anyFunction()));
+
+        const [opts, doneCallback] = capture(fakeRequestor.webRequest).last();
+        const reqOpts: request.OptionsWithUri = opts as request.OptionsWithUri;
+
+        expect(reqOpts.uri).to.equal(`${server}${path}`);
+        expect(reqOpts.method).to.equal('GET');
+        expect(reqOpts.json).to.equal(true);
+
+        expect(receivedTypes).to.deep.equal([obj1.type]);
+        expect(receivedObjects).to.deep.equal([obj1.object]);
+
+        expect(doneCalled).to.equal(true);
+        expect(doneErr).to.deep.equal(errIn);
+    });
+
+    it('should handle server side close correctly', () => {
+        const kc = new KubeConfig();
+        Object.assign(kc, fakeConfig);
+        const fakeRequestor = mock(DefaultRequest);
+        const watch = new Watch(kc, instance(fakeRequestor));
+
+        const obj1 = {
+            type: 'ADDED',
+            object: {
+                foo: 'bar',
+            },
+        };
+
+        const fakeRequest = {
+            pipe: (stream) => {
+                stream.write(JSON.stringify(obj1) + '\n');
+                stream.emit('close');
+            },
+        };
+
+        when(fakeRequestor.webRequest(anything(), anyFunction())).thenReturn(fakeRequest);
+
+        const path = '/some/path/to/object';
+
+        const receivedTypes: string[] = [];
+        const receivedObjects: string[] = [];
+        let doneCalled = false;
+        let doneErr: any;
+
+        watch.watch(
+            path,
+            {},
+            (phase: string, obj: string) => {
+                receivedTypes.push(phase);
+                receivedObjects.push(obj);
+            },
+            (err: any) => {
+                doneCalled = true;
+                doneErr = err;
+            },
+        );
+
+        verify(fakeRequestor.webRequest(anything(), anyFunction()));
+
+        const [opts, doneCallback] = capture(fakeRequestor.webRequest).last();
+        const reqOpts: request.OptionsWithUri = opts as request.OptionsWithUri;
+
+        expect(reqOpts.uri).to.equal(`${server}${path}`);
+        expect(reqOpts.method).to.equal('GET');
+        expect(reqOpts.json).to.equal(true);
+
+        expect(receivedTypes).to.deep.equal([obj1.type]);
+        expect(receivedObjects).to.deep.equal([obj1.object]);
+
+        expect(doneCalled).to.equal(true);
+        expect(doneErr).to.be.null;
+    });
+
     it('should ignore JSON parse errors', () => {
         const kc = new KubeConfig();
         Object.assign(kc, fakeConfig);
