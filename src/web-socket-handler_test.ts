@@ -2,7 +2,6 @@ import { promisify } from 'util';
 import { expect } from 'chai';
 import WebSocket = require('isomorphic-ws');
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
-import { anyFunction, capture, instance, mock, reset, verify } from 'ts-mockito';
 
 import { V1Status } from './api';
 import { KubeConfig } from './config';
@@ -299,5 +298,36 @@ describe('WebSocket', () => {
         for (const datum of dataReceived) {
             expect(datum).to.equal(fill);
         }
+    });
+});
+
+describe('Restartable Handle Standard Input', () => {
+    it('should throw on negative retry', () => {
+        const p = new Promise<WebSocket>(() => {});
+        expect(() => WebSocketHandler.restartableHandleStandardInput(() => p, null, 0, -1)).to.throw(
+            "retryCount can't be lower than 0.",
+        );
+    });
+
+    it('should retry n times', () => {
+        const retryTimes = 5;
+        let count = 0;
+        const ws = {
+            readyState: false,
+        } as unknown;
+        WebSocketHandler.processData(
+            'some test data',
+            null,
+            (): Promise<WebSocket> => {
+                return new Promise<WebSocket>((resolve) => {
+                    count++;
+                    resolve(ws as WebSocket);
+                });
+            },
+            0,
+            retryTimes,
+        ).catch(() => {
+            expect(count).to.equal(retryTimes);
+        });
     });
 });

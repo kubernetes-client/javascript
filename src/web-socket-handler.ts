@@ -72,6 +72,41 @@ export class WebSocketHandler implements WebSocketInterface {
         return true;
     }
 
+    public static async processData(
+        data: string | Buffer,
+        ws: WebSocket | null,
+        createWS: () => Promise<WebSocket>,
+        streamNum: number = 0,
+        retryCount: number = 3,
+    ): Promise<WebSocket | null> {
+        const buff = Buffer.alloc(data.length + 1);
+
+        buff.writeInt8(streamNum, 0);
+        if (data instanceof Buffer) {
+            data.copy(buff, 1);
+        } else {
+            buff.write(data, 1);
+        }
+
+        let i = 0;
+        for (; i < retryCount; ++i) {
+            if (ws !== null && ws.readyState === WebSocket.OPEN) {
+                ws.send(buff);
+                break;
+            } else {
+                ws = await createWS();
+            }
+        }
+
+        // This throw doesn't go anywhere.
+        // TODO: Figure out the right way to return an error.
+        if (i >= retryCount) {
+            throw new Error("can't send data to ws");
+        }
+
+        return ws;
+    }
+
     public static restartableHandleStandardInput(
         createWS: () => Promise<WebSocket>,
         stdin: stream.Readable | any,
@@ -85,33 +120,10 @@ export class WebSocketHandler implements WebSocketInterface {
         let queue: Promise<void> = Promise.resolve();
         let ws: WebSocket | null = null;
 
-        async function processData(data): Promise<void> {
-            const buff = Buffer.alloc(data.length + 1);
-
-            buff.writeInt8(streamNum, 0);
-            if (data instanceof Buffer) {
-                data.copy(buff, 1);
-            } else {
-                buff.write(data, 1);
-            }
-
-            let i = 0;
-            for (; i < retryCount; ++i) {
-                if (ws !== null && ws.readyState === WebSocket.OPEN) {
-                    ws.send(buff);
-                    break;
-                } else {
-                    ws = await createWS();
-                }
-            }
-
-            if (i >= retryCount) {
-                throw new Error("can't send data to ws");
-            }
-        }
-
         stdin.on('data', (data) => {
-            queue = queue.then(() => processData(data));
+            queue = queue.then(async () => {
+                ws = await WebSocketHandler.processData(data, ws, createWS, streamNum, retryCount);
+            });
         });
 
         stdin.on('end', () => {
