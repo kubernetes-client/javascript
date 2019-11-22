@@ -14,6 +14,18 @@ export function newClusters(a: any): Cluster[] {
     return u.map(a, clusterIterator());
 }
 
+export function exportCluster(cluster: Cluster): any {
+    return {
+        name: cluster.name,
+        cluster: {
+            server: cluster.server,
+            'certificate-authority-data': cluster.caData,
+            'certificate-authority': cluster.caFile,
+            'insecure-skip-tls-verify': cluster.skipTLSVerify,
+        },
+    };
+}
+
 function clusterIterator(): u.ListIterator<any, Cluster> {
     return (elt: any, i: number, list: u.List<any>): Cluster => {
         if (!elt.name) {
@@ -50,6 +62,23 @@ export interface User {
 
 export function newUsers(a: any): User[] {
     return u.map(a, userIterator());
+}
+
+export function exportUser(user: User): any {
+    return {
+        name: user.name,
+        user: {
+            'auth-provider': user.authProvider,
+            'client-certificate-data': user.certData,
+            'client-certificate': user.certFile,
+            exec: user.exec,
+            'client-key-data': user.keyData,
+            'client-key': user.keyFile,
+            token: user.token,
+            password: user.password,
+            username: user.username,
+        },
+    };
 }
 
 function userIterator(): u.ListIterator<any, User> {
@@ -92,6 +121,13 @@ export interface Context {
 
 export function newContexts(a: any): Context[] {
     return u.map(a, contextIterator());
+}
+
+export function exportContext(ctx: Context): any {
+    return {
+        name: ctx.name,
+        context: ctx,
+    };
 }
 
 function contextIterator(): u.ListIterator<any, Context> {

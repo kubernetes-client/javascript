@@ -192,6 +192,17 @@ describe('KubeConfig', () => {
         });
     });
 
+    describe('export', () => {
+        it('should export and re-import correctly', () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcFileName);
+            const output = kc.exportConfig();
+            const newConfig = new KubeConfig();
+            newConfig.loadFromString(output);
+            validateFileLoad(kc);
+        });
+    });
+
     describe('loadEmptyUser', () => {
         it('should load a kubeconfig with an empty user', () => {
             const kc = new KubeConfig();

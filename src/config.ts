@@ -10,7 +10,17 @@ import shelljs = require('shelljs');
 import * as api from './api';
 import { Authenticator } from './auth';
 import { CloudAuth } from './cloud_auth';
-import { Cluster, Context, newClusters, newContexts, newUsers, User } from './config_types';
+import {
+    Cluster,
+    Context,
+    exportCluster,
+    exportContext,
+    exportUser,
+    newClusters,
+    newContexts,
+    newUsers,
+    User,
+} from './config_types';
 import { ExecAuth } from './exec_auth';
 import { FileAuth } from './file_auth';
 import { OpenIDConnectAuth } from './oidc_auth';
@@ -333,6 +343,20 @@ export class KubeConfig {
                 user.keyFile = makeAbsolutePath(rootDirectory, user.keyFile);
             }
         });
+    }
+
+    public exportConfig(): string {
+        const configObj = {
+            apiVersion: 'v1',
+            kind: 'Config',
+            clusters: this.clusters.map(exportCluster),
+            users: this.users.map(exportUser),
+            contexts: this.contexts.map(exportContext),
+            preferences: {},
+            'current-context': this.getCurrentContext(),
+        };
+
+        return JSON.stringify(configObj);
     }
 
     private getCurrentContextObject() {
