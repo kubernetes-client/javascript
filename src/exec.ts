@@ -50,20 +50,16 @@ export class Exec {
         };
         const queryStr = querystring.stringify(query);
         const path = `/api/v1/namespaces/${namespace}/pods/${podName}/exec?${queryStr}`;
-        const conn = await this.handler.connect(
-            path,
-            null,
-            (streamNum: number, buff: Buffer): boolean => {
-                const status = WebSocketHandler.handleStandardStreams(streamNum, buff, stdout, stderr);
-                if (status != null) {
-                    if (statusCallback) {
-                        statusCallback(status);
-                    }
-                    return false;
+        const conn = await this.handler.connect(path, null, (streamNum: number, buff: Buffer): boolean => {
+            const status = WebSocketHandler.handleStandardStreams(streamNum, buff, stdout, stderr);
+            if (status != null) {
+                if (statusCallback) {
+                    statusCallback(status);
                 }
-                return true;
-            },
-        );
+                return false;
+            }
+            return true;
+        });
         if (stdin != null) {
             WebSocketHandler.handleStandardInput(conn, stdin, WebSocketHandler.StdinStream);
         }
