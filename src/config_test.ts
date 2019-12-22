@@ -1073,6 +1073,32 @@ describe('KubeConfig', () => {
             expect(cluster.server).to.equal('http://kubernetes:80');
         });
 
+        it('should load from cluster with ipv6', () => {
+            const token = 'token';
+            const cert = 'cert';
+            mockfs({
+                '/var/run/secrets/kubernetes.io/serviceaccount': {
+                    'ca.crt': cert,
+                    token,
+                },
+            });
+
+            process.env.KUBERNETES_SERVICE_HOST = '::1234:5678';
+            process.env.KUBERNETES_SERVICE_PORT = '80';
+            const kc = new KubeConfig();
+            kc.loadFromDefault();
+            mockfs.restore();
+            delete process.env.KUBERNETES_SERVICE_HOST;
+            delete process.env.KUBERNETES_SERVICE_PORT;
+
+            const cluster = kc.getCurrentCluster();
+            expect(cluster).to.not.be.null;
+            if (!cluster) {
+                return;
+            }
+            expect(cluster.server).to.equal('http://[::1234:5678]:80');
+        });
+
         it('should default to localhost', () => {
             const currentHome = process.env.HOME;
             process.env.HOME = '/non/existent';
