@@ -1,11 +1,24 @@
 import https = require('https');
 import { Client, Issuer } from 'openid-client';
 import request = require('request');
+import { base64url } from 'rfc4648';
+import { TextDecoder } from 'util';
 
 import { Authenticator } from './auth';
 import { User } from './config_types';
 
 export class OpenIDConnectAuth implements Authenticator {
+    public static expirationFromToken(token: string): number {
+        const parts = token.split('.');
+        if (parts.length !== 3) {
+            return 0;
+        }
+
+        const payload = base64url.parse(parts[1]);
+        const claims = JSON.parse(new TextDecoder().decode(payload));
+        return claims.exp;
+    }
+
     // public for testing purposes.
     private currentTokenExpiration = 0;
     public isAuthProvider(user: User): boolean {
@@ -39,21 +52,28 @@ export class OpenIDConnectAuth implements Authenticator {
         if (!user.authProvider.config['client-secret']) {
             user.authProvider.config['client-secret'] = '';
         }
-        if (
-            !user.authProvider.config ||
-            !user.authProvider.config['id-token'] ||
-            !user.authProvider.config['client-id'] ||
-            !user.authProvider.config['refresh-token'] ||
-            !user.authProvider.config['idp-issuer-url']
-        ) {
+        if (!user.authProvider.config || !user.authProvider.config['id-token']) {
             return null;
         }
-        const client = overrideClient ? overrideClient : await this.getClient(user);
-        return this.refresh(user, client);
+        return this.refresh(user, overrideClient);
     }
 
-    private async refresh(user: User, client: Client): Promise<string> {
+    private async refresh(user: User, overrideClient?: Client): Promise<string | null> {
+        if (this.currentTokenExpiration === 0) {
+            this.currentTokenExpiration = OpenIDConnectAuth.expirationFromToken(
+                user.authProvider.config['id-token'],
+            );
+        }
         if (Date.now() / 1000 > this.currentTokenExpiration) {
+            if (
+                !user.authProvider.config['client-id'] ||
+                !user.authProvider.config['refresh-token'] ||
+                !user.authProvider.config['idp-issuer-url']
+            ) {
+                return null;
+            }
+
+            const client = overrideClient ? overrideClient : await this.getClient(user);
             const newToken = await client.refresh(user.authProvider.config['refresh-token']);
             user.authProvider.config['id-token'] = newToken.id_token;
             user.authProvider.config['refresh-token'] = newToken.refresh_token;
