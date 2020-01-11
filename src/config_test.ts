@@ -172,13 +172,6 @@ describe('KubeConfig', () => {
         });
     });
 
-    describe('loadFromString', () => {
-        it('should throw with a bad version', () => {
-            const kc = new KubeConfig();
-            expect(() => kc.loadFromString('apiVersion: v2')).to.throw('unknown version: v2');
-        });
-    });
-
     describe('loadFromFile', () => {
         it('should load the kubeconfig file properly', () => {
             const kc = new KubeConfig();
