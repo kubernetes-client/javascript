@@ -7,16 +7,36 @@ import { TextDecoder } from 'util';
 import { Authenticator } from './auth';
 import { User } from './config_types';
 
+interface JwtObj {
+    header: any;
+    payload: any;
+    signature: string;
+}
+
 export class OpenIDConnectAuth implements Authenticator {
-    public static expirationFromToken(token: string): number {
+    public static decodeJWT(token: string): JwtObj | null {
         const parts = token.split('.');
         if (parts.length !== 3) {
-            return 0;
+            return null;
         }
 
-        const payload = base64url.parse(parts[1]);
-        const claims = JSON.parse(new TextDecoder().decode(payload));
-        return claims.exp;
+        const header = JSON.parse(new TextDecoder().decode(base64url.parse(parts[0], { loose: true })));
+        const payload = JSON.parse(new TextDecoder().decode(base64url.parse(parts[1], { loose: true })));
+        const signature = parts[2];
+
+        return {
+            header,
+            payload,
+            signature,
+        };
+    }
+
+    public static expirationFromToken(token: string): number {
+        const jwt = OpenIDConnectAuth.decodeJWT(token);
+        if (!jwt) {
+            return 0;
+        }
+        return jwt.payload.exp;
     }
 
     // public for testing purposes.

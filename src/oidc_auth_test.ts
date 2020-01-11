@@ -20,6 +20,13 @@ describe('OIDCAuth', () => {
         auth = new OpenIDConnectAuth();
     });
 
+    it('should correctly parse a JWT', () => {
+        const jwt = OpenIDConnectAuth.decodeJWT(
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.5mhBHqs5_DTLdINd9p5m7ZJ6XD0Xc55kIaCRY5r6HRA',
+        );
+        expect(jwt).to.not.be.null;
+    });
+
     it('should correctly parse time from token', () => {
         const time = Math.floor(Date.now() / 1000);
         const token = makeJWT('{}', { exp: time }, 'fake');
