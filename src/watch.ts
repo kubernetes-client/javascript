@@ -31,12 +31,12 @@ export class Watch {
         }
     }
 
-    public watch(
+    public async watch(
         path: string,
         queryParams: any,
         callback: (phase: string, obj: any) => void,
         done: (err: any) => void,
-    ): any {
+    ): Promise<any> {
         const cluster = this.config.getCurrentCluster();
         if (!cluster) {
             throw new Error('No currently active cluster');
@@ -54,7 +54,7 @@ export class Watch {
             useQuerystring: true,
             json: true,
         };
-        this.config.applyToRequest(requestOptions);
+        await this.config.applyToRequest(requestOptions);
 
         const stream = byline.createStream();
         stream.on('data', (line) => {
@@ -69,6 +69,7 @@ export class Watch {
             done(err);
         });
         stream.on('close', () => done(null));
+
         const req = this.requestImpl.webRequest(requestOptions, (error, response, body) => {
             if (error) {
                 done(error);
