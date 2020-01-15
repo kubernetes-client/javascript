@@ -1,4 +1,4 @@
-import { ADD, DELETE, Informer, ListPromise, ObjectCallback, UPDATE } from './informer';
+import { ADD, DELETE, ERROR, Informer, ListPromise, ObjectCallback, UPDATE } from './informer';
 import { KubernetesObject } from './types';
 import { Watch } from './watch';
 
@@ -23,6 +23,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         this.callbackCache[ADD] = [];
         this.callbackCache[UPDATE] = [];
         this.callbackCache[DELETE] = [];
+        this.callbackCache[ERROR] = [];
         if (autoStart) {
             this.doneHandler(null);
         }
@@ -68,6 +69,10 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     }
 
     private async doneHandler(err: any) {
+        if (err) {
+            this.callbackCache[ERROR].forEach((elt: ObjectCallback<T>) => elt(err));
+            return;
+        }
         const promise = this.listFn();
         const result = await promise;
         const list = result.body;
