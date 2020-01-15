@@ -78,7 +78,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         const list = result.body;
         deleteItems(this.objects, list.items, this.callbackCache[DELETE].slice());
         this.addOrUpdateItems(list.items);
-        this.watch.watch(
+        await this.watch.watch(
             this.path,
             { resourceVersion: list.metadata!.resourceVersion },
             this.watchHandler.bind(this),

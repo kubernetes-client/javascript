@@ -39,7 +39,7 @@ describe('Watch', () => {
         const watch = new Watch(kc);
     });
 
-    it('should watch correctly', () => {
+    it('should watch correctly', async () => {
         const kc = new KubeConfig();
         Object.assign(kc, fakeConfig);
         const fakeRequestor = mock(DefaultRequest);
@@ -75,7 +75,7 @@ describe('Watch', () => {
         let doneCalled = false;
         let doneErr: any;
 
-        watch.watch(
+        await watch.watch(
             path,
             {},
             (phase: string, obj: string) => {
@@ -112,7 +112,7 @@ describe('Watch', () => {
         expect(doneErr).to.deep.equal(errIn);
     });
 
-    it('should handle errors correctly', () => {
+    it('should handle errors correctly', async () => {
         const kc = new KubeConfig();
         Object.assign(kc, fakeConfig);
         const fakeRequestor = mock(DefaultRequest);
@@ -142,7 +142,7 @@ describe('Watch', () => {
         let doneCalled = false;
         let doneErr: any;
 
-        watch.watch(
+        await watch.watch(
             path,
             {},
             (phase: string, obj: string) => {
@@ -171,7 +171,7 @@ describe('Watch', () => {
         expect(doneErr).to.deep.equal(errIn);
     });
 
-    it('should handle server side close correctly', () => {
+    it('should handle server side close correctly', async () => {
         const kc = new KubeConfig();
         Object.assign(kc, fakeConfig);
         const fakeRequestor = mock(DefaultRequest);
@@ -200,7 +200,7 @@ describe('Watch', () => {
         let doneCalled = false;
         let doneErr: any;
 
-        watch.watch(
+        await watch.watch(
             path,
             {},
             (phase: string, obj: string) => {
@@ -229,7 +229,7 @@ describe('Watch', () => {
         expect(doneErr).to.be.null;
     });
 
-    it('should ignore JSON parse errors', () => {
+    it('should ignore JSON parse errors', async () => {
         const kc = new KubeConfig();
         Object.assign(kc, fakeConfig);
         const fakeRequestor = mock(DefaultRequest);
@@ -256,7 +256,7 @@ describe('Watch', () => {
         const receivedTypes: string[] = [];
         const receivedObjects: string[] = [];
 
-        watch.watch(
+        await watch.watch(
             path,
             {},
             (recievedType: string, recievedObject: string) => {
