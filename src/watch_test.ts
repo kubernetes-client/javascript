@@ -130,6 +130,7 @@ describe('Watch', () => {
             pipe: (stream) => {
                 stream.write(JSON.stringify(obj1) + '\n');
                 stream.emit('error', errIn);
+                stream.emit('close');
             },
         };
 
@@ -140,7 +141,7 @@ describe('Watch', () => {
         const receivedTypes: string[] = [];
         const receivedObjects: string[] = [];
         let doneCalled = false;
-        let doneErr: any;
+        let doneErr: any[] = [];
 
         await watch.watch(
             path,
@@ -151,7 +152,7 @@ describe('Watch', () => {
             },
             (err: any) => {
                 doneCalled = true;
-                doneErr = err;
+                doneErr.push(err);
             },
         );
 
@@ -168,7 +169,9 @@ describe('Watch', () => {
         expect(receivedObjects).to.deep.equal([obj1.object]);
 
         expect(doneCalled).to.equal(true);
-        expect(doneErr).to.deep.equal(errIn);
+        expect(doneErr.length).to.equal(2);
+        expect(doneErr[0]).to.deep.equal(errIn);
+        expect(doneErr[1]).to.deep.equal(errIn);
     });
 
     it('should handle server side close correctly', async () => {
