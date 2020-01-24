@@ -65,10 +65,12 @@ export class Watch {
                 // ignore parse errors
             }
         });
+        let errOut: Error | null = null;
         stream.on('error', (err) => {
+            errOut = err;
             done(err);
         });
-        stream.on('close', () => done(null));
+        stream.on('close', () => done(errOut));
 
         const req = this.requestImpl.webRequest(requestOptions, (error, response, body) => {
             if (error) {
