@@ -64,10 +64,13 @@ export class KubeConfig {
      */
     public 'currentContext': string;
 
+    private configFile: string;
+
     constructor() {
         this.contexts = [];
         this.clusters = [];
         this.users = [];
+        this.configFile = '';
     }
 
     public getContexts() {
@@ -125,6 +128,7 @@ export class KubeConfig {
         const rootDirectory = path.dirname(file);
         this.loadFromString(fs.readFileSync(file, 'utf8'));
         this.makePathsAbsolute(rootDirectory);
+        this.configFile = file;
     }
 
     public async applytoHTTPSOptions(opts: https.RequestOptions) {
@@ -404,7 +408,11 @@ export class KubeConfig {
             opts.headers = [];
         }
         if (authenticator) {
-            await authenticator.applyAuthentication(user, opts);
+            const refresh = await authenticator.applyAuthentication(user, opts);
+            if (refresh && this.configFile.length > 0) {
+                const contents = this.exportConfig();
+                await fs.writeFile(this.configFile, contents, () => {});
+            }
         }
 
         if (user.token) {

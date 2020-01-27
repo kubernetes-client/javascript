@@ -68,7 +68,7 @@ describe('ExecAuth', () => {
         };
         const opts = {} as request.Options;
         opts.headers = [];
-        auth.applyAuthentication(
+        const refreshed = await auth.applyAuthentication(
             {
                 name: 'user',
                 authProvider: {
@@ -82,6 +82,7 @@ describe('ExecAuth', () => {
             opts,
         );
         expect(opts.headers.Authorization).to.equal('Bearer foo');
+        expect(refreshed).to.be.true;
     });
 
     it('should correctly exec for certs', async () => {
@@ -110,10 +111,11 @@ describe('ExecAuth', () => {
         const opts = {} as request.Options;
         opts.headers = [];
 
-        auth.applyAuthentication(user, opts);
+        const refreshed = await auth.applyAuthentication(user, opts);
         expect(opts.headers.Authorization).to.be.undefined;
         expect(opts.cert).to.equal('foo');
         expect(opts.key).to.equal('bar');
+        expect(refreshed).to.be.true;
     });
 
     it('should correctly exec and cache', async () => {
@@ -149,22 +151,25 @@ describe('ExecAuth', () => {
         const opts = {} as request.Options;
         opts.headers = [];
 
-        await auth.applyAuthentication(user, opts);
+        let refreshed = await auth.applyAuthentication(user, opts);
         expect(opts.headers.Authorization).to.equal(`Bearer ${tokenValue}`);
         expect(execCount).to.equal(1);
-
+        expect(refreshed).to.be.true;
+    
         // old token should be expired, set expiration for the new token for the future.
         expire = '29 Mar 2095 00:00:00 GMT';
         tokenValue = 'bar';
-        await auth.applyAuthentication(user, opts);
+        refreshed = await auth.applyAuthentication(user, opts);
         expect(opts.headers.Authorization).to.equal(`Bearer ${tokenValue}`);
         expect(execCount).to.equal(2);
+        expect(refreshed).to.be.true;
 
         // Should use cached token, execCount should stay at two, token shouldn't change
         tokenValue = 'baz';
-        await auth.applyAuthentication(user, opts);
+        refreshed = await auth.applyAuthentication(user, opts);
         expect(opts.headers.Authorization).to.equal('Bearer bar');
         expect(execCount).to.equal(2);
+        expect(refreshed).to.be.false;
     });
 
     it('should return null on no exec info', async () => {
@@ -172,8 +177,9 @@ describe('ExecAuth', () => {
         const opts = {} as request.Options;
         opts.headers = [];
 
-        await auth.applyAuthentication({} as User, opts);
+        const refreshed = await auth.applyAuthentication({} as User, opts);
         expect(opts.headers.Authorization).to.be.undefined;
+        expect(refreshed).to.be.false;
     });
 
     it('should throw on exec errors', () => {
@@ -225,7 +231,7 @@ describe('ExecAuth', () => {
         const opts = {} as request.Options;
         opts.headers = [];
 
-        await auth.applyAuthentication(
+        const refreshed = await auth.applyAuthentication(
             {
                 name: 'user',
                 authProvider: {
@@ -247,6 +253,7 @@ describe('ExecAuth', () => {
         expect(optsOut.env.foo).to.equal('bar');
         expect(optsOut.env.PATH).to.equal(process.env.PATH);
         expect(optsOut.env.BLABBLE).to.equal(process.env.BLABBLE);
+        expect(refreshed).to.be.true;
     });
 
     it('should handle empty headers array correctly', async () => {
@@ -262,7 +269,7 @@ describe('ExecAuth', () => {
             } as execa.ExecaSyncReturnValue;
         };
         const opts = {} as https.RequestOptions;
-        auth.applyAuthentication(
+        const refreshed = await auth.applyAuthentication(
             {
                 name: 'user',
                 authProvider: {
@@ -280,5 +287,6 @@ describe('ExecAuth', () => {
         } else {
             expect(opts.headers.Authorization).to.equal('Bearer foo');
         }
+        expect(refreshed).to.be.true;
     });
 });

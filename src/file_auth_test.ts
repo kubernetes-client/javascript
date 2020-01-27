@@ -28,8 +28,9 @@ describe('FileAuth', () => {
         const opts = {} as request.Options;
         opts.headers = [];
 
-        await auth.applyAuthentication(user, opts);
+        const refreshed = await auth.applyAuthentication(user, opts);
         expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+        expect(refreshed).to.be.true;
         mockfs.restore();
     });
     it('should claim correctly', async () => {
@@ -52,8 +53,9 @@ describe('FileAuth', () => {
         const opts = {} as request.Options;
         opts.headers = [];
 
-        await auth.applyAuthentication(user, opts);
+        const refreshed = await auth.applyAuthentication(user, opts);
         expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+        expect(refreshed).to.be.true;
 
         // Set the file to non-existent, but shouldn't matter b/c token is cached.
         user.authProvider.config.tokenFile = '/non/existent/file/token.txt';

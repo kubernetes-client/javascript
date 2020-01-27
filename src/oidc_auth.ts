@@ -4,7 +4,7 @@ import request = require('request');
 import { base64url } from 'rfc4648';
 import { TextDecoder } from 'util';
 
-import { Authenticator } from './auth';
+import { Authenticator, Token } from './auth';
 import { User } from './config_types';
 
 interface JwtObj {
@@ -58,27 +58,35 @@ export class OpenIDConnectAuth implements Authenticator {
         user: User,
         opts: request.Options | https.RequestOptions,
         overrideClient?: any,
-    ) {
+    ) : Promise<boolean> {
         const token = await this.getToken(user, overrideClient);
-        if (token) {
-            opts.headers!.Authorization = `Bearer ${token}`;
+        if (token.token) {
+            opts.headers!.Authorization = `Bearer ${token.token}`;
         }
+        return token.refreshed;
     }
 
-    private async getToken(user: User, overrideClient?: Client): Promise<string | null> {
+    private async getToken(user: User, overrideClient?: Client): Promise<Token> {
         if (!user.authProvider.config) {
-            return null;
+            return {
+                token: null,
+                refreshed: false,
+            } as Token;
         }
         if (!user.authProvider.config['client-secret']) {
             user.authProvider.config['client-secret'] = '';
         }
         if (!user.authProvider.config || !user.authProvider.config['id-token']) {
-            return null;
+            return {
+                token: null,
+                refreshed: false,
+            } as Token;
         }
         return this.refresh(user, overrideClient);
     }
 
-    private async refresh(user: User, overrideClient?: Client): Promise<string | null> {
+    private async refresh(user: User, overrideClient?: Client): Promise<Token> {
+        var refreshed = false;
         if (this.currentTokenExpiration === 0) {
             this.currentTokenExpiration = OpenIDConnectAuth.expirationFromToken(
                 user.authProvider.config['id-token'],
@@ -90,7 +98,10 @@ export class OpenIDConnectAuth implements Authenticator {
                 !user.authProvider.config['refresh-token'] ||
                 !user.authProvider.config['idp-issuer-url']
             ) {
-                return null;
+                return {
+                    token: null,
+                    refreshed: false,
+                } as Token;
             }
 
             const client = overrideClient ? overrideClient : await this.getClient(user);
@@ -98,8 +109,12 @@ export class OpenIDConnectAuth implements Authenticator {
             user.authProvider.config['id-token'] = newToken.id_token;
             user.authProvider.config['refresh-token'] = newToken.refresh_token;
             this.currentTokenExpiration = newToken.expires_at || 0;
+            refreshed = true;
         }
-        return user.authProvider.config['id-token'];
+        return {
+            token: user.authProvider.config['id-token'],
+            refreshed
+        };
     }
 
     private async getClient(user: User) {

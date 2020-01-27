@@ -76,7 +76,8 @@ describe('OIDCAuth', () => {
 
         const opts = {} as request.Options;
         opts.headers = [];
-        await auth.applyAuthentication(user, opts);
+        const refreshed = await auth.applyAuthentication(user, opts);
+        expect(refreshed).to.be.false;
         expect(opts.headers.Authorization).to.be.undefined;
     });
 
@@ -97,7 +98,8 @@ describe('OIDCAuth', () => {
 
         const opts = {} as request.Options;
         opts.headers = [];
-        await auth.applyAuthentication(user, opts);
+        const refreshed = await auth.applyAuthentication(user, opts);
+        expect(refreshed).to.be.false;
         expect(opts.headers.Authorization).to.be.undefined;
     });
 
@@ -117,7 +119,8 @@ describe('OIDCAuth', () => {
         const opts = {} as request.Options;
         opts.headers = [];
         (auth as any).currentTokenExpiration = Date.now() / 1000 + 1000;
-        await auth.applyAuthentication(user, opts, {});
+        const refreshed = await auth.applyAuthentication(user, opts, {});
+        expect(refreshed).to.be.false;
         expect(opts.headers.Authorization).to.equal('Bearer fakeToken');
     });
 
@@ -138,7 +141,8 @@ describe('OIDCAuth', () => {
 
         const opts = {} as request.Options;
         opts.headers = [];
-        await auth.applyAuthentication(user, opts);
+        const refreshed = await auth.applyAuthentication(user, opts);
+        expect(refreshed).to.be.false;
         expect(opts.headers.Authorization).to.be.undefined;
     });
 
@@ -159,7 +163,8 @@ describe('OIDCAuth', () => {
 
         const opts = {} as request.Options;
         opts.headers = [];
-        await auth.applyAuthentication(user, opts);
+        const refreshed = await auth.applyAuthentication(user, opts);
+        expect(refreshed).to.be.false;
         expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
     });
 
@@ -180,7 +185,8 @@ describe('OIDCAuth', () => {
 
         const opts = {} as request.Options;
         opts.headers = [];
-        await auth.applyAuthentication(user, opts, {});
+        const refreshed = await auth.applyAuthentication(user, opts, {});
+        expect(refreshed).to.be.false;
         expect(opts.headers.Authorization).to.be.undefined;
     });
 
@@ -201,7 +207,8 @@ describe('OIDCAuth', () => {
         const opts = {} as request.Options;
         opts.headers = [];
         (auth as any).currentTokenExpiration = Date.now() / 1000 + 1000;
-        await auth.applyAuthentication(user, opts, {});
+        const refreshed = await auth.applyAuthentication(user, opts, {});
+        expect(refreshed).to.be.false;
         expect(opts.headers.Authorization).to.equal('Bearer fakeToken');
     });
 
@@ -223,7 +230,7 @@ describe('OIDCAuth', () => {
         opts.headers = [];
         (auth as any).currentTokenExpiration = Date.now() / 1000 - 5000;
         const newExpiration = Date.now() / 1000 + 120;
-        await auth.applyAuthentication(user, opts, {
+        const refreshed = await auth.applyAuthentication(user, opts, {
             refresh: async (token) => {
                 return {
                     expires_at: newExpiration,
@@ -232,6 +239,7 @@ describe('OIDCAuth', () => {
                 };
             },
         });
+        expect(refreshed).to.be.true;
         expect(opts.headers.Authorization).to.equal('Bearer newToken');
         expect((auth as any).currentTokenExpiration).to.equal(newExpiration);
         // Check also the new refresh token sticks in the user config
@@ -256,7 +264,7 @@ describe('OIDCAuth', () => {
         opts.headers = [];
         const newExpiration = Date.now() / 1000 + 120;
         (auth as any).currentTokenExpiration = 0;
-        await auth.applyAuthentication(user, opts, {
+        const refreshed = await auth.applyAuthentication(user, opts, {
             refresh: async (token) => {
                 return {
                     expires_at: newExpiration,
@@ -264,6 +272,7 @@ describe('OIDCAuth', () => {
                 };
             },
         });
+        expect(refreshed).to.be.true;
         expect(opts.headers.Authorization).to.equal('Bearer newToken');
         expect((auth as any).currentTokenExpiration).to.equal(newExpiration);
     });

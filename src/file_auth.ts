@@ -13,16 +13,20 @@ export class FileAuth implements Authenticator {
         return user.authProvider && user.authProvider.config && user.authProvider.config.tokenFile;
     }
 
-    public async applyAuthentication(user: User, opts: request.Options | https.RequestOptions) {
+    public async applyAuthentication(user: User, opts: request.Options | https.RequestOptions): Promise<boolean> {
+        var refreshed = false;
         if (this.token == null) {
             this.refreshToken(user.authProvider.config.tokenFile);
+            refreshed = true;
         }
         if (this.isTokenExpired()) {
             this.refreshToken(user.authProvider.config.tokenFile);
+            refreshed = true;
         }
         if (this.token) {
             opts.headers!.Authorization = `Bearer ${this.token}`;
         }
+        return refreshed;
     }
 
     private refreshToken(filePath: string) {

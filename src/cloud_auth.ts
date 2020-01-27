@@ -3,7 +3,7 @@ import https = require('https');
 import * as jsonpath from 'jsonpath-plus';
 import request = require('request');
 
-import { Authenticator } from './auth';
+import { Authenticator, Token } from './auth';
 import { User } from './config_types';
 
 /* FIXME: maybe we can extend the User and User.authProvider type to have a proper type.
@@ -26,19 +26,25 @@ export class CloudAuth implements Authenticator {
         return user.authProvider.name === 'azure' || user.authProvider.name === 'gcp';
     }
 
-    public async applyAuthentication(user: User, opts: request.Options | https.RequestOptions) {
+    public async applyAuthentication(user: User, opts: request.Options | https.RequestOptions): Promise<boolean> {
         const token = this.getToken(user);
-        if (token) {
-            opts.headers!.Authorization = `Bearer ${token}`;
+        if (token.token) {
+            opts.headers!.Authorization = `Bearer ${token.token}`;
         }
+        return token.refreshed;
     }
 
-    private getToken(user: User): string | null {
+    private getToken(user: User): Token {
+        let refreshed = false;
         const config = user.authProvider.config;
         if (this.isExpired(config)) {
             this.updateAccessToken(config);
+            refreshed = true;
         }
-        return config['access-token'];
+        return {
+            token: config['access-token'],
+            refreshed
+        };
     }
 
     private isExpired(config: Config) {

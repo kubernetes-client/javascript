@@ -16,6 +16,11 @@ export interface Credential {
     readonly status: CredentialStatus;
 }
 
+interface CredentialResult {
+    cred: Credential | null;
+    refreshed: boolean;
+}
+
 export class ExecAuth implements Authenticator {
     private readonly tokenCache: { [key: string]: Credential | null } = {};
     private execFn: (cmd: string, args: string[], opts: execa.SyncOptions) => execa.ExecaSyncReturnValue =
@@ -36,10 +41,11 @@ export class ExecAuth implements Authenticator {
         );
     }
 
-    public async applyAuthentication(user: User, opts: request.Options | https.RequestOptions) {
-        const credential = this.getCredential(user);
+    public async applyAuthentication(user: User, opts: request.Options | https.RequestOptions): Promise<boolean> {
+        const result = this.getCredential(user);
+        const credential = result.cred;
         if (!credential) {
-            return;
+            return false;
         }
         if (credential.status.clientCertificateData) {
             opts.cert = credential.status.clientCertificateData;
@@ -54,6 +60,7 @@ export class ExecAuth implements Authenticator {
             }
             opts.headers!.Authorization = `Bearer ${token}`;
         }
+        return result.refreshed;
     }
 
     private getToken(credential: Credential): string | null {
@@ -66,13 +73,16 @@ export class ExecAuth implements Authenticator {
         return null;
     }
 
-    private getCredential(user: User): Credential | null {
+    private getCredential(user: User): CredentialResult {
         // TODO: Add a unit test for token caching.
         const cachedToken = this.tokenCache[user.name];
         if (cachedToken) {
             const date = Date.parse(cachedToken.status.expirationTimestamp);
             if (date > Date.now()) {
-                return cachedToken;
+                return {
+                    cred: cachedToken,
+                    refreshed: false,
+                }
             }
             this.tokenCache[user.name] = null;
         }
@@ -84,7 +94,10 @@ export class ExecAuth implements Authenticator {
             exec = user.exec;
         }
         if (!exec) {
-            return null;
+            return {
+                cred: null,
+                refreshed: false,
+            }
         }
         if (!exec.command) {
             throw new Error('No command was specified for exec authProvider!');
@@ -99,7 +112,10 @@ export class ExecAuth implements Authenticator {
         if (result.code === 0) {
             const obj = JSON.parse(result.stdout) as Credential;
             this.tokenCache[user.name] = obj;
-            return obj;
+            return {
+                cred: obj,
+                refreshed: true,
+            }
         }
         throw new Error(result.stderr);
     }
