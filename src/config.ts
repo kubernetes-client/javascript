@@ -401,7 +401,7 @@ export class KubeConfig {
         });
 
         if (!opts.headers) {
-            opts.headers = [];
+            opts.headers = {};
         }
         if (authenticator) {
             await authenticator.applyAuthentication(user, opts);
