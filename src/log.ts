@@ -51,14 +51,14 @@ export class Log {
         this.config = config;
     }
 
-    public log(
+    public async log(
         namespace: string,
         podName: string,
         containerName: string,
         stream: Writable,
         done: (err: any) => void,
         options: LogOptions = {},
-    ): request.Request {
+    ): Promise<request.Request> {
         const path = `/api/v1/namespaces/${namespace}/pods/${podName}/log`;
 
         const cluster = this.config.getCurrentCluster();
@@ -75,7 +75,7 @@ export class Log {
             },
             uri: url,
         };
-        this.config.applyToRequest(requestOptions);
+        await this.config.applyToRequest(requestOptions);
 
         const req = request(requestOptions, (error, response, body) => {
             if (error) {

@@ -212,7 +212,7 @@ describe('KubeConfig', () => {
             kc.applytoHTTPSOptions(opts);
 
             expect(opts).to.deep.equal({
-                headers: [],
+                headers: {},
                 ca: new Buffer('CADATA2', 'utf-8'),
                 cert: new Buffer('USER2_CADATA', 'utf-8'),
                 key: new Buffer('USER2_CKDATA', 'utf-8'),
@@ -229,7 +229,7 @@ describe('KubeConfig', () => {
             };
             await kc.applyToRequest(opts);
             expect(opts).to.deep.equal({
-                headers: [],
+                headers: {},
                 ca: new Buffer('CADATA2', 'utf-8'),
                 auth: {
                     username: 'foo',
