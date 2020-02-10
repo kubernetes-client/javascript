@@ -83,7 +83,7 @@ export class WebSocketHandler implements WebSocketInterface {
         }
 
         let queue: Promise<void> = Promise.resolve();
-        let ws: WebSocket | null;
+        let ws: WebSocket | null = null;
 
         async function processData(data): Promise<void> {
             const buff = Buffer.alloc(data.length + 1);
