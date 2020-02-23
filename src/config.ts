@@ -524,6 +524,9 @@ export interface Named {
 
 // Only really public for testing...
 export function findObject<T extends Named>(list: T[], name: string, key: string): T | null {
+    if (!list) {
+        return null;
+    }
     for (const obj of list) {
         if (obj.name === name) {
             if (obj[key]) {
