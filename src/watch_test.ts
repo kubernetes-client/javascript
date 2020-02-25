@@ -39,6 +39,54 @@ describe('Watch', () => {
         const watch = new Watch(kc);
     });
 
+    it('should handle non-200 error codes', async () => {
+        const kc = new KubeConfig();
+        Object.assign(kc, fakeConfig);
+        const fakeRequestor = mock(DefaultRequest);
+        const watch = new Watch(kc, instance(fakeRequestor));
+
+        const fakeRequest = {
+            pipe: (stream) => {},
+        };
+
+        when(fakeRequestor.webRequest(anything(), anyFunction())).thenReturn(fakeRequest);
+
+        const path = '/some/path/to/object';
+
+        let doneCalled = false;
+        let doneErr: any;
+
+        await watch.watch(
+            path,
+            {},
+            (phase: string, obj: string) => {},
+            (err: any) => {
+                doneCalled = true;
+                doneErr = err;
+            },
+        );
+
+        verify(fakeRequestor.webRequest(anything(), anyFunction()));
+
+        const [opts, doneCallback] = capture(fakeRequestor.webRequest).last();
+        const reqOpts: request.OptionsWithUri = opts as request.OptionsWithUri;
+
+        expect(reqOpts.uri).to.equal(`${server}${path}`);
+        expect(reqOpts.method).to.equal('GET');
+        expect(reqOpts.json).to.equal(true);
+
+        expect(doneCalled).to.equal(false);
+
+        const resp = {
+            statusCode: 409,
+            statusMessage: 'Conflict',
+        };
+        doneCallback(null, resp, {});
+
+        expect(doneCalled).to.equal(true);
+        expect(doneErr.toString()).to.equal('Error: Conflict');
+    });
+
     it('should watch correctly', async () => {
         const kc = new KubeConfig();
         Object.assign(kc, fakeConfig);
@@ -278,5 +326,13 @@ describe('Watch', () => {
 
         expect(receivedTypes).to.deep.equal([obj.type]);
         expect(receivedObjects).to.deep.equal([obj.object]);
+    });
+
+    it('should throw on empty config', () => {
+        const kc = new KubeConfig();
+        const watch = new Watch(kc);
+
+        const promise = watch.watch('/some/path', {}, () => {}, () => {});
+        expect(promise).to.be.rejected;
     });
 });

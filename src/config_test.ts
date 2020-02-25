@@ -13,6 +13,7 @@ import * as os from 'os';
 import { CoreV1Api } from './api';
 import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolutePath } from './config';
 import { Cluster, newClusters, newContexts, newUsers, User } from './config_types';
+import { isUndefined } from 'util';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
 const kc2FileName = 'testdata/kubeconfig-2.yaml';
@@ -27,9 +28,10 @@ describe('Config', () => {});
 
 function validateFileLoad(kc: KubeConfig) {
     // check clusters
-    expect(kc.clusters.length).to.equal(2, 'there are 2 clusters');
-    const cluster1 = kc.clusters[0];
-    const cluster2 = kc.clusters[1];
+    const clusters = kc.getClusters();
+    expect(clusters.length).to.equal(2, 'there are 2 clusters');
+    const cluster1 = clusters[0];
+    const cluster2 = clusters[1];
     expect(cluster1.name).to.equal('cluster1');
     expect(cluster1.caData).to.equal('Q0FEQVRB');
     expect(cluster1.server).to.equal('http://example.com');
@@ -39,10 +41,11 @@ function validateFileLoad(kc: KubeConfig) {
     expect(cluster2.skipTLSVerify).to.equal(true);
 
     // check users
-    expect(kc.users.length).to.equal(3, 'there are 3 users');
-    const user1 = kc.users[0];
-    const user2 = kc.users[1];
-    const user3 = kc.users[2];
+    const users = kc.getUsers();
+    expect(users.length).to.equal(3, 'there are 3 users');
+    const user1 = users[0];
+    const user2 = users[1];
+    const user3 = users[2];
     expect(user1.name).to.equal('user1');
     expect(user1.certData).to.equal('VVNFUl9DQURBVEE=');
     expect(user1.keyData).to.equal('VVNFUl9DS0RBVEE=');
@@ -52,11 +55,13 @@ function validateFileLoad(kc: KubeConfig) {
     expect(user3.name).to.equal('user3');
     expect(user3.username).to.equal('foo');
     expect(user3.password).to.equal('bar');
+
     // check contexts
-    expect(kc.contexts.length).to.equal(3, 'there are three contexts');
-    const context1 = kc.contexts[0];
-    const context2 = kc.contexts[1];
-    const context3 = kc.contexts[2];
+    const contexts = kc.getContexts();
+    expect(contexts.length).to.equal(3, 'there are three contexts');
+    const context1 = contexts[0];
+    const context2 = contexts[1];
+    const context3 = contexts[2];
     expect(context1.name).to.equal('context1');
     expect(context1.user).to.equal('user1');
     expect(context1.namespace).to.equal(undefined);
@@ -73,7 +78,15 @@ function validateFileLoad(kc: KubeConfig) {
 }
 
 describe('KubeConfig', () => {
+    it('should return null on no contexts', () => {
+        const kc = new KubeConfig() as any;
+        kc.contexts = undefined;
+        expect(kc.getContextObject('non-existent')).to.be.null;
+    });
     describe('findObject', () => {
+        it('should return null on undefined', () => {
+            expect(findObject(undefined as any, 'foo', 'bar')).to.equal(null);
+        });
         it('should find objects', () => {
             interface MyNamed {
                 name: string;
@@ -967,6 +980,26 @@ describe('KubeConfig', () => {
     });
 
     describe('MakeAbsolutePaths', () => {
+        it('make paths absolute', () => {
+            const kc = new KubeConfig();
+            kc.addCluster({
+                name: 'testCluster',
+                server: `https://localhost:9889`,
+                skipTLSVerify: true,
+                caFile: 'foo/bar.crt',
+            });
+            kc.addUser({
+                token: 'token',
+                username: 'username',
+                name: 'testUser',
+                certFile: 'user/user.crt',
+                keyFile: 'user/user.key',
+            });
+            kc.makePathsAbsolute('/tmp');
+            expect(kc.clusters[0].caFile).to.equal('/tmp/foo/bar.crt');
+            expect(kc.users[0].certFile).to.equal('/tmp/user/user.crt');
+            expect(kc.users[0].keyFile).to.equal('/tmp/user/user.key');
+        });
         it('should correctly make absolute paths', () => {
             const relative = 'foo/bar';
             const absolute = '/tmp/foo/bar';
@@ -1156,16 +1189,19 @@ describe('KubeConfig', () => {
     describe('Programmatic', () => {
         it('should be able to generate a valid config from code', () => {
             const kc = new KubeConfig();
+            (kc as any).clusters = undefined;
             kc.addCluster({
                 name: 'testCluster',
                 server: `https://localhost:9889`,
                 skipTLSVerify: true,
             });
+            (kc as any).users = undefined;
             kc.addUser({
                 token: 'token',
                 username: 'username',
                 name: 'testUser',
             });
+            (kc as any).contexts = undefined;
             kc.addContext({
                 cluster: 'testCluster',
                 name: 'test',
