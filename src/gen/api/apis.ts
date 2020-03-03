@@ -126,4 +126,24 @@ export * from './storageV1beta1Api';
 import { StorageV1beta1Api } from './storageV1beta1Api';
 export * from './versionApi';
 import { VersionApi } from './versionApi';
+import * as fs from 'fs';
+import * as http from 'http';
+
+export class HttpError extends Error {
+    constructor (public response: http.IncomingMessage, public body: any, public statusCode?: number) {
+        super('HTTP request failed');
+        this.name = 'HttpError';
+    }
+}
+
+export interface RequestDetailedFile {
+    value: Buffer;
+    options?: {
+        filename?: string;
+        contentType?: string;
+    }
+}
+
+export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
+
 export const APIS = [AdmissionregistrationApi, AdmissionregistrationV1beta1Api, ApiextensionsApi, ApiextensionsV1beta1Api, ApiregistrationApi, ApiregistrationV1Api, ApiregistrationV1beta1Api, ApisApi, AppsApi, AppsV1Api, AppsV1beta1Api, AppsV1beta2Api, AuditregistrationApi, AuditregistrationV1alpha1Api, AuthenticationApi, AuthenticationV1Api, AuthenticationV1beta1Api, AuthorizationApi, AuthorizationV1Api, AuthorizationV1beta1Api, AutoscalingApi, AutoscalingV1Api, AutoscalingV2beta1Api, AutoscalingV2beta2Api, BatchApi, BatchV1Api, BatchV1beta1Api, BatchV2alpha1Api, CertificatesApi, CertificatesV1beta1Api, CoordinationApi, CoordinationV1Api, CoordinationV1beta1Api, CoreApi, CoreV1Api, CustomObjectsApi, EventsApi, EventsV1beta1Api, ExtensionsApi, ExtensionsV1beta1Api, LogsApi, NetworkingApi, NetworkingV1Api, NetworkingV1beta1Api, NodeApi, NodeV1alpha1Api, NodeV1beta1Api, PolicyApi, PolicyV1beta1Api, RbacAuthorizationApi, RbacAuthorizationV1Api, RbacAuthorizationV1alpha1Api, RbacAuthorizationV1beta1Api, SchedulingApi, SchedulingV1Api, SchedulingV1alpha1Api, SchedulingV1beta1Api, SettingsApi, SettingsV1alpha1Api, StorageApi, StorageV1Api, StorageV1alpha1Api, StorageV1beta1Api, VersionApi];

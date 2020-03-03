@@ -15,13 +15,13 @@
 # limitations under the License.
 
 # kubernetes-client/gen commit to use for code generation.
-export GEN_COMMIT=7959939
+export GEN_COMMIT=9f439b6
 
 # GitHub username/organization to clone kubernetes repo from.
 export USERNAME=kubernetes
 
-# Kubernetes branch to get the OpenAPI spec from.
-export KUBERNETES_BRANCH="release-1.15"
+# Kubernetes branch/tag to get the OpenAPI spec from.
+export KUBERNETES_BRANCH="v1.15.10"
 
 # client version for packaging and releasing. It can
 # be different than SPEC_VERSION.
@@ -30,4 +30,4 @@ export CLIENT_VERSION="0.8-SNAPSHOT"
 # Name of the release package
 export PACKAGE_NAME="@kubernetes/node-client"
 
-export OPENAPI_GENERATOR_COMMIT=v4.1.3
+export OPENAPI_GENERATOR_COMMIT=v4.2.3
