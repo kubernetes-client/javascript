@@ -419,7 +419,8 @@ export class KubeConfig {
 }
 
 export interface ApiType {
-    setDefaultAuthentication(config: api.Authentication);
+    defaultHeaders: any;
+    setDefaultAuthentication(config: api.Authentication): void;
 }
 
 type ApiConstructor<T extends ApiType> = new (server: string) => T;
