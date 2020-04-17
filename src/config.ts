@@ -531,6 +531,7 @@ export function findObject<T extends Named>(list: T[], name: string, key: string
     for (const obj of list) {
         if (obj.name === name) {
             if (obj[key]) {
+                obj[key].name = name;
                 return obj[key];
             }
             return obj;

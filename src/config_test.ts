@@ -924,6 +924,32 @@ describe('KubeConfig', () => {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
             }
         });
+        it('should cache exec with name', async () => {
+            const config = new KubeConfig();
+            const token = 'token';
+            const responseStr = `{
+                "apiVersion": "client.authentication.k8s.io/v1beta1",
+                "kind": "ExecCredential",
+                "status": {
+                  "token": "${token}"
+                }
+              }`;
+            config.loadFromClusterAndUser(
+                { skipTLSVerify: false } as Cluster,
+                {
+                    name: 'exec',
+                    exec: {
+                        command: 'echo',
+                        args: [`${responseStr}`],
+                    },
+                } as User,
+            );
+            // TODO: inject the exec command here?
+            const opts = {} as requestlib.Options;
+            await config.applyToRequest(opts);
+            expect((KubeConfig as any).authenticators[1].tokenCache['exec']).to.deep.equal(JSON.parse(responseStr));
+        });
+
         it('should throw with no command.', () => {
             const config = new KubeConfig();
             config.loadFromClusterAndUser(
