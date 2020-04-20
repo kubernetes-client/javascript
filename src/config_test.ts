@@ -947,7 +947,9 @@ describe('KubeConfig', () => {
             // TODO: inject the exec command here?
             const opts = {} as requestlib.Options;
             await config.applyToRequest(opts);
-            expect((KubeConfig as any).authenticators[1].tokenCache['exec']).to.deep.equal(JSON.parse(responseStr));
+            expect((KubeConfig as any).authenticators[1].tokenCache['exec']).to.deep.equal(
+                JSON.parse(responseStr),
+            );
         });
 
         it('should throw with no command.', () => {

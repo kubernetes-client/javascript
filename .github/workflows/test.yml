@@ -23,5 +23,5 @@ jobs:
       - run: node version-check.js
       - run: npm install
       - run: npm test
-      - run: npm lint
+      - run: npm run lint
 
