@@ -1,6 +1,5 @@
 import * as fs from 'fs';
 import * as u from 'underscore';
-import { ExtensionsV1beta1RollbackConfig } from './api';
 
 export interface Cluster {
     readonly name: string;
