@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import * as nock from 'nock';
-import { V1APIResource } from './api';
+import { V1APIResource, V1APIResourceList } from './api';
 import { KubeConfig } from './config';
 import { KubernetesObjectApi } from './object';
 import { KubernetesObject } from './types';
@@ -19,6 +19,7 @@ describe('KubernetesObject', () => {
             kc.loadFromOptions(testConfigOptions);
             const c = KubernetesObjectApi.makeApiClient(kc);
             expect(c).to.be.ok;
+            expect((c as any).defaultNamespace).to.equal('default');
         });
 
         it('should set the default namespace from context', () => {
@@ -36,14 +37,16 @@ describe('KubernetesObject', () => {
     });
 
     class KubernetesObjectApiTest extends KubernetesObjectApi {
-        public static makeApiClient(): KubernetesObjectApiTest {
-            const kc = new KubeConfig();
-            kc.loadFromOptions(testConfigOptions);
-            return kc.makeApiClient(KubernetesObjectApiTest);
+        public static makeApiClient(kc?: KubeConfig): KubernetesObjectApiTest {
+            if (!kc) {
+                kc = new KubeConfig();
+                kc.loadFromOptions(testConfigOptions);
+            }
+            const client = kc.makeApiClient(KubernetesObjectApiTest);
+            client.setDefaultNamespace(kc);
+            return client;
         }
-        public static appendName(action: any): boolean {
-            return super.appendName(action);
-        }
+        public apiVersionResourceCache: Record<string, V1APIResourceList> = {};
         public async specUriPath(spec: KubernetesObject, method: any): Promise<string> {
             return super.specUriPath(spec, method);
         }
@@ -57,18 +60,6 @@ describe('KubernetesObject', () => {
             return super.resource(apiVersion, kind);
         }
     }
-
-    describe('appendName', () => {
-        it('should return append name', () => {
-            ['delete', 'patch', 'read', 'replace'].forEach((a: any) => {
-                expect(KubernetesObjectApiTest.appendName(a)).to.be.true;
-            });
-        });
-
-        it('should return not append name', () => {
-            expect(KubernetesObjectApiTest.appendName('create')).to.be.false;
-        });
-    });
 
     const resourceBodies = {
         core: `{
@@ -484,12 +475,8 @@ describe('KubernetesObject', () => {
     };
 
     describe('specUriPath', () => {
-        let client: KubernetesObjectApiTest;
-        before(function(this: Mocha.Context): void {
-            client = KubernetesObjectApiTest.makeApiClient();
-        });
-
         it('should return a namespaced path', async () => {
+            const c = KubernetesObjectApiTest.makeApiClient();
             const o = {
                 apiVersion: 'v1',
                 kind: 'Service',
@@ -501,12 +488,13 @@ describe('KubernetesObject', () => {
             const scope = nock('https://d.i.y')
                 .get('/api/v1')
                 .reply(200, resourceBodies.core);
-            const r = await client.specUriPath(o, 'patch');
+            const r = await c.specUriPath(o, 'patch');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces/fugazi/services/repeater');
             scope.done();
         });
 
         it('should default to apiVersion v1', async () => {
+            const c = KubernetesObjectApiTest.makeApiClient();
             const o = {
                 kind: 'ServiceAccount',
                 metadata: {
@@ -517,12 +505,20 @@ describe('KubernetesObject', () => {
             const scope = nock('https://d.i.y')
                 .get('/api/v1')
                 .reply(200, resourceBodies.core);
-            const r = await client.specUriPath(o, 'patch');
+            const r = await c.specUriPath(o, 'patch');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces/fugazi/serviceaccounts/repeater');
             scope.done();
         });
 
-        it('should default to default namespace', async () => {
+        it('should default to context namespace', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromOptions({
+                clusters: [{ name: 'dc', server: 'https://d.i.y' }],
+                users: [{ name: 'ian', password: 'mackaye' }],
+                contexts: [{ name: 'dischord', cluster: 'dc', user: 'ian', namespace: 'straight-edge' }],
+                currentContext: 'dischord',
+            });
+            const c = KubernetesObjectApiTest.makeApiClient(kc);
             const o = {
                 apiVersion: 'v1',
                 kind: 'Pod',
@@ -533,12 +529,37 @@ describe('KubernetesObject', () => {
             const scope = nock('https://d.i.y')
                 .get('/api/v1')
                 .reply(200, resourceBodies.core);
-            const r = await client.specUriPath(o, 'patch');
+            const r = await c.specUriPath(o, 'patch');
+            expect(r).to.equal('https://d.i.y/api/v1/namespaces/straight-edge/pods/repeater');
+            scope.done();
+        });
+
+        it('should default to default namespace', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromOptions({
+                clusters: [{ name: 'dc', server: 'https://d.i.y' }],
+                users: [{ name: 'ian', password: 'mackaye' }],
+                contexts: [{ name: 'dischord', cluster: 'dc', user: 'ian' }],
+                currentContext: 'dischord',
+            });
+            const c = KubernetesObjectApiTest.makeApiClient(kc);
+            const o = {
+                apiVersion: 'v1',
+                kind: 'Pod',
+                metadata: {
+                    name: 'repeater',
+                },
+            };
+            const scope = nock('https://d.i.y')
+                .get('/api/v1')
+                .reply(200, resourceBodies.core);
+            const r = await c.specUriPath(o, 'patch');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces/default/pods/repeater');
             scope.done();
         });
 
         it('should return a non-namespaced path', async () => {
+            const c = KubernetesObjectApiTest.makeApiClient();
             const o = {
                 apiVersion: 'v1',
                 kind: 'Namespace',
@@ -549,12 +570,13 @@ describe('KubernetesObject', () => {
             const scope = nock('https://d.i.y')
                 .get('/api/v1')
                 .reply(200, resourceBodies.core);
-            const r = await client.specUriPath(o, 'delete');
+            const r = await c.specUriPath(o, 'delete');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces/repeater');
             scope.done();
         });
 
         it('should return a namespaced path without name', async () => {
+            const c = KubernetesObjectApiTest.makeApiClient();
             const o = {
                 apiVersion: 'v1',
                 kind: 'Service',
@@ -565,12 +587,13 @@ describe('KubernetesObject', () => {
             const scope = nock('https://d.i.y')
                 .get('/api/v1')
                 .reply(200, resourceBodies.core);
-            const r = await client.specUriPath(o, 'create');
+            const r = await c.specUriPath(o, 'create');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces/fugazi/services');
             scope.done();
         });
 
         it('should return a non-namespaced path without name', async () => {
+            const c = KubernetesObjectApiTest.makeApiClient();
             const o = {
                 apiVersion: 'v1',
                 kind: 'Namespace',
@@ -581,12 +604,13 @@ describe('KubernetesObject', () => {
             const scope = nock('https://d.i.y')
                 .get('/api/v1')
                 .reply(200, resourceBodies.core);
-            const r = await client.specUriPath(o, 'create');
+            const r = await c.specUriPath(o, 'create');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces');
             scope.done();
         });
 
         it('should return a namespaced path for non-core resource', async () => {
+            const c = KubernetesObjectApiTest.makeApiClient();
             const o = {
                 apiVersion: 'apps/v1',
                 kind: 'Deployment',
@@ -598,12 +622,13 @@ describe('KubernetesObject', () => {
             const scope = nock('https://d.i.y')
                 .get('/apis/apps/v1')
                 .reply(200, resourceBodies.apps);
-            const r = await client.specUriPath(o, 'read');
+            const r = await c.specUriPath(o, 'read');
             expect(r).to.equal('https://d.i.y/apis/apps/v1/namespaces/fugazi/deployments/repeater');
             scope.done();
         });
 
         it('should return a non-namespaced path for non-core resource', async () => {
+            const c = KubernetesObjectApiTest.makeApiClient();
             const o = {
                 apiVersion: 'rbac.authorization.k8s.io/v1',
                 kind: 'ClusterRole',
@@ -614,7 +639,7 @@ describe('KubernetesObject', () => {
             const scope = nock('https://d.i.y')
                 .get('/apis/rbac.authorization.k8s.io/v1')
                 .reply(200, resourceBodies.rbac);
-            const r = await client.specUriPath(o, 'read');
+            const r = await c.specUriPath(o, 'read');
             expect(r).to.equal('https://d.i.y/apis/rbac.authorization.k8s.io/v1/clusterroles/repeater');
             scope.done();
         });
@@ -719,6 +744,7 @@ describe('KubernetesObject', () => {
                 },
             ];
             for (const k of a) {
+                const c = KubernetesObjectApiTest.makeApiClient();
                 const o: KubernetesObject = {
                     apiVersion: k.apiVersion,
                     kind: k.kind,
@@ -733,7 +759,7 @@ describe('KubernetesObject', () => {
                 const scope = nock('https://d.i.y')
                     .get(k.p)
                     .reply(200, k.b);
-                const r = await client.specUriPath(o, 'patch');
+                const r = await c.specUriPath(o, 'patch');
                 expect(r).to.equal(k.e);
                 scope.done();
             }
@@ -839,6 +865,7 @@ describe('KubernetesObject', () => {
                 },
             ];
             for (const k of a) {
+                const c = KubernetesObjectApiTest.makeApiClient();
                 const o: KubernetesObject = {
                     apiVersion: k.apiVersion,
                     kind: k.kind,
@@ -849,13 +876,14 @@ describe('KubernetesObject', () => {
                 const scope = nock('https://d.i.y')
                     .get(k.p)
                     .reply(200, k.b);
-                const r = await client.specUriPath(o, 'create');
+                const r = await c.specUriPath(o, 'create');
                 expect(r).to.equal(k.e);
                 scope.done();
             }
         });
 
         it('should throw an error if kind missing', async () => {
+            const c = KubernetesObjectApiTest.makeApiClient();
             const o = {
                 apiVersion: 'v1',
                 metadata: {
@@ -865,7 +893,7 @@ describe('KubernetesObject', () => {
             };
             let thrown = false;
             try {
-                await client.specUriPath(o, 'create');
+                await c.specUriPath(o, 'create');
                 expect.fail('should have thrown error');
             } catch (e) {
                 thrown = true;
@@ -875,6 +903,7 @@ describe('KubernetesObject', () => {
         });
 
         it('should throw an error if name required and missing', async () => {
+            const c = KubernetesObjectApiTest.makeApiClient();
             const o = {
                 apiVersion: 'v1',
                 kind: 'Service',
@@ -887,7 +916,7 @@ describe('KubernetesObject', () => {
                 .reply(200, resourceBodies.core);
             let thrown = false;
             try {
-                await client.specUriPath(o, 'read');
+                await c.specUriPath(o, 'read');
                 expect.fail('should have thrown error');
             } catch (e) {
                 thrown = true;
@@ -898,6 +927,7 @@ describe('KubernetesObject', () => {
         });
 
         it('should throw an error if resource is not valid', async () => {
+            const c = KubernetesObjectApiTest.makeApiClient();
             const o = {
                 apiVersion: 'v1',
                 kind: 'Ingress',
@@ -911,7 +941,7 @@ describe('KubernetesObject', () => {
                 .reply(200, resourceBodies.core);
             let thrown = false;
             try {
-                await client.specUriPath(o, 'create');
+                await c.specUriPath(o, 'create');
                 expect.fail('should have thrown error');
             } catch (e) {
                 thrown = true;
@@ -1019,6 +1049,85 @@ describe('KubernetesObject', () => {
             expect(intercepted).to.be.true;
             scope.done();
         });
+
+        it('should cache API response', async () => {
+            const c = KubernetesObjectApiTest.makeApiClient();
+            const scope = nock('https://d.i.y')
+                .get('/api/v1')
+                .reply(200, resourceBodies.core);
+            const s = await c.resource('v1', 'Service');
+            expect(s).to.be.ok;
+            if (!s) {
+                throw new Error('old TypeScript compiler');
+            }
+            expect(s.kind).to.equal('Service');
+            expect(s.name).to.equal('services');
+            expect(s.namespaced).to.be.true;
+            expect(c.apiVersionResourceCache).to.be.ok;
+            expect(c.apiVersionResourceCache.v1).to.be.ok;
+            const sa = await c.resource('v1', 'ServiceAccount');
+            expect(sa).to.be.ok;
+            if (!sa) {
+                throw new Error('old TypeScript compiler');
+            }
+            expect(sa.kind).to.equal('ServiceAccount');
+            expect(sa.name).to.equal('serviceaccounts');
+            expect(sa.namespaced).to.be.true;
+            const p = await c.resource('v1', 'Pod');
+            if (!p) {
+                throw new Error('old TypeScript compiler');
+            }
+            expect(p).to.be.ok;
+            expect(p.kind).to.equal('Pod');
+            expect(p.name).to.equal('pods');
+            expect(p.namespaced).to.be.true;
+            const pv = await c.resource('v1', 'PersistentVolume');
+            if (!pv) {
+                throw new Error('old TypeScript compiler');
+            }
+            expect(pv).to.be.ok;
+            expect(pv.kind).to.equal('PersistentVolume');
+            expect(pv.name).to.equal('persistentvolumes');
+            expect(pv.namespaced).to.be.false;
+            scope.done();
+        });
+
+        it('should re-request on cache miss', async () => {
+            const c = KubernetesObjectApiTest.makeApiClient();
+            c.apiVersionResourceCache.v1 = {
+                groupVersion: 'v1',
+                kind: 'APIResourceList',
+                resources: [
+                    {
+                        kind: 'Binding',
+                        name: 'bindings',
+                        namespaced: true,
+                    },
+                    {
+                        kind: 'ComponentStatus',
+                        name: 'componentstatuses',
+                        namespaced: false,
+                    },
+                ],
+            } as any;
+            const scope = nock('https://d.i.y')
+                .get('/api/v1')
+                .reply(200, resourceBodies.core);
+            const s = await c.resource('v1', 'Service');
+            expect(s).to.be.ok;
+            if (!s) {
+                throw new Error('old TypeScript compiler');
+            }
+            expect(s.kind).to.equal('Service');
+            expect(s.name).to.equal('services');
+            expect(s.namespaced).to.be.true;
+            expect(c.apiVersionResourceCache).to.be.ok;
+            expect(c.apiVersionResourceCache.v1).to.be.ok;
+            expect(c.apiVersionResourceCache.v1.resources.length).to.deep.equal(
+                JSON.parse(resourceBodies.core).resources.length,
+            );
+            scope.done();
+        });
     });
 
     describe('verbs', () => {
@@ -1027,6 +1136,7 @@ describe('KubernetesObject', () => {
             const kc = new KubeConfig();
             kc.loadFromOptions(testConfigOptions);
             client = KubernetesObjectApi.makeApiClient(kc);
+            (client as any).apiVersionResourceCache.v1 = JSON.parse(resourceBodies.core);
         });
 
         it('should modify resources with defaults', async () => {
@@ -1179,8 +1289,6 @@ describe('KubernetesObject', () => {
             ];
             for (const m of methods) {
                 const scope = nock('https://d.i.y')
-                    .get('/api/v1')
-                    .reply(200, resourceBodies.core)
                     .intercept(m.p, m.v, m.v === 'DELETE' || m.v === 'GET' ? undefined : s)
                     .reply(m.c, m.b);
                 await m.m.call(client, s);
@@ -1339,8 +1447,6 @@ describe('KubernetesObject', () => {
             for (const p of ['true', 'false']) {
                 for (const m of methods) {
                     const scope = nock('https://d.i.y')
-                        .get('/api/v1')
-                        .reply(200, resourceBodies.core)
                         .intercept(
                             `${m.p}?pretty=${p}`,
                             m.v,
@@ -1467,8 +1573,6 @@ describe('KubernetesObject', () => {
             ];
             for (const m of methods) {
                 const scope = nock('https://d.i.y')
-                    .get('/api/v1')
-                    .reply(200, resourceBodies.core)
                     .intercept(`${m.p}?dryRun=All`, m.v, m.v === 'DELETE' || m.v === 'GET' ? undefined : s)
                     .reply(m.c, m.b);
                 await m.m.call(client, s, undefined, 'All');
@@ -1501,8 +1605,6 @@ describe('KubernetesObject', () => {
                 },
             };
             const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core)
                 .post('/api/v1/namespaces/default/services?fieldManager=ManageField', s)
                 .reply(
                     201,
@@ -1540,8 +1642,6 @@ describe('KubernetesObject', () => {
   }
 }`,
                 )
-                .get('/api/v1')
-                .reply(200, resourceBodies.core)
                 .put('/api/v1/namespaces/default/services/k8s-js-client-test?pretty=true', {
                     kind: 'Service',
                     apiVersion: 'v1',
@@ -1613,8 +1713,6 @@ describe('KubernetesObject', () => {
   }
 }`,
                 )
-                .get('/api/v1')
-                .reply(200, resourceBodies.core)
                 .delete(
                     '/api/v1/namespaces/default/services/k8s-js-client-test?gracePeriodSeconds=7&propagationPolicy=Foreground',
                 )

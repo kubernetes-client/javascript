@@ -51,31 +51,15 @@ export class KubernetesObjectApi extends ApisApi {
      */
     public static makeApiClient(kc: KubeConfig): KubernetesObjectApi {
         const client = kc.makeApiClient(KubernetesObjectApi);
-        if (kc.currentContext) {
-            const currentContext = kc.getContextObject(kc.currentContext);
-            if (currentContext && currentContext.namespace) {
-                client.defaultNamespace = currentContext.namespace;
-            }
-        }
+        client.setDefaultNamespace(kc);
         return client;
     }
 
-    /**
-     * Return whether the name of the resource should be appended to the API URI path.  When creating resources, it is
-     * not appended.
-     *
-     * @param action API action, see [[K8sApiAction]]
-     * @return true if name should be appended to URI
-     */
-    protected static appendName(action: KubernetesApiAction): boolean {
-        return action !== 'create';
-    }
-
-    /** Default default namespace, so to speak. */
-    private static readonly defaultDefaultNamespace = 'default';
-
     /** Initialize the default namespace.  May be overwritten by context. */
-    protected defaultNamespace: string = KubernetesObjectApi.defaultDefaultNamespace;
+    protected defaultNamespace: string = 'default';
+
+    /** Cache resource API response. */
+    protected apiVersionResourceCache: Record<string, V1APIResourceList> = {};
 
     /**
      * Create any Kubernetes resource.
@@ -385,6 +369,17 @@ export class KubernetesObjectApi extends ApisApi {
         return this.requestPromise(localVarRequestOptions);
     }
 
+    /** Set default namespace from current context, if available. */
+    protected setDefaultNamespace(kc: KubeConfig): string {
+        if (kc.currentContext) {
+            const currentContext = kc.getContextObject(kc.currentContext);
+            if (currentContext && currentContext.namespace) {
+                this.defaultNamespace = currentContext.namespace;
+            }
+        }
+        return this.defaultNamespace;
+    }
+
     /**
      * Use spec information to construct resource URI path.  If any required information in not provided, an Error is
      * thrown.  If an `apiVersion` is not provided, 'v1' is used.  If a `metadata.namespace` is not provided for a
@@ -416,7 +411,7 @@ export class KubernetesObjectApi extends ApisApi {
             parts.push('namespaces', encodeURIComponent(String(spec.metadata.namespace)));
         }
         parts.push(resource.name);
-        if (KubernetesObjectApi.appendName(action)) {
+        if (action !== 'create') {
             if (!spec.metadata.name) {
                 throw new Error('Required spec property name is not set');
             }
@@ -457,6 +452,9 @@ export class KubernetesObjectApi extends ApisApi {
      * Get metadata from Kubernetes API for resources described by `kind` and `apiVersion`.  If it is unable to find the
      * resource `kind` under the provided `apiVersion`, `undefined` is returned.
      *
+     * This method caches responses from the Kubernetes API to use for future requests.  If the cache for apiVersion
+     * exists but the kind is not found the request is attempted again.
+     *
      * @param apiVersion Kubernetes API version, e.g., 'v1' or 'apps/v1'.
      * @param kind Kubernetes resource kind, e.g., 'Pod' or 'Namespace'.
      * @return Promise of the resource metadata or `undefined` if the resource is not found.
@@ -469,6 +467,13 @@ export class KubernetesObjectApi extends ApisApi {
         // verify required parameter 'kind' is not null or undefined
         if (kind === null || kind === undefined) {
             throw new Error('Required parameter kind was null or undefined when calling resource');
+        }
+
+        if (this.apiVersionResourceCache[apiVersion]) {
+            const resource = this.apiVersionResourceCache[apiVersion].resources.find((r) => r.kind === kind);
+            if (resource) {
+                return resource;
+            }
         }
 
         const localVarPath = this.apiVersionPath(apiVersion);
@@ -489,8 +494,8 @@ export class KubernetesObjectApi extends ApisApi {
                 localVarRequestOptions,
                 'V1APIResourceList',
             );
-            const apiResourceList = getApiResponse.body;
-            return apiResourceList.resources.find((r) => r.kind === kind);
+            this.apiVersionResourceCache[apiVersion] = getApiResponse.body;
+            return this.apiVersionResourceCache[apiVersion].resources.find((r) => r.kind === kind);
         } catch (e) {
             e.message = `Failed to fetch resource metadata for ${apiVersion}/${kind}: ${e.message}`;
             throw e;
