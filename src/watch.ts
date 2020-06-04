@@ -34,7 +34,7 @@ export class Watch {
     public async watch(
         path: string,
         queryParams: any,
-        callback: (phase: string, obj: any) => void,
+        callback: (phase: string, apiObj: any, watchObj?: any) => void,
         done: (err: any) => void,
     ): Promise<any> {
         const cluster = this.config.getCurrentCluster();
@@ -60,7 +60,7 @@ export class Watch {
         stream.on('data', (line) => {
             try {
                 const data = JSON.parse(line);
-                callback(data.type, data.object);
+                callback(data.type, data.object, data);
             } catch (ignore) {
                 // ignore parse errors
             }
