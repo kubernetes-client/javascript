@@ -9,6 +9,7 @@ export interface ObjectCache<T> {
 
 export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, Informer<T> {
     private objects: T[] = [];
+    private resourceVersion: string;
     private readonly indexCache: { [key: string]: T[] } = {};
     private readonly callbackCache: { [key: string]: Array<ObjectCallback<T>> } = {};
 
@@ -24,6 +25,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         this.callbackCache[UPDATE] = [];
         this.callbackCache[DELETE] = [];
         this.callbackCache[ERROR] = [];
+        this.resourceVersion = '';
         if (autoStart) {
             this.doneHandler(null);
         }
@@ -68,11 +70,18 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         return this.indexCache[namespace] as ReadonlyArray<T>;
     }
 
+    public latestResourceVersion(): string {
+        return this.resourceVersion;
+    }
+
     private async doneHandler(err: any) {
         if (err) {
             this.callbackCache[ERROR].forEach((elt: ObjectCallback<T>) => elt(err));
             return;
         }
+        // TODO: Don't always list here for efficiency
+        // try to restart the watch from resourceVersion, but detect 410 GONE and relist in that case.
+        // Or if resourceVersion is empty.
         const promise = this.listFn();
         const result = await promise;
         const list = result.body;
@@ -109,7 +118,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         addOrUpdateObject(namespaceList, obj);
     }
 
-    private watchHandler(phase: string, obj: T) {
+    private watchHandler(phase: string, obj: T, watchObj?: any) {
         switch (phase) {
             case 'ADDED':
             case 'MODIFIED':
@@ -132,6 +141,12 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
                     }
                 }
                 break;
+            case 'BOOKMARK':
+                // nothing to do, here for documentation, mostly.
+                break;
+        }
+        if (watchObj && watchObj.metadata) {
+            this.resourceVersion = watchObj.metadata.resourceVersion;
         }
     }
 }
