@@ -31,7 +31,9 @@ export async function apply(specPath: string): Promise<k8s.KubernetesObject[]> {
             // block.
             await client.read(spec);
             // we got the resource, so it exists, so patch it
-            const response = await client.patch(spec);
+            const options = { headers: { 'content-type': 'application/merge-patch+json' } }
+            const response =
+                await objectApi.patch(spec, undefined, undefined, undefined, undefined, options)
             created.push(response.body);
         } catch (e) {
             // we did not get the resource, so it does not exist, so create it
