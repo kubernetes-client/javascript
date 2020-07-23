@@ -19,8 +19,6 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         private readonly listFn: ListPromise<T>,
         autoStart: boolean = true,
     ) {
-        this.watch = watch;
-        this.listFn = listFn;
         this.callbackCache[ADD] = [];
         this.callbackCache[UPDATE] = [];
         this.callbackCache[DELETE] = [];
