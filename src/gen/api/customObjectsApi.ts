@@ -310,22 +310,23 @@ export class CustomObjectsApi {
         });
     }
     /**
-     * Delete collection of cluster scoped custom objects
-     * @param group The custom resource\&#39;s group name
-     * @param version The custom resource\&#39;s version
-     * @param plural The custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
-     * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
+     * Deletes the specified cluster scoped custom object
+     * @param group the custom resource\&#39;s group
+     * @param version the custom resource\&#39;s version
+     * @param plural the custom object\&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * @param name the custom object\&#39;s name
      * @param gracePeriodSeconds The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
      * @param orphanDependents Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param body 
      */
-    public async deleteCollectionClusterCustomObject (group: string, version: string, plural: string, pretty?: string, gracePeriodSeconds?: number, orphanDependents?: boolean, propagationPolicy?: string, dryRun?: string, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: object;  }> {
-        const localVarPath = this.basePath + '/apis/{group}/{version}/{plural}'
+    public async deleteClusterCustomObject (group: string, version: string, plural: string, name: string, gracePeriodSeconds?: number, orphanDependents?: boolean, propagationPolicy?: string, dryRun?: string, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: object;  }> {
+        const localVarPath = this.basePath + '/apis/{group}/{version}/{plural}/{name}'
             .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
             .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)));
+            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
+            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -339,21 +340,22 @@ export class CustomObjectsApi {
 
         // verify required parameter 'group' is not null or undefined
         if (group === null || group === undefined) {
-            throw new Error('Required parameter group was null or undefined when calling deleteCollectionClusterCustomObject.');
+            throw new Error('Required parameter group was null or undefined when calling deleteClusterCustomObject.');
         }
 
         // verify required parameter 'version' is not null or undefined
         if (version === null || version === undefined) {
-            throw new Error('Required parameter version was null or undefined when calling deleteCollectionClusterCustomObject.');
+            throw new Error('Required parameter version was null or undefined when calling deleteClusterCustomObject.');
         }
 
         // verify required parameter 'plural' is not null or undefined
         if (plural === null || plural === undefined) {
-            throw new Error('Required parameter plural was null or undefined when calling deleteCollectionClusterCustomObject.');
+            throw new Error('Required parameter plural was null or undefined when calling deleteClusterCustomObject.');
         }
 
-        if (pretty !== undefined) {
-            localVarQueryParameters['pretty'] = ObjectSerializer.serialize(pretty, "string");
+        // verify required parameter 'name' is not null or undefined
+        if (name === null || name === undefined) {
+            throw new Error('Required parameter name was null or undefined when calling deleteClusterCustomObject.');
         }
 
         if (gracePeriodSeconds !== undefined) {
@@ -422,23 +424,22 @@ export class CustomObjectsApi {
         });
     }
     /**
-     * Deletes the specified cluster scoped custom object
-     * @param group the custom resource\&#39;s group
-     * @param version the custom resource\&#39;s version
-     * @param plural the custom object\&#39;s plural name. For TPRs this would be lowercase plural kind.
-     * @param name the custom object\&#39;s name
+     * Delete collection of cluster scoped custom objects
+     * @param group The custom resource\&#39;s group name
+     * @param version The custom resource\&#39;s version
+     * @param plural The custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param gracePeriodSeconds The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
      * @param orphanDependents Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param body 
      */
-    public async deleteCollectionClusterCustomObject_1 (group: string, version: string, plural: string, name: string, gracePeriodSeconds?: number, orphanDependents?: boolean, propagationPolicy?: string, dryRun?: string, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: object;  }> {
-        const localVarPath = this.basePath + '/apis/{group}/{version}/{plural}/{name}'
+    public async deleteCollectionClusterCustomObject (group: string, version: string, plural: string, pretty?: string, gracePeriodSeconds?: number, orphanDependents?: boolean, propagationPolicy?: string, dryRun?: string, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: object;  }> {
+        const localVarPath = this.basePath + '/apis/{group}/{version}/{plural}'
             .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
             .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)))
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
         const produces = ['application/json'];
@@ -452,22 +453,21 @@ export class CustomObjectsApi {
 
         // verify required parameter 'group' is not null or undefined
         if (group === null || group === undefined) {
-            throw new Error('Required parameter group was null or undefined when calling deleteCollectionClusterCustomObject_1.');
+            throw new Error('Required parameter group was null or undefined when calling deleteCollectionClusterCustomObject.');
         }
 
         // verify required parameter 'version' is not null or undefined
         if (version === null || version === undefined) {
-            throw new Error('Required parameter version was null or undefined when calling deleteCollectionClusterCustomObject_1.');
+            throw new Error('Required parameter version was null or undefined when calling deleteCollectionClusterCustomObject.');
         }
 
         // verify required parameter 'plural' is not null or undefined
         if (plural === null || plural === undefined) {
-            throw new Error('Required parameter plural was null or undefined when calling deleteCollectionClusterCustomObject_1.');
+            throw new Error('Required parameter plural was null or undefined when calling deleteCollectionClusterCustomObject.');
         }
 
-        // verify required parameter 'name' is not null or undefined
-        if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling deleteCollectionClusterCustomObject_1.');
+        if (pretty !== undefined) {
+            localVarQueryParameters['pretty'] = ObjectSerializer.serialize(pretty, "string");
         }
 
         if (gracePeriodSeconds !== undefined) {
@@ -655,7 +655,7 @@ export class CustomObjectsApi {
         });
     }
     /**
-     * 
+     * Deletes the specified namespace scoped custom object
      * @param group the custom resource\&#39;s group
      * @param version the custom resource\&#39;s version
      * @param namespace The custom resource\&#39;s namespace
@@ -667,7 +667,7 @@ export class CustomObjectsApi {
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param body 
      */
-    public async deleteCollectionNamespacedCustomObject_2 (group: string, version: string, namespace: string, plural: string, name: string, gracePeriodSeconds?: number, orphanDependents?: boolean, propagationPolicy?: string, dryRun?: string, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: object;  }> {
+    public async deleteNamespacedCustomObject (group: string, version: string, namespace: string, plural: string, name: string, gracePeriodSeconds?: number, orphanDependents?: boolean, propagationPolicy?: string, dryRun?: string, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: object;  }> {
         const localVarPath = this.basePath + '/apis/{group}/{version}/namespaces/{namespace}/{plural}/{name}'
             .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
             .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
@@ -687,27 +687,27 @@ export class CustomObjectsApi {
 
         // verify required parameter 'group' is not null or undefined
         if (group === null || group === undefined) {
-            throw new Error('Required parameter group was null or undefined when calling deleteCollectionNamespacedCustomObject_2.');
+            throw new Error('Required parameter group was null or undefined when calling deleteNamespacedCustomObject.');
         }
 
         // verify required parameter 'version' is not null or undefined
         if (version === null || version === undefined) {
-            throw new Error('Required parameter version was null or undefined when calling deleteCollectionNamespacedCustomObject_2.');
+            throw new Error('Required parameter version was null or undefined when calling deleteNamespacedCustomObject.');
         }
 
         // verify required parameter 'namespace' is not null or undefined
         if (namespace === null || namespace === undefined) {
-            throw new Error('Required parameter namespace was null or undefined when calling deleteCollectionNamespacedCustomObject_2.');
+            throw new Error('Required parameter namespace was null or undefined when calling deleteNamespacedCustomObject.');
         }
 
         // verify required parameter 'plural' is not null or undefined
         if (plural === null || plural === undefined) {
-            throw new Error('Required parameter plural was null or undefined when calling deleteCollectionNamespacedCustomObject_2.');
+            throw new Error('Required parameter plural was null or undefined when calling deleteNamespacedCustomObject.');
         }
 
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
-            throw new Error('Required parameter name was null or undefined when calling deleteCollectionNamespacedCustomObject_2.');
+            throw new Error('Required parameter name was null or undefined when calling deleteNamespacedCustomObject.');
         }
 
         if (gracePeriodSeconds !== undefined) {
