@@ -5,7 +5,7 @@ kc.loadFromDefault();
 
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
-const path = '/api/v1/namespaces/default/pods';
+const path = '/api/v1/pods';
 const watch = new k8s.Watch(kc);
 
 const listFn = () => k8sApi.listPodForAllNamespaces()
