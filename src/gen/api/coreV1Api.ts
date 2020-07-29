@@ -6020,7 +6020,6 @@ export class CoreV1Api {
      * delete collection of ConfigMap
      * @param namespace object name and auth scope, such as for teams and projects
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
-     * @param allowWatchBookmarks allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
      * @param _continue The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldSelector A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -6031,10 +6030,9 @@ export class CoreV1Api {
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param resourceVersion When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it\&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
-     * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      * @param body 
      */
-    public async deleteCollectionNamespacedConfigMap (namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, watch?: boolean, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
+    public async deleteCollectionNamespacedConfigMap (namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
         const localVarPath = this.basePath + '/api/v1/namespaces/{namespace}/configmaps'
             .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
         let localVarQueryParameters: any = {};
@@ -6055,10 +6053,6 @@ export class CoreV1Api {
 
         if (pretty !== undefined) {
             localVarQueryParameters['pretty'] = ObjectSerializer.serialize(pretty, "string");
-        }
-
-        if (allowWatchBookmarks !== undefined) {
-            localVarQueryParameters['allowWatchBookmarks'] = ObjectSerializer.serialize(allowWatchBookmarks, "boolean");
         }
 
         if (_continue !== undefined) {
@@ -6099,10 +6093,6 @@ export class CoreV1Api {
 
         if (timeoutSeconds !== undefined) {
             localVarQueryParameters['timeoutSeconds'] = ObjectSerializer.serialize(timeoutSeconds, "number");
-        }
-
-        if (watch !== undefined) {
-            localVarQueryParameters['watch'] = ObjectSerializer.serialize(watch, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -6158,7 +6148,6 @@ export class CoreV1Api {
      * delete collection of Endpoints
      * @param namespace object name and auth scope, such as for teams and projects
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
-     * @param allowWatchBookmarks allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
      * @param _continue The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldSelector A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -6169,10 +6158,9 @@ export class CoreV1Api {
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param resourceVersion When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it\&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
-     * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      * @param body 
      */
-    public async deleteCollectionNamespacedEndpoints (namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, watch?: boolean, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
+    public async deleteCollectionNamespacedEndpoints (namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
         const localVarPath = this.basePath + '/api/v1/namespaces/{namespace}/endpoints'
             .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
         let localVarQueryParameters: any = {};
@@ -6193,10 +6181,6 @@ export class CoreV1Api {
 
         if (pretty !== undefined) {
             localVarQueryParameters['pretty'] = ObjectSerializer.serialize(pretty, "string");
-        }
-
-        if (allowWatchBookmarks !== undefined) {
-            localVarQueryParameters['allowWatchBookmarks'] = ObjectSerializer.serialize(allowWatchBookmarks, "boolean");
         }
 
         if (_continue !== undefined) {
@@ -6237,10 +6221,6 @@ export class CoreV1Api {
 
         if (timeoutSeconds !== undefined) {
             localVarQueryParameters['timeoutSeconds'] = ObjectSerializer.serialize(timeoutSeconds, "number");
-        }
-
-        if (watch !== undefined) {
-            localVarQueryParameters['watch'] = ObjectSerializer.serialize(watch, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -6296,7 +6276,6 @@ export class CoreV1Api {
      * delete collection of Event
      * @param namespace object name and auth scope, such as for teams and projects
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
-     * @param allowWatchBookmarks allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
      * @param _continue The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldSelector A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -6307,10 +6286,9 @@ export class CoreV1Api {
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param resourceVersion When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it\&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
-     * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      * @param body 
      */
-    public async deleteCollectionNamespacedEvent (namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, watch?: boolean, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
+    public async deleteCollectionNamespacedEvent (namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
         const localVarPath = this.basePath + '/api/v1/namespaces/{namespace}/events'
             .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
         let localVarQueryParameters: any = {};
@@ -6331,10 +6309,6 @@ export class CoreV1Api {
 
         if (pretty !== undefined) {
             localVarQueryParameters['pretty'] = ObjectSerializer.serialize(pretty, "string");
-        }
-
-        if (allowWatchBookmarks !== undefined) {
-            localVarQueryParameters['allowWatchBookmarks'] = ObjectSerializer.serialize(allowWatchBookmarks, "boolean");
         }
 
         if (_continue !== undefined) {
@@ -6375,10 +6349,6 @@ export class CoreV1Api {
 
         if (timeoutSeconds !== undefined) {
             localVarQueryParameters['timeoutSeconds'] = ObjectSerializer.serialize(timeoutSeconds, "number");
-        }
-
-        if (watch !== undefined) {
-            localVarQueryParameters['watch'] = ObjectSerializer.serialize(watch, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -6434,7 +6404,6 @@ export class CoreV1Api {
      * delete collection of LimitRange
      * @param namespace object name and auth scope, such as for teams and projects
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
-     * @param allowWatchBookmarks allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
      * @param _continue The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldSelector A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -6445,10 +6414,9 @@ export class CoreV1Api {
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param resourceVersion When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it\&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
-     * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      * @param body 
      */
-    public async deleteCollectionNamespacedLimitRange (namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, watch?: boolean, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
+    public async deleteCollectionNamespacedLimitRange (namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
         const localVarPath = this.basePath + '/api/v1/namespaces/{namespace}/limitranges'
             .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
         let localVarQueryParameters: any = {};
@@ -6469,10 +6437,6 @@ export class CoreV1Api {
 
         if (pretty !== undefined) {
             localVarQueryParameters['pretty'] = ObjectSerializer.serialize(pretty, "string");
-        }
-
-        if (allowWatchBookmarks !== undefined) {
-            localVarQueryParameters['allowWatchBookmarks'] = ObjectSerializer.serialize(allowWatchBookmarks, "boolean");
         }
 
         if (_continue !== undefined) {
@@ -6513,10 +6477,6 @@ export class CoreV1Api {
 
         if (timeoutSeconds !== undefined) {
             localVarQueryParameters['timeoutSeconds'] = ObjectSerializer.serialize(timeoutSeconds, "number");
-        }
-
-        if (watch !== undefined) {
-            localVarQueryParameters['watch'] = ObjectSerializer.serialize(watch, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -6572,7 +6532,6 @@ export class CoreV1Api {
      * delete collection of PersistentVolumeClaim
      * @param namespace object name and auth scope, such as for teams and projects
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
-     * @param allowWatchBookmarks allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
      * @param _continue The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldSelector A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -6583,10 +6542,9 @@ export class CoreV1Api {
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param resourceVersion When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it\&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
-     * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      * @param body 
      */
-    public async deleteCollectionNamespacedPersistentVolumeClaim (namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, watch?: boolean, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
+    public async deleteCollectionNamespacedPersistentVolumeClaim (namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
         const localVarPath = this.basePath + '/api/v1/namespaces/{namespace}/persistentvolumeclaims'
             .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
         let localVarQueryParameters: any = {};
@@ -6607,10 +6565,6 @@ export class CoreV1Api {
 
         if (pretty !== undefined) {
             localVarQueryParameters['pretty'] = ObjectSerializer.serialize(pretty, "string");
-        }
-
-        if (allowWatchBookmarks !== undefined) {
-            localVarQueryParameters['allowWatchBookmarks'] = ObjectSerializer.serialize(allowWatchBookmarks, "boolean");
         }
 
         if (_continue !== undefined) {
@@ -6651,10 +6605,6 @@ export class CoreV1Api {
 
         if (timeoutSeconds !== undefined) {
             localVarQueryParameters['timeoutSeconds'] = ObjectSerializer.serialize(timeoutSeconds, "number");
-        }
-
-        if (watch !== undefined) {
-            localVarQueryParameters['watch'] = ObjectSerializer.serialize(watch, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -6710,7 +6660,6 @@ export class CoreV1Api {
      * delete collection of Pod
      * @param namespace object name and auth scope, such as for teams and projects
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
-     * @param allowWatchBookmarks allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
      * @param _continue The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldSelector A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -6721,10 +6670,9 @@ export class CoreV1Api {
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param resourceVersion When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it\&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
-     * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      * @param body 
      */
-    public async deleteCollectionNamespacedPod (namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, watch?: boolean, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
+    public async deleteCollectionNamespacedPod (namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
         const localVarPath = this.basePath + '/api/v1/namespaces/{namespace}/pods'
             .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
         let localVarQueryParameters: any = {};
@@ -6745,10 +6693,6 @@ export class CoreV1Api {
 
         if (pretty !== undefined) {
             localVarQueryParameters['pretty'] = ObjectSerializer.serialize(pretty, "string");
-        }
-
-        if (allowWatchBookmarks !== undefined) {
-            localVarQueryParameters['allowWatchBookmarks'] = ObjectSerializer.serialize(allowWatchBookmarks, "boolean");
         }
 
         if (_continue !== undefined) {
@@ -6789,10 +6733,6 @@ export class CoreV1Api {
 
         if (timeoutSeconds !== undefined) {
             localVarQueryParameters['timeoutSeconds'] = ObjectSerializer.serialize(timeoutSeconds, "number");
-        }
-
-        if (watch !== undefined) {
-            localVarQueryParameters['watch'] = ObjectSerializer.serialize(watch, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -6848,7 +6788,6 @@ export class CoreV1Api {
      * delete collection of PodTemplate
      * @param namespace object name and auth scope, such as for teams and projects
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
-     * @param allowWatchBookmarks allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
      * @param _continue The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldSelector A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -6859,10 +6798,9 @@ export class CoreV1Api {
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param resourceVersion When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it\&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
-     * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      * @param body 
      */
-    public async deleteCollectionNamespacedPodTemplate (namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, watch?: boolean, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
+    public async deleteCollectionNamespacedPodTemplate (namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
         const localVarPath = this.basePath + '/api/v1/namespaces/{namespace}/podtemplates'
             .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
         let localVarQueryParameters: any = {};
@@ -6883,10 +6821,6 @@ export class CoreV1Api {
 
         if (pretty !== undefined) {
             localVarQueryParameters['pretty'] = ObjectSerializer.serialize(pretty, "string");
-        }
-
-        if (allowWatchBookmarks !== undefined) {
-            localVarQueryParameters['allowWatchBookmarks'] = ObjectSerializer.serialize(allowWatchBookmarks, "boolean");
         }
 
         if (_continue !== undefined) {
@@ -6927,10 +6861,6 @@ export class CoreV1Api {
 
         if (timeoutSeconds !== undefined) {
             localVarQueryParameters['timeoutSeconds'] = ObjectSerializer.serialize(timeoutSeconds, "number");
-        }
-
-        if (watch !== undefined) {
-            localVarQueryParameters['watch'] = ObjectSerializer.serialize(watch, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -6986,7 +6916,6 @@ export class CoreV1Api {
      * delete collection of ReplicationController
      * @param namespace object name and auth scope, such as for teams and projects
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
-     * @param allowWatchBookmarks allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
      * @param _continue The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldSelector A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -6997,10 +6926,9 @@ export class CoreV1Api {
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param resourceVersion When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it\&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
-     * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      * @param body 
      */
-    public async deleteCollectionNamespacedReplicationController (namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, watch?: boolean, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
+    public async deleteCollectionNamespacedReplicationController (namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
         const localVarPath = this.basePath + '/api/v1/namespaces/{namespace}/replicationcontrollers'
             .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
         let localVarQueryParameters: any = {};
@@ -7021,10 +6949,6 @@ export class CoreV1Api {
 
         if (pretty !== undefined) {
             localVarQueryParameters['pretty'] = ObjectSerializer.serialize(pretty, "string");
-        }
-
-        if (allowWatchBookmarks !== undefined) {
-            localVarQueryParameters['allowWatchBookmarks'] = ObjectSerializer.serialize(allowWatchBookmarks, "boolean");
         }
 
         if (_continue !== undefined) {
@@ -7065,10 +6989,6 @@ export class CoreV1Api {
 
         if (timeoutSeconds !== undefined) {
             localVarQueryParameters['timeoutSeconds'] = ObjectSerializer.serialize(timeoutSeconds, "number");
-        }
-
-        if (watch !== undefined) {
-            localVarQueryParameters['watch'] = ObjectSerializer.serialize(watch, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -7124,7 +7044,6 @@ export class CoreV1Api {
      * delete collection of ResourceQuota
      * @param namespace object name and auth scope, such as for teams and projects
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
-     * @param allowWatchBookmarks allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
      * @param _continue The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldSelector A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -7135,10 +7054,9 @@ export class CoreV1Api {
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param resourceVersion When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it\&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
-     * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      * @param body 
      */
-    public async deleteCollectionNamespacedResourceQuota (namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, watch?: boolean, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
+    public async deleteCollectionNamespacedResourceQuota (namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
         const localVarPath = this.basePath + '/api/v1/namespaces/{namespace}/resourcequotas'
             .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
         let localVarQueryParameters: any = {};
@@ -7159,10 +7077,6 @@ export class CoreV1Api {
 
         if (pretty !== undefined) {
             localVarQueryParameters['pretty'] = ObjectSerializer.serialize(pretty, "string");
-        }
-
-        if (allowWatchBookmarks !== undefined) {
-            localVarQueryParameters['allowWatchBookmarks'] = ObjectSerializer.serialize(allowWatchBookmarks, "boolean");
         }
 
         if (_continue !== undefined) {
@@ -7203,10 +7117,6 @@ export class CoreV1Api {
 
         if (timeoutSeconds !== undefined) {
             localVarQueryParameters['timeoutSeconds'] = ObjectSerializer.serialize(timeoutSeconds, "number");
-        }
-
-        if (watch !== undefined) {
-            localVarQueryParameters['watch'] = ObjectSerializer.serialize(watch, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -7262,7 +7172,6 @@ export class CoreV1Api {
      * delete collection of Secret
      * @param namespace object name and auth scope, such as for teams and projects
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
-     * @param allowWatchBookmarks allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
      * @param _continue The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldSelector A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -7273,10 +7182,9 @@ export class CoreV1Api {
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param resourceVersion When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it\&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
-     * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      * @param body 
      */
-    public async deleteCollectionNamespacedSecret (namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, watch?: boolean, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
+    public async deleteCollectionNamespacedSecret (namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
         const localVarPath = this.basePath + '/api/v1/namespaces/{namespace}/secrets'
             .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
         let localVarQueryParameters: any = {};
@@ -7297,10 +7205,6 @@ export class CoreV1Api {
 
         if (pretty !== undefined) {
             localVarQueryParameters['pretty'] = ObjectSerializer.serialize(pretty, "string");
-        }
-
-        if (allowWatchBookmarks !== undefined) {
-            localVarQueryParameters['allowWatchBookmarks'] = ObjectSerializer.serialize(allowWatchBookmarks, "boolean");
         }
 
         if (_continue !== undefined) {
@@ -7341,10 +7245,6 @@ export class CoreV1Api {
 
         if (timeoutSeconds !== undefined) {
             localVarQueryParameters['timeoutSeconds'] = ObjectSerializer.serialize(timeoutSeconds, "number");
-        }
-
-        if (watch !== undefined) {
-            localVarQueryParameters['watch'] = ObjectSerializer.serialize(watch, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -7400,7 +7300,6 @@ export class CoreV1Api {
      * delete collection of ServiceAccount
      * @param namespace object name and auth scope, such as for teams and projects
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
-     * @param allowWatchBookmarks allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
      * @param _continue The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldSelector A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -7411,10 +7310,9 @@ export class CoreV1Api {
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param resourceVersion When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it\&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
-     * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      * @param body 
      */
-    public async deleteCollectionNamespacedServiceAccount (namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, watch?: boolean, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
+    public async deleteCollectionNamespacedServiceAccount (namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
         const localVarPath = this.basePath + '/api/v1/namespaces/{namespace}/serviceaccounts'
             .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
         let localVarQueryParameters: any = {};
@@ -7435,10 +7333,6 @@ export class CoreV1Api {
 
         if (pretty !== undefined) {
             localVarQueryParameters['pretty'] = ObjectSerializer.serialize(pretty, "string");
-        }
-
-        if (allowWatchBookmarks !== undefined) {
-            localVarQueryParameters['allowWatchBookmarks'] = ObjectSerializer.serialize(allowWatchBookmarks, "boolean");
         }
 
         if (_continue !== undefined) {
@@ -7479,10 +7373,6 @@ export class CoreV1Api {
 
         if (timeoutSeconds !== undefined) {
             localVarQueryParameters['timeoutSeconds'] = ObjectSerializer.serialize(timeoutSeconds, "number");
-        }
-
-        if (watch !== undefined) {
-            localVarQueryParameters['watch'] = ObjectSerializer.serialize(watch, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -7537,7 +7427,6 @@ export class CoreV1Api {
     /**
      * delete collection of Node
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
-     * @param allowWatchBookmarks allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
      * @param _continue The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldSelector A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -7548,10 +7437,9 @@ export class CoreV1Api {
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param resourceVersion When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it\&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
-     * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      * @param body 
      */
-    public async deleteCollectionNode (pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, watch?: boolean, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
+    public async deleteCollectionNode (pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
         const localVarPath = this.basePath + '/api/v1/nodes';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -7566,10 +7454,6 @@ export class CoreV1Api {
 
         if (pretty !== undefined) {
             localVarQueryParameters['pretty'] = ObjectSerializer.serialize(pretty, "string");
-        }
-
-        if (allowWatchBookmarks !== undefined) {
-            localVarQueryParameters['allowWatchBookmarks'] = ObjectSerializer.serialize(allowWatchBookmarks, "boolean");
         }
 
         if (_continue !== undefined) {
@@ -7610,10 +7494,6 @@ export class CoreV1Api {
 
         if (timeoutSeconds !== undefined) {
             localVarQueryParameters['timeoutSeconds'] = ObjectSerializer.serialize(timeoutSeconds, "number");
-        }
-
-        if (watch !== undefined) {
-            localVarQueryParameters['watch'] = ObjectSerializer.serialize(watch, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
@@ -7668,7 +7548,6 @@ export class CoreV1Api {
     /**
      * delete collection of PersistentVolume
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
-     * @param allowWatchBookmarks allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
      * @param _continue The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldSelector A selector to restrict the list of returned objects by their fields. Defaults to everything.
@@ -7679,10 +7558,9 @@ export class CoreV1Api {
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param resourceVersion When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it\&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
-     * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      * @param body 
      */
-    public async deleteCollectionPersistentVolume (pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, watch?: boolean, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
+    public async deleteCollectionPersistentVolume (pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, timeoutSeconds?: number, body?: V1DeleteOptions, options: {headers: {[name: string]: string}} = {headers: {}}) : Promise<{ response: http.IncomingMessage; body: V1Status;  }> {
         const localVarPath = this.basePath + '/api/v1/persistentvolumes';
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
@@ -7697,10 +7575,6 @@ export class CoreV1Api {
 
         if (pretty !== undefined) {
             localVarQueryParameters['pretty'] = ObjectSerializer.serialize(pretty, "string");
-        }
-
-        if (allowWatchBookmarks !== undefined) {
-            localVarQueryParameters['allowWatchBookmarks'] = ObjectSerializer.serialize(allowWatchBookmarks, "boolean");
         }
 
         if (_continue !== undefined) {
@@ -7741,10 +7615,6 @@ export class CoreV1Api {
 
         if (timeoutSeconds !== undefined) {
             localVarQueryParameters['timeoutSeconds'] = ObjectSerializer.serialize(timeoutSeconds, "number");
-        }
-
-        if (watch !== undefined) {
-            localVarQueryParameters['watch'] = ObjectSerializer.serialize(watch, "boolean");
         }
 
         (<any>Object).assign(localVarHeaderParams, options.headers);
