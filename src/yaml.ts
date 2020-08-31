@@ -1,7 +1,7 @@
 import * as yaml from 'js-yaml';
 
-export function loadYaml<T>(data: string, opts?: yaml.LoadOptions): T {
-    return yaml.safeLoad(data, opts) as T;
+export function loadYaml<T = any>(data: string, opts?: yaml.LoadOptions): T | undefined {
+    return (yaml.safeLoad(data, opts) as unknown) as T | undefined;
 }
 
 export function loadAllYaml(data: string, opts?: yaml.LoadOptions): any[] {
