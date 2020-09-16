@@ -13,6 +13,7 @@ import { Authenticator } from './auth';
 import { CloudAuth } from './cloud_auth';
 import {
     Cluster,
+    ConfigOptions,
     Context,
     exportCluster,
     exportContext,
@@ -31,9 +32,9 @@ function fileExists(filepath: string): boolean {
     try {
         fs.accessSync(filepath);
         return true;
-        // tslint:disable-next-line:no-empty
-    } catch (ignore) {}
-    return false;
+    } catch (ignore) {
+        return false;
+    }
 }
 
 export class KubeConfig {
@@ -121,9 +122,9 @@ export class KubeConfig {
         return findObject(this.users, name, 'user');
     }
 
-    public loadFromFile(file: string) {
+    public loadFromFile(file: string, opts?: Partial<ConfigOptions>) {
         const rootDirectory = path.dirname(file);
-        this.loadFromString(fs.readFileSync(file, 'utf8'));
+        this.loadFromString(fs.readFileSync(file, 'utf8'), opts);
         this.makePathsAbsolute(rootDirectory);
     }
 
@@ -155,11 +156,11 @@ export class KubeConfig {
         }
     }
 
-    public loadFromString(config: string) {
-        const obj = yaml.safeLoad(config) as any;
-        this.clusters = newClusters(obj.clusters);
-        this.contexts = newContexts(obj.contexts);
-        this.users = newUsers(obj.users);
+    public loadFromString(config: string, opts?: Partial<ConfigOptions>) {
+        const obj = yaml.safeLoad(config);
+        this.clusters = newClusters(obj.clusters, opts);
+        this.contexts = newContexts(obj.contexts, opts);
+        this.users = newUsers(obj.users, opts);
         this.currentContext = obj['current-context'];
     }
 
@@ -279,13 +280,13 @@ export class KubeConfig {
         this.contexts.push(ctx);
     }
 
-    public loadFromDefault() {
+    public loadFromDefault(opts?: Partial<ConfigOptions>) {
         if (process.env.KUBECONFIG && process.env.KUBECONFIG.length > 0) {
             const files = process.env.KUBECONFIG.split(path.delimiter);
-            this.loadFromFile(files[0]);
+            this.loadFromFile(files[0], opts);
             for (let i = 1; i < files.length; i++) {
                 const kc = new KubeConfig();
-                kc.loadFromFile(files[i]);
+                kc.loadFromFile(files[i], opts);
                 this.mergeConfig(kc);
             }
             return;
@@ -294,7 +295,7 @@ export class KubeConfig {
         if (home) {
             const config = path.join(home, '.kube', 'config');
             if (fileExists(config)) {
-                this.loadFromFile(config);
+                this.loadFromFile(config, opts);
                 return;
             }
         }
@@ -303,7 +304,7 @@ export class KubeConfig {
             try {
                 const result = execa.sync('wsl.exe', ['cat', shelljs.homedir() + '/.kube/config']);
                 if (result.code === 0) {
-                    this.loadFromString(result.stdout);
+                    this.loadFromString(result.std, opts);
                     return;
                 }
             } catch (err) {
