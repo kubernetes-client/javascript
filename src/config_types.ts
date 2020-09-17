@@ -1,5 +1,20 @@
 import * as fs from 'fs';
-import * as u from 'underscore';
+import * as _ from 'underscore';
+
+export enum ActionOnInvalid {
+    THROW = 'throw',
+    FILTER = 'filter',
+}
+
+export interface ConfigOptions {
+    onInvalidEntry: ActionOnInvalid;
+}
+
+function defaultNewConfigOptions(): ConfigOptions {
+    return {
+        onInvalidEntry: ActionOnInvalid.THROW,
+    };
+}
 
 export interface Cluster {
     readonly name: string;
@@ -9,8 +24,10 @@ export interface Cluster {
     readonly skipTLSVerify: boolean;
 }
 
-export function newClusters(a: any): Cluster[] {
-    return u.map(a, clusterIterator());
+export function newClusters(a: any, opts?: Partial<ConfigOptions>): Cluster[] {
+    const options = Object.assign(defaultNewConfigOptions(), opts || {});
+
+    return _.compact(_.map(a, clusterIterator(options.onInvalidEntry)));
 }
 
 export function exportCluster(cluster: Cluster): any {
@@ -25,24 +42,34 @@ export function exportCluster(cluster: Cluster): any {
     };
 }
 
-function clusterIterator(): u.ListIterator<any, Cluster> {
-    return (elt: any, i: number, list: u.List<any>): Cluster => {
-        if (!elt.name) {
-            throw new Error(`clusters[${i}].name is missing`);
+function clusterIterator(onInvalidEntry: ActionOnInvalid): _.ListIterator<any, Cluster | null> {
+    return (elt: any, i: number, list: _.List<any>): Cluster | null => {
+        try {
+            if (!elt.name) {
+                throw new Error(`clusters[${i}].name is missing`);
+            }
+            if (!elt.cluster) {
+                throw new Error(`clusters[${i}].cluster is missing`);
+            }
+            if (!elt.cluster.server) {
+                throw new Error(`clusters[${i}].cluster.server is missing`);
+            }
+            return {
+                caData: elt.cluster['certificate-authority-data'],
+                caFile: elt.cluster['certificate-authority'],
+                name: elt.name,
+                server: elt.cluster.server,
+                skipTLSVerify: elt.cluster['insecure-skip-tls-verify'] === true,
+            };
+        } catch (err) {
+            switch (onInvalidEntry) {
+                case ActionOnInvalid.FILTER:
+                    return null;
+                default:
+                case ActionOnInvalid.THROW:
+                    throw err;
+            }
         }
-        if (!elt.cluster) {
-            throw new Error(`clusters[${i}].cluster is missing`);
-        }
-        if (!elt.cluster.server) {
-            throw new Error(`clusters[${i}].cluster.server is missing`);
-        }
-        return {
-            caData: elt.cluster['certificate-authority-data'],
-            caFile: elt.cluster['certificate-authority'],
-            name: elt.name,
-            server: elt.cluster.server,
-            skipTLSVerify: elt.cluster['insecure-skip-tls-verify'] === true,
-        };
     };
 }
 
@@ -59,8 +86,10 @@ export interface User {
     readonly password?: string;
 }
 
-export function newUsers(a: any): User[] {
-    return u.map(a, userIterator());
+export function newUsers(a: any, opts?: Partial<ConfigOptions>): User[] {
+    const options = Object.assign(defaultNewConfigOptions(), opts || {});
+
+    return _.compact(_.map(a, userIterator(options.onInvalidEntry)));
 }
 
 export function exportUser(user: User): any {
@@ -80,23 +109,33 @@ export function exportUser(user: User): any {
     };
 }
 
-function userIterator(): u.ListIterator<any, User> {
-    return (elt: any, i: number, list: u.List<any>): User => {
-        if (!elt.name) {
-            throw new Error(`users[${i}].name is missing`);
+function userIterator(onInvalidEntry: ActionOnInvalid): _.ListIterator<any, User | null> {
+    return (elt: any, i: number, list: _.List<any>): User | null => {
+        try {
+            if (!elt.name) {
+                throw new Error(`users[${i}].name is missing`);
+            }
+            return {
+                authProvider: elt.user ? elt.user['auth-provider'] : null,
+                certData: elt.user ? elt.user['client-certificate-data'] : null,
+                certFile: elt.user ? elt.user['client-certificate'] : null,
+                exec: elt.user ? elt.user.exec : null,
+                keyData: elt.user ? elt.user['client-key-data'] : null,
+                keyFile: elt.user ? elt.user['client-key'] : null,
+                name: elt.name,
+                token: findToken(elt.user),
+                password: elt.user ? elt.user.password : null,
+                username: elt.user ? elt.user.username : null,
+            };
+        } catch (err) {
+            switch (onInvalidEntry) {
+                case ActionOnInvalid.FILTER:
+                    return null;
+                default:
+                case ActionOnInvalid.THROW:
+                    throw err;
+            }
         }
-        return {
-            authProvider: elt.user ? elt.user['auth-provider'] : null,
-            certData: elt.user ? elt.user['client-certificate-data'] : null,
-            certFile: elt.user ? elt.user['client-certificate'] : null,
-            exec: elt.user ? elt.user.exec : null,
-            keyData: elt.user ? elt.user['client-key-data'] : null,
-            keyFile: elt.user ? elt.user['client-key'] : null,
-            name: elt.name,
-            token: findToken(elt.user),
-            password: elt.user ? elt.user.password : null,
-            username: elt.user ? elt.user.username : null,
-        };
     };
 }
 
@@ -118,8 +157,10 @@ export interface Context {
     readonly namespace?: string;
 }
 
-export function newContexts(a: any): Context[] {
-    return u.map(a, contextIterator());
+export function newContexts(a: any, opts?: Partial<ConfigOptions>): Context[] {
+    const options = Object.assign(defaultNewConfigOptions(), opts || {});
+
+    return _.compact(_.map(a, contextIterator(options.onInvalidEntry)));
 }
 
 export function exportContext(ctx: Context): any {
@@ -129,22 +170,32 @@ export function exportContext(ctx: Context): any {
     };
 }
 
-function contextIterator(): u.ListIterator<any, Context> {
-    return (elt: any, i: number, list: u.List<any>): Context => {
-        if (!elt.name) {
-            throw new Error(`contexts[${i}].name is missing`);
+function contextIterator(onInvalidEntry: ActionOnInvalid): _.ListIterator<any, Context | null> {
+    return (elt: any, i: number, list: _.List<any>): Context | null => {
+        try {
+            if (!elt.name) {
+                throw new Error(`contexts[${i}].name is missing`);
+            }
+            if (!elt.context) {
+                throw new Error(`contexts[${i}].context is missing`);
+            }
+            if (!elt.context.cluster) {
+                throw new Error(`contexts[${i}].context.cluster is missing`);
+            }
+            return {
+                cluster: elt.context.cluster,
+                name: elt.name,
+                user: elt.context.user || undefined,
+                namespace: elt.context.namespace || undefined,
+            };
+        } catch (err) {
+            switch (onInvalidEntry) {
+                case ActionOnInvalid.FILTER:
+                    return null;
+                default:
+                case ActionOnInvalid.THROW:
+                    throw err;
+            }
         }
-        if (!elt.context) {
-            throw new Error(`contexts[${i}].context is missing`);
-        }
-        if (!elt.context.cluster) {
-            throw new Error(`contexts[${i}].context.cluster is missing`);
-        }
-        return {
-            cluster: elt.context.cluster,
-            name: elt.name,
-            user: elt.context.user || undefined,
-            namespace: elt.context.namespace || undefined,
-        };
     };
 }

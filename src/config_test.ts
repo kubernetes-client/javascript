@@ -12,7 +12,7 @@ import { fs } from 'mock-fs';
 import * as os from 'os';
 import { CoreV1Api } from './api';
 import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolutePath } from './config';
-import { Cluster, newClusters, newContexts, newUsers, User } from './config_types';
+import { Cluster, newClusters, newContexts, newUsers, User, ActionOnInvalid } from './config_types';
 import { isUndefined } from 'util';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
@@ -22,6 +22,8 @@ const kcDupeContext = 'testdata/kubeconfig-dupe-context.yaml';
 const kcDupeUser = 'testdata/kubeconfig-dupe-user.yaml';
 
 const kcNoUserFileName = 'testdata/empty-user-kubeconfig.yaml';
+const kcInvalidContextFileName = 'testdata/empty-context-kubeconfig.yaml';
+const kcInvalidClusterFileName = 'testdata/empty-cluster-kubeconfig.yaml';
 
 /* tslint:disable: no-empty */
 describe('Config', () => {});
@@ -192,9 +194,26 @@ describe('KubeConfig', () => {
             validateFileLoad(kc);
         });
         it('should fail to load a missing kubeconfig file', () => {
-            // TODO: make the error check work
-            // let kc = new KubeConfig();
-            // expect(kc.loadFromFile("missing.yaml")).to.throw();
+            const kc = new KubeConfig();
+            expect(kc.loadFromFile.bind('missing.yaml')).to.throw();
+        });
+
+        describe('filter vs throw tests', () => {
+            it('works for invalid users', () => {
+                const kc = new KubeConfig();
+                kc.loadFromFile(kcNoUserFileName, { onInvalidEntry: ActionOnInvalid.FILTER });
+                expect(kc.getUsers().length).to.be.eq(2);
+            });
+            it('works for invalid contexts', () => {
+                const kc = new KubeConfig();
+                kc.loadFromFile(kcInvalidContextFileName, { onInvalidEntry: ActionOnInvalid.FILTER });
+                expect(kc.getContexts().length).to.be.eq(2);
+            });
+            it('works for invalid clusters', () => {
+                const kc = new KubeConfig();
+                kc.loadFromFile(kcInvalidClusterFileName, { onInvalidEntry: ActionOnInvalid.FILTER });
+                expect(kc.getClusters().length).to.be.eq(1);
+            });
         });
     });
 
