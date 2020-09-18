@@ -47,6 +47,7 @@ describe('Watch', () => {
 
         const fakeRequest = {
             pipe: (stream) => {},
+            destroy: () => {},
         };
 
         when(fakeRequestor.webRequest(anything(), anyFunction())).thenReturn(fakeRequest);
@@ -112,6 +113,7 @@ describe('Watch', () => {
                 stream.write(JSON.stringify(obj1) + '\n');
                 stream.write(JSON.stringify(obj2) + '\n');
             },
+            destroy: () => {},
         };
 
         when(fakeRequestor.webRequest(anything(), anyFunction())).thenReturn(fakeRequest);
@@ -180,6 +182,7 @@ describe('Watch', () => {
                 stream.emit('error', errIn);
                 stream.emit('close');
             },
+            destroy: () => {},
         };
 
         when(fakeRequestor.webRequest(anything(), anyFunction())).thenReturn(fakeRequest);
@@ -240,6 +243,7 @@ describe('Watch', () => {
                 stream.write(JSON.stringify(obj1) + '\n');
                 stream.emit('close');
             },
+            destroy: () => {},
         };
 
         when(fakeRequestor.webRequest(anything(), anyFunction())).thenReturn(fakeRequest);
@@ -298,6 +302,7 @@ describe('Watch', () => {
                 stream.write(JSON.stringify(obj) + '\n');
                 stream.write('{"truncated json\n');
             },
+            destroy: () => {},
         };
 
         when(fakeRequestor.webRequest(anything(), anyFunction())).thenReturn(fakeRequest);

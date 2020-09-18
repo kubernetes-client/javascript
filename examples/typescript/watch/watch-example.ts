@@ -3,6 +3,7 @@ import * as k8s from '@kubernetes/client-node';
 const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
 
+let request: k8s.RequestResult = null;
 const watch = new k8s.Watch(kc);
 watch.watch('/api/v1/namespaces',
     // optional query parameters can go here.
@@ -34,8 +35,12 @@ watch.watch('/api/v1/namespaces',
     (err) => {
         // tslint:disable-next-line:no-console
         console.log(err);
+        if (request != null) {
+            request!.destroy();
+        }
     })
 .then((req) => {
+    request = req;
     // watch returns a request object which you can use to abort the watch.
-    setTimeout(() => { req.abort(); }, 10 * 1000);
+    setTimeout(() => { req.abort(); req.destroy(); }, 10 * 1000);
 });
