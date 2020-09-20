@@ -15,11 +15,11 @@ export interface WebSocketInterface {
 }
 
 export class WebSocketHandler implements WebSocketInterface {
-    public static readonly StdinStream = 0;
-    public static readonly StdoutStream = 1;
-    public static readonly StderrStream = 2;
-    public static readonly StatusStream = 3;
-    public static readonly ResizeStream = 4;
+    public static readonly StdinStream: number = 0;
+    public static readonly StdoutStream: number = 1;
+    public static readonly StderrStream: number = 2;
+    public static readonly StatusStream: number = 3;
+    public static readonly ResizeStream: number = 4;
 
     public static handleStandardStreams(
         streamNum: number,

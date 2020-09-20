@@ -40,7 +40,7 @@ export class OpenIDConnectAuth implements Authenticator {
     }
 
     // public for testing purposes.
-    private currentTokenExpiration = 0;
+    private currentTokenExpiration: number = 0;
     public isAuthProvider(user: User): boolean {
         if (!user.authProvider) {
             return false;
@@ -58,7 +58,7 @@ export class OpenIDConnectAuth implements Authenticator {
         user: User,
         opts: request.Options | https.RequestOptions,
         overrideClient?: any,
-    ) {
+    ): Promise<void> {
         const token = await this.getToken(user, overrideClient);
         if (token) {
             opts.headers!.Authorization = `Bearer ${token}`;
@@ -102,7 +102,7 @@ export class OpenIDConnectAuth implements Authenticator {
         return user.authProvider.config['id-token'];
     }
 
-    private async getClient(user: User) {
+    private async getClient(user: User): Promise<Client> {
         const oidcIssuer = await Issuer.discover(user.authProvider.config['idp-issuer-url']);
         return new oidcIssuer.Client({
             client_id: user.authProvider.config['client-id'],

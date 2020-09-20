@@ -13,7 +13,10 @@ export class FileAuth implements Authenticator {
         return user.authProvider && user.authProvider.config && user.authProvider.config.tokenFile;
     }
 
-    public async applyAuthentication(user: User, opts: request.Options | https.RequestOptions) {
+    public async applyAuthentication(
+        user: User,
+        opts: request.Options | https.RequestOptions,
+    ): Promise<void> {
         if (this.token == null) {
             this.refreshToken(user.authProvider.config.tokenFile);
         }
@@ -25,7 +28,7 @@ export class FileAuth implements Authenticator {
         }
     }
 
-    private refreshToken(filePath: string) {
+    private refreshToken(filePath: string): void {
         // TODO make this async?
         this.token = fs.readFileSync(filePath).toString('UTF-8');
         this.lastRead = new Date();

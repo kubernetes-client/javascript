@@ -3,7 +3,7 @@ import { Readable, ReadableOptions } from 'stream';
 export interface ResizableStream {
     columns: number;
     rows: number;
-    on(event: 'resize', cb: () => void);
+    on(event: 'resize', cb: () => void): void;
 }
 
 export interface TerminalSize {
@@ -16,11 +16,11 @@ export class TerminalSizeQueue extends Readable {
         super({
             ...opts,
             // tslint:disable-next-line:no-empty
-            read() {},
+            read(): void {},
         });
     }
 
-    public handleResizes(writeStream: ResizableStream) {
+    public handleResizes(writeStream: ResizableStream): void {
         // Set initial size
         this.resize(getTerminalSize(writeStream));
 
@@ -28,12 +28,12 @@ export class TerminalSizeQueue extends Readable {
         writeStream.on('resize', () => this.resize(getTerminalSize(writeStream)));
     }
 
-    private resize(size: TerminalSize) {
+    private resize(size: TerminalSize): void {
         this.push(JSON.stringify(size));
     }
 }
 
-export function isResizable(stream: any) {
+export function isResizable(stream: any): boolean {
     if (stream == null) {
         return false;
     }

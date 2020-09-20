@@ -33,14 +33,14 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         await this.doneHandler(null);
     }
 
-    public on(verb: string, cb: ObjectCallback<T>) {
+    public on(verb: string, cb: ObjectCallback<T>): void {
         if (this.callbackCache[verb] === undefined) {
             throw new Error(`Unknown verb: ${verb}`);
         }
         this.callbackCache[verb].push(cb);
     }
 
-    public off(verb: string, cb: ObjectCallback<T>) {
+    public off(verb: string, cb: ObjectCallback<T>): void {
         if (this.callbackCache[verb] === undefined) {
             throw new Error(`Unknown verb: ${verb}`);
         }
@@ -72,7 +72,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         return this.resourceVersion;
     }
 
-    private async doneHandler(err: any) {
+    private async doneHandler(err: any): Promise<any> {
         if (err) {
             this.callbackCache[ERROR].forEach((elt: ObjectCallback<T>) => elt(err));
             return;
@@ -93,7 +93,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         );
     }
 
-    private addOrUpdateItems(items: T[]) {
+    private addOrUpdateItems(items: T[]): void {
         items.forEach((obj: T) => {
             addOrUpdateObject(
                 this.objects,
@@ -107,7 +107,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         });
     }
 
-    private indexObj(obj: T) {
+    private indexObj(obj: T): void {
         let namespaceList = this.indexCache[obj.metadata!.namespace!] as T[];
         if (!namespaceList) {
             namespaceList = [];
@@ -116,7 +116,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         addOrUpdateObject(namespaceList, obj);
     }
 
-    private watchHandler(phase: string, obj: T, watchObj?: any) {
+    private watchHandler(phase: string, obj: T, watchObj?: any): void {
         switch (phase) {
             case 'ADDED':
             case 'MODIFIED':
@@ -172,7 +172,7 @@ export function addOrUpdateObject<T extends KubernetesObject>(
     obj: T,
     addCallback?: Array<ObjectCallback<T>>,
     updateCallback?: Array<ObjectCallback<T>>,
-) {
+): void {
     const ix = findKubernetesObject(objects, obj);
     if (ix === -1) {
         objects.push(obj);
@@ -202,7 +202,7 @@ export function deleteObject<T extends KubernetesObject>(
     objects: T[],
     obj: T,
     deleteCallback?: Array<ObjectCallback<T>>,
-) {
+): void {
     const ix = findKubernetesObject(objects, obj);
     if (ix !== -1) {
         objects.splice(ix, 1);
