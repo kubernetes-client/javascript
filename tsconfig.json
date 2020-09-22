@@ -13,7 +13,8 @@
     "rootDir": "src",
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "importHelpers": true
+    "importHelpers": true,
+    "skipLibCheck": true
     // enable this when it works with tslint, or we switch to prettier
     // "declarationMap": true
   },
