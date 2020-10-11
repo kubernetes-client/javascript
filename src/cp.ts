@@ -28,7 +28,7 @@ export class Cp {
     ): Promise<void> {
         const tmpFile = tmp.fileSync();
         const tmpFileName = tmpFile.name;
-        const command = ['tar', 'cf', '-', srcPath];
+        const command = ['tar', 'zcf', '-', srcPath];
         const writerStream = fs.createWriteStream(tmpFileName);
         const errStream = new WritableStreamBuffer();
         this.execInstance.exec(
