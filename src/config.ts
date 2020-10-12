@@ -71,27 +71,27 @@ export class KubeConfig {
         this.users = [];
     }
 
-    public getContexts() {
+    public getContexts(): Context[] {
         return this.contexts;
     }
 
-    public getClusters() {
+    public getClusters(): Cluster[] {
         return this.clusters;
     }
 
-    public getUsers() {
+    public getUsers(): User[] {
         return this.users;
     }
 
-    public getCurrentContext() {
+    public getCurrentContext(): string {
         return this.currentContext;
     }
 
-    public setCurrentContext(context: string) {
+    public setCurrentContext(context: string): void {
         this.currentContext = context;
     }
 
-    public getContextObject(name: string) {
+    public getContextObject(name: string): Context | null {
         if (!this.contexts) {
             return null;
         }
@@ -122,13 +122,13 @@ export class KubeConfig {
         return findObject(this.users, name, 'user');
     }
 
-    public loadFromFile(file: string, opts?: Partial<ConfigOptions>) {
+    public loadFromFile(file: string, opts?: Partial<ConfigOptions>): void {
         const rootDirectory = path.dirname(file);
         this.loadFromString(fs.readFileSync(file, 'utf8'), opts);
         this.makePathsAbsolute(rootDirectory);
     }
 
-    public async applytoHTTPSOptions(opts: https.RequestOptions) {
+    public async applytoHTTPSOptions(opts: https.RequestOptions): Promise<void> {
         const user = this.getCurrentUser();
 
         await this.applyOptions(opts);
@@ -138,7 +138,7 @@ export class KubeConfig {
         }
     }
 
-    public async applyToRequest(opts: request.Options) {
+    public async applyToRequest(opts: request.Options): Promise<void> {
         const cluster = this.getCurrentCluster();
         const user = this.getCurrentUser();
 
@@ -156,7 +156,7 @@ export class KubeConfig {
         }
     }
 
-    public loadFromString(config: string, opts?: Partial<ConfigOptions>) {
+    public loadFromString(config: string, opts?: Partial<ConfigOptions>): void {
         const obj = yaml.safeLoad(config);
         this.clusters = newClusters(obj.clusters, opts);
         this.contexts = newContexts(obj.contexts, opts);
@@ -164,14 +164,14 @@ export class KubeConfig {
         this.currentContext = obj['current-context'];
     }
 
-    public loadFromOptions(options: any) {
+    public loadFromOptions(options: any): void {
         this.clusters = options.clusters;
         this.contexts = options.contexts;
         this.users = options.users;
         this.currentContext = options.currentContext;
     }
 
-    public loadFromClusterAndUser(cluster: Cluster, user: User) {
+    public loadFromClusterAndUser(cluster: Cluster, user: User): void {
         this.clusters = [cluster];
         this.users = [user];
         this.currentContext = 'loaded-context';
@@ -184,7 +184,7 @@ export class KubeConfig {
         ];
     }
 
-    public loadFromCluster(pathPrefix: string = '') {
+    public loadFromCluster(pathPrefix: string = ''): void {
         const host = process.env.KUBERNETES_SERVICE_HOST;
         const port = process.env.KUBERNETES_SERVICE_PORT;
         const clusterName = 'inCluster';
@@ -231,7 +231,7 @@ export class KubeConfig {
         this.currentContext = contextName;
     }
 
-    public mergeConfig(config: KubeConfig) {
+    public mergeConfig(config: KubeConfig): void {
         this.currentContext = config.currentContext;
         config.clusters.forEach((cluster: Cluster) => {
             this.addCluster(cluster);
@@ -244,7 +244,7 @@ export class KubeConfig {
         });
     }
 
-    public addCluster(cluster: Cluster) {
+    public addCluster(cluster: Cluster): void {
         if (!this.clusters) {
             this.clusters = [];
         }
@@ -256,7 +256,7 @@ export class KubeConfig {
         this.clusters.push(cluster);
     }
 
-    public addUser(user: User) {
+    public addUser(user: User): void {
         if (!this.users) {
             this.users = [];
         }
@@ -268,7 +268,7 @@ export class KubeConfig {
         this.users.push(user);
     }
 
-    public addContext(ctx: Context) {
+    public addContext(ctx: Context): void {
         if (!this.contexts) {
             this.contexts = [];
         }
@@ -280,7 +280,7 @@ export class KubeConfig {
         this.contexts.push(ctx);
     }
 
-    public loadFromDefault(opts?: Partial<ConfigOptions>) {
+    public loadFromDefault(opts?: Partial<ConfigOptions>): void {
         if (process.env.KUBECONFIG && process.env.KUBECONFIG.length > 0) {
             const files = process.env.KUBECONFIG.split(path.delimiter);
             this.loadFromFile(files[0], opts);
@@ -323,7 +323,7 @@ export class KubeConfig {
         );
     }
 
-    public makeApiClient<T extends ApiType>(apiClientType: ApiConstructor<T>) {
+    public makeApiClient<T extends ApiType>(apiClientType: ApiConstructor<T>): T {
         const cluster = this.getCurrentCluster();
         if (!cluster) {
             throw new Error('No active cluster!');
@@ -334,7 +334,7 @@ export class KubeConfig {
         return apiClient;
     }
 
-    public makePathsAbsolute(rootDirectory: string) {
+    public makePathsAbsolute(rootDirectory: string): void {
         this.clusters.forEach((cluster: Cluster) => {
             if (cluster.caFile) {
                 cluster.caFile = makeAbsolutePath(rootDirectory, cluster.caFile);
@@ -364,11 +364,11 @@ export class KubeConfig {
         return JSON.stringify(configObj);
     }
 
-    private getCurrentContextObject() {
+    private getCurrentContextObject(): Context | null {
         return this.getContextObject(this.currentContext);
     }
 
-    private applyHTTPSOptions(opts: request.Options | https.RequestOptions) {
+    private applyHTTPSOptions(opts: request.Options | https.RequestOptions): void {
         const cluster = this.getCurrentCluster();
         const user = this.getCurrentUser();
         if (!user) {
@@ -392,7 +392,7 @@ export class KubeConfig {
         }
     }
 
-    private async applyAuthorizationHeader(opts: request.Options | https.RequestOptions) {
+    private async applyAuthorizationHeader(opts: request.Options | https.RequestOptions): Promise<void> {
         const user = this.getCurrentUser();
         if (!user) {
             return;
@@ -413,7 +413,7 @@ export class KubeConfig {
         }
     }
 
-    private async applyOptions(opts: request.Options | https.RequestOptions) {
+    private async applyOptions(opts: request.Options | https.RequestOptions): Promise<void> {
         this.applyHTTPSOptions(opts);
         await this.applyAuthorizationHeader(opts);
     }
@@ -428,9 +428,9 @@ type ApiConstructor<T extends ApiType> = new (server: string) => T;
 
 // This class is deprecated and will eventually be removed.
 export class Config {
-    public static SERVICEACCOUNT_ROOT = '/var/run/secrets/kubernetes.io/serviceaccount';
-    public static SERVICEACCOUNT_CA_PATH = Config.SERVICEACCOUNT_ROOT + '/ca.crt';
-    public static SERVICEACCOUNT_TOKEN_PATH = Config.SERVICEACCOUNT_ROOT + '/token';
+    public static SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
+    public static SERVICEACCOUNT_CA_PATH: string = Config.SERVICEACCOUNT_ROOT + '/ca.crt';
+    public static SERVICEACCOUNT_TOKEN_PATH: string = Config.SERVICEACCOUNT_ROOT + '/token';
 
     public static fromFile(filename: string): api.CoreV1Api {
         return Config.apiFromFile(filename, api.CoreV1Api);

@@ -36,7 +36,10 @@ export class ExecAuth implements Authenticator {
         );
     }
 
-    public async applyAuthentication(user: User, opts: request.Options | https.RequestOptions) {
+    public async applyAuthentication(
+        user: User,
+        opts: request.Options | https.RequestOptions,
+    ): Promise<void> {
         const credential = this.getCredential(user);
         if (!credential) {
             return;

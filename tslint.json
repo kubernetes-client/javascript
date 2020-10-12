@@ -14,7 +14,8 @@
     "interface-name": [true, "never-prefix"],
     "object-literal-sort-keys": false,
     "object-literal-key-quotes": [true, "as-needed"],
-    "max-classes-per-file": false
+    "max-classes-per-file": false,
+    "typedef": [true, "call-signature", "parameter", "member-variable-declaration"]
   },
   "rulesDirectory": []
 }

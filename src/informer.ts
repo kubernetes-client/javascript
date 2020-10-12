@@ -18,8 +18,8 @@ export const DELETE: string = 'delete';
 export const ERROR: string = 'error';
 
 export interface Informer<T> {
-    on(verb: string, fn: ObjectCallback<T>);
-    off(verb: string, fn: ObjectCallback<T>);
+    on(verb: string, fn: ObjectCallback<T>): void;
+    off(verb: string, fn: ObjectCallback<T>): void;
     start(): Promise<void>;
 }
 
