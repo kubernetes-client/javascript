@@ -12,3 +12,4 @@ export * from './informer';
 export * from './top';
 export * from './object';
 export * from './cp';
+export * from './patch';
