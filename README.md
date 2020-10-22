@@ -1,6 +1,6 @@
 # Javascript Kubernetes Client information
 
-[![Build Status](https://github.com/kubernetes-client/javascript/workflows/test/badge.svg)](https://github.com/kubernetes-client/javascript/actions)
+[![Build Status](https://github.com/kubernetes-client/javascript/workflows/Kubernetes%20Javascript%20Client%20-%20Validation/badge.svg)](https://github.com/kubernetes-client/javascript/actions)
 [![Client Capabilities](https://img.shields.io/badge/Kubernetes%20client-Gold-blue.svg?style=flat&colorB=FFD700&colorA=306CE8)](http://bit.ly/kubernetes-client-capabilities-badge)
 [![Client Support Level](https://img.shields.io/badge/kubernetes%20client-beta-green.svg?style=flat&colorA=306CE8)](http://bit.ly/kubernetes-client-support-badge)
 
