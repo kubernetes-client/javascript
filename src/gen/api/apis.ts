@@ -22,10 +22,6 @@ export * from './appsApi';
 import { AppsApi } from './appsApi';
 export * from './appsV1Api';
 import { AppsV1Api } from './appsV1Api';
-export * from './auditregistrationApi';
-import { AuditregistrationApi } from './auditregistrationApi';
-export * from './auditregistrationV1alpha1Api';
-import { AuditregistrationV1alpha1Api } from './auditregistrationV1alpha1Api';
 export * from './authenticationApi';
 import { AuthenticationApi } from './authenticationApi';
 export * from './authenticationV1Api';
@@ -56,6 +52,8 @@ export * from './batchV2alpha1Api';
 import { BatchV2alpha1Api } from './batchV2alpha1Api';
 export * from './certificatesApi';
 import { CertificatesApi } from './certificatesApi';
+export * from './certificatesV1Api';
+import { CertificatesV1Api } from './certificatesV1Api';
 export * from './certificatesV1beta1Api';
 import { CertificatesV1beta1Api } from './certificatesV1beta1Api';
 export * from './coordinationApi';
@@ -76,6 +74,8 @@ export * from './discoveryV1beta1Api';
 import { DiscoveryV1beta1Api } from './discoveryV1beta1Api';
 export * from './eventsApi';
 import { EventsApi } from './eventsApi';
+export * from './eventsV1Api';
+import { EventsV1Api } from './eventsV1Api';
 export * from './eventsV1beta1Api';
 import { EventsV1beta1Api } from './eventsV1beta1Api';
 export * from './extensionsApi';
@@ -154,4 +154,4 @@ export interface RequestDetailedFile {
 
 export type RequestFile = string | Buffer | fs.ReadStream | RequestDetailedFile;
 
-export const APIS = [AdmissionregistrationApi, AdmissionregistrationV1Api, AdmissionregistrationV1beta1Api, ApiextensionsApi, ApiextensionsV1Api, ApiextensionsV1beta1Api, ApiregistrationApi, ApiregistrationV1Api, ApiregistrationV1beta1Api, ApisApi, AppsApi, AppsV1Api, AuditregistrationApi, AuditregistrationV1alpha1Api, AuthenticationApi, AuthenticationV1Api, AuthenticationV1beta1Api, AuthorizationApi, AuthorizationV1Api, AuthorizationV1beta1Api, AutoscalingApi, AutoscalingV1Api, AutoscalingV2beta1Api, AutoscalingV2beta2Api, BatchApi, BatchV1Api, BatchV1beta1Api, BatchV2alpha1Api, CertificatesApi, CertificatesV1beta1Api, CoordinationApi, CoordinationV1Api, CoordinationV1beta1Api, CoreApi, CoreV1Api, CustomObjectsApi, DiscoveryApi, DiscoveryV1beta1Api, EventsApi, EventsV1beta1Api, ExtensionsApi, ExtensionsV1beta1Api, FlowcontrolApiserverApi, FlowcontrolApiserverV1alpha1Api, LogsApi, NetworkingApi, NetworkingV1Api, NetworkingV1beta1Api, NodeApi, NodeV1alpha1Api, NodeV1beta1Api, PolicyApi, PolicyV1beta1Api, RbacAuthorizationApi, RbacAuthorizationV1Api, RbacAuthorizationV1alpha1Api, RbacAuthorizationV1beta1Api, SchedulingApi, SchedulingV1Api, SchedulingV1alpha1Api, SchedulingV1beta1Api, SettingsApi, SettingsV1alpha1Api, StorageApi, StorageV1Api, StorageV1alpha1Api, StorageV1beta1Api, VersionApi];
+export const APIS = [AdmissionregistrationApi, AdmissionregistrationV1Api, AdmissionregistrationV1beta1Api, ApiextensionsApi, ApiextensionsV1Api, ApiextensionsV1beta1Api, ApiregistrationApi, ApiregistrationV1Api, ApiregistrationV1beta1Api, ApisApi, AppsApi, AppsV1Api, AuthenticationApi, AuthenticationV1Api, AuthenticationV1beta1Api, AuthorizationApi, AuthorizationV1Api, AuthorizationV1beta1Api, AutoscalingApi, AutoscalingV1Api, AutoscalingV2beta1Api, AutoscalingV2beta2Api, BatchApi, BatchV1Api, BatchV1beta1Api, BatchV2alpha1Api, CertificatesApi, CertificatesV1Api, CertificatesV1beta1Api, CoordinationApi, CoordinationV1Api, CoordinationV1beta1Api, CoreApi, CoreV1Api, CustomObjectsApi, DiscoveryApi, DiscoveryV1beta1Api, EventsApi, EventsV1Api, EventsV1beta1Api, ExtensionsApi, ExtensionsV1beta1Api, FlowcontrolApiserverApi, FlowcontrolApiserverV1alpha1Api, LogsApi, NetworkingApi, NetworkingV1Api, NetworkingV1beta1Api, NodeApi, NodeV1alpha1Api, NodeV1beta1Api, PolicyApi, PolicyV1beta1Api, RbacAuthorizationApi, RbacAuthorizationV1Api, RbacAuthorizationV1alpha1Api, RbacAuthorizationV1beta1Api, SchedulingApi, SchedulingV1Api, SchedulingV1alpha1Api, SchedulingV1beta1Api, SettingsApi, SettingsV1alpha1Api, StorageApi, StorageV1Api, StorageV1alpha1Api, StorageV1beta1Api, VersionApi];
