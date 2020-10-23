@@ -21,7 +21,7 @@ export GEN_COMMIT=d71ff1efd
 export USERNAME=kubernetes
 
 # Kubernetes branch/tag to get the OpenAPI spec from.
-export KUBERNETES_BRANCH="v1.18.0"
+export KUBERNETES_BRANCH="v1.19.0"
 
 # client version for packaging and releasing. It can
 # be different than SPEC_VERSION.
