@@ -164,7 +164,12 @@ export class KubeConfig {
         this.currentContext = obj['current-context'];
     }
 
-    public loadFromOptions(options: any): void {
+    public loadFromOptions(options: {
+      clusters: Cluster[],
+      contexts: Context[],
+      users: User[],
+      currentContext: string
+    }): void {
         this.clusters = options.clusters;
         this.contexts = options.contexts;
         this.users = options.users;
@@ -233,13 +238,13 @@ export class KubeConfig {
 
     public mergeConfig(config: KubeConfig): void {
         this.currentContext = config.currentContext;
-        config.clusters.forEach((cluster: Cluster) => {
+        config.clusters.forEach((cluster) => {
             this.addCluster(cluster);
         });
-        config.users.forEach((user: User) => {
+        config.users.forEach((user) => {
             this.addUser(user);
         });
-        config.contexts.forEach((ctx: Context) => {
+        config.contexts.forEach((ctx) => {
             this.addContext(ctx);
         });
     }
@@ -248,7 +253,7 @@ export class KubeConfig {
         if (!this.clusters) {
             this.clusters = [];
         }
-        this.clusters.forEach((c: Cluster, ix: number) => {
+        this.clusters.forEach((c) => {
             if (c.name === cluster.name) {
                 throw new Error(`Duplicate cluster: ${c.name}`);
             }
@@ -260,7 +265,7 @@ export class KubeConfig {
         if (!this.users) {
             this.users = [];
         }
-        this.users.forEach((c: User, ix: number) => {
+        this.users.forEach((c) => {
             if (c.name === user.name) {
                 throw new Error(`Duplicate user: ${c.name}`);
             }
@@ -272,7 +277,7 @@ export class KubeConfig {
         if (!this.contexts) {
             this.contexts = [];
         }
-        this.contexts.forEach((c: Context, ix: number) => {
+        this.contexts.forEach((c) => {
             if (c.name === ctx.name) {
                 throw new Error(`Duplicate context: ${c.name}`);
             }
@@ -335,12 +340,12 @@ export class KubeConfig {
     }
 
     public makePathsAbsolute(rootDirectory: string): void {
-        this.clusters.forEach((cluster: Cluster) => {
+        this.clusters.forEach((cluster) => {
             if (cluster.caFile) {
                 cluster.caFile = makeAbsolutePath(rootDirectory, cluster.caFile);
             }
         });
-        this.users.forEach((user: User) => {
+        this.users.forEach((user) => {
             if (user.certFile) {
                 user.certFile = makeAbsolutePath(rootDirectory, user.certFile);
             }
