@@ -103,6 +103,33 @@ const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
 There are several more examples in the [examples](https://github.com/kubernetes-client/javascript/tree/master/examples) directory.
 
+# Compatability
+
+Prior to the `0.13.0` release, release versions did not track Kubernetes versions. Starting with the `0.13.0`
+release, we will increment the minor version whenever we update the minor Kubernetes API version 
+(e.g. `1.19.x`) that this library is generated from.
+
+Generally speaking newer clients will work with older Kubernetes, but compatability isn't 100% guaranteed.
+
+| client version | older versions | 1.18 | 1.19 |
+|----------------|----------------|------|------|
+|  0.12.3        |       -        |  ✓   |  x   |
+|  0.13.0        |       -        |  +   |  ✓   |
+
+Key: 
+
+* `✓` Exactly the same features / API objects in both javascript-client and the Kubernetes
+  version.
+* `+` javascript-client has features or api objects that may not be present in the
+  Kubernetes cluster, but everything they have in common will work.
+* `-` The Kubernetes cluster has features the javascript-client library can't use
+  (additional API objects, etc).
+* `x` The Kubernetes cluster has no guarantees to support the API client of
+  this version, as it only promises _n_-2 version support. It is not tested,
+  and operations using API versions that have been deprecated and removed in
+  later server versions won't function correctly.
+
+
 # Development
 
 All dependencies of this project are expressed in its
