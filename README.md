@@ -118,11 +118,11 @@ Generally speaking newer clients will work with older Kubernetes, but compatabil
 
 Key: 
 
-* `✓` Exactly the same features / API objects in both java-client and the Kubernetes
+* `✓` Exactly the same features / API objects in both javascript-client and the Kubernetes
   version.
-* `+` java-client has features or api objects that may not be present in the
+* `+` javascript-client has features or api objects that may not be present in the
   Kubernetes cluster, but everything they have in common will work.
-* `-` The Kubernetes cluster has features the java-client library can't use
+* `-` The Kubernetes cluster has features the javascript-client library can't use
   (additional API objects, etc).
 * `x` The Kubernetes cluster has no guarantees to support the API client of
   this version, as it only promises _n_-2 version support. It is not tested,
