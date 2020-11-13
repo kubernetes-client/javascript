@@ -67,7 +67,13 @@ describe('ListWatchCache', () => {
         };
         const promise = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+                fakeWatch.watch(
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                ),
             ).thenCall(() => {
                 resolve();
             });
@@ -146,7 +152,13 @@ describe('ListWatchCache', () => {
         };
         const promise = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+                fakeWatch.watch(
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                ),
             ).thenCall(() => {
                 resolve();
             });
@@ -227,7 +239,13 @@ describe('ListWatchCache', () => {
         };
         const promise = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+                fakeWatch.watch(
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                ),
             ).thenCall(() => {
                 resolve();
             });
@@ -298,7 +316,13 @@ describe('ListWatchCache', () => {
         };
         let promise = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+                fakeWatch.watch(
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                ),
             ).thenCall(() => {
                 resolve();
             });
@@ -320,12 +344,18 @@ describe('ListWatchCache', () => {
 
         promise = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+                fakeWatch.watch(
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                ),
             ).thenCall(() => {
                 resolve();
             });
         });
-        doneHandler(null);
+        doneHandler();
         await promise;
         expect(addObjects).to.deep.equal(list);
         expect(updateObjects).to.deep.equal(list);
@@ -371,7 +401,13 @@ describe('ListWatchCache', () => {
         };
         let promise = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+                fakeWatch.watch(
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                ),
             ).thenCall(() => {
                 resolve();
             });
@@ -394,13 +430,19 @@ describe('ListWatchCache', () => {
 
         promise = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+                fakeWatch.watch(
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                ),
             ).thenCall(() => {
                 resolve();
             });
         });
         listObj.items = list2;
-        doneHandler(null);
+        doneHandler();
         await promise;
         expect(addObjects).to.deep.equal(list);
         expect(updateObjects).to.deep.equal(list2);
@@ -448,7 +490,13 @@ describe('ListWatchCache', () => {
         };
         const promise = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+                fakeWatch.watch(
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                ),
             ).thenCall(() => {
                 resolve();
             });
@@ -568,7 +616,13 @@ describe('ListWatchCache', () => {
         };
         const watchCalled = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+                fakeWatch.watch(
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                ),
             ).thenCall(resolve);
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
@@ -627,7 +681,13 @@ describe('ListWatchCache', () => {
         };
         const watchCalled = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+                fakeWatch.watch(
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                    mock.anything(),
+                ),
             ).thenCall(resolve);
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
