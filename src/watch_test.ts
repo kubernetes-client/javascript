@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import request = require('request');
-import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
 import { anyFunction, anything, capture, instance, mock, reset, verify, when } from 'ts-mockito';
 
 import { KubeConfig } from './config';
@@ -60,8 +59,10 @@ describe('Watch', () => {
             path,
             {},
             (phase: string, obj: string) => {},
-            (err: any) => {
+            () => {
                 doneCalled = true;
+            },
+            (err: any) => {
                 doneErr = err;
             },
         );
@@ -130,8 +131,10 @@ describe('Watch', () => {
                 receivedTypes.push(phase);
                 receivedObjects.push(obj);
             },
-            (err: any) => {
+            () => {
                 doneCalled = true;
+            },
+            (err: any) => {
                 doneErr = err;
             },
         );
@@ -153,7 +156,7 @@ describe('Watch', () => {
         doneCallback(null, null, null);
 
         expect(doneCalled).to.equal(true);
-        expect(doneErr).to.equal(null);
+        expect(doneErr).to.be.undefined;
 
         const errIn = { error: 'err' };
         doneCallback(errIn, null, null);
@@ -198,10 +201,8 @@ describe('Watch', () => {
                 receivedTypes.push(phase);
                 receivedObjects.push(obj);
             },
-            (err: any) => {
-                doneCalled = true;
-                doneErr.push(err);
-            },
+            () => (doneCalled = true),
+            (err: any) => doneErr.push(err),
         );
 
         verify(fakeRequestor.webRequest(anything(), anyFunction()));
@@ -217,9 +218,8 @@ describe('Watch', () => {
         expect(receivedObjects).to.deep.equal([obj1.object]);
 
         expect(doneCalled).to.equal(true);
-        expect(doneErr.length).to.equal(2);
+        expect(doneErr.length).to.equal(1);
         expect(doneErr[0]).to.deep.equal(errIn);
-        expect(doneErr[1]).to.deep.equal(errIn);
     });
 
     it('should handle server side close correctly', async () => {
@@ -258,10 +258,8 @@ describe('Watch', () => {
                 receivedTypes.push(phase);
                 receivedObjects.push(obj);
             },
-            (err: any) => {
-                doneCalled = true;
-                doneErr = err;
-            },
+            () => (doneCalled = true),
+            (err: any) => (doneErr = err),
         );
 
         verify(fakeRequestor.webRequest(anything(), anyFunction()));
@@ -277,7 +275,7 @@ describe('Watch', () => {
         expect(receivedObjects).to.deep.equal([obj1.object]);
 
         expect(doneCalled).to.equal(true);
-        expect(doneErr).to.be.null;
+        expect(doneErr).to.be.undefined;
     });
 
     it('should ignore JSON parse errors', async () => {
@@ -317,6 +315,9 @@ describe('Watch', () => {
             () => {
                 /* ignore */
             },
+            () => {
+                /* ignore */
+            },
         );
 
         verify(fakeRequestor.webRequest(anything(), anyFunction()));
@@ -332,7 +333,7 @@ describe('Watch', () => {
         const kc = new KubeConfig();
         const watch = new Watch(kc);
 
-        const promise = watch.watch('/some/path', {}, () => {}, () => {});
+        const promise = watch.watch('/some/path', {}, () => {}, () => {}, () => {});
         expect(promise).to.be.rejected;
     });
 });

@@ -46,7 +46,8 @@ export class Watch {
         path: string,
         queryParams: any,
         callback: (phase: string, apiObj: any, watchObj?: any) => void,
-        done: (err: any) => void,
+        done: () => void,
+        error: (err: any) => void,
     ): Promise<any> {
         const cluster = this.config.getCurrentCluster();
         if (!cluster) {
@@ -76,20 +77,18 @@ export class Watch {
                 // ignore parse errors
             }
         });
-        let errOut: Error | null = null;
-        stream.on('error', (err) => {
-            errOut = err;
-            done(err);
-        });
-        stream.on('close', () => done(errOut));
+        stream.on('error', error);
+        stream.on('close', done);
 
-        const req = this.requestImpl.webRequest(requestOptions, (error, response, body) => {
-            if (error) {
-                done(error);
+        const req = this.requestImpl.webRequest(requestOptions, (err, response, body) => {
+            if (err) {
+                error(err);
+                done();
             } else if (response && response.statusCode !== 200) {
-                done(new Error(response.statusMessage));
+                error(new Error(response.statusMessage));
+                done();
             } else {
-                done(null);
+                done();
             }
         });
         req.pipe(stream);

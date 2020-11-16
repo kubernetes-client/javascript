@@ -12,6 +12,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     private resourceVersion: string;
     private readonly indexCache: { [key: string]: T[] } = {};
     private readonly callbackCache: { [key: string]: Array<ObjectCallback<T>> } = {};
+    private stopped: boolean;
 
     public constructor(
         private readonly path: string,
@@ -24,13 +25,19 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         this.callbackCache[DELETE] = [];
         this.callbackCache[ERROR] = [];
         this.resourceVersion = '';
+        this.stopped = true;
         if (autoStart) {
-            this.doneHandler(null);
+            this.start();
         }
     }
 
     public async start(): Promise<void> {
-        await this.doneHandler(null);
+        this.stopped = false;
+        await this.doneHandler();
+    }
+
+    public stop(): void {
+        this.stopped = true;
     }
 
     public on(verb: string, cb: ObjectCallback<T>): void {
@@ -72,9 +79,15 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         return this.resourceVersion;
     }
 
-    private async doneHandler(err: any): Promise<any> {
+    private async errorHandler(err: any): Promise<void> {
         if (err) {
             this.callbackCache[ERROR].forEach((elt: ObjectCallback<T>) => elt(err));
+        }
+        this.stopped = true;
+    }
+
+    private async doneHandler(): Promise<any> {
+        if (this.stopped) {
             return;
         }
         // TODO: Don't always list here for efficiency
@@ -90,6 +103,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
             { resourceVersion: list.metadata!.resourceVersion },
             this.watchHandler.bind(this),
             this.doneHandler.bind(this),
+            this.errorHandler.bind(this),
         );
     }
 
