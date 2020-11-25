@@ -65,6 +65,8 @@ export class Watch {
             uri: url,
             useQuerystring: true,
             json: true,
+            forever: true,
+            timeout: 0,
         };
         await this.config.applyToRequest(requestOptions);
 
