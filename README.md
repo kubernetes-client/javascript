@@ -103,7 +103,7 @@ const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
 There are several more examples in the [examples](https://github.com/kubernetes-client/javascript/tree/master/examples) directory.
 
-# Compatability
+# Compatibility
 
 Prior to the `0.13.0` release, release versions did not track Kubernetes versions. Starting with the `0.13.0`
 release, we will increment the minor version whenever we update the minor Kubernetes API version 
