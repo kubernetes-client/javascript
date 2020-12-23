@@ -1291,7 +1291,9 @@ describe('KubernetesObject', () => {
                 const scope = nock('https://d.i.y')
                     .intercept(m.p, m.v, m.v === 'DELETE' || m.v === 'GET' ? undefined : s)
                     .reply(m.c, m.b);
-                await m.m.call(client, s);
+                // TODO: Figure out why Typescript barfs if we do m.call
+                const hack_m = m.m as any;
+                await hack_m.call(client, s);
                 scope.done();
             }
         });
@@ -1453,7 +1455,9 @@ describe('KubernetesObject', () => {
                             m.v === 'DELETE' || m.v === 'GET' ? undefined : s,
                         )
                         .reply(m.c, m.b);
-                    await m.m.call(client, s, p);
+                    // TODO: Figure out why Typescript barfs if we do m.call
+                    const hack_m = m.m as any;
+                    await hack_m.call(client, s, p);
                     scope.done();
                 }
             }
@@ -1575,7 +1579,9 @@ describe('KubernetesObject', () => {
                 const scope = nock('https://d.i.y')
                     .intercept(`${m.p}?dryRun=All`, m.v, m.v === 'DELETE' || m.v === 'GET' ? undefined : s)
                     .reply(m.c, m.b);
-                await m.m.call(client, s, undefined, 'All');
+                // TODO: Figure out why Typescript barfs if we do m.call
+                const hack_m = m.m as any;
+                await hack_m.call(client, s, undefined, 'All');
                 scope.done();
             }
         });
@@ -1757,7 +1763,9 @@ describe('KubernetesObject', () => {
                 for (const m of methods) {
                     let thrown = false;
                     try {
-                        await m.call(client, s);
+                        // TODO: Figure out why Typescript barfs if we do m.call
+                        const hack_m = m as any;
+                        await hack_m.call(client, s);
                         expect.fail('should have thrown an error');
                     } catch (e) {
                         thrown = true;
