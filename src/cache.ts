@@ -1,6 +1,6 @@
 import { ADD, DELETE, ERROR, Informer, ListPromise, ObjectCallback, UPDATE } from './informer';
 import { KubernetesObject } from './types';
-import { Watch } from './watch';
+import { RequestResult, Watch } from './watch';
 
 export interface ObjectCache<T> {
     get(name: string, namespace?: string): T | undefined;
@@ -12,7 +12,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     private resourceVersion: string;
     private readonly indexCache: { [key: string]: T[] } = {};
     private readonly callbackCache: { [key: string]: Array<ObjectCallback<T>> } = {};
-    private stopped: boolean;
+    private request: RequestResult | undefined;
 
     public constructor(
         private readonly path: string,
@@ -25,19 +25,20 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         this.callbackCache[DELETE] = [];
         this.callbackCache[ERROR] = [];
         this.resourceVersion = '';
-        this.stopped = true;
         if (autoStart) {
-            this.start();
+            this.doneHandler(null);
         }
     }
 
     public async start(): Promise<void> {
-        this.stopped = false;
-        await this.doneHandler();
+        await this.doneHandler(null);
     }
 
     public stop(): void {
-        this.stopped = true;
+        if (this.request) {
+            this.request.abort();
+            this.request = undefined;
+        }
     }
 
     public on(verb: string, cb: ObjectCallback<T>): void {
@@ -79,15 +80,10 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         return this.resourceVersion;
     }
 
-    private async errorHandler(err: any): Promise<void> {
+    private async doneHandler(err: any): Promise<any> {
+        this.stop();
         if (err) {
             this.callbackCache[ERROR].forEach((elt: ObjectCallback<T>) => elt(err));
-        }
-        this.stopped = true;
-    }
-
-    private async doneHandler(): Promise<any> {
-        if (this.stopped) {
             return;
         }
         // TODO: Don't always list here for efficiency
@@ -106,12 +102,11 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
             }
         });
         this.addOrUpdateItems(list.items);
-        await this.watch.watch(
+        this.request = await this.watch.watch(
             this.path,
             { resourceVersion: list.metadata!.resourceVersion },
             this.watchHandler.bind(this),
             this.doneHandler.bind(this),
-            this.errorHandler.bind(this),
         );
     }
 
