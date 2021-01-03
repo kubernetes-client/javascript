@@ -96,7 +96,7 @@ describe('ListWatchCache', () => {
                     mock.anything(),
                 ),
             ).thenCall(() => {
-                resolve();
+                resolve(null);
             });
         });
         const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
@@ -206,7 +206,7 @@ describe('ListWatchCache', () => {
                     mock.anything(),
                 ),
             ).thenCall(() => {
-                resolve();
+                resolve(null);
             });
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
@@ -293,7 +293,7 @@ describe('ListWatchCache', () => {
                     mock.anything(),
                 ),
             ).thenCall(() => {
-                resolve();
+                resolve(null);
             });
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
@@ -370,7 +370,7 @@ describe('ListWatchCache', () => {
                     mock.anything(),
                 ),
             ).thenCall(() => {
-                resolve();
+                resolve(null);
             });
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
@@ -398,7 +398,7 @@ describe('ListWatchCache', () => {
                     mock.anything(),
                 ),
             ).thenCall(() => {
-                resolve();
+                resolve(null);
             });
         });
         doneHandler();
@@ -455,7 +455,7 @@ describe('ListWatchCache', () => {
                     mock.anything(),
                 ),
             ).thenCall(() => {
-                resolve();
+                resolve(null);
             });
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
@@ -484,7 +484,7 @@ describe('ListWatchCache', () => {
                     mock.anything(),
                 ),
             ).thenCall(() => {
-                resolve();
+                resolve(null);
             });
         });
         listObj.items = list2;
@@ -544,7 +544,7 @@ describe('ListWatchCache', () => {
                     mock.anything(),
                 ),
             ).thenCall(() => {
-                resolve();
+                resolve(null);
             });
         });
         const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
