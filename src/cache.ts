@@ -13,6 +13,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     private readonly indexCache: { [key: string]: T[] } = {};
     private readonly callbackCache: { [key: string]: Array<ObjectCallback<T>> } = {};
     private stopped: boolean;
+    private activeRequest: any;
 
     public constructor(
         private readonly path: string,
@@ -26,6 +27,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         this.callbackCache[ERROR] = [];
         this.resourceVersion = '';
         this.stopped = true;
+        this.activeRequest = null;
         if (autoStart) {
             this.start();
         }
@@ -106,7 +108,19 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
             }
         });
         this.addOrUpdateItems(list.items);
-        await this.watch.watch(
+        if (this.activeRequest != null) {
+            try {
+                this.activeRequest.abort();
+            } catch (ignore) {
+                // pass
+            }
+            try {
+                this.activeRequest.destroy();
+            } catch (ignore) {
+                // pass
+            }
+        }
+        this.activeRequest = await this.watch.watch(
             this.path,
             { resourceVersion: list.metadata!.resourceVersion },
             this.watchHandler.bind(this),
