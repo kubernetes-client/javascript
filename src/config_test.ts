@@ -1036,6 +1036,14 @@ describe('KubeConfig', () => {
             expect(kc.contexts.length).to.equal(4);
             expect(kc.getCurrentContext()).to.equal('contextA');
         });
+        it('should preserve starting file context', () => {
+            process.env.KUBECONFIG = kcFileName + path.delimiter + kc2FileName;
+
+            const kc = new KubeConfig();
+            kc.loadFromDefault({}, true);
+
+            expect(kc.getCurrentContext()).to.equal('context2');
+        });
         it('should throw with duplicate clusters', () => {
             process.env.KUBECONFIG = kcFileName + path.delimiter + kcDupeCluster;
 
