@@ -231,8 +231,10 @@ export class KubeConfig {
         this.currentContext = contextName;
     }
 
-    public mergeConfig(config: KubeConfig): void {
-        this.currentContext = config.currentContext;
+    public mergeConfig(config: KubeConfig, preserveContext: boolean = false): void {
+        if (!preserveContext) {
+            this.currentContext = config.currentContext;
+        }
         config.clusters.forEach((cluster: Cluster) => {
             this.addCluster(cluster);
         });
@@ -280,14 +282,14 @@ export class KubeConfig {
         this.contexts.push(ctx);
     }
 
-    public loadFromDefault(opts?: Partial<ConfigOptions>): void {
+    public loadFromDefault(opts?: Partial<ConfigOptions>, contextFromStartingConfig: boolean = false): void {
         if (process.env.KUBECONFIG && process.env.KUBECONFIG.length > 0) {
             const files = process.env.KUBECONFIG.split(path.delimiter);
             this.loadFromFile(files[0], opts);
             for (let i = 1; i < files.length; i++) {
                 const kc = new KubeConfig();
                 kc.loadFromFile(files[i], opts);
-                this.mergeConfig(kc);
+                this.mergeConfig(kc, contextFromStartingConfig);
             }
             return;
         }
