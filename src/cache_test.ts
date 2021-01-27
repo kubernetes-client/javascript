@@ -4,14 +4,22 @@ import chaiAsPromised = require('chai-as-promised');
 import * as mock from 'ts-mockito';
 
 import http = require('http');
+import { Duplex } from 'stream';
+import { EventEmitter } from 'ws';
 
 import { V1Namespace, V1NamespaceList, V1ObjectMeta, V1Pod, V1ListMeta } from './api';
 import { deleteObject, ListWatch, deleteItems } from './cache';
-import { ListCallback, ADD, UPDATE, DELETE, ListPromise } from './informer';
+import { ADD, UPDATE, DELETE, ListPromise } from './informer';
 
 use(chaiAsPromised);
 
-import { Watch } from './watch';
+import { RequestResult, Watch } from './watch';
+
+// Object replacing real Request object in the test
+class FakeRequest extends EventEmitter implements RequestResult {
+    pipe(stream: Duplex): void {}
+    abort() {}
+}
 
 describe('ListWatchCache', () => {
     it('should throw on unknown update', () => {
@@ -24,7 +32,12 @@ describe('ListWatchCache', () => {
                 (resolve, reject) => {
                     resolve({
                         response: {} as http.IncomingMessage,
-                        body: {} as V1NamespaceList,
+                        body: {
+                            metadata: {
+                                resourceVersion: '12345',
+                            } as V1ListMeta,
+                            items: [],
+                        } as V1NamespaceList,
                     });
                 },
             );
@@ -88,15 +101,9 @@ describe('ListWatchCache', () => {
         };
         const promise = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                ),
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(null);
+                resolve(new FakeRequest());
             });
         });
         const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
@@ -159,7 +166,7 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Namespace);
 
-        await doneHandler();
+        await doneHandler(null);
         expect(cache.list().length, 'all namespace list').to.equal(1);
         expect(cache.list('default').length, 'default namespace list').to.equal(1);
         expect(cache.list('other'), 'other namespace list').to.be.undefined;
@@ -198,15 +205,9 @@ describe('ListWatchCache', () => {
         };
         const promise = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                ),
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(null);
+                resolve(new FakeRequest());
             });
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
@@ -285,15 +286,9 @@ describe('ListWatchCache', () => {
         };
         const promise = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                ),
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(null);
+                resolve(new FakeRequest());
             });
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
@@ -362,15 +357,9 @@ describe('ListWatchCache', () => {
         };
         let promise = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                ),
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(null);
+                resolve(new FakeRequest());
             });
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
@@ -390,18 +379,12 @@ describe('ListWatchCache', () => {
 
         promise = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                ),
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(null);
+                resolve(new FakeRequest());
             });
         });
-        doneHandler();
+        doneHandler(null);
         await promise;
         expect(addObjects).to.deep.equal(list);
         expect(updateObjects).to.deep.equal(list);
@@ -447,15 +430,9 @@ describe('ListWatchCache', () => {
         };
         let promise = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                ),
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(null);
+                resolve(new FakeRequest());
             });
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
@@ -476,19 +453,13 @@ describe('ListWatchCache', () => {
 
         promise = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                ),
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(null);
+                resolve(new FakeRequest());
             });
         });
         listObj.items = list2;
-        doneHandler();
+        doneHandler(null);
         await promise;
         expect(addObjects).to.deep.equal(list);
         expect(updateObjects).to.deep.equal(list2);
@@ -536,15 +507,9 @@ describe('ListWatchCache', () => {
         };
         const promise = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                ),
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(null);
+                resolve(new FakeRequest());
             });
         });
         const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
@@ -662,13 +627,7 @@ describe('ListWatchCache', () => {
         };
         const watchCalled = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                ),
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(resolve);
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
@@ -727,13 +686,7 @@ describe('ListWatchCache', () => {
         };
         const watchCalled = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                ),
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(resolve);
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
@@ -820,13 +773,7 @@ describe('ListWatchCache', () => {
         };
         const watchCalled = new Promise((resolve) => {
             mock.when(
-                fakeWatch.watch(
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                    mock.anything(),
-                ),
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(resolve);
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
