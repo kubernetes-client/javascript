@@ -8,6 +8,7 @@ export * from './apiextensionsV1beta1ServiceReference';
 export * from './apiextensionsV1beta1WebhookClientConfig';
 export * from './apiregistrationV1ServiceReference';
 export * from './apiregistrationV1beta1ServiceReference';
+export * from './authenticationV1TokenRequest';
 export * from './coreV1Event';
 export * from './coreV1EventList';
 export * from './coreV1EventSeries';
@@ -24,6 +25,7 @@ export * from './extensionsV1beta1IngressSpec';
 export * from './extensionsV1beta1IngressStatus';
 export * from './extensionsV1beta1IngressTLS';
 export * from './flowcontrolV1alpha1Subject';
+export * from './flowcontrolV1beta1Subject';
 export * from './networkingV1beta1HTTPIngressPath';
 export * from './networkingV1beta1HTTPIngressRuleValue';
 export * from './networkingV1beta1Ingress';
@@ -34,6 +36,8 @@ export * from './networkingV1beta1IngressSpec';
 export * from './networkingV1beta1IngressStatus';
 export * from './networkingV1beta1IngressTLS';
 export * from './rbacV1alpha1Subject';
+export * from './rbacV1beta1Subject';
+export * from './storageV1TokenRequest';
 export * from './v1APIGroup';
 export * from './v1APIGroupList';
 export * from './v1APIResource';
@@ -80,6 +84,7 @@ export * from './v1ClusterRoleList';
 export * from './v1ComponentCondition';
 export * from './v1ComponentStatus';
 export * from './v1ComponentStatusList';
+export * from './v1Condition';
 export * from './v1ConfigMap';
 export * from './v1ConfigMapEnvSource';
 export * from './v1ConfigMapKeySelector';
@@ -234,6 +239,7 @@ export * from './v1NonResourceRule';
 export * from './v1ObjectFieldSelector';
 export * from './v1ObjectMeta';
 export * from './v1ObjectReference';
+export * from './v1Overhead';
 export * from './v1OwnerReference';
 export * from './v1PersistentVolume';
 export * from './v1PersistentVolumeClaim';
@@ -264,6 +270,7 @@ export * from './v1PodTemplate';
 export * from './v1PodTemplateList';
 export * from './v1PodTemplateSpec';
 export * from './v1PolicyRule';
+export * from './v1PortStatus';
 export * from './v1PortworxVolumeSource';
 export * from './v1Preconditions';
 export * from './v1PreferredSchedulingTerm';
@@ -301,12 +308,15 @@ export * from './v1RollingUpdateDaemonSet';
 export * from './v1RollingUpdateDeployment';
 export * from './v1RollingUpdateStatefulSetStrategy';
 export * from './v1RuleWithOperations';
+export * from './v1RuntimeClass';
+export * from './v1RuntimeClassList';
 export * from './v1SELinuxOptions';
 export * from './v1Scale';
 export * from './v1ScaleIOPersistentVolumeSource';
 export * from './v1ScaleIOVolumeSource';
 export * from './v1ScaleSpec';
 export * from './v1ScaleStatus';
+export * from './v1Scheduling';
 export * from './v1ScopeSelector';
 export * from './v1ScopedResourceSelectorRequirement';
 export * from './v1SeccompProfile';
@@ -354,7 +364,6 @@ export * from './v1SubjectRulesReviewStatus';
 export * from './v1Sysctl';
 export * from './v1TCPSocketAction';
 export * from './v1Taint';
-export * from './v1TokenRequest';
 export * from './v1TokenRequestSpec';
 export * from './v1TokenRequestStatus';
 export * from './v1TokenReview';
@@ -402,9 +411,6 @@ export * from './v1alpha1LimitResponse';
 export * from './v1alpha1LimitedPriorityLevelConfiguration';
 export * from './v1alpha1NonResourcePolicyRule';
 export * from './v1alpha1Overhead';
-export * from './v1alpha1PodPreset';
-export * from './v1alpha1PodPresetList';
-export * from './v1alpha1PodPresetSpec';
 export * from './v1alpha1PolicyRule';
 export * from './v1alpha1PolicyRulesWithSubjects';
 export * from './v1alpha1PriorityClass';
@@ -426,7 +432,12 @@ export * from './v1alpha1RuntimeClass';
 export * from './v1alpha1RuntimeClassList';
 export * from './v1alpha1RuntimeClassSpec';
 export * from './v1alpha1Scheduling';
+export * from './v1alpha1ServerStorageVersion';
 export * from './v1alpha1ServiceAccountSubject';
+export * from './v1alpha1StorageVersion';
+export * from './v1alpha1StorageVersionCondition';
+export * from './v1alpha1StorageVersionList';
+export * from './v1alpha1StorageVersionStatus';
 export * from './v1alpha1UserSubject';
 export * from './v1alpha1VolumeAttachment';
 export * from './v1alpha1VolumeAttachmentList';
@@ -486,6 +497,13 @@ export * from './v1beta1EventSeries';
 export * from './v1beta1Eviction';
 export * from './v1beta1ExternalDocumentation';
 export * from './v1beta1FSGroupStrategyOptions';
+export * from './v1beta1FlowDistinguisherMethod';
+export * from './v1beta1FlowSchema';
+export * from './v1beta1FlowSchemaCondition';
+export * from './v1beta1FlowSchemaList';
+export * from './v1beta1FlowSchemaSpec';
+export * from './v1beta1FlowSchemaStatus';
+export * from './v1beta1GroupSubject';
 export * from './v1beta1HostPortRange';
 export * from './v1beta1IDRange';
 export * from './v1beta1IngressClass';
@@ -496,11 +514,14 @@ export * from './v1beta1JobTemplateSpec';
 export * from './v1beta1Lease';
 export * from './v1beta1LeaseList';
 export * from './v1beta1LeaseSpec';
+export * from './v1beta1LimitResponse';
+export * from './v1beta1LimitedPriorityLevelConfiguration';
 export * from './v1beta1LocalSubjectAccessReview';
 export * from './v1beta1MutatingWebhook';
 export * from './v1beta1MutatingWebhookConfiguration';
 export * from './v1beta1MutatingWebhookConfigurationList';
 export * from './v1beta1NonResourceAttributes';
+export * from './v1beta1NonResourcePolicyRule';
 export * from './v1beta1NonResourceRule';
 export * from './v1beta1Overhead';
 export * from './v1beta1PodDisruptionBudget';
@@ -511,9 +532,18 @@ export * from './v1beta1PodSecurityPolicy';
 export * from './v1beta1PodSecurityPolicyList';
 export * from './v1beta1PodSecurityPolicySpec';
 export * from './v1beta1PolicyRule';
+export * from './v1beta1PolicyRulesWithSubjects';
 export * from './v1beta1PriorityClass';
 export * from './v1beta1PriorityClassList';
+export * from './v1beta1PriorityLevelConfiguration';
+export * from './v1beta1PriorityLevelConfigurationCondition';
+export * from './v1beta1PriorityLevelConfigurationList';
+export * from './v1beta1PriorityLevelConfigurationReference';
+export * from './v1beta1PriorityLevelConfigurationSpec';
+export * from './v1beta1PriorityLevelConfigurationStatus';
+export * from './v1beta1QueuingConfiguration';
 export * from './v1beta1ResourceAttributes';
+export * from './v1beta1ResourcePolicyRule';
 export * from './v1beta1ResourceRule';
 export * from './v1beta1Role';
 export * from './v1beta1RoleBinding';
@@ -532,18 +562,20 @@ export * from './v1beta1SelfSubjectAccessReview';
 export * from './v1beta1SelfSubjectAccessReviewSpec';
 export * from './v1beta1SelfSubjectRulesReview';
 export * from './v1beta1SelfSubjectRulesReviewSpec';
+export * from './v1beta1ServiceAccountSubject';
 export * from './v1beta1StorageClass';
 export * from './v1beta1StorageClassList';
-export * from './v1beta1Subject';
 export * from './v1beta1SubjectAccessReview';
 export * from './v1beta1SubjectAccessReviewSpec';
 export * from './v1beta1SubjectAccessReviewStatus';
 export * from './v1beta1SubjectRulesReviewStatus';
 export * from './v1beta1SupplementalGroupsStrategyOptions';
+export * from './v1beta1TokenRequest';
 export * from './v1beta1TokenReview';
 export * from './v1beta1TokenReviewSpec';
 export * from './v1beta1TokenReviewStatus';
 export * from './v1beta1UserInfo';
+export * from './v1beta1UserSubject';
 export * from './v1beta1ValidatingWebhook';
 export * from './v1beta1ValidatingWebhookConfiguration';
 export * from './v1beta1ValidatingWebhookConfigurationList';
@@ -559,6 +591,8 @@ export * from './v2alpha1CronJobList';
 export * from './v2alpha1CronJobSpec';
 export * from './v2alpha1CronJobStatus';
 export * from './v2alpha1JobTemplateSpec';
+export * from './v2beta1ContainerResourceMetricSource';
+export * from './v2beta1ContainerResourceMetricStatus';
 export * from './v2beta1CrossVersionObjectReference';
 export * from './v2beta1ExternalMetricSource';
 export * from './v2beta1ExternalMetricStatus';
@@ -575,6 +609,8 @@ export * from './v2beta1PodsMetricSource';
 export * from './v2beta1PodsMetricStatus';
 export * from './v2beta1ResourceMetricSource';
 export * from './v2beta1ResourceMetricStatus';
+export * from './v2beta2ContainerResourceMetricSource';
+export * from './v2beta2ContainerResourceMetricStatus';
 export * from './v2beta2CrossVersionObjectReference';
 export * from './v2beta2ExternalMetricSource';
 export * from './v2beta2ExternalMetricStatus';
@@ -611,6 +647,7 @@ import { ApiextensionsV1beta1ServiceReference } from './apiextensionsV1beta1Serv
 import { ApiextensionsV1beta1WebhookClientConfig } from './apiextensionsV1beta1WebhookClientConfig';
 import { ApiregistrationV1ServiceReference } from './apiregistrationV1ServiceReference';
 import { ApiregistrationV1beta1ServiceReference } from './apiregistrationV1beta1ServiceReference';
+import { AuthenticationV1TokenRequest } from './authenticationV1TokenRequest';
 import { CoreV1Event } from './coreV1Event';
 import { CoreV1EventList } from './coreV1EventList';
 import { CoreV1EventSeries } from './coreV1EventSeries';
@@ -627,6 +664,7 @@ import { ExtensionsV1beta1IngressSpec } from './extensionsV1beta1IngressSpec';
 import { ExtensionsV1beta1IngressStatus } from './extensionsV1beta1IngressStatus';
 import { ExtensionsV1beta1IngressTLS } from './extensionsV1beta1IngressTLS';
 import { FlowcontrolV1alpha1Subject } from './flowcontrolV1alpha1Subject';
+import { FlowcontrolV1beta1Subject } from './flowcontrolV1beta1Subject';
 import { NetworkingV1beta1HTTPIngressPath } from './networkingV1beta1HTTPIngressPath';
 import { NetworkingV1beta1HTTPIngressRuleValue } from './networkingV1beta1HTTPIngressRuleValue';
 import { NetworkingV1beta1Ingress } from './networkingV1beta1Ingress';
@@ -637,6 +675,8 @@ import { NetworkingV1beta1IngressSpec } from './networkingV1beta1IngressSpec';
 import { NetworkingV1beta1IngressStatus } from './networkingV1beta1IngressStatus';
 import { NetworkingV1beta1IngressTLS } from './networkingV1beta1IngressTLS';
 import { RbacV1alpha1Subject } from './rbacV1alpha1Subject';
+import { RbacV1beta1Subject } from './rbacV1beta1Subject';
+import { StorageV1TokenRequest } from './storageV1TokenRequest';
 import { V1APIGroup } from './v1APIGroup';
 import { V1APIGroupList } from './v1APIGroupList';
 import { V1APIResource } from './v1APIResource';
@@ -683,6 +723,7 @@ import { V1ClusterRoleList } from './v1ClusterRoleList';
 import { V1ComponentCondition } from './v1ComponentCondition';
 import { V1ComponentStatus } from './v1ComponentStatus';
 import { V1ComponentStatusList } from './v1ComponentStatusList';
+import { V1Condition } from './v1Condition';
 import { V1ConfigMap } from './v1ConfigMap';
 import { V1ConfigMapEnvSource } from './v1ConfigMapEnvSource';
 import { V1ConfigMapKeySelector } from './v1ConfigMapKeySelector';
@@ -837,6 +878,7 @@ import { V1NonResourceRule } from './v1NonResourceRule';
 import { V1ObjectFieldSelector } from './v1ObjectFieldSelector';
 import { V1ObjectMeta } from './v1ObjectMeta';
 import { V1ObjectReference } from './v1ObjectReference';
+import { V1Overhead } from './v1Overhead';
 import { V1OwnerReference } from './v1OwnerReference';
 import { V1PersistentVolume } from './v1PersistentVolume';
 import { V1PersistentVolumeClaim } from './v1PersistentVolumeClaim';
@@ -867,6 +909,7 @@ import { V1PodTemplate } from './v1PodTemplate';
 import { V1PodTemplateList } from './v1PodTemplateList';
 import { V1PodTemplateSpec } from './v1PodTemplateSpec';
 import { V1PolicyRule } from './v1PolicyRule';
+import { V1PortStatus } from './v1PortStatus';
 import { V1PortworxVolumeSource } from './v1PortworxVolumeSource';
 import { V1Preconditions } from './v1Preconditions';
 import { V1PreferredSchedulingTerm } from './v1PreferredSchedulingTerm';
@@ -904,12 +947,15 @@ import { V1RollingUpdateDaemonSet } from './v1RollingUpdateDaemonSet';
 import { V1RollingUpdateDeployment } from './v1RollingUpdateDeployment';
 import { V1RollingUpdateStatefulSetStrategy } from './v1RollingUpdateStatefulSetStrategy';
 import { V1RuleWithOperations } from './v1RuleWithOperations';
+import { V1RuntimeClass } from './v1RuntimeClass';
+import { V1RuntimeClassList } from './v1RuntimeClassList';
 import { V1SELinuxOptions } from './v1SELinuxOptions';
 import { V1Scale } from './v1Scale';
 import { V1ScaleIOPersistentVolumeSource } from './v1ScaleIOPersistentVolumeSource';
 import { V1ScaleIOVolumeSource } from './v1ScaleIOVolumeSource';
 import { V1ScaleSpec } from './v1ScaleSpec';
 import { V1ScaleStatus } from './v1ScaleStatus';
+import { V1Scheduling } from './v1Scheduling';
 import { V1ScopeSelector } from './v1ScopeSelector';
 import { V1ScopedResourceSelectorRequirement } from './v1ScopedResourceSelectorRequirement';
 import { V1SeccompProfile } from './v1SeccompProfile';
@@ -957,7 +1003,6 @@ import { V1SubjectRulesReviewStatus } from './v1SubjectRulesReviewStatus';
 import { V1Sysctl } from './v1Sysctl';
 import { V1TCPSocketAction } from './v1TCPSocketAction';
 import { V1Taint } from './v1Taint';
-import { V1TokenRequest } from './v1TokenRequest';
 import { V1TokenRequestSpec } from './v1TokenRequestSpec';
 import { V1TokenRequestStatus } from './v1TokenRequestStatus';
 import { V1TokenReview } from './v1TokenReview';
@@ -1005,9 +1050,6 @@ import { V1alpha1LimitResponse } from './v1alpha1LimitResponse';
 import { V1alpha1LimitedPriorityLevelConfiguration } from './v1alpha1LimitedPriorityLevelConfiguration';
 import { V1alpha1NonResourcePolicyRule } from './v1alpha1NonResourcePolicyRule';
 import { V1alpha1Overhead } from './v1alpha1Overhead';
-import { V1alpha1PodPreset } from './v1alpha1PodPreset';
-import { V1alpha1PodPresetList } from './v1alpha1PodPresetList';
-import { V1alpha1PodPresetSpec } from './v1alpha1PodPresetSpec';
 import { V1alpha1PolicyRule } from './v1alpha1PolicyRule';
 import { V1alpha1PolicyRulesWithSubjects } from './v1alpha1PolicyRulesWithSubjects';
 import { V1alpha1PriorityClass } from './v1alpha1PriorityClass';
@@ -1029,7 +1071,12 @@ import { V1alpha1RuntimeClass } from './v1alpha1RuntimeClass';
 import { V1alpha1RuntimeClassList } from './v1alpha1RuntimeClassList';
 import { V1alpha1RuntimeClassSpec } from './v1alpha1RuntimeClassSpec';
 import { V1alpha1Scheduling } from './v1alpha1Scheduling';
+import { V1alpha1ServerStorageVersion } from './v1alpha1ServerStorageVersion';
 import { V1alpha1ServiceAccountSubject } from './v1alpha1ServiceAccountSubject';
+import { V1alpha1StorageVersion } from './v1alpha1StorageVersion';
+import { V1alpha1StorageVersionCondition } from './v1alpha1StorageVersionCondition';
+import { V1alpha1StorageVersionList } from './v1alpha1StorageVersionList';
+import { V1alpha1StorageVersionStatus } from './v1alpha1StorageVersionStatus';
 import { V1alpha1UserSubject } from './v1alpha1UserSubject';
 import { V1alpha1VolumeAttachment } from './v1alpha1VolumeAttachment';
 import { V1alpha1VolumeAttachmentList } from './v1alpha1VolumeAttachmentList';
@@ -1089,6 +1136,13 @@ import { V1beta1EventSeries } from './v1beta1EventSeries';
 import { V1beta1Eviction } from './v1beta1Eviction';
 import { V1beta1ExternalDocumentation } from './v1beta1ExternalDocumentation';
 import { V1beta1FSGroupStrategyOptions } from './v1beta1FSGroupStrategyOptions';
+import { V1beta1FlowDistinguisherMethod } from './v1beta1FlowDistinguisherMethod';
+import { V1beta1FlowSchema } from './v1beta1FlowSchema';
+import { V1beta1FlowSchemaCondition } from './v1beta1FlowSchemaCondition';
+import { V1beta1FlowSchemaList } from './v1beta1FlowSchemaList';
+import { V1beta1FlowSchemaSpec } from './v1beta1FlowSchemaSpec';
+import { V1beta1FlowSchemaStatus } from './v1beta1FlowSchemaStatus';
+import { V1beta1GroupSubject } from './v1beta1GroupSubject';
 import { V1beta1HostPortRange } from './v1beta1HostPortRange';
 import { V1beta1IDRange } from './v1beta1IDRange';
 import { V1beta1IngressClass } from './v1beta1IngressClass';
@@ -1099,11 +1153,14 @@ import { V1beta1JobTemplateSpec } from './v1beta1JobTemplateSpec';
 import { V1beta1Lease } from './v1beta1Lease';
 import { V1beta1LeaseList } from './v1beta1LeaseList';
 import { V1beta1LeaseSpec } from './v1beta1LeaseSpec';
+import { V1beta1LimitResponse } from './v1beta1LimitResponse';
+import { V1beta1LimitedPriorityLevelConfiguration } from './v1beta1LimitedPriorityLevelConfiguration';
 import { V1beta1LocalSubjectAccessReview } from './v1beta1LocalSubjectAccessReview';
 import { V1beta1MutatingWebhook } from './v1beta1MutatingWebhook';
 import { V1beta1MutatingWebhookConfiguration } from './v1beta1MutatingWebhookConfiguration';
 import { V1beta1MutatingWebhookConfigurationList } from './v1beta1MutatingWebhookConfigurationList';
 import { V1beta1NonResourceAttributes } from './v1beta1NonResourceAttributes';
+import { V1beta1NonResourcePolicyRule } from './v1beta1NonResourcePolicyRule';
 import { V1beta1NonResourceRule } from './v1beta1NonResourceRule';
 import { V1beta1Overhead } from './v1beta1Overhead';
 import { V1beta1PodDisruptionBudget } from './v1beta1PodDisruptionBudget';
@@ -1114,9 +1171,18 @@ import { V1beta1PodSecurityPolicy } from './v1beta1PodSecurityPolicy';
 import { V1beta1PodSecurityPolicyList } from './v1beta1PodSecurityPolicyList';
 import { V1beta1PodSecurityPolicySpec } from './v1beta1PodSecurityPolicySpec';
 import { V1beta1PolicyRule } from './v1beta1PolicyRule';
+import { V1beta1PolicyRulesWithSubjects } from './v1beta1PolicyRulesWithSubjects';
 import { V1beta1PriorityClass } from './v1beta1PriorityClass';
 import { V1beta1PriorityClassList } from './v1beta1PriorityClassList';
+import { V1beta1PriorityLevelConfiguration } from './v1beta1PriorityLevelConfiguration';
+import { V1beta1PriorityLevelConfigurationCondition } from './v1beta1PriorityLevelConfigurationCondition';
+import { V1beta1PriorityLevelConfigurationList } from './v1beta1PriorityLevelConfigurationList';
+import { V1beta1PriorityLevelConfigurationReference } from './v1beta1PriorityLevelConfigurationReference';
+import { V1beta1PriorityLevelConfigurationSpec } from './v1beta1PriorityLevelConfigurationSpec';
+import { V1beta1PriorityLevelConfigurationStatus } from './v1beta1PriorityLevelConfigurationStatus';
+import { V1beta1QueuingConfiguration } from './v1beta1QueuingConfiguration';
 import { V1beta1ResourceAttributes } from './v1beta1ResourceAttributes';
+import { V1beta1ResourcePolicyRule } from './v1beta1ResourcePolicyRule';
 import { V1beta1ResourceRule } from './v1beta1ResourceRule';
 import { V1beta1Role } from './v1beta1Role';
 import { V1beta1RoleBinding } from './v1beta1RoleBinding';
@@ -1135,18 +1201,20 @@ import { V1beta1SelfSubjectAccessReview } from './v1beta1SelfSubjectAccessReview
 import { V1beta1SelfSubjectAccessReviewSpec } from './v1beta1SelfSubjectAccessReviewSpec';
 import { V1beta1SelfSubjectRulesReview } from './v1beta1SelfSubjectRulesReview';
 import { V1beta1SelfSubjectRulesReviewSpec } from './v1beta1SelfSubjectRulesReviewSpec';
+import { V1beta1ServiceAccountSubject } from './v1beta1ServiceAccountSubject';
 import { V1beta1StorageClass } from './v1beta1StorageClass';
 import { V1beta1StorageClassList } from './v1beta1StorageClassList';
-import { V1beta1Subject } from './v1beta1Subject';
 import { V1beta1SubjectAccessReview } from './v1beta1SubjectAccessReview';
 import { V1beta1SubjectAccessReviewSpec } from './v1beta1SubjectAccessReviewSpec';
 import { V1beta1SubjectAccessReviewStatus } from './v1beta1SubjectAccessReviewStatus';
 import { V1beta1SubjectRulesReviewStatus } from './v1beta1SubjectRulesReviewStatus';
 import { V1beta1SupplementalGroupsStrategyOptions } from './v1beta1SupplementalGroupsStrategyOptions';
+import { V1beta1TokenRequest } from './v1beta1TokenRequest';
 import { V1beta1TokenReview } from './v1beta1TokenReview';
 import { V1beta1TokenReviewSpec } from './v1beta1TokenReviewSpec';
 import { V1beta1TokenReviewStatus } from './v1beta1TokenReviewStatus';
 import { V1beta1UserInfo } from './v1beta1UserInfo';
+import { V1beta1UserSubject } from './v1beta1UserSubject';
 import { V1beta1ValidatingWebhook } from './v1beta1ValidatingWebhook';
 import { V1beta1ValidatingWebhookConfiguration } from './v1beta1ValidatingWebhookConfiguration';
 import { V1beta1ValidatingWebhookConfigurationList } from './v1beta1ValidatingWebhookConfigurationList';
@@ -1162,6 +1230,8 @@ import { V2alpha1CronJobList } from './v2alpha1CronJobList';
 import { V2alpha1CronJobSpec } from './v2alpha1CronJobSpec';
 import { V2alpha1CronJobStatus } from './v2alpha1CronJobStatus';
 import { V2alpha1JobTemplateSpec } from './v2alpha1JobTemplateSpec';
+import { V2beta1ContainerResourceMetricSource } from './v2beta1ContainerResourceMetricSource';
+import { V2beta1ContainerResourceMetricStatus } from './v2beta1ContainerResourceMetricStatus';
 import { V2beta1CrossVersionObjectReference } from './v2beta1CrossVersionObjectReference';
 import { V2beta1ExternalMetricSource } from './v2beta1ExternalMetricSource';
 import { V2beta1ExternalMetricStatus } from './v2beta1ExternalMetricStatus';
@@ -1178,6 +1248,8 @@ import { V2beta1PodsMetricSource } from './v2beta1PodsMetricSource';
 import { V2beta1PodsMetricStatus } from './v2beta1PodsMetricStatus';
 import { V2beta1ResourceMetricSource } from './v2beta1ResourceMetricSource';
 import { V2beta1ResourceMetricStatus } from './v2beta1ResourceMetricStatus';
+import { V2beta2ContainerResourceMetricSource } from './v2beta2ContainerResourceMetricSource';
+import { V2beta2ContainerResourceMetricStatus } from './v2beta2ContainerResourceMetricStatus';
 import { V2beta2CrossVersionObjectReference } from './v2beta2CrossVersionObjectReference';
 import { V2beta2ExternalMetricSource } from './v2beta2ExternalMetricSource';
 import { V2beta2ExternalMetricStatus } from './v2beta2ExternalMetricStatus';
@@ -1228,6 +1300,7 @@ let typeMap: {[index: string]: any} = {
     "ApiextensionsV1beta1WebhookClientConfig": ApiextensionsV1beta1WebhookClientConfig,
     "ApiregistrationV1ServiceReference": ApiregistrationV1ServiceReference,
     "ApiregistrationV1beta1ServiceReference": ApiregistrationV1beta1ServiceReference,
+    "AuthenticationV1TokenRequest": AuthenticationV1TokenRequest,
     "CoreV1Event": CoreV1Event,
     "CoreV1EventList": CoreV1EventList,
     "CoreV1EventSeries": CoreV1EventSeries,
@@ -1244,6 +1317,7 @@ let typeMap: {[index: string]: any} = {
     "ExtensionsV1beta1IngressStatus": ExtensionsV1beta1IngressStatus,
     "ExtensionsV1beta1IngressTLS": ExtensionsV1beta1IngressTLS,
     "FlowcontrolV1alpha1Subject": FlowcontrolV1alpha1Subject,
+    "FlowcontrolV1beta1Subject": FlowcontrolV1beta1Subject,
     "NetworkingV1beta1HTTPIngressPath": NetworkingV1beta1HTTPIngressPath,
     "NetworkingV1beta1HTTPIngressRuleValue": NetworkingV1beta1HTTPIngressRuleValue,
     "NetworkingV1beta1Ingress": NetworkingV1beta1Ingress,
@@ -1254,6 +1328,8 @@ let typeMap: {[index: string]: any} = {
     "NetworkingV1beta1IngressStatus": NetworkingV1beta1IngressStatus,
     "NetworkingV1beta1IngressTLS": NetworkingV1beta1IngressTLS,
     "RbacV1alpha1Subject": RbacV1alpha1Subject,
+    "RbacV1beta1Subject": RbacV1beta1Subject,
+    "StorageV1TokenRequest": StorageV1TokenRequest,
     "V1APIGroup": V1APIGroup,
     "V1APIGroupList": V1APIGroupList,
     "V1APIResource": V1APIResource,
@@ -1300,6 +1376,7 @@ let typeMap: {[index: string]: any} = {
     "V1ComponentCondition": V1ComponentCondition,
     "V1ComponentStatus": V1ComponentStatus,
     "V1ComponentStatusList": V1ComponentStatusList,
+    "V1Condition": V1Condition,
     "V1ConfigMap": V1ConfigMap,
     "V1ConfigMapEnvSource": V1ConfigMapEnvSource,
     "V1ConfigMapKeySelector": V1ConfigMapKeySelector,
@@ -1454,6 +1531,7 @@ let typeMap: {[index: string]: any} = {
     "V1ObjectFieldSelector": V1ObjectFieldSelector,
     "V1ObjectMeta": V1ObjectMeta,
     "V1ObjectReference": V1ObjectReference,
+    "V1Overhead": V1Overhead,
     "V1OwnerReference": V1OwnerReference,
     "V1PersistentVolume": V1PersistentVolume,
     "V1PersistentVolumeClaim": V1PersistentVolumeClaim,
@@ -1484,6 +1562,7 @@ let typeMap: {[index: string]: any} = {
     "V1PodTemplateList": V1PodTemplateList,
     "V1PodTemplateSpec": V1PodTemplateSpec,
     "V1PolicyRule": V1PolicyRule,
+    "V1PortStatus": V1PortStatus,
     "V1PortworxVolumeSource": V1PortworxVolumeSource,
     "V1Preconditions": V1Preconditions,
     "V1PreferredSchedulingTerm": V1PreferredSchedulingTerm,
@@ -1521,12 +1600,15 @@ let typeMap: {[index: string]: any} = {
     "V1RollingUpdateDeployment": V1RollingUpdateDeployment,
     "V1RollingUpdateStatefulSetStrategy": V1RollingUpdateStatefulSetStrategy,
     "V1RuleWithOperations": V1RuleWithOperations,
+    "V1RuntimeClass": V1RuntimeClass,
+    "V1RuntimeClassList": V1RuntimeClassList,
     "V1SELinuxOptions": V1SELinuxOptions,
     "V1Scale": V1Scale,
     "V1ScaleIOPersistentVolumeSource": V1ScaleIOPersistentVolumeSource,
     "V1ScaleIOVolumeSource": V1ScaleIOVolumeSource,
     "V1ScaleSpec": V1ScaleSpec,
     "V1ScaleStatus": V1ScaleStatus,
+    "V1Scheduling": V1Scheduling,
     "V1ScopeSelector": V1ScopeSelector,
     "V1ScopedResourceSelectorRequirement": V1ScopedResourceSelectorRequirement,
     "V1SeccompProfile": V1SeccompProfile,
@@ -1574,7 +1656,6 @@ let typeMap: {[index: string]: any} = {
     "V1Sysctl": V1Sysctl,
     "V1TCPSocketAction": V1TCPSocketAction,
     "V1Taint": V1Taint,
-    "V1TokenRequest": V1TokenRequest,
     "V1TokenRequestSpec": V1TokenRequestSpec,
     "V1TokenRequestStatus": V1TokenRequestStatus,
     "V1TokenReview": V1TokenReview,
@@ -1622,9 +1703,6 @@ let typeMap: {[index: string]: any} = {
     "V1alpha1LimitedPriorityLevelConfiguration": V1alpha1LimitedPriorityLevelConfiguration,
     "V1alpha1NonResourcePolicyRule": V1alpha1NonResourcePolicyRule,
     "V1alpha1Overhead": V1alpha1Overhead,
-    "V1alpha1PodPreset": V1alpha1PodPreset,
-    "V1alpha1PodPresetList": V1alpha1PodPresetList,
-    "V1alpha1PodPresetSpec": V1alpha1PodPresetSpec,
     "V1alpha1PolicyRule": V1alpha1PolicyRule,
     "V1alpha1PolicyRulesWithSubjects": V1alpha1PolicyRulesWithSubjects,
     "V1alpha1PriorityClass": V1alpha1PriorityClass,
@@ -1646,7 +1724,12 @@ let typeMap: {[index: string]: any} = {
     "V1alpha1RuntimeClassList": V1alpha1RuntimeClassList,
     "V1alpha1RuntimeClassSpec": V1alpha1RuntimeClassSpec,
     "V1alpha1Scheduling": V1alpha1Scheduling,
+    "V1alpha1ServerStorageVersion": V1alpha1ServerStorageVersion,
     "V1alpha1ServiceAccountSubject": V1alpha1ServiceAccountSubject,
+    "V1alpha1StorageVersion": V1alpha1StorageVersion,
+    "V1alpha1StorageVersionCondition": V1alpha1StorageVersionCondition,
+    "V1alpha1StorageVersionList": V1alpha1StorageVersionList,
+    "V1alpha1StorageVersionStatus": V1alpha1StorageVersionStatus,
     "V1alpha1UserSubject": V1alpha1UserSubject,
     "V1alpha1VolumeAttachment": V1alpha1VolumeAttachment,
     "V1alpha1VolumeAttachmentList": V1alpha1VolumeAttachmentList,
@@ -1706,6 +1789,13 @@ let typeMap: {[index: string]: any} = {
     "V1beta1Eviction": V1beta1Eviction,
     "V1beta1ExternalDocumentation": V1beta1ExternalDocumentation,
     "V1beta1FSGroupStrategyOptions": V1beta1FSGroupStrategyOptions,
+    "V1beta1FlowDistinguisherMethod": V1beta1FlowDistinguisherMethod,
+    "V1beta1FlowSchema": V1beta1FlowSchema,
+    "V1beta1FlowSchemaCondition": V1beta1FlowSchemaCondition,
+    "V1beta1FlowSchemaList": V1beta1FlowSchemaList,
+    "V1beta1FlowSchemaSpec": V1beta1FlowSchemaSpec,
+    "V1beta1FlowSchemaStatus": V1beta1FlowSchemaStatus,
+    "V1beta1GroupSubject": V1beta1GroupSubject,
     "V1beta1HostPortRange": V1beta1HostPortRange,
     "V1beta1IDRange": V1beta1IDRange,
     "V1beta1IngressClass": V1beta1IngressClass,
@@ -1716,11 +1806,14 @@ let typeMap: {[index: string]: any} = {
     "V1beta1Lease": V1beta1Lease,
     "V1beta1LeaseList": V1beta1LeaseList,
     "V1beta1LeaseSpec": V1beta1LeaseSpec,
+    "V1beta1LimitResponse": V1beta1LimitResponse,
+    "V1beta1LimitedPriorityLevelConfiguration": V1beta1LimitedPriorityLevelConfiguration,
     "V1beta1LocalSubjectAccessReview": V1beta1LocalSubjectAccessReview,
     "V1beta1MutatingWebhook": V1beta1MutatingWebhook,
     "V1beta1MutatingWebhookConfiguration": V1beta1MutatingWebhookConfiguration,
     "V1beta1MutatingWebhookConfigurationList": V1beta1MutatingWebhookConfigurationList,
     "V1beta1NonResourceAttributes": V1beta1NonResourceAttributes,
+    "V1beta1NonResourcePolicyRule": V1beta1NonResourcePolicyRule,
     "V1beta1NonResourceRule": V1beta1NonResourceRule,
     "V1beta1Overhead": V1beta1Overhead,
     "V1beta1PodDisruptionBudget": V1beta1PodDisruptionBudget,
@@ -1731,9 +1824,18 @@ let typeMap: {[index: string]: any} = {
     "V1beta1PodSecurityPolicyList": V1beta1PodSecurityPolicyList,
     "V1beta1PodSecurityPolicySpec": V1beta1PodSecurityPolicySpec,
     "V1beta1PolicyRule": V1beta1PolicyRule,
+    "V1beta1PolicyRulesWithSubjects": V1beta1PolicyRulesWithSubjects,
     "V1beta1PriorityClass": V1beta1PriorityClass,
     "V1beta1PriorityClassList": V1beta1PriorityClassList,
+    "V1beta1PriorityLevelConfiguration": V1beta1PriorityLevelConfiguration,
+    "V1beta1PriorityLevelConfigurationCondition": V1beta1PriorityLevelConfigurationCondition,
+    "V1beta1PriorityLevelConfigurationList": V1beta1PriorityLevelConfigurationList,
+    "V1beta1PriorityLevelConfigurationReference": V1beta1PriorityLevelConfigurationReference,
+    "V1beta1PriorityLevelConfigurationSpec": V1beta1PriorityLevelConfigurationSpec,
+    "V1beta1PriorityLevelConfigurationStatus": V1beta1PriorityLevelConfigurationStatus,
+    "V1beta1QueuingConfiguration": V1beta1QueuingConfiguration,
     "V1beta1ResourceAttributes": V1beta1ResourceAttributes,
+    "V1beta1ResourcePolicyRule": V1beta1ResourcePolicyRule,
     "V1beta1ResourceRule": V1beta1ResourceRule,
     "V1beta1Role": V1beta1Role,
     "V1beta1RoleBinding": V1beta1RoleBinding,
@@ -1752,18 +1854,20 @@ let typeMap: {[index: string]: any} = {
     "V1beta1SelfSubjectAccessReviewSpec": V1beta1SelfSubjectAccessReviewSpec,
     "V1beta1SelfSubjectRulesReview": V1beta1SelfSubjectRulesReview,
     "V1beta1SelfSubjectRulesReviewSpec": V1beta1SelfSubjectRulesReviewSpec,
+    "V1beta1ServiceAccountSubject": V1beta1ServiceAccountSubject,
     "V1beta1StorageClass": V1beta1StorageClass,
     "V1beta1StorageClassList": V1beta1StorageClassList,
-    "V1beta1Subject": V1beta1Subject,
     "V1beta1SubjectAccessReview": V1beta1SubjectAccessReview,
     "V1beta1SubjectAccessReviewSpec": V1beta1SubjectAccessReviewSpec,
     "V1beta1SubjectAccessReviewStatus": V1beta1SubjectAccessReviewStatus,
     "V1beta1SubjectRulesReviewStatus": V1beta1SubjectRulesReviewStatus,
     "V1beta1SupplementalGroupsStrategyOptions": V1beta1SupplementalGroupsStrategyOptions,
+    "V1beta1TokenRequest": V1beta1TokenRequest,
     "V1beta1TokenReview": V1beta1TokenReview,
     "V1beta1TokenReviewSpec": V1beta1TokenReviewSpec,
     "V1beta1TokenReviewStatus": V1beta1TokenReviewStatus,
     "V1beta1UserInfo": V1beta1UserInfo,
+    "V1beta1UserSubject": V1beta1UserSubject,
     "V1beta1ValidatingWebhook": V1beta1ValidatingWebhook,
     "V1beta1ValidatingWebhookConfiguration": V1beta1ValidatingWebhookConfiguration,
     "V1beta1ValidatingWebhookConfigurationList": V1beta1ValidatingWebhookConfigurationList,
@@ -1779,6 +1883,8 @@ let typeMap: {[index: string]: any} = {
     "V2alpha1CronJobSpec": V2alpha1CronJobSpec,
     "V2alpha1CronJobStatus": V2alpha1CronJobStatus,
     "V2alpha1JobTemplateSpec": V2alpha1JobTemplateSpec,
+    "V2beta1ContainerResourceMetricSource": V2beta1ContainerResourceMetricSource,
+    "V2beta1ContainerResourceMetricStatus": V2beta1ContainerResourceMetricStatus,
     "V2beta1CrossVersionObjectReference": V2beta1CrossVersionObjectReference,
     "V2beta1ExternalMetricSource": V2beta1ExternalMetricSource,
     "V2beta1ExternalMetricStatus": V2beta1ExternalMetricStatus,
@@ -1795,6 +1901,8 @@ let typeMap: {[index: string]: any} = {
     "V2beta1PodsMetricStatus": V2beta1PodsMetricStatus,
     "V2beta1ResourceMetricSource": V2beta1ResourceMetricSource,
     "V2beta1ResourceMetricStatus": V2beta1ResourceMetricStatus,
+    "V2beta2ContainerResourceMetricSource": V2beta2ContainerResourceMetricSource,
+    "V2beta2ContainerResourceMetricStatus": V2beta2ContainerResourceMetricStatus,
     "V2beta2CrossVersionObjectReference": V2beta2CrossVersionObjectReference,
     "V2beta2ExternalMetricSource": V2beta2ExternalMetricSource,
     "V2beta2ExternalMetricStatus": V2beta2ExternalMetricStatus,
