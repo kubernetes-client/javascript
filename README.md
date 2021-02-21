@@ -111,10 +111,11 @@ release, we will increment the minor version whenever we update the minor Kubern
 
 Generally speaking newer clients will work with older Kubernetes, but compatability isn't 100% guaranteed.
 
-| client version | older versions | 1.18 | 1.19 |
-|----------------|----------------|------|------|
-|  0.12.3        |       -        |  ✓   |  x   |
-|  0.13.0        |       -        |  +   |  ✓   |
+| client version | older versions | 1.18 | 1.19 | 1.20 |
+|----------------|----------------|------|------|------|
+|  0.12.x        |       -        |  ✓   |  x   |  x   |
+|  0.13.x        |       -        |  +   |  ✓   |  x   |
+|  0.14.x        |       -        |  +   |  +   |  ✓   |
 
 Key: 
 
