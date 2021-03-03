@@ -197,15 +197,25 @@ export function addOrUpdateObject<T extends KubernetesObject>(
             addCallback.forEach((elt: ObjectCallback<T>) => elt(obj));
         }
     } else {
-        objects[ix] = obj;
-        if (updateCallback) {
-            updateCallback.forEach((elt: ObjectCallback<T>) => elt(obj));
+        if (!isSameVersion(objects[ix], obj)) {
+            objects[ix] = obj;
+            if (updateCallback) {
+                updateCallback.forEach((elt: ObjectCallback<T>) => elt(obj));
+            }
         }
     }
 }
 
 function isSameObject<T extends KubernetesObject>(o1: T, o2: T): boolean {
     return o1.metadata!.name === o2.metadata!.name && o1.metadata!.namespace === o2.metadata!.namespace;
+}
+
+function isSameVersion<T extends KubernetesObject>(o1: T, o2: T): boolean {
+    return (
+        o1.metadata!.resourceVersion !== undefined &&
+        o1.metadata!.resourceVersion !== null &&
+        o1.metadata!.resourceVersion === o2.metadata!.resourceVersion
+    );
 }
 
 function findKubernetesObject<T extends KubernetesObject>(objects: T[], obj: T): number {

@@ -330,11 +330,13 @@ describe('ListWatchCache', () => {
             {
                 metadata: {
                     name: 'name1',
+                    resourceVersion: '9876',
                 } as V1ObjectMeta,
             } as V1Namespace,
             {
                 metadata: {
                     name: 'name2',
+                    resourceVersion: '8765',
                 } as V1ObjectMeta,
             } as V1Namespace,
         ];
@@ -387,7 +389,7 @@ describe('ListWatchCache', () => {
         doneHandler(null);
         await promise;
         expect(addObjects).to.deep.equal(list);
-        expect(updateObjects).to.deep.equal(list);
+        expect(updateObjects).to.deep.equal([]);
     });
 
     it('should perform work as an informer with initial list and delete after', async () => {
@@ -396,11 +398,13 @@ describe('ListWatchCache', () => {
             {
                 metadata: {
                     name: 'name1',
+                    resourceVersion: '9876',
                 } as V1ObjectMeta,
             } as V1Namespace,
             {
                 metadata: {
                     name: 'name2',
+                    resourceVersion: '8765',
                 } as V1ObjectMeta,
             } as V1Namespace,
         ];
@@ -408,6 +412,7 @@ describe('ListWatchCache', () => {
             {
                 metadata: {
                     name: 'name1',
+                    resourceVersion: '9999',
                 } as V1ObjectMeta,
             } as V1Namespace,
         ];
@@ -467,6 +472,7 @@ describe('ListWatchCache', () => {
             {
                 metadata: {
                     name: 'name2',
+                    resourceVersion: '8765',
                 } as V1ObjectMeta,
             } as V1Namespace,
         ]);
