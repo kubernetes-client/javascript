@@ -577,6 +577,7 @@ describe('ListWatchCache', () => {
         expect(cache.list('ns2').length).to.equal(0);
         expect(cache.get('name2', 'ns2')).to.equal(undefined);
     });
+
     it('should delete an object correctly', () => {
         const list: V1Pod[] = [
             {
@@ -614,6 +615,7 @@ describe('ListWatchCache', () => {
         } as V1Pod);
         expect(list.length).to.equal(1);
     });
+
     it('should not call handlers which have been unregistered', async () => {
         const fakeWatch = mock.mock(Watch);
         const list: V1Namespace[] = [];
@@ -721,6 +723,7 @@ describe('ListWatchCache', () => {
 
         expect(addedList.length).to.equal(1);
     });
+
     it('should resolve start promise after seeding the cache', async () => {
         const fakeWatch = mock.mock(Watch);
         const list: V1Namespace[] = [
@@ -822,6 +825,66 @@ describe('ListWatchCache', () => {
         expect(adds).to.equal(2);
         expect(addedList1.length).to.equal(2);
         expect(addedList2.length).to.equal(1);
+    });
+
+    it('should not auto-restart after explicitly stopping until restarted again', async () => {
+
+        const fakeWatch = mock.mock(Watch);
+        const list: V1Pod[] = [
+            {
+                metadata: {
+                    name: 'name1',
+                    namespace: 'ns1',
+                } as V1ObjectMeta,
+            } as V1Pod,
+            {
+                metadata: {
+                    name: 'name2',
+                    namespace: 'ns2',
+                } as V1ObjectMeta,
+            } as V1Pod,
+        ];
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+            response: http.IncomingMessage;
+            body: V1NamespaceList;
+        }> {
+            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
+                (resolve, reject) => {
+                    resolve({ response: {} as http.IncomingMessage, body: listObj });
+                },
+            );
+        };
+        let promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve(new FakeRequest());
+            });
+        });
+
+        const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
+        await promise;
+
+        const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
+
+        // stop the informer
+        cache.stop();
+
+        await doneHandler(null);
+
+        mock.verify(fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything())).once();
+
+        // restart the informer
+        await cache.start();
+
+        mock.verify(fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything())).twice();
     });
 });
 

@@ -21,6 +21,7 @@ export interface Informer<T> {
     on(verb: string, fn: ObjectCallback<T>): void;
     off(verb: string, fn: ObjectCallback<T>): void;
     start(): Promise<void>;
+    stop(): Promise<void>;
 }
 
 export function makeInformer<T>(
