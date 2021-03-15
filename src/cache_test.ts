@@ -828,7 +828,6 @@ describe('ListWatchCache', () => {
     });
 
     it('should not auto-restart after explicitly stopping until restarted again', async () => {
-
         const fakeWatch = mock.mock(Watch);
         const list: V1Pod[] = [
             {
@@ -879,16 +878,19 @@ describe('ListWatchCache', () => {
 
         await doneHandler(null);
 
-        mock.verify(fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything())).once();
+        mock.verify(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).once();
 
         // restart the informer
         await cache.start();
 
-        mock.verify(fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything())).twice();
+        mock.verify(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).twice();
     });
 
     it('does not auto-restart after an error', async () => {
-
         const fakeWatch = mock.mock(Watch);
         const list: V1Pod[] = [
             {
@@ -933,14 +935,16 @@ describe('ListWatchCache', () => {
         await promise;
 
         let errorEmitted = false;
-        cache.on(ERROR, () => errorEmitted = true);
+        cache.on(ERROR, () => (errorEmitted = true));
 
         const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
 
         const error = new Error('testing');
         await doneHandler(error);
 
-        mock.verify(fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything())).once();
+        mock.verify(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).once();
         expect(errorEmitted).to.equal(true);
     });
 });
