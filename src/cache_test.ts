@@ -9,7 +9,7 @@ import { EventEmitter } from 'ws';
 
 import { V1Namespace, V1NamespaceList, V1ObjectMeta, V1Pod, V1ListMeta } from './api';
 import { deleteObject, ListWatch, deleteItems } from './cache';
-import { ADD, UPDATE, DELETE, ListPromise } from './informer';
+import { ADD, UPDATE, DELETE, ERROR, ListPromise } from './informer';
 
 use(chaiAsPromised);
 
@@ -885,6 +885,63 @@ describe('ListWatchCache', () => {
         await cache.start();
 
         mock.verify(fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything())).twice();
+    });
+
+    it('does not auto-restart after an error', async () => {
+
+        const fakeWatch = mock.mock(Watch);
+        const list: V1Pod[] = [
+            {
+                metadata: {
+                    name: 'name1',
+                    namespace: 'ns1',
+                } as V1ObjectMeta,
+            } as V1Pod,
+            {
+                metadata: {
+                    name: 'name2',
+                    namespace: 'ns2',
+                } as V1ObjectMeta,
+            } as V1Pod,
+        ];
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+            response: http.IncomingMessage;
+            body: V1NamespaceList;
+        }> {
+            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
+                (resolve, reject) => {
+                    resolve({ response: {} as http.IncomingMessage, body: listObj });
+                },
+            );
+        };
+        let promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve(new FakeRequest());
+            });
+        });
+
+        const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
+        await promise;
+
+        let errorEmitted = false;
+        cache.on(ERROR, () => errorEmitted = true);
+
+        const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
+
+        const error = new Error('testing');
+        await doneHandler(error);
+
+        mock.verify(fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything())).once();
+        expect(errorEmitted).to.equal(true);
     });
 });
 
