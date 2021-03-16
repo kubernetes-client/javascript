@@ -13,6 +13,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     private readonly indexCache: { [key: string]: T[] } = {};
     private readonly callbackCache: { [key: string]: Array<ObjectCallback<T>> } = {};
     private request: RequestResult | undefined;
+    private stopped: boolean = false;
 
     public constructor(
         private readonly path: string,
@@ -31,14 +32,13 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     }
 
     public async start(): Promise<void> {
+        this.stopped = false;
         await this.doneHandler(null);
     }
 
-    public stop(): void {
-        if (this.request) {
-            this.request.abort();
-            this.request = undefined;
-        }
+    public async stop(): Promise<void> {
+        this.stopped = true;
+        this._stop();
     }
 
     public on(verb: string, cb: ObjectCallback<T>): void {
@@ -80,10 +80,21 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         return this.resourceVersion;
     }
 
+    private _stop(): void {
+        if (this.request) {
+            this.request.abort();
+            this.request = undefined;
+        }
+    }
+
     private async doneHandler(err: any): Promise<any> {
-        this.stop();
+        this._stop();
         if (err) {
             this.callbackCache[ERROR].forEach((elt: ObjectCallback<T>) => elt(err));
+            return;
+        }
+        if (this.stopped) {
+            // do not auto-restart
             return;
         }
         // TODO: Don't always list here for efficiency
