@@ -1,4 +1,14 @@
-import { ADD, CHANGE, DELETE, ERROR, Informer, ListPromise, ObjectCallback, UPDATE } from './informer';
+import {
+    ADD,
+    CHANGE,
+    CONNECT,
+    DELETE,
+    ERROR,
+    Informer,
+    ListPromise,
+    ObjectCallback,
+    UPDATE,
+} from './informer';
 import { KubernetesObject } from './types';
 import { RequestResult, Watch } from './watch';
 
@@ -25,6 +35,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         this.callbackCache[UPDATE] = [];
         this.callbackCache[DELETE] = [];
         this.callbackCache[ERROR] = [];
+        this.callbackCache[CONNECT] = [];
         this.resourceVersion = '';
         if (autoStart) {
             this.doneHandler(null);
@@ -102,13 +113,14 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     private async doneHandler(err: any): Promise<any> {
         this._stop();
         if (err) {
-            this.callbackCache[ERROR].forEach((elt: ObjectCallback<T>) => elt(err));
+            this.callbackCache[ERROR].forEach((elt: ObjectCallback<T>) => elt(undefined, err));
             return;
         }
         if (this.stopped) {
             // do not auto-restart
             return;
         }
+        this.callbackCache[CONNECT].forEach((elt: ObjectCallback<T>) => elt());
         // TODO: Don't always list here for efficiency
         // try to restart the watch from resourceVersion, but detect 410 GONE and relist in that case.
         // Or if resourceVersion is empty.
