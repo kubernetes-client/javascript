@@ -9,7 +9,7 @@ import { EventEmitter } from 'ws';
 
 import { V1Namespace, V1NamespaceList, V1ObjectMeta, V1Pod, V1ListMeta } from './api';
 import { deleteObject, ListWatch, deleteItems } from './cache';
-import { ADD, UPDATE, DELETE, ERROR, ListPromise } from './informer';
+import { ADD, UPDATE, DELETE, ERROR, ListPromise, CHANGE } from './informer';
 
 use(chaiAsPromised);
 
@@ -263,6 +263,81 @@ describe('ListWatchCache', () => {
                 .to.eventually.have.property('metadata')
                 .that.deep.equals({ name: 'name2' }),
         ]);
+    });
+
+    it('should handle change events correctly', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const list: V1Namespace[] = [
+            {
+                metadata: {
+                    name: 'name1',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+            {
+                metadata: {
+                    name: 'name2',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+        ];
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+            response: http.IncomingMessage;
+            body: V1NamespaceList;
+        }> {
+            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
+                (resolve, reject) => {
+                    resolve({ response: {} as http.IncomingMessage, body: listObj });
+                },
+            );
+        };
+        const promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve(new FakeRequest());
+            });
+        });
+        const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
+        await promise;
+        const [pathOut, , watchHandler] = mock.capture(fakeWatch.watch).last();
+        expect(pathOut).to.equal('/some/path');
+
+        let count = 0;
+        const changePromise = new Promise<boolean>((resolve: (V1Namespace) => void) => {
+            informer.on(CHANGE, (obj: V1Namespace) => {
+                count++;
+                if (count == 3) {
+                    resolve(true);
+                }
+            });
+        });
+
+        watchHandler('ADDED', {
+            metadata: {
+                name: 'name3',
+            } as V1ObjectMeta,
+        } as V1Namespace);
+
+        watchHandler('MODIFIED', {
+            metadata: {
+                name: 'name3',
+                resourceVersion: 'baz',
+            } as V1ObjectMeta,
+        } as V1Namespace);
+
+        watchHandler('DELETED', {
+            metadata: {
+                name: 'name2',
+            } as V1ObjectMeta,
+        } as V1Namespace);
+
+        expect(changePromise).to.eventually.be.true;
     });
 
     it('should perform work as an informer with multiple handlers', async () => {

@@ -1,4 +1,4 @@
-import { ADD, DELETE, ERROR, Informer, ListPromise, ObjectCallback, UPDATE } from './informer';
+import { ADD, CHANGE, DELETE, ERROR, Informer, ListPromise, ObjectCallback, UPDATE } from './informer';
 import { KubernetesObject } from './types';
 import { RequestResult, Watch } from './watch';
 
@@ -42,6 +42,12 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     }
 
     public on(verb: string, cb: ObjectCallback<T>): void {
+        if (verb === CHANGE) {
+            this.on(ADD, cb);
+            this.on(UPDATE, cb);
+            this.on(DELETE, cb);
+            return;
+        }
         if (this.callbackCache[verb] === undefined) {
             throw new Error(`Unknown verb: ${verb}`);
         }
@@ -49,6 +55,12 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     }
 
     public off(verb: string, cb: ObjectCallback<T>): void {
+        if (verb === CHANGE) {
+            this.off(ADD, cb);
+            this.off(UPDATE, cb);
+            this.off(DELETE, cb);
+            return;
+        }
         if (this.callbackCache[verb] === undefined) {
             throw new Error(`Unknown verb: ${verb}`);
         }

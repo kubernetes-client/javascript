@@ -14,6 +14,7 @@ export type ListPromise<T extends KubernetesObject> = () => Promise<{
 
 export const ADD: string = 'add';
 export const UPDATE: string = 'update';
+export const CHANGE: string = 'change';
 export const DELETE: string = 'delete';
 export const ERROR: string = 'error';
 
