@@ -97,6 +97,7 @@ export class Watch {
             useQuerystring: true,
             json: true,
             pool: false,
+            forever: true,
         };
         await this.config.applyToRequest(requestOptions);
 
