@@ -1064,6 +1064,18 @@ describe('KubeConfig', () => {
             const kc = new KubeConfig();
             expect(() => kc.loadFromDefault()).to.throw('Duplicate user: user1');
         });
+
+        it('should ignore extra path delimiters', () => {
+            process.env.KUBECONFIG = path.delimiter + kcFileName + path.delimiter;
+
+            const kc = new KubeConfig();
+            kc.loadFromDefault();
+
+            expect(kc.clusters.length).to.equal(2);
+            expect(kc.users.length).to.equal(3);
+            expect(kc.contexts.length).to.equal(3);
+            expect(kc.getCurrentContext()).to.equal('context2');
+        });
     });
 
     function platformPath(path: string) {
