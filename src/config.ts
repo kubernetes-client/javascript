@@ -284,7 +284,7 @@ export class KubeConfig {
 
     public loadFromDefault(opts?: Partial<ConfigOptions>, contextFromStartingConfig: boolean = false): void {
         if (process.env.KUBECONFIG && process.env.KUBECONFIG.length > 0) {
-            const files = process.env.KUBECONFIG.split(path.delimiter);
+            const files = process.env.KUBECONFIG.split(path.delimiter).filter((filename: string) => filename);
             this.loadFromFile(files[0], opts);
             for (let i = 1; i < files.length; i++) {
                 const kc = new KubeConfig();
