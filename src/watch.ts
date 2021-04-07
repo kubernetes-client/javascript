@@ -114,6 +114,7 @@ export class Watch {
         const stream = byline.createStream();
         req.on('error', doneCallOnce);
         req.on('socket', function(socket) {
+            socket.setTimeout(30000);
             socket.setKeepAlive(true);
             keepalive.setKeepAliveInterval(socket, 30000);
         });
