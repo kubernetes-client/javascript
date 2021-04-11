@@ -1,5 +1,4 @@
 import byline = require('byline');
-import keepalive = require('net-keepalive');
 import request = require('request');
 import { Duplex } from 'stream';
 import { KubeConfig } from './config';
@@ -115,8 +114,7 @@ export class Watch {
         req.on('error', doneCallOnce);
         req.on('socket', (socket) => {
             socket.setTimeout(30000);
-            socket.setKeepAlive(true);
-            keepalive.setKeepAliveInterval(socket, 30000);
+            socket.setKeepAlive(true, 30000);
         });
         stream.on('error', doneCallOnce);
         stream.on('close', () => doneCallOnce(null));
