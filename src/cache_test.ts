@@ -9,7 +9,7 @@ import { EventEmitter } from 'ws';
 
 import { V1Namespace, V1NamespaceList, V1ObjectMeta, V1Pod, V1ListMeta } from './api';
 import { deleteObject, ListWatch, deleteItems } from './cache';
-import { ADD, UPDATE, DELETE, ERROR, ListPromise, CHANGE, CONNECT } from './informer';
+import { ListPromise } from './informer';
 
 use(chaiAsPromised);
 
@@ -44,7 +44,9 @@ describe('ListWatchCache', () => {
         };
         const lw = new ListWatch('/some/path', fake, listFn);
         const verb = 'FOOBAR';
-        expect(() => lw.on(verb, (obj?: V1Namespace) => {})).to.throw(`Unknown verb: ${verb}`);
+        // The 'as any' is a hack to get around Typescript which prevents an unknown verb from being
+        // passed. We want to test for Javascript clients also, where this is possible
+        expect(() => (lw as any).on(verb, (obj?: V1Namespace) => {})).to.throw(`Unknown verb: ${verb}`);
     });
 
     it('should perform basic caching', async () => {
@@ -216,19 +218,19 @@ describe('ListWatchCache', () => {
         expect(pathOut).to.equal('/some/path');
 
         const addPromise = new Promise<V1Namespace>((resolve: (V1Namespace) => void) => {
-            informer.on(ADD, (obj?: V1Namespace) => {
+            informer.on('add', (obj?: V1Namespace) => {
                 resolve(obj);
             });
         });
 
         const updatePromise = new Promise<V1Namespace>((resolve: (V1Namespace) => void) => {
-            informer.on(UPDATE, (obj?: V1Namespace) => {
+            informer.on('update', (obj?: V1Namespace) => {
                 resolve(obj);
             });
         });
 
         const deletePromise = new Promise<V1Namespace>((resolve: (V1Namespace) => void) => {
-            informer.on(DELETE, (obj?: V1Namespace) => {
+            informer.on('delete', (obj?: V1Namespace) => {
                 resolve(obj);
             });
         });
@@ -310,7 +312,7 @@ describe('ListWatchCache', () => {
 
         let count = 0;
         const changePromise = new Promise<boolean>((resolve: (V1Namespace) => void) => {
-            informer.on(CHANGE, (obj?: V1Namespace) => {
+            informer.on('change', (obj?: V1Namespace) => {
                 count++;
                 if (count == 3) {
                     resolve(true);
@@ -372,13 +374,13 @@ describe('ListWatchCache', () => {
         expect(pathOut).to.equal('/some/path');
 
         const addPromise = new Promise<V1Namespace>((resolve: (V1Namespace) => void) => {
-            informer.on(ADD, (obj?: V1Namespace) => {
+            informer.on('add', (obj?: V1Namespace) => {
                 resolve(obj);
             });
         });
 
         const addPromise2 = new Promise<V1Namespace>((resolve: (V1Namespace) => void) => {
-            informer.on(ADD, (obj?: V1Namespace) => {
+            informer.on('add', (obj?: V1Namespace) => {
                 resolve(obj);
             });
         });
@@ -442,9 +444,9 @@ describe('ListWatchCache', () => {
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
 
         const addObjects: V1Namespace[] = [];
-        informer.on(ADD, (obj?: V1Namespace) => addObjects.push(obj!));
+        informer.on('add', (obj?: V1Namespace) => addObjects.push(obj!));
         const updateObjects: V1Namespace[] = [];
-        informer.on(UPDATE, (obj?: V1Namespace) => updateObjects.push(obj!));
+        informer.on('update', (obj?: V1Namespace) => updateObjects.push(obj!));
 
         informer.start();
         await promise;
@@ -518,11 +520,11 @@ describe('ListWatchCache', () => {
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
 
         const addObjects: V1Namespace[] = [];
-        informer.on(ADD, (obj?: V1Namespace) => addObjects.push(obj!));
+        informer.on('add', (obj?: V1Namespace) => addObjects.push(obj!));
         const updateObjects: V1Namespace[] = [];
-        informer.on(UPDATE, (obj?: V1Namespace) => updateObjects.push(obj!));
+        informer.on('update', (obj?: V1Namespace) => updateObjects.push(obj!));
         const deleteObjects: V1Namespace[] = [];
-        informer.on(DELETE, (obj?: V1Namespace) => deleteObjects.push(obj!));
+        informer.on('delete', (obj?: V1Namespace) => deleteObjects.push(obj!));
         informer.start();
         await promise;
         const [pathOut, , , doneHandler] = mock.capture(fakeWatch.watch).last();
@@ -729,8 +731,8 @@ describe('ListWatchCache', () => {
         await watchCalled;
         const [, , watchHandler] = mock.capture(fakeWatch.watch).last();
 
-        informer.on(ADD, addToList1Fn);
-        informer.on(ADD, addToList2Fn);
+        informer.on('add', addToList1Fn);
+        informer.on('add', addToList2Fn);
 
         watchHandler('ADDED', {
             metadata: {
@@ -738,7 +740,7 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Namespace);
 
-        informer.off(ADD, addToList2Fn);
+        informer.off('add', addToList2Fn);
 
         watchHandler('ADDED', {
             metadata: {
@@ -779,7 +781,7 @@ describe('ListWatchCache', () => {
             addedList.push(obj!);
         };
         const removeSelf = function() {
-            informer.off(ADD, removeSelf);
+            informer.off('add', removeSelf);
         };
 
         informer.start();
@@ -787,8 +789,8 @@ describe('ListWatchCache', () => {
         await watchCalled;
         const [, , watchHandler] = mock.capture(fakeWatch.watch).last();
 
-        informer.on(ADD, removeSelf);
-        informer.on(ADD, addToListFn);
+        informer.on('add', removeSelf);
+        informer.on('add', addToListFn);
 
         watchHandler('ADDED', {
             metadata: {
@@ -877,9 +879,9 @@ describe('ListWatchCache', () => {
         const [, , watchHandler] = mock.capture(fakeWatch.watch).last();
 
         let adds = 0;
-        informer.on(ADD, () => adds++);
-        informer.on(ADD, addToList1Fn);
-        informer.on(ADD, addToList2Fn);
+        informer.on('add', () => adds++);
+        informer.on('add', addToList1Fn);
+        informer.on('add', addToList2Fn);
 
         watchHandler('ADDED', {
             metadata: {
@@ -888,7 +890,7 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Namespace);
 
-        informer.off(ADD, addToList2Fn);
+        informer.off('add', addToList2Fn);
 
         watchHandler('ADDED', {
             metadata: {
@@ -1010,7 +1012,7 @@ describe('ListWatchCache', () => {
         await promise;
 
         let errorEmitted = false;
-        cache.on(ERROR, () => (errorEmitted = true));
+        cache.on('error', () => (errorEmitted = true));
 
         const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
 
@@ -1131,7 +1133,7 @@ describe('delete items', () => {
         };
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
         const connectPromise = new Promise<boolean>((resolve: (boolean) => void) => {
-            informer.on(CONNECT, (obj?: V1Namespace) => {
+            informer.on('connect', (obj?: V1Namespace) => {
                 resolve(true);
             });
         });
@@ -1185,7 +1187,7 @@ describe('delete items', () => {
         await promise;
 
         let errorEmitted = false;
-        cache.on(ERROR, () => (errorEmitted = true));
+        cache.on('error', () => (errorEmitted = true));
 
         const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
 
@@ -1198,7 +1200,7 @@ describe('delete items', () => {
         expect(errorEmitted).to.equal(true);
 
         const connectPromise = new Promise<boolean>((resolve: (boolean) => void) => {
-            cache.on(CONNECT, (obj?: V1Namespace) => {
+            cache.on('connect', (obj?: V1Namespace) => {
                 resolve(true);
             });
         });

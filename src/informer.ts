@@ -5,7 +5,8 @@ import { Watch } from './watch';
 
 import http = require('http');
 
-export type ObjectCallback<T extends KubernetesObject> = (obj?: T, err?: any) => void;
+export type ObjectCallback<T extends KubernetesObject> = (obj: T) => void;
+export type ErrorCallback = (err?: any) => void;
 export type ListCallback<T extends KubernetesObject> = (list: T[], ResourceVersion: string) => void;
 export type ListPromise<T extends KubernetesObject> = () => Promise<{
     response: http.IncomingMessage;
