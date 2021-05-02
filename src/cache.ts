@@ -1,4 +1,15 @@
-import { ADD, CHANGE, DELETE, ERROR, Informer, ListPromise, ObjectCallback, UPDATE } from './informer';
+import {
+    ADD,
+    CHANGE,
+    CONNECT,
+    DELETE,
+    ERROR,
+    ErrorCallback,
+    Informer,
+    ListPromise,
+    ObjectCallback,
+    UPDATE,
+} from './informer';
 import { KubernetesObject } from './types';
 import { RequestResult, Watch } from './watch';
 
@@ -11,7 +22,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     private objects: T[] = [];
     private resourceVersion: string;
     private readonly indexCache: { [key: string]: T[] } = {};
-    private readonly callbackCache: { [key: string]: Array<ObjectCallback<T>> } = {};
+    private readonly callbackCache: { [key: string]: Array<ObjectCallback<T> | ErrorCallback> } = {};
     private request: RequestResult | undefined;
     private stopped: boolean = false;
 
@@ -25,6 +36,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         this.callbackCache[UPDATE] = [];
         this.callbackCache[DELETE] = [];
         this.callbackCache[ERROR] = [];
+        this.callbackCache[CONNECT] = [];
         this.resourceVersion = '';
         if (autoStart) {
             this.doneHandler(null);
@@ -41,11 +53,13 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         this._stop();
     }
 
-    public on(verb: string, cb: ObjectCallback<T>): void {
+    public on(verb: 'add' | 'update' | 'delete' | 'change', cb: ObjectCallback<T>): void;
+    public on(verb: 'error' | 'connect', cb: ErrorCallback): void;
+    public on(verb: string, cb: any): void {
         if (verb === CHANGE) {
-            this.on(ADD, cb);
-            this.on(UPDATE, cb);
-            this.on(DELETE, cb);
+            this.on('add', cb);
+            this.on('update', cb);
+            this.on('delete', cb);
             return;
         }
         if (this.callbackCache[verb] === undefined) {
@@ -54,11 +68,13 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         this.callbackCache[verb].push(cb);
     }
 
-    public off(verb: string, cb: ObjectCallback<T>): void {
+    public off(verb: 'add' | 'update' | 'delete' | 'change', cb: ObjectCallback<T>): void;
+    public off(verb: 'error' | 'connect', cb: ErrorCallback): void;
+    public off(verb: string, cb: any): void {
         if (verb === CHANGE) {
-            this.off(ADD, cb);
-            this.off(UPDATE, cb);
-            this.off(DELETE, cb);
+            this.off('add', cb);
+            this.off('update', cb);
+            this.off('delete', cb);
             return;
         }
         if (this.callbackCache[verb] === undefined) {
@@ -102,13 +118,14 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     private async doneHandler(err: any): Promise<any> {
         this._stop();
         if (err) {
-            this.callbackCache[ERROR].forEach((elt: ObjectCallback<T>) => elt(err));
+            this.callbackCache[ERROR].forEach((elt: ErrorCallback) => elt(err));
             return;
         }
         if (this.stopped) {
             // do not auto-restart
             return;
         }
+        this.callbackCache[CONNECT].forEach((elt: ErrorCallback) => elt(undefined));
         // TODO: Don't always list here for efficiency
         // try to restart the watch from resourceVersion, but detect 410 GONE and relist in that case.
         // Or if resourceVersion is empty.
