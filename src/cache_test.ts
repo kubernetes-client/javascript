@@ -1101,13 +1101,7 @@ describe('ListWatchCache', () => {
         const fakeRequest = new FakeRequest();
         mock.when(fakeRequestor.webRequest(mock.anything())).thenReturn(fakeRequest);
 
-        const informer = new ListWatch(
-            '/some/path',
-            watch,
-            listFn,
-            false,
-            APP_LABEL_SELECTOR,
-        );
+        const informer = new ListWatch('/some/path', watch, listFn, false, APP_LABEL_SELECTOR);
 
         await informer.start();
 
