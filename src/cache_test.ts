@@ -1099,13 +1099,7 @@ describe('ListWatchCache', () => {
         const fakeRequest = new FakeRequest();
         mock.when(fakeRequestor.webRequest(mock.anything())).thenReturn(fakeRequest);
 
-        const informer = new ListWatch(
-            '/some/path',
-            watch,
-            listFn,
-            false,
-            APP_LABEL_SELECTOR,
-        );
+        const informer = new ListWatch('/some/path', watch, listFn, false, APP_LABEL_SELECTOR);
 
         await informer.start();
 
@@ -1155,48 +1149,48 @@ describe('delete items', () => {
             } as V1Pod,
         ];
 
-            const output = deleteItems(listA, listB);
-            expect(output).to.deep.equal(expected);
-        });
+        const output = deleteItems(listA, listB);
+        expect(output).to.deep.equal(expected);
+    });
 
-        it('should callback correctly', () => {
-            const listA: V1Pod[] = [
-                {
-                    metadata: {
-                        name: 'name1',
-                        namespace: 'ns1',
-                    } as V1ObjectMeta,
-                } as V1Pod,
-                {
-                    metadata: {
-                        name: 'name2',
-                        namespace: 'ns2',
-                    } as V1ObjectMeta,
-                } as V1Pod,
-            ];
-            const listB: V1Pod[] = [
-                {
-                    metadata: {
-                        name: 'name1',
-                        namespace: 'ns1',
-                    } as V1ObjectMeta,
-                } as V1Pod,
-                {
-                    metadata: {
-                        name: 'name3',
-                        namespace: 'ns3',
-                    } as V1ObjectMeta,
-                } as V1Pod,
-            ];
-            const expected: V1Pod[] = [
-                {
-                    metadata: {
-                        name: 'name2',
-                        namespace: 'ns2',
-                    } as V1ObjectMeta,
-                } as V1Pod,
-            ];
-            const pods: V1Pod[] = [];
+    it('should callback correctly', () => {
+        const listA: V1Pod[] = [
+            {
+                metadata: {
+                    name: 'name1',
+                    namespace: 'ns1',
+                } as V1ObjectMeta,
+            } as V1Pod,
+            {
+                metadata: {
+                    name: 'name2',
+                    namespace: 'ns2',
+                } as V1ObjectMeta,
+            } as V1Pod,
+        ];
+        const listB: V1Pod[] = [
+            {
+                metadata: {
+                    name: 'name1',
+                    namespace: 'ns1',
+                } as V1ObjectMeta,
+            } as V1Pod,
+            {
+                metadata: {
+                    name: 'name3',
+                    namespace: 'ns3',
+                } as V1ObjectMeta,
+            } as V1Pod,
+        ];
+        const expected: V1Pod[] = [
+            {
+                metadata: {
+                    name: 'name2',
+                    namespace: 'ns2',
+                } as V1ObjectMeta,
+            } as V1Pod,
+        ];
+        const pods: V1Pod[] = [];
 
         deleteItems(listA, listB, [(obj: V1Pod) => pods.push(obj)]);
         expect(pods).to.deep.equal(expected);

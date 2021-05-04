@@ -131,8 +131,8 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         const queryParams = {
             resourceVersion: list.metadata!.resourceVersion,
         } as {
-            resourceVersion: string | undefined,
-            labelSelector: string | undefined,
+            resourceVersion: string | undefined;
+            labelSelector: string | undefined;
         };
         if (this.labelSelector !== undefined) {
             queryParams.labelSelector = ObjectSerializer.serialize(this.labelSelector, 'string');
