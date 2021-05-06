@@ -99,7 +99,7 @@ export class ExecAuth implements Authenticator {
             opts = { ...opts, env };
         }
         const result = this.execFn(exec.command, exec.args, opts);
-        if (result.code === 0) {
+        if (result.exitCode === 0) {
             const obj = JSON.parse(result.stdout) as Credential;
             this.tokenCache[user.name] = obj;
             return obj;

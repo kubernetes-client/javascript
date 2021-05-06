@@ -305,8 +305,8 @@ export class KubeConfig {
             // TODO: Handle if someome set $KUBECONFIG in wsl here...
             try {
                 const result = execa.sync('wsl.exe', ['cat', shelljs.homedir() + '/.kube/config']);
-                if (result.code === 0) {
-                    this.loadFromString(result.std, opts);
+                if (result.exitCode === 0) {
+                    this.loadFromString(result.stdout, opts);
                     return;
                 }
             } catch (err) {
