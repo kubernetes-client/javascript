@@ -304,7 +304,7 @@ export class KubeConfig {
         if (process.platform === 'win32' && shelljs.which('wsl.exe')) {
             // TODO: Handle if someome set $KUBECONFIG in wsl here...
             try {
-                const result = execa.sync('wsl.exe', ['cat', shelljs.homedir() + '/.kube/config']);
+                const result = execa.sync('wsl.exe', ['cat', '~/.kube/config']);
                 if (result.exitCode === 0) {
                     this.loadFromString(result.stdout, opts);
                     return;
