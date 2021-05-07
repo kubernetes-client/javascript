@@ -302,9 +302,24 @@ export class KubeConfig {
             }
         }
         if (process.platform === 'win32' && shelljs.which('wsl.exe')) {
-            // TODO: Handle if someome set $KUBECONFIG in wsl here...
             try {
-                const result = execa.sync('wsl.exe', ['cat', shelljs.homedir() + '/.kube/config']);
+                const envKubeconfigPathResult = execa.sync('wsl.exe', ['bash', '-ic', 'printenv KUBECONFIG']);
+                if (envKubeconfigPathResult.exitCode === 0 && envKubeconfigPathResult.stdout.length > 0) {
+                    const result = execa.sync('wsl.exe', ['cat', envKubeconfigPathResult.stdout]);
+                    if (result.exitCode === 0) {
+                        this.loadFromString(result.stdout, opts);
+                        return;
+                    }
+                    if (result.exitCode === 0) {
+                        this.loadFromString(result.stdout, opts);
+                        return;
+                    }
+                }
+            } catch (err) {
+                // Falling back to default kubeconfig
+            }
+            try {
+                const result = execa.sync('wsl.exe', ['cat', '~/.kube/config']);
                 if (result.exitCode === 0) {
                     this.loadFromString(result.stdout, opts);
                     return;
