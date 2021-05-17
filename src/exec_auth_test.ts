@@ -66,7 +66,7 @@ describe('ExecAuth', () => {
             opts: execa.SyncOptions,
         ): execa.ExecaSyncReturnValue => {
             return {
-                code: 0,
+                exitCode: 0,
                 stdout: JSON.stringify({ status: { token: 'foo' } }),
             } as execa.ExecaSyncReturnValue;
         };
@@ -100,7 +100,7 @@ describe('ExecAuth', () => {
             opts: execa.SyncOptions,
         ): execa.ExecaSyncReturnValue => {
             return {
-                code: 0,
+                exitCode: 0,
                 stdout: JSON.stringify({ status: { clientCertificateData: 'foo', clientKeyData: 'bar' } }),
             } as execa.ExecaSyncReturnValue;
         };
@@ -140,7 +140,7 @@ describe('ExecAuth', () => {
         ): execa.ExecaSyncReturnValue => {
             execCount++;
             return {
-                code: 0,
+                exitCode: 0,
                 stdout: JSON.stringify({
                     status: { token: tokenValue, expirationTimestamp: expire },
                 }),
@@ -200,7 +200,7 @@ describe('ExecAuth', () => {
             opts: execa.SyncOptions,
         ): execa.ExecaSyncReturnValue => {
             return {
-                code: 100,
+                exitCode: 100,
                 stdout: JSON.stringify({ status: { token: 'foo' } }),
                 stderr: 'Some error!',
             } as execa.ExecaSyncReturnValue;
@@ -237,7 +237,7 @@ describe('ExecAuth', () => {
         ): execa.ExecaSyncReturnValue => {
             optsOut = opts;
             return {
-                code: 0,
+                exitCode: 0,
                 stdout: JSON.stringify({ status: { token: 'foo' } }),
             } as execa.ExecaSyncReturnValue;
         };
@@ -281,7 +281,7 @@ describe('ExecAuth', () => {
             opts: execa.SyncOptions,
         ): execa.ExecaSyncReturnValue => {
             return {
-                code: 0,
+                exitCode: 0,
                 stdout: JSON.stringify({ status: { token: 'foo' } }),
             } as execa.ExecaSyncReturnValue;
         };
