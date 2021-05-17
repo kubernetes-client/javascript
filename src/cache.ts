@@ -1,3 +1,4 @@
+import { ObjectSerializer } from './api';
 import {
     ADD,
     CHANGE,
@@ -15,6 +16,7 @@ import { RequestResult, Watch } from './watch';
 
 export interface ObjectCache<T> {
     get(name: string, namespace?: string): T | undefined;
+
     list(namespace?: string): ReadonlyArray<T>;
 }
 
@@ -31,6 +33,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         private readonly watch: Watch,
         private readonly listFn: ListPromise<T>,
         autoStart: boolean = true,
+        private readonly labelSelector?: string,
     ) {
         this.callbackCache[ADD] = [];
         this.callbackCache[UPDATE] = [];
@@ -142,9 +145,18 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
             }
         });
         this.addOrUpdateItems(list.items);
+        const queryParams = {
+            resourceVersion: list.metadata!.resourceVersion,
+        } as {
+            resourceVersion: string | undefined;
+            labelSelector: string | undefined;
+        };
+        if (this.labelSelector !== undefined) {
+            queryParams.labelSelector = ObjectSerializer.serialize(this.labelSelector, 'string');
+        }
         this.request = await this.watch.watch(
             this.path,
-            { resourceVersion: list.metadata!.resourceVersion },
+            queryParams,
             this.watchHandler.bind(this),
             this.doneHandler.bind(this),
         );

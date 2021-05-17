@@ -35,7 +35,8 @@ export function makeInformer<T>(
     kubeconfig: KubeConfig,
     path: string,
     listPromiseFn: ListPromise<T>,
+    labelSelector?: string,
 ): Informer<T> {
     const watch = new Watch(kubeconfig);
-    return new ListWatch<T>(path, watch, listPromiseFn, false);
+    return new ListWatch<T>(path, watch, listPromiseFn, false, labelSelector);
 }
