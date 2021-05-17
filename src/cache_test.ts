@@ -1145,11 +1145,12 @@ describe('delete items', () => {
         const expected: V1Pod[] = [
             {
                 metadata: {
-                    name: 'name1',
-                    namespace: 'ns1',
+                    name: 'name2',
+                    namespace: 'ns2',
                 } as V1ObjectMeta,
             } as V1Pod,
         ];
+        const pods: V1Pod[] = [];
 
         deleteItems(listA, listB, [(obj?: V1Pod) => pods.push(obj!)]);
         expect(pods).to.deep.equal(expected);
