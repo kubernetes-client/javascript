@@ -106,7 +106,7 @@ There are several more examples in the [examples](https://github.com/kubernetes-
 # Compatibility
 
 Prior to the `0.13.0` release, release versions did not track Kubernetes versions. Starting with the `0.13.0`
-release, we will increment the minor version whenever we update the minor Kubernetes API version 
+release, we will increment the minor version whenever we update the minor Kubernetes API version
 (e.g. `1.19.x`) that this library is generated from.
 
 Generally speaking newer clients will work with older Kubernetes, but compatability isn't 100% guaranteed.
@@ -117,7 +117,7 @@ Generally speaking newer clients will work with older Kubernetes, but compatabil
 |  0.13.x        |       -        |  +   |  ✓   |  x   |
 |  0.14.x        |       -        |  +   |  +   |  ✓   |
 
-Key: 
+Key:
 
 * `✓` Exactly the same features / API objects in both javascript-client and the Kubernetes
   version.
@@ -130,6 +130,10 @@ Key:
   and operations using API versions that have been deprecated and removed in
   later server versions won't function correctly.
 
+# Known Issues
+* Multiple kubeconfigs are not completely supported.
+  Credentials are cached based on the kubeconfig username and these can collide across configs.
+  Here is the related [issue](https://github.com/kubernetes-client/javascript/issues/592).
 
 # Development
 
