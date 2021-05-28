@@ -3326,6 +3326,10 @@ export class AppsV1Api {
             .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
         let localVarQueryParameters: any = {};
         let localVarHeaderParams: any = (<any>Object).assign({}, this._defaultHeaders);
+        
+        //Change Content-Type header because the K8s endpoint needs it
+        localVarHeaderParams["Content-Type"] = 'application/merge-patch+json';
+
         const produces = ['application/json', 'application/yaml', 'application/vnd.kubernetes.protobuf'];
         // give precedence to 'application/json'
         if (produces.indexOf('application/json') >= 0) {
