@@ -5,7 +5,9 @@ kc.loadFromDefault();
 
 const k8sApi = kc.makeApiClient(k8s.AppsV1Api);
 
+const targetNamespaceName = 'default';
 const targetDeploymentName = 'docker-test-deployment';
+const numberOfTargetReplicas = 3;
 
 async function scale(namespace, name, replicas) {
   // find the particular deployment
@@ -19,4 +21,4 @@ async function scale(namespace, name, replicas) {
   await k8sApi.replaceNamespacedDeployment(name, namespace, deployment);
 }
 
-scale('default', 'docker-test-deployment', 3);
+scale(targetNamespaceName, targetDeploymentName, numberOfTargetReplicas);
