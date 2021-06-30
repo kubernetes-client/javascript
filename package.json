@@ -54,7 +54,7 @@
   "author": "Kubernetes Authors",
   "license": "Apache-2.0",
   "dependencies": {
-    "@types/js-yaml": "^3.12.1",
+    "@types/js-yaml": "^4.0.1",
     "@types/node": "^10.12.0",
     "@types/request": "^2.47.1",
     "@types/stream-buffers": "^3.0.3",
@@ -64,7 +64,7 @@
     "byline": "^5.0.0",
     "execa": "5.0.0",
     "isomorphic-ws": "^4.0.1",
-    "js-yaml": "^3.13.1",
+    "js-yaml": "^4.1.0",
     "jsonpath-plus": "^0.19.0",
     "openid-client": "^4.1.1",
     "request": "^2.88.0",

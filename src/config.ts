@@ -1,10 +1,10 @@
 import execa = require('execa');
 import fs = require('fs');
 import https = require('https');
+import yaml = require('js-yaml');
 import net = require('net');
 import path = require('path');
 
-import yaml = require('js-yaml');
 import request = require('request');
 import shelljs = require('shelljs');
 
@@ -157,7 +157,7 @@ export class KubeConfig {
     }
 
     public loadFromString(config: string, opts?: Partial<ConfigOptions>): void {
-        const obj = yaml.safeLoad(config);
+        const obj = yaml.load(config) as any;
         this.clusters = newClusters(obj.clusters, opts);
         this.contexts = newContexts(obj.contexts, opts);
         this.users = newUsers(obj.users, opts);
