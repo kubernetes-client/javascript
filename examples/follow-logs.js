@@ -20,3 +20,4 @@ log.log('default', 'pod1', 'container1', logStream, (err) => {console.log(err)},
 		req.abort()
 	}, 5000)
 })
+
