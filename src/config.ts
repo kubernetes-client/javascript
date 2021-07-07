@@ -221,11 +221,17 @@ export class KubeConfig {
                 },
             },
         ];
+        const namespaceFile = `${pathPrefix}${Config.SERVICEACCOUNT_NAMESPACE_PATH}`;
+        let namespace: string | undefined;
+        if (fileExists(namespaceFile)) {
+            namespace = fs.readFileSync(namespaceFile, 'utf8')
+        }
         this.contexts = [
             {
                 cluster: clusterName,
                 name: contextName,
                 user: userName,
+                namespace,
             },
         ];
         this.currentContext = contextName;
@@ -448,6 +454,7 @@ export class Config {
     public static SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
     public static SERVICEACCOUNT_CA_PATH: string = Config.SERVICEACCOUNT_ROOT + '/ca.crt';
     public static SERVICEACCOUNT_TOKEN_PATH: string = Config.SERVICEACCOUNT_ROOT + '/token';
+    public static SERVICEACCOUNT_NAMESPACE_PATH: string = Config.SERVICEACCOUNT_ROOT + '/namespace';
 
     public static fromFile(filename: string): api.CoreV1Api {
         return Config.apiFromFile(filename, api.CoreV1Api);
