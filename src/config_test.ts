@@ -1151,10 +1151,12 @@ describe('KubeConfig', () => {
             }
             const token = 'token';
             const cert = 'cert';
+            const namespace = 'myNamespace';
             mockfs({
                 '/var/run/secrets/kubernetes.io/serviceaccount': {
                     'ca.crt': cert,
                     token,
+                    namespace,
                 },
             });
 
@@ -1180,6 +1182,12 @@ describe('KubeConfig', () => {
                 expect(user.authProvider.config.tokenFile).to.equal(
                     '/var/run/secrets/kubernetes.io/serviceaccount/token',
                 );
+            }
+            const contextName = kc.getCurrentContext();
+            const currentContext = kc.getContextObject(contextName);
+            expect(currentContext).to.not.be.null;
+            if (currentContext) {
+                expect(currentContext.namespace).to.equal('myNamespace');
             }
         });
 
