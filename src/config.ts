@@ -224,7 +224,7 @@ export class KubeConfig {
         const namespaceFile = `${pathPrefix}${Config.SERVICEACCOUNT_NAMESPACE_PATH}`;
         let namespace: string | undefined;
         if (fileExists(namespaceFile)) {
-            namespace = fs.readFileSync(namespaceFile, 'utf8')
+            namespace = fs.readFileSync(namespaceFile, 'utf8');
         }
         this.contexts = [
             {
