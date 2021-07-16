@@ -1,0 +1,529 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>kubernetes-client-typescript</title>
+	<meta name="description" content="Documentation for kubernetes-client-typescript">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="index.html" class="title">kubernetes-client-typescript</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<h1>kubernetes-client-typescript</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<div class="tsd-panel tsd-typography">
+				<a href="#javascript-kubernetes-client-information" id="javascript-kubernetes-client-information" style="color: inherit; text-decoration: none;">
+					<h1>Javascript Kubernetes Client information</h1>
+				</a>
+				<p><a href="https://github.com/kubernetes-client/javascript/actions"><img src="https://github.com/kubernetes-client/javascript/workflows/Kubernetes%20Javascript%20Client%20-%20Validation/badge.svg" alt="Build Status"></a>
+					<a href="http://bit.ly/kubernetes-client-capabilities-badge"><img src="https://img.shields.io/badge/Kubernetes%20client-Gold-blue.svg?style=flat&colorB=FFD700&colorA=306CE8" alt="Client Capabilities"></a>
+					<a href="http://bit.ly/kubernetes-client-support-badge"><img src="https://img.shields.io/badge/kubernetes%20client-beta-green.svg?style=flat&colorA=306CE8" alt="Client Support Level"></a>
+				<a href="https://github.com/kubernetes-client/javascript/actions/workflows/deploy-docs.yml"><img src="https://github.com/kubernetes-client/javascript/actions/workflows/deploy-docs.yml/badge.svg" alt="Build and Deploy Docs"></a></p>
+				<p>The Javascript clients for Kubernetes is implemented in
+					<a href="https://typescriptlang.org">typescript</a>, but can be called from either
+				Javascript or Typescript.</p>
+				<p>For now, the client is implemented for server-side use with node
+				using the <code>request</code> library.</p>
+				<p>There are future plans to also build a jQuery compatible library but
+				for now, all of the examples and instructions assume the node client.</p>
+				<a href="#installation" id="installation" style="color: inherit; text-decoration: none;">
+					<h1>Installation</h1>
+				</a>
+				<pre><code class="language-console">npm install @kubernetes/client-node
+</code></pre>
+				<a href="#example-code" id="example-code" style="color: inherit; text-decoration: none;">
+					<h1>Example code</h1>
+				</a>
+				<a href="#list-all-pods" id="list-all-pods" style="color: inherit; text-decoration: none;">
+					<h2>List all pods</h2>
+				</a>
+				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">k8s</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@kubernetes/client-node&#039;</span><span style="color: #000000">);</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">kc</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #001080">k8s</span><span style="color: #000000">.</span><span style="color: #795E26">KubeConfig</span><span style="color: #000000">();</span>
+<span style="color: #001080">kc</span><span style="color: #000000">.</span><span style="color: #795E26">loadFromDefault</span><span style="color: #000000">();</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">k8sApi</span><span style="color: #000000"> = </span><span style="color: #001080">kc</span><span style="color: #000000">.</span><span style="color: #795E26">makeApiClient</span><span style="color: #000000">(</span><span style="color: #001080">k8s</span><span style="color: #000000">.</span><span style="color: #001080">CoreV1Api</span><span style="color: #000000">);</span>
+
+<span style="color: #001080">k8sApi</span><span style="color: #000000">.</span><span style="color: #795E26">listNamespacedPod</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;default&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">res</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">    </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">res</span><span style="color: #000000">.</span><span style="color: #001080">body</span><span style="color: #000000">);</span>
+<span style="color: #000000">});</span>
+</code></pre>
+				<a href="#create-a-new-namespace" id="create-a-new-namespace" style="color: inherit; text-decoration: none;">
+					<h2>Create a new namespace</h2>
+				</a>
+				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">k8s</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@kubernetes/client-node&#039;</span><span style="color: #000000">);</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">kc</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #001080">k8s</span><span style="color: #000000">.</span><span style="color: #795E26">KubeConfig</span><span style="color: #000000">();</span>
+<span style="color: #001080">kc</span><span style="color: #000000">.</span><span style="color: #795E26">loadFromDefault</span><span style="color: #000000">();</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">k8sApi</span><span style="color: #000000"> = </span><span style="color: #001080">kc</span><span style="color: #000000">.</span><span style="color: #795E26">makeApiClient</span><span style="color: #000000">(</span><span style="color: #001080">k8s</span><span style="color: #000000">.</span><span style="color: #001080">CoreV1Api</span><span style="color: #000000">);</span>
+
+<span style="color: #0000FF">var</span><span style="color: #000000"> </span><span style="color: #001080">namespace</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">    </span><span style="color: #001080">metadata:</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;test&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">};</span>
+
+<span style="color: #001080">k8sApi</span><span style="color: #000000">.</span><span style="color: #795E26">createNamespace</span><span style="color: #000000">(</span><span style="color: #001080">namespace</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">(</span>
+<span style="color: #000000">    (</span><span style="color: #001080">response</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Created namespace&#039;</span><span style="color: #000000">);</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">);</span>
+<span style="color: #000000">        </span><span style="color: #001080">k8sApi</span><span style="color: #000000">.</span><span style="color: #795E26">readNamespace</span><span style="color: #000000">(</span><span style="color: #001080">namespace</span><span style="color: #000000">.</span><span style="color: #001080">metadata</span><span style="color: #000000">.</span><span style="color: #001080">name</span><span style="color: #000000">).</span><span style="color: #795E26">then</span><span style="color: #000000">((</span><span style="color: #001080">response</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">            </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">response</span><span style="color: #000000">);</span>
+<span style="color: #000000">            </span><span style="color: #001080">k8sApi</span><span style="color: #000000">.</span><span style="color: #795E26">deleteNamespace</span><span style="color: #000000">(</span><span style="color: #001080">namespace</span><span style="color: #000000">.</span><span style="color: #001080">metadata</span><span style="color: #000000">.</span><span style="color: #001080">name</span><span style="color: #000000">, {} </span><span style="color: #008000">/* delete options */</span><span style="color: #000000">);</span>
+<span style="color: #000000">        });</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">    (</span><span style="color: #001080">err</span><span style="color: #000000">) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> {</span>
+<span style="color: #000000">        </span><span style="color: #001080">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Error!: &#039;</span><span style="color: #000000"> + </span><span style="color: #001080">err</span><span style="color: #000000">);</span>
+<span style="color: #000000">    },</span>
+<span style="color: #000000">);</span>
+</code></pre>
+				<a href="#create-a-cluster-configuration-programatically" id="create-a-cluster-configuration-programatically" style="color: inherit; text-decoration: none;">
+					<h2>Create a cluster configuration programatically</h2>
+				</a>
+				<pre><code class="language-javascript"><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">k8s</span><span style="color: #000000"> = </span><span style="color: #795E26">require</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;@kubernetes/client-node&#039;</span><span style="color: #000000">);</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">cluster</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">    </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;my-server&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">server:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;http://server.com&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">};</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">user</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">    </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;my-user&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">password:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;some-password&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">};</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">context</span><span style="color: #000000"> = {</span>
+<span style="color: #000000">    </span><span style="color: #001080">name:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;my-context&#039;</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">user:</span><span style="color: #000000"> </span><span style="color: #001080">user</span><span style="color: #000000">.</span><span style="color: #001080">name</span><span style="color: #000000">,</span>
+<span style="color: #000000">    </span><span style="color: #001080">cluster:</span><span style="color: #000000"> </span><span style="color: #001080">cluster</span><span style="color: #000000">.</span><span style="color: #001080">name</span><span style="color: #000000">,</span>
+<span style="color: #000000">};</span>
+
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">kc</span><span style="color: #000000"> = </span><span style="color: #0000FF">new</span><span style="color: #000000"> </span><span style="color: #001080">k8s</span><span style="color: #000000">.</span><span style="color: #795E26">KubeConfig</span><span style="color: #000000">();</span>
+<span style="color: #001080">kc</span><span style="color: #000000">.</span><span style="color: #795E26">loadFromOptions</span><span style="color: #000000">({</span>
+<span style="color: #000000">    </span><span style="color: #001080">clusters:</span><span style="color: #000000"> [</span><span style="color: #001080">cluster</span><span style="color: #000000">],</span>
+<span style="color: #000000">    </span><span style="color: #001080">users:</span><span style="color: #000000"> [</span><span style="color: #001080">user</span><span style="color: #000000">],</span>
+<span style="color: #000000">    </span><span style="color: #001080">contexts:</span><span style="color: #000000"> [</span><span style="color: #001080">context</span><span style="color: #000000">],</span>
+<span style="color: #000000">    </span><span style="color: #001080">currentContext:</span><span style="color: #000000"> </span><span style="color: #001080">context</span><span style="color: #000000">.</span><span style="color: #001080">name</span><span style="color: #000000">,</span>
+<span style="color: #000000">});</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">k8sApi</span><span style="color: #000000"> = </span><span style="color: #001080">kc</span><span style="color: #000000">.</span><span style="color: #795E26">makeApiClient</span><span style="color: #000000">(</span><span style="color: #001080">k8s</span><span style="color: #000000">.</span><span style="color: #001080">CoreV1Api</span><span style="color: #000000">);</span>
+<span style="color: #000000">...</span>
+</code></pre>
+				<a href="#additional-examples-and-documentation" id="additional-examples-and-documentation" style="color: inherit; text-decoration: none;">
+					<h1>Additional Examples and Documentation</h1>
+				</a>
+				<p>There are several more JS and TS examples in the <a href="https://github.com/kubernetes-client/javascript/tree/master/examples">examples</a> directory.</p>
+				<p>Documentation for the library is split into two resources:</p>
+				<ol>
+					<li>The <a href="https://kubernetes.io/docs/reference/">Kubernetes API Reference</a> is the source-of-truth for all Kubernetes client libraries, including this one. We suggest starting here!</li>
+					<li>The Typedoc autogenerated docs can be viewed <a href="https://kubernetes-client.github.io/javascript">online</a> and can also be built locally (see below)</li>
+				</ol>
+				<a href="#compatibility" id="compatibility" style="color: inherit; text-decoration: none;">
+					<h1>Compatibility</h1>
+				</a>
+				<p>Prior to the <code>0.13.0</code> release, release versions did not track Kubernetes versions. Starting with the <code>0.13.0</code>
+					release, we will increment the minor version whenever we update the minor Kubernetes API version
+				(e.g. <code>1.19.x</code>) that this library is generated from.</p>
+				<p>Generally speaking newer clients will work with older Kubernetes, but compatability isn&#39;t 100% guaranteed.</p>
+				<table>
+					<thead>
+						<tr>
+							<th>client version</th>
+							<th>older versions</th>
+							<th>1.18</th>
+							<th>1.19</th>
+							<th>1.20</th>
+						</tr>
+					</thead>
+					<tbody><tr>
+							<td>0.12.x</td>
+							<td>-</td>
+							<td>✓</td>
+							<td>x</td>
+							<td>x</td>
+						</tr>
+						<tr>
+							<td>0.13.x</td>
+							<td>-</td>
+							<td>+</td>
+							<td>✓</td>
+							<td>x</td>
+						</tr>
+						<tr>
+							<td>0.14.x</td>
+							<td>-</td>
+							<td>+</td>
+							<td>+</td>
+							<td>✓</td>
+						</tr>
+				</tbody></table>
+				<p>Key:</p>
+				<ul>
+					<li><code>✓</code> Exactly the same features / API objects in both javascript-client and the Kubernetes
+					version.</li>
+					<li><code>+</code> javascript-client has features or api objects that may not be present in the
+					Kubernetes cluster, but everything they have in common will work.</li>
+					<li><code>-</code> The Kubernetes cluster has features the javascript-client library can&#39;t use
+					(additional API objects, etc).</li>
+					<li><code>x</code> The Kubernetes cluster has no guarantees to support the API client of
+						this version, as it only promises <em>n</em>-2 version support. It is not tested,
+						and operations using API versions that have been deprecated and removed in
+					later server versions won&#39;t function correctly.</li>
+				</ul>
+				<a href="#known-issues" id="known-issues" style="color: inherit; text-decoration: none;">
+					<h1>Known Issues</h1>
+				</a>
+				<ul>
+					<li>Multiple kubeconfigs are not completely supported.
+						Credentials are cached based on the kubeconfig username and these can collide across configs.
+					Here is the related <a href="https://github.com/kubernetes-client/javascript/issues/592">issue</a>.</li>
+				</ul>
+				<a href="#development" id="development" style="color: inherit; text-decoration: none;">
+					<h1>Development</h1>
+				</a>
+				<p>All dependencies of this project are expressed in its
+					<a href="package.json"><code>package.json</code> file</a>. Before you start developing, ensure
+				that you have <a href="https://www.npmjs.com/">NPM</a> installed, then run:</p>
+				<pre><code class="language-console">npm install
+</code></pre>
+				<a href="#re-generating-code" id="re-generating-code" style="color: inherit; text-decoration: none;">
+					<h2>(re) Generating code</h2>
+				</a>
+				<pre><code class="language-console">npm run generate
+</code></pre>
+				<a href="#documentation" id="documentation" style="color: inherit; text-decoration: none;">
+					<h2>Documentation</h2>
+				</a>
+				<p>Documentation is generated via typedoc:</p>
+				<pre><code><span style="color: #001080">npm</span><span style="color: #000000"> </span><span style="color: #001080">run</span><span style="color: #000000"> </span><span style="color: #001080">docs</span>
+</code></pre>
+				<p>To view the generated documentation, open <code>docs/index.html</code></p>
+				<a href="#formatting" id="formatting" style="color: inherit; text-decoration: none;">
+					<h2>Formatting</h2>
+				</a>
+				<p>Run <code>npm run format</code> or install an editor plugin like <a href="https://github.com/prettier/prettier-vscode">https://github.com/prettier/prettier-vscode</a> and <a href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig">https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig</a></p>
+				<a href="#linting" id="linting" style="color: inherit; text-decoration: none;">
+					<h2>Linting</h2>
+				</a>
+				<p>Run <code>npm run lint</code> or install an editor plugin like <a href="https://github.com/Microsoft/vscode-typescript-tslint-plugin">https://github.com/Microsoft/vscode-typescript-tslint-plugin</a></p>
+				<a href="#testing" id="testing" style="color: inherit; text-decoration: none;">
+					<h1>Testing</h1>
+				</a>
+				<p>Tests are written using the <a href="http://chaijs.com/">Chai</a> library. See
+				<a href="./src/config_test.ts"><code>config_test.ts</code></a> for an example.</p>
+				<p>To run tests, execute the following:</p>
+				<pre><code class="language-console">npm test
+</code></pre>
+				<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+					<h2>Contributing</h2>
+				</a>
+				<p>Please see <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> for instructions on how to contribute.</p>
+			</div>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class=" ">
+						<a href="modules.html">Exports</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/admissionregistrationapi.html">admissionregistration<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/admissionregistrationv1api.html">admissionregistration<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/admissionregistrationv1beta1api.html">admissionregistration<wbr>V1beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/apiextensionsapi.html">apiextensions<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/apiextensionsv1api.html">apiextensions<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/apiextensionsv1beta1api.html">apiextensions<wbr>V1beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/apiregistrationapi.html">apiregistration<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/apiregistrationv1api.html">apiregistration<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/apiregistrationv1beta1api.html">apiregistration<wbr>V1beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/apis.html">apis</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/apisapi.html">apis<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/appsapi.html">apps<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/appsv1api.html">apps<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/authenticationapi.html">authentication<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/authenticationv1api.html">authentication<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/authenticationv1beta1api.html">authentication<wbr>V1beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/authorizationapi.html">authorization<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/authorizationv1api.html">authorization<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/authorizationv1beta1api.html">authorization<wbr>V1beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/autoscalingapi.html">autoscaling<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/autoscalingv1api.html">autoscaling<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/autoscalingv2beta1api.html">autoscaling<wbr>V2beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/autoscalingv2beta2api.html">autoscaling<wbr>V2beta2<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/batchapi.html">batch<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/batchv1api.html">batch<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/batchv1beta1api.html">batch<wbr>V1beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/certificatesapi.html">certificates<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/certificatesv1api.html">certificates<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/certificatesv1beta1api.html">certificates<wbr>V1beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/coordinationapi.html">coordination<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/coordinationv1api.html">coordination<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/coordinationv1beta1api.html">coordination<wbr>V1beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/coreapi.html">core<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/corev1api.html">core<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/customobjectsapi.html">custom<wbr>Objects<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/discoveryapi.html">discovery<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/discoveryv1api.html">discovery<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/discoveryv1beta1api.html">discovery<wbr>V1beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/eventsapi.html">events<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/eventsv1api.html">events<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/eventsv1beta1api.html">events<wbr>V1beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/extensionsapi.html">extensions<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/extensionsv1beta1api.html">extensions<wbr>V1beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/flowcontrolapiserverapi.html">flowcontrol<wbr>Apiserver<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/flowcontrolapiserverv1beta1api.html">flowcontrol<wbr>Apiserver<wbr>V1beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/internalapiserverapi.html">internal<wbr>Apiserver<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/internalapiserverv1alpha1api.html">internal<wbr>Apiserver<wbr>V1alpha1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/logsapi.html">logs<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/networkingapi.html">networking<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/networkingv1api.html">networking<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/networkingv1beta1api.html">networking<wbr>V1beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/nodeapi.html">node<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/nodev1api.html">node<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/nodev1alpha1api.html">node<wbr>V1alpha1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/nodev1beta1api.html">node<wbr>V1beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/openidapi.html">openid<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/policyapi.html">policy<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/policyv1api.html">policy<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/policyv1beta1api.html">policy<wbr>V1beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/rbacauthorizationapi.html">rbac<wbr>Authorization<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/rbacauthorizationv1api.html">rbac<wbr>Authorization<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/rbacauthorizationv1alpha1api.html">rbac<wbr>Authorization<wbr>V1alpha1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/rbacauthorizationv1beta1api.html">rbac<wbr>Authorization<wbr>V1beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/schedulingapi.html">scheduling<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/schedulingv1api.html">scheduling<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/schedulingv1alpha1api.html">scheduling<wbr>V1alpha1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/schedulingv1beta1api.html">scheduling<wbr>V1beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/storageapi.html">storage<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/storagev1api.html">storage<wbr>V1Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/storagev1alpha1api.html">storage<wbr>V1alpha1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/storagev1beta1api.html">storage<wbr>V1beta1<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/versionapi.html">version<wbr>Api</a>
+					</li>
+					<li class=" tsd-kind-module">
+						<a href="modules/wellknownapi.html">well<wbr>Known<wbr>Api</a>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="assets/js/main.js"></script>
+</body>
+</html>
