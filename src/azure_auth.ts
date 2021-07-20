@@ -11,12 +11,13 @@ Currently user.authProvider has `any` type and so we don't have a type for user.
 We therefore define its type here
 */
 interface Config {
-    expiry: string;
+    expiry?: string;
     ['cmd-args']?: string;
     ['cmd-path']?: string;
     ['token-key']: string;
     ['expiry-key']: string;
     ['access-token']?: string;
+    ['expires-on']?: string;
 }
 export class AzureAuth implements Authenticator {
     public isAuthProvider(user: User): boolean {
@@ -47,14 +48,16 @@ export class AzureAuth implements Authenticator {
     private isExpired(config: Config): boolean {
         const token = config['access-token'];
         const expiry = config.expiry;
+        const expiresOn = config['expires-on'];
+
         if (!token) {
             return true;
         }
-        if (!expiry) {
+        if (!expiry && !expiresOn) {
             return false;
         }
 
-        const expiration = Date.parse(expiry);
+        const expiration = expiry ? Date.parse(expiry) : new Date(parseInt(expiresOn!, 10));
         if (expiration < Date.now()) {
             return true;
         }
