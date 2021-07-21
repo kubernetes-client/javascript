@@ -18,12 +18,12 @@ interface Config {
     ['expiry-key']: string;
     ['access-token']?: string;
 }
-export class CloudAuth implements Authenticator {
+export class AzureAuth implements Authenticator {
     public isAuthProvider(user: User): boolean {
         if (!user || !user.authProvider) {
             return false;
         }
-        return user.authProvider.name === 'azure' || user.authProvider.name === 'gcp';
+        return user.authProvider.name === 'azure';
     }
 
     public async applyAuthentication(
