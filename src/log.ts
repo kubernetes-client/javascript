@@ -1,7 +1,7 @@
-import request = require('request');
+import * as request from 'request';
 import { Writable } from 'stream';
-
 import { KubeConfig } from './config';
+import { HttpError, ObjectSerializer } from './gen/api';
 
 export interface LogOptions {
     /**
@@ -56,7 +56,6 @@ export class Log {
         podName: string,
         containerName: string,
         stream: Writable,
-        done: (err: any) => void,
         options: LogOptions = {},
     ): Promise<request.Request> {
         const path = `/api/v1/namespaces/${namespace}/pods/${podName}/log`;
@@ -77,20 +76,20 @@ export class Log {
         };
         await this.config.applyToRequest(requestOptions);
 
-        const req = request(requestOptions, (error, response, body) => {
-            if (error) {
-                done(error);
-            } else if (response && response.statusCode !== 200) {
-                done(body);
-            } else {
-                done(null);
-            }
-        }).on('response', (response) => {
-            if (response.statusCode === 200) {
-                req.pipe(stream);
-            }
+        return new Promise((resolve, reject) => {
+            const req = request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else if (response.statusCode !== 200) {
+                    body = ObjectSerializer.deserialize(JSON.parse(body), 'V1Status');
+                    reject(new HttpError(response, body, response.statusCode));
+                }
+            }).on('response', (response) => {
+                if (response.statusCode === 200) {
+                    req.pipe(stream);
+                    resolve(req);
+                }
+            });
         });
-
-        return req;
     }
 }
