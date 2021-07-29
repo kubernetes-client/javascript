@@ -10,6 +10,7 @@ import * as requestlib from 'request';
 import { CoreV1Api } from './api';
 import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolutePath } from './config';
 import { Cluster, newClusters, newContexts, newUsers, User, ActionOnInvalid } from './config_types';
+import { ExecAuth } from './exec_auth';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
 const kc2FileName = 'testdata/kubeconfig-2.yaml';
@@ -745,9 +746,10 @@ describe('KubeConfig', () => {
             // TODO: inject the exec command here?
             const opts = {} as requestlib.Options;
             await config.applyToRequest(opts);
-            expect((KubeConfig as any).authenticators[1].tokenCache['exec']).to.deep.equal(
-                JSON.parse(responseStr),
+            let execAuthenticator = (KubeConfig as any).authenticators.find(
+                (authenticator) => authenticator instanceof ExecAuth,
             );
+            expect(execAuthenticator.tokenCache['exec']).to.deep.equal(JSON.parse(responseStr));
         });
 
         it('should throw with no command.', () => {
