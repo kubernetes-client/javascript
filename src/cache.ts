@@ -120,7 +120,9 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
 
     private async doneHandler(err: any): Promise<any> {
         this._stop();
-        if (err) {
+        if (err?.message === 'Gone') {
+            this.resourceVersion = '';
+        } else if (err) {
             this.callbackCache[ERROR].forEach((elt: ErrorCallback) => elt(err));
             return;
         }
@@ -129,28 +131,28 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
             return;
         }
         this.callbackCache[CONNECT].forEach((elt: ErrorCallback) => elt(undefined));
-        // TODO: Don't always list here for efficiency
-        // try to restart the watch from resourceVersion, but detect 410 GONE and relist in that case.
-        // Or if resourceVersion is empty.
-        const promise = this.listFn();
-        const result = await promise;
-        const list = result.body;
-        this.objects = deleteItems(this.objects, list.items, this.callbackCache[DELETE].slice());
-        Object.keys(this.indexCache).forEach((key) => {
-            const updateObjects = deleteItems(this.indexCache[key], list.items);
-            if (updateObjects.length !== 0) {
-                this.indexCache[key] = updateObjects;
-            } else {
-                delete this.indexCache[key];
-            }
-        });
-        this.addOrUpdateItems(list.items);
         const queryParams = {
-            resourceVersion: list.metadata!.resourceVersion,
+            resourceVersion: this.resourceVersion
         } as {
             resourceVersion: string | undefined;
             labelSelector: string | undefined;
         };
+        if (!this.resourceVersion) {
+            const promise = this.listFn();
+            const result = await promise;
+            const list = result.body;
+            this.objects = deleteItems(this.objects, list.items, this.callbackCache[DELETE].slice());
+            Object.keys(this.indexCache).forEach((key) => {
+                const updateObjects = deleteItems(this.indexCache[key], list.items);
+                if (updateObjects.length !== 0) {
+                    this.indexCache[key] = updateObjects;
+                } else {
+                    delete this.indexCache[key];
+                }
+            });
+            this.addOrUpdateItems(list.items);
+            queryParams.resourceVersion = list.metadata!.resourceVersion;
+        }
         if (this.labelSelector !== undefined) {
             queryParams.labelSelector = ObjectSerializer.serialize(this.labelSelector, 'string');
         }

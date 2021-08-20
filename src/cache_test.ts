@@ -1054,6 +1054,134 @@ describe('ListWatchCache', () => {
         expect(errorEmitted).to.equal(true);
     });
 
+    it('should not re-list if the watch can be restarted from the latest resourceVersion', async () => {
+        let listCalls = 0;
+        const fakeWatch = mock.mock(Watch);
+        const list: V1Namespace[] = [];
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+            response: http.IncomingMessage;
+            body: V1NamespaceList;
+        }> {
+            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>((resolve) => {
+                listCalls++;
+                resolve({ response: {} as http.IncomingMessage, body: listObj });
+            });
+        };
+        let promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve(new FakeRequest());
+            });
+        });
+        const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
+
+        informer.start();
+        await promise;
+
+        const [, , watchHandler] = mock.capture(fakeWatch.watch).last();
+        watchHandler(
+            'ADDED',
+            {
+                metadata: {
+                    name: 'name3',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+            { metadata: { resourceVersion: '23456' } },
+        );
+
+        await informer.stop();
+        promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve(new FakeRequest());
+            });
+        });
+        informer.start();
+        await promise;
+        expect(listCalls).to.be.equal(1);
+    });
+
+    it('should list if the watch cannot be restarted from the latest resourceVersion', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const list: V1Pod[] = [];
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+
+        let listCalls = 0;
+        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+            response: http.IncomingMessage;
+            body: V1NamespaceList;
+        }> {
+            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>((resolve) => {
+                listCalls++;
+                resolve({ response: {} as http.IncomingMessage, body: listObj });
+            });
+        };
+        let promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve(new FakeRequest());
+            });
+        });
+
+        const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
+
+        informer.start();
+        await promise;
+
+        const [, , watchHandler] = mock.capture(fakeWatch.watch).last();
+        watchHandler(
+            'ADDED',
+            {
+                metadata: {
+                    name: 'name3',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+            { metadata: { resourceVersion: '23456' } },
+        );
+
+        await informer.stop();
+
+        let errorEmitted = false;
+        informer.on('error', () => (errorEmitted = true));
+
+        promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve(new FakeRequest());
+            });
+        });
+
+        informer.start();
+        await promise;
+
+        const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
+
+        const error = new Error('Gone');
+        await doneHandler(error);
+
+        mock.verify(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).thrice();
+        expect(errorEmitted).to.equal(false);
+        expect(listCalls).to.be.equal(2);
+    });
+
     it('should send label selector', async () => {
         const APP_LABEL_SELECTOR = 'app=foo';
 
