@@ -120,7 +120,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
 
     private async doneHandler(err: any): Promise<any> {
         this._stop();
-        if (err?.message === 'Gone') {
+        if (err && err.statusCode === 410) {
             this.resourceVersion = '';
         } else if (err) {
             this.callbackCache[ERROR].forEach((elt: ErrorCallback) => elt(err));
@@ -131,12 +131,6 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
             return;
         }
         this.callbackCache[CONNECT].forEach((elt: ErrorCallback) => elt(undefined));
-        const queryParams = {
-            resourceVersion: this.resourceVersion
-        } as {
-            resourceVersion: string | undefined;
-            labelSelector: string | undefined;
-        };
         if (!this.resourceVersion) {
             const promise = this.listFn();
             const result = await promise;
@@ -151,8 +145,14 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
                 }
             });
             this.addOrUpdateItems(list.items);
-            queryParams.resourceVersion = list.metadata!.resourceVersion;
+            this.resourceVersion = list.metadata!.resourceVersion!;
         }
+        const queryParams = {
+            resourceVersion: this.resourceVersion,
+        } as {
+            resourceVersion: string | undefined;
+            labelSelector: string | undefined;
+        };
         if (this.labelSelector !== undefined) {
             queryParams.labelSelector = ObjectSerializer.serialize(this.labelSelector, 'string');
         }

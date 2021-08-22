@@ -197,7 +197,9 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Namespace);
 
-        await doneHandler(null);
+        const error = new Error('Gone') as Error & { statusCode: number | undefined };
+        error.statusCode = 410;
+        await doneHandler(error);
         expect(cache.list().length, 'all namespace list').to.equal(1);
         expect(cache.list('default').length, 'default namespace list').to.equal(1);
         expect(cache.list('other'), 'other namespace list').to.be.undefined;
@@ -570,7 +572,9 @@ describe('ListWatchCache', () => {
             });
         });
         listObj.items = list2;
-        doneHandler(null);
+        const error = new Error('Gone') as Error & { statusCode: number | undefined };
+        error.statusCode = 410;
+        await doneHandler(error);
         await promise;
         expect(addObjects).to.deep.equal(list);
         expect(updateObjects).to.deep.equal(list2);
@@ -1172,7 +1176,8 @@ describe('ListWatchCache', () => {
 
         const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
 
-        const error = new Error('Gone');
+        const error = new Error('Gone') as Error & { statusCode: number | undefined };
+        error.statusCode = 410;
         await doneHandler(error);
 
         mock.verify(
