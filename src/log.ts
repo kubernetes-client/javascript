@@ -106,8 +106,12 @@ export class Log {
                     reject(error);
                     done(error);
                 } else if (response.statusCode !== 200) {
-                    const deserializedBody = ObjectSerializer.deserialize(JSON.parse(body), 'V1Status');
-                    reject(new HttpError(response, deserializedBody, response.statusCode));
+                    try {
+                        const deserializedBody = ObjectSerializer.deserialize(JSON.parse(body), 'V1Status');
+                        reject(new HttpError(response, deserializedBody, response.statusCode));
+                    } catch (e) {
+                        reject(new HttpError(response, body, response.statusCode));
+                    }
                     done(body);
                 } else {
                     done(null);
