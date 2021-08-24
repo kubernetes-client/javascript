@@ -47,7 +47,9 @@ export class DefaultRequest implements RequestInterface {
             if (resp.statusCode === 200) {
                 req.resume();
             } else {
-                req.emit('error', new Error(resp.statusMessage));
+                const error = new Error(resp.statusMessage) as Error & { statusCode: number | undefined };
+                error.statusCode = resp.statusCode;
+                req.emit('error', error);
             }
         });
         return req;
