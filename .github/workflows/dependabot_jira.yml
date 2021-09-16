@@ -1,14 +1,13 @@
 name: Dependabot Jira
 
 on:
-  pull_request:
-    types:
-      - opened
-    branches:
-      - master
   push:
-    branches:
-      - master
+    branches: [ main, master ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ main ]
+  schedule:
+    - cron: '18 1 * * 5'
 
 env:
   JIRA_BASE_URL: https://sirius-cybernetics.atlassian.net
