@@ -20,6 +20,6 @@ jobs:
           JIRA_TOKEN: W6n51zCTb0zQOjPdXhZO4C58
           JIRA_HOST: https://sirius-cybernetics.atlassian.net
           JIRA_USER: roman@ox.security
-          JIRA_PROJECT: ABC
+          JIRA_PROJECT: marvin
           JIRA_ISSUE_TYPE: Security
           JIRA_WATCHERS: roman@ox.security
