@@ -6,6 +6,9 @@ on:
       - opened
     branches:
       - master
+  push:
+    branches:
+      - master
 
 env:
   JIRA_BASE_URL: https://sirius-cybernetics.atlassian.net
