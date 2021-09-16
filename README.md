@@ -5,7 +5,7 @@
 [![Client Support Level](https://img.shields.io/badge/kubernetes%20client-beta-green.svg?style=flat&colorA=306CE8)](http://bit.ly/kubernetes-client-support-badge)
 [![Build and Deploy Docs](https://github.com/kubernetes-client/javascript/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/kubernetes-client/javascript/actions/workflows/deploy-docs.yml)
 
-The Javascript clients for Kubernetes is implemented in
+The Javascript clients for Kubernetes is implemented in dsad
 [typescript](https://typescriptlang.org), but can be called from either
 Javascript or Typescript.
 
