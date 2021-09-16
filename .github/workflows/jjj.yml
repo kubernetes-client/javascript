@@ -16,8 +16,8 @@ jobs:
       - name: "Sync security alerts to Jira issues"
         uses: reload/github-security-jira@v1.x
         env:
-          GH_SECURITY_TOKEN: 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
-          JIRA_TOKEN: W6n51zCTb0zQOjPdXhZO4C58
+          GH_SECURITY_TOKEN: ${{ secrets.GitHubSecurityToken }}
+          JIRA_TOKEN: ${{ secrets.JiraApiToken }}
           JIRA_HOST: https://sirius-cybernetics.atlassian.net
           JIRA_USER: roman@ox.security
           JIRA_PROJECT: marvin
