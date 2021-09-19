@@ -23,7 +23,7 @@ export class Exec {
      * @param {(string|string[])} command - The command or command and arguments to execute.
      * @param {stream.Writable} stdout - The stream to write stdout data from the command.
      * @param {stream.Writable} stderr - The stream to write stderr data from the command.
-     * @param {stream.Readable} stdin - The strream to write stdin data into the command.
+     * @param {stream.Readable} stdin - The stream to write stdin data into the command.
      * @param {boolean} tty - Should the command execute in a TTY enabled session.
      * @param {(V1Status) => void} statusCallback -
      *       A callback to received the status (e.g. exit code) from the command, optional.
