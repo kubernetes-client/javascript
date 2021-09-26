@@ -62,13 +62,7 @@ export class Metrics {
     }
 
     public async getNodeMetrics(): Promise<NodeMetricsList> {
-        const path = '/apis/metrics.k8s.io/v1beta1/nodes';
-
-        const requestOptions = this.requestOptionsFromPath(path);
-
-        await this.config.applyToRequest(requestOptions);
-
-        return this.handleResponse<NodeMetricsList>(requestOptions);
+        return this.metricsApiRequest<NodeMetricsList>('/apis/metrics.k8s.io/v1beta1/nodes');
     }
 
     public async getPodMetrics(namespace?: string): Promise<PodMetricsList> {
@@ -80,26 +74,22 @@ export class Metrics {
             path = '/apis/metrics.k8s.io/v1beta1/pods';
         }
 
-        const requestOptions = this.requestOptionsFromPath(path);
-
-        await this.config.applyToRequest(requestOptions);
-
-        return this.handleResponse<PodMetricsList>(requestOptions);
+        return this.metricsApiRequest<PodMetricsList>(path);
     }
 
-    private requestOptionsFromPath(path: string): request.Options {
+    private async metricsApiRequest<T extends PodMetricsList | NodeMetricsList>(path: string): Promise<T> {
         const cluster = this.config.getCurrentCluster();
         if (!cluster) {
             throw new Error('No currently active cluster');
         }
 
-        return {
+        const requestOptions: request.Options = {
             method: 'GET',
             uri: cluster.server + path,
         };
-    }
 
-    private handleResponse<T>(requestOptions: request.Options): Promise<T> {
+        await this.config.applyToRequest(requestOptions);
+
         return new Promise((resolve, reject) => {
             const req = request(requestOptions, (error, response, body) => {
                 if (error) {

@@ -81,9 +81,9 @@ const testConfigOptions: any = {
     currentContext: 'currentContext',
 };
 
-const systemUnderTest = (): [Metrics, nock.Scope] => {
+const systemUnderTest = (options: any = testConfigOptions): [Metrics, nock.Scope] => {
     const kc = new KubeConfig();
-    kc.loadFromOptions(testConfigOptions);
+    kc.loadFromOptions(options);
     const metricsClient = new Metrics(kc);
 
     const scope = nock(testConfigOptions.clusters[0].server);
@@ -138,7 +138,38 @@ describe('Metrics', () => {
             expect(response).to.deep.equal(mockedPodMetrics);
             s.done();
         });
-        it('should resolve to error when 500', async () => {
+        it('should when connection refused', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromOptions({
+                clusters: [{ name: 'cluster', server: 'https://127.0.0.1:51011' }],
+                users: [{ name: 'user', password: 'password' }],
+                contexts: [{ name: 'currentContext', cluster: 'cluster', user: 'user' }],
+                currentContext: 'currentContext',
+            });
+            const metricsClient = new Metrics(kc);
+            try {
+                await metricsClient.getPodMetrics();
+                fail('expected thrown error');
+            } catch (e) {
+                expect(e.message).to.equal('connect ECONNREFUSED 127.0.0.1:51011');
+            }
+        });
+        it('should throw when no current cluster', async () => {
+            const [metricsClient, scope] = systemUnderTest({
+                clusters: [{ name: 'cluster', server: 'https://127.0.0.1:51010' }],
+                users: [{ name: 'user', password: 'password' }],
+                contexts: [{ name: 'currentContext', cluster: 'cluster', user: 'user' }],
+            });
+
+            try {
+                await metricsClient.getPodMetrics();
+                fail('expected thrown error');
+            } catch (e) {
+                expect(e.message).to.equal('No currently active cluster');
+            }
+            scope.done();
+        });
+        it('should resolve to error when 500 - V1 Status', async () => {
             const response: V1Status = {
                 code: 12345,
                 message: 'some message',
@@ -155,6 +186,22 @@ describe('Metrics', () => {
                 }
                 expect(e.body.code).to.equal(response.code);
                 expect(e.body.message).to.equal(response.message);
+            }
+            s.done();
+        });
+        it('should resolve to error when 500 - non-V1Status', async () => {
+            const response = 'some other response';
+            const [metricsClient, scope] = systemUnderTest();
+            const s = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(500, response);
+
+            try {
+                await metricsClient.getPodMetrics();
+                fail('expected thrown error');
+            } catch (e) {
+                if (!(e instanceof HttpError)) {
+                    fail('expected HttpError error');
+                }
+                expect(e.message).to.equal('HTTP request failed');
             }
             s.done();
         });
