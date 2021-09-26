@@ -112,7 +112,7 @@ describe('Metrics', () => {
         it('should return namespace scope empty pods list', async () => {
             const [metricsClient, scope] = systemUnderTest();
             const s = scope
-                .get(`/apis/metrics.k8s.io/v1beta1/${TEST_NAMESPACE}/default/pods`)
+                .get(`/apis/metrics.k8s.io/v1beta1/namespaces/${TEST_NAMESPACE}/pods`)
                 .reply(200, emptyPodMetrics);
 
             const response = await metricsClient.getPodMetrics(TEST_NAMESPACE);
@@ -131,7 +131,7 @@ describe('Metrics', () => {
         it('should return namespace scope pods metric list', async () => {
             const [metricsClient, scope] = systemUnderTest();
             const s = scope
-                .get(`/apis/metrics.k8s.io/v1beta1/${TEST_NAMESPACE}/default/pods`)
+                .get(`/apis/metrics.k8s.io/v1beta1/namespaces/${TEST_NAMESPACE}/pods`)
                 .reply(200, mockedPodMetrics);
 
             const response = await metricsClient.getPodMetrics(TEST_NAMESPACE);

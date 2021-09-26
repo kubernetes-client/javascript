@@ -69,7 +69,7 @@ export class Metrics {
         let path: string;
 
         if (namespace !== undefined && namespace.length > 0) {
-            path = `/apis/metrics.k8s.io/v1beta1/${namespace}/default/pods`;
+            path = `/apis/metrics.k8s.io/v1beta1/namespaces/${namespace}/pods`;
         } else {
             path = '/apis/metrics.k8s.io/v1beta1/pods';
         }
