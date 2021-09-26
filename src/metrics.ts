@@ -1,13 +1,16 @@
 import * as request from 'request';
+
 import { KubeConfig } from './config';
-import { HttpError, ObjectSerializer, Authentication } from './gen/api';
+import { HttpError, ObjectSerializer } from './gen/api';
+
+export interface Usage {
+    cpu: string;
+    memory: string;
+}
 
 export interface ContainerMetric {
-    name: string,
-    usage:{
-        cpu: string,
-        memory: string
-    }
+    name: string;
+    usage: Usage;
 }
 
 export interface PodMetric {
@@ -16,19 +19,39 @@ export interface PodMetric {
         namespace: string;
         selfLink: string;
         creationTimestamp: string;
-    }
-    timestamp: string,
-    window: string,
-    containers: Array<ContainerMetric>
+    };
+    timestamp: string;
+    window: string;
+    containers: ContainerMetric[];
+}
+
+export interface NodeMetric {
+    metadata: {
+        name: string;
+        selfLink: string;
+        creationTimestamp: string;
+    };
+    timestamp: string;
+    window: string;
+    usage: Usage;
 }
 
 export interface PodMetricsList {
     kind: 'PodMetricsList';
     apiVersion: 'metrics.k8s.io/v1beta1';
     metadata: {
-        selfLink: string
+        selfLink: string;
     };
-    items: Array<PodMetric>
+    items: PodMetric[];
+}
+
+export interface NodeMetricsList {
+    kind: 'NodeMetricsList';
+    apiVersion: 'metrics.k8s.io/v1beta1';
+    metadata: {
+        selfLink: string;
+    };
+    items: NodeMetric[];
 }
 
 export class Metrics {
@@ -38,16 +61,30 @@ export class Metrics {
         this.config = config;
     }
 
-    // TODO getNodeMetrics
-    
+    public async getNodeMetrics(): Promise<NodeMetricsList> {
+        const path = '/apis/metrics.k8s.io/v1beta1/nodes';
+
+        const cluster = this.config.getCurrentCluster();
+        if (!cluster) {
+            throw new Error('No currently active cluster');
+        }
+
+        const requestOptions: request.Options = {
+            method: 'GET',
+            uri: cluster.server + path,
+        };
+        await this.config.applyToRequest(requestOptions);
+
+        return this.handleResponse<NodeMetricsList>(requestOptions, JSON.parse);
+    }
+
     public async getPodMetrics(namespace?: string): Promise<PodMetricsList> {
+        let path: string;
 
-        let path:string;
-
-        if (namespace !== undefined && namespace.length > 0){
-            path = `/apis/metrics.k8s.io/v1beta1/${namespace}/default/pods`;   
+        if (namespace !== undefined && namespace.length > 0) {
+            path = `/apis/metrics.k8s.io/v1beta1/${namespace}/default/pods`;
         } else {
-            path = "/apis/metrics.k8s.io/v1beta1/pods";
+            path = '/apis/metrics.k8s.io/v1beta1/pods';
         }
 
         const cluster = this.config.getCurrentCluster();
@@ -60,7 +97,11 @@ export class Metrics {
             uri: cluster.server + path,
         };
         await this.config.applyToRequest(requestOptions);
-        
+
+        return this.handleResponse<PodMetricsList>(requestOptions, JSON.parse);
+    }
+
+    private handleResponse<T>(requestOptions: request.Options, deserialize: (body: any) => T): Promise<T> {
         return new Promise((resolve, reject) => {
             const req = request(requestOptions, (error, response, body) => {
                 if (error) {
@@ -73,11 +114,9 @@ export class Metrics {
                         reject(new HttpError(response, body, response.statusCode));
                     }
                 } else {
-                    const result: PodMetricsList = JSON.parse(body)
-                    resolve(result);
+                    resolve(deserialize(body));
                 }
             });
         });
-
     }
 }
