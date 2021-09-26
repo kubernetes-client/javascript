@@ -64,18 +64,11 @@ export class Metrics {
     public async getNodeMetrics(): Promise<NodeMetricsList> {
         const path = '/apis/metrics.k8s.io/v1beta1/nodes';
 
-        const cluster = this.config.getCurrentCluster();
-        if (!cluster) {
-            throw new Error('No currently active cluster');
-        }
+        const requestOptions = this.requestOptionsFromPath(path);
 
-        const requestOptions: request.Options = {
-            method: 'GET',
-            uri: cluster.server + path,
-        };
         await this.config.applyToRequest(requestOptions);
 
-        return this.handleResponse<NodeMetricsList>(requestOptions, JSON.parse);
+        return this.handleResponse<NodeMetricsList>(requestOptions);
     }
 
     public async getPodMetrics(namespace?: string): Promise<PodMetricsList> {
@@ -87,21 +80,26 @@ export class Metrics {
             path = '/apis/metrics.k8s.io/v1beta1/pods';
         }
 
+        const requestOptions = this.requestOptionsFromPath(path);
+
+        await this.config.applyToRequest(requestOptions);
+
+        return this.handleResponse<PodMetricsList>(requestOptions);
+    }
+
+    private requestOptionsFromPath(path: string): request.Options {
         const cluster = this.config.getCurrentCluster();
         if (!cluster) {
             throw new Error('No currently active cluster');
         }
 
-        const requestOptions: request.Options = {
+        return {
             method: 'GET',
             uri: cluster.server + path,
         };
-        await this.config.applyToRequest(requestOptions);
-
-        return this.handleResponse<PodMetricsList>(requestOptions, JSON.parse);
     }
 
-    private handleResponse<T>(requestOptions: request.Options, deserialize: (body: any) => T): Promise<T> {
+    private handleResponse<T>(requestOptions: request.Options): Promise<T> {
         return new Promise((resolve, reject) => {
             const req = request(requestOptions, (error, response, body) => {
                 if (error) {
@@ -114,7 +112,7 @@ export class Metrics {
                         reject(new HttpError(response, body, response.statusCode));
                     }
                 } else {
-                    resolve(deserialize(body));
+                    resolve(JSON.parse(body) as T);
                 }
             });
         });
