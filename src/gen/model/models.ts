@@ -1966,12 +1966,7 @@ export class ObjectSerializer {
         } else if (type.lastIndexOf("Array<", 0) === 0) { // string.startsWith pre es6
             let subType: string = type.replace("Array<", ""); // Array<Type> => Type>
             subType = subType.substring(0, subType.length - 1); // Type> => Type
-            let transformedData: any[] = [];
-            for (let index in data) {
-                let date = data[index];
-                transformedData.push(ObjectSerializer.serialize(date, subType));
-            }
-            return transformedData;
+            return data.map(date=>ObjectSerializer.serialize(date, subType))
         } else if (type === "Date") {
             return data.toISOString();
         } else {
