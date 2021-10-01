@@ -15,7 +15,8 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "importHelpers": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "esModuleInterop": true
     // enable this when it works with tslint, or we switch to prettier
     // "declarationMap": true
   },

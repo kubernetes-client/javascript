@@ -1,4 +1,4 @@
-import * as request from 'request';
+import request = require('request');
 
 import { KubeConfig } from './config';
 import { HttpError, ObjectSerializer } from './gen/api';

@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import * as nock from 'nock';
+import nock = require('nock');
 import { KubeConfig } from './config';
 import { V1Pod } from './gen/api';
 import { Metrics, PodMetricsList } from './metrics';
