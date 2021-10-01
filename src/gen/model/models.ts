@@ -1964,8 +1964,8 @@ export class ObjectSerializer {
         } else if (primitives.indexOf(type.toLowerCase()) !== -1) {
             return data;
         } else if (type.lastIndexOf("Array<", 0) === 0) { // string.startsWith pre es6
-            let subType: string = type.replace("Array<", ""); // Array<Type> => Type>
-            subType = subType.substring(0, subType.length - 1); // Type> => Type
+            const subType: string = type.replace("Array<", "") // Array<Type> => Type>
+                .substring(0, subType.length - 1); // Type> => Type
             return data.map(date=>ObjectSerializer.serialize(date, subType))
         } else if (type === "Date") {
             return data.toISOString();
