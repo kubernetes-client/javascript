@@ -1,12 +1,10 @@
-import { fail } from 'assert';
 import { expect } from 'chai';
 import * as nock from 'nock';
 import { KubeConfig } from './config';
-import { V1Status, HttpError, V1Pod } from './gen/api';
-import { Metrics, NodeMetricsList, PodMetricsList } from './metrics';
+import { V1Pod } from './gen/api';
+import { Metrics, PodMetricsList } from './metrics';
 import { topPods } from './top';
-import { CoreV1Api, } from './gen/api';
-
+import { CoreV1Api } from './gen/api';
 
 const emptyPodMetrics: PodMetricsList = {
     kind: 'PodMetricsList',
@@ -31,7 +29,7 @@ const mockedPodMetrics: PodMetricsList = {
             },
             timestamp: '2021-09-26T11:57:21Z',
             window: '30s',
-            containers: [{ name: 'nginx', usage: { cpu: '10', memory: '3912Ki' } }],
+            containers: [{ name: 'nginx', usage: { cpu: '5000000n', memory: '3912Ki' } }],
         },
         {
             metadata: {
@@ -43,8 +41,8 @@ const mockedPodMetrics: PodMetricsList = {
             timestamp: '2021-09-26T11:57:21Z',
             window: '30s',
             containers: [
-                { name: 'nginx', usage: { cpu: '15', memory: '4012Ki' } },
-                { name: 'sidecar', usage: { cpu: '16', memory: '3012Ki' } },
+                { name: 'nginx', usage: { cpu: '0', memory: '4012Ki' } },
+                { name: 'sidecar', usage: { cpu: '140000000n', memory: '3012Ki' } },
             ],
         },
     ],
@@ -52,64 +50,63 @@ const mockedPodMetrics: PodMetricsList = {
 
 const podList: V1Pod[] = [
     {
-        "metadata": {
-            "name": "dice-roller-7c76898b4d-shm9p"
+        metadata: {
+            name: 'dice-roller-7c76898b4d-shm9p',
         },
-        'spec': {
+        spec: {
             containers: [
                 {
-                    name: "nginx",
+                    name: 'nginx',
                     resources: {
                         requests: {
-                            memory: "100Mi",
-                            cpu: "100m"
+                            memory: '100Mi',
+                            cpu: '100m',
                         },
                         limits: {
-                            memory: "100Mi",
-                            cpu: "100m"
+                            memory: '100Mi',
+                            cpu: '100m',
                         },
-                    }
-                }
-            ]
-        }
+                    },
+                },
+            ],
+        },
     },
     {
-        "metadata": {
-            "name": "other-pod-7c76898b4e-12kj"
+        metadata: {
+            name: 'other-pod-7c76898b4e-12kj',
         },
-        'spec': {
+        spec: {
             containers: [
                 {
-                    name: "nginx",
+                    name: 'nginx',
                     resources: {
                         requests: {
-                            memory: "100Mi",
-                            cpu: "100m"
+                            memory: '100Mi',
+                            cpu: '100m',
                         },
                         limits: {
-                            memory: "100Mi",
-                            cpu: "100m"
+                            memory: '100Mi',
+                            cpu: '100m',
                         },
-                    }
+                    },
                 },
                 {
-                    name: "sidecar",
+                    name: 'sidecar',
                     resources: {
                         requests: {
-                            memory: "50Mi",
-                            cpu: "1"
+                            memory: '50Mi',
+                            cpu: '2',
                         },
                         limits: {
-                            memory: "100Mi",
-                            cpu: "1"
+                            memory: '100Mi',
+                            cpu: '2',
                         },
-                    }
-                }
-            ]
-        }
-    }
-]
-
+                    },
+                },
+            ],
+        },
+    },
+];
 
 const TEST_NAMESPACE = 'test-namespace';
 
@@ -120,7 +117,10 @@ const testConfigOptions: any = {
     currentContext: 'currentContext',
 };
 
-const systemUnderTest = (namespace?: string, options: any = testConfigOptions): [() => ReturnType<typeof topPods>, nock.Scope] => {
+const systemUnderTest = (
+    namespace?: string,
+    options: any = testConfigOptions,
+): [() => ReturnType<typeof topPods>, nock.Scope] => {
     const kc = new KubeConfig();
     kc.loadFromOptions(options);
     const metricsClient = new Metrics(kc);
@@ -138,7 +138,7 @@ describe('Top', () => {
             const [topPodsFunc, scope] = systemUnderTest();
             const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
             const pods = scope.get('/api/v1/pods').reply(200, {
-                items: []
+                items: [],
             });
             const result = await topPodsFunc();
             expect(result).to.deep.equal([]);
@@ -149,101 +149,151 @@ describe('Top', () => {
             const [topPodsFunc, scope] = systemUnderTest();
             const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, mockedPodMetrics);
             const pods = scope.get('/api/v1/pods').reply(200, {
-                items: podList
+                items: podList,
             });
             const result = await topPodsFunc();
             expect(result.length).to.equal(2);
             expect(result[0].CPU).to.deep.equal({
                 // TODO fix this
-                 "CurrentUsage": 10,
-                  "LimitTotal": 0.1,
-                  "RequestTotal": 0.1
+                CurrentUsage: 0.05,
+                LimitTotal: 0.1,
+                RequestTotal: 0.1,
             });
             expect(result[0].Memory).to.deep.equal({
-                "CurrentUsage": BigInt("4005888"),
-                "RequestTotal": BigInt("104857600"),
-                 "LimitTotal": BigInt("104857600"),
-           });
+                CurrentUsage: BigInt('4005888'),
+                RequestTotal: BigInt('104857600'),
+                LimitTotal: BigInt('104857600'),
+            });
             expect(result[0].Containers).to.deep.equal([
                 {
-                    "CPUUsage": 10,
-                    "Container": "nginx",
-                    "Memory":  BigInt("4005888")
-                }
+                    CPUUsage: {
+                        CurrentUsage: 0.05,
+                        LimitTotal: 0.1,
+                        RequestTotal: 0.1,
+                    },
+                    Container: 'nginx',
+                    MemoryUsage: {
+                        CurrentUsage: BigInt('4005888'),
+                        LimitTotal: BigInt('104857600'),
+                        RequestTotal: BigInt('104857600'),
+                    },
+                },
             ]);
             expect(result[1].CPU).to.deep.equal({
                 // TODO fix this
-                "CurrentUsage": 31,
-                 "LimitTotal": 1.1,
-                 "RequestTotal": 1.1
-           });
+                CurrentUsage: 1.4,
+                LimitTotal: 2.1,
+                RequestTotal: 2.1,
+            });
             expect(result[1].Memory).to.deep.equal({
-                "CurrentUsage": BigInt("7192576"),
-                 "LimitTotal": BigInt("209715200"),
-                 "RequestTotal": BigInt("157286400")
-           });
-            expect(result[1].Containers).to.deep.equal(      [
-                  {
-                    "CPUUsage": 15,
-                    "Container": "nginx",
-                    "Memory": BigInt("4108288"),
-                  },
-                  {
-                    "CPUUsage": 16,
-                    "Container": "sidecar",
-                    "Memory": BigInt("3084288"),
-                  }
-                ]);
+                CurrentUsage: BigInt('7192576'),
+                LimitTotal: BigInt('209715200'),
+                RequestTotal: BigInt('157286400'),
+            });
+            expect(result[1].Containers).to.deep.equal([
+                {
+                    CPUUsage: {
+                        CurrentUsage: 0,
+                        LimitTotal: 0.1,
+                        RequestTotal: 0.1,
+                    },
+                    Container: 'nginx',
+                    MemoryUsage: {
+                        CurrentUsage: BigInt('4108288'),
+                        LimitTotal: BigInt('104857600'),
+                        RequestTotal: BigInt('104857600'),
+                    },
+                },
+                {
+                    CPUUsage: {
+                        CurrentUsage: 1.4,
+                        LimitTotal: 2,
+                        RequestTotal: 2,
+                    },
+                    Container: 'sidecar',
+                    MemoryUsage: {
+                        CurrentUsage: BigInt('3084288'),
+                        LimitTotal: BigInt('104857600'),
+                        RequestTotal: BigInt('52428800'),
+                    },
+                },
+            ]);
             podMetrics.done();
             pods.done();
         });
         it('should return namespace pod metrics', async () => {
             const [topPodsFunc, scope] = systemUnderTest(TEST_NAMESPACE);
-            const podMetrics = scope.get(`/apis/metrics.k8s.io/v1beta1/namespaces/${TEST_NAMESPACE}/pods`).reply(200, mockedPodMetrics);
+            const podMetrics = scope
+                .get(`/apis/metrics.k8s.io/v1beta1/namespaces/${TEST_NAMESPACE}/pods`)
+                .reply(200, mockedPodMetrics);
             const pods = scope.get(`/api/v1/namespaces/${TEST_NAMESPACE}/pods`).reply(200, {
-                items: podList
+                items: podList,
             });
             const result = await topPodsFunc();
             expect(result.length).to.equal(2);
             expect(result[0].CPU).to.deep.equal({
-                 "CurrentUsage": 10,
-                  "LimitTotal": 0.1,
-                  "RequestTotal": 0.1
+                CurrentUsage: 0.05,
+                LimitTotal: 0.1,
+                RequestTotal: 0.1,
             });
             expect(result[0].Memory).to.deep.equal({
-                "CurrentUsage": BigInt("4005888"),
-                "RequestTotal": BigInt("104857600"),
-                 "LimitTotal": BigInt("104857600"),
-           });
+                CurrentUsage: BigInt('4005888'),
+                RequestTotal: BigInt('104857600'),
+                LimitTotal: BigInt('104857600'),
+            });
             expect(result[0].Containers).to.deep.equal([
                 {
-                    "CPUUsage": 10,
-                    "Container": "nginx",
-                    "Memory":  BigInt("4005888")
-                }
+                    CPUUsage: {
+                        CurrentUsage: 0.05,
+                        LimitTotal: 0.1,
+                        RequestTotal: 0.1,
+                    },
+                    Container: 'nginx',
+                    MemoryUsage: {
+                        CurrentUsage: BigInt('4005888'),
+                        LimitTotal: BigInt('104857600'),
+                        RequestTotal: BigInt('104857600'),
+                    },
+                },
             ]);
             expect(result[1].CPU).to.deep.equal({
-                "CurrentUsage": 31,
-                 "LimitTotal": 1.1,
-                 "RequestTotal": 1.1
-           });
+                CurrentUsage: 1.4,
+                LimitTotal: 2.1,
+                RequestTotal: 2.1,
+            });
             expect(result[1].Memory).to.deep.equal({
-                "CurrentUsage": BigInt("7192576"),
-                 "LimitTotal": BigInt("209715200"),
-                 "RequestTotal": BigInt("157286400")
-           });
-            expect(result[1].Containers).to.deep.equal(      [
-                  {
-                    "CPUUsage": 15,
-                    "Container": "nginx",
-                    "Memory": BigInt("4108288"),
-                  },
-                  {
-                    "CPUUsage": 16,
-                    "Container": "sidecar",
-                    "Memory": BigInt("3084288"),
-                  }
-                ]);
+                CurrentUsage: BigInt('7192576'),
+                LimitTotal: BigInt('209715200'),
+                RequestTotal: BigInt('157286400'),
+            });
+            expect(result[1].Containers).to.deep.equal([
+                {
+                    CPUUsage: {
+                        CurrentUsage: 0,
+                        LimitTotal: 0.1,
+                        RequestTotal: 0.1,
+                    },
+                    Container: 'nginx',
+                    MemoryUsage: {
+                        CurrentUsage: BigInt('4108288'),
+                        LimitTotal: BigInt('104857600'),
+                        RequestTotal: BigInt('104857600'),
+                    },
+                },
+                {
+                    CPUUsage: {
+                        CurrentUsage: 1.4,
+                        LimitTotal: 2,
+                        RequestTotal: 2,
+                    },
+                    Container: 'sidecar',
+                    MemoryUsage: {
+                        CurrentUsage: BigInt('3084288'),
+                        LimitTotal: BigInt('104857600'),
+                        RequestTotal: BigInt('52428800'),
+                    },
+                },
+            ]);
             podMetrics.done();
             pods.done();
         });

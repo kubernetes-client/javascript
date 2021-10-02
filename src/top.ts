@@ -1,6 +1,15 @@
-import { CoreV1Api, V1Node, V1Pod, V1PodList, V1Container } from './gen/api';
-import { Metrics, PodMetric } from './metrics';
-import { add, podsForNode, quantityToScalar, totalCPU, totalMemory } from './util';
+import { CoreV1Api, V1Node, V1Pod, V1PodList } from './gen/api';
+import { ContainerMetric, Metrics, PodMetric } from './metrics';
+import {
+    add,
+    podsForNode,
+    quantityToScalar,
+    ResourceStatus,
+    totalCPU,
+    totalCPUForContainer,
+    totalMemory,
+    totalMemoryForContainer,
+} from './util';
 
 export class ResourceUsage {
     constructor(
@@ -29,8 +38,8 @@ export class NodeStatus {
 export class ContainerStatus {
     constructor(
         public readonly Container: string,
-        public readonly CPUUsage: number | BigInt,
-        public readonly Memory: number | BigInt,
+        public readonly CPUUsage: CurrentResourceUsage,
+        public readonly MemoryUsage: CurrentResourceUsage,
     ) {}
 }
 
@@ -42,8 +51,6 @@ export class PodStatus {
         public readonly Containers: ContainerStatus[],
     ) {}
 }
-
-
 
 export async function topNodes(api: CoreV1Api): Promise<NodeStatus[]> {
     // TODO: Support metrics APIs in the client and this library
@@ -75,50 +82,81 @@ export async function topNodes(api: CoreV1Api): Promise<NodeStatus[]> {
     return result;
 }
 
+// TODO describe what this method does
 export async function topPods(api: CoreV1Api, metrics: Metrics, namespace?: string): Promise<PodStatus[]> {
-    
-    const getPodList = async ():Promise<V1PodList> => {
+    const getPodList = async (): Promise<V1PodList> => {
         if (namespace) {
-            return (await api.listNamespacedPod(namespace)).body
+            return (await api.listNamespacedPod(namespace)).body;
         } else {
-            return (await api.listPodForAllNamespaces()).body
+            return (await api.listPodForAllNamespaces()).body;
         }
-    }
+    };
 
-    const [podMetrics, podList] = await Promise.all([metrics.getPodMetrics(namespace), getPodList()])
+    const [podMetrics, podList] = await Promise.all([metrics.getPodMetrics(namespace), getPodList()]);
 
+    // Create a map of pod names to their metric usage
+    // to make it easier to look up when we need it later
     const podMetricsMap = podMetrics.items.reduce((accum, next) => {
-       accum.set(next.metadata.name, next)
-       return accum
-    }, (new Map<string, PodMetric>()))
+        accum.set(next.metadata.name, next);
+        return accum;
+    }, new Map<string, PodMetric>());
 
     const result: PodStatus[] = [];
     for (const pod of podList.items) {
+        const podMetric = podMetricsMap.get(pod.metadata!.name!);
 
-        const podMetric = podMetricsMap.get(pod.metadata!.name!)
-
+        // TODO we are calculating the contianer usages twice
+        // Once per pod, then below per container
+        // calculate the pod usage in this method instead to avoid
+        // duplicating work
         const cpuTotal = totalCPU(pod);
         const memTotal = totalMemory(pod);
         const containerStatuses: ContainerStatus[] = [];
         let currentPodCPU: number | bigint = 0;
         let currentPodMem: number | bigint = 0;
 
-        if (podMetric !== undefined){
-            podMetric.containers.forEach(container => {
-                const containerCPUUsage = quantityToScalar(container.usage.cpu);
-                const containerMemUsage = quantityToScalar(container.usage.memory);
-                currentPodCPU = add(currentPodCPU, containerCPUUsage)
-                currentPodMem = add(currentPodMem, containerMemUsage)
-                containerStatuses.push(new ContainerStatus(container.name, containerCPUUsage, containerMemUsage))
-            })
+        if (podMetric !== undefined) {
+            // Create a map of container names to their resource spec
+            // to make it easier to look up when we need it later
+            const containerResourceStatuses = pod.spec!.containers.reduce((accum, next) => {
+                const containerCpuTotal = totalCPUForContainer(next);
+                const containerMemTotal = totalMemoryForContainer(next);
+                accum.set(next.name, [containerCpuTotal, containerMemTotal]);
+                return accum;
+            }, new Map<string, [ResourceStatus, ResourceStatus]>());
+
+            podMetric.containers.forEach((containerMetrics: ContainerMetric) => {
+                const currentContainerCPUUsage = quantityToScalar(containerMetrics.usage.cpu);
+                const currentContainerMemUsage = quantityToScalar(containerMetrics.usage.memory);
+                currentPodCPU = add(currentPodCPU, currentContainerCPUUsage);
+                currentPodMem = add(currentPodMem, currentContainerMemUsage);
+
+                const containerResourceStatus = containerResourceStatuses.get(containerMetrics.name);
+
+                if (containerResourceStatus !== undefined) {
+                    const [containerCpuTotal, containerMemTotal] = containerResourceStatus;
+
+                    const containerCpuUsage = new CurrentResourceUsage(
+                        currentContainerCPUUsage,
+                        containerCpuTotal.request,
+                        containerCpuTotal.limit,
+                    );
+                    const containerMemUsage = new CurrentResourceUsage(
+                        currentContainerMemUsage,
+                        containerMemTotal.request,
+                        containerMemTotal.limit,
+                    );
+
+                    containerStatuses.push(
+                        new ContainerStatus(containerMetrics.name, containerCpuUsage, containerMemUsage),
+                    );
+                }
+            });
         }
 
-        const cpuUsage = new CurrentResourceUsage(currentPodCPU, cpuTotal.request, cpuTotal.limit);
-        const memUsage = new CurrentResourceUsage(currentPodMem, memTotal.request, memTotal.limit);
-        result.push(new PodStatus(pod, cpuUsage, memUsage, containerStatuses));
-
+        const podCpuUsage = new CurrentResourceUsage(currentPodCPU, cpuTotal.request, cpuTotal.limit);
+        const podMemUsage = new CurrentResourceUsage(currentPodMem, memTotal.request, memTotal.limit);
+        result.push(new PodStatus(pod, podCpuUsage, podMemUsage, containerStatuses));
     }
     return result;
-    
-
 }
