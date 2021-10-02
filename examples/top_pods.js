@@ -9,14 +9,13 @@ const metricsClient = new k8s.Metrics(kc);
 k8s.topPods(k8sApi, metricsClient, "kube-system")
 .then((pods) => {
 
-    const podsColumns = pods.reduce((accum, next) => {
-        accum.push({
-            "POD": next.Pod.metadata.name,
-            "CPU(cores)": next.CPU.CurrentUsage,
-            "MEMORY(bytes)": next.Memory.CurrentUsage,
-        });
-        return accum;
-    }, []);
+    const podsColumns = pods.map((pod) => {
+        return {
+            "POD": pod.Pod.metadata.name,
+            "CPU(cores)": pod.CPU.CurrentUsage,
+            "MEMORY(bytes)": pod.Memory.CurrentUsage,
+        }
+    });
     console.log("TOP PODS")
     console.table(podsColumns)
 });
@@ -24,19 +23,17 @@ k8s.topPods(k8sApi, metricsClient, "kube-system")
 k8s.topPods(k8sApi, metricsClient, "kube-system")
 .then((pods) => {
 
-    const podsColumns = pods.reduce((accum, next) => {
-
-        next.Containers.forEach(containerUsage => {
-            accum.push({
-                "POD": next.Pod.metadata.name,
+    const podsAndContainersColumns = pods.flatMap((pod) => {
+        return pod.Containers.map(containerUsage => {
+            return {
+                "POD": pod.Pod.metadata.name,
                 "NAME": containerUsage.Container,
-                "CPU(cores)": next.CPU.CurrentUsage,
-                "MEMORY(bytes)": next.Memory.CurrentUsage,
-            });
+                "CPU(cores)": containerUsage.CPUUsage.CurrentUsage,
+                "MEMORY(bytes)": containerUsage.MemoryUsage.CurrentUsage,
+            };
         })
-        return accum;
-    }, []);
+    });
 
     console.log("TOP CONTAINERS")
-    console.table(podsColumns)
+    console.table(podsAndContainersColumns)
 });
