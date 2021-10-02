@@ -27,6 +27,8 @@ export function quantityToScalar(quantity: string): number | bigint {
         return num;
     }
     switch (suffix) {
+        case 'n':
+            return Number(quantity.substr(0, quantity.length - 1)).valueOf() / 1_000_000.0; 
         case 'm':
             return Number(quantity.substr(0, quantity.length - 1)).valueOf() / 1000.0;
         case 'Ki':
