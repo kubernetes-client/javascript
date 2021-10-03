@@ -48,6 +48,21 @@ const mockedPodMetrics: PodMetricsList = {
     ],
 };
 
+const bestEffortPodList: V1Pod[] = [
+    {
+        metadata: {
+            name: 'dice-roller-7c76898b4d-shm9p',
+        },
+        spec: {
+            containers: [
+                {
+                    name: 'nginx',
+                },
+            ],
+        },
+    },
+];
+
 const podList: V1Pod[] = [
     {
         metadata: {
@@ -145,6 +160,17 @@ describe('Top', () => {
             podMetrics.done();
             pods.done();
         });
+        it('should return use cluster scope when namespace empty string', async () => {
+            const [topPodsFunc, scope] = systemUnderTest('');
+            const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
+            const pods = scope.get('/api/v1/pods').reply(200, {
+                items: [],
+            });
+            const result = await topPodsFunc();
+            expect(result).to.deep.equal([]);
+            podMetrics.done();
+            pods.done();
+        });
         it('should return cluster wide pod metrics', async () => {
             const [topPodsFunc, scope] = systemUnderTest();
             const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, mockedPodMetrics);
@@ -154,7 +180,6 @@ describe('Top', () => {
             const result = await topPodsFunc();
             expect(result.length).to.equal(2);
             expect(result[0].CPU).to.deep.equal({
-                // TODO fix this
                 CurrentUsage: 0.05,
                 LimitTotal: 0.1,
                 RequestTotal: 0.1,
@@ -180,7 +205,6 @@ describe('Top', () => {
                 },
             ]);
             expect(result[1].CPU).to.deep.equal({
-                // TODO fix this
                 CurrentUsage: 1.4,
                 LimitTotal: 2.1,
                 RequestTotal: 2.1,
@@ -218,6 +242,86 @@ describe('Top', () => {
                     },
                 },
             ]);
+            podMetrics.done();
+            pods.done();
+        });
+        it('should return best effort pod metrics', async () => {
+            const [topPodsFunc, scope] = systemUnderTest();
+            const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, mockedPodMetrics);
+            const pods = scope.get('/api/v1/pods').reply(200, {
+                items: bestEffortPodList,
+            });
+            const result = await topPodsFunc();
+            expect(result.length).to.equal(1);
+            expect(result[0].CPU).to.deep.equal({
+                CurrentUsage: 0.05,
+                LimitTotal: 0,
+                RequestTotal: 0,
+            });
+            expect(result[0].Memory).to.deep.equal({
+                CurrentUsage: BigInt('4005888'),
+                RequestTotal: 0,
+                LimitTotal: 0,
+            });
+            expect(result[0].Containers).to.deep.equal([
+                {
+                    CPUUsage: {
+                        CurrentUsage: 0.05,
+                        LimitTotal: 0,
+                        RequestTotal: 0,
+                    },
+                    Container: 'nginx',
+                    MemoryUsage: {
+                        CurrentUsage: BigInt('4005888'),
+                        LimitTotal: 0,
+                        RequestTotal: 0,
+                    },
+                },
+            ]);
+            podMetrics.done();
+            pods.done();
+        });
+        it('should return 0 when pod metrics missing', async () => {
+            const [topPodsFunc, scope] = systemUnderTest();
+            const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
+            const pods = scope.get('/api/v1/pods').reply(200, {
+                items: podList,
+            });
+            const result = await topPodsFunc();
+            expect(result.length).to.equal(2);
+            expect(result[0].CPU).to.deep.equal({
+                CurrentUsage: 0,
+                LimitTotal: 0.1,
+                RequestTotal: 0.1,
+            });
+            expect(result[0].Memory).to.deep.equal({
+                CurrentUsage: 0,
+                RequestTotal: BigInt('104857600'),
+                LimitTotal: BigInt('104857600'),
+            });
+            expect(result[0].Containers).to.deep.equal([]);
+            expect(result[1].CPU).to.deep.equal({
+                CurrentUsage: 0,
+                LimitTotal: 2.1,
+                RequestTotal: 2.1,
+            });
+            expect(result[1].Memory).to.deep.equal({
+                CurrentUsage: 0,
+                LimitTotal: BigInt('209715200'),
+                RequestTotal: BigInt('157286400'),
+            });
+            expect(result[1].Containers).to.deep.equal([]);
+            podMetrics.done();
+            pods.done();
+        });
+        it('should return empty array when pods missing', async () => {
+            const [topPodsFunc, scope] = systemUnderTest();
+            const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, mockedPodMetrics);
+            const pods = scope.get('/api/v1/pods').reply(200, {
+                items: [],
+            });
+            const result = await topPodsFunc();
+            expect(result.length).to.equal(0);
             podMetrics.done();
             pods.done();
         });
