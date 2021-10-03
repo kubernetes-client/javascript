@@ -115,12 +115,12 @@ export async function topPods(api: CoreV1Api, metrics: Metrics, namespace?: stri
         let podLimitsMem: number | bigint = 0;
 
         pod.spec!.containers.forEach((container) => {
-            // get the the container CPU/Memory container.resources.requests
+            // get the the container CPU/Memory container.resources.requests/limits
             const containerCpuTotal = totalCPUForContainer(container);
             const containerMemTotal = totalMemoryForContainer(container);
 
-            // sum each container's CPU/Memory container.resources.requests
-            // to get the pod's overall request limit
+            // sum each container's CPU/Memory container.resources.requests/limits
+            // to get the pod's overall requests/limits
             podRequestsCPU = add(podRequestsCPU, containerCpuTotal.request);
             podLimitsCPU = add(podLimitsCPU, containerCpuTotal.limit);
 
