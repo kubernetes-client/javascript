@@ -88,9 +88,8 @@ export async function topPods(api: CoreV1Api, metrics: Metrics, namespace?: stri
     const getPodList = async (): Promise<V1PodList> => {
         if (namespace) {
             return (await api.listNamespacedPod(namespace)).body;
-        } else {
-            return (await api.listPodForAllNamespaces()).body;
         }
+        return (await api.listPodForAllNamespaces()).body;
     };
 
     const [podMetrics, podList] = await Promise.all([metrics.getPodMetrics(namespace), getPodList()]);
