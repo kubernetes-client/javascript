@@ -27,6 +27,8 @@ export function quantityToScalar(quantity: string): number | bigint {
         return num;
     }
     switch (suffix) {
+        case 'n':
+            return Number(quantity.substr(0, quantity.length - 1)).valueOf() / 100_000_000.0;
         case 'm':
             return Number(quantity.substr(0, quantity.length - 1)).valueOf() / 1000.0;
         case 'Ki':
@@ -64,6 +66,14 @@ export class ResourceStatus {
     ) {}
 }
 
+export function totalCPUForContainer(container: V1Container): ResourceStatus {
+    return containerTotalForResource(container, 'cpu');
+}
+
+export function totalMemoryForContainer(container: V1Container): ResourceStatus {
+    return containerTotalForResource(container, 'memory');
+}
+
 export function totalCPU(pod: V1Pod): ResourceStatus {
     return totalForResource(pod, 'cpu');
 }
@@ -84,18 +94,28 @@ export function add(n1: number | bigint, n2: number | bigint): number | bigint {
     return ((n1 as bigint) + n2) as bigint;
 }
 
+export function containerTotalForResource(container: V1Container, resource: string): ResourceStatus {
+    let reqTotal: number | bigint = 0;
+    let limitTotal: number | bigint = 0;
+    if (container.resources) {
+        if (container.resources.requests) {
+            reqTotal = add(reqTotal, quantityToScalar(container.resources.requests[resource]));
+        }
+        if (container.resources.limits) {
+            limitTotal = add(limitTotal, quantityToScalar(container.resources.limits[resource]));
+        }
+    }
+    return new ResourceStatus(reqTotal, limitTotal, resource);
+}
+
 export function totalForResource(pod: V1Pod, resource: string): ResourceStatus {
     let reqTotal: number | bigint = 0;
     let limitTotal: number | bigint = 0;
     pod.spec!.containers.forEach((container: V1Container) => {
-        if (container.resources) {
-            if (container.resources.requests) {
-                reqTotal = add(reqTotal, quantityToScalar(container.resources.requests[resource]));
-            }
-            if (container.resources.limits) {
-                limitTotal = add(limitTotal, quantityToScalar(container.resources.limits[resource]));
-            }
-        }
+        const containerTotal = containerTotalForResource(container, resource);
+
+        reqTotal = add(reqTotal, containerTotal.request);
+        limitTotal = add(limitTotal, containerTotal.limit);
     });
     return new ResourceStatus(reqTotal, limitTotal, resource);
 }
