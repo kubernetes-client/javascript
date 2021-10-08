@@ -1,0 +1,39 @@
+name: Dependabot Jira
+
+on:
+  pull_request:
+    types:
+      - opened
+    branches:
+      - master
+
+env:
+  JIRA_BASE_URL: https://sirius-cybernetics.atlassian.net
+  JIRA_USER_EMAIL: roman@ox.security
+  JIRA_API_TOKEN: sORnHA8DuENu55HknpV99767
+  JIRA_PROJECT: asc
+  JIRA_ISSUE_TYPE: Story
+
+jobs:
+  create_jira:
+    name: Dependabot Jira
+    runs-on: ubuntu-latest
+    if: github.event.pull_request.user.id == 27856297 #id dependabot user
+    steps:
+    - name: Login to Jira
+      uses: atlassian/gajira-login@v2.0.0
+      env:
+        JIRA_BASE_URL: ${{ env.JIRA_BASE_URL }}
+        JIRA_USER_EMAIL: ${{ env.JIRA_USER_EMAIL }}
+        JIRA_API_TOKEN: ${{ secrets.JIRA_API_TOKEN }}
+
+    - name: Create Jira Issue
+      id: create
+      uses: atlassian/gajira-create@v2.0.1
+      with:
+        project: ${{ env.JIRA_PROJECT }}
+        issuetype: ${{ env.JIRA_ISSUE_TYPE }}
+        summary: |
+          [${{github.event.repository.name }}] ${{github.event.pull_request.title }}
+        description: |
+          ${{github.event.pull_request.html_url }}

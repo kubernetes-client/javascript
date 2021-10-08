@@ -1,0 +1,25 @@
+name: GitHub Security Alerts for Jira
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    # The branches below must be a subset of the branches above
+    branches: [ main ]
+  schedule:
+    - cron: '18 1 * * 5'
+
+jobs:
+  syncSecurityAlerts:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Sync security alerts to Jira issues"
+        uses: reload/github-security-jira@v1.x
+        env:
+          GH_SECURITY_TOKEN: ${{ secrets.GitHubSecurityToken }}
+          JIRA_TOKEN: ${{ secrets.JiraApiToken }}
+          JIRA_HOST: https://sirius-cybernetics.atlassian.net
+          JIRA_USER: roman@ox.security
+          JIRA_PROJECT: marvin
+          JIRA_ISSUE_TYPE: Security
+          JIRA_WATCHERS: roman@ox.security
