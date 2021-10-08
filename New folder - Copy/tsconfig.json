@@ -1,0 +1,32 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es2019",
+    "lib": ["es2020"],
+    "moduleResolution": "node",
+    "removeComments": false,
+    "sourceMap": true,
+    "noLib": false,
+    "declaration": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "skipLibCheck": true
+    // enable this when it works with tslint, or we switch to prettier
+    // "declarationMap": true
+  },
+  "exclude": [
+    "node_modules",
+    "src/*_test.ts",
+    "dist"
+  ],
+  "include": [
+    "*.ts",
+    "src/**/*"
+  ]
+}
+

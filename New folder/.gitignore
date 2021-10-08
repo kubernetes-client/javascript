@@ -1,0 +1,16 @@
+dist
+node_modules
+src/.gitignore
+src/package.json
+src/git_push.sh
+src/tsconfig.json
+src/typings.json
+coverage/*
+.vscode/*
+examples/package-lock.json
+.nyc_output
+kubernetes-client-node-*.tgz
+**/*.swp
+.idea/
+docs/*
+.DS_Store
