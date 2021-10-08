@@ -1,0 +1,81 @@
+{
+  "_args": [
+    [
+      "@aws-sdk/middleware-user-agent@3.25.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@aws-sdk/middleware-user-agent@3.25.0",
+  "_id": "@aws-sdk/middleware-user-agent@3.25.0",
+  "_inBundle": false,
+  "_integrity": "sha512-HXd/Qknq8Cp7fzJYU7jDDpN7ReJ3arUrnt+dAPNaDDrhmrBbCZp+24UXN6X6DAj0JICRoRuF/l7KxjwdF5FShw==",
+  "_location": "/@aws-sdk/middleware-user-agent",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@aws-sdk/middleware-user-agent@3.25.0",
+    "name": "@aws-sdk/middleware-user-agent",
+    "escapedName": "@aws-sdk%2fmiddleware-user-agent",
+    "scope": "@aws-sdk",
+    "rawSpec": "3.25.0",
+    "saveSpec": null,
+    "fetchSpec": "3.25.0"
+  },
+  "_requiredBy": [
+    "/@aws-sdk/client-ecr-public",
+    "/@aws-sdk/client-sso",
+    "/@aws-sdk/client-sts"
+  ],
+  "_resolved": "https://registry.npmjs.org/@aws-sdk/middleware-user-agent/-/middleware-user-agent-3.25.0.tgz",
+  "_spec": "3.25.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "AWS SDK for JavaScript Team",
+    "url": "https://aws.amazon.com/javascript/"
+  },
+  "bugs": {
+    "url": "https://github.com/aws/aws-sdk-js-v3/issues"
+  },
+  "dependencies": {
+    "@aws-sdk/protocol-http": "3.25.0",
+    "@aws-sdk/types": "3.25.0",
+    "tslib": "^2.3.0"
+  },
+  "description": "[![NPM version](https://img.shields.io/npm/v/@aws-sdk/middleware-user-agent/latest.svg)](https://www.npmjs.com/package/@aws-sdk/middleware-user-agent) [![NPM downloads](https://img.shields.io/npm/dm/@aws-sdk/middleware-user-agent.svg)](https://www.npmjs.com/package/@aws-sdk/middleware-user-agent)",
+  "devDependencies": {
+    "@aws-sdk/middleware-stack": "3.25.0",
+    "@types/jest": "^26.0.4",
+    "jest": "^26.1.0",
+    "typescript": "~4.3.2"
+  },
+  "engines": {
+    "node": ">= 10.0.0"
+  },
+  "homepage": "https://github.com/aws/aws-sdk-js-v3/tree/main/packages/middleware-user-agent",
+  "license": "Apache-2.0",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/es/index.js",
+  "name": "@aws-sdk/middleware-user-agent",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aws/aws-sdk-js-v3.git",
+    "directory": "packages/middleware-user-agent"
+  },
+  "scripts": {
+    "build": "yarn build:es && yarn build:cjs",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:es": "tsc -p tsconfig.es.json",
+    "downlevel-dts": "downlevel-dts dist/types dist/types/ts3.4",
+    "test": "jest --passWithNoTests"
+  },
+  "types": "./dist/types/index.d.ts",
+  "typesVersions": {
+    "<4.0": {
+      "dist/types/*": [
+        "dist/types/ts3.4/*"
+      ]
+    }
+  },
+  "version": "3.25.0"
+}

@@ -1,0 +1,110 @@
+{
+  "_from": "jira-client",
+  "_id": "jira-client@6.22.0",
+  "_inBundle": false,
+  "_integrity": "sha512-GpwCf66/d5oN9iTMarBxAe+BYXskg5Z8RY2lUagVvPh23kV2dj50pZ/u9KzKQMERRYvGgLAUmtRct4t0NH5bOA==",
+  "_location": "/jira-client",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "jira-client",
+    "name": "jira-client",
+    "escapedName": "jira-client",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/jira-client/-/jira-client-6.22.0.tgz",
+  "_shasum": "99d64ca6a7eb98074cbaf94c5b446e14d8b9d950",
+  "_spec": "jira-client",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Steven Surowiec",
+    "email": "steven.surowiec@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/jira-node/node-jira-client/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Chris Moultrie",
+      "email": "chris@moultrie.org"
+    },
+    {
+      "name": "Lucas Vogelsang",
+      "email": "l@lucasvo.com"
+    },
+    {
+      "name": "Matt Smith",
+      "email": "mtscout6+node-jira@gmail.com"
+    },
+    {
+      "name": "Anson Wayman",
+      "email": "kanoyugoro+node-jira@gmail.com"
+    }
+  ],
+  "dependencies": {
+    "@babel/runtime": "^7.6.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.1.1"
+  },
+  "deprecated": false,
+  "description": "Wrapper for the JIRA API",
+  "devDependencies": {
+    "@babel/cli": "^7.6.0",
+    "@babel/core": "^7.6.0",
+    "@babel/plugin-transform-runtime": "^7.6.0",
+    "@babel/preset-env": "^7.6.0",
+    "@babel/register": "^7.6.0",
+    "babel-eslint": "^10.0.3",
+    "babel-plugin-add-module-exports": "^1.0.0",
+    "chai": "^4.2.0",
+    "chai-as-promised": "^7.1.1",
+    "esdoc": "^1.1.0",
+    "esdoc-ecmascript-proposal-plugin": "^1.0.0",
+    "esdoc-standard-plugin": "^1.0.0",
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-mocha": "^8.0.0",
+    "mocha": "^8.1.1",
+    "release-script": "^1.0.1"
+  },
+  "engine": {
+    "node": ">=10.0.0"
+  },
+  "files": [
+    "lib",
+    "docs",
+    "LICENSE.md",
+    "README.md"
+  ],
+  "homepage": "http://github.com/jira-node/node-jira-client",
+  "license": "MIT",
+  "main": "./lib/jira.js",
+  "name": "jira-client",
+  "release-script": {
+    "docsRepo": "git@github.com:jira-node/jira-node.github.io.git",
+    "docsRoot": "docs/",
+    "tmpDocsRepo": "tmp-docs-repo"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jira-node/node-jira-client.git"
+  },
+  "scripts": {
+    "build": "rm -rf lib && babel src --out-dir lib",
+    "docs-build": "rm -rf docs && esdoc -c esdoc.json",
+    "lint": "eslint ./",
+    "prepublishOnly": "npm run build && npm run docs-build",
+    "release": "release",
+    "test": "npm run lint && mocha --require @babel/register && npm run docs-build"
+  },
+  "version": "6.22.0"
+}

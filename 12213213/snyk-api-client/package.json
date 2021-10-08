@@ -1,0 +1,100 @@
+{
+  "_args": [
+    [
+      "snyk-api-client@0.0.1-6",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "snyk-api-client@0.0.1-6",
+  "_id": "snyk-api-client@0.0.1-6",
+  "_inBundle": false,
+  "_integrity": "sha512-nru0XBA9sJiuyIE4IWajjb9nNBJD0QL2fInzFC3GzbJduQfZu8R9zoIbeiMtJ5IBfhivF/+n2hE+T8UY6uSG1Q==",
+  "_location": "/snyk-api-client",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "snyk-api-client@0.0.1-6",
+    "name": "snyk-api-client",
+    "escapedName": "snyk-api-client",
+    "rawSpec": "0.0.1-6",
+    "saveSpec": null,
+    "fetchSpec": "0.0.1-6"
+  },
+  "_requiredBy": [
+    "/snyk-api"
+  ],
+  "_resolved": "https://registry.npmjs.org/snyk-api-client/-/snyk-api-client-0.0.1-6.tgz",
+  "_spec": "0.0.1-6",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Love Bhardwaj",
+    "email": "love.bhardwaj@snyk.io"
+  },
+  "bugs": {
+    "url": "https://github.com/lovebhardwajsnyk/snyk-api-helper/issues",
+    "email": "love.bhardwaj@snyk.io"
+  },
+  "dependencies": {
+    "got": "^11.8.1"
+  },
+  "description": "Helper functions to consume Snyk API",
+  "devDependencies": {
+    "@types/chai": "^4.2.14",
+    "@types/mocha": "^8.2.0",
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
+    "prettier": "^2.2.1",
+    "snyk": "^1.440.1",
+    "ts-node": "^9.1.1",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "typescript": "^4.1.3"
+  },
+  "engines": {
+    "node": ">=7.6.0"
+  },
+  "files": [
+    "dist/**/*"
+  ],
+  "homepage": "https://github.com/lovebhardwajsnyk/snyk-api-helper",
+  "keywords": [
+    "snyk",
+    "api",
+    "helper"
+  ],
+  "license": "Apache-2.0",
+  "main": "dist/index.js",
+  "name": "snyk-api-client",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lovebhardwajsnyk/snyk-api-helper.git"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc && node ./dist/index.js",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "tslint -p tsconfig.json",
+    "postversion": "git push && git push --tags",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run build && npm run lint && npm run format",
+    "preversion": "npm run build && npm run lint && npm run format && npm run test && snyk test",
+    "test": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/**/*.test.ts'",
+    "test-dependency": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/dependency/*.test.ts'",
+    "test-entitlement": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/entitlement/*.test.ts'",
+    "test-general": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/general/*.test.ts'",
+    "test-group": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/group/*.test.ts'",
+    "test-integration": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/integration/*.test.ts'",
+    "test-license": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/license/*.test.ts'",
+    "test-log": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/log/*.test.ts'",
+    "test-monitor": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/monitor/*.test.ts'",
+    "test-org": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/org/*.test.ts'",
+    "test-project": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/project/*.test.ts'",
+    "test-report": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/report/*.test.ts'",
+    "test-testapi": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/test-api/*.test.ts'",
+    "test-user": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/user/*.test.ts'",
+    "test-webhook": "NODE_ENV=test mocha --timeout 300000 --recursive --exit -r ts-node/register 'test/webhook/*.test.ts'",
+    "version": "git add -A"
+  },
+  "version": "0.0.1-6"
+}

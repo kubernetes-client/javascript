@@ -1,0 +1,56 @@
+{
+  "_args": [
+    [
+      "uue@1.0.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "uue@1.0.0",
+  "_id": "uue@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha1-ITuUSLmLmLnQPK9gGiI1ib2IZDA=",
+  "_location": "/uue",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "uue@1.0.0",
+    "name": "uue",
+    "escapedName": "uue",
+    "rawSpec": "1.0.0",
+    "saveSpec": null,
+    "fetchSpec": "1.0.0"
+  },
+  "_requiredBy": [
+    "/mailparser"
+  ],
+  "_resolved": "https://registry.npmjs.org/uue/-/uue-1.0.0.tgz",
+  "_spec": "1.0.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Mithgol the Webmaster"
+  },
+  "bugs": {
+    "url": "https://github.com/Mithgol/node-uue/issues"
+  },
+  "description": "UUE decoder and encoder for Node.js",
+  "homepage": "https://github.com/Mithgol/node-uue#readme",
+  "keywords": [
+    "uue",
+    "uuencode",
+    "uudecode",
+    "uuencoding",
+    "uudecoding"
+  ],
+  "main": "uue.js",
+  "name": "uue",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mithgol/node-uue.git"
+  },
+  "scripts": {
+    "pretest": "jshint uue.js test/",
+    "test": "mocha --reporter spec --timeout 60s"
+  },
+  "version": "1.0.0"
+}

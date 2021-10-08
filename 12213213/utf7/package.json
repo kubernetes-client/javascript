@@ -1,0 +1,52 @@
+{
+  "_args": [
+    [
+      "utf7@1.0.2",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "utf7@1.0.2",
+  "_id": "utf7@1.0.2",
+  "_inBundle": false,
+  "_integrity": "sha1-lV9JCq5lO6IguUVqCod2wZk2CZE=",
+  "_location": "/utf7",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "utf7@1.0.2",
+    "name": "utf7",
+    "escapedName": "utf7",
+    "rawSpec": "1.0.2",
+    "saveSpec": null,
+    "fetchSpec": "1.0.2"
+  },
+  "_requiredBy": [
+    "/imap"
+  ],
+  "_resolved": "https://registry.npmjs.org/utf7/-/utf7-1.0.2.tgz",
+  "_spec": "1.0.2",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Konstantin Käfer",
+    "email": "kkaefer@gmail.com"
+  },
+  "dependencies": {
+    "semver": "~5.3.0"
+  },
+  "description": "Converts text to and from UTF-7 (RFC 2152 and IMAP)",
+  "devDependencies": {
+    "tape": "~4.6.0"
+  },
+  "licenses": [
+    {
+      "type": "BSD"
+    }
+  ],
+  "main": "./utf7",
+  "name": "utf7",
+  "scripts": {
+    "test": "tape test/*.js"
+  },
+  "version": "1.0.2"
+}

@@ -1,0 +1,69 @@
+{
+  "_args": [
+    [
+      "compressjs@1.0.3",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "compressjs@1.0.3",
+  "_id": "compressjs@1.0.3",
+  "_inBundle": false,
+  "_integrity": "sha1-ldt03VuQOM+AvKMhqw7eJxtJWbY=",
+  "_location": "/compressjs",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "compressjs@1.0.3",
+    "name": "compressjs",
+    "escapedName": "compressjs",
+    "rawSpec": "1.0.3",
+    "saveSpec": null,
+    "fetchSpec": "1.0.3"
+  },
+  "_requiredBy": [
+    "/node-virustotal"
+  ],
+  "_resolved": "https://registry.npmjs.org/compressjs/-/compressjs-1.0.3.tgz",
+  "_spec": "1.0.3",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "amd": {},
+  "author": {
+    "name": "C. Scott Ananian"
+  },
+  "bin": {
+    "compressjs": "bin/compressjs"
+  },
+  "bugs": {
+    "url": "https://github.com/cscott/compressjs/issues"
+  },
+  "dependencies": {
+    "amdefine": "~1.0.0",
+    "commander": "~2.8.1"
+  },
+  "description": "pure JavaScript de/compression (bzip2, etc) for node.js, volo, and the browser.",
+  "devDependencies": {
+    "mocha": "~2.2.5"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "homepage": "https://github.com/cscott/compressjs#readme",
+  "keywords": [
+    "bzip2",
+    "compression",
+    "decompression"
+  ],
+  "license": "GPL",
+  "main": "main",
+  "name": "compressjs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cscott/compressjs.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "version": "1.0.3",
+  "volo": {}
+}

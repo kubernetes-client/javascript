@@ -1,0 +1,132 @@
+{
+  "_args": [
+    [
+      "when@3.7.8",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "when@3.7.8",
+  "_id": "when@3.7.8",
+  "_inBundle": false,
+  "_integrity": "sha1-xxMLan6gRpPoQs3J56Hyqjmjn4I=",
+  "_location": "/when",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "when@3.7.8",
+    "name": "when",
+    "escapedName": "when",
+    "rawSpec": "3.7.8",
+    "saveSpec": null,
+    "fetchSpec": "3.7.8"
+  },
+  "_requiredBy": [
+    "/promisify"
+  ],
+  "_resolved": "https://registry.npmjs.org/when/-/when-3.7.8.tgz",
+  "_spec": "3.7.8",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "browser": {
+    "when": "./dist/browser/when.js",
+    "vertx": false
+  },
+  "bugs": {
+    "url": "https://github.com/cujojs/when/issues"
+  },
+  "contributors": [
+    {
+      "name": "Brian Cavalier",
+      "url": "http://hovercraftstudios.com"
+    },
+    {
+      "name": "John Hann",
+      "url": "http://unscriptable.com"
+    },
+    {
+      "name": "Scott Andrews"
+    }
+  ],
+  "description": "A lightweight Promises/A+ and when() implementation, plus other async goodies.",
+  "devDependencies": {
+    "benchmark": "~1",
+    "browserify": "~2",
+    "buster": "~0.7",
+    "exorcist": "~0.4",
+    "glob": "^7.1.1",
+    "jshint": "~2",
+    "json5": "~0.2",
+    "microtime": "~2",
+    "mkdirp": "^0.5.1",
+    "optimist": "~0.6",
+    "poly": "^0.6.1",
+    "promises-aplus-tests": "~2",
+    "rest": "1.1.x",
+    "sauce-connect-launcher": "~0.4",
+    "uglify-js": "~2",
+    "wd": "~0.2"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "ender": {
+    "files": [
+      "*.js",
+      "lib/*.js",
+      "node/*.js",
+      "unfold/*.js",
+      "monitor/*.js",
+      "lib/decorators/*.js"
+    ]
+  },
+  "homepage": "http://cujojs.com",
+  "keywords": [
+    "cujo",
+    "Promises/A+",
+    "promises-aplus",
+    "promise",
+    "promises",
+    "deferred",
+    "deferreds",
+    "when",
+    "async",
+    "asynchronous",
+    "ender"
+  ],
+  "license": "MIT",
+  "main": "when.js",
+  "maintainers": [
+    {
+      "name": "Brian Cavalier",
+      "url": "http://hovercraftstudios.com"
+    },
+    {
+      "name": "John Hann",
+      "url": "http://unscriptable.com"
+    }
+  ],
+  "name": "when",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cujojs/when.git"
+  },
+  "scripts": {
+    "benchmark": "node benchmark/promise && node benchmark/map",
+    "browser-test": "npm run build-browser-test && buster-static -e browser -p 8080",
+    "browserify": "npm run browserify-es6 && npm run browserify-when && npm run browserify-debug",
+    "browserify-debug": "node scripts/browserify.js debug",
+    "browserify-es6": "node scripts/browserify.js es6",
+    "browserify-when": "node scripts/browserify.js when",
+    "build-browser-test": "browserify ./node_modules/poly/es5.js -o test/browser/es5.js && node scripts/browserify-tests",
+    "ci": "npm test && node test/sauce.js",
+    "prepublish": "npm run browserify && npm run uglify",
+    "preversion": "npm run browserify && npm run uglify",
+    "start": "buster-static -e browser",
+    "test": "jshint . && buster-test -e node && promises-aplus-tests test/promises-aplus-adapter.js",
+    "tunnel": "node test/sauce.js -m",
+    "uglify": "npm run uglify-es6 && npm run uglify-when",
+    "uglify-es6": "uglifyjs es6-shim/Promise.js --compress --mangle  --in-source-map es6-shim/Promise.js.map --source-map es6-shim/Promise.min.js.map -o es6-shim/Promise.min.js",
+    "uglify-when": "uglifyjs dist/browser/when.js --compress --mangle  --in-source-map dist/browser/when.js.map --source-map dist/browser/when.min.js.map -o dist/browser/when.min.js"
+  },
+  "version": "3.7.8"
+}

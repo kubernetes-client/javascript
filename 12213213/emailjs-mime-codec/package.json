@@ -1,0 +1,87 @@
+{
+  "_args": [
+    [
+      "emailjs-mime-codec@2.0.9",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "emailjs-mime-codec@2.0.9",
+  "_id": "emailjs-mime-codec@2.0.9",
+  "_inBundle": false,
+  "_integrity": "sha512-7qJo4pFGcKlWh/kCeNjmcgj34YoJWY0ekZXEHYtluWg4MVBnXqGM4CRMtZQkfYwitOhUgaKN5EQktJddi/YIDQ==",
+  "_location": "/emailjs-mime-codec",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "emailjs-mime-codec@2.0.9",
+    "name": "emailjs-mime-codec",
+    "escapedName": "emailjs-mime-codec",
+    "rawSpec": "2.0.9",
+    "saveSpec": null,
+    "fetchSpec": "2.0.9"
+  },
+  "_requiredBy": [
+    "/emailjs"
+  ],
+  "_resolved": "https://registry.npmjs.org/emailjs-mime-codec/-/emailjs-mime-codec-2.0.9.tgz",
+  "_spec": "2.0.9",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Andris Reinman",
+    "email": "andris@kreata.ee"
+  },
+  "bugs": {
+    "url": "https://github.com/emailjs/emailjs-mime-codec/issues"
+  },
+  "dependencies": {
+    "emailjs-base64": "^1.1.4",
+    "ramda": "^0.26.1",
+    "text-encoding": "^0.7.0"
+  },
+  "description": "Encode and decode quoted printable and base64 strings",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "pre-commit": "^1.2.2",
+    "standard": "^12.0.1"
+  },
+  "homepage": "https://github.com/emailjs/emailjs-mime-codec",
+  "keywords": [
+    "MIME",
+    "Base64",
+    "Quoted-Printable"
+  ],
+  "license": "MIT",
+  "main": "dist/mimecodec",
+  "name": "emailjs-mime-codec",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/emailjs/emailjs-mime-codec.git"
+  },
+  "scripts": {
+    "build": "./scripts/build.sh",
+    "lint": "$(npm bin)/standard",
+    "preversion": "npm run build",
+    "test": "npm run lint && npm run unit",
+    "unit": "$(npm bin)/mocha './src/*-unit.js' --reporter spec --require babel-register testutils.js"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "it",
+      "before",
+      "beforeAll",
+      "afterAll",
+      "after",
+      "expect"
+    ],
+    "ignore": [
+      "dist"
+    ]
+  },
+  "version": "2.0.9"
+}

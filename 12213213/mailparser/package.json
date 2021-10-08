@@ -1,0 +1,77 @@
+{
+  "_args": [
+    [
+      "mailparser@0.4.9",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "mailparser@0.4.9",
+  "_id": "mailparser@0.4.9",
+  "_inBundle": false,
+  "_integrity": "sha1-HQpI1vqqovCawTmO0CPY746xnis=",
+  "_location": "/mailparser",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "mailparser@0.4.9",
+    "name": "mailparser",
+    "escapedName": "mailparser",
+    "rawSpec": "0.4.9",
+    "saveSpec": null,
+    "fetchSpec": "0.4.9"
+  },
+  "_requiredBy": [
+    "/mail-notifier"
+  ],
+  "_resolved": "https://registry.npmjs.org/mailparser/-/mailparser-0.4.9.tgz",
+  "_spec": "0.4.9",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Andris Reinman"
+  },
+  "bugs": {
+    "url": "https://github.com/andris9/mailparser/issues"
+  },
+  "dependencies": {
+    "encoding": ">=0.1.4",
+    "mime": "*",
+    "mimelib": ">=0.2.17",
+    "uue": "~1.0.0"
+  },
+  "description": "Asynchronous and non-blocking parser for mime encoded e-mail messages",
+  "devDependencies": {
+    "nodeunit": "*"
+  },
+  "engine": {
+    "node": ">=0.4"
+  },
+  "homepage": "https://github.com/andris9/mailparser#readme",
+  "keywords": [
+    "e-mail",
+    "mime",
+    "parser"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/andris9/mailparser/blob/master/LICENSE"
+    }
+  ],
+  "main": "./lib/mailparser",
+  "maintainers": [
+    {
+      "name": "andris",
+      "email": "andris@node.ee"
+    }
+  ],
+  "name": "mailparser",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/andris9/mailparser.git"
+  },
+  "scripts": {
+    "test": "nodeunit test/"
+  },
+  "version": "0.4.9"
+}

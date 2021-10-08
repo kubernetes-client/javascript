@@ -1,0 +1,79 @@
+{
+  "_args": [
+    [
+      "@aws-sdk/fetch-http-handler@3.25.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@aws-sdk/fetch-http-handler@3.25.0",
+  "_id": "@aws-sdk/fetch-http-handler@3.25.0",
+  "_inBundle": false,
+  "_integrity": "sha512-792kkbfSRBdiFb7Q2cDJts9MKxzAwuQSwUIwRKAOMazU8HkKbKnXXAFSsK3T7VasOFOh7O7YEGN0q9UgEw1q+g==",
+  "_location": "/@aws-sdk/fetch-http-handler",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@aws-sdk/fetch-http-handler@3.25.0",
+    "name": "@aws-sdk/fetch-http-handler",
+    "escapedName": "@aws-sdk%2ffetch-http-handler",
+    "scope": "@aws-sdk",
+    "rawSpec": "3.25.0",
+    "saveSpec": null,
+    "fetchSpec": "3.25.0"
+  },
+  "_requiredBy": [
+    "/@aws-sdk/client-ecr-public",
+    "/@aws-sdk/client-sso",
+    "/@aws-sdk/client-sts"
+  ],
+  "_resolved": "https://registry.npmjs.org/@aws-sdk/fetch-http-handler/-/fetch-http-handler-3.25.0.tgz",
+  "_spec": "3.25.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "AWS SDK for JavaScript Team",
+    "url": "https://aws.amazon.com/javascript/"
+  },
+  "bugs": {
+    "url": "https://github.com/aws/aws-sdk-js-v3/issues"
+  },
+  "dependencies": {
+    "@aws-sdk/protocol-http": "3.25.0",
+    "@aws-sdk/querystring-builder": "3.25.0",
+    "@aws-sdk/types": "3.25.0",
+    "@aws-sdk/util-base64-browser": "3.23.0",
+    "tslib": "^2.3.0"
+  },
+  "description": "Provides a way to make requests",
+  "devDependencies": {
+    "@aws-sdk/abort-controller": "3.25.0",
+    "@types/jest": "^26.0.4",
+    "typescript": "~4.3.2"
+  },
+  "homepage": "https://github.com/aws/aws-sdk-js-v3/tree/main/packages/fetch-http-handler",
+  "license": "Apache-2.0",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/es/index.js",
+  "name": "@aws-sdk/fetch-http-handler",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aws/aws-sdk-js-v3.git",
+    "directory": "packages/fetch-http-handler"
+  },
+  "scripts": {
+    "build": "yarn build:es && yarn build:cjs",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:es": "tsc -p tsconfig.es.json",
+    "downlevel-dts": "downlevel-dts dist/types dist/types/ts3.4",
+    "test": "jest --coverage && karma start karma.conf.js"
+  },
+  "types": "./dist/types/index.d.ts",
+  "typesVersions": {
+    "<4.0": {
+      "dist/types/*": [
+        "dist/types/ts3.4/*"
+      ]
+    }
+  },
+  "version": "3.25.0"
+}

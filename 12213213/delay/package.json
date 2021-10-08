@@ -1,0 +1,89 @@
+{
+  "_args": [
+    [
+      "delay@5.0.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "delay@5.0.0",
+  "_id": "delay@5.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-ReEBKkIfe4ya47wlPYf/gu5ib6yUG0/Aez0JQZQz94kiWtRQvZIQbTiehsnwHvLSWJnQdhVeqYue7Id1dKr0qw==",
+  "_location": "/delay",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "delay@5.0.0",
+    "name": "delay",
+    "escapedName": "delay",
+    "rawSpec": "5.0.0",
+    "saveSpec": null,
+    "fetchSpec": "5.0.0"
+  },
+  "_requiredBy": [
+    "/@gitbeaker/node"
+  ],
+  "_resolved": "https://registry.npmjs.org/delay/-/delay-5.0.0.tgz",
+  "_spec": "5.0.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "https://sindresorhus.com"
+  },
+  "bugs": {
+    "url": "https://github.com/sindresorhus/delay/issues"
+  },
+  "description": "Delay a promise a specified amount of time",
+  "devDependencies": {
+    "abort-controller": "^3.0.0",
+    "ava": "1.4.1",
+    "currently-unhandled": "^0.4.1",
+    "in-range": "^1.0.0",
+    "time-span": "^3.0.0",
+    "tsd": "^0.7.1",
+    "xo": "^0.24.0"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "funding": "https://github.com/sponsors/sindresorhus",
+  "homepage": "https://github.com/sindresorhus/delay#readme",
+  "keywords": [
+    "promise",
+    "resolve",
+    "delay",
+    "defer",
+    "wait",
+    "stall",
+    "timeout",
+    "settimeout",
+    "event",
+    "loop",
+    "next",
+    "tick",
+    "delay",
+    "async",
+    "await",
+    "promises",
+    "bluebird",
+    "threshold",
+    "range",
+    "random"
+  ],
+  "license": "MIT",
+  "name": "delay",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sindresorhus/delay.git"
+  },
+  "scripts": {
+    "test": "xo && ava && tsd"
+  },
+  "version": "5.0.0"
+}

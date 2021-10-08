@@ -1,0 +1,50 @@
+##
+# Grunt
+##
+
+# Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
+.grunt
+
+# Grunt usually compiles files inside this directory
+dist/
+
+# Grunt usually preprocesses files such as coffeescript, compass... inside the .tmp directory
+.tmp/
+
+##
+# Node
+##
+
+# Dependency directory
+# See https://docs.npmjs.com/misc/faq#should-i-check-my-node-modules-folder-into-git
+node_modules
+
+# Logs
+/logs
+*.log
+npm-debug.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+##
+# Security
+##
+*.cer
+*.cert
+*.crl
+*.crt
+*.csr
+*.der
+*.jks
+*.key
+*.p12
+*.p7b
+*.p7r
+*.pem
+*.pfx
+*.spc
+*.sst
+*.stl

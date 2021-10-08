@@ -1,0 +1,81 @@
+{
+  "_args": [
+    [
+      "zip-stream@4.1.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "zip-stream@4.1.0",
+  "_id": "zip-stream@4.1.0",
+  "_inBundle": false,
+  "_integrity": "sha512-zshzwQW7gG7hjpBlgeQP9RuyPGNxvJdzR8SUM3QhxCnLjWN2E7j3dOvpeDcQoETfHx0urRS7EtmVToql7YpU4A==",
+  "_location": "/zip-stream",
+  "_phantomChildren": {
+    "inherits": "2.0.3",
+    "string_decoder": "1.1.1",
+    "util-deprecate": "1.0.2"
+  },
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "zip-stream@4.1.0",
+    "name": "zip-stream",
+    "escapedName": "zip-stream",
+    "rawSpec": "4.1.0",
+    "saveSpec": null,
+    "fetchSpec": "4.1.0"
+  },
+  "_requiredBy": [
+    "/archiver"
+  ],
+  "_resolved": "https://registry.npmjs.org/zip-stream/-/zip-stream-4.1.0.tgz",
+  "_spec": "4.1.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Chris Talkington",
+    "url": "http://christalkington.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/archiverjs/node-zip-stream/issues"
+  },
+  "dependencies": {
+    "archiver-utils": "^2.1.0",
+    "compress-commons": "^4.1.0",
+    "readable-stream": "^3.6.0"
+  },
+  "description": "a streaming zip archive generator.",
+  "devDependencies": {
+    "archiver-jsdoc-theme": "^1.1.3",
+    "chai": "^4.2.0",
+    "jsdoc": "^3.6.4",
+    "minami": "^1.1.0",
+    "mkdirp": "^1.0.4",
+    "mocha": "^8.0.1",
+    "rimraf": "^3.0.2"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "files": [
+    "index.js"
+  ],
+  "homepage": "https://github.com/archiverjs/node-zip-stream",
+  "keywords": [
+    "archive",
+    "stream",
+    "zip-stream",
+    "zip"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "zip-stream",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/archiverjs/node-zip-stream.git"
+  },
+  "scripts": {
+    "jsdoc": "jsdoc -c jsdoc.json README.md",
+    "test": "mocha --reporter dot"
+  },
+  "version": "4.1.0"
+}

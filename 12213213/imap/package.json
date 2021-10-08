@@ -1,0 +1,72 @@
+{
+  "_args": [
+    [
+      "imap@0.8.19",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "imap@0.8.19",
+  "_id": "imap@0.8.19",
+  "_inBundle": false,
+  "_integrity": "sha1-NniHOTSrCc6mukh0HyhNoq9Z2NU=",
+  "_location": "/imap",
+  "_phantomChildren": {
+    "core-util-is": "1.0.2",
+    "inherits": "2.0.3"
+  },
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "imap@0.8.19",
+    "name": "imap",
+    "escapedName": "imap",
+    "rawSpec": "0.8.19",
+    "saveSpec": null,
+    "fetchSpec": "0.8.19"
+  },
+  "_requiredBy": [
+    "/mail-notifier"
+  ],
+  "_resolved": "https://registry.npmjs.org/imap/-/imap-0.8.19.tgz",
+  "_spec": "0.8.19",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Brian White",
+    "email": "mscdex@mscdex.net"
+  },
+  "bugs": {
+    "url": "https://github.com/mscdex/node-imap/issues"
+  },
+  "dependencies": {
+    "readable-stream": "1.1.x",
+    "utf7": ">=1.0.2"
+  },
+  "description": "An IMAP module for node.js that makes communicating with IMAP servers easy",
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "homepage": "https://github.com/mscdex/node-imap#readme",
+  "keywords": [
+    "imap",
+    "mail",
+    "email",
+    "reader",
+    "client"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/mscdex/node-imap/raw/master/LICENSE"
+    }
+  ],
+  "main": "./lib/Connection",
+  "name": "imap",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/mscdex/node-imap.git"
+  },
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "version": "0.8.19"
+}

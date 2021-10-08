@@ -1,0 +1,95 @@
+{
+  "_args": [
+    [
+      "cacheable-request@7.0.2",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "cacheable-request@7.0.2",
+  "_id": "cacheable-request@7.0.2",
+  "_inBundle": false,
+  "_integrity": "sha512-pouW8/FmiPQbuGpkXQ9BAPv/Mo5xDGANgSNXzTzJ8DrKGuXOssM4wIQRjfanNRh3Yu5cfYPvcorqbhg2KIJtew==",
+  "_location": "/cacheable-request",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "cacheable-request@7.0.2",
+    "name": "cacheable-request",
+    "escapedName": "cacheable-request",
+    "rawSpec": "7.0.2",
+    "saveSpec": null,
+    "fetchSpec": "7.0.2"
+  },
+  "_requiredBy": [
+    "/got"
+  ],
+  "_resolved": "https://registry.npmjs.org/cacheable-request/-/cacheable-request-7.0.2.tgz",
+  "_spec": "7.0.2",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Luke Childs",
+    "email": "lukechilds123@gmail.com",
+    "url": "http://lukechilds.co.uk"
+  },
+  "bugs": {
+    "url": "https://github.com/lukechilds/cacheable-request/issues"
+  },
+  "dependencies": {
+    "clone-response": "^1.0.2",
+    "get-stream": "^5.1.0",
+    "http-cache-semantics": "^4.0.0",
+    "keyv": "^4.0.0",
+    "lowercase-keys": "^2.0.0",
+    "normalize-url": "^6.0.1",
+    "responselike": "^2.0.0"
+  },
+  "description": "Wrap native HTTP requests with RFC compliant cache support",
+  "devDependencies": {
+    "@keyv/sqlite": "^2.0.0",
+    "ava": "^1.1.0",
+    "coveralls": "^3.0.0",
+    "create-test-server": "3.0.0",
+    "delay": "^4.0.0",
+    "eslint-config-xo-lukechilds": "^1.0.0",
+    "nyc": "^14.1.1",
+    "pify": "^4.0.0",
+    "sqlite3": "^4.0.2",
+    "this": "^1.0.2",
+    "xo": "^0.23.0"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "files": [
+    "src"
+  ],
+  "homepage": "https://github.com/lukechilds/cacheable-request#readme",
+  "keywords": [
+    "HTTP",
+    "HTTPS",
+    "cache",
+    "caching",
+    "layer",
+    "cacheable",
+    "RFC 7234",
+    "RFC",
+    "7234",
+    "compliant"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "name": "cacheable-request",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukechilds/cacheable-request.git"
+  },
+  "scripts": {
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "test": "xo && nyc ava"
+  },
+  "version": "7.0.2",
+  "xo": {
+    "extends": "xo-lukechilds"
+  }
+}

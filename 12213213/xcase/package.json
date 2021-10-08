@@ -1,0 +1,77 @@
+{
+  "_args": [
+    [
+      "xcase@2.0.1",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "xcase@2.0.1",
+  "_id": "xcase@2.0.1",
+  "_inBundle": false,
+  "_integrity": "sha1-x/pyyqD0QNt4/VZzQyA4rJhEULk=",
+  "_location": "/xcase",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "xcase@2.0.1",
+    "name": "xcase",
+    "escapedName": "xcase",
+    "rawSpec": "2.0.1",
+    "saveSpec": null,
+    "fetchSpec": "2.0.1"
+  },
+  "_requiredBy": [
+    "/@gitbeaker/core",
+    "/@gitbeaker/node",
+    "/@gitbeaker/requester-utils",
+    "/gitlab"
+  ],
+  "_resolved": "https://registry.npmjs.org/xcase/-/xcase-2.0.1.tgz",
+  "_spec": "2.0.1",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Damian Kaczmarek",
+    "email": "damian@codecharm.co.uk"
+  },
+  "bugs": {
+    "url": "https://github.com/encharm/xcase/issues"
+  },
+  "dependencies": {},
+  "description": "Blazingly fast recursive convertion to and from camelCase or PascalCase for Objects and Arrays",
+  "devDependencies": {
+    "babel-cli": "^6.14.0",
+    "babel-preset-es2015": "^6.14.0",
+    "benchmark": "^2.1.1",
+    "bower": "^1.7.9",
+    "browserify": "^13.1.0",
+    "humps": "^1.1.0",
+    "lodash": "^4.15.0",
+    "mocha": "^3.0.2",
+    "rollup": "^0.41.4",
+    "uglify-js": "^2.7.3"
+  },
+  "homepage": "https://github.com/encharm/xcase#readme",
+  "keywords": [
+    "recursive",
+    "convertion",
+    "camelcase",
+    "keys",
+    "object",
+    "decamelize",
+    "camelize"
+  ],
+  "license": "MIT",
+  "main": "es5/index",
+  "name": "xcase",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/encharm/xcase.git"
+  },
+  "scripts": {
+    "build": "rollup index.js -f es | babel --presets es2015 -o es5/index.js && browserify -s xcase -r ./es5/index.js -o dist/xcase.js && uglifyjs dist/xcase.js > dist/xcase.min.js",
+    "prepublish": "npm run build",
+    "test": "npm run build && mocha"
+  },
+  "version": "2.0.1"
+}

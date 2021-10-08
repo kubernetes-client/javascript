@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl">
+  <title data-ice="title">Home | jira-client</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="Wrapper for the JIRA API"><meta property="twitter:card" content="summary"><meta property="twitter:title" content="jira-client"><meta property="twitter:description" content="Wrapper for the JIRA API"></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a href="http://github.com/jira-node/node-jira-client">Repository</a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/jira.js~JiraApi.html">JiraApi</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#instance-typedef-makeDevStatusUri">makeDevStatusUri</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-JiraApiOptions">JiraApiOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-OAuth">OAuth</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-SearchUserOptions">SearchUserOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-UriOptions">UriOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-makeRequestHeaderOptions">makeRequestHeaderOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-makeSprintQueryUriOptions">makeSprintQueryUriOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-makeUriOptions">makeUriOptions</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-typedef">T</span><span data-ice="name"><span><a href="typedef/index.html#static-typedef-makeWebhookUriOptions">makeWebhookUriOptions</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div data-ice="index" class="github-markdown"><h1 id="javascript-jira-api-for-node-js">JavaScript JIRA API for node.js</h1><p>A node.js module, which provides an object oriented wrapper for the Jira Rest API.</p>
+<p><a href="https://jira-node.github.io/"><img src="https://img.shields.io/badge/Documentation--green.svg" alt="Documentation"></a>
+<a href="http://docs.atlassian.com/jira/REST/latest/"><img src="https://img.shields.io/badge/Jira%20Rest%20API--green.svg" alt="Jira Rest API"></a>
+<a href="https://github.com/jira-node/node-jira-client/actions"><img src="https://github.com/jira-node/node-jira-client/workflows/Run%20tests/badge.svg" alt="Run tests"></a>
+<a href="https://www.npmjs.com/package/jira-client"><img src="https://img.shields.io/npm/v/jira-client.svg" alt="npm"></a>
+<a href="https://npmjs.com/jira-client"><img src="https://img.shields.io/npm/dm/jira-client.svg" alt="Downloads"></a>
+<a href="https://packagephobia.now.sh/result?p=jira-client"><img src="https://packagephobia.now.sh/badge?p=jira-client" alt="Install Size"></a>
+<a href="https://david-dm.org/jira-node/node-jira-client"><img src="https://david-dm.org/jira-node/node-jira-client/status.svg" alt="dependency Status"></a>
+<a href="https://david-dm.org/jira-node/node-jira-client?type=dev"><img src="https://david-dm.org/jira-node/node-jira-client/dev-status.svg" alt="devDependency Status"></a></p>
+<h2 id="installation">Installation</h2><p>Install with the node package manager <a href="http://npmjs.org">npm</a>:</p>
+<pre><code class="lang-shell"><code class="source-code prettyprint">$ npm install jira-client</code>
+</code></pre>
+<h2 id="examples">Examples</h2><h3 id="create-the-jira-client">Create the JIRA client</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">// With ES5
+var JiraApi = require(&apos;jira-client&apos;);
+
+// With ES6
+import JiraApi from &apos;jira-client&apos;;
+
+// Initialize
+var jira = new JiraApi({
+  protocol: &apos;https&apos;,
+  host: &apos;jira.somehost.com&apos;,
+  username: &apos;username&apos;,
+  password: &apos;password&apos;,
+  apiVersion: &apos;2&apos;,
+  strictSSL: true
+});</code>
+</code></pre>
+<h3 id="find-the-status-of-an-issue">Find the status of an issue</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">// ES5
+// We are using an ES5 Polyfill for Promise support. Please note that if you don&apos;t explicitly
+// apply a catch exceptions will get swallowed. Read up on ES6 Promises for further details.
+jira.findIssue(issueNumber)
+  .then(function(issue) {
+    console.log(&apos;Status: &apos; + issue.fields.status.name);
+  })
+  .catch(function(err) {
+    console.error(err);
+  });
+
+// ES6
+jira.findIssue(issueNumber)
+  .then(issue =&gt; {
+    console.log(`Status: ${issue.fields.status.name}`);
+  })
+  .catch(err =&gt; {
+    console.error(err);
+  });
+
+// ES7
+async function logIssueName() {
+  try {
+    const issue = await jira.findIssue(issueNumber);
+    console.log(`Status: ${issue.fields.status.name}`);
+  } catch (err) {
+    console.error(err);
+  }
+}
+</code>
+</code></pre>
+<h2 id="documentation">Documentation</h2><p>Can&apos;t find what you need in the readme?  Check out our documentation here: <a href="https://jira-node.github.io/">https://jira-node.github.io/</a></p>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(1.1.0)</span><img src="./image/esdoc-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

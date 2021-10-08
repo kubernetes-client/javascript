@@ -1,0 +1,61 @@
+{
+  "_from": "classifier@~0.1.0",
+  "_id": "classifier@0.1.0",
+  "_inBundle": false,
+  "_integrity": "sha1-4rGFu6Y7v5J893cO6h63Cus/lZY=",
+  "_location": "/classifier",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "classifier@~0.1.0",
+    "name": "classifier",
+    "escapedName": "classifier",
+    "rawSpec": "~0.1.0",
+    "saveSpec": null,
+    "fetchSpec": "~0.1.0"
+  },
+  "_requiredBy": [
+    "/language-classifier"
+  ],
+  "_resolved": "https://registry.npmjs.org/classifier/-/classifier-0.1.0.tgz",
+  "_shasum": "e2b185bba63bbf927cf7770eea1eb70aeb3f9596",
+  "_spec": "classifier@~0.1.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc\\node_modules\\language-classifier",
+  "author": {
+    "name": "Heather Arthur",
+    "email": "fayearthur@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/harthur/classifier/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "redis": ">=0.7.0",
+    "underscore": ">=1.1.0"
+  },
+  "deprecated": "Package no longer supported. Contact support@npmjs.com for more info.",
+  "description": "Naive Bayesian classifier with Redis backend",
+  "devDependencies": {
+    "async": ">=0.1.18",
+    "cradle": ">=0.2.0",
+    "mocha": ">=1.0.0",
+    "should": ">=0.6.0"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "homepage": "https://github.com/harthur/classifier#readme",
+  "keywords": [
+    "bayesian",
+    "classifier",
+    "machine learning"
+  ],
+  "main": "./lib/bayesian",
+  "name": "classifier",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/harthur/classifier.git"
+  },
+  "version": "0.1.0"
+}

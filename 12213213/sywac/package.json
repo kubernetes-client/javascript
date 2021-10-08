@@ -1,0 +1,74 @@
+{
+  "_args": [
+    [
+      "sywac@1.3.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "sywac@1.3.0",
+  "_id": "sywac@1.3.0",
+  "_inBundle": false,
+  "_integrity": "sha512-LDt2stNTp4bVPMgd70Jj9PWrSa4batl+bv+Ea5NLNGT7ufc4oQPtRfQ73wbddNV6RilaPqnEt6y1Wkm5FVTNEg==",
+  "_location": "/sywac",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "sywac@1.3.0",
+    "name": "sywac",
+    "escapedName": "sywac",
+    "rawSpec": "1.3.0",
+    "saveSpec": null,
+    "fetchSpec": "1.3.0"
+  },
+  "_requiredBy": [
+    "/gitlab"
+  ],
+  "_resolved": "https://registry.npmjs.org/sywac/-/sywac-1.3.0.tgz",
+  "_spec": "1.3.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "nexdrew"
+  },
+  "bugs": {
+    "url": "https://github.com/sywac/sywac/issues"
+  },
+  "description": "So you want a CLI...",
+  "devDependencies": {
+    "chalk": "^3.0.0",
+    "coveralls": "^3.0.9",
+    "del": "^5.1.0",
+    "import-fresh": "^3.2.1",
+    "standard": "^14.3.2",
+    "tap": "^14.10.6"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "files": [
+    "*.js",
+    "types/*.js",
+    "lib/*.js"
+  ],
+  "homepage": "http://sywac.io",
+  "keywords": [
+    "cli",
+    "parser",
+    "command",
+    "args",
+    "argv"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "sywac",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sywac/sywac.git"
+  },
+  "scripts": {
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "pretest": "standard",
+    "test": "tap"
+  },
+  "version": "1.3.0"
+}

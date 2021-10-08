@@ -1,0 +1,79 @@
+{
+  "_args": [
+    [
+      "@aws-sdk/util-user-agent-browser@3.25.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@aws-sdk/util-user-agent-browser@3.25.0",
+  "_id": "@aws-sdk/util-user-agent-browser@3.25.0",
+  "_inBundle": false,
+  "_integrity": "sha512-qGqiWfs49NRmQVXPsBXgMRVkjDZocicU0V2wak98e0t7TOI+KmP8hnwsTkE6c4KwhsFOOUhAzjn5zk3kOwi6tQ==",
+  "_location": "/@aws-sdk/util-user-agent-browser",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@aws-sdk/util-user-agent-browser@3.25.0",
+    "name": "@aws-sdk/util-user-agent-browser",
+    "escapedName": "@aws-sdk%2futil-user-agent-browser",
+    "scope": "@aws-sdk",
+    "rawSpec": "3.25.0",
+    "saveSpec": null,
+    "fetchSpec": "3.25.0"
+  },
+  "_requiredBy": [
+    "/@aws-sdk/client-ecr-public",
+    "/@aws-sdk/client-sso",
+    "/@aws-sdk/client-sts"
+  ],
+  "_resolved": "https://registry.npmjs.org/@aws-sdk/util-user-agent-browser/-/util-user-agent-browser-3.25.0.tgz",
+  "_spec": "3.25.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "AWS SDK for JavaScript Team",
+    "url": "https://aws.amazon.com/javascript/"
+  },
+  "bugs": {
+    "url": "https://github.com/aws/aws-sdk-js-v3/issues"
+  },
+  "dependencies": {
+    "@aws-sdk/types": "3.25.0",
+    "bowser": "^2.11.0",
+    "tslib": "^2.3.0"
+  },
+  "description": "[![NPM version](https://img.shields.io/npm/v/@aws-sdk/util-user-agent-browser/latest.svg)](https://www.npmjs.com/package/@aws-sdk/util-user-agent-browser) [![NPM downloads](https://img.shields.io/npm/dm/@aws-sdk/util-user-agent-browser.svg)](https://www.npmjs.com/package/@aws-sdk/util-user-agent-browser)",
+  "devDependencies": {
+    "@aws-sdk/protocol-http": "3.25.0",
+    "@types/jest": "^26.0.4",
+    "jest": "^26.1.0",
+    "typescript": "~4.3.2"
+  },
+  "homepage": "https://github.com/aws/aws-sdk-js-v3/tree/main/packages/util-user-agent-browser",
+  "license": "Apache-2.0",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/es/index.js",
+  "name": "@aws-sdk/util-user-agent-browser",
+  "react-native": "dist/es/index.native.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aws/aws-sdk-js-v3.git",
+    "directory": "packages/util-user-agent-browser"
+  },
+  "scripts": {
+    "build": "yarn build:es && yarn build:cjs",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:es": "tsc -p tsconfig.es.json",
+    "downlevel-dts": "downlevel-dts dist/types dist/types/ts3.4",
+    "test": "jest"
+  },
+  "types": "./dist/types/index.d.ts",
+  "typesVersions": {
+    "<4.0": {
+      "dist/types/*": [
+        "dist/types/ts3.4/*"
+      ]
+    }
+  },
+  "version": "3.25.0"
+}

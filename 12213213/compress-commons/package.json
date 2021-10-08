@@ -1,0 +1,77 @@
+{
+  "_args": [
+    [
+      "compress-commons@4.1.1",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "compress-commons@4.1.1",
+  "_id": "compress-commons@4.1.1",
+  "_inBundle": false,
+  "_integrity": "sha512-QLdDLCKNV2dtoTorqgxngQCMA+gWXkM/Nwu7FpeBhk/RdkzimqC3jueb/FDmaZeXh+uby1jkBqE3xArsLBE5wQ==",
+  "_location": "/compress-commons",
+  "_phantomChildren": {
+    "inherits": "2.0.3",
+    "string_decoder": "1.1.1",
+    "util-deprecate": "1.0.2"
+  },
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "compress-commons@4.1.1",
+    "name": "compress-commons",
+    "escapedName": "compress-commons",
+    "rawSpec": "4.1.1",
+    "saveSpec": null,
+    "fetchSpec": "4.1.1"
+  },
+  "_requiredBy": [
+    "/zip-stream"
+  ],
+  "_resolved": "https://registry.npmjs.org/compress-commons/-/compress-commons-4.1.1.tgz",
+  "_spec": "4.1.1",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Chris Talkington",
+    "url": "http://christalkington.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/archiverjs/node-compress-commons/issues"
+  },
+  "dependencies": {
+    "buffer-crc32": "^0.2.13",
+    "crc32-stream": "^4.0.2",
+    "normalize-path": "^3.0.0",
+    "readable-stream": "^3.6.0"
+  },
+  "description": "a library that defines a common interface for working with archive formats within node",
+  "devDependencies": {
+    "chai": "^4.0.0",
+    "mkdirp": "^1.0.4",
+    "mocha": "^8.0.1",
+    "rimraf": "^3.0.2"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "files": [
+    "lib"
+  ],
+  "homepage": "https://github.com/archiverjs/node-compress-commons",
+  "keywords": [
+    "compress",
+    "commons",
+    "archive"
+  ],
+  "license": "MIT",
+  "main": "lib/compress-commons.js",
+  "name": "compress-commons",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/archiverjs/node-compress-commons.git"
+  },
+  "scripts": {
+    "test": "mocha --reporter dot"
+  },
+  "version": "4.1.1"
+}

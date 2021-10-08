@@ -1,0 +1,77 @@
+{
+  "_args": [
+    [
+      "@aws-sdk/util-base64-browser@3.23.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@aws-sdk/util-base64-browser@3.23.0",
+  "_id": "@aws-sdk/util-base64-browser@3.23.0",
+  "_inBundle": false,
+  "_integrity": "sha512-xlI/qw+uhLJWa3k0mRtRHQ42v5QzsMFEUXScredQMfJ/34qzXyocsG6OHPOTV1I8WSANrxnHR5m1Ae3iU6JuVw==",
+  "_location": "/@aws-sdk/util-base64-browser",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@aws-sdk/util-base64-browser@3.23.0",
+    "name": "@aws-sdk/util-base64-browser",
+    "escapedName": "@aws-sdk%2futil-base64-browser",
+    "scope": "@aws-sdk",
+    "rawSpec": "3.23.0",
+    "saveSpec": null,
+    "fetchSpec": "3.23.0"
+  },
+  "_requiredBy": [
+    "/@aws-sdk/client-ecr-public",
+    "/@aws-sdk/client-sso",
+    "/@aws-sdk/client-sts",
+    "/@aws-sdk/fetch-http-handler"
+  ],
+  "_resolved": "https://registry.npmjs.org/@aws-sdk/util-base64-browser/-/util-base64-browser-3.23.0.tgz",
+  "_spec": "3.23.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "AWS SDK for JavaScript Team",
+    "url": "https://aws.amazon.com/javascript/"
+  },
+  "bugs": {
+    "url": "https://github.com/aws/aws-sdk-js-v3/issues"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "description": "A pure JS Base64 <-> UInt8Array converter",
+  "devDependencies": {
+    "@types/jest": "^26.0.4",
+    "@types/node": "^10.0.0",
+    "jest": "^26.1.0",
+    "typescript": "~4.3.2"
+  },
+  "homepage": "https://github.com/aws/aws-sdk-js-v3/tree/main/packages/util-base64-browser",
+  "license": "Apache-2.0",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/es/index.js",
+  "name": "@aws-sdk/util-base64-browser",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aws/aws-sdk-js-v3.git",
+    "directory": "packages/util-base64-browser"
+  },
+  "scripts": {
+    "build": "yarn build:es && yarn build:cjs",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:es": "tsc -p tsconfig.es.json",
+    "downlevel-dts": "downlevel-dts dist/types dist/types/ts3.4",
+    "test": "jest"
+  },
+  "types": "./dist/types/index.d.ts",
+  "typesVersions": {
+    "<4.0": {
+      "dist/types/*": [
+        "dist/types/ts3.4/*"
+      ]
+    }
+  },
+  "version": "3.23.0"
+}

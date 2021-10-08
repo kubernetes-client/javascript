@@ -1,0 +1,65 @@
+{
+  "_from": "language-detect",
+  "_id": "language-detect@1.1.0",
+  "_inBundle": false,
+  "_integrity": "sha1-J0u49YvsSZzvKoz9sQKBJO67GOE=",
+  "_location": "/language-detect",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "language-detect",
+    "name": "language-detect",
+    "escapedName": "language-detect",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/language-detect/-/language-detect-1.1.0.tgz",
+  "_shasum": "274bb8f58bec499cef2a8cfdb1028124eebb18e1",
+  "_spec": "language-detect",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Blake Embrey",
+    "email": "hello@blakeembrey.com",
+    "url": "http://blakeembrey.me"
+  },
+  "bugs": {
+    "url": "https://github.com/blakeembrey/node-language-detect/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "language-classifier": "0.0.1"
+  },
+  "deprecated": false,
+  "description": "Detect the programming language of any file.",
+  "devDependencies": {
+    "istanbul": "^0.4.0",
+    "language-map": "^1.0.0",
+    "mocha": "^2.3.3"
+  },
+  "homepage": "https://github.com/blakeembrey/node-language-detect",
+  "keywords": [
+    "language",
+    "detect",
+    "classify",
+    "file"
+  ],
+  "license": "MIT",
+  "main": "language-detect.js",
+  "name": "language-detect",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blakeembrey/node-language-detect.git"
+  },
+  "scripts": {
+    "build": "node scripts/build",
+    "prepublish": "npm run build",
+    "test": "npm run-script prepublish && istanbul cover _mocha -- -R spec"
+  },
+  "version": "1.1.0"
+}

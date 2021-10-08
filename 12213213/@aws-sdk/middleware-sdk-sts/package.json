@@ -1,0 +1,81 @@
+{
+  "_args": [
+    [
+      "@aws-sdk/middleware-sdk-sts@3.27.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@aws-sdk/middleware-sdk-sts@3.27.0",
+  "_id": "@aws-sdk/middleware-sdk-sts@3.27.0",
+  "_inBundle": false,
+  "_integrity": "sha512-4geCMczCujTz4GWSrwKhxEW9rYikp5NrLcIpHI0NjthQQfa8T4/D1WSsSnW3JNmQcMgQXeC9h8jTn0dOE4EhUw==",
+  "_location": "/@aws-sdk/middleware-sdk-sts",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@aws-sdk/middleware-sdk-sts@3.27.0",
+    "name": "@aws-sdk/middleware-sdk-sts",
+    "escapedName": "@aws-sdk%2fmiddleware-sdk-sts",
+    "scope": "@aws-sdk",
+    "rawSpec": "3.27.0",
+    "saveSpec": null,
+    "fetchSpec": "3.27.0"
+  },
+  "_requiredBy": [
+    "/@aws-sdk/client-sts"
+  ],
+  "_resolved": "https://registry.npmjs.org/@aws-sdk/middleware-sdk-sts/-/middleware-sdk-sts-3.27.0.tgz",
+  "_spec": "3.27.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "AWS SDK for JavaScript Team",
+    "url": "https://aws.amazon.com/javascript/"
+  },
+  "bugs": {
+    "url": "https://github.com/aws/aws-sdk-js-v3/issues"
+  },
+  "dependencies": {
+    "@aws-sdk/middleware-signing": "3.27.0",
+    "@aws-sdk/property-provider": "3.27.0",
+    "@aws-sdk/protocol-http": "3.25.0",
+    "@aws-sdk/signature-v4": "3.25.0",
+    "@aws-sdk/types": "3.25.0",
+    "tslib": "^2.3.0"
+  },
+  "description": "[![NPM version](https://img.shields.io/npm/v/@aws-sdk/middleware-sdk-sts/latest.svg)](https://www.npmjs.com/package/@aws-sdk/middleware-sdk-sts) [![NPM downloads](https://img.shields.io/npm/dm/@aws-sdk/middleware-sdk-sts.svg)](https://www.npmjs.com/package/@aws-sdk/middleware-sdk-sts)",
+  "devDependencies": {
+    "@types/jest": "^26.0.4",
+    "jest": "^26.1.0",
+    "typescript": "~4.3.2"
+  },
+  "engines": {
+    "node": ">= 10.0.0"
+  },
+  "homepage": "https://github.com/aws/aws-sdk-js-v3/tree/main/packages/middleware-sdk-sts",
+  "license": "Apache-2.0",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/es/index.js",
+  "name": "@aws-sdk/middleware-sdk-sts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aws/aws-sdk-js-v3.git",
+    "directory": "packages/middleware-sdk-sts"
+  },
+  "scripts": {
+    "build": "yarn build:es && yarn build:cjs",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:es": "tsc -p tsconfig.es.json",
+    "downlevel-dts": "downlevel-dts dist/types dist/types/ts3.4",
+    "test": "jest"
+  },
+  "types": "./dist/types/index.d.ts",
+  "typesVersions": {
+    "<4.0": {
+      "dist/types/*": [
+        "dist/types/ts3.4/*"
+      ]
+    }
+  },
+  "version": "3.27.0"
+}

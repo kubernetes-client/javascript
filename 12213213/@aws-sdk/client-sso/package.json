@@ -1,0 +1,120 @@
+{
+  "_args": [
+    [
+      "@aws-sdk/client-sso@3.27.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@aws-sdk/client-sso@3.27.0",
+  "_id": "@aws-sdk/client-sso@3.27.0",
+  "_inBundle": false,
+  "_integrity": "sha512-/Op+OaQgcAG/FyyqJc2NVfIJWEd1cTWIl8gBWSTUugrhhd5rMnAtg3u5ds/tYUimVQJv03z4bDjbI0Rnv/t6XQ==",
+  "_location": "/@aws-sdk/client-sso",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@aws-sdk/client-sso@3.27.0",
+    "name": "@aws-sdk/client-sso",
+    "escapedName": "@aws-sdk%2fclient-sso",
+    "scope": "@aws-sdk",
+    "rawSpec": "3.27.0",
+    "saveSpec": null,
+    "fetchSpec": "3.27.0"
+  },
+  "_requiredBy": [
+    "/@aws-sdk/credential-provider-sso"
+  ],
+  "_resolved": "https://registry.npmjs.org/@aws-sdk/client-sso/-/client-sso-3.27.0.tgz",
+  "_spec": "3.27.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "AWS SDK for JavaScript Team",
+    "url": "https://aws.amazon.com/javascript/"
+  },
+  "browser": {
+    "./runtimeConfig": "./runtimeConfig.browser"
+  },
+  "bugs": {
+    "url": "https://github.com/aws/aws-sdk-js-v3/issues"
+  },
+  "dependencies": {
+    "@aws-crypto/sha256-browser": "^1.0.0",
+    "@aws-crypto/sha256-js": "^1.0.0",
+    "@aws-sdk/config-resolver": "3.27.0",
+    "@aws-sdk/fetch-http-handler": "3.25.0",
+    "@aws-sdk/hash-node": "3.25.0",
+    "@aws-sdk/invalid-dependency": "3.25.0",
+    "@aws-sdk/middleware-content-length": "3.25.0",
+    "@aws-sdk/middleware-host-header": "3.25.0",
+    "@aws-sdk/middleware-logger": "3.25.0",
+    "@aws-sdk/middleware-retry": "3.27.0",
+    "@aws-sdk/middleware-serde": "3.25.0",
+    "@aws-sdk/middleware-stack": "3.25.0",
+    "@aws-sdk/middleware-user-agent": "3.25.0",
+    "@aws-sdk/node-config-provider": "3.27.0",
+    "@aws-sdk/node-http-handler": "3.25.0",
+    "@aws-sdk/protocol-http": "3.25.0",
+    "@aws-sdk/smithy-client": "3.27.0",
+    "@aws-sdk/types": "3.25.0",
+    "@aws-sdk/url-parser": "3.25.0",
+    "@aws-sdk/util-base64-browser": "3.23.0",
+    "@aws-sdk/util-base64-node": "3.23.0",
+    "@aws-sdk/util-body-length-browser": "3.23.0",
+    "@aws-sdk/util-body-length-node": "3.23.0",
+    "@aws-sdk/util-user-agent-browser": "3.25.0",
+    "@aws-sdk/util-user-agent-node": "3.27.0",
+    "@aws-sdk/util-utf8-browser": "3.23.0",
+    "@aws-sdk/util-utf8-node": "3.23.0",
+    "tslib": "^2.3.0"
+  },
+  "description": "AWS SDK for JavaScript Sso Client for Node.js, Browser and React Native",
+  "devDependencies": {
+    "@aws-sdk/client-documentation-generator": "3.23.0",
+    "@types/node": "^12.7.5",
+    "downlevel-dts": "0.7.0",
+    "jest": "^26.1.0",
+    "rimraf": "^3.0.0",
+    "ts-jest": "^26.4.1",
+    "typedoc": "^0.19.2",
+    "typescript": "~4.3.2"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "homepage": "https://github.com/aws/aws-sdk-js-v3/tree/main/clients/client-sso",
+  "license": "Apache-2.0",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/es/index.js",
+  "name": "@aws-sdk/client-sso",
+  "react-native": {
+    "./runtimeConfig": "./runtimeConfig.native"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aws/aws-sdk-js-v3.git",
+    "directory": "clients/client-sso"
+  },
+  "scripts": {
+    "build": "yarn build:cjs && yarn build:es",
+    "build-documentation": "yarn remove-documentation && typedoc ./",
+    "build:cjs": "tsc -p tsconfig.json",
+    "build:es": "tsc -p tsconfig.es.json",
+    "clean": "yarn remove-definitions && yarn remove-dist && yarn remove-documentation",
+    "downlevel-dts": "downlevel-dts dist/types dist/types/ts3.4",
+    "remove-definitions": "rimraf ./types",
+    "remove-dist": "rimraf ./dist",
+    "remove-documentation": "rimraf ./docs",
+    "test": "exit 0"
+  },
+  "sideEffects": false,
+  "types": "./dist/types/index.d.ts",
+  "typesVersions": {
+    "<4.0": {
+      "dist/types/*": [
+        "dist/types/ts3.4/*"
+      ]
+    }
+  },
+  "version": "3.27.0"
+}

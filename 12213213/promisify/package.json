@@ -1,0 +1,56 @@
+{
+  "_args": [
+    [
+      "promisify@0.0.3",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "promisify@0.0.3",
+  "_id": "promisify@0.0.3",
+  "_inBundle": false,
+  "_integrity": "sha1-dU22HynuZHarVDxFtGTSH171VoY=",
+  "_location": "/promisify",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "promisify@0.0.3",
+    "name": "promisify",
+    "escapedName": "promisify",
+    "rawSpec": "0.0.3",
+    "saveSpec": null,
+    "fetchSpec": "0.0.3"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/promisify/-/promisify-0.0.3.tgz",
+  "_spec": "0.0.3",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "David Wragg",
+    "email": "david@wragg.org",
+    "url": "http://david.wragg.org"
+  },
+  "bugs": {
+    "url": "https://github.com/dpw/promisify/issues"
+  },
+  "dependencies": {
+    "when": ""
+  },
+  "description": "Convert callback-based APIs to promises",
+  "devDependencies": {
+    "nodeunit": ""
+  },
+  "homepage": "https://github.com/dpw/promisify#readme",
+  "main": "promisify.js",
+  "name": "promisify",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dpw/promisify.git"
+  },
+  "scripts": {
+    "test": "node ./node_modules/nodeunit/bin/nodeunit test"
+  },
+  "version": "0.0.3"
+}

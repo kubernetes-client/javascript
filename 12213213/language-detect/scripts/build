@@ -1,0 +1,65 @@
+#!/usr/bin/env node
+
+var fs   = require('fs');
+var map  = require('language-map');
+var path = require('path');
+
+/**
+ * Data stores.
+ */
+var aliases      = {};
+var filenames    = {};
+var extensions   = {};
+var interpreters = {};
+
+/**
+ * Writable paths.
+ */
+var VENDOR_DIR       = path.join(__dirname, '..', 'vendor');
+var ALIAS_PATH       = path.join(VENDOR_DIR, 'aliases.json');
+var FILENAME_PATH    = path.join(VENDOR_DIR, 'filenames.json');
+var EXTENSION_PATH   = path.join(VENDOR_DIR, 'extensions.json');
+var INTERPRETER_PATH = path.join(VENDOR_DIR, 'interpreters.json');
+
+/**
+ * Add a key definition based on the current `this` context.
+ *
+ * @param {String} language
+ * @param {String} definition
+ */
+var addDefinition = function (language, definition) {
+  this[definition] = language;
+};
+
+/**
+ * Iterate over every language extracting the relevant meta data.
+ */
+Object.keys(map).forEach(function (language) {
+  var definition = map[language];
+
+  if (definition.extensions) {
+    definition.extensions
+      .map(Function.prototype.call, String.prototype.toLowerCase)
+      .forEach(addDefinition.bind(extensions, language));
+  }
+
+  if (definition.aliases) {
+    definition.aliases.forEach(addDefinition.bind(aliases, language));
+  }
+
+  if (definition.filenames) {
+    definition.filenames.forEach(addDefinition.bind(filenames, language));
+  }
+
+  if (definition.interpreters) {
+    definition.interpreters.forEach(addDefinition.bind(interpreters, language));
+  }
+});
+
+/**
+ * Write the data to disk as JSON.
+ */
+fs.writeFileSync(ALIAS_PATH,       JSON.stringify(aliases, null, 2));
+fs.writeFileSync(FILENAME_PATH,    JSON.stringify(filenames, null, 2));
+fs.writeFileSync(EXTENSION_PATH,   JSON.stringify(extensions, null, 2));
+fs.writeFileSync(INTERPRETER_PATH, JSON.stringify(interpreters, null, 2));

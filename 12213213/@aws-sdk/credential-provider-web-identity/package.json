@@ -1,0 +1,84 @@
+{
+  "_args": [
+    [
+      "@aws-sdk/credential-provider-web-identity@3.27.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@aws-sdk/credential-provider-web-identity@3.27.0",
+  "_id": "@aws-sdk/credential-provider-web-identity@3.27.0",
+  "_inBundle": false,
+  "_integrity": "sha512-FYvDzB4UqmJjY+ZZoIAPM1EFK9/RdNn1VT5xvDcebQe7xKOVUG1tZbOA4rVZ3MUcxfyRqp7Ou/AhIWu/9RSt2Q==",
+  "_location": "/@aws-sdk/credential-provider-web-identity",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@aws-sdk/credential-provider-web-identity@3.27.0",
+    "name": "@aws-sdk/credential-provider-web-identity",
+    "escapedName": "@aws-sdk%2fcredential-provider-web-identity",
+    "scope": "@aws-sdk",
+    "rawSpec": "3.27.0",
+    "saveSpec": null,
+    "fetchSpec": "3.27.0"
+  },
+  "_requiredBy": [
+    "/@aws-sdk/credential-provider-ini",
+    "/@aws-sdk/credential-provider-node"
+  ],
+  "_resolved": "https://registry.npmjs.org/@aws-sdk/credential-provider-web-identity/-/credential-provider-web-identity-3.27.0.tgz",
+  "_spec": "3.27.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "AWS SDK for JavaScript Team",
+    "url": "https://aws.amazon.com/javascript/"
+  },
+  "bugs": {
+    "url": "https://github.com/aws/aws-sdk-js-v3/issues"
+  },
+  "dependencies": {
+    "@aws-sdk/property-provider": "3.27.0",
+    "@aws-sdk/types": "3.25.0",
+    "tslib": "^2.3.0"
+  },
+  "description": "AWS credential provider that calls STS assumeRole for temporary AWS credentials",
+  "devDependencies": {
+    "@types/jest": "^26.0.4",
+    "@types/node": "^10.0.0",
+    "jest": "^26.1.0",
+    "typescript": "~4.3.2"
+  },
+  "engines": {
+    "node": ">= 10.0.0"
+  },
+  "homepage": "https://github.com/aws/aws-sdk-js-v3/tree/master/packages/credential-provider-web-identity",
+  "keywords": [
+    "aws",
+    "credentials"
+  ],
+  "license": "Apache-2.0",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/es/index.js",
+  "name": "@aws-sdk/credential-provider-web-identity",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aws/aws-sdk-js-v3.git",
+    "directory": "packages/credential-provider-web-identity"
+  },
+  "scripts": {
+    "build": "yarn build:es && yarn build:cjs",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:es": "tsc -p tsconfig.es.json",
+    "downlevel-dts": "downlevel-dts dist/types dist/types/ts3.4",
+    "test": "jest"
+  },
+  "types": "./dist/types/index.d.ts",
+  "typesVersions": {
+    "<4.0": {
+      "dist/types/*": [
+        "dist/types/ts3.4/*"
+      ]
+    }
+  },
+  "version": "3.27.0"
+}

@@ -1,0 +1,99 @@
+{
+  "_args": [
+    [
+      "printj@1.1.2",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "printj@1.1.2",
+  "_id": "printj@1.1.2",
+  "_inBundle": false,
+  "_integrity": "sha512-zA2SmoLaxZyArQTOPj5LXecR+RagfPSU5Kw1qP+jkWeNlrq+eJZyY2oS68SU1Z/7/myXM4lo9716laOFAVStCQ==",
+  "_location": "/printj",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "printj@1.1.2",
+    "name": "printj",
+    "escapedName": "printj",
+    "rawSpec": "1.1.2",
+    "saveSpec": null,
+    "fetchSpec": "1.1.2"
+  },
+  "_requiredBy": [
+    "/crc-32"
+  ],
+  "_resolved": "https://registry.npmjs.org/printj/-/printj-1.1.2.tgz",
+  "_spec": "1.1.2",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "alex": {
+    "allow": [
+      "period"
+    ]
+  },
+  "author": {
+    "name": "sheetjs"
+  },
+  "bin": {
+    "printj": "bin/printj.njs"
+  },
+  "browser": {
+    "process": false,
+    "util": false
+  },
+  "bugs": {
+    "url": "https://github.com/SheetJS/printj/issues"
+  },
+  "config": {
+    "blanket": {
+      "pattern": "printj.js"
+    }
+  },
+  "dependencies": {},
+  "description": "Pure-JS printf",
+  "devDependencies": {
+    "@sheetjs/uglify-js": "~2.7.3",
+    "@types/node": "^8.0.7",
+    "blanket": "~1.2.3",
+    "dtslint": "^0.1.2",
+    "mocha": "~2.5.3",
+    "typescript": "2.2.0"
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
+  "files": [
+    "printj.js",
+    "bin/printj.njs",
+    "LICENSE",
+    "README.md",
+    "dist/*.js",
+    "dist/*.map",
+    "dist/LICENSE",
+    "types/index.d.ts",
+    "types/*.json"
+  ],
+  "homepage": "http://sheetjs.com/opensource",
+  "keywords": [
+    "printf",
+    "sprintf",
+    "format",
+    "string"
+  ],
+  "license": "Apache-2.0",
+  "main": "./printj",
+  "name": "printj",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SheetJS/printj.git"
+  },
+  "scripts": {
+    "build": "make",
+    "dtslint": "dtslint types",
+    "lint": "make fullint",
+    "test": "make test"
+  },
+  "types": "types",
+  "version": "1.1.2"
+}

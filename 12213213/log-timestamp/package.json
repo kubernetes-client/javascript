@@ -1,0 +1,66 @@
+{
+  "_args": [
+    [
+      "log-timestamp@0.3.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "log-timestamp@0.3.0",
+  "_id": "log-timestamp@0.3.0",
+  "_inBundle": false,
+  "_integrity": "sha512-luRz6soxijd1aJh0GkLXFjKABihxthvTfWTzu3XhCgg5EivG2bsTpSd63QFbUgS+/KmFtL+0RfSpeaD2QvOV8Q==",
+  "_location": "/log-timestamp",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "log-timestamp@0.3.0",
+    "name": "log-timestamp",
+    "escapedName": "log-timestamp",
+    "rawSpec": "0.3.0",
+    "saveSpec": null,
+    "fetchSpec": "0.3.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/log-timestamp/-/log-timestamp-0.3.0.tgz",
+  "_spec": "0.3.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Dave Eddy",
+    "email": "dave@daveeddy.com",
+    "url": "http://www.daveeddy.com"
+  },
+  "bugs": {
+    "url": "https://github.com/bahamas10/node-log-timestamp/issues"
+  },
+  "contributors": [],
+  "dependencies": {
+    "log-prefix": "0.1.1"
+  },
+  "description": "Prepend timestamps to functions like console.log, console.warn, etc",
+  "devDependencies": {},
+  "engines": {
+    "node": "*"
+  },
+  "homepage": "https://github.com/bahamas10/node-log-timestamp#readme",
+  "keywords": [
+    "console",
+    "console.log",
+    "log",
+    "logger",
+    "timestamp"
+  ],
+  "main": "./log-timestamp.js",
+  "name": "log-timestamp",
+  "optionalDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bahamas10/node-log-timestamp.git"
+  },
+  "scripts": {
+    "test": "for f in tests/*; do echo \"$f\"; node \"$f\"; done; echo 'passed!'; exit 0"
+  },
+  "version": "0.3.0"
+}

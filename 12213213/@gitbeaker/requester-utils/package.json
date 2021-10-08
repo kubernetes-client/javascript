@@ -1,0 +1,80 @@
+{
+  "_args": [
+    [
+      "@gitbeaker/requester-utils@32.1.1",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@gitbeaker/requester-utils@32.1.1",
+  "_id": "@gitbeaker/requester-utils@32.1.1",
+  "_inBundle": false,
+  "_integrity": "sha512-DvFzYWi2ZZGGEeV9DBYWfgVvFlJ34bTvSEuiGZGa0yytQAq5ilK1yLGTzUqFYc+uztBjcKY6L5Ohq06WQJSpoA==",
+  "_location": "/@gitbeaker/requester-utils",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@gitbeaker/requester-utils@32.1.1",
+    "name": "@gitbeaker/requester-utils",
+    "escapedName": "@gitbeaker%2frequester-utils",
+    "scope": "@gitbeaker",
+    "rawSpec": "32.1.1",
+    "saveSpec": null,
+    "fetchSpec": "32.1.1"
+  },
+  "_requiredBy": [
+    "/@gitbeaker/core",
+    "/@gitbeaker/node"
+  ],
+  "_resolved": "https://registry.npmjs.org/@gitbeaker/requester-utils/-/requester-utils-32.1.1.tgz",
+  "_spec": "32.1.1",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Justin Dalrymple"
+  },
+  "bugs": {
+    "url": "https://github.com/jdalrymple/gitbeaker/issues"
+  },
+  "dependencies": {
+    "form-data": "^4.0.0",
+    "query-string": "^7.0.0",
+    "xcase": "^2.0.1"
+  },
+  "description": "Utility functions for requester implementatons used in @gitbeaker",
+  "devDependencies": {
+    "@types/node": "^16.0.0",
+    "jest-extended": "^0.11.5",
+    "rollup": "^2.47.0",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "tslib": "^2.2.0",
+    "typescript": "^4.2.4"
+  },
+  "engines": {
+    "node": ">=10.19.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "gitHead": "ede5fef604a7457234f187eaa15d496902b48ade",
+  "homepage": "https://github.com/jdalrymple/gitbeaker#readme",
+  "keywords": [
+    "gitbeaker",
+    "es5",
+    "es6"
+  ],
+  "license": "MIT",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "name": "@gitbeaker/requester-utils",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jdalrymple/gitbeaker.git"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "test:integration": "jest test/integration",
+    "test:unit": "jest test/unit"
+  },
+  "types": "dist/types",
+  "version": "32.1.1"
+}

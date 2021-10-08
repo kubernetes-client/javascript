@@ -1,0 +1,86 @@
+{
+  "_args": [
+    [
+      "@aws-sdk/signature-v4@3.25.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@aws-sdk/signature-v4@3.25.0",
+  "_id": "@aws-sdk/signature-v4@3.25.0",
+  "_inBundle": false,
+  "_integrity": "sha512-6KDRRz9XVrj9RxrBLC6dzfnb2TDl3CjIzcNpLdRuKFgzEEdwV+5D+EZuAQU3MuHG5pWTIwG72k/dmCbJ2MDPUQ==",
+  "_location": "/@aws-sdk/signature-v4",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@aws-sdk/signature-v4@3.25.0",
+    "name": "@aws-sdk/signature-v4",
+    "escapedName": "@aws-sdk%2fsignature-v4",
+    "scope": "@aws-sdk",
+    "rawSpec": "3.25.0",
+    "saveSpec": null,
+    "fetchSpec": "3.25.0"
+  },
+  "_requiredBy": [
+    "/@aws-sdk/config-resolver",
+    "/@aws-sdk/middleware-sdk-sts",
+    "/@aws-sdk/middleware-signing"
+  ],
+  "_resolved": "https://registry.npmjs.org/@aws-sdk/signature-v4/-/signature-v4-3.25.0.tgz",
+  "_spec": "3.25.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "AWS SDK for JavaScript Team",
+    "url": "https://aws.amazon.com/javascript/"
+  },
+  "bugs": {
+    "url": "https://github.com/aws/aws-sdk-js-v3/issues"
+  },
+  "dependencies": {
+    "@aws-sdk/is-array-buffer": "3.23.0",
+    "@aws-sdk/types": "3.25.0",
+    "@aws-sdk/util-hex-encoding": "3.23.0",
+    "@aws-sdk/util-uri-escape": "3.23.0",
+    "tslib": "^2.3.0"
+  },
+  "description": "A standalone implementation of the AWS Signature V4 request signing algorithm",
+  "devDependencies": {
+    "@aws-crypto/sha256-js": "^1.0.0",
+    "@aws-sdk/protocol-http": "3.25.0",
+    "@aws-sdk/util-buffer-from": "3.23.0",
+    "@types/jest": "^26.0.4",
+    "jest": "^26.1.0",
+    "typescript": "~4.3.2"
+  },
+  "engines": {
+    "node": ">= 10.0.0"
+  },
+  "homepage": "https://github.com/aws/aws-sdk-js-v3/tree/main/packages/signature-v4",
+  "license": "Apache-2.0",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/es/index.js",
+  "name": "@aws-sdk/signature-v4",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aws/aws-sdk-js-v3.git",
+    "directory": "packages/signature-v4"
+  },
+  "scripts": {
+    "build": "yarn build:es && yarn build:cjs",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:es": "tsc -p tsconfig.es.json",
+    "downlevel-dts": "downlevel-dts dist/types dist/types/ts3.4",
+    "pretest": "yarn build",
+    "test": "jest --coverage"
+  },
+  "types": "./dist/types/index.d.ts",
+  "typesVersions": {
+    "<4.0": {
+      "dist/types/*": [
+        "dist/types/ts3.4/*"
+      ]
+    }
+  },
+  "version": "3.25.0"
+}

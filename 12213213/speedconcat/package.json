@@ -1,0 +1,57 @@
+{
+  "_args": [
+    [
+      "speedconcat@1.0.2",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "speedconcat@1.0.2",
+  "_id": "speedconcat@1.0.2",
+  "_inBundle": false,
+  "_integrity": "sha1-1PVSp712PK1ywY4tnwjclB8AK+I=",
+  "_location": "/speedconcat",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "speedconcat@1.0.2",
+    "name": "speedconcat",
+    "escapedName": "speedconcat",
+    "rawSpec": "1.0.2",
+    "saveSpec": null,
+    "fetchSpec": "1.0.2"
+  },
+  "_requiredBy": [
+    "/node-virustotal"
+  ],
+  "_resolved": "https://registry.npmjs.org/speedconcat/-/speedconcat-1.0.2.tgz",
+  "_spec": "1.0.2",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Nate Watson",
+    "email": "natewatson999@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/natewatson999/speedconcat/issues"
+  },
+  "description": "Provides faster concatenation of large numbers of strings.",
+  "homepage": "https://github.com/natewatson999/speedconcat#readme",
+  "keywords": [
+    "string",
+    "concatenation",
+    "speed",
+    "concat",
+    "speedconcat"
+  ],
+  "license": "MIT",
+  "main": "code.js",
+  "name": "speedconcat",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natewatson999/speedconcat.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.2"
+}

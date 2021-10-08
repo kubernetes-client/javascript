@@ -1,0 +1,89 @@
+{
+  "_args": [
+    [
+      "emailjs@2.2.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "emailjs@2.2.0",
+  "_id": "emailjs@2.2.0",
+  "_inBundle": false,
+  "_integrity": "sha1-ulsj5KSwpFEPZS6HOxVOlAe2ygM=",
+  "_location": "/emailjs",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "emailjs@2.2.0",
+    "name": "emailjs",
+    "escapedName": "emailjs",
+    "rawSpec": "2.2.0",
+    "saveSpec": null,
+    "fetchSpec": "2.2.0"
+  },
+  "_requiredBy": [
+    "/node-virustotal"
+  ],
+  "_resolved": "https://registry.npmjs.org/emailjs/-/emailjs-2.2.0.tgz",
+  "_spec": "2.2.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "eleith"
+  },
+  "bugs": {
+    "url": "https://github.com/eleith/emailjs/issues"
+  },
+  "contributors": [
+    {
+      "name": "izuzak"
+    },
+    {
+      "name": "Hiverness"
+    },
+    {
+      "name": "mscdex"
+    },
+    {
+      "name": "jimmybergman"
+    },
+    {
+      "name": "zackschuster"
+    }
+  ],
+  "dependencies": {
+    "addressparser": "^0.3.2",
+    "emailjs-mime-codec": "^2.0.7"
+  },
+  "description": "send text/html emails and attachments (files, streams and strings) from node.js to any smtp server",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "eslint": "^4.19.1",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-mocha": "^5.0.0",
+    "eslint-plugin-prettier": "^2.6.0",
+    "mailparser": "^2.2.0",
+    "mocha": "^5.2.0",
+    "prettier": "^1.13.5",
+    "smtp-server": "^3.4.6"
+  },
+  "engine": [
+    "node >= 6"
+  ],
+  "homepage": "https://github.com/eleith/emailjs#readme",
+  "license": "MIT",
+  "main": "email.js",
+  "name": "emailjs",
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "useTabs": true
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/eleith/emailjs.git"
+  },
+  "scripts": {
+    "test": "mocha -R spec"
+  },
+  "version": "2.2.0"
+}

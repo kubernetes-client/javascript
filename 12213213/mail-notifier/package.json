@@ -1,0 +1,57 @@
+{
+  "_args": [
+    [
+      "mail-notifier@0.3.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "mail-notifier@0.3.0",
+  "_id": "mail-notifier@0.3.0",
+  "_inBundle": false,
+  "_integrity": "sha1-drhsopga0Ws8fLXz7r9lZr9HeqU=",
+  "_location": "/mail-notifier",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "mail-notifier@0.3.0",
+    "name": "mail-notifier",
+    "escapedName": "mail-notifier",
+    "rawSpec": "0.3.0",
+    "saveSpec": null,
+    "fetchSpec": "0.3.0"
+  },
+  "_requiredBy": [
+    "/node-virustotal"
+  ],
+  "_resolved": "https://registry.npmjs.org/mail-notifier/-/mail-notifier-0.3.0.tgz",
+  "_spec": "0.3.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "jerome creignou",
+    "url": "https://github.com/jcreigno/nodejs-mail-notifier"
+  },
+  "bugs": {
+    "url": "https://github.com/jcreigno/nodejs-mail-notifier/issues"
+  },
+  "dependencies": {
+    "debug": "^2.2.0",
+    "imap": "~0.8.9",
+    "mailparser": "~0.4"
+  },
+  "description": "Nodejs library to get notified on new incoming email.",
+  "devDependencies": {},
+  "homepage": "https://github.com/jcreigno/nodejs-mail-notifier#readme",
+  "keywords": [
+    "imap",
+    "mail",
+    "notifier"
+  ],
+  "main": "./index.js",
+  "name": "mail-notifier",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jcreigno/nodejs-mail-notifier.git"
+  },
+  "version": "0.3.0"
+}

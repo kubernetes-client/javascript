@@ -1,0 +1,87 @@
+{
+  "_from": "request-promise@^4.1.1",
+  "_id": "request-promise@4.2.6",
+  "_inBundle": false,
+  "_integrity": "sha512-HCHI3DJJUakkOr8fNoCc73E5nU5bqITjOYFMDrKHYOXWXrgD/SBaC7LjwuPymUprRyuF06UK7hd/lMHkmUXglQ==",
+  "_location": "/request-promise",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "request-promise@^4.1.1",
+    "name": "request-promise",
+    "escapedName": "request-promise",
+    "rawSpec": "^4.1.1",
+    "saveSpec": null,
+    "fetchSpec": "^4.1.1"
+  },
+  "_requiredBy": [
+    "/jira-client"
+  ],
+  "_resolved": "https://registry.npmjs.org/request-promise/-/request-promise-4.2.6.tgz",
+  "_shasum": "7e7e5b9578630e6f598e3813c0f8eb342a27f0a2",
+  "_spec": "request-promise@^4.1.1",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc\\node_modules\\jira-client",
+  "author": {
+    "name": "Nicolai Kamenzky",
+    "url": "https://github.com/analog-nico"
+  },
+  "bugs": {
+    "url": "https://github.com/request/request-promise/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "request-promise-core": "1.1.4",
+    "stealthy-require": "^1.1.1",
+    "tough-cookie": "^2.3.3"
+  },
+  "deprecated": "request-promise has been deprecated because it extends the now deprecated request package, see https://github.com/request/request/issues/3142",
+  "description": "The simplified HTTP request client 'request' with Promise support. Powered by Bluebird.",
+  "devDependencies": {
+    "body-parser": "~1.15.2",
+    "chai": "~3.5.0",
+    "chalk": "~1.1.3",
+    "gulp": "~3.9.1",
+    "gulp-coveralls": "~0.1.4",
+    "gulp-eslint": "~2.1.0",
+    "gulp-istanbul": "~1.0.0",
+    "gulp-mocha": "~2.2.0",
+    "lodash": "~4.13.1",
+    "publish-please": "~2.1.4",
+    "request": "^2.34.0",
+    "rimraf": "~2.5.3",
+    "run-sequence": "~1.2.2"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "homepage": "https://github.com/request/request-promise#readme",
+  "keywords": [
+    "xhr",
+    "http",
+    "https",
+    "promise",
+    "request",
+    "then",
+    "thenable",
+    "bluebird"
+  ],
+  "license": "ISC",
+  "main": "./lib/rp.js",
+  "name": "request-promise",
+  "peerDependencies": {
+    "request": "^2.34"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/request/request-promise.git"
+  },
+  "scripts": {
+    "prepublish": "publish-please guard",
+    "publish-please": "publish-please",
+    "test": "gulp ci",
+    "test-publish": "gulp ci-no-cov"
+  },
+  "version": "4.2.6"
+}

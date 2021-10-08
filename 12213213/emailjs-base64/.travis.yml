@@ -1,0 +1,9 @@
+language: node_js
+sudo: false
+node_js:
+  - lts/*
+notifications:
+  email:
+    recipients:
+      - felix.hammerl@gmail.com
+      - andris.reinman@gmail.com

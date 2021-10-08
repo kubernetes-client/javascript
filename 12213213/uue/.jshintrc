@@ -1,0 +1,14 @@
+{
+"node": true,
+"bitwise": true,
+"eqeqeq": true,
+"forin": true,
+"immed": true,
+"indent": 3,
+"latedef": true,
+"noarg": true,
+"undef": true,
+"unused": "strict",
+"trailing": true,
+"maxlen": 78
+}

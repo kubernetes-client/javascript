@@ -1,0 +1,103 @@
+{
+  "_args": [
+    [
+      "@szmarczak/http-timer@4.0.6",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@szmarczak/http-timer@4.0.6",
+  "_id": "@szmarczak/http-timer@4.0.6",
+  "_inBundle": false,
+  "_integrity": "sha512-4BAffykYOgO+5nzBWYwE3W90sBgLJoUPRWWcL8wlyiM8IB8ipJz3UMJ9KXQd1RKQXpKp8Tutn80HZtWsu2u76w==",
+  "_location": "/@szmarczak/http-timer",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@szmarczak/http-timer@4.0.6",
+    "name": "@szmarczak/http-timer",
+    "escapedName": "@szmarczak%2fhttp-timer",
+    "scope": "@szmarczak",
+    "rawSpec": "4.0.6",
+    "saveSpec": null,
+    "fetchSpec": "4.0.6"
+  },
+  "_requiredBy": [
+    "/got"
+  ],
+  "_resolved": "https://registry.npmjs.org/@szmarczak/http-timer/-/http-timer-4.0.6.tgz",
+  "_spec": "4.0.6",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Szymon Marczak"
+  },
+  "ava": {
+    "typescript": {
+      "compile": false,
+      "rewritePaths": {
+        "tests/": "dist/tests/"
+      }
+    }
+  },
+  "bugs": {
+    "url": "https://github.com/szmarczak/http-timer/issues"
+  },
+  "dependencies": {
+    "defer-to-connect": "^2.0.0"
+  },
+  "description": "Timings for HTTP requests",
+  "devDependencies": {
+    "@ava/typescript": "^2.0.0",
+    "@sindresorhus/tsconfig": "^1.0.2",
+    "@types/node": "^16.3.1",
+    "ava": "^3.15.0",
+    "coveralls": "^3.1.1",
+    "del-cli": "^3.0.1",
+    "http2-wrapper": "^2.0.7",
+    "nyc": "^15.1.0",
+    "p-event": "^4.2.0",
+    "typescript": "^4.3.5",
+    "xo": "^0.39.1"
+  },
+  "engines": {
+    "node": ">=10"
+  },
+  "files": [
+    "dist/source"
+  ],
+  "homepage": "https://github.com/szmarczak/http-timer#readme",
+  "keywords": [
+    "http",
+    "https",
+    "timer",
+    "timings"
+  ],
+  "license": "MIT",
+  "main": "dist/source",
+  "name": "@szmarczak/http-timer",
+  "nyc": {
+    "extension": [
+      ".ts"
+    ],
+    "exclude": [
+      "**/tests/**"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/szmarczak/http-timer.git"
+  },
+  "scripts": {
+    "build": "del-cli dist && tsc",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "prepare": "npm run build",
+    "test": "xo && tsc --noEmit && nyc ava"
+  },
+  "types": "dist/source",
+  "version": "4.0.6",
+  "xo": {
+    "rules": {
+      "@typescript-eslint/no-non-null-assertion": "off"
+    }
+  }
+}

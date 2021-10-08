@@ -1,0 +1,80 @@
+{
+  "_args": [
+    [
+      "@aws-sdk/middleware-stack@3.25.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@aws-sdk/middleware-stack@3.25.0",
+  "_id": "@aws-sdk/middleware-stack@3.25.0",
+  "_inBundle": false,
+  "_integrity": "sha512-s2VgdsasOVKHY3/SIGsw9AeZMMsdcIbBGWim9n5IO3j8C8y54EdRLVCEja8ePvMDZKIzuummwatYPHaUrnqPtQ==",
+  "_location": "/@aws-sdk/middleware-stack",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@aws-sdk/middleware-stack@3.25.0",
+    "name": "@aws-sdk/middleware-stack",
+    "escapedName": "@aws-sdk%2fmiddleware-stack",
+    "scope": "@aws-sdk",
+    "rawSpec": "3.25.0",
+    "saveSpec": null,
+    "fetchSpec": "3.25.0"
+  },
+  "_requiredBy": [
+    "/@aws-sdk/client-ecr-public",
+    "/@aws-sdk/client-sso",
+    "/@aws-sdk/client-sts",
+    "/@aws-sdk/smithy-client"
+  ],
+  "_resolved": "https://registry.npmjs.org/@aws-sdk/middleware-stack/-/middleware-stack-3.25.0.tgz",
+  "_spec": "3.25.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "AWS SDK for JavaScript Team",
+    "url": "https://aws.amazon.com/javascript/"
+  },
+  "bugs": {
+    "url": "https://github.com/aws/aws-sdk-js-v3/issues"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "description": "Provides a means for composing multiple middleware functions into a single handler",
+  "devDependencies": {
+    "@aws-sdk/types": "3.25.0",
+    "@types/jest": "^26.0.4",
+    "jest": "^26.1.0",
+    "typescript": "~4.3.2"
+  },
+  "engines": {
+    "node": ">= 10.0.0"
+  },
+  "homepage": "https://github.com/aws/aws-sdk-js-v3/tree/main/packages/middleware-stack",
+  "license": "Apache-2.0",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/es/index.js",
+  "name": "@aws-sdk/middleware-stack",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aws/aws-sdk-js-v3.git",
+    "directory": "packages/middleware-stack"
+  },
+  "scripts": {
+    "build": "yarn build:es && yarn build:cjs",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:es": "tsc -p tsconfig.es.json",
+    "downlevel-dts": "downlevel-dts dist/types dist/types/ts3.4",
+    "test": "jest"
+  },
+  "types": "./dist/types/index.d.ts",
+  "typesVersions": {
+    "<4.0": {
+      "dist/types/*": [
+        "dist/types/ts3.4/*"
+      ]
+    }
+  },
+  "version": "3.25.0"
+}

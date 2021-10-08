@@ -1,0 +1,36 @@
+# Packages
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# Logs and databases
+*.log
+*.sql
+*.sqlite
+
+# Windows image file caches
+Thumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Other OS generated files
+.DS_Store*
+ehthumbs.db
+Icon?
+
+# Node.js modules
+node_modules
+
+# NPM error logs
+npm-debug.log
+
+# .npmignore should ignore tests and Git stuff
+test
+.gitignore
+.git

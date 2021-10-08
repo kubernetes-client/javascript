@@ -1,0 +1,62 @@
+{
+  "_from": "language-map",
+  "_id": "language-map@1.4.0",
+  "_inBundle": false,
+  "_integrity": "sha512-5XHMCqKQ/14VXwJTKZX7MZwsVyTrR0bwCsRBwrBq3nP4w7liMJiR0ixXgI29EF/T1/U6be8cYK2y0ibWW9kx2w==",
+  "_location": "/language-map",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "language-map",
+    "name": "language-map",
+    "escapedName": "language-map",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/language-map/-/language-map-1.4.0.tgz",
+  "_shasum": "d41e51100274df587865819af6837b7dfbdfb220",
+  "_spec": "language-map",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Blake Embrey",
+    "email": "hello@blakeembrey.com",
+    "url": "http://blakeembrey.me"
+  },
+  "bugs": {
+    "url": "https://github.com/blakeembrey/language-map/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "GitHub's Linguist YAML language map provided as JSON",
+  "devDependencies": {
+    "camel-case": "^3.0.0",
+    "istanbul": "^0.4.5",
+    "js-yaml": "^3.0.2",
+    "mocha": "^5.2.0",
+    "request": "^2.34.0"
+  },
+  "homepage": "https://github.com/blakeembrey/language-map",
+  "keywords": [
+    "language",
+    "map",
+    "linguist"
+  ],
+  "license": "MIT",
+  "main": "languages.json",
+  "name": "language-map",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/blakeembrey/language-map.git"
+  },
+  "scripts": {
+    "build": "node scripts/build",
+    "test": "istanbul cover node_modules/mocha/bin/_mocha -- -R spec --bail"
+  },
+  "version": "1.4.0"
+}

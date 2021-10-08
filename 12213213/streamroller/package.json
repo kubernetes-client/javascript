@@ -1,0 +1,106 @@
+{
+  "_args": [
+    [
+      "streamroller@2.2.4",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "streamroller@2.2.4",
+  "_id": "streamroller@2.2.4",
+  "_inBundle": false,
+  "_integrity": "sha512-OG79qm3AujAM9ImoqgWEY1xG4HX+Lw+yY6qZj9R1K2mhF5bEmQ849wvrb+4vt4jLMLzwXttJlQbOdPOQVRv7DQ==",
+  "_location": "/streamroller",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "streamroller@2.2.4",
+    "name": "streamroller",
+    "escapedName": "streamroller",
+    "rawSpec": "2.2.4",
+    "saveSpec": null,
+    "fetchSpec": "2.2.4"
+  },
+  "_requiredBy": [
+    "/log4js"
+  ],
+  "_resolved": "https://registry.npmjs.org/streamroller/-/streamroller-2.2.4.tgz",
+  "_spec": "2.2.4",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Gareth Jones",
+    "email": "gareth.nomiddlename@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/nomiddlename/streamroller/issues"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "dependencies": {
+    "date-format": "^2.1.0",
+    "debug": "^4.1.1",
+    "fs-extra": "^8.1.0"
+  },
+  "description": "file streams that roll over when size limits, or dates are reached",
+  "devDependencies": {
+    "@commitlint/cli": "^8.1.0",
+    "@commitlint/config-conventional": "^8.1.0",
+    "eslint": "^6.0.1",
+    "husky": "^3.0.0",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
+    "proxyquire": "^2.1.1",
+    "should": "^13.2.3"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "engines": {
+    "node": ">=8.0"
+  },
+  "eslintConfig": {
+    "env": {
+      "browser": false,
+      "node": true,
+      "es6": true,
+      "mocha": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 8
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+      "no-console": "off"
+    }
+  },
+  "gitHead": "ece35d7d86c87c04ff09e8604accae81cf36a0ce",
+  "homepage": "https://github.com/nomiddlename/streamroller#readme",
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -e $HUSKY_GIT_PARAMS"
+    }
+  },
+  "keywords": [
+    "stream",
+    "rolling"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "name": "streamroller",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nomiddlename/streamroller.git"
+  },
+  "scripts": {
+    "clean": "rm -rf node_modules/",
+    "codecheck": "eslint \"lib/*.js\" \"test/*.js\"",
+    "html-report": "nyc report --reporter=html",
+    "prepublishOnly": "npm test",
+    "pretest": "npm run codecheck",
+    "test": "nyc --check-coverage --lines 100 --branches 100 --functions 100 mocha"
+  },
+  "version": "2.2.4"
+}

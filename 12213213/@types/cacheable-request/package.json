@@ -1,0 +1,65 @@
+{
+  "_args": [
+    [
+      "@types/cacheable-request@6.0.2",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@types/cacheable-request@6.0.2",
+  "_id": "@types/cacheable-request@6.0.2",
+  "_inBundle": false,
+  "_integrity": "sha512-B3xVo+dlKM6nnKTcmm5ZtY/OL8bOAOd2Olee9M1zft65ox50OzjEHW91sDiU9j6cvW8Ejg1/Qkf4xd2kugApUA==",
+  "_location": "/@types/cacheable-request",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@types/cacheable-request@6.0.2",
+    "name": "@types/cacheable-request",
+    "escapedName": "@types%2fcacheable-request",
+    "scope": "@types",
+    "rawSpec": "6.0.2",
+    "saveSpec": null,
+    "fetchSpec": "6.0.2"
+  },
+  "_requiredBy": [
+    "/got"
+  ],
+  "_resolved": "https://registry.npmjs.org/@types/cacheable-request/-/cacheable-request-6.0.2.tgz",
+  "_spec": "6.0.2",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "bugs": {
+    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
+  },
+  "contributors": [
+    {
+      "name": "BendingBender",
+      "url": "https://github.com/BendingBender"
+    },
+    {
+      "name": "Paul Melnikow",
+      "url": "https://github.com/paulmelnikow"
+    }
+  ],
+  "dependencies": {
+    "@types/http-cache-semantics": "*",
+    "@types/keyv": "*",
+    "@types/node": "*",
+    "@types/responselike": "*"
+  },
+  "description": "TypeScript definitions for cacheable-request",
+  "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/cacheable-request",
+  "license": "MIT",
+  "main": "",
+  "name": "@types/cacheable-request",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+    "directory": "types/cacheable-request"
+  },
+  "scripts": {},
+  "typeScriptVersion": "3.6",
+  "types": "index.d.ts",
+  "typesPublisherContentHash": "5bc07db78df7c21a4d6250dbb806ad088df376f7ed46c63b60bb0e08488dcdc4",
+  "version": "6.0.2"
+}

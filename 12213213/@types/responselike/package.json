@@ -1,0 +1,58 @@
+{
+  "_args": [
+    [
+      "@types/responselike@1.0.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@types/responselike@1.0.0",
+  "_id": "@types/responselike@1.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-85Y2BjiufFzaMIlvJDvTTB8Fxl2xfLo4HgmHzVBz08w4wDePCTjYw66PdrolO0kzli3yam/YCgRufyo1DdQVTA==",
+  "_location": "/@types/responselike",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@types/responselike@1.0.0",
+    "name": "@types/responselike",
+    "escapedName": "@types%2fresponselike",
+    "scope": "@types",
+    "rawSpec": "1.0.0",
+    "saveSpec": null,
+    "fetchSpec": "1.0.0"
+  },
+  "_requiredBy": [
+    "/@types/cacheable-request",
+    "/got"
+  ],
+  "_resolved": "https://registry.npmjs.org/@types/responselike/-/responselike-1.0.0.tgz",
+  "_spec": "1.0.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "bugs": {
+    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
+  },
+  "contributors": [
+    {
+      "name": "BendingBender",
+      "url": "https://github.com/BendingBender"
+    }
+  ],
+  "dependencies": {
+    "@types/node": "*"
+  },
+  "description": "TypeScript definitions for responselike",
+  "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped#readme",
+  "license": "MIT",
+  "main": "",
+  "name": "@types/responselike",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+  },
+  "scripts": {},
+  "typeScriptVersion": "2.0",
+  "types": "index",
+  "typesPublisherContentHash": "38ee8db1511cdb4a9133ff67b8bc16901de733aa4dc1efffdb5064b7daaa3f21",
+  "version": "1.0.0"
+}

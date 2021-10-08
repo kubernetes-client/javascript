@@ -1,0 +1,82 @@
+{
+  "_args": [
+    [
+      "emailjs-base64@1.1.4",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "emailjs-base64@1.1.4",
+  "_id": "emailjs-base64@1.1.4",
+  "_inBundle": false,
+  "_integrity": "sha512-4h0xp1jgVTnIQBHxSJWXWanNnmuc5o+k4aHEpcLXSToN8asjB5qbXAexs7+PEsUKcEyBteNYsSvXUndYT2CGGA==",
+  "_location": "/emailjs-base64",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "emailjs-base64@1.1.4",
+    "name": "emailjs-base64",
+    "escapedName": "emailjs-base64",
+    "rawSpec": "1.1.4",
+    "saveSpec": null,
+    "fetchSpec": "1.1.4"
+  },
+  "_requiredBy": [
+    "/emailjs-mime-codec"
+  ],
+  "_resolved": "https://registry.npmjs.org/emailjs-base64/-/emailjs-base64-1.1.4.tgz",
+  "_spec": "1.1.4",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Felix Hammerl",
+    "email": "felix.hammerl@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/emailjs/emailjs-base64/issues"
+  },
+  "description": "Safe Base64 de/encoding to and from strings and typed arrays",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "mocha": "^4.0.1",
+    "nodemon": "^1.12.1",
+    "pre-commit": "^1.2.2",
+    "standard": "^10.0.3"
+  },
+  "homepage": "https://github.com/emailjs/emailjs-base64",
+  "keywords": [
+    "base64"
+  ],
+  "license": "MIT",
+  "main": "./dist/base64",
+  "name": "emailjs-base64",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/emailjs/emailjs-base64.git"
+  },
+  "scripts": {
+    "build": "./scripts/build.sh",
+    "lint": "$(npm bin)/standard",
+    "release": "./scripts/release.sh",
+    "test": "npm run lint && npm run unit",
+    "test-watch": "$(npm bin)/mocha './src/*-unit.js' --reporter spec --require babel-register testutils.js --watch",
+    "unit": "$(npm bin)/mocha './src/*-unit.js' --reporter spec --require babel-register testutils.js"
+  },
+  "standard": {
+    "globals": [
+      "describe",
+      "it",
+      "before",
+      "beforeAll",
+      "afterAll",
+      "after",
+      "expect"
+    ],
+    "ignore": [
+      "dist"
+    ]
+  },
+  "version": "1.1.4"
+}

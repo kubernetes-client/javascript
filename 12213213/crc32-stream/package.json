@@ -1,0 +1,77 @@
+{
+  "_args": [
+    [
+      "crc32-stream@4.0.2",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "crc32-stream@4.0.2",
+  "_id": "crc32-stream@4.0.2",
+  "_inBundle": false,
+  "_integrity": "sha512-DxFZ/Hk473b/muq1VJ///PMNLj0ZMnzye9thBpmjpJKCc5eMgB95aK8zCGrGfQ90cWo561Te6HK9D+j4KPdM6w==",
+  "_location": "/crc32-stream",
+  "_phantomChildren": {
+    "inherits": "2.0.3",
+    "string_decoder": "1.1.1",
+    "util-deprecate": "1.0.2"
+  },
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "crc32-stream@4.0.2",
+    "name": "crc32-stream",
+    "escapedName": "crc32-stream",
+    "rawSpec": "4.0.2",
+    "saveSpec": null,
+    "fetchSpec": "4.0.2"
+  },
+  "_requiredBy": [
+    "/compress-commons"
+  ],
+  "_resolved": "https://registry.npmjs.org/crc32-stream/-/crc32-stream-4.0.2.tgz",
+  "_spec": "4.0.2",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Chris Talkington",
+    "url": "http://christalkington.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/archiverjs/node-crc32-stream/issues"
+  },
+  "dependencies": {
+    "crc-32": "^1.2.0",
+    "readable-stream": "^3.4.0"
+  },
+  "description": "a streaming CRC32 checksumer",
+  "devDependencies": {
+    "chai": "^4.0.0",
+    "mocha": "^8.0.1"
+  },
+  "engines": {
+    "node": ">= 10"
+  },
+  "files": [
+    "lib"
+  ],
+  "homepage": "https://github.com/archiverjs/node-crc32-stream",
+  "keywords": [
+    "crc32-stream",
+    "crc32",
+    "stream",
+    "checksum"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "name": "crc32-stream",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/archiverjs/node-crc32-stream.git"
+  },
+  "scripts": {
+    "test": "mocha --reporter dot"
+  },
+  "version": "4.0.2"
+}

@@ -1,0 +1,56 @@
+{
+  "_args": [
+    [
+      "addressparser@0.3.2",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "addressparser@0.3.2",
+  "_id": "addressparser@0.3.2",
+  "_inBundle": false,
+  "_integrity": "sha1-WYc/Nej89sc2HBAjkmHXbhU0i7I=",
+  "_location": "/addressparser",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "addressparser@0.3.2",
+    "name": "addressparser",
+    "escapedName": "addressparser",
+    "rawSpec": "0.3.2",
+    "saveSpec": null,
+    "fetchSpec": "0.3.2"
+  },
+  "_requiredBy": [
+    "/emailjs"
+  ],
+  "_resolved": "https://registry.npmjs.org/addressparser/-/addressparser-0.3.2.tgz",
+  "_spec": "0.3.2",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Andris Reinman"
+  },
+  "bugs": {
+    "url": "https://github.com/andris9/addressparser/issues"
+  },
+  "description": "Parse e-mail addresses",
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-mocha-test": "^0.12.4",
+    "mocha": "^2.1.0"
+  },
+  "homepage": "https://github.com/andris9/addressparser#readme",
+  "license": "MIT",
+  "main": "src/addressparser.js",
+  "name": "addressparser",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andris9/addressparser.git"
+  },
+  "scripts": {
+    "test": "grunt"
+  },
+  "version": "0.3.2"
+}

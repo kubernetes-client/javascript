@@ -1,0 +1,117 @@
+{
+  "_args": [
+    [
+      "ky@0.16.2",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "ky@0.16.2",
+  "_id": "ky@0.16.2",
+  "_inBundle": false,
+  "_integrity": "sha512-4/Xcb0hqeueNX9sa+G2jREiam9yb+I2Y3p3J42lIeitAenHXUZwpyejEgeQcQsaGl+hbuA0s7c3u+nlcIYFtog==",
+  "_location": "/ky",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "ky@0.16.2",
+    "name": "ky",
+    "escapedName": "ky",
+    "rawSpec": "0.16.2",
+    "saveSpec": null,
+    "fetchSpec": "0.16.2"
+  },
+  "_requiredBy": [
+    "/gitlab"
+  ],
+  "_resolved": "https://registry.npmjs.org/ky/-/ky-0.16.2.tgz",
+  "_spec": "0.16.2",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "ava": {
+    "babel": false,
+    "compileEnhancements": false,
+    "require": [
+      "esm",
+      "./test/_require"
+    ]
+  },
+  "bugs": {
+    "url": "https://github.com/sindresorhus/ky/issues"
+  },
+  "description": "Tiny and elegant HTTP client based on the browser Fetch API",
+  "devDependencies": {
+    "abort-controller": "^3.0.0",
+    "ava": "^1.4.1",
+    "body": "^5.1.0",
+    "codecov": "^3.4.0",
+    "create-test-server": "2.1.1",
+    "delay": "^4.1.0",
+    "esm": "^3.2.22",
+    "form-data": "^3.0.0",
+    "node-fetch": "^2.5.0",
+    "nyc": "^14.1.1",
+    "puppeteer": "^1.15.0",
+    "rollup": "^1.27.0",
+    "tsd": "^0.11.0",
+    "xo": "^0.25.3"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "umd.js",
+    "umd.d.ts"
+  ],
+  "funding": "https://github.com/sindresorhus/ky?sponsor=1",
+  "homepage": "https://github.com/sindresorhus/ky#readme",
+  "keywords": [
+    "fetch",
+    "request",
+    "requests",
+    "http",
+    "https",
+    "fetching",
+    "get",
+    "url",
+    "curl",
+    "wget",
+    "net",
+    "network",
+    "ajax",
+    "api",
+    "rest",
+    "xhr",
+    "browser",
+    "got",
+    "axios",
+    "node-fetch"
+  ],
+  "license": "MIT",
+  "name": "ky",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sindresorhus/ky.git"
+  },
+  "scripts": {
+    "build": "rollup index.js --format=umd --name=ky --file=umd.js",
+    "prepare": "npm run build",
+    "test": "xo && npm run build && nyc ava && tsd"
+  },
+  "sideEffects": false,
+  "version": "0.16.2",
+  "xo": {
+    "envs": [
+      "browser"
+    ],
+    "globals": [
+      "globalThis"
+    ]
+  }
+}

@@ -1,0 +1,40 @@
+{
+	"env": {
+		"es6": true,
+		"mocha": true,
+		"node": true
+	},
+	"plugins": [
+		"mocha"
+	],
+	"extends": [
+		"eslint:recommended",
+		"plugin:prettier/recommended"
+	],
+	"rules": {
+		"curly": [
+			"error",
+			"all"
+		],
+		"linebreak-style": [
+			"error",
+			"unix"
+		],
+		"no-case-declarations": "off",
+		"no-console": "off",
+		"no-unused-vars": [
+			"error",
+			{
+				"vars": "all",
+				"args": "none",
+				"ignoreRestSiblings": true
+			}
+		],
+		"valid-jsdoc": "error",
+		"mocha/handle-done-callback": "error",
+		"mocha/no-exclusive-tests": "error",
+		"mocha/no-global-tests": "error",
+		"mocha/no-mocha-arrows": "error",
+		"mocha/no-skipped-tests": "error"
+	}
+}

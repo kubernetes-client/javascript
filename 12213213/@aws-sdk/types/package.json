@@ -1,0 +1,106 @@
+{
+  "_args": [
+    [
+      "@aws-sdk/types@3.25.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@aws-sdk/types@3.25.0",
+  "_id": "@aws-sdk/types@3.25.0",
+  "_inBundle": false,
+  "_integrity": "sha512-vS0+cTKwj6CujlR07HmeEBxzWPWSrdmZMYnxn/QC9KW9dFu0lsyCGSCqWsFluI6GI0flsnYYWNkP5y4bfD9tqg==",
+  "_location": "/@aws-sdk/types",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@aws-sdk/types@3.25.0",
+    "name": "@aws-sdk/types",
+    "escapedName": "@aws-sdk%2ftypes",
+    "scope": "@aws-sdk",
+    "rawSpec": "3.25.0",
+    "saveSpec": null,
+    "fetchSpec": "3.25.0"
+  },
+  "_requiredBy": [
+    "/@aws-crypto/sha256-browser",
+    "/@aws-crypto/sha256-js",
+    "/@aws-sdk/abort-controller",
+    "/@aws-sdk/client-ecr-public",
+    "/@aws-sdk/client-sso",
+    "/@aws-sdk/client-sts",
+    "/@aws-sdk/config-resolver",
+    "/@aws-sdk/credential-provider-env",
+    "/@aws-sdk/credential-provider-imds",
+    "/@aws-sdk/credential-provider-ini",
+    "/@aws-sdk/credential-provider-node",
+    "/@aws-sdk/credential-provider-process",
+    "/@aws-sdk/credential-provider-sso",
+    "/@aws-sdk/credential-provider-web-identity",
+    "/@aws-sdk/fetch-http-handler",
+    "/@aws-sdk/hash-node",
+    "/@aws-sdk/invalid-dependency",
+    "/@aws-sdk/middleware-content-length",
+    "/@aws-sdk/middleware-host-header",
+    "/@aws-sdk/middleware-logger",
+    "/@aws-sdk/middleware-retry",
+    "/@aws-sdk/middleware-sdk-sts",
+    "/@aws-sdk/middleware-serde",
+    "/@aws-sdk/middleware-signing",
+    "/@aws-sdk/middleware-user-agent",
+    "/@aws-sdk/node-config-provider",
+    "/@aws-sdk/node-http-handler",
+    "/@aws-sdk/property-provider",
+    "/@aws-sdk/protocol-http",
+    "/@aws-sdk/querystring-builder",
+    "/@aws-sdk/querystring-parser",
+    "/@aws-sdk/signature-v4",
+    "/@aws-sdk/smithy-client",
+    "/@aws-sdk/url-parser",
+    "/@aws-sdk/util-user-agent-browser",
+    "/@aws-sdk/util-user-agent-node"
+  ],
+  "_resolved": "https://registry.npmjs.org/@aws-sdk/types/-/types-3.25.0.tgz",
+  "_spec": "3.25.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "AWS SDK for JavaScript Team",
+    "url": "https://aws.amazon.com/javascript/"
+  },
+  "bugs": {
+    "url": "https://github.com/aws/aws-sdk-js-v3/issues"
+  },
+  "description": "Types for the AWS SDK",
+  "devDependencies": {
+    "typescript": "~4.3.2"
+  },
+  "engines": {
+    "node": ">= 10.0.0"
+  },
+  "homepage": "https://github.com/aws/aws-sdk-js-v3/tree/main/packages/types",
+  "license": "Apache-2.0",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/es/index.js",
+  "name": "@aws-sdk/types",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aws/aws-sdk-js-v3.git",
+    "directory": "packages/types"
+  },
+  "scripts": {
+    "build": "yarn build:es && yarn build:cjs",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:es": "tsc -p tsconfig.es.json",
+    "downlevel-dts": "downlevel-dts dist/types dist/types/ts3.4",
+    "test": "exit 0"
+  },
+  "types": "./dist/types/index.d.ts",
+  "typesVersions": {
+    "<4.0": {
+      "dist/types/*": [
+        "dist/types/ts3.4/*"
+      ]
+    }
+  },
+  "version": "3.25.0"
+}

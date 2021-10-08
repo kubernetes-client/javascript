@@ -1,0 +1,83 @@
+{
+  "_args": [
+    [
+      "@octokit/plugin-request-log@1.0.4",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@octokit/plugin-request-log@1.0.4",
+  "_id": "@octokit/plugin-request-log@1.0.4",
+  "_inBundle": false,
+  "_integrity": "sha512-mLUsMkgP7K/cnFEw07kWqXGF5LKrOkD+lhCrKvPHXWDywAwuDUeDwWBpc69XK3pNX0uKiVt8g5z96PJ6z9xCFA==",
+  "_location": "/@octokit/plugin-request-log",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@octokit/plugin-request-log@1.0.4",
+    "name": "@octokit/plugin-request-log",
+    "escapedName": "@octokit%2fplugin-request-log",
+    "scope": "@octokit",
+    "rawSpec": "1.0.4",
+    "saveSpec": null,
+    "fetchSpec": "1.0.4"
+  },
+  "_requiredBy": [
+    "/@octokit/rest"
+  ],
+  "_resolved": "https://registry.npmjs.org/@octokit/plugin-request-log/-/plugin-request-log-1.0.4.tgz",
+  "_spec": "1.0.4",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "bugs": {
+    "url": "https://github.com/octokit/plugin-request-log.js/issues"
+  },
+  "dependencies": {},
+  "description": "Log all requests and request errors",
+  "devDependencies": {
+    "@octokit/core": "^3.0.0",
+    "@pika/pack": "^0.5.0",
+    "@pika/plugin-build-node": "^0.9.0",
+    "@pika/plugin-build-web": "^0.9.0",
+    "@pika/plugin-ts-standard-pkg": "^0.9.0",
+    "@types/fetch-mock": "^7.3.2",
+    "@types/jest": "^26.0.0",
+    "@types/node": "^14.0.4",
+    "fetch-mock": "^9.0.0",
+    "jest": "^27.0.0",
+    "prettier": "2.3.1",
+    "semantic-release": "^17.0.0",
+    "semantic-release-plugin-update-version-in-files": "^1.0.0",
+    "ts-jest": "^27.0.0-next.12",
+    "typescript": "^4.0.0"
+  },
+  "files": [
+    "dist-*/",
+    "bin/"
+  ],
+  "homepage": "https://github.com/octokit/plugin-request-log.js#readme",
+  "keywords": [
+    "github",
+    "api",
+    "sdk",
+    "toolkit"
+  ],
+  "license": "MIT",
+  "main": "dist-node/index.js",
+  "module": "dist-web/index.js",
+  "name": "@octokit/plugin-request-log",
+  "peerDependencies": {
+    "@octokit/core": ">=3"
+  },
+  "pika": true,
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/octokit/plugin-request-log.js.git"
+  },
+  "sideEffects": false,
+  "source": "dist-src/index.js",
+  "types": "dist-types/index.d.ts",
+  "version": "1.0.4"
+}

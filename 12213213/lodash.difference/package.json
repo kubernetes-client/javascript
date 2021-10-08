@@ -1,0 +1,72 @@
+{
+  "_args": [
+    [
+      "lodash.difference@4.5.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "lodash.difference@4.5.0",
+  "_id": "lodash.difference@4.5.0",
+  "_inBundle": false,
+  "_integrity": "sha1-nMtOUF1Ia5FlE0V3KIWi3yf9AXw=",
+  "_location": "/lodash.difference",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "lodash.difference@4.5.0",
+    "name": "lodash.difference",
+    "escapedName": "lodash.difference",
+    "rawSpec": "4.5.0",
+    "saveSpec": null,
+    "fetchSpec": "4.5.0"
+  },
+  "_requiredBy": [
+    "/archiver-utils"
+  ],
+  "_resolved": "https://registry.npmjs.org/lodash.difference/-/lodash.difference-4.5.0.tgz",
+  "_spec": "4.5.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "John-David Dalton",
+    "email": "john.david.dalton@gmail.com",
+    "url": "http://allyoucanleet.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/lodash/lodash/issues"
+  },
+  "contributors": [
+    {
+      "name": "John-David Dalton",
+      "email": "john.david.dalton@gmail.com",
+      "url": "http://allyoucanleet.com/"
+    },
+    {
+      "name": "Blaine Bublitz",
+      "email": "blaine.bublitz@gmail.com",
+      "url": "https://github.com/phated"
+    },
+    {
+      "name": "Mathias Bynens",
+      "email": "mathias@qiwi.be",
+      "url": "https://mathiasbynens.be/"
+    }
+  ],
+  "description": "The lodash method `_.difference` exported as a module.",
+  "homepage": "https://lodash.com/",
+  "icon": "https://lodash.com/icon.svg",
+  "keywords": [
+    "lodash-modularized",
+    "difference"
+  ],
+  "license": "MIT",
+  "name": "lodash.difference",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lodash/lodash.git"
+  },
+  "scripts": {
+    "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
+  },
+  "version": "4.5.0"
+}

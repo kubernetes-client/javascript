@@ -1,0 +1,62 @@
+{
+  "_args": [
+    [
+      "@types/keyv@3.1.2",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@types/keyv@3.1.2",
+  "_id": "@types/keyv@3.1.2",
+  "_inBundle": false,
+  "_integrity": "sha512-/FvAK2p4jQOaJ6CGDHJTqZcUtbZe820qIeTg7o0Shg7drB4JHeL+V/dhSaly7NXx6u8eSee+r7coT+yuJEvDLg==",
+  "_location": "/@types/keyv",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@types/keyv@3.1.2",
+    "name": "@types/keyv",
+    "escapedName": "@types%2fkeyv",
+    "scope": "@types",
+    "rawSpec": "3.1.2",
+    "saveSpec": null,
+    "fetchSpec": "3.1.2"
+  },
+  "_requiredBy": [
+    "/@types/cacheable-request"
+  ],
+  "_resolved": "https://registry.npmjs.org/@types/keyv/-/keyv-3.1.2.tgz",
+  "_spec": "3.1.2",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "bugs": {
+    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped/issues"
+  },
+  "contributors": [
+    {
+      "name": "AryloYeung",
+      "url": "https://github.com/Arylo"
+    },
+    {
+      "name": "BendingBender",
+      "url": "https://github.com/BendingBender"
+    }
+  ],
+  "dependencies": {
+    "@types/node": "*"
+  },
+  "description": "TypeScript definitions for keyv",
+  "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/keyv",
+  "license": "MIT",
+  "main": "",
+  "name": "@types/keyv",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+    "directory": "types/keyv"
+  },
+  "scripts": {},
+  "typeScriptVersion": "3.6",
+  "types": "index.d.ts",
+  "typesPublisherContentHash": "2b153ef5b8e08f978aea261701c155564f0e696b711bf90a0914388f9598aa95",
+  "version": "3.1.2"
+}

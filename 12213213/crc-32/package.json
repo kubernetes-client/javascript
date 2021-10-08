@@ -1,0 +1,90 @@
+{
+  "_args": [
+    [
+      "crc-32@1.2.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "crc-32@1.2.0",
+  "_id": "crc-32@1.2.0",
+  "_inBundle": false,
+  "_integrity": "sha512-1uBwHxF+Y/4yF5G48fwnKq6QsIXheor3ZLPT80yGBV1oEUwpPojlEhQbWKVw1VwcTQyMGHK1/XMmTjmlsmTTGA==",
+  "_location": "/crc-32",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "crc-32@1.2.0",
+    "name": "crc-32",
+    "escapedName": "crc-32",
+    "rawSpec": "1.2.0",
+    "saveSpec": null,
+    "fetchSpec": "1.2.0"
+  },
+  "_requiredBy": [
+    "/crc32-stream"
+  ],
+  "_resolved": "https://registry.npmjs.org/crc-32/-/crc-32-1.2.0.tgz",
+  "_spec": "1.2.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "sheetjs"
+  },
+  "bin": {
+    "crc32": "bin/crc32.njs"
+  },
+  "bugs": {
+    "url": "https://github.com/SheetJS/js-crc32/issues"
+  },
+  "config": {
+    "blanket": {
+      "pattern": "crc32.js"
+    }
+  },
+  "dependencies": {
+    "exit-on-epipe": "~1.0.1",
+    "printj": "~1.1.0"
+  },
+  "description": "Pure-JS CRC-32",
+  "devDependencies": {
+    "@sheetjs/uglify-js": "~2.7.3",
+    "@types/node": "^8.0.7",
+    "blanket": "~1.2.3",
+    "codepage": "~1.10.0",
+    "dtslint": "^0.1.2",
+    "mocha": "~2.5.3",
+    "typescript": "2.2.0"
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
+  "files": [
+    "crc32.js",
+    "bin/crc32.njs",
+    "LICENSE",
+    "README.md",
+    "types/index.d.ts",
+    "types/*.json"
+  ],
+  "homepage": "http://sheetjs.com/opensource",
+  "keywords": [
+    "crc",
+    "crc32",
+    "checksum"
+  ],
+  "license": "Apache-2.0",
+  "main": "./crc32",
+  "name": "crc-32",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SheetJS/js-crc32.git"
+  },
+  "scripts": {
+    "build": "make",
+    "dtslint": "dtslint types",
+    "lint": "make fullint",
+    "test": "make test"
+  },
+  "types": "types",
+  "version": "1.2.0"
+}

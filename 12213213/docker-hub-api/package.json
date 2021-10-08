@@ -1,0 +1,66 @@
+{
+  "_args": [
+    [
+      "docker-hub-api@0.8.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "docker-hub-api@0.8.0",
+  "_id": "docker-hub-api@0.8.0",
+  "_inBundle": false,
+  "_integrity": "sha512-wVDysVkW3ahSyU/CXD5SnbjyTvgNo0QzQ2tBdfyB83oEAvmCloCxWMHBkz+y4AZ/HNLuqN4BsTxbOs6WYzvtqQ==",
+  "_location": "/docker-hub-api",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "docker-hub-api@0.8.0",
+    "name": "docker-hub-api",
+    "escapedName": "docker-hub-api",
+    "rawSpec": "0.8.0",
+    "saveSpec": null,
+    "fetchSpec": "0.8.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/docker-hub-api/-/docker-hub-api-0.8.0.tgz",
+  "_spec": "0.8.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Ryan Dowling",
+    "email": "ryan@ryandowling.me"
+  },
+  "bugs": {
+    "url": "https://github.com/RyanTheAllmighty/Docker-Hub-API/issues"
+  },
+  "dependencies": {
+    "lodash": "^3.10.1",
+    "request": "^2.67.0"
+  },
+  "description": "Docker Hub API is an API library written for NodeJS to access the official Docker Hub/Registry",
+  "devDependencies": {
+    "chai": "^3.3.0",
+    "gulp": "^3.9.0",
+    "gulp-jscs": "^3.0.2",
+    "gulp-jshint": "^1.12.0",
+    "gulp-mocha": "^2.2.0",
+    "mocha": "^2.3.3",
+    "sinon": "^1.17.1"
+  },
+  "engines": {
+    "node": ">=4.2.0"
+  },
+  "homepage": "https://github.com/RyanTheAllmighty/Docker-Hub-API",
+  "license": "GPL-3.0",
+  "main": "src/api.js",
+  "name": "docker-hub-api",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RyanTheAllmighty/Docker-Hub-API.git"
+  },
+  "scripts": {
+    "test": "gulp"
+  },
+  "version": "0.8.0"
+}

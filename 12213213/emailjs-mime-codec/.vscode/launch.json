@@ -1,0 +1,23 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run ES6 Tests",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}",
+      "program": "${workspaceRoot}/node_modules/mocha/bin/_mocha",
+      "stopOnEntry": false,
+      "args": [
+        "./src/*-unit.js",
+        "--require", "babel-register", "testutils.js",
+        "--reporter", "spec",
+        "--no-timeouts"
+      ],
+      "runtimeArgs": [
+          "--nolazy"
+      ],
+      "sourceMaps": true
+  }
+  ]
+}

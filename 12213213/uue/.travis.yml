@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - "0.8"
+  - "0.10"
+before_install:
+  - "npm install -g npm"
+  - "npm config set spin false"
+before_script:
+  - "npm install jshint"
+  - "npm install mocha"

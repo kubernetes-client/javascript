@@ -1,0 +1,79 @@
+{
+  "_from": "p-is-promise@^3.0.0",
+  "_id": "p-is-promise@3.0.0",
+  "_inBundle": false,
+  "_integrity": "sha512-Wo8VsW4IRQSKVXsJCn7TomUaVtyfjVDn3nUP7kE967BQk0CwFpdbZs0X0uk5sW9mkBa9eNM7hCMaG93WUAwxYQ==",
+  "_location": "/p-is-promise",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "p-is-promise@^3.0.0",
+    "name": "p-is-promise",
+    "escapedName": "p-is-promise",
+    "rawSpec": "^3.0.0",
+    "saveSpec": null,
+    "fetchSpec": "^3.0.0"
+  },
+  "_requiredBy": [
+    "/into-stream"
+  ],
+  "_resolved": "https://registry.npmjs.org/p-is-promise/-/p-is-promise-3.0.0.tgz",
+  "_shasum": "58e78c7dfe2e163cf2a04ff869e7c1dba64a5971",
+  "_spec": "p-is-promise@^3.0.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc\\node_modules\\into-stream",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "bugs": {
+    "url": "https://github.com/sindresorhus/p-is-promise/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Check if something is a promise",
+  "devDependencies": {
+    "ava": "^2.1.0",
+    "bluebird": "^3.5.4",
+    "tsd": "^0.7.2",
+    "xo": "^0.24.0"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts"
+  ],
+  "homepage": "https://github.com/sindresorhus/p-is-promise#readme",
+  "keywords": [
+    "promise",
+    "is",
+    "detect",
+    "check",
+    "kind",
+    "type",
+    "thenable",
+    "es2015",
+    "async",
+    "await",
+    "promises",
+    "bluebird"
+  ],
+  "license": "MIT",
+  "name": "p-is-promise",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sindresorhus/p-is-promise.git"
+  },
+  "scripts": {
+    "test": "xo && ava && tsd"
+  },
+  "version": "3.0.0",
+  "xo": {
+    "rules": {
+      "promise/prefer-await-to-then": "off"
+    }
+  }
+}

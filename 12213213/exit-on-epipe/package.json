@@ -1,0 +1,67 @@
+{
+  "_args": [
+    [
+      "exit-on-epipe@1.0.1",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "exit-on-epipe@1.0.1",
+  "_id": "exit-on-epipe@1.0.1",
+  "_inBundle": false,
+  "_integrity": "sha512-h2z5mrROTxce56S+pnvAV890uu7ls7f1kEvVGJbw1OlFH3/mlJ5bkXu0KRyW94v37zzHPiUd55iLn3DA7TjWpw==",
+  "_location": "/exit-on-epipe",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "exit-on-epipe@1.0.1",
+    "name": "exit-on-epipe",
+    "escapedName": "exit-on-epipe",
+    "rawSpec": "1.0.1",
+    "saveSpec": null,
+    "fetchSpec": "1.0.1"
+  },
+  "_requiredBy": [
+    "/crc-32"
+  ],
+  "_resolved": "https://registry.npmjs.org/exit-on-epipe/-/exit-on-epipe-1.0.1.tgz",
+  "_spec": "1.0.1",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "sheetjs"
+  },
+  "bugs": {
+    "url": "https://github.com/SheetJS/node-exit-on-epipe/issues"
+  },
+  "dependencies": {},
+  "description": "Cleanly exit process on EPIPE",
+  "devDependencies": {
+    "mocha": "~2.5.3"
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
+  "files": [
+    "exit-on-epipe.js",
+    "LICENSE",
+    "README.md"
+  ],
+  "homepage": "https://github.com/SheetJS/node-exit-on-epipe#readme",
+  "keywords": [
+    "epipe",
+    "pipe",
+    "error",
+    "exit"
+  ],
+  "license": "Apache-2.0",
+  "main": "./exit-on-epipe",
+  "name": "exit-on-epipe",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/SheetJS/node-exit-on-epipe.git"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "version": "1.0.1"
+}

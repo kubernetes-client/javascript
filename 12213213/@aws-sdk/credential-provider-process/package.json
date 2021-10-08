@@ -1,0 +1,85 @@
+{
+  "_args": [
+    [
+      "@aws-sdk/credential-provider-process@3.27.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@aws-sdk/credential-provider-process@3.27.0",
+  "_id": "@aws-sdk/credential-provider-process@3.27.0",
+  "_inBundle": false,
+  "_integrity": "sha512-F9pqKKnd5+fwoldVQJX9uLbDyPyIDnCpZGbiTw6BZANZM1qhjoEn7rNE5g2h0tkeq4dWMA9bANKMR4j3YhTpXw==",
+  "_location": "/@aws-sdk/credential-provider-process",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@aws-sdk/credential-provider-process@3.27.0",
+    "name": "@aws-sdk/credential-provider-process",
+    "escapedName": "@aws-sdk%2fcredential-provider-process",
+    "scope": "@aws-sdk",
+    "rawSpec": "3.27.0",
+    "saveSpec": null,
+    "fetchSpec": "3.27.0"
+  },
+  "_requiredBy": [
+    "/@aws-sdk/credential-provider-node"
+  ],
+  "_resolved": "https://registry.npmjs.org/@aws-sdk/credential-provider-process/-/credential-provider-process-3.27.0.tgz",
+  "_spec": "3.27.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "AWS SDK for JavaScript Team",
+    "url": "https://aws.amazon.com/javascript/"
+  },
+  "bugs": {
+    "url": "https://github.com/aws/aws-sdk-js-v3/issues"
+  },
+  "dependencies": {
+    "@aws-sdk/property-provider": "3.27.0",
+    "@aws-sdk/shared-ini-file-loader": "3.23.0",
+    "@aws-sdk/types": "3.25.0",
+    "@aws-sdk/util-credentials": "3.23.0",
+    "tslib": "^2.3.0"
+  },
+  "description": "AWS credential provider that sources credential_process from ~/.aws/credentials and ~/.aws/config",
+  "devDependencies": {
+    "@types/jest": "^26.0.4",
+    "@types/node": "^10.0.0",
+    "jest": "^26.1.0",
+    "typescript": "~4.3.2"
+  },
+  "engines": {
+    "node": ">= 10.0.0"
+  },
+  "homepage": "https://github.com/aws/aws-sdk-js-v3/tree/main/packages/credential-provider-process",
+  "keywords": [
+    "aws",
+    "credentials"
+  ],
+  "license": "Apache-2.0",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/es/index.js",
+  "name": "@aws-sdk/credential-provider-process",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aws/aws-sdk-js-v3.git",
+    "directory": "packages/credential-provider-process"
+  },
+  "scripts": {
+    "build": "yarn build:es && yarn build:cjs",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:es": "tsc -p tsconfig.es.json",
+    "downlevel-dts": "downlevel-dts dist/types dist/types/ts3.4",
+    "test": "jest"
+  },
+  "types": "./dist/types/index.d.ts",
+  "typesVersions": {
+    "<4.0": {
+      "dist/types/*": [
+        "dist/types/ts3.4/*"
+      ]
+    }
+  },
+  "version": "3.27.0"
+}

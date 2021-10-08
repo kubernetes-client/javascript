@@ -1,0 +1,26 @@
+{
+  "name": "xcase",
+  "description": "Blazingly fast recursive convertion to and from camelCase or PascalCase for Objects and Arrays",
+  "main": "dist/xcase",
+  "authors": [
+    "Damian Kaczmarek <damian@codecharm.co.uk>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "recursive",
+    "convertion",
+    "camelcase",
+    "keys",
+    "object",
+    "decamelize",
+    "camelize"
+  ],
+  "homepage": "https://github.com/encharm/xcase",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

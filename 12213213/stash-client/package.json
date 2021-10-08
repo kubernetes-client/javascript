@@ -1,0 +1,63 @@
+{
+  "_from": "stash-client",
+  "_id": "stash-client@0.2.1",
+  "_inBundle": false,
+  "_integrity": "sha1-kfEmRJMQb9Qk5fvW5++goRiQ8FA=",
+  "_location": "/stash-client",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "stash-client",
+    "name": "stash-client",
+    "escapedName": "stash-client",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/stash-client/-/stash-client-0.2.1.tgz",
+  "_shasum": "91f1264493106fd424e5fbd6e7efa0a11890f050",
+  "_spec": "stash-client",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Justin Morgan",
+    "email": "justin.l.morgan@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/jlmorgan/node-stash-client/issues"
+  },
+  "bundleDependencies": false,
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "include": "^1.1.0",
+    "lodash": "^4.17.5",
+    "request": "^2.83.0"
+  },
+  "deprecated": false,
+  "description": "A Node.js client for Atlassian's Bitbucket Server (formerly Stash).",
+  "engine-strict": true,
+  "engines": {
+    "node": ">=4.0.0"
+  },
+  "homepage": "https://github.com/jlmorgan/node-stash-client",
+  "keywords": [
+    "atlassian",
+    "bitbucket",
+    "client",
+    "stash"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "name": "stash-client",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlmorgan/node-stash-client.git"
+  },
+  "scripts": {},
+  "url": "https://github.com/jlmorgan/node-stash-client/issues",
+  "version": "0.2.1"
+}

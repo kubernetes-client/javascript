@@ -1,0 +1,71 @@
+{
+  "_args": [
+    [
+      "node-virustotal@3.35.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "node-virustotal@3.35.0",
+  "_id": "node-virustotal@3.35.0",
+  "_inBundle": false,
+  "_integrity": "sha512-w4x0v17Io0vBpftc69dqWuViGdgzcG+9DYifx33/zbvY+d2h3Fd5JlfOSCGkjloXPxJMExUTqpzaR4TsxgRwuw==",
+  "_location": "/node-virustotal",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "node-virustotal@3.35.0",
+    "name": "node-virustotal",
+    "escapedName": "node-virustotal",
+    "rawSpec": "3.35.0",
+    "saveSpec": null,
+    "fetchSpec": "3.35.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/node-virustotal/-/node-virustotal-3.35.0.tgz",
+  "_spec": "3.35.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Nate Watson",
+    "email": "natewatson999@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/natewatson999/node-virustotal/issues"
+  },
+  "dependencies": {
+    "compressjs": "^1.0.3",
+    "dateformat": "^3.0.3",
+    "emailjs": "^2.2.0",
+    "mail-notifier": "^0.3.0",
+    "moment": "^2.24.0",
+    "request": "^2.88.0",
+    "shelljs": "^0.7.0",
+    "speedconcat": "^1.0.2",
+    "tar": ">=4.4.2"
+  },
+  "description": "An implementation of the Virustotal API for Node.js",
+  "homepage": "https://github.com/natewatson999/node-virustotal#readme",
+  "keywords": [
+    "Virustotal",
+    "malware",
+    "IPaddress",
+    "URL",
+    "file",
+    "IPv4",
+    "scan",
+    "domain"
+  ],
+  "license": "MIT",
+  "main": "v3.js",
+  "name": "node-virustotal",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/natewatson999/node-virustotal.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "3.35.0"
+}

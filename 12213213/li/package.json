@@ -1,0 +1,80 @@
+{
+  "_args": [
+    [
+      "li@1.3.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "li@1.3.0",
+  "_id": "li@1.3.0",
+  "_inBundle": false,
+  "_integrity": "sha1-IsWbyu+qmo7zWc91l4TkvxBq6hs=",
+  "_location": "/li",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "li@1.3.0",
+    "name": "li",
+    "escapedName": "li",
+    "rawSpec": "1.3.0",
+    "saveSpec": null,
+    "fetchSpec": "1.3.0"
+  },
+  "_requiredBy": [
+    "/@gitbeaker/core",
+    "/gitlab"
+  ],
+  "_resolved": "https://registry.npmjs.org/li/-/li-1.3.0.tgz",
+  "_spec": "1.3.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "José F. Romaniello",
+    "email": "jfromaniello@gmail.com",
+    "url": "http://joseoncode.com"
+  },
+  "bugs": {
+    "url": "https://github.com/jfromaniello/li/issues"
+  },
+  "contributors": [
+    {
+      "name": "Ron Waldon",
+      "email": "jokeyrhyme@gmail.com",
+      "url": "http://jokeyrhy.me/"
+    },
+    {
+      "name": "JAM",
+      "email": "jacjam@gmail.com",
+      "url": "https://github.com/madeinjam"
+    },
+    {
+      "name": "Luke Purton",
+      "url": "https://github.com/lukepur"
+    },
+    {
+      "name": "Markus Hedlund",
+      "url": "https://github.com/Znarkus"
+    }
+  ],
+  "description": "Parse the Links header format and return a javascript object.",
+  "devDependencies": {
+    "chai": "~1.9.0",
+    "mocha": "~1.7.4"
+  },
+  "homepage": "https://github.com/jfromaniello/li#readme",
+  "keywords": [
+    "links",
+    "http"
+  ],
+  "license": "MIT",
+  "main": "lib/index.js",
+  "name": "li",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jfromaniello/li.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "version": "1.3.0"
+}

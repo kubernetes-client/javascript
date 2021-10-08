@@ -1,0 +1,57 @@
+{
+  "_from": "include@^1.1.0",
+  "_id": "include@1.1.0",
+  "_inBundle": false,
+  "_integrity": "sha1-mejsC+0eWWbxbcne93Fvy2amboU=",
+  "_location": "/include",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "include@^1.1.0",
+    "name": "include",
+    "escapedName": "include",
+    "rawSpec": "^1.1.0",
+    "saveSpec": null,
+    "fetchSpec": "^1.1.0"
+  },
+  "_requiredBy": [
+    "/stash-client"
+  ],
+  "_resolved": "https://registry.npmjs.org/include/-/include-1.1.0.tgz",
+  "_shasum": "99e8ec0bed1e5966f16dc9def7716fcb66a66e85",
+  "_spec": "include@^1.1.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc\\node_modules\\stash-client",
+  "author": {
+    "name": "Anthony Nichols",
+    "email": "hi@anthonynichols.me",
+    "url": "https://github.com/anthonynichols"
+  },
+  "bugs": {
+    "url": "https://github.com/anthonynichols/node-include/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Require local files relative to the root of your node project.",
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4"
+  },
+  "homepage": "https://github.com/anthonynichols/node-include",
+  "keywords": [
+    "include",
+    "require"
+  ],
+  "license": "MIT",
+  "main": "include.js",
+  "name": "include",
+  "readmeFile": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anthonynichols/node-include.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "version": "1.1.0"
+}

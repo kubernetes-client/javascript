@@ -1,0 +1,80 @@
+{
+  "_args": [
+    [
+      "@aws-sdk/util-buffer-from@3.23.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@aws-sdk/util-buffer-from@3.23.0",
+  "_id": "@aws-sdk/util-buffer-from@3.23.0",
+  "_inBundle": false,
+  "_integrity": "sha512-axXy1FvEOM1uECgMPmyHF1S3Hd7JI+BerhhcAlGig0bbqUsZVQUNL9yhOsWreA+nf1v08Ucj8P2SHPCT9Hvpgg==",
+  "_location": "/@aws-sdk/util-buffer-from",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@aws-sdk/util-buffer-from@3.23.0",
+    "name": "@aws-sdk/util-buffer-from",
+    "escapedName": "@aws-sdk%2futil-buffer-from",
+    "scope": "@aws-sdk",
+    "rawSpec": "3.23.0",
+    "saveSpec": null,
+    "fetchSpec": "3.23.0"
+  },
+  "_requiredBy": [
+    "/@aws-sdk/hash-node",
+    "/@aws-sdk/util-base64-node",
+    "/@aws-sdk/util-utf8-node"
+  ],
+  "_resolved": "https://registry.npmjs.org/@aws-sdk/util-buffer-from/-/util-buffer-from-3.23.0.tgz",
+  "_spec": "3.23.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "AWS SDK for JavaScript Team",
+    "url": "https://aws.amazon.com/javascript/"
+  },
+  "bugs": {
+    "url": "https://github.com/aws/aws-sdk-js-v3/issues"
+  },
+  "dependencies": {
+    "@aws-sdk/is-array-buffer": "3.23.0",
+    "tslib": "^2.3.0"
+  },
+  "description": "[![NPM version](https://img.shields.io/npm/v/@aws-sdk/util-buffer-from/latest.svg)](https://www.npmjs.com/package/@aws-sdk/util-buffer-from) [![NPM downloads](https://img.shields.io/npm/dm/@aws-sdk/util-buffer-from.svg)](https://www.npmjs.com/package/@aws-sdk/util-buffer-from)",
+  "devDependencies": {
+    "@types/jest": "^26.0.4",
+    "@types/node": "^10.0.0",
+    "jest": "^26.1.0",
+    "typescript": "~4.3.2"
+  },
+  "engines": {
+    "node": ">= 10.0.0"
+  },
+  "homepage": "https://github.com/aws/aws-sdk-js-v3/tree/main/packages/util-buffer-from",
+  "license": "Apache-2.0",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/es/index.js",
+  "name": "@aws-sdk/util-buffer-from",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aws/aws-sdk-js-v3.git",
+    "directory": "packages/util-buffer-from"
+  },
+  "scripts": {
+    "build": "yarn build:es && yarn build:cjs",
+    "build:cjs": "tsc -p tsconfig.cjs.json",
+    "build:es": "tsc -p tsconfig.es.json",
+    "downlevel-dts": "downlevel-dts dist/types dist/types/ts3.4",
+    "test": "jest"
+  },
+  "types": "./dist/types/index.d.ts",
+  "typesVersions": {
+    "<4.0": {
+      "dist/types/*": [
+        "dist/types/ts3.4/*"
+      ]
+    }
+  },
+  "version": "3.23.0"
+}

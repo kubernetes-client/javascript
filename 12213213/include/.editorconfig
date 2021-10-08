@@ -1,0 +1,9 @@
+# EditorConfig is awesome: http://EditorConfig.org
+
+root = true
+[*.js]
+end_of_line = lf
+insert_final-newline = true
+charset = utf-8
+indent_style = space
+indent_size = 2

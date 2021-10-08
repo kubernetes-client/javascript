@@ -1,0 +1,80 @@
+{
+  "_args": [
+    [
+      "extract-domain@2.3.4",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "extract-domain@2.3.4",
+  "_id": "extract-domain@2.3.4",
+  "_inBundle": false,
+  "_integrity": "sha512-hu/E6D1UcEebFAZcXxlVFmTFq1GJciJmHdf+aSa8pmXSo0EzwdieE4Ry5/sFN+U/GktfzapLyjgS1cicWREWjQ==",
+  "_location": "/extract-domain",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "extract-domain@2.3.4",
+    "name": "extract-domain",
+    "escapedName": "extract-domain",
+    "rawSpec": "2.3.4",
+    "saveSpec": null,
+    "fetchSpec": "2.3.4"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/extract-domain/-/extract-domain-2.3.4.tgz",
+  "_spec": "2.3.4",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Bjarne Oeverli"
+  },
+  "bugs": {
+    "url": "https://github.com/bjarneo/extract-domain/issues"
+  },
+  "dependencies": {
+    "psl": "^1.8.0"
+  },
+  "description": "Extract domain name from URL",
+  "devDependencies": {
+    "microbundle": "^0.13.0",
+    "mocha": "^8.3.2",
+    "nanobench": "^1.0.3",
+    "prettier": "^1.11.1"
+  },
+  "exports": "./dist/extract-domain.modern.js",
+  "homepage": "https://github.com/bjarneo/extract-domain",
+  "keywords": [
+    "extract",
+    "domain",
+    "name",
+    "parse",
+    "get",
+    "fetch",
+    "string",
+    "url",
+    "browser",
+    "node"
+  ],
+  "license": "MIT",
+  "main": "dist/extract-domain.js",
+  "module": "dist/extract-domain.module.js",
+  "name": "extract-domain",
+  "optionalDependencies": {
+    "psl": "^1.8.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bjarneo/extract-domain.git"
+  },
+  "scripts": {
+    "benchmark": "node benchmark.js",
+    "build": "npm run pretty && microbundle",
+    "pretty": "prettier --tab-width=4 --print-width=100 --single-quote --trailing-comma=es5 --write *.js *.js",
+    "test": "mocha -R spec index.test.js"
+  },
+  "source": "index.js",
+  "unpkg": "dist/extract-domain.umd.js",
+  "version": "2.3.4"
+}

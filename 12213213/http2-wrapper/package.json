@@ -1,0 +1,84 @@
+{
+  "_args": [
+    [
+      "http2-wrapper@1.0.3",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "http2-wrapper@1.0.3",
+  "_id": "http2-wrapper@1.0.3",
+  "_inBundle": false,
+  "_integrity": "sha512-V+23sDMr12Wnz7iTcDeJr3O6AIxlnvT/bmaAAAP/Xda35C90p9599p0F1eHR/N1KILWSoWVAiOMFjBBXaXSMxg==",
+  "_location": "/http2-wrapper",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "http2-wrapper@1.0.3",
+    "name": "http2-wrapper",
+    "escapedName": "http2-wrapper",
+    "rawSpec": "1.0.3",
+    "saveSpec": null,
+    "fetchSpec": "1.0.3"
+  },
+  "_requiredBy": [
+    "/got"
+  ],
+  "_resolved": "https://registry.npmjs.org/http2-wrapper/-/http2-wrapper-1.0.3.tgz",
+  "_spec": "1.0.3",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Szymon Marczak"
+  },
+  "ava": {
+    "timeout": "2m"
+  },
+  "bugs": {
+    "url": "https://github.com/szmarczak/http2-wrapper/issues"
+  },
+  "dependencies": {
+    "quick-lru": "^5.1.1",
+    "resolve-alpn": "^1.0.0"
+  },
+  "description": "HTTP2 client, just with the familiar `https` API",
+  "devDependencies": {
+    "@sindresorhus/is": "^3.0.0",
+    "ava": "^3.10.1",
+    "benchmark": "^2.1.4",
+    "get-stream": "^5.1.0",
+    "got": "^11.5.0",
+    "http2-proxy": "^5.0.51",
+    "lolex": "^6.0.0",
+    "many-keys-map": "^1.0.2",
+    "nyc": "^15.1.0",
+    "p-event": "^4.2.0",
+    "tempy": "^0.5.0",
+    "to-readable-stream": "^2.1.0",
+    "tsd": "^0.13.1",
+    "xo": "^0.32.1"
+  },
+  "engines": {
+    "node": ">=10.19.0"
+  },
+  "files": [
+    "source"
+  ],
+  "homepage": "https://github.com/szmarczak/http2-wrapper#readme",
+  "keywords": [
+    "http2",
+    "https",
+    "http",
+    "request"
+  ],
+  "license": "MIT",
+  "main": "source",
+  "name": "http2-wrapper",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/szmarczak/http2-wrapper.git"
+  },
+  "scripts": {
+    "test": "xo && nyc --reporter=lcovonly --reporter=text --reporter=html ava"
+  },
+  "version": "1.0.3"
+}

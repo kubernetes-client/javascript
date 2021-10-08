@@ -1,0 +1,56 @@
+{
+  "_args": [
+    [
+      "@octokit/openapi-types@9.4.0",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "@octokit/openapi-types@9.4.0",
+  "_id": "@octokit/openapi-types@9.4.0",
+  "_inBundle": false,
+  "_integrity": "sha512-rKRkXikOJgDNImPl49IJuECLVXjj+t4qOXHhl8SBjMQCGGp1w4m5Ud/0kfdUx+zCpTvBN8vaOUDF4nnboZoOtQ==",
+  "_location": "/@octokit/openapi-types",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "@octokit/openapi-types@9.4.0",
+    "name": "@octokit/openapi-types",
+    "escapedName": "@octokit%2fopenapi-types",
+    "scope": "@octokit",
+    "rawSpec": "9.4.0",
+    "saveSpec": null,
+    "fetchSpec": "9.4.0"
+  },
+  "_requiredBy": [
+    "/@octokit/types"
+  ],
+  "_resolved": "https://registry.npmjs.org/@octokit/openapi-types/-/openapi-types-9.4.0.tgz",
+  "_spec": "9.4.0",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Gregor Martynus",
+    "url": "https://twitter.com/gr2m"
+  },
+  "bugs": {
+    "url": "https://github.com/octokit/openapi-types.ts/issues"
+  },
+  "description": "Generated TypeScript definitions based on GitHub's OpenAPI spec for api.github.com",
+  "homepage": "https://github.com/octokit/openapi-types.ts#readme",
+  "license": "MIT",
+  "main": "",
+  "name": "@octokit/openapi-types",
+  "octokit": {
+    "openapi-version": "3.4.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/octokit/openapi-types.ts.git",
+    "directory": "packages/openapi-types"
+  },
+  "types": "types.d.ts",
+  "version": "9.4.0"
+}

@@ -1,0 +1,74 @@
+{
+  "_args": [
+    [
+      "cli-table@0.3.6",
+      "C:\\Users\\Roman\\Documents\\GitLab\\poc"
+    ]
+  ],
+  "_from": "cli-table@0.3.6",
+  "_id": "cli-table@0.3.6",
+  "_inBundle": false,
+  "_integrity": "sha512-ZkNZbnZjKERTY5NwC2SeMeLeifSPq/pubeRoTpdr3WchLlnZg6hEgvHkK5zL7KNFdd9PmHN8lxrENUwI3cE8vQ==",
+  "_location": "/cli-table",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "version",
+    "registry": true,
+    "raw": "cli-table@0.3.6",
+    "name": "cli-table",
+    "escapedName": "cli-table",
+    "rawSpec": "0.3.6",
+    "saveSpec": null,
+    "fetchSpec": "0.3.6"
+  },
+  "_requiredBy": [
+    "/snyk-api"
+  ],
+  "_resolved": "https://registry.npmjs.org/cli-table/-/cli-table-0.3.6.tgz",
+  "_spec": "0.3.6",
+  "_where": "C:\\Users\\Roman\\Documents\\GitLab\\poc",
+  "author": {
+    "name": "Guillermo Rauch",
+    "email": "guillermo@learnboost.com"
+  },
+  "bugs": {
+    "url": "https://github.com/Automattic/cli-table/issues"
+  },
+  "contributors": [
+    {
+      "name": "Sonny Michaud",
+      "email": "michaud.sonny@gmail.com",
+      "url": "http://github.com/sonnym"
+    }
+  ],
+  "dependencies": {
+    "colors": "1.0.3"
+  },
+  "description": "Pretty unicode tables for the CLI",
+  "devDependencies": {
+    "expresso": "~0.9",
+    "should": "~0.6"
+  },
+  "engines": {
+    "node": ">= 0.2.0"
+  },
+  "files": [
+    "lib"
+  ],
+  "homepage": "https://github.com/Automattic/cli-table#readme",
+  "keywords": [
+    "cli",
+    "colors",
+    "table"
+  ],
+  "main": "lib",
+  "name": "cli-table",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Automattic/cli-table.git"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "version": "0.3.6"
+}
