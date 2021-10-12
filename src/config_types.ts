@@ -1,5 +1,6 @@
 import * as fs from 'fs';
 import * as _ from 'underscore';
+import {URL} from 'url';
 
 export enum ActionOnInvalid {
     THROW = 'throw',
@@ -27,7 +28,10 @@ export interface Cluster {
 export function newClusters(a: any, opts?: Partial<ConfigOptions>): Cluster[] {
     const options = Object.assign(defaultNewConfigOptions(), opts || {});
 
-    return _.compact(_.map(a, clusterIterator(options.onInvalidEntry)));
+    return _.compact(_.map(a, clusterIterator(options.onInvalidEntry))).map((cluster) => ({
+        ...cluster,
+        server: new URL(cluster.server).origin,
+    }));
 }
 
 export function exportCluster(cluster: Cluster): any {
