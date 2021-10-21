@@ -58,7 +58,7 @@ function clusterIterator(onInvalidEntry: ActionOnInvalid): _.ListIterator<any, C
                 caData: elt.cluster['certificate-authority-data'],
                 caFile: elt.cluster['certificate-authority'],
                 name: elt.name,
-                server: elt.cluster.server,
+                server: elt.cluster.server.replace(/\/$/, ''),
                 skipTLSVerify: elt.cluster['insecure-skip-tls-verify'] === true,
             };
         } catch (err) {
