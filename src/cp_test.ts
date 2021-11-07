@@ -1,6 +1,6 @@
 import { anything, anyFunction, instance, mock, verify, when } from 'ts-mockito';
 import * as querystring from 'querystring';
-import * as WebSocket from 'isomorphic-ws';
+import WebSocket = require('isomorphic-ws');
 
 import { CallAwaiter } from '../test';
 import { KubeConfig } from './config';
@@ -44,7 +44,7 @@ describe('Cp', () => {
         it('should run extract tar command to a url', async () => {
             const kc = new KubeConfig();
             const fakeWebSocketInterface: WebSocketInterface = mock(WebSocketHandler);
-            const fakeWebSocket: WebSocket = mock(WebSocket);
+            const fakeWebSocket: WebSocket = mock(WebSocket) as WebSocket;
             const callAwaiter: CallAwaiter = new CallAwaiter();
             const exec = new Exec(kc, instance(fakeWebSocketInterface));
             const cp = new Cp(kc, exec);

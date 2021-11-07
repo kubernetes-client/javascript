@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import * as nock from 'nock';
+import nock = require('nock');
 import { V1APIResource, V1APIResourceList } from './api';
 import { KubeConfig } from './config';
 import { KubernetesObjectApi } from './object';

@@ -13,34 +13,34 @@
 import { RequestFile } from './models';
 
 /**
-* ServiceAccountSubject holds detailed information for service-account-kind subject.
+* UncountedTerminatedPods holds UIDs of Pods that have terminated but haven\'t been accounted in Job status counters.
 */
-export class V1beta1ServiceAccountSubject {
+export class V1UncountedTerminatedPods {
     /**
-    * `name` is the name of matching ServiceAccount objects, or \"*\" to match regardless of name. Required.
+    * Failed holds UIDs of failed Pods.
     */
-    'name': string;
+    'failed'?: Array<string>;
     /**
-    * `namespace` is the namespace of matching ServiceAccount objects. Required.
+    * Succeeded holds UIDs of succeeded Pods.
     */
-    'namespace': string;
+    'succeeded'?: Array<string>;
 
     static discriminator: string | undefined = undefined;
 
     static attributeTypeMap: Array<{name: string, baseName: string, type: string}> = [
         {
-            "name": "name",
-            "baseName": "name",
-            "type": "string"
+            "name": "failed",
+            "baseName": "failed",
+            "type": "Array<string>"
         },
         {
-            "name": "namespace",
-            "baseName": "namespace",
-            "type": "string"
+            "name": "succeeded",
+            "baseName": "succeeded",
+            "type": "Array<string>"
         }    ];
 
     static getAttributeTypeMap() {
-        return V1beta1ServiceAccountSubject.attributeTypeMap;
+        return V1UncountedTerminatedPods.attributeTypeMap;
     }
 }
 

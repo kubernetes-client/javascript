@@ -1,6 +1,6 @@
 import { fail } from 'assert';
 import { expect } from 'chai';
-import * as nock from 'nock';
+import nock = require('nock');
 import { KubeConfig } from './config';
 import { V1Status, HttpError } from './gen/api';
 import { Metrics, NodeMetricsList, PodMetricsList } from './metrics';
