@@ -16,7 +16,7 @@ export async function apply(specPath: string): Promise<k8s.KubernetesObject[]> {
     const client = k8s.KubernetesObjectApi.makeApiClient(kc);
     const fsReadFileP = promisify(fs.readFile);
     const specString = await fsReadFileP(specPath, 'utf8');
-    const specs: k8s.KubernetesObject[] = yaml.safeLoadAll(specString);
+    const specs: k8s.KubernetesObject[] = yaml.loadAll(specString);
     const validSpecs = specs.filter((s) => s && s.kind && s.metadata);
     const created: k8s.KubernetesObject[] = [];
     for (const spec of validSpecs) {
