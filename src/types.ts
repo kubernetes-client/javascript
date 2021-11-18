@@ -12,3 +12,5 @@ export interface KubernetesListObject<T extends KubernetesObject> {
     metadata?: V1ListMeta;
     items: T[];
 }
+
+export type IntOrString = number | string;
