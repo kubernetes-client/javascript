@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { IntOrString } from '../../types';
 import { V1HTTPHeader } from './v1HTTPHeader';
 
 /**
@@ -30,9 +31,9 @@ export class V1HTTPGetAction {
     */
     'path'?: string;
     /**
-    * Name or number of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
+    * IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.
     */
-    'port': object;
+    'port': IntOrString;
     /**
     * Scheme to use for connecting to the host. Defaults to HTTP.
     */
@@ -59,7 +60,7 @@ export class V1HTTPGetAction {
         {
             "name": "port",
             "baseName": "port",
-            "type": "object"
+            "type": "IntOrString"
         },
         {
             "name": "scheme",
