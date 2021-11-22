@@ -31,25 +31,36 @@ export class Cp {
         const command = ['tar', 'zcf', '-', srcPath];
         const writerStream = fs.createWriteStream(tmpFileName);
         const errStream = new WritableStreamBuffer();
-        this.execInstance.exec(
-            namespace,
-            podName,
-            containerName,
-            command,
-            writerStream,
-            errStream,
-            null,
-            false,
-            async () => {
-                if (errStream.size()) {
-                    throw new Error(`Error from cpFromPod - details: \n ${errStream.getContentsAsString()}`);
-                }
-                await tar.x({
-                    file: tmpFileName,
-                    cwd: tgtPath,
-                });
-            },
-        );
+        let execPromise;
+        const statusPromise: Promise<void> = new Promise((resolve, reject) => {
+            execPromise = this.execInstance.exec(
+                namespace,
+                podName,
+                containerName,
+                command,
+                writerStream,
+                errStream,
+                null,
+                false,
+                (result) => {
+                    if (result.status !== 'Success' || errStream.size()) {
+                        const stderrStr = errStream.getContentsAsString();
+                        const resultStr = JSON.stringify(result);
+                        return reject(
+                            new Error(`Error from cpFromPod - stderr=${stderrStr} result=${resultStr}`),
+                        );
+                    }
+
+                    resolve();
+                },
+            );
+        });
+
+        await Promise.all([execPromise, statusPromise]);
+        await tar.x({
+            file: tmpFileName,
+            cwd: tgtPath,
+        });
     }
 
     /**
@@ -77,20 +88,30 @@ export class Cp {
         );
         const readStream = fs.createReadStream(tmpFileName);
         const errStream = new WritableStreamBuffer();
-        this.execInstance.exec(
-            namespace,
-            podName,
-            containerName,
-            command,
-            null,
-            errStream,
-            readStream,
-            false,
-            async () => {
-                if (errStream.size()) {
-                    throw new Error(`Error from cpToPod - details: \n ${errStream.getContentsAsString()}`);
-                }
-            },
-        );
+        let execPromise;
+        const statusPromise: Promise<void> = new Promise((resolve, reject) => {
+            execPromise = this.execInstance.exec(
+                namespace,
+                podName,
+                containerName,
+                command,
+                null,
+                errStream,
+                readStream,
+                false,
+                (result) => {
+                    if (result.status !== 'Success' || errStream.size()) {
+                        const stderrStr = errStream.getContentsAsString();
+                        const resultStr = JSON.stringify(result);
+                        return reject(
+                            new Error(`Error from cpFromPod - stderr=${stderrStr} result=${resultStr}`),
+                        );
+                    }
+                    resolve();
+                },
+            );
+        });
+
+        await Promise.all([execPromise, statusPromise]);
     }
 }
