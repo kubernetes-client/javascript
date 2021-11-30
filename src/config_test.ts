@@ -466,34 +466,137 @@ describe('KubeConfig', () => {
             expect(dir).to.equal(null);
         });
 
-        it('should load from HOMEDRIVE/HOMEPATH if present', () => {
-            process.env.HOMEDRIVE = 'foo';
-            process.env.HOMEPATH = 'bar';
-            const dir = join(process.env.HOMEDRIVE, process.env.HOMEPATH);
-            const arg = {};
-            arg[dir] = { config: 'data' };
-            mockfs(arg);
+        describe('look for an existing .kube/config', () => {
+            let allDirs;
+            let homeDrive;
+            before(() => {
+                allDirs = {};
+                process.env.HOME = 'home';
+                process.env.HOMEDRIVE = 'drive';
+                process.env.HOMEPATH = 'a-path';
+                process.env.USERPROFILE = 'a-userprofile';
+                homeDrive = join(process.env.HOMEDRIVE, process.env.HOMEPATH);
+                allDirs[process.env.HOME] = {};
+                allDirs[homeDrive] = {};
+                allDirs[process.env.USERPROFILE] = {};
+            });
+            it('should load from HOME if present', () => {
+                const dir = process.env.HOME;
+                allDirs[dir]['.kube'] = { config: 'data' };
+                mockfs(allDirs);
 
-            const home = findHomeDir();
+                const home = findHomeDir();
 
-            mockfs.restore();
-            expect(home).to.equal(dir);
+                mockfs.restore();
+                expect(home).to.equal(dir);
+            });
+            it('should favor HOME when present', () => {
+                const dir = process.env.HOME;
+                allDirs[dir]['.kube'] = { config: 'data' };
+                allDirs[homeDrive]['.kube'] = { config: 'data' };
+                allDirs[process.env.USERPROFILE]['.kube'] = { config: 'data' };
+                mockfs(allDirs);
+
+                const home = findHomeDir();
+
+                mockfs.restore();
+                expect(home).to.equal(dir);
+            });
+
+            it('should load from HOMEDRIVE/HOMEPATH if present', () => {
+                const dir = homeDrive;
+                allDirs[dir]['.kube'] = { config: 'data' };
+                mockfs(arg);
+
+                const home = findHomeDir();
+
+                mockfs.restore();
+                expect(home).to.equal(dir);
+            });
+
+            it('should favor HOMEDRIVE/HOMEPATH over USERPROFILE', () => {
+                const dir = homeDrive;
+                allDirs[dir]['.kube'] = { config: 'data' };
+                allDirs[process.env.USERPROFILE]['.kube'] = { config: 'data' };
+                mockfs(arg);
+
+                const home = findHomeDir();
+
+                mockfs.restore();
+                expect(home).to.equal(dir);
+            });
+
+            it('should load from USERPROFILE if present', () => {
+                const dir = process.env.USERPROFILE;
+                allDirs[dir]['.kube'] = { config: 'data' };
+                mockfs(arg);
+
+                const home = findHomeDir();
+
+                mockfs.restore();
+                expect(home).to.equal(dir);
+            });
         });
 
-        it('should load from USERPROFILE if present', () => {
-            const dir = 'someplace';
+        // Just test for existence,but this will include the writability order
+        describe('look for an existing directory', () => {
+            let allDirs;
+            let homeDrive;
+            before(() => {
+                allDirs = {};
+                process.env.HOME = 'home';
+                process.env.HOMEDRIVE = 'drive';
+                process.env.HOMEPATH = 'a-path';
+                process.env.USERPROFILE = 'a-userprofile';
+                homeDrive = join(process.env.HOMEDRIVE, process.env.HOMEPATH);
+            });
+            it('should load from HOME if present', () => {
+                allDirs = {
+                    [process.env.HOME]: 'data',
+                    [homeDrive]: 'data',
+                    [process.env.USERPROFILE]: 'data'
+                }
+                const dir = process.env.HOME
+                mockfs(allDirs);
 
-            process.env.HOMEDRIVE = 'foo';
-            process.env.HOMEPATH = 'bar';
-            process.env.USERPROFILE = dir;
-            const arg = {};
-            arg[dir] = { config: 'data' };
-            mockfs(arg);
+                const home = findHomeDir();
+
+                mockfs.restore();
+                expect(home).to.equal(dir);
+            });
+            it('should load from homeDrive if present', () => {
+                allDirs = {
+                    [homeDrive]: 'data',
+                    [process.env.USERPROFILE]: 'data'
+                }
+                const dir = process.env.HOME
+                mockfs(allDirs);
+
+                const home = findHomeDir();
+
+                mockfs.restore();
+                expect(home).to.equal(homeDrive);
+            });
+            it('should load from USERPROFILE if present', () => {
+                allDirs = {
+                    [process.env.USERPROFILE]: 'data'
+                }
+                const dir = process.env.USERPROFILE;
+                mockfs(allDirs);
+
+                const home = findHomeDir();
+
+                mockfs.restore();
+                expect(home).to.equal(dir);
+            });
+        });
+        it('should return null if nothing is present', () => {
+            mockfs({});
 
             const home = findHomeDir();
 
             mockfs.restore();
-            expect(home).to.equal(dir);
+            expect(home).to.equal(null);
         });
     });
 

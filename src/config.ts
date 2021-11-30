@@ -518,32 +518,45 @@ export function bufferFromFileOrString(file?: string, data?: string): Buffer | n
 
 // Only public for testing.
 export function findHomeDir(): string | null {
-    if (process.env.HOME) {
+    if (process.platform !== 'win32') {
+        if (process.env.HOME) {
+            try {
+                fs.accessSync(process.env.HOME);
+                return process.env.HOME;
+                // tslint:disable-next-line:no-empty
+            } catch (ignore) {}
+        }
+        return null;
+    }
+    const homeDrivePath = process.env.HOMEDRIVE && process.env.HOMEPATH ? path.join(process.env.HOMEDRIVE, process.env.HOMEPATH) : null;
+    const dirList1 = [process.env.HOME, homeDrivePath, process.env.USERPROFILE].filter(x => x);
+    const dirList2 = [process.env.HOME, process.env.USERPROFILE, homeDrivePath].filter(x => x);
+    // 1. the first of %HOME%, %HOMEDRIVE%%HOMEPATH%, %USERPROFILE% containing a `.kube\config` file is returned.
+    for (const dir of dirList1) {
         try {
-            fs.accessSync(process.env.HOME);
-            return process.env.HOME;
+            fs.accessSync(path.join(dir, '.kube', 'config'));
+            return dir;
             // tslint:disable-next-line:no-empty
         } catch (ignore) {}
     }
-    if (process.platform !== 'win32') {
-        return null;
+    // 2. ...the first of %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that exists and is writeable is returned
+    for (const dir of dirList2) {
+        const lstat = fs.lstatSync(dir, { throwIfNoEntry: false });
+	// tslint:disable-next-line:no-bitwise
+        if (lstat && (lstat.mode & fs.constants.S_IXUSR) === fs.constants.S_IXUSR) {
+            return dir;
+        }
     }
-    if (process.env.HOMEDRIVE && process.env.HOMEPATH) {
-        const dir = path.join(process.env.HOMEDRIVE, process.env.HOMEPATH);
+    // 3. ...the first of %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that exists is returned.
+    for (const dir of dirList2) {
         try {
             fs.accessSync(dir);
             return dir;
             // tslint:disable-next-line:no-empty
         } catch (ignore) {}
     }
-    if (process.env.USERPROFILE) {
-        try {
-            fs.accessSync(process.env.USERPROFILE);
-            return process.env.USERPROFILE;
-            // tslint:disable-next-line:no-empty
-        } catch (ignore) {}
-    }
-    return null;
+    // 4. if none of those locations exists, the first of %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that is set is returned.
+    return dirList2[0] ?? null;
 }
 
 export interface Named {
