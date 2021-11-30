@@ -516,6 +516,18 @@ export function bufferFromFileOrString(file?: string, data?: string): Buffer | n
     return null;
 }
 
+function dropDuplicatesAndNils(a): string[] {
+  return a.reduce((acceptedValues, currentValue) => {
+    // Good-enough algorithm for reducing a small (3 items at this point) array into an ordered list
+    // of unique non-empty strings.
+    if (currentValue && !acceptedValues.includes(currentValue)) {
+      return acceptedValues.concat(currentValue);
+    } else {
+      return acceptedValues;
+    }
+  }, [] as string[]);
+}
+
 // Only public for testing.
 export function findHomeDir(): string | null {
     if (process.platform !== 'win32') {
@@ -529,8 +541,8 @@ export function findHomeDir(): string | null {
         return null;
     }
     const homeDrivePath = process.env.HOMEDRIVE && process.env.HOMEPATH ? path.join(process.env.HOMEDRIVE, process.env.HOMEPATH) : null;
-    const dirList1 = [process.env.HOME, homeDrivePath, process.env.USERPROFILE].filter(x => x);
-    const dirList2 = [process.env.HOME, process.env.USERPROFILE, homeDrivePath].filter(x => x);
+    const dirList1: string[] = dropDuplicatesAndNils([process.env.HOME, homeDrivePath, process.env.USERPROFILE]);
+    const dirList2: string[] = dropDuplicatesAndNils([process.env.HOME, process.env.USERPROFILE, homeDrivePath]);
     // 1. the first of %HOME%, %HOMEDRIVE%%HOMEPATH%, %USERPROFILE% containing a `.kube\config` file is returned.
     for (const dir of dirList1) {
         try {
@@ -541,11 +553,14 @@ export function findHomeDir(): string | null {
     }
     // 2. ...the first of %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that exists and is writeable is returned
     for (const dir of dirList2) {
-        const lstat = fs.lstatSync(dir, { throwIfNoEntry: false });
-	// tslint:disable-next-line:no-bitwise
-        if (lstat && (lstat.mode & fs.constants.S_IXUSR) === fs.constants.S_IXUSR) {
-            return dir;
-        }
+        try {
+            const lstat = fs.lstatSync(dir);
+	    // tslint:disable-next-line:no-bitwise
+            if (lstat && (lstat.mode & fs.constants.S_IXUSR) === fs.constants.S_IXUSR) {
+                return dir;
+            }
+            // tslint:disable-next-line:no-empty
+        } catch (ignore) {}
     }
     // 3. ...the first of %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that exists is returned.
     for (const dir of dirList2) {
