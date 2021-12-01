@@ -11,7 +11,6 @@
  */
 
 import { RequestFile } from './models';
-import { IntOrString } from '../../types';
 
 /**
 * TCPSocketAction describes an action based on opening a socket
@@ -22,9 +21,9 @@ export class V1TCPSocketAction {
     */
     'host'?: string;
     /**
-    * IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.
+    * Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME.
     */
-    'port': IntOrString;
+    'port': object;
 
     static discriminator: string | undefined = undefined;
 
@@ -37,7 +36,7 @@ export class V1TCPSocketAction {
         {
             "name": "port",
             "baseName": "port",
-            "type": "IntOrString"
+            "type": "object"
         }    ];
 
     static getAttributeTypeMap() {

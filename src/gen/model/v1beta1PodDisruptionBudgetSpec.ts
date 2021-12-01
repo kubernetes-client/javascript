@@ -11,7 +11,6 @@
  */
 
 import { RequestFile } from './models';
-import { IntOrString } from '../../types';
 import { V1LabelSelector } from './v1LabelSelector';
 
 /**
@@ -19,13 +18,13 @@ import { V1LabelSelector } from './v1LabelSelector';
 */
 export class V1beta1PodDisruptionBudgetSpec {
     /**
-    * IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.
+    * An eviction is allowed if at most \"maxUnavailable\" pods selected by \"selector\" are unavailable after the eviction, i.e. even in absence of the evicted pod. For example, one can prevent all voluntary evictions by specifying 0. This is a mutually exclusive setting with \"minAvailable\".
     */
-    'maxUnavailable'?: IntOrString;
+    'maxUnavailable'?: object;
     /**
-    * IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.
+    * An eviction is allowed if at least \"minAvailable\" pods selected by \"selector\" will still be available after the eviction, i.e. even in the absence of the evicted pod.  So for example you can prevent all voluntary evictions by specifying \"100%\".
     */
-    'minAvailable'?: IntOrString;
+    'minAvailable'?: object;
     'selector'?: V1LabelSelector;
 
     static discriminator: string | undefined = undefined;
@@ -34,12 +33,12 @@ export class V1beta1PodDisruptionBudgetSpec {
         {
             "name": "maxUnavailable",
             "baseName": "maxUnavailable",
-            "type": "IntOrString"
+            "type": "object"
         },
         {
             "name": "minAvailable",
             "baseName": "minAvailable",
-            "type": "IntOrString"
+            "type": "object"
         },
         {
             "name": "selector",
