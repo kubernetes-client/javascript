@@ -540,12 +540,16 @@ export function findHomeDir(): string | null {
         }
         return null;
     }
+    // $HOME is always favored, but the k8s go-client prefers the other two env vars
+    // differently depending on whether .kube/config exists or not.
     const homeDrivePath = process.env.HOMEDRIVE && process.env.HOMEPATH ?
         path.join(process.env.HOMEDRIVE, process.env.HOMEPATH) : null;
-    const dirList1: string[] = dropDuplicatesAndNils([process.env.HOME, homeDrivePath, process.env.USERPROFILE]);
-    const dirList2: string[] = dropDuplicatesAndNils([process.env.HOME, process.env.USERPROFILE, homeDrivePath]);
+    const favourHomeDrivePathList: string[] =
+        dropDuplicatesAndNils([process.env.HOME, homeDrivePath, process.env.USERPROFILE]);
+    const favourUserProfileList: string[] =
+        dropDuplicatesAndNils([process.env.HOME, process.env.USERPROFILE, homeDrivePath]);
     // 1. the first of %HOME%, %HOMEDRIVE%%HOMEPATH%, %USERPROFILE% containing a `.kube\config` file is returned.
-    for (const dir of dirList1) {
+    for (const dir of favourHomeDrivePathList) {
         try {
             fs.accessSync(path.join(dir, '.kube', 'config'));
             return dir;
@@ -553,7 +557,7 @@ export function findHomeDir(): string | null {
         } catch (ignore) {}
     }
     // 2. ...the first of %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that exists and is writeable is returned
-    for (const dir of dirList2) {
+    for (const dir of favourUserProfileList) {
         try {
             const lstat = fs.lstatSync(dir);
 // tslint:disable-next-line:no-bitwise
@@ -564,7 +568,7 @@ export function findHomeDir(): string | null {
         } catch (ignore) {}
     }
     // 3. ...the first of %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that exists is returned.
-    for (const dir of dirList2) {
+    for (const dir of favourUserProfileList) {
         try {
             fs.accessSync(dir);
             return dir;
@@ -573,7 +577,7 @@ export function findHomeDir(): string | null {
     }
     // 4. if none of those locations exists, the first of
     // %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that is set is returned.
-    return dirList2[0] || null;
+    return favourUserProfileList[0] || null;
 }
 
 export interface Named {
