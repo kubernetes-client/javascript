@@ -516,7 +516,7 @@ export function bufferFromFileOrString(file?: string, data?: string): Buffer | n
     return null;
 }
 
-function dropDuplicatesAndNils(a): string[] {
+function dropDuplicatesAndNils(a: Array<string | null | undefined>): string[] {
   return a.reduce((acceptedValues, currentValue) => {
     // Good-enough algorithm for reducing a small (3 items at this point) array into an ordered list
     // of unique non-empty strings.
@@ -540,7 +540,8 @@ export function findHomeDir(): string | null {
         }
         return null;
     }
-    const homeDrivePath = process.env.HOMEDRIVE && process.env.HOMEPATH ? path.join(process.env.HOMEDRIVE, process.env.HOMEPATH) : null;
+    const homeDrivePath = process.env.HOMEDRIVE && process.env.HOMEPATH ?
+        path.join(process.env.HOMEDRIVE, process.env.HOMEPATH) : null;
     const dirList1: string[] = dropDuplicatesAndNils([process.env.HOME, homeDrivePath, process.env.USERPROFILE]);
     const dirList2: string[] = dropDuplicatesAndNils([process.env.HOME, process.env.USERPROFILE, homeDrivePath]);
     // 1. the first of %HOME%, %HOMEDRIVE%%HOMEPATH%, %USERPROFILE% containing a `.kube\config` file is returned.
@@ -555,7 +556,7 @@ export function findHomeDir(): string | null {
     for (const dir of dirList2) {
         try {
             const lstat = fs.lstatSync(dir);
-	    // tslint:disable-next-line:no-bitwise
+// tslint:disable-next-line:no-bitwise
             if (lstat && (lstat.mode & fs.constants.S_IXUSR) === fs.constants.S_IXUSR) {
                 return dir;
             }
@@ -570,8 +571,9 @@ export function findHomeDir(): string | null {
             // tslint:disable-next-line:no-empty
         } catch (ignore) {}
     }
-    // 4. if none of those locations exists, the first of %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that is set is returned.
-    return dirList2[0] ?? null;
+    // 4. if none of those locations exists, the first of
+    // %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that is set is returned.
+    return dirList2[0] || null;
 }
 
 export interface Named {
