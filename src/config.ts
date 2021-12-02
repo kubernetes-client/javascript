@@ -516,7 +516,7 @@ export function bufferFromFileOrString(file?: string, data?: string): Buffer | n
     return null;
 }
 
-function dropDuplicatesAndNils(a: Array<string | null | undefined>): string[] {
+function dropDuplicatesAndNils(a: string[]): string[] {
   return a.reduce((acceptedValues, currentValue) => {
     // Good-enough algorithm for reducing a small (3 items at this point) array into an ordered list
     // of unique non-empty strings.
@@ -543,11 +543,11 @@ export function findHomeDir(): string | null {
     // $HOME is always favored, but the k8s go-client prefers the other two env vars
     // differently depending on whether .kube/config exists or not.
     const homeDrivePath = process.env.HOMEDRIVE && process.env.HOMEPATH ?
-        path.join(process.env.HOMEDRIVE, process.env.HOMEPATH) : null;
-    const favourHomeDrivePathList: string[] =
-        dropDuplicatesAndNils([process.env.HOME, homeDrivePath, process.env.USERPROFILE]);
-    const favourUserProfileList: string[] =
-        dropDuplicatesAndNils([process.env.HOME, process.env.USERPROFILE, homeDrivePath]);
+        path.join(process.env.HOMEDRIVE, process.env.HOMEPATH) : '';
+    const homePath = process.env.HOME || '';
+    const userProfile = process.env.USERPROFILE || '';
+    const favourHomeDrivePathList: string[] = dropDuplicatesAndNils([homePath, homeDrivePath, userProfile]);
+    const favourUserProfileList: string[] = dropDuplicatesAndNils([homePath, userProfile, homeDrivePath]);
     // 1. the first of %HOME%, %HOMEDRIVE%%HOMEPATH%, %USERPROFILE% containing a `.kube\config` file is returned.
     for (const dir of favourHomeDrivePathList) {
         try {
