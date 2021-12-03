@@ -517,15 +517,18 @@ export function bufferFromFileOrString(file?: string, data?: string): Buffer | n
 }
 
 function dropDuplicatesAndNils(a: string[]): string[] {
-  return a.reduce((acceptedValues, currentValue) => {
-    // Good-enough algorithm for reducing a small (3 items at this point) array into an ordered list
-    // of unique non-empty strings.
-    if (currentValue && !acceptedValues.includes(currentValue)) {
-      return acceptedValues.concat(currentValue);
-    } else {
-      return acceptedValues;
-    }
-  }, [] as string[]);
+    return a.reduce(
+        (acceptedValues, currentValue) => {
+            // Good-enough algorithm for reducing a small (3 items at this point) array into an ordered list
+            // of unique non-empty strings.
+            if (currentValue && !acceptedValues.includes(currentValue)) {
+                return acceptedValues.concat(currentValue);
+            } else {
+                return acceptedValues;
+            }
+        },
+        [] as string[],
+    );
 }
 
 // Only public for testing.
@@ -542,8 +545,10 @@ export function findHomeDir(): string | null {
     }
     // $HOME is always favored, but the k8s go-client prefers the other two env vars
     // differently depending on whether .kube/config exists or not.
-    const homeDrivePath = process.env.HOMEDRIVE && process.env.HOMEPATH ?
-        path.join(process.env.HOMEDRIVE, process.env.HOMEPATH) : '';
+    const homeDrivePath =
+        process.env.HOMEDRIVE && process.env.HOMEPATH
+            ? path.join(process.env.HOMEDRIVE, process.env.HOMEPATH)
+            : '';
     const homePath = process.env.HOME || '';
     const userProfile = process.env.USERPROFILE || '';
     const favourHomeDrivePathList: string[] = dropDuplicatesAndNils([homePath, homeDrivePath, userProfile]);
@@ -560,7 +565,7 @@ export function findHomeDir(): string | null {
     for (const dir of favourUserProfileList) {
         try {
             const lstat = fs.lstatSync(dir);
-// tslint:disable-next-line:no-bitwise
+            // tslint:disable-next-line:no-bitwise
             if (lstat && (lstat.mode & fs.constants.S_IXUSR) === fs.constants.S_IXUSR) {
                 return dir;
             }
