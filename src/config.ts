@@ -543,7 +543,7 @@ export function findHomeDir(): string | null {
         }
         return null;
     }
-    // $HOME is always favored, but the k8s go-client prefers the other two env vars
+    // $HOME is always favoured, but the k8s go-client prefers the other two env vars
     // differently depending on whether .kube/config exists or not.
     const homeDrivePath =
         process.env.HOMEDRIVE && process.env.HOMEPATH
@@ -564,11 +564,8 @@ export function findHomeDir(): string | null {
     // 2. ...the first of %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that exists and is writeable is returned
     for (const dir of favourUserProfileList) {
         try {
-            const lstat = fs.lstatSync(dir);
-            // tslint:disable-next-line:no-bitwise
-            if (lstat && (lstat.mode & fs.constants.S_IXUSR) === fs.constants.S_IXUSR) {
-                return dir;
-            }
+            fs.accessSync(dir, fs.constants.W_OK);
+            return dir;
             // tslint:disable-next-line:no-empty
         } catch (ignore) {}
     }
