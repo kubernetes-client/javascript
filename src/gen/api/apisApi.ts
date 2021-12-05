@@ -142,8 +142,8 @@ export class ApisApi {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1APIGroupList");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1APIGroupList");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));

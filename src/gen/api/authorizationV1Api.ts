@@ -175,8 +175,8 @@ export class AuthorizationV1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1LocalSubjectAccessReview");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1LocalSubjectAccessReview");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -261,8 +261,8 @@ export class AuthorizationV1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1SelfSubjectAccessReview");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1SelfSubjectAccessReview");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -347,8 +347,8 @@ export class AuthorizationV1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1SelfSubjectRulesReview");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1SelfSubjectRulesReview");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -433,8 +433,8 @@ export class AuthorizationV1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1SubjectAccessReview");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1SubjectAccessReview");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -497,8 +497,8 @@ export class AuthorizationV1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1APIResourceList");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1APIResourceList");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));

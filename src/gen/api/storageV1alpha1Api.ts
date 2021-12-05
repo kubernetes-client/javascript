@@ -177,8 +177,8 @@ export class StorageV1alpha1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1alpha1CSIStorageCapacity");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1alpha1CSIStorageCapacity");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -263,8 +263,8 @@ export class StorageV1alpha1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1alpha1VolumeAttachment");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1alpha1VolumeAttachment");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -396,8 +396,8 @@ export class StorageV1alpha1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1Status");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1Status");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -522,8 +522,8 @@ export class StorageV1alpha1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1Status");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1Status");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -627,8 +627,8 @@ export class StorageV1alpha1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1Status");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1Status");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -725,8 +725,8 @@ export class StorageV1alpha1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1alpha1VolumeAttachment");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1alpha1VolumeAttachment");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -789,8 +789,8 @@ export class StorageV1alpha1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1APIResourceList");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1APIResourceList");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -903,8 +903,8 @@ export class StorageV1alpha1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1alpha1CSIStorageCapacityList");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1alpha1CSIStorageCapacityList");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1024,8 +1024,8 @@ export class StorageV1alpha1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1alpha1CSIStorageCapacityList");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1alpha1CSIStorageCapacityList");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1138,8 +1138,8 @@ export class StorageV1alpha1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1alpha1VolumeAttachmentList");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1alpha1VolumeAttachmentList");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1243,8 +1243,8 @@ export class StorageV1alpha1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1alpha1CSIStorageCapacity");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1alpha1CSIStorageCapacity");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1341,8 +1341,8 @@ export class StorageV1alpha1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1alpha1VolumeAttachment");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1alpha1VolumeAttachment");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1424,8 +1424,8 @@ export class StorageV1alpha1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1alpha1CSIStorageCapacity");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1alpha1CSIStorageCapacity");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1500,8 +1500,8 @@ export class StorageV1alpha1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1alpha1VolumeAttachment");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1alpha1VolumeAttachment");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1600,8 +1600,8 @@ export class StorageV1alpha1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1alpha1CSIStorageCapacity");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1alpha1CSIStorageCapacity");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));
@@ -1693,8 +1693,8 @@ export class StorageV1alpha1Api {
                     if (error) {
                         reject(error);
                     } else {
-                        body = ObjectSerializer.deserialize(body, "V1alpha1VolumeAttachment");
                         if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
+                            body = ObjectSerializer.deserialize(body, "V1alpha1VolumeAttachment");
                             resolve({ response: response, body: body });
                         } else {
                             reject(new HttpError(response, body, response.statusCode));

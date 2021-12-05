@@ -30,4 +30,4 @@ export CLIENT_VERSION="0.8-SNAPSHOT"
 # Name of the release package
 export PACKAGE_NAME="@kubernetes/node-client"
 
-export OPENAPI_GENERATOR_COMMIT=v5.2.1
+export OPENAPI_GENERATOR_COMMIT=1314e229
