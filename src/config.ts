@@ -516,34 +516,70 @@ export function bufferFromFileOrString(file?: string, data?: string): Buffer | n
     return null;
 }
 
+function dropDuplicatesAndNils(a: string[]): string[] {
+    return a.reduce(
+        (acceptedValues, currentValue) => {
+            // Good-enough algorithm for reducing a small (3 items at this point) array into an ordered list
+            // of unique non-empty strings.
+            if (currentValue && !acceptedValues.includes(currentValue)) {
+                return acceptedValues.concat(currentValue);
+            } else {
+                return acceptedValues;
+            }
+        },
+        [] as string[],
+    );
+}
+
 // Only public for testing.
 export function findHomeDir(): string | null {
-    if (process.env.HOME) {
+    if (process.platform !== 'win32') {
+        if (process.env.HOME) {
+            try {
+                fs.accessSync(process.env.HOME);
+                return process.env.HOME;
+                // tslint:disable-next-line:no-empty
+            } catch (ignore) {}
+        }
+        return null;
+    }
+    // $HOME is always favoured, but the k8s go-client prefers the other two env vars
+    // differently depending on whether .kube/config exists or not.
+    const homeDrivePath =
+        process.env.HOMEDRIVE && process.env.HOMEPATH
+            ? path.join(process.env.HOMEDRIVE, process.env.HOMEPATH)
+            : '';
+    const homePath = process.env.HOME || '';
+    const userProfile = process.env.USERPROFILE || '';
+    const favourHomeDrivePathList: string[] = dropDuplicatesAndNils([homePath, homeDrivePath, userProfile]);
+    const favourUserProfileList: string[] = dropDuplicatesAndNils([homePath, userProfile, homeDrivePath]);
+    // 1. the first of %HOME%, %HOMEDRIVE%%HOMEPATH%, %USERPROFILE% containing a `.kube\config` file is returned.
+    for (const dir of favourHomeDrivePathList) {
         try {
-            fs.accessSync(process.env.HOME);
-            return process.env.HOME;
+            fs.accessSync(path.join(dir, '.kube', 'config'));
+            return dir;
             // tslint:disable-next-line:no-empty
         } catch (ignore) {}
     }
-    if (process.platform !== 'win32') {
-        return null;
+    // 2. ...the first of %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that exists and is writeable is returned
+    for (const dir of favourUserProfileList) {
+        try {
+            fs.accessSync(dir, fs.constants.W_OK);
+            return dir;
+            // tslint:disable-next-line:no-empty
+        } catch (ignore) {}
     }
-    if (process.env.HOMEDRIVE && process.env.HOMEPATH) {
-        const dir = path.join(process.env.HOMEDRIVE, process.env.HOMEPATH);
+    // 3. ...the first of %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that exists is returned.
+    for (const dir of favourUserProfileList) {
         try {
             fs.accessSync(dir);
             return dir;
             // tslint:disable-next-line:no-empty
         } catch (ignore) {}
     }
-    if (process.env.USERPROFILE) {
-        try {
-            fs.accessSync(process.env.USERPROFILE);
-            return process.env.USERPROFILE;
-            // tslint:disable-next-line:no-empty
-        } catch (ignore) {}
-    }
-    return null;
+    // 4. if none of those locations exists, the first of
+    // %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that is set is returned.
+    return favourUserProfileList[0] || null;
 }
 
 export interface Named {
