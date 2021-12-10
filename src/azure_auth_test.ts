@@ -169,23 +169,22 @@ describe('AzureAuth', () => {
     });
 
     it('should exec when no cmd and token is not expired', async () => {
-      const config = new KubeConfig();
-      const expireOn = (new Date().getTime() / 1000) + 1000;
-      console.log('expireOn',expireOn)
-      config.loadFromClusterAndUser(
-          { skipTLSVerify: false } as Cluster,
-          {
-              authProvider: {
-                  name: 'azure',
-                  config: {
-                      'access-token': 'token',
-                      'expires-on': expireOn.toString(),
-                  },
-              },
-          } as User,
-      );
-      const opts = {} as requestlib.Options;
-      await config.applyToRequest(opts);
+        const config = new KubeConfig();
+        const expireOn = new Date().getTime() / 1000 + 1000;
+        config.loadFromClusterAndUser(
+            { skipTLSVerify: false } as Cluster,
+            {
+                authProvider: {
+                    name: 'azure',
+                    config: {
+                        'access-token': 'token',
+                        'expires-on': expireOn.toString(),
+                    },
+                },
+            } as User,
+        );
+        const opts = {} as requestlib.Options;
+        await config.applyToRequest(opts);
     });
 
     it('should exec with expired token', async () => {
