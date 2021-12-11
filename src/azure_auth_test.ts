@@ -168,6 +168,25 @@ describe('AzureAuth', () => {
         return expect(config.applyToRequest(opts)).to.eventually.be.rejectedWith(/Failed to refresh token/);
     });
 
+    it('should exec when no cmd and token is not expired', async () => {
+        const config = new KubeConfig();
+        const expireOn = new Date().getTime() / 1000 + 1000;
+        config.loadFromClusterAndUser(
+            { skipTLSVerify: false } as Cluster,
+            {
+                authProvider: {
+                    name: 'azure',
+                    config: {
+                        'access-token': 'token',
+                        'expires-on': expireOn.toString(),
+                    },
+                },
+            } as User,
+        );
+        const opts = {} as requestlib.Options;
+        await config.applyToRequest(opts);
+    });
+
     it('should exec with expired token', async () => {
         // TODO: fix this test for Windows
         if (process.platform === 'win32') {

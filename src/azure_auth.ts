@@ -57,7 +57,8 @@ export class AzureAuth implements Authenticator {
             return false;
         }
 
-        const expiration = expiry ? Date.parse(expiry) : new Date(parseInt(expiresOn!, 10));
+        const expiresOnDate = expiresOn ? new Date(parseInt(expiresOn, 10) * 1000) : undefined;
+        const expiration = expiry ? Date.parse(expiry) : expiresOnDate!;
         if (expiration < Date.now()) {
             return true;
         }
