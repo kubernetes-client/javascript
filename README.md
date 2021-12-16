@@ -7,13 +7,9 @@
 
 The Javascript clients for Kubernetes is implemented in
 [typescript](https://typescriptlang.org), but can be called from either
-Javascript or Typescript.
+Javascript or Typescript. The client is implemented for server-side use with Node.
 
-For now, the client is implemented for server-side use with node
-using the `request` library.
-
-There are future plans to also build a jQuery compatible library but
-for now, all of the examples and instructions assume the node client.
+The `request` library is currently being swapped to `fetch`. See the [fetch migration docs](./FETCH_MIGRATION.md) for more information and progress.
 
 # Installation
 
@@ -70,6 +66,7 @@ k8sApi.createNamespace(namespace).then(
 ```
 
 ## Create a cluster configuration programatically
+
 ```javascript
 const k8s = require('@kubernetes/client-node');
 
@@ -118,30 +115,31 @@ release, we will increment the minor version whenever we update the minor Kubern
 Generally speaking newer clients will work with older Kubernetes, but compatability isn't 100% guaranteed.
 
 | client version | older versions | 1.18 | 1.19 | 1.20 | 1.21 | 1.22 |
-|----------------|----------------|------|------|------|------|------|
-|  0.12.x        |       -        |  ✓   |  x   |  x   |  x   |  x   |
-|  0.13.x        |       -        |  +   |  ✓   |  x   |  x   |  x   |
-|  0.14.x        |       -        |  +   |  +   |  ✓   |  x   |  x   |
-|  0.15.x        |       -        |  +   |  +   |  +   |  ✓   |  x   |
-|  0.16.x        |       -        |  +   |  +   |  +   |  +   |  ✓   |
+| -------------- | -------------- | ---- | ---- | ---- | ---- | ---- |
+| 0.12.x         | -              | ✓    | x    | x    | x    | x    |
+| 0.13.x         | -              | +    | ✓    | x    | x    | x    |
+| 0.14.x         | -              | +    | +    | ✓    | x    | x    |
+| 0.15.x         | -              | +    | +    | +    | ✓    | x    |
+| 0.16.x         | -              | +    | +    | +    | +    | ✓    |
 
 Key:
 
-* `✓` Exactly the same features / API objects in both javascript-client and the Kubernetes
-  version.
-* `+` javascript-client has features or api objects that may not be present in the
-  Kubernetes cluster, but everything they have in common will work.
-* `-` The Kubernetes cluster has features the javascript-client library can't use
-  (additional API objects, etc).
-* `x` The Kubernetes cluster has no guarantees to support the API client of
-  this version, as it only promises _n_-2 version support. It is not tested,
-  and operations using API versions that have been deprecated and removed in
-  later server versions won't function correctly.
+-   `✓` Exactly the same features / API objects in both javascript-client and the Kubernetes
+    version.
+-   `+` javascript-client has features or api objects that may not be present in the
+    Kubernetes cluster, but everything they have in common will work.
+-   `-` The Kubernetes cluster has features the javascript-client library can't use
+    (additional API objects, etc).
+-   `x` The Kubernetes cluster has no guarantees to support the API client of
+    this version, as it only promises _n_-2 version support. It is not tested,
+    and operations using API versions that have been deprecated and removed in
+    later server versions won't function correctly.
 
 # Known Issues
-* Multiple kubeconfigs are not completely supported.
-  Credentials are cached based on the kubeconfig username and these can collide across configs.
-  Here is the related [issue](https://github.com/kubernetes-client/javascript/issues/592).
+
+-   Multiple kubeconfigs are not completely supported.
+    Credentials are cached based on the kubeconfig username and these can collide across configs.
+    Here is the related [issue](https://github.com/kubernetes-client/javascript/issues/592).
 
 # Development
 
