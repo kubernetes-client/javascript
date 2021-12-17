@@ -26,6 +26,7 @@ jobs:
       - run: npm run lint
       - run: npm audit --audit-level=critical
   release-package:
+    name: Release Package
     runs-on: ubuntu-latest    
     steps:
       - name: Checkout
@@ -41,8 +42,12 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Publish package
+        id: publish
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
           dry-run: github.event_name == 'pull_request'
+      - name: Check if version was already published
+        if: steps.publish.outputs.type == 'none'
+        run: exit 1
 
