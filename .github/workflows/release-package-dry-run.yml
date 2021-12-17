@@ -1,4 +1,4 @@
-name: Release Package
+name: Release Package Dry Run
 on:
   workflow_run:
     workflows: [ "Kubernetes Javascript Client - Validation" ]
