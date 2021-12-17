@@ -27,7 +27,8 @@ jobs:
       - run: npm audit --audit-level=critical
   release-package:
     name: Release Package
-    runs-on: ubuntu-latest    
+    runs-on: ubuntu-latest
+    needs: validation    
     steps:
       - name: Checkout
         uses: actions/checkout@v2.3.1
