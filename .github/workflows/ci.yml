@@ -49,6 +49,9 @@ jobs:
           token: ${{ secrets.NPM_TOKEN }}
           dry-run: github.event_name == 'pull_request'
       - name: Check if version was already published
-        if: steps.publish.outputs.type == 'none'
-        run: exit 1
-
+        uses: actions/github-script@v5
+        with:
+          script: |
+              if(${{ steps.publish.outputs.type == 'none' }}) {
+                core.setFailed('Version ${{ steps.publish.outputs.old-version }} was already published')
+              }
