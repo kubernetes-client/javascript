@@ -29,7 +29,7 @@ const mockedPodMetrics: PodMetricsList = {
             },
             timestamp: '2021-09-26T11:57:21Z',
             window: '30s',
-            containers: [{ name: 'nginx', usage: { cpu: '5000000n', memory: '3912Ki' } }],
+            containers: [{ name: 'nginx', usage: { cpu: '50000000n', memory: '3912Ki' } }],
         },
         {
             metadata: {
@@ -42,7 +42,7 @@ const mockedPodMetrics: PodMetricsList = {
             window: '30s',
             containers: [
                 { name: 'nginx', usage: { cpu: '0', memory: '4012Ki' } },
-                { name: 'sidecar', usage: { cpu: '140000000n', memory: '3012Ki' } },
+                { name: 'sidecar', usage: { cpu: '1400000000n', memory: '3012Ki' } },
             ],
         },
     ],
