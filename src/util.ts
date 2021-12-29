@@ -28,9 +28,33 @@ export function quantityToScalar(quantity: string): number | bigint {
     }
     switch (suffix) {
         case 'n':
-            return Number(quantity.substr(0, quantity.length - 1)).valueOf() / 100_000_000.0;
+            return Number(quantity.substr(0, quantity.length - 1)).valueOf() / 1_000_000_000.0;
+        case 'u':
+            return Number(quantity.substr(0, quantity.length - 1)).valueOf() / 1_000_000.0;
         case 'm':
             return Number(quantity.substr(0, quantity.length - 1)).valueOf() / 1000.0;
+        case 'k':
+            return BigInt(quantity.substr(0, quantity.length - 1)) * BigInt(1000);
+        case 'M':
+            return BigInt(quantity.substr(0, quantity.length - 1)) * BigInt(1000 * 1000);
+        case 'G':
+            return BigInt(quantity.substr(0, quantity.length - 1)) * BigInt(1000 * 1000 * 1000);
+        case 'T':
+            return (
+                BigInt(quantity.substr(0, quantity.length - 1)) * BigInt(1000 * 1000 * 1000) * BigInt(1000)
+            );
+        case 'P':
+            return (
+                BigInt(quantity.substr(0, quantity.length - 1)) *
+                BigInt(1000 * 1000 * 1000) *
+                BigInt(1000 * 1000)
+            );
+        case 'E':
+            return (
+                BigInt(quantity.substr(0, quantity.length - 1)) *
+                BigInt(1000 * 1000 * 1000) *
+                BigInt(1000 * 1000 * 1000)
+            );
         case 'Ki':
             return BigInt(quantity.substr(0, quantity.length - 2)) * BigInt(1024);
         case 'Mi':
