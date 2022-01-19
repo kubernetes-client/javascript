@@ -118,5 +118,8 @@
     "hooks": {
       "pre-push": "npm test && npm run lint"
     }
+  },
+  "overrides": {
+    "colors": "1.40.0"
   }
 }
