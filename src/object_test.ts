@@ -1747,6 +1747,82 @@ describe('KubernetesObject', () => {
             await client.delete(s, undefined, undefined, 7, undefined, 'Foreground');
             scope.done();
         });
+
+        it('should list resources in a namespace', async () => {
+            const scope = nock('https://d.i.y')
+                .get(
+                    '/api/v1/namespaces/default/secrets?fieldSelector=metadata.name%3Dtest-secret1&labelSelector=app%3Dmy-app&limit=5',
+                )
+                .reply(200, {
+                    apiVersion: 'v1',
+                    kind: 'SecretList',
+                    items: [
+                        {
+                            apiVersion: 'v1',
+                            kind: 'Secret',
+                            metadata: {
+                                name: 'test-secret-1',
+                                uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
+                            },
+                        },
+                    ],
+                    metadata: {
+                        resourceVersion: '216532459',
+                    },
+                });
+            const lr = await client.list(
+                'v1',
+                'Secret',
+                'default',
+                undefined,
+                undefined,
+                undefined,
+                'metadata.name=test-secret1',
+                'app=my-app',
+                5,
+            );
+            const items = lr.body.items;
+            expect(items).to.have.length(1);
+            scope.done();
+        });
+
+        it('should list resources in all namespaces', async () => {
+            const scope = nock('https://d.i.y')
+                .get(
+                    '/api/v1/secrets?fieldSelector=metadata.name%3Dtest-secret1&labelSelector=app%3Dmy-app&limit=5',
+                )
+                .reply(200, {
+                    apiVersion: 'v1',
+                    kind: 'SecretList',
+                    items: [
+                        {
+                            apiVersion: 'v1',
+                            kind: 'Secret',
+                            metadata: {
+                                name: 'test-secret-1',
+                                uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
+                            },
+                        },
+                    ],
+                    metadata: {
+                        resourceVersion: '216532459',
+                    },
+                });
+            const lr = await client.list(
+                'v1',
+                'Secret',
+                undefined,
+                undefined,
+                undefined,
+                undefined,
+                'metadata.name=test-secret1',
+                'app=my-app',
+                5,
+            );
+            const items = lr.body.items;
+            expect(items).to.have.length(1);
+            scope.done();
+        });
     });
 
     describe('errors', () => {
@@ -1920,6 +1996,32 @@ describe('KubernetesObject', () => {
             }
             expect(thrown).to.be.true;
             scope.done();
+        });
+
+        it('should throw error if no apiVersion', async () => {
+            let thrown = false;
+            try {
+                await (client.list as any)(undefined, undefined);
+                expect.fail('should have thrown an error');
+            } catch (e) {
+                thrown = true;
+                expect(e.message).to.contain(
+                    'Required parameter apiVersion was null or undefined when calling ',
+                );
+            }
+            expect(thrown).to.be.true;
+        });
+
+        it('should throw error if no kind', async () => {
+            let thrown = false;
+            try {
+                await (client.list as any)('', undefined);
+                expect.fail('should have thrown an error');
+            } catch (e) {
+                thrown = true;
+                expect(e.message).to.contain('Required parameter kind was null or undefined when calling ');
+            }
+            expect(thrown).to.be.true;
         });
     });
 });

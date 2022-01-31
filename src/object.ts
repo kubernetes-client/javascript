@@ -20,7 +20,7 @@ type KubernetesObjectResponseBody =
     | V1APIResourceList;
 
 /** Kubernetes API verbs. */
-type KubernetesApiAction = 'create' | 'delete' | 'patch' | 'read' | 'replace';
+type KubernetesApiAction = 'create' | 'delete' | 'patch' | 'read' | 'list' | 'replace';
 
 /**
  * Valid Content-Type header values for patch operations.  See
@@ -316,6 +316,91 @@ export class KubernetesObjectApi extends ApisApi {
     }
 
     /**
+     * List any Kubernetes resources.
+     * @param apiVersion api group and version of the form <apiGroup>/<version>
+     * @param kind Kubernetes resource kind
+     * @param namespace list resources in this namespace
+     * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
+     * @param exact Should the export be exact.  Exact export maintains cluster-specific fields like
+     *        \&#39;Namespace\&#39;. Deprecated. Planned for removal in 1.18.
+     * @param exportt Should this value be exported.  Export strips fields that a user can not
+     *        specify. Deprecated. Planned for removal in 1.18.
+     * @param fieldSelector A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @param labelSelector A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @param limit Number of returned resources.
+     * @param options Optional headers to use in the request.
+     * @return Promise containing the request response and [[KubernetesListObject<KubernetesObject>]].
+     */
+    public async list(
+        apiVersion: string,
+        kind: string,
+        namespace?: string,
+        pretty?: string,
+        exact?: boolean,
+        exportt?: boolean,
+        fieldSelector?: string,
+        labelSelector?: string,
+        limit?: number,
+        options: { headers: { [name: string]: string } } = { headers: {} },
+    ): Promise<{ body: KubernetesListObject<KubernetesObject>; response: http.IncomingMessage }> {
+        // verify required parameters 'apiVersion', 'kind' is not null or undefined
+        if (apiVersion === null || apiVersion === undefined) {
+            throw new Error('Required parameter apiVersion was null or undefined when calling list.');
+        }
+        if (kind === null || kind === undefined) {
+            throw new Error('Required parameter kind was null or undefined when calling list.');
+        }
+
+        const localVarPath = await this.specUriPath(
+            {
+                apiVersion,
+                kind,
+                metadata: {
+                    namespace,
+                },
+            },
+            'list',
+        );
+        const localVarQueryParameters: any = {};
+        const localVarHeaderParams = this.generateHeaders(options.headers);
+
+        if (pretty !== undefined) {
+            localVarQueryParameters.pretty = ObjectSerializer.serialize(pretty, 'string');
+        }
+
+        if (exact !== undefined) {
+            localVarQueryParameters.exact = ObjectSerializer.serialize(exact, 'boolean');
+        }
+
+        if (exportt !== undefined) {
+            localVarQueryParameters.export = ObjectSerializer.serialize(exportt, 'boolean');
+        }
+
+        if (fieldSelector !== undefined) {
+            localVarQueryParameters.fieldSelector = ObjectSerializer.serialize(fieldSelector, 'string');
+        }
+
+        if (labelSelector !== undefined) {
+            localVarQueryParameters.labelSelector = ObjectSerializer.serialize(labelSelector, 'string');
+        }
+
+        if (limit !== undefined) {
+            localVarQueryParameters.limit = ObjectSerializer.serialize(limit, 'number');
+        }
+
+        const localVarRequestOptions: request.Options = {
+            method: 'GET',
+            qs: localVarQueryParameters,
+            headers: localVarHeaderParams,
+            uri: localVarPath,
+            useQuerystring: this._useQuerystring,
+            json: true,
+        };
+
+        return this.requestPromise(localVarRequestOptions);
+    }
+
+    /**
      * Replace any Kubernetes resource.
      * @param spec Kubernetes resource spec
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
@@ -403,7 +488,7 @@ export class KubernetesObjectApi extends ApisApi {
         if (!resource) {
             throw new Error(`Unrecognized API version and kind: ${spec.apiVersion} ${spec.kind}`);
         }
-        if (resource.namespaced && !spec.metadata.namespace) {
+        if (resource.namespaced && !spec.metadata.namespace && action !== 'list') {
             spec.metadata.namespace = this.defaultNamespace;
         }
         const parts = [this.apiVersionPath(spec.apiVersion)];
@@ -411,7 +496,7 @@ export class KubernetesObjectApi extends ApisApi {
             parts.push('namespaces', encodeURIComponent(String(spec.metadata.namespace)));
         }
         parts.push(resource.name);
-        if (action !== 'create') {
+        if (action !== 'create' && action !== 'list') {
             if (!spec.metadata.name) {
                 throw new Error('Required spec property name is not set');
             }
