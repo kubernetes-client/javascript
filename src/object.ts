@@ -341,6 +341,7 @@ export class KubernetesObjectApi extends ApisApi {
         fieldSelector?: string,
         labelSelector?: string,
         limit?: number,
+        continueToken?: string,
         options: { headers: { [name: string]: string } } = { headers: {} },
     ): Promise<{ body: KubernetesListObject<KubernetesObject>; response: http.IncomingMessage }> {
         // verify required parameters 'apiVersion', 'kind' is not null or undefined
@@ -386,6 +387,10 @@ export class KubernetesObjectApi extends ApisApi {
 
         if (limit !== undefined) {
             localVarQueryParameters.limit = ObjectSerializer.serialize(limit, 'number');
+        }
+
+        if (continueToken !== undefined) {
+            localVarQueryParameters.continue = ObjectSerializer.serialize(continueToken, 'string');
         }
 
         const localVarRequestOptions: request.Options = {

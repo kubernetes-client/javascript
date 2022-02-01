@@ -1751,7 +1751,7 @@ describe('KubernetesObject', () => {
         it('should list resources in a namespace', async () => {
             const scope = nock('https://d.i.y')
                 .get(
-                    '/api/v1/namespaces/default/secrets?fieldSelector=metadata.name%3Dtest-secret1&labelSelector=app%3Dmy-app&limit=5',
+                    '/api/v1/namespaces/default/secrets?fieldSelector=metadata.name%3Dtest-secret1&labelSelector=app%3Dmy-app&limit=5&continue=abc',
                 )
                 .reply(200, {
                     apiVersion: 'v1',
@@ -1768,6 +1768,7 @@ describe('KubernetesObject', () => {
                     ],
                     metadata: {
                         resourceVersion: '216532459',
+                        continue: 'abc',
                     },
                 });
             const lr = await client.list(
@@ -1780,6 +1781,7 @@ describe('KubernetesObject', () => {
                 'metadata.name=test-secret1',
                 'app=my-app',
                 5,
+                'abc',
             );
             const items = lr.body.items;
             expect(items).to.have.length(1);
@@ -1806,6 +1808,7 @@ describe('KubernetesObject', () => {
                     ],
                     metadata: {
                         resourceVersion: '216532459',
+                        continue: 'abc',
                     },
                 });
             const lr = await client.list(
