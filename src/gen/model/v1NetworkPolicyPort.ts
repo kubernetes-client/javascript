@@ -11,6 +11,7 @@
  */
 
 import { RequestFile } from './models';
+import { IntOrString } from '../../types';
 
 /**
 * NetworkPolicyPort describes a port to allow traffic on
@@ -21,9 +22,9 @@ export class V1NetworkPolicyPort {
     */
     'endPort'?: number;
     /**
-    * The port on the given protocol. This can either be a numerical or named port on a pod. If this field is not provided, this matches all port names and numbers. If present, only traffic on the specified protocol AND port will be matched.
+    * IntOrString is a type that can hold an int32 or a string.  When used in JSON or YAML marshalling and unmarshalling, it produces or consumes the inner type.  This allows you to have, for example, a JSON field that can accept a name or number.
     */
-    'port'?: object;
+    'port'?: IntOrString;
     /**
     * The protocol (TCP, UDP, or SCTP) which traffic must match. If not specified, this field defaults to TCP.
     */
@@ -40,7 +41,7 @@ export class V1NetworkPolicyPort {
         {
             "name": "port",
             "baseName": "port",
-            "type": "object"
+            "type": "IntOrString"
         },
         {
             "name": "protocol",
