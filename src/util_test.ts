@@ -54,11 +54,21 @@ describe('Utils', () => {
     it('should parse quantities', () => {
         expect(quantityToScalar('')).to.equal(0);
 
+        expect(quantityToScalar('2n')).to.equal(2 / 1_000_000_000);
+        expect(quantityToScalar('3u')).to.equal(3 / 1_000_000);
         expect(quantityToScalar('100m')).to.equal(0.1);
+        expect(quantityToScalar('3k')).to.equal(BigInt(3000));
+        expect(quantityToScalar('3M')).to.equal(BigInt(3 * 1000 * 1000));
+        expect(quantityToScalar('3G')).to.equal(BigInt(3 * 1000 * 1000 * 1000));
+        expect(quantityToScalar('5T')).to.equal(BigInt(5 * 1000 * 1000 * 1000) * BigInt(1000));
+        expect(quantityToScalar('3P')).to.equal(BigInt(3 * 1000 * 1000 * 1000) * BigInt(1000 * 1000));
+        expect(quantityToScalar('14E')).to.equal(
+            BigInt(14 * 1000 * 1000 * 1000) * BigInt(1000 * 1000 * 1000),
+        );
+
         expect(quantityToScalar('0.2')).to.equal(0.2);
         expect(quantityToScalar('1976m')).to.equal(1.976);
 
-        expect(quantityToScalar('1024')).to.equal(1024);
         expect(quantityToScalar('1024')).to.equal(1024);
         expect(quantityToScalar('10e3')).to.equal(10000);
 
