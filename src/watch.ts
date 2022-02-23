@@ -100,7 +100,8 @@ export class Watch {
             json: true,
             pool: false,
         };
-        await this.config.applyToRequest(requestOptions);
+        // TODO: fix applytoHTTPSOptions for watch
+        //await this.config.applyToRequest(requestOptions);
 
         let req;
         let doneCalled: boolean = false;

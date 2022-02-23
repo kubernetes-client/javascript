@@ -1,9 +1,9 @@
 import * as http from 'http';
 import request = require('request');
+import { Configuration } from '.';
 import {
     ApisApi,
-    HttpError,
-    ObjectSerializer,
+    HttpException,
     V1APIResource,
     V1APIResourceList,
     V1DeleteOptions,
@@ -11,6 +11,7 @@ import {
 } from './api';
 import { KubeConfig } from './config';
 import { KubernetesListObject, KubernetesObject } from './types';
+import { ObjectSerializer } from './util';
 
 /** Union type of body types returned by KubernetesObjectApi. */
 type KubernetesObjectResponseBody =
@@ -41,6 +42,8 @@ enum KubernetesPatchStrategies {
  * on.
  */
 export class KubernetesObjectApi extends ApisApi {
+    private config: Configuration;
+
     /**
      * Create a KubernetesObjectApi object from the provided KubeConfig.  This method should be used rather than
      * [[KubeConfig.makeApiClient]] so we can properly determine the default namespace if one is provided by the current
@@ -53,6 +56,11 @@ export class KubernetesObjectApi extends ApisApi {
         const client = kc.makeApiClient(KubernetesObjectApi);
         client.setDefaultNamespace(kc);
         return client;
+    }
+
+    constructor(config: Configuration) {
+        super(config)
+        this.config = config; // Save configuration in instance
     }
 
     /** Initialize the default namespace.  May be overwritten by context. */
@@ -107,7 +115,6 @@ export class KubernetesObjectApi extends ApisApi {
             qs: localVarQueryParameters,
             headers: localVarHeaderParams,
             uri: localVarPath,
-            useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(spec, 'KubernetesObject'),
         };
@@ -193,7 +200,6 @@ export class KubernetesObjectApi extends ApisApi {
             qs: localVarQueryParameters,
             headers: localVarHeaderParams,
             uri: localVarPath,
-            useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(body, 'V1DeleteOptions'),
         };
@@ -256,7 +262,6 @@ export class KubernetesObjectApi extends ApisApi {
             qs: localVarQueryParameters,
             headers: localVarHeaderParams,
             uri: localVarPath,
-            useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(spec, 'object'),
         };
@@ -308,7 +313,6 @@ export class KubernetesObjectApi extends ApisApi {
             qs: localVarQueryParameters,
             headers: localVarHeaderParams,
             uri: localVarPath,
-            useQuerystring: this._useQuerystring,
             json: true,
         };
 
@@ -398,7 +402,6 @@ export class KubernetesObjectApi extends ApisApi {
             qs: localVarQueryParameters,
             headers: localVarHeaderParams,
             uri: localVarPath,
-            useQuerystring: this._useQuerystring,
             json: true,
         };
 
@@ -451,7 +454,6 @@ export class KubernetesObjectApi extends ApisApi {
             qs: localVarQueryParameters,
             headers: localVarHeaderParams,
             uri: localVarPath,
-            useQuerystring: this._useQuerystring,
             json: true,
             body: ObjectSerializer.serialize(spec, 'KubernetesObject'),
         };
@@ -513,7 +515,9 @@ export class KubernetesObjectApi extends ApisApi {
     /** Return root of API path up to API version. */
     protected apiVersionPath(apiVersion: string): string {
         const api = apiVersion.includes('/') ? 'apis' : 'api';
-        return [this.basePath, api, apiVersion].join('/');
+        // TODO: find where the basePath is stored now
+        const baseURL = '';
+        return [baseURL, api, apiVersion].join('/');
     }
 
     /**
@@ -529,7 +533,9 @@ export class KubernetesObjectApi extends ApisApi {
         optionsHeaders: { [name: string]: string },
         action: string = 'GET',
     ): { [name: string]: string } {
-        const headers: { [name: string]: string } = Object.assign({}, this._defaultHeaders);
+        // TODO: Figure out why this was here
+        //const headers: { [name: string]: string } = Object.assign({}, this._defaultHeaders);
+        const headers: { [name: string]: string } = Object.assign({});
         headers.accept = 'application/json';
         if (action === 'PATCH') {
             headers['content-type'] = KubernetesPatchStrategies.StrategicMergePatch;
@@ -575,7 +581,6 @@ export class KubernetesObjectApi extends ApisApi {
             qs: localVarQueryParameters,
             headers: localVarHeaderParams,
             uri: localVarPath,
-            useQuerystring: this._useQuerystring,
             json: true,
         };
 
@@ -587,7 +592,7 @@ export class KubernetesObjectApi extends ApisApi {
             this.apiVersionResourceCache[apiVersion] = getApiResponse.body;
             return this.apiVersionResourceCache[apiVersion].resources.find((r) => r.kind === kind);
         } catch (e) {
-            e.message = `Failed to fetch resource metadata for ${apiVersion}/${kind}: ${e.message}`;
+            e = `Failed to fetch resource metadata for ${apiVersion}/${kind}: ${e}`;
             throw e;
         }
     }
@@ -599,21 +604,24 @@ export class KubernetesObjectApi extends ApisApi {
         requestOptions: request.Options,
         tipe: string = 'KubernetesObject',
     ): Promise<{ body: T; response: http.IncomingMessage }> {
-        let authenticationPromise = Promise.resolve();
-        if (this.authentications.BearerToken.apiKey) {
-            authenticationPromise = authenticationPromise.then(() =>
-                this.authentications.BearerToken.applyToRequest(requestOptions),
-            );
-        }
-        authenticationPromise = authenticationPromise.then(() =>
-            this.authentications.default.applyToRequest(requestOptions),
-        );
 
-        let interceptorPromise = authenticationPromise;
-        for (const interceptor of this.interceptors) {
-            interceptorPromise = interceptorPromise.then(() => interceptor(requestOptions));
-        }
-        await interceptorPromise;
+        // TODO: Migrate Object.ts call to use fetch instead of request
+
+        // let authenticationPromise = Promise.resolve();
+        // if (this.authentications.BearerToken.apiKey) {
+        //     authenticationPromise = authenticationPromise.then(() =>
+        //         this.authentications.BearerToken.applyToRequest(requestOptions),
+        //     );
+        // }
+        // authenticationPromise = authenticationPromise.then(() =>
+        //     this.authentications.default.applyToRequest(requestOptions),
+        // );
+
+        // let interceptorPromise = authenticationPromise;
+        // for (const interceptor of this.interceptors) {
+        //     interceptorPromise = interceptorPromise.then(() => interceptor(requestOptions));
+        // }
+        // await interceptorPromise;
 
         return new Promise<{ body: T; response: http.IncomingMessage }>((resolve, reject) => {
             request(requestOptions, (error, response, body) => {
@@ -624,7 +632,7 @@ export class KubernetesObjectApi extends ApisApi {
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response, body });
                     } else {
-                        reject(new HttpError(response, body, response.statusCode));
+                        reject(new HttpException(response + body + response.statusCode));
                     }
                 }
             });

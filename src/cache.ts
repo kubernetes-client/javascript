@@ -1,4 +1,4 @@
-import { ObjectSerializer } from './api';
+import { ObjectSerializer } from './util';
 import {
     ADD,
     CHANGE,

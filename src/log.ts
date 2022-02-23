@@ -1,8 +1,8 @@
 import request = require('request');
 import { Writable } from 'stream';
 import { KubeConfig } from './config';
-import { HttpError, ObjectSerializer } from './gen/api';
-
+import { HttpException } from './gen/';
+import { ObjectSerializer } from './util';
 export interface LogOptions {
     /**
      * Follow the log stream of the pod. Defaults to false.
@@ -98,7 +98,8 @@ export class Log {
             },
             uri: url,
         };
-        await this.config.applyToRequest(requestOptions);
+        // TODO: Migrate log to use fetch
+        //await this.config.applytoHTTPSOptions(requestOptions);
 
         return new Promise((resolve, reject) => {
             const req = request(requestOptions, (error, response, body) => {
@@ -108,9 +109,9 @@ export class Log {
                 } else if (response.statusCode !== 200) {
                     try {
                         const deserializedBody = ObjectSerializer.deserialize(JSON.parse(body), 'V1Status');
-                        reject(new HttpError(response, deserializedBody, response.statusCode));
+                        reject(new HttpException(response + deserializedBody + response.statusCode));
                     } catch (e) {
-                        reject(new HttpError(response, body, response.statusCode));
+                        reject(new HttpException(response + body + response.statusCode));
                     }
                     done(body);
                 } else {
