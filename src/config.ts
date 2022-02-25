@@ -144,6 +144,18 @@ export class KubeConfig {
         if (user && user.username) {
             opts.auth = `${user.username}:${user.password}`;
         }
+
+        const agentOptions: https.AgentOptions = {};
+
+        // Copy AgentOptions from RequestOptions
+        agentOptions.ca = opts.ca;
+        agentOptions.cert = opts.cert;
+        agentOptions.key = opts.key;
+        agentOptions.pfx = opts.pfx;
+        agentOptions.passphrase = opts.passphrase;
+        agentOptions.rejectUnauthorized = opts.rejectUnauthorized;
+
+        opts.agent = new https.Agent(agentOptions);
     }
 
     /**
