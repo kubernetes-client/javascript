@@ -9,7 +9,7 @@ import { Duplex } from 'stream';
 import { EventEmitter } from 'ws';
 
 import { V1Namespace, V1NamespaceList, V1ObjectMeta, V1Pod, V1ListMeta } from './api';
-import { deleteObject, ListWatch, deleteItems } from './cache';
+import { deleteObject, ListWatch, deleteItems, CacheMap, cacheMapFromList } from './cache';
 import { KubeConfig } from './config';
 import { Cluster, Context, User } from './config_types';
 import { ADD, UPDATE, DELETE, ERROR, ListPromise, CHANGE } from './informer';
@@ -689,7 +689,7 @@ describe('ListWatchCache', () => {
     });
 
     it('should delete an object correctly', () => {
-        const list: V1Pod[] = [
+        const cache: CacheMap<V1Pod> = cacheMapFromList([
             {
                 metadata: {
                     name: 'name1',
@@ -702,28 +702,34 @@ describe('ListWatchCache', () => {
                     namespace: 'ns2',
                 } as V1ObjectMeta,
             } as V1Pod,
-        ];
-        deleteObject(list, {
+        ]);
+        deleteObject(cache, {
             metadata: {
                 name: 'other',
                 namespace: 'ns1',
             },
         } as V1Pod);
-        expect(list.length).to.equal(2);
-        deleteObject(list, {
+        expect(cache.size).to.equal(2);
+        expect(cache.get('ns1').size).to.equal(1);
+        expect(cache.get('ns2').size).to.equal(1);
+        deleteObject(cache, {
             metadata: {
                 name: 'name1',
                 namespace: 'ns2',
             },
         } as V1Pod);
-        expect(list.length).to.equal(2);
-        deleteObject(list, {
+        expect(cache.size).to.equal(2);
+        expect(cache.get('ns1').size).to.equal(1);
+        expect(cache.get('ns2').size).to.equal(1);
+        deleteObject(cache, {
             metadata: {
                 name: 'name1',
                 namespace: 'ns1',
             },
         } as V1Pod);
-        expect(list.length).to.equal(1);
+        expect(cache.size).to.equal(1);
+        expect(cache.has('ns1')).to.equal(false);
+        expect(cache.get('ns2').size).to.equal(1);
     });
 
     it('should not call handlers which have been unregistered', async () => {
@@ -1330,7 +1336,7 @@ describe('ListWatchCache', () => {
 
 describe('delete items', () => {
     it('should remove correctly', () => {
-        const listA: V1Pod[] = [
+        const cacheA: CacheMap<V1Pod> = cacheMapFromList([
             {
                 metadata: {
                     name: 'name1',
@@ -1343,7 +1349,7 @@ describe('delete items', () => {
                     namespace: 'ns2',
                 } as V1ObjectMeta,
             } as V1Pod,
-        ];
+        ]);
         const listB: V1Pod[] = [
             {
                 metadata: {
@@ -1368,7 +1374,7 @@ describe('delete items', () => {
         ];
         const pods: V1Pod[] = [];
 
-        deleteItems(listA, listB, [(obj?: V1Pod) => pods.push(obj!)]);
+        deleteItems(cacheA, listB, [(obj?: V1Pod) => pods.push(obj!)]);
         expect(pods).to.deep.equal(expected);
     });
 
