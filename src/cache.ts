@@ -264,8 +264,8 @@ export function deleteItems<T extends KubernetesObject>(
 export function addOrUpdateObject<T extends KubernetesObject>(
     objects: CacheMap<T>,
     obj: T,
-    addCallback?: Array<ObjectCallback<T>>,
-    updateCallback?: Array<ObjectCallback<T>>,
+    addCallbacks?: Array<ObjectCallback<T>>,
+    updateCallbacks?: Array<ObjectCallback<T>>,
 ): void {
     let namespaceObjects = objects.get(obj.metadata!.namespace || '');
     if (!namespaceObjects) {
@@ -277,14 +277,14 @@ export function addOrUpdateObject<T extends KubernetesObject>(
     const found = namespaceObjects.get(name);
     if (!found) {
         namespaceObjects.set(name, obj);
-        if (addCallback) {
-            addCallback.forEach((elt: ObjectCallback<T>) => elt(obj));
+        if (addCallbacks) {
+            addCallbacks.forEach((elt: ObjectCallback<T>) => elt(obj));
         }
     } else {
         if (!isSameVersion(found, obj)) {
             namespaceObjects.set(name, obj);
-            if (updateCallback) {
-                updateCallback.forEach((elt: ObjectCallback<T>) => elt(obj));
+            if (updateCallbacks) {
+                updateCallbacks.forEach((elt: ObjectCallback<T>) => elt(obj));
             }
         }
     }
@@ -302,7 +302,7 @@ function isSameVersion<T extends KubernetesObject>(o1: T, o2: T): boolean {
 export function deleteObject<T extends KubernetesObject>(
     objects: CacheMap<T>,
     obj: T,
-    deleteCallback?: Array<ObjectCallback<T>>,
+    deleteCallbacks?: Array<ObjectCallback<T>>,
 ): void {
     const namespace = obj.metadata!.namespace || '';
     const name = obj.metadata!.name || '';
@@ -313,8 +313,8 @@ export function deleteObject<T extends KubernetesObject>(
     }
     const deleted = namespaceObjects.delete(name);
     if (deleted) {
-        if (deleteCallback) {
-            deleteCallback.forEach((elt: ObjectCallback<T>) => elt(obj));
+        if (deleteCallbacks) {
+            deleteCallbacks.forEach((elt: ObjectCallback<T>) => elt(obj));
         }
         if (namespaceObjects.size === 0) {
             objects.delete(namespace);
