@@ -17,7 +17,6 @@ import { ADD, UPDATE, DELETE, ERROR, ListPromise, CHANGE } from './informer';
 use(chaiAsPromised);
 
 import { DefaultRequest, RequestResult, Watch } from './watch';
-import { getPriority } from 'os';
 
 // Object replacing real Request object in the test
 class FakeRequest extends EventEmitter implements RequestResult {
