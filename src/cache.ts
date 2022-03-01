@@ -105,6 +105,13 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     }
 
     public list(namespace?: string | undefined): ReadonlyArray<T> {
+        if (!namespace) {
+            const allObjects: T[] = [];
+            for (const nsObjects of this.objects.values()) {
+                allObjects.push(...nsObjects.values());
+            }
+            return allObjects;
+        }
         const namespaceObjects = this.objects.get(namespace || '');
         if (!namespaceObjects) {
             return [];
@@ -227,28 +234,30 @@ export function deleteItems<T extends KubernetesObject>(
     newObjects: T[],
     deleteCallback?: Array<ObjectCallback<T>>,
 ): CacheMap<T> {
-    const objects = cacheMapFromList(newObjects);
-
-    if (!deleteCallback) {
-        return objects;
-    }
+    const newObjectsMap = cacheMapFromList(newObjects);
 
     for (const [namespace, oldNamespaceObjects] of oldObjects.entries()) {
-        const newNamespaceObjects = objects.get(namespace);
+        const newNamespaceObjects = newObjectsMap.get(namespace);
         if (newNamespaceObjects) {
             for (const [name, oldObj] of oldNamespaceObjects.entries()) {
-                if (newNamespaceObjects.has(name)) {
-                    deleteCallback.forEach((fn: ObjectCallback<T>) => fn(oldObj));
+                if (!newNamespaceObjects.has(name)) {
+                    oldNamespaceObjects.delete(name);
+                    if (deleteCallback) {
+                        deleteCallback.forEach((fn: ObjectCallback<T>) => fn(oldObj));
+                    }
                 }
             }
         } else {
+            oldObjects.delete(namespace);
             oldNamespaceObjects.forEach((obj: T) => {
-                deleteCallback.forEach((fn: ObjectCallback<T>) => fn(obj));
+                if (deleteCallback) {
+                    deleteCallback.forEach((fn: ObjectCallback<T>) => fn(obj));
+                }
             });
         }
     }
 
-    return objects;
+    return oldObjects;
 }
 
 // Only public for testing.

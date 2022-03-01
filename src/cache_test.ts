@@ -116,7 +116,7 @@ describe('ListWatchCache', () => {
             ],
         } as V1NamespaceList;
 
-        var calls = 0;
+        let calls = 0;
         const listFn: ListPromise<V1Namespace> = function(): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
@@ -144,11 +144,11 @@ describe('ListWatchCache', () => {
         expect(pathOut).to.equal('/some/path');
         expect(cache.list()).to.deep.equal(list);
 
-        expect(cache.get('name1')).to.equal(list[0]);
-        expect(cache.get('name2')).to.equal(list[1]);
+        expect(cache.get('name1', 'default')).to.equal(list[0]);
+        expect(cache.get('name2', 'default')).to.equal(list[1]);
 
         expect(cache.list('default')).to.deep.equal(list);
-        expect(cache.list('non-existent')).to.be.undefined;
+        expect(cache.list('non-existent')).to.deep.equal([]);
 
         watchHandler('ADDED', {
             metadata: {
@@ -158,11 +158,11 @@ describe('ListWatchCache', () => {
         } as V1Namespace);
 
         expect(cache.list().length).to.equal(3);
-        expect(cache.get('name3')).to.not.equal(null);
+        expect(cache.get('name3', 'default')).to.not.equal(null);
 
         expect(cache.list('default').length).to.equal(2);
         expect(cache.list('other').length).to.equal(1);
-        expect(cache.list('non-existent')).to.be.undefined;
+        expect(cache.list('non-existent')).to.deep.equal([]);
 
         watchHandler('MODIFIED', {
             metadata: {
@@ -172,7 +172,7 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Namespace);
         expect(cache.list().length).to.equal(3);
-        const obj3 = cache.get('name3');
+        const obj3 = cache.get('name3', 'other');
         expect(obj3).to.not.equal(null);
         if (obj3) {
             expect(obj3.metadata!.name).to.equal('name3');
@@ -186,7 +186,7 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Namespace);
         expect(cache.list().length).to.equal(2);
-        expect(cache.get('name2')).to.equal(undefined);
+        expect(cache.get('name2', 'default')).to.equal(undefined);
 
         expect(cache.list('default').length).to.equal(1);
         expect(cache.list('other').length).to.equal(1);
@@ -203,7 +203,7 @@ describe('ListWatchCache', () => {
         await doneHandler(error);
         expect(cache.list().length, 'all namespace list').to.equal(1);
         expect(cache.list('default').length, 'default namespace list').to.equal(1);
-        expect(cache.list('other'), 'other namespace list').to.be.undefined;
+        expect(cache.list('other'), 'other namespace list').to.deep.equal([]);
     });
 
     it('should perform work as an informer', async () => {
@@ -635,8 +635,8 @@ describe('ListWatchCache', () => {
         expect(pathOut).to.equal('/some/path');
         expect(cache.list()).to.deep.equal(list);
 
-        expect(cache.get('name1')).to.equal(list[0]);
-        expect(cache.get('name2')).to.equal(list[1]);
+        expect(cache.get('name1', 'ns1')).to.equal(list[0]);
+        expect(cache.get('name2', 'ns2')).to.equal(list[1]);
 
         expect(cache.list('ns1').length).to.equal(1);
         expect(cache.list('ns1')[0].metadata!.name).to.equal('name1');
