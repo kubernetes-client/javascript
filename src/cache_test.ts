@@ -17,6 +17,7 @@ import { ADD, UPDATE, DELETE, ERROR, ListPromise, CHANGE } from './informer';
 use(chaiAsPromised);
 
 import { DefaultRequest, RequestResult, Watch } from './watch';
+import { getPriority } from 'os';
 
 // Object replacing real Request object in the test
 class FakeRequest extends EventEmitter implements RequestResult {
@@ -710,8 +711,8 @@ describe('ListWatchCache', () => {
             },
         } as V1Pod);
         expect(cache.size).to.equal(2);
-        expect(cache.get('ns1').size).to.equal(1);
-        expect(cache.get('ns2').size).to.equal(1);
+        expect((cache.get('ns1') || new Map()).size).to.equal(1);
+        expect((cache.get('ns2') || new Map()).size).to.equal(1);
         deleteObject(cache, {
             metadata: {
                 name: 'name1',
@@ -719,8 +720,8 @@ describe('ListWatchCache', () => {
             },
         } as V1Pod);
         expect(cache.size).to.equal(2);
-        expect(cache.get('ns1').size).to.equal(1);
-        expect(cache.get('ns2').size).to.equal(1);
+        expect((cache.get('ns1') || new Map()).size).to.equal(1);
+        expect((cache.get('ns2') || new Map()).size).to.equal(1);
         deleteObject(cache, {
             metadata: {
                 name: 'name1',
@@ -729,7 +730,7 @@ describe('ListWatchCache', () => {
         } as V1Pod);
         expect(cache.size).to.equal(1);
         expect(cache.has('ns1')).to.equal(false);
-        expect(cache.get('ns2').size).to.equal(1);
+        expect((cache.get('ns2') || new Map()).size).to.equal(1);
     });
 
     it('should not call handlers which have been unregistered', async () => {
