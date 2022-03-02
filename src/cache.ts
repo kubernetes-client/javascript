@@ -140,7 +140,10 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
 
     private async doneHandler(err: any): Promise<void> {
         this._stop();
-        if (err && err.statusCode === 410) {
+        if (
+            err &&
+            ((err as { statusCode?: number }).statusCode === 410 || (err as { code?: number }).code === 410)
+        ) {
             this.resourceVersion = '';
         } else if (err) {
             this.callbackCache[ERROR].forEach((elt: ErrorCallback) => elt(err));
@@ -192,7 +195,11 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         });
     }
 
-    private watchHandler(phase: string, obj: T, watchObj?: any): void {
+    private async watchHandler(
+        phase: string,
+        obj: T,
+        watchObj?: { type: string; object: KubernetesObject },
+    ): Promise<void> {
         switch (phase) {
             case 'ERROR':
                 if ((obj as { code?: number }).code === 410) {
@@ -214,10 +221,11 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
             case 'BOOKMARK':
                 // nothing to do, here for documentation, mostly.
                 break;
+            case 'ERROR':
+                await this.doneHandler(obj);
+                return;
         }
-        if (watchObj && watchObj.metadata) {
-            this.resourceVersion = watchObj.metadata.resourceVersion;
-        }
+        this.resourceVersion = obj.metadata!.resourceVersion || '';
     }
 }
 
