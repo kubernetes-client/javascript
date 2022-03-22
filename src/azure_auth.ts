@@ -82,7 +82,7 @@ export class AzureAuth implements Authenticator {
         try {
             output = proc.execSync(cmd);
         } catch (err) {
-            throw new Error('Failed to refresh token: ' + err);
+            throw new Error('Failed to refresh token: ' + err.message);
         }
 
         const resultObj = JSON.parse(output);
