@@ -1,11 +1,7 @@
-import { Http2ServerRequest } from 'http2';
-import { RequestOptions } from 'https';
 import request = require('request');
 
 import { KubeConfig } from './config';
-import { HttpException } from './gen';
-import { ObjectSerializer } from './util';
-import { fetch } from 'node-fetch'
+import { HttpError, ObjectSerializer } from './gen/api';
 
 export interface Usage {
     cpu: string;
@@ -87,37 +83,28 @@ export class Metrics {
             throw new Error('No currently active cluster');
         }
 
-        const requestOptions: RequestOptions = {
+        const requestOptions: request.Options = {
             method: 'GET',
+            uri: cluster.server + path,
         };
 
-        const requestURL = cluster.server + path;
+        await this.config.applyToRequest(requestOptions);
 
-        await this.config.applytoHTTPSOptions(requestOptions);
-
-        return fetch(requestURL, requestOptions).then(response => {
-            if (response?.status !== 200) {
-                const deserializedBody = ObjectSerializer.deserialize(JSON.parse(response?.body), 'V1Status');
-                throw new HttpException('' + response + deserializedBody + response.statusCode)
-            }
-            return JSON.parse(response?.body) as T
-        })
-
-        // return new Promise((resolve, reject) => {
-        //     const req = request(requestOptions, (error, response, body) => {
-        //         if (error) {
-        //             reject(error);
-        //         } else if (response.statusCode !== 200) {
-        //             try {
-        //                 const deserializedBody = ObjectSerializer.deserialize(JSON.parse(body), 'V1Status');
-        //                 reject(new HttpException('' + response + deserializedBody + response.statusCode));
-        //             } catch (e) {
-        //                 reject(new HttpException('' + response + body + response.statusCode));
-        //             }
-        //         } else {
-        //             resolve(JSON.parse(body) as T);
-        //         }
-        //     });
-        // });
+        return new Promise((resolve, reject) => {
+            const req = request(requestOptions, (error, response, body) => {
+                if (error) {
+                    reject(error);
+                } else if (response.statusCode !== 200) {
+                    try {
+                        const deserializedBody = ObjectSerializer.deserialize(JSON.parse(body), 'V1Status');
+                        reject(new HttpError(response, deserializedBody, response.statusCode));
+                    } catch (e) {
+                        reject(new HttpError(response, body, response.statusCode));
+                    }
+                } else {
+                    resolve(JSON.parse(body) as T);
+                }
+            });
+        });
     }
 }

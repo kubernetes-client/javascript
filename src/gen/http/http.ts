@@ -61,7 +61,7 @@ export class RequestContext {
      * @param httpMethod http method
      */
     public constructor(url: string, private httpMethod: HttpMethod) {
-        this.url = new URLParse.default(url, true);
+        this.url = new URLParse(url, true);
     }
 
     /*
@@ -122,10 +122,10 @@ export class RequestContext {
         this.headers["Cookie"] += name + "=" + value + "; ";
     }
 
-    public setHeaderParam(key: string, value: string): void {
+    public setHeaderParam(key: string, value: string): void  {
         this.headers[key] = value;
     }
-
+    
     public setAgent(agent: http.Agent | https.Agent) {
         this.agent = agent;
     }
@@ -144,7 +144,7 @@ export interface ResponseBody {
  * Helper class to generate a `ResponseBody` from binary data
  */
 export class SelfDecodingBody implements ResponseBody {
-    constructor(private dataSource: Promise<Buffer>) { }
+    constructor(private dataSource: Promise<Buffer>) {}
 
     binary(): Promise<Buffer> {
         return this.dataSource;
@@ -161,7 +161,7 @@ export class ResponseContext {
         public httpStatusCode: number,
         public headers: { [key: string]: string },
         public body: ResponseBody
-    ) { }
+    ) {}
 
     /**
      * Parse header value in the form `value; param1="value1"`
@@ -206,11 +206,11 @@ export class ResponseContext {
     public getBodyAsAny(): Promise<string | Buffer | undefined> {
         try {
             return this.body.text();
-        } catch { }
+        } catch {}
 
         try {
             return this.body.binary();
-        } catch { }
+        } catch {}
 
         return Promise.resolve(undefined);
     }
@@ -225,9 +225,9 @@ export interface PromiseHttpLibrary {
 }
 
 export function wrapHttpLibrary(promiseHttpLibrary: PromiseHttpLibrary): HttpLibrary {
-    return {
-        send(request: RequestContext): Observable<ResponseContext> {
-            return from(promiseHttpLibrary.send(request));
-        }
+  return {
+    send(request: RequestContext): Observable<ResponseContext> {
+      return from(promiseHttpLibrary.send(request));
     }
+  }
 }
