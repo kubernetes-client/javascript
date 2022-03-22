@@ -1,12 +1,19 @@
-import { expect } from 'chai';
-import * as requestlib from 'request';
+import { use, expect } from 'chai';
+import chaiAsPromised from 'chai-as-promised';
+import { RequestOptions } from 'https';
 import { join } from 'path';
 
 import { User, Cluster } from './config_types';
 import { AzureAuth } from './azure_auth';
 import { KubeConfig } from './config';
+import { OutgoingHttpHeaders } from 'http2';
+import { HttpMethod, RequestContext } from '.';
+
+use(chaiAsPromised);
 
 describe('AzureAuth', () => {
+
+    const testUrl1 = 'https://test1.com';
     var auth: AzureAuth;
     beforeEach(() => {
         auth = new AzureAuth();
@@ -53,20 +60,18 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
 
-        await config.applyToRequest(opts);
-        expect(opts.headers).to.not.be.undefined;
-        if (opts.headers) {
-            expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-        }
-        opts.headers = [];
-        opts.headers.Host = 'foo.com';
-        await config.applyToRequest(opts);
-        expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+        await config.applySecurityAuthentication(requestContext)
+        expect(requestContext.getHeaders()).to.not.be.undefined;
+        expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
+
+        requestContext.setHeaderParam('Host', 'foo.com');
+        await config.applySecurityAuthentication(requestContext)
+        expect(requestContext.getHeaders().Authorization).to.equal(`Bearer ${token}`);
     });
 
-    it('should populate from auth provider without expirty', async () => {
+    it('should populate from auth provider without expiry', async () => {
         const config = new KubeConfig();
         const token = 'token';
         config.loadFromClusterAndUser(
@@ -80,13 +85,11 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
 
-        await config.applyToRequest(opts);
-        expect(opts.headers).to.not.be.undefined;
-        if (opts.headers) {
-            expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-        }
+        await config.applySecurityAuthentication(requestContext)
+        expect(requestContext.getHeaders()).to.not.be.undefined;
+        expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
     });
 
     it('should populate rejectUnauthorized=false when skipTLSVerify is set', async () => {
@@ -103,10 +106,11 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
 
-        await config.applyToRequest(opts);
-        expect(opts.rejectUnauthorized).to.equal(false);
+        await config.applySecurityAuthentication(requestContext)
+        // @ts-ignore
+        expect(requestContext.getAgent().options.rejectUnauthorized).to.equal(false);
     });
 
     it('should not set rejectUnauthorized if skipTLSVerify is not set', async () => {
@@ -125,10 +129,11 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
 
-        await config.applyToRequest(opts);
-        expect(opts.rejectUnauthorized).to.equal(undefined);
+        await config.applySecurityAuthentication(requestContext)
+        // @ts-ignore
+        expect(requestContext.getAgent().options.rejectUnauthorized).to.equal(undefined);
     });
 
     it('should throw with expired token and no cmd', () => {
@@ -144,9 +149,9 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
 
-        return expect(config.applyToRequest(opts)).to.eventually.be.rejectedWith('Token is expired!');
+        return expect(config.applySecurityAuthentication(requestContext)).to.eventually.be.rejectedWith('Token is expired!');
     });
 
     it('should throw with bad command', () => {
@@ -164,8 +169,9 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
-        return expect(config.applyToRequest(opts)).to.eventually.be.rejectedWith(/Failed to refresh token/);
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+
+        return expect(config.applySecurityAuthentication(requestContext)).to.eventually.be.rejectedWith(/Failed to refresh token/);
     });
 
     it('should exec when no cmd and token is not expired', async () => {
@@ -183,8 +189,8 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
-        await config.applyToRequest(opts);
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        await config.applySecurityAuthentication(requestContext);
     });
 
     it('should exec with expired token', async () => {
@@ -210,12 +216,12 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
-        await config.applyToRequest(opts);
-        expect(opts.headers).to.not.be.undefined;
-        if (opts.headers) {
-            expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-        }
+
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        await config.applySecurityAuthentication(requestContext)
+
+        expect(requestContext.getHeaders()).to.not.be.undefined;
+        expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
     });
     it('should exec without access-token', async () => {
         // TODO: fix this test for Windows
@@ -239,12 +245,11 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
-        await config.applyToRequest(opts);
-        expect(opts.headers).to.not.be.undefined;
-        if (opts.headers) {
-            expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-        }
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        await config.applySecurityAuthentication(requestContext)
+
+        expect(requestContext.getHeaders()).to.not.be.undefined;
+        expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
     });
     it('should exec without access-token', async () => {
         // TODO: fix this test for Windows
@@ -268,12 +273,11 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
-        await config.applyToRequest(opts);
-        expect(opts.headers).to.not.be.undefined;
-        if (opts.headers) {
-            expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-        }
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        await config.applySecurityAuthentication(requestContext)
+
+        expect(requestContext.getHeaders()).to.not.be.undefined;
+        expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
     });
     it('should exec succesfully with spaces in cmd', async () => {
         // TODO: fix this test for Windows
@@ -281,7 +285,7 @@ describe('AzureAuth', () => {
             return;
         }
         const config = new KubeConfig();
-        const token = 'token';
+        const token = 'test-token';
         const responseStr = `{"token":{"accessToken":"${token}"}}`;
         config.loadFromClusterAndUser(
             { skipTLSVerify: false } as Cluster,
@@ -297,11 +301,10 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
-        await config.applyToRequest(opts);
-        expect(opts.headers).to.not.be.undefined;
-        if (opts.headers) {
-            expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-        }
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        await config.applySecurityAuthentication(requestContext)
+
+        expect(requestContext.getHeaders()).to.not.be.undefined;
+        expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
     });
 });
