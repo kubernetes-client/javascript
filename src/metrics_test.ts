@@ -2,7 +2,7 @@ import { fail } from 'assert';
 import { expect } from 'chai';
 import nock = require('nock');
 import { KubeConfig } from './config';
-import { V1Status, HttpError } from './gen/api';
+import { V1Status, HttpException, ApiException } from './gen';
 import { Metrics, NodeMetricsList, PodMetricsList } from './metrics';
 
 const emptyPodMetrics: PodMetricsList = {
@@ -151,7 +151,10 @@ describe('Metrics', () => {
                 await metricsClient.getPodMetrics();
                 fail('expected thrown error');
             } catch (e) {
-                expect(e.message).to.equal('connect ECONNREFUSED 127.0.0.1:51011');
+                expect(e instanceof ApiException)
+                if (e instanceof ApiException) {
+                    expect(e.message).to.include('connect ECONNREFUSED 127.0.0.1:51011');
+                }
             }
         });
         it('should throw when no current cluster', async () => {
@@ -165,7 +168,10 @@ describe('Metrics', () => {
                 await metricsClient.getPodMetrics();
                 fail('expected thrown error');
             } catch (e) {
-                expect(e.message).to.equal('No currently active cluster');
+                expect(e instanceof ApiException)
+                if (e instanceof ApiException) {
+                    expect(e.message).to.equal('No currently active cluster');
+                }
             }
             scope.done();
         });
@@ -181,10 +187,10 @@ describe('Metrics', () => {
                 await metricsClient.getPodMetrics();
                 fail('expected thrown error');
             } catch (e) {
-                if (!(e instanceof HttpError)) {
-                    fail('expected HttpError error');
+                if (!(e instanceof ApiException)) {
+                    fail('expected ApiException error');
                 }
-                expect(e.body.code).to.equal(response.code);
+                expect(e.code).to.equal(response.code);
                 expect(e.body.message).to.equal(response.message);
             }
             s.done();
@@ -198,10 +204,11 @@ describe('Metrics', () => {
                 await metricsClient.getPodMetrics();
                 fail('expected thrown error');
             } catch (e) {
-                if (!(e instanceof HttpError)) {
-                    fail('expected HttpError error');
+                if (!(e instanceof ApiException)) {
+                    fail('expected ApiException error');
                 }
-                expect(e.message).to.equal('HTTP request failed');
+                expect(e.code).to.equal(500);
+                expect(e.message).to.include('Error occurred in metrics request');
             }
             s.done();
         });
@@ -236,10 +243,10 @@ describe('Metrics', () => {
                 await metricsClient.getNodeMetrics();
                 fail('expected thrown error');
             } catch (e) {
-                if (!(e instanceof HttpError)) {
-                    fail('expected HttpError error');
+                if (!(e instanceof ApiException)) {
+                    fail('expected ApiException error');
                 }
-                expect(e.body.code).to.equal(response.code);
+                expect(e.code).to.equal(response.code);
                 expect(e.body.message).to.equal(response.message);
             }
             s.done();
