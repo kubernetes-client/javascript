@@ -27,7 +27,16 @@ import { ExecAuth } from './exec_auth';
 import { FileAuth } from './file_auth';
 import { GoogleCloudPlatformAuth } from './gcp_auth';
 import { OpenIDConnectAuth } from './oidc_auth';
-import { AuthMethods, AuthMethodsConfiguration, BaseServerConfiguration, Configuration, configureAuthMethods, createConfiguration, RequestContext, ServerConfiguration } from '.';
+import {
+    AuthMethods,
+    AuthMethodsConfiguration,
+    BaseServerConfiguration,
+    Configuration,
+    configureAuthMethods,
+    createConfiguration,
+    RequestContext,
+    ServerConfiguration
+} from './gen';
 
 const SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
 const SERVICEACCOUNT_CA_PATH: string = SERVICEACCOUNT_ROOT + '/ca.crt';
