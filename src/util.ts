@@ -1,9 +1,19 @@
 import { isNumber } from 'underscore';
-import { CoreV1Api, V1Container, V1Pod } from './gen/api';
+import { CoreV1Api, V1Container, V1Pod } from './gen';
+import { ObjectSerializer as InternalSerializer } from './gen/models/ObjectSerializer';
+
+export class ObjectSerializer extends InternalSerializer {
+    public static serialize(data: any, type: string, format: string = ''): string {
+        return InternalSerializer.serialize(data, type, format);
+    }
+    public static deserialize(data: any, type: string, format: string = ''): any {
+        return InternalSerializer.deserialize(data, type, format);
+    }
+}
 
 export async function podsForNode(api: CoreV1Api, nodeName: string): Promise<V1Pod[]> {
     const allPods = await api.listPodForAllNamespaces();
-    return allPods.body.items.filter((pod: V1Pod) => pod.spec!.nodeName === nodeName);
+    return allPods.items.filter((pod: V1Pod) => pod.spec!.nodeName === nodeName);
 }
 
 export function findSuffix(quantity: string): string {
@@ -87,7 +97,7 @@ export class ResourceStatus {
         public readonly request: bigint | number,
         public readonly limit: bigint | number,
         public readonly resourceType: string,
-    ) {}
+    ) { }
 }
 
 export function totalCPUForContainer(container: V1Container): ResourceStatus {
