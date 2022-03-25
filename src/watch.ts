@@ -1,5 +1,9 @@
 import byline = require('byline');
+import { RequestOptions } from 'https';
 import request = require('request');
+import fetch from 'node-fetch';
+import { URL } from 'url';
+import AbortController from 'abort-controller';
 import { Duplex } from 'stream';
 import { KubeConfig } from './config';
 
@@ -86,50 +90,41 @@ export class Watch {
         if (!cluster) {
             throw new Error('No currently active cluster');
         }
-        const url = cluster.server + path;
+        const watchURL = new URL(cluster.server + path);
+        watchURL.searchParams.set('watch', 'true');
 
-        queryParams.watch = true;
-        const headerParams: any = {};
+        const httpsOptions: RequestOptions = {}
+        // TODO: fix applytoHTTPSOptions for watch
+        await this.config.applytoHTTPSOptions(httpsOptions);
 
-        const requestOptions: request.OptionsWithUri = {
-            method: 'GET',
-            qs: queryParams,
-            headers: headerParams,
-            uri: url,
-            useQuerystring: true,
-            json: true,
-            pool: false,
-        };
-        await this.config.applyToRequest(requestOptions);
+        const controller = new AbortController();
+        // @ts-ignore
+        httpsOptions.signal = controller.signal;
 
-        let req;
         let doneCalled: boolean = false;
         const doneCallOnce = (err: any) => {
             if (!doneCalled) {
-                req.abort();
+                controller.abort();
                 doneCalled = true;
                 done(err);
             }
         };
-        req = this.requestImpl.webRequest(requestOptions);
         const stream = byline.createStream();
-        req.on('error', doneCallOnce);
-        req.on('socket', (socket) => {
-            socket.setTimeout(30000);
-            socket.setKeepAlive(true, 30000);
-        });
         stream.on('error', doneCallOnce);
         stream.on('close', () => doneCallOnce(null));
         stream.on('data', (line) => {
             try {
-                const data = JSON.parse(line);
+                const data = JSON.parse(line.toString());
                 callback(data.type, data.object, data);
             } catch (ignore) {
                 // ignore parse errors
             }
         });
 
-        req.pipe(stream);
+        const req = await fetch(watchURL, httpsOptions)
+            .then(response => {
+                response.body.pipe(stream)
+            }).catch(doneCallOnce);
         return req;
     }
 }
