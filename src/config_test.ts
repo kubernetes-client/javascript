@@ -1,16 +1,17 @@
 import { readFileSync } from 'fs';
 import * as https from 'https';
 import { join } from 'path';
+import { RequestOptions } from 'https';
 
 import { expect } from 'chai';
 import mockfs = require('mock-fs');
 import * as path from 'path';
-import * as requestlib from 'request';
 
-import { CoreV1Api } from './api';
+import { CoreV1Api, RequestContext } from './api';
 import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolutePath } from './config';
 import { Cluster, newClusters, newContexts, newUsers, User, ActionOnInvalid } from './config_types';
 import { ExecAuth } from './exec_auth';
+import { HttpMethod } from '.';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
 const kc2FileName = 'testdata/kubeconfig-2.yaml';
@@ -23,7 +24,7 @@ const kcInvalidContextFileName = 'testdata/empty-context-kubeconfig.yaml';
 const kcInvalidClusterFileName = 'testdata/empty-cluster-kubeconfig.yaml';
 
 /* tslint:disable: no-empty */
-describe('Config', () => {});
+describe('Config', () => { });
 
 function validateFileLoad(kc: KubeConfig) {
     // check clusters
@@ -252,11 +253,14 @@ describe('KubeConfig', () => {
             const kc = new KubeConfig();
             kc.loadFromFile(kcFileName);
             kc.setCurrentContext('passwd');
+            const testServerName1 = 'https://company.com';
 
-            const opts: requestlib.Options = {
-                url: 'https://company.com',
+            const opts: RequestOptions = {
+                servername: 'https://company.com',
             };
-            await kc.applyToRequest(opts);
+            const rc = new RequestContext(testServerName1, HttpMethod.GET);
+            await kc.applySecurityAuthentication(rc);
+            await kc.applytoHTTPSOptions(opts);
             expect(opts).to.deep.equal({
                 headers: {},
                 ca: new Buffer('CADATA2', 'utf-8'),
@@ -672,27 +676,26 @@ describe('KubeConfig', () => {
                     password: passwd,
                 } as User,
             );
-            const opts = {} as requestlib.Options;
+            const opts = {} as RequestOptions;
 
-            await config.applyToRequest(opts);
+            await config.applytoHTTPSOptions(opts);
 
             /* tslint:disable no-unused-expression*/
             expect(opts.auth).to.not.be.undefined;
             if (opts.auth) {
-                expect(opts.auth.username).to.equal(user);
-                expect(opts.auth.password).to.equal(passwd);
+                expect(opts.auth).to.equal(`${user}:${passwd}`);
             }
-            expect(opts.strictSSL).to.equal(false);
+            expect(opts.rejectUnauthorized).to.equal(false);
         });
         it('should not populate strict ssl', async () => {
             const config = new KubeConfig();
 
             config.loadFromClusterAndUser({ skipTLSVerify: false } as Cluster, {} as User);
-            const opts = {} as requestlib.Options;
+            const opts = {} as RequestOptions;
 
-            await config.applyToRequest(opts);
+            await config.applytoHTTPSOptions(opts);
 
-            expect(opts.strictSSL).to.equal(undefined);
+            expect(opts.rejectUnauthorized).to.equal(undefined);
         });
         it('should populate from token', async () => {
             const config = new KubeConfig();
@@ -703,9 +706,9 @@ describe('KubeConfig', () => {
                     token,
                 } as User,
             );
-            const opts = {} as requestlib.Options;
+            const opts = {} as RequestOptions;
 
-            await config.applyToRequest(opts);
+            await config.applytoHTTPSOptions(opts);
             expect(opts.headers).to.not.be.undefined;
             if (opts.headers) {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
@@ -726,16 +729,16 @@ describe('KubeConfig', () => {
                     },
                 } as User,
             );
-            const opts = {} as requestlib.Options;
+            const opts = {} as RequestOptions;
 
-            await config.applyToRequest(opts);
+            await config.applytoHTTPSOptions(opts);
             expect(opts.headers).to.not.be.undefined;
             if (opts.headers) {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
             }
-            opts.headers = [];
+            opts.headers = {}
             opts.headers.Host = 'foo.com';
-            await config.applyToRequest(opts);
+            await config.applytoHTTPSOptions(opts);
             expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
         });
 
@@ -753,9 +756,9 @@ describe('KubeConfig', () => {
                     },
                 } as User,
             );
-            const opts = {} as requestlib.Options;
+            const opts = {} as RequestOptions;
 
-            await config.applyToRequest(opts);
+            await config.applytoHTTPSOptions(opts);
             expect(opts.headers).to.not.be.undefined;
             if (opts.headers) {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
@@ -776,9 +779,9 @@ describe('KubeConfig', () => {
                     },
                 } as User,
             );
-            const opts = {} as requestlib.Options;
+            const opts = {} as RequestOptions;
 
-            await config.applyToRequest(opts);
+            await config.applytoHTTPSOptions(opts);
             expect(opts.rejectUnauthorized).to.equal(false);
         });
 
@@ -798,9 +801,9 @@ describe('KubeConfig', () => {
                     },
                 } as User,
             );
-            const opts = {} as requestlib.Options;
+            const opts = {} as RequestOptions;
 
-            await config.applyToRequest(opts);
+            await config.applytoHTTPSOptions(opts);
             expect(opts.rejectUnauthorized).to.equal(undefined);
         });
 
@@ -817,9 +820,9 @@ describe('KubeConfig', () => {
                     },
                 } as User,
             );
-            const opts = {} as requestlib.Options;
+            const opts = {} as RequestOptions;
 
-            return expect(config.applyToRequest(opts)).to.eventually.be.rejectedWith('Token is expired!');
+            return expect(config.applytoHTTPSOptions(opts)).to.eventually.be.rejectedWith('Token is expired!');
         });
 
         it('should throw with bad command', () => {
@@ -837,8 +840,8 @@ describe('KubeConfig', () => {
                     },
                 } as User,
             );
-            const opts = {} as requestlib.Options;
-            return expect(config.applyToRequest(opts)).to.eventually.be.rejectedWith(
+            const opts = {} as RequestOptions;
+            return expect(config.applytoHTTPSOptions(opts)).to.eventually.be.rejectedWith(
                 /Failed to refresh token/,
             );
         });
@@ -866,8 +869,8 @@ describe('KubeConfig', () => {
                     },
                 } as User,
             );
-            const opts = {} as requestlib.Options;
-            await config.applyToRequest(opts);
+            const opts = {} as RequestOptions;
+            await config.applytoHTTPSOptions(opts);
             expect(opts.headers).to.not.be.undefined;
             if (opts.headers) {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
@@ -897,8 +900,8 @@ describe('KubeConfig', () => {
                     },
                 } as User,
             );
-            const opts = {} as requestlib.Options;
-            await config.applyToRequest(opts);
+            const opts = {} as RequestOptions;
+            await config.applytoHTTPSOptions(opts);
             expect(opts.headers).to.not.be.undefined;
             if (opts.headers) {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
@@ -927,8 +930,8 @@ describe('KubeConfig', () => {
                     },
                 } as User,
             );
-            const opts = {} as requestlib.Options;
-            await config.applyToRequest(opts);
+            const opts = {} as RequestOptions;
+            await config.applytoHTTPSOptions(opts);
             expect(opts.headers).to.not.be.undefined;
             if (opts.headers) {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
@@ -956,8 +959,8 @@ describe('KubeConfig', () => {
                     },
                 } as User,
             );
-            const opts = {} as requestlib.Options;
-            await config.applyToRequest(opts);
+            const opts = {} as RequestOptions;
+            await config.applytoHTTPSOptions(opts);
             expect(opts.headers).to.not.be.undefined;
             if (opts.headers) {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
@@ -985,8 +988,8 @@ describe('KubeConfig', () => {
                     },
                 } as User,
             );
-            const opts = {} as requestlib.Options;
-            await config.applyToRequest(opts);
+            const opts = {} as RequestOptions;
+            await config.applytoHTTPSOptions(opts);
             expect(opts.headers).to.not.be.undefined;
             if (opts.headers) {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
@@ -1021,8 +1024,8 @@ describe('KubeConfig', () => {
                 } as User,
             );
             // TODO: inject the exec command here and validate env vars?
-            const opts = {} as requestlib.Options;
-            await config.applyToRequest(opts);
+            const opts = {} as RequestOptions;
+            await config.applytoHTTPSOptions(opts);
             expect(opts.headers).to.not.be.undefined;
             if (opts.headers) {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
@@ -1057,8 +1060,8 @@ describe('KubeConfig', () => {
                 } as User,
             );
             // TODO: inject the exec command here?
-            const opts = {} as requestlib.Options;
-            await config.applyToRequest(opts);
+            const opts = {} as RequestOptions;
+            await config.applytoHTTPSOptions(opts);
             expect(opts.headers).to.not.be.undefined;
             if (opts.headers) {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
@@ -1088,8 +1091,8 @@ describe('KubeConfig', () => {
                 } as User,
             );
             // TODO: inject the exec command here?
-            const opts = {} as requestlib.Options;
-            await config.applyToRequest(opts);
+            const opts = {} as RequestOptions;
+            await config.applytoHTTPSOptions(opts);
             expect(opts.headers).to.not.be.undefined;
             if (opts.headers) {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
@@ -1120,8 +1123,8 @@ describe('KubeConfig', () => {
                 } as User,
             );
             // TODO: inject the exec command here?
-            const opts = {} as requestlib.Options;
-            await config.applyToRequest(opts);
+            const opts = {} as RequestOptions;
+            await config.applytoHTTPSOptions(opts);
             let execAuthenticator = (KubeConfig as any).authenticators.find(
                 (authenticator) => authenticator instanceof ExecAuth,
             );
@@ -1141,8 +1144,8 @@ describe('KubeConfig', () => {
                     },
                 } as User,
             );
-            const opts = {} as requestlib.Options;
-            return expect(config.applyToRequest(opts)).to.eventually.be.rejectedWith(
+            const opts = {} as RequestOptions;
+            return expect(config.applytoHTTPSOptions(opts)).to.eventually.be.rejectedWith(
                 'No command was specified for exec authProvider!',
             );
         });
@@ -1440,8 +1443,8 @@ describe('KubeConfig', () => {
         });
 
         it('should apply to request', async () => {
-            const opts = {} as requestlib.Options;
-            await emptyConfig.applyToRequest(opts);
+            const opts = {} as RequestOptions;
+            await emptyConfig.applytoHTTPSOptions(opts);
         });
     });
 
