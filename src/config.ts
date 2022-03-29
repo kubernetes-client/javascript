@@ -27,6 +27,21 @@ import { ExecAuth } from './exec_auth';
 import { FileAuth } from './file_auth';
 import { GoogleCloudPlatformAuth } from './gcp_auth';
 import { OpenIDConnectAuth } from './oidc_auth';
+import {
+    AuthMethods,
+    AuthMethodsConfiguration,
+    BaseServerConfiguration,
+    Configuration,
+    configureAuthMethods,
+    createConfiguration,
+    RequestContext,
+    ServerConfiguration
+} from './gen';
+
+const SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
+const SERVICEACCOUNT_CA_PATH: string = SERVICEACCOUNT_ROOT + '/ca.crt';
+const SERVICEACCOUNT_TOKEN_PATH: string = SERVICEACCOUNT_ROOT + '/token';
+const SERVICEACCOUNT_NAMESPACE_PATH: string = SERVICEACCOUNT_ROOT + '/namespace';
 
 // fs.existsSync was removed in node 10
 function fileExists(filepath: string): boolean {
@@ -138,24 +153,64 @@ export class KubeConfig {
         if (user && user.username) {
             opts.auth = `${user.username}:${user.password}`;
         }
+
+        const agentOptions: https.AgentOptions = {};
+
+        // Copy AgentOptions from RequestOptions
+        agentOptions.ca = opts.ca;
+        agentOptions.cert = opts.cert;
+        agentOptions.key = opts.key;
+        agentOptions.pfx = opts.pfx;
+        agentOptions.passphrase = opts.passphrase;
+        agentOptions.rejectUnauthorized = opts.rejectUnauthorized;
+
+        opts.agent = new https.Agent(agentOptions);
     }
 
-    public async applyToRequest(opts: request.Options): Promise<void> {
+    /**
+    * Applies SecurityAuthentication to RequestContext of an API Call from API Client 
+    * @param context 
+    */
+    async applySecurityAuthentication(context: api.RequestContext): Promise<void> {
         const cluster = this.getCurrentCluster();
         const user = this.getCurrentUser();
 
-        await this.applyOptions(opts);
+        const agentOptions: https.AgentOptions = {};
+        const httpsOptions: https.RequestOptions = {};
+
+        await this.applyOptions(httpsOptions);
 
         if (cluster && cluster.skipTLSVerify) {
-            opts.strictSSL = false;
+            agentOptions.rejectUnauthorized = false;
         }
 
         if (user && user.username) {
-            opts.auth = {
-                password: user.password,
-                username: user.username,
-            };
+            httpsOptions.auth = `${user.username}:${user.password}`;
         }
+
+        // Copy headers from httpsOptions to RequestContext
+        const headers = httpsOptions.headers || {};
+        Object.entries(headers).forEach(([key, value]) => {
+            context.setHeaderParam(key, '${value}');
+        })
+
+        // Copy AgentOptions from RequestOptions
+        agentOptions.ca = httpsOptions.ca;
+        agentOptions.cert = httpsOptions.cert;
+        agentOptions.key = httpsOptions.key;
+        agentOptions.pfx = httpsOptions.pfx;
+        agentOptions.passphrase = httpsOptions.passphrase;
+        agentOptions.rejectUnauthorized = httpsOptions.rejectUnauthorized;
+
+        context.setAgent(new https.Agent(agentOptions));
+    }
+
+    /**
+     * Returns name of this security authentication method
+     * @returns string
+     */
+    public getName(): string {
+        return 'kubeconfig authentication';
     }
 
     public loadFromString(config: string, opts?: Partial<ConfigOptions>): void {
@@ -207,7 +262,7 @@ export class KubeConfig {
         this.clusters = [
             {
                 name: clusterName,
-                caFile: `${pathPrefix}${Config.SERVICEACCOUNT_CA_PATH}`,
+                caFile: `${pathPrefix}${SERVICEACCOUNT_CA_PATH}`,
                 server: `${scheme}://${serverHost}:${port}`,
                 skipTLSVerify: false,
             },
@@ -218,12 +273,12 @@ export class KubeConfig {
                 authProvider: {
                     name: 'tokenFile',
                     config: {
-                        tokenFile: `${pathPrefix}${Config.SERVICEACCOUNT_TOKEN_PATH}`,
+                        tokenFile: `${pathPrefix}${SERVICEACCOUNT_TOKEN_PATH}`,
                     },
                 },
             },
         ];
-        const namespaceFile = `${pathPrefix}${Config.SERVICEACCOUNT_NAMESPACE_PATH}`;
+        const namespaceFile = `${pathPrefix}${SERVICEACCOUNT_NAMESPACE_PATH}`;
         let namespace: string | undefined;
         if (fileExists(namespaceFile)) {
             namespace = fs.readFileSync(namespaceFile, 'utf8');
@@ -337,7 +392,7 @@ export class KubeConfig {
             }
         }
 
-        if (fileExists(Config.SERVICEACCOUNT_TOKEN_PATH)) {
+        if (fileExists(SERVICEACCOUNT_TOKEN_PATH)) {
             this.loadFromCluster();
             return;
         }
@@ -353,8 +408,16 @@ export class KubeConfig {
         if (!cluster) {
             throw new Error('No active cluster!');
         }
-        const apiClient = new apiClientType(cluster.server);
-        apiClient.setDefaultAuthentication(this);
+        const authConfig: AuthMethodsConfiguration = {
+            default: this
+        }
+        const baseServerConfig: ServerConfiguration<{}> = new ServerConfiguration<{}>(cluster.server, {});
+        const config: Configuration = createConfiguration({
+            baseServer: baseServerConfig,
+            authMethods: authConfig
+        })
+
+        const apiClient = new apiClientType(config);
 
         return apiClient;
     }
@@ -444,59 +507,9 @@ export class KubeConfig {
     }
 }
 
-export interface ApiType {
-    defaultHeaders: any;
-    setDefaultAuthentication(config: api.Authentication): void;
-}
+export interface ApiType { }
 
-type ApiConstructor<T extends ApiType> = new (server: string) => T;
-
-// This class is deprecated and will eventually be removed.
-export class Config {
-    public static SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
-    public static SERVICEACCOUNT_CA_PATH: string = Config.SERVICEACCOUNT_ROOT + '/ca.crt';
-    public static SERVICEACCOUNT_TOKEN_PATH: string = Config.SERVICEACCOUNT_ROOT + '/token';
-    public static SERVICEACCOUNT_NAMESPACE_PATH: string = Config.SERVICEACCOUNT_ROOT + '/namespace';
-
-    public static fromFile(filename: string): api.CoreV1Api {
-        return Config.apiFromFile(filename, api.CoreV1Api);
-    }
-
-    public static fromCluster(): api.CoreV1Api {
-        return Config.apiFromCluster(api.CoreV1Api);
-    }
-
-    public static defaultClient(): api.CoreV1Api {
-        return Config.apiFromDefaultClient(api.CoreV1Api);
-    }
-
-    public static apiFromFile<T extends ApiType>(filename: string, apiClientType: ApiConstructor<T>): T {
-        const kc = new KubeConfig();
-        kc.loadFromFile(filename);
-        return kc.makeApiClient(apiClientType);
-    }
-
-    public static apiFromCluster<T extends ApiType>(apiClientType: ApiConstructor<T>): T {
-        const kc = new KubeConfig();
-        kc.loadFromCluster();
-
-        const cluster = kc.getCurrentCluster();
-        if (!cluster) {
-            throw new Error('No active cluster!');
-        }
-
-        const k8sApi = new apiClientType(cluster.server);
-        k8sApi.setDefaultAuthentication(kc);
-
-        return k8sApi;
-    }
-
-    public static apiFromDefaultClient<T extends ApiType>(apiClientType: ApiConstructor<T>): T {
-        const kc = new KubeConfig();
-        kc.loadFromDefault();
-        return kc.makeApiClient(apiClientType);
-    }
-}
+type ApiConstructor<T extends ApiType> = new (config: Configuration) => T;
 
 export function makeAbsolutePath(root: string, file: string): string {
     if (!root || path.isAbsolute(file)) {
@@ -539,7 +552,7 @@ export function findHomeDir(): string | null {
                 fs.accessSync(process.env.HOME);
                 return process.env.HOME;
                 // tslint:disable-next-line:no-empty
-            } catch (ignore) {}
+            } catch (ignore) { }
         }
         return null;
     }
@@ -559,7 +572,7 @@ export function findHomeDir(): string | null {
             fs.accessSync(path.join(dir, '.kube', 'config'));
             return dir;
             // tslint:disable-next-line:no-empty
-        } catch (ignore) {}
+        } catch (ignore) { }
     }
     // 2. ...the first of %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that exists and is writeable is returned
     for (const dir of favourUserProfileList) {
@@ -567,7 +580,7 @@ export function findHomeDir(): string | null {
             fs.accessSync(dir, fs.constants.W_OK);
             return dir;
             // tslint:disable-next-line:no-empty
-        } catch (ignore) {}
+        } catch (ignore) { }
     }
     // 3. ...the first of %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that exists is returned.
     for (const dir of favourUserProfileList) {
@@ -575,7 +588,7 @@ export function findHomeDir(): string | null {
             fs.accessSync(dir);
             return dir;
             // tslint:disable-next-line:no-empty
-        } catch (ignore) {}
+        } catch (ignore) { }
     }
     // 4. if none of those locations exists, the first of
     // %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that is set is returned.
