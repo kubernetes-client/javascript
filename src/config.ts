@@ -311,13 +311,9 @@ export class KubeConfig {
         }
         if (process.platform === 'win32' && shelljs.which('wsl.exe')) {
             try {
-                const envKubeconfigPathResult = execa.sync('wsl.exe', ['bash', '-ic', 'printenv KUBECONFIG']);
+                const envKubeconfigPathResult = execa.sync('wsl.exe', ['bash', '-c', 'printenv KUBECONFIG']);
                 if (envKubeconfigPathResult.exitCode === 0 && envKubeconfigPathResult.stdout.length > 0) {
                     const result = execa.sync('wsl.exe', ['cat', envKubeconfigPathResult.stdout]);
-                    if (result.exitCode === 0) {
-                        this.loadFromString(result.stdout, opts);
-                        return;
-                    }
                     if (result.exitCode === 0) {
                         this.loadFromString(result.stdout, opts);
                         return;
@@ -327,9 +323,13 @@ export class KubeConfig {
                 // Falling back to default kubeconfig
             }
             try {
-                const result = execa.sync('wsl.exe', ['cat', '~/.kube/config']);
-                if (result.exitCode === 0) {
-                    this.loadFromString(result.stdout, opts);
+                const configResult = execa.sync('wsl.exe', ['cat', '~/.kube/config']);
+                if (configResult.exitCode === 0) {
+                    this.loadFromString(configResult.stdout, opts);
+                    const result = execa.sync('wsl.exe', ['wslpath', '-w', '~/.kube']);
+                    if (result.exitCode === 0) {
+                        this.makePathsAbsolute(result.stdout);
+                    }
                     return;
                 }
             } catch (err) {
