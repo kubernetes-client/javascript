@@ -1,0 +1,64 @@
+name: Generate
+
+on:
+  workflow_dispatch:
+    inputs:
+      kubernetesBranch:
+        type: string
+        required: true
+        description: 'The remote kubernetes release branch to fetch openapi spec. .e.g. "release-1.23"'
+
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Javascript
+        uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Checkout Gen
+        run: git clone https://github.com/kubernetes-client/gen
+      - name: Generate Branch Name
+        run: |
+          SUFFIX=$(openssl rand -hex 4)
+          echo "BRANCH=automated-generate-$SUFFIX" >> $GITHUB_ENV
+      - name: Generate Openapi
+        run: |
+          pushd gen/openapi
+          cat <<"EOF"> settings
+          # kubernetes-client/gen commit to use for code generation.
+          export GEN_COMMIT=82c3ff5
+          # GitHub username/organization to clone kubernetes repo from.
+          export USERNAME=kubernetes
+          # Kubernetes branch/tag to get the OpenAPI spec from.
+          export KUBERNETES_BRANCH="${{ github.event.inputs.kubernetesBranch }}"
+          # client version for packaging and releasing. It can
+          # be different than SPEC_VERSION.
+          export CLIENT_VERSION="0.8-SNAPSHOT"
+          # Name of the release package
+          export PACKAGE_NAME="@kubernetes/node-client"
+          export OPENAPI_GENERATOR_COMMIT=1314e229
+          EOF
+          bash typescript.sh ../../src/gen settings
+          popd
+          cp settings ../../settings
+          rm -rf gen
+      - name: Commit and push
+        run: |
+          # Commit and push
+          git config user.email "k8s.ci.robot@gmail.com"
+          git config user.name "Kubernetes Prow Robot"
+          git checkout -b "$BRANCH"
+          git add .
+          git commit -s -m 'Automated openapi generation from ${{ github.event.inputs.kubernetesBranch }}'
+          git push origin "$BRANCH"
+      - name: Pull Request
+        uses: repo-sync/pull-request@v2
+        with:
+          source_branch: ${{ env.BRANCH }}
+          destination_branch: ${{ github.ref_name }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          pr_title: "Automated Generate from openapi ${{ github.event.inputs.kubernetesBranch }}"
