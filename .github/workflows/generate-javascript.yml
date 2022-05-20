@@ -7,6 +7,11 @@ on:
         type: string
         required: true
         description: 'The remote kubernetes release branch to fetch openapi spec. .e.g. "release-1.23"'
+      genCommit:
+        type: string
+        required: true
+        default: '82c3ff5'
+        description: 'The commit to use for the kubernetes-client/gen repo'
 
 
 jobs:
@@ -15,12 +20,15 @@ jobs:
     steps:
       - name: Checkout Javascript
         uses: actions/checkout@v3
-      - name: Setup Java
+      - name: Setup Node
         uses: actions/setup-node@v2
         with:
           node-version: '16'
       - name: Checkout Gen
-        run: git clone https://github.com/kubernetes-client/gen
+        run: |
+          git clone https://github.com/kubernetes-client/gen
+          pushd gen
+          git checkout "${{ github.event.inputs.genCommit }}"
       - name: Generate Branch Name
         run: |
           SUFFIX=$(openssl rand -hex 4)
@@ -30,7 +38,7 @@ jobs:
           pushd gen/openapi
           cat <<"EOF"> settings
           # kubernetes-client/gen commit to use for code generation.
-          export GEN_COMMIT=82c3ff5
+          export GEN_COMMIT="${{ github.event.inputs.genCommit }}"
           # GitHub username/organization to clone kubernetes repo from.
           export USERNAME=kubernetes
           # Kubernetes branch/tag to get the OpenAPI spec from.
@@ -42,7 +50,7 @@ jobs:
           export PACKAGE_NAME="@kubernetes/node-client"
           export OPENAPI_GENERATOR_COMMIT=1314e229
           EOF
-          bash typescript.sh ../../src/gen settings
+          bash typescript.sh ../../src/gen/api settings
           popd
           cp settings ../../settings
           rm -rf gen
