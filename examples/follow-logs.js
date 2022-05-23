@@ -13,11 +13,16 @@ logStream.on('data', (chunk) => {
 	process.stdout.write(chunk);
 });
 
-log.log('default', 'pod1', 'container1', logStream, {follow: true, tailLines: 50, pretty: false, timestamps: false})
-.catch(err => {console.log(err)})
+log.log('default', 'pod1', 'container', logStream, {follow: true, tailLines: 50, pretty: false, timestamps: false})
+.catch(err => {
+        console.log(err);
+        process.exit(1);
+})
 .then(req => {
 	// disconnects after 5 seconds
-	setTimeout(function(){
-		req.abort();
-	}, 5000);
+	if (req) {
+		setTimeout(function(){
+			req.abort();
+		}, 5000);
+	}
 });
