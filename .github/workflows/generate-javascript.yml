@@ -50,7 +50,7 @@ jobs:
           export PACKAGE_NAME="@kubernetes/node-client"
           export OPENAPI_GENERATOR_COMMIT=1314e229
           EOF
-          bash typescript.sh ../../src/gen/api settings
+          bash typescript.sh ../../src/gen settings
           popd
           cp settings ../../settings
           rm -rf gen
