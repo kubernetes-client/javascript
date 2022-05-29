@@ -113,13 +113,13 @@ release, we will increment the minor version whenever we update the minor Kubern
 
 Generally speaking newer clients will work with older Kubernetes, but compatability isn't 100% guaranteed.
 
-| client version | older versions | 1.18 | 1.19 | 1.20 | 1.21 | 1.22 |
-|----------------|----------------|------|------|------|------|------|
-|  0.12.x        |       -        |  ✓   |  x   |  x   |  x   |  x   |
-|  0.13.x        |       -        |  +   |  ✓   |  x   |  x   |  x   |
-|  0.14.x        |       -        |  +   |  +   |  ✓   |  x   |  x   |
-|  0.15.x        |       -        |  +   |  +   |  +   |  ✓   |  x   |
-|  0.16.x        |       -        |  +   |  +   |  +   |  +   |  ✓   |
+| client version | older versions | 1.19 | 1.20 | 1.21 | 1.22 | 1.23 | 1.24 |
+|----------------|----------------|------|------|------|------|-------|------|
+|  0.13.x        |       -        |  ✓   |  x   |  x   |  x   |  x   |  x   |
+|  0.14.x        |       -        |  +   |  ✓   |  x   |  x   |  x   |  x   |
+|  0.15.x        |       -        |  +   |  +   |  ✓   |  x   |  x   |  x   |
+|  0.16.x        |       -        |  +   |  +   |  +   |  ✓   |  x   |  x   |
+|  0.17.x        |       -        |  +   |  +   |  +   |  +   |  -   |  ✓   |
 
 Key:
 
@@ -138,6 +138,7 @@ Key:
 * Multiple kubeconfigs are not completely supported.
   Credentials are cached based on the kubeconfig username and these can collide across configs.
   Here is the related [issue](https://github.com/kubernetes-client/javascript/issues/592).
+* The client wasn't generated for Kubernetes 1.23 due to limited time from the maintainer(s)
 
 # Development
 
