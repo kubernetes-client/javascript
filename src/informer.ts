@@ -1,4 +1,4 @@
-import { ListWatch } from './cache';
+import { ListWatch, ObjectCache } from './cache';
 import { KubeConfig } from './config';
 import { KubernetesListObject, KubernetesObject } from './types';
 import { Watch } from './watch';
@@ -36,7 +36,7 @@ export function makeInformer<T>(
     path: string,
     listPromiseFn: ListPromise<T>,
     labelSelector?: string,
-): Informer<T> {
+): Informer<T> & ObjectCache<T> {
     const watch = new Watch(kubeconfig);
     return new ListWatch<T>(path, watch, listPromiseFn, false, labelSelector);
 }
