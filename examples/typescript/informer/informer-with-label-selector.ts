@@ -8,13 +8,19 @@ const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
 const APP_LABEL_SELECTOR = 'app=foo';
 
+// timeout based on discussions in https://github.com/kubernetes-client/javascript/issues/596
 const listFn = () => k8sApi.listNamespacedPod(
-    'default',
-    undefined,
-    undefined,
-    undefined,
-    undefined,
-    APP_LABEL_SELECTOR,
+    'default', // namespace: string
+    undefined, // pretty?: string
+    undefined, // allowWatchBookmarks?: boolean
+    undefined, // _continue?: string
+    undefined, // fieldSelector?: string
+    APP_LABEL_SELECTOR, // labelSelector?: string
+    undefined, // limit?: number
+    undefined, // resourceVersion?: string
+    undefined, // resourceVersionMatch?: string
+    300 // timeoutSeconds?: number
+    // keep watch field false (default)
 );
 
 const createPod = async (name, app) => {

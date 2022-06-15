@@ -6,7 +6,20 @@ kc.loadFromDefault();
 
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
-const listFn = () => k8sApi.listNamespacedPod('default');
+// timeout based on discussions in https://github.com/kubernetes-client/javascript/issues/596
+const listFn = () => k8sApi.listNamespacedPod(
+    'default', // namespace: string
+    undefined, // pretty?: string
+    undefined, // allowWatchBookmarks?: boolean
+    undefined, // _continue?: string
+    undefined, // fieldSelector?: string
+    undefined, // labelSelector?: string
+    undefined, // limit?: number
+    undefined, // resourceVersion?: string
+    undefined, // resourceVersionMatch?: string
+    300 // timeoutSeconds?: number
+    // keep watch field false (default)
+);
 
 const informer = k8s.makeInformer(kc, '/api/v1/namespaces/default/pods', listFn);
 
