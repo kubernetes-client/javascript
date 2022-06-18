@@ -14,19 +14,27 @@ export type ListPromise<T extends KubernetesObject> = () => Promise<{
 }>;
 
 // These are issued per object
-export const ADD: string = 'add';
-export const UPDATE: string = 'update';
-export const CHANGE: string = 'change';
-export const DELETE: string = 'delete';
+export const ADD = 'add';
+export type ADD = typeof ADD;
+export const UPDATE = 'update';
+export type UPDATE = typeof UPDATE;
+export const CHANGE = 'change';
+export type CHANGE = typeof CHANGE;
+export const DELETE = 'delete';
+export type DELETE = typeof DELETE;
 
 // This is issued when a watch connects or reconnects
-export const CONNECT: string = 'connect';
+export const CONNECT = 'connect';
+export type CONNECT = typeof CONNECT;
 // This is issued when there is an error
-export const ERROR: string = 'error';
+export const ERROR = 'error';
+export type ERROR = typeof ERROR;
 
 export interface Informer<T> {
-    on(verb: string, fn: ObjectCallback<T>): void;
-    off(verb: string, fn: ObjectCallback<T>): void;
+    on(verb: ADD | UPDATE | DELETE | CHANGE, cb: ObjectCallback<T>): void;
+    on(verb: ERROR | CONNECT, cb: ErrorCallback): void;
+    off(verb: ADD | UPDATE | DELETE | CHANGE, cb: ObjectCallback<T>): void;
+    off(verb: ERROR | CONNECT, cb: ErrorCallback): void;
     start(): Promise<void>;
     stop(): Promise<void>;
 }
