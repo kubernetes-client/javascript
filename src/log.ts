@@ -121,11 +121,11 @@ export class Log {
         AddOptionsToSearchParams(options, searchParams);
 
         await this.config.applytoHTTPSOptions(requestOptions);
-        console.log(requestURL.toString())
+
         const req = await fetch(requestURL.toString(), requestOptions)
             .then(response => {
                 const status = response.status;
-                if (status == 200) {
+                if (status === 200) {
                     response.body.pipe(stream) // TODO: the follow search param still has the stream close prematurely based on my testing
                 } else if (status === 500) {
                     const v1status = response.body as V1Status;
