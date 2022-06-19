@@ -1,5 +1,5 @@
 import https = require('https');
-import { Client, Issuer } from 'openid-client';
+import { Client, ClientMetadata, Issuer } from 'openid-client';
 import request = require('request');
 import { base64url } from 'rfc4648';
 import { TextDecoder } from 'util';
@@ -104,9 +104,15 @@ export class OpenIDConnectAuth implements Authenticator {
 
     private async getClient(user: User): Promise<Client> {
         const oidcIssuer = await Issuer.discover(user.authProvider.config['idp-issuer-url']);
-        return new oidcIssuer.Client({
+        const metadata: ClientMetadata = {
             client_id: user.authProvider.config['client-id'],
             client_secret: user.authProvider.config['client-secret'],
-        });
+        };
+
+        if (!user.authProvider.config['client-secret']) {
+            metadata.token_endpoint_auth_method = 'none';
+        }
+
+        return new oidcIssuer.Client(metadata);
     }
 }
