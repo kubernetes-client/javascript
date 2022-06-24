@@ -42,7 +42,7 @@ describe('FullRequest', () => {
                 .get('/api/v1/namespaces/default/pods')
                 .reply(200, result);
 
-            const promise = k8sApi.listNamespacedPod('default');
+            const promise = k8sApi.listNamespacedPod({namespace:'default'});
 
             return expect(promise)
                 .to.eventually.have.property('body')

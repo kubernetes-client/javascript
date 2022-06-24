@@ -4,6 +4,7 @@ import { KubeConfig } from './config';
 import { HttpException, ApiException, V1Status } from './gen';
 import { ObjectSerializer } from './util';
 import fetch from 'node-fetch'
+import { RequestOptions } from 'https';
 
 export interface Usage {
     cpu: string;
@@ -85,9 +86,9 @@ export class Metrics {
             throw new Error('No currently active cluster');
         }
 
-        const requestOptions: request.Options = {
+        const requestOptions: RequestOptions = {
             method: 'GET',
-            uri: cluster.server + path,
+            servername: cluster.server + path,
         };
 
         const requestURL = cluster.server + path;

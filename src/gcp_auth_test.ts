@@ -5,8 +5,10 @@ import { join } from 'path';
 import { User, Cluster } from './config_types';
 import { GoogleCloudPlatformAuth } from './gcp_auth';
 import { KubeConfig } from './config';
+import { HttpMethod, RequestContext } from './gen';
 
 describe('GoogleCloudPlatformAuth', () => {
+    const testUrl1 = 'https://test-gcp.com';
     var auth: GoogleCloudPlatformAuth;
     beforeEach(() => {
         auth = new GoogleCloudPlatformAuth();
@@ -53,18 +55,18 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
 
-        await config.applyToRequest(opts);
-        expect(opts.headers).to.not.be.undefined;
-        if (opts.headers) {
-            expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+        await config.applySecurityAuthentication(requestContext);
+        expect(requestContext.getHeaders()).to.not.be.undefined;
+        if (requestContext.getHeaders()) {
+            expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
         }
-        opts.headers = [];
-        opts.headers.Host = 'foo.com';
-        await config.applyToRequest(opts);
-        expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-    });
+        requestContext.setUrl('foo.com')
+        //opts.headers.Host = 'foo.com';
+        await config.applySecurityAuthentication(requestContext);
+        expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
+        });
 
     it('should populate from auth provider without expirty', async () => {
         const config = new KubeConfig();
@@ -80,12 +82,12 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
-
-        await config.applyToRequest(opts);
-        expect(opts.headers).to.not.be.undefined;
-        if (opts.headers) {
-            expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        
+        await config.applySecurityAuthentication(requestContext);
+        expect(requestContext.getHeaders()).to.not.be.undefined;
+        if (requestContext.getHeaders()) {
+            expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
         }
     });
 
@@ -103,10 +105,10 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
 
-        await config.applyToRequest(opts);
-        expect(opts.rejectUnauthorized).to.equal(false);
+        await config.applySecurityAuthentication(requestContext);
+        expect(requestContext.getHeaders()['rejectUnauthorized']).to.equal(false);
     });
 
     it('should not set rejectUnauthorized if skipTLSVerify is not set', async () => {
@@ -125,10 +127,10 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
 
-        await config.applyToRequest(opts);
-        expect(opts.rejectUnauthorized).to.equal(undefined);
+        await config.applySecurityAuthentication(requestContext);
+        expect(requestContext.getHeaders()['rejectUnauthorized']).to.equal(undefined);
     });
 
     it('should throw with expired token and no cmd', () => {
@@ -144,9 +146,9 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
 
-        return expect(config.applyToRequest(opts)).to.eventually.be.rejectedWith('Token is expired!');
+        return expect(config.applySecurityAuthentication(requestContext)).to.eventually.be.rejectedWith('Token is expired!');
     });
 
     it('should throw with bad command', () => {
@@ -164,8 +166,8 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
-        return expect(config.applyToRequest(opts)).to.eventually.be.rejectedWith(/Failed to refresh token/);
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        return expect(config.applySecurityAuthentication(requestContext)).to.eventually.be.rejectedWith(/Failed to refresh token/);
     });
 
     it('should exec with expired token', async () => {
@@ -191,11 +193,11 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
-        await config.applyToRequest(opts);
-        expect(opts.headers).to.not.be.undefined;
-        if (opts.headers) {
-            expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        await config.applySecurityAuthentication(requestContext);
+        expect(requestContext.getHeaders()).to.not.be.undefined;
+        if (requestContext.getHeaders()) {
+            expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
         }
     });
     it('should exec without access-token', async () => {
@@ -220,11 +222,11 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
-        await config.applyToRequest(opts);
-        expect(opts.headers).to.not.be.undefined;
-        if (opts.headers) {
-            expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        await config.applySecurityAuthentication(requestContext);
+        expect(requestContext.getHeaders()).to.not.be.undefined;
+        if (requestContext.getHeaders()) {
+            expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
         }
     });
     it('should exec without access-token', async () => {
@@ -249,11 +251,11 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
-        await config.applyToRequest(opts);
-        expect(opts.headers).to.not.be.undefined;
-        if (opts.headers) {
-            expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        await config.applySecurityAuthentication(requestContext);
+        expect(requestContext.getHeaders()).to.not.be.undefined;
+        if (requestContext.getHeaders()) {
+            expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
         }
     });
     it('should exec succesfully with spaces in cmd', async () => {
@@ -278,11 +280,11 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        const opts = {} as requestlib.Options;
-        await config.applyToRequest(opts);
-        expect(opts.headers).to.not.be.undefined;
-        if (opts.headers) {
-            expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        await config.applySecurityAuthentication(requestContext);
+        expect(requestContext.getHeaders()).to.not.be.undefined;
+        if (requestContext.getHeaders()) {
+            expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
         }
     });
 });
