@@ -132,11 +132,16 @@ export class KubeConfig {
 
     public async applytoHTTPSOptions(opts: https.RequestOptions): Promise<void> {
         const user = this.getCurrentUser();
+        const cluster = this.getCurrentCluster();
 
         await this.applyOptions(opts);
 
         if (user && user.username) {
             opts.auth = `${user.username}:${user.password}`;
+        }
+
+        if (cluster && cluster.tlsServerName) {
+            opts.servername = cluster.tlsServerName;
         }
     }
 

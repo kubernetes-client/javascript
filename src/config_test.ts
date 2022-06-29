@@ -21,6 +21,7 @@ const kcDupeUser = 'testdata/kubeconfig-dupe-user.yaml';
 const kcNoUserFileName = 'testdata/empty-user-kubeconfig.yaml';
 const kcInvalidContextFileName = 'testdata/empty-context-kubeconfig.yaml';
 const kcInvalidClusterFileName = 'testdata/empty-cluster-kubeconfig.yaml';
+const kcTlsServerNameFileName = 'testdata/tls-server-name-kubeconfig.yaml';
 
 /* tslint:disable: no-empty */
 describe('Config', () => {});
@@ -193,6 +194,12 @@ describe('KubeConfig', () => {
         it('should fail to load a missing kubeconfig file', () => {
             const kc = new KubeConfig();
             expect(kc.loadFromFile.bind('missing.yaml')).to.throw();
+        });
+        it('should load tls server name', () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcTlsServerNameFileName);
+            expect(kc.getClusters()[0].tlsServerName).to.equal('kube.example2.com');
+            expect(kc.getClusters()[1].tlsServerName).to.be.undefined;
         });
 
         describe('filter vs throw tests', () => {
