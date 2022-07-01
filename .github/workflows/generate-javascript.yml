@@ -29,6 +29,8 @@ jobs:
           git clone https://github.com/kubernetes-client/gen
           pushd gen
           git checkout "${{ github.event.inputs.genCommit }}"
+          # apply https://github.com/kubernetes-client/gen/pull/224
+          git cherry-pick --strategy=recursive -X theirs c557f7f
       - name: Generate Branch Name
         run: |
           SUFFIX=$(openssl rand -hex 4)
