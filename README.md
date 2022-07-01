@@ -119,7 +119,7 @@ Generally speaking newer clients will work with older Kubernetes, but compatabil
 |  0.14.x        |       -        |  +   |  ✓   |  x   |  x   |  x   |  x   |
 |  0.15.x        |       -        |  +   |  +   |  ✓   |  x   |  x   |  x   |
 |  0.16.x        |       -        |  +   |  +   |  +   |  ✓   |  x   |  x   |
-|  0.17.x        |       -        |  +   |  +   |  +   |  +   |  -   |  ✓   |
+|  0.17.x        |       -        |  -   |  -   |  +   |  +   |  +   |  ✓   |
 
 Key:
 
