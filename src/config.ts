@@ -191,7 +191,7 @@ export class KubeConfig {
         // Copy headers from httpsOptions to RequestContext
         const headers = httpsOptions.headers || {};
         Object.entries(headers).forEach(([key, value]) => {
-            context.setHeaderParam(key, '${value}');
+            context.setHeaderParam(key, `${value}`);
         })
 
         // Copy AgentOptions from RequestOptions
