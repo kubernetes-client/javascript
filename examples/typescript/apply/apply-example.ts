@@ -31,6 +31,11 @@ export async function apply(specPath: string): Promise<k8s.KubernetesObject[]> {
             // block.
             await client.read(spec);
             // we got the resource, so it exists, so patch it
+            //
+            // Note that this could fail if the spec refers to a custom resource. For custom resources you may need
+            // to specify a different patch merge strategy in the content-type header.
+            //
+            // See: https://github.com/kubernetes/kubernetes/issues/97423
             const response = await client.patch(spec);
             created.push(response.body);
         } catch (e) {
