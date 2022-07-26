@@ -54,6 +54,20 @@ export interface NodeMetricsList {
     items: NodeMetric[];
 }
 
+export interface SinglePodMetrics {
+    kind: 'PodMetrics';
+    apiVersion: 'metrics.k8s.io/v1beta1';
+    metadata: {
+        name: string;
+        namespace: string;
+        creationTimestamp: string;
+        labels: { [key: string]: string };
+    };
+    timestamp: string;
+    window: string;
+    containers: ContainerMetric[];
+}
+
 export class Metrics {
     private config: KubeConfig;
 
@@ -65,8 +79,19 @@ export class Metrics {
         return this.metricsApiRequest<NodeMetricsList>('/apis/metrics.k8s.io/v1beta1/nodes');
     }
 
-    public async getPodMetrics(namespace?: string): Promise<PodMetricsList> {
+    public async getPodMetrics(namespace?: string): Promise<PodMetricsList>;
+    public async getPodMetrics(namespace: string, name: string): Promise<SinglePodMetrics>;
+
+    public async getPodMetrics(
+        namespace?: string,
+        name?: string,
+    ): Promise<SinglePodMetrics | PodMetricsList> {
         let path: string;
+
+        if (namespace !== undefined && namespace.length > 0 && name !== undefined && name.length > 0) {
+            path = `/apis/metrics.k8s.io/v1beta1/namespaces/${namespace}/pods/${name}`;
+            return this.metricsApiRequest<SinglePodMetrics>(path);
+        }
 
         if (namespace !== undefined && namespace.length > 0) {
             path = `/apis/metrics.k8s.io/v1beta1/namespaces/${namespace}/pods`;
@@ -77,7 +102,9 @@ export class Metrics {
         return this.metricsApiRequest<PodMetricsList>(path);
     }
 
-    private async metricsApiRequest<T extends PodMetricsList | NodeMetricsList>(path: string): Promise<T> {
+    private async metricsApiRequest<T extends PodMetricsList | NodeMetricsList | SinglePodMetrics>(
+        path: string,
+    ): Promise<T> {
         const cluster = this.config.getCurrentCluster();
         if (!cluster) {
             throw new Error('No currently active cluster');
