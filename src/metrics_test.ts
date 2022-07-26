@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import nock = require('nock');
 import { KubeConfig } from './config';
 import { V1Status, HttpError } from './gen/api';
-import { Metrics, NodeMetricsList, PodMetricsList } from './metrics';
+import { Metrics, NodeMetricsList, PodMetricsList, SinglePodMetrics } from './metrics';
 
 const emptyPodMetrics: PodMetricsList = {
     kind: 'PodMetricsList',
@@ -72,6 +72,22 @@ const mockedNodeMetrics: NodeMetricsList = {
     ],
 };
 
+const mockedSinglePodMetrics: SinglePodMetrics = {
+    kind: 'PodMetrics',
+    apiVersion: 'metrics.k8s.io/v1beta1',
+    metadata: {
+        name: 'a-pod',
+        namespace: 'default',
+        creationTimestamp: '2021-09-26T16:01:53Z',
+        labels: {
+            label: 'aLabel',
+        },
+    },
+    timestamp: '2021-09-26T16:01:53Z',
+    window: '7m',
+    containers: [{ name: 'nginx', usage: { cpu: '4414124n', memory: '123Ki' } }],
+};
+
 const TEST_NAMESPACE = 'test-namespace';
 
 const testConfigOptions: any = {
@@ -128,6 +144,7 @@ describe('Metrics', () => {
 
             s.done();
         });
+
         it('should return namespace scope pods metric list', async () => {
             const [metricsClient, scope] = systemUnderTest();
             const s = scope
@@ -136,6 +153,18 @@ describe('Metrics', () => {
 
             const response = await metricsClient.getPodMetrics(TEST_NAMESPACE);
             expect(response).to.deep.equal(mockedPodMetrics);
+            s.done();
+        });
+        it('should return single pod metrics if given namespace and pod name', async () => {
+            const podName = 'pod-name';
+            const [metricsClient, scope] = systemUnderTest();
+            const s = scope
+                .get(`/apis/metrics.k8s.io/v1beta1/namespaces/${TEST_NAMESPACE}/pods/${podName}`)
+                .reply(200, mockedSinglePodMetrics);
+
+            const response = await metricsClient.getPodMetrics(TEST_NAMESPACE, podName);
+            expect(response).to.deep.equal(mockedSinglePodMetrics);
+
             s.done();
         });
         it('should when connection refused', async () => {
