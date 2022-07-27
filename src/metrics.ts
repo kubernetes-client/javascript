@@ -54,6 +54,20 @@ export interface NodeMetricsList {
     items: NodeMetric[];
 }
 
+export interface SinglePodMetrics {
+    kind: 'PodMetrics',
+    apiVersion: 'metrics.k8s.io/v1beta1',
+    metadata: {
+        name: string;
+        namespace: string;
+        creationTimestamp: string;
+        labels: { [key: string]: string }
+    };
+    timestamp: string;
+    window: string;
+    containers: ContainerMetric[];
+}
+
 export class Metrics {
     private config: KubeConfig;
 
