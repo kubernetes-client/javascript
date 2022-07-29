@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import nock = require('nock');
-import { V1APIResource, V1APIResourceList } from './api';
+import { V1APIResource, V1APIResourceList, V1Secret } from './api';
 import { KubeConfig } from './config';
 import { KubernetesObjectApi } from './object';
 import { KubernetesObject } from './types';
@@ -1745,6 +1745,42 @@ describe('KubernetesObject', () => {
                 parseInt(cr.body.metadata.resourceVersion, 10),
             );
             await client.delete(s, undefined, undefined, 7, undefined, 'Foreground');
+            scope.done();
+        });
+
+        it('should read a resource', async () => {
+            const scope = nock('https://d.i.y')
+                .get(
+                    '/api/v1/namespaces/default/secrets/test-secret-1',
+                )
+                .reply(200, {
+                    apiVersion: 'v1',
+                    kind: 'Secret',
+                    metadata: {
+                        name: 'test-secret-1',
+                        namespace: 'default',
+                        uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
+                        creationTimestamp: '2022-01-01T00:00:00.000Z',
+                    },
+                    data: {
+                        key: 'value',
+                    },
+                });
+            const res = await client.read(
+                {
+                    apiVersion: 'v1',
+                    kind: 'Secret',
+                    metadata: {
+                        name: 'test-secret-1',
+                        namespace: 'default',
+                    },
+                },
+            );
+            const secret = res.body as V1Secret;
+            expect(secret.data).to.contain({
+                key: 'value',
+            });
+            expect(secret.metadata?.creationTimestamp).to.equal(new Date('2022-01-01T00:00:00.000Z'));
             scope.done();
         });
 
