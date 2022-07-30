@@ -1657,7 +1657,7 @@ describe('KubernetesObject', () => {
                         selfLink: '/api/v1/namespaces/default/services/k8s-js-client-test',
                         uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
                         resourceVersion: '41183',
-                        creationTimestamp: '2020-05-11T19:35:01Z',
+                        creationTimestamp: '2020-05-11T19:35:01.000Z',
                         annotations: {
                             owner: 'test',
                             test: '1',
@@ -1750,9 +1750,7 @@ describe('KubernetesObject', () => {
 
         it('should read a resource', async () => {
             const scope = nock('https://d.i.y')
-                .get(
-                    '/api/v1/namespaces/default/secrets/test-secret-1',
-                )
+                .get('/api/v1/namespaces/default/secrets/test-secret-1')
                 .reply(200, {
                     apiVersion: 'v1',
                     kind: 'Secret',
@@ -1766,29 +1764,77 @@ describe('KubernetesObject', () => {
                         key: 'value',
                     },
                 });
-            const res = await client.read(
-                {
-                    apiVersion: 'v1',
-                    kind: 'Secret',
-                    metadata: {
-                        name: 'test-secret-1',
-                        namespace: 'default',
-                    },
+            const res = await client.read<V1Secret>({
+                apiVersion: 'v1',
+                kind: 'Secret',
+                metadata: {
+                    name: 'test-secret-1',
+                    namespace: 'default',
                 },
-            );
-            const secret = res.body as V1Secret;
-            expect(secret.data).to.contain({
+            });
+            const secret = res.body;
+            expect(secret).to.be.instanceof(V1Secret);
+            expect(secret.data).to.deep.equal({
                 key: 'value',
             });
-            expect(secret.metadata?.creationTimestamp).to.equal(new Date('2022-01-01T00:00:00.000Z'));
+            expect(secret.metadata).to.be.ok;
+            expect(secret.metadata!.creationTimestamp).to.deep.equal(new Date('2022-01-01T00:00:00.000Z'));
+            scope.done();
+        });
+
+        it('should read a custom resource', async () => {
+            interface CustomTestResource extends KubernetesObject {
+                spec: {
+                    key: string;
+                };
+            }
+            (client as any).apiVersionResourceCache['example.com/v1'] = {
+                groupVersion: 'example.com/v1',
+                kind: 'APIResourceList',
+                resources: [
+                    {
+                        kind: 'CustomTestResource',
+                        name: 'customtestresources',
+                        namespaced: true,
+                    },
+                ],
+            };
+            const scope = nock('https://d.i.y')
+                .get('/apis/example.com/v1/namespaces/default/customtestresources/test-1')
+                .reply(200, {
+                    apiVersion: 'example.com/v1',
+                    kind: 'CustomTestResource',
+                    metadata: {
+                        name: 'test-1',
+                        namespace: 'default',
+                        uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
+                        creationTimestamp: '2022-01-01T00:00:00.000Z',
+                    },
+                    spec: {
+                        key: 'value',
+                    },
+                });
+            const res = await client.read<CustomTestResource>({
+                apiVersion: 'example.com/v1',
+                kind: 'CustomTestResource',
+                metadata: {
+                    name: 'test-1',
+                    namespace: 'default',
+                },
+            });
+            const custom = res.body;
+            expect(custom.spec).to.deep.equal({
+                key: 'value',
+            });
+            expect(custom.metadata).to.be.ok;
+            // TODO(schrodit): this should be a Date rather than a string
+            expect(custom.metadata!.creationTimestamp).to.equal('2022-01-01T00:00:00.000Z');
             scope.done();
         });
 
         it('should list resources in a namespace', async () => {
             const scope = nock('https://d.i.y')
-                .get(
-                    '/api/v1/namespaces/default/secrets?fieldSelector=metadata.name%3Dtest-secret1&labelSelector=app%3Dmy-app&limit=5&continue=abc',
-                )
+                .get('/api/v1/namespaces/default/secrets')
                 .reply(200, {
                     apiVersion: 'v1',
                     kind: 'SecretList',
@@ -1807,20 +1853,10 @@ describe('KubernetesObject', () => {
                         continue: 'abc',
                     },
                 });
-            const lr = await client.list(
-                'v1',
-                'Secret',
-                'default',
-                undefined,
-                undefined,
-                undefined,
-                'metadata.name=test-secret1',
-                'app=my-app',
-                5,
-                'abc',
-            );
+            const lr = await client.list<V1Secret>('v1', 'Secret', 'default');
             const items = lr.body.items;
             expect(items).to.have.length(1);
+            expect(items[0]).to.be.instanceof(V1Secret);
             scope.done();
         });
 
