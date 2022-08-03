@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ConfigMapNodeConfigSource } from './V1ConfigMapNodeConfigSource';
+import { V1ConfigMapNodeConfigSource } from '../models/V1ConfigMapNodeConfigSource';
 import { HttpFile } from '../http/http';
 
 /**

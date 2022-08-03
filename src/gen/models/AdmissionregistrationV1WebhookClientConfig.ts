@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { AdmissionregistrationV1ServiceReference } from './AdmissionregistrationV1ServiceReference';
+import { AdmissionregistrationV1ServiceReference } from '../models/AdmissionregistrationV1ServiceReference';
 import { HttpFile } from '../http/http';
 
 /**

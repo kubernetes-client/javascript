@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1TokenRequest } from './StorageV1TokenRequest';
+import { StorageV1TokenRequest } from '../models/StorageV1TokenRequest';
 import { HttpFile } from '../http/http';
 
 /**

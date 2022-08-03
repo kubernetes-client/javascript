@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1CertificateSigningRequest } from './V1CertificateSigningRequest';
-import { V1ListMeta } from './V1ListMeta';
+import { V1CertificateSigningRequest } from '../models/V1CertificateSigningRequest';
+import { V1ListMeta } from '../models/V1ListMeta';
 import { HttpFile } from '../http/http';
 
 /**

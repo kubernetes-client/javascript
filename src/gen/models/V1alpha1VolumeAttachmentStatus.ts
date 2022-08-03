@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1alpha1VolumeError } from './V1alpha1VolumeError';
+import { V1alpha1VolumeError } from '../models/V1alpha1VolumeError';
 import { HttpFile } from '../http/http';
 
 /**

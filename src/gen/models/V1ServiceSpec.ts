@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ServicePort } from './V1ServicePort';
-import { V1SessionAffinityConfig } from './V1SessionAffinityConfig';
+import { V1ServicePort } from '../models/V1ServicePort';
+import { V1SessionAffinityConfig } from '../models/V1SessionAffinityConfig';
 import { HttpFile } from '../http/http';
 
 /**

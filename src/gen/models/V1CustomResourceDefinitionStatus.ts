@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1CustomResourceDefinitionCondition } from './V1CustomResourceDefinitionCondition';
-import { V1CustomResourceDefinitionNames } from './V1CustomResourceDefinitionNames';
+import { V1CustomResourceDefinitionCondition } from '../models/V1CustomResourceDefinitionCondition';
+import { V1CustomResourceDefinitionNames } from '../models/V1CustomResourceDefinitionNames';
 import { HttpFile } from '../http/http';
 
 /**

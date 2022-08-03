@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1VolumeNodeResources } from './V1VolumeNodeResources';
+import { V1VolumeNodeResources } from '../models/V1VolumeNodeResources';
 import { HttpFile } from '../http/http';
 
 /**

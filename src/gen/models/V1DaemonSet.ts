@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1DaemonSetSpec } from './V1DaemonSetSpec';
-import { V1DaemonSetStatus } from './V1DaemonSetStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { V1DaemonSetSpec } from '../models/V1DaemonSetSpec';
+import { V1DaemonSetStatus } from '../models/V1DaemonSetStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1beta1PodSecurityPolicySpec } from './V1beta1PodSecurityPolicySpec';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1beta1PodSecurityPolicySpec } from '../models/V1beta1PodSecurityPolicySpec';
 import { HttpFile } from '../http/http';
 
 /**

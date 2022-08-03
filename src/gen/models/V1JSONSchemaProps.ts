@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ExternalDocumentation } from './V1ExternalDocumentation';
+import { V1ExternalDocumentation } from '../models/V1ExternalDocumentation';
 import { HttpFile } from '../http/http';
 
 /**

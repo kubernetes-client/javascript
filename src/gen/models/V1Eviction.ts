@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1DeleteOptions } from './V1DeleteOptions';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { V1DeleteOptions } from '../models/V1DeleteOptions';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 import { HttpFile } from '../http/http';
 
 /**

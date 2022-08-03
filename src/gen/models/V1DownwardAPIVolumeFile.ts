@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectFieldSelector } from './V1ObjectFieldSelector';
-import { V1ResourceFieldSelector } from './V1ResourceFieldSelector';
+import { V1ObjectFieldSelector } from '../models/V1ObjectFieldSelector';
+import { V1ResourceFieldSelector } from '../models/V1ResourceFieldSelector';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ManagedFieldsEntry } from './V1ManagedFieldsEntry';
-import { V1OwnerReference } from './V1OwnerReference';
+import { V1ManagedFieldsEntry } from '../models/V1ManagedFieldsEntry';
+import { V1OwnerReference } from '../models/V1OwnerReference';
 import { HttpFile } from '../http/http';
 
 /**

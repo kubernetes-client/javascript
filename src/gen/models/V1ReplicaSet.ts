@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1ReplicaSetSpec } from './V1ReplicaSetSpec';
-import { V1ReplicaSetStatus } from './V1ReplicaSetStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1ReplicaSetSpec } from '../models/V1ReplicaSetSpec';
+import { V1ReplicaSetStatus } from '../models/V1ReplicaSetStatus';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V2beta2MetricIdentifier } from './V2beta2MetricIdentifier';
-import { V2beta2MetricTarget } from './V2beta2MetricTarget';
+import { V2beta2MetricIdentifier } from '../models/V2beta2MetricIdentifier';
+import { V2beta2MetricTarget } from '../models/V2beta2MetricTarget';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1PodDNSConfigOption } from './V1PodDNSConfigOption';
+import { V1PodDNSConfigOption } from '../models/V1PodDNSConfigOption';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1RollingUpdateStatefulSetStrategy } from './V1RollingUpdateStatefulSetStrategy';
+import { V1RollingUpdateStatefulSetStrategy } from '../models/V1RollingUpdateStatefulSetStrategy';
 import { HttpFile } from '../http/http';
 
 /**

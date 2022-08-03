@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1CertificateSigningRequestSpec } from './V1CertificateSigningRequestSpec';
-import { V1CertificateSigningRequestStatus } from './V1CertificateSigningRequestStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { V1CertificateSigningRequestSpec } from '../models/V1CertificateSigningRequestSpec';
+import { V1CertificateSigningRequestStatus } from '../models/V1CertificateSigningRequestStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 import { HttpFile } from '../http/http';
 
 /**

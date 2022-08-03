@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1EndpointSlice } from './V1EndpointSlice';
-import { V1ListMeta } from './V1ListMeta';
+import { V1EndpointSlice } from '../models/V1EndpointSlice';
+import { V1ListMeta } from '../models/V1ListMeta';
 import { HttpFile } from '../http/http';
 
 /**

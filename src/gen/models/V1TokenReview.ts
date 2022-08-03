@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1TokenReviewSpec } from './V1TokenReviewSpec';
-import { V1TokenReviewStatus } from './V1TokenReviewStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1TokenReviewSpec } from '../models/V1TokenReviewSpec';
+import { V1TokenReviewStatus } from '../models/V1TokenReviewStatus';
 import { HttpFile } from '../http/http';
 
 /**

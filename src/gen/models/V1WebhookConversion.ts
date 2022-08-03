@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ApiextensionsV1WebhookClientConfig } from './ApiextensionsV1WebhookClientConfig';
+import { ApiextensionsV1WebhookClientConfig } from '../models/ApiextensionsV1WebhookClientConfig';
 import { HttpFile } from '../http/http';
 
 /**

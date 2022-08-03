@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1beta1JobTemplateSpec } from './V1beta1JobTemplateSpec';
+import { V1beta1JobTemplateSpec } from '../models/V1beta1JobTemplateSpec';
 import { HttpFile } from '../http/http';
 
 /**

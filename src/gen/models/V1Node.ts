@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeSpec } from './V1NodeSpec';
-import { V1NodeStatus } from './V1NodeStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { V1NodeSpec } from '../models/V1NodeSpec';
+import { V1NodeStatus } from '../models/V1NodeStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 import { HttpFile } from '../http/http';
 
 /**

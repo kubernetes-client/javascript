@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1beta1FlowSchemaSpec } from './V1beta1FlowSchemaSpec';
-import { V1beta1FlowSchemaStatus } from './V1beta1FlowSchemaStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1beta1FlowSchemaSpec } from '../models/V1beta1FlowSchemaSpec';
+import { V1beta1FlowSchemaStatus } from '../models/V1beta1FlowSchemaStatus';
 import { HttpFile } from '../http/http';
 
 /**

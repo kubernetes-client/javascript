@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1beta1GroupSubject } from './V1beta1GroupSubject';
-import { V1beta1ServiceAccountSubject } from './V1beta1ServiceAccountSubject';
-import { V1beta1UserSubject } from './V1beta1UserSubject';
+import { V1beta1GroupSubject } from '../models/V1beta1GroupSubject';
+import { V1beta1ServiceAccountSubject } from '../models/V1beta1ServiceAccountSubject';
+import { V1beta1UserSubject } from '../models/V1beta1UserSubject';
 import { HttpFile } from '../http/http';
 
 /**

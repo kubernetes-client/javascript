@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1ServiceSpec } from './V1ServiceSpec';
-import { V1ServiceStatus } from './V1ServiceStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1ServiceSpec } from '../models/V1ServiceSpec';
+import { V1ServiceStatus } from '../models/V1ServiceStatus';
 import { HttpFile } from '../http/http';
 
 /**

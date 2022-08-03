@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1BoundObjectReference } from './V1BoundObjectReference';
+import { V1BoundObjectReference } from '../models/V1BoundObjectReference';
 import { HttpFile } from '../http/http';
 
 /**

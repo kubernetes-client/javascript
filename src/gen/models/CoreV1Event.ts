@@ -10,10 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { CoreV1EventSeries } from './CoreV1EventSeries';
-import { V1EventSource } from './V1EventSource';
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1ObjectReference } from './V1ObjectReference';
+import { CoreV1EventSeries } from '../models/CoreV1EventSeries';
+import { V1EventSource } from '../models/V1EventSource';
+import { V1MicroTime } from '../../types';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1ObjectReference } from '../models/V1ObjectReference';
 import { HttpFile } from '../http/http';
 
 /**
@@ -33,9 +34,9 @@ export class CoreV1Event {
     */
     'count'?: number;
     /**
-    * Time when this Event was first observed.
+    * MicroTime is version of Time with microsecond level precision.
     */
-    'eventTime'?: Date;
+    'eventTime'?: V1MicroTime;
     /**
     * The time at which the event was first recorded. (Time of server receipt is in TypeMeta.)
     */
@@ -98,8 +99,8 @@ export class CoreV1Event {
         {
             "name": "eventTime",
             "baseName": "eventTime",
-            "type": "Date",
-            "format": "date-time"
+            "type": "V1MicroTime",
+            "format": "date-time-micro"
         },
         {
             "name": "firstTimestamp",

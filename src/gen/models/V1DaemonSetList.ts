@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1DaemonSet } from './V1DaemonSet';
-import { V1ListMeta } from './V1ListMeta';
+import { V1DaemonSet } from '../models/V1DaemonSet';
+import { V1ListMeta } from '../models/V1ListMeta';
 import { HttpFile } from '../http/http';
 
 /**

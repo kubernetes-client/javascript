@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelector } from './V1LabelSelector';
-import { V1PersistentVolumeClaim } from './V1PersistentVolumeClaim';
-import { V1PodTemplateSpec } from './V1PodTemplateSpec';
-import { V1StatefulSetUpdateStrategy } from './V1StatefulSetUpdateStrategy';
+import { V1LabelSelector } from '../models/V1LabelSelector';
+import { V1PersistentVolumeClaim } from '../models/V1PersistentVolumeClaim';
+import { V1PodTemplateSpec } from '../models/V1PodTemplateSpec';
+import { V1StatefulSetUpdateStrategy } from '../models/V1StatefulSetUpdateStrategy';
 import { HttpFile } from '../http/http';
 
 /**

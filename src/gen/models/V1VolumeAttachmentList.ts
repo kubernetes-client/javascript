@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from './V1ListMeta';
-import { V1VolumeAttachment } from './V1VolumeAttachment';
+import { V1ListMeta } from '../models/V1ListMeta';
+import { V1VolumeAttachment } from '../models/V1VolumeAttachment';
 import { HttpFile } from '../http/http';
 
 /**

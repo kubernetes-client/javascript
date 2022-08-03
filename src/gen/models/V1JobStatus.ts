@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1JobCondition } from './V1JobCondition';
-import { V1UncountedTerminatedPods } from './V1UncountedTerminatedPods';
+import { V1JobCondition } from '../models/V1JobCondition';
+import { V1UncountedTerminatedPods } from '../models/V1UncountedTerminatedPods';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1beta1CronJobSpec } from './V1beta1CronJobSpec';
-import { V1beta1CronJobStatus } from './V1beta1CronJobStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1beta1CronJobSpec } from '../models/V1beta1CronJobSpec';
+import { V1beta1CronJobStatus } from '../models/V1beta1CronJobStatus';
 import { HttpFile } from '../http/http';
 
 /**

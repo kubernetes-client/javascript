@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1Ingress } from './V1Ingress';
-import { V1ListMeta } from './V1ListMeta';
+import { V1Ingress } from '../models/V1Ingress';
+import { V1ListMeta } from '../models/V1ListMeta';
 import { HttpFile } from '../http/http';
 
 /**

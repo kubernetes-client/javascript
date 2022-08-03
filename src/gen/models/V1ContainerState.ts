@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ContainerStateRunning } from './V1ContainerStateRunning';
-import { V1ContainerStateTerminated } from './V1ContainerStateTerminated';
-import { V1ContainerStateWaiting } from './V1ContainerStateWaiting';
+import { V1ContainerStateRunning } from '../models/V1ContainerStateRunning';
+import { V1ContainerStateTerminated } from '../models/V1ContainerStateTerminated';
+import { V1ContainerStateWaiting } from '../models/V1ContainerStateWaiting';
 import { HttpFile } from '../http/http';
 
 /**

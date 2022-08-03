@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeAffinity } from './V1NodeAffinity';
-import { V1PodAffinity } from './V1PodAffinity';
-import { V1PodAntiAffinity } from './V1PodAntiAffinity';
+import { V1NodeAffinity } from '../models/V1NodeAffinity';
+import { V1PodAffinity } from '../models/V1PodAffinity';
+import { V1PodAntiAffinity } from '../models/V1PodAntiAffinity';
 import { HttpFile } from '../http/http';
 
 /**

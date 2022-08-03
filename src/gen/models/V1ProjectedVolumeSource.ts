@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1VolumeProjection } from './V1VolumeProjection';
+import { V1VolumeProjection } from '../models/V1VolumeProjection';
 import { HttpFile } from '../http/http';
 
 /**

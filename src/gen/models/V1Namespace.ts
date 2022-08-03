@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1NamespaceSpec } from './V1NamespaceSpec';
-import { V1NamespaceStatus } from './V1NamespaceStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { V1NamespaceSpec } from '../models/V1NamespaceSpec';
+import { V1NamespaceStatus } from '../models/V1NamespaceStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 import { HttpFile } from '../http/http';
 
 /**

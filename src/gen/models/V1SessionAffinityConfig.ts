@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ClientIPConfig } from './V1ClientIPConfig';
+import { V1ClientIPConfig } from '../models/V1ClientIPConfig';
 import { HttpFile } from '../http/http';
 
 /**

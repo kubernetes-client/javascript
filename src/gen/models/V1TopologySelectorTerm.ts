@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1TopologySelectorLabelRequirement } from './V1TopologySelectorLabelRequirement';
+import { V1TopologySelectorLabelRequirement } from '../models/V1TopologySelectorLabelRequirement';
 import { HttpFile } from '../http/http';
 
 /**

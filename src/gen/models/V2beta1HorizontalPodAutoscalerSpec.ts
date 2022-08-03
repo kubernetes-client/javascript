@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V2beta1CrossVersionObjectReference } from './V2beta1CrossVersionObjectReference';
-import { V2beta1MetricSpec } from './V2beta1MetricSpec';
+import { V2beta1CrossVersionObjectReference } from '../models/V2beta1CrossVersionObjectReference';
+import { V2beta1MetricSpec } from '../models/V2beta1MetricSpec';
 import { HttpFile } from '../http/http';
 
 /**

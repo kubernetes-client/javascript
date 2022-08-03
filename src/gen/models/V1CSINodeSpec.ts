@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1CSINodeDriver } from './V1CSINodeDriver';
+import { V1CSINodeDriver } from '../models/V1CSINodeDriver';
 import { HttpFile } from '../http/http';
 
 /**

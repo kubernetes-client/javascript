@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ApiextensionsV1ServiceReference } from './ApiextensionsV1ServiceReference';
+import { ApiextensionsV1ServiceReference } from '../models/ApiextensionsV1ServiceReference';
 import { HttpFile } from '../http/http';
 
 /**

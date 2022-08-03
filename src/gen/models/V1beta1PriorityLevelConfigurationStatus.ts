@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1beta1PriorityLevelConfigurationCondition } from './V1beta1PriorityLevelConfigurationCondition';
+import { V1beta1PriorityLevelConfigurationCondition } from '../models/V1beta1PriorityLevelConfigurationCondition';
 import { HttpFile } from '../http/http';
 
 /**

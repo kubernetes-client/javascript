@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { IntOrString } from './IntOrString';
-import { V1LabelSelector } from './V1LabelSelector';
+import { IntOrString } from '../../types';
+import { V1LabelSelector } from '../models/V1LabelSelector';
 import { HttpFile } from '../http/http';
 
 /**

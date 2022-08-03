@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1LocalObjectReference } from './V1LocalObjectReference';
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1ObjectReference } from './V1ObjectReference';
+import { V1LocalObjectReference } from '../models/V1LocalObjectReference';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1ObjectReference } from '../models/V1ObjectReference';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { V1MicroTime } from '../../types';
 import { HttpFile } from '../http/http';
 
 /**
@@ -21,9 +22,9 @@ export class CoreV1EventSeries {
     */
     'count'?: number;
     /**
-    * Time of the last occurrence observed
+    * MicroTime is version of Time with microsecond level precision.
     */
-    'lastObservedTime'?: Date;
+    'lastObservedTime'?: V1MicroTime;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -37,8 +38,8 @@ export class CoreV1EventSeries {
         {
             "name": "lastObservedTime",
             "baseName": "lastObservedTime",
-            "type": "Date",
-            "format": "date-time"
+            "type": "V1MicroTime",
+            "format": "date-time-micro"
         }    ];
 
     static getAttributeTypeMap() {

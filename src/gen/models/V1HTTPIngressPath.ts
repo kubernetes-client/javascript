@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1IngressBackend } from './V1IngressBackend';
+import { V1IngressBackend } from '../models/V1IngressBackend';
 import { HttpFile } from '../http/http';
 
 /**

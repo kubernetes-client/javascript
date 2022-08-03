@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1IngressBackend } from './V1IngressBackend';
-import { V1IngressRule } from './V1IngressRule';
-import { V1IngressTLS } from './V1IngressTLS';
+import { V1IngressBackend } from '../models/V1IngressBackend';
+import { V1IngressRule } from '../models/V1IngressRule';
+import { V1IngressTLS } from '../models/V1IngressTLS';
 import { HttpFile } from '../http/http';
 
 /**

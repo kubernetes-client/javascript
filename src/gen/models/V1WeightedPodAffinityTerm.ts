@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1PodAffinityTerm } from './V1PodAffinityTerm';
+import { V1PodAffinityTerm } from '../models/V1PodAffinityTerm';
 import { HttpFile } from '../http/http';
 
 /**

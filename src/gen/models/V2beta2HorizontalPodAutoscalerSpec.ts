@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V2beta2CrossVersionObjectReference } from './V2beta2CrossVersionObjectReference';
-import { V2beta2HorizontalPodAutoscalerBehavior } from './V2beta2HorizontalPodAutoscalerBehavior';
-import { V2beta2MetricSpec } from './V2beta2MetricSpec';
+import { V2beta2CrossVersionObjectReference } from '../models/V2beta2CrossVersionObjectReference';
+import { V2beta2HorizontalPodAutoscalerBehavior } from '../models/V2beta2HorizontalPodAutoscalerBehavior';
+import { V2beta2MetricSpec } from '../models/V2beta2MetricSpec';
 import { HttpFile } from '../http/http';
 
 /**

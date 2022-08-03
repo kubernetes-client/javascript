@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ConfigMapKeySelector } from './V1ConfigMapKeySelector';
-import { V1ObjectFieldSelector } from './V1ObjectFieldSelector';
-import { V1ResourceFieldSelector } from './V1ResourceFieldSelector';
-import { V1SecretKeySelector } from './V1SecretKeySelector';
+import { V1ConfigMapKeySelector } from '../models/V1ConfigMapKeySelector';
+import { V1ObjectFieldSelector } from '../models/V1ObjectFieldSelector';
+import { V1ResourceFieldSelector } from '../models/V1ResourceFieldSelector';
+import { V1SecretKeySelector } from '../models/V1SecretKeySelector';
 import { HttpFile } from '../http/http';
 
 /**

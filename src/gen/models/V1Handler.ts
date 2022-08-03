@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ExecAction } from './V1ExecAction';
-import { V1HTTPGetAction } from './V1HTTPGetAction';
-import { V1TCPSocketAction } from './V1TCPSocketAction';
+import { V1ExecAction } from '../models/V1ExecAction';
+import { V1HTTPGetAction } from '../models/V1HTTPGetAction';
+import { V1TCPSocketAction } from '../models/V1TCPSocketAction';
 import { HttpFile } from '../http/http';
 
 /**

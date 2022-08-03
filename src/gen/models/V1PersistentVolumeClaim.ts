@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1PersistentVolumeClaimSpec } from './V1PersistentVolumeClaimSpec';
-import { V1PersistentVolumeClaimStatus } from './V1PersistentVolumeClaimStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1PersistentVolumeClaimSpec } from '../models/V1PersistentVolumeClaimSpec';
+import { V1PersistentVolumeClaimStatus } from '../models/V1PersistentVolumeClaimStatus';
 import { HttpFile } from '../http/http';
 
 /**

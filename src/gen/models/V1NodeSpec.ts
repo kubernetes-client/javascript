@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeConfigSource } from './V1NodeConfigSource';
-import { V1Taint } from './V1Taint';
+import { V1NodeConfigSource } from '../models/V1NodeConfigSource';
+import { V1Taint } from '../models/V1Taint';
 import { HttpFile } from '../http/http';
 
 /**

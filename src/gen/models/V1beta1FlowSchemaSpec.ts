@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1beta1FlowDistinguisherMethod } from './V1beta1FlowDistinguisherMethod';
-import { V1beta1PolicyRulesWithSubjects } from './V1beta1PolicyRulesWithSubjects';
-import { V1beta1PriorityLevelConfigurationReference } from './V1beta1PriorityLevelConfigurationReference';
+import { V1beta1FlowDistinguisherMethod } from '../models/V1beta1FlowDistinguisherMethod';
+import { V1beta1PolicyRulesWithSubjects } from '../models/V1beta1PolicyRulesWithSubjects';
+import { V1beta1PriorityLevelConfigurationReference } from '../models/V1beta1PriorityLevelConfigurationReference';
 import { HttpFile } from '../http/http';
 
 /**

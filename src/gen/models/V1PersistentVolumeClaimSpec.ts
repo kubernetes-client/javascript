@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelector } from './V1LabelSelector';
-import { V1ResourceRequirements } from './V1ResourceRequirements';
-import { V1TypedLocalObjectReference } from './V1TypedLocalObjectReference';
+import { V1LabelSelector } from '../models/V1LabelSelector';
+import { V1ResourceRequirements } from '../models/V1ResourceRequirements';
+import { V1TypedLocalObjectReference } from '../models/V1TypedLocalObjectReference';
 import { HttpFile } from '../http/http';
 
 /**

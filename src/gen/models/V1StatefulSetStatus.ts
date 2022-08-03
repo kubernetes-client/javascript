@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1StatefulSetCondition } from './V1StatefulSetCondition';
+import { V1StatefulSetCondition } from '../models/V1StatefulSetCondition';
 import { HttpFile } from '../http/http';
 
 /**

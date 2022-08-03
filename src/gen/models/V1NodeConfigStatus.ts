@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeConfigSource } from './V1NodeConfigSource';
+import { V1NodeConfigSource } from '../models/V1NodeConfigSource';
 import { HttpFile } from '../http/http';
 
 /**

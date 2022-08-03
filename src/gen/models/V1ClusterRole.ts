@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1AggregationRule } from './V1AggregationRule';
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1PolicyRule } from './V1PolicyRule';
+import { V1AggregationRule } from '../models/V1AggregationRule';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1PolicyRule } from '../models/V1PolicyRule';
 import { HttpFile } from '../http/http';
 
 /**

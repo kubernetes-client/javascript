@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1SecretReference } from './V1SecretReference';
+import { V1SecretReference } from '../models/V1SecretReference';
 import { HttpFile } from '../http/http';
 
 /**

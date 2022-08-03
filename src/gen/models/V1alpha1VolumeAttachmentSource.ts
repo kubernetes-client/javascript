@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1PersistentVolumeSpec } from './V1PersistentVolumeSpec';
+import { V1PersistentVolumeSpec } from '../models/V1PersistentVolumeSpec';
 import { HttpFile } from '../http/http';
 
 /**

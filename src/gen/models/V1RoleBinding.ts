@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1RoleRef } from './V1RoleRef';
-import { V1Subject } from './V1Subject';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1RoleRef } from '../models/V1RoleRef';
+import { V1Subject } from '../models/V1Subject';
 import { HttpFile } from '../http/http';
 
 /**

@@ -3768,7 +3768,7 @@ let body:.CoreV1ApiCreateNamespacedEventRequest = {
     action: "action_example",
     apiVersion: "apiVersion_example",
     count: 1,
-    eventTime: new Date('1970-01-01T00:00:00.00Z'),
+    eventTime: "eventTime_example",
     firstTimestamp: new Date('1970-01-01T00:00:00.00Z'),
     involvedObject: {
       apiVersion: "apiVersion_example",
@@ -3839,7 +3839,7 @@ let body:.CoreV1ApiCreateNamespacedEventRequest = {
     reportingInstance: "reportingInstance_example",
     series: {
       count: 1,
-      lastObservedTime: new Date('1970-01-01T00:00:00.00Z'),
+      lastObservedTime: "lastObservedTime_example",
     },
     source: {
       component: "component_example",
@@ -20143,7 +20143,7 @@ let body:.CoreV1ApiReplaceNamespacedEventRequest = {
     action: "action_example",
     apiVersion: "apiVersion_example",
     count: 1,
-    eventTime: new Date('1970-01-01T00:00:00.00Z'),
+    eventTime: "eventTime_example",
     firstTimestamp: new Date('1970-01-01T00:00:00.00Z'),
     involvedObject: {
       apiVersion: "apiVersion_example",
@@ -20214,7 +20214,7 @@ let body:.CoreV1ApiReplaceNamespacedEventRequest = {
     reportingInstance: "reportingInstance_example",
     series: {
       count: 1,
-      lastObservedTime: new Date('1970-01-01T00:00:00.00Z'),
+      lastObservedTime: "lastObservedTime_example",
     },
     source: {
       component: "component_example",

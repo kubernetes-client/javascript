@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1CrossVersionObjectReference } from './V1CrossVersionObjectReference';
+import { V1CrossVersionObjectReference } from '../models/V1CrossVersionObjectReference';
 import { HttpFile } from '../http/http';
 
 /**

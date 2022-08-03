@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1IngressSpec } from './V1IngressSpec';
-import { V1IngressStatus } from './V1IngressStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { V1IngressSpec } from '../models/V1IngressSpec';
+import { V1IngressStatus } from '../models/V1IngressStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 import { HttpFile } from '../http/http';
 
 /**

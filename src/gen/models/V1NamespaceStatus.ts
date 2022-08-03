@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1NamespaceCondition } from './V1NamespaceCondition';
+import { V1NamespaceCondition } from '../models/V1NamespaceCondition';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1beta1FlowSchemaCondition } from './V1beta1FlowSchemaCondition';
+import { V1beta1FlowSchemaCondition } from '../models/V1beta1FlowSchemaCondition';
 import { HttpFile } from '../http/http';
 
 /**

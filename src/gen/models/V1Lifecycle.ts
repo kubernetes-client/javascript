@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1Handler } from './V1Handler';
+import { V1Handler } from '../models/V1Handler';
 import { HttpFile } from '../http/http';
 
 /**

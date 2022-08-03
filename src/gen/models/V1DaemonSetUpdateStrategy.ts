@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1RollingUpdateDaemonSet } from './V1RollingUpdateDaemonSet';
+import { V1RollingUpdateDaemonSet } from '../models/V1RollingUpdateDaemonSet';
 import { HttpFile } from '../http/http';
 
 /**

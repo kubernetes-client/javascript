@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ReplicaSetCondition } from './V1ReplicaSetCondition';
+import { V1ReplicaSetCondition } from '../models/V1ReplicaSetCondition';
 import { HttpFile } from '../http/http';
 
 /**

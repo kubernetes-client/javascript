@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1APIService } from './V1APIService';
-import { V1ListMeta } from './V1ListMeta';
+import { V1APIService } from '../models/V1APIService';
+import { V1ListMeta } from '../models/V1ListMeta';
 import { HttpFile } from '../http/http';
 
 /**

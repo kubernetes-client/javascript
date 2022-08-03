@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1APIGroup } from './V1APIGroup';
+import { V1APIGroup } from '../models/V1APIGroup';
 import { HttpFile } from '../http/http';
 
 /**

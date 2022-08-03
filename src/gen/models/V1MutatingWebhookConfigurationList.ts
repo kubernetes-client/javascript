@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from './V1ListMeta';
-import { V1MutatingWebhookConfiguration } from './V1MutatingWebhookConfiguration';
+import { V1ListMeta } from '../models/V1ListMeta';
+import { V1MutatingWebhookConfiguration } from '../models/V1MutatingWebhookConfiguration';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1beta1LimitedPriorityLevelConfiguration } from './V1beta1LimitedPriorityLevelConfiguration';
+import { V1beta1LimitedPriorityLevelConfiguration } from '../models/V1beta1LimitedPriorityLevelConfiguration';
 import { HttpFile } from '../http/http';
 
 /**

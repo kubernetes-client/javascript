@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1APIServiceCondition } from './V1APIServiceCondition';
+import { V1APIServiceCondition } from '../models/V1APIServiceCondition';
 import { HttpFile } from '../http/http';
 
 /**

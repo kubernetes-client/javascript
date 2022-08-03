@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1VolumeError } from './V1VolumeError';
+import { V1VolumeError } from '../models/V1VolumeError';
 import { HttpFile } from '../http/http';
 
 /**

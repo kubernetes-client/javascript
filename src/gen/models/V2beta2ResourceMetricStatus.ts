@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V2beta2MetricValueStatus } from './V2beta2MetricValueStatus';
+import { V2beta2MetricValueStatus } from '../models/V2beta2MetricValueStatus';
 import { HttpFile } from '../http/http';
 
 /**

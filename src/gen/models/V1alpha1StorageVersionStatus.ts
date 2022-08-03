@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1alpha1ServerStorageVersion } from './V1alpha1ServerStorageVersion';
-import { V1alpha1StorageVersionCondition } from './V1alpha1StorageVersionCondition';
+import { V1alpha1ServerStorageVersion } from '../models/V1alpha1ServerStorageVersion';
+import { V1alpha1StorageVersionCondition } from '../models/V1alpha1StorageVersionCondition';
 import { HttpFile } from '../http/http';
 
 /**

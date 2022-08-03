@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeSelectorTerm } from './V1NodeSelectorTerm';
+import { V1NodeSelectorTerm } from '../models/V1NodeSelectorTerm';
 import { HttpFile } from '../http/http';
 
 /**

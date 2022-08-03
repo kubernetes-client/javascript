@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1ReplicationControllerSpec } from './V1ReplicationControllerSpec';
-import { V1ReplicationControllerStatus } from './V1ReplicationControllerStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1ReplicationControllerSpec } from '../models/V1ReplicationControllerSpec';
+import { V1ReplicationControllerStatus } from '../models/V1ReplicationControllerStatus';
 import { HttpFile } from '../http/http';
 
 /**
