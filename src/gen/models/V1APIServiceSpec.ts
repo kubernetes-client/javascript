@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { ApiregistrationV1ServiceReference } from './ApiregistrationV1ServiceReference';
+import { ApiregistrationV1ServiceReference } from '../models/ApiregistrationV1ServiceReference';
 import { HttpFile } from '../http/http';
 
 /**

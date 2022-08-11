@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ScopedResourceSelectorRequirement } from './V1ScopedResourceSelectorRequirement';
+import { V1ScopedResourceSelectorRequirement } from '../models/V1ScopedResourceSelectorRequirement';
 import { HttpFile } from '../http/http';
 
 /**

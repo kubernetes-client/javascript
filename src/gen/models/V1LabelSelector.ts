@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelectorRequirement } from './V1LabelSelectorRequirement';
+import { V1LabelSelectorRequirement } from '../models/V1LabelSelectorRequirement';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from './V1ListMeta';
-import { V1alpha1PriorityClass } from './V1alpha1PriorityClass';
+import { V1ListMeta } from '../models/V1ListMeta';
+import { V1alpha1PriorityClass } from '../models/V1alpha1PriorityClass';
 import { HttpFile } from '../http/http';
 
 /**

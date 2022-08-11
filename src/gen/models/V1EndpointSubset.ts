@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { CoreV1EndpointPort } from './CoreV1EndpointPort';
-import { V1EndpointAddress } from './V1EndpointAddress';
+import { CoreV1EndpointPort } from '../models/CoreV1EndpointPort';
+import { V1EndpointAddress } from '../models/V1EndpointAddress';
 import { HttpFile } from '../http/http';
 
 /**

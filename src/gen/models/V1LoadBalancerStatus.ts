@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1LoadBalancerIngress } from './V1LoadBalancerIngress';
+import { V1LoadBalancerIngress } from '../models/V1LoadBalancerIngress';
 import { HttpFile } from '../http/http';
 
 /**

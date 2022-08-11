@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ConfigMapEnvSource } from './V1ConfigMapEnvSource';
-import { V1SecretEnvSource } from './V1SecretEnvSource';
+import { V1ConfigMapEnvSource } from '../models/V1ConfigMapEnvSource';
+import { V1SecretEnvSource } from '../models/V1SecretEnvSource';
 import { HttpFile } from '../http/http';
 
 /**

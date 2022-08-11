@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1DeploymentStrategy } from './V1DeploymentStrategy';
-import { V1LabelSelector } from './V1LabelSelector';
-import { V1PodTemplateSpec } from './V1PodTemplateSpec';
+import { V1DeploymentStrategy } from '../models/V1DeploymentStrategy';
+import { V1LabelSelector } from '../models/V1LabelSelector';
+import { V1PodTemplateSpec } from '../models/V1PodTemplateSpec';
 import { HttpFile } from '../http/http';
 
 /**

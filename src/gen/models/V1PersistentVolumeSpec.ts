@@ -10,30 +10,30 @@
  * Do not edit the class manually.
  */
 
-import { V1AWSElasticBlockStoreVolumeSource } from './V1AWSElasticBlockStoreVolumeSource';
-import { V1AzureDiskVolumeSource } from './V1AzureDiskVolumeSource';
-import { V1AzureFilePersistentVolumeSource } from './V1AzureFilePersistentVolumeSource';
-import { V1CSIPersistentVolumeSource } from './V1CSIPersistentVolumeSource';
-import { V1CephFSPersistentVolumeSource } from './V1CephFSPersistentVolumeSource';
-import { V1CinderPersistentVolumeSource } from './V1CinderPersistentVolumeSource';
-import { V1FCVolumeSource } from './V1FCVolumeSource';
-import { V1FlexPersistentVolumeSource } from './V1FlexPersistentVolumeSource';
-import { V1FlockerVolumeSource } from './V1FlockerVolumeSource';
-import { V1GCEPersistentDiskVolumeSource } from './V1GCEPersistentDiskVolumeSource';
-import { V1GlusterfsPersistentVolumeSource } from './V1GlusterfsPersistentVolumeSource';
-import { V1HostPathVolumeSource } from './V1HostPathVolumeSource';
-import { V1ISCSIPersistentVolumeSource } from './V1ISCSIPersistentVolumeSource';
-import { V1LocalVolumeSource } from './V1LocalVolumeSource';
-import { V1NFSVolumeSource } from './V1NFSVolumeSource';
-import { V1ObjectReference } from './V1ObjectReference';
-import { V1PhotonPersistentDiskVolumeSource } from './V1PhotonPersistentDiskVolumeSource';
-import { V1PortworxVolumeSource } from './V1PortworxVolumeSource';
-import { V1QuobyteVolumeSource } from './V1QuobyteVolumeSource';
-import { V1RBDPersistentVolumeSource } from './V1RBDPersistentVolumeSource';
-import { V1ScaleIOPersistentVolumeSource } from './V1ScaleIOPersistentVolumeSource';
-import { V1StorageOSPersistentVolumeSource } from './V1StorageOSPersistentVolumeSource';
-import { V1VolumeNodeAffinity } from './V1VolumeNodeAffinity';
-import { V1VsphereVirtualDiskVolumeSource } from './V1VsphereVirtualDiskVolumeSource';
+import { V1AWSElasticBlockStoreVolumeSource } from '../models/V1AWSElasticBlockStoreVolumeSource';
+import { V1AzureDiskVolumeSource } from '../models/V1AzureDiskVolumeSource';
+import { V1AzureFilePersistentVolumeSource } from '../models/V1AzureFilePersistentVolumeSource';
+import { V1CSIPersistentVolumeSource } from '../models/V1CSIPersistentVolumeSource';
+import { V1CephFSPersistentVolumeSource } from '../models/V1CephFSPersistentVolumeSource';
+import { V1CinderPersistentVolumeSource } from '../models/V1CinderPersistentVolumeSource';
+import { V1FCVolumeSource } from '../models/V1FCVolumeSource';
+import { V1FlexPersistentVolumeSource } from '../models/V1FlexPersistentVolumeSource';
+import { V1FlockerVolumeSource } from '../models/V1FlockerVolumeSource';
+import { V1GCEPersistentDiskVolumeSource } from '../models/V1GCEPersistentDiskVolumeSource';
+import { V1GlusterfsPersistentVolumeSource } from '../models/V1GlusterfsPersistentVolumeSource';
+import { V1HostPathVolumeSource } from '../models/V1HostPathVolumeSource';
+import { V1ISCSIPersistentVolumeSource } from '../models/V1ISCSIPersistentVolumeSource';
+import { V1LocalVolumeSource } from '../models/V1LocalVolumeSource';
+import { V1NFSVolumeSource } from '../models/V1NFSVolumeSource';
+import { V1ObjectReference } from '../models/V1ObjectReference';
+import { V1PhotonPersistentDiskVolumeSource } from '../models/V1PhotonPersistentDiskVolumeSource';
+import { V1PortworxVolumeSource } from '../models/V1PortworxVolumeSource';
+import { V1QuobyteVolumeSource } from '../models/V1QuobyteVolumeSource';
+import { V1RBDPersistentVolumeSource } from '../models/V1RBDPersistentVolumeSource';
+import { V1ScaleIOPersistentVolumeSource } from '../models/V1ScaleIOPersistentVolumeSource';
+import { V1StorageOSPersistentVolumeSource } from '../models/V1StorageOSPersistentVolumeSource';
+import { V1VolumeNodeAffinity } from '../models/V1VolumeNodeAffinity';
+import { V1VsphereVirtualDiskVolumeSource } from '../models/V1VsphereVirtualDiskVolumeSource';
 import { HttpFile } from '../http/http';
 
 /**

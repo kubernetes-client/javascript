@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectReference } from './V1ObjectReference';
-import { V1beta1EndpointConditions } from './V1beta1EndpointConditions';
-import { V1beta1EndpointHints } from './V1beta1EndpointHints';
+import { V1ObjectReference } from '../models/V1ObjectReference';
+import { V1beta1EndpointConditions } from '../models/V1beta1EndpointConditions';
+import { V1beta1EndpointHints } from '../models/V1beta1EndpointHints';
 import { HttpFile } from '../http/http';
 
 /**

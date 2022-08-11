@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { CoreV1Event } from './CoreV1Event';
-import { V1ListMeta } from './V1ListMeta';
+import { CoreV1Event } from '../models/CoreV1Event';
+import { V1ListMeta } from '../models/V1ListMeta';
 import { HttpFile } from '../http/http';
 
 /**

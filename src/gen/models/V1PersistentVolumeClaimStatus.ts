@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1PersistentVolumeClaimCondition } from './V1PersistentVolumeClaimCondition';
+import { V1PersistentVolumeClaimCondition } from '../models/V1PersistentVolumeClaimCondition';
 import { HttpFile } from '../http/http';
 
 /**

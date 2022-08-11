@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeSelectorRequirement } from './V1NodeSelectorRequirement';
+import { V1NodeSelectorRequirement } from '../models/V1NodeSelectorRequirement';
 import { HttpFile } from '../http/http';
 
 /**

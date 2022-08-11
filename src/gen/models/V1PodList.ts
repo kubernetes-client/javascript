@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from './V1ListMeta';
-import { V1Pod } from './V1Pod';
+import { V1ListMeta } from '../models/V1ListMeta';
+import { V1Pod } from '../models/V1Pod';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1ResourceQuotaSpec } from './V1ResourceQuotaSpec';
-import { V1ResourceQuotaStatus } from './V1ResourceQuotaStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1ResourceQuotaSpec } from '../models/V1ResourceQuotaSpec';
+import { V1ResourceQuotaStatus } from '../models/V1ResourceQuotaStatus';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1NetworkPolicyPeer } from './V1NetworkPolicyPeer';
-import { V1NetworkPolicyPort } from './V1NetworkPolicyPort';
+import { V1NetworkPolicyPeer } from '../models/V1NetworkPolicyPeer';
+import { V1NetworkPolicyPort } from '../models/V1NetworkPolicyPort';
 import { HttpFile } from '../http/http';
 
 /**

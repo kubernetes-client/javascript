@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelector } from './V1LabelSelector';
-import { V2beta1CrossVersionObjectReference } from './V2beta1CrossVersionObjectReference';
+import { V1LabelSelector } from '../models/V1LabelSelector';
+import { V2beta1CrossVersionObjectReference } from '../models/V2beta1CrossVersionObjectReference';
 import { HttpFile } from '../http/http';
 
 /**

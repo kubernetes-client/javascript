@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { V2beta2ContainerResourceMetricStatus } from './V2beta2ContainerResourceMetricStatus';
-import { V2beta2ExternalMetricStatus } from './V2beta2ExternalMetricStatus';
-import { V2beta2ObjectMetricStatus } from './V2beta2ObjectMetricStatus';
-import { V2beta2PodsMetricStatus } from './V2beta2PodsMetricStatus';
-import { V2beta2ResourceMetricStatus } from './V2beta2ResourceMetricStatus';
+import { V2beta2ContainerResourceMetricStatus } from '../models/V2beta2ContainerResourceMetricStatus';
+import { V2beta2ExternalMetricStatus } from '../models/V2beta2ExternalMetricStatus';
+import { V2beta2ObjectMetricStatus } from '../models/V2beta2ObjectMetricStatus';
+import { V2beta2PodsMetricStatus } from '../models/V2beta2PodsMetricStatus';
+import { V2beta2ResourceMetricStatus } from '../models/V2beta2ResourceMetricStatus';
 import { HttpFile } from '../http/http';
 
 /**

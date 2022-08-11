@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1IngressServiceBackend } from './V1IngressServiceBackend';
-import { V1TypedLocalObjectReference } from './V1TypedLocalObjectReference';
+import { V1IngressServiceBackend } from '../models/V1IngressServiceBackend';
+import { V1TypedLocalObjectReference } from '../models/V1TypedLocalObjectReference';
 import { HttpFile } from '../http/http';
 
 /**

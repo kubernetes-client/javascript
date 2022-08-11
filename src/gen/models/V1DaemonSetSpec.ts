@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1DaemonSetUpdateStrategy } from './V1DaemonSetUpdateStrategy';
-import { V1LabelSelector } from './V1LabelSelector';
-import { V1PodTemplateSpec } from './V1PodTemplateSpec';
+import { V1DaemonSetUpdateStrategy } from '../models/V1DaemonSetUpdateStrategy';
+import { V1LabelSelector } from '../models/V1LabelSelector';
+import { V1PodTemplateSpec } from '../models/V1PodTemplateSpec';
 import { HttpFile } from '../http/http';
 
 /**

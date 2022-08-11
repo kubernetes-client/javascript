@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1CustomResourceSubresourceScale } from './V1CustomResourceSubresourceScale';
+import { V1CustomResourceSubresourceScale } from '../models/V1CustomResourceSubresourceScale';
 import { HttpFile } from '../http/http';
 
 /**

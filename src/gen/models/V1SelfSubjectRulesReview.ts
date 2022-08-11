@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1SelfSubjectRulesReviewSpec } from './V1SelfSubjectRulesReviewSpec';
-import { V1SubjectRulesReviewStatus } from './V1SubjectRulesReviewStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1SelfSubjectRulesReviewSpec } from '../models/V1SelfSubjectRulesReviewSpec';
+import { V1SubjectRulesReviewStatus } from '../models/V1SubjectRulesReviewStatus';
 import { HttpFile } from '../http/http';
 
 /**

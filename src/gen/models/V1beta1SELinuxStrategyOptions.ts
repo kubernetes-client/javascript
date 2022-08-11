@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1SELinuxOptions } from './V1SELinuxOptions';
+import { V1SELinuxOptions } from '../models/V1SELinuxOptions';
 import { HttpFile } from '../http/http';
 
 /**

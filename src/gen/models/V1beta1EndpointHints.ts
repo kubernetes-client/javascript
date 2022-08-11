@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1beta1ForZone } from './V1beta1ForZone';
+import { V1beta1ForZone } from '../models/V1beta1ForZone';
 import { HttpFile } from '../http/http';
 
 /**

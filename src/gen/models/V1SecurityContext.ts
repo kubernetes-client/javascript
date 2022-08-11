@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1Capabilities } from './V1Capabilities';
-import { V1SELinuxOptions } from './V1SELinuxOptions';
-import { V1SeccompProfile } from './V1SeccompProfile';
-import { V1WindowsSecurityContextOptions } from './V1WindowsSecurityContextOptions';
+import { V1Capabilities } from '../models/V1Capabilities';
+import { V1SELinuxOptions } from '../models/V1SELinuxOptions';
+import { V1SeccompProfile } from '../models/V1SeccompProfile';
+import { V1WindowsSecurityContextOptions } from '../models/V1WindowsSecurityContextOptions';
 import { HttpFile } from '../http/http';
 
 /**

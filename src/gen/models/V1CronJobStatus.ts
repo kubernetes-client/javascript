@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectReference } from './V1ObjectReference';
+import { V1ObjectReference } from '../models/V1ObjectReference';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1beta1NonResourcePolicyRule } from './V1beta1NonResourcePolicyRule';
-import { V1beta1ResourcePolicyRule } from './V1beta1ResourcePolicyRule';
-import { V1beta1Subject } from './V1beta1Subject';
+import { V1beta1NonResourcePolicyRule } from '../models/V1beta1NonResourcePolicyRule';
+import { V1beta1ResourcePolicyRule } from '../models/V1beta1ResourcePolicyRule';
+import { V1beta1Subject } from '../models/V1beta1Subject';
 import { HttpFile } from '../http/http';
 
 /**

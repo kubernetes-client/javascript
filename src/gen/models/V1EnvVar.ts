@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1EnvVarSource } from './V1EnvVarSource';
+import { V1EnvVarSource } from '../models/V1EnvVarSource';
 import { HttpFile } from '../http/http';
 
 /**

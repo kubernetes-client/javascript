@@ -1,11 +1,9 @@
 // TODO: evaluate if we can easily get rid of this library
-import * as FormData from "form-data";
+import  FormData from "form-data";
 import { URLSearchParams } from 'url';
 import * as http from 'http';
 import * as https from 'https';
-// typings of url-parse are incorrect...
-// @ts-ignore
-import * as URLParse from "url-parse";
+import  URLParse from "url-parse";
 import { Observable, from } from '../rxjsStub';
 
 export * from './isomorphic-fetch';

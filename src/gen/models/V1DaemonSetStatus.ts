@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1DaemonSetCondition } from './V1DaemonSetCondition';
+import { V1DaemonSetCondition } from '../models/V1DaemonSetCondition';
 import { HttpFile } from '../http/http';
 
 /**

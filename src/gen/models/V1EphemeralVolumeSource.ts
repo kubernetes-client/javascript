@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1PersistentVolumeClaimTemplate } from './V1PersistentVolumeClaimTemplate';
+import { V1PersistentVolumeClaimTemplate } from '../models/V1PersistentVolumeClaimTemplate';
 import { HttpFile } from '../http/http';
 
 /**

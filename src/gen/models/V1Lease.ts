@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1LeaseSpec } from './V1LeaseSpec';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { V1LeaseSpec } from '../models/V1LeaseSpec';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 import { HttpFile } from '../http/http';
 
 /**

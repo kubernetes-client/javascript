@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1CSIDriver } from './V1CSIDriver';
-import { V1ListMeta } from './V1ListMeta';
+import { V1CSIDriver } from '../models/V1CSIDriver';
+import { V1ListMeta } from '../models/V1ListMeta';
 import { HttpFile } from '../http/http';
 
 /**

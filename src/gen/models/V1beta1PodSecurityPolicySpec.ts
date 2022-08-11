@@ -10,16 +10,16 @@
  * Do not edit the class manually.
  */
 
-import { V1beta1AllowedCSIDriver } from './V1beta1AllowedCSIDriver';
-import { V1beta1AllowedFlexVolume } from './V1beta1AllowedFlexVolume';
-import { V1beta1AllowedHostPath } from './V1beta1AllowedHostPath';
-import { V1beta1FSGroupStrategyOptions } from './V1beta1FSGroupStrategyOptions';
-import { V1beta1HostPortRange } from './V1beta1HostPortRange';
-import { V1beta1RunAsGroupStrategyOptions } from './V1beta1RunAsGroupStrategyOptions';
-import { V1beta1RunAsUserStrategyOptions } from './V1beta1RunAsUserStrategyOptions';
-import { V1beta1RuntimeClassStrategyOptions } from './V1beta1RuntimeClassStrategyOptions';
-import { V1beta1SELinuxStrategyOptions } from './V1beta1SELinuxStrategyOptions';
-import { V1beta1SupplementalGroupsStrategyOptions } from './V1beta1SupplementalGroupsStrategyOptions';
+import { V1beta1AllowedCSIDriver } from '../models/V1beta1AllowedCSIDriver';
+import { V1beta1AllowedFlexVolume } from '../models/V1beta1AllowedFlexVolume';
+import { V1beta1AllowedHostPath } from '../models/V1beta1AllowedHostPath';
+import { V1beta1FSGroupStrategyOptions } from '../models/V1beta1FSGroupStrategyOptions';
+import { V1beta1HostPortRange } from '../models/V1beta1HostPortRange';
+import { V1beta1RunAsGroupStrategyOptions } from '../models/V1beta1RunAsGroupStrategyOptions';
+import { V1beta1RunAsUserStrategyOptions } from '../models/V1beta1RunAsUserStrategyOptions';
+import { V1beta1RuntimeClassStrategyOptions } from '../models/V1beta1RuntimeClassStrategyOptions';
+import { V1beta1SELinuxStrategyOptions } from '../models/V1beta1SELinuxStrategyOptions';
+import { V1beta1SupplementalGroupsStrategyOptions } from '../models/V1beta1SupplementalGroupsStrategyOptions';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1alpha1VolumeAttachmentSource } from './V1alpha1VolumeAttachmentSource';
+import { V1alpha1VolumeAttachmentSource } from '../models/V1alpha1VolumeAttachmentSource';
 import { HttpFile } from '../http/http';
 
 /**

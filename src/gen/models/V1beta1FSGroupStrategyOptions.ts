@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1beta1IDRange } from './V1beta1IDRange';
+import { V1beta1IDRange } from '../models/V1beta1IDRange';
 import { HttpFile } from '../http/http';
 
 /**

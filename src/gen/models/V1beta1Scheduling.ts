@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1Toleration } from './V1Toleration';
+import { V1Toleration } from '../models/V1Toleration';
 import { HttpFile } from '../http/http';
 
 /**

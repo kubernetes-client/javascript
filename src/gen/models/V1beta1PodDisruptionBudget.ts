@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1beta1PodDisruptionBudgetSpec } from './V1beta1PodDisruptionBudgetSpec';
-import { V1beta1PodDisruptionBudgetStatus } from './V1beta1PodDisruptionBudgetStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1beta1PodDisruptionBudgetSpec } from '../models/V1beta1PodDisruptionBudgetSpec';
+import { V1beta1PodDisruptionBudgetStatus } from '../models/V1beta1PodDisruptionBudgetStatus';
 import { HttpFile } from '../http/http';
 
 /**

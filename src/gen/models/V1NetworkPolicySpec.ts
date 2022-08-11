@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelector } from './V1LabelSelector';
-import { V1NetworkPolicyEgressRule } from './V1NetworkPolicyEgressRule';
-import { V1NetworkPolicyIngressRule } from './V1NetworkPolicyIngressRule';
+import { V1LabelSelector } from '../models/V1LabelSelector';
+import { V1NetworkPolicyEgressRule } from '../models/V1NetworkPolicyEgressRule';
+import { V1NetworkPolicyIngressRule } from '../models/V1NetworkPolicyIngressRule';
 import { HttpFile } from '../http/http';
 
 /**

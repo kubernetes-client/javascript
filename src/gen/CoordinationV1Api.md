@@ -81,11 +81,11 @@ let body:.CoordinationV1ApiCreateNamespacedLeaseRequest = {
       uid: "uid_example",
     },
     spec: {
-      acquireTime: new Date('1970-01-01T00:00:00.00Z'),
+      acquireTime: "acquireTime_example",
       holderIdentity: "holderIdentity_example",
       leaseDurationSeconds: 1,
       leaseTransitions: 1,
-      renewTime: new Date('1970-01-01T00:00:00.00Z'),
+      renewTime: "renewTime_example",
     },
   },
   // string | If 'true', then the output is pretty printed. (optional)
@@ -753,11 +753,11 @@ let body:.CoordinationV1ApiReplaceNamespacedLeaseRequest = {
       uid: "uid_example",
     },
     spec: {
-      acquireTime: new Date('1970-01-01T00:00:00.00Z'),
+      acquireTime: "acquireTime_example",
       holderIdentity: "holderIdentity_example",
       leaseDurationSeconds: 1,
       leaseTransitions: 1,
-      renewTime: new Date('1970-01-01T00:00:00.00Z'),
+      renewTime: "renewTime_example",
     },
   },
   // string | If 'true', then the output is pretty printed. (optional)

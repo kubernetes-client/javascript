@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1KeyToPath } from './V1KeyToPath';
+import { V1KeyToPath } from '../models/V1KeyToPath';
 import { HttpFile } from '../http/http';
 
 /**

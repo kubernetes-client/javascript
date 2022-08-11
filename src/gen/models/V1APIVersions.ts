@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ServerAddressByClientCIDR } from './V1ServerAddressByClientCIDR';
+import { V1ServerAddressByClientCIDR } from '../models/V1ServerAddressByClientCIDR';
 import { HttpFile } from '../http/http';
 
 /**

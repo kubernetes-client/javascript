@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V2beta2CrossVersionObjectReference } from './V2beta2CrossVersionObjectReference';
-import { V2beta2MetricIdentifier } from './V2beta2MetricIdentifier';
-import { V2beta2MetricValueStatus } from './V2beta2MetricValueStatus';
+import { V2beta2CrossVersionObjectReference } from '../models/V2beta2CrossVersionObjectReference';
+import { V2beta2MetricIdentifier } from '../models/V2beta2MetricIdentifier';
+import { V2beta2MetricValueStatus } from '../models/V2beta2MetricValueStatus';
 import { HttpFile } from '../http/http';
 
 /**

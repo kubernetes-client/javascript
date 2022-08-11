@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ScopeSelector } from './V1ScopeSelector';
+import { V1ScopeSelector } from '../models/V1ScopeSelector';
 import { HttpFile } from '../http/http';
 
 /**

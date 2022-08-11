@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1HTTPIngressRuleValue } from './V1HTTPIngressRuleValue';
+import { V1HTTPIngressRuleValue } from '../models/V1HTTPIngressRuleValue';
 import { HttpFile } from '../http/http';
 
 /**

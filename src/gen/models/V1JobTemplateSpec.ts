@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1JobSpec } from './V1JobSpec';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { V1JobSpec } from '../models/V1JobSpec';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 import { HttpFile } from '../http/http';
 
 /**

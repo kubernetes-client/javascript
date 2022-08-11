@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1beta1QueuingConfiguration } from './V1beta1QueuingConfiguration';
+import { V1beta1QueuingConfiguration } from '../models/V1beta1QueuingConfiguration';
 import { HttpFile } from '../http/http';
 
 /**

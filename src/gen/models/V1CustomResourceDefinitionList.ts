@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1CustomResourceDefinition } from './V1CustomResourceDefinition';
-import { V1ListMeta } from './V1ListMeta';
+import { V1CustomResourceDefinition } from '../models/V1CustomResourceDefinition';
+import { V1ListMeta } from '../models/V1ListMeta';
 import { HttpFile } from '../http/http';
 
 /**

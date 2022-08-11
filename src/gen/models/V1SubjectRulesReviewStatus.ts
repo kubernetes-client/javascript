@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1NonResourceRule } from './V1NonResourceRule';
-import { V1ResourceRule } from './V1ResourceRule';
+import { V1NonResourceRule } from '../models/V1NonResourceRule';
+import { V1ResourceRule } from '../models/V1ResourceRule';
 import { HttpFile } from '../http/http';
 
 /**

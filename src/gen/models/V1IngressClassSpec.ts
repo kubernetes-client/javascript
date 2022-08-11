@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1IngressClassParametersReference } from './V1IngressClassParametersReference';
+import { V1IngressClassParametersReference } from '../models/V1IngressClassParametersReference';
 import { HttpFile } from '../http/http';
 
 /**

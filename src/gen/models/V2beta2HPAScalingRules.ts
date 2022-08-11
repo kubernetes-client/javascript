@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V2beta2HPAScalingPolicy } from './V2beta2HPAScalingPolicy';
+import { V2beta2HPAScalingPolicy } from '../models/V2beta2HPAScalingPolicy';
 import { HttpFile } from '../http/http';
 
 /**

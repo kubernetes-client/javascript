@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1LocalObjectReference } from './V1LocalObjectReference';
+import { V1LocalObjectReference } from '../models/V1LocalObjectReference';
 import { HttpFile } from '../http/http';
 
 /**

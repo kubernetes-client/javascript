@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1alpha1PolicyRule } from './V1alpha1PolicyRule';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1alpha1PolicyRule } from '../models/V1alpha1PolicyRule';
 import { HttpFile } from '../http/http';
 
 /**

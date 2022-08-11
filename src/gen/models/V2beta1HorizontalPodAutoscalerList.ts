@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from './V1ListMeta';
-import { V2beta1HorizontalPodAutoscaler } from './V2beta1HorizontalPodAutoscaler';
+import { V1ListMeta } from '../models/V1ListMeta';
+import { V2beta1HorizontalPodAutoscaler } from '../models/V2beta1HorizontalPodAutoscaler';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { AdmissionregistrationV1WebhookClientConfig } from './AdmissionregistrationV1WebhookClientConfig';
-import { V1LabelSelector } from './V1LabelSelector';
-import { V1RuleWithOperations } from './V1RuleWithOperations';
+import { AdmissionregistrationV1WebhookClientConfig } from '../models/AdmissionregistrationV1WebhookClientConfig';
+import { V1LabelSelector } from '../models/V1LabelSelector';
+import { V1RuleWithOperations } from '../models/V1RuleWithOperations';
 import { HttpFile } from '../http/http';
 
 /**

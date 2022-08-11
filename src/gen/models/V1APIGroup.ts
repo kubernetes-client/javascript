@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1GroupVersionForDiscovery } from './V1GroupVersionForDiscovery';
-import { V1ServerAddressByClientCIDR } from './V1ServerAddressByClientCIDR';
+import { V1GroupVersionForDiscovery } from '../models/V1GroupVersionForDiscovery';
+import { V1ServerAddressByClientCIDR } from '../models/V1ServerAddressByClientCIDR';
 import { HttpFile } from '../http/http';
 
 /**

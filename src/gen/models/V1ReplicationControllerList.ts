@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from './V1ListMeta';
-import { V1ReplicationController } from './V1ReplicationController';
+import { V1ListMeta } from '../models/V1ListMeta';
+import { V1ReplicationController } from '../models/V1ReplicationController';
 import { HttpFile } from '../http/http';
 
 /**

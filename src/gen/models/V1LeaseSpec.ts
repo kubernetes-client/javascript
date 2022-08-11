@@ -10,6 +10,7 @@
  * Do not edit the class manually.
  */
 
+import { V1MicroTime } from '../../types';
 import { HttpFile } from '../http/http';
 
 /**
@@ -17,9 +18,9 @@ import { HttpFile } from '../http/http';
 */
 export class V1LeaseSpec {
     /**
-    * acquireTime is a time when the current lease was acquired.
+    * MicroTime is version of Time with microsecond level precision.
     */
-    'acquireTime'?: Date;
+    'acquireTime'?: V1MicroTime;
     /**
     * holderIdentity contains the identity of the holder of a current lease.
     */
@@ -33,9 +34,9 @@ export class V1LeaseSpec {
     */
     'leaseTransitions'?: number;
     /**
-    * renewTime is a time when the current holder of a lease has last updated the lease.
+    * MicroTime is version of Time with microsecond level precision.
     */
-    'renewTime'?: Date;
+    'renewTime'?: V1MicroTime;
 
     static readonly discriminator: string | undefined = undefined;
 
@@ -43,8 +44,8 @@ export class V1LeaseSpec {
         {
             "name": "acquireTime",
             "baseName": "acquireTime",
-            "type": "Date",
-            "format": "date-time"
+            "type": "V1MicroTime",
+            "format": "date-time-micro"
         },
         {
             "name": "holderIdentity",
@@ -67,8 +68,8 @@ export class V1LeaseSpec {
         {
             "name": "renewTime",
             "baseName": "renewTime",
-            "type": "Date",
-            "format": "date-time"
+            "type": "V1MicroTime",
+            "format": "date-time-micro"
         }    ];
 
     static getAttributeTypeMap() {

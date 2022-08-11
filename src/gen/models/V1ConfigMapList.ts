@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ConfigMap } from './V1ConfigMap';
-import { V1ListMeta } from './V1ListMeta';
+import { V1ConfigMap } from '../models/V1ConfigMap';
+import { V1ListMeta } from '../models/V1ListMeta';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1VolumeAttachmentSpec } from './V1VolumeAttachmentSpec';
-import { V1VolumeAttachmentStatus } from './V1VolumeAttachmentStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1VolumeAttachmentSpec } from '../models/V1VolumeAttachmentSpec';
+import { V1VolumeAttachmentStatus } from '../models/V1VolumeAttachmentStatus';
 import { HttpFile } from '../http/http';
 
 /**

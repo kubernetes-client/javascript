@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1WebhookConversion } from './V1WebhookConversion';
+import { V1WebhookConversion } from '../models/V1WebhookConversion';
 import { HttpFile } from '../http/http';
 
 /**

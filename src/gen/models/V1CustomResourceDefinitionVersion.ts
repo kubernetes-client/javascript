@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1CustomResourceColumnDefinition } from './V1CustomResourceColumnDefinition';
-import { V1CustomResourceSubresources } from './V1CustomResourceSubresources';
-import { V1CustomResourceValidation } from './V1CustomResourceValidation';
+import { V1CustomResourceColumnDefinition } from '../models/V1CustomResourceColumnDefinition';
+import { V1CustomResourceSubresources } from '../models/V1CustomResourceSubresources';
+import { V1CustomResourceValidation } from '../models/V1CustomResourceValidation';
 import { HttpFile } from '../http/http';
 
 /**

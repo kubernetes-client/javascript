@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1RollingUpdateDeployment } from './V1RollingUpdateDeployment';
+import { V1RollingUpdateDeployment } from '../models/V1RollingUpdateDeployment';
 import { HttpFile } from '../http/http';
 
 /**

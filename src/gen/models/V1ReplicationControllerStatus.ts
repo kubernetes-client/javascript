@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ReplicationControllerCondition } from './V1ReplicationControllerCondition';
+import { V1ReplicationControllerCondition } from '../models/V1ReplicationControllerCondition';
 import { HttpFile } from '../http/http';
 
 /**

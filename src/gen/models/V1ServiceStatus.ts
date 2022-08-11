@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1Condition } from './V1Condition';
-import { V1LoadBalancerStatus } from './V1LoadBalancerStatus';
+import { V1Condition } from '../models/V1Condition';
+import { V1LoadBalancerStatus } from '../models/V1LoadBalancerStatus';
 import { HttpFile } from '../http/http';
 
 /**

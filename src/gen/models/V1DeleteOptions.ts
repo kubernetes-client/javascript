@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1Preconditions } from './V1Preconditions';
+import { V1Preconditions } from '../models/V1Preconditions';
 import { HttpFile } from '../http/http';
 
 /**

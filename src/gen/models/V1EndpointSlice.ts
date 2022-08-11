@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { DiscoveryV1EndpointPort } from './DiscoveryV1EndpointPort';
-import { V1Endpoint } from './V1Endpoint';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { DiscoveryV1EndpointPort } from '../models/DiscoveryV1EndpointPort';
+import { V1Endpoint } from '../models/V1Endpoint';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 import { HttpFile } from '../http/http';
 
 /**

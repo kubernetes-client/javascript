@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeSelector } from './V1NodeSelector';
-import { V1PreferredSchedulingTerm } from './V1PreferredSchedulingTerm';
+import { V1NodeSelector } from '../models/V1NodeSelector';
+import { V1PreferredSchedulingTerm } from '../models/V1PreferredSchedulingTerm';
 import { HttpFile } from '../http/http';
 
 /**

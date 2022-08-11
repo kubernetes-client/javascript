@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1ScaleSpec } from './V1ScaleSpec';
-import { V1ScaleStatus } from './V1ScaleStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1ScaleSpec } from '../models/V1ScaleSpec';
+import { V1ScaleStatus } from '../models/V1ScaleStatus';
 import { HttpFile } from '../http/http';
 
 /**

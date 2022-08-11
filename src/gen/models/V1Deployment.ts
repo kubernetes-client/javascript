@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1DeploymentSpec } from './V1DeploymentSpec';
-import { V1DeploymentStatus } from './V1DeploymentStatus';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { V1DeploymentSpec } from '../models/V1DeploymentSpec';
+import { V1DeploymentStatus } from '../models/V1DeploymentStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 import { HttpFile } from '../http/http';
 
 /**

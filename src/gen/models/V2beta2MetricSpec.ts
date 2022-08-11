@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { V2beta2ContainerResourceMetricSource } from './V2beta2ContainerResourceMetricSource';
-import { V2beta2ExternalMetricSource } from './V2beta2ExternalMetricSource';
-import { V2beta2ObjectMetricSource } from './V2beta2ObjectMetricSource';
-import { V2beta2PodsMetricSource } from './V2beta2PodsMetricSource';
-import { V2beta2ResourceMetricSource } from './V2beta2ResourceMetricSource';
+import { V2beta2ContainerResourceMetricSource } from '../models/V2beta2ContainerResourceMetricSource';
+import { V2beta2ExternalMetricSource } from '../models/V2beta2ExternalMetricSource';
+import { V2beta2ObjectMetricSource } from '../models/V2beta2ObjectMetricSource';
+import { V2beta2PodsMetricSource } from '../models/V2beta2PodsMetricSource';
+import { V2beta2ResourceMetricSource } from '../models/V2beta2ResourceMetricSource';
 import { HttpFile } from '../http/http';
 
 /**

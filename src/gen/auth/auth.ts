@@ -1,6 +1,6 @@
 // typings for btoa are incorrect
 //@ts-ignore
-import * as btoa from "btoa";
+import  btoa from "btoa";
 import { RequestContext } from "../http/http";
 
 /**

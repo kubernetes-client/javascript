@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ForZone } from './V1ForZone';
+import { V1ForZone } from '../models/V1ForZone';
 import { HttpFile } from '../http/http';
 
 /**

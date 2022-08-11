@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1beta1Endpoint } from './V1beta1Endpoint';
-import { V1beta1EndpointPort } from './V1beta1EndpointPort';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1beta1Endpoint } from '../models/V1beta1Endpoint';
+import { V1beta1EndpointPort } from '../models/V1beta1EndpointPort';
 import { HttpFile } from '../http/http';
 
 /**

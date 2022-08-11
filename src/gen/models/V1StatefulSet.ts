@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1StatefulSetSpec } from './V1StatefulSetSpec';
-import { V1StatefulSetStatus } from './V1StatefulSetStatus';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1StatefulSetSpec } from '../models/V1StatefulSetSpec';
+import { V1StatefulSetStatus } from '../models/V1StatefulSetStatus';
 import { HttpFile } from '../http/http';
 
 /**

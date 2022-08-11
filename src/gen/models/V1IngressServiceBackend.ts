@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ServiceBackendPort } from './V1ServiceBackendPort';
+import { V1ServiceBackendPort } from '../models/V1ServiceBackendPort';
 import { HttpFile } from '../http/http';
 
 /**

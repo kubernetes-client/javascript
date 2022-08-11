@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from './V1ListMeta';
-import { V1beta1PriorityLevelConfiguration } from './V1beta1PriorityLevelConfiguration';
+import { V1ListMeta } from '../models/V1ListMeta';
+import { V1beta1PriorityLevelConfiguration } from '../models/V1beta1PriorityLevelConfiguration';
 import { HttpFile } from '../http/http';
 
 /**

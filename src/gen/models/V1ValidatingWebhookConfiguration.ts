@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1ValidatingWebhook } from './V1ValidatingWebhook';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1ValidatingWebhook } from '../models/V1ValidatingWebhook';
 import { HttpFile } from '../http/http';
 
 /**

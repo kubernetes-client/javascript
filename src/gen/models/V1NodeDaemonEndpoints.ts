@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1DaemonEndpoint } from './V1DaemonEndpoint';
+import { V1DaemonEndpoint } from '../models/V1DaemonEndpoint';
 import { HttpFile } from '../http/http';
 
 /**

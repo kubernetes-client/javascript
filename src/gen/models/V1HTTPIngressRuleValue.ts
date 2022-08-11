@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1HTTPIngressPath } from './V1HTTPIngressPath';
+import { V1HTTPIngressPath } from '../models/V1HTTPIngressPath';
 import { HttpFile } from '../http/http';
 
 /**

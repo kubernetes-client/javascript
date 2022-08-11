@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1Overhead } from './V1Overhead';
-import { V1Scheduling } from './V1Scheduling';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1Overhead } from '../models/V1Overhead';
+import { V1Scheduling } from '../models/V1Scheduling';
 import { HttpFile } from '../http/http';
 
 /**

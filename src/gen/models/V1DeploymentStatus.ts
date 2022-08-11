@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1DeploymentCondition } from './V1DeploymentCondition';
+import { V1DeploymentCondition } from '../models/V1DeploymentCondition';
 import { HttpFile } from '../http/http';
 
 /**

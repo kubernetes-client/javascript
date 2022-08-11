@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1ContainerState } from './V1ContainerState';
+import { V1ContainerState } from '../models/V1ContainerState';
 import { HttpFile } from '../http/http';
 
 /**

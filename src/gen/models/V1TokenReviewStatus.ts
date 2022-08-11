@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1UserInfo } from './V1UserInfo';
+import { V1UserInfo } from '../models/V1UserInfo';
 import { HttpFile } from '../http/http';
 
 /**

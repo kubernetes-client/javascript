@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ContainerStatus } from './V1ContainerStatus';
-import { V1PodCondition } from './V1PodCondition';
-import { V1PodIP } from './V1PodIP';
+import { V1ContainerStatus } from '../models/V1ContainerStatus';
+import { V1PodCondition } from '../models/V1PodCondition';
+import { V1PodIP } from '../models/V1PodIP';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1LimitRangeItem } from './V1LimitRangeItem';
+import { V1LimitRangeItem } from '../models/V1LimitRangeItem';
 import { HttpFile } from '../http/http';
 
 /**

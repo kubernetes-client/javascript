@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1CertificateSigningRequestCondition } from './V1CertificateSigningRequestCondition';
+import { V1CertificateSigningRequestCondition } from '../models/V1CertificateSigningRequestCondition';
 import { HttpFile } from '../http/http';
 
 /**

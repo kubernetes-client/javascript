@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { V1AttachedVolume } from './V1AttachedVolume';
-import { V1ContainerImage } from './V1ContainerImage';
-import { V1NodeAddress } from './V1NodeAddress';
-import { V1NodeCondition } from './V1NodeCondition';
-import { V1NodeConfigStatus } from './V1NodeConfigStatus';
-import { V1NodeDaemonEndpoints } from './V1NodeDaemonEndpoints';
-import { V1NodeSystemInfo } from './V1NodeSystemInfo';
+import { V1AttachedVolume } from '../models/V1AttachedVolume';
+import { V1ContainerImage } from '../models/V1ContainerImage';
+import { V1NodeAddress } from '../models/V1NodeAddress';
+import { V1NodeCondition } from '../models/V1NodeCondition';
+import { V1NodeConfigStatus } from '../models/V1NodeConfigStatus';
+import { V1NodeDaemonEndpoints } from '../models/V1NodeDaemonEndpoints';
+import { V1NodeSystemInfo } from '../models/V1NodeSystemInfo';
 import { HttpFile } from '../http/http';
 
 /**

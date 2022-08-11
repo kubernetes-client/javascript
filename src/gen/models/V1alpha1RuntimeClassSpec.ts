@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1alpha1Overhead } from './V1alpha1Overhead';
-import { V1alpha1Scheduling } from './V1alpha1Scheduling';
+import { V1alpha1Overhead } from '../models/V1alpha1Overhead';
+import { V1alpha1Scheduling } from '../models/V1alpha1Scheduling';
 import { HttpFile } from '../http/http';
 
 /**

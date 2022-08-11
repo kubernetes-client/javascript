@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { IntOrString } from './IntOrString';
-import { V1HTTPHeader } from './V1HTTPHeader';
+import { IntOrString } from '../../types';
+import { V1HTTPHeader } from '../models/V1HTTPHeader';
 import { HttpFile } from '../http/http';
 
 /**

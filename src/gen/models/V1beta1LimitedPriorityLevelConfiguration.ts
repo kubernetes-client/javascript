@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1beta1LimitResponse } from './V1beta1LimitResponse';
+import { V1beta1LimitResponse } from '../models/V1beta1LimitResponse';
 import { HttpFile } from '../http/http';
 
 /**

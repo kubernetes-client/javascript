@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1LimitRangeSpec } from './V1LimitRangeSpec';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { V1LimitRangeSpec } from '../models/V1LimitRangeSpec';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 import { HttpFile } from '../http/http';
 
 /**

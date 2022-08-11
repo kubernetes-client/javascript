@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ComponentCondition } from './V1ComponentCondition';
-import { V1ObjectMeta } from './V1ObjectMeta';
+import { V1ComponentCondition } from '../models/V1ComponentCondition';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
 import { HttpFile } from '../http/http';
 
 /**

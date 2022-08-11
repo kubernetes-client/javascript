@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from './V1ObjectMeta';
-import { V1alpha1RuntimeClassSpec } from './V1alpha1RuntimeClassSpec';
+import { V1ObjectMeta } from '../models/V1ObjectMeta';
+import { V1alpha1RuntimeClassSpec } from '../models/V1alpha1RuntimeClassSpec';
 import { HttpFile } from '../http/http';
 
 /**

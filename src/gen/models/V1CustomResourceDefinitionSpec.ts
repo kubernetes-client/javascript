@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1CustomResourceConversion } from './V1CustomResourceConversion';
-import { V1CustomResourceDefinitionNames } from './V1CustomResourceDefinitionNames';
-import { V1CustomResourceDefinitionVersion } from './V1CustomResourceDefinitionVersion';
+import { V1CustomResourceConversion } from '../models/V1CustomResourceConversion';
+import { V1CustomResourceDefinitionNames } from '../models/V1CustomResourceDefinitionNames';
+import { V1CustomResourceDefinitionVersion } from '../models/V1CustomResourceDefinitionVersion';
 import { HttpFile } from '../http/http';
 
 /**

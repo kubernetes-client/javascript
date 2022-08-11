@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1DownwardAPIVolumeFile } from './V1DownwardAPIVolumeFile';
+import { V1DownwardAPIVolumeFile } from '../models/V1DownwardAPIVolumeFile';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1IPBlock } from './V1IPBlock';
-import { V1LabelSelector } from './V1LabelSelector';
+import { V1IPBlock } from '../models/V1IPBlock';
+import { V1LabelSelector } from '../models/V1LabelSelector';
 import { HttpFile } from '../http/http';
 
 /**

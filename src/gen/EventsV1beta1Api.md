@@ -44,7 +44,7 @@ let body:.EventsV1beta1ApiCreateNamespacedEventRequest = {
       component: "component_example",
       host: "host_example",
     },
-    eventTime: new Date('1970-01-01T00:00:00.00Z'),
+    eventTime: "eventTime_example",
     kind: "kind_example",
     metadata: {
       annotations: {
@@ -113,7 +113,7 @@ let body:.EventsV1beta1ApiCreateNamespacedEventRequest = {
     reportingInstance: "reportingInstance_example",
     series: {
       count: 1,
-      lastObservedTime: new Date('1970-01-01T00:00:00.00Z'),
+      lastObservedTime: "lastObservedTime_example",
     },
     type: "type_example",
   },
@@ -745,7 +745,7 @@ let body:.EventsV1beta1ApiReplaceNamespacedEventRequest = {
       component: "component_example",
       host: "host_example",
     },
-    eventTime: new Date('1970-01-01T00:00:00.00Z'),
+    eventTime: "eventTime_example",
     kind: "kind_example",
     metadata: {
       annotations: {
@@ -814,7 +814,7 @@ let body:.EventsV1beta1ApiReplaceNamespacedEventRequest = {
     reportingInstance: "reportingInstance_example",
     series: {
       count: 1,
-      lastObservedTime: new Date('1970-01-01T00:00:00.00Z'),
+      lastObservedTime: "lastObservedTime_example",
     },
     type: "type_example",
   },

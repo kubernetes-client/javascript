@@ -10,35 +10,35 @@
  * Do not edit the class manually.
  */
 
-import { V1AWSElasticBlockStoreVolumeSource } from './V1AWSElasticBlockStoreVolumeSource';
-import { V1AzureDiskVolumeSource } from './V1AzureDiskVolumeSource';
-import { V1AzureFileVolumeSource } from './V1AzureFileVolumeSource';
-import { V1CSIVolumeSource } from './V1CSIVolumeSource';
-import { V1CephFSVolumeSource } from './V1CephFSVolumeSource';
-import { V1CinderVolumeSource } from './V1CinderVolumeSource';
-import { V1ConfigMapVolumeSource } from './V1ConfigMapVolumeSource';
-import { V1DownwardAPIVolumeSource } from './V1DownwardAPIVolumeSource';
-import { V1EmptyDirVolumeSource } from './V1EmptyDirVolumeSource';
-import { V1EphemeralVolumeSource } from './V1EphemeralVolumeSource';
-import { V1FCVolumeSource } from './V1FCVolumeSource';
-import { V1FlexVolumeSource } from './V1FlexVolumeSource';
-import { V1FlockerVolumeSource } from './V1FlockerVolumeSource';
-import { V1GCEPersistentDiskVolumeSource } from './V1GCEPersistentDiskVolumeSource';
-import { V1GitRepoVolumeSource } from './V1GitRepoVolumeSource';
-import { V1GlusterfsVolumeSource } from './V1GlusterfsVolumeSource';
-import { V1HostPathVolumeSource } from './V1HostPathVolumeSource';
-import { V1ISCSIVolumeSource } from './V1ISCSIVolumeSource';
-import { V1NFSVolumeSource } from './V1NFSVolumeSource';
-import { V1PersistentVolumeClaimVolumeSource } from './V1PersistentVolumeClaimVolumeSource';
-import { V1PhotonPersistentDiskVolumeSource } from './V1PhotonPersistentDiskVolumeSource';
-import { V1PortworxVolumeSource } from './V1PortworxVolumeSource';
-import { V1ProjectedVolumeSource } from './V1ProjectedVolumeSource';
-import { V1QuobyteVolumeSource } from './V1QuobyteVolumeSource';
-import { V1RBDVolumeSource } from './V1RBDVolumeSource';
-import { V1ScaleIOVolumeSource } from './V1ScaleIOVolumeSource';
-import { V1SecretVolumeSource } from './V1SecretVolumeSource';
-import { V1StorageOSVolumeSource } from './V1StorageOSVolumeSource';
-import { V1VsphereVirtualDiskVolumeSource } from './V1VsphereVirtualDiskVolumeSource';
+import { V1AWSElasticBlockStoreVolumeSource } from '../models/V1AWSElasticBlockStoreVolumeSource';
+import { V1AzureDiskVolumeSource } from '../models/V1AzureDiskVolumeSource';
+import { V1AzureFileVolumeSource } from '../models/V1AzureFileVolumeSource';
+import { V1CSIVolumeSource } from '../models/V1CSIVolumeSource';
+import { V1CephFSVolumeSource } from '../models/V1CephFSVolumeSource';
+import { V1CinderVolumeSource } from '../models/V1CinderVolumeSource';
+import { V1ConfigMapVolumeSource } from '../models/V1ConfigMapVolumeSource';
+import { V1DownwardAPIVolumeSource } from '../models/V1DownwardAPIVolumeSource';
+import { V1EmptyDirVolumeSource } from '../models/V1EmptyDirVolumeSource';
+import { V1EphemeralVolumeSource } from '../models/V1EphemeralVolumeSource';
+import { V1FCVolumeSource } from '../models/V1FCVolumeSource';
+import { V1FlexVolumeSource } from '../models/V1FlexVolumeSource';
+import { V1FlockerVolumeSource } from '../models/V1FlockerVolumeSource';
+import { V1GCEPersistentDiskVolumeSource } from '../models/V1GCEPersistentDiskVolumeSource';
+import { V1GitRepoVolumeSource } from '../models/V1GitRepoVolumeSource';
+import { V1GlusterfsVolumeSource } from '../models/V1GlusterfsVolumeSource';
+import { V1HostPathVolumeSource } from '../models/V1HostPathVolumeSource';
+import { V1ISCSIVolumeSource } from '../models/V1ISCSIVolumeSource';
+import { V1NFSVolumeSource } from '../models/V1NFSVolumeSource';
+import { V1PersistentVolumeClaimVolumeSource } from '../models/V1PersistentVolumeClaimVolumeSource';
+import { V1PhotonPersistentDiskVolumeSource } from '../models/V1PhotonPersistentDiskVolumeSource';
+import { V1PortworxVolumeSource } from '../models/V1PortworxVolumeSource';
+import { V1ProjectedVolumeSource } from '../models/V1ProjectedVolumeSource';
+import { V1QuobyteVolumeSource } from '../models/V1QuobyteVolumeSource';
+import { V1RBDVolumeSource } from '../models/V1RBDVolumeSource';
+import { V1ScaleIOVolumeSource } from '../models/V1ScaleIOVolumeSource';
+import { V1SecretVolumeSource } from '../models/V1SecretVolumeSource';
+import { V1StorageOSVolumeSource } from '../models/V1StorageOSVolumeSource';
+import { V1VsphereVirtualDiskVolumeSource } from '../models/V1VsphereVirtualDiskVolumeSource';
 import { HttpFile } from '../http/http';
 
 /**

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { V1PortStatus } from './V1PortStatus';
+import { V1PortStatus } from '../models/V1PortStatus';
 import { HttpFile } from '../http/http';
 
 /**

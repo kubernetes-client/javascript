@@ -10,17 +10,17 @@
  * Do not edit the class manually.
  */
 
-import { V1Affinity } from './V1Affinity';
-import { V1Container } from './V1Container';
-import { V1EphemeralContainer } from './V1EphemeralContainer';
-import { V1HostAlias } from './V1HostAlias';
-import { V1LocalObjectReference } from './V1LocalObjectReference';
-import { V1PodDNSConfig } from './V1PodDNSConfig';
-import { V1PodReadinessGate } from './V1PodReadinessGate';
-import { V1PodSecurityContext } from './V1PodSecurityContext';
-import { V1Toleration } from './V1Toleration';
-import { V1TopologySpreadConstraint } from './V1TopologySpreadConstraint';
-import { V1Volume } from './V1Volume';
+import { V1Affinity } from '../models/V1Affinity';
+import { V1Container } from '../models/V1Container';
+import { V1EphemeralContainer } from '../models/V1EphemeralContainer';
+import { V1HostAlias } from '../models/V1HostAlias';
+import { V1LocalObjectReference } from '../models/V1LocalObjectReference';
+import { V1PodDNSConfig } from '../models/V1PodDNSConfig';
+import { V1PodReadinessGate } from '../models/V1PodReadinessGate';
+import { V1PodSecurityContext } from '../models/V1PodSecurityContext';
+import { V1Toleration } from '../models/V1Toleration';
+import { V1TopologySpreadConstraint } from '../models/V1TopologySpreadConstraint';
+import { V1Volume } from '../models/V1Volume';
 import { HttpFile } from '../http/http';
 
 /**

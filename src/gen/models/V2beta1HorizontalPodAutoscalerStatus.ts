@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V2beta1HorizontalPodAutoscalerCondition } from './V2beta1HorizontalPodAutoscalerCondition';
-import { V2beta1MetricStatus } from './V2beta1MetricStatus';
+import { V2beta1HorizontalPodAutoscalerCondition } from '../models/V2beta1HorizontalPodAutoscalerCondition';
+import { V2beta1MetricStatus } from '../models/V2beta1MetricStatus';
 import { HttpFile } from '../http/http';
 
 /**
