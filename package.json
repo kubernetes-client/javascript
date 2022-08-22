@@ -27,7 +27,7 @@
     "test": "nyc mocha",
     "prepare": "npm run build",
     "prepack": "npm run build",
-    "docs": "typedoc src/gen/api"
+    "docs": "typedoc src/gen/api.ts"
   },
   "nyc": {
     "include": [
