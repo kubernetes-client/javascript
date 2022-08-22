@@ -396,22 +396,24 @@ describe('Watch', () => {
 
         const handlerError = new Error('handler error');
 
-        await watch.watch(
-            path,
-            {},
-            (recievedType: string, recievedObject: string) => {
-                receivedTypes.push(recievedType);
-                receivedObjects.push(recievedObject);
-                throw handlerError;
-            },
-            (err: any) => {
-                doneCalled = true;
-                doneErr = err;
-            },
-        ).catch((err) => {
-            catchCalled = true;
-            catchErr = err;
-        });
+        await watch
+            .watch(
+                path,
+                {},
+                (recievedType: string, recievedObject: string) => {
+                    receivedTypes.push(recievedType);
+                    receivedObjects.push(recievedObject);
+                    throw handlerError;
+                },
+                (err: any) => {
+                    doneCalled = true;
+                    doneErr = err;
+                },
+            )
+            .catch((err) => {
+                catchCalled = true;
+                catchErr = err;
+            });
 
         verify(fakeRequestor.webRequest(anything()));
 
