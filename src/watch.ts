@@ -121,12 +121,16 @@ export class Watch {
         stream.on('error', doneCallOnce);
         stream.on('close', () => doneCallOnce(null));
         stream.on('data', (line) => {
+            let data;
+
             try {
-                const data = JSON.parse(line);
-                callback(data.type, data.object, data);
+                data = JSON.parse(line);
             } catch (ignore) {
                 // ignore parse errors
+                return;
             }
+
+            callback(data.type, data.object, data);
         });
 
         req.pipe(stream);
