@@ -21,6 +21,7 @@ export interface Cluster {
     readonly caData?: string;
     caFile?: string;
     readonly server: string;
+    readonly proxyUrl?: string;
     readonly skipTLSVerify: boolean;
     readonly tlsServerName?: string;
 }
@@ -36,6 +37,7 @@ export function exportCluster(cluster: Cluster): any {
         name: cluster.name,
         cluster: {
             server: cluster.server,
+            'proxy-url': cluster.proxyUrl,
             'certificate-authority-data': cluster.caData,
             'certificate-authority': cluster.caFile,
             'insecure-skip-tls-verify': cluster.skipTLSVerify,
@@ -61,6 +63,7 @@ function clusterIterator(onInvalidEntry: ActionOnInvalid): _.ListIterator<any, C
                 caFile: elt.cluster['certificate-authority'],
                 name: elt.name,
                 server: elt.cluster.server.replace(/\/$/, ''),
+                proxyUrl: elt.cluster['proxy-url'],
                 skipTLSVerify: elt.cluster['insecure-skip-tls-verify'] === true,
                 tlsServerName: elt.cluster['tls-server-name'],
             };

@@ -5,6 +5,8 @@ import yaml = require('js-yaml');
 import net = require('net');
 import path = require('path');
 
+import { SocksProxyAgent } from 'socks-proxy-agent';
+
 import request = require('request');
 import shelljs = require('shelljs');
 
@@ -422,6 +424,15 @@ export class KubeConfig {
         }
     }
 
+    private applyProxyOptions(opts: request.Options | https.RequestOptions): void {
+        const cluster = this.getCurrentCluster();
+
+        if (cluster != null && cluster.proxyUrl) {
+            const agent = new SocksProxyAgent(cluster.proxyUrl);
+            opts.agent = agent;
+        }
+    }
+
     private async applyAuthorizationHeader(opts: request.Options | https.RequestOptions): Promise<void> {
         const user = this.getCurrentUser();
         if (!user) {
@@ -445,6 +456,7 @@ export class KubeConfig {
 
     private async applyOptions(opts: request.Options | https.RequestOptions): Promise<void> {
         this.applyHTTPSOptions(opts);
+        this.applyProxyOptions(opts);
         await this.applyAuthorizationHeader(opts);
     }
 }
