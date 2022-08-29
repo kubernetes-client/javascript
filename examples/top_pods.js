@@ -11,7 +11,7 @@ k8s.topPods(k8sApi, metricsClient, "kube-system")
 
     const podsColumns = pods.map((pod) => {
         return {
-            "POD": pod.Pod.metadata.name,
+            "POD": pod.Pod.metadata.type,
             "CPU(cores)": pod.CPU.CurrentUsage,
             "MEMORY(bytes)": pod.Memory.CurrentUsage,
         }
