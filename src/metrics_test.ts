@@ -180,7 +180,11 @@ describe('Metrics', () => {
                 await metricsClient.getPodMetrics();
                 fail('expected thrown error');
             } catch (e) {
-                expect(e.message).to.equal('connect ECONNREFUSED 127.0.0.1:51011');
+                if (e instanceof Error) {
+                    expect(e.message).to.equal('connect ECONNREFUSED 127.0.0.1:51011');
+                } else {
+                    fail(`unknown exception type: ${e}`);
+                }
             }
         });
         it('should throw when no current cluster', async () => {
@@ -194,7 +198,11 @@ describe('Metrics', () => {
                 await metricsClient.getPodMetrics();
                 fail('expected thrown error');
             } catch (e) {
-                expect(e.message).to.equal('No currently active cluster');
+                if (e instanceof Error) {
+                    expect(e.message).to.equal('No currently active cluster');
+                } else {
+                    fail(`unknown exception type: ${e}`);
+                }
             }
             scope.done();
         });

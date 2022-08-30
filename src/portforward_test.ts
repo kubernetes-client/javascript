@@ -1,3 +1,4 @@
+import { fail } from 'assert';
 import { expect } from 'chai';
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
 import { anyFunction, capture, instance, mock, reset, verify } from 'ts-mockito';
@@ -127,13 +128,23 @@ describe('PortForward', () => {
             await portForward.portForward('ns', 'pod', [], osStream, osStream, isStream);
             expect(false, 'should have thrown').to.equal(true);
         } catch (err) {
-            expect(err.toString()).to.equal('Error: You must provide at least one port to forward to.');
+            if (err instanceof Error) {
+                expect(err.toString()).to.equal('Error: You must provide at least one port to forward to.');
+            } else {
+                fail(`unknown exception: ${err}`);
+            }
         }
         try {
             await portForward.portForward('ns', 'pod', [1, 2], osStream, osStream, isStream);
             expect(false, 'should have thrown').to.equal(true);
         } catch (err) {
-            expect(err.toString()).to.equal('Error: Only one port is currently supported for port-forward');
+            if (err instanceof Error) {
+                expect(err.toString()).to.equal(
+                    'Error: Only one port is currently supported for port-forward',
+                );
+            } else {
+                fail(`unknown exception: ${err}`);
+            }
         }
     });
 });
