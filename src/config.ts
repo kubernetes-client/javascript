@@ -35,6 +35,7 @@ import {
     configureAuthMethods,
     createConfiguration,
     RequestContext,
+    SecurityAuthentication,
     ServerConfiguration
 } from './gen';
 
@@ -53,7 +54,7 @@ function fileExists(filepath: string): boolean {
     }
 }
 
-export class KubeConfig {
+export class KubeConfig implements SecurityAuthentication{
     private static authenticators: Authenticator[] = [
         new AzureAuth(),
         new GoogleCloudPlatformAuth(),
@@ -191,7 +192,7 @@ export class KubeConfig {
         // Copy headers from httpsOptions to RequestContext
         const headers = httpsOptions.headers || {};
         Object.entries(headers).forEach(([key, value]) => {
-            context.setHeaderParam(key, '${value}');
+            context.setHeaderParam(key, `${value}`);
         })
 
         // Copy AgentOptions from RequestOptions
