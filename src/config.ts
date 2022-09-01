@@ -35,6 +35,7 @@ import {
     configureAuthMethods,
     createConfiguration,
     RequestContext,
+    SecurityAuthentication,
     ServerConfiguration
 } from './gen';
 
@@ -53,7 +54,7 @@ function fileExists(filepath: string): boolean {
     }
 }
 
-export class KubeConfig {
+export class KubeConfig implements SecurityAuthentication{
     private static authenticators: Authenticator[] = [
         new AzureAuth(),
         new GoogleCloudPlatformAuth(),

@@ -3,7 +3,8 @@ import * as https from 'https';
 import { join } from 'path';
 import { RequestOptions } from 'https';
 
-import { expect } from 'chai';
+import { expect,use } from 'chai';
+import chaiAsPromised from 'chai-as-promised'
 import mockfs = require('mock-fs');
 import * as path from 'path';
 
@@ -12,6 +13,7 @@ import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolu
 import { Cluster, newClusters, newContexts, newUsers, User, ActionOnInvalid } from './config_types';
 import { ExecAuth } from './exec_auth';
 import { HttpMethod } from '.';
+import { assertRequestOptionsEqual } from '../test/match-buffer';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
 const kc2FileName = 'testdata/kubeconfig-2.yaml';
@@ -22,6 +24,8 @@ const kcDupeUser = 'testdata/kubeconfig-dupe-user.yaml';
 const kcNoUserFileName = 'testdata/empty-user-kubeconfig.yaml';
 const kcInvalidContextFileName = 'testdata/empty-context-kubeconfig.yaml';
 const kcInvalidClusterFileName = 'testdata/empty-cluster-kubeconfig.yaml';
+
+use(chaiAsPromised)
 
 /* tslint:disable: no-empty */
 describe('Config', () => { });
@@ -243,9 +247,9 @@ describe('KubeConfig', () => {
 
             expect(opts).to.deep.equal({
                 headers: {},
-                ca: new Buffer('CADATA2', 'utf-8'),
-                cert: new Buffer('USER2_CADATA', 'utf-8'),
-                key: new Buffer('USER2_CKDATA', 'utf-8'),
+                ca: Buffer.from('CADATA2', 'utf-8'),
+                cert: Buffer.from('USER2_CADATA', 'utf-8'),
+                key: Buffer.from('USER2_CKDATA', 'utf-8'),
                 rejectUnauthorized: false,
             });
         });
@@ -261,17 +265,24 @@ describe('KubeConfig', () => {
             const rc = new RequestContext(testServerName1, HttpMethod.GET);
             await kc.applySecurityAuthentication(rc);
             await kc.applytoHTTPSOptions(opts);
-            expect(opts).to.deep.equal({
-                headers: {},
-                ca: new Buffer('CADATA2', 'utf-8'),
-                auth: {
-                    username: 'foo',
-                    password: 'bar',
-                },
-                url: 'https://company.com',
-                strictSSL: false,
+            const expectedCA = Buffer.from('CADATA2', 'utf-8')
+            const expectedAgent = new https.Agent({
+                ca: expectedCA,
+                cert: undefined,
+                key: undefined,
+                passphrase: undefined,
+                pfx: undefined,
                 rejectUnauthorized: false,
-            });
+            })
+            let expectedOptions: https.RequestOptions = {
+                auth: 'foo:bar',
+                headers: {},
+                rejectUnauthorized: false,
+                servername: 'https://company.com',
+                agent: expectedAgent,
+            }
+
+            assertRequestOptionsEqual(opts,expectedOptions)
         });
     });
 
