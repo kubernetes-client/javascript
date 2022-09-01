@@ -609,7 +609,9 @@ export class KubernetesObjectApi extends ApisApi {
             this.apiVersionResourceCache[apiVersion] = getApiResponse.body;
             return this.apiVersionResourceCache[apiVersion].resources.find((r) => r.kind === kind);
         } catch (e) {
-            e.message = `Failed to fetch resource metadata for ${apiVersion}/${kind}: ${e.message}`;
+            if (e instanceof Error) {
+                e.message = `Failed to fetch resource metadata for ${apiVersion}/${kind}: ${e.message}`;
+            }
             throw e;
         }
     }

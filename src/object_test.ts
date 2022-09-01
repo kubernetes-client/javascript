@@ -1,3 +1,4 @@
+import { fail } from 'assert';
 import { expect } from 'chai';
 import nock = require('nock');
 import { V1APIResource, V1APIResourceList, V1Secret } from './api';
@@ -897,7 +898,11 @@ describe('KubernetesObject', () => {
                 expect.fail('should have thrown error');
             } catch (e) {
                 thrown = true;
-                expect(e.message).to.equal('Required spec property kind is not set');
+                if (e instanceof Error) {
+                    expect(e.message).to.equal('Required spec property kind is not set');
+                } else {
+                    fail(`unknown exception: ${e}`);
+                }
             }
             expect(thrown).to.be.true;
         });
@@ -920,7 +925,11 @@ describe('KubernetesObject', () => {
                 expect.fail('should have thrown error');
             } catch (e) {
                 thrown = true;
-                expect(e.message).to.equal('Required spec property name is not set');
+                if (e instanceof Error) {
+                    expect(e.message).to.equal('Required spec property name is not set');
+                } else {
+                    fail(`unknown exception: ${e}`);
+                }
             }
             expect(thrown).to.be.true;
             scope.done();
@@ -945,7 +954,11 @@ describe('KubernetesObject', () => {
                 expect.fail('should have thrown error');
             } catch (e) {
                 thrown = true;
-                expect(e.message).to.equal('Unrecognized API version and kind: v1 Ingress');
+                if (e instanceof Error) {
+                    expect(e.message).to.equal('Unrecognized API version and kind: v1 Ingress');
+                } else {
+                    fail(`unknown exception: ${e}`);
+                }
             }
             expect(thrown).to.be.true;
             scope.done();
@@ -1005,9 +1018,13 @@ describe('KubernetesObject', () => {
                     await client.resource((a as unknown) as string, 'Service');
                 } catch (e) {
                     thrown = true;
-                    expect(e.message).to.equal(
-                        'Required parameter apiVersion was null or undefined when calling resource',
-                    );
+                    if (e instanceof Error) {
+                        expect(e.message).to.equal(
+                            'Required parameter apiVersion was null or undefined when calling resource',
+                        );
+                    } else {
+                        fail(`unknown exception: ${e}`);
+                    }
                 }
                 expect(thrown).to.be.true;
             }
@@ -1020,9 +1037,13 @@ describe('KubernetesObject', () => {
                     await client.resource('v1', (a as unknown) as string);
                 } catch (e) {
                     thrown = true;
-                    expect(e.message).to.equal(
-                        'Required parameter kind was null or undefined when calling resource',
-                    );
+                    if (e instanceof Error) {
+                        expect(e.message).to.equal(
+                            'Required parameter kind was null or undefined when calling resource',
+                        );
+                    } else {
+                        fail(`unknown exception: ${e}`);
+                    }
                 }
                 expect(thrown).to.be.true;
             }
@@ -1920,9 +1941,13 @@ describe('KubernetesObject', () => {
                         expect.fail('should have thrown an error');
                     } catch (e) {
                         thrown = true;
-                        expect(e.message).to.contain(
-                            'Required parameter spec was null or undefined when calling ',
-                        );
+                        if (e instanceof Error) {
+                            expect(e.message).to.contain(
+                                'Required parameter spec was null or undefined when calling ',
+                            );
+                        } else {
+                            fail(`unknown exception: ${e}`);
+                        }
                     }
                     expect(thrown).to.be.true;
                 }
@@ -1957,7 +1982,11 @@ describe('KubernetesObject', () => {
                 expect.fail('should have thrown error');
             } catch (e) {
                 thrown = true;
-                expect(e.message).to.contain('Nock: No match for request');
+                if (e instanceof Error) {
+                    expect(e.message).to.contain('Nock: No match for request');
+                } else {
+                    fail(`unknown exception: ${e}`);
+                }
             }
             expect(thrown).to.be.true;
         });
@@ -2015,8 +2044,12 @@ describe('KubernetesObject', () => {
                 await client.create(s);
             } catch (e) {
                 thrown = true;
-                expect(e.statusCode).to.equal(422);
-                expect(e.message).to.equal('HTTP request failed');
+                if (e instanceof Error) {
+                    expect((e as any).statusCode).to.equal(422);
+                    expect(e.message).to.equal('HTTP request failed');
+                } else {
+                    fail(`unknown exception: ${e}`);
+                }
             }
             expect(thrown).to.be.true;
             scope.done();
@@ -2064,10 +2097,14 @@ describe('KubernetesObject', () => {
                 await client.create(d);
             } catch (e) {
                 thrown = true;
-                expect(e.statusCode).to.equal(404);
-                expect(e.message).to.equal(
-                    'Failed to fetch resource metadata for applications/v1/Deployment: HTTP request failed',
-                );
+                if (e instanceof Error) {
+                    expect((e as any).statusCode).to.equal(404);
+                    expect(e.message).to.equal(
+                        'Failed to fetch resource metadata for applications/v1/Deployment: HTTP request failed',
+                    );
+                } else {
+                    fail(`unknown exception: ${e}`);
+                }
             }
             expect(thrown).to.be.true;
             scope.done();
@@ -2080,9 +2117,13 @@ describe('KubernetesObject', () => {
                 expect.fail('should have thrown an error');
             } catch (e) {
                 thrown = true;
-                expect(e.message).to.contain(
-                    'Required parameter apiVersion was null or undefined when calling ',
-                );
+                if (e instanceof Error) {
+                    expect(e.message).to.contain(
+                        'Required parameter apiVersion was null or undefined when calling ',
+                    );
+                } else {
+                    fail(`unknown exception: ${e}`);
+                }
             }
             expect(thrown).to.be.true;
         });
@@ -2094,7 +2135,13 @@ describe('KubernetesObject', () => {
                 expect.fail('should have thrown an error');
             } catch (e) {
                 thrown = true;
-                expect(e.message).to.contain('Required parameter kind was null or undefined when calling ');
+                if (e instanceof Error) {
+                    expect(e.message).to.contain(
+                        'Required parameter kind was null or undefined when calling ',
+                    );
+                } else {
+                    fail(`unknown exception: ${e}`);
+                }
             }
             expect(thrown).to.be.true;
         });
