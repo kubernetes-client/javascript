@@ -126,14 +126,14 @@ describe('PortForward', () => {
         try {
             await portForward.portForward('ns', 'pod', [], osStream, osStream, isStream);
             expect(false, 'should have thrown').to.equal(true);
-        } catch (err) {
-            expect(err).to.equal('Error: You must provide at least one port to forward to.');
+        } catch (err: any) {
+            expect(err.toString()).to.equal('Error: You must provide at least one port to forward to.');
         }
         try {
             await portForward.portForward('ns', 'pod', [1, 2], osStream, osStream, isStream);
             expect(false, 'should have thrown').to.equal(true);
-        } catch (err) {
-            expect(err).to.equal('Error: Only one port is currently supported for port-forward');
+        } catch (err: any) {
+            expect(err.toString()).to.equal('Error: Only one port is currently supported for port-forward');
         }
     });
 });

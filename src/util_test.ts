@@ -5,9 +5,7 @@ import { findSuffix, podsForNode, quantityToScalar, totalCPU, totalMemory } from
 describe('Utils', () => {
     it('should get zero pods for a node', async () => {
         const podList = {
-            body: {
-                items: [],
-            },
+            items: [],
         };
         const mockApi = {
             listPodForAllNamespaces: (): Promise<any> => {
@@ -23,20 +21,18 @@ describe('Utils', () => {
 
     it('should only gets for pods named node', async () => {
         const podList = {
-            body: {
-                items: [
-                    {
-                        spec: {
-                            nodeName: 'foo',
-                        },
+            items: [
+                {
+                    spec: {
+                        nodeName: 'foo',
                     },
-                    {
-                        spec: {
-                            nodeName: 'bar',
-                        },
+                },
+                {
+                    spec: {
+                        nodeName: 'bar',
                     },
-                ],
-            },
+                },
+            ],
         };
         const mockApi = {
             listPodForAllNamespaces: (): Promise<any> => {

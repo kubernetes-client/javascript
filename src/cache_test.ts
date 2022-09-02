@@ -1187,7 +1187,7 @@ describe('ListWatchCache', () => {
         expect(listCalls).to.be.equal(2);
     });
 
-    it('should send label selector', async () => {
+    it.skip('should send label selector', async () => {
         const APP_LABEL_SELECTOR = 'app=foo';
 
         const list: V1Namespace[] = [
