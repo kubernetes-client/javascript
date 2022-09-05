@@ -31,22 +31,19 @@ describe('FullRequest', () => {
                 kind: 'PodList',
                 apiVersion: 'v1',
                 items: [],
-                metadata: undefined,
             };
             const auth = Buffer.from(`${username}:${password}`).toString('base64');
-            nock('https://nowhere.foo:443', {
+            nock('https://nowhere.foo', {
                 reqheaders: {
                     authorization: `Basic ${auth}`,
                 },
-            })
-                .get('/api/v1/namespaces/default/pods')
+            }).get('/api/v1/namespaces/default/pods')
                 .reply(200, result);
 
             const promise = k8sApi.listNamespacedPod({namespace:'default'});
 
             return expect(promise)
-                .to.eventually.have.property('body')
-                .that.deep.equals(result);
+                .to.eventually.deep.equals(result);
         });
     });
 });

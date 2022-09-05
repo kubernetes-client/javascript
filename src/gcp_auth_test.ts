@@ -6,6 +6,8 @@ import { User, Cluster } from './config_types';
 import { GoogleCloudPlatformAuth } from './gcp_auth';
 import { KubeConfig } from './config';
 import { HttpMethod, RequestContext } from './gen';
+import { Http2SecureServer } from 'http2';
+import { Agent } from 'https';
 
 describe('GoogleCloudPlatformAuth', () => {
     const testUrl1 = 'https://test-gcp.com';
@@ -108,7 +110,10 @@ describe('GoogleCloudPlatformAuth', () => {
         let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
 
         await config.applySecurityAuthentication(requestContext);
-        expect(requestContext.getHeaders()['rejectUnauthorized']).to.equal(false);
+        
+        // @ts-ignore
+        const agent: Agent = requestContext.getAgent()
+        expect(agent.options.rejectUnauthorized).to.equal(false);
     });
 
     it('should not set rejectUnauthorized if skipTLSVerify is not set', async () => {

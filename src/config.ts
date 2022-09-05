@@ -186,7 +186,8 @@ export class KubeConfig implements SecurityAuthentication{
         }
 
         if (user && user.username) {
-            httpsOptions.auth = `${user.username}:${user.password}`;
+            const auth = Buffer.from(`${user.username}:${user.password}`).toString('base64');
+            context.setHeaderParam(`Authorization`,`Basic ${auth}`)
         }
 
         // Copy headers from httpsOptions to RequestContext
