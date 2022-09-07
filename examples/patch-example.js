@@ -17,7 +17,7 @@ k8sApi.listNamespacedPod('default')
             }
         ];
         const options = { "headers": { "Content-type": k8s.PatchUtils.PATCH_FORMAT_JSON_PATCH}};
-        k8sApi.patchNamespacedPod(res.body.items[0].metadata.name, 'default', patch, undefined, undefined, undefined, undefined, options)
+        k8sApi.patchNamespacedPod(res.body.items[0].metadata.name, 'default', patch, undefined, undefined, undefined, undefined, undefined, options)
             .then(() => { console.log("Patched.")})
             .catch((err) => { console.log("Error: "); console.log(err)});
     });
