@@ -41,6 +41,8 @@ export class Cp {
             null,
             false,
             async () => {
+                await new Promise((resolve) => writerStream.close(resolve));
+                
                 if (errStream.size()) {
                     throw new Error(`Error from cpFromPod - details: \n ${errStream.getContentsAsString()}`);
                 }
