@@ -131,6 +131,10 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
 
     private _stop(): void {
         if (this.request) {
+            this.request.removeAllListeners('error');
+            this.request.on('error', () => {
+                // void - errors emitted post-abort are not relevant for us
+            });
             this.request.abort();
             this.request = undefined;
         }
