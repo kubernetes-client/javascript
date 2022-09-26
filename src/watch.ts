@@ -13,6 +13,7 @@ export interface WatchUpdate {
 export interface RequestResult {
     pipe(stream: Duplex): void;
     on(ev: string, cb: (arg: any) => void): void;
+    removeAllListeners(ev: string): void;
     abort(): void;
 }
 

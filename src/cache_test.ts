@@ -1445,6 +1445,53 @@ describe('ListWatchCache', () => {
         const reqOpts: request.OptionsWithUri = opts as request.OptionsWithUri;
         expect(reqOpts.qs.labelSelector).to.equal(APP_LABEL_SELECTOR);
     });
+
+    it('should ignore request errors after it is aborted', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const list: V1Pod[] = [];
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+            response: http.IncomingMessage;
+            body: V1NamespaceList;
+        }> {
+            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>((resolve) => {
+                resolve({ response: {} as http.IncomingMessage, body: listObj });
+            });
+        };
+        let request = new FakeRequest();
+
+        let promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                request.on('error', (err) => {
+                    throw new Error(
+                        `This handler should have been removed and "${err}" should have been silenced.`,
+                    );
+                });
+
+                resolve(request);
+
+                return request;
+            });
+        });
+
+        const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
+
+        await informer.start();
+
+        await promise;
+
+        await informer.stop();
+
+        request.emit('error', new Error('Error emitted after abort() was called'));
+    });
 });
 
 describe('delete items', () => {
