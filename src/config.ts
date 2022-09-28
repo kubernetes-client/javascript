@@ -161,6 +161,10 @@ export class KubeConfig {
                 username: user.username,
             };
         }
+
+        if (cluster && cluster.tlsServerName) {
+            opts.agentOptions = { servername: cluster.tlsServerName } as https.RequestOptions;
+        }
     }
 
     public loadFromString(config: string, opts?: Partial<ConfigOptions>): void {
