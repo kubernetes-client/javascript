@@ -11,6 +11,7 @@ import { CoreV1Api } from './api';
 import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolutePath } from './config';
 import { Cluster, newClusters, newContexts, newUsers, User, ActionOnInvalid } from './config_types';
 import { ExecAuth } from './exec_auth';
+import { request } from 'http';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
 const kc2FileName = 'testdata/kubeconfig-2.yaml';
@@ -240,6 +241,44 @@ describe('KubeConfig', () => {
     });
 
     describe('applyHTTPSOptions', () => {
+        it('should apply tls-server-name to https.RequestOptions', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcTlsServerNameFileName);
+
+            const opts: https.RequestOptions = {};
+            await kc.applytoHTTPSOptions(opts);
+
+            expect(opts).to.deep.equal({
+                headers: {},
+                ca: new Buffer('CADATA2', 'utf-8'),
+                cert: new Buffer('USER_CADATA', 'utf-8'),
+                key: new Buffer('USER_CKDATA', 'utf-8'),
+                rejectUnauthorized: false,
+                servername: 'kube.example2.com',
+            });
+        });
+        it('should apply tls-server-name to request.Options', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcTlsServerNameFileName);
+
+            const opts: requestlib.Options = {
+                url: 'https://company.com',
+            };
+            await kc.applyToRequest(opts);
+
+            expect(opts).to.deep.equal({
+                url: 'https://company.com',
+                headers: {},
+                ca: new Buffer('CADATA2', 'utf-8'),
+                cert: new Buffer('USER_CADATA', 'utf-8'),
+                key: new Buffer('USER_CKDATA', 'utf-8'),
+                rejectUnauthorized: false,
+                strictSSL: false,
+                agentOptions: {
+                    servername: 'kube.example2.com',
+                },
+            });
+        });
         it('should apply cert configs', () => {
             const kc = new KubeConfig();
             kc.loadFromFile(kcFileName);
