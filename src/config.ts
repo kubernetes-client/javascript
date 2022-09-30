@@ -26,7 +26,7 @@ import {
 import { ExecAuth } from './exec_auth';
 import { FileAuth } from './file_auth';
 import { GoogleCloudPlatformAuth } from './gcp_auth';
-import { OpenIDConnectAuth } from './oidc_auth';
+import { DelayedOpenIDConnectAuth } from './oidc_auth_delayed';
 
 // fs.existsSync was removed in node 10
 function fileExists(filepath: string): boolean {
@@ -44,7 +44,7 @@ export class KubeConfig {
         new GoogleCloudPlatformAuth(),
         new ExecAuth(),
         new FileAuth(),
-        new OpenIDConnectAuth(),
+        new DelayedOpenIDConnectAuth(),
     ];
 
     /**
