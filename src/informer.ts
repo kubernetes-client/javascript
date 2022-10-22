@@ -30,7 +30,7 @@ export type CONNECT = typeof CONNECT;
 export const ERROR = 'error';
 export type ERROR = typeof ERROR;
 
-export interface Informer<T> {
+export interface Informer<T extends KubernetesObject> {
     on(verb: ADD | UPDATE | DELETE | CHANGE, cb: ObjectCallback<T>): void;
     on(verb: ERROR | CONNECT, cb: ErrorCallback): void;
     off(verb: ADD | UPDATE | DELETE | CHANGE, cb: ObjectCallback<T>): void;
@@ -39,7 +39,7 @@ export interface Informer<T> {
     stop(): Promise<void>;
 }
 
-export function makeInformer<T>(
+export function makeInformer<T extends KubernetesObject>(
     kubeconfig: KubeConfig,
     path: string,
     listPromiseFn: ListPromise<T>,
