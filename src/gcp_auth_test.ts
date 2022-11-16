@@ -304,6 +304,8 @@ describe('GoogleCloudPlatformAuth', () => {
             },
         } as User;
 
-        await expect(auth.applyAuthentication(user, {})).to.eventually.be.rejectedWith('Eval [?(expr)] prevented in JSONPath expression.');
+        await expect(auth.applyAuthentication(user, {})).to.eventually.be.rejectedWith(
+            'Eval [?(expr)] prevented in JSONPath expression.',
+        );
     });
 });
