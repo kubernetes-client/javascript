@@ -1,8 +1,8 @@
 # Javascript Kubernetes Client information
 
 [![Build Status](https://github.com/kubernetes-client/javascript/workflows/Kubernetes%20Javascript%20Client%20-%20Validation/badge.svg)](https://github.com/kubernetes-client/javascript/actions)
-[![Client Capabilities](https://img.shields.io/badge/Kubernetes%20client-Gold-blue.svg?style=flat&colorB=FFD700&colorA=306CE8)](http://bit.ly/kubernetes-client-capabilities-badge)
-[![Client Support Level](https://img.shields.io/badge/kubernetes%20client-beta-green.svg?style=flat&colorA=306CE8)](http://bit.ly/kubernetes-client-support-badge)
+[![Client Capabilities](https://img.shields.io/badge/Kubernetes%20client-Gold-blue.svg?style=flat&colorB=FFD700&colorA=306CE8)](https://bit.ly/kubernetes-client-capabilities-badge)
+[![Client Support Level](https://img.shields.io/badge/kubernetes%20client-beta-green.svg?style=flat&colorA=306CE8)](https://bit.ly/kubernetes-client-support-badge)
 [![Build and Deploy Docs](https://github.com/kubernetes-client/javascript/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/kubernetes-client/javascript/actions/workflows/deploy-docs.yml)
 
 The Javascript clients for Kubernetes is implemented in
@@ -176,7 +176,7 @@ Run `npm run lint` or install an editor plugin like https://github.com/Microsoft
 
 # Testing
 
-Tests are written using the [Chai](http://chaijs.com/) library. See
+Tests are written using the [Chai](https://chaijs.com/) library. See
 [`config_test.ts`](./src/config_test.ts) for an example.
 
 To run tests, execute the following:
