@@ -30,6 +30,7 @@ jobs:
           pushd gen
           git checkout "${{ github.event.inputs.genCommit }}"
           # apply https://github.com/kubernetes-client/gen/pull/224
+          git config --global user.name "Github Actions"
           git cherry-pick --strategy=recursive -X theirs c557f7f
       - name: Generate Branch Name
         run: |
