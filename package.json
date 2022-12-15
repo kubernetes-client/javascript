@@ -77,7 +77,7 @@
     "@types/byline": "^4.2.31",
     "@types/chai": "^4.1.6",
     "@types/chai-as-promised": "^7.1.0",
-    "@types/mocha": "^5.2.7",
+    "@types/mocha": "^10.0.1",
     "@types/mock-fs": "^3.6.30",
     "@types/stream-buffers": "^3.0.3",
     "@types/tar": "^6.1.3",
