@@ -69,7 +69,7 @@
     "stream-buffers": "^3.0.2",
     "tar": "^6.1.11",
     "tmp-promise": "^3.0.2",
-    "tslib": "^1.9.3",
+    "tslib": "^2.4.1",
     "underscore": "^1.13.6",
     "ws": "^7.3.1"
   },
