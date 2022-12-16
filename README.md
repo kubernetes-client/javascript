@@ -113,13 +113,14 @@ release, we will increment the minor version whenever we update the minor Kubern
 
 Generally speaking newer clients will work with older Kubernetes, but compatability isn't 100% guaranteed.
 
-| client version | older versions | 1.19 | 1.20 | 1.21 | 1.22 | 1.23 | 1.24 |
-|----------------|----------------|------|------|------|------|-------|------|
-|  0.13.x        |       -        |  ✓   |  x   |  x   |  x   |  x   |  x   |
-|  0.14.x        |       -        |  +   |  ✓   |  x   |  x   |  x   |  x   |
-|  0.15.x        |       -        |  +   |  +   |  ✓   |  x   |  x   |  x   |
-|  0.16.x        |       -        |  +   |  +   |  +   |  ✓   |  x   |  x   |
-|  0.17.x        |       -        |  -   |  -   |  +   |  +   |  +   |  ✓   |
+| client version | older versions | 1.19 | 1.20 | 1.21 | 1.22 | 1.23 | 1.24 | 1.25 |
+|----------------|----------------|------|------|------|------|-------|------|-----|
+|  0.13.x        |       -        |  ✓   |  x   |  x   |  x   |  x   |  x   |  x  |
+|  0.14.x        |       -        |  +   |  ✓   |  x   |  x   |  x   |  x   |  x  |
+|  0.15.x        |       -        |  +   |  +   |  ✓   |  x   |  x   |  x   |  x  |
+|  0.16.x        |       -        |  +   |  +   |  +   |  ✓   |  x   |  x   |  x  |
+|  0.17.x        |       -        |  -   |  -   |  +   |  +   |  +   |  ✓   |  x  |
+|  0.18.x        |       -        |  -   |  -   |  -   |  +   |  +   |  +   |  ✓  |
 
 Key:
 
