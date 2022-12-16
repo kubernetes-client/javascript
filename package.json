@@ -88,7 +88,7 @@
     "jasmine": "^4.5.0",
     "mocha": "^10.1.0",
     "mock-fs": "^5.2.0",
-    "nock": "^10.0.6",
+    "nock": "^13.2.9",
     "nyc": "^15.1.0",
     "prettier": "~1.16.4",
     "source-map-support": "^0.5.9",
