@@ -1,4 +1,4 @@
-import execa = require('execa');
+import { execaSync } from 'execa';
 import fs = require('fs');
 import https = require('https');
 import yaml = require('js-yaml');
@@ -320,9 +320,9 @@ export class KubeConfig {
         }
         if (process.platform === 'win32' && shelljs.which('wsl.exe')) {
             try {
-                const envKubeconfigPathResult = execa.sync('wsl.exe', ['bash', '-c', 'printenv KUBECONFIG']);
+                const envKubeconfigPathResult = execaSync('wsl.exe', ['bash', '-c', 'printenv KUBECONFIG']);
                 if (envKubeconfigPathResult.exitCode === 0 && envKubeconfigPathResult.stdout.length > 0) {
-                    const result = execa.sync('wsl.exe', ['cat', envKubeconfigPathResult.stdout]);
+                    const result = execaSync('wsl.exe', ['cat', envKubeconfigPathResult.stdout]);
                     if (result.exitCode === 0) {
                         this.loadFromString(result.stdout, opts);
                         return;
@@ -332,10 +332,10 @@ export class KubeConfig {
                 // Falling back to default kubeconfig
             }
             try {
-                const configResult = execa.sync('wsl.exe', ['cat', '~/.kube/config']);
+                const configResult = execaSync('wsl.exe', ['cat', '~/.kube/config']);
                 if (configResult.exitCode === 0) {
                     this.loadFromString(configResult.stdout, opts);
-                    const result = execa.sync('wsl.exe', ['wslpath', '-w', '~/.kube']);
+                    const result = execaSync('wsl.exe', ['wslpath', '-w', '~/.kube']);
                     if (result.exitCode === 0) {
                         this.makePathsAbsolute(result.stdout);
                     }

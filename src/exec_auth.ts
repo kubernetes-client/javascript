@@ -1,4 +1,4 @@
-import execa = require('execa');
+import { execaSync, ExecaSyncReturnValue, SyncOptions } from 'execa';
 import https = require('https');
 import request = require('request');
 
@@ -18,8 +18,7 @@ export interface Credential {
 
 export class ExecAuth implements Authenticator {
     private readonly tokenCache: { [key: string]: Credential | null } = {};
-    private execFn: (cmd: string, args: string[], opts: execa.SyncOptions) => execa.ExecaSyncReturnValue =
-        execa.sync;
+    private execFn: (cmd: string, args: string[], opts: SyncOptions) => ExecaSyncReturnValue = execaSync;
 
     public isAuthProvider(user: User): boolean {
         if (!user) {

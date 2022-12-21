@@ -59,7 +59,7 @@
     "@types/request": "^2.47.1",
     "@types/ws": "^6.0.1",
     "byline": "^5.0.0",
-    "execa": "5.0.0",
+    "execa": "6.1.0",
     "isomorphic-ws": "^5.0.0",
     "js-yaml": "^4.1.0",
     "jsonpath-plus": "^7.2.0",
