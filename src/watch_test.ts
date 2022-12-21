@@ -149,7 +149,7 @@ describe('Watch', () => {
 
         var stream;
         const fakeRequest = new FakeRequest();
-        fakeRequest.pipe = function(arg) {
+        fakeRequest.pipe = function (arg) {
             stream = arg;
             stream.write(JSON.stringify(obj1) + '\n');
             stream.write(JSON.stringify(obj2) + '\n');
@@ -215,7 +215,7 @@ describe('Watch', () => {
 
         const errIn = { error: 'err' };
         const fakeRequest = new FakeRequest();
-        fakeRequest.pipe = function(stream) {
+        fakeRequest.pipe = function (stream) {
             stream.write(JSON.stringify(obj1) + '\n');
             stream.emit('error', errIn);
             stream.emit('close');
@@ -274,7 +274,7 @@ describe('Watch', () => {
         };
 
         const fakeRequest = new FakeRequest();
-        fakeRequest.pipe = function(stream) {
+        fakeRequest.pipe = function (stream) {
             stream.write(JSON.stringify(obj1) + '\n');
             stream.emit('close');
         };
@@ -331,7 +331,7 @@ describe('Watch', () => {
         };
 
         const fakeRequest = new FakeRequest();
-        fakeRequest.pipe = function(stream) {
+        fakeRequest.pipe = function (stream) {
             stream.write(JSON.stringify(obj) + '\n');
             stream.write('{"truncated json\n');
         };
@@ -378,7 +378,7 @@ describe('Watch', () => {
         };
 
         const fakeRequest = new FakeRequest();
-        fakeRequest.pipe = function(stream) {
+        fakeRequest.pipe = function (stream) {
             stream.write(JSON.stringify(obj) + '\n');
             stream.emit('close');
         };
@@ -431,7 +431,12 @@ describe('Watch', () => {
         const kc = new KubeConfig();
         const watch = new Watch(kc);
 
-        const promise = watch.watch('/some/path', {}, () => {}, () => {});
+        const promise = watch.watch(
+            '/some/path',
+            {},
+            () => {},
+            () => {},
+        );
         expect(promise).to.be.rejected;
     });
 });

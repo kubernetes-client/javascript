@@ -27,7 +27,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     private objects: CacheMap<T> = new Map();
     private resourceVersion: string;
     private readonly callbackCache: {
-        [key: string]: Array<ObjectCallback<T> | ErrorCallback>;
+        [key: string]: (ObjectCallback<T> | ErrorCallback)[];
     } = {};
     private request: RequestResult | undefined;
     private stopped: boolean = false;
@@ -242,7 +242,7 @@ export function cacheMapFromList<T extends KubernetesObject>(newObjects: T[]): C
 export function deleteItems<T extends KubernetesObject>(
     oldObjects: CacheMap<T>,
     newObjects: T[],
-    deleteCallback?: Array<ObjectCallback<T>>,
+    deleteCallback?: ObjectCallback<T>[],
 ): CacheMap<T> {
     const newObjectsMap = cacheMapFromList(newObjects);
 
@@ -274,8 +274,8 @@ export function deleteItems<T extends KubernetesObject>(
 export function addOrUpdateObject<T extends KubernetesObject>(
     objects: CacheMap<T>,
     obj: T,
-    addCallbacks?: Array<ObjectCallback<T>>,
-    updateCallbacks?: Array<ObjectCallback<T>>,
+    addCallbacks?: ObjectCallback<T>[],
+    updateCallbacks?: ObjectCallback<T>[],
 ): void {
     let namespaceObjects = objects.get(obj.metadata!.namespace || '');
     if (!namespaceObjects) {
@@ -312,7 +312,7 @@ function isSameVersion<T extends KubernetesObject>(o1: T, o2: T): boolean {
 export function deleteObject<T extends KubernetesObject>(
     objects: CacheMap<T>,
     obj: T,
-    deleteCallbacks?: Array<ObjectCallback<T>>,
+    deleteCallbacks?: ObjectCallback<T>[],
 ): void {
     const namespace = obj.metadata!.namespace || '';
     const name = obj.metadata!.name || '';
