@@ -486,9 +486,7 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             const r = await c.specUriPath(o, 'patch');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces/fugazi/services/repeater');
             scope.done();
@@ -503,9 +501,7 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             const r = await c.specUriPath(o, 'patch');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces/fugazi/serviceaccounts/repeater');
             scope.done();
@@ -527,9 +523,7 @@ describe('KubernetesObject', () => {
                     name: 'repeater',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             const r = await c.specUriPath(o, 'patch');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces/straight-edge/pods/repeater');
             scope.done();
@@ -551,9 +545,7 @@ describe('KubernetesObject', () => {
                     name: 'repeater',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             const r = await c.specUriPath(o, 'patch');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces/default/pods/repeater');
             scope.done();
@@ -568,9 +560,7 @@ describe('KubernetesObject', () => {
                     name: 'repeater',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             const r = await c.specUriPath(o, 'delete');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces/repeater');
             scope.done();
@@ -585,9 +575,7 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             const r = await c.specUriPath(o, 'create');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces/fugazi/services');
             scope.done();
@@ -602,9 +590,7 @@ describe('KubernetesObject', () => {
                     name: 'repeater',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             const r = await c.specUriPath(o, 'create');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces');
             scope.done();
@@ -620,9 +606,7 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/apis/apps/v1')
-                .reply(200, resourceBodies.apps);
+            const scope = nock('https://d.i.y').get('/apis/apps/v1').reply(200, resourceBodies.apps);
             const r = await c.specUriPath(o, 'read');
             expect(r).to.equal('https://d.i.y/apis/apps/v1/namespaces/fugazi/deployments/repeater');
             scope.done();
@@ -757,9 +741,7 @@ describe('KubernetesObject', () => {
                     o.metadata = o.metadata || {};
                     o.metadata.namespace = 'fugazi';
                 }
-                const scope = nock('https://d.i.y')
-                    .get(k.p)
-                    .reply(200, k.b);
+                const scope = nock('https://d.i.y').get(k.p).reply(200, k.b);
                 const r = await c.specUriPath(o, 'patch');
                 expect(r).to.equal(k.e);
                 scope.done();
@@ -874,9 +856,7 @@ describe('KubernetesObject', () => {
                 if (k.ns) {
                     o.metadata = { namespace: 'fugazi' };
                 }
-                const scope = nock('https://d.i.y')
-                    .get(k.p)
-                    .reply(200, k.b);
+                const scope = nock('https://d.i.y').get(k.p).reply(200, k.b);
                 const r = await c.specUriPath(o, 'create');
                 expect(r).to.equal(k.e);
                 scope.done();
@@ -916,9 +896,7 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             let thrown = false;
             try {
                 await c.specUriPath(o, 'read');
@@ -945,9 +923,7 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             let thrown = false;
             try {
                 await c.specUriPath(o, 'create');
@@ -967,7 +943,7 @@ describe('KubernetesObject', () => {
 
     describe('generateHeaders', () => {
         let client: KubernetesObjectApiTest;
-        before(function(this: Mocha.Context): void {
+        before(function (this: Mocha.Context): void {
             client = KubernetesObjectApiTest.makeApiClient();
         });
 
@@ -1007,7 +983,7 @@ describe('KubernetesObject', () => {
 
     describe('resource', () => {
         let client: KubernetesObjectApiTest;
-        before(function(this: Mocha.Context): void {
+        before(function (this: Mocha.Context): void {
             client = KubernetesObjectApiTest.makeApiClient();
         });
 
@@ -1015,7 +991,7 @@ describe('KubernetesObject', () => {
             for (const a of [null, undefined]) {
                 let thrown = false;
                 try {
-                    await client.resource((a as unknown) as string, 'Service');
+                    await client.resource(a as unknown as string, 'Service');
                 } catch (e) {
                     thrown = true;
                     if (e instanceof Error) {
@@ -1034,7 +1010,7 @@ describe('KubernetesObject', () => {
             for (const a of [null, undefined]) {
                 let thrown = false;
                 try {
-                    await client.resource('v1', (a as unknown) as string);
+                    await client.resource('v1', a as unknown as string);
                 } catch (e) {
                     thrown = true;
                     if (e instanceof Error) {
@@ -1063,9 +1039,7 @@ describe('KubernetesObject', () => {
                     },
                 ];
             }
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             await c.resource('v1', 'Service');
             expect(intercepted).to.be.true;
             scope.done();
@@ -1073,9 +1047,7 @@ describe('KubernetesObject', () => {
 
         it('should cache API response', async () => {
             const c = KubernetesObjectApiTest.makeApiClient();
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             const s = await c.resource('v1', 'Service');
             expect(s).to.be.ok;
             if (!s) {
@@ -1131,9 +1103,7 @@ describe('KubernetesObject', () => {
                     },
                 ],
             } as any;
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             const s = await c.resource('v1', 'Service');
             expect(s).to.be.ok;
             if (!s) {
@@ -2089,9 +2059,7 @@ describe('KubernetesObject', () => {
                     },
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/apis/applications/v1')
-                .reply(404, `{}`);
+            const scope = nock('https://d.i.y').get('/apis/applications/v1').reply(404, `{}`);
             let thrown = false;
             try {
                 await client.create(d);

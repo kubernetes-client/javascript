@@ -44,9 +44,7 @@ describe('FullRequest', () => {
 
             const promise = k8sApi.listNamespacedPod('default');
 
-            return expect(promise)
-                .to.eventually.have.property('body')
-                .that.deep.equals(result);
+            return expect(promise).to.eventually.have.property('body').that.deep.equals(result);
         });
     });
 });
