@@ -1,4 +1,4 @@
-import { execaSync, ExecaSyncReturnValue, SyncOptions } from 'execa';
+import { exec } from 'child_process';
 import https = require('https');
 import request = require('request');
 
@@ -18,7 +18,15 @@ export interface Credential {
 
 export class ExecAuth implements Authenticator {
     private readonly tokenCache: { [key: string]: Credential | null } = {};
-    private execFn: (cmd: string, args: string[], opts: SyncOptions) => ExecaSyncReturnValue = execaSync;
+    // TODO: Give this a better type.
+    private execFn: (cmd: string, args: string[], opts: any) => Promise<any>;
+
+    constructor() {
+        this.execFn = async (cmd, args, opts) => {
+            var execa = await import('execa');
+            return execa.execaSync(cmd, args, opts);
+        }
+    }
 
     public isAuthProvider(user: User): boolean {
         if (!user) {
@@ -39,7 +47,7 @@ export class ExecAuth implements Authenticator {
         user: User,
         opts: request.Options | https.RequestOptions,
     ): Promise<void> {
-        const credential = this.getCredential(user);
+        const credential = await this.getCredential(user);
         if (!credential) {
             return;
         }
@@ -68,7 +76,7 @@ export class ExecAuth implements Authenticator {
         return null;
     }
 
-    private getCredential(user: User): Credential | null {
+    private async getCredential(user: User): Promise<Credential | null> {
         // TODO: Add a unit test for token caching.
         const cachedToken = this.tokenCache[user.name];
         if (cachedToken) {
@@ -97,7 +105,7 @@ export class ExecAuth implements Authenticator {
             exec.env.forEach((elt) => (env[elt.name] = elt.value));
             opts = { ...opts, env };
         }
-        const result = this.execFn(exec.command, exec.args, opts);
+        const result = await this.execFn(exec.command, exec.args, opts);
         if (result.exitCode === 0) {
             const obj = JSON.parse(result.stdout) as Credential;
             this.tokenCache[user.name] = obj;

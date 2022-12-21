@@ -1,4 +1,3 @@
-import { execaSync } from 'execa';
 import fs = require('fs');
 import https = require('https');
 import yaml = require('js-yaml');
