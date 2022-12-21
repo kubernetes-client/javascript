@@ -263,6 +263,7 @@ describe('KubeConfig', () => {
 
             const opts: requestlib.Options = {
                 url: 'https://company.com',
+                agentOptions: {} as https.AgentOptions,
             };
             await kc.applyToRequest(opts);
 

@@ -55,9 +55,9 @@
   "license": "Apache-2.0",
   "dependencies": {
     "@types/js-yaml": "^4.0.1",
-    "@types/node": "^10.12.0",
+    "@types/node": "^18.11.17",
     "@types/request": "^2.47.1",
-    "@types/ws": "^6.0.1",
+    "@types/ws": "^8.5.3",
     "byline": "^5.0.0",
     "execa": "5.0.0",
     "isomorphic-ws": "^5.0.0",
@@ -71,7 +71,7 @@
     "tmp-promise": "^3.0.2",
     "tslib": "^2.4.1",
     "underscore": "^1.13.6",
-    "ws": "^7.3.1"
+    "ws": "^8.11.0"
   },
   "devDependencies": {
     "@types/byline": "^4.2.31",
