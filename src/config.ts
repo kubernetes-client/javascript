@@ -6,7 +6,9 @@ import net = require('net');
 import path = require('path');
 
 import request = require('request');
+import { base64 } from 'rfc4648';
 import shelljs = require('shelljs');
+import WebSocket = require('ws');
 
 import * as api from './api';
 import { Authenticator } from './auth';
@@ -130,18 +132,23 @@ export class KubeConfig {
         this.makePathsAbsolute(rootDirectory);
     }
 
-    public async applytoHTTPSOptions(opts: https.RequestOptions): Promise<void> {
-        const user = this.getCurrentUser();
-        const cluster = this.getCurrentCluster();
-
+    public async applytoHTTPSOptions(opts: https.RequestOptions | WebSocket.ClientOptions): Promise<void> {
         await this.applyOptions(opts);
 
+        const user = this.getCurrentUser();
         if (user && user.username) {
-            opts.auth = `${user.username}:${user.password}`;
+            // The ws docs say that it accepts anything that https.RequestOptions accepts,
+            // but Typescript doesn't understand that idea (yet) probably could be fixed in
+            // the typings, but for now just cast to any
+            (opts as any).auth = `${user.username}:${user.password}`;
         }
 
+        const cluster = this.getCurrentCluster();
         if (cluster && cluster.tlsServerName) {
-            opts.servername = cluster.tlsServerName;
+            // The ws docs say that it accepts anything that https.RequestOptions accepts,
+            // but Typescript doesn't understand that idea (yet) probably could be fixed in
+            // the typings, but for now just cast to any
+            (opts as any).servername = cluster.tlsServerName;
         }
     }
 
@@ -163,7 +170,7 @@ export class KubeConfig {
         }
 
         if (cluster && cluster.tlsServerName) {
-            opts.agentOptions = { servername: cluster.tlsServerName } as https.RequestOptions;
+            opts.agentOptions = { servername: cluster.tlsServerName } as https.AgentOptions;
         }
     }
 
@@ -402,7 +409,7 @@ export class KubeConfig {
         return this.getContextObject(this.currentContext);
     }
 
-    private applyHTTPSOptions(opts: request.Options | https.RequestOptions): void {
+    private applyHTTPSOptions(opts: request.Options | https.RequestOptions | WebSocket.ClientOptions): void {
         const cluster = this.getCurrentCluster();
         const user = this.getCurrentUser();
         if (!user) {
@@ -426,7 +433,9 @@ export class KubeConfig {
         }
     }
 
-    private async applyAuthorizationHeader(opts: request.Options | https.RequestOptions): Promise<void> {
+    private async applyAuthorizationHeader(
+        opts: request.Options | https.RequestOptions | WebSocket.ClientOptions,
+    ): Promise<void> {
         const user = this.getCurrentUser();
         if (!user) {
             return;
@@ -447,7 +456,9 @@ export class KubeConfig {
         }
     }
 
-    private async applyOptions(opts: request.Options | https.RequestOptions): Promise<void> {
+    private async applyOptions(
+        opts: request.Options | https.RequestOptions | WebSocket.ClientOptions,
+    ): Promise<void> {
         this.applyHTTPSOptions(opts);
         await this.applyAuthorizationHeader(opts);
     }

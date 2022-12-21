@@ -7,6 +7,7 @@ import { V1Status } from './api';
 import { KubeConfig } from './config';
 import { Cluster, Context, User } from './config_types';
 import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
+import { fail } from 'assert';
 
 const setImmediatePromise = promisify(setImmediate);
 
@@ -127,8 +128,7 @@ describe('WebSocket', () => {
 
         const promise = handler.connect(path, null, null);
         await setImmediatePromise();
-
-        mockWs.onerror({
+        mockWs.onerror!({
             error: 'some error',
             message: 'some message',
             type: 'type',
@@ -184,26 +184,27 @@ describe('WebSocket', () => {
 
         const event = {
             target: mockWs,
+            type: 'open',
         };
-        mockWs.onopen(event);
+        mockWs.onopen!(event);
         const errEvt = {
             error: {},
             message: 'some message',
             type: 'some type',
             target: mockWs,
         };
-        mockWs.onmessage({
+        mockWs.onmessage!({
             data: 'string data',
             type: 'type',
             target: mockWs,
         });
         const buff = Buffer.alloc(10, 100);
-        mockWs.onmessage({
+        mockWs.onmessage!({
             data: buff,
             type: 'type',
             target: mockWs,
         });
-        mockWs.onerror(errEvt);
+        mockWs.onerror!(errEvt);
         await promise;
     });
     it('should connect properly with handlers', async () => {
@@ -266,15 +267,16 @@ describe('WebSocket', () => {
 
         const event = {
             target: mockWs,
+            type: 'open',
         };
-        mockWs.onopen(event);
+        mockWs.onopen!(event);
         const errEvt = {
             error: {},
             message: 'some message',
             type: 'some type',
             target: mockWs,
         };
-        mockWs.onmessage({
+        mockWs.onmessage!({
             data: 'string data',
             type: 'type',
             target: mockWs,
@@ -282,12 +284,12 @@ describe('WebSocket', () => {
         const fill = 100;
         const size = 10;
         const buff = Buffer.alloc(size, fill);
-        mockWs.onmessage({
+        mockWs.onmessage!({
             data: buff,
             type: 'type',
             target: mockWs,
         });
-        mockWs.onerror(errEvt);
+        mockWs.onerror!(errEvt);
         await promise;
 
         expect(closeCount).to.equal(2);
