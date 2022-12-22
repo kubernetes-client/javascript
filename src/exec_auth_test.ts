@@ -1,10 +1,10 @@
+import child_process = require('child_process');
 import { expect, use } from 'chai';
 import chaiAsPromised = require('chai-as-promised');
 use(chaiAsPromised);
 
 import * as shell from 'shelljs';
 
-import execa = require('execa');
 import request = require('request');
 import https = require('https');
 
@@ -63,12 +63,12 @@ describe('ExecAuth', () => {
         (auth as any).execFn = (
             command: string,
             args: string[],
-            opts: execa.SyncOptions,
-        ): execa.ExecaSyncReturnValue => {
+            opts: child_process.SpawnOptions,
+        ): child_process.SpawnSyncReturns<Buffer> => {
             return {
-                exitCode: 0,
-                stdout: JSON.stringify({ status: { token: 'foo' } }),
-            } as execa.ExecaSyncReturnValue;
+                status: 0,
+                stdout: Buffer.from(JSON.stringify({ status: { token: 'foo' } })),
+            } as child_process.SpawnSyncReturns<Buffer>;
         };
         const opts = {} as request.Options;
         opts.headers = [];
@@ -97,12 +97,12 @@ describe('ExecAuth', () => {
         (auth as any).execFn = (
             command: string,
             args: string[],
-            opts: execa.SyncOptions,
-        ): execa.ExecaSyncReturnValue => {
+            opts: child_process.SpawnOptions,
+        ): child_process.SpawnSyncReturns<Buffer> => {
             return {
-                exitCode: 0,
-                stdout: JSON.stringify({ status: { clientCertificateData: 'foo', clientKeyData: 'bar' } }),
-            } as execa.ExecaSyncReturnValue;
+                status: 0,
+                stdout: Buffer.from(JSON.stringify({ status: { clientCertificateData: 'foo', clientKeyData: 'bar' } })),
+            } as child_process.SpawnSyncReturns<Buffer>;
         };
 
         const user = {
@@ -136,15 +136,15 @@ describe('ExecAuth', () => {
         (auth as any).execFn = (
             command: string,
             args: string[],
-            opts: execa.SyncOptions,
-        ): execa.ExecaSyncReturnValue => {
+            opts: child_process.SpawnOptions,
+        ): child_process.SpawnSyncReturns<Buffer> => {
             execCount++;
             return {
-                exitCode: 0,
-                stdout: JSON.stringify({
+                status: 0,
+                stdout: Buffer.from(JSON.stringify({
                     status: { token: tokenValue, expirationTimestamp: expire },
-                }),
-            } as execa.ExecaSyncReturnValue;
+                })),
+            } as child_process.SpawnSyncReturns<Buffer>;
         };
 
         const user = {
@@ -197,13 +197,13 @@ describe('ExecAuth', () => {
         (auth as any).execFn = (
             command: string,
             args: string[],
-            opts: execa.SyncOptions,
-        ): execa.ExecaSyncReturnValue => {
+            opts: child_process.SpawnOptions,
+        ): child_process.SpawnSyncReturns<Buffer> => {
             return {
-                exitCode: 100,
-                stdout: JSON.stringify({ status: { token: 'foo' } }),
-                stderr: 'Some error!',
-            } as execa.ExecaSyncReturnValue;
+                status: 100,
+                stdout: Buffer.from(JSON.stringify({ status: { token: 'foo' } })),
+                stderr: Buffer.from('Some error!'),
+            } as child_process.SpawnSyncReturns<Buffer>;
         };
 
         const user = {
@@ -233,13 +233,13 @@ describe('ExecAuth', () => {
         (auth as any).execFn = (
             command: string,
             args: string[],
-            opts: execa.SyncOptions,
-        ): execa.ExecaSyncReturnValue => {
+            opts: child_process.SpawnOptions,
+        ): child_process.SpawnSyncReturns<Buffer> => {
             optsOut = opts;
             return {
-                exitCode: 0,
-                stdout: JSON.stringify({ status: { token: 'foo' } }),
-            } as execa.ExecaSyncReturnValue;
+                status: 0,
+                stdout: Buffer.from(JSON.stringify({ status: { token: 'foo' } })),
+            } as child_process.SpawnSyncReturns<Buffer>;
         };
         process.env.BLABBLE = 'flubble';
         const opts = {} as request.Options;
@@ -278,12 +278,12 @@ describe('ExecAuth', () => {
         (auth as any).execFn = (
             command: string,
             args: string[],
-            opts: execa.SyncOptions,
-        ): execa.ExecaSyncReturnValue => {
+            opts: child_process.SpawnOptions,
+        ): child_process.SpawnSyncReturns<Buffer> => {
             return {
-                exitCode: 0,
-                stdout: JSON.stringify({ status: { token: 'foo' } }),
-            } as execa.ExecaSyncReturnValue;
+                status: 0,
+                stdout: Buffer.from(JSON.stringify({ status: { token: 'foo' } })),
+            } as child_process.SpawnSyncReturns<Buffer>;
         };
         const opts = {} as https.RequestOptions;
         auth.applyAuthentication(
