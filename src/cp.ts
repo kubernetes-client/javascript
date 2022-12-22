@@ -40,8 +40,9 @@ export class Cp {
             errStream,
             null,
             false,
-            async () => {
-                if (errStream.size()) {
+            async ({ status }) => {
+                writerStream.close();
+                if (status === 'Failure' || errStream.size()) {
                     throw new Error(`Error from cpFromPod - details: \n ${errStream.getContentsAsString()}`);
                 }
                 await tar.x({
