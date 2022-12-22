@@ -99,7 +99,9 @@ describe('ExecAuth', () => {
         ): child_process.SpawnSyncReturns<Buffer> => {
             return {
                 status: 0,
-                stdout: Buffer.from(JSON.stringify({ status: { clientCertificateData: 'foo', clientKeyData: 'bar' } })),
+                stdout: Buffer.from(
+                    JSON.stringify({ status: { clientCertificateData: 'foo', clientKeyData: 'bar' } }),
+                ),
             } as child_process.SpawnSyncReturns<Buffer>;
         };
 
@@ -139,9 +141,11 @@ describe('ExecAuth', () => {
             execCount++;
             return {
                 status: 0,
-                stdout: Buffer.from(JSON.stringify({
-                    status: { token: tokenValue, expirationTimestamp: expire },
-                })),
+                stdout: Buffer.from(
+                    JSON.stringify({
+                        status: { token: tokenValue, expirationTimestamp: expire },
+                    }),
+                ),
             } as child_process.SpawnSyncReturns<Buffer>;
         };
 

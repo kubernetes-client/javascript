@@ -18,8 +18,11 @@ export interface Credential {
 
 export class ExecAuth implements Authenticator {
     private readonly tokenCache: { [key: string]: Credential | null } = {};
-    private execFn: (cmd: string, args: string[], opts: child_process.SpawnOptions) => child_process.SpawnSyncReturns<Buffer> =
-        child_process.spawnSync;
+    private execFn: (
+        cmd: string,
+        args: string[],
+        opts: child_process.SpawnOptions,
+    ) => child_process.SpawnSyncReturns<Buffer> = child_process.spawnSync;
 
     public isAuthProvider(user: User): boolean {
         if (!user) {

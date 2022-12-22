@@ -325,9 +325,16 @@ export class KubeConfig {
         }
         if (process.platform === 'win32') {
             try {
-                const envKubeconfigPathResult = child_process.spawnSync('wsl.exe', ['bash', '-c', 'printenv KUBECONFIG']);
+                const envKubeconfigPathResult = child_process.spawnSync('wsl.exe', [
+                    'bash',
+                    '-c',
+                    'printenv KUBECONFIG',
+                ]);
                 if (envKubeconfigPathResult.status === 0 && envKubeconfigPathResult.stdout.length > 0) {
-                    const result = child_process.spawnSync('wsl.exe', ['cat', envKubeconfigPathResult.stdout.toString('utf8')]);
+                    const result = child_process.spawnSync('wsl.exe', [
+                        'cat',
+                        envKubeconfigPathResult.stdout.toString('utf8'),
+                    ]);
                     if (result.status === 0) {
                         this.loadFromString(result.stdout.toString('utf8'), opts);
                         return;
