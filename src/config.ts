@@ -6,7 +6,6 @@ import net = require('net');
 import path = require('path');
 
 import request = require('request');
-import shelljs = require('shelljs');
 import WebSocket = require('ws');
 
 import * as api from './api';
@@ -324,7 +323,7 @@ export class KubeConfig {
                 return;
             }
         }
-        if (process.platform === 'win32' && shelljs.which('wsl.exe')) {
+        if (process.platform === 'win32') {
             try {
                 const envKubeconfigPathResult = child_process.spawnSync('wsl.exe', ['bash', '-c', 'printenv KUBECONFIG']);
                 if (envKubeconfigPathResult.status === 0 && envKubeconfigPathResult.stdout.length > 0) {

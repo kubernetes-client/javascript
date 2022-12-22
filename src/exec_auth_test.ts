@@ -3,8 +3,6 @@ import { expect, use } from 'chai';
 import chaiAsPromised = require('chai-as-promised');
 use(chaiAsPromised);
 
-import * as shell from 'shelljs';
-
 import request = require('request');
 import https = require('https');
 
@@ -229,7 +227,7 @@ describe('ExecAuth', () => {
             return;
         }
         const auth = new ExecAuth();
-        let optsOut: shell.ExecOpts = {};
+        let optsOut: child_process.SpawnOptions = {};
         (auth as any).execFn = (
             command: string,
             args: string[],
@@ -264,9 +262,9 @@ describe('ExecAuth', () => {
             },
             opts,
         );
-        expect(optsOut.env.foo).to.equal('bar');
-        expect(optsOut.env.PATH).to.equal(process.env.PATH);
-        expect(optsOut.env.BLABBLE).to.equal(process.env.BLABBLE);
+        expect(optsOut.env!.foo).to.equal('bar');
+        expect(optsOut.env!.PATH).to.equal(process.env.PATH);
+        expect(optsOut.env!.BLABBLE).to.equal(process.env.BLABBLE);
     });
 
     it('should handle empty headers array correctly', async () => {
