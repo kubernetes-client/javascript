@@ -7,7 +7,6 @@ import path = require('path');
 
 import request = require('request');
 import { base64 } from 'rfc4648';
-import shelljs = require('shelljs');
 import WebSocket = require('ws');
 
 import * as api from './api';
@@ -325,43 +324,54 @@ export class KubeConfig {
                 return;
             }
         }
-        if (process.platform === 'win32' && shelljs.which('wsl.exe')) {
-            try {
-                const envKubeconfigPathResult = execa.sync('wsl.exe', ['bash', '-c', 'printenv KUBECONFIG']);
-                if (envKubeconfigPathResult.exitCode === 0 && envKubeconfigPathResult.stdout.length > 0) {
-                    const result = execa.sync('wsl.exe', ['cat', envKubeconfigPathResult.stdout]);
-                    if (result.exitCode === 0) {
-                        this.loadFromString(result.stdout, opts);
-                        return;
+        if (process.platform === 'win32') {
+            import('shelljs').then((shelljs) => {
+                if (shelljs.which('wsl.exe')) {
+                    try {
+                        const envKubeconfigPathResult = execa.sync('wsl.exe', [
+                            'bash',
+                            '-c',
+                            'printenv KUBECONFIG',
+                        ]);
+                        if (
+                            envKubeconfigPathResult.exitCode === 0 &&
+                            envKubeconfigPathResult.stdout.length > 0
+                        ) {
+                            const result = execa.sync('wsl.exe', ['cat', envKubeconfigPathResult.stdout]);
+                            if (result.exitCode === 0) {
+                                this.loadFromString(result.stdout, opts);
+                                return;
+                            }
+                        }
+                    } catch (err) {
+                        // Falling back to default kubeconfig
+                    }
+                    try {
+                        const configResult = execa.sync('wsl.exe', ['cat', '~/.kube/config']);
+                        if (configResult.exitCode === 0) {
+                            this.loadFromString(configResult.stdout, opts);
+                            const result = execa.sync('wsl.exe', ['wslpath', '-w', '~/.kube']);
+                            if (result.exitCode === 0) {
+                                this.makePathsAbsolute(result.stdout);
+                            }
+                            return;
+                        }
+                    } catch (err) {
+                        // Falling back to alternative auth
                     }
                 }
-            } catch (err) {
-                // Falling back to default kubeconfig
-            }
-            try {
-                const configResult = execa.sync('wsl.exe', ['cat', '~/.kube/config']);
-                if (configResult.exitCode === 0) {
-                    this.loadFromString(configResult.stdout, opts);
-                    const result = execa.sync('wsl.exe', ['wslpath', '-w', '~/.kube']);
-                    if (result.exitCode === 0) {
-                        this.makePathsAbsolute(result.stdout);
-                    }
-                    return;
-                }
-            } catch (err) {
-                // Falling back to alternative auth
-            }
-        }
+            });
 
-        if (fileExists(Config.SERVICEACCOUNT_TOKEN_PATH)) {
-            this.loadFromCluster();
-            return;
-        }
+            if (fileExists(Config.SERVICEACCOUNT_TOKEN_PATH)) {
+                this.loadFromCluster();
+                return;
+            }
 
-        this.loadFromClusterAndUser(
-            { name: 'cluster', server: 'http://localhost:8080' } as Cluster,
-            { name: 'user' } as User,
-        );
+            this.loadFromClusterAndUser(
+                { name: 'cluster', server: 'http://localhost:8080' } as Cluster,
+                { name: 'user' } as User,
+            );
+        }
     }
 
     public makeApiClient<T extends ApiType>(apiClientType: ApiConstructor<T>): T {
