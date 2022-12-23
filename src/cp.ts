@@ -87,8 +87,8 @@ export class Cp {
             errStream,
             readStream,
             false,
-            async ({status}) => {
-                if (status == 'Failure' || errStream.size()) {
+            async ({ status }) => {
+                if (status === 'Failure' || errStream.size()) {
                     throw new Error(`Error from cpToPod - details: \n ${errStream.getContentsAsString()}`);
                 }
             },
