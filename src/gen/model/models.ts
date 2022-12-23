@@ -1593,7 +1593,7 @@ export class ObjectSerializer {
             }
             return transformedData;
         } else if (type === "Date") {
-            return data.toISOString();
+            return data.toISOString;
         } else {
             if (enumsMap[type]) {
                 return data;
