@@ -1,4 +1,4 @@
-import execa = require('execa');
+import child_process = require('child_process');
 import fs = require('fs');
 import https = require('https');
 import yaml = require('js-yaml');
@@ -6,8 +6,6 @@ import net = require('net');
 import path = require('path');
 
 import request = require('request');
-import { base64 } from 'rfc4648';
-import shelljs = require('shelljs');
 import WebSocket = require('ws');
 
 import * as api from './api';
@@ -325,13 +323,20 @@ export class KubeConfig {
                 return;
             }
         }
-        if (process.platform === 'win32' && shelljs.which('wsl.exe')) {
+        if (process.platform === 'win32') {
             try {
-                const envKubeconfigPathResult = execa.sync('wsl.exe', ['bash', '-c', 'printenv KUBECONFIG']);
-                if (envKubeconfigPathResult.exitCode === 0 && envKubeconfigPathResult.stdout.length > 0) {
-                    const result = execa.sync('wsl.exe', ['cat', envKubeconfigPathResult.stdout]);
-                    if (result.exitCode === 0) {
-                        this.loadFromString(result.stdout, opts);
+                const envKubeconfigPathResult = child_process.spawnSync('wsl.exe', [
+                    'bash',
+                    '-c',
+                    'printenv KUBECONFIG',
+                ]);
+                if (envKubeconfigPathResult.status === 0 && envKubeconfigPathResult.stdout.length > 0) {
+                    const result = child_process.spawnSync('wsl.exe', [
+                        'cat',
+                        envKubeconfigPathResult.stdout.toString('utf8'),
+                    ]);
+                    if (result.status === 0) {
+                        this.loadFromString(result.stdout.toString('utf8'), opts);
                         return;
                     }
                 }
@@ -339,12 +344,12 @@ export class KubeConfig {
                 // Falling back to default kubeconfig
             }
             try {
-                const configResult = execa.sync('wsl.exe', ['cat', '~/.kube/config']);
-                if (configResult.exitCode === 0) {
-                    this.loadFromString(configResult.stdout, opts);
-                    const result = execa.sync('wsl.exe', ['wslpath', '-w', '~/.kube']);
-                    if (result.exitCode === 0) {
-                        this.makePathsAbsolute(result.stdout);
+                const configResult = child_process.spawnSync('wsl.exe', ['cat', '~/.kube/config']);
+                if (configResult.status === 0) {
+                    this.loadFromString(configResult.stdout.toString('utf8'), opts);
+                    const result = child_process.spawnSync('wsl.exe', ['wslpath', '-w', '~/.kube']);
+                    if (result.status === 0) {
+                        this.makePathsAbsolute(result.stdout.toString('utf8'));
                     }
                     return;
                 }
