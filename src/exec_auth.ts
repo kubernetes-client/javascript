@@ -97,7 +97,9 @@ export class ExecAuth implements Authenticator {
         }
         let opts = {};
         if (exec.env) {
-            const env = process.env;
+            const env = {
+                ...process.env
+            };
             exec.env.forEach((elt) => (env[elt.name] = elt.value));
             opts = { ...opts, env };
         }
