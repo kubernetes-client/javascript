@@ -57,18 +57,18 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
         await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()).to.not.be.undefined;
         if (requestContext.getHeaders()) {
             expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
         }
-        requestContext.setUrl('foo.com')
+        requestContext.setUrl('https://www.foo.com');
         //opts.headers.Host = 'foo.com';
         await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
-        });
+    });
 
     it('should populate from auth provider without expirty', async () => {
         const config = new KubeConfig();
@@ -84,8 +84,8 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
-        
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
+
         await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()).to.not.be.undefined;
         if (requestContext.getHeaders()) {
@@ -107,12 +107,12 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
         await config.applySecurityAuthentication(requestContext);
-        
+
         // @ts-ignore
-        const agent: Agent = requestContext.getAgent()
+        const agent: Agent = requestContext.getAgent();
         expect(agent.options.rejectUnauthorized).to.equal(false);
     });
 
@@ -132,7 +132,7 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
         await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()['rejectUnauthorized']).to.equal(undefined);
@@ -151,9 +151,11 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
-        return expect(config.applySecurityAuthentication(requestContext)).to.eventually.be.rejectedWith('Token is expired!');
+        return expect(config.applySecurityAuthentication(requestContext)).to.eventually.be.rejectedWith(
+            'Token is expired!',
+        );
     });
 
     it('should throw with bad command', () => {
@@ -171,8 +173,10 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
-        return expect(config.applySecurityAuthentication(requestContext)).to.eventually.be.rejectedWith(/Failed to refresh token/);
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
+        return expect(config.applySecurityAuthentication(requestContext)).to.eventually.be.rejectedWith(
+            /Failed to refresh token/,
+        );
     });
 
     it('should exec with expired token', async () => {
@@ -198,7 +202,7 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
         await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()).to.not.be.undefined;
         if (requestContext.getHeaders()) {
@@ -227,7 +231,7 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
         await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()).to.not.be.undefined;
         if (requestContext.getHeaders()) {
@@ -256,7 +260,7 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
         await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()).to.not.be.undefined;
         if (requestContext.getHeaders()) {
@@ -285,7 +289,7 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
         await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()).to.not.be.undefined;
         if (requestContext.getHeaders()) {
