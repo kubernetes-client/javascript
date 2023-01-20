@@ -44,7 +44,8 @@ export function makeInformer<T extends KubernetesObject>(
     path: string,
     listPromiseFn: ListPromise<T>,
     labelSelector?: string,
+    fieldSelector?: string,
 ): Informer<T> & ObjectCache<T> {
     const watch = new Watch(kubeconfig);
-    return new ListWatch<T>(path, watch, listPromiseFn, false, labelSelector);
+    return new ListWatch<T>(path, watch, listPromiseFn, false, labelSelector, fieldSelector);
 }

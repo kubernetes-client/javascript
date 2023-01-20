@@ -38,6 +38,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         private readonly listFn: ListPromise<T>,
         autoStart: boolean = true,
         private readonly labelSelector?: string,
+        private readonly fieldSelector?: string,
     ) {
         this.callbackCache[ADD] = [];
         this.callbackCache[UPDATE] = [];
@@ -169,9 +170,13 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         } as {
             resourceVersion: string | undefined;
             labelSelector: string | undefined;
+            fieldSelector: string | undefined;
         };
         if (this.labelSelector !== undefined) {
             queryParams.labelSelector = ObjectSerializer.serialize(this.labelSelector, 'string');
+        }
+        if (this.fieldSelector !== undefined) {
+            queryParams.fieldSelector = ObjectSerializer.serialize(this.fieldSelector, 'string');
         }
         this.request = await this.watch.watch(
             this.path,
