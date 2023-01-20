@@ -1438,6 +1438,57 @@ describe('ListWatchCache', () => {
         expect(reqOpts.qs.labelSelector).to.equal(APP_LABEL_SELECTOR);
     });
 
+    it('should send field selector', async () => {
+        const APP_FIELD_SELECTOR = 'metadata.name=name1';
+
+        const list: V1Namespace[] = [
+            {
+                metadata: {
+                    name: 'name1',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+            {
+                metadata: {
+                    name: 'name2',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+        ];
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
+            response: http.IncomingMessage;
+            body: V1NamespaceList;
+        }> {
+            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
+                (resolve, reject) => {
+                    resolve({ response: {} as http.IncomingMessage, body: listObj });
+                },
+            );
+        };
+
+        const kc = new KubeConfig();
+        Object.assign(kc, fakeConfig);
+        const fakeRequestor = mock.mock(DefaultRequest);
+        const watch = new Watch(kc, mock.instance(fakeRequestor));
+
+        const fakeRequest = new FakeRequest();
+        mock.when(fakeRequestor.webRequest(mock.anything())).thenReturn(fakeRequest);
+
+        const informer = new ListWatch('/some/path', watch, listFn, false, undefined, APP_FIELD_SELECTOR);
+
+        await informer.start();
+
+        mock.verify(fakeRequestor.webRequest(mock.anything()));
+        const [opts] = mock.capture(fakeRequestor.webRequest).last();
+        const reqOpts: request.OptionsWithUri = opts as request.OptionsWithUri;
+        expect(reqOpts.qs.fieldSelector).to.equal(APP_FIELD_SELECTOR);
+    });
+
     it('should ignore request errors after it is aborted', async () => {
         const fakeWatch = mock.mock(Watch);
         const list: V1Pod[] = [];
