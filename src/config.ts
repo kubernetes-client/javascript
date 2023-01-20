@@ -406,7 +406,7 @@ export class KubeConfig implements SecurityAuthentication {
         );
     }
 
-    public makeApiClient<T extends BaseAPIRequestFactory>(apiClientType: ApiConstructor<T>): T {
+    public makeApiClient<T>(apiClientType: ApiConstructor<T>): T {
         const cluster = this.getCurrentCluster();
         if (!cluster) {
             throw new Error('No active cluster!');
@@ -510,7 +510,7 @@ export class KubeConfig implements SecurityAuthentication {
     }
 }
 
-type ApiConstructor<T extends BaseAPIRequestFactory> = new (config: Configuration) => T;
+type ApiConstructor<T> = new (config: Configuration) => T;
 
 export function makeAbsolutePath(root: string, file: string): string {
     if (!root || path.isAbsolute(file)) {
