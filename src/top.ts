@@ -16,7 +16,7 @@ export class ResourceUsage {
         public readonly Capacity: number | BigInt,
         public readonly RequestTotal: number | BigInt,
         public readonly LimitTotal: number | BigInt,
-    ) { }
+    ) {}
 }
 
 export class CurrentResourceUsage {
@@ -24,7 +24,7 @@ export class CurrentResourceUsage {
         public readonly CurrentUsage: number | BigInt,
         public readonly RequestTotal: number | BigInt,
         public readonly LimitTotal: number | BigInt,
-    ) { }
+    ) {}
 }
 
 export class NodeStatus {
@@ -32,7 +32,7 @@ export class NodeStatus {
         public readonly Node: V1Node,
         public readonly CPU: ResourceUsage,
         public readonly Memory: ResourceUsage,
-    ) { }
+    ) {}
 }
 
 export class ContainerStatus {
@@ -40,7 +40,7 @@ export class ContainerStatus {
         public readonly Container: string,
         public readonly CPUUsage: CurrentResourceUsage,
         public readonly MemoryUsage: CurrentResourceUsage,
-    ) { }
+    ) {}
 }
 
 export class PodStatus {
@@ -49,7 +49,7 @@ export class PodStatus {
         public readonly CPU: CurrentResourceUsage,
         public readonly Memory: CurrentResourceUsage,
         public readonly Containers: ContainerStatus[],
-    ) { }
+    ) {}
 }
 
 export async function topNodes(api: CoreV1Api): Promise<NodeStatus[]> {
@@ -87,9 +87,9 @@ export async function topPods(api: CoreV1Api, metrics: Metrics, namespace?: stri
     // Figure out which pod list endpoint to call
     const getPodList = async (): Promise<V1PodList> => {
         if (namespace) {
-            return (await api.listNamespacedPod({ namespace }));
+            return await api.listNamespacedPod({ namespace });
         }
-        return (await api.listPodForAllNamespaces());
+        return await api.listPodForAllNamespaces();
     };
 
     const [podMetrics, podList] = await Promise.all([metrics.getPodMetrics(namespace), getPodList()]);

@@ -1,4 +1,3 @@
-import { ObjectSerializer } from './util';
 import {
     ADD,
     CHANGE,
@@ -12,6 +11,7 @@ import {
     UPDATE,
 } from './informer';
 import { KubernetesObject } from './types';
+import { ObjectSerializer } from './util';
 import { RequestResult, Watch } from './watch';
 
 export interface ObjectCache<T> {

@@ -1,11 +1,11 @@
+import { RequestOptions } from 'https';
+import fetch from 'node-fetch';
 import request = require('request');
 import { Writable } from 'stream';
-import { KubeConfig } from './config';
-import { ApiException } from './api';
-import { RequestOptions } from 'https';
-import { V1Status } from './gen';
-import fetch from 'node-fetch'
 import { URL, URLSearchParams } from 'url';
+import { ApiException } from './api';
+import { KubeConfig } from './config';
+import { V1Status } from './gen';
 export interface LogOptions {
     /**
      * Follow the log stream of the pod. Defaults to false.
@@ -47,24 +47,33 @@ export interface LogOptions {
     timestamps?: boolean;
 }
 
-export function AddOptionsToSearchParams(options: LogOptions | undefined, searchParams: URLSearchParams) {
+export function AddOptionsToSearchParams(
+    options: LogOptions | undefined,
+    searchParams: URLSearchParams,
+): URLSearchParams {
     if (!options) {
-        return
+        return searchParams;
     }
-    searchParams.append('follow', options?.follow?.toString() || 'false');
-    if (options?.limitBytes) {
+    if (options.follow) {
+        searchParams.append('follow', options.follow.toString() || 'false');
+        searchParams.set('pretty', options.follow.toString() || 'false');
+    }
+    if (options.limitBytes) {
         searchParams.set('limitBytes', options.limitBytes.toString());
     }
-    searchParams.set('pretty', options?.follow?.toString() || 'false');
-    searchParams.set('previous', options?.previous?.toString() || 'false');
-    if (options?.sinceSeconds) {
-        searchParams.set('sinceSeconds', options?.sinceSeconds?.toString() || 'false');
+    if (options.previous) {
+        searchParams.set('previous', options.previous.toString() || 'false');
     }
-    if (options?.tailLines) {
-        searchParams.set('tailLines', options?.tailLines?.toString() || 'false');
+    if (options.sinceSeconds) {
+        searchParams.set('sinceSeconds', options.sinceSeconds.toString() || 'false');
     }
-    searchParams.set('timestamps', options?.timestamps?.toString() || 'false');
-    return searchParams
+    if (options.tailLines) {
+        searchParams.set('tailLines', options.tailLines.toString() || 'false');
+    }
+    if (options.timestamps) {
+        searchParams.set('timestamps', options.timestamps.toString() || 'false');
+    }
+    return searchParams;
 }
 
 export class Log {
@@ -117,28 +126,40 @@ export class Log {
 
         const requestURL = new URL(cluster.server + path);
 
-        var searchParams = requestURL.searchParams;
+        const searchParams = requestURL.searchParams;
         AddOptionsToSearchParams(options, searchParams);
 
         await this.config.applytoHTTPSOptions(requestOptions);
 
         const req = await fetch(requestURL.toString(), requestOptions)
-            .then(response => {
+            .then((response) => {
                 const status = response.status;
                 if (status === 200) {
-                    response.body.pipe(stream) // TODO: the follow search param still has the stream close prematurely based on my testing
+                    // TODO: the follow search param still has the stream close prematurely based on my testing
+                    response.body.pipe(stream);
                 } else if (status === 500) {
                     const v1status = response.body as V1Status;
                     const v1code = v1status.code;
                     const v1message = v1status.message;
                     if (v1code !== undefined && v1message !== undefined) {
-                        throw new ApiException<undefined | V1Status>(v1code, v1message, v1status, response.headers.raw())
+                        throw new ApiException<undefined | V1Status>(
+                            v1code,
+                            v1message,
+                            v1status,
+                            response.headers.raw(),
+                        );
                     }
                 } else {
-                    throw new ApiException<undefined>(status, "Error occurred in log request", undefined, response.headers.raw())
+                    throw new ApiException<undefined>(
+                        status,
+                        'Error occurred in log request',
+                        undefined,
+                        response.headers.raw(),
+                    );
                 }
-            }).catch((err) => {
-                throw new ApiException<undefined>(err, "Error occurred in log request", undefined, err)
+            })
+            .catch((err) => {
+                throw new ApiException<undefined>(err, 'Error occurred in log request', undefined, err);
             });
         return req;
     }

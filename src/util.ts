@@ -97,7 +97,7 @@ export class ResourceStatus {
         public readonly request: bigint | number,
         public readonly limit: bigint | number,
         public readonly resourceType: string,
-    ) { }
+    ) {}
 }
 
 export function totalCPUForContainer(container: V1Container): ResourceStatus {

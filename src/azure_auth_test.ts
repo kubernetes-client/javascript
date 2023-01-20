@@ -12,7 +12,6 @@ import { HttpMethod, RequestContext } from '.';
 use(chaiAsPromised);
 
 describe('AzureAuth', () => {
-
     const testUrl1 = 'https://test1.com';
     var auth: AzureAuth;
     beforeEach(() => {
@@ -60,14 +59,14 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
-        await config.applySecurityAuthentication(requestContext)
+        await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()).to.not.be.undefined;
         expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
 
         requestContext.setHeaderParam('Host', 'foo.com');
-        await config.applySecurityAuthentication(requestContext)
+        await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders().Authorization).to.equal(`Bearer ${token}`);
     });
 
@@ -85,9 +84,9 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
-        await config.applySecurityAuthentication(requestContext)
+        await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()).to.not.be.undefined;
         expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
     });
@@ -106,9 +105,9 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
-        await config.applySecurityAuthentication(requestContext)
+        await config.applySecurityAuthentication(requestContext);
         // @ts-ignore
         expect(requestContext.getAgent().options.rejectUnauthorized).to.equal(false);
     });
@@ -129,9 +128,9 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
-        await config.applySecurityAuthentication(requestContext)
+        await config.applySecurityAuthentication(requestContext);
         // @ts-ignore
         expect(requestContext.getAgent().options.rejectUnauthorized).to.equal(undefined);
     });
@@ -149,9 +148,11 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
-        return expect(config.applySecurityAuthentication(requestContext)).to.eventually.be.rejectedWith('Token is expired!');
+        return expect(config.applySecurityAuthentication(requestContext)).to.eventually.be.rejectedWith(
+            'Token is expired!',
+        );
     });
 
     it('should throw with bad command', () => {
@@ -169,9 +170,11 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
-        return expect(config.applySecurityAuthentication(requestContext)).to.eventually.be.rejectedWith(/Failed to refresh token/);
+        return expect(config.applySecurityAuthentication(requestContext)).to.eventually.be.rejectedWith(
+            /Failed to refresh token/,
+        );
     });
 
     it('should exec when no cmd and token is not expired', async () => {
@@ -189,7 +192,7 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
         await config.applySecurityAuthentication(requestContext);
     });
 
@@ -217,8 +220,8 @@ describe('AzureAuth', () => {
             } as User,
         );
 
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
-        await config.applySecurityAuthentication(requestContext)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
+        await config.applySecurityAuthentication(requestContext);
 
         expect(requestContext.getHeaders()).to.not.be.undefined;
         expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
@@ -245,8 +248,8 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
-        await config.applySecurityAuthentication(requestContext)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
+        await config.applySecurityAuthentication(requestContext);
 
         expect(requestContext.getHeaders()).to.not.be.undefined;
         expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
@@ -273,8 +276,8 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
-        await config.applySecurityAuthentication(requestContext)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
+        await config.applySecurityAuthentication(requestContext);
 
         expect(requestContext.getHeaders()).to.not.be.undefined;
         expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
@@ -301,8 +304,8 @@ describe('AzureAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
-        await config.applySecurityAuthentication(requestContext)
+        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
+        await config.applySecurityAuthentication(requestContext);
 
         expect(requestContext.getHeaders()).to.not.be.undefined;
         expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
