@@ -14,13 +14,12 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '16'
+          registry-url: 'https://registry.npmjs.org'
       - name: Install dependencies
         run: npm install
       - name: Package
         run: ./build-package.sh
       - name: Upload
-        run: ./push-package.sh
+        run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-          confirm: "y"
-          SKIP_TAG: "y"
