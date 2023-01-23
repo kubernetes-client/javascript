@@ -51,18 +51,30 @@ export function AddOptionsToSearchParams(
     options: LogOptions | undefined,
     searchParams: URLSearchParams,
 ): URLSearchParams {
+    if (!searchParams.has('follow')) {
+        searchParams.set('follow', 'false');
+    }
+    if (!searchParams.has('pretty')) {
+        searchParams.set('pretty', 'false');
+    }
+    if (!searchParams.has('previous')) {
+        searchParams.set('previous', 'false');
+    }
+    if (!searchParams.has('timestamps')) {
+        searchParams.set('timestamps', 'false');
+    }
     if (!options) {
         return searchParams;
     }
     if (options.follow) {
-        searchParams.append('follow', options.follow.toString() || 'false');
+        searchParams.set('follow', options.follow.toString() || 'false');
         searchParams.set('pretty', options.follow.toString() || 'false');
     }
     if (options.limitBytes) {
         searchParams.set('limitBytes', options.limitBytes.toString());
     }
     if (options.previous) {
-        searchParams.set('previous', options.previous.toString() || 'false');
+        searchParams.set('previous', options.previous.toString());
     }
     if (options.sinceSeconds) {
         searchParams.set('sinceSeconds', options.sinceSeconds.toString() || 'false');
