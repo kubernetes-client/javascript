@@ -252,7 +252,8 @@ export function addOrUpdateObject<T extends KubernetesObject>(
         }
     } else {
         if (!isSameVersion(objects[ix], obj)) {
-            objects[ix] = obj;
+            const numItemsToRemove = 1;
+            objects = objects.splice(ix, numItemsToRemove, obj);
             if (updateCallback) {
                 updateCallback.forEach((elt: ObjectCallback<T>) => elt(obj));
             }
