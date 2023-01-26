@@ -1,8 +1,5 @@
-import request = require('request');
-
 import { KubeConfig } from './config';
-import { HttpException, ApiException, V1Status } from './gen';
-import { ObjectSerializer } from './util';
+import { ApiException, V1Status } from './gen';
 import fetch from 'node-fetch'
 import { RequestOptions } from 'https';
 

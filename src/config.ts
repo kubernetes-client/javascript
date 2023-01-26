@@ -28,13 +28,9 @@ import { FileAuth } from './file_auth';
 import { GoogleCloudPlatformAuth } from './gcp_auth';
 import { OpenIDConnectAuth } from './oidc_auth';
 import {
-    AuthMethods,
     AuthMethodsConfiguration,
-    BaseServerConfiguration,
     Configuration,
-    configureAuthMethods,
     createConfiguration,
-    RequestContext,
     SecurityAuthentication,
     ServerConfiguration
 } from './gen';
@@ -169,8 +165,8 @@ export class KubeConfig implements SecurityAuthentication{
     }
 
     /**
-    * Applies SecurityAuthentication to RequestContext of an API Call from API Client 
-    * @param context 
+    * Applies SecurityAuthentication to RequestContext of an API Call from API Client
+    * @param context
     */
     async applySecurityAuthentication(context: api.RequestContext): Promise<void> {
         const cluster = this.getCurrentCluster();

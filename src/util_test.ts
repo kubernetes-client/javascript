@@ -1,4 +1,4 @@
-import { expect, should } from 'chai';
+import { expect } from 'chai';
 import { CoreV1Api, V1Container, V1Pod } from './api';
 import { findSuffix, podsForNode, quantityToScalar, totalCPU, totalMemory } from './util';
 

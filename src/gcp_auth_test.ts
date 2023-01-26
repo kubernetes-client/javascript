@@ -1,12 +1,10 @@
 import { expect } from 'chai';
-import * as requestlib from 'request';
 import { join } from 'path';
 
 import { User, Cluster } from './config_types';
 import { GoogleCloudPlatformAuth } from './gcp_auth';
 import { KubeConfig } from './config';
 import { HttpMethod, RequestContext } from './gen';
-import { Http2SecureServer } from 'http2';
 import { Agent } from 'https';
 
 describe('GoogleCloudPlatformAuth', () => {
@@ -85,7 +83,7 @@ describe('GoogleCloudPlatformAuth', () => {
             } as User,
         );
         let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
-        
+
         await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()).to.not.be.undefined;
         if (requestContext.getHeaders()) {
@@ -110,7 +108,7 @@ describe('GoogleCloudPlatformAuth', () => {
         let requestContext = new RequestContext(testUrl1, HttpMethod.GET)
 
         await config.applySecurityAuthentication(requestContext);
-        
+
         // @ts-ignore
         const agent: Agent = requestContext.getAgent()
         expect(agent.options.rejectUnauthorized).to.equal(false);
