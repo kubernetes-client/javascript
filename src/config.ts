@@ -32,7 +32,7 @@ import {
     Configuration,
     createConfiguration,
     SecurityAuthentication,
-    ServerConfiguration
+    ServerConfiguration,
 } from './gen';
 
 const SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
