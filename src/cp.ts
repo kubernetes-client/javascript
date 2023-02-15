@@ -78,7 +78,7 @@ export class Cp {
         );
         const readStream = fs.createReadStream(tmpFileName);
         const errStream = new WritableStreamBuffer();
-        this.execInstance.exec(
+        const conn = await this.execInstance.exec(
             namespace,
             podName,
             containerName,
@@ -93,5 +93,10 @@ export class Cp {
                 }
             },
         );
+        return new Promise((resolve) => {
+            conn.addEventListener('close', (event) => {
+                resolve();
+            });
+        });
     }
 }
