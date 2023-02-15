@@ -33,5 +33,5 @@ describe('Log', () => {
             expect(searchParams.get('previous')).to.equal('false');
             expect(searchParams.get('timestamps')).to.equal('false');
         });
-    })
+    });
 });

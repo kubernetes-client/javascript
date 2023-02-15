@@ -151,7 +151,7 @@ describe('Metrics', () => {
                 await metricsClient.getPodMetrics();
                 fail('expected thrown error');
             } catch (e) {
-                expect(e instanceof ApiException)
+                expect(e instanceof ApiException);
                 if (e instanceof ApiException) {
                     expect(e.message).to.include('connect ECONNREFUSED 127.0.0.1:51011');
                 }
@@ -168,7 +168,7 @@ describe('Metrics', () => {
                 await metricsClient.getPodMetrics();
                 fail('expected thrown error');
             } catch (e) {
-                expect(e instanceof ApiException)
+                expect(e instanceof ApiException);
                 if (e instanceof ApiException) {
                     expect(e.message).to.equal('No currently active cluster');
                 }

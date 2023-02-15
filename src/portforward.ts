@@ -43,28 +43,24 @@ export class PortForward {
         });
         const path = `/api/v1/namespaces/${namespace}/pods/${podName}/portforward?${queryStr}`;
         const createWebSocket = (): Promise<WebSocket> => {
-            return this.handler.connect(
-                path,
-                null,
-                (streamNum: number, buff: Buffer | string): boolean => {
-                    if (streamNum >= targetPorts.length * 2) {
-                        return !this.disconnectOnErr;
+            return this.handler.connect(path, null, (streamNum: number, buff: Buffer | string): boolean => {
+                if (streamNum >= targetPorts.length * 2) {
+                    return !this.disconnectOnErr;
+                }
+                // First two bytes of each stream are the port number
+                if (needsToReadPortNumber[streamNum]) {
+                    buff = buff.slice(2);
+                    needsToReadPortNumber[streamNum] = false;
+                }
+                if (streamNum % 2 === 1) {
+                    if (err) {
+                        err.write(buff);
                     }
-                    // First two bytes of each stream are the port number
-                    if (needsToReadPortNumber[streamNum]) {
-                        buff = buff.slice(2);
-                        needsToReadPortNumber[streamNum] = false;
-                    }
-                    if (streamNum % 2 === 1) {
-                        if (err) {
-                            err.write(buff);
-                        }
-                    } else {
-                        output.write(buff);
-                    }
-                    return true;
-                },
-            );
+                } else {
+                    output.write(buff);
+                }
+                return true;
+            });
         };
 
         if (retryCount < 1) {

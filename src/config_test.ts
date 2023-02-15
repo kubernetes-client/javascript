@@ -3,8 +3,8 @@ import * as https from 'https';
 import { join } from 'path';
 import { RequestOptions } from 'https';
 
-import { expect,use } from 'chai';
-import chaiAsPromised from 'chai-as-promised'
+import { expect, use } from 'chai';
+import chaiAsPromised from 'chai-as-promised';
 import mockfs = require('mock-fs');
 import * as path from 'path';
 
@@ -25,10 +25,10 @@ const kcNoUserFileName = 'testdata/empty-user-kubeconfig.yaml';
 const kcInvalidContextFileName = 'testdata/empty-context-kubeconfig.yaml';
 const kcInvalidClusterFileName = 'testdata/empty-cluster-kubeconfig.yaml';
 
-use(chaiAsPromised)
+use(chaiAsPromised);
 
 /* tslint:disable: no-empty */
-describe('Config', () => { });
+describe('Config', () => {});
 
 function validateFileLoad(kc: KubeConfig) {
     // check clusters
@@ -265,7 +265,7 @@ describe('KubeConfig', () => {
             const rc = new RequestContext(testServerName1, HttpMethod.GET);
             await kc.applySecurityAuthentication(rc);
             await kc.applytoHTTPSOptions(opts);
-            const expectedCA = Buffer.from('CADATA2', 'utf-8')
+            const expectedCA = Buffer.from('CADATA2', 'utf-8');
             const expectedAgent = new https.Agent({
                 ca: expectedCA,
                 cert: undefined,
@@ -273,16 +273,16 @@ describe('KubeConfig', () => {
                 passphrase: undefined,
                 pfx: undefined,
                 rejectUnauthorized: false,
-            })
+            });
             let expectedOptions: https.RequestOptions = {
                 auth: 'foo:bar',
                 headers: {},
                 rejectUnauthorized: false,
                 servername: 'https://company.com',
                 agent: expectedAgent,
-            }
+            };
 
-            assertRequestOptionsEqual(opts,expectedOptions)
+            assertRequestOptionsEqual(opts, expectedOptions);
         });
     });
 
@@ -747,7 +747,7 @@ describe('KubeConfig', () => {
             if (opts.headers) {
                 expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
             }
-            opts.headers = {}
+            opts.headers = {};
             opts.headers.Host = 'foo.com';
             await config.applytoHTTPSOptions(opts);
             expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
@@ -833,7 +833,9 @@ describe('KubeConfig', () => {
             );
             const opts = {} as RequestOptions;
 
-            return expect(config.applytoHTTPSOptions(opts)).to.eventually.be.rejectedWith('Token is expired!');
+            return expect(config.applytoHTTPSOptions(opts)).to.eventually.be.rejectedWith(
+                'Token is expired!',
+            );
         });
 
         it('should throw with bad command', () => {

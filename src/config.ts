@@ -26,14 +26,14 @@ import {
 import { ExecAuth } from './exec_auth';
 import { FileAuth } from './file_auth';
 import { GoogleCloudPlatformAuth } from './gcp_auth';
-import { OpenIDConnectAuth } from './oidc_auth';
 import {
     AuthMethodsConfiguration,
     Configuration,
     createConfiguration,
     SecurityAuthentication,
-    ServerConfiguration
+    ServerConfiguration,
 } from './gen';
+import { OpenIDConnectAuth } from './oidc_auth';
 
 const SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
 const SERVICEACCOUNT_CA_PATH: string = SERVICEACCOUNT_ROOT + '/ca.crt';
@@ -50,7 +50,12 @@ function fileExists(filepath: string): boolean {
     }
 }
 
-export class KubeConfig implements SecurityAuthentication{
+// TODO: the empty interface breaks the linter, but this type
+// will be needed later to get the object and cache features working again
+// tslint:disable-next-line:no-empty-interface
+export interface ApiType {}
+
+export class KubeConfig implements SecurityAuthentication {
     private static authenticators: Authenticator[] = [
         new AzureAuth(),
         new GoogleCloudPlatformAuth(),
@@ -165,10 +170,10 @@ export class KubeConfig implements SecurityAuthentication{
     }
 
     /**
-    * Applies SecurityAuthentication to RequestContext of an API Call from API Client
-    * @param context
-    */
-    async applySecurityAuthentication(context: api.RequestContext): Promise<void> {
+     * Applies SecurityAuthentication to RequestContext of an API Call from API Client
+     * @param context
+     */
+    public async applySecurityAuthentication(context: api.RequestContext): Promise<void> {
         const cluster = this.getCurrentCluster();
         const user = this.getCurrentUser();
 
@@ -183,14 +188,14 @@ export class KubeConfig implements SecurityAuthentication{
 
         if (user && user.username) {
             const auth = Buffer.from(`${user.username}:${user.password}`).toString('base64');
-            context.setHeaderParam(`Authorization`,`Basic ${auth}`)
+            context.setHeaderParam('Authorization', `Basic ${auth}`);
         }
 
         // Copy headers from httpsOptions to RequestContext
         const headers = httpsOptions.headers || {};
         Object.entries(headers).forEach(([key, value]) => {
             context.setHeaderParam(key, `${value}`);
-        })
+        });
 
         // Copy AgentOptions from RequestOptions
         agentOptions.ca = httpsOptions.ca;
@@ -407,13 +412,13 @@ export class KubeConfig implements SecurityAuthentication{
             throw new Error('No active cluster!');
         }
         const authConfig: AuthMethodsConfiguration = {
-            default: this
-        }
+            default: this,
+        };
         const baseServerConfig: ServerConfiguration<{}> = new ServerConfiguration<{}>(cluster.server, {});
         const config: Configuration = createConfiguration({
             baseServer: baseServerConfig,
-            authMethods: authConfig
-        })
+            authMethods: authConfig,
+        });
 
         const apiClient = new apiClientType(config);
 
@@ -505,8 +510,6 @@ export class KubeConfig implements SecurityAuthentication{
     }
 }
 
-export interface ApiType { }
-
 type ApiConstructor<T extends ApiType> = new (config: Configuration) => T;
 
 export function makeAbsolutePath(root: string, file: string): string {
@@ -528,18 +531,15 @@ export function bufferFromFileOrString(file?: string, data?: string): Buffer | n
 }
 
 function dropDuplicatesAndNils(a: string[]): string[] {
-    return a.reduce(
-        (acceptedValues, currentValue) => {
-            // Good-enough algorithm for reducing a small (3 items at this point) array into an ordered list
-            // of unique non-empty strings.
-            if (currentValue && !acceptedValues.includes(currentValue)) {
-                return acceptedValues.concat(currentValue);
-            } else {
-                return acceptedValues;
-            }
-        },
-        [] as string[],
-    );
+    return a.reduce((acceptedValues, currentValue) => {
+        // Good-enough algorithm for reducing a small (3 items at this point) array into an ordered list
+        // of unique non-empty strings.
+        if (currentValue && !acceptedValues.includes(currentValue)) {
+            return acceptedValues.concat(currentValue);
+        } else {
+            return acceptedValues;
+        }
+    }, [] as string[]);
 }
 
 // Only public for testing.
@@ -550,7 +550,7 @@ export function findHomeDir(): string | null {
                 fs.accessSync(process.env.HOME);
                 return process.env.HOME;
                 // tslint:disable-next-line:no-empty
-            } catch (ignore) { }
+            } catch (ignore) {}
         }
         return null;
     }
@@ -570,7 +570,7 @@ export function findHomeDir(): string | null {
             fs.accessSync(path.join(dir, '.kube', 'config'));
             return dir;
             // tslint:disable-next-line:no-empty
-        } catch (ignore) { }
+        } catch (ignore) {}
     }
     // 2. ...the first of %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that exists and is writeable is returned
     for (const dir of favourUserProfileList) {
@@ -578,7 +578,7 @@ export function findHomeDir(): string | null {
             fs.accessSync(dir, fs.constants.W_OK);
             return dir;
             // tslint:disable-next-line:no-empty
-        } catch (ignore) { }
+        } catch (ignore) {}
     }
     // 3. ...the first of %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that exists is returned.
     for (const dir of favourUserProfileList) {
@@ -586,7 +586,7 @@ export function findHomeDir(): string | null {
             fs.accessSync(dir);
             return dir;
             // tslint:disable-next-line:no-empty
-        } catch (ignore) { }
+        } catch (ignore) {}
     }
     // 4. if none of those locations exists, the first of
     // %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that is set is returned.

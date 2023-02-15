@@ -3,7 +3,7 @@ import nock = require('nock');
 import { KubeConfig } from './config';
 import { Metrics, PodMetricsList } from './metrics';
 import { topPods } from './top';
-import { CoreV1Api,V1Pod } from './api';
+import { CoreV1Api, V1Pod } from './api';
 
 const emptyPodMetrics: PodMetricsList = {
     kind: 'PodMetricsList',

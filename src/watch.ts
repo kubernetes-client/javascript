@@ -1,10 +1,10 @@
+import AbortController from 'abort-controller';
 import byline = require('byline');
 import { RequestOptions } from 'https';
-import request = require('request');
 import fetch from 'node-fetch';
-import { URL } from 'url';
-import AbortController from 'abort-controller';
+import request = require('request');
 import { Duplex } from 'stream';
+import { URL } from 'url';
 import { KubeConfig } from './config';
 
 export interface WatchUpdate {
@@ -93,7 +93,7 @@ export class Watch {
         const watchURL = new URL(cluster.server + path);
         watchURL.searchParams.set('watch', 'true');
 
-        const httpsOptions: RequestOptions = {}
+        const httpsOptions: RequestOptions = {};
         // TODO: fix applytoHTTPSOptions for watch
         await this.config.applytoHTTPSOptions(httpsOptions);
 
@@ -122,9 +122,10 @@ export class Watch {
         });
 
         const req = await fetch(watchURL, httpsOptions)
-            .then(response => {
-                response.body.pipe(stream)
-            }).catch(doneCallOnce);
+            .then((response) => {
+                response.body.pipe(stream);
+            })
+            .catch(doneCallOnce);
         return req;
     }
 }
