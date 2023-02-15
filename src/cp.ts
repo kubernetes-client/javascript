@@ -59,6 +59,7 @@ export class Cp {
      * @param {string} containerName - The name of the container in the pod to exec the command inside.
      * @param {string} srcPath - The source path in local
      * @param {string} tgtPath - The target path in the pod
+     * @param {string} cwd - The directory that is used as the parent when uploading
      */
     public async cpToPod(
         namespace: string,
@@ -66,6 +67,7 @@ export class Cp {
         containerName: string,
         srcPath: string,
         tgtPath: string,
+        cwd?: string,
     ): Promise<void> {
         const tmpFile = tmp.fileSync();
         const tmpFileName = tmpFile.name;
@@ -73,6 +75,7 @@ export class Cp {
         await tar.c(
             {
                 file: tmpFile.name,
+                cwd,
             },
             [srcPath],
         );
