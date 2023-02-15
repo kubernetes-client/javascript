@@ -31,7 +31,7 @@ export class Cp {
         const command = ['tar', 'zcf', '-', srcPath];
         const writerStream = fs.createWriteStream(tmpFileName);
         const errStream = new WritableStreamBuffer();
-        this.execInstance.exec(
+        const conn = await this.execInstance.exec(
             namespace,
             podName,
             containerName,
@@ -45,12 +45,18 @@ export class Cp {
                 if (status === 'Failure' || errStream.size()) {
                     throw new Error(`Error from cpFromPod - details: \n ${errStream.getContentsAsString()}`);
                 }
-                await tar.x({
-                    file: tmpFileName,
-                    cwd: tgtPath,
-                });
             },
         );
+        return await new Promise((resolve) => {
+            conn.addEventListener('close', (event) => {
+                resolve(
+                    tar.x({
+                        file: tmpFileName,
+                        cwd: tgtPath,
+                    }),
+                );
+            });
+        });
     }
 
     /**
