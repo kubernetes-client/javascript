@@ -17,8 +17,9 @@ export interface PodMetric {
     metadata: {
         name: string;
         namespace: string;
-        selfLink: string;
+        selfLink?: string;
         creationTimestamp: string;
+        labels?: { [key: string]: string };
     };
     timestamp: string;
     window: string;
@@ -28,7 +29,7 @@ export interface PodMetric {
 export interface NodeMetric {
     metadata: {
         name: string;
-        selfLink: string;
+        selfLink?: string;
         creationTimestamp: string;
     };
     timestamp: string;
@@ -54,18 +55,9 @@ export interface NodeMetricsList {
     items: NodeMetric[];
 }
 
-export interface SinglePodMetrics {
+export interface SinglePodMetrics extends PodMetric {
     kind: 'PodMetrics';
     apiVersion: 'metrics.k8s.io/v1beta1';
-    metadata: {
-        name: string;
-        namespace: string;
-        creationTimestamp: string;
-        labels: { [key: string]: string };
-    };
-    timestamp: string;
-    window: string;
-    containers: ContainerMetric[];
 }
 
 export class Metrics {
