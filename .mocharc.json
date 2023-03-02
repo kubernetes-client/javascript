@@ -1,0 +1,11 @@
+{
+  // Specify "require" for CommonJS
+  "require": "ts-node/register",
+  "extensions": ["ts"],
+  "spec": [
+    "src/**/*_test.ts"
+  ],
+  "watch-files": [
+    "src"
+  ]
+}
