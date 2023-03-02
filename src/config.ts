@@ -180,7 +180,12 @@ export class KubeConfig {
         this.currentContext = obj['current-context'];
     }
 
-    public loadFromOptions(options: any): void {
+    public loadFromOptions(options: {
+        clusters: Cluster[];
+        contexts: Context[];
+        currentContext: Context['name'];
+        users: User[];
+    }): void {
         this.clusters = options.clusters;
         this.contexts = options.contexts;
         this.users = options.users;
