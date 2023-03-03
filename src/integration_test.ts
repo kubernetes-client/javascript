@@ -37,13 +37,13 @@ describe('FullRequest', () => {
                 reqheaders: {
                     authorization: `Basic ${auth}`,
                 },
-            }).get('/api/v1/namespaces/default/pods')
+            })
+                .get('/api/v1/namespaces/default/pods')
                 .reply(200, result);
 
-            const promise = k8sApi.listNamespacedPod({namespace:'default'});
+            const promise = k8sApi.listNamespacedPod({ namespace: 'default' });
 
-            return expect(promise)
-                .to.eventually.deep.equals(result);
+            return expect(promise).to.eventually.deep.equals(result);
         });
     });
 });

@@ -49,9 +49,7 @@ describe('Exec', () => {
 
             await exec.exec(namespace, pod, container, cmdArray, null, errStream, isStream, true);
             // tslint:disable-next-line:max-line-length
-            args = `stdout=false&stderr=true&stdin=true&tty=true&command=${cmdArray[0]}&command=${
-                cmdArray[1]
-            }&command=${cmdArray[2]}&container=${container}`;
+            args = `stdout=false&stderr=true&stdin=true&tty=true&command=${cmdArray[0]}&command=${cmdArray[1]}&command=${cmdArray[2]}&container=${container}`;
             verify(fakeWebSocket.connect(`${path}?${args}`, null, anyFunction())).called();
         });
 

@@ -1,10 +1,7 @@
-import request = require('request');
-
-import { KubeConfig } from './config';
-import { HttpException, ApiException, V1Status } from './gen';
-import { ObjectSerializer } from './util';
-import fetch from 'node-fetch'
 import { RequestOptions } from 'https';
+import fetch from 'node-fetch';
+import { KubeConfig } from './config';
+import { ApiException, V1Status } from './gen';
 
 export interface Usage {
     cpu: string;
@@ -95,26 +92,44 @@ export class Metrics {
 
         await this.config.applytoHTTPSOptions(requestOptions);
 
-        return fetch(requestURL, requestOptions).then(response => {
-            return Promise.all([response.json(), response.status, response])
-        }).then(([json, status, response]) => {
-            if (status === 200) {
-                return json as T
-            }
-            if (status === 500) {
-                const v1status = json as V1Status;
-                const v1code = v1status.code;
-                const v1message = v1status.message;
-                if (v1code !== undefined && v1message !== undefined) {
-                    throw new ApiException<undefined | V1Status>(v1code, v1message, v1status, response.headers.raw())
+        return fetch(requestURL, requestOptions)
+            .then((response) => {
+                return Promise.all([response.json(), response.status, response]);
+            })
+            .then(([json, status, response]) => {
+                if (status === 200) {
+                    return json as T;
                 }
-            }
-            throw new ApiException<undefined>(status, "Error occurred in metrics request", undefined, response.headers.raw())
-        }).catch(e => {
-            if (e instanceof ApiException) {
-                throw e;
-            }
-            throw new ApiException<undefined | V1Status>(500, `Error occurred in metrics request: ${e.message}`, {}, {});
-        })
+                if (status === 500) {
+                    const v1status = json as V1Status;
+                    const v1code = v1status.code;
+                    const v1message = v1status.message;
+                    if (v1code !== undefined && v1message !== undefined) {
+                        throw new ApiException<undefined | V1Status>(
+                            v1code,
+                            v1message,
+                            v1status,
+                            response.headers.raw(),
+                        );
+                    }
+                }
+                throw new ApiException<undefined>(
+                    status,
+                    'Error occurred in metrics request',
+                    undefined,
+                    response.headers.raw(),
+                );
+            })
+            .catch((e) => {
+                if (e instanceof ApiException) {
+                    throw e;
+                }
+                throw new ApiException<undefined | V1Status>(
+                    500,
+                    `Error occurred in metrics request: ${e.message}`,
+                    {},
+                    {},
+                );
+            });
     }
 }

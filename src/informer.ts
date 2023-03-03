@@ -24,14 +24,14 @@ export const CONNECT: string = 'connect';
 // This is issued when there is an error
 export const ERROR: string = 'error';
 
-export interface Informer<T> {
+export interface Informer<T extends KubernetesObject> {
     on(verb: string, fn: ObjectCallback<T>): void;
     off(verb: string, fn: ObjectCallback<T>): void;
     start(): Promise<void>;
     stop(): Promise<void>;
 }
 
-export function makeInformer<T>(
+export function makeInformer<T extends KubernetesObject>(
     kubeconfig: KubeConfig,
     path: string,
     listPromiseFn: ListPromise<T>,
