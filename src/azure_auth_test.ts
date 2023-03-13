@@ -1,12 +1,10 @@
 import { use, expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
-import { RequestOptions } from 'https';
 import { join } from 'path';
 
 import { User, Cluster } from './config_types';
 import { AzureAuth } from './azure_auth';
 import { KubeConfig } from './config';
-import { OutgoingHttpHeaders } from 'http2';
 import { HttpMethod, RequestContext } from '.';
 
 use(chaiAsPromised);

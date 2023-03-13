@@ -93,11 +93,9 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     }
 
     public get(name: string, namespace?: string): T | undefined {
-        return this.objects.find(
-            (obj: T): boolean => {
-                return obj.metadata!.name === name && (!namespace || obj.metadata!.namespace === namespace);
-            },
-        );
+        return this.objects.find((obj: T): boolean => {
+            return obj.metadata!.name === name && (!namespace || obj.metadata!.namespace === namespace);
+        });
     }
 
     public list(namespace?: string | undefined): ReadonlyArray<T> {

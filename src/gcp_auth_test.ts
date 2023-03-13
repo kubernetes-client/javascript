@@ -1,12 +1,10 @@
 import { expect } from 'chai';
-import * as requestlib from 'request';
 import { join } from 'path';
 
 import { User, Cluster } from './config_types';
 import { GoogleCloudPlatformAuth } from './gcp_auth';
 import { KubeConfig } from './config';
 import { HttpMethod, RequestContext } from './gen';
-import { Http2SecureServer } from 'http2';
 import { Agent } from 'https';
 
 describe('GoogleCloudPlatformAuth', () => {
@@ -64,7 +62,11 @@ describe('GoogleCloudPlatformAuth', () => {
         if (requestContext.getHeaders()) {
             expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
         }
+<<<<<<< HEAD
         requestContext.setUrl('https://www.foo.com');
+=======
+        requestContext.setUrl('foo.com');
+>>>>>>> release-1.x
         //opts.headers.Host = 'foo.com';
         await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);

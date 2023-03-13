@@ -27,13 +27,9 @@ import { ExecAuth } from './exec_auth';
 import { FileAuth } from './file_auth';
 import { GoogleCloudPlatformAuth } from './gcp_auth';
 import {
-    AuthMethods,
     AuthMethodsConfiguration,
-    BaseServerConfiguration,
     Configuration,
-    configureAuthMethods,
     createConfiguration,
-    RequestContext,
     SecurityAuthentication,
     ServerConfiguration,
 } from './gen';
@@ -54,6 +50,11 @@ function fileExists(filepath: string): boolean {
         return false;
     }
 }
+
+// TODO: the empty interface breaks the linter, but this type
+// will be needed later to get the object and cache features working again
+// tslint:disable-next-line:no-empty-interface
+export interface ApiType {}
 
 export class KubeConfig implements SecurityAuthentication {
     private static authenticators: Authenticator[] = [
@@ -406,7 +407,7 @@ export class KubeConfig implements SecurityAuthentication {
         );
     }
 
-    public makeApiClient<T>(apiClientType: ApiConstructor<T>): T {
+    public makeApiClient<T extends ApiType>(apiClientType: ApiConstructor<T>): T {
         const cluster = this.getCurrentCluster();
         if (!cluster) {
             throw new Error('No active cluster!');
@@ -510,7 +511,7 @@ export class KubeConfig implements SecurityAuthentication {
     }
 }
 
-type ApiConstructor<T> = new (config: Configuration) => T;
+type ApiConstructor<T extends ApiType> = new (config: Configuration) => T;
 
 export function makeAbsolutePath(root: string, file: string): string {
     if (!root || path.isAbsolute(file)) {
@@ -531,18 +532,15 @@ export function bufferFromFileOrString(file?: string, data?: string): Buffer | n
 }
 
 function dropDuplicatesAndNils(a: string[]): string[] {
-    return a.reduce(
-        (acceptedValues, currentValue) => {
-            // Good-enough algorithm for reducing a small (3 items at this point) array into an ordered list
-            // of unique non-empty strings.
-            if (currentValue && !acceptedValues.includes(currentValue)) {
-                return acceptedValues.concat(currentValue);
-            } else {
-                return acceptedValues;
-            }
-        },
-        [] as string[],
-    );
+    return a.reduce((acceptedValues, currentValue) => {
+        // Good-enough algorithm for reducing a small (3 items at this point) array into an ordered list
+        // of unique non-empty strings.
+        if (currentValue && !acceptedValues.includes(currentValue)) {
+            return acceptedValues.concat(currentValue);
+        } else {
+            return acceptedValues;
+        }
+    }, [] as string[]);
 }
 
 // Only public for testing.

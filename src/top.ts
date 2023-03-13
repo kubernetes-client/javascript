@@ -1,10 +1,9 @@
 import { CoreV1Api, V1Node, V1Pod, V1PodList } from './gen';
-import { ContainerMetric, Metrics, PodMetric } from './metrics';
+import { Metrics, PodMetric } from './metrics';
 import {
     add,
     podsForNode,
     quantityToScalar,
-    ResourceStatus,
     totalCPU,
     totalCPUForContainer,
     totalMemory,

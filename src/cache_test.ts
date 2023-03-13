@@ -53,7 +53,7 @@ const fakeConfig: {
 describe('ListWatchCache', () => {
     it('should throw on unknown update', () => {
         const fake = mock.mock(Watch);
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {
@@ -116,7 +116,7 @@ describe('ListWatchCache', () => {
         } as V1NamespaceList;
 
         var calls = 0;
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {
@@ -226,7 +226,7 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {
@@ -286,15 +286,11 @@ describe('ListWatchCache', () => {
         } as V1Namespace);
 
         return Promise.all([
-            expect(addPromise)
-                .to.eventually.have.property('metadata')
-                .that.deep.equals({ name: 'name3' }),
+            expect(addPromise).to.eventually.have.property('metadata').that.deep.equals({ name: 'name3' }),
             expect(updatePromise)
                 .to.eventually.have.property('metadata')
                 .that.deep.equals({ name: 'name3', resourceVersion: 'baz' }),
-            expect(deletePromise)
-                .to.eventually.have.property('metadata')
-                .that.deep.equals({ name: 'name2' }),
+            expect(deletePromise).to.eventually.have.property('metadata').that.deep.equals({ name: 'name2' }),
         ]);
     });
 
@@ -319,7 +315,7 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {
@@ -382,7 +378,7 @@ describe('ListWatchCache', () => {
             items: [],
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {
@@ -423,12 +419,8 @@ describe('ListWatchCache', () => {
         } as V1Namespace);
 
         return Promise.all([
-            expect(addPromise)
-                .to.eventually.have.property('metadata')
-                .that.deep.equals({ name: 'name3' }),
-            expect(addPromise2)
-                .to.eventually.have.property('metadata')
-                .that.deep.equals({ name: 'name3' }),
+            expect(addPromise).to.eventually.have.property('metadata').that.deep.equals({ name: 'name3' }),
+            expect(addPromise2).to.eventually.have.property('metadata').that.deep.equals({ name: 'name3' }),
         ]);
     });
 
@@ -455,7 +447,7 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {
@@ -531,7 +523,7 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {
@@ -611,7 +603,7 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {
@@ -735,7 +727,7 @@ describe('ListWatchCache', () => {
             } as V1ListMeta,
             items: list,
         } as V1NamespaceList;
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {
@@ -751,11 +743,11 @@ describe('ListWatchCache', () => {
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
 
         const addedList1: V1Namespace[] = [];
-        const addToList1Fn = function(obj?: V1Namespace) {
+        const addToList1Fn = function (obj?: V1Namespace) {
             addedList1.push(obj!);
         };
         const addedList2: V1Namespace[] = [];
-        const addToList2Fn = function(obj?: V1Namespace) {
+        const addToList2Fn = function (obj?: V1Namespace) {
             addedList2.push(obj!);
         };
 
@@ -794,7 +786,7 @@ describe('ListWatchCache', () => {
             } as V1ListMeta,
             items: list,
         } as V1NamespaceList;
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {
@@ -810,10 +802,10 @@ describe('ListWatchCache', () => {
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
 
         const addedList: V1Namespace[] = [];
-        const addToListFn = function(obj?: V1Namespace) {
+        const addToListFn = function (obj?: V1Namespace) {
             addedList.push(obj!);
         };
-        const removeSelf = function() {
+        const removeSelf = function () {
             informer.off('add', removeSelf);
         };
 
@@ -855,7 +847,7 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {
@@ -882,7 +874,7 @@ describe('ListWatchCache', () => {
             } as V1ListMeta,
             items: list,
         } as V1NamespaceList;
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {
@@ -898,11 +890,11 @@ describe('ListWatchCache', () => {
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
 
         const addedList1: V1Namespace[] = [];
-        const addToList1Fn = function(obj?: V1Namespace) {
+        const addToList1Fn = function (obj?: V1Namespace) {
             addedList1.push(obj!);
         };
         const addedList2: V1Namespace[] = [];
-        const addToList2Fn = function(obj?: V1Namespace) {
+        const addToList2Fn = function (obj?: V1Namespace) {
             addedList2.push(obj!);
         };
 
@@ -960,7 +952,7 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {
@@ -1023,7 +1015,7 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {
@@ -1069,7 +1061,7 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {
@@ -1125,7 +1117,7 @@ describe('ListWatchCache', () => {
         } as V1NamespaceList;
 
         let listCalls = 0;
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {
@@ -1215,7 +1207,7 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {
@@ -1298,7 +1290,7 @@ describe('delete items', () => {
             items: [],
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {
@@ -1342,7 +1334,7 @@ describe('delete items', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
+        const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
         }> {

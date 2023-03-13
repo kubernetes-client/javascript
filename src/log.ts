@@ -50,9 +50,9 @@ export interface LogOptions {
 export function AddOptionsToSearchParams(
     options: LogOptions | undefined,
     searchParams: URLSearchParams,
-): URLSearchParams {
-    if (!searchParams.has('follow')) {
-        searchParams.set('follow', 'false');
+): URLSearchParams | undefined {
+    if (!options) {
+        return;
     }
     if (!searchParams.has('pretty')) {
         searchParams.set('pretty', 'false');
@@ -79,12 +79,7 @@ export function AddOptionsToSearchParams(
     if (options.sinceSeconds) {
         searchParams.set('sinceSeconds', options.sinceSeconds.toString() || 'false');
     }
-    if (options.tailLines) {
-        searchParams.set('tailLines', options.tailLines.toString() || 'false');
-    }
-    if (options.timestamps) {
-        searchParams.set('timestamps', options.timestamps.toString() || 'false');
-    }
+    searchParams.set('timestamps', options?.timestamps?.toString() || 'false');
     return searchParams;
 }
 

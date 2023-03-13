@@ -1,12 +1,12 @@
 import { promisify } from 'util';
 import { expect } from 'chai';
 import WebSocket = require('isomorphic-ws');
-import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
+import { WritableStreamBuffer } from 'stream-buffers';
 
 import { V1Status } from './api';
 import { KubeConfig } from './config';
 import { Cluster, Context, User } from './config_types';
-import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
+import { WebSocketHandler } from './web-socket-handler';
 
 const setImmediatePromise = promisify(setImmediate);
 
@@ -116,13 +116,10 @@ describe('WebSocket', () => {
         const mockWs = {} as WebSocket;
         let uriOut = '';
 
-        const handler = new WebSocketHandler(
-            kc,
-            (uri: string, opts: WebSocket.ClientOptions): WebSocket => {
-                uriOut = uri;
-                return mockWs as WebSocket;
-            },
-        );
+        const handler = new WebSocketHandler(kc, (uri: string, opts: WebSocket.ClientOptions): WebSocket => {
+            uriOut = uri;
+            return mockWs as WebSocket;
+        });
         const path = '/some/path';
 
         const promise = handler.connect(path, null, null);
@@ -168,13 +165,10 @@ describe('WebSocket', () => {
         const mockWs = {} as WebSocket;
         let uriOut = '';
 
-        const handler = new WebSocketHandler(
-            kc,
-            (uri: string, opts: WebSocket.ClientOptions): WebSocket => {
-                uriOut = uri;
-                return mockWs as WebSocket;
-            },
-        );
+        const handler = new WebSocketHandler(kc, (uri: string, opts: WebSocket.ClientOptions): WebSocket => {
+            uriOut = uri;
+            return mockWs as WebSocket;
+        });
         const path = '/some/path';
 
         const promise = handler.connect(path, null, null);
@@ -236,13 +230,10 @@ describe('WebSocket', () => {
         } as WebSocket;
         let uriOut = '';
 
-        const handler = new WebSocketHandler(
-            kc,
-            (uri: string, opts: WebSocket.ClientOptions): WebSocket => {
-                uriOut = uri;
-                return mockWs as WebSocket;
-            },
-        );
+        const handler = new WebSocketHandler(kc, (uri: string, opts: WebSocket.ClientOptions): WebSocket => {
+            uriOut = uri;
+            return mockWs as WebSocket;
+        });
         const path = '/some/path';
 
         let textReceived = '';
