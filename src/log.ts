@@ -69,6 +69,8 @@ export function AddOptionsToSearchParams(
     if (options.follow) {
         searchParams.set('follow', options.follow.toString() || 'false');
         searchParams.set('pretty', options.follow.toString() || 'false');
+    }else{
+        searchParams.set('follow', 'false');
     }
     if (options.limitBytes) {
         searchParams.set('limitBytes', options.limitBytes.toString());
@@ -78,6 +80,9 @@ export function AddOptionsToSearchParams(
     }
     if (options.sinceSeconds) {
         searchParams.set('sinceSeconds', options.sinceSeconds.toString() || 'false');
+    }
+    if (options.tailLines){
+        searchParams.set('tailLines', options.tailLines.toString());
     }
     searchParams.set('timestamps', options?.timestamps?.toString() || 'false');
     return searchParams;
