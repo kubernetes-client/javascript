@@ -69,7 +69,7 @@ export function AddOptionsToSearchParams(
     if (options.follow) {
         searchParams.set('follow', options.follow.toString() || 'false');
         searchParams.set('pretty', options.follow.toString() || 'false');
-    }else{
+    } else {
         searchParams.set('follow', 'false');
     }
     if (options.limitBytes) {
@@ -81,7 +81,7 @@ export function AddOptionsToSearchParams(
     if (options.sinceSeconds) {
         searchParams.set('sinceSeconds', options.sinceSeconds.toString() || 'false');
     }
-    if (options.tailLines){
+    if (options.tailLines) {
         searchParams.set('tailLines', options.tailLines.toString());
     }
     searchParams.set('timestamps', options?.timestamps?.toString() || 'false');
