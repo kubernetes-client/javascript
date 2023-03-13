@@ -3,12 +3,8 @@ import request = require('request');
 import { RequestOptions } from 'https';
 import fetch from 'node-fetch';
 import { KubeConfig } from './config';
-import { ApiException, HttpException, V1Status } from './gen';
-import { ObjectSerializer } from './util';
-import { RequestOptions } from 'https';
-import fetch from 'node-fetch';
-import { KubeConfig } from './config';
 import { ApiException, V1Status } from './gen';
+import { ObjectSerializer } from './util';
 
 export interface Usage {
     cpu: string;

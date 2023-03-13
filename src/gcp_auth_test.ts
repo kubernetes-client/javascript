@@ -62,11 +62,7 @@ describe('GoogleCloudPlatformAuth', () => {
         if (requestContext.getHeaders()) {
             expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
         }
-<<<<<<< HEAD
         requestContext.setUrl('https://www.foo.com');
-=======
-        requestContext.setUrl('foo.com');
->>>>>>> release-1.x
         //opts.headers.Host = 'foo.com';
         await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()['Authorization']).to.equal(`Bearer ${token}`);
