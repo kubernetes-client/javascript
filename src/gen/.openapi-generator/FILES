@@ -1,5 +1,4 @@
 .gitignore
-.openapi-generator-ignore
 AdmissionregistrationApi.md
 AdmissionregistrationV1Api.md
 ApiextensionsApi.md
