@@ -40,34 +40,42 @@ Code will be on the `master` branch.
 ### Other repositories
 
 -   [x] Update [kubernetes-client/gen](https://github.com/kubernetes-client/gen)'s typescript-fetch files to let us pass in the `typescriptThreePlus` config option <sup>[1](https://github.com/OpenAPITools/openapi-generator/issues/9973) [2](https://github.com/OpenAPITools/openapi-generator/issues/3869#issuecomment-584152932)</sub>
--   [ ] Update [openapi-generator](https://github.com/OpenAPITools/openapi-generator)'s typescript-fetch flavor to mark parameters as optional if all parameters are optional <sup>[3](https://github.com/OpenAPITools/openapi-generator/issues/6440)</sup>
+-   [x] Update [openapi-generator](https://github.com/OpenAPITools/openapi-generator)'s typescript-fetch flavor to mark parameters as optional if all parameters are optional <sup>[3](https://github.com/OpenAPITools/openapi-generator/issues/6440)</sup>
 
 ### Kubernetes-client repository
 
--   [ ] Increment `OPENAPI_GENERATOR_COMMIT` to be [version 5.3.0](https://github.com/OpenAPITools/openapi-generator/releases/tag/v5.3.0) (with the optional parameters addition)
--   [ ] `npm install node-fetch` to install node-fetch
--   [ ] Switch generate-client script to use typescript-fetch
--   [ ] Import and inject node-fetch in `src/api.ts` with the following
-
-```typescript
-import fetch from 'node-fetch';
-
-// inject node-fetch
-if (!globalThis.fetch) {
-    // @ts-ignore
-    globalThis.fetch = fetch;
-    globalThis.Headers = Headers;
-    globalThis.Request = Request;
-    globalThis.Response = Response;
-}
-```
-
--   [ ] Generate api with `npm run generate`
--   [ ] Match src/gen/api.ts to new generated layout (it changes slightly)
+-   [x] Increment `OPENAPI_GENERATOR_COMMIT` to be [version 5.3.0](https://github.com/OpenAPITools/openapi-generator/releases/tag/v5.3.0) (with the optional parameters addition)
+-   [x] `npm install node-fetch` to install node-fetch
+-   [x] Switch generate-client script to use typescript-fetch
+-   [x] Generate api with `npm run generate`
+-   [x] Match src/gen/api.ts to new generated layout (it changes slightly)
 -   [ ] Fix errors in /src folder (due to new api)
+    -   [ ] migrate src/auth.ts, the dependent implementations (ex: azure_auth, gcp_auth etc) and tests to fetch api from request
+    -   [ ] migrate src/log.ts and its tests to fetch api from request
+        -   major remaining work is fixing up async signatures and return piping
+    -   [ ] migrate src/watch.ts and its tests to fetch api from request
+        -   remove decprecated requestImpl and RequestInterface
+        -   implement queryParams parameter in watch method by injecting them into the fetch call
+        -   update tests in src/watch_test.ts
 -   [ ] Fix errors in test (due to new api)
 -   [ ] Test all features
--   [ ] Fix examples (due to new api)
+-   [ ] Fix examples and validate their param signatures (due to new api)
+
+    -   [ ] cache-example
+    -   [ ] example
+    -   [ ] follow-logs
+    -   [ ] in-cluster-create-job-from-cronjob
+    -   [ ] in-cluster
+    -   [ ] ingress
+    -   [ ] namespace
+    -   [ ] patch-example
+    -   [ ] raw-example (note: uses request lib directly, will require full fetch migration not just client param swap)
+    -   [ ] scale-deployment
+    -   [ ] top_pods
+    -   [ ] top
+    -   [ ] yaml-example
+
 -   [ ] Update docs
+    -   [ ] Update README examples
 -   [ ] Document breaking changes for users
 -   [ ] Release initial version (1.0.0)
