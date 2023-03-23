@@ -1,4 +1,4 @@
-import { CoreV1Api, V1Node, V1Pod, V1PodList } from './gen/api';
+import { CoreV1Api, V1Node, V1Pod, V1PodList, V1PodStatus } from './gen/api';
 import { ContainerMetric, Metrics, PodMetric } from './metrics';
 import {
     add,
@@ -64,7 +64,11 @@ export async function topNodes(api: CoreV1Api): Promise<NodeStatus[]> {
         let totalPodMem: number | bigint = 0;
         let totalPodMemLimit: number | bigint = 0;
         let pods = await podsForNode(api, node.metadata!.name!);
-        pods = pods.filter((pod: V1Pod) => pod.status!.phase === 'Running');
+        pods = pods.filter(
+            (pod: V1Pod) =>
+                // @ts-ignore
+                pod.status!.phase === 'Running' || pod.status!.phase === V1PodStatus.PhaseEnum.Running,
+        );
         pods.forEach((pod: V1Pod) => {
             const cpuTotal = totalCPU(pod);
             totalPodCPU = add(totalPodCPU, cpuTotal.request);
