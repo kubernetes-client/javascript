@@ -1,12 +1,12 @@
 import { expect, use } from 'chai';
-import chaiAsPromised = require('chai-as-promised');
+import chaiAsPromised from 'chai-as-promised';
 use(chaiAsPromised);
 
 import * as shell from 'shelljs';
 
-import execa = require('execa');
-import request = require('request');
-import https = require('https');
+import execa from 'execa';
+import https from 'https';
+import { OutgoingHttpHeaders } from 'http';
 
 import { ExecAuth } from './exec_auth';
 import { User } from './config_types';
@@ -70,8 +70,8 @@ describe('ExecAuth', () => {
                 stdout: JSON.stringify({ status: { token: 'foo' } }),
             } as execa.ExecaSyncReturnValue;
         };
-        const opts = {} as request.Options;
-        opts.headers = [];
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
         auth.applyAuthentication(
             {
                 name: 'user',
@@ -115,8 +115,9 @@ describe('ExecAuth', () => {
                 },
             },
         };
-        const opts = {} as request.Options;
-        opts.headers = [];
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
+        opts.headers = {} as OutgoingHttpHeaders;
 
         auth.applyAuthentication(user, opts);
         expect(opts.headers.Authorization).to.be.undefined;
@@ -158,8 +159,8 @@ describe('ExecAuth', () => {
             },
         };
 
-        const opts = {} as request.Options;
-        opts.headers = [];
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
 
         await auth.applyAuthentication(user, opts);
         expect(opts.headers.Authorization).to.equal(`Bearer ${tokenValue}`);
@@ -181,8 +182,8 @@ describe('ExecAuth', () => {
 
     it('should return null on no exec info', async () => {
         const auth = new ExecAuth();
-        const opts = {} as request.Options;
-        opts.headers = [];
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
 
         await auth.applyAuthentication({} as User, opts);
         expect(opts.headers.Authorization).to.be.undefined;
@@ -216,8 +217,8 @@ describe('ExecAuth', () => {
                 },
             },
         };
-        const opts = {} as request.Options;
-        opts.headers = [];
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
 
         const promise = auth.applyAuthentication(user, opts);
         return expect(promise).to.eventually.be.rejected;
@@ -242,8 +243,8 @@ describe('ExecAuth', () => {
             } as execa.ExecaSyncReturnValue;
         };
         process.env.BLABBLE = 'flubble';
-        const opts = {} as request.Options;
-        opts.headers = [];
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
 
         await auth.applyAuthentication(
             {

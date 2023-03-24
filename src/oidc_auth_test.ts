@@ -1,5 +1,6 @@
 import { expect } from 'chai';
-import * as request from 'request';
+import { OutgoingHttpHeaders } from 'http';
+import https from 'https';
 import { base64url } from 'rfc4648';
 import { TextEncoder } from 'util';
 
@@ -74,8 +75,8 @@ describe('OIDCAuth', () => {
             },
         } as User;
 
-        const opts = {} as request.Options;
-        opts.headers = [];
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
         await auth.applyAuthentication(user, opts);
         expect(opts.headers.Authorization).to.be.undefined;
     });
@@ -95,8 +96,8 @@ describe('OIDCAuth', () => {
             },
         } as User;
 
-        const opts = {} as request.Options;
-        opts.headers = [];
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
         await auth.applyAuthentication(user, opts);
         expect(opts.headers.Authorization).to.be.undefined;
     });
@@ -114,8 +115,8 @@ describe('OIDCAuth', () => {
             },
         } as User;
 
-        const opts = {} as request.Options;
-        opts.headers = [];
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
         (auth as any).currentTokenExpiration = Date.now() / 1000 + 1000;
         await auth.applyAuthentication(user, opts, {});
         expect(opts.headers.Authorization).to.equal('Bearer fakeToken');
@@ -136,8 +137,8 @@ describe('OIDCAuth', () => {
             },
         } as User;
 
-        const opts = {} as request.Options;
-        opts.headers = [];
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
         await auth.applyAuthentication(user, opts);
         expect(opts.headers.Authorization).to.be.undefined;
     });
@@ -157,8 +158,8 @@ describe('OIDCAuth', () => {
             },
         } as User;
 
-        const opts = {} as request.Options;
-        opts.headers = [];
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
         await auth.applyAuthentication(user, opts);
         expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
     });
@@ -178,8 +179,8 @@ describe('OIDCAuth', () => {
             },
         } as User;
 
-        const opts = {} as request.Options;
-        opts.headers = [];
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
         await auth.applyAuthentication(user, opts, {});
         expect(opts.headers.Authorization).to.be.undefined;
     });
@@ -198,8 +199,8 @@ describe('OIDCAuth', () => {
             },
         } as User;
 
-        const opts = {} as request.Options;
-        opts.headers = [];
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
         (auth as any).currentTokenExpiration = Date.now() / 1000 + 1000;
         await auth.applyAuthentication(user, opts, {});
         expect(opts.headers.Authorization).to.equal('Bearer fakeToken');
@@ -219,8 +220,8 @@ describe('OIDCAuth', () => {
             },
         } as User;
 
-        const opts = {} as request.Options;
-        opts.headers = [];
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
         (auth as any).currentTokenExpiration = Date.now() / 1000 - 5000;
         const newExpiration = Date.now() / 1000 + 120;
         await auth.applyAuthentication(user, opts, {
@@ -252,8 +253,8 @@ describe('OIDCAuth', () => {
             },
         } as User;
 
-        const opts = {} as request.Options;
-        opts.headers = [];
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
         const newExpiration = Date.now() / 1000 + 120;
         (auth as any).currentTokenExpiration = 0;
         await auth.applyAuthentication(user, opts, {

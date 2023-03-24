@@ -1,6 +1,6 @@
 import execa = require('execa');
+import { OutgoingHttpHeaders } from 'http';
 import https = require('https');
-import request = require('request');
 
 import { Authenticator } from './auth';
 import { User } from './config_types';
@@ -36,10 +36,7 @@ export class ExecAuth implements Authenticator {
         );
     }
 
-    public async applyAuthentication(
-        user: User,
-        opts: request.Options | https.RequestOptions,
-    ): Promise<void> {
+    public async applyAuthentication(user: User, opts: https.RequestOptions): Promise<void> {
         const credential = this.getCredential(user);
         if (!credential) {
             return;
@@ -53,7 +50,7 @@ export class ExecAuth implements Authenticator {
         const token = this.getToken(credential);
         if (token) {
             if (!opts.headers) {
-                opts.headers = [];
+                opts.headers = {} as OutgoingHttpHeaders;
             }
             opts.headers!.Authorization = `Bearer ${token}`;
         }

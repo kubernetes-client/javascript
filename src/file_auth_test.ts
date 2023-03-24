@@ -1,7 +1,7 @@
 import { expect } from 'chai';
-import mockfs = require('mock-fs');
-
-import request = require('request');
+import { OutgoingHttpHeaders } from 'http';
+import https from 'https';
+import mockfs from 'mock-fs';
 
 import { User } from './config_types';
 import { FileAuth } from './file_auth';
@@ -24,8 +24,8 @@ describe('FileAuth', () => {
             },
         } as User;
 
-        const opts = {} as request.Options;
-        opts.headers = [];
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
 
         await auth.applyAuthentication(user, opts);
         expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
@@ -49,8 +49,8 @@ describe('FileAuth', () => {
             },
         } as User;
 
-        const opts = {} as request.Options;
-        opts.headers = [];
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
 
         await auth.applyAuthentication(user, opts);
         expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
@@ -73,8 +73,8 @@ describe('FileAuth', () => {
             },
         } as User;
 
-        const opts = {} as request.Options;
-        opts.headers = [];
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
 
         await auth.applyAuthentication(user, opts);
         expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);

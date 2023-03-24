@@ -50,7 +50,7 @@ Code will be on the `master` branch.
 -   [x] Generate api with `npm run generate`
 -   [x] Match src/gen/api.ts to new generated layout (it changes slightly)
 -   [ ] Fix errors in /src folder (due to new api)
-    -   [ ] migrate src/auth.ts, the dependent implementations (ex: azure_auth, gcp_auth etc) and tests to fetch api from request
+    -   [x] migrate src/auth.ts, the dependent implementations (ex: azure_auth, gcp_auth etc) and tests to fetch api from request
     -   [ ] migrate src/log.ts and its tests to fetch api from request
         -   major remaining work is fixing up async signatures and return piping
     -   [ ] migrate src/watch.ts and its tests to fetch api from request
