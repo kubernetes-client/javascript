@@ -5,7 +5,6 @@ import yaml = require('js-yaml');
 import net = require('net');
 import path = require('path');
 
-import request = require('request');
 import shelljs = require('shelljs');
 
 import * as api from './api';
@@ -459,7 +458,7 @@ export class KubeConfig implements SecurityAuthentication {
         return this.getContextObject(this.currentContext);
     }
 
-    private applyHTTPSOptions(opts: request.Options | https.RequestOptions): void {
+    private applyHTTPSOptions(opts: https.RequestOptions): void {
         const cluster = this.getCurrentCluster();
         const user = this.getCurrentUser();
         if (!user) {
