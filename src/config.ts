@@ -483,7 +483,7 @@ export class KubeConfig implements SecurityAuthentication {
         }
     }
 
-    private async applyAuthorizationHeader(opts: request.Options | https.RequestOptions): Promise<void> {
+    private async applyAuthorizationHeader(opts: https.RequestOptions): Promise<void> {
         const user = this.getCurrentUser();
         if (!user) {
             return;
@@ -504,7 +504,7 @@ export class KubeConfig implements SecurityAuthentication {
         }
     }
 
-    private async applyOptions(opts: request.Options | https.RequestOptions): Promise<void> {
+    private async applyOptions(opts: https.RequestOptions): Promise<void> {
         this.applyHTTPSOptions(opts);
         await this.applyAuthorizationHeader(opts);
     }
