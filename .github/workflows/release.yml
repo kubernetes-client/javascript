@@ -2,6 +2,21 @@ name: Release
 
 on:
   workflow_dispatch:
+    inputs:
+      releaseVersion:
+        type: string
+        required: true
+        description: The version of this release. Must be a semantic version of the form X.Y.Z.
+      dry_run:
+        type: boolean
+        required: true
+        default: false
+        description: Dry run, will not push branches or upload the artifacts.
+      skip_tag:
+        type: boolean
+        required: true
+        default: false
+        description: If true, don't tag this release, just push it.
 
 jobs:
   release:
@@ -20,8 +35,17 @@ jobs:
       - name: Package
         run: ./build-package.sh
       - name: Upload
+        if: ${{ github.event.inputs.dry_run != 'true' }}
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
-          confirm: "y"
-          SKIP_TAG: "y"
+      - name: Tag release
+        if: ${{ github.event.inputs.skip_tag != 'true' }}
+        run: |
+          git config --global user.name 'Github Bot'
+          git config --global user.email '<>'
+          git tag -a ${{ github.events.inputs.version }}
+      - name: Push tag
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          git push ${{ github.events.inputs.version }}
