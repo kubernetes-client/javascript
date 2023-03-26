@@ -1,7 +1,6 @@
 import * as proc from 'child_process';
 import https = require('https');
 import * as jsonpath from 'jsonpath-plus';
-import request = require('request');
 
 import { Authenticator } from './auth';
 import { User } from './config_types';
@@ -26,10 +25,7 @@ export class GoogleCloudPlatformAuth implements Authenticator {
         return user.authProvider.name === 'gcp';
     }
 
-    public async applyAuthentication(
-        user: User,
-        opts: request.Options | https.RequestOptions,
-    ): Promise<void> {
+    public async applyAuthentication(user: User, opts: https.RequestOptions): Promise<void> {
         const token = this.getToken(user);
         if (token) {
             opts.headers!.Authorization = `Bearer ${token}`;

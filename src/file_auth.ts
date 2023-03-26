@@ -1,6 +1,5 @@
 import fs = require('fs');
 import https = require('https');
-import request = require('request');
 
 import { Authenticator } from './auth';
 import { User } from './config_types';
@@ -13,10 +12,7 @@ export class FileAuth implements Authenticator {
         return user.authProvider && user.authProvider.config && user.authProvider.config.tokenFile;
     }
 
-    public async applyAuthentication(
-        user: User,
-        opts: request.Options | https.RequestOptions,
-    ): Promise<void> {
+    public async applyAuthentication(user: User, opts: https.RequestOptions): Promise<void> {
         if (this.token == null) {
             this.refreshToken(user.authProvider.config.tokenFile);
         }

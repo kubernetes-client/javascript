@@ -1,6 +1,5 @@
-import https = require('https');
+import https from 'https';
 import { Client, Issuer } from 'openid-client';
-import request = require('request');
 import { base64url } from 'rfc4648';
 import { TextDecoder } from 'util';
 
@@ -56,7 +55,7 @@ export class OpenIDConnectAuth implements Authenticator {
      */
     public async applyAuthentication(
         user: User,
-        opts: request.Options | https.RequestOptions,
+        opts: https.RequestOptions,
         overrideClient?: any,
     ): Promise<void> {
         const token = await this.getToken(user, overrideClient);
