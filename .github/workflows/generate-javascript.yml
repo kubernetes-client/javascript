@@ -33,6 +33,7 @@ jobs:
           git config --global user.name "Github Actions"
           git config --global user.email "<>"
           git cherry-pick --strategy=recursive -X theirs c557f7f
+          rm -rf gen/.git
       - name: Generate Branch Name
         run: |
           SUFFIX=$(openssl rand -hex 4)
