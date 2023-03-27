@@ -10,7 +10,7 @@ on:
       genCommit:
         type: string
         required: true
-        default: '1314e229'
+        default: 'b32dcd6'
         description: 'The commit to use for the kubernetes-client/gen repo'
 
 
