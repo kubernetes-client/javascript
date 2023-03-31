@@ -90,17 +90,23 @@ describe('Watch', () => {
             },
         };
 
-        const path = '/some/path/to/object?watch=true&a=b';
+        const path = '/some/path/to/object';
 
         const stream = new PassThrough();
 
         const [scope] = systemUnderTest();
 
-        const s = scope.get(path).reply(200, () => {
-            stream.push(JSON.stringify(obj1) + '\n');
-            stream.push(JSON.stringify(obj2) + '\n');
-            return stream;
-        });
+        const s = scope
+            .get(path)
+            .query({
+                watch: 'true',
+                a: 'b',
+            })
+            .reply(200, () => {
+                stream.push(JSON.stringify(obj1) + '\n');
+                stream.push(JSON.stringify(obj2) + '\n');
+                return stream;
+            });
 
         const receivedTypes: string[] = [];
         const receivedObjects: string[] = [];
