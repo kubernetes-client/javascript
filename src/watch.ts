@@ -68,7 +68,16 @@ export class Watch {
 
         await fetch(watchURL, requestInit)
             .then((response) => {
-                response.body.pipe(stream);
+                if (response.status === 200) {
+                    response.body.on('error', doneCallOnce);
+                    response.body.pipe(stream);
+                } else {
+                    const error = new Error(response.statusText) as Error & {
+                        statusCode: number | undefined;
+                    };
+                    error.statusCode = response.status;
+                    throw error;
+                }
             })
             .catch(doneCallOnce);
 

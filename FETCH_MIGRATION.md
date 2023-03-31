@@ -56,7 +56,7 @@ Code will be on the `master` branch.
     -   [x] migrate src/watch.ts and its tests to fetch api from request
         -  [x] remove decprecated requestImpl and RequestInterface
         -  [x] implement queryParams parameter in watch method by injecting them into the fetch call
-        -  [ ] update tests in src/watch_test.ts
+        -  [x] update tests in src/watch_test.ts
 -   [ ] Fix errors in test (due to new api)
 -   [ ] Test all features
 -   [ ] Fix examples and validate their param signatures (due to new api)
