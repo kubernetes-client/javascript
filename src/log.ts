@@ -1,6 +1,6 @@
+import AbortController from 'abort-controller';
 import { RequestOptions } from 'https';
 import fetch from 'node-fetch';
-import request = require('request');
 import { Writable } from 'stream';
 import { URL, URLSearchParams } from 'url';
 import { ApiException } from './api';
@@ -83,7 +83,7 @@ export class Log {
         containerName: string,
         stream: Writable,
         options?: LogOptions,
-    ): Promise<request.Request>;
+    ): Promise<AbortController>;
     /** @deprecated done callback is deprecated */
     public async log(
         namespace: string,
@@ -92,7 +92,7 @@ export class Log {
         stream: Writable,
         done: (err: any) => void,
         options?: LogOptions,
-    ): Promise<request.Request>;
+    ): Promise<AbortController>;
     public async log(
         namespace: string,
         podName: string,
@@ -100,11 +100,10 @@ export class Log {
         stream: Writable,
         doneOrOptions?: ((err: any) => void) | LogOptions,
         options?: LogOptions,
-    ): Promise<request.Request> {
-        let done: (err: any) => void = () => undefined;
-        if (typeof doneOrOptions === 'function') {
-            done = doneOrOptions;
-        } else {
+    ): Promise<AbortController> {
+        const AbortControllerCtor = globalThis.AbortController || (await import('abort-controller'));
+
+        if (typeof doneOrOptions !== 'function') {
             options = doneOrOptions;
         }
 
@@ -114,18 +113,20 @@ export class Log {
         if (!cluster) {
             throw new Error('No currently active cluster');
         }
-        const url = cluster.server + path;
-
-        const requestOptions: RequestOptions = {};
 
         const requestURL = new URL(cluster.server + path);
 
         const searchParams = requestURL.searchParams;
         AddOptionsToSearchParams(options, searchParams);
 
-        await this.config.applytoHTTPSOptions(requestOptions);
+        const requestOptions: RequestOptions = {};
 
-        const req = await fetch(requestURL.toString(), requestOptions)
+        const requestInit = await this.config.applytoFetchOptions(requestOptions);
+
+        const controller = new AbortControllerCtor();
+        requestInit.signal = controller.signal;
+
+        await fetch(requestURL.toString(), requestInit)
             .then((response) => {
                 const status = response.status;
                 if (status === 200) {
@@ -155,6 +156,7 @@ export class Log {
             .catch((err) => {
                 throw new ApiException<undefined>(err, 'Error occurred in log request', undefined, err);
             });
-        return req;
+
+        return controller;
     }
 }

@@ -7,6 +7,7 @@ import path = require('path');
 
 import shelljs = require('shelljs');
 
+import { Headers, RequestInit } from 'node-fetch';
 import * as api from './api';
 import { Authenticator } from './auth';
 import { AzureAuth } from './azure_auth';
@@ -144,6 +145,26 @@ export class KubeConfig implements SecurityAuthentication {
         const rootDirectory = path.dirname(file);
         this.loadFromString(fs.readFileSync(file, 'utf8'), opts);
         this.makePathsAbsolute(rootDirectory);
+    }
+
+    public async applytoFetchOptions(opts: https.RequestOptions): Promise<RequestInit> {
+        await this.applytoHTTPSOptions(opts);
+        const headers = new Headers();
+        for (const [key, val] of Object.entries(opts.headers || {})) {
+            if (Array.isArray(val)) {
+                val.forEach((innerVal) => {
+                    headers.append(key, innerVal);
+                });
+            } else if (typeof val === 'number' || typeof val === 'string') {
+                headers.set(key, val.toString());
+            }
+        }
+        return {
+            agent: opts.agent,
+            headers,
+            method: opts.method,
+            timeout: opts.timeout,
+        };
     }
 
     public async applytoHTTPSOptions(opts: https.RequestOptions): Promise<void> {
