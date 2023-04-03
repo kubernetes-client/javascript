@@ -25,7 +25,8 @@ export class Watch {
         callback: (phase: string, apiObj: any, watchObj?: any) => void,
         done: (err: any) => void,
     ): Promise<AbortController> {
-        const AbortControllerCtor = globalThis.AbortController || (await import('abort-controller')).AbortController;
+        const AbortControllerCtor =
+            globalThis.AbortController || (await import('abort-controller')).AbortController;
 
         const cluster = this.config.getCurrentCluster();
         if (!cluster) {

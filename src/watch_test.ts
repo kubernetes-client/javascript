@@ -149,7 +149,7 @@ describe('Watch', () => {
 
         expect(doneCalled).to.equal(0);
 
-        // TODO check after noe-fetch fix
+        // TODO check after node-fetch fix
         // https://github.com/node-fetch/node-fetch/issues/1231
         // https://github.com/node-fetch/node-fetch/issues/1721
 
@@ -225,6 +225,66 @@ describe('Watch', () => {
 
         expect(doneErr.length).to.equal(1);
         expect(doneErr[0]).to.deep.equal(errIn);
+
+        s.done();
+    });
+
+    // https://github.com/node-fetch/node-fetch/issues/1231
+    // https://github.com/node-fetch/node-fetch/issues/1721
+    it.skip('should handle server side close correctly', async () => {
+        const kc = new KubeConfig();
+        Object.assign(kc, fakeConfig);
+        const watch = new Watch(kc);
+
+        const obj1 = {
+            type: 'ADDED',
+            object: {
+                foo: 'bar',
+            },
+        };
+
+        const stream = new PassThrough();
+
+        const [scope] = systemUnderTest();
+
+        const path = '/some/path/to/object?watch=true';
+
+        const s = scope.get(path).reply(200, () => {
+            stream.push(JSON.stringify(obj1) + '\n');
+            return stream;
+        });
+
+        const receivedTypes: string[] = [];
+        const receivedObjects: string[] = [];
+        const doneErr: any[] = [];
+
+        let doneResolve: any;
+        const donePromise = new Promise((resolve) => {
+            doneResolve = resolve;
+        });
+
+        await watch.watch(
+            path,
+            {},
+            (phase: string, obj: string) => {
+                receivedTypes.push(phase);
+                receivedObjects.push(obj);
+            },
+            (err: any) => {
+                doneErr.push(err);
+                doneResolve();
+            },
+        );
+
+        stream.emit('close');
+
+        await donePromise;
+
+        expect(receivedTypes).to.deep.equal([obj1.type]);
+        expect(receivedObjects).to.deep.equal([obj1.object]);
+
+        expect(doneErr.length).to.equal(1);
+        expect(doneErr[0]).to.be.null;
 
         s.done();
     });
