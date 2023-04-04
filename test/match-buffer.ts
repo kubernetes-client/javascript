@@ -28,12 +28,7 @@ class StringBufferMatcher extends Matcher {
   }
 }
 
-export function assertRequestOptionsEqual(options1: RequestOptions, options2: RequestOptions): void {
-  //@ts-ignore agent has type Agent | Boolean which we expect to be populated with Agent here
-  const agent1: Agent = options1.agent
-  //@ts-ignore
-  const agent2: Agent = options2.agent
-
+export function assertRequestAgentsEqual(agent1: Agent, agent2: Agent): void {
   const BUFFER_EQUAL_TRUE = 0
   const ca1 = agent1.options.ca
   const ca2 = agent2.options.ca
@@ -55,10 +50,18 @@ export function assertRequestOptionsEqual(options1: RequestOptions, options2: Re
   if(key1 !== key2 && Buffer.compare(key1,key2) !== BUFFER_EQUAL_TRUE){
     throw("unequal agent key buffer")
   }
-  
+
   expect(agent1.options.passphrase).to.equal(agent2.options.passphrase);
   expect(agent1.options.pfx).to.equal(agent2.options.pfx);
   expect(agent1.options.rejectUnauthorized).to.equal(agent2.options.rejectUnauthorized);
+}
+
+export function assertRequestOptionsEqual(options1: RequestOptions, options2: RequestOptions): void {
+  //@ts-ignore agent has type Agent | Boolean which we expect to be populated with Agent here
+  const agent1: Agent = options1.agent
+  //@ts-ignore
+  const agent2: Agent = options2.agent
+  assertRequestAgentsEqual(agent1, agent2)
 
   expect(options1.auth).to.equal(options2.auth)
   expect(options1.headers).to.deep.equal(options2.headers)

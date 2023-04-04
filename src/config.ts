@@ -159,6 +159,9 @@ export class KubeConfig implements SecurityAuthentication {
                 headers.set(key, val.toString());
             }
         }
+        if (opts.auth) {
+            headers.set('Authorization', 'Basic ' + Buffer.from(opts.auth).toString('base64'));
+        }
         return {
             agent: opts.agent,
             headers,
@@ -185,6 +188,23 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions.pfx = opts.pfx;
         agentOptions.passphrase = opts.passphrase;
         agentOptions.rejectUnauthorized = opts.rejectUnauthorized;
+        agentOptions.timeout = opts.timeout;
+        agentOptions.host = opts.host;
+        agentOptions.path = opts.path;
+        agentOptions.servername = opts.servername;
+        agentOptions.ciphers = opts.ciphers;
+        agentOptions.honorCipherOrder = opts.honorCipherOrder;
+        agentOptions.ecdhCurve = opts.ecdhCurve;
+        agentOptions.clientCertEngine = opts.clientCertEngine;
+        agentOptions.crl = opts.crl;
+        agentOptions.dhparam = opts.dhparam;
+        agentOptions.secureOptions = opts.secureOptions;
+        agentOptions.secureProtocol = opts.secureProtocol;
+        agentOptions.sessionIdContext = opts.sessionIdContext;
+        // setting undefined will cause tls error
+        if (opts.hasOwnProperty('port')) {
+            agentOptions.port = typeof opts.port === 'string' ? parseInt(opts.port, 10) : opts.port;
+        }
 
         opts.agent = new https.Agent(agentOptions);
     }

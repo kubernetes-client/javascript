@@ -1,7 +1,7 @@
 import { readFileSync } from 'fs';
 import * as https from 'https';
 import { join } from 'path';
-import { RequestOptions } from 'https';
+import { RequestOptions, Agent } from 'https';
 
 import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
@@ -13,7 +13,8 @@ import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolu
 import { Cluster, newClusters, newContexts, newUsers, User, ActionOnInvalid } from './config_types';
 import { ExecAuth } from './exec_auth';
 import { HttpMethod } from '.';
-import { assertRequestOptionsEqual } from '../test/match-buffer';
+import { assertRequestOptionsEqual, assertRequestAgentsEqual } from '../test/match-buffer';
+import { Headers } from 'node-fetch';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
 const kc2FileName = 'testdata/kubeconfig-2.yaml';
@@ -234,6 +235,47 @@ describe('KubeConfig', () => {
         it('should load a kubeconfig with an empty user', () => {
             const kc = new KubeConfig();
             kc.loadFromFile(kcNoUserFileName);
+        });
+    });
+
+    describe('applytoFetchOptions', () => {
+        it('should apply cert configs', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcFileName);
+            kc.setCurrentContext('passwd');
+
+            const opts: https.RequestOptions = {
+                method: 'POST',
+                timeout: 5,
+                headers: {
+                    number: 5,
+                    string: 'str',
+                    empty: undefined,
+                    list: ['a', 'b'],
+                },
+            };
+            const requestInit = await kc.applytoFetchOptions(opts);
+            const expectedCA = Buffer.from('CADATA2', 'utf-8');
+            const expectedAgent = new https.Agent({
+                ca: expectedCA,
+                rejectUnauthorized: false,
+            });
+
+            expect(requestInit.method).to.equal('POST');
+            expect(requestInit.timeout).to.equal(5);
+            expect((requestInit.headers as Headers).raw()).to.deep.equal({
+                "list": [
+                    "a",
+                    "b",
+                ],
+                "number": [
+                    "5",
+                ],
+                "string": [
+                    "str",
+                ],
+            });
+            assertRequestAgentsEqual(requestInit.agent as Agent, expectedAgent);
         });
     });
 
