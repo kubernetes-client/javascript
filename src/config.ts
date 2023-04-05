@@ -189,8 +189,6 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions.passphrase = opts.passphrase;
         agentOptions.rejectUnauthorized = opts.rejectUnauthorized;
         agentOptions.timeout = opts.timeout;
-        agentOptions.host = opts.host;
-        agentOptions.path = opts.path;
         agentOptions.servername = opts.servername;
         agentOptions.ciphers = opts.ciphers;
         agentOptions.honorCipherOrder = opts.honorCipherOrder;
@@ -201,10 +199,6 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions.secureOptions = opts.secureOptions;
         agentOptions.secureProtocol = opts.secureProtocol;
         agentOptions.sessionIdContext = opts.sessionIdContext;
-        // setting undefined will cause tls error
-        if (opts.hasOwnProperty('port')) {
-            agentOptions.port = typeof opts.port === 'string' ? parseInt(opts.port, 10) : opts.port;
-        }
 
         opts.agent = new https.Agent(agentOptions);
     }

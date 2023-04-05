@@ -1,20 +1,20 @@
 import { readFileSync } from 'fs';
 import * as https from 'https';
+import { Agent, RequestOptions } from 'https';
 import { join } from 'path';
-import { RequestOptions, Agent } from 'https';
 
 import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import mockfs = require('mock-fs');
 import * as path from 'path';
 
+import { Headers } from 'node-fetch';
+import { HttpMethod } from '.';
+import { assertRequestAgentsEqual, assertRequestOptionsEqual } from '../test/match-buffer';
 import { CoreV1Api, RequestContext } from './api';
 import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolutePath } from './config';
-import { Cluster, newClusters, newContexts, newUsers, User, ActionOnInvalid } from './config_types';
+import { ActionOnInvalid, Cluster, newClusters, newContexts, newUsers, User } from './config_types';
 import { ExecAuth } from './exec_auth';
-import { HttpMethod } from '.';
-import { assertRequestOptionsEqual, assertRequestAgentsEqual } from '../test/match-buffer';
-import { Headers } from 'node-fetch';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
 const kc2FileName = 'testdata/kubeconfig-2.yaml';
@@ -264,16 +264,10 @@ describe('KubeConfig', () => {
             expect(requestInit.method).to.equal('POST');
             expect(requestInit.timeout).to.equal(5);
             expect((requestInit.headers as Headers).raw()).to.deep.equal({
-                "list": [
-                    "a",
-                    "b",
-                ],
-                "number": [
-                    "5",
-                ],
-                "string": [
-                    "str",
-                ],
+                Authorization: ['Basic Zm9vOmJhcg=='],
+                list: ['a', 'b'],
+                number: ['5'],
+                string: ['str'],
             });
             assertRequestAgentsEqual(requestInit.agent as Agent, expectedAgent);
         });
@@ -316,7 +310,7 @@ describe('KubeConfig', () => {
                 pfx: undefined,
                 rejectUnauthorized: false,
             });
-            let expectedOptions: https.RequestOptions = {
+            const expectedOptions: https.RequestOptions = {
                 auth: 'foo:bar',
                 headers: {},
                 rejectUnauthorized: false,
@@ -1180,10 +1174,10 @@ describe('KubeConfig', () => {
             // TODO: inject the exec command here?
             const opts = {} as RequestOptions;
             await config.applytoHTTPSOptions(opts);
-            let execAuthenticator = (KubeConfig as any).authenticators.find(
+            const execAuthenticator = (KubeConfig as any).authenticators.find(
                 (authenticator) => authenticator instanceof ExecAuth,
             );
-            expect(execAuthenticator.tokenCache['exec']).to.deep.equal(JSON.parse(responseStr));
+            expect(execAuthenticator.tokenCache.exec).to.deep.equal(JSON.parse(responseStr));
         });
 
         it('should throw with no command.', () => {
@@ -1273,7 +1267,7 @@ describe('KubeConfig', () => {
             const kc = new KubeConfig();
             kc.addCluster({
                 name: 'testCluster',
-                server: `https://localhost:9889`,
+                server: 'https://localhost:9889',
                 skipTLSVerify: true,
                 caFile: 'foo/bar.crt',
             });
@@ -1509,7 +1503,7 @@ describe('KubeConfig', () => {
             (kc as any).clusters = undefined;
             kc.addCluster({
                 name: 'testCluster',
-                server: `https://localhost:9889`,
+                server: 'https://localhost:9889',
                 skipTLSVerify: true,
             });
             (kc as any).users = undefined;
