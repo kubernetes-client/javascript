@@ -6,6 +6,7 @@ import { PassThrough } from 'stream';
 import { KubeConfig } from './config';
 import { Cluster, Context, User } from './config_types';
 import { Watch } from './watch';
+import { IncomingMessage } from 'http';
 
 const server = 'http://foo.company.com';
 
@@ -60,6 +61,7 @@ describe('Watch', () => {
         await watch.watch(
             path,
             {},
+            // tslint:disable-next-line:no-empty
             (phase: string, obj: string) => {},
             (err: any) => {
                 doneCalled = true;
@@ -96,13 +98,18 @@ describe('Watch', () => {
 
         const [scope] = systemUnderTest();
 
+        let response: IncomingMessage | undefined;
+
         const s = scope
             .get(path)
             .query({
                 watch: 'true',
                 a: 'b',
             })
-            .reply(200, () => {
+            .reply(200, function (): PassThrough {
+                this.req.on('response', (r) => {
+                    response = r;
+                });
                 stream.push(JSON.stringify(obj1) + '\n');
                 stream.push(JSON.stringify(obj2) + '\n');
                 return stream;
@@ -149,27 +156,20 @@ describe('Watch', () => {
 
         expect(doneCalled).to.equal(0);
 
-        // TODO check after node-fetch fix
-        // https://github.com/node-fetch/node-fetch/issues/1231
-        // https://github.com/node-fetch/node-fetch/issues/1721
-
-        // const errIn = { error: 'err' };
-        // stream.emit('error', errIn);
-        // expect(doneErr).to.deep.equal(errIn);
-        // await donePromise;
-        // expect(doneCalled).to.equal(1);
-
-        stream.end();
+        const errIn = new Error('err');
+        (response as IncomingMessage).socket.destroy(errIn);
 
         await donePromise;
 
         expect(doneCalled).to.equal(1);
+        expect(doneErr).to.deep.equal(errIn);
+
         s.done();
+
+        stream.destroy();
     });
 
-    // https://github.com/node-fetch/node-fetch/issues/1231
-    // https://github.com/node-fetch/node-fetch/issues/1721
-    it.skip('should handle errors correctly', async () => {
+    it('should handle server errors correctly', async () => {
         const kc = new KubeConfig();
         Object.assign(kc, fakeConfig);
         const watch = new Watch(kc);
@@ -181,15 +181,18 @@ describe('Watch', () => {
             },
         };
 
-        const errIn = { error: 'err' };
-
         const stream = new PassThrough();
 
         const [scope] = systemUnderTest();
 
         const path = '/some/path/to/object?watch=true';
 
-        const s = scope.get(path).reply(200, () => {
+        let response: IncomingMessage | undefined;
+
+        const s = scope.get(path).reply(200, function (): PassThrough {
+            this.req.on('response', (r) => {
+                response = r;
+            });
             stream.push(JSON.stringify(obj1) + '\n');
             return stream;
         });
@@ -197,6 +200,11 @@ describe('Watch', () => {
         const receivedTypes: string[] = [];
         const receivedObjects: string[] = [];
         const doneErr: any[] = [];
+
+        let handledAllObjectsResolve: any;
+        const handledAllObjectsPromise = new Promise((resolve) => {
+            handledAllObjectsResolve = resolve;
+        });
 
         let doneResolve: any;
         const donePromise = new Promise((resolve) => {
@@ -209,6 +217,9 @@ describe('Watch', () => {
             (phase: string, obj: string) => {
                 receivedTypes.push(phase);
                 receivedObjects.push(obj);
+                if (receivedObjects.length === 1) {
+                    handledAllObjectsResolve();
+                }
             },
             (err: any) => {
                 doneErr.push(err);
@@ -216,22 +227,27 @@ describe('Watch', () => {
             },
         );
 
-        stream.emit('error', errIn);
-
-        await donePromise;
+        await handledAllObjectsPromise;
 
         expect(receivedTypes).to.deep.equal([obj1.type]);
         expect(receivedObjects).to.deep.equal([obj1.object]);
+
+        expect(doneErr.length).to.equal(0);
+
+        const errIn = new Error('err');
+        (response as IncomingMessage).socket.destroy(errIn);
+
+        await donePromise;
 
         expect(doneErr.length).to.equal(1);
         expect(doneErr[0]).to.deep.equal(errIn);
 
         s.done();
+
+        stream.destroy();
     });
 
-    // https://github.com/node-fetch/node-fetch/issues/1231
-    // https://github.com/node-fetch/node-fetch/issues/1721
-    it.skip('should handle server side close correctly', async () => {
+    it('should handle server side close correctly', async () => {
         const kc = new KubeConfig();
         Object.assign(kc, fakeConfig);
         const watch = new Watch(kc);
@@ -249,7 +265,12 @@ describe('Watch', () => {
 
         const path = '/some/path/to/object?watch=true';
 
-        const s = scope.get(path).reply(200, () => {
+        let response: IncomingMessage | undefined;
+
+        const s = scope.get(path).reply(200, function (): PassThrough {
+            this.req.on('response', (r) => {
+                response = r;
+            });
             stream.push(JSON.stringify(obj1) + '\n');
             return stream;
         });
@@ -257,6 +278,11 @@ describe('Watch', () => {
         const receivedTypes: string[] = [];
         const receivedObjects: string[] = [];
         const doneErr: any[] = [];
+
+        let handledAllObjectsResolve: any;
+        const handledAllObjectsPromise = new Promise((resolve) => {
+            handledAllObjectsResolve = resolve;
+        });
 
         let doneResolve: any;
         const donePromise = new Promise((resolve) => {
@@ -269,6 +295,9 @@ describe('Watch', () => {
             (phase: string, obj: string) => {
                 receivedTypes.push(phase);
                 receivedObjects.push(obj);
+                if (receivedObjects.length === 1) {
+                    handledAllObjectsResolve();
+                }
             },
             (err: any) => {
                 doneErr.push(err);
@@ -276,17 +305,23 @@ describe('Watch', () => {
             },
         );
 
-        stream.emit('close');
-
-        await donePromise;
+        await handledAllObjectsPromise;
 
         expect(receivedTypes).to.deep.equal([obj1.type]);
         expect(receivedObjects).to.deep.equal([obj1.object]);
 
+        expect(doneErr.length).to.equal(0);
+
+        stream.end();
+
+        await donePromise;
+
         expect(doneErr.length).to.equal(1);
-        expect(doneErr[0]).to.be.null;
+        expect(doneErr[0]).to.equal(null);
 
         s.done();
+
+        stream.destroy();
     });
 
     it('should ignore JSON parse errors', async () => {
