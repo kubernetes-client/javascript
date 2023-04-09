@@ -84,9 +84,8 @@ export class Metrics {
 
         const requestURL = cluster.server + path;
 
-        const requestInit = await this.config.applytoFetchOptions({
-            method: 'GET',
-        });
+        const requestInit = await this.config.applytoFetchOptions({});
+        requestInit.method = 'GET';
 
         return fetch(requestURL, requestInit)
             .then((response) => {

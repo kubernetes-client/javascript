@@ -117,14 +117,14 @@ export class Log {
         const requestURL = new URL(cluster.server + path);
 
         const searchParams = requestURL.searchParams;
+        searchParams.set('container', containerName);
         AddOptionsToSearchParams(options, searchParams);
 
-        const requestOptions: RequestOptions = {};
-
-        const requestInit = await this.config.applytoFetchOptions(requestOptions);
+        const requestInit = await this.config.applytoFetchOptions({});
 
         const controller = new AbortControllerCtor();
         requestInit.signal = controller.signal;
+        requestInit.method = 'GET';
 
         await fetch(requestURL.toString(), requestInit)
             .then((response) => {

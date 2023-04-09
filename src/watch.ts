@@ -41,11 +41,11 @@ export class Watch {
             }
         }
 
-        const requestOptions: RequestOptions = {};
-        const requestInit = await this.config.applytoFetchOptions(requestOptions);
+        const requestInit = await this.config.applytoFetchOptions({});
 
         const controller = new AbortControllerCtor();
         requestInit.signal = controller.signal;
+        requestInit.method = 'GET';
 
         let doneCalled: boolean = false;
         const doneCallOnce = (err: any) => {
@@ -58,6 +58,7 @@ export class Watch {
         const stream = byline.createStream();
         stream.on('error', doneCallOnce);
         stream.on('close', () => doneCallOnce(null));
+        stream.on('finish', () => doneCallOnce(null));
         stream.on('data', (line) => {
             try {
                 const data = JSON.parse(line.toString());
@@ -71,6 +72,8 @@ export class Watch {
             .then((response) => {
                 if (response.status === 200) {
                     response.body.on('error', doneCallOnce);
+                    response.body.on('close', () => doneCallOnce(null));
+                    response.body.on('finish', () => doneCallOnce(null));
                     response.body.pipe(stream);
                 } else {
                     const error = new Error(response.statusText) as Error & {
