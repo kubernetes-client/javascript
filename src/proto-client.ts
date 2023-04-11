@@ -14,7 +14,7 @@ export class ProtoClient {
             hostname: u.hostname,
             protocol: u.protocol,
         };
-        await this.config.applytoHTTPSOptions(options);
+        await this.config.applyToHTTPSOptions(options);
         const req = http.request(options);
 
         const result = await new Promise<any>((resolve, reject) => {

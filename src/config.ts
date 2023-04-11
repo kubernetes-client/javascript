@@ -130,7 +130,7 @@ export class KubeConfig {
         this.makePathsAbsolute(rootDirectory);
     }
 
-    public async applytoHTTPSOptions(opts: https.RequestOptions | WebSocket.ClientOptions): Promise<void> {
+    public async applyToHTTPSOptions(opts: https.RequestOptions | WebSocket.ClientOptions): Promise<void> {
         await this.applyOptions(opts);
 
         const user = this.getCurrentUser();
