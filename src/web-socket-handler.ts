@@ -166,7 +166,7 @@ export class WebSocketHandler implements WebSocketInterface {
 
         const opts: WebSocket.ClientOptions = {};
 
-        await this.config.applytoHTTPSOptions(opts);
+        await this.config.applyToHTTPSOptions(opts);
 
         return await new Promise<WebSocket>((resolve, reject) => {
             const client = this.socketFactory
