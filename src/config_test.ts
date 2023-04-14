@@ -246,7 +246,7 @@ describe('KubeConfig', () => {
             kc.loadFromFile(kcTlsServerNameFileName);
 
             const opts: https.RequestOptions = {};
-            await kc.applytoHTTPSOptions(opts);
+            await kc.applyToHTTPSOptions(opts);
 
             expect(opts).to.deep.equal({
                 headers: {},
@@ -285,7 +285,7 @@ describe('KubeConfig', () => {
             kc.loadFromFile(kcFileName);
 
             const opts: https.RequestOptions = {};
-            kc.applytoHTTPSOptions(opts);
+            kc.applyToHTTPSOptions(opts);
 
             expect(opts).to.deep.equal({
                 headers: {},
@@ -701,7 +701,7 @@ describe('KubeConfig', () => {
 
             config.loadFromClusterAndUser({} as Cluster, { username: user, password: passwd } as User);
             const opts = {} as https.RequestOptions;
-            await config.applytoHTTPSOptions(opts);
+            await config.applyToHTTPSOptions(opts);
 
             expect(opts.auth).to.equal(`${user}:${passwd}`);
         });
