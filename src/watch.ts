@@ -41,7 +41,7 @@ export class Watch {
             }
         }
 
-        const requestInit = await this.config.applytoFetchOptions({});
+        const requestInit = await this.config.applyToFetchOptions({});
 
         const controller = new AbortControllerCtor();
         requestInit.signal = controller.signal;

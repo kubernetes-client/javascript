@@ -254,7 +254,7 @@ describe('KubeConfig', () => {
                     list: ['a', 'b'],
                 },
             };
-            const requestInit = await kc.applytoFetchOptions(opts);
+            const requestInit = await kc.applyToFetchOptions(opts);
             const expectedCA = Buffer.from('CADATA2', 'utf-8');
             const expectedAgent = new https.Agent({
                 ca: expectedCA,

@@ -147,7 +147,7 @@ export class KubeConfig implements SecurityAuthentication {
         this.makePathsAbsolute(rootDirectory);
     }
 
-    public async applytoFetchOptions(opts: https.RequestOptions): Promise<RequestInit> {
+    public async applyToFetchOptions(opts: https.RequestOptions): Promise<RequestInit> {
         await this.applyToHTTPSOptions(opts);
         const headers = new Headers();
         for (const [key, val] of Object.entries(opts.headers || {})) {
