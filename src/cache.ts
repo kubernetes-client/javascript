@@ -1,3 +1,4 @@
+import AbortController from 'abort-controller';
 import {
     ADD,
     CHANGE,
@@ -12,7 +13,7 @@ import {
 } from './informer';
 import { KubernetesObject } from './types';
 import { ObjectSerializer } from './util';
-import { RequestResult, Watch } from './watch';
+import { Watch } from './watch';
 
 export interface ObjectCache<T> {
     get(name: string, namespace?: string): T | undefined;
@@ -25,7 +26,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     private resourceVersion: string;
     private readonly indexCache: { [key: string]: T[] } = {};
     private readonly callbackCache: { [key: string]: Array<ObjectCallback<T> | ErrorCallback> } = {};
-    private request: RequestResult | undefined;
+    private request: AbortController | undefined;
     private stopped: boolean = false;
 
     public constructor(

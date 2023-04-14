@@ -7,6 +7,7 @@ import path = require('path');
 
 import shelljs = require('shelljs');
 
+import { Headers, RequestInit } from 'node-fetch';
 import * as api from './api';
 import { Authenticator } from './auth';
 import { AzureAuth } from './azure_auth';
@@ -146,6 +147,29 @@ export class KubeConfig implements SecurityAuthentication {
         this.makePathsAbsolute(rootDirectory);
     }
 
+    public async applytoFetchOptions(opts: https.RequestOptions): Promise<RequestInit> {
+        await this.applytoHTTPSOptions(opts);
+        const headers = new Headers();
+        for (const [key, val] of Object.entries(opts.headers || {})) {
+            if (Array.isArray(val)) {
+                val.forEach((innerVal) => {
+                    headers.append(key, innerVal);
+                });
+            } else if (typeof val === 'number' || typeof val === 'string') {
+                headers.set(key, val.toString());
+            }
+        }
+        if (opts.auth) {
+            headers.set('Authorization', 'Basic ' + Buffer.from(opts.auth).toString('base64'));
+        }
+        return {
+            agent: opts.agent,
+            headers,
+            method: opts.method,
+            timeout: opts.timeout,
+        };
+    }
+
     public async applytoHTTPSOptions(opts: https.RequestOptions): Promise<void> {
         const user = this.getCurrentUser();
 
@@ -164,6 +188,17 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions.pfx = opts.pfx;
         agentOptions.passphrase = opts.passphrase;
         agentOptions.rejectUnauthorized = opts.rejectUnauthorized;
+        agentOptions.timeout = opts.timeout;
+        agentOptions.servername = opts.servername;
+        agentOptions.ciphers = opts.ciphers;
+        agentOptions.honorCipherOrder = opts.honorCipherOrder;
+        agentOptions.ecdhCurve = opts.ecdhCurve;
+        agentOptions.clientCertEngine = opts.clientCertEngine;
+        agentOptions.crl = opts.crl;
+        agentOptions.dhparam = opts.dhparam;
+        agentOptions.secureOptions = opts.secureOptions;
+        agentOptions.secureProtocol = opts.secureProtocol;
+        agentOptions.sessionIdContext = opts.sessionIdContext;
 
         opts.agent = new https.Agent(agentOptions);
     }

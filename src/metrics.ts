@@ -1,4 +1,3 @@
-import { RequestOptions } from 'https';
 import fetch from 'node-fetch';
 import { KubeConfig } from './config';
 import { ApiException, V1Status } from './gen';
@@ -83,16 +82,12 @@ export class Metrics {
             throw new Error('No currently active cluster');
         }
 
-        const requestOptions: RequestOptions = {
-            method: 'GET',
-            servername: cluster.server + path,
-        };
-
         const requestURL = cluster.server + path;
 
-        await this.config.applytoHTTPSOptions(requestOptions);
+        const requestInit = await this.config.applytoFetchOptions({});
+        requestInit.method = 'GET';
 
-        return fetch(requestURL, requestOptions)
+        return fetch(requestURL, requestInit)
             .then((response) => {
                 return Promise.all([response.json(), response.status, response]);
             })

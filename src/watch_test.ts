@@ -1,14 +1,14 @@
 import { expect } from 'chai';
-import request = require('request');
-import { Duplex } from 'stream';
-import { anything, capture, instance, mock, spy, verify, when } from 'ts-mockito';
-import { EventEmitter } from 'ws';
+// import { anything, capture, instance, mock, spy, verify, when } from 'ts-mockito';
 
+import nock = require('nock');
+import { PassThrough } from 'stream';
 import { KubeConfig } from './config';
 import { Cluster, Context, User } from './config_types';
-import { DefaultRequest, RequestResult, Watch } from './watch';
+import { Watch } from './watch';
+import { IncomingMessage } from 'http';
 
-const server = 'foo.company.com';
+const server = 'http://foo.company.com';
 
 const fakeConfig: {
     clusters: Cluster[];
@@ -34,81 +34,26 @@ const fakeConfig: {
     ],
 };
 
-// Object replacing real Request object in the test
-class FakeRequest extends EventEmitter implements RequestResult {
-    pipe(stream: Duplex): void {}
-    abort() {}
-}
+const systemUnderTest = (): [nock.Scope] => {
+    const scope = nock(fakeConfig.clusters[0].server);
+    return [scope];
+};
 
 describe('Watch', () => {
-    describe('DefaultRequest', () => {
-        it('should resume stream upon http status 200', (done) => {
-            const defaultRequest = new DefaultRequest((opts) => {
-                const req = request(opts);
-                // to prevent request from firing we must replace start() method
-                // before "nextTick" happens
-                (<any>req).start = () => {};
-                (<any>req).resume = () => done();
-                return req;
-            });
-            const req = defaultRequest.webRequest({
-                uri: `http://${server}/testURI`,
-            });
-            req.on('error', done);
-            (<any>req).emit('response', {
-                statusCode: 200,
-            });
-        });
-
-        it('should handle non-200 error codes', (done) => {
-            const defaultRequest = new DefaultRequest((opts) => {
-                const req = request(opts);
-                (<any>req).start = () => {};
-                return req;
-            });
-            const req = defaultRequest.webRequest({
-                uri: `http://${server}/testURI`,
-            });
-            req.on('error', (err) => {
-                expect(err.toString()).to.equal('Error: Conflict');
-                done();
-            });
-            (<any>req).emit('response', {
-                statusCode: 409,
-                statusMessage: 'Conflict',
-            });
-        });
-    });
-
     it('should construct correctly', () => {
         const kc = new KubeConfig();
         const watch = new Watch(kc);
     });
 
-    it.skip('should handle error from request stream', async () => {
+    it('should handle error from request stream', async () => {
         const kc = new KubeConfig();
-        const fakeRequest = new FakeRequest();
-        const spiedRequest = spy(fakeRequest);
-        let aborted = false;
+        const path = '/some/path/to/object?watch=true';
 
-        when(spiedRequest.pipe(anything())).thenCall(() => {
-            fakeRequest.emit('error', new Error('some error'));
-        });
-        when(spiedRequest.abort()).thenCall(() => {
-            aborted = true;
-        });
+        const [scope] = systemUnderTest();
+        const s = scope.get(path).reply(500, 'Error: some error');
 
         Object.assign(kc, fakeConfig);
-        const watch = new Watch(kc, {
-            webRequest: (opts: request.OptionsWithUri) => {
-                expect(opts.uri).to.equal(`${server}${path}`);
-                expect(opts.method).to.equal('GET');
-                expect(opts.json).to.equal(true);
-                return fakeRequest;
-            },
-        });
-
-        const path = '/some/path/to/object';
+        const watch = new Watch(kc);
 
         let doneCalled = false;
         let doneErr: any;
@@ -116,6 +61,7 @@ describe('Watch', () => {
         await watch.watch(
             path,
             {},
+            // tslint:disable-next-line:no-empty
             (phase: string, obj: string) => {},
             (err: any) => {
                 doneCalled = true;
@@ -123,15 +69,14 @@ describe('Watch', () => {
             },
         );
         expect(doneCalled).to.equal(true);
-        expect(doneErr.toString()).to.equal('Error: some error');
-        expect(aborted).to.equal(true);
+        expect(doneErr.toString()).to.equal('Error: Internal Server Error');
+        s.done();
     });
 
-    it.skip('should not call watch done callback more than once', async () => {
+    it('should not call watch done callback more than once', async () => {
         const kc = new KubeConfig();
         Object.assign(kc, fakeConfig);
-        const fakeRequestor = mock(DefaultRequest);
-        const watch = new Watch(kc, instance(fakeRequestor));
+        const watch = new Watch(kc);
 
         const obj1 = {
             type: 'ADDED',
@@ -147,64 +92,87 @@ describe('Watch', () => {
             },
         };
 
-        var stream;
-        const fakeRequest = new FakeRequest();
-        fakeRequest.pipe = function (arg) {
-            stream = arg;
-            stream.write(JSON.stringify(obj1) + '\n');
-            stream.write(JSON.stringify(obj2) + '\n');
-        };
-
-        when(fakeRequestor.webRequest(anything())).thenReturn(fakeRequest);
-
         const path = '/some/path/to/object';
+
+        const stream = new PassThrough();
+
+        const [scope] = systemUnderTest();
+
+        let response: IncomingMessage | undefined;
+
+        const s = scope
+            .get(path)
+            .query({
+                watch: 'true',
+                a: 'b',
+            })
+            .reply(200, function (): PassThrough {
+                this.req.on('response', (r) => {
+                    response = r;
+                });
+                stream.push(JSON.stringify(obj1) + '\n');
+                stream.push(JSON.stringify(obj2) + '\n');
+                return stream;
+            });
 
         const receivedTypes: string[] = [];
         const receivedObjects: string[] = [];
         let doneCalled = 0;
         let doneErr: any;
 
+        let handledAllObjectsResolve: any;
+        const handledAllObjectsPromise = new Promise((resolve) => {
+            handledAllObjectsResolve = resolve;
+        });
+
+        let doneResolve: any;
+        const donePromise = new Promise((resolve) => {
+            doneResolve = resolve;
+        });
+
         await watch.watch(
             path,
-            {},
+            {
+                a: 'b',
+            },
             (phase: string, obj: string) => {
                 receivedTypes.push(phase);
                 receivedObjects.push(obj);
+                if (receivedObjects.length === 2) {
+                    handledAllObjectsResolve();
+                }
             },
             (err: any) => {
                 doneCalled += 1;
                 doneErr = err;
+                doneResolve();
             },
         );
 
-        verify(fakeRequestor.webRequest(anything()));
-
-        const [opts] = capture(fakeRequestor.webRequest).last();
-        const reqOpts: request.OptionsWithUri = opts as request.OptionsWithUri;
-
-        expect(reqOpts.uri).to.equal(`${server}${path}`);
-        expect(reqOpts.method).to.equal('GET');
-        expect(reqOpts.json).to.equal(true);
+        await handledAllObjectsPromise;
 
         expect(receivedTypes).to.deep.equal([obj1.type, obj2.type]);
         expect(receivedObjects).to.deep.equal([obj1.object, obj2.object]);
 
         expect(doneCalled).to.equal(0);
 
-        const errIn = { error: 'err' };
-        stream.emit('error', errIn);
-        expect(doneErr).to.deep.equal(errIn);
-        expect(doneCalled).to.equal(1);
+        const errIn = new Error('err');
+        (response as IncomingMessage).socket.destroy(errIn);
 
-        stream.end();
+        await donePromise;
+
         expect(doneCalled).to.equal(1);
+        expect(doneErr).to.deep.equal(errIn);
+
+        s.done();
+
+        stream.destroy();
     });
 
-    it.skip('should handle errors correctly', async () => {
+    it('should handle server errors correctly', async () => {
         const kc = new KubeConfig();
         Object.assign(kc, fakeConfig);
-        const fakeRequestor = mock(DefaultRequest);
-        const watch = new Watch(kc, instance(fakeRequestor));
+        const watch = new Watch(kc);
 
         const obj1 = {
             type: 'ADDED',
@@ -213,22 +181,35 @@ describe('Watch', () => {
             },
         };
 
-        const errIn = { error: 'err' };
-        const fakeRequest = new FakeRequest();
-        fakeRequest.pipe = function (stream) {
-            stream.write(JSON.stringify(obj1) + '\n');
-            stream.emit('error', errIn);
-            stream.emit('close');
-        };
+        const stream = new PassThrough();
 
-        when(fakeRequestor.webRequest(anything())).thenReturn(fakeRequest);
+        const [scope] = systemUnderTest();
 
-        const path = '/some/path/to/object';
+        const path = '/some/path/to/object?watch=true';
+
+        let response: IncomingMessage | undefined;
+
+        const s = scope.get(path).reply(200, function (): PassThrough {
+            this.req.on('response', (r) => {
+                response = r;
+            });
+            stream.push(JSON.stringify(obj1) + '\n');
+            return stream;
+        });
 
         const receivedTypes: string[] = [];
         const receivedObjects: string[] = [];
-        let doneCalled = false;
-        let doneErr: any[] = [];
+        const doneErr: any[] = [];
+
+        let handledAllObjectsResolve: any;
+        const handledAllObjectsPromise = new Promise((resolve) => {
+            handledAllObjectsResolve = resolve;
+        });
+
+        let doneResolve: any;
+        const donePromise = new Promise((resolve) => {
+            doneResolve = resolve;
+        });
 
         await watch.watch(
             path,
@@ -236,35 +217,40 @@ describe('Watch', () => {
             (phase: string, obj: string) => {
                 receivedTypes.push(phase);
                 receivedObjects.push(obj);
+                if (receivedObjects.length === 1) {
+                    handledAllObjectsResolve();
+                }
             },
             (err: any) => {
-                doneCalled = true;
                 doneErr.push(err);
+                doneResolve();
             },
         );
 
-        verify(fakeRequestor.webRequest(anything()));
-
-        const [opts] = capture(fakeRequestor.webRequest).last();
-        const reqOpts: request.OptionsWithUri = opts as request.OptionsWithUri;
-
-        expect(reqOpts.uri).to.equal(`${server}${path}`);
-        expect(reqOpts.method).to.equal('GET');
-        expect(reqOpts.json).to.equal(true);
+        await handledAllObjectsPromise;
 
         expect(receivedTypes).to.deep.equal([obj1.type]);
         expect(receivedObjects).to.deep.equal([obj1.object]);
 
-        expect(doneCalled).to.equal(true);
+        expect(doneErr.length).to.equal(0);
+
+        const errIn = new Error('err');
+        (response as IncomingMessage).socket.destroy(errIn);
+
+        await donePromise;
+
         expect(doneErr.length).to.equal(1);
         expect(doneErr[0]).to.deep.equal(errIn);
+
+        s.done();
+
+        stream.destroy();
     });
 
-    it.skip('should handle server side close correctly', async () => {
+    it('should handle server side close correctly', async () => {
         const kc = new KubeConfig();
         Object.assign(kc, fakeConfig);
-        const fakeRequestor = mock(DefaultRequest);
-        const watch = new Watch(kc, instance(fakeRequestor));
+        const watch = new Watch(kc);
 
         const obj1 = {
             type: 'ADDED',
@@ -273,20 +259,35 @@ describe('Watch', () => {
             },
         };
 
-        const fakeRequest = new FakeRequest();
-        fakeRequest.pipe = function (stream) {
-            stream.write(JSON.stringify(obj1) + '\n');
-            stream.emit('close');
-        };
+        const stream = new PassThrough();
 
-        when(fakeRequestor.webRequest(anything())).thenReturn(fakeRequest);
+        const [scope] = systemUnderTest();
 
-        const path = '/some/path/to/object';
+        const path = '/some/path/to/object?watch=true';
+
+        let response: IncomingMessage | undefined;
+
+        const s = scope.get(path).reply(200, function (): PassThrough {
+            this.req.on('response', (r) => {
+                response = r;
+            });
+            stream.push(JSON.stringify(obj1) + '\n');
+            return stream;
+        });
 
         const receivedTypes: string[] = [];
         const receivedObjects: string[] = [];
-        let doneCalled = false;
-        let doneErr: any;
+        const doneErr: any[] = [];
+
+        let handledAllObjectsResolve: any;
+        const handledAllObjectsPromise = new Promise((resolve) => {
+            handledAllObjectsResolve = resolve;
+        });
+
+        let doneResolve: any;
+        const donePromise = new Promise((resolve) => {
+            doneResolve = resolve;
+        });
 
         await watch.watch(
             path,
@@ -294,34 +295,39 @@ describe('Watch', () => {
             (phase: string, obj: string) => {
                 receivedTypes.push(phase);
                 receivedObjects.push(obj);
+                if (receivedObjects.length === 1) {
+                    handledAllObjectsResolve();
+                }
             },
             (err: any) => {
-                doneCalled = true;
-                doneErr = err;
+                doneErr.push(err);
+                doneResolve();
             },
         );
 
-        verify(fakeRequestor.webRequest(anything()));
-
-        const [opts] = capture(fakeRequestor.webRequest).last();
-        const reqOpts: request.OptionsWithUri = opts as request.OptionsWithUri;
-
-        expect(reqOpts.uri).to.equal(`${server}${path}`);
-        expect(reqOpts.method).to.equal('GET');
-        expect(reqOpts.json).to.equal(true);
+        await handledAllObjectsPromise;
 
         expect(receivedTypes).to.deep.equal([obj1.type]);
         expect(receivedObjects).to.deep.equal([obj1.object]);
 
-        expect(doneCalled).to.equal(true);
-        expect(doneErr).to.be.null;
+        expect(doneErr.length).to.equal(0);
+
+        stream.end();
+
+        await donePromise;
+
+        expect(doneErr.length).to.equal(1);
+        expect(doneErr[0]).to.equal(null);
+
+        s.done();
+
+        stream.destroy();
     });
 
-    it.skip('should ignore JSON parse errors', async () => {
+    it('should ignore JSON parse errors', async () => {
         const kc = new KubeConfig();
         Object.assign(kc, fakeConfig);
-        const fakeRequestor = mock(DefaultRequest);
-        const watch = new Watch(kc, instance(fakeRequestor));
+        const watch = new Watch(kc);
 
         const obj = {
             type: 'MODIFIED',
@@ -330,18 +336,25 @@ describe('Watch', () => {
             },
         };
 
-        const fakeRequest = new FakeRequest();
-        fakeRequest.pipe = function (stream) {
-            stream.write(JSON.stringify(obj) + '\n');
+        const stream = new PassThrough();
+
+        const [scope] = systemUnderTest();
+
+        const path = '/some/path/to/object?watch=true';
+
+        const s = scope.get(path).reply(200, () => {
+            stream.push(JSON.stringify(obj) + '\n');
             stream.write('{"truncated json\n');
-        };
-
-        when(fakeRequestor.webRequest(anything())).thenReturn(fakeRequest);
-
-        const path = '/some/path/to/object';
+            return stream;
+        });
 
         const receivedTypes: string[] = [];
         const receivedObjects: string[] = [];
+
+        let doneResolve: any;
+        const donePromise = new Promise((resolve) => {
+            doneResolve = resolve;
+        });
 
         await watch.watch(
             path,
@@ -351,17 +364,18 @@ describe('Watch', () => {
                 receivedObjects.push(recievedObject);
             },
             () => {
-                // ignore
+                doneResolve();
             },
         );
 
-        verify(fakeRequestor.webRequest(anything()));
+        stream.end();
 
-        const [opts, doneCallback] = capture(fakeRequestor.webRequest).last();
-        const reqOpts: request.OptionsWithUri = opts as request.OptionsWithUri;
+        await donePromise;
 
         expect(receivedTypes).to.deep.equal([obj.type]);
         expect(receivedObjects).to.deep.equal([obj.object]);
+
+        s.done();
     });
 
     it('should throw on empty config', () => {

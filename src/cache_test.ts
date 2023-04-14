@@ -1,30 +1,23 @@
 import { expect, use } from 'chai';
-import * as request from 'request';
 import chaiAsPromised = require('chai-as-promised');
 
 import * as mock from 'ts-mockito';
 
 import http = require('http');
-import { Duplex } from 'stream';
-import { EventEmitter } from 'ws';
 
-import { V1Namespace, V1NamespaceList, V1ObjectMeta, V1Pod, V1ListMeta } from './api';
-import { deleteObject, ListWatch, deleteItems } from './cache';
+import { V1ListMeta, V1Namespace, V1NamespaceList, V1ObjectMeta, V1Pod } from './api';
+import { deleteItems, deleteObject, ListWatch } from './cache';
 import { KubeConfig } from './config';
 import { Cluster, Context, User } from './config_types';
-import { ADD, UPDATE, DELETE, ERROR, ListPromise, CHANGE } from './informer';
+import { ListPromise } from './informer';
 
 use(chaiAsPromised);
 
-import { DefaultRequest, RequestResult, Watch } from './watch';
+import AbortController from 'abort-controller';
+import nock = require('nock');
+import { Watch } from './watch';
 
-// Object replacing real Request object in the test
-class FakeRequest extends EventEmitter implements RequestResult {
-    pipe(stream: Duplex): void {}
-    abort() {}
-}
-
-const server = 'foo.company.com';
+const server = 'http://foo.company.com';
 
 const fakeConfig: {
     clusters: Cluster[];
@@ -115,7 +108,7 @@ describe('ListWatchCache', () => {
             ],
         } as V1NamespaceList;
 
-        var calls = 0;
+        let calls = 0;
         const listFn: ListPromise<V1Namespace> = function (): Promise<{
             response: http.IncomingMessage;
             body: V1NamespaceList;
@@ -134,7 +127,7 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new FakeRequest());
+                resolve(new AbortController());
             });
         });
         const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
@@ -240,7 +233,7 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new FakeRequest());
+                resolve(new AbortController());
             });
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
@@ -329,7 +322,7 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new FakeRequest());
+                resolve(new AbortController());
             });
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
@@ -392,7 +385,7 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new FakeRequest());
+                resolve(new AbortController());
             });
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
@@ -461,7 +454,7 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new FakeRequest());
+                resolve(new AbortController());
             });
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
@@ -483,7 +476,7 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new FakeRequest());
+                resolve(new AbortController());
             });
         });
         doneHandler(null);
@@ -537,7 +530,7 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new FakeRequest());
+                resolve(new AbortController());
             });
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
@@ -560,7 +553,7 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new FakeRequest());
+                resolve(new AbortController());
             });
         });
         listObj.items = list2;
@@ -617,7 +610,7 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new FakeRequest());
+                resolve(new AbortController());
             });
         });
         const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
@@ -962,11 +955,11 @@ describe('ListWatchCache', () => {
                 },
             );
         };
-        let promise = new Promise((resolve) => {
+        const promise = new Promise((resolve) => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new FakeRequest());
+                resolve(new AbortController());
             });
         });
 
@@ -1025,11 +1018,11 @@ describe('ListWatchCache', () => {
                 },
             );
         };
-        let promise = new Promise((resolve) => {
+        const promise = new Promise((resolve) => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new FakeRequest());
+                resolve(new AbortController());
             });
         });
 
@@ -1074,7 +1067,7 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new FakeRequest());
+                resolve(new AbortController());
             });
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
@@ -1098,7 +1091,7 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new FakeRequest());
+                resolve(new AbortController());
             });
         });
         informer.start();
@@ -1130,7 +1123,7 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new FakeRequest());
+                resolve(new AbortController());
             });
         });
 
@@ -1159,7 +1152,7 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new FakeRequest());
+                resolve(new AbortController());
             });
         });
 
@@ -1179,7 +1172,7 @@ describe('ListWatchCache', () => {
         expect(listCalls).to.be.equal(2);
     });
 
-    it.skip('should send label selector', async () => {
+    it('should send label selector', async () => {
         const APP_LABEL_SELECTOR = 'app=foo';
 
         const list: V1Namespace[] = [
@@ -1220,20 +1213,57 @@ describe('ListWatchCache', () => {
 
         const kc = new KubeConfig();
         Object.assign(kc, fakeConfig);
-        const fakeRequestor = mock.mock(DefaultRequest);
-        const watch = new Watch(kc, mock.instance(fakeRequestor));
+        const watch = new Watch(kc);
 
-        const fakeRequest = new FakeRequest();
-        mock.when(fakeRequestor.webRequest(mock.anything())).thenReturn(fakeRequest);
+        const path = '/some/path';
 
-        const informer = new ListWatch('/some/path', watch, listFn, false, APP_LABEL_SELECTOR);
+        const informer = new ListWatch(path, watch, listFn, false, APP_LABEL_SELECTOR);
+
+        const scope = nock(fakeConfig.clusters[0].server);
+        const s = scope
+            .get(path)
+            .query({
+                watch: true,
+                resourceVersion: '12345',
+                labelSelector: APP_LABEL_SELECTOR,
+            })
+            .reply(
+                200,
+                () =>
+                    JSON.stringify({
+                        type: 'ADDED',
+                        object: {
+                            metadata: {
+                                name: 'name3',
+                                labels: {
+                                    app: 'foo3',
+                                },
+                            } as V1ObjectMeta,
+                        },
+                    }) + '\n',
+            );
 
         await informer.start();
 
-        mock.verify(fakeRequestor.webRequest(mock.anything()));
-        const [opts] = mock.capture(fakeRequestor.webRequest).last();
-        const reqOpts: request.OptionsWithUri = opts as request.OptionsWithUri;
-        expect(reqOpts.qs.labelSelector).to.equal(APP_LABEL_SELECTOR);
+        let doneResolve: any;
+        const donePromise = new Promise((resolve) => {
+            doneResolve = resolve;
+        });
+
+        informer.on('add', doneResolve);
+
+        const value = await donePromise;
+
+        expect(value).to.deep.equal({
+            metadata: {
+                labels: {
+                    app: 'foo3',
+                },
+                name: 'name3',
+            },
+        });
+
+        s.done();
     });
 });
 
@@ -1344,11 +1374,11 @@ describe('delete items', () => {
                 },
             );
         };
-        let promise = new Promise((resolve) => {
+        const promise = new Promise((resolve) => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new FakeRequest());
+                resolve(new AbortController());
             });
         });
 
