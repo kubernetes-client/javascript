@@ -49,7 +49,7 @@ Code will be on the `master` branch.
 -   [x] Switch generate-client script to use typescript-fetch
 -   [x] Generate api with `npm run generate`
 -   [x] Match src/gen/api.ts to new generated layout (it changes slightly)
--   [ ] Fix errors in /src folder (due to new api)
+-   [x] Fix errors in /src folder (due to new api)
     -   [x] migrate src/auth.ts, the dependent implementations (ex: azure_auth, gcp_auth etc) and tests to fetch api from request
     -   [x] migrate src/log.ts and its tests to fetch api from request
         -  [x] major remaining work is fixing up async signatures and return piping
@@ -57,7 +57,7 @@ Code will be on the `master` branch.
         -  [x] remove decprecated requestImpl and RequestInterface
         -  [x] implement queryParams parameter in watch method by injecting them into the fetch call
         -  [x] update tests in src/watch_test.ts
--   [ ] Fix errors in test (due to new api)
+-   [x] Fix errors in test (due to new api)
 -   [ ] Test all features
 -   [ ] Fix examples and validate their param signatures (due to new api)
 
