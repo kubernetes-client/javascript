@@ -5,6 +5,12 @@ updates:
     schedule:
       interval: "daily"
       time: "02:00"
+  - package-ecosystem: "npm"
+    directory: "/"
+    target-branch: "release-1.x"
+    schedule:
+      interval: "daily"
+      time: "01:00"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
