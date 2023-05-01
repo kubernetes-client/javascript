@@ -3,13 +3,17 @@ import { expect } from 'chai';
 import { RequestOptions, Agent } from 'https';
 import { Matcher } from 'ts-mockito/lib/matcher/type/Matcher';
 
-export function matchBuffer(channel: number, contents: string): Matcher {
+export function matchBuffer(channel: number, contents: string): StringBufferMatcher {
   return new StringBufferMatcher(channel, contents);
 }
 
 class StringBufferMatcher extends Matcher {
   constructor(private channel: number, private contents: string) {
       super();
+  }
+
+  public valueOf(): string {
+    return this.contents;
   }
 
   public match(value: any): boolean {
