@@ -25,7 +25,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     private objects: T[] = [];
     private resourceVersion: string;
     private readonly indexCache: { [key: string]: T[] } = {};
-    private readonly callbackCache: { [key: string]: Array<ObjectCallback<T> | ErrorCallback> } = {};
+    private readonly callbackCache: { [key: string]: (ObjectCallback<T> | ErrorCallback)[] } = {};
     private request: AbortController | undefined;
     private stopped: boolean = false;
 
@@ -223,7 +223,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
 export function deleteItems<T extends KubernetesObject>(
     oldObjects: T[],
     newObjects: T[],
-    deleteCallback?: Array<ObjectCallback<T>>,
+    deleteCallback?: ObjectCallback<T>[],
 ): T[] {
     return oldObjects.filter((obj: T) => {
         if (findKubernetesObject(newObjects, obj) === -1) {
@@ -240,8 +240,8 @@ export function deleteItems<T extends KubernetesObject>(
 export function addOrUpdateObject<T extends KubernetesObject>(
     objects: T[],
     obj: T,
-    addCallback?: Array<ObjectCallback<T>>,
-    updateCallback?: Array<ObjectCallback<T>>,
+    addCallback?: ObjectCallback<T>[],
+    updateCallback?: ObjectCallback<T>[],
 ): void {
     const ix = findKubernetesObject(objects, obj);
     if (ix === -1) {
@@ -281,7 +281,7 @@ function findKubernetesObject<T extends KubernetesObject>(objects: T[], obj: T):
 export function deleteObject<T extends KubernetesObject>(
     objects: T[],
     obj: T,
-    deleteCallback?: Array<ObjectCallback<T>>,
+    deleteCallback?: ObjectCallback<T>[],
 ): void {
     const ix = findKubernetesObject(objects, obj);
     if (ix !== -1) {
