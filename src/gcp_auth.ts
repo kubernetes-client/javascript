@@ -86,7 +86,7 @@ export class GoogleCloudPlatformAuth implements Authenticator {
         const tokenPathKey = '$' + tokenPathKeyInConfig.slice(1, -1);
         const expiryPathKey = '$' + expiryPathKeyInConfig.slice(1, -1);
 
-        config['access-token'] = jsonpath.JSONPath(tokenPathKey, resultObj);
-        config.expiry = jsonpath.JSONPath(expiryPathKey, resultObj);
+        config['access-token'] = jsonpath.JSONPath({ path: tokenPathKey, json: resultObj });
+        config.expiry = jsonpath.JSONPath({ path: expiryPathKey, json: resultObj });
     }
 }
