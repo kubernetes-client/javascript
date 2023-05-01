@@ -60,7 +60,7 @@
         "@types/stream-buffers": "^3.0.3",
         "@types/tar": "^6.1.1",
         "@types/underscore": "^1.8.9",
-        "@types/ws": "^6.0.1",
+        "@types/ws": "^8.5.4",
         "abort-controller": "^3.0.0",
         "byline": "^5.0.0",
         "execa": "5.0.0",
@@ -78,7 +78,7 @@
         "tslib": "^1.9.3",
         "underscore": "^1.9.1",
         "url-parse": "^1.4.3",
-        "ws": "^7.3.1"
+        "ws": "^8.13.0"
     },
     "devDependencies": {
         "@types/byline": "^4.2.31",
