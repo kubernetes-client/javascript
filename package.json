@@ -75,7 +75,7 @@
         "stream-buffers": "^3.0.2",
         "tar": "^6.1.11",
         "tmp-promise": "^3.0.2",
-        "tslib": "^1.9.3",
+        "tslib": "^2.5.0",
         "underscore": "^1.9.1",
         "url-parse": "^1.4.3",
         "ws": "^8.13.0"
