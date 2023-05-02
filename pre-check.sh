@@ -2,8 +2,8 @@
 
 branch=$(git rev-parse --abbrev-ref HEAD)
 
-if [[ "${branch}" != "master" ]]; then
-  echo "This script can only be run on the master branch. Current branch is ${branch}"
+if [[ "${branch}" != "release-1.x" ]]; then
+  echo "This script can only be run on the release-1.x branch. Current branch is ${branch}"
   exit 1
 fi
 
