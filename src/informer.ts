@@ -3,15 +3,10 @@ import { KubeConfig } from './config';
 import { KubernetesListObject, KubernetesObject } from './types';
 import { Watch } from './watch';
 
-import http = require('http');
-
 export type ObjectCallback<T extends KubernetesObject> = (obj: T) => void;
 export type ErrorCallback = (err?: any) => void;
 export type ListCallback<T extends KubernetesObject> = (list: T[], ResourceVersion: string) => void;
-export type ListPromise<T extends KubernetesObject> = () => Promise<{
-    response: http.IncomingMessage;
-    body: KubernetesListObject<T>;
-}>;
+export type ListPromise<T extends KubernetesObject> = () => Promise<KubernetesListObject<T>>;
 
 // These are issued per object
 export const ADD: string = 'add';

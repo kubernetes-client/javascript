@@ -52,28 +52,40 @@ Code will be on the `master` branch.
 -   [x] Fix errors in /src folder (due to new api)
     -   [x] migrate src/auth.ts, the dependent implementations (ex: azure_auth, gcp_auth etc) and tests to fetch api from request
     -   [x] migrate src/log.ts and its tests to fetch api from request
-        -  [x] major remaining work is fixing up async signatures and return piping
+        -   [x] major remaining work is fixing up async signatures and return piping
     -   [x] migrate src/watch.ts and its tests to fetch api from request
-        -  [x] remove decprecated requestImpl and RequestInterface
-        -  [x] implement queryParams parameter in watch method by injecting them into the fetch call
-        -  [x] update tests in src/watch_test.ts
+        -   [x] remove decprecated requestImpl and RequestInterface
+        -   [x] implement queryParams parameter in watch method by injecting them into the fetch call
+        -   [x] update tests in src/watch_test.ts
 -   [x] Fix errors in test (due to new api)
 -   [ ] Test all features
--   [ ] Fix examples and validate their param signatures (due to new api)
+-   [ ] Fix JavaScript examples and validate their param signatures (due to new api)
 
-    -   [ ] cache-example
-    -   [ ] example
-    -   [ ] follow-logs
+    -   [x] cache-example
+    -   [x] example
+    -   [x] follow-logs
     -   [ ] in-cluster-create-job-from-cronjob
-    -   [ ] in-cluster
-    -   [ ] ingress
+    -   [x] in-cluster
+    -   [x] ingress
     -   [ ] namespace
     -   [ ] patch-example
     -   [ ] raw-example (note: uses request lib directly, will require full fetch migration not just client param swap)
     -   [ ] scale-deployment
-    -   [ ] top_pods
-    -   [ ] top
+    -   [x] top_pods
+    -   [x] top
     -   [ ] yaml-example
+
+-   [ ] Fix TypeScript examples and validate their param signatures (due to new api)
+
+    -   [ ] apply-example
+    -   [ ] attach-example
+    -   [ ] cp-example
+    -   [ ] exec-example
+    -   [ ] informer-with-label-selector
+    -   [ ] informer
+    -   [ ] port-forward
+    -   [ ] example
+    -   [ ] watch-example
 
 -   [ ] Update docs
     -   [ ] Update README examples
