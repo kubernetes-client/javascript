@@ -6,6 +6,9 @@ set -e
 # validate branches
 . ./pre-check.sh
 
+npm run clean
+npm install
+
 # pre-requisites
 npm run lint
 npm test
