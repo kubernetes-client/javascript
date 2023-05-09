@@ -64,16 +64,16 @@ Code will be on the `master` branch.
     -   [x] cache-example
     -   [x] example
     -   [x] follow-logs
-    -   [ ] in-cluster-create-job-from-cronjob
+    -   [ ] in-cluster-create-job-from-cronjob // done but unable to test with media type problems
     -   [x] in-cluster
     -   [x] ingress
-    -   [ ] namespace
-    -   [ ] patch-example
-    -   [ ] raw-example (note: uses request lib directly, will require full fetch migration not just client param swap)
-    -   [ ] scale-deployment
+    -   [ ] namespace // done but unable to test with media type problems
+    -   [ ] patch-example 
+    -   [x] raw-example (note: uses request lib directly, will require full fetch migration not just client param swap)
+    -   [ ] scale-deployment // done but unable to test with media type problems
     -   [x] top_pods
     -   [x] top
-    -   [ ] yaml-example
+    -   [ ] yaml-example // done but unable to test with media type problems
 
 -   [ ] Fix TypeScript examples and validate their param signatures (due to new api)
 
@@ -81,11 +81,11 @@ Code will be on the `master` branch.
     -   [ ] attach-example
     -   [ ] cp-example
     -   [ ] exec-example
-    -   [ ] informer-with-label-selector
-    -   [ ] informer
+    -   [ ] informer-with-label-selector // done but unable to test with media type problems
+    -   [x] informer
     -   [ ] port-forward
-    -   [ ] example
-    -   [ ] watch-example
+    -   [x] example
+    -   [x] watch-example
 
 -   [ ] Update docs
     -   [ ] Update README examples
