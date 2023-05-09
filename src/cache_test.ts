@@ -46,23 +46,15 @@ const fakeConfig: {
 describe('ListWatchCache', () => {
     it('should throw on unknown update', () => {
         const fake = mock.mock(Watch);
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
-                (resolve, reject) => {
-                    resolve({
-                        response: {} as http.IncomingMessage,
-                        body: {
-                            metadata: {
-                                resourceVersion: '12345',
-                            } as V1ListMeta,
-                            items: [],
-                        } as V1NamespaceList,
-                    });
-                },
-            );
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve, reject) => {
+                resolve({
+                    metadata: {
+                        resourceVersion: '12345',
+                    } as V1ListMeta,
+                    items: [],
+                } as V1NamespaceList);
+            });
         };
         const lw = new ListWatch('/some/path', fake, listFn);
         const verb = 'FOOBAR';
@@ -109,19 +101,14 @@ describe('ListWatchCache', () => {
         } as V1NamespaceList;
 
         let calls = 0;
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
-                (resolve, reject) => {
-                    if (calls++ === 0) {
-                        resolve({ response: {} as http.IncomingMessage, body: listObj });
-                    } else {
-                        resolve({ response: {} as http.IncomingMessage, body: emptyObj });
-                    }
-                },
-            );
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve, reject) => {
+                if (calls++ === 0) {
+                    resolve(listObj);
+                } else {
+                    resolve(emptyObj);
+                }
+            });
         };
         const promise = new Promise((resolve) => {
             mock.when(
@@ -219,15 +206,10 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
-                (resolve, reject) => {
-                    resolve({ response: {} as http.IncomingMessage, body: listObj });
-                },
-            );
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve, reject) => {
+                resolve(listObj);
+            });
         };
         const promise = new Promise((resolve) => {
             mock.when(
@@ -308,15 +290,10 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
-                (resolve, reject) => {
-                    resolve({ response: {} as http.IncomingMessage, body: listObj });
-                },
-            );
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve, reject) => {
+                resolve(listObj);
+            });
         };
         const promise = new Promise((resolve) => {
             mock.when(
@@ -371,15 +348,10 @@ describe('ListWatchCache', () => {
             items: [],
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
-                (resolve, reject) => {
-                    resolve({ response: {} as http.IncomingMessage, body: listObj });
-                },
-            );
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve, reject) => {
+                resolve(listObj);
+            });
         };
         const promise = new Promise((resolve) => {
             mock.when(
@@ -440,15 +412,10 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
-                (resolve, reject) => {
-                    resolve({ response: {} as http.IncomingMessage, body: listObj });
-                },
-            );
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve, reject) => {
+                resolve(listObj);
+            });
         };
         let promise = new Promise((resolve) => {
             mock.when(
@@ -516,15 +483,10 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
-                (resolve, reject) => {
-                    resolve({ response: {} as http.IncomingMessage, body: listObj });
-                },
-            );
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve, reject) => {
+                resolve(listObj);
+            });
         };
         let promise = new Promise((resolve) => {
             mock.when(
@@ -596,15 +558,10 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
-                (resolve, reject) => {
-                    resolve({ response: {} as http.IncomingMessage, body: listObj });
-                },
-            );
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve, reject) => {
+                resolve(listObj);
+            });
         };
         const promise = new Promise((resolve) => {
             mock.when(
@@ -720,12 +677,9 @@ describe('ListWatchCache', () => {
             } as V1ListMeta,
             items: list,
         } as V1NamespaceList;
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>((resolve) => {
-                resolve({ response: {} as http.IncomingMessage, body: listObj });
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve) => {
+                resolve(listObj);
             });
         };
         const watchCalled = new Promise((resolve) => {
@@ -779,12 +733,9 @@ describe('ListWatchCache', () => {
             } as V1ListMeta,
             items: list,
         } as V1NamespaceList;
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>((resolve) => {
-                resolve({ response: {} as http.IncomingMessage, body: listObj });
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve) => {
+                resolve(listObj);
             });
         };
         const watchCalled = new Promise((resolve) => {
@@ -840,14 +791,11 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>((resolve) => {
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve) => {
                 // setImmediate will defer the resolve to the next message loop to keep the list from being immediately available
                 setImmediate(() => {
-                    resolve({ response: {} as http.IncomingMessage, body: listObj });
+                    resolve(listObj);
                 });
             });
         };
@@ -867,12 +815,9 @@ describe('ListWatchCache', () => {
             } as V1ListMeta,
             items: list,
         } as V1NamespaceList;
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>((resolve) => {
-                resolve({ response: {} as http.IncomingMessage, body: listObj });
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve) => {
+                resolve(listObj);
             });
         };
         const watchCalled = new Promise((resolve) => {
@@ -945,15 +890,10 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
-                (resolve, reject) => {
-                    resolve({ response: {} as http.IncomingMessage, body: listObj });
-                },
-            );
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve, reject) => {
+                resolve(listObj);
+            });
         };
         const promise = new Promise((resolve) => {
             mock.when(
@@ -1008,15 +948,10 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
-                (resolve, reject) => {
-                    resolve({ response: {} as http.IncomingMessage, body: listObj });
-                },
-            );
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve, reject) => {
+                resolve(listObj);
+            });
         };
         const promise = new Promise((resolve) => {
             mock.when(
@@ -1054,13 +989,10 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>((resolve) => {
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve) => {
                 listCalls++;
-                resolve({ response: {} as http.IncomingMessage, body: listObj });
+                resolve(listObj);
             });
         };
         let promise = new Promise((resolve) => {
@@ -1110,13 +1042,10 @@ describe('ListWatchCache', () => {
         } as V1NamespaceList;
 
         let listCalls = 0;
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>((resolve) => {
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve) => {
                 listCalls++;
-                resolve({ response: {} as http.IncomingMessage, body: listObj });
+                resolve(listObj);
             });
         };
         let promise = new Promise((resolve) => {
@@ -1200,15 +1129,10 @@ describe('ListWatchCache', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
-                (resolve, reject) => {
-                    resolve({ response: {} as http.IncomingMessage, body: listObj });
-                },
-            );
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve, reject) => {
+                resolve(listObj);
+            });
         };
 
         const kc = new KubeConfig();
@@ -1320,15 +1244,10 @@ describe('delete items', () => {
             items: [],
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
-                (resolve, reject) => {
-                    resolve({ response: {} as http.IncomingMessage, body: listObj });
-                },
-            );
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve, reject) => {
+                resolve(listObj);
+            });
         };
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
         const connectPromise = new Promise<boolean>((resolve: (boolean) => void) => {
@@ -1364,15 +1283,10 @@ describe('delete items', () => {
             items: list,
         } as V1NamespaceList;
 
-        const listFn: ListPromise<V1Namespace> = function (): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>(
-                (resolve, reject) => {
-                    resolve({ response: {} as http.IncomingMessage, body: listObj });
-                },
-            );
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve, reject) => {
+                resolve(listObj);
+            });
         };
         const promise = new Promise((resolve) => {
             mock.when(

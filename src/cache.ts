@@ -132,8 +132,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         this.callbackCache[CONNECT].forEach((elt: ErrorCallback) => elt(undefined));
         if (!this.resourceVersion) {
             const promise = this.listFn();
-            const result = await promise;
-            const list = result.body;
+            const list = await promise;
             this.objects = deleteItems(this.objects, list.items, this.callbackCache[DELETE].slice());
             Object.keys(this.indexCache).forEach((key) => {
                 const updateObjects = deleteItems(this.indexCache[key], list.items);
