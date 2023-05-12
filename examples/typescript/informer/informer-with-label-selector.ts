@@ -1,5 +1,6 @@
 // tslint:disable:no-console
-import * as k8s from '@kubernetes/client-node';
+// in a real program use require('@kubernetes/client-node')
+import * as k8s from '../../../dist/index';
 
 const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
@@ -8,16 +9,13 @@ const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
 const APP_LABEL_SELECTOR = 'app=foo';
 
-const listFn = () => k8sApi.listNamespacedPod(
-    'default',
-    undefined,
-    undefined,
-    undefined,
-    undefined,
-    APP_LABEL_SELECTOR,
-);
+const listFn = () =>
+    k8sApi.listNamespacedPod({
+        namespace: 'default',
+        labelSelector: APP_LABEL_SELECTOR,
+    });
 
-const createPod = async (name, app) => {
+const createPod = async (name: string, app: string) => {
     const appPodContainer = {
         name: 'nginx',
         image: 'nginx:latest',
@@ -34,25 +32,20 @@ const createPod = async (name, app) => {
             containers: [appPodContainer],
         },
     } as k8s.V1Pod;
-    await k8sApi.createNamespacedPod('default', appPod).catch((e) => console.error(e));
+    await k8sApi.createNamespacedPod({ namespace: 'default', body: appPod }).catch((e) => console.error(e));
     console.log('create', name);
 };
 
-const deletePod = async (name, namespace) => {
-    await k8sApi.deleteNamespacedPod(name, namespace);
+const deletePod = async (podName: string, podNamespace: string) => {
+    await k8sApi.deleteNamespacedPod({ name: podName, namespace: podNamespace });
     console.log('delete', name);
 };
 
-const delay = (ms) => {
+const delay = (ms: number) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
-const informer = k8s.makeInformer(
-    kc,
-    '/api/v1/namespaces/default/pods',
-    listFn,
-    APP_LABEL_SELECTOR,
-);
+const informer = k8s.makeInformer(kc, '/api/v1/namespaces/default/pods', listFn, APP_LABEL_SELECTOR);
 
 informer.on('add', (obj: k8s.V1Pod) => {
     console.log(`Added: ${obj.metadata!.name}`);
