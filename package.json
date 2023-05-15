@@ -83,7 +83,7 @@
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "husky": "^8.0.3",
-    "jasmine": "^4.5.0",
+    "jasmine": "^5.0.0",
     "mocha": "^10.1.0",
     "mock-fs": "^5.2.0",
     "nock": "^13.2.9",
