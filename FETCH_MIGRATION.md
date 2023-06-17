@@ -67,27 +67,27 @@ Code will be on the `master` branch.
     -   [ ] in-cluster-create-job-from-cronjob // done but unable to test with media type problems
     -   [x] in-cluster
     -   [x] ingress
-    -   [ ] namespace // done but unable to test with media type problems
-    -   [ ] patch-example 
+    -   [x] namespace
+    -   [ ] patch-example // throws an error `TypeError: Cannot read properties of undefined (reading 'makeRequestContext')`
     -   [x] raw-example (note: uses request lib directly, will require full fetch migration not just client param swap)
-    -   [ ] scale-deployment // done but unable to test with media type problems
+    -   [x] scale-deployment
     -   [x] top_pods
     -   [x] top
-    -   [ ] yaml-example // done but unable to test with media type problems
+    -   [ ] yaml-example // create works but deletion throws an error `TypeError: Cannot read properties of undefined (reading 'makeRequestContext')`
 
 -   [ ] Fix TypeScript examples and validate their param signatures (due to new api)
 
-    -   [ ] apply-example
-    -   [ ] attach-example
-    -   [ ] cp-example
-    -   [ ] exec-example
-    -   [ ] informer-with-label-selector // done but unable to test with media type problems
+    -   [ ] apply-example // KubernetesObjectApi is missing
+    -   [x] attach-example
+    -   [x] cp-example
+    -   [x] exec-example
+    -   [x] informer-with-label-selector
     -   [x] informer
-    -   [ ] port-forward
+    -   [x] port-forward
     -   [x] example
     -   [x] watch-example
 
 -   [ ] Update docs
     -   [ ] Update README examples
 -   [ ] Document breaking changes for users
--   [ ] Release initial version (1.0.0)
+        [ ] Release initial version (1.0.0)

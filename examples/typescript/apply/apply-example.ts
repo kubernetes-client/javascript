@@ -1,4 +1,5 @@
-import * as k8s from '@kubernetes/client-node';
+// in a real program use require('@kubernetes/client-node')
+import * as k8s from '../../../dist';
 import * as fs from 'fs';
 import * as yaml from 'js-yaml';
 import { promisify } from 'util';
@@ -16,7 +17,7 @@ export async function apply(specPath: string): Promise<k8s.KubernetesObject[]> {
     const client = k8s.KubernetesObjectApi.makeApiClient(kc);
     const fsReadFileP = promisify(fs.readFile);
     const specString = await fsReadFileP(specPath, 'utf8');
-    const specs: k8s.KubernetesObject[] = yaml.loadAll(specString);
+    const specs = yaml.loadAll(specString) as k8s.KubernetesObject[];
     const validSpecs = specs.filter((s) => s && s.kind && s.metadata);
     const created: k8s.KubernetesObject[] = [];
     for (const spec of validSpecs) {
