@@ -1,3 +1,4 @@
+import { Response } from 'node-fetch';
 import { isNumber } from 'underscore';
 import { CoreV1Api, V1Container, V1Pod } from './gen';
 import { ObjectSerializer as InternalSerializer } from './gen/models/ObjectSerializer';
@@ -152,4 +153,18 @@ export function totalForResource(pod: V1Pod, resource: string): ResourceStatus {
         limitTotal = add(limitTotal, containerTotal.limit);
     });
     return new ResourceStatus(reqTotal, limitTotal, resource);
+}
+
+// There is a disconnect between the ApiException headers and the response headers from node-fetch
+// ApiException expects { [key: string]: string } whereas node-fetch provides: { [key: string]: string[] }
+// https://github.com/node-fetch/node-fetch/issues/783
+// https://github.com/node-fetch/node-fetch/pull/1757
+export function normalizeResponseHeaders(response: Response): { [key: string]: string } {
+    const normalizedHeaders = {};
+
+    for (const [key, value] of response.headers.entries()) {
+        normalizedHeaders[key] = value;
+    }
+
+    return normalizedHeaders;
 }

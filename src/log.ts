@@ -1,11 +1,11 @@
 import AbortController from 'abort-controller';
-import { RequestOptions } from 'https';
 import fetch from 'node-fetch';
 import { Writable } from 'stream';
 import { URL, URLSearchParams } from 'url';
 import { ApiException } from './api';
 import { KubeConfig } from './config';
 import { V1Status } from './gen';
+import { normalizeResponseHeaders } from './util';
 export interface LogOptions {
     /**
      * Follow the log stream of the pod. Defaults to false.
@@ -141,7 +141,7 @@ export class Log {
                             v1code,
                             v1message,
                             v1status,
-                            response.headers.raw(),
+                            normalizeResponseHeaders(response),
                         );
                     }
                 } else {
@@ -149,7 +149,7 @@ export class Log {
                         status,
                         'Error occurred in log request',
                         undefined,
-                        response.headers.raw(),
+                        normalizeResponseHeaders(response),
                     );
                 }
             })
