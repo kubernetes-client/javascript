@@ -31,7 +31,7 @@ export class V1CSIVolumeSource {
     */
     'readOnly'?: boolean;
     /**
-    * VolumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver's documentation for supported values.
+    * VolumeAttributes stores driver-specific properties that are passed to the CSI driver. Consult your driver\'s documentation for supported values.
     */
     'volumeAttributes'?: { [key: string]: string; };
 

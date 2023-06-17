@@ -21,7 +21,7 @@ export class CoreV1EndpointPort {
     */
     'appProtocol'?: string;
     /**
-    * The name of this port.  This must match the 'name' field in the corresponding ServicePort. Must be a DNS_LABEL. Optional only if one port is defined.
+    * The name of this port.  This must match the \'name\' field in the corresponding ServicePort. Must be a DNS_LABEL. Optional only if one port is defined.
     */
     'name'?: string;
     /**

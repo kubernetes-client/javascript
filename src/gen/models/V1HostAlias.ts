@@ -13,7 +13,7 @@
 import { HttpFile } from '../http/http';
 
 /**
-* HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod's hosts file.
+* HostAlias holds the mapping between IP and hostnames that will be injected as an entry in the pod\'s hosts file.
 */
 export class V1HostAlias {
     /**

@@ -17,7 +17,7 @@ import { HttpFile } from '../http/http';
 */
 export class V1VolumeMount {
     /**
-    * Path within the container at which the volume should be mounted.  Must not contain ':'.
+    * Path within the container at which the volume should be mounted.  Must not contain \':\'.
     */
     'mountPath': string;
     /**
@@ -33,11 +33,11 @@ export class V1VolumeMount {
     */
     'readOnly'?: boolean;
     /**
-    * Path within the volume from which the container's volume should be mounted. Defaults to \"\" (volume's root).
+    * Path within the volume from which the container\'s volume should be mounted. Defaults to \"\" (volume\'s root).
     */
     'subPath'?: string;
     /**
-    * Expanded path within the volume from which the container's volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container's environment. Defaults to \"\" (volume's root). SubPathExpr and SubPath are mutually exclusive.
+    * Expanded path within the volume from which the container\'s volume should be mounted. Behaves similarly to SubPath but environment variable references $(VAR_NAME) are expanded using the container\'s environment. Defaults to \"\" (volume\'s root). SubPathExpr and SubPath are mutually exclusive.
     */
     'subPathExpr'?: string;
 

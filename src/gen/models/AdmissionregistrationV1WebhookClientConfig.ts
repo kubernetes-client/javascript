@@ -18,7 +18,7 @@ import { HttpFile } from '../http/http';
 */
 export class AdmissionregistrationV1WebhookClientConfig {
     /**
-    * `caBundle` is a PEM encoded CA bundle which will be used to validate the webhook's server certificate. If unspecified, system trust roots on the apiserver are used.
+    * `caBundle` is a PEM encoded CA bundle which will be used to validate the webhook\'s server certificate. If unspecified, system trust roots on the apiserver are used.
     */
     'caBundle'?: string;
     'service'?: AdmissionregistrationV1ServiceReference;

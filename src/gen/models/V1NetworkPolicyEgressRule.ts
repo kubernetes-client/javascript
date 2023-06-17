@@ -15,7 +15,7 @@ import { V1NetworkPolicyPort } from '../models/V1NetworkPolicyPort';
 import { HttpFile } from '../http/http';
 
 /**
-* NetworkPolicyEgressRule describes a particular set of traffic that is allowed out of pods matched by a NetworkPolicySpec's podSelector. The traffic must match both ports and to. This type is beta-level in 1.8
+* NetworkPolicyEgressRule describes a particular set of traffic that is allowed out of pods matched by a NetworkPolicySpec\'s podSelector. The traffic must match both ports and to. This type is beta-level in 1.8
 */
 export class V1NetworkPolicyEgressRule {
     /**

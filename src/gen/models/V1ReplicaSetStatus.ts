@@ -22,7 +22,7 @@ export class V1ReplicaSetStatus {
     */
     'availableReplicas'?: number;
     /**
-    * Represents the latest available observations of a replica set's current state.
+    * Represents the latest available observations of a replica set\'s current state.
     */
     'conditions'?: Array<V1ReplicaSetCondition>;
     /**

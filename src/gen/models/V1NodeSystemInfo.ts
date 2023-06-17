@@ -29,7 +29,7 @@ export class V1NodeSystemInfo {
     */
     'containerRuntimeVersion': string;
     /**
-    * Kernel Version reported by the node from 'uname -r' (e.g. 3.16.0-0.bpo.4-amd64).
+    * Kernel Version reported by the node from \'uname -r\' (e.g. 3.16.0-0.bpo.4-amd64).
     */
     'kernelVersion': string;
     /**

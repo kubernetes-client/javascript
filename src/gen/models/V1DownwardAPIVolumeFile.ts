@@ -24,7 +24,7 @@ export class V1DownwardAPIVolumeFile {
     */
     'mode'?: number;
     /**
-    * Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the '..' path. Must be utf-8 encoded. The first item of the relative path must not start with '..'
+    * Required: Path is  the relative path name of the file to be created. Must not be absolute or contain the \'..\' path. Must be utf-8 encoded. The first item of the relative path must not start with \'..\'
     */
     'path': string;
     'resourceFieldRef'?: V1ResourceFieldSelector;

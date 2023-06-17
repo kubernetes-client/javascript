@@ -13,7 +13,7 @@
 import { HttpFile } from '../http/http';
 
 /**
-* ResourceRule is the list of actions the subject is allowed to perform on resources. The list ordering isn't significant, may contain duplicates, and possibly be incomplete.
+* ResourceRule is the list of actions the subject is allowed to perform on resources. The list ordering isn\'t significant, may contain duplicates, and possibly be incomplete.
 */
 export class V1ResourceRule {
     /**
@@ -25,7 +25,7 @@ export class V1ResourceRule {
     */
     'resourceNames'?: Array<string>;
     /**
-    * Resources is a list of resources this rule applies to.  \"*\" means all in the specified apiGroups.  \"*_/foo\" represents the subresource 'foo' for all resources in the specified apiGroups.
+    * Resources is a list of resources this rule applies to.  \"*\" means all in the specified apiGroups.  \"*_/foo\" represents the subresource \'foo\' for all resources in the specified apiGroups.
     */
     'resources'?: Array<string>;
     /**

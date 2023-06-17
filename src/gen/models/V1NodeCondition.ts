@@ -29,7 +29,7 @@ export class V1NodeCondition {
     */
     'message'?: string;
     /**
-    * (brief) reason for the condition's last transition.
+    * (brief) reason for the condition\'s last transition.
     */
     'reason'?: string;
     /**

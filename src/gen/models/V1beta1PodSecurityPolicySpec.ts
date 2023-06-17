@@ -35,7 +35,7 @@ export class V1beta1PodSecurityPolicySpec {
     */
     'allowedCSIDrivers'?: Array<V1beta1AllowedCSIDriver>;
     /**
-    * allowedCapabilities is a list of capabilities that can be requested to add to the container. Capabilities in this field may be added at the pod author's discretion. You must not list a capability in both allowedCapabilities and requiredDropCapabilities.
+    * allowedCapabilities is a list of capabilities that can be requested to add to the container. Capabilities in this field may be added at the pod author\'s discretion. You must not list a capability in both allowedCapabilities and requiredDropCapabilities.
     */
     'allowedCapabilities'?: Array<string>;
     /**
@@ -101,7 +101,7 @@ export class V1beta1PodSecurityPolicySpec {
     'seLinux': V1beta1SELinuxStrategyOptions;
     'supplementalGroups': V1beta1SupplementalGroupsStrategyOptions;
     /**
-    * volumes is an allowlist of volume plugins. Empty indicates that no volumes may be used. To allow all volumes you may use '*'.
+    * volumes is an allowlist of volume plugins. Empty indicates that no volumes may be used. To allow all volumes you may use \'*\'.
     */
     'volumes'?: Array<string>;
 

@@ -561,7 +561,7 @@ export interface AdmissionregistrationV1ApiCreateMutatingWebhookConfigurationReq
      */
     body: V1MutatingWebhookConfiguration
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AdmissionregistrationV1ApicreateMutatingWebhookConfiguration
      */
@@ -588,7 +588,7 @@ export interface AdmissionregistrationV1ApiCreateValidatingWebhookConfigurationR
      */
     body: V1ValidatingWebhookConfiguration
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AdmissionregistrationV1ApicreateValidatingWebhookConfiguration
      */
@@ -609,7 +609,7 @@ export interface AdmissionregistrationV1ApiCreateValidatingWebhookConfigurationR
 
 export interface AdmissionregistrationV1ApiDeleteCollectionMutatingWebhookConfigurationRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AdmissionregistrationV1ApideleteCollectionMutatingWebhookConfiguration
      */
@@ -651,13 +651,13 @@ export interface AdmissionregistrationV1ApiDeleteCollectionMutatingWebhookConfig
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AdmissionregistrationV1ApideleteCollectionMutatingWebhookConfiguration
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AdmissionregistrationV1ApideleteCollectionMutatingWebhookConfiguration
      */
@@ -690,7 +690,7 @@ export interface AdmissionregistrationV1ApiDeleteCollectionMutatingWebhookConfig
 
 export interface AdmissionregistrationV1ApiDeleteCollectionValidatingWebhookConfigurationRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AdmissionregistrationV1ApideleteCollectionValidatingWebhookConfiguration
      */
@@ -732,13 +732,13 @@ export interface AdmissionregistrationV1ApiDeleteCollectionValidatingWebhookConf
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AdmissionregistrationV1ApideleteCollectionValidatingWebhookConfiguration
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AdmissionregistrationV1ApideleteCollectionValidatingWebhookConfiguration
      */
@@ -777,7 +777,7 @@ export interface AdmissionregistrationV1ApiDeleteMutatingWebhookConfigurationReq
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AdmissionregistrationV1ApideleteMutatingWebhookConfiguration
      */
@@ -795,13 +795,13 @@ export interface AdmissionregistrationV1ApiDeleteMutatingWebhookConfigurationReq
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AdmissionregistrationV1ApideleteMutatingWebhookConfiguration
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AdmissionregistrationV1ApideleteMutatingWebhookConfiguration
      */
@@ -822,7 +822,7 @@ export interface AdmissionregistrationV1ApiDeleteValidatingWebhookConfigurationR
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AdmissionregistrationV1ApideleteValidatingWebhookConfiguration
      */
@@ -840,13 +840,13 @@ export interface AdmissionregistrationV1ApiDeleteValidatingWebhookConfigurationR
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AdmissionregistrationV1ApideleteValidatingWebhookConfiguration
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AdmissionregistrationV1ApideleteValidatingWebhookConfiguration
      */
@@ -864,13 +864,13 @@ export interface AdmissionregistrationV1ApiGetAPIResourcesRequest {
 
 export interface AdmissionregistrationV1ApiListMutatingWebhookConfigurationRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AdmissionregistrationV1ApilistMutatingWebhookConfiguration
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof AdmissionregistrationV1ApilistMutatingWebhookConfiguration
      */
@@ -927,13 +927,13 @@ export interface AdmissionregistrationV1ApiListMutatingWebhookConfigurationReque
 
 export interface AdmissionregistrationV1ApiListValidatingWebhookConfigurationRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AdmissionregistrationV1ApilistValidatingWebhookConfiguration
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof AdmissionregistrationV1ApilistValidatingWebhookConfiguration
      */
@@ -1002,7 +1002,7 @@ export interface AdmissionregistrationV1ApiPatchMutatingWebhookConfigurationRequ
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AdmissionregistrationV1ApipatchMutatingWebhookConfiguration
      */
@@ -1041,7 +1041,7 @@ export interface AdmissionregistrationV1ApiPatchValidatingWebhookConfigurationRe
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AdmissionregistrationV1ApipatchValidatingWebhookConfiguration
      */
@@ -1074,7 +1074,7 @@ export interface AdmissionregistrationV1ApiReadMutatingWebhookConfigurationReque
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AdmissionregistrationV1ApireadMutatingWebhookConfiguration
      */
@@ -1089,7 +1089,7 @@ export interface AdmissionregistrationV1ApiReadValidatingWebhookConfigurationReq
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AdmissionregistrationV1ApireadValidatingWebhookConfiguration
      */
@@ -1110,7 +1110,7 @@ export interface AdmissionregistrationV1ApiReplaceMutatingWebhookConfigurationRe
      */
     body: V1MutatingWebhookConfiguration
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AdmissionregistrationV1ApireplaceMutatingWebhookConfiguration
      */
@@ -1143,7 +1143,7 @@ export interface AdmissionregistrationV1ApiReplaceValidatingWebhookConfiguration
      */
     body: V1ValidatingWebhookConfiguration
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AdmissionregistrationV1ApireplaceValidatingWebhookConfiguration
      */
@@ -1325,7 +1325,7 @@ export interface ApiextensionsV1ApiCreateCustomResourceDefinitionRequest {
      */
     body: V1CustomResourceDefinition
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiextensionsV1ApicreateCustomResourceDefinition
      */
@@ -1346,7 +1346,7 @@ export interface ApiextensionsV1ApiCreateCustomResourceDefinitionRequest {
 
 export interface ApiextensionsV1ApiDeleteCollectionCustomResourceDefinitionRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiextensionsV1ApideleteCollectionCustomResourceDefinition
      */
@@ -1388,13 +1388,13 @@ export interface ApiextensionsV1ApiDeleteCollectionCustomResourceDefinitionReque
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof ApiextensionsV1ApideleteCollectionCustomResourceDefinition
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof ApiextensionsV1ApideleteCollectionCustomResourceDefinition
      */
@@ -1433,7 +1433,7 @@ export interface ApiextensionsV1ApiDeleteCustomResourceDefinitionRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiextensionsV1ApideleteCustomResourceDefinition
      */
@@ -1451,13 +1451,13 @@ export interface ApiextensionsV1ApiDeleteCustomResourceDefinitionRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof ApiextensionsV1ApideleteCustomResourceDefinition
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof ApiextensionsV1ApideleteCustomResourceDefinition
      */
@@ -1475,13 +1475,13 @@ export interface ApiextensionsV1ApiGetAPIResourcesRequest {
 
 export interface ApiextensionsV1ApiListCustomResourceDefinitionRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiextensionsV1ApilistCustomResourceDefinition
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof ApiextensionsV1ApilistCustomResourceDefinition
      */
@@ -1550,7 +1550,7 @@ export interface ApiextensionsV1ApiPatchCustomResourceDefinitionRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiextensionsV1ApipatchCustomResourceDefinition
      */
@@ -1589,7 +1589,7 @@ export interface ApiextensionsV1ApiPatchCustomResourceDefinitionStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiextensionsV1ApipatchCustomResourceDefinitionStatus
      */
@@ -1622,7 +1622,7 @@ export interface ApiextensionsV1ApiReadCustomResourceDefinitionRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiextensionsV1ApireadCustomResourceDefinition
      */
@@ -1637,7 +1637,7 @@ export interface ApiextensionsV1ApiReadCustomResourceDefinitionStatusRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiextensionsV1ApireadCustomResourceDefinitionStatus
      */
@@ -1658,7 +1658,7 @@ export interface ApiextensionsV1ApiReplaceCustomResourceDefinitionRequest {
      */
     body: V1CustomResourceDefinition
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiextensionsV1ApireplaceCustomResourceDefinition
      */
@@ -1691,7 +1691,7 @@ export interface ApiextensionsV1ApiReplaceCustomResourceDefinitionStatusRequest 
      */
     body: V1CustomResourceDefinition
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiextensionsV1ApireplaceCustomResourceDefinitionStatus
      */
@@ -1841,7 +1841,7 @@ export interface ApiregistrationV1ApiCreateAPIServiceRequest {
      */
     body: V1APIService
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiregistrationV1ApicreateAPIService
      */
@@ -1868,7 +1868,7 @@ export interface ApiregistrationV1ApiDeleteAPIServiceRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiregistrationV1ApideleteAPIService
      */
@@ -1886,13 +1886,13 @@ export interface ApiregistrationV1ApiDeleteAPIServiceRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof ApiregistrationV1ApideleteAPIService
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof ApiregistrationV1ApideleteAPIService
      */
@@ -1907,7 +1907,7 @@ export interface ApiregistrationV1ApiDeleteAPIServiceRequest {
 
 export interface ApiregistrationV1ApiDeleteCollectionAPIServiceRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiregistrationV1ApideleteCollectionAPIService
      */
@@ -1949,13 +1949,13 @@ export interface ApiregistrationV1ApiDeleteCollectionAPIServiceRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof ApiregistrationV1ApideleteCollectionAPIService
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof ApiregistrationV1ApideleteCollectionAPIService
      */
@@ -1991,13 +1991,13 @@ export interface ApiregistrationV1ApiGetAPIResourcesRequest {
 
 export interface ApiregistrationV1ApiListAPIServiceRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiregistrationV1ApilistAPIService
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof ApiregistrationV1ApilistAPIService
      */
@@ -2066,7 +2066,7 @@ export interface ApiregistrationV1ApiPatchAPIServiceRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiregistrationV1ApipatchAPIService
      */
@@ -2105,7 +2105,7 @@ export interface ApiregistrationV1ApiPatchAPIServiceStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiregistrationV1ApipatchAPIServiceStatus
      */
@@ -2138,7 +2138,7 @@ export interface ApiregistrationV1ApiReadAPIServiceRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiregistrationV1ApireadAPIService
      */
@@ -2153,7 +2153,7 @@ export interface ApiregistrationV1ApiReadAPIServiceStatusRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiregistrationV1ApireadAPIServiceStatus
      */
@@ -2174,7 +2174,7 @@ export interface ApiregistrationV1ApiReplaceAPIServiceRequest {
      */
     body: V1APIService
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiregistrationV1ApireplaceAPIService
      */
@@ -2207,7 +2207,7 @@ export interface ApiregistrationV1ApiReplaceAPIServiceStatusRequest {
      */
     body: V1APIService
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof ApiregistrationV1ApireplaceAPIServiceStatus
      */
@@ -2386,7 +2386,7 @@ export interface AppsV1ApiCreateNamespacedControllerRevisionRequest {
      */
     body: V1ControllerRevision
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApicreateNamespacedControllerRevision
      */
@@ -2419,7 +2419,7 @@ export interface AppsV1ApiCreateNamespacedDaemonSetRequest {
      */
     body: V1DaemonSet
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApicreateNamespacedDaemonSet
      */
@@ -2452,7 +2452,7 @@ export interface AppsV1ApiCreateNamespacedDeploymentRequest {
      */
     body: V1Deployment
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApicreateNamespacedDeployment
      */
@@ -2485,7 +2485,7 @@ export interface AppsV1ApiCreateNamespacedReplicaSetRequest {
      */
     body: V1ReplicaSet
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApicreateNamespacedReplicaSet
      */
@@ -2518,7 +2518,7 @@ export interface AppsV1ApiCreateNamespacedStatefulSetRequest {
      */
     body: V1StatefulSet
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApicreateNamespacedStatefulSet
      */
@@ -2545,7 +2545,7 @@ export interface AppsV1ApiDeleteCollectionNamespacedControllerRevisionRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApideleteCollectionNamespacedControllerRevision
      */
@@ -2587,13 +2587,13 @@ export interface AppsV1ApiDeleteCollectionNamespacedControllerRevisionRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AppsV1ApideleteCollectionNamespacedControllerRevision
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AppsV1ApideleteCollectionNamespacedControllerRevision
      */
@@ -2632,7 +2632,7 @@ export interface AppsV1ApiDeleteCollectionNamespacedDaemonSetRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApideleteCollectionNamespacedDaemonSet
      */
@@ -2674,13 +2674,13 @@ export interface AppsV1ApiDeleteCollectionNamespacedDaemonSetRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AppsV1ApideleteCollectionNamespacedDaemonSet
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AppsV1ApideleteCollectionNamespacedDaemonSet
      */
@@ -2719,7 +2719,7 @@ export interface AppsV1ApiDeleteCollectionNamespacedDeploymentRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApideleteCollectionNamespacedDeployment
      */
@@ -2761,13 +2761,13 @@ export interface AppsV1ApiDeleteCollectionNamespacedDeploymentRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AppsV1ApideleteCollectionNamespacedDeployment
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AppsV1ApideleteCollectionNamespacedDeployment
      */
@@ -2806,7 +2806,7 @@ export interface AppsV1ApiDeleteCollectionNamespacedReplicaSetRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApideleteCollectionNamespacedReplicaSet
      */
@@ -2848,13 +2848,13 @@ export interface AppsV1ApiDeleteCollectionNamespacedReplicaSetRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AppsV1ApideleteCollectionNamespacedReplicaSet
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AppsV1ApideleteCollectionNamespacedReplicaSet
      */
@@ -2893,7 +2893,7 @@ export interface AppsV1ApiDeleteCollectionNamespacedStatefulSetRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApideleteCollectionNamespacedStatefulSet
      */
@@ -2935,13 +2935,13 @@ export interface AppsV1ApiDeleteCollectionNamespacedStatefulSetRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AppsV1ApideleteCollectionNamespacedStatefulSet
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AppsV1ApideleteCollectionNamespacedStatefulSet
      */
@@ -2986,7 +2986,7 @@ export interface AppsV1ApiDeleteNamespacedControllerRevisionRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApideleteNamespacedControllerRevision
      */
@@ -3004,13 +3004,13 @@ export interface AppsV1ApiDeleteNamespacedControllerRevisionRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AppsV1ApideleteNamespacedControllerRevision
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AppsV1ApideleteNamespacedControllerRevision
      */
@@ -3037,7 +3037,7 @@ export interface AppsV1ApiDeleteNamespacedDaemonSetRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApideleteNamespacedDaemonSet
      */
@@ -3055,13 +3055,13 @@ export interface AppsV1ApiDeleteNamespacedDaemonSetRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AppsV1ApideleteNamespacedDaemonSet
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AppsV1ApideleteNamespacedDaemonSet
      */
@@ -3088,7 +3088,7 @@ export interface AppsV1ApiDeleteNamespacedDeploymentRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApideleteNamespacedDeployment
      */
@@ -3106,13 +3106,13 @@ export interface AppsV1ApiDeleteNamespacedDeploymentRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AppsV1ApideleteNamespacedDeployment
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AppsV1ApideleteNamespacedDeployment
      */
@@ -3139,7 +3139,7 @@ export interface AppsV1ApiDeleteNamespacedReplicaSetRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApideleteNamespacedReplicaSet
      */
@@ -3157,13 +3157,13 @@ export interface AppsV1ApiDeleteNamespacedReplicaSetRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AppsV1ApideleteNamespacedReplicaSet
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AppsV1ApideleteNamespacedReplicaSet
      */
@@ -3190,7 +3190,7 @@ export interface AppsV1ApiDeleteNamespacedStatefulSetRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApideleteNamespacedStatefulSet
      */
@@ -3208,13 +3208,13 @@ export interface AppsV1ApiDeleteNamespacedStatefulSetRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AppsV1ApideleteNamespacedStatefulSet
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AppsV1ApideleteNamespacedStatefulSet
      */
@@ -3232,7 +3232,7 @@ export interface AppsV1ApiGetAPIResourcesRequest {
 
 export interface AppsV1ApiListControllerRevisionForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof AppsV1ApilistControllerRevisionForAllNamespaces
      */
@@ -3262,7 +3262,7 @@ export interface AppsV1ApiListControllerRevisionForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApilistControllerRevisionForAllNamespaces
      */
@@ -3295,7 +3295,7 @@ export interface AppsV1ApiListControllerRevisionForAllNamespacesRequest {
 
 export interface AppsV1ApiListDaemonSetForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof AppsV1ApilistDaemonSetForAllNamespaces
      */
@@ -3325,7 +3325,7 @@ export interface AppsV1ApiListDaemonSetForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApilistDaemonSetForAllNamespaces
      */
@@ -3358,7 +3358,7 @@ export interface AppsV1ApiListDaemonSetForAllNamespacesRequest {
 
 export interface AppsV1ApiListDeploymentForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof AppsV1ApilistDeploymentForAllNamespaces
      */
@@ -3388,7 +3388,7 @@ export interface AppsV1ApiListDeploymentForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApilistDeploymentForAllNamespaces
      */
@@ -3427,13 +3427,13 @@ export interface AppsV1ApiListNamespacedControllerRevisionRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApilistNamespacedControllerRevision
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof AppsV1ApilistNamespacedControllerRevision
      */
@@ -3496,13 +3496,13 @@ export interface AppsV1ApiListNamespacedDaemonSetRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApilistNamespacedDaemonSet
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof AppsV1ApilistNamespacedDaemonSet
      */
@@ -3565,13 +3565,13 @@ export interface AppsV1ApiListNamespacedDeploymentRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApilistNamespacedDeployment
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof AppsV1ApilistNamespacedDeployment
      */
@@ -3634,13 +3634,13 @@ export interface AppsV1ApiListNamespacedReplicaSetRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApilistNamespacedReplicaSet
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof AppsV1ApilistNamespacedReplicaSet
      */
@@ -3703,13 +3703,13 @@ export interface AppsV1ApiListNamespacedStatefulSetRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApilistNamespacedStatefulSet
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof AppsV1ApilistNamespacedStatefulSet
      */
@@ -3766,7 +3766,7 @@ export interface AppsV1ApiListNamespacedStatefulSetRequest {
 
 export interface AppsV1ApiListReplicaSetForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof AppsV1ApilistReplicaSetForAllNamespaces
      */
@@ -3796,7 +3796,7 @@ export interface AppsV1ApiListReplicaSetForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApilistReplicaSetForAllNamespaces
      */
@@ -3829,7 +3829,7 @@ export interface AppsV1ApiListReplicaSetForAllNamespacesRequest {
 
 export interface AppsV1ApiListStatefulSetForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof AppsV1ApilistStatefulSetForAllNamespaces
      */
@@ -3859,7 +3859,7 @@ export interface AppsV1ApiListStatefulSetForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApilistStatefulSetForAllNamespaces
      */
@@ -3910,7 +3910,7 @@ export interface AppsV1ApiPatchNamespacedControllerRevisionRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApipatchNamespacedControllerRevision
      */
@@ -3955,7 +3955,7 @@ export interface AppsV1ApiPatchNamespacedDaemonSetRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApipatchNamespacedDaemonSet
      */
@@ -4000,7 +4000,7 @@ export interface AppsV1ApiPatchNamespacedDaemonSetStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApipatchNamespacedDaemonSetStatus
      */
@@ -4045,7 +4045,7 @@ export interface AppsV1ApiPatchNamespacedDeploymentRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApipatchNamespacedDeployment
      */
@@ -4090,7 +4090,7 @@ export interface AppsV1ApiPatchNamespacedDeploymentScaleRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApipatchNamespacedDeploymentScale
      */
@@ -4135,7 +4135,7 @@ export interface AppsV1ApiPatchNamespacedDeploymentStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApipatchNamespacedDeploymentStatus
      */
@@ -4180,7 +4180,7 @@ export interface AppsV1ApiPatchNamespacedReplicaSetRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApipatchNamespacedReplicaSet
      */
@@ -4225,7 +4225,7 @@ export interface AppsV1ApiPatchNamespacedReplicaSetScaleRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApipatchNamespacedReplicaSetScale
      */
@@ -4270,7 +4270,7 @@ export interface AppsV1ApiPatchNamespacedReplicaSetStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApipatchNamespacedReplicaSetStatus
      */
@@ -4315,7 +4315,7 @@ export interface AppsV1ApiPatchNamespacedStatefulSetRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApipatchNamespacedStatefulSet
      */
@@ -4360,7 +4360,7 @@ export interface AppsV1ApiPatchNamespacedStatefulSetScaleRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApipatchNamespacedStatefulSetScale
      */
@@ -4405,7 +4405,7 @@ export interface AppsV1ApiPatchNamespacedStatefulSetStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApipatchNamespacedStatefulSetStatus
      */
@@ -4444,7 +4444,7 @@ export interface AppsV1ApiReadNamespacedControllerRevisionRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireadNamespacedControllerRevision
      */
@@ -4465,7 +4465,7 @@ export interface AppsV1ApiReadNamespacedDaemonSetRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireadNamespacedDaemonSet
      */
@@ -4486,7 +4486,7 @@ export interface AppsV1ApiReadNamespacedDaemonSetStatusRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireadNamespacedDaemonSetStatus
      */
@@ -4507,7 +4507,7 @@ export interface AppsV1ApiReadNamespacedDeploymentRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireadNamespacedDeployment
      */
@@ -4528,7 +4528,7 @@ export interface AppsV1ApiReadNamespacedDeploymentScaleRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireadNamespacedDeploymentScale
      */
@@ -4549,7 +4549,7 @@ export interface AppsV1ApiReadNamespacedDeploymentStatusRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireadNamespacedDeploymentStatus
      */
@@ -4570,7 +4570,7 @@ export interface AppsV1ApiReadNamespacedReplicaSetRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireadNamespacedReplicaSet
      */
@@ -4591,7 +4591,7 @@ export interface AppsV1ApiReadNamespacedReplicaSetScaleRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireadNamespacedReplicaSetScale
      */
@@ -4612,7 +4612,7 @@ export interface AppsV1ApiReadNamespacedReplicaSetStatusRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireadNamespacedReplicaSetStatus
      */
@@ -4633,7 +4633,7 @@ export interface AppsV1ApiReadNamespacedStatefulSetRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireadNamespacedStatefulSet
      */
@@ -4654,7 +4654,7 @@ export interface AppsV1ApiReadNamespacedStatefulSetScaleRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireadNamespacedStatefulSetScale
      */
@@ -4675,7 +4675,7 @@ export interface AppsV1ApiReadNamespacedStatefulSetStatusRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireadNamespacedStatefulSetStatus
      */
@@ -4702,7 +4702,7 @@ export interface AppsV1ApiReplaceNamespacedControllerRevisionRequest {
      */
     body: V1ControllerRevision
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireplaceNamespacedControllerRevision
      */
@@ -4741,7 +4741,7 @@ export interface AppsV1ApiReplaceNamespacedDaemonSetRequest {
      */
     body: V1DaemonSet
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireplaceNamespacedDaemonSet
      */
@@ -4780,7 +4780,7 @@ export interface AppsV1ApiReplaceNamespacedDaemonSetStatusRequest {
      */
     body: V1DaemonSet
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireplaceNamespacedDaemonSetStatus
      */
@@ -4819,7 +4819,7 @@ export interface AppsV1ApiReplaceNamespacedDeploymentRequest {
      */
     body: V1Deployment
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireplaceNamespacedDeployment
      */
@@ -4858,7 +4858,7 @@ export interface AppsV1ApiReplaceNamespacedDeploymentScaleRequest {
      */
     body: V1Scale
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireplaceNamespacedDeploymentScale
      */
@@ -4897,7 +4897,7 @@ export interface AppsV1ApiReplaceNamespacedDeploymentStatusRequest {
      */
     body: V1Deployment
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireplaceNamespacedDeploymentStatus
      */
@@ -4936,7 +4936,7 @@ export interface AppsV1ApiReplaceNamespacedReplicaSetRequest {
      */
     body: V1ReplicaSet
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireplaceNamespacedReplicaSet
      */
@@ -4975,7 +4975,7 @@ export interface AppsV1ApiReplaceNamespacedReplicaSetScaleRequest {
      */
     body: V1Scale
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireplaceNamespacedReplicaSetScale
      */
@@ -5014,7 +5014,7 @@ export interface AppsV1ApiReplaceNamespacedReplicaSetStatusRequest {
      */
     body: V1ReplicaSet
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireplaceNamespacedReplicaSetStatus
      */
@@ -5053,7 +5053,7 @@ export interface AppsV1ApiReplaceNamespacedStatefulSetRequest {
      */
     body: V1StatefulSet
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireplaceNamespacedStatefulSet
      */
@@ -5092,7 +5092,7 @@ export interface AppsV1ApiReplaceNamespacedStatefulSetScaleRequest {
      */
     body: V1Scale
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireplaceNamespacedStatefulSetScale
      */
@@ -5131,7 +5131,7 @@ export interface AppsV1ApiReplaceNamespacedStatefulSetStatusRequest {
      */
     body: V1StatefulSet
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AppsV1ApireplaceNamespacedStatefulSetStatus
      */
@@ -5701,7 +5701,7 @@ export interface AuthenticationV1ApiCreateTokenReviewRequest {
      */
     fieldManager?: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AuthenticationV1ApicreateTokenReview
      */
@@ -5788,7 +5788,7 @@ export interface AuthorizationV1ApiCreateNamespacedLocalSubjectAccessReviewReque
      */
     fieldManager?: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AuthorizationV1ApicreateNamespacedLocalSubjectAccessReview
      */
@@ -5815,7 +5815,7 @@ export interface AuthorizationV1ApiCreateSelfSubjectAccessReviewRequest {
      */
     fieldManager?: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AuthorizationV1ApicreateSelfSubjectAccessReview
      */
@@ -5842,7 +5842,7 @@ export interface AuthorizationV1ApiCreateSelfSubjectRulesReviewRequest {
      */
     fieldManager?: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AuthorizationV1ApicreateSelfSubjectRulesReview
      */
@@ -5869,7 +5869,7 @@ export interface AuthorizationV1ApiCreateSubjectAccessReviewRequest {
      */
     fieldManager?: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AuthorizationV1ApicreateSubjectAccessReview
      */
@@ -5968,7 +5968,7 @@ export interface AutoscalingV1ApiCreateNamespacedHorizontalPodAutoscalerRequest 
      */
     body: V1HorizontalPodAutoscaler
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV1ApicreateNamespacedHorizontalPodAutoscaler
      */
@@ -5995,7 +5995,7 @@ export interface AutoscalingV1ApiDeleteCollectionNamespacedHorizontalPodAutoscal
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV1ApideleteCollectionNamespacedHorizontalPodAutoscaler
      */
@@ -6037,13 +6037,13 @@ export interface AutoscalingV1ApiDeleteCollectionNamespacedHorizontalPodAutoscal
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AutoscalingV1ApideleteCollectionNamespacedHorizontalPodAutoscaler
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AutoscalingV1ApideleteCollectionNamespacedHorizontalPodAutoscaler
      */
@@ -6088,7 +6088,7 @@ export interface AutoscalingV1ApiDeleteNamespacedHorizontalPodAutoscalerRequest 
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV1ApideleteNamespacedHorizontalPodAutoscaler
      */
@@ -6106,13 +6106,13 @@ export interface AutoscalingV1ApiDeleteNamespacedHorizontalPodAutoscalerRequest 
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AutoscalingV1ApideleteNamespacedHorizontalPodAutoscaler
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AutoscalingV1ApideleteNamespacedHorizontalPodAutoscaler
      */
@@ -6130,7 +6130,7 @@ export interface AutoscalingV1ApiGetAPIResourcesRequest {
 
 export interface AutoscalingV1ApiListHorizontalPodAutoscalerForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof AutoscalingV1ApilistHorizontalPodAutoscalerForAllNamespaces
      */
@@ -6160,7 +6160,7 @@ export interface AutoscalingV1ApiListHorizontalPodAutoscalerForAllNamespacesRequ
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV1ApilistHorizontalPodAutoscalerForAllNamespaces
      */
@@ -6199,13 +6199,13 @@ export interface AutoscalingV1ApiListNamespacedHorizontalPodAutoscalerRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV1ApilistNamespacedHorizontalPodAutoscaler
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof AutoscalingV1ApilistNamespacedHorizontalPodAutoscaler
      */
@@ -6280,7 +6280,7 @@ export interface AutoscalingV1ApiPatchNamespacedHorizontalPodAutoscalerRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV1ApipatchNamespacedHorizontalPodAutoscaler
      */
@@ -6325,7 +6325,7 @@ export interface AutoscalingV1ApiPatchNamespacedHorizontalPodAutoscalerStatusReq
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV1ApipatchNamespacedHorizontalPodAutoscalerStatus
      */
@@ -6364,7 +6364,7 @@ export interface AutoscalingV1ApiReadNamespacedHorizontalPodAutoscalerRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV1ApireadNamespacedHorizontalPodAutoscaler
      */
@@ -6385,7 +6385,7 @@ export interface AutoscalingV1ApiReadNamespacedHorizontalPodAutoscalerStatusRequ
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV1ApireadNamespacedHorizontalPodAutoscalerStatus
      */
@@ -6412,7 +6412,7 @@ export interface AutoscalingV1ApiReplaceNamespacedHorizontalPodAutoscalerRequest
      */
     body: V1HorizontalPodAutoscaler
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV1ApireplaceNamespacedHorizontalPodAutoscaler
      */
@@ -6451,7 +6451,7 @@ export interface AutoscalingV1ApiReplaceNamespacedHorizontalPodAutoscalerStatusR
      */
     body: V1HorizontalPodAutoscaler
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV1ApireplaceNamespacedHorizontalPodAutoscalerStatus
      */
@@ -6592,7 +6592,7 @@ export interface AutoscalingV2beta1ApiCreateNamespacedHorizontalPodAutoscalerReq
      */
     body: V2beta1HorizontalPodAutoscaler
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta1ApicreateNamespacedHorizontalPodAutoscaler
      */
@@ -6619,7 +6619,7 @@ export interface AutoscalingV2beta1ApiDeleteCollectionNamespacedHorizontalPodAut
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta1ApideleteCollectionNamespacedHorizontalPodAutoscaler
      */
@@ -6661,13 +6661,13 @@ export interface AutoscalingV2beta1ApiDeleteCollectionNamespacedHorizontalPodAut
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AutoscalingV2beta1ApideleteCollectionNamespacedHorizontalPodAutoscaler
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AutoscalingV2beta1ApideleteCollectionNamespacedHorizontalPodAutoscaler
      */
@@ -6712,7 +6712,7 @@ export interface AutoscalingV2beta1ApiDeleteNamespacedHorizontalPodAutoscalerReq
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta1ApideleteNamespacedHorizontalPodAutoscaler
      */
@@ -6730,13 +6730,13 @@ export interface AutoscalingV2beta1ApiDeleteNamespacedHorizontalPodAutoscalerReq
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AutoscalingV2beta1ApideleteNamespacedHorizontalPodAutoscaler
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AutoscalingV2beta1ApideleteNamespacedHorizontalPodAutoscaler
      */
@@ -6754,7 +6754,7 @@ export interface AutoscalingV2beta1ApiGetAPIResourcesRequest {
 
 export interface AutoscalingV2beta1ApiListHorizontalPodAutoscalerForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof AutoscalingV2beta1ApilistHorizontalPodAutoscalerForAllNamespaces
      */
@@ -6784,7 +6784,7 @@ export interface AutoscalingV2beta1ApiListHorizontalPodAutoscalerForAllNamespace
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta1ApilistHorizontalPodAutoscalerForAllNamespaces
      */
@@ -6823,13 +6823,13 @@ export interface AutoscalingV2beta1ApiListNamespacedHorizontalPodAutoscalerReque
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta1ApilistNamespacedHorizontalPodAutoscaler
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof AutoscalingV2beta1ApilistNamespacedHorizontalPodAutoscaler
      */
@@ -6904,7 +6904,7 @@ export interface AutoscalingV2beta1ApiPatchNamespacedHorizontalPodAutoscalerRequ
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta1ApipatchNamespacedHorizontalPodAutoscaler
      */
@@ -6949,7 +6949,7 @@ export interface AutoscalingV2beta1ApiPatchNamespacedHorizontalPodAutoscalerStat
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta1ApipatchNamespacedHorizontalPodAutoscalerStatus
      */
@@ -6988,7 +6988,7 @@ export interface AutoscalingV2beta1ApiReadNamespacedHorizontalPodAutoscalerReque
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta1ApireadNamespacedHorizontalPodAutoscaler
      */
@@ -7009,7 +7009,7 @@ export interface AutoscalingV2beta1ApiReadNamespacedHorizontalPodAutoscalerStatu
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta1ApireadNamespacedHorizontalPodAutoscalerStatus
      */
@@ -7036,7 +7036,7 @@ export interface AutoscalingV2beta1ApiReplaceNamespacedHorizontalPodAutoscalerRe
      */
     body: V2beta1HorizontalPodAutoscaler
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta1ApireplaceNamespacedHorizontalPodAutoscaler
      */
@@ -7075,7 +7075,7 @@ export interface AutoscalingV2beta1ApiReplaceNamespacedHorizontalPodAutoscalerSt
      */
     body: V2beta1HorizontalPodAutoscaler
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta1ApireplaceNamespacedHorizontalPodAutoscalerStatus
      */
@@ -7216,7 +7216,7 @@ export interface AutoscalingV2beta2ApiCreateNamespacedHorizontalPodAutoscalerReq
      */
     body: V2beta2HorizontalPodAutoscaler
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta2ApicreateNamespacedHorizontalPodAutoscaler
      */
@@ -7243,7 +7243,7 @@ export interface AutoscalingV2beta2ApiDeleteCollectionNamespacedHorizontalPodAut
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta2ApideleteCollectionNamespacedHorizontalPodAutoscaler
      */
@@ -7285,13 +7285,13 @@ export interface AutoscalingV2beta2ApiDeleteCollectionNamespacedHorizontalPodAut
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AutoscalingV2beta2ApideleteCollectionNamespacedHorizontalPodAutoscaler
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AutoscalingV2beta2ApideleteCollectionNamespacedHorizontalPodAutoscaler
      */
@@ -7336,7 +7336,7 @@ export interface AutoscalingV2beta2ApiDeleteNamespacedHorizontalPodAutoscalerReq
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta2ApideleteNamespacedHorizontalPodAutoscaler
      */
@@ -7354,13 +7354,13 @@ export interface AutoscalingV2beta2ApiDeleteNamespacedHorizontalPodAutoscalerReq
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof AutoscalingV2beta2ApideleteNamespacedHorizontalPodAutoscaler
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof AutoscalingV2beta2ApideleteNamespacedHorizontalPodAutoscaler
      */
@@ -7378,7 +7378,7 @@ export interface AutoscalingV2beta2ApiGetAPIResourcesRequest {
 
 export interface AutoscalingV2beta2ApiListHorizontalPodAutoscalerForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof AutoscalingV2beta2ApilistHorizontalPodAutoscalerForAllNamespaces
      */
@@ -7408,7 +7408,7 @@ export interface AutoscalingV2beta2ApiListHorizontalPodAutoscalerForAllNamespace
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta2ApilistHorizontalPodAutoscalerForAllNamespaces
      */
@@ -7447,13 +7447,13 @@ export interface AutoscalingV2beta2ApiListNamespacedHorizontalPodAutoscalerReque
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta2ApilistNamespacedHorizontalPodAutoscaler
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof AutoscalingV2beta2ApilistNamespacedHorizontalPodAutoscaler
      */
@@ -7528,7 +7528,7 @@ export interface AutoscalingV2beta2ApiPatchNamespacedHorizontalPodAutoscalerRequ
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta2ApipatchNamespacedHorizontalPodAutoscaler
      */
@@ -7573,7 +7573,7 @@ export interface AutoscalingV2beta2ApiPatchNamespacedHorizontalPodAutoscalerStat
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta2ApipatchNamespacedHorizontalPodAutoscalerStatus
      */
@@ -7612,7 +7612,7 @@ export interface AutoscalingV2beta2ApiReadNamespacedHorizontalPodAutoscalerReque
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta2ApireadNamespacedHorizontalPodAutoscaler
      */
@@ -7633,7 +7633,7 @@ export interface AutoscalingV2beta2ApiReadNamespacedHorizontalPodAutoscalerStatu
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta2ApireadNamespacedHorizontalPodAutoscalerStatus
      */
@@ -7660,7 +7660,7 @@ export interface AutoscalingV2beta2ApiReplaceNamespacedHorizontalPodAutoscalerRe
      */
     body: V2beta2HorizontalPodAutoscaler
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta2ApireplaceNamespacedHorizontalPodAutoscaler
      */
@@ -7699,7 +7699,7 @@ export interface AutoscalingV2beta2ApiReplaceNamespacedHorizontalPodAutoscalerSt
      */
     body: V2beta2HorizontalPodAutoscaler
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof AutoscalingV2beta2ApireplaceNamespacedHorizontalPodAutoscalerStatus
      */
@@ -7863,7 +7863,7 @@ export interface BatchV1ApiCreateNamespacedCronJobRequest {
      */
     body: V1CronJob
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApicreateNamespacedCronJob
      */
@@ -7896,7 +7896,7 @@ export interface BatchV1ApiCreateNamespacedJobRequest {
      */
     body: V1Job
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApicreateNamespacedJob
      */
@@ -7923,7 +7923,7 @@ export interface BatchV1ApiDeleteCollectionNamespacedCronJobRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApideleteCollectionNamespacedCronJob
      */
@@ -7965,13 +7965,13 @@ export interface BatchV1ApiDeleteCollectionNamespacedCronJobRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof BatchV1ApideleteCollectionNamespacedCronJob
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof BatchV1ApideleteCollectionNamespacedCronJob
      */
@@ -8010,7 +8010,7 @@ export interface BatchV1ApiDeleteCollectionNamespacedJobRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApideleteCollectionNamespacedJob
      */
@@ -8052,13 +8052,13 @@ export interface BatchV1ApiDeleteCollectionNamespacedJobRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof BatchV1ApideleteCollectionNamespacedJob
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof BatchV1ApideleteCollectionNamespacedJob
      */
@@ -8103,7 +8103,7 @@ export interface BatchV1ApiDeleteNamespacedCronJobRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApideleteNamespacedCronJob
      */
@@ -8121,13 +8121,13 @@ export interface BatchV1ApiDeleteNamespacedCronJobRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof BatchV1ApideleteNamespacedCronJob
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof BatchV1ApideleteNamespacedCronJob
      */
@@ -8154,7 +8154,7 @@ export interface BatchV1ApiDeleteNamespacedJobRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApideleteNamespacedJob
      */
@@ -8172,13 +8172,13 @@ export interface BatchV1ApiDeleteNamespacedJobRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof BatchV1ApideleteNamespacedJob
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof BatchV1ApideleteNamespacedJob
      */
@@ -8196,7 +8196,7 @@ export interface BatchV1ApiGetAPIResourcesRequest {
 
 export interface BatchV1ApiListCronJobForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof BatchV1ApilistCronJobForAllNamespaces
      */
@@ -8226,7 +8226,7 @@ export interface BatchV1ApiListCronJobForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApilistCronJobForAllNamespaces
      */
@@ -8259,7 +8259,7 @@ export interface BatchV1ApiListCronJobForAllNamespacesRequest {
 
 export interface BatchV1ApiListJobForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof BatchV1ApilistJobForAllNamespaces
      */
@@ -8289,7 +8289,7 @@ export interface BatchV1ApiListJobForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApilistJobForAllNamespaces
      */
@@ -8328,13 +8328,13 @@ export interface BatchV1ApiListNamespacedCronJobRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApilistNamespacedCronJob
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof BatchV1ApilistNamespacedCronJob
      */
@@ -8397,13 +8397,13 @@ export interface BatchV1ApiListNamespacedJobRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApilistNamespacedJob
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof BatchV1ApilistNamespacedJob
      */
@@ -8478,7 +8478,7 @@ export interface BatchV1ApiPatchNamespacedCronJobRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApipatchNamespacedCronJob
      */
@@ -8523,7 +8523,7 @@ export interface BatchV1ApiPatchNamespacedCronJobStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApipatchNamespacedCronJobStatus
      */
@@ -8568,7 +8568,7 @@ export interface BatchV1ApiPatchNamespacedJobRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApipatchNamespacedJob
      */
@@ -8613,7 +8613,7 @@ export interface BatchV1ApiPatchNamespacedJobStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApipatchNamespacedJobStatus
      */
@@ -8652,7 +8652,7 @@ export interface BatchV1ApiReadNamespacedCronJobRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApireadNamespacedCronJob
      */
@@ -8673,7 +8673,7 @@ export interface BatchV1ApiReadNamespacedCronJobStatusRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApireadNamespacedCronJobStatus
      */
@@ -8694,7 +8694,7 @@ export interface BatchV1ApiReadNamespacedJobRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApireadNamespacedJob
      */
@@ -8715,7 +8715,7 @@ export interface BatchV1ApiReadNamespacedJobStatusRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApireadNamespacedJobStatus
      */
@@ -8742,7 +8742,7 @@ export interface BatchV1ApiReplaceNamespacedCronJobRequest {
      */
     body: V1CronJob
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApireplaceNamespacedCronJob
      */
@@ -8781,7 +8781,7 @@ export interface BatchV1ApiReplaceNamespacedCronJobStatusRequest {
      */
     body: V1CronJob
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApireplaceNamespacedCronJobStatus
      */
@@ -8820,7 +8820,7 @@ export interface BatchV1ApiReplaceNamespacedJobRequest {
      */
     body: V1Job
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApireplaceNamespacedJob
      */
@@ -8859,7 +8859,7 @@ export interface BatchV1ApiReplaceNamespacedJobStatusRequest {
      */
     body: V1Job
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1ApireplaceNamespacedJobStatus
      */
@@ -9088,7 +9088,7 @@ export interface BatchV1beta1ApiCreateNamespacedCronJobRequest {
      */
     body: V1beta1CronJob
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1beta1ApicreateNamespacedCronJob
      */
@@ -9115,7 +9115,7 @@ export interface BatchV1beta1ApiDeleteCollectionNamespacedCronJobRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1beta1ApideleteCollectionNamespacedCronJob
      */
@@ -9157,13 +9157,13 @@ export interface BatchV1beta1ApiDeleteCollectionNamespacedCronJobRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof BatchV1beta1ApideleteCollectionNamespacedCronJob
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof BatchV1beta1ApideleteCollectionNamespacedCronJob
      */
@@ -9208,7 +9208,7 @@ export interface BatchV1beta1ApiDeleteNamespacedCronJobRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1beta1ApideleteNamespacedCronJob
      */
@@ -9226,13 +9226,13 @@ export interface BatchV1beta1ApiDeleteNamespacedCronJobRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof BatchV1beta1ApideleteNamespacedCronJob
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof BatchV1beta1ApideleteNamespacedCronJob
      */
@@ -9250,7 +9250,7 @@ export interface BatchV1beta1ApiGetAPIResourcesRequest {
 
 export interface BatchV1beta1ApiListCronJobForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof BatchV1beta1ApilistCronJobForAllNamespaces
      */
@@ -9280,7 +9280,7 @@ export interface BatchV1beta1ApiListCronJobForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1beta1ApilistCronJobForAllNamespaces
      */
@@ -9319,13 +9319,13 @@ export interface BatchV1beta1ApiListNamespacedCronJobRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1beta1ApilistNamespacedCronJob
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof BatchV1beta1ApilistNamespacedCronJob
      */
@@ -9400,7 +9400,7 @@ export interface BatchV1beta1ApiPatchNamespacedCronJobRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1beta1ApipatchNamespacedCronJob
      */
@@ -9445,7 +9445,7 @@ export interface BatchV1beta1ApiPatchNamespacedCronJobStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1beta1ApipatchNamespacedCronJobStatus
      */
@@ -9484,7 +9484,7 @@ export interface BatchV1beta1ApiReadNamespacedCronJobRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1beta1ApireadNamespacedCronJob
      */
@@ -9505,7 +9505,7 @@ export interface BatchV1beta1ApiReadNamespacedCronJobStatusRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1beta1ApireadNamespacedCronJobStatus
      */
@@ -9532,7 +9532,7 @@ export interface BatchV1beta1ApiReplaceNamespacedCronJobRequest {
      */
     body: V1beta1CronJob
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1beta1ApireplaceNamespacedCronJob
      */
@@ -9571,7 +9571,7 @@ export interface BatchV1beta1ApiReplaceNamespacedCronJobStatusRequest {
      */
     body: V1beta1CronJob
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof BatchV1beta1ApireplaceNamespacedCronJobStatus
      */
@@ -9729,7 +9729,7 @@ export interface CertificatesV1ApiCreateCertificateSigningRequestRequest {
      */
     body: V1CertificateSigningRequest
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CertificatesV1ApicreateCertificateSigningRequest
      */
@@ -9756,7 +9756,7 @@ export interface CertificatesV1ApiDeleteCertificateSigningRequestRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CertificatesV1ApideleteCertificateSigningRequest
      */
@@ -9774,13 +9774,13 @@ export interface CertificatesV1ApiDeleteCertificateSigningRequestRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CertificatesV1ApideleteCertificateSigningRequest
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CertificatesV1ApideleteCertificateSigningRequest
      */
@@ -9795,7 +9795,7 @@ export interface CertificatesV1ApiDeleteCertificateSigningRequestRequest {
 
 export interface CertificatesV1ApiDeleteCollectionCertificateSigningRequestRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CertificatesV1ApideleteCollectionCertificateSigningRequest
      */
@@ -9837,13 +9837,13 @@ export interface CertificatesV1ApiDeleteCollectionCertificateSigningRequestReque
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CertificatesV1ApideleteCollectionCertificateSigningRequest
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CertificatesV1ApideleteCollectionCertificateSigningRequest
      */
@@ -9879,13 +9879,13 @@ export interface CertificatesV1ApiGetAPIResourcesRequest {
 
 export interface CertificatesV1ApiListCertificateSigningRequestRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CertificatesV1ApilistCertificateSigningRequest
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CertificatesV1ApilistCertificateSigningRequest
      */
@@ -9954,7 +9954,7 @@ export interface CertificatesV1ApiPatchCertificateSigningRequestRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CertificatesV1ApipatchCertificateSigningRequest
      */
@@ -9993,7 +9993,7 @@ export interface CertificatesV1ApiPatchCertificateSigningRequestApprovalRequest 
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CertificatesV1ApipatchCertificateSigningRequestApproval
      */
@@ -10032,7 +10032,7 @@ export interface CertificatesV1ApiPatchCertificateSigningRequestStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CertificatesV1ApipatchCertificateSigningRequestStatus
      */
@@ -10065,7 +10065,7 @@ export interface CertificatesV1ApiReadCertificateSigningRequestRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CertificatesV1ApireadCertificateSigningRequest
      */
@@ -10080,7 +10080,7 @@ export interface CertificatesV1ApiReadCertificateSigningRequestApprovalRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CertificatesV1ApireadCertificateSigningRequestApproval
      */
@@ -10095,7 +10095,7 @@ export interface CertificatesV1ApiReadCertificateSigningRequestStatusRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CertificatesV1ApireadCertificateSigningRequestStatus
      */
@@ -10116,7 +10116,7 @@ export interface CertificatesV1ApiReplaceCertificateSigningRequestRequest {
      */
     body: V1CertificateSigningRequest
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CertificatesV1ApireplaceCertificateSigningRequest
      */
@@ -10149,7 +10149,7 @@ export interface CertificatesV1ApiReplaceCertificateSigningRequestApprovalReques
      */
     body: V1CertificateSigningRequest
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CertificatesV1ApireplaceCertificateSigningRequestApproval
      */
@@ -10182,7 +10182,7 @@ export interface CertificatesV1ApiReplaceCertificateSigningRequestStatusRequest 
      */
     body: V1CertificateSigningRequest
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CertificatesV1ApireplaceCertificateSigningRequestStatus
      */
@@ -10362,7 +10362,7 @@ export interface CoordinationV1ApiCreateNamespacedLeaseRequest {
      */
     body: V1Lease
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoordinationV1ApicreateNamespacedLease
      */
@@ -10389,7 +10389,7 @@ export interface CoordinationV1ApiDeleteCollectionNamespacedLeaseRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoordinationV1ApideleteCollectionNamespacedLease
      */
@@ -10431,13 +10431,13 @@ export interface CoordinationV1ApiDeleteCollectionNamespacedLeaseRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoordinationV1ApideleteCollectionNamespacedLease
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoordinationV1ApideleteCollectionNamespacedLease
      */
@@ -10482,7 +10482,7 @@ export interface CoordinationV1ApiDeleteNamespacedLeaseRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoordinationV1ApideleteNamespacedLease
      */
@@ -10500,13 +10500,13 @@ export interface CoordinationV1ApiDeleteNamespacedLeaseRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoordinationV1ApideleteNamespacedLease
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoordinationV1ApideleteNamespacedLease
      */
@@ -10524,7 +10524,7 @@ export interface CoordinationV1ApiGetAPIResourcesRequest {
 
 export interface CoordinationV1ApiListLeaseForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoordinationV1ApilistLeaseForAllNamespaces
      */
@@ -10554,7 +10554,7 @@ export interface CoordinationV1ApiListLeaseForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoordinationV1ApilistLeaseForAllNamespaces
      */
@@ -10593,13 +10593,13 @@ export interface CoordinationV1ApiListNamespacedLeaseRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoordinationV1ApilistNamespacedLease
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoordinationV1ApilistNamespacedLease
      */
@@ -10674,7 +10674,7 @@ export interface CoordinationV1ApiPatchNamespacedLeaseRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoordinationV1ApipatchNamespacedLease
      */
@@ -10713,7 +10713,7 @@ export interface CoordinationV1ApiReadNamespacedLeaseRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoordinationV1ApireadNamespacedLease
      */
@@ -10740,7 +10740,7 @@ export interface CoordinationV1ApiReplaceNamespacedLeaseRequest {
      */
     body: V1Lease
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoordinationV1ApireplaceNamespacedLease
      */
@@ -12032,7 +12032,7 @@ export interface CoreV1ApiCreateNamespaceRequest {
      */
     body: V1Namespace
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreateNamespace
      */
@@ -12077,7 +12077,7 @@ export interface CoreV1ApiCreateNamespacedBindingRequest {
      */
     fieldManager?: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreateNamespacedBinding
      */
@@ -12098,7 +12098,7 @@ export interface CoreV1ApiCreateNamespacedConfigMapRequest {
      */
     body: V1ConfigMap
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreateNamespacedConfigMap
      */
@@ -12131,7 +12131,7 @@ export interface CoreV1ApiCreateNamespacedEndpointsRequest {
      */
     body: V1Endpoints
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreateNamespacedEndpoints
      */
@@ -12164,7 +12164,7 @@ export interface CoreV1ApiCreateNamespacedEventRequest {
      */
     body: CoreV1Event
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreateNamespacedEvent
      */
@@ -12197,7 +12197,7 @@ export interface CoreV1ApiCreateNamespacedLimitRangeRequest {
      */
     body: V1LimitRange
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreateNamespacedLimitRange
      */
@@ -12230,7 +12230,7 @@ export interface CoreV1ApiCreateNamespacedPersistentVolumeClaimRequest {
      */
     body: V1PersistentVolumeClaim
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreateNamespacedPersistentVolumeClaim
      */
@@ -12263,7 +12263,7 @@ export interface CoreV1ApiCreateNamespacedPodRequest {
      */
     body: V1Pod
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreateNamespacedPod
      */
@@ -12314,7 +12314,7 @@ export interface CoreV1ApiCreateNamespacedPodBindingRequest {
      */
     fieldManager?: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreateNamespacedPodBinding
      */
@@ -12353,7 +12353,7 @@ export interface CoreV1ApiCreateNamespacedPodEvictionRequest {
      */
     fieldManager?: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreateNamespacedPodEviction
      */
@@ -12374,7 +12374,7 @@ export interface CoreV1ApiCreateNamespacedPodTemplateRequest {
      */
     body: V1PodTemplate
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreateNamespacedPodTemplate
      */
@@ -12407,7 +12407,7 @@ export interface CoreV1ApiCreateNamespacedReplicationControllerRequest {
      */
     body: V1ReplicationController
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreateNamespacedReplicationController
      */
@@ -12440,7 +12440,7 @@ export interface CoreV1ApiCreateNamespacedResourceQuotaRequest {
      */
     body: V1ResourceQuota
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreateNamespacedResourceQuota
      */
@@ -12473,7 +12473,7 @@ export interface CoreV1ApiCreateNamespacedSecretRequest {
      */
     body: V1Secret
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreateNamespacedSecret
      */
@@ -12506,7 +12506,7 @@ export interface CoreV1ApiCreateNamespacedServiceRequest {
      */
     body: V1Service
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreateNamespacedService
      */
@@ -12539,7 +12539,7 @@ export interface CoreV1ApiCreateNamespacedServiceAccountRequest {
      */
     body: V1ServiceAccount
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreateNamespacedServiceAccount
      */
@@ -12590,7 +12590,7 @@ export interface CoreV1ApiCreateNamespacedServiceAccountTokenRequest {
      */
     fieldManager?: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreateNamespacedServiceAccountToken
      */
@@ -12605,7 +12605,7 @@ export interface CoreV1ApiCreateNodeRequest {
      */
     body: V1Node
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreateNode
      */
@@ -12632,7 +12632,7 @@ export interface CoreV1ApiCreatePersistentVolumeRequest {
      */
     body: V1PersistentVolume
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApicreatePersistentVolume
      */
@@ -12659,7 +12659,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedConfigMapRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedConfigMap
      */
@@ -12701,13 +12701,13 @@ export interface CoreV1ApiDeleteCollectionNamespacedConfigMapRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteCollectionNamespacedConfigMap
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedConfigMap
      */
@@ -12746,7 +12746,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedEndpointsRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedEndpoints
      */
@@ -12788,13 +12788,13 @@ export interface CoreV1ApiDeleteCollectionNamespacedEndpointsRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteCollectionNamespacedEndpoints
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedEndpoints
      */
@@ -12833,7 +12833,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedEvent
      */
@@ -12875,13 +12875,13 @@ export interface CoreV1ApiDeleteCollectionNamespacedEventRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteCollectionNamespacedEvent
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedEvent
      */
@@ -12920,7 +12920,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedLimitRangeRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedLimitRange
      */
@@ -12962,13 +12962,13 @@ export interface CoreV1ApiDeleteCollectionNamespacedLimitRangeRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteCollectionNamespacedLimitRange
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedLimitRange
      */
@@ -13007,7 +13007,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedPersistentVolumeClaimRequest
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedPersistentVolumeClaim
      */
@@ -13049,13 +13049,13 @@ export interface CoreV1ApiDeleteCollectionNamespacedPersistentVolumeClaimRequest
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteCollectionNamespacedPersistentVolumeClaim
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedPersistentVolumeClaim
      */
@@ -13094,7 +13094,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedPodRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedPod
      */
@@ -13136,13 +13136,13 @@ export interface CoreV1ApiDeleteCollectionNamespacedPodRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteCollectionNamespacedPod
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedPod
      */
@@ -13181,7 +13181,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedPodTemplateRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedPodTemplate
      */
@@ -13223,13 +13223,13 @@ export interface CoreV1ApiDeleteCollectionNamespacedPodTemplateRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteCollectionNamespacedPodTemplate
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedPodTemplate
      */
@@ -13268,7 +13268,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedReplicationControllerRequest
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedReplicationController
      */
@@ -13310,13 +13310,13 @@ export interface CoreV1ApiDeleteCollectionNamespacedReplicationControllerRequest
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteCollectionNamespacedReplicationController
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedReplicationController
      */
@@ -13355,7 +13355,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedResourceQuotaRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedResourceQuota
      */
@@ -13397,13 +13397,13 @@ export interface CoreV1ApiDeleteCollectionNamespacedResourceQuotaRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteCollectionNamespacedResourceQuota
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedResourceQuota
      */
@@ -13442,7 +13442,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedSecretRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedSecret
      */
@@ -13484,13 +13484,13 @@ export interface CoreV1ApiDeleteCollectionNamespacedSecretRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteCollectionNamespacedSecret
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedSecret
      */
@@ -13529,7 +13529,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedServiceAccountRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedServiceAccount
      */
@@ -13571,13 +13571,13 @@ export interface CoreV1ApiDeleteCollectionNamespacedServiceAccountRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteCollectionNamespacedServiceAccount
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedServiceAccount
      */
@@ -13610,7 +13610,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedServiceAccountRequest {
 
 export interface CoreV1ApiDeleteCollectionNodeRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteCollectionNode
      */
@@ -13652,13 +13652,13 @@ export interface CoreV1ApiDeleteCollectionNodeRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteCollectionNode
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteCollectionNode
      */
@@ -13691,7 +13691,7 @@ export interface CoreV1ApiDeleteCollectionNodeRequest {
 
 export interface CoreV1ApiDeleteCollectionPersistentVolumeRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteCollectionPersistentVolume
      */
@@ -13733,13 +13733,13 @@ export interface CoreV1ApiDeleteCollectionPersistentVolumeRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteCollectionPersistentVolume
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteCollectionPersistentVolume
      */
@@ -13778,7 +13778,7 @@ export interface CoreV1ApiDeleteNamespaceRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteNamespace
      */
@@ -13796,13 +13796,13 @@ export interface CoreV1ApiDeleteNamespaceRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteNamespace
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteNamespace
      */
@@ -13829,7 +13829,7 @@ export interface CoreV1ApiDeleteNamespacedConfigMapRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteNamespacedConfigMap
      */
@@ -13847,13 +13847,13 @@ export interface CoreV1ApiDeleteNamespacedConfigMapRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteNamespacedConfigMap
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteNamespacedConfigMap
      */
@@ -13880,7 +13880,7 @@ export interface CoreV1ApiDeleteNamespacedEndpointsRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteNamespacedEndpoints
      */
@@ -13898,13 +13898,13 @@ export interface CoreV1ApiDeleteNamespacedEndpointsRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteNamespacedEndpoints
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteNamespacedEndpoints
      */
@@ -13931,7 +13931,7 @@ export interface CoreV1ApiDeleteNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteNamespacedEvent
      */
@@ -13949,13 +13949,13 @@ export interface CoreV1ApiDeleteNamespacedEventRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteNamespacedEvent
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteNamespacedEvent
      */
@@ -13982,7 +13982,7 @@ export interface CoreV1ApiDeleteNamespacedLimitRangeRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteNamespacedLimitRange
      */
@@ -14000,13 +14000,13 @@ export interface CoreV1ApiDeleteNamespacedLimitRangeRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteNamespacedLimitRange
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteNamespacedLimitRange
      */
@@ -14033,7 +14033,7 @@ export interface CoreV1ApiDeleteNamespacedPersistentVolumeClaimRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteNamespacedPersistentVolumeClaim
      */
@@ -14051,13 +14051,13 @@ export interface CoreV1ApiDeleteNamespacedPersistentVolumeClaimRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteNamespacedPersistentVolumeClaim
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteNamespacedPersistentVolumeClaim
      */
@@ -14084,7 +14084,7 @@ export interface CoreV1ApiDeleteNamespacedPodRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteNamespacedPod
      */
@@ -14102,13 +14102,13 @@ export interface CoreV1ApiDeleteNamespacedPodRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteNamespacedPod
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteNamespacedPod
      */
@@ -14135,7 +14135,7 @@ export interface CoreV1ApiDeleteNamespacedPodTemplateRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteNamespacedPodTemplate
      */
@@ -14153,13 +14153,13 @@ export interface CoreV1ApiDeleteNamespacedPodTemplateRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteNamespacedPodTemplate
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteNamespacedPodTemplate
      */
@@ -14186,7 +14186,7 @@ export interface CoreV1ApiDeleteNamespacedReplicationControllerRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteNamespacedReplicationController
      */
@@ -14204,13 +14204,13 @@ export interface CoreV1ApiDeleteNamespacedReplicationControllerRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteNamespacedReplicationController
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteNamespacedReplicationController
      */
@@ -14237,7 +14237,7 @@ export interface CoreV1ApiDeleteNamespacedResourceQuotaRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteNamespacedResourceQuota
      */
@@ -14255,13 +14255,13 @@ export interface CoreV1ApiDeleteNamespacedResourceQuotaRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteNamespacedResourceQuota
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteNamespacedResourceQuota
      */
@@ -14288,7 +14288,7 @@ export interface CoreV1ApiDeleteNamespacedSecretRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteNamespacedSecret
      */
@@ -14306,13 +14306,13 @@ export interface CoreV1ApiDeleteNamespacedSecretRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteNamespacedSecret
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteNamespacedSecret
      */
@@ -14339,7 +14339,7 @@ export interface CoreV1ApiDeleteNamespacedServiceRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteNamespacedService
      */
@@ -14357,13 +14357,13 @@ export interface CoreV1ApiDeleteNamespacedServiceRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteNamespacedService
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteNamespacedService
      */
@@ -14390,7 +14390,7 @@ export interface CoreV1ApiDeleteNamespacedServiceAccountRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteNamespacedServiceAccount
      */
@@ -14408,13 +14408,13 @@ export interface CoreV1ApiDeleteNamespacedServiceAccountRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteNamespacedServiceAccount
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteNamespacedServiceAccount
      */
@@ -14435,7 +14435,7 @@ export interface CoreV1ApiDeleteNodeRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideleteNode
      */
@@ -14453,13 +14453,13 @@ export interface CoreV1ApiDeleteNodeRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideleteNode
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideleteNode
      */
@@ -14480,7 +14480,7 @@ export interface CoreV1ApiDeletePersistentVolumeRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApideletePersistentVolume
      */
@@ -14498,13 +14498,13 @@ export interface CoreV1ApiDeletePersistentVolumeRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CoreV1ApideletePersistentVolume
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof CoreV1ApideletePersistentVolume
      */
@@ -14522,7 +14522,7 @@ export interface CoreV1ApiGetAPIResourcesRequest {
 
 export interface CoreV1ApiListComponentStatusRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistComponentStatus
      */
@@ -14552,7 +14552,7 @@ export interface CoreV1ApiListComponentStatusRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistComponentStatus
      */
@@ -14585,7 +14585,7 @@ export interface CoreV1ApiListComponentStatusRequest {
 
 export interface CoreV1ApiListConfigMapForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistConfigMapForAllNamespaces
      */
@@ -14615,7 +14615,7 @@ export interface CoreV1ApiListConfigMapForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistConfigMapForAllNamespaces
      */
@@ -14648,7 +14648,7 @@ export interface CoreV1ApiListConfigMapForAllNamespacesRequest {
 
 export interface CoreV1ApiListEndpointsForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistEndpointsForAllNamespaces
      */
@@ -14678,7 +14678,7 @@ export interface CoreV1ApiListEndpointsForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistEndpointsForAllNamespaces
      */
@@ -14711,7 +14711,7 @@ export interface CoreV1ApiListEndpointsForAllNamespacesRequest {
 
 export interface CoreV1ApiListEventForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistEventForAllNamespaces
      */
@@ -14741,7 +14741,7 @@ export interface CoreV1ApiListEventForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistEventForAllNamespaces
      */
@@ -14774,7 +14774,7 @@ export interface CoreV1ApiListEventForAllNamespacesRequest {
 
 export interface CoreV1ApiListLimitRangeForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistLimitRangeForAllNamespaces
      */
@@ -14804,7 +14804,7 @@ export interface CoreV1ApiListLimitRangeForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistLimitRangeForAllNamespaces
      */
@@ -14837,13 +14837,13 @@ export interface CoreV1ApiListLimitRangeForAllNamespacesRequest {
 
 export interface CoreV1ApiListNamespaceRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistNamespace
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistNamespace
      */
@@ -14906,13 +14906,13 @@ export interface CoreV1ApiListNamespacedConfigMapRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistNamespacedConfigMap
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistNamespacedConfigMap
      */
@@ -14975,13 +14975,13 @@ export interface CoreV1ApiListNamespacedEndpointsRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistNamespacedEndpoints
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistNamespacedEndpoints
      */
@@ -15044,13 +15044,13 @@ export interface CoreV1ApiListNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistNamespacedEvent
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistNamespacedEvent
      */
@@ -15113,13 +15113,13 @@ export interface CoreV1ApiListNamespacedLimitRangeRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistNamespacedLimitRange
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistNamespacedLimitRange
      */
@@ -15182,13 +15182,13 @@ export interface CoreV1ApiListNamespacedPersistentVolumeClaimRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistNamespacedPersistentVolumeClaim
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistNamespacedPersistentVolumeClaim
      */
@@ -15251,13 +15251,13 @@ export interface CoreV1ApiListNamespacedPodRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistNamespacedPod
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistNamespacedPod
      */
@@ -15320,13 +15320,13 @@ export interface CoreV1ApiListNamespacedPodTemplateRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistNamespacedPodTemplate
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistNamespacedPodTemplate
      */
@@ -15389,13 +15389,13 @@ export interface CoreV1ApiListNamespacedReplicationControllerRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistNamespacedReplicationController
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistNamespacedReplicationController
      */
@@ -15458,13 +15458,13 @@ export interface CoreV1ApiListNamespacedResourceQuotaRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistNamespacedResourceQuota
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistNamespacedResourceQuota
      */
@@ -15527,13 +15527,13 @@ export interface CoreV1ApiListNamespacedSecretRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistNamespacedSecret
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistNamespacedSecret
      */
@@ -15596,13 +15596,13 @@ export interface CoreV1ApiListNamespacedServiceRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistNamespacedService
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistNamespacedService
      */
@@ -15665,13 +15665,13 @@ export interface CoreV1ApiListNamespacedServiceAccountRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistNamespacedServiceAccount
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistNamespacedServiceAccount
      */
@@ -15728,13 +15728,13 @@ export interface CoreV1ApiListNamespacedServiceAccountRequest {
 
 export interface CoreV1ApiListNodeRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistNode
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistNode
      */
@@ -15791,13 +15791,13 @@ export interface CoreV1ApiListNodeRequest {
 
 export interface CoreV1ApiListPersistentVolumeRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistPersistentVolume
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistPersistentVolume
      */
@@ -15854,7 +15854,7 @@ export interface CoreV1ApiListPersistentVolumeRequest {
 
 export interface CoreV1ApiListPersistentVolumeClaimForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistPersistentVolumeClaimForAllNamespaces
      */
@@ -15884,7 +15884,7 @@ export interface CoreV1ApiListPersistentVolumeClaimForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistPersistentVolumeClaimForAllNamespaces
      */
@@ -15917,7 +15917,7 @@ export interface CoreV1ApiListPersistentVolumeClaimForAllNamespacesRequest {
 
 export interface CoreV1ApiListPodForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistPodForAllNamespaces
      */
@@ -15947,7 +15947,7 @@ export interface CoreV1ApiListPodForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistPodForAllNamespaces
      */
@@ -15980,7 +15980,7 @@ export interface CoreV1ApiListPodForAllNamespacesRequest {
 
 export interface CoreV1ApiListPodTemplateForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistPodTemplateForAllNamespaces
      */
@@ -16010,7 +16010,7 @@ export interface CoreV1ApiListPodTemplateForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistPodTemplateForAllNamespaces
      */
@@ -16043,7 +16043,7 @@ export interface CoreV1ApiListPodTemplateForAllNamespacesRequest {
 
 export interface CoreV1ApiListReplicationControllerForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistReplicationControllerForAllNamespaces
      */
@@ -16073,7 +16073,7 @@ export interface CoreV1ApiListReplicationControllerForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistReplicationControllerForAllNamespaces
      */
@@ -16106,7 +16106,7 @@ export interface CoreV1ApiListReplicationControllerForAllNamespacesRequest {
 
 export interface CoreV1ApiListResourceQuotaForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistResourceQuotaForAllNamespaces
      */
@@ -16136,7 +16136,7 @@ export interface CoreV1ApiListResourceQuotaForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistResourceQuotaForAllNamespaces
      */
@@ -16169,7 +16169,7 @@ export interface CoreV1ApiListResourceQuotaForAllNamespacesRequest {
 
 export interface CoreV1ApiListSecretForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistSecretForAllNamespaces
      */
@@ -16199,7 +16199,7 @@ export interface CoreV1ApiListSecretForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistSecretForAllNamespaces
      */
@@ -16232,7 +16232,7 @@ export interface CoreV1ApiListSecretForAllNamespacesRequest {
 
 export interface CoreV1ApiListServiceAccountForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistServiceAccountForAllNamespaces
      */
@@ -16262,7 +16262,7 @@ export interface CoreV1ApiListServiceAccountForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistServiceAccountForAllNamespaces
      */
@@ -16295,7 +16295,7 @@ export interface CoreV1ApiListServiceAccountForAllNamespacesRequest {
 
 export interface CoreV1ApiListServiceForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof CoreV1ApilistServiceForAllNamespaces
      */
@@ -16325,7 +16325,7 @@ export interface CoreV1ApiListServiceForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApilistServiceForAllNamespaces
      */
@@ -16370,7 +16370,7 @@ export interface CoreV1ApiPatchNamespaceRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespace
      */
@@ -16409,7 +16409,7 @@ export interface CoreV1ApiPatchNamespaceStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespaceStatus
      */
@@ -16454,7 +16454,7 @@ export interface CoreV1ApiPatchNamespacedConfigMapRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedConfigMap
      */
@@ -16499,7 +16499,7 @@ export interface CoreV1ApiPatchNamespacedEndpointsRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedEndpoints
      */
@@ -16544,7 +16544,7 @@ export interface CoreV1ApiPatchNamespacedEventRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedEvent
      */
@@ -16589,7 +16589,7 @@ export interface CoreV1ApiPatchNamespacedLimitRangeRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedLimitRange
      */
@@ -16634,7 +16634,7 @@ export interface CoreV1ApiPatchNamespacedPersistentVolumeClaimRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedPersistentVolumeClaim
      */
@@ -16679,7 +16679,7 @@ export interface CoreV1ApiPatchNamespacedPersistentVolumeClaimStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedPersistentVolumeClaimStatus
      */
@@ -16724,7 +16724,7 @@ export interface CoreV1ApiPatchNamespacedPodRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedPod
      */
@@ -16769,7 +16769,7 @@ export interface CoreV1ApiPatchNamespacedPodEphemeralcontainersRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedPodEphemeralcontainers
      */
@@ -16814,7 +16814,7 @@ export interface CoreV1ApiPatchNamespacedPodStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedPodStatus
      */
@@ -16859,7 +16859,7 @@ export interface CoreV1ApiPatchNamespacedPodTemplateRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedPodTemplate
      */
@@ -16904,7 +16904,7 @@ export interface CoreV1ApiPatchNamespacedReplicationControllerRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedReplicationController
      */
@@ -16949,7 +16949,7 @@ export interface CoreV1ApiPatchNamespacedReplicationControllerScaleRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedReplicationControllerScale
      */
@@ -16994,7 +16994,7 @@ export interface CoreV1ApiPatchNamespacedReplicationControllerStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedReplicationControllerStatus
      */
@@ -17039,7 +17039,7 @@ export interface CoreV1ApiPatchNamespacedResourceQuotaRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedResourceQuota
      */
@@ -17084,7 +17084,7 @@ export interface CoreV1ApiPatchNamespacedResourceQuotaStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedResourceQuotaStatus
      */
@@ -17129,7 +17129,7 @@ export interface CoreV1ApiPatchNamespacedSecretRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedSecret
      */
@@ -17174,7 +17174,7 @@ export interface CoreV1ApiPatchNamespacedServiceRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedService
      */
@@ -17219,7 +17219,7 @@ export interface CoreV1ApiPatchNamespacedServiceAccountRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedServiceAccount
      */
@@ -17264,7 +17264,7 @@ export interface CoreV1ApiPatchNamespacedServiceStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNamespacedServiceStatus
      */
@@ -17303,7 +17303,7 @@ export interface CoreV1ApiPatchNodeRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNode
      */
@@ -17342,7 +17342,7 @@ export interface CoreV1ApiPatchNodeStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchNodeStatus
      */
@@ -17381,7 +17381,7 @@ export interface CoreV1ApiPatchPersistentVolumeRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchPersistentVolume
      */
@@ -17420,7 +17420,7 @@ export interface CoreV1ApiPatchPersistentVolumeStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApipatchPersistentVolumeStatus
      */
@@ -17453,7 +17453,7 @@ export interface CoreV1ApiReadComponentStatusRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadComponentStatus
      */
@@ -17468,7 +17468,7 @@ export interface CoreV1ApiReadNamespaceRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespace
      */
@@ -17483,7 +17483,7 @@ export interface CoreV1ApiReadNamespaceStatusRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespaceStatus
      */
@@ -17504,7 +17504,7 @@ export interface CoreV1ApiReadNamespacedConfigMapRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedConfigMap
      */
@@ -17525,7 +17525,7 @@ export interface CoreV1ApiReadNamespacedEndpointsRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedEndpoints
      */
@@ -17546,7 +17546,7 @@ export interface CoreV1ApiReadNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedEvent
      */
@@ -17567,7 +17567,7 @@ export interface CoreV1ApiReadNamespacedLimitRangeRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedLimitRange
      */
@@ -17588,7 +17588,7 @@ export interface CoreV1ApiReadNamespacedPersistentVolumeClaimRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedPersistentVolumeClaim
      */
@@ -17609,7 +17609,7 @@ export interface CoreV1ApiReadNamespacedPersistentVolumeClaimStatusRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedPersistentVolumeClaimStatus
      */
@@ -17630,7 +17630,7 @@ export interface CoreV1ApiReadNamespacedPodRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedPod
      */
@@ -17651,7 +17651,7 @@ export interface CoreV1ApiReadNamespacedPodEphemeralcontainersRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedPodEphemeralcontainers
      */
@@ -17684,7 +17684,7 @@ export interface CoreV1ApiReadNamespacedPodLogRequest {
      */
     follow?: boolean
     /**
-     * insecureSkipTLSVerifyBackend indicates that the apiserver should not confirm the validity of the serving certificate of the backend it is connecting to.  This will make the HTTPS connection between the apiserver and the backend insecure. This means the apiserver cannot verify the log data it is receiving came from the real kubelet.  If the kubelet is configured to verify the apiserver&#39;s TLS credentials, it does not mean the connection to the real kubelet is vulnerable to a man in the middle attack (e.g. an attacker could not intercept the actual log data coming from the real kubelet).
+     * insecureSkipTLSVerifyBackend indicates that the apiserver should not confirm the validity of the serving certificate of the backend it is connecting to.  This will make the HTTPS connection between the apiserver and the backend insecure. This means the apiserver cannot verify the log data it is receiving came from the real kubelet.  If the kubelet is configured to verify the apiserver\&#39;s TLS credentials, it does not mean the connection to the real kubelet is vulnerable to a man in the middle attack (e.g. an attacker could not intercept the actual log data coming from the real kubelet).
      * @type boolean
      * @memberof CoreV1ApireadNamespacedPodLog
      */
@@ -17696,7 +17696,7 @@ export interface CoreV1ApiReadNamespacedPodLogRequest {
      */
     limitBytes?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedPodLog
      */
@@ -17741,7 +17741,7 @@ export interface CoreV1ApiReadNamespacedPodStatusRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedPodStatus
      */
@@ -17762,7 +17762,7 @@ export interface CoreV1ApiReadNamespacedPodTemplateRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedPodTemplate
      */
@@ -17783,7 +17783,7 @@ export interface CoreV1ApiReadNamespacedReplicationControllerRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedReplicationController
      */
@@ -17804,7 +17804,7 @@ export interface CoreV1ApiReadNamespacedReplicationControllerScaleRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedReplicationControllerScale
      */
@@ -17825,7 +17825,7 @@ export interface CoreV1ApiReadNamespacedReplicationControllerStatusRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedReplicationControllerStatus
      */
@@ -17846,7 +17846,7 @@ export interface CoreV1ApiReadNamespacedResourceQuotaRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedResourceQuota
      */
@@ -17867,7 +17867,7 @@ export interface CoreV1ApiReadNamespacedResourceQuotaStatusRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedResourceQuotaStatus
      */
@@ -17888,7 +17888,7 @@ export interface CoreV1ApiReadNamespacedSecretRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedSecret
      */
@@ -17909,7 +17909,7 @@ export interface CoreV1ApiReadNamespacedServiceRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedService
      */
@@ -17930,7 +17930,7 @@ export interface CoreV1ApiReadNamespacedServiceAccountRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedServiceAccount
      */
@@ -17951,7 +17951,7 @@ export interface CoreV1ApiReadNamespacedServiceStatusRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNamespacedServiceStatus
      */
@@ -17966,7 +17966,7 @@ export interface CoreV1ApiReadNodeRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNode
      */
@@ -17981,7 +17981,7 @@ export interface CoreV1ApiReadNodeStatusRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadNodeStatus
      */
@@ -17996,7 +17996,7 @@ export interface CoreV1ApiReadPersistentVolumeRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadPersistentVolume
      */
@@ -18011,7 +18011,7 @@ export interface CoreV1ApiReadPersistentVolumeStatusRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireadPersistentVolumeStatus
      */
@@ -18032,7 +18032,7 @@ export interface CoreV1ApiReplaceNamespaceRequest {
      */
     body: V1Namespace
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespace
      */
@@ -18077,7 +18077,7 @@ export interface CoreV1ApiReplaceNamespaceFinalizeRequest {
      */
     fieldManager?: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespaceFinalize
      */
@@ -18098,7 +18098,7 @@ export interface CoreV1ApiReplaceNamespaceStatusRequest {
      */
     body: V1Namespace
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespaceStatus
      */
@@ -18137,7 +18137,7 @@ export interface CoreV1ApiReplaceNamespacedConfigMapRequest {
      */
     body: V1ConfigMap
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedConfigMap
      */
@@ -18176,7 +18176,7 @@ export interface CoreV1ApiReplaceNamespacedEndpointsRequest {
      */
     body: V1Endpoints
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedEndpoints
      */
@@ -18215,7 +18215,7 @@ export interface CoreV1ApiReplaceNamespacedEventRequest {
      */
     body: CoreV1Event
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedEvent
      */
@@ -18254,7 +18254,7 @@ export interface CoreV1ApiReplaceNamespacedLimitRangeRequest {
      */
     body: V1LimitRange
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedLimitRange
      */
@@ -18293,7 +18293,7 @@ export interface CoreV1ApiReplaceNamespacedPersistentVolumeClaimRequest {
      */
     body: V1PersistentVolumeClaim
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedPersistentVolumeClaim
      */
@@ -18332,7 +18332,7 @@ export interface CoreV1ApiReplaceNamespacedPersistentVolumeClaimStatusRequest {
      */
     body: V1PersistentVolumeClaim
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedPersistentVolumeClaimStatus
      */
@@ -18371,7 +18371,7 @@ export interface CoreV1ApiReplaceNamespacedPodRequest {
      */
     body: V1Pod
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedPod
      */
@@ -18410,7 +18410,7 @@ export interface CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest {
      */
     body: V1Pod
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedPodEphemeralcontainers
      */
@@ -18449,7 +18449,7 @@ export interface CoreV1ApiReplaceNamespacedPodStatusRequest {
      */
     body: V1Pod
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedPodStatus
      */
@@ -18488,7 +18488,7 @@ export interface CoreV1ApiReplaceNamespacedPodTemplateRequest {
      */
     body: V1PodTemplate
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedPodTemplate
      */
@@ -18527,7 +18527,7 @@ export interface CoreV1ApiReplaceNamespacedReplicationControllerRequest {
      */
     body: V1ReplicationController
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedReplicationController
      */
@@ -18566,7 +18566,7 @@ export interface CoreV1ApiReplaceNamespacedReplicationControllerScaleRequest {
      */
     body: V1Scale
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedReplicationControllerScale
      */
@@ -18605,7 +18605,7 @@ export interface CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest {
      */
     body: V1ReplicationController
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedReplicationControllerStatus
      */
@@ -18644,7 +18644,7 @@ export interface CoreV1ApiReplaceNamespacedResourceQuotaRequest {
      */
     body: V1ResourceQuota
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedResourceQuota
      */
@@ -18683,7 +18683,7 @@ export interface CoreV1ApiReplaceNamespacedResourceQuotaStatusRequest {
      */
     body: V1ResourceQuota
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedResourceQuotaStatus
      */
@@ -18722,7 +18722,7 @@ export interface CoreV1ApiReplaceNamespacedSecretRequest {
      */
     body: V1Secret
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedSecret
      */
@@ -18761,7 +18761,7 @@ export interface CoreV1ApiReplaceNamespacedServiceRequest {
      */
     body: V1Service
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedService
      */
@@ -18800,7 +18800,7 @@ export interface CoreV1ApiReplaceNamespacedServiceAccountRequest {
      */
     body: V1ServiceAccount
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedServiceAccount
      */
@@ -18839,7 +18839,7 @@ export interface CoreV1ApiReplaceNamespacedServiceStatusRequest {
      */
     body: V1Service
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNamespacedServiceStatus
      */
@@ -18872,7 +18872,7 @@ export interface CoreV1ApiReplaceNodeRequest {
      */
     body: V1Node
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNode
      */
@@ -18905,7 +18905,7 @@ export interface CoreV1ApiReplaceNodeStatusRequest {
      */
     body: V1Node
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplaceNodeStatus
      */
@@ -18938,7 +18938,7 @@ export interface CoreV1ApiReplacePersistentVolumeRequest {
      */
     body: V1PersistentVolume
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplacePersistentVolume
      */
@@ -18971,7 +18971,7 @@ export interface CoreV1ApiReplacePersistentVolumeStatusRequest {
      */
     body: V1PersistentVolume
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CoreV1ApireplacePersistentVolumeStatus
      */
@@ -20620,19 +20620,19 @@ import { CustomObjectsApiRequestFactory, CustomObjectsApiResponseProcessor} from
 
 export interface CustomObjectsApiCreateClusterCustomObjectRequest {
     /**
-     * The custom resource&#39;s group name
+     * The custom resource\&#39;s group name
      * @type string
      * @memberof CustomObjectsApicreateClusterCustomObject
      */
     group: string
     /**
-     * The custom resource&#39;s version
+     * The custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApicreateClusterCustomObject
      */
     version: string
     /**
-     * The custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * The custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApicreateClusterCustomObject
      */
@@ -20644,7 +20644,7 @@ export interface CustomObjectsApiCreateClusterCustomObjectRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CustomObjectsApicreateClusterCustomObject
      */
@@ -20665,25 +20665,25 @@ export interface CustomObjectsApiCreateClusterCustomObjectRequest {
 
 export interface CustomObjectsApiCreateNamespacedCustomObjectRequest {
     /**
-     * The custom resource&#39;s group name
+     * The custom resource\&#39;s group name
      * @type string
      * @memberof CustomObjectsApicreateNamespacedCustomObject
      */
     group: string
     /**
-     * The custom resource&#39;s version
+     * The custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApicreateNamespacedCustomObject
      */
     version: string
     /**
-     * The custom resource&#39;s namespace
+     * The custom resource\&#39;s namespace
      * @type string
      * @memberof CustomObjectsApicreateNamespacedCustomObject
      */
     namespace: string
     /**
-     * The custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * The custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApicreateNamespacedCustomObject
      */
@@ -20695,7 +20695,7 @@ export interface CustomObjectsApiCreateNamespacedCustomObjectRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CustomObjectsApicreateNamespacedCustomObject
      */
@@ -20716,25 +20716,25 @@ export interface CustomObjectsApiCreateNamespacedCustomObjectRequest {
 
 export interface CustomObjectsApiDeleteClusterCustomObjectRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApideleteClusterCustomObject
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApideleteClusterCustomObject
      */
     version: string
     /**
-     * the custom object&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom object\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApideleteClusterCustomObject
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApideleteClusterCustomObject
      */
@@ -20746,7 +20746,7 @@ export interface CustomObjectsApiDeleteClusterCustomObjectRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CustomObjectsApideleteClusterCustomObject
      */
@@ -20773,25 +20773,25 @@ export interface CustomObjectsApiDeleteClusterCustomObjectRequest {
 
 export interface CustomObjectsApiDeleteCollectionClusterCustomObjectRequest {
     /**
-     * The custom resource&#39;s group name
+     * The custom resource\&#39;s group name
      * @type string
      * @memberof CustomObjectsApideleteCollectionClusterCustomObject
      */
     group: string
     /**
-     * The custom resource&#39;s version
+     * The custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApideleteCollectionClusterCustomObject
      */
     version: string
     /**
-     * The custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * The custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApideleteCollectionClusterCustomObject
      */
     plural: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CustomObjectsApideleteCollectionClusterCustomObject
      */
@@ -20803,7 +20803,7 @@ export interface CustomObjectsApiDeleteCollectionClusterCustomObjectRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CustomObjectsApideleteCollectionClusterCustomObject
      */
@@ -20830,31 +20830,31 @@ export interface CustomObjectsApiDeleteCollectionClusterCustomObjectRequest {
 
 export interface CustomObjectsApiDeleteCollectionNamespacedCustomObjectRequest {
     /**
-     * The custom resource&#39;s group name
+     * The custom resource\&#39;s group name
      * @type string
      * @memberof CustomObjectsApideleteCollectionNamespacedCustomObject
      */
     group: string
     /**
-     * The custom resource&#39;s version
+     * The custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApideleteCollectionNamespacedCustomObject
      */
     version: string
     /**
-     * The custom resource&#39;s namespace
+     * The custom resource\&#39;s namespace
      * @type string
      * @memberof CustomObjectsApideleteCollectionNamespacedCustomObject
      */
     namespace: string
     /**
-     * The custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * The custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApideleteCollectionNamespacedCustomObject
      */
     plural: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CustomObjectsApideleteCollectionNamespacedCustomObject
      */
@@ -20866,7 +20866,7 @@ export interface CustomObjectsApiDeleteCollectionNamespacedCustomObjectRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CustomObjectsApideleteCollectionNamespacedCustomObject
      */
@@ -20893,31 +20893,31 @@ export interface CustomObjectsApiDeleteCollectionNamespacedCustomObjectRequest {
 
 export interface CustomObjectsApiDeleteNamespacedCustomObjectRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApideleteNamespacedCustomObject
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApideleteNamespacedCustomObject
      */
     version: string
     /**
-     * The custom resource&#39;s namespace
+     * The custom resource\&#39;s namespace
      * @type string
      * @memberof CustomObjectsApideleteNamespacedCustomObject
      */
     namespace: string
     /**
-     * the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApideleteNamespacedCustomObject
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApideleteNamespacedCustomObject
      */
@@ -20929,7 +20929,7 @@ export interface CustomObjectsApiDeleteNamespacedCustomObjectRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof CustomObjectsApideleteNamespacedCustomObject
      */
@@ -20954,27 +20954,42 @@ export interface CustomObjectsApiDeleteNamespacedCustomObjectRequest {
     body?: V1DeleteOptions
 }
 
+export interface CustomObjectsApiGetAPIResourcesRequest {
+    /**
+     * The custom resource\&#39;s group name
+     * @type string
+     * @memberof CustomObjectsApigetAPIResources
+     */
+    group: string
+    /**
+     * The custom resource\&#39;s version
+     * @type string
+     * @memberof CustomObjectsApigetAPIResources
+     */
+    version: string
+}
+
 export interface CustomObjectsApiGetClusterCustomObjectRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApigetClusterCustomObject
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApigetClusterCustomObject
      */
     version: string
     /**
-     * the custom object&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom object\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApigetClusterCustomObject
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApigetClusterCustomObject
      */
@@ -20983,25 +20998,25 @@ export interface CustomObjectsApiGetClusterCustomObjectRequest {
 
 export interface CustomObjectsApiGetClusterCustomObjectScaleRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApigetClusterCustomObjectScale
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApigetClusterCustomObjectScale
      */
     version: string
     /**
-     * the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApigetClusterCustomObjectScale
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApigetClusterCustomObjectScale
      */
@@ -21010,25 +21025,25 @@ export interface CustomObjectsApiGetClusterCustomObjectScaleRequest {
 
 export interface CustomObjectsApiGetClusterCustomObjectStatusRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApigetClusterCustomObjectStatus
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApigetClusterCustomObjectStatus
      */
     version: string
     /**
-     * the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApigetClusterCustomObjectStatus
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApigetClusterCustomObjectStatus
      */
@@ -21037,31 +21052,31 @@ export interface CustomObjectsApiGetClusterCustomObjectStatusRequest {
 
 export interface CustomObjectsApiGetNamespacedCustomObjectRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApigetNamespacedCustomObject
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApigetNamespacedCustomObject
      */
     version: string
     /**
-     * The custom resource&#39;s namespace
+     * The custom resource\&#39;s namespace
      * @type string
      * @memberof CustomObjectsApigetNamespacedCustomObject
      */
     namespace: string
     /**
-     * the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApigetNamespacedCustomObject
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApigetNamespacedCustomObject
      */
@@ -21070,31 +21085,31 @@ export interface CustomObjectsApiGetNamespacedCustomObjectRequest {
 
 export interface CustomObjectsApiGetNamespacedCustomObjectScaleRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApigetNamespacedCustomObjectScale
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApigetNamespacedCustomObjectScale
      */
     version: string
     /**
-     * The custom resource&#39;s namespace
+     * The custom resource\&#39;s namespace
      * @type string
      * @memberof CustomObjectsApigetNamespacedCustomObjectScale
      */
     namespace: string
     /**
-     * the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApigetNamespacedCustomObjectScale
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApigetNamespacedCustomObjectScale
      */
@@ -21103,31 +21118,31 @@ export interface CustomObjectsApiGetNamespacedCustomObjectScaleRequest {
 
 export interface CustomObjectsApiGetNamespacedCustomObjectStatusRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApigetNamespacedCustomObjectStatus
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApigetNamespacedCustomObjectStatus
      */
     version: string
     /**
-     * The custom resource&#39;s namespace
+     * The custom resource\&#39;s namespace
      * @type string
      * @memberof CustomObjectsApigetNamespacedCustomObjectStatus
      */
     namespace: string
     /**
-     * the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApigetNamespacedCustomObjectStatus
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApigetNamespacedCustomObjectStatus
      */
@@ -21136,31 +21151,31 @@ export interface CustomObjectsApiGetNamespacedCustomObjectStatusRequest {
 
 export interface CustomObjectsApiListClusterCustomObjectRequest {
     /**
-     * The custom resource&#39;s group name
+     * The custom resource\&#39;s group name
      * @type string
      * @memberof CustomObjectsApilistClusterCustomObject
      */
     group: string
     /**
-     * The custom resource&#39;s version
+     * The custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApilistClusterCustomObject
      */
     version: string
     /**
-     * The custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * The custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApilistClusterCustomObject
      */
     plural: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CustomObjectsApilistClusterCustomObject
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
      * @type boolean
      * @memberof CustomObjectsApilistClusterCustomObject
      */
@@ -21190,7 +21205,7 @@ export interface CustomObjectsApiListClusterCustomObjectRequest {
      */
     limit?: number
     /**
-     * When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
+     * When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it\&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
      * @type string
      * @memberof CustomObjectsApilistClusterCustomObject
      */
@@ -21217,37 +21232,37 @@ export interface CustomObjectsApiListClusterCustomObjectRequest {
 
 export interface CustomObjectsApiListNamespacedCustomObjectRequest {
     /**
-     * The custom resource&#39;s group name
+     * The custom resource\&#39;s group name
      * @type string
      * @memberof CustomObjectsApilistNamespacedCustomObject
      */
     group: string
     /**
-     * The custom resource&#39;s version
+     * The custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApilistNamespacedCustomObject
      */
     version: string
     /**
-     * The custom resource&#39;s namespace
+     * The custom resource\&#39;s namespace
      * @type string
      * @memberof CustomObjectsApilistNamespacedCustomObject
      */
     namespace: string
     /**
-     * The custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * The custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApilistNamespacedCustomObject
      */
     plural: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof CustomObjectsApilistNamespacedCustomObject
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
      * @type boolean
      * @memberof CustomObjectsApilistNamespacedCustomObject
      */
@@ -21277,7 +21292,7 @@ export interface CustomObjectsApiListNamespacedCustomObjectRequest {
      */
     limit?: number
     /**
-     * When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
+     * When specified with a watch call, shows changes that occur after that particular version of a resource. Defaults to changes from the beginning of history. When specified for list: - if unset, then the result is returned from remote storage based on quorum-read flag; - if it\&#39;s 0, then we simply return what we currently have in cache, no guarantee; - if set to non zero, then the result is at least as fresh as given rv.
      * @type string
      * @memberof CustomObjectsApilistNamespacedCustomObject
      */
@@ -21304,25 +21319,25 @@ export interface CustomObjectsApiListNamespacedCustomObjectRequest {
 
 export interface CustomObjectsApiPatchClusterCustomObjectRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApipatchClusterCustomObject
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApipatchClusterCustomObject
      */
     version: string
     /**
-     * the custom object&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom object\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApipatchClusterCustomObject
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApipatchClusterCustomObject
      */
@@ -21355,25 +21370,25 @@ export interface CustomObjectsApiPatchClusterCustomObjectRequest {
 
 export interface CustomObjectsApiPatchClusterCustomObjectScaleRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApipatchClusterCustomObjectScale
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApipatchClusterCustomObjectScale
      */
     version: string
     /**
-     * the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApipatchClusterCustomObjectScale
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApipatchClusterCustomObjectScale
      */
@@ -21406,25 +21421,25 @@ export interface CustomObjectsApiPatchClusterCustomObjectScaleRequest {
 
 export interface CustomObjectsApiPatchClusterCustomObjectStatusRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApipatchClusterCustomObjectStatus
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApipatchClusterCustomObjectStatus
      */
     version: string
     /**
-     * the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApipatchClusterCustomObjectStatus
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApipatchClusterCustomObjectStatus
      */
@@ -21457,31 +21472,31 @@ export interface CustomObjectsApiPatchClusterCustomObjectStatusRequest {
 
 export interface CustomObjectsApiPatchNamespacedCustomObjectRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApipatchNamespacedCustomObject
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApipatchNamespacedCustomObject
      */
     version: string
     /**
-     * The custom resource&#39;s namespace
+     * The custom resource\&#39;s namespace
      * @type string
      * @memberof CustomObjectsApipatchNamespacedCustomObject
      */
     namespace: string
     /**
-     * the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApipatchNamespacedCustomObject
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApipatchNamespacedCustomObject
      */
@@ -21514,31 +21529,31 @@ export interface CustomObjectsApiPatchNamespacedCustomObjectRequest {
 
 export interface CustomObjectsApiPatchNamespacedCustomObjectScaleRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApipatchNamespacedCustomObjectScale
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApipatchNamespacedCustomObjectScale
      */
     version: string
     /**
-     * The custom resource&#39;s namespace
+     * The custom resource\&#39;s namespace
      * @type string
      * @memberof CustomObjectsApipatchNamespacedCustomObjectScale
      */
     namespace: string
     /**
-     * the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApipatchNamespacedCustomObjectScale
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApipatchNamespacedCustomObjectScale
      */
@@ -21571,31 +21586,31 @@ export interface CustomObjectsApiPatchNamespacedCustomObjectScaleRequest {
 
 export interface CustomObjectsApiPatchNamespacedCustomObjectStatusRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApipatchNamespacedCustomObjectStatus
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApipatchNamespacedCustomObjectStatus
      */
     version: string
     /**
-     * The custom resource&#39;s namespace
+     * The custom resource\&#39;s namespace
      * @type string
      * @memberof CustomObjectsApipatchNamespacedCustomObjectStatus
      */
     namespace: string
     /**
-     * the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApipatchNamespacedCustomObjectStatus
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApipatchNamespacedCustomObjectStatus
      */
@@ -21628,25 +21643,25 @@ export interface CustomObjectsApiPatchNamespacedCustomObjectStatusRequest {
 
 export interface CustomObjectsApiReplaceClusterCustomObjectRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApireplaceClusterCustomObject
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApireplaceClusterCustomObject
      */
     version: string
     /**
-     * the custom object&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom object\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApireplaceClusterCustomObject
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApireplaceClusterCustomObject
      */
@@ -21673,25 +21688,25 @@ export interface CustomObjectsApiReplaceClusterCustomObjectRequest {
 
 export interface CustomObjectsApiReplaceClusterCustomObjectScaleRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApireplaceClusterCustomObjectScale
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApireplaceClusterCustomObjectScale
      */
     version: string
     /**
-     * the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApireplaceClusterCustomObjectScale
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApireplaceClusterCustomObjectScale
      */
@@ -21718,25 +21733,25 @@ export interface CustomObjectsApiReplaceClusterCustomObjectScaleRequest {
 
 export interface CustomObjectsApiReplaceClusterCustomObjectStatusRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApireplaceClusterCustomObjectStatus
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApireplaceClusterCustomObjectStatus
      */
     version: string
     /**
-     * the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApireplaceClusterCustomObjectStatus
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApireplaceClusterCustomObjectStatus
      */
@@ -21763,31 +21778,31 @@ export interface CustomObjectsApiReplaceClusterCustomObjectStatusRequest {
 
 export interface CustomObjectsApiReplaceNamespacedCustomObjectRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApireplaceNamespacedCustomObject
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApireplaceNamespacedCustomObject
      */
     version: string
     /**
-     * The custom resource&#39;s namespace
+     * The custom resource\&#39;s namespace
      * @type string
      * @memberof CustomObjectsApireplaceNamespacedCustomObject
      */
     namespace: string
     /**
-     * the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApireplaceNamespacedCustomObject
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApireplaceNamespacedCustomObject
      */
@@ -21814,31 +21829,31 @@ export interface CustomObjectsApiReplaceNamespacedCustomObjectRequest {
 
 export interface CustomObjectsApiReplaceNamespacedCustomObjectScaleRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApireplaceNamespacedCustomObjectScale
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApireplaceNamespacedCustomObjectScale
      */
     version: string
     /**
-     * The custom resource&#39;s namespace
+     * The custom resource\&#39;s namespace
      * @type string
      * @memberof CustomObjectsApireplaceNamespacedCustomObjectScale
      */
     namespace: string
     /**
-     * the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApireplaceNamespacedCustomObjectScale
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApireplaceNamespacedCustomObjectScale
      */
@@ -21865,31 +21880,31 @@ export interface CustomObjectsApiReplaceNamespacedCustomObjectScaleRequest {
 
 export interface CustomObjectsApiReplaceNamespacedCustomObjectStatusRequest {
     /**
-     * the custom resource&#39;s group
+     * the custom resource\&#39;s group
      * @type string
      * @memberof CustomObjectsApireplaceNamespacedCustomObjectStatus
      */
     group: string
     /**
-     * the custom resource&#39;s version
+     * the custom resource\&#39;s version
      * @type string
      * @memberof CustomObjectsApireplaceNamespacedCustomObjectStatus
      */
     version: string
     /**
-     * The custom resource&#39;s namespace
+     * The custom resource\&#39;s namespace
      * @type string
      * @memberof CustomObjectsApireplaceNamespacedCustomObjectStatus
      */
     namespace: string
     /**
-     * the custom resource&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * the custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @type string
      * @memberof CustomObjectsApireplaceNamespacedCustomObjectStatus
      */
     plural: string
     /**
-     * the custom object&#39;s name
+     * the custom object\&#39;s name
      * @type string
      * @memberof CustomObjectsApireplaceNamespacedCustomObjectStatus
      */
@@ -21967,6 +21982,14 @@ export class ObjectCustomObjectsApi {
      */
     public deleteNamespacedCustomObject(param: CustomObjectsApiDeleteNamespacedCustomObjectRequest, options?: Configuration): Promise<any> {
         return this.api.deleteNamespacedCustomObject(param.group, param.version, param.namespace, param.plural, param.name, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.dryRun, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResources(param: CustomObjectsApiGetAPIResourcesRequest, options?: Configuration): Promise<V1APIResourceList> {
+        return this.api.getAPIResources(param.group, param.version,  options).toPromise();
     }
 
     /**
@@ -22171,7 +22194,7 @@ export interface DiscoveryV1ApiCreateNamespacedEndpointSliceRequest {
      */
     body: V1EndpointSlice
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof DiscoveryV1ApicreateNamespacedEndpointSlice
      */
@@ -22198,7 +22221,7 @@ export interface DiscoveryV1ApiDeleteCollectionNamespacedEndpointSliceRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof DiscoveryV1ApideleteCollectionNamespacedEndpointSlice
      */
@@ -22240,13 +22263,13 @@ export interface DiscoveryV1ApiDeleteCollectionNamespacedEndpointSliceRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof DiscoveryV1ApideleteCollectionNamespacedEndpointSlice
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof DiscoveryV1ApideleteCollectionNamespacedEndpointSlice
      */
@@ -22291,7 +22314,7 @@ export interface DiscoveryV1ApiDeleteNamespacedEndpointSliceRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof DiscoveryV1ApideleteNamespacedEndpointSlice
      */
@@ -22309,13 +22332,13 @@ export interface DiscoveryV1ApiDeleteNamespacedEndpointSliceRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof DiscoveryV1ApideleteNamespacedEndpointSlice
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof DiscoveryV1ApideleteNamespacedEndpointSlice
      */
@@ -22333,7 +22356,7 @@ export interface DiscoveryV1ApiGetAPIResourcesRequest {
 
 export interface DiscoveryV1ApiListEndpointSliceForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof DiscoveryV1ApilistEndpointSliceForAllNamespaces
      */
@@ -22363,7 +22386,7 @@ export interface DiscoveryV1ApiListEndpointSliceForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof DiscoveryV1ApilistEndpointSliceForAllNamespaces
      */
@@ -22402,13 +22425,13 @@ export interface DiscoveryV1ApiListNamespacedEndpointSliceRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof DiscoveryV1ApilistNamespacedEndpointSlice
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof DiscoveryV1ApilistNamespacedEndpointSlice
      */
@@ -22483,7 +22506,7 @@ export interface DiscoveryV1ApiPatchNamespacedEndpointSliceRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof DiscoveryV1ApipatchNamespacedEndpointSlice
      */
@@ -22522,7 +22545,7 @@ export interface DiscoveryV1ApiReadNamespacedEndpointSliceRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof DiscoveryV1ApireadNamespacedEndpointSlice
      */
@@ -22549,7 +22572,7 @@ export interface DiscoveryV1ApiReplaceNamespacedEndpointSliceRequest {
      */
     body: V1EndpointSlice
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof DiscoveryV1ApireplaceNamespacedEndpointSlice
      */
@@ -22666,7 +22689,7 @@ export interface DiscoveryV1beta1ApiCreateNamespacedEndpointSliceRequest {
      */
     body: V1beta1EndpointSlice
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof DiscoveryV1beta1ApicreateNamespacedEndpointSlice
      */
@@ -22693,7 +22716,7 @@ export interface DiscoveryV1beta1ApiDeleteCollectionNamespacedEndpointSliceReque
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof DiscoveryV1beta1ApideleteCollectionNamespacedEndpointSlice
      */
@@ -22735,13 +22758,13 @@ export interface DiscoveryV1beta1ApiDeleteCollectionNamespacedEndpointSliceReque
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof DiscoveryV1beta1ApideleteCollectionNamespacedEndpointSlice
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof DiscoveryV1beta1ApideleteCollectionNamespacedEndpointSlice
      */
@@ -22786,7 +22809,7 @@ export interface DiscoveryV1beta1ApiDeleteNamespacedEndpointSliceRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof DiscoveryV1beta1ApideleteNamespacedEndpointSlice
      */
@@ -22804,13 +22827,13 @@ export interface DiscoveryV1beta1ApiDeleteNamespacedEndpointSliceRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof DiscoveryV1beta1ApideleteNamespacedEndpointSlice
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof DiscoveryV1beta1ApideleteNamespacedEndpointSlice
      */
@@ -22828,7 +22851,7 @@ export interface DiscoveryV1beta1ApiGetAPIResourcesRequest {
 
 export interface DiscoveryV1beta1ApiListEndpointSliceForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof DiscoveryV1beta1ApilistEndpointSliceForAllNamespaces
      */
@@ -22858,7 +22881,7 @@ export interface DiscoveryV1beta1ApiListEndpointSliceForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof DiscoveryV1beta1ApilistEndpointSliceForAllNamespaces
      */
@@ -22897,13 +22920,13 @@ export interface DiscoveryV1beta1ApiListNamespacedEndpointSliceRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof DiscoveryV1beta1ApilistNamespacedEndpointSlice
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof DiscoveryV1beta1ApilistNamespacedEndpointSlice
      */
@@ -22978,7 +23001,7 @@ export interface DiscoveryV1beta1ApiPatchNamespacedEndpointSliceRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof DiscoveryV1beta1ApipatchNamespacedEndpointSlice
      */
@@ -23017,7 +23040,7 @@ export interface DiscoveryV1beta1ApiReadNamespacedEndpointSliceRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof DiscoveryV1beta1ApireadNamespacedEndpointSlice
      */
@@ -23044,7 +23067,7 @@ export interface DiscoveryV1beta1ApiReplaceNamespacedEndpointSliceRequest {
      */
     body: V1beta1EndpointSlice
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof DiscoveryV1beta1ApireplaceNamespacedEndpointSlice
      */
@@ -23184,7 +23207,7 @@ export interface EventsV1ApiCreateNamespacedEventRequest {
      */
     body: EventsV1Event
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof EventsV1ApicreateNamespacedEvent
      */
@@ -23211,7 +23234,7 @@ export interface EventsV1ApiDeleteCollectionNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof EventsV1ApideleteCollectionNamespacedEvent
      */
@@ -23253,13 +23276,13 @@ export interface EventsV1ApiDeleteCollectionNamespacedEventRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof EventsV1ApideleteCollectionNamespacedEvent
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof EventsV1ApideleteCollectionNamespacedEvent
      */
@@ -23304,7 +23327,7 @@ export interface EventsV1ApiDeleteNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof EventsV1ApideleteNamespacedEvent
      */
@@ -23322,13 +23345,13 @@ export interface EventsV1ApiDeleteNamespacedEventRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof EventsV1ApideleteNamespacedEvent
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof EventsV1ApideleteNamespacedEvent
      */
@@ -23346,7 +23369,7 @@ export interface EventsV1ApiGetAPIResourcesRequest {
 
 export interface EventsV1ApiListEventForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof EventsV1ApilistEventForAllNamespaces
      */
@@ -23376,7 +23399,7 @@ export interface EventsV1ApiListEventForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof EventsV1ApilistEventForAllNamespaces
      */
@@ -23415,13 +23438,13 @@ export interface EventsV1ApiListNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof EventsV1ApilistNamespacedEvent
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof EventsV1ApilistNamespacedEvent
      */
@@ -23496,7 +23519,7 @@ export interface EventsV1ApiPatchNamespacedEventRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof EventsV1ApipatchNamespacedEvent
      */
@@ -23535,7 +23558,7 @@ export interface EventsV1ApiReadNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof EventsV1ApireadNamespacedEvent
      */
@@ -23562,7 +23585,7 @@ export interface EventsV1ApiReplaceNamespacedEventRequest {
      */
     body: EventsV1Event
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof EventsV1ApireplaceNamespacedEvent
      */
@@ -23679,7 +23702,7 @@ export interface EventsV1beta1ApiCreateNamespacedEventRequest {
      */
     body: V1beta1Event
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof EventsV1beta1ApicreateNamespacedEvent
      */
@@ -23706,7 +23729,7 @@ export interface EventsV1beta1ApiDeleteCollectionNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof EventsV1beta1ApideleteCollectionNamespacedEvent
      */
@@ -23748,13 +23771,13 @@ export interface EventsV1beta1ApiDeleteCollectionNamespacedEventRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof EventsV1beta1ApideleteCollectionNamespacedEvent
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof EventsV1beta1ApideleteCollectionNamespacedEvent
      */
@@ -23799,7 +23822,7 @@ export interface EventsV1beta1ApiDeleteNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof EventsV1beta1ApideleteNamespacedEvent
      */
@@ -23817,13 +23840,13 @@ export interface EventsV1beta1ApiDeleteNamespacedEventRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof EventsV1beta1ApideleteNamespacedEvent
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof EventsV1beta1ApideleteNamespacedEvent
      */
@@ -23841,7 +23864,7 @@ export interface EventsV1beta1ApiGetAPIResourcesRequest {
 
 export interface EventsV1beta1ApiListEventForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof EventsV1beta1ApilistEventForAllNamespaces
      */
@@ -23871,7 +23894,7 @@ export interface EventsV1beta1ApiListEventForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof EventsV1beta1ApilistEventForAllNamespaces
      */
@@ -23910,13 +23933,13 @@ export interface EventsV1beta1ApiListNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof EventsV1beta1ApilistNamespacedEvent
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof EventsV1beta1ApilistNamespacedEvent
      */
@@ -23991,7 +24014,7 @@ export interface EventsV1beta1ApiPatchNamespacedEventRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof EventsV1beta1ApipatchNamespacedEvent
      */
@@ -24030,7 +24053,7 @@ export interface EventsV1beta1ApiReadNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof EventsV1beta1ApireadNamespacedEvent
      */
@@ -24057,7 +24080,7 @@ export interface EventsV1beta1ApiReplaceNamespacedEventRequest {
      */
     body: V1beta1Event
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof EventsV1beta1ApireplaceNamespacedEvent
      */
@@ -24191,7 +24214,7 @@ export interface FlowcontrolApiserverV1beta1ApiCreateFlowSchemaRequest {
      */
     body: V1beta1FlowSchema
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApicreateFlowSchema
      */
@@ -24218,7 +24241,7 @@ export interface FlowcontrolApiserverV1beta1ApiCreatePriorityLevelConfigurationR
      */
     body: V1beta1PriorityLevelConfiguration
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApicreatePriorityLevelConfiguration
      */
@@ -24239,7 +24262,7 @@ export interface FlowcontrolApiserverV1beta1ApiCreatePriorityLevelConfigurationR
 
 export interface FlowcontrolApiserverV1beta1ApiDeleteCollectionFlowSchemaRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApideleteCollectionFlowSchema
      */
@@ -24281,13 +24304,13 @@ export interface FlowcontrolApiserverV1beta1ApiDeleteCollectionFlowSchemaRequest
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof FlowcontrolApiserverV1beta1ApideleteCollectionFlowSchema
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApideleteCollectionFlowSchema
      */
@@ -24320,7 +24343,7 @@ export interface FlowcontrolApiserverV1beta1ApiDeleteCollectionFlowSchemaRequest
 
 export interface FlowcontrolApiserverV1beta1ApiDeleteCollectionPriorityLevelConfigurationRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApideleteCollectionPriorityLevelConfiguration
      */
@@ -24362,13 +24385,13 @@ export interface FlowcontrolApiserverV1beta1ApiDeleteCollectionPriorityLevelConf
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof FlowcontrolApiserverV1beta1ApideleteCollectionPriorityLevelConfiguration
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApideleteCollectionPriorityLevelConfiguration
      */
@@ -24407,7 +24430,7 @@ export interface FlowcontrolApiserverV1beta1ApiDeleteFlowSchemaRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApideleteFlowSchema
      */
@@ -24425,13 +24448,13 @@ export interface FlowcontrolApiserverV1beta1ApiDeleteFlowSchemaRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof FlowcontrolApiserverV1beta1ApideleteFlowSchema
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApideleteFlowSchema
      */
@@ -24452,7 +24475,7 @@ export interface FlowcontrolApiserverV1beta1ApiDeletePriorityLevelConfigurationR
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApideletePriorityLevelConfiguration
      */
@@ -24470,13 +24493,13 @@ export interface FlowcontrolApiserverV1beta1ApiDeletePriorityLevelConfigurationR
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof FlowcontrolApiserverV1beta1ApideletePriorityLevelConfiguration
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApideletePriorityLevelConfiguration
      */
@@ -24494,13 +24517,13 @@ export interface FlowcontrolApiserverV1beta1ApiGetAPIResourcesRequest {
 
 export interface FlowcontrolApiserverV1beta1ApiListFlowSchemaRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApilistFlowSchema
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof FlowcontrolApiserverV1beta1ApilistFlowSchema
      */
@@ -24557,13 +24580,13 @@ export interface FlowcontrolApiserverV1beta1ApiListFlowSchemaRequest {
 
 export interface FlowcontrolApiserverV1beta1ApiListPriorityLevelConfigurationRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApilistPriorityLevelConfiguration
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof FlowcontrolApiserverV1beta1ApilistPriorityLevelConfiguration
      */
@@ -24632,7 +24655,7 @@ export interface FlowcontrolApiserverV1beta1ApiPatchFlowSchemaRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApipatchFlowSchema
      */
@@ -24671,7 +24694,7 @@ export interface FlowcontrolApiserverV1beta1ApiPatchFlowSchemaStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApipatchFlowSchemaStatus
      */
@@ -24710,7 +24733,7 @@ export interface FlowcontrolApiserverV1beta1ApiPatchPriorityLevelConfigurationRe
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApipatchPriorityLevelConfiguration
      */
@@ -24749,7 +24772,7 @@ export interface FlowcontrolApiserverV1beta1ApiPatchPriorityLevelConfigurationSt
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApipatchPriorityLevelConfigurationStatus
      */
@@ -24782,7 +24805,7 @@ export interface FlowcontrolApiserverV1beta1ApiReadFlowSchemaRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApireadFlowSchema
      */
@@ -24797,7 +24820,7 @@ export interface FlowcontrolApiserverV1beta1ApiReadFlowSchemaStatusRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApireadFlowSchemaStatus
      */
@@ -24812,7 +24835,7 @@ export interface FlowcontrolApiserverV1beta1ApiReadPriorityLevelConfigurationReq
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApireadPriorityLevelConfiguration
      */
@@ -24827,7 +24850,7 @@ export interface FlowcontrolApiserverV1beta1ApiReadPriorityLevelConfigurationSta
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApireadPriorityLevelConfigurationStatus
      */
@@ -24848,7 +24871,7 @@ export interface FlowcontrolApiserverV1beta1ApiReplaceFlowSchemaRequest {
      */
     body: V1beta1FlowSchema
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApireplaceFlowSchema
      */
@@ -24881,7 +24904,7 @@ export interface FlowcontrolApiserverV1beta1ApiReplaceFlowSchemaStatusRequest {
      */
     body: V1beta1FlowSchema
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApireplaceFlowSchemaStatus
      */
@@ -24914,7 +24937,7 @@ export interface FlowcontrolApiserverV1beta1ApiReplacePriorityLevelConfiguration
      */
     body: V1beta1PriorityLevelConfiguration
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApireplacePriorityLevelConfiguration
      */
@@ -24947,7 +24970,7 @@ export interface FlowcontrolApiserverV1beta1ApiReplacePriorityLevelConfiguration
      */
     body: V1beta1PriorityLevelConfiguration
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof FlowcontrolApiserverV1beta1ApireplacePriorityLevelConfigurationStatus
      */
@@ -25177,7 +25200,7 @@ export interface InternalApiserverV1alpha1ApiCreateStorageVersionRequest {
      */
     body: V1alpha1StorageVersion
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof InternalApiserverV1alpha1ApicreateStorageVersion
      */
@@ -25198,7 +25221,7 @@ export interface InternalApiserverV1alpha1ApiCreateStorageVersionRequest {
 
 export interface InternalApiserverV1alpha1ApiDeleteCollectionStorageVersionRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof InternalApiserverV1alpha1ApideleteCollectionStorageVersion
      */
@@ -25240,13 +25263,13 @@ export interface InternalApiserverV1alpha1ApiDeleteCollectionStorageVersionReque
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof InternalApiserverV1alpha1ApideleteCollectionStorageVersion
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof InternalApiserverV1alpha1ApideleteCollectionStorageVersion
      */
@@ -25285,7 +25308,7 @@ export interface InternalApiserverV1alpha1ApiDeleteStorageVersionRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof InternalApiserverV1alpha1ApideleteStorageVersion
      */
@@ -25303,13 +25326,13 @@ export interface InternalApiserverV1alpha1ApiDeleteStorageVersionRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof InternalApiserverV1alpha1ApideleteStorageVersion
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof InternalApiserverV1alpha1ApideleteStorageVersion
      */
@@ -25327,13 +25350,13 @@ export interface InternalApiserverV1alpha1ApiGetAPIResourcesRequest {
 
 export interface InternalApiserverV1alpha1ApiListStorageVersionRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof InternalApiserverV1alpha1ApilistStorageVersion
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof InternalApiserverV1alpha1ApilistStorageVersion
      */
@@ -25402,7 +25425,7 @@ export interface InternalApiserverV1alpha1ApiPatchStorageVersionRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof InternalApiserverV1alpha1ApipatchStorageVersion
      */
@@ -25441,7 +25464,7 @@ export interface InternalApiserverV1alpha1ApiPatchStorageVersionStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof InternalApiserverV1alpha1ApipatchStorageVersionStatus
      */
@@ -25474,7 +25497,7 @@ export interface InternalApiserverV1alpha1ApiReadStorageVersionRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof InternalApiserverV1alpha1ApireadStorageVersion
      */
@@ -25489,7 +25512,7 @@ export interface InternalApiserverV1alpha1ApiReadStorageVersionStatusRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof InternalApiserverV1alpha1ApireadStorageVersionStatus
      */
@@ -25510,7 +25533,7 @@ export interface InternalApiserverV1alpha1ApiReplaceStorageVersionRequest {
      */
     body: V1alpha1StorageVersion
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof InternalApiserverV1alpha1ApireplaceStorageVersion
      */
@@ -25543,7 +25566,7 @@ export interface InternalApiserverV1alpha1ApiReplaceStorageVersionStatusRequest 
      */
     body: V1alpha1StorageVersion
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof InternalApiserverV1alpha1ApireplaceStorageVersionStatus
      */
@@ -25731,7 +25754,7 @@ export interface NetworkingV1ApiCreateIngressClassRequest {
      */
     body: V1IngressClass
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApicreateIngressClass
      */
@@ -25764,7 +25787,7 @@ export interface NetworkingV1ApiCreateNamespacedIngressRequest {
      */
     body: V1Ingress
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApicreateNamespacedIngress
      */
@@ -25797,7 +25820,7 @@ export interface NetworkingV1ApiCreateNamespacedNetworkPolicyRequest {
      */
     body: V1NetworkPolicy
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApicreateNamespacedNetworkPolicy
      */
@@ -25818,7 +25841,7 @@ export interface NetworkingV1ApiCreateNamespacedNetworkPolicyRequest {
 
 export interface NetworkingV1ApiDeleteCollectionIngressClassRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApideleteCollectionIngressClass
      */
@@ -25860,13 +25883,13 @@ export interface NetworkingV1ApiDeleteCollectionIngressClassRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof NetworkingV1ApideleteCollectionIngressClass
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof NetworkingV1ApideleteCollectionIngressClass
      */
@@ -25905,7 +25928,7 @@ export interface NetworkingV1ApiDeleteCollectionNamespacedIngressRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApideleteCollectionNamespacedIngress
      */
@@ -25947,13 +25970,13 @@ export interface NetworkingV1ApiDeleteCollectionNamespacedIngressRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof NetworkingV1ApideleteCollectionNamespacedIngress
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof NetworkingV1ApideleteCollectionNamespacedIngress
      */
@@ -25992,7 +26015,7 @@ export interface NetworkingV1ApiDeleteCollectionNamespacedNetworkPolicyRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApideleteCollectionNamespacedNetworkPolicy
      */
@@ -26034,13 +26057,13 @@ export interface NetworkingV1ApiDeleteCollectionNamespacedNetworkPolicyRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof NetworkingV1ApideleteCollectionNamespacedNetworkPolicy
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof NetworkingV1ApideleteCollectionNamespacedNetworkPolicy
      */
@@ -26079,7 +26102,7 @@ export interface NetworkingV1ApiDeleteIngressClassRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApideleteIngressClass
      */
@@ -26097,13 +26120,13 @@ export interface NetworkingV1ApiDeleteIngressClassRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof NetworkingV1ApideleteIngressClass
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof NetworkingV1ApideleteIngressClass
      */
@@ -26130,7 +26153,7 @@ export interface NetworkingV1ApiDeleteNamespacedIngressRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApideleteNamespacedIngress
      */
@@ -26148,13 +26171,13 @@ export interface NetworkingV1ApiDeleteNamespacedIngressRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof NetworkingV1ApideleteNamespacedIngress
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof NetworkingV1ApideleteNamespacedIngress
      */
@@ -26181,7 +26204,7 @@ export interface NetworkingV1ApiDeleteNamespacedNetworkPolicyRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApideleteNamespacedNetworkPolicy
      */
@@ -26199,13 +26222,13 @@ export interface NetworkingV1ApiDeleteNamespacedNetworkPolicyRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof NetworkingV1ApideleteNamespacedNetworkPolicy
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof NetworkingV1ApideleteNamespacedNetworkPolicy
      */
@@ -26223,13 +26246,13 @@ export interface NetworkingV1ApiGetAPIResourcesRequest {
 
 export interface NetworkingV1ApiListIngressClassRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApilistIngressClass
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof NetworkingV1ApilistIngressClass
      */
@@ -26286,7 +26309,7 @@ export interface NetworkingV1ApiListIngressClassRequest {
 
 export interface NetworkingV1ApiListIngressForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof NetworkingV1ApilistIngressForAllNamespaces
      */
@@ -26316,7 +26339,7 @@ export interface NetworkingV1ApiListIngressForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApilistIngressForAllNamespaces
      */
@@ -26355,13 +26378,13 @@ export interface NetworkingV1ApiListNamespacedIngressRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApilistNamespacedIngress
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof NetworkingV1ApilistNamespacedIngress
      */
@@ -26424,13 +26447,13 @@ export interface NetworkingV1ApiListNamespacedNetworkPolicyRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApilistNamespacedNetworkPolicy
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof NetworkingV1ApilistNamespacedNetworkPolicy
      */
@@ -26487,7 +26510,7 @@ export interface NetworkingV1ApiListNamespacedNetworkPolicyRequest {
 
 export interface NetworkingV1ApiListNetworkPolicyForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof NetworkingV1ApilistNetworkPolicyForAllNamespaces
      */
@@ -26517,7 +26540,7 @@ export interface NetworkingV1ApiListNetworkPolicyForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApilistNetworkPolicyForAllNamespaces
      */
@@ -26562,7 +26585,7 @@ export interface NetworkingV1ApiPatchIngressClassRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApipatchIngressClass
      */
@@ -26607,7 +26630,7 @@ export interface NetworkingV1ApiPatchNamespacedIngressRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApipatchNamespacedIngress
      */
@@ -26652,7 +26675,7 @@ export interface NetworkingV1ApiPatchNamespacedIngressStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApipatchNamespacedIngressStatus
      */
@@ -26697,7 +26720,7 @@ export interface NetworkingV1ApiPatchNamespacedNetworkPolicyRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApipatchNamespacedNetworkPolicy
      */
@@ -26730,7 +26753,7 @@ export interface NetworkingV1ApiReadIngressClassRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApireadIngressClass
      */
@@ -26751,7 +26774,7 @@ export interface NetworkingV1ApiReadNamespacedIngressRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApireadNamespacedIngress
      */
@@ -26772,7 +26795,7 @@ export interface NetworkingV1ApiReadNamespacedIngressStatusRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApireadNamespacedIngressStatus
      */
@@ -26793,7 +26816,7 @@ export interface NetworkingV1ApiReadNamespacedNetworkPolicyRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApireadNamespacedNetworkPolicy
      */
@@ -26814,7 +26837,7 @@ export interface NetworkingV1ApiReplaceIngressClassRequest {
      */
     body: V1IngressClass
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApireplaceIngressClass
      */
@@ -26853,7 +26876,7 @@ export interface NetworkingV1ApiReplaceNamespacedIngressRequest {
      */
     body: V1Ingress
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApireplaceNamespacedIngress
      */
@@ -26892,7 +26915,7 @@ export interface NetworkingV1ApiReplaceNamespacedIngressStatusRequest {
      */
     body: V1Ingress
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApireplaceNamespacedIngressStatus
      */
@@ -26931,7 +26954,7 @@ export interface NetworkingV1ApiReplaceNamespacedNetworkPolicyRequest {
      */
     body: V1NetworkPolicy
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NetworkingV1ApireplaceNamespacedNetworkPolicy
      */
@@ -27209,7 +27232,7 @@ export interface NodeV1ApiCreateRuntimeClassRequest {
      */
     body: V1RuntimeClass
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1ApicreateRuntimeClass
      */
@@ -27230,7 +27253,7 @@ export interface NodeV1ApiCreateRuntimeClassRequest {
 
 export interface NodeV1ApiDeleteCollectionRuntimeClassRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1ApideleteCollectionRuntimeClass
      */
@@ -27272,13 +27295,13 @@ export interface NodeV1ApiDeleteCollectionRuntimeClassRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof NodeV1ApideleteCollectionRuntimeClass
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof NodeV1ApideleteCollectionRuntimeClass
      */
@@ -27317,7 +27340,7 @@ export interface NodeV1ApiDeleteRuntimeClassRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1ApideleteRuntimeClass
      */
@@ -27335,13 +27358,13 @@ export interface NodeV1ApiDeleteRuntimeClassRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof NodeV1ApideleteRuntimeClass
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof NodeV1ApideleteRuntimeClass
      */
@@ -27359,13 +27382,13 @@ export interface NodeV1ApiGetAPIResourcesRequest {
 
 export interface NodeV1ApiListRuntimeClassRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1ApilistRuntimeClass
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof NodeV1ApilistRuntimeClass
      */
@@ -27434,7 +27457,7 @@ export interface NodeV1ApiPatchRuntimeClassRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1ApipatchRuntimeClass
      */
@@ -27467,7 +27490,7 @@ export interface NodeV1ApiReadRuntimeClassRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1ApireadRuntimeClass
      */
@@ -27488,7 +27511,7 @@ export interface NodeV1ApiReplaceRuntimeClassRequest {
      */
     body: V1RuntimeClass
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1ApireplaceRuntimeClass
      */
@@ -27591,7 +27614,7 @@ export interface NodeV1alpha1ApiCreateRuntimeClassRequest {
      */
     body: V1alpha1RuntimeClass
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1alpha1ApicreateRuntimeClass
      */
@@ -27612,7 +27635,7 @@ export interface NodeV1alpha1ApiCreateRuntimeClassRequest {
 
 export interface NodeV1alpha1ApiDeleteCollectionRuntimeClassRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1alpha1ApideleteCollectionRuntimeClass
      */
@@ -27654,13 +27677,13 @@ export interface NodeV1alpha1ApiDeleteCollectionRuntimeClassRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof NodeV1alpha1ApideleteCollectionRuntimeClass
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof NodeV1alpha1ApideleteCollectionRuntimeClass
      */
@@ -27699,7 +27722,7 @@ export interface NodeV1alpha1ApiDeleteRuntimeClassRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1alpha1ApideleteRuntimeClass
      */
@@ -27717,13 +27740,13 @@ export interface NodeV1alpha1ApiDeleteRuntimeClassRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof NodeV1alpha1ApideleteRuntimeClass
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof NodeV1alpha1ApideleteRuntimeClass
      */
@@ -27741,13 +27764,13 @@ export interface NodeV1alpha1ApiGetAPIResourcesRequest {
 
 export interface NodeV1alpha1ApiListRuntimeClassRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1alpha1ApilistRuntimeClass
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof NodeV1alpha1ApilistRuntimeClass
      */
@@ -27816,7 +27839,7 @@ export interface NodeV1alpha1ApiPatchRuntimeClassRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1alpha1ApipatchRuntimeClass
      */
@@ -27849,7 +27872,7 @@ export interface NodeV1alpha1ApiReadRuntimeClassRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1alpha1ApireadRuntimeClass
      */
@@ -27870,7 +27893,7 @@ export interface NodeV1alpha1ApiReplaceRuntimeClassRequest {
      */
     body: V1alpha1RuntimeClass
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1alpha1ApireplaceRuntimeClass
      */
@@ -27973,7 +27996,7 @@ export interface NodeV1beta1ApiCreateRuntimeClassRequest {
      */
     body: V1beta1RuntimeClass
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1beta1ApicreateRuntimeClass
      */
@@ -27994,7 +28017,7 @@ export interface NodeV1beta1ApiCreateRuntimeClassRequest {
 
 export interface NodeV1beta1ApiDeleteCollectionRuntimeClassRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1beta1ApideleteCollectionRuntimeClass
      */
@@ -28036,13 +28059,13 @@ export interface NodeV1beta1ApiDeleteCollectionRuntimeClassRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof NodeV1beta1ApideleteCollectionRuntimeClass
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof NodeV1beta1ApideleteCollectionRuntimeClass
      */
@@ -28081,7 +28104,7 @@ export interface NodeV1beta1ApiDeleteRuntimeClassRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1beta1ApideleteRuntimeClass
      */
@@ -28099,13 +28122,13 @@ export interface NodeV1beta1ApiDeleteRuntimeClassRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof NodeV1beta1ApideleteRuntimeClass
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof NodeV1beta1ApideleteRuntimeClass
      */
@@ -28123,13 +28146,13 @@ export interface NodeV1beta1ApiGetAPIResourcesRequest {
 
 export interface NodeV1beta1ApiListRuntimeClassRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1beta1ApilistRuntimeClass
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof NodeV1beta1ApilistRuntimeClass
      */
@@ -28198,7 +28221,7 @@ export interface NodeV1beta1ApiPatchRuntimeClassRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1beta1ApipatchRuntimeClass
      */
@@ -28231,7 +28254,7 @@ export interface NodeV1beta1ApiReadRuntimeClassRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1beta1ApireadRuntimeClass
      */
@@ -28252,7 +28275,7 @@ export interface NodeV1beta1ApiReplaceRuntimeClassRequest {
      */
     body: V1beta1RuntimeClass
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof NodeV1beta1ApireplaceRuntimeClass
      */
@@ -28407,7 +28430,7 @@ export interface PolicyV1ApiCreateNamespacedPodDisruptionBudgetRequest {
      */
     body: V1PodDisruptionBudget
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1ApicreateNamespacedPodDisruptionBudget
      */
@@ -28434,7 +28457,7 @@ export interface PolicyV1ApiDeleteCollectionNamespacedPodDisruptionBudgetRequest
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1ApideleteCollectionNamespacedPodDisruptionBudget
      */
@@ -28476,13 +28499,13 @@ export interface PolicyV1ApiDeleteCollectionNamespacedPodDisruptionBudgetRequest
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof PolicyV1ApideleteCollectionNamespacedPodDisruptionBudget
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof PolicyV1ApideleteCollectionNamespacedPodDisruptionBudget
      */
@@ -28527,7 +28550,7 @@ export interface PolicyV1ApiDeleteNamespacedPodDisruptionBudgetRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1ApideleteNamespacedPodDisruptionBudget
      */
@@ -28545,13 +28568,13 @@ export interface PolicyV1ApiDeleteNamespacedPodDisruptionBudgetRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof PolicyV1ApideleteNamespacedPodDisruptionBudget
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof PolicyV1ApideleteNamespacedPodDisruptionBudget
      */
@@ -28575,13 +28598,13 @@ export interface PolicyV1ApiListNamespacedPodDisruptionBudgetRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1ApilistNamespacedPodDisruptionBudget
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof PolicyV1ApilistNamespacedPodDisruptionBudget
      */
@@ -28638,7 +28661,7 @@ export interface PolicyV1ApiListNamespacedPodDisruptionBudgetRequest {
 
 export interface PolicyV1ApiListPodDisruptionBudgetForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof PolicyV1ApilistPodDisruptionBudgetForAllNamespaces
      */
@@ -28668,7 +28691,7 @@ export interface PolicyV1ApiListPodDisruptionBudgetForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1ApilistPodDisruptionBudgetForAllNamespaces
      */
@@ -28719,7 +28742,7 @@ export interface PolicyV1ApiPatchNamespacedPodDisruptionBudgetRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1ApipatchNamespacedPodDisruptionBudget
      */
@@ -28764,7 +28787,7 @@ export interface PolicyV1ApiPatchNamespacedPodDisruptionBudgetStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1ApipatchNamespacedPodDisruptionBudgetStatus
      */
@@ -28803,7 +28826,7 @@ export interface PolicyV1ApiReadNamespacedPodDisruptionBudgetRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1ApireadNamespacedPodDisruptionBudget
      */
@@ -28824,7 +28847,7 @@ export interface PolicyV1ApiReadNamespacedPodDisruptionBudgetStatusRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1ApireadNamespacedPodDisruptionBudgetStatus
      */
@@ -28851,7 +28874,7 @@ export interface PolicyV1ApiReplaceNamespacedPodDisruptionBudgetRequest {
      */
     body: V1PodDisruptionBudget
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1ApireplaceNamespacedPodDisruptionBudget
      */
@@ -28890,7 +28913,7 @@ export interface PolicyV1ApiReplaceNamespacedPodDisruptionBudgetStatusRequest {
      */
     body: V1PodDisruptionBudget
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1ApireplaceNamespacedPodDisruptionBudgetStatus
      */
@@ -29031,7 +29054,7 @@ export interface PolicyV1beta1ApiCreateNamespacedPodDisruptionBudgetRequest {
      */
     body: V1beta1PodDisruptionBudget
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1beta1ApicreateNamespacedPodDisruptionBudget
      */
@@ -29058,7 +29081,7 @@ export interface PolicyV1beta1ApiCreatePodSecurityPolicyRequest {
      */
     body: V1beta1PodSecurityPolicy
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1beta1ApicreatePodSecurityPolicy
      */
@@ -29085,7 +29108,7 @@ export interface PolicyV1beta1ApiDeleteCollectionNamespacedPodDisruptionBudgetRe
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1beta1ApideleteCollectionNamespacedPodDisruptionBudget
      */
@@ -29127,13 +29150,13 @@ export interface PolicyV1beta1ApiDeleteCollectionNamespacedPodDisruptionBudgetRe
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof PolicyV1beta1ApideleteCollectionNamespacedPodDisruptionBudget
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof PolicyV1beta1ApideleteCollectionNamespacedPodDisruptionBudget
      */
@@ -29166,7 +29189,7 @@ export interface PolicyV1beta1ApiDeleteCollectionNamespacedPodDisruptionBudgetRe
 
 export interface PolicyV1beta1ApiDeleteCollectionPodSecurityPolicyRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1beta1ApideleteCollectionPodSecurityPolicy
      */
@@ -29208,13 +29231,13 @@ export interface PolicyV1beta1ApiDeleteCollectionPodSecurityPolicyRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof PolicyV1beta1ApideleteCollectionPodSecurityPolicy
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof PolicyV1beta1ApideleteCollectionPodSecurityPolicy
      */
@@ -29259,7 +29282,7 @@ export interface PolicyV1beta1ApiDeleteNamespacedPodDisruptionBudgetRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1beta1ApideleteNamespacedPodDisruptionBudget
      */
@@ -29277,13 +29300,13 @@ export interface PolicyV1beta1ApiDeleteNamespacedPodDisruptionBudgetRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof PolicyV1beta1ApideleteNamespacedPodDisruptionBudget
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof PolicyV1beta1ApideleteNamespacedPodDisruptionBudget
      */
@@ -29304,7 +29327,7 @@ export interface PolicyV1beta1ApiDeletePodSecurityPolicyRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1beta1ApideletePodSecurityPolicy
      */
@@ -29322,13 +29345,13 @@ export interface PolicyV1beta1ApiDeletePodSecurityPolicyRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof PolicyV1beta1ApideletePodSecurityPolicy
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof PolicyV1beta1ApideletePodSecurityPolicy
      */
@@ -29352,13 +29375,13 @@ export interface PolicyV1beta1ApiListNamespacedPodDisruptionBudgetRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1beta1ApilistNamespacedPodDisruptionBudget
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof PolicyV1beta1ApilistNamespacedPodDisruptionBudget
      */
@@ -29415,7 +29438,7 @@ export interface PolicyV1beta1ApiListNamespacedPodDisruptionBudgetRequest {
 
 export interface PolicyV1beta1ApiListPodDisruptionBudgetForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof PolicyV1beta1ApilistPodDisruptionBudgetForAllNamespaces
      */
@@ -29445,7 +29468,7 @@ export interface PolicyV1beta1ApiListPodDisruptionBudgetForAllNamespacesRequest 
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1beta1ApilistPodDisruptionBudgetForAllNamespaces
      */
@@ -29478,13 +29501,13 @@ export interface PolicyV1beta1ApiListPodDisruptionBudgetForAllNamespacesRequest 
 
 export interface PolicyV1beta1ApiListPodSecurityPolicyRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1beta1ApilistPodSecurityPolicy
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof PolicyV1beta1ApilistPodSecurityPolicy
      */
@@ -29559,7 +29582,7 @@ export interface PolicyV1beta1ApiPatchNamespacedPodDisruptionBudgetRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1beta1ApipatchNamespacedPodDisruptionBudget
      */
@@ -29604,7 +29627,7 @@ export interface PolicyV1beta1ApiPatchNamespacedPodDisruptionBudgetStatusRequest
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1beta1ApipatchNamespacedPodDisruptionBudgetStatus
      */
@@ -29643,7 +29666,7 @@ export interface PolicyV1beta1ApiPatchPodSecurityPolicyRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1beta1ApipatchPodSecurityPolicy
      */
@@ -29682,7 +29705,7 @@ export interface PolicyV1beta1ApiReadNamespacedPodDisruptionBudgetRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1beta1ApireadNamespacedPodDisruptionBudget
      */
@@ -29703,7 +29726,7 @@ export interface PolicyV1beta1ApiReadNamespacedPodDisruptionBudgetStatusRequest 
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1beta1ApireadNamespacedPodDisruptionBudgetStatus
      */
@@ -29718,7 +29741,7 @@ export interface PolicyV1beta1ApiReadPodSecurityPolicyRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1beta1ApireadPodSecurityPolicy
      */
@@ -29745,7 +29768,7 @@ export interface PolicyV1beta1ApiReplaceNamespacedPodDisruptionBudgetRequest {
      */
     body: V1beta1PodDisruptionBudget
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1beta1ApireplaceNamespacedPodDisruptionBudget
      */
@@ -29784,7 +29807,7 @@ export interface PolicyV1beta1ApiReplaceNamespacedPodDisruptionBudgetStatusReque
      */
     body: V1beta1PodDisruptionBudget
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1beta1ApireplaceNamespacedPodDisruptionBudgetStatus
      */
@@ -29817,7 +29840,7 @@ export interface PolicyV1beta1ApiReplacePodSecurityPolicyRequest {
      */
     body: V1beta1PodSecurityPolicy
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof PolicyV1beta1ApireplacePodSecurityPolicy
      */
@@ -30031,7 +30054,7 @@ export interface RbacAuthorizationV1ApiCreateClusterRoleRequest {
      */
     body: V1ClusterRole
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApicreateClusterRole
      */
@@ -30058,7 +30081,7 @@ export interface RbacAuthorizationV1ApiCreateClusterRoleBindingRequest {
      */
     body: V1ClusterRoleBinding
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApicreateClusterRoleBinding
      */
@@ -30091,7 +30114,7 @@ export interface RbacAuthorizationV1ApiCreateNamespacedRoleRequest {
      */
     body: V1Role
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApicreateNamespacedRole
      */
@@ -30124,7 +30147,7 @@ export interface RbacAuthorizationV1ApiCreateNamespacedRoleBindingRequest {
      */
     body: V1RoleBinding
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApicreateNamespacedRoleBinding
      */
@@ -30151,7 +30174,7 @@ export interface RbacAuthorizationV1ApiDeleteClusterRoleRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApideleteClusterRole
      */
@@ -30169,13 +30192,13 @@ export interface RbacAuthorizationV1ApiDeleteClusterRoleRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof RbacAuthorizationV1ApideleteClusterRole
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof RbacAuthorizationV1ApideleteClusterRole
      */
@@ -30196,7 +30219,7 @@ export interface RbacAuthorizationV1ApiDeleteClusterRoleBindingRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApideleteClusterRoleBinding
      */
@@ -30214,13 +30237,13 @@ export interface RbacAuthorizationV1ApiDeleteClusterRoleBindingRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof RbacAuthorizationV1ApideleteClusterRoleBinding
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof RbacAuthorizationV1ApideleteClusterRoleBinding
      */
@@ -30235,7 +30258,7 @@ export interface RbacAuthorizationV1ApiDeleteClusterRoleBindingRequest {
 
 export interface RbacAuthorizationV1ApiDeleteCollectionClusterRoleRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApideleteCollectionClusterRole
      */
@@ -30277,13 +30300,13 @@ export interface RbacAuthorizationV1ApiDeleteCollectionClusterRoleRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof RbacAuthorizationV1ApideleteCollectionClusterRole
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof RbacAuthorizationV1ApideleteCollectionClusterRole
      */
@@ -30316,7 +30339,7 @@ export interface RbacAuthorizationV1ApiDeleteCollectionClusterRoleRequest {
 
 export interface RbacAuthorizationV1ApiDeleteCollectionClusterRoleBindingRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApideleteCollectionClusterRoleBinding
      */
@@ -30358,13 +30381,13 @@ export interface RbacAuthorizationV1ApiDeleteCollectionClusterRoleBindingRequest
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof RbacAuthorizationV1ApideleteCollectionClusterRoleBinding
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof RbacAuthorizationV1ApideleteCollectionClusterRoleBinding
      */
@@ -30403,7 +30426,7 @@ export interface RbacAuthorizationV1ApiDeleteCollectionNamespacedRoleRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApideleteCollectionNamespacedRole
      */
@@ -30445,13 +30468,13 @@ export interface RbacAuthorizationV1ApiDeleteCollectionNamespacedRoleRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof RbacAuthorizationV1ApideleteCollectionNamespacedRole
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof RbacAuthorizationV1ApideleteCollectionNamespacedRole
      */
@@ -30490,7 +30513,7 @@ export interface RbacAuthorizationV1ApiDeleteCollectionNamespacedRoleBindingRequ
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApideleteCollectionNamespacedRoleBinding
      */
@@ -30532,13 +30555,13 @@ export interface RbacAuthorizationV1ApiDeleteCollectionNamespacedRoleBindingRequ
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof RbacAuthorizationV1ApideleteCollectionNamespacedRoleBinding
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof RbacAuthorizationV1ApideleteCollectionNamespacedRoleBinding
      */
@@ -30583,7 +30606,7 @@ export interface RbacAuthorizationV1ApiDeleteNamespacedRoleRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApideleteNamespacedRole
      */
@@ -30601,13 +30624,13 @@ export interface RbacAuthorizationV1ApiDeleteNamespacedRoleRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof RbacAuthorizationV1ApideleteNamespacedRole
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof RbacAuthorizationV1ApideleteNamespacedRole
      */
@@ -30634,7 +30657,7 @@ export interface RbacAuthorizationV1ApiDeleteNamespacedRoleBindingRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApideleteNamespacedRoleBinding
      */
@@ -30652,13 +30675,13 @@ export interface RbacAuthorizationV1ApiDeleteNamespacedRoleBindingRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof RbacAuthorizationV1ApideleteNamespacedRoleBinding
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof RbacAuthorizationV1ApideleteNamespacedRoleBinding
      */
@@ -30676,13 +30699,13 @@ export interface RbacAuthorizationV1ApiGetAPIResourcesRequest {
 
 export interface RbacAuthorizationV1ApiListClusterRoleRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApilistClusterRole
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof RbacAuthorizationV1ApilistClusterRole
      */
@@ -30739,13 +30762,13 @@ export interface RbacAuthorizationV1ApiListClusterRoleRequest {
 
 export interface RbacAuthorizationV1ApiListClusterRoleBindingRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApilistClusterRoleBinding
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof RbacAuthorizationV1ApilistClusterRoleBinding
      */
@@ -30808,13 +30831,13 @@ export interface RbacAuthorizationV1ApiListNamespacedRoleRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApilistNamespacedRole
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof RbacAuthorizationV1ApilistNamespacedRole
      */
@@ -30877,13 +30900,13 @@ export interface RbacAuthorizationV1ApiListNamespacedRoleBindingRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApilistNamespacedRoleBinding
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof RbacAuthorizationV1ApilistNamespacedRoleBinding
      */
@@ -30940,7 +30963,7 @@ export interface RbacAuthorizationV1ApiListNamespacedRoleBindingRequest {
 
 export interface RbacAuthorizationV1ApiListRoleBindingForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof RbacAuthorizationV1ApilistRoleBindingForAllNamespaces
      */
@@ -30970,7 +30993,7 @@ export interface RbacAuthorizationV1ApiListRoleBindingForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApilistRoleBindingForAllNamespaces
      */
@@ -31003,7 +31026,7 @@ export interface RbacAuthorizationV1ApiListRoleBindingForAllNamespacesRequest {
 
 export interface RbacAuthorizationV1ApiListRoleForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof RbacAuthorizationV1ApilistRoleForAllNamespaces
      */
@@ -31033,7 +31056,7 @@ export interface RbacAuthorizationV1ApiListRoleForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApilistRoleForAllNamespaces
      */
@@ -31078,7 +31101,7 @@ export interface RbacAuthorizationV1ApiPatchClusterRoleRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApipatchClusterRole
      */
@@ -31117,7 +31140,7 @@ export interface RbacAuthorizationV1ApiPatchClusterRoleBindingRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApipatchClusterRoleBinding
      */
@@ -31162,7 +31185,7 @@ export interface RbacAuthorizationV1ApiPatchNamespacedRoleRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApipatchNamespacedRole
      */
@@ -31207,7 +31230,7 @@ export interface RbacAuthorizationV1ApiPatchNamespacedRoleBindingRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApipatchNamespacedRoleBinding
      */
@@ -31240,7 +31263,7 @@ export interface RbacAuthorizationV1ApiReadClusterRoleRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApireadClusterRole
      */
@@ -31255,7 +31278,7 @@ export interface RbacAuthorizationV1ApiReadClusterRoleBindingRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApireadClusterRoleBinding
      */
@@ -31276,7 +31299,7 @@ export interface RbacAuthorizationV1ApiReadNamespacedRoleRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApireadNamespacedRole
      */
@@ -31297,7 +31320,7 @@ export interface RbacAuthorizationV1ApiReadNamespacedRoleBindingRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApireadNamespacedRoleBinding
      */
@@ -31318,7 +31341,7 @@ export interface RbacAuthorizationV1ApiReplaceClusterRoleRequest {
      */
     body: V1ClusterRole
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApireplaceClusterRole
      */
@@ -31351,7 +31374,7 @@ export interface RbacAuthorizationV1ApiReplaceClusterRoleBindingRequest {
      */
     body: V1ClusterRoleBinding
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApireplaceClusterRoleBinding
      */
@@ -31390,7 +31413,7 @@ export interface RbacAuthorizationV1ApiReplaceNamespacedRoleRequest {
      */
     body: V1Role
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApireplaceNamespacedRole
      */
@@ -31429,7 +31452,7 @@ export interface RbacAuthorizationV1ApiReplaceNamespacedRoleBindingRequest {
      */
     body: V1RoleBinding
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1ApireplaceNamespacedRoleBinding
      */
@@ -31716,7 +31739,7 @@ export interface RbacAuthorizationV1alpha1ApiCreateClusterRoleRequest {
      */
     body: V1alpha1ClusterRole
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApicreateClusterRole
      */
@@ -31743,7 +31766,7 @@ export interface RbacAuthorizationV1alpha1ApiCreateClusterRoleBindingRequest {
      */
     body: V1alpha1ClusterRoleBinding
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApicreateClusterRoleBinding
      */
@@ -31776,7 +31799,7 @@ export interface RbacAuthorizationV1alpha1ApiCreateNamespacedRoleRequest {
      */
     body: V1alpha1Role
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApicreateNamespacedRole
      */
@@ -31809,7 +31832,7 @@ export interface RbacAuthorizationV1alpha1ApiCreateNamespacedRoleBindingRequest 
      */
     body: V1alpha1RoleBinding
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApicreateNamespacedRoleBinding
      */
@@ -31836,7 +31859,7 @@ export interface RbacAuthorizationV1alpha1ApiDeleteClusterRoleRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApideleteClusterRole
      */
@@ -31854,13 +31877,13 @@ export interface RbacAuthorizationV1alpha1ApiDeleteClusterRoleRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof RbacAuthorizationV1alpha1ApideleteClusterRole
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApideleteClusterRole
      */
@@ -31881,7 +31904,7 @@ export interface RbacAuthorizationV1alpha1ApiDeleteClusterRoleBindingRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApideleteClusterRoleBinding
      */
@@ -31899,13 +31922,13 @@ export interface RbacAuthorizationV1alpha1ApiDeleteClusterRoleBindingRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof RbacAuthorizationV1alpha1ApideleteClusterRoleBinding
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApideleteClusterRoleBinding
      */
@@ -31920,7 +31943,7 @@ export interface RbacAuthorizationV1alpha1ApiDeleteClusterRoleBindingRequest {
 
 export interface RbacAuthorizationV1alpha1ApiDeleteCollectionClusterRoleRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApideleteCollectionClusterRole
      */
@@ -31962,13 +31985,13 @@ export interface RbacAuthorizationV1alpha1ApiDeleteCollectionClusterRoleRequest 
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof RbacAuthorizationV1alpha1ApideleteCollectionClusterRole
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApideleteCollectionClusterRole
      */
@@ -32001,7 +32024,7 @@ export interface RbacAuthorizationV1alpha1ApiDeleteCollectionClusterRoleRequest 
 
 export interface RbacAuthorizationV1alpha1ApiDeleteCollectionClusterRoleBindingRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApideleteCollectionClusterRoleBinding
      */
@@ -32043,13 +32066,13 @@ export interface RbacAuthorizationV1alpha1ApiDeleteCollectionClusterRoleBindingR
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof RbacAuthorizationV1alpha1ApideleteCollectionClusterRoleBinding
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApideleteCollectionClusterRoleBinding
      */
@@ -32088,7 +32111,7 @@ export interface RbacAuthorizationV1alpha1ApiDeleteCollectionNamespacedRoleReque
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApideleteCollectionNamespacedRole
      */
@@ -32130,13 +32153,13 @@ export interface RbacAuthorizationV1alpha1ApiDeleteCollectionNamespacedRoleReque
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof RbacAuthorizationV1alpha1ApideleteCollectionNamespacedRole
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApideleteCollectionNamespacedRole
      */
@@ -32175,7 +32198,7 @@ export interface RbacAuthorizationV1alpha1ApiDeleteCollectionNamespacedRoleBindi
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApideleteCollectionNamespacedRoleBinding
      */
@@ -32217,13 +32240,13 @@ export interface RbacAuthorizationV1alpha1ApiDeleteCollectionNamespacedRoleBindi
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof RbacAuthorizationV1alpha1ApideleteCollectionNamespacedRoleBinding
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApideleteCollectionNamespacedRoleBinding
      */
@@ -32268,7 +32291,7 @@ export interface RbacAuthorizationV1alpha1ApiDeleteNamespacedRoleRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApideleteNamespacedRole
      */
@@ -32286,13 +32309,13 @@ export interface RbacAuthorizationV1alpha1ApiDeleteNamespacedRoleRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof RbacAuthorizationV1alpha1ApideleteNamespacedRole
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApideleteNamespacedRole
      */
@@ -32319,7 +32342,7 @@ export interface RbacAuthorizationV1alpha1ApiDeleteNamespacedRoleBindingRequest 
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApideleteNamespacedRoleBinding
      */
@@ -32337,13 +32360,13 @@ export interface RbacAuthorizationV1alpha1ApiDeleteNamespacedRoleBindingRequest 
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof RbacAuthorizationV1alpha1ApideleteNamespacedRoleBinding
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApideleteNamespacedRoleBinding
      */
@@ -32361,13 +32384,13 @@ export interface RbacAuthorizationV1alpha1ApiGetAPIResourcesRequest {
 
 export interface RbacAuthorizationV1alpha1ApiListClusterRoleRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApilistClusterRole
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof RbacAuthorizationV1alpha1ApilistClusterRole
      */
@@ -32424,13 +32447,13 @@ export interface RbacAuthorizationV1alpha1ApiListClusterRoleRequest {
 
 export interface RbacAuthorizationV1alpha1ApiListClusterRoleBindingRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApilistClusterRoleBinding
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof RbacAuthorizationV1alpha1ApilistClusterRoleBinding
      */
@@ -32493,13 +32516,13 @@ export interface RbacAuthorizationV1alpha1ApiListNamespacedRoleRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApilistNamespacedRole
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof RbacAuthorizationV1alpha1ApilistNamespacedRole
      */
@@ -32562,13 +32585,13 @@ export interface RbacAuthorizationV1alpha1ApiListNamespacedRoleBindingRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApilistNamespacedRoleBinding
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof RbacAuthorizationV1alpha1ApilistNamespacedRoleBinding
      */
@@ -32625,7 +32648,7 @@ export interface RbacAuthorizationV1alpha1ApiListNamespacedRoleBindingRequest {
 
 export interface RbacAuthorizationV1alpha1ApiListRoleBindingForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof RbacAuthorizationV1alpha1ApilistRoleBindingForAllNamespaces
      */
@@ -32655,7 +32678,7 @@ export interface RbacAuthorizationV1alpha1ApiListRoleBindingForAllNamespacesRequ
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApilistRoleBindingForAllNamespaces
      */
@@ -32688,7 +32711,7 @@ export interface RbacAuthorizationV1alpha1ApiListRoleBindingForAllNamespacesRequ
 
 export interface RbacAuthorizationV1alpha1ApiListRoleForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof RbacAuthorizationV1alpha1ApilistRoleForAllNamespaces
      */
@@ -32718,7 +32741,7 @@ export interface RbacAuthorizationV1alpha1ApiListRoleForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApilistRoleForAllNamespaces
      */
@@ -32763,7 +32786,7 @@ export interface RbacAuthorizationV1alpha1ApiPatchClusterRoleRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApipatchClusterRole
      */
@@ -32802,7 +32825,7 @@ export interface RbacAuthorizationV1alpha1ApiPatchClusterRoleBindingRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApipatchClusterRoleBinding
      */
@@ -32847,7 +32870,7 @@ export interface RbacAuthorizationV1alpha1ApiPatchNamespacedRoleRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApipatchNamespacedRole
      */
@@ -32892,7 +32915,7 @@ export interface RbacAuthorizationV1alpha1ApiPatchNamespacedRoleBindingRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApipatchNamespacedRoleBinding
      */
@@ -32925,7 +32948,7 @@ export interface RbacAuthorizationV1alpha1ApiReadClusterRoleRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApireadClusterRole
      */
@@ -32940,7 +32963,7 @@ export interface RbacAuthorizationV1alpha1ApiReadClusterRoleBindingRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApireadClusterRoleBinding
      */
@@ -32961,7 +32984,7 @@ export interface RbacAuthorizationV1alpha1ApiReadNamespacedRoleRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApireadNamespacedRole
      */
@@ -32982,7 +33005,7 @@ export interface RbacAuthorizationV1alpha1ApiReadNamespacedRoleBindingRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApireadNamespacedRoleBinding
      */
@@ -33003,7 +33026,7 @@ export interface RbacAuthorizationV1alpha1ApiReplaceClusterRoleRequest {
      */
     body: V1alpha1ClusterRole
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApireplaceClusterRole
      */
@@ -33036,7 +33059,7 @@ export interface RbacAuthorizationV1alpha1ApiReplaceClusterRoleBindingRequest {
      */
     body: V1alpha1ClusterRoleBinding
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApireplaceClusterRoleBinding
      */
@@ -33075,7 +33098,7 @@ export interface RbacAuthorizationV1alpha1ApiReplaceNamespacedRoleRequest {
      */
     body: V1alpha1Role
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApireplaceNamespacedRole
      */
@@ -33114,7 +33137,7 @@ export interface RbacAuthorizationV1alpha1ApiReplaceNamespacedRoleBindingRequest
      */
     body: V1alpha1RoleBinding
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof RbacAuthorizationV1alpha1ApireplaceNamespacedRoleBinding
      */
@@ -33424,7 +33447,7 @@ export interface SchedulingV1ApiCreatePriorityClassRequest {
      */
     body: V1PriorityClass
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof SchedulingV1ApicreatePriorityClass
      */
@@ -33445,7 +33468,7 @@ export interface SchedulingV1ApiCreatePriorityClassRequest {
 
 export interface SchedulingV1ApiDeleteCollectionPriorityClassRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof SchedulingV1ApideleteCollectionPriorityClass
      */
@@ -33487,13 +33510,13 @@ export interface SchedulingV1ApiDeleteCollectionPriorityClassRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof SchedulingV1ApideleteCollectionPriorityClass
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof SchedulingV1ApideleteCollectionPriorityClass
      */
@@ -33532,7 +33555,7 @@ export interface SchedulingV1ApiDeletePriorityClassRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof SchedulingV1ApideletePriorityClass
      */
@@ -33550,13 +33573,13 @@ export interface SchedulingV1ApiDeletePriorityClassRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof SchedulingV1ApideletePriorityClass
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof SchedulingV1ApideletePriorityClass
      */
@@ -33574,13 +33597,13 @@ export interface SchedulingV1ApiGetAPIResourcesRequest {
 
 export interface SchedulingV1ApiListPriorityClassRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof SchedulingV1ApilistPriorityClass
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof SchedulingV1ApilistPriorityClass
      */
@@ -33649,7 +33672,7 @@ export interface SchedulingV1ApiPatchPriorityClassRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof SchedulingV1ApipatchPriorityClass
      */
@@ -33682,7 +33705,7 @@ export interface SchedulingV1ApiReadPriorityClassRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof SchedulingV1ApireadPriorityClass
      */
@@ -33703,7 +33726,7 @@ export interface SchedulingV1ApiReplacePriorityClassRequest {
      */
     body: V1PriorityClass
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof SchedulingV1ApireplacePriorityClass
      */
@@ -33806,7 +33829,7 @@ export interface SchedulingV1alpha1ApiCreatePriorityClassRequest {
      */
     body: V1alpha1PriorityClass
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof SchedulingV1alpha1ApicreatePriorityClass
      */
@@ -33827,7 +33850,7 @@ export interface SchedulingV1alpha1ApiCreatePriorityClassRequest {
 
 export interface SchedulingV1alpha1ApiDeleteCollectionPriorityClassRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof SchedulingV1alpha1ApideleteCollectionPriorityClass
      */
@@ -33869,13 +33892,13 @@ export interface SchedulingV1alpha1ApiDeleteCollectionPriorityClassRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof SchedulingV1alpha1ApideleteCollectionPriorityClass
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof SchedulingV1alpha1ApideleteCollectionPriorityClass
      */
@@ -33914,7 +33937,7 @@ export interface SchedulingV1alpha1ApiDeletePriorityClassRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof SchedulingV1alpha1ApideletePriorityClass
      */
@@ -33932,13 +33955,13 @@ export interface SchedulingV1alpha1ApiDeletePriorityClassRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof SchedulingV1alpha1ApideletePriorityClass
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof SchedulingV1alpha1ApideletePriorityClass
      */
@@ -33956,13 +33979,13 @@ export interface SchedulingV1alpha1ApiGetAPIResourcesRequest {
 
 export interface SchedulingV1alpha1ApiListPriorityClassRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof SchedulingV1alpha1ApilistPriorityClass
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof SchedulingV1alpha1ApilistPriorityClass
      */
@@ -34031,7 +34054,7 @@ export interface SchedulingV1alpha1ApiPatchPriorityClassRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof SchedulingV1alpha1ApipatchPriorityClass
      */
@@ -34064,7 +34087,7 @@ export interface SchedulingV1alpha1ApiReadPriorityClassRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof SchedulingV1alpha1ApireadPriorityClass
      */
@@ -34085,7 +34108,7 @@ export interface SchedulingV1alpha1ApiReplacePriorityClassRequest {
      */
     body: V1alpha1PriorityClass
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof SchedulingV1alpha1ApireplacePriorityClass
      */
@@ -34211,7 +34234,7 @@ export interface StorageV1ApiCreateCSIDriverRequest {
      */
     body: V1CSIDriver
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApicreateCSIDriver
      */
@@ -34238,7 +34261,7 @@ export interface StorageV1ApiCreateCSINodeRequest {
      */
     body: V1CSINode
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApicreateCSINode
      */
@@ -34265,7 +34288,7 @@ export interface StorageV1ApiCreateStorageClassRequest {
      */
     body: V1StorageClass
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApicreateStorageClass
      */
@@ -34292,7 +34315,7 @@ export interface StorageV1ApiCreateVolumeAttachmentRequest {
      */
     body: V1VolumeAttachment
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApicreateVolumeAttachment
      */
@@ -34319,7 +34342,7 @@ export interface StorageV1ApiDeleteCSIDriverRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApideleteCSIDriver
      */
@@ -34337,13 +34360,13 @@ export interface StorageV1ApiDeleteCSIDriverRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof StorageV1ApideleteCSIDriver
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof StorageV1ApideleteCSIDriver
      */
@@ -34364,7 +34387,7 @@ export interface StorageV1ApiDeleteCSINodeRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApideleteCSINode
      */
@@ -34382,13 +34405,13 @@ export interface StorageV1ApiDeleteCSINodeRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof StorageV1ApideleteCSINode
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof StorageV1ApideleteCSINode
      */
@@ -34403,7 +34426,7 @@ export interface StorageV1ApiDeleteCSINodeRequest {
 
 export interface StorageV1ApiDeleteCollectionCSIDriverRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApideleteCollectionCSIDriver
      */
@@ -34445,13 +34468,13 @@ export interface StorageV1ApiDeleteCollectionCSIDriverRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof StorageV1ApideleteCollectionCSIDriver
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof StorageV1ApideleteCollectionCSIDriver
      */
@@ -34484,7 +34507,7 @@ export interface StorageV1ApiDeleteCollectionCSIDriverRequest {
 
 export interface StorageV1ApiDeleteCollectionCSINodeRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApideleteCollectionCSINode
      */
@@ -34526,13 +34549,13 @@ export interface StorageV1ApiDeleteCollectionCSINodeRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof StorageV1ApideleteCollectionCSINode
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof StorageV1ApideleteCollectionCSINode
      */
@@ -34565,7 +34588,7 @@ export interface StorageV1ApiDeleteCollectionCSINodeRequest {
 
 export interface StorageV1ApiDeleteCollectionStorageClassRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApideleteCollectionStorageClass
      */
@@ -34607,13 +34630,13 @@ export interface StorageV1ApiDeleteCollectionStorageClassRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof StorageV1ApideleteCollectionStorageClass
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof StorageV1ApideleteCollectionStorageClass
      */
@@ -34646,7 +34669,7 @@ export interface StorageV1ApiDeleteCollectionStorageClassRequest {
 
 export interface StorageV1ApiDeleteCollectionVolumeAttachmentRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApideleteCollectionVolumeAttachment
      */
@@ -34688,13 +34711,13 @@ export interface StorageV1ApiDeleteCollectionVolumeAttachmentRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof StorageV1ApideleteCollectionVolumeAttachment
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof StorageV1ApideleteCollectionVolumeAttachment
      */
@@ -34733,7 +34756,7 @@ export interface StorageV1ApiDeleteStorageClassRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApideleteStorageClass
      */
@@ -34751,13 +34774,13 @@ export interface StorageV1ApiDeleteStorageClassRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof StorageV1ApideleteStorageClass
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof StorageV1ApideleteStorageClass
      */
@@ -34778,7 +34801,7 @@ export interface StorageV1ApiDeleteVolumeAttachmentRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApideleteVolumeAttachment
      */
@@ -34796,13 +34819,13 @@ export interface StorageV1ApiDeleteVolumeAttachmentRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof StorageV1ApideleteVolumeAttachment
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof StorageV1ApideleteVolumeAttachment
      */
@@ -34820,13 +34843,13 @@ export interface StorageV1ApiGetAPIResourcesRequest {
 
 export interface StorageV1ApiListCSIDriverRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApilistCSIDriver
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof StorageV1ApilistCSIDriver
      */
@@ -34883,13 +34906,13 @@ export interface StorageV1ApiListCSIDriverRequest {
 
 export interface StorageV1ApiListCSINodeRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApilistCSINode
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof StorageV1ApilistCSINode
      */
@@ -34946,13 +34969,13 @@ export interface StorageV1ApiListCSINodeRequest {
 
 export interface StorageV1ApiListStorageClassRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApilistStorageClass
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof StorageV1ApilistStorageClass
      */
@@ -35009,13 +35032,13 @@ export interface StorageV1ApiListStorageClassRequest {
 
 export interface StorageV1ApiListVolumeAttachmentRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApilistVolumeAttachment
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof StorageV1ApilistVolumeAttachment
      */
@@ -35084,7 +35107,7 @@ export interface StorageV1ApiPatchCSIDriverRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApipatchCSIDriver
      */
@@ -35123,7 +35146,7 @@ export interface StorageV1ApiPatchCSINodeRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApipatchCSINode
      */
@@ -35162,7 +35185,7 @@ export interface StorageV1ApiPatchStorageClassRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApipatchStorageClass
      */
@@ -35201,7 +35224,7 @@ export interface StorageV1ApiPatchVolumeAttachmentRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApipatchVolumeAttachment
      */
@@ -35240,7 +35263,7 @@ export interface StorageV1ApiPatchVolumeAttachmentStatusRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApipatchVolumeAttachmentStatus
      */
@@ -35273,7 +35296,7 @@ export interface StorageV1ApiReadCSIDriverRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApireadCSIDriver
      */
@@ -35288,7 +35311,7 @@ export interface StorageV1ApiReadCSINodeRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApireadCSINode
      */
@@ -35303,7 +35326,7 @@ export interface StorageV1ApiReadStorageClassRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApireadStorageClass
      */
@@ -35318,7 +35341,7 @@ export interface StorageV1ApiReadVolumeAttachmentRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApireadVolumeAttachment
      */
@@ -35333,7 +35356,7 @@ export interface StorageV1ApiReadVolumeAttachmentStatusRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApireadVolumeAttachmentStatus
      */
@@ -35354,7 +35377,7 @@ export interface StorageV1ApiReplaceCSIDriverRequest {
      */
     body: V1CSIDriver
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApireplaceCSIDriver
      */
@@ -35387,7 +35410,7 @@ export interface StorageV1ApiReplaceCSINodeRequest {
      */
     body: V1CSINode
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApireplaceCSINode
      */
@@ -35420,7 +35443,7 @@ export interface StorageV1ApiReplaceStorageClassRequest {
      */
     body: V1StorageClass
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApireplaceStorageClass
      */
@@ -35453,7 +35476,7 @@ export interface StorageV1ApiReplaceVolumeAttachmentRequest {
      */
     body: V1VolumeAttachment
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApireplaceVolumeAttachment
      */
@@ -35486,7 +35509,7 @@ export interface StorageV1ApiReplaceVolumeAttachmentStatusRequest {
      */
     body: V1VolumeAttachment
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1ApireplaceVolumeAttachmentStatus
      */
@@ -35787,7 +35810,7 @@ export interface StorageV1alpha1ApiCreateNamespacedCSIStorageCapacityRequest {
      */
     body: V1alpha1CSIStorageCapacity
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1alpha1ApicreateNamespacedCSIStorageCapacity
      */
@@ -35814,7 +35837,7 @@ export interface StorageV1alpha1ApiCreateVolumeAttachmentRequest {
      */
     body: V1alpha1VolumeAttachment
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1alpha1ApicreateVolumeAttachment
      */
@@ -35841,7 +35864,7 @@ export interface StorageV1alpha1ApiDeleteCollectionNamespacedCSIStorageCapacityR
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1alpha1ApideleteCollectionNamespacedCSIStorageCapacity
      */
@@ -35883,13 +35906,13 @@ export interface StorageV1alpha1ApiDeleteCollectionNamespacedCSIStorageCapacityR
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof StorageV1alpha1ApideleteCollectionNamespacedCSIStorageCapacity
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof StorageV1alpha1ApideleteCollectionNamespacedCSIStorageCapacity
      */
@@ -35922,7 +35945,7 @@ export interface StorageV1alpha1ApiDeleteCollectionNamespacedCSIStorageCapacityR
 
 export interface StorageV1alpha1ApiDeleteCollectionVolumeAttachmentRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1alpha1ApideleteCollectionVolumeAttachment
      */
@@ -35964,13 +35987,13 @@ export interface StorageV1alpha1ApiDeleteCollectionVolumeAttachmentRequest {
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof StorageV1alpha1ApideleteCollectionVolumeAttachment
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof StorageV1alpha1ApideleteCollectionVolumeAttachment
      */
@@ -36015,7 +36038,7 @@ export interface StorageV1alpha1ApiDeleteNamespacedCSIStorageCapacityRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1alpha1ApideleteNamespacedCSIStorageCapacity
      */
@@ -36033,13 +36056,13 @@ export interface StorageV1alpha1ApiDeleteNamespacedCSIStorageCapacityRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof StorageV1alpha1ApideleteNamespacedCSIStorageCapacity
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof StorageV1alpha1ApideleteNamespacedCSIStorageCapacity
      */
@@ -36060,7 +36083,7 @@ export interface StorageV1alpha1ApiDeleteVolumeAttachmentRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1alpha1ApideleteVolumeAttachment
      */
@@ -36078,13 +36101,13 @@ export interface StorageV1alpha1ApiDeleteVolumeAttachmentRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof StorageV1alpha1ApideleteVolumeAttachment
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof StorageV1alpha1ApideleteVolumeAttachment
      */
@@ -36102,7 +36125,7 @@ export interface StorageV1alpha1ApiGetAPIResourcesRequest {
 
 export interface StorageV1alpha1ApiListCSIStorageCapacityForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof StorageV1alpha1ApilistCSIStorageCapacityForAllNamespaces
      */
@@ -36132,7 +36155,7 @@ export interface StorageV1alpha1ApiListCSIStorageCapacityForAllNamespacesRequest
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1alpha1ApilistCSIStorageCapacityForAllNamespaces
      */
@@ -36171,13 +36194,13 @@ export interface StorageV1alpha1ApiListNamespacedCSIStorageCapacityRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1alpha1ApilistNamespacedCSIStorageCapacity
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof StorageV1alpha1ApilistNamespacedCSIStorageCapacity
      */
@@ -36234,13 +36257,13 @@ export interface StorageV1alpha1ApiListNamespacedCSIStorageCapacityRequest {
 
 export interface StorageV1alpha1ApiListVolumeAttachmentRequest {
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1alpha1ApilistVolumeAttachment
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof StorageV1alpha1ApilistVolumeAttachment
      */
@@ -36315,7 +36338,7 @@ export interface StorageV1alpha1ApiPatchNamespacedCSIStorageCapacityRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1alpha1ApipatchNamespacedCSIStorageCapacity
      */
@@ -36354,7 +36377,7 @@ export interface StorageV1alpha1ApiPatchVolumeAttachmentRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1alpha1ApipatchVolumeAttachment
      */
@@ -36393,7 +36416,7 @@ export interface StorageV1alpha1ApiReadNamespacedCSIStorageCapacityRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1alpha1ApireadNamespacedCSIStorageCapacity
      */
@@ -36408,7 +36431,7 @@ export interface StorageV1alpha1ApiReadVolumeAttachmentRequest {
      */
     name: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1alpha1ApireadVolumeAttachment
      */
@@ -36435,7 +36458,7 @@ export interface StorageV1alpha1ApiReplaceNamespacedCSIStorageCapacityRequest {
      */
     body: V1alpha1CSIStorageCapacity
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1alpha1ApireplaceNamespacedCSIStorageCapacity
      */
@@ -36468,7 +36491,7 @@ export interface StorageV1alpha1ApiReplaceVolumeAttachmentRequest {
      */
     body: V1alpha1VolumeAttachment
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1alpha1ApireplaceVolumeAttachment
      */
@@ -36641,7 +36664,7 @@ export interface StorageV1beta1ApiCreateNamespacedCSIStorageCapacityRequest {
      */
     body: V1beta1CSIStorageCapacity
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1beta1ApicreateNamespacedCSIStorageCapacity
      */
@@ -36668,7 +36691,7 @@ export interface StorageV1beta1ApiDeleteCollectionNamespacedCSIStorageCapacityRe
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1beta1ApideleteCollectionNamespacedCSIStorageCapacity
      */
@@ -36710,13 +36733,13 @@ export interface StorageV1beta1ApiDeleteCollectionNamespacedCSIStorageCapacityRe
      */
     limit?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof StorageV1beta1ApideleteCollectionNamespacedCSIStorageCapacity
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof StorageV1beta1ApideleteCollectionNamespacedCSIStorageCapacity
      */
@@ -36761,7 +36784,7 @@ export interface StorageV1beta1ApiDeleteNamespacedCSIStorageCapacityRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1beta1ApideleteNamespacedCSIStorageCapacity
      */
@@ -36779,13 +36802,13 @@ export interface StorageV1beta1ApiDeleteNamespacedCSIStorageCapacityRequest {
      */
     gracePeriodSeconds?: number
     /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
      * @memberof StorageV1beta1ApideleteNamespacedCSIStorageCapacity
      */
     orphanDependents?: boolean
     /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: &#39;Orphan&#39; - orphan the dependents; &#39;Background&#39; - allow the garbage collector to delete the dependents in the background; &#39;Foreground&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
      * @memberof StorageV1beta1ApideleteNamespacedCSIStorageCapacity
      */
@@ -36803,7 +36826,7 @@ export interface StorageV1beta1ApiGetAPIResourcesRequest {
 
 export interface StorageV1beta1ApiListCSIStorageCapacityForAllNamespacesRequest {
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof StorageV1beta1ApilistCSIStorageCapacityForAllNamespaces
      */
@@ -36833,7 +36856,7 @@ export interface StorageV1beta1ApiListCSIStorageCapacityForAllNamespacesRequest 
      */
     limit?: number
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1beta1ApilistCSIStorageCapacityForAllNamespaces
      */
@@ -36872,13 +36895,13 @@ export interface StorageV1beta1ApiListNamespacedCSIStorageCapacityRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1beta1ApilistNamespacedCSIStorageCapacity
      */
     pretty?: string
     /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
      * @memberof StorageV1beta1ApilistNamespacedCSIStorageCapacity
      */
@@ -36953,7 +36976,7 @@ export interface StorageV1beta1ApiPatchNamespacedCSIStorageCapacityRequest {
      */
     body: any
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1beta1ApipatchNamespacedCSIStorageCapacity
      */
@@ -36992,7 +37015,7 @@ export interface StorageV1beta1ApiReadNamespacedCSIStorageCapacityRequest {
      */
     namespace: string
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1beta1ApireadNamespacedCSIStorageCapacity
      */
@@ -37019,7 +37042,7 @@ export interface StorageV1beta1ApiReplaceNamespacedCSIStorageCapacityRequest {
      */
     body: V1beta1CSIStorageCapacity
     /**
-     * If &#39;true&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed.
      * @type string
      * @memberof StorageV1beta1ApireplaceNamespacedCSIStorageCapacity
      */
@@ -37156,7 +37179,7 @@ export class ObjectWellKnownApi {
     }
 
     /**
-     * get service account issuer OpenID configuration, also known as the 'OIDC discovery doc'
+     * get service account issuer OpenID configuration, also known as the \'OIDC discovery doc\'
      * @param param the request object
      */
     public getServiceAccountIssuerOpenIDConfiguration(param: WellKnownApiGetServiceAccountIssuerOpenIDConfigurationRequest = {}, options?: Configuration): Promise<string> {

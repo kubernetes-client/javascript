@@ -17,7 +17,7 @@ import {SecurityAuthentication} from '../auth/auth';
 export class WellKnownApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * get service account issuer OpenID configuration, also known as the 'OIDC discovery doc'
+     * get service account issuer OpenID configuration, also known as the \'OIDC discovery doc\'
      */
     public async getServiceAccountIssuerOpenIDConfiguration(_options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;

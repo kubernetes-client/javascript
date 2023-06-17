@@ -14,7 +14,7 @@ import { IntOrString } from '../../types';
 import { HttpFile } from '../http/http';
 
 /**
-* ServicePort contains information on service's port.
+* ServicePort contains information on service\'s port.
 */
 export class V1ServicePort {
     /**
@@ -22,7 +22,7 @@ export class V1ServicePort {
     */
     'appProtocol'?: string;
     /**
-    * The name of this port within the service. This must be a DNS_LABEL. All ports within a ServiceSpec must have unique names. When considering the endpoints for a Service, this must match the 'name' field in the EndpointPort. Optional if only one ServicePort is defined on this service.
+    * The name of this port within the service. This must be a DNS_LABEL. All ports within a ServiceSpec must have unique names. When considering the endpoints for a Service, this must match the \'name\' field in the EndpointPort. Optional if only one ServicePort is defined on this service.
     */
     'name'?: string;
     /**

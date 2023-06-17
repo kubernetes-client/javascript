@@ -22,7 +22,7 @@ export class V1DaemonSetStatus {
     */
     'collisionCount'?: number;
     /**
-    * Represents the latest available observations of a DaemonSet's current state.
+    * Represents the latest available observations of a DaemonSet\'s current state.
     */
     'conditions'?: Array<V1DaemonSetCondition>;
     /**

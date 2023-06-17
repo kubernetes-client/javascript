@@ -16,7 +16,7 @@ import { V1PersistentVolumeClaimStatus } from '../models/V1PersistentVolumeClaim
 import { HttpFile } from '../http/http';
 
 /**
-* PersistentVolumeClaim is a user's request for and claim to a persistent volume
+* PersistentVolumeClaim is a user\'s request for and claim to a persistent volume
 */
 export class V1PersistentVolumeClaim {
     /**

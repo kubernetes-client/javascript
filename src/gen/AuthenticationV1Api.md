@@ -101,7 +101,7 @@ let body:.AuthenticationV1ApiCreateTokenReviewRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
-  // string | If 'true', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. (optional)
   pretty: "pretty_example",
 };
 
@@ -118,7 +118,7 @@ Name | Type | Description  | Notes
  **body** | **V1TokenReview**|  |
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
- **pretty** | [**string**] | If &#39;true&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
 
 
 ### Return type

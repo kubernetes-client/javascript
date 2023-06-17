@@ -42,35 +42,35 @@ export class V1PodSpec {
     'containers': Array<V1Container>;
     'dnsConfig'?: V1PodDNSConfig;
     /**
-    * Set DNS policy for the pod. Defaults to \"ClusterFirst\". Valid values are 'ClusterFirstWithHostNet', 'ClusterFirst', 'Default' or 'None'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to 'ClusterFirstWithHostNet'.
+    * Set DNS policy for the pod. Defaults to \"ClusterFirst\". Valid values are \'ClusterFirstWithHostNet\', \'ClusterFirst\', \'Default\' or \'None\'. DNS parameters given in DNSConfig will be merged with the policy selected with DNSPolicy. To have DNS options set along with hostNetwork, you have to specify DNS policy explicitly to \'ClusterFirstWithHostNet\'.
     */
     'dnsPolicy'?: string;
     /**
-    * EnableServiceLinks indicates whether information about services should be injected into pod's environment variables, matching the syntax of Docker links. Optional: Defaults to true.
+    * EnableServiceLinks indicates whether information about services should be injected into pod\'s environment variables, matching the syntax of Docker links. Optional: Defaults to true.
     */
     'enableServiceLinks'?: boolean;
     /**
-    * List of ephemeral containers run in this pod. Ephemeral containers may be run in an existing pod to perform user-initiated actions such as debugging. This list cannot be specified when creating a pod, and it cannot be modified by updating the pod spec. In order to add an ephemeral container to an existing pod, use the pod's ephemeralcontainers subresource. This field is alpha-level and is only honored by servers that enable the EphemeralContainers feature.
+    * List of ephemeral containers run in this pod. Ephemeral containers may be run in an existing pod to perform user-initiated actions such as debugging. This list cannot be specified when creating a pod, and it cannot be modified by updating the pod spec. In order to add an ephemeral container to an existing pod, use the pod\'s ephemeralcontainers subresource. This field is alpha-level and is only honored by servers that enable the EphemeralContainers feature.
     */
     'ephemeralContainers'?: Array<V1EphemeralContainer>;
     /**
-    * HostAliases is an optional list of hosts and IPs that will be injected into the pod's hosts file if specified. This is only valid for non-hostNetwork pods.
+    * HostAliases is an optional list of hosts and IPs that will be injected into the pod\'s hosts file if specified. This is only valid for non-hostNetwork pods.
     */
     'hostAliases'?: Array<V1HostAlias>;
     /**
-    * Use the host's ipc namespace. Optional: Default to false.
+    * Use the host\'s ipc namespace. Optional: Default to false.
     */
     'hostIPC'?: boolean;
     /**
-    * Host networking requested for this pod. Use the host's network namespace. If this option is set, the ports that will be used must be specified. Default to false.
+    * Host networking requested for this pod. Use the host\'s network namespace. If this option is set, the ports that will be used must be specified. Default to false.
     */
     'hostNetwork'?: boolean;
     /**
-    * Use the host's pid namespace. Optional: Default to false.
+    * Use the host\'s pid namespace. Optional: Default to false.
     */
     'hostPID'?: boolean;
     /**
-    * Specifies the hostname of the Pod If not specified, the pod's hostname will be set to a system-defined value.
+    * Specifies the hostname of the Pod If not specified, the pod\'s hostname will be set to a system-defined value.
     */
     'hostname'?: string;
     /**
@@ -86,7 +86,7 @@ export class V1PodSpec {
     */
     'nodeName'?: string;
     /**
-    * NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node's labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
+    * NodeSelector is a selector which must be true for the pod to fit on a node. Selector which must match a node\'s labels for the pod to be scheduled on that node. More info: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/
     */
     'nodeSelector'?: { [key: string]: string; };
     /**
@@ -102,7 +102,7 @@ export class V1PodSpec {
     */
     'priority'?: number;
     /**
-    * If specified, indicates the pod's priority. \"system-node-critical\" and \"system-cluster-critical\" are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.
+    * If specified, indicates the pod\'s priority. \"system-node-critical\" and \"system-cluster-critical\" are two special keywords which indicate the highest priorities with the former being the highest priority. Any other name must be defined by creating a PriorityClass object with that name. If not specified, the pod priority will be default or zero if there is no default.
     */
     'priorityClassName'?: string;
     /**
@@ -131,7 +131,7 @@ export class V1PodSpec {
     */
     'serviceAccountName'?: string;
     /**
-    * If true the pod's hostname will be configured as the pod's FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.
+    * If true the pod\'s hostname will be configured as the pod\'s FQDN, rather than the leaf name (the default). In Linux containers, this means setting the FQDN in the hostname field of the kernel (the nodename field of struct utsname). In Windows containers, this means setting the registry value of hostname for the registry key HKEY_LOCAL_MACHINE\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters to FQDN. If a pod does not have FQDN, this has no effect. Default to false.
     */
     'setHostnameAsFQDN'?: boolean;
     /**
@@ -147,7 +147,7 @@ export class V1PodSpec {
     */
     'terminationGracePeriodSeconds'?: number;
     /**
-    * If specified, the pod's tolerations.
+    * If specified, the pod\'s tolerations.
     */
     'tolerations'?: Array<V1Toleration>;
     /**

@@ -25,7 +25,7 @@ export class V1KeyToPath {
     */
     'mode'?: number;
     /**
-    * The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
+    * The relative path of the file to map the key to. May not be an absolute path. May not contain the path element \'..\'. May not start with the string \'..\'.
     */
     'path': string;
 

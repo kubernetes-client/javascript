@@ -23,7 +23,7 @@ export class V1SubjectAccessReviewSpec {
     */
     'extra'?: { [key: string]: Array<string>; };
     /**
-    * Groups is the groups you're testing for.
+    * Groups is the groups you\'re testing for.
     */
     'groups'?: Array<string>;
     'nonResourceAttributes'?: V1NonResourceAttributes;
@@ -33,7 +33,7 @@ export class V1SubjectAccessReviewSpec {
     */
     'uid'?: string;
     /**
-    * User is the user you're testing for. If you specify \"User\" but not \"Groups\", then is it interpreted as \"What if User were not a member of any groups
+    * User is the user you\'re testing for. If you specify \"User\" but not \"Groups\", then is it interpreted as \"What if User were not a member of any groups
     */
     'user'?: string;
 

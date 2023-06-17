@@ -15,7 +15,7 @@ import { V1NetworkPolicyPort } from '../models/V1NetworkPolicyPort';
 import { HttpFile } from '../http/http';
 
 /**
-* NetworkPolicyIngressRule describes a particular set of traffic that is allowed to the pods matched by a NetworkPolicySpec's podSelector. The traffic must match both ports and from.
+* NetworkPolicyIngressRule describes a particular set of traffic that is allowed to the pods matched by a NetworkPolicySpec\'s podSelector. The traffic must match both ports and from.
 */
 export class V1NetworkPolicyIngressRule {
     /**

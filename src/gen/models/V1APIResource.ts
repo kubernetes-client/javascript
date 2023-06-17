@@ -17,7 +17,7 @@ import { HttpFile } from '../http/http';
 */
 export class V1APIResource {
     /**
-    * categories is a list of the grouped resources this resource belongs to (e.g. 'all')
+    * categories is a list of the grouped resources this resource belongs to (e.g. \'all\')
     */
     'categories'?: Array<string>;
     /**
@@ -25,7 +25,7 @@ export class V1APIResource {
     */
     'group'?: string;
     /**
-    * kind is the kind for the resource (e.g. 'Foo' is the kind for a resource 'foo')
+    * kind is the kind for the resource (e.g. \'Foo\' is the kind for a resource \'foo\')
     */
     'kind': string;
     /**
@@ -53,7 +53,7 @@ export class V1APIResource {
     */
     'verbs': Array<string>;
     /**
-    * version is the preferred version of the resource.  Empty implies the version of the containing resource list For subresources, this may have a different value, for example: v1 (while inside a v1beta1 version of the core resource's group)\".
+    * version is the preferred version of the resource.  Empty implies the version of the containing resource list For subresources, this may have a different value, for example: v1 (while inside a v1beta1 version of the core resource\'s group)\".
     */
     'version'?: string;
 

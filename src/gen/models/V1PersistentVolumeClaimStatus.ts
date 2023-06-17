@@ -26,7 +26,7 @@ export class V1PersistentVolumeClaimStatus {
     */
     'capacity'?: { [key: string]: string; };
     /**
-    * Current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to 'ResizeStarted'.
+    * Current Condition of persistent volume claim. If underlying persistent volume is being resized then the Condition will be set to \'ResizeStarted\'.
     */
     'conditions'?: Array<V1PersistentVolumeClaimCondition>;
     /**

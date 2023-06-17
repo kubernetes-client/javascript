@@ -48,7 +48,7 @@ export class V1PersistentVolumeSpec {
     'azureDisk'?: V1AzureDiskVolumeSource;
     'azureFile'?: V1AzureFilePersistentVolumeSource;
     /**
-    * A description of the persistent volume's resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity
+    * A description of the persistent volume\'s resources and capacity. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes#capacity
     */
     'capacity'?: { [key: string]: string; };
     'cephfs'?: V1CephFSPersistentVolumeSource;

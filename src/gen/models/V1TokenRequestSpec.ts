@@ -23,7 +23,7 @@ export class V1TokenRequestSpec {
     'audiences': Array<string>;
     'boundObjectRef'?: V1BoundObjectReference;
     /**
-    * ExpirationSeconds is the requested duration of validity of the request. The token issuer may return a token with a different validity duration so a client needs to check the 'expiration' field in a response.
+    * ExpirationSeconds is the requested duration of validity of the request. The token issuer may return a token with a different validity duration so a client needs to check the \'expiration\' field in a response.
     */
     'expirationSeconds'?: number;
 

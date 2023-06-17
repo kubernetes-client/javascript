@@ -25,7 +25,7 @@ export class V2beta1HorizontalPodAutoscalerCondition {
     */
     'message'?: string;
     /**
-    * reason is the reason for the condition's last transition.
+    * reason is the reason for the condition\'s last transition.
     */
     'reason'?: string;
     /**

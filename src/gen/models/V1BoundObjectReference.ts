@@ -21,7 +21,7 @@ export class V1BoundObjectReference {
     */
     'apiVersion'?: string;
     /**
-    * Kind of the referent. Valid kinds are 'Pod' and 'Secret'.
+    * Kind of the referent. Valid kinds are \'Pod\' and \'Secret\'.
     */
     'kind'?: string;
     /**
