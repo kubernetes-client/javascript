@@ -33,7 +33,7 @@ export class V1ManagedFieldsEntry {
     */
     'manager'?: string;
     /**
-    * Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are 'Apply' and 'Update'.
+    * Operation is the type of operation which lead to this ManagedFieldsEntry being created. The only valid values for this field are \'Apply\' and \'Update\'.
     */
     'operation'?: string;
     /**
@@ -41,7 +41,7 @@ export class V1ManagedFieldsEntry {
     */
     'subresource'?: string;
     /**
-    * Time is timestamp of when these fields were set. It should always be empty if Operation is 'Apply'
+    * Time is timestamp of when these fields were set. It should always be empty if Operation is \'Apply\'
     */
     'time'?: Date;
 

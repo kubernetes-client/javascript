@@ -17,7 +17,7 @@ import { HttpFile } from '../http/http';
 */
 export class V1ScopedResourceSelectorRequirement {
     /**
-    * Represents a scope's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist.
+    * Represents a scope\'s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist.
     */
     'operator': string;
     /**

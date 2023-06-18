@@ -56,7 +56,7 @@ export class CoreV1Event {
     'message'?: string;
     'metadata': V1ObjectMeta;
     /**
-    * This should be a short, machine understandable string that gives the reason for the transition into the object's current status.
+    * This should be a short, machine understandable string that gives the reason for the transition into the object\'s current status.
     */
     'reason'?: string;
     'related'?: V1ObjectReference;

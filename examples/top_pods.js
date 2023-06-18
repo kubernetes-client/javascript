@@ -7,7 +7,9 @@ kc.loadFromDefault();
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 const metricsClient = new k8s.Metrics(kc);
 
-k8s.topPods(k8sApi, metricsClient, 'kube-system').then((pods) => {
+const namespace = 'kube-system';
+
+k8s.topPods(k8sApi, metricsClient, namespace).then((pods) => {
     const podsColumns = pods.map((pod) => {
         return {
             POD: pod.Pod.metadata?.name,
@@ -19,7 +21,7 @@ k8s.topPods(k8sApi, metricsClient, 'kube-system').then((pods) => {
     console.table(podsColumns);
 });
 
-k8s.topPods(k8sApi, metricsClient, 'kube-system').then((pods) => {
+k8s.topPods(k8sApi, metricsClient, namespace).then((pods) => {
     const podsAndContainersColumns = pods.flatMap((pod) => {
         return pod.Containers.map((containerUsage) => {
             return {

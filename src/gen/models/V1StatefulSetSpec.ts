@@ -33,7 +33,7 @@ export class V1StatefulSetSpec {
     */
     'replicas'?: number;
     /**
-    * revisionHistoryLimit is the maximum number of revisions that will be maintained in the StatefulSet's revision history. The revision history consists of all revisions not represented by a currently applied StatefulSetSpec version. The default value is 10.
+    * revisionHistoryLimit is the maximum number of revisions that will be maintained in the StatefulSet\'s revision history. The revision history consists of all revisions not represented by a currently applied StatefulSetSpec version. The default value is 10.
     */
     'revisionHistoryLimit'?: number;
     'selector': V1LabelSelector;

@@ -36,7 +36,7 @@ export class V1NodeSpec {
     */
     'providerID'?: string;
     /**
-    * If specified, the node's taints.
+    * If specified, the node\'s taints.
     */
     'taints'?: Array<V1Taint>;
     /**

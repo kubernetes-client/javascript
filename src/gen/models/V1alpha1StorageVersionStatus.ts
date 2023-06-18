@@ -23,7 +23,7 @@ export class V1alpha1StorageVersionStatus {
     */
     'commonEncodingVersion'?: string;
     /**
-    * The latest available observations of the storageVersion's state.
+    * The latest available observations of the storageVersion\'s state.
     */
     'conditions'?: Array<V1alpha1StorageVersionCondition>;
     /**

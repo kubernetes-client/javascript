@@ -29,11 +29,11 @@ export class V1PolicyRule {
     */
     'resourceNames'?: Array<string>;
     /**
-    * Resources is a list of resources this rule applies to. '*' represents all resources.
+    * Resources is a list of resources this rule applies to. \'*\' represents all resources.
     */
     'resources'?: Array<string>;
     /**
-    * Verbs is a list of Verbs that apply to ALL the ResourceKinds and AttributeRestrictions contained in this rule. '*' represents all verbs.
+    * Verbs is a list of Verbs that apply to ALL the ResourceKinds and AttributeRestrictions contained in this rule. \'*\' represents all verbs.
     */
     'verbs': Array<string>;
 

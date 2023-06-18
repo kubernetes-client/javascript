@@ -17,7 +17,7 @@ import { HttpFile } from '../http/http';
 */
 export class V1CustomResourceDefinitionNames {
     /**
-    * categories is a list of grouped resources this custom resource belongs to (e.g. 'all'). This is published in API discovery documents, and used by clients to support invocations like `kubectl get all`.
+    * categories is a list of grouped resources this custom resource belongs to (e.g. \'all\'). This is published in API discovery documents, and used by clients to support invocations like `kubectl get all`.
     */
     'categories'?: Array<string>;
     /**

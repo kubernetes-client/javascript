@@ -10,7 +10,7 @@ Method | HTTP request | Description
 # **getServiceAccountIssuerOpenIDConfiguration**
 > string getServiceAccountIssuerOpenIDConfiguration()
 
-get service account issuer OpenID configuration, also known as the 'OIDC discovery doc'
+get service account issuer OpenID configuration, also known as the \'OIDC discovery doc\'
 
 ### Example
 

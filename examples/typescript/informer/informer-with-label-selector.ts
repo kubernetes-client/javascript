@@ -7,11 +7,12 @@ kc.loadFromDefault();
 
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
+const namespace = 'default';
 const APP_LABEL_SELECTOR = 'app=foo';
 
 const listFn = () =>
     k8sApi.listNamespacedPod({
-        namespace: 'default',
+        namespace,
         labelSelector: APP_LABEL_SELECTOR,
     });
 
@@ -32,20 +33,20 @@ const createPod = async (name: string, app: string) => {
             containers: [appPodContainer],
         },
     } as k8s.V1Pod;
-    await k8sApi.createNamespacedPod({ namespace: 'default', body: appPod }).catch((e) => console.error(e));
+    await k8sApi.createNamespacedPod({ namespace, body: appPod }).catch((e) => console.error(e));
     console.log('create', name);
 };
 
 const deletePod = async (podName: string, podNamespace: string) => {
     await k8sApi.deleteNamespacedPod({ name: podName, namespace: podNamespace });
-    console.log('delete', name);
+    console.log('delete', podName);
 };
 
 const delay = (ms: number) => {
     return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
-const informer = k8s.makeInformer(kc, '/api/v1/namespaces/default/pods', listFn, APP_LABEL_SELECTOR);
+const informer = k8s.makeInformer(kc, `/api/v1/namespaces/${namespace}/pods`, listFn, APP_LABEL_SELECTOR);
 
 informer.on('add', (obj: k8s.V1Pod) => {
     console.log(`Added: ${obj.metadata!.name}`);
@@ -70,7 +71,7 @@ informer.start().then(() => {
         await delay(5000);
         await createPod('server-bar', 'bar');
         await delay(5000);
-        await deletePod('server-foo', 'default');
-        await deletePod('server-bar', 'default');
+        await deletePod('server-foo', namespace);
+        await deletePod('server-bar', namespace);
     }, 5000);
 });

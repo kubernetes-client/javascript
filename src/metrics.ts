@@ -1,6 +1,7 @@
 import fetch from 'node-fetch';
 import { KubeConfig } from './config';
 import { ApiException, V1Status } from './gen';
+import { normalizeResponseHeaders } from './util';
 
 export interface Usage {
     cpu: string;
@@ -104,7 +105,7 @@ export class Metrics {
                             v1code,
                             v1message,
                             v1status,
-                            response.headers.raw(),
+                            normalizeResponseHeaders(response),
                         );
                     }
                 }
@@ -112,7 +113,7 @@ export class Metrics {
                     status,
                     'Error occurred in metrics request',
                     undefined,
-                    response.headers.raw(),
+                    normalizeResponseHeaders(response),
                 );
             })
             .catch((e) => {

@@ -16,7 +16,7 @@ import { V1beta1PriorityLevelConfigurationReference } from '../models/V1beta1Pri
 import { HttpFile } from '../http/http';
 
 /**
-* FlowSchemaSpec describes how the FlowSchema's specification looks like.
+* FlowSchemaSpec describes how the FlowSchema\'s specification looks like.
 */
 export class V1beta1FlowSchemaSpec {
     'distinguisherMethod'?: V1beta1FlowDistinguisherMethod;

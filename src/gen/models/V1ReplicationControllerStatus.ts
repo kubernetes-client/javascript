@@ -22,7 +22,7 @@ export class V1ReplicationControllerStatus {
     */
     'availableReplicas'?: number;
     /**
-    * Represents the latest available observations of a replication controller's current state.
+    * Represents the latest available observations of a replication controller\'s current state.
     */
     'conditions'?: Array<V1ReplicationControllerCondition>;
     /**

@@ -6,8 +6,10 @@ kc.loadFromDefault();
 
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
+const namespace = 'default';
+
 k8sApi
-    .listNamespacedPod({ namespace: 'default' })
+    .listNamespacedPod({ namespace })
     .then((res) => {
         console.log(res);
     })

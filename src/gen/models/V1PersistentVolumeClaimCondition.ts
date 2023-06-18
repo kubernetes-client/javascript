@@ -29,7 +29,7 @@ export class V1PersistentVolumeClaimCondition {
     */
     'message'?: string;
     /**
-    * Unique, this should be a short, machine understandable string that gives the reason for condition's last transition. If it reports \"ResizeStarted\" that means the underlying persistent volume is being resized.
+    * Unique, this should be a short, machine understandable string that gives the reason for condition\'s last transition. If it reports \"ResizeStarted\" that means the underlying persistent volume is being resized.
     */
     'reason'?: string;
     'status': string;

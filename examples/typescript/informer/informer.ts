@@ -9,9 +9,11 @@ kc.loadFromDefault();
 
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
-const listFn = () => k8sApi.listNamespacedPod({ namespace: 'default' });
+const namespace = 'default';
 
-const informer = k8s.makeInformer(kc, '/api/v1/namespaces/default/pods', listFn);
+const listFn = () => k8sApi.listNamespacedPod({ namespace });
+
+const informer = k8s.makeInformer(kc, `/api/v1/namespaces/${namespace}/pods`, listFn);
 
 informer.on('add', (obj: k8s.V1Pod) => {
     console.log(`Added: ${obj.metadata!.name}`);

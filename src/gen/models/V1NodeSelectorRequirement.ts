@@ -21,7 +21,7 @@ export class V1NodeSelectorRequirement {
     */
     'key': string;
     /**
-    * Represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
+    * Represents a key\'s relationship to a set of values. Valid operators are In, NotIn, Exists, DoesNotExist. Gt, and Lt.
     */
     'operator': string;
     /**

@@ -17,7 +17,7 @@ import { HttpFile } from '../http/http';
 */
 export class V1ContainerStateTerminated {
     /**
-    * Container's ID in the format 'docker://<container_id>'
+    * Container\'s ID in the format \'docker://<container_id>\'
     */
     'containerID'?: string;
     /**

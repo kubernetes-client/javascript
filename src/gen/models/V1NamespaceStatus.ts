@@ -18,7 +18,7 @@ import { HttpFile } from '../http/http';
 */
 export class V1NamespaceStatus {
     /**
-    * Represents the latest available observations of a namespace's current state.
+    * Represents the latest available observations of a namespace\'s current state.
     */
     'conditions'?: Array<V1NamespaceCondition>;
     /**

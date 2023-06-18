@@ -26,7 +26,7 @@ export class V1DeploymentStatus {
     */
     'collisionCount'?: number;
     /**
-    * Represents the latest available observations of a deployment's current state.
+    * Represents the latest available observations of a deployment\'s current state.
     */
     'conditions'?: Array<V1DeploymentCondition>;
     /**

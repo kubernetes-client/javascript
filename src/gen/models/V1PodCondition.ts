@@ -29,7 +29,7 @@ export class V1PodCondition {
     */
     'message'?: string;
     /**
-    * Unique, one-word, CamelCase reason for the condition's last transition.
+    * Unique, one-word, CamelCase reason for the condition\'s last transition.
     */
     'reason'?: string;
     /**

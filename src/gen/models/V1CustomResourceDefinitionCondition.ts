@@ -25,7 +25,7 @@ export class V1CustomResourceDefinitionCondition {
     */
     'message'?: string;
     /**
-    * reason is a unique, one-word, CamelCase reason for the condition's last transition.
+    * reason is a unique, one-word, CamelCase reason for the condition\'s last transition.
     */
     'reason'?: string;
     /**

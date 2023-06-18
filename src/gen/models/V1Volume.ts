@@ -64,7 +64,7 @@ export class V1Volume {
     'hostPath'?: V1HostPathVolumeSource;
     'iscsi'?: V1ISCSIVolumeSource;
     /**
-    * Volume's name. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+    * Volume\'s name. Must be a DNS_LABEL and unique within the pod. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
     */
     'name': string;
     'nfs'?: V1NFSVolumeSource;

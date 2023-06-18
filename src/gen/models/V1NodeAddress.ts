@@ -13,7 +13,7 @@
 import { HttpFile } from '../http/http';
 
 /**
-* NodeAddress contains information for the node's address.
+* NodeAddress contains information for the node\'s address.
 */
 export class V1NodeAddress {
     /**

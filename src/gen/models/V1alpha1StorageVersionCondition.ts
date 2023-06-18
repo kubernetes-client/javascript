@@ -29,7 +29,7 @@ export class V1alpha1StorageVersionCondition {
     */
     'observedGeneration'?: number;
     /**
-    * The reason for the condition's last transition.
+    * The reason for the condition\'s last transition.
     */
     'reason': string;
     /**

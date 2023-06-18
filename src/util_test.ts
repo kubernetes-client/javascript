@@ -1,6 +1,14 @@
-import { expect } from 'chai';
+import { expect, assert } from 'chai';
+import { Response } from 'node-fetch';
 import { CoreV1Api, V1Container, V1Pod } from './api';
-import { findSuffix, podsForNode, quantityToScalar, totalCPU, totalMemory } from './util';
+import {
+    normalizeResponseHeaders,
+    findSuffix,
+    podsForNode,
+    quantityToScalar,
+    totalCPU,
+    totalMemory,
+} from './util';
 
 describe('Utils', () => {
     it('should get zero pods for a node', async () => {
@@ -125,5 +133,13 @@ describe('Utils', () => {
         expect(findSuffix('1234567')).to.equal('');
         expect(findSuffix('1234asdf')).to.equal('asdf');
         expect(findSuffix('1.0')).to.equal('');
+    });
+
+    it('shoult extract the headers for ApiException correctly', () => {
+        const response = new Response();
+        response.headers.set('foo', 'bar');
+        response.headers.set('baz', 'k8s');
+
+        assert.deepEqual(normalizeResponseHeaders(response), { foo: 'bar', baz: 'k8s' });
     });
 });

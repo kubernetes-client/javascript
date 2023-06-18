@@ -15,7 +15,7 @@ import { V1StatusDetails } from '../models/V1StatusDetails';
 import { HttpFile } from '../http/http';
 
 /**
-* Status is a return value for calls that don't return other objects.
+* Status is a return value for calls that don\'t return other objects.
 */
 export class V1Status {
     /**

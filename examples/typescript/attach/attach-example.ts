@@ -1,8 +1,13 @@
-import k8s = require('@kubernetes/client-node');
+// in a real program use require('@kubernetes/client-node')
+import * as k8s from '../../../dist';
 
 const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
 
 const attach = new k8s.Attach(kc);
-attach.attach('default', 'nginx-4217019353-9gl4s', 'nginx',
-    process.stdout, process.stderr, null /* stdin */, false /* tty */);
+
+const namespace = 'default';
+const pod = 'nginx-4217019353-9gl4s';
+const container = 'nginx';
+
+attach.attach(namespace, pod, container, process.stdout, process.stderr, null /* stdin */, false /* tty */);

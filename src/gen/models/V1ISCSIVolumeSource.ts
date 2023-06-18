@@ -38,7 +38,7 @@ export class V1ISCSIVolumeSource {
     */
     'iqn': string;
     /**
-    * iSCSI Interface Name that uses an iSCSI transport. Defaults to 'default' (tcp).
+    * iSCSI Interface Name that uses an iSCSI transport. Defaults to \'default\' (tcp).
     */
     'iscsiInterface'?: string;
     /**

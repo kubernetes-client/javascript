@@ -21,7 +21,7 @@ export class V1LabelSelectorRequirement {
     */
     'key': string;
     /**
-    * operator represents a key's relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
+    * operator represents a key\'s relationship to a set of values. Valid operators are In, NotIn, Exists and DoesNotExist.
     */
     'operator': string;
     /**

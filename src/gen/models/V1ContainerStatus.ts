@@ -18,7 +18,7 @@ import { HttpFile } from '../http/http';
 */
 export class V1ContainerStatus {
     /**
-    * Container's ID in the format 'docker://<container_id>'.
+    * Container\'s ID in the format \'docker://<container_id>\'.
     */
     'containerID'?: string;
     /**
@@ -26,7 +26,7 @@ export class V1ContainerStatus {
     */
     'image': string;
     /**
-    * ImageID of the container's image.
+    * ImageID of the container\'s image.
     */
     'imageID': string;
     'lastState'?: V1ContainerState;

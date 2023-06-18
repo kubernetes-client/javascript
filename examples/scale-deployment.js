@@ -10,15 +10,15 @@ const targetNamespaceName = 'default';
 const targetDeploymentName = 'docker-test-deployment';
 const numberOfTargetReplicas = 3;
 
-async function scale(deploymentNamespace, deploymentName, replicas) {
+async function scale(namespace, name, replicas) {
     // find the particular deployment
     const deployment = await k8sApi.readNamespacedDeployment({
-        name: deploymentName,
-        namespace: deploymentNamespace,
+        name,
+        namespace,
     });
 
     if (!deployment || !deployment.spec) {
-        throw new Error(`Deployment ${deploymentName} not found in namespace ${deploymentNamespace}`);
+        throw new Error(`Deployment ${name} not found in namespace ${namespace}`);
     }
     // edit
     const newDeployment = {
@@ -31,8 +31,8 @@ async function scale(deploymentNamespace, deploymentName, replicas) {
 
     // replace
     await k8sApi.replaceNamespacedDeployment({
-        name: deploymentName,
-        namespace: deploymentNamespace,
+        name,
+        namespace,
         body: newDeployment,
     });
 }

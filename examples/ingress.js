@@ -5,11 +5,13 @@ const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
 
 const k8sApi = kc.makeApiClient(k8s.NetworkingV1Api);
+
+const namespace = 'default';
 const clientIdentifier = 'my-subdomain';
 
 k8sApi
     .createNamespacedIngress({
-        namespace: 'default',
+        namespace,
         body: {
             apiVersion: 'networking.k8s.io/v1',
             kind: 'Ingress',

@@ -1,6 +1,8 @@
 // in a real program use require('@kubernetes/client-node')
 const k8s = require('../dist/index');
 
+const namespace = 'default';
+
 const kc = new k8s.KubeConfig();
 kc.loadFromCluster();
 
@@ -20,11 +22,11 @@ metadata.annotations = {
 job.metadata = metadata;
 
 batchV1beta1Api
-    .readNamespacedCronJob({ name: cronJobName, namespace: 'default' })
+    .readNamespacedCronJob({ name: cronJobName, namespace })
     .then((cronJobRes) => {
         job.spec = cronJobRes?.spec?.jobTemplate.spec;
         batchV1Api
-            .createNamespacedJob({ namespace: 'default', body: job })
+            .createNamespacedJob({ namespace, body: job })
             .then((res) => {
                 console.log(res);
             })

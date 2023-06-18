@@ -13,7 +13,7 @@
 import { HttpFile } from '../http/http';
 
 /**
-* UncountedTerminatedPods holds UIDs of Pods that have terminated but haven't been accounted in Job status counters.
+* UncountedTerminatedPods holds UIDs of Pods that have terminated but haven\'t been accounted in Job status counters.
 */
 export class V1UncountedTerminatedPods {
     /**

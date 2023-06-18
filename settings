@@ -15,7 +15,7 @@
 # limitations under the License.
 
 # kubernetes-client/gen commit to use for code generation.
-export GEN_COMMIT=c557f7f
+export GEN_COMMIT=d2dd5e9f6f9c372a5220ab812146c2650c4d5367
 
 # GitHub username/organization to clone kubernetes repo from.
 export USERNAME=kubernetes
@@ -30,5 +30,4 @@ export CLIENT_VERSION="0.8-SNAPSHOT"
 # Name of the release package
 export PACKAGE_NAME="@kubernetes/node-client"
 
-export OPENAPI_GENERATOR_COMMIT=5e7d31a83b60cde3466f5f22addf3ce6245092db
-
+export OPENAPI_GENERATOR_COMMIT=5555137b7926de2f501e091718ff72429b808220

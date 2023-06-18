@@ -25,7 +25,7 @@ export class V1ReplicationControllerCondition {
     */
     'message'?: string;
     /**
-    * The reason for the condition's last transition.
+    * The reason for the condition\'s last transition.
     */
     'reason'?: string;
     /**

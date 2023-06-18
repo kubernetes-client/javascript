@@ -25,7 +25,7 @@ export class V1APIServiceCondition {
     */
     'message'?: string;
     /**
-    * Unique, one-word, CamelCase reason for the condition's last transition.
+    * Unique, one-word, CamelCase reason for the condition\'s last transition.
     */
     'reason'?: string;
     /**
