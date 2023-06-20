@@ -102,7 +102,7 @@ describe('Attach', () => {
             await callAwaiter.awaitCall('send');
             verify(
                 fakeWebSocket.send(
-                    matchBuffer(WebSocketHandler.ResizeStream, JSON.stringify(initialTerminalSize)),
+                    matchBuffer(WebSocketHandler.ResizeStream, JSON.stringify(initialTerminalSize)) as any,
                 ),
             ).called();
 
@@ -110,7 +110,7 @@ describe('Attach', () => {
             const inputPromise = callAwaiter.awaitCall('send');
             isStream.put(msg);
             await inputPromise;
-            verify(fakeWebSocket.send(matchBuffer(WebSocketHandler.StdinStream, msg))).called();
+            verify(fakeWebSocket.send(matchBuffer(WebSocketHandler.StdinStream, msg) as any)).called();
 
             const terminalSize: TerminalSize = { height: 80, width: 120 };
             const resizePromise = callAwaiter.awaitCall('send');
@@ -119,7 +119,9 @@ describe('Attach', () => {
             osStream.emit('resize');
             await resizePromise;
             verify(
-                fakeWebSocket.send(matchBuffer(WebSocketHandler.ResizeStream, JSON.stringify(terminalSize))),
+                fakeWebSocket.send(
+                    matchBuffer(WebSocketHandler.ResizeStream, JSON.stringify(terminalSize)) as any,
+                ),
             ).called();
 
             const closePromise = callAwaiter.awaitCall('close');
