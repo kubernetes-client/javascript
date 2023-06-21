@@ -1,7 +1,7 @@
-import AbortController from 'abort-controller';
 import byline = require('byline');
 import { RequestOptions } from 'https';
 import fetch from 'node-fetch';
+import { AbortSignal } from 'node-fetch/externals';
 import { URL } from 'url';
 import { KubeConfig } from './config';
 
@@ -25,9 +25,6 @@ export class Watch {
         callback: (phase: string, apiObj: any, watchObj?: any) => void,
         done: (err: any) => void,
     ): Promise<AbortController> {
-        const AbortControllerCtor =
-            globalThis.AbortController || (await import('abort-controller')).AbortController;
-
         const cluster = this.config.getCurrentCluster();
         if (!cluster) {
             throw new Error('No currently active cluster');
@@ -43,8 +40,8 @@ export class Watch {
 
         const requestInit = await this.config.applyToFetchOptions({});
 
-        const controller = new AbortControllerCtor();
-        requestInit.signal = controller.signal;
+        const controller = new AbortController();
+        requestInit.signal = controller.signal as AbortSignal;
         requestInit.method = 'GET';
 
         let doneCalled: boolean = false;

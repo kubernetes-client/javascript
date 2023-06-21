@@ -13,7 +13,6 @@ import { ListPromise } from './informer';
 
 use(chaiAsPromised);
 
-import AbortController from 'abort-controller';
 import nock = require('nock');
 import { Watch } from './watch';
 
