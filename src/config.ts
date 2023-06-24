@@ -34,6 +34,7 @@ import {
     ServerConfiguration,
 } from './gen';
 import { OpenIDConnectAuth } from './oidc_auth';
+import WebSocket = require('isomorphic-ws');
 
 const SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
 const SERVICEACCOUNT_CA_PATH: string = SERVICEACCOUNT_ROOT + '/ca.crt';
@@ -170,13 +171,16 @@ export class KubeConfig implements SecurityAuthentication {
         };
     }
 
-    public async applyToHTTPSOptions(opts: https.RequestOptions): Promise<void> {
+    public async applyToHTTPSOptions(opts: https.RequestOptions | WebSocket.ClientOptions): Promise<void> {
         const user = this.getCurrentUser();
 
         await this.applyOptions(opts);
 
         if (user && user.username) {
-            opts.auth = `${user.username}:${user.password}`;
+            // The ws docs say that it accepts anything that https.RequestOptions accepts,
+            // but Typescript doesn't understand that idea (yet) probably could be fixed in
+            // the typings, but for now just cast to any
+            (opts as any).auth = `${user.username}:${user.password}`;
         }
 
         const agentOptions: https.AgentOptions = {};
@@ -188,8 +192,11 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions.pfx = opts.pfx;
         agentOptions.passphrase = opts.passphrase;
         agentOptions.rejectUnauthorized = opts.rejectUnauthorized;
-        agentOptions.timeout = opts.timeout;
-        agentOptions.servername = opts.servername;
+        // The ws docs say that it accepts anything that https.RequestOptions accepts,
+        // but Typescript doesn't understand that idea (yet) probably could be fixed in
+        // the typings, but for now just cast to any
+        agentOptions.timeout = (opts as any).timeout;
+        agentOptions.servername = (opts as any).servername;
         agentOptions.ciphers = opts.ciphers;
         agentOptions.honorCipherOrder = opts.honorCipherOrder;
         agentOptions.ecdhCurve = opts.ecdhCurve;
@@ -493,7 +500,7 @@ export class KubeConfig implements SecurityAuthentication {
         return this.getContextObject(this.currentContext);
     }
 
-    private applyHTTPSOptions(opts: https.RequestOptions): void {
+    private applyHTTPSOptions(opts: https.RequestOptions | WebSocket.ClientOptions): void {
         const cluster = this.getCurrentCluster();
         const user = this.getCurrentUser();
         if (!user) {
@@ -517,7 +524,9 @@ export class KubeConfig implements SecurityAuthentication {
         }
     }
 
-    private async applyAuthorizationHeader(opts: https.RequestOptions): Promise<void> {
+    private async applyAuthorizationHeader(
+        opts: https.RequestOptions | WebSocket.ClientOptions,
+    ): Promise<void> {
         const user = this.getCurrentUser();
         if (!user) {
             return;
@@ -538,7 +547,7 @@ export class KubeConfig implements SecurityAuthentication {
         }
     }
 
-    private async applyOptions(opts: https.RequestOptions): Promise<void> {
+    private async applyOptions(opts: https.RequestOptions | WebSocket.ClientOptions): Promise<void> {
         this.applyHTTPSOptions(opts);
         await this.applyAuthorizationHeader(opts);
     }

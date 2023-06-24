@@ -1,11 +1,12 @@
-import AbortController from 'abort-controller';
 import fetch from 'node-fetch';
+import { AbortSignal } from 'node-fetch/externals';
 import { Writable } from 'stream';
 import { URL, URLSearchParams } from 'url';
 import { ApiException } from './api';
 import { KubeConfig } from './config';
 import { V1Status } from './gen';
 import { normalizeResponseHeaders } from './util';
+
 export interface LogOptions {
     /**
      * Follow the log stream of the pod. Defaults to false.
@@ -101,8 +102,6 @@ export class Log {
         doneOrOptions?: ((err: any) => void) | LogOptions,
         options?: LogOptions,
     ): Promise<AbortController> {
-        const AbortControllerCtor = globalThis.AbortController || (await import('abort-controller'));
-
         if (typeof doneOrOptions !== 'function') {
             options = doneOrOptions;
         }
@@ -122,8 +121,8 @@ export class Log {
 
         const requestInit = await this.config.applyToFetchOptions({});
 
-        const controller = new AbortControllerCtor();
-        requestInit.signal = controller.signal;
+        const controller = new AbortController();
+        requestInit.signal = controller.signal as AbortSignal;
         requestInit.method = 'GET';
 
         await fetch(requestURL.toString(), requestInit)
