@@ -1,11 +1,8 @@
-import execa = require('execa');
 import fs = require('fs');
 import https = require('https');
 import yaml = require('js-yaml');
 import net = require('net');
 import path = require('path');
-
-import shelljs = require('shelljs');
 
 import { Headers, RequestInit } from 'node-fetch';
 import * as api from './api';
@@ -35,6 +32,7 @@ import {
 } from './gen';
 import { OpenIDConnectAuth } from './oidc_auth';
 import WebSocket = require('isomorphic-ws');
+import child_process = require('child_process');
 
 const SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
 const SERVICEACCOUNT_CA_PATH: string = SERVICEACCOUNT_ROOT + '/ca.crt';
@@ -408,17 +406,20 @@ export class KubeConfig implements SecurityAuthentication {
                 return;
             }
         }
-        if (process.platform === 'win32' && shelljs.which('wsl.exe')) {
+        if (process.platform === 'win32') {
             try {
-                const envKubeconfigPathResult = execa.sync('wsl.exe', ['bash', '-ic', 'printenv KUBECONFIG']);
-                if (envKubeconfigPathResult.exitCode === 0 && envKubeconfigPathResult.stdout.length > 0) {
-                    const result = execa.sync('wsl.exe', ['cat', envKubeconfigPathResult.stdout]);
-                    if (result.exitCode === 0) {
-                        this.loadFromString(result.stdout, opts);
-                        return;
-                    }
-                    if (result.exitCode === 0) {
-                        this.loadFromString(result.stdout, opts);
+                const envKubeconfigPathResult = child_process.spawnSync('wsl.exe', [
+                    'bash',
+                    '-c',
+                    'printenv KUBECONFIG',
+                ]);
+                if (envKubeconfigPathResult.status === 0 && envKubeconfigPathResult.stdout.length > 0) {
+                    const result = child_process.spawnSync('wsl.exe', [
+                        'cat',
+                        envKubeconfigPathResult.stdout.toString('utf8'),
+                    ]);
+                    if (result.status === 0) {
+                        this.loadFromString(result.stdout.toString('utf8'), opts);
                         return;
                     }
                 }
@@ -426,9 +427,13 @@ export class KubeConfig implements SecurityAuthentication {
                 // Falling back to default kubeconfig
             }
             try {
-                const result = execa.sync('wsl.exe', ['cat', '~/.kube/config']);
-                if (result.exitCode === 0) {
-                    this.loadFromString(result.stdout, opts);
+                const configResult = child_process.spawnSync('wsl.exe', ['cat', '~/.kube/config']);
+                if (configResult.status === 0) {
+                    this.loadFromString(configResult.stdout.toString('utf8'), opts);
+                    const result = child_process.spawnSync('wsl.exe', ['wslpath', '-w', '~/.kube']);
+                    if (result.status === 0) {
+                        this.makePathsAbsolute(result.stdout.toString('utf8'));
+                    }
                     return;
                 }
             } catch (err) {

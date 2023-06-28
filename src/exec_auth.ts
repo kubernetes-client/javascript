@@ -1,9 +1,10 @@
-import execa = require('execa');
 import { OutgoingHttpHeaders } from 'http';
 import https = require('https');
 
 import { Authenticator } from './auth';
 import { User } from './config_types';
+
+import child_process = require('child_process');
 
 export interface CredentialStatus {
     readonly token: string;
@@ -18,8 +19,11 @@ export interface Credential {
 
 export class ExecAuth implements Authenticator {
     private readonly tokenCache: { [key: string]: Credential | null } = {};
-    private execFn: (cmd: string, args: string[], opts: execa.SyncOptions) => execa.ExecaSyncReturnValue =
-        execa.sync;
+    private execFn: (
+        cmd: string,
+        args: string[],
+        opts: child_process.SpawnOptions,
+    ) => child_process.SpawnSyncReturns<Buffer> = child_process.spawnSync;
 
     public isAuthProvider(user: User): boolean {
         if (!user) {
@@ -96,11 +100,11 @@ export class ExecAuth implements Authenticator {
             opts = { ...opts, env };
         }
         const result = this.execFn(exec.command, exec.args, opts);
-        if (result.exitCode === 0) {
-            const obj = JSON.parse(result.stdout) as Credential;
+        if (result.status === 0) {
+            const obj = JSON.parse(result.stdout.toString('utf8')) as Credential;
             this.tokenCache[user.name] = obj;
             return obj;
         }
-        throw new Error(result.stderr);
+        throw new Error(result.stderr.toString('utf8'));
     }
 }
