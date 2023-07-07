@@ -1,5 +1,4 @@
 import * as fs from 'fs';
-import * as _ from 'underscore';
 
 export enum ActionOnInvalid {
     THROW = 'throw',
@@ -28,7 +27,7 @@ export interface Cluster {
 export function newClusters(a: any, opts?: Partial<ConfigOptions>): Cluster[] {
     const options = Object.assign(defaultNewConfigOptions(), opts || {});
 
-    return _.compact(_.map(a, clusterIterator(options.onInvalidEntry)));
+    return a.map(clusterIterator(options.onInvalidEntry)).filter(Boolean) as Cluster[];
 }
 
 export function exportCluster(cluster: Cluster): any {
@@ -44,8 +43,8 @@ export function exportCluster(cluster: Cluster): any {
     };
 }
 
-function clusterIterator(onInvalidEntry: ActionOnInvalid): _.ListIterator<any, Cluster | null> {
-    return (elt: any, i: number, list: _.List<any>): Cluster | null => {
+function clusterIterator(onInvalidEntry: ActionOnInvalid): ((elt: any, i: number, list: any[]) => Cluster | null) {
+    return (elt: any, i: number, list: any[]): Cluster | null => {
         try {
             if (!elt.name) {
                 throw new Error(`clusters[${i}].name is missing`);
@@ -92,7 +91,7 @@ export interface User {
 export function newUsers(a: any, opts?: Partial<ConfigOptions>): User[] {
     const options = Object.assign(defaultNewConfigOptions(), opts || {});
 
-    return _.compact(_.map(a, userIterator(options.onInvalidEntry)));
+    return a.map(userIterator(options.onInvalidEntry)).filter(Boolean)
 }
 
 export function exportUser(user: User): any {
@@ -112,8 +111,8 @@ export function exportUser(user: User): any {
     };
 }
 
-function userIterator(onInvalidEntry: ActionOnInvalid): _.ListIterator<any, User | null> {
-    return (elt: any, i: number, list: _.List<any>): User | null => {
+function userIterator(onInvalidEntry: ActionOnInvalid): ((elt: any, i: number, list: any[]) => User | null) {
+    return (elt: any, i: number, list: any[]): User | null => {
         try {
             if (!elt.name) {
                 throw new Error(`users[${i}].name is missing`);
@@ -163,7 +162,7 @@ export interface Context {
 export function newContexts(a: any, opts?: Partial<ConfigOptions>): Context[] {
     const options = Object.assign(defaultNewConfigOptions(), opts || {});
 
-    return _.compact(_.map(a, contextIterator(options.onInvalidEntry)));
+    return a.map(contextIterator(options.onInvalidEntry)).filter(Boolean)
 }
 
 export function exportContext(ctx: Context): any {
@@ -173,8 +172,8 @@ export function exportContext(ctx: Context): any {
     };
 }
 
-function contextIterator(onInvalidEntry: ActionOnInvalid): _.ListIterator<any, Context | null> {
-    return (elt: any, i: number, list: _.List<any>): Context | null => {
+function contextIterator(onInvalidEntry: ActionOnInvalid): ((elt: any, i: number, list: any[]) => Context | null) {
+    return (elt: any, i: number, list: any[]): Context | null => {
         try {
             if (!elt.name) {
                 throw new Error(`contexts[${i}].name is missing`);
