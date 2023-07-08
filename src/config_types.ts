@@ -25,6 +25,10 @@ export interface Cluster {
 }
 
 export function newClusters(a: any, opts?: Partial<ConfigOptions>): Cluster[] {
+    if(!Array.isArray(a)) {
+        return []
+    }
+
     const options = Object.assign(defaultNewConfigOptions(), opts || {});
 
     return a.map(clusterIterator(options.onInvalidEntry)).filter(Boolean) as Cluster[];
@@ -89,9 +93,13 @@ export interface User {
 }
 
 export function newUsers(a: any, opts?: Partial<ConfigOptions>): User[] {
+    if(!Array.isArray(a)) {
+        return []
+    }
+
     const options = Object.assign(defaultNewConfigOptions(), opts || {});
 
-    return a.map(userIterator(options.onInvalidEntry)).filter(Boolean)
+    return a.map(userIterator(options.onInvalidEntry)).filter(Boolean) as User[];
 }
 
 export function exportUser(user: User): any {
@@ -160,9 +168,13 @@ export interface Context {
 }
 
 export function newContexts(a: any, opts?: Partial<ConfigOptions>): Context[] {
+    if(!Array.isArray(a)) {
+        return []
+    }
+
     const options = Object.assign(defaultNewConfigOptions(), opts || {});
 
-    return a.map(contextIterator(options.onInvalidEntry)).filter(Boolean)
+    return a.map(contextIterator(options.onInvalidEntry)).filter(Boolean) as Context[];
 }
 
 export function exportContext(ctx: Context): any {
