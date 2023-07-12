@@ -25,8 +25,8 @@ export interface Cluster {
 }
 
 export function newClusters(a: any, opts?: Partial<ConfigOptions>): Cluster[] {
-    if(!Array.isArray(a)) {
-        return []
+    if (!Array.isArray(a)) {
+        return [];
     }
 
     const options = Object.assign(defaultNewConfigOptions(), opts || {});
@@ -47,7 +47,9 @@ export function exportCluster(cluster: Cluster): any {
     };
 }
 
-function clusterIterator(onInvalidEntry: ActionOnInvalid): ((elt: any, i: number, list: any[]) => Cluster | null) {
+function clusterIterator(
+    onInvalidEntry: ActionOnInvalid,
+): (elt: any, i: number, list: any[]) => Cluster | null {
     return (elt: any, i: number, list: any[]): Cluster | null => {
         try {
             if (!elt.name) {
@@ -93,8 +95,8 @@ export interface User {
 }
 
 export function newUsers(a: any, opts?: Partial<ConfigOptions>): User[] {
-    if(!Array.isArray(a)) {
-        return []
+    if (!Array.isArray(a)) {
+        return [];
     }
 
     const options = Object.assign(defaultNewConfigOptions(), opts || {});
@@ -119,7 +121,7 @@ export function exportUser(user: User): any {
     };
 }
 
-function userIterator(onInvalidEntry: ActionOnInvalid): ((elt: any, i: number, list: any[]) => User | null) {
+function userIterator(onInvalidEntry: ActionOnInvalid): (elt: any, i: number, list: any[]) => User | null {
     return (elt: any, i: number, list: any[]): User | null => {
         try {
             if (!elt.name) {
@@ -168,8 +170,8 @@ export interface Context {
 }
 
 export function newContexts(a: any, opts?: Partial<ConfigOptions>): Context[] {
-    if(!Array.isArray(a)) {
-        return []
+    if (!Array.isArray(a)) {
+        return [];
     }
 
     const options = Object.assign(defaultNewConfigOptions(), opts || {});
@@ -184,7 +186,9 @@ export function exportContext(ctx: Context): any {
     };
 }
 
-function contextIterator(onInvalidEntry: ActionOnInvalid): ((elt: any, i: number, list: any[]) => Context | null) {
+function contextIterator(
+    onInvalidEntry: ActionOnInvalid,
+): (elt: any, i: number, list: any[]) => Context | null {
     return (elt: any, i: number, list: any[]): Context | null => {
         try {
             if (!elt.name) {
