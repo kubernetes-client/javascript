@@ -1,4 +1,3 @@
-import { isNumber } from 'underscore';
 import { CoreV1Api, V1Container, V1Pod } from './gen/api';
 
 export async function podsForNode(api: CoreV1Api, nodeName: string): Promise<V1Pod[]> {
@@ -107,15 +106,15 @@ export function totalMemory(pod: V1Pod): ResourceStatus {
 }
 
 export function add(n1: number | bigint, n2: number | bigint): number | bigint {
-    if (isNumber(n1) && isNumber(n2)) {
+    if (typeof n1 === 'number' && typeof n2 === 'number') {
         return n1 + n2;
     }
-    if (isNumber(n1)) {
-        return BigInt(Math.round(n1)) + (n2 as bigint);
-    } else if (isNumber(n2)) {
-        return (n1 as bigint) + BigInt(Math.round(n2));
+    if (typeof n1 === 'number') {
+        return BigInt(Math.round(n1)) + BigInt(n2);
+    } else if (typeof n2 === 'number') {
+        return BigInt(n1) + BigInt(Math.round(n2));
     }
-    return ((n1 as bigint) + n2) as bigint;
+    return BigInt(n1) + BigInt(n2);
 }
 
 export function containerTotalForResource(container: V1Container, resource: string): ResourceStatus {

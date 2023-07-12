@@ -68,7 +68,6 @@
     "tar": "^6.1.11",
     "tmp-promise": "^3.0.2",
     "tslib": "^2.4.1",
-    "underscore": "^1.13.6",
     "ws": "^8.11.0"
   },
   "devDependencies": {
@@ -79,7 +78,6 @@
     "@types/mock-fs": "^4.13.1",
     "@types/stream-buffers": "^3.0.3",
     "@types/tar": "^6.1.3",
-    "@types/underscore": "^1.11.4",
     "chai": "^4.2.0",
     "chai-as-promised": "^7.1.1",
     "husky": "^8.0.3",
