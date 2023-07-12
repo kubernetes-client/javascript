@@ -1,7 +1,6 @@
 import * as k8s from '@kubernetes/client-node';
-import * as fs from 'fs';
 import * as yaml from 'js-yaml';
-import { promisify } from 'util';
+import { promises as fs } from 'fs';
 
 /**
  * Replicate the functionality of `kubectl apply`.  That is, create the resources defined in the `specFile` if they do
@@ -13,9 +12,10 @@ import { promisify } from 'util';
 export async function apply(specPath: string): Promise<k8s.KubernetesObject[]> {
     const kc = new k8s.KubeConfig();
     kc.loadFromDefault();
+
     const client = k8s.KubernetesObjectApi.makeApiClient(kc);
-    const fsReadFileP = promisify(fs.readFile);
-    const specString = await fsReadFileP(specPath, 'utf8');
+
+    const specString = await fs.readFile(specPath, 'utf8');
     const specs: k8s.KubernetesObject[] = yaml.loadAll(specString);
     const validSpecs = specs.filter((s) => s && s.kind && s.metadata);
     const created: k8s.KubernetesObject[] = [];
@@ -44,5 +44,6 @@ export async function apply(specPath: string): Promise<k8s.KubernetesObject[]> {
             created.push(response.body);
         }
     }
+
     return created;
 }
