@@ -5,24 +5,24 @@ kc.loadFromDefault();
 
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
-var namespace = {
-  metadata: {
-    name: 'test'
-  }
+const namespace = {
+    metadata: {
+        name: 'test',
+    },
 };
 
-k8sApi.createNamespace(namespace).then(
-  (response) => {
-    console.log('Created namespace');
-    console.log(response);
-    k8sApi.readNamespace(namespace.metadata.name).then(
-      (response) => {
-        console.log(response);
-	k8sApi.deleteNamespace(
-          namespace.metadata.name, {} /* delete options */);
-      });
-  },
-  (err) => {
-    console.log('Error!: ' + err);
-  }
-);
+const main = async () => {
+    try {
+        const createNamespaceRes = await k8sApi.createNamespace(namespace);
+        console.log('New namespace created: ', createNamespaceRes.body);
+
+        const readNamespaceRes = await k8sApi.readNamespace(namespace.metadata.name);
+        console.log('Namespcace: ', readNamespaceRes.body);
+
+        await k8sApi.deleteNamespace(namespace.metadata.name, {});
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+main();
