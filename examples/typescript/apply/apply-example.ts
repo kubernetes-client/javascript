@@ -33,11 +33,11 @@ export async function apply(specPath: string): Promise<k8s.KubernetesObject[]> {
             await client.read(spec);
             // we got the resource, so it exists, so patch it
             const response = await client.patch(spec);
-            created.push(response.body);
+            created.push(response);
         } catch (e) {
             // we did not get the resource, so it does not exist, so create it
             const response = await client.create(spec);
-            created.push(response.body);
+            created.push(response);
         }
     }
     return created;

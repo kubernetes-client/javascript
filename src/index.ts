@@ -13,4 +13,5 @@ export * from './top';
 export * from './cp';
 export * from './patch';
 export * from './metrics';
+export * from './object';
 export { ConfigOptions, User, Cluster, Context } from './config_types';
