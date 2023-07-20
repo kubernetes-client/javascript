@@ -1,10 +1,9 @@
 import * as fs from 'fs';
 import { WritableStreamBuffer } from 'stream-buffers';
 import * as tar from 'tar';
-import { tmpdir } from 'os';
-import { randomUUID } from 'crypto';
 import { KubeConfig } from './config';
 import { Exec } from './exec';
+import { generateTmpFileName } from './util';
 
 export class Cp {
     public execInstance: Exec;
@@ -28,7 +27,7 @@ export class Cp {
         tgtPath: string,
         cwd?: string,
     ): Promise<void> {
-        const tmpFileName = `${tmpdir()}/${randomUUID()}`;
+        const tmpFileName = await generateTmpFileName();
         const command = ['tar', 'zcf', '-'];
         if (cwd) {
             command.push('-C', cwd);
@@ -74,7 +73,7 @@ export class Cp {
         tgtPath: string,
         cwd?: string,
     ): Promise<void> {
-        const tmpFileName = `${tmpdir()}/${randomUUID()}`;
+        const tmpFileName = await generateTmpFileName();
         const command = ['tar', 'xf', '-', '-C', tgtPath];
         await tar.c({ file: tmpFileName, cwd }, [srcPath]);
         const readStream = fs.createReadStream(tmpFileName);

@@ -1,3 +1,6 @@
+import { tmpdir } from 'os';
+import { randomUUID } from 'crypto';
+import { promises as fs, constants as fsConstants } from 'fs';
 import { CoreV1Api, V1Container, V1Pod } from './gen/api';
 
 export async function podsForNode(api: CoreV1Api, nodeName: string): Promise<V1Pod[]> {
@@ -141,4 +144,25 @@ export function totalForResource(pod: V1Pod, resource: string): ResourceStatus {
         limitTotal = add(limitTotal, containerTotal.limit);
     });
     return new ResourceStatus(reqTotal, limitTotal, resource);
+}
+
+export async function generateTmpFileName(): Promise<string> {
+    let tmpFileName: string;
+
+    let i = 0;
+    do {
+        tmpFileName = `${tmpdir()}/${randomUUID()}`;
+
+        try {
+            await fs.access(tmpFileName, fsConstants.W_OK);
+
+            return tmpFileName;
+        } catch (err) {
+            console.warn('Tmp file already exists');
+        }
+
+        i++;
+    } while (i < 10);
+
+    throw new Error('Cannot generate tmp file name');
 }
