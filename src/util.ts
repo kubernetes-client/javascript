@@ -156,9 +156,9 @@ export async function generateTmpFileName(): Promise<string> {
         try {
             await fs.access(tmpFileName, fsConstants.W_OK);
 
-            return tmpFileName;
-        } catch (err) {
             console.warn('Tmp file already exists');
+        } catch (err) {
+            return tmpFileName;
         }
 
         i++;
