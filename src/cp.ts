@@ -1,10 +1,9 @@
 import * as fs from 'fs';
 import { WritableStreamBuffer } from 'stream-buffers';
 import * as tar from 'tar';
-import * as tmp from 'tmp-promise';
-
 import { KubeConfig } from './config';
 import { Exec } from './exec';
+import { generateTmpFileName } from './util';
 
 export class Cp {
     public execInstance: Exec;
@@ -18,7 +17,7 @@ export class Cp {
      * @param {string} containerName - The name of the container in the pod to exec the command inside.
      * @param {string} srcPath - The source path in the pod
      * @param {string} tgtPath - The target path in local
-     * @param {string} cwd - The directory that is used as the parent in the pod when downloading
+     * @param {string} [cwd] - The directory that is used as the parent in the pod when downloading
      */
     public async cpFromPod(
         namespace: string,
@@ -28,8 +27,7 @@ export class Cp {
         tgtPath: string,
         cwd?: string,
     ): Promise<void> {
-        const tmpFile = tmp.fileSync();
-        const tmpFileName = tmpFile.name;
+        const tmpFileName = await generateTmpFileName();
         const command = ['tar', 'zcf', '-'];
         if (cwd) {
             command.push('-C', cwd);
@@ -65,7 +63,7 @@ export class Cp {
      * @param {string} containerName - The name of the container in the pod to exec the command inside.
      * @param {string} srcPath - The source path in local
      * @param {string} tgtPath - The target path in the pod
-     * @param {string} cwd - The directory that is used as the parent in the host when uploading
+     * @param {string} [cwd] - The directory that is used as the parent in the host when uploading
      */
     public async cpToPod(
         namespace: string,
@@ -75,16 +73,9 @@ export class Cp {
         tgtPath: string,
         cwd?: string,
     ): Promise<void> {
-        const tmpFile = tmp.fileSync();
-        const tmpFileName = tmpFile.name;
+        const tmpFileName = await generateTmpFileName();
         const command = ['tar', 'xf', '-', '-C', tgtPath];
-        await tar.c(
-            {
-                file: tmpFile.name,
-                cwd,
-            },
-            [srcPath],
-        );
+        await tar.c({ file: tmpFileName, cwd }, [srcPath]);
         const readStream = fs.createReadStream(tmpFileName);
         const errStream = new WritableStreamBuffer();
         this.execInstance.exec(
