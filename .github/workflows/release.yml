@@ -12,6 +12,11 @@ on:
         required: true
         default: false
         description: Dry run, will not push branches or upload the artifacts.
+      pre_release:
+        type: boolean
+        required: true
+        default: false
+        description: If true, push pre-release tag.
       skip_tag:
         type: boolean
         required: true
@@ -35,8 +40,13 @@ jobs:
       - name: Package
         run: ./build-package.sh
       - name: Upload
-        if: ${{ github.event.inputs.dry_run != 'true' }}
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event.inputs.pre_release != 'true' }}
         run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - name: Upload pre-release
+        if: ${{ github.event.inputs.dry_run != 'true' && github.event.inputs.pre_release == 'true' }}
+        run: npm publish --tag next
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
       - name: Tag release
