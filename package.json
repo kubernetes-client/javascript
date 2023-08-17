@@ -66,7 +66,7 @@
         "isomorphic-ws": "^5.0.0",
         "js-yaml": "^4.1.0",
         "jsonpath-plus": "^7.2.0",
-        "node-fetch": "^2.6.9",
+        "node-fetch": "^3.3.2",
         "openid-client": "^5.4.2",
         "rfc4648": "^1.3.0",
         "stream-buffers": "^3.0.2",
