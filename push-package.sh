@@ -18,5 +18,5 @@ esac
 git tag ${version} 
 git push upstream ${version} 
 
-npm publish
-npm version patch -m "Update to version ${version}"
+npm publish --tag next
+npm version patch -m "Update to version ${version}" --preid=next
