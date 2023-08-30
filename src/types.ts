@@ -6,6 +6,10 @@ export interface KubernetesObject {
     metadata?: V1ObjectMeta;
 }
 
+export interface KubernetesObjectWithSpec extends KubernetesObject {
+    spec: object;
+}
+
 export interface KubernetesListObject<T extends KubernetesObject> {
     apiVersion?: string;
     kind?: string;
