@@ -126,7 +126,7 @@ export class KubeConfig {
 
     public loadFromFile(file: string, opts?: Partial<ConfigOptions>): void {
         const rootDirectory = path.dirname(file);
-        this.loadFromString(fs.readFileSync(file, 'utf8'), opts);
+        this.loadFromString(fs.readFileSync(file).toString('utf-8'), opts);
         this.makePathsAbsolute(rootDirectory);
     }
 
@@ -245,7 +245,7 @@ export class KubeConfig {
         const namespaceFile = `${pathPrefix}${Config.SERVICEACCOUNT_NAMESPACE_PATH}`;
         let namespace: string | undefined;
         if (fileExists(namespaceFile)) {
-            namespace = fs.readFileSync(namespaceFile, 'utf8');
+            namespace = fs.readFileSync(namespaceFile).toString('utf-8');
         }
         this.contexts = [
             {

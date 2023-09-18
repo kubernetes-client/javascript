@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ '18', '16', '14' ]
+        node: [ '20', '18', '16' ]
     name: Node ${{ matrix.node }} validation
     steps:
       - uses: actions/checkout@v4
