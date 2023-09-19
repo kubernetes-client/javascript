@@ -32,7 +32,7 @@ jobs:
           # apply https://github.com/kubernetes-client/gen/pull/224
           git config --global user.name "Github Actions"
           git config --global user.email "<>"
-          git cherry-pick --strategy=recursive -X theirs c557f7f b32dcd6
+          git cherry-pick --strategy=recursive -X theirs c557f7f b32dcd6 0ef2cec
           rm -rf gen/.git
       # apply https://github.com/kubernetes-client/gen/pull/237
       - name: Patch Dockerfile
