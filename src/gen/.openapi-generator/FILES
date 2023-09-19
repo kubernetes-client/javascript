@@ -3,6 +3,7 @@ api.ts
 api/admissionregistrationApi.ts
 api/admissionregistrationV1Api.ts
 api/admissionregistrationV1alpha1Api.ts
+api/admissionregistrationV1beta1Api.ts
 api/apiextensionsApi.ts
 api/apiextensionsV1Api.ts
 api/apiregistrationApi.ts
@@ -216,6 +217,7 @@ model/v1HorizontalPodAutoscalerList.ts
 model/v1HorizontalPodAutoscalerSpec.ts
 model/v1HorizontalPodAutoscalerStatus.ts
 model/v1HostAlias.ts
+model/v1HostIP.ts
 model/v1HostPathVolumeSource.ts
 model/v1IPBlock.ts
 model/v1ISCSIPersistentVolumeSource.ts
@@ -278,7 +280,6 @@ model/v1NetworkPolicyList.ts
 model/v1NetworkPolicyPeer.ts
 model/v1NetworkPolicyPort.ts
 model/v1NetworkPolicySpec.ts
-model/v1NetworkPolicyStatus.ts
 model/v1Node.ts
 model/v1NodeAddress.ts
 model/v1NodeAffinity.ts
@@ -332,6 +333,7 @@ model/v1PodList.ts
 model/v1PodOS.ts
 model/v1PodReadinessGate.ts
 model/v1PodResourceClaim.ts
+model/v1PodResourceClaimStatus.ts
 model/v1PodSchedulingGate.ts
 model/v1PodSecurityContext.ts
 model/v1PodSpec.ts
@@ -401,6 +403,8 @@ model/v1SecretVolumeSource.ts
 model/v1SecurityContext.ts
 model/v1SelfSubjectAccessReview.ts
 model/v1SelfSubjectAccessReviewSpec.ts
+model/v1SelfSubjectReview.ts
+model/v1SelfSubjectReviewStatus.ts
 model/v1SelfSubjectRulesReview.ts
 model/v1SelfSubjectRulesReviewSpec.ts
 model/v1ServerAddressByClientCIDR.ts
@@ -504,6 +508,7 @@ model/v1alpha1ValidatingAdmissionPolicyList.ts
 model/v1alpha1ValidatingAdmissionPolicySpec.ts
 model/v1alpha1ValidatingAdmissionPolicyStatus.ts
 model/v1alpha1Validation.ts
+model/v1alpha1Variable.ts
 model/v1alpha2AllocationResult.ts
 model/v1alpha2PodSchedulingContext.ts
 model/v1alpha2PodSchedulingContextList.ts
@@ -523,8 +528,26 @@ model/v1alpha2ResourceClass.ts
 model/v1alpha2ResourceClassList.ts
 model/v1alpha2ResourceClassParametersReference.ts
 model/v1alpha2ResourceHandle.ts
+model/v1beta1AuditAnnotation.ts
+model/v1beta1ExpressionWarning.ts
+model/v1beta1MatchCondition.ts
+model/v1beta1MatchResources.ts
+model/v1beta1NamedRuleWithOperations.ts
+model/v1beta1ParamKind.ts
+model/v1beta1ParamRef.ts
 model/v1beta1SelfSubjectReview.ts
 model/v1beta1SelfSubjectReviewStatus.ts
+model/v1beta1TypeChecking.ts
+model/v1beta1ValidatingAdmissionPolicy.ts
+model/v1beta1ValidatingAdmissionPolicyBinding.ts
+model/v1beta1ValidatingAdmissionPolicyBindingList.ts
+model/v1beta1ValidatingAdmissionPolicyBindingSpec.ts
+model/v1beta1ValidatingAdmissionPolicyList.ts
+model/v1beta1ValidatingAdmissionPolicySpec.ts
+model/v1beta1ValidatingAdmissionPolicyStatus.ts
+model/v1beta1Validation.ts
+model/v1beta1Variable.ts
+model/v1beta2ExemptPriorityLevelConfiguration.ts
 model/v1beta2FlowDistinguisherMethod.ts
 model/v1beta2FlowSchema.ts
 model/v1beta2FlowSchemaCondition.ts
@@ -547,6 +570,7 @@ model/v1beta2ResourcePolicyRule.ts
 model/v1beta2ServiceAccountSubject.ts
 model/v1beta2Subject.ts
 model/v1beta2UserSubject.ts
+model/v1beta3ExemptPriorityLevelConfiguration.ts
 model/v1beta3FlowDistinguisherMethod.ts
 model/v1beta3FlowSchema.ts
 model/v1beta3FlowSchemaCondition.ts

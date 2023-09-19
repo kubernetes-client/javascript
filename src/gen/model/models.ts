@@ -156,6 +156,7 @@ export * from './v1HorizontalPodAutoscalerList';
 export * from './v1HorizontalPodAutoscalerSpec';
 export * from './v1HorizontalPodAutoscalerStatus';
 export * from './v1HostAlias';
+export * from './v1HostIP';
 export * from './v1HostPathVolumeSource';
 export * from './v1IPBlock';
 export * from './v1ISCSIPersistentVolumeSource';
@@ -218,7 +219,6 @@ export * from './v1NetworkPolicyList';
 export * from './v1NetworkPolicyPeer';
 export * from './v1NetworkPolicyPort';
 export * from './v1NetworkPolicySpec';
-export * from './v1NetworkPolicyStatus';
 export * from './v1Node';
 export * from './v1NodeAddress';
 export * from './v1NodeAffinity';
@@ -272,6 +272,7 @@ export * from './v1PodList';
 export * from './v1PodOS';
 export * from './v1PodReadinessGate';
 export * from './v1PodResourceClaim';
+export * from './v1PodResourceClaimStatus';
 export * from './v1PodSchedulingGate';
 export * from './v1PodSecurityContext';
 export * from './v1PodSpec';
@@ -341,6 +342,8 @@ export * from './v1SecretVolumeSource';
 export * from './v1SecurityContext';
 export * from './v1SelfSubjectAccessReview';
 export * from './v1SelfSubjectAccessReviewSpec';
+export * from './v1SelfSubjectReview';
+export * from './v1SelfSubjectReviewStatus';
 export * from './v1SelfSubjectRulesReview';
 export * from './v1SelfSubjectRulesReviewSpec';
 export * from './v1ServerAddressByClientCIDR';
@@ -444,6 +447,7 @@ export * from './v1alpha1ValidatingAdmissionPolicyList';
 export * from './v1alpha1ValidatingAdmissionPolicySpec';
 export * from './v1alpha1ValidatingAdmissionPolicyStatus';
 export * from './v1alpha1Validation';
+export * from './v1alpha1Variable';
 export * from './v1alpha2AllocationResult';
 export * from './v1alpha2PodSchedulingContext';
 export * from './v1alpha2PodSchedulingContextList';
@@ -463,8 +467,26 @@ export * from './v1alpha2ResourceClass';
 export * from './v1alpha2ResourceClassList';
 export * from './v1alpha2ResourceClassParametersReference';
 export * from './v1alpha2ResourceHandle';
+export * from './v1beta1AuditAnnotation';
+export * from './v1beta1ExpressionWarning';
+export * from './v1beta1MatchCondition';
+export * from './v1beta1MatchResources';
+export * from './v1beta1NamedRuleWithOperations';
+export * from './v1beta1ParamKind';
+export * from './v1beta1ParamRef';
 export * from './v1beta1SelfSubjectReview';
 export * from './v1beta1SelfSubjectReviewStatus';
+export * from './v1beta1TypeChecking';
+export * from './v1beta1ValidatingAdmissionPolicy';
+export * from './v1beta1ValidatingAdmissionPolicyBinding';
+export * from './v1beta1ValidatingAdmissionPolicyBindingList';
+export * from './v1beta1ValidatingAdmissionPolicyBindingSpec';
+export * from './v1beta1ValidatingAdmissionPolicyList';
+export * from './v1beta1ValidatingAdmissionPolicySpec';
+export * from './v1beta1ValidatingAdmissionPolicyStatus';
+export * from './v1beta1Validation';
+export * from './v1beta1Variable';
+export * from './v1beta2ExemptPriorityLevelConfiguration';
 export * from './v1beta2FlowDistinguisherMethod';
 export * from './v1beta2FlowSchema';
 export * from './v1beta2FlowSchemaCondition';
@@ -487,6 +509,7 @@ export * from './v1beta2ResourcePolicyRule';
 export * from './v1beta2ServiceAccountSubject';
 export * from './v1beta2Subject';
 export * from './v1beta2UserSubject';
+export * from './v1beta3ExemptPriorityLevelConfiguration';
 export * from './v1beta3FlowDistinguisherMethod';
 export * from './v1beta3FlowSchema';
 export * from './v1beta3FlowSchemaCondition';
@@ -704,6 +727,7 @@ import { V1HorizontalPodAutoscalerList } from './v1HorizontalPodAutoscalerList';
 import { V1HorizontalPodAutoscalerSpec } from './v1HorizontalPodAutoscalerSpec';
 import { V1HorizontalPodAutoscalerStatus } from './v1HorizontalPodAutoscalerStatus';
 import { V1HostAlias } from './v1HostAlias';
+import { V1HostIP } from './v1HostIP';
 import { V1HostPathVolumeSource } from './v1HostPathVolumeSource';
 import { V1IPBlock } from './v1IPBlock';
 import { V1ISCSIPersistentVolumeSource } from './v1ISCSIPersistentVolumeSource';
@@ -766,7 +790,6 @@ import { V1NetworkPolicyList } from './v1NetworkPolicyList';
 import { V1NetworkPolicyPeer } from './v1NetworkPolicyPeer';
 import { V1NetworkPolicyPort } from './v1NetworkPolicyPort';
 import { V1NetworkPolicySpec } from './v1NetworkPolicySpec';
-import { V1NetworkPolicyStatus } from './v1NetworkPolicyStatus';
 import { V1Node } from './v1Node';
 import { V1NodeAddress } from './v1NodeAddress';
 import { V1NodeAffinity } from './v1NodeAffinity';
@@ -820,6 +843,7 @@ import { V1PodList } from './v1PodList';
 import { V1PodOS } from './v1PodOS';
 import { V1PodReadinessGate } from './v1PodReadinessGate';
 import { V1PodResourceClaim } from './v1PodResourceClaim';
+import { V1PodResourceClaimStatus } from './v1PodResourceClaimStatus';
 import { V1PodSchedulingGate } from './v1PodSchedulingGate';
 import { V1PodSecurityContext } from './v1PodSecurityContext';
 import { V1PodSpec } from './v1PodSpec';
@@ -889,6 +913,8 @@ import { V1SecretVolumeSource } from './v1SecretVolumeSource';
 import { V1SecurityContext } from './v1SecurityContext';
 import { V1SelfSubjectAccessReview } from './v1SelfSubjectAccessReview';
 import { V1SelfSubjectAccessReviewSpec } from './v1SelfSubjectAccessReviewSpec';
+import { V1SelfSubjectReview } from './v1SelfSubjectReview';
+import { V1SelfSubjectReviewStatus } from './v1SelfSubjectReviewStatus';
 import { V1SelfSubjectRulesReview } from './v1SelfSubjectRulesReview';
 import { V1SelfSubjectRulesReviewSpec } from './v1SelfSubjectRulesReviewSpec';
 import { V1ServerAddressByClientCIDR } from './v1ServerAddressByClientCIDR';
@@ -992,6 +1018,7 @@ import { V1alpha1ValidatingAdmissionPolicyList } from './v1alpha1ValidatingAdmis
 import { V1alpha1ValidatingAdmissionPolicySpec } from './v1alpha1ValidatingAdmissionPolicySpec';
 import { V1alpha1ValidatingAdmissionPolicyStatus } from './v1alpha1ValidatingAdmissionPolicyStatus';
 import { V1alpha1Validation } from './v1alpha1Validation';
+import { V1alpha1Variable } from './v1alpha1Variable';
 import { V1alpha2AllocationResult } from './v1alpha2AllocationResult';
 import { V1alpha2PodSchedulingContext } from './v1alpha2PodSchedulingContext';
 import { V1alpha2PodSchedulingContextList } from './v1alpha2PodSchedulingContextList';
@@ -1011,8 +1038,26 @@ import { V1alpha2ResourceClass } from './v1alpha2ResourceClass';
 import { V1alpha2ResourceClassList } from './v1alpha2ResourceClassList';
 import { V1alpha2ResourceClassParametersReference } from './v1alpha2ResourceClassParametersReference';
 import { V1alpha2ResourceHandle } from './v1alpha2ResourceHandle';
+import { V1beta1AuditAnnotation } from './v1beta1AuditAnnotation';
+import { V1beta1ExpressionWarning } from './v1beta1ExpressionWarning';
+import { V1beta1MatchCondition } from './v1beta1MatchCondition';
+import { V1beta1MatchResources } from './v1beta1MatchResources';
+import { V1beta1NamedRuleWithOperations } from './v1beta1NamedRuleWithOperations';
+import { V1beta1ParamKind } from './v1beta1ParamKind';
+import { V1beta1ParamRef } from './v1beta1ParamRef';
 import { V1beta1SelfSubjectReview } from './v1beta1SelfSubjectReview';
 import { V1beta1SelfSubjectReviewStatus } from './v1beta1SelfSubjectReviewStatus';
+import { V1beta1TypeChecking } from './v1beta1TypeChecking';
+import { V1beta1ValidatingAdmissionPolicy } from './v1beta1ValidatingAdmissionPolicy';
+import { V1beta1ValidatingAdmissionPolicyBinding } from './v1beta1ValidatingAdmissionPolicyBinding';
+import { V1beta1ValidatingAdmissionPolicyBindingList } from './v1beta1ValidatingAdmissionPolicyBindingList';
+import { V1beta1ValidatingAdmissionPolicyBindingSpec } from './v1beta1ValidatingAdmissionPolicyBindingSpec';
+import { V1beta1ValidatingAdmissionPolicyList } from './v1beta1ValidatingAdmissionPolicyList';
+import { V1beta1ValidatingAdmissionPolicySpec } from './v1beta1ValidatingAdmissionPolicySpec';
+import { V1beta1ValidatingAdmissionPolicyStatus } from './v1beta1ValidatingAdmissionPolicyStatus';
+import { V1beta1Validation } from './v1beta1Validation';
+import { V1beta1Variable } from './v1beta1Variable';
+import { V1beta2ExemptPriorityLevelConfiguration } from './v1beta2ExemptPriorityLevelConfiguration';
 import { V1beta2FlowDistinguisherMethod } from './v1beta2FlowDistinguisherMethod';
 import { V1beta2FlowSchema } from './v1beta2FlowSchema';
 import { V1beta2FlowSchemaCondition } from './v1beta2FlowSchemaCondition';
@@ -1035,6 +1080,7 @@ import { V1beta2ResourcePolicyRule } from './v1beta2ResourcePolicyRule';
 import { V1beta2ServiceAccountSubject } from './v1beta2ServiceAccountSubject';
 import { V1beta2Subject } from './v1beta2Subject';
 import { V1beta2UserSubject } from './v1beta2UserSubject';
+import { V1beta3ExemptPriorityLevelConfiguration } from './v1beta3ExemptPriorityLevelConfiguration';
 import { V1beta3FlowDistinguisherMethod } from './v1beta3FlowDistinguisherMethod';
 import { V1beta3FlowSchema } from './v1beta3FlowSchema';
 import { V1beta3FlowSchemaCondition } from './v1beta3FlowSchemaCondition';
@@ -1255,6 +1301,7 @@ let typeMap: {[index: string]: any} = {
     "V1HorizontalPodAutoscalerSpec": V1HorizontalPodAutoscalerSpec,
     "V1HorizontalPodAutoscalerStatus": V1HorizontalPodAutoscalerStatus,
     "V1HostAlias": V1HostAlias,
+    "V1HostIP": V1HostIP,
     "V1HostPathVolumeSource": V1HostPathVolumeSource,
     "V1IPBlock": V1IPBlock,
     "V1ISCSIPersistentVolumeSource": V1ISCSIPersistentVolumeSource,
@@ -1317,7 +1364,6 @@ let typeMap: {[index: string]: any} = {
     "V1NetworkPolicyPeer": V1NetworkPolicyPeer,
     "V1NetworkPolicyPort": V1NetworkPolicyPort,
     "V1NetworkPolicySpec": V1NetworkPolicySpec,
-    "V1NetworkPolicyStatus": V1NetworkPolicyStatus,
     "V1Node": V1Node,
     "V1NodeAddress": V1NodeAddress,
     "V1NodeAffinity": V1NodeAffinity,
@@ -1371,6 +1417,7 @@ let typeMap: {[index: string]: any} = {
     "V1PodOS": V1PodOS,
     "V1PodReadinessGate": V1PodReadinessGate,
     "V1PodResourceClaim": V1PodResourceClaim,
+    "V1PodResourceClaimStatus": V1PodResourceClaimStatus,
     "V1PodSchedulingGate": V1PodSchedulingGate,
     "V1PodSecurityContext": V1PodSecurityContext,
     "V1PodSpec": V1PodSpec,
@@ -1440,6 +1487,8 @@ let typeMap: {[index: string]: any} = {
     "V1SecurityContext": V1SecurityContext,
     "V1SelfSubjectAccessReview": V1SelfSubjectAccessReview,
     "V1SelfSubjectAccessReviewSpec": V1SelfSubjectAccessReviewSpec,
+    "V1SelfSubjectReview": V1SelfSubjectReview,
+    "V1SelfSubjectReviewStatus": V1SelfSubjectReviewStatus,
     "V1SelfSubjectRulesReview": V1SelfSubjectRulesReview,
     "V1SelfSubjectRulesReviewSpec": V1SelfSubjectRulesReviewSpec,
     "V1ServerAddressByClientCIDR": V1ServerAddressByClientCIDR,
@@ -1543,6 +1592,7 @@ let typeMap: {[index: string]: any} = {
     "V1alpha1ValidatingAdmissionPolicySpec": V1alpha1ValidatingAdmissionPolicySpec,
     "V1alpha1ValidatingAdmissionPolicyStatus": V1alpha1ValidatingAdmissionPolicyStatus,
     "V1alpha1Validation": V1alpha1Validation,
+    "V1alpha1Variable": V1alpha1Variable,
     "V1alpha2AllocationResult": V1alpha2AllocationResult,
     "V1alpha2PodSchedulingContext": V1alpha2PodSchedulingContext,
     "V1alpha2PodSchedulingContextList": V1alpha2PodSchedulingContextList,
@@ -1562,8 +1612,26 @@ let typeMap: {[index: string]: any} = {
     "V1alpha2ResourceClassList": V1alpha2ResourceClassList,
     "V1alpha2ResourceClassParametersReference": V1alpha2ResourceClassParametersReference,
     "V1alpha2ResourceHandle": V1alpha2ResourceHandle,
+    "V1beta1AuditAnnotation": V1beta1AuditAnnotation,
+    "V1beta1ExpressionWarning": V1beta1ExpressionWarning,
+    "V1beta1MatchCondition": V1beta1MatchCondition,
+    "V1beta1MatchResources": V1beta1MatchResources,
+    "V1beta1NamedRuleWithOperations": V1beta1NamedRuleWithOperations,
+    "V1beta1ParamKind": V1beta1ParamKind,
+    "V1beta1ParamRef": V1beta1ParamRef,
     "V1beta1SelfSubjectReview": V1beta1SelfSubjectReview,
     "V1beta1SelfSubjectReviewStatus": V1beta1SelfSubjectReviewStatus,
+    "V1beta1TypeChecking": V1beta1TypeChecking,
+    "V1beta1ValidatingAdmissionPolicy": V1beta1ValidatingAdmissionPolicy,
+    "V1beta1ValidatingAdmissionPolicyBinding": V1beta1ValidatingAdmissionPolicyBinding,
+    "V1beta1ValidatingAdmissionPolicyBindingList": V1beta1ValidatingAdmissionPolicyBindingList,
+    "V1beta1ValidatingAdmissionPolicyBindingSpec": V1beta1ValidatingAdmissionPolicyBindingSpec,
+    "V1beta1ValidatingAdmissionPolicyList": V1beta1ValidatingAdmissionPolicyList,
+    "V1beta1ValidatingAdmissionPolicySpec": V1beta1ValidatingAdmissionPolicySpec,
+    "V1beta1ValidatingAdmissionPolicyStatus": V1beta1ValidatingAdmissionPolicyStatus,
+    "V1beta1Validation": V1beta1Validation,
+    "V1beta1Variable": V1beta1Variable,
+    "V1beta2ExemptPriorityLevelConfiguration": V1beta2ExemptPriorityLevelConfiguration,
     "V1beta2FlowDistinguisherMethod": V1beta2FlowDistinguisherMethod,
     "V1beta2FlowSchema": V1beta2FlowSchema,
     "V1beta2FlowSchemaCondition": V1beta2FlowSchemaCondition,
@@ -1586,6 +1654,7 @@ let typeMap: {[index: string]: any} = {
     "V1beta2ServiceAccountSubject": V1beta2ServiceAccountSubject,
     "V1beta2Subject": V1beta2Subject,
     "V1beta2UserSubject": V1beta2UserSubject,
+    "V1beta3ExemptPriorityLevelConfiguration": V1beta3ExemptPriorityLevelConfiguration,
     "V1beta3FlowDistinguisherMethod": V1beta3FlowDistinguisherMethod,
     "V1beta3FlowSchema": V1beta3FlowSchema,
     "V1beta3FlowSchemaCondition": V1beta3FlowSchemaCondition,
