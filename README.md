@@ -123,18 +123,17 @@ release, we will increment the minor version whenever we update the minor Kubern
 
 Generally speaking newer clients will work with older Kubernetes, but compatability isn't 100% guaranteed.
 
-| client version | older versions | 1.19 | 1.20 | 1.21 | 1.22 | 1.23 | 1.24 | 1.25 | 1.26 | 1.27 |
+| client version | older versions | 1.20 | 1.21 | 1.22 | 1.23 | 1.24 | 1.25 | 1.26 | 1.27 | 1.20 |
 |----------------|----------------|------|------|------|------|-------|------|-----|------|------|
-|  0.13.x        |       -        |  ✓   |  x   |  x   |  x   |  x   |  x   |  x  |  x  |  x  |
-|  0.14.x        |       -        |  +   |  ✓   |  x   |  x   |  x   |  x   |  x  |  x  |  x  |
-|  0.15.x        |       -        |  +   |  +   |  ✓   |  x   |  x   |  x   |  x  |  x  |  x  |
-|  0.16.x        |       -        |  +   |  +   |  +   |  ✓   |  x   |  x   |  x  |  x  |  x  |
-|  0.17.x        |       -        |  -   |  -   |  +   |  +   |  +   |  ✓   |  x  |  x  |  x  |
-|  0.18.x        |       -        |  -   |  -   |  -   |  +   |  +   |  +   |  ✓  |  x  |  x  |
-|  0.19.x        |       -        |  -   |  -   |  -   |  -   |  -   |  -   |  +  |  +  |  ✓  |
+|  0.14.x        |       -        |  ✓   |  x   |  x   |  x   |  x   |  x  |  x  |  x  |  x  |
+|  0.15.x        |       -        |  +   |  ✓   |  x   |  x   |  x   |  x  |  x  |  x  |  x  |
+|  0.16.x        |       -        |  +   |  +   |  ✓   |  x   |  x   |  x  |  x  |  x  |  x  |
+|  0.17.x        |       -        |  -   |  +   |  +   |  +   |  ✓   |  x  |  x  |  x  |  x  |
+|  0.18.x        |       -        |  -   |  -   |  +   |  +   |  +   |  ✓  |  x  |  x  |  x  |
+|  0.19.x        |       -        |  -   |  -   |  -   |  -   |  -   |  +  |  +  |  ✓  |  x  |
+|  0.20.x        |       -        |  -   |  -   |  -   |  -   |  -   |  -  |  +  |  +  |  ✓  |
 
 Key:
-
 * `✓` Exactly the same features / API objects in both javascript-client and the Kubernetes
   version.
 * `+` javascript-client has features or api objects that may not be present in the
