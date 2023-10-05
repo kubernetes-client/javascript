@@ -9,7 +9,7 @@ exec.exec(
     'default',
     'nginx-4217019353-9gl4s',
     'nginx',
-    ["ls, "-al", "."],
+    ['ls, '-al', '.'],
     process.stdout as stream.Writable,
     process.stderr as stream.Writable,
     process.stdin as stream.Readable,
