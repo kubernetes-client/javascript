@@ -160,7 +160,7 @@ export class WebSocketHandler implements WebSocketInterface {
         }
         const server = cluster.server;
         const ssl = server.startsWith('https://');
-        const target = ssl ? server.substr(8) : server.substr(7);
+        const target = ssl ? server.slice(8) : server.slice(7);
         const proto = ssl ? 'wss' : 'ws';
         const uri = `${proto}://${target}${path}`;
 
@@ -193,7 +193,7 @@ export class WebSocketHandler implements WebSocketInterface {
                     }
                 } else if (data instanceof Buffer) {
                     const streamNum = data.readInt8(0);
-                    if (binaryHandler && !binaryHandler(streamNum, data.slice(1))) {
+                    if (binaryHandler && !binaryHandler(streamNum, data.subarray(1))) {
                         client.close();
                     }
                 }

@@ -277,11 +277,11 @@ export class KubeConfig {
         if (!this.clusters) {
             this.clusters = [];
         }
-        this.clusters.forEach((c: Cluster, ix: number) => {
-            if (c.name === cluster.name) {
-                throw new Error(`Duplicate cluster: ${c.name}`);
-            }
-        });
+
+        if (this.clusters.some((c) => c.name === cluster.name)) {
+            throw new Error(`Duplicate cluster: ${cluster.name}`);
+        }
+
         this.clusters.push(cluster);
     }
 
@@ -289,11 +289,11 @@ export class KubeConfig {
         if (!this.users) {
             this.users = [];
         }
-        this.users.forEach((c: User, ix: number) => {
-            if (c.name === user.name) {
-                throw new Error(`Duplicate user: ${c.name}`);
-            }
-        });
+
+        if (this.users.some((c) => c.name === user.name)) {
+            throw new Error(`Duplicate user: ${user.name}`);
+        }
+
         this.users.push(user);
     }
 
@@ -301,11 +301,11 @@ export class KubeConfig {
         if (!this.contexts) {
             this.contexts = [];
         }
-        this.contexts.forEach((c: Context, ix: number) => {
-            if (c.name === ctx.name) {
-                throw new Error(`Duplicate context: ${c.name}`);
-            }
-        });
+
+        if (this.contexts.some((c) => c.name === ctx.name)) {
+            throw new Error(`Duplicate context: ${ctx.name}`);
+        }
+
         this.contexts.push(ctx);
     }
 
