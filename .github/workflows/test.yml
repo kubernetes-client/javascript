@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ '20', '18', '16' ]
+        # Remove specific version from 20 when https://github.com/tschaub/mock-fs/issues/380 is fixed
+        node: [ '20.7.0', '18', '16' ]
     name: Node ${{ matrix.node }} validation
     steps:
       - uses: actions/checkout@v4
