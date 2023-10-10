@@ -103,7 +103,7 @@ export class Watch {
         };
         await this.config.applyToRequest(requestOptions);
 
-        let req;
+        let req: RequestResult;
         let doneCalled: boolean = false;
         const doneCallOnce = (err: any) => {
             if (!doneCalled) {
@@ -122,7 +122,7 @@ export class Watch {
         stream.on('error', doneCallOnce);
         stream.on('close', () => doneCallOnce(null));
         stream.on('data', (line) => {
-            let data;
+            let data: { type: string; object: any };
 
             try {
                 data = JSON.parse(line);

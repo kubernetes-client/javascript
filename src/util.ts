@@ -30,52 +30,48 @@ export function quantityToScalar(quantity: string): number | bigint {
     }
     switch (suffix) {
         case 'n':
-            return Number(quantity.substr(0, quantity.length - 1)).valueOf() / 1_000_000_000.0;
+            return Number(quantity.slice(0, quantity.length - 1)).valueOf() / 1_000_000_000.0;
         case 'u':
-            return Number(quantity.substr(0, quantity.length - 1)).valueOf() / 1_000_000.0;
+            return Number(quantity.slice(0, quantity.length - 1)).valueOf() / 1_000_000.0;
         case 'm':
-            return Number(quantity.substr(0, quantity.length - 1)).valueOf() / 1000.0;
+            return Number(quantity.slice(0, quantity.length - 1)).valueOf() / 1000.0;
         case 'k':
-            return BigInt(quantity.substr(0, quantity.length - 1)) * BigInt(1000);
+            return BigInt(quantity.slice(0, quantity.length - 1)) * BigInt(1000);
         case 'M':
-            return BigInt(quantity.substr(0, quantity.length - 1)) * BigInt(1000 * 1000);
+            return BigInt(quantity.slice(0, quantity.length - 1)) * BigInt(1000 * 1000);
         case 'G':
-            return BigInt(quantity.substr(0, quantity.length - 1)) * BigInt(1000 * 1000 * 1000);
+            return BigInt(quantity.slice(0, quantity.length - 1)) * BigInt(1000 * 1000 * 1000);
         case 'T':
-            return (
-                BigInt(quantity.substr(0, quantity.length - 1)) * BigInt(1000 * 1000 * 1000) * BigInt(1000)
-            );
+            return BigInt(quantity.slice(0, quantity.length - 1)) * BigInt(1000 * 1000 * 1000) * BigInt(1000);
         case 'P':
             return (
-                BigInt(quantity.substr(0, quantity.length - 1)) *
+                BigInt(quantity.slice(0, quantity.length - 1)) *
                 BigInt(1000 * 1000 * 1000) *
                 BigInt(1000 * 1000)
             );
         case 'E':
             return (
-                BigInt(quantity.substr(0, quantity.length - 1)) *
+                BigInt(quantity.slice(0, quantity.length - 1)) *
                 BigInt(1000 * 1000 * 1000) *
                 BigInt(1000 * 1000 * 1000)
             );
         case 'Ki':
-            return BigInt(quantity.substr(0, quantity.length - 2)) * BigInt(1024);
+            return BigInt(quantity.slice(0, quantity.length - 2)) * BigInt(1024);
         case 'Mi':
-            return BigInt(quantity.substr(0, quantity.length - 2)) * BigInt(1024 * 1024);
+            return BigInt(quantity.slice(0, quantity.length - 2)) * BigInt(1024 * 1024);
         case 'Gi':
-            return BigInt(quantity.substr(0, quantity.length - 2)) * BigInt(1024 * 1024 * 1024);
+            return BigInt(quantity.slice(0, quantity.length - 2)) * BigInt(1024 * 1024 * 1024);
         case 'Ti':
-            return (
-                BigInt(quantity.substr(0, quantity.length - 2)) * BigInt(1024 * 1024 * 1024) * BigInt(1024)
-            );
+            return BigInt(quantity.slice(0, quantity.length - 2)) * BigInt(1024 * 1024 * 1024) * BigInt(1024);
         case 'Pi':
             return (
-                BigInt(quantity.substr(0, quantity.length - 2)) *
+                BigInt(quantity.slice(0, quantity.length - 2)) *
                 BigInt(1024 * 1024 * 1024) *
                 BigInt(1024 * 1024)
             );
         case 'Ei':
             return (
-                BigInt(quantity.substr(0, quantity.length - 2)) *
+                BigInt(quantity.slice(0, quantity.length - 2)) *
                 BigInt(1024 * 1024 * 1024) *
                 BigInt(1024 * 1024 * 1024)
             );

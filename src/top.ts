@@ -1,10 +1,9 @@
 import { CoreV1Api, V1Node, V1Pod, V1PodList, V1PodStatus } from './gen/api';
-import { ContainerMetric, Metrics, PodMetric } from './metrics';
+import { Metrics, PodMetric } from './metrics';
 import {
     add,
     podsForNode,
     quantityToScalar,
-    ResourceStatus,
     totalCPU,
     totalCPUForContainer,
     totalMemory,
@@ -90,10 +89,7 @@ export async function topNodes(api: CoreV1Api): Promise<NodeStatus[]> {
 export async function topPods(api: CoreV1Api, metrics: Metrics, namespace?: string): Promise<PodStatus[]> {
     // Figure out which pod list endpoint to call
     const getPodList = async (): Promise<V1PodList> => {
-        if (namespace) {
-            return (await api.listNamespacedPod(namespace)).body;
-        }
-        return (await api.listPodForAllNamespaces()).body;
+        return (await (namespace ? api.listNamespacedPod(namespace) : api.listPodForAllNamespaces())).body;
     };
 
     const [podMetrics, podList] = await Promise.all([metrics.getPodMetrics(namespace), getPodList()]);
