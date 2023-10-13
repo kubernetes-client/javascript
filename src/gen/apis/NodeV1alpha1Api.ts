@@ -1,7 +1,7 @@
 // TODO: better import syntax?
 import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
 import {ObjectSerializer} from '../models/ObjectSerializer';
@@ -640,28 +640,28 @@ export class NodeV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createRuntimeClass
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createRuntimeClass(response: ResponseContext): Promise<V1alpha1RuntimeClass > {
+     public async createRuntimeClassWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1RuntimeClass >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1RuntimeClass = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RuntimeClass", ""
             ) as V1alpha1RuntimeClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1RuntimeClass = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RuntimeClass", ""
             ) as V1alpha1RuntimeClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1alpha1RuntimeClass = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RuntimeClass", ""
             ) as V1alpha1RuntimeClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -673,7 +673,7 @@ export class NodeV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RuntimeClass", ""
             ) as V1alpha1RuntimeClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -686,14 +686,14 @@ export class NodeV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionRuntimeClass
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionRuntimeClass(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionRuntimeClassWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -705,7 +705,7 @@ export class NodeV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -718,21 +718,21 @@ export class NodeV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteRuntimeClass
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteRuntimeClass(response: ResponseContext): Promise<V1Status > {
+     public async deleteRuntimeClassWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -744,7 +744,7 @@ export class NodeV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -757,14 +757,14 @@ export class NodeV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to getAPIResources
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getAPIResources(response: ResponseContext): Promise<V1APIResourceList > {
+     public async getAPIResourcesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1APIResourceList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1APIResourceList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -776,7 +776,7 @@ export class NodeV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -789,14 +789,14 @@ export class NodeV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listRuntimeClass
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listRuntimeClass(response: ResponseContext): Promise<V1alpha1RuntimeClassList > {
+     public async listRuntimeClassWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1RuntimeClassList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1RuntimeClassList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RuntimeClassList", ""
             ) as V1alpha1RuntimeClassList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -808,7 +808,7 @@ export class NodeV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RuntimeClassList", ""
             ) as V1alpha1RuntimeClassList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -821,21 +821,21 @@ export class NodeV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchRuntimeClass
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchRuntimeClass(response: ResponseContext): Promise<V1alpha1RuntimeClass > {
+     public async patchRuntimeClassWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1RuntimeClass >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1RuntimeClass = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RuntimeClass", ""
             ) as V1alpha1RuntimeClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1RuntimeClass = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RuntimeClass", ""
             ) as V1alpha1RuntimeClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -847,7 +847,7 @@ export class NodeV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RuntimeClass", ""
             ) as V1alpha1RuntimeClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -860,14 +860,14 @@ export class NodeV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readRuntimeClass
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readRuntimeClass(response: ResponseContext): Promise<V1alpha1RuntimeClass > {
+     public async readRuntimeClassWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1RuntimeClass >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1RuntimeClass = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RuntimeClass", ""
             ) as V1alpha1RuntimeClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -879,7 +879,7 @@ export class NodeV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RuntimeClass", ""
             ) as V1alpha1RuntimeClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -892,21 +892,21 @@ export class NodeV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceRuntimeClass
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceRuntimeClass(response: ResponseContext): Promise<V1alpha1RuntimeClass > {
+     public async replaceRuntimeClassWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1RuntimeClass >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1RuntimeClass = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RuntimeClass", ""
             ) as V1alpha1RuntimeClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1RuntimeClass = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RuntimeClass", ""
             ) as V1alpha1RuntimeClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -918,7 +918,7 @@ export class NodeV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RuntimeClass", ""
             ) as V1alpha1RuntimeClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);

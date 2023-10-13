@@ -1,7 +1,7 @@
 // TODO: better import syntax?
 import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
 import {ObjectSerializer} from '../models/ObjectSerializer';
@@ -1026,28 +1026,28 @@ export class BatchV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedCronJob
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedCronJob(response: ResponseContext): Promise<V1beta1CronJob > {
+     public async createNamespacedCronJobWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1CronJob >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1CronJob = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1beta1CronJob = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1beta1CronJob = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1059,7 +1059,7 @@ export class BatchV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1072,14 +1072,14 @@ export class BatchV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionNamespacedCronJob
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionNamespacedCronJob(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionNamespacedCronJobWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1091,7 +1091,7 @@ export class BatchV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1104,21 +1104,21 @@ export class BatchV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNamespacedCronJob
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNamespacedCronJob(response: ResponseContext): Promise<V1Status > {
+     public async deleteNamespacedCronJobWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1130,7 +1130,7 @@ export class BatchV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1143,14 +1143,14 @@ export class BatchV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to getAPIResources
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getAPIResources(response: ResponseContext): Promise<V1APIResourceList > {
+     public async getAPIResourcesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1APIResourceList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1APIResourceList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1162,7 +1162,7 @@ export class BatchV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1175,14 +1175,14 @@ export class BatchV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listCronJobForAllNamespaces
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listCronJobForAllNamespaces(response: ResponseContext): Promise<V1beta1CronJobList > {
+     public async listCronJobForAllNamespacesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1CronJobList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1CronJobList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJobList", ""
             ) as V1beta1CronJobList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1194,7 +1194,7 @@ export class BatchV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJobList", ""
             ) as V1beta1CronJobList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1207,14 +1207,14 @@ export class BatchV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNamespacedCronJob
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNamespacedCronJob(response: ResponseContext): Promise<V1beta1CronJobList > {
+     public async listNamespacedCronJobWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1CronJobList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1CronJobList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJobList", ""
             ) as V1beta1CronJobList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1226,7 +1226,7 @@ export class BatchV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJobList", ""
             ) as V1beta1CronJobList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1239,21 +1239,21 @@ export class BatchV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedCronJob
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedCronJob(response: ResponseContext): Promise<V1beta1CronJob > {
+     public async patchNamespacedCronJobWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1CronJob >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1CronJob = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1beta1CronJob = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1265,7 +1265,7 @@ export class BatchV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1278,21 +1278,21 @@ export class BatchV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedCronJobStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedCronJobStatus(response: ResponseContext): Promise<V1beta1CronJob > {
+     public async patchNamespacedCronJobStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1CronJob >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1CronJob = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1beta1CronJob = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1304,7 +1304,7 @@ export class BatchV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1317,14 +1317,14 @@ export class BatchV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedCronJob
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedCronJob(response: ResponseContext): Promise<V1beta1CronJob > {
+     public async readNamespacedCronJobWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1CronJob >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1CronJob = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1336,7 +1336,7 @@ export class BatchV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1349,14 +1349,14 @@ export class BatchV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedCronJobStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedCronJobStatus(response: ResponseContext): Promise<V1beta1CronJob > {
+     public async readNamespacedCronJobStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1CronJob >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1CronJob = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1368,7 +1368,7 @@ export class BatchV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1381,21 +1381,21 @@ export class BatchV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedCronJob
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedCronJob(response: ResponseContext): Promise<V1beta1CronJob > {
+     public async replaceNamespacedCronJobWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1CronJob >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1CronJob = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1beta1CronJob = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1407,7 +1407,7 @@ export class BatchV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1420,21 +1420,21 @@ export class BatchV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedCronJobStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedCronJobStatus(response: ResponseContext): Promise<V1beta1CronJob > {
+     public async replaceNamespacedCronJobStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1CronJob >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1CronJob = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1beta1CronJob = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1446,7 +1446,7 @@ export class BatchV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1CronJob", ""
             ) as V1beta1CronJob;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);

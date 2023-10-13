@@ -1,7 +1,7 @@
 // TODO: better import syntax?
 import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
 import {ObjectSerializer} from '../models/ObjectSerializer';
@@ -2693,28 +2693,28 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createClusterRole
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createClusterRole(response: ResponseContext): Promise<V1alpha1ClusterRole > {
+     public async createClusterRoleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1ClusterRole >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1ClusterRole = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRole", ""
             ) as V1alpha1ClusterRole;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1ClusterRole = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRole", ""
             ) as V1alpha1ClusterRole;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1alpha1ClusterRole = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRole", ""
             ) as V1alpha1ClusterRole;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -2726,7 +2726,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRole", ""
             ) as V1alpha1ClusterRole;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2739,28 +2739,28 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createClusterRoleBinding
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createClusterRoleBinding(response: ResponseContext): Promise<V1alpha1ClusterRoleBinding > {
+     public async createClusterRoleBindingWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1ClusterRoleBinding >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1ClusterRoleBinding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRoleBinding", ""
             ) as V1alpha1ClusterRoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1ClusterRoleBinding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRoleBinding", ""
             ) as V1alpha1ClusterRoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1alpha1ClusterRoleBinding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRoleBinding", ""
             ) as V1alpha1ClusterRoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -2772,7 +2772,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRoleBinding", ""
             ) as V1alpha1ClusterRoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2785,28 +2785,28 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedRole
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedRole(response: ResponseContext): Promise<V1alpha1Role > {
+     public async createNamespacedRoleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1Role >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1Role = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1Role", ""
             ) as V1alpha1Role;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1Role = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1Role", ""
             ) as V1alpha1Role;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1alpha1Role = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1Role", ""
             ) as V1alpha1Role;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -2818,7 +2818,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1Role", ""
             ) as V1alpha1Role;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2831,28 +2831,28 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedRoleBinding
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedRoleBinding(response: ResponseContext): Promise<V1alpha1RoleBinding > {
+     public async createNamespacedRoleBindingWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1RoleBinding >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1RoleBinding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleBinding", ""
             ) as V1alpha1RoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1RoleBinding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleBinding", ""
             ) as V1alpha1RoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1alpha1RoleBinding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleBinding", ""
             ) as V1alpha1RoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -2864,7 +2864,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleBinding", ""
             ) as V1alpha1RoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2877,21 +2877,21 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteClusterRole
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteClusterRole(response: ResponseContext): Promise<V1Status > {
+     public async deleteClusterRoleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -2903,7 +2903,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2916,21 +2916,21 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteClusterRoleBinding
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteClusterRoleBinding(response: ResponseContext): Promise<V1Status > {
+     public async deleteClusterRoleBindingWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -2942,7 +2942,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2955,14 +2955,14 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionClusterRole
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionClusterRole(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionClusterRoleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -2974,7 +2974,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2987,14 +2987,14 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionClusterRoleBinding
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionClusterRoleBinding(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionClusterRoleBindingWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3006,7 +3006,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3019,14 +3019,14 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionNamespacedRole
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionNamespacedRole(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionNamespacedRoleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3038,7 +3038,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3051,14 +3051,14 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionNamespacedRoleBinding
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionNamespacedRoleBinding(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionNamespacedRoleBindingWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3070,7 +3070,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3083,21 +3083,21 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNamespacedRole
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNamespacedRole(response: ResponseContext): Promise<V1Status > {
+     public async deleteNamespacedRoleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3109,7 +3109,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3122,21 +3122,21 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNamespacedRoleBinding
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNamespacedRoleBinding(response: ResponseContext): Promise<V1Status > {
+     public async deleteNamespacedRoleBindingWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3148,7 +3148,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3161,14 +3161,14 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to getAPIResources
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getAPIResources(response: ResponseContext): Promise<V1APIResourceList > {
+     public async getAPIResourcesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1APIResourceList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1APIResourceList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3180,7 +3180,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3193,14 +3193,14 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listClusterRole
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listClusterRole(response: ResponseContext): Promise<V1alpha1ClusterRoleList > {
+     public async listClusterRoleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1ClusterRoleList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1ClusterRoleList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRoleList", ""
             ) as V1alpha1ClusterRoleList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3212,7 +3212,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRoleList", ""
             ) as V1alpha1ClusterRoleList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3225,14 +3225,14 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listClusterRoleBinding
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listClusterRoleBinding(response: ResponseContext): Promise<V1alpha1ClusterRoleBindingList > {
+     public async listClusterRoleBindingWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1ClusterRoleBindingList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1ClusterRoleBindingList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRoleBindingList", ""
             ) as V1alpha1ClusterRoleBindingList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3244,7 +3244,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRoleBindingList", ""
             ) as V1alpha1ClusterRoleBindingList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3257,14 +3257,14 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNamespacedRole
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNamespacedRole(response: ResponseContext): Promise<V1alpha1RoleList > {
+     public async listNamespacedRoleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1RoleList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1RoleList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleList", ""
             ) as V1alpha1RoleList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3276,7 +3276,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleList", ""
             ) as V1alpha1RoleList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3289,14 +3289,14 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNamespacedRoleBinding
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNamespacedRoleBinding(response: ResponseContext): Promise<V1alpha1RoleBindingList > {
+     public async listNamespacedRoleBindingWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1RoleBindingList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1RoleBindingList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleBindingList", ""
             ) as V1alpha1RoleBindingList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3308,7 +3308,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleBindingList", ""
             ) as V1alpha1RoleBindingList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3321,14 +3321,14 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listRoleBindingForAllNamespaces
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listRoleBindingForAllNamespaces(response: ResponseContext): Promise<V1alpha1RoleBindingList > {
+     public async listRoleBindingForAllNamespacesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1RoleBindingList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1RoleBindingList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleBindingList", ""
             ) as V1alpha1RoleBindingList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3340,7 +3340,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleBindingList", ""
             ) as V1alpha1RoleBindingList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3353,14 +3353,14 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listRoleForAllNamespaces
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listRoleForAllNamespaces(response: ResponseContext): Promise<V1alpha1RoleList > {
+     public async listRoleForAllNamespacesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1RoleList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1RoleList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleList", ""
             ) as V1alpha1RoleList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3372,7 +3372,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleList", ""
             ) as V1alpha1RoleList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3385,21 +3385,21 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchClusterRole
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchClusterRole(response: ResponseContext): Promise<V1alpha1ClusterRole > {
+     public async patchClusterRoleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1ClusterRole >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1ClusterRole = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRole", ""
             ) as V1alpha1ClusterRole;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1ClusterRole = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRole", ""
             ) as V1alpha1ClusterRole;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3411,7 +3411,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRole", ""
             ) as V1alpha1ClusterRole;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3424,21 +3424,21 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchClusterRoleBinding
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchClusterRoleBinding(response: ResponseContext): Promise<V1alpha1ClusterRoleBinding > {
+     public async patchClusterRoleBindingWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1ClusterRoleBinding >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1ClusterRoleBinding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRoleBinding", ""
             ) as V1alpha1ClusterRoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1ClusterRoleBinding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRoleBinding", ""
             ) as V1alpha1ClusterRoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3450,7 +3450,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRoleBinding", ""
             ) as V1alpha1ClusterRoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3463,21 +3463,21 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedRole
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedRole(response: ResponseContext): Promise<V1alpha1Role > {
+     public async patchNamespacedRoleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1Role >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1Role = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1Role", ""
             ) as V1alpha1Role;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1Role = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1Role", ""
             ) as V1alpha1Role;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3489,7 +3489,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1Role", ""
             ) as V1alpha1Role;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3502,21 +3502,21 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedRoleBinding
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedRoleBinding(response: ResponseContext): Promise<V1alpha1RoleBinding > {
+     public async patchNamespacedRoleBindingWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1RoleBinding >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1RoleBinding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleBinding", ""
             ) as V1alpha1RoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1RoleBinding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleBinding", ""
             ) as V1alpha1RoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3528,7 +3528,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleBinding", ""
             ) as V1alpha1RoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3541,14 +3541,14 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readClusterRole
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readClusterRole(response: ResponseContext): Promise<V1alpha1ClusterRole > {
+     public async readClusterRoleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1ClusterRole >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1ClusterRole = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRole", ""
             ) as V1alpha1ClusterRole;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3560,7 +3560,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRole", ""
             ) as V1alpha1ClusterRole;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3573,14 +3573,14 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readClusterRoleBinding
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readClusterRoleBinding(response: ResponseContext): Promise<V1alpha1ClusterRoleBinding > {
+     public async readClusterRoleBindingWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1ClusterRoleBinding >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1ClusterRoleBinding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRoleBinding", ""
             ) as V1alpha1ClusterRoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3592,7 +3592,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRoleBinding", ""
             ) as V1alpha1ClusterRoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3605,14 +3605,14 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedRole
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedRole(response: ResponseContext): Promise<V1alpha1Role > {
+     public async readNamespacedRoleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1Role >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1Role = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1Role", ""
             ) as V1alpha1Role;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3624,7 +3624,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1Role", ""
             ) as V1alpha1Role;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3637,14 +3637,14 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedRoleBinding
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedRoleBinding(response: ResponseContext): Promise<V1alpha1RoleBinding > {
+     public async readNamespacedRoleBindingWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1RoleBinding >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1RoleBinding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleBinding", ""
             ) as V1alpha1RoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3656,7 +3656,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleBinding", ""
             ) as V1alpha1RoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3669,21 +3669,21 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceClusterRole
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceClusterRole(response: ResponseContext): Promise<V1alpha1ClusterRole > {
+     public async replaceClusterRoleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1ClusterRole >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1ClusterRole = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRole", ""
             ) as V1alpha1ClusterRole;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1ClusterRole = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRole", ""
             ) as V1alpha1ClusterRole;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3695,7 +3695,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRole", ""
             ) as V1alpha1ClusterRole;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3708,21 +3708,21 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceClusterRoleBinding
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceClusterRoleBinding(response: ResponseContext): Promise<V1alpha1ClusterRoleBinding > {
+     public async replaceClusterRoleBindingWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1ClusterRoleBinding >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1ClusterRoleBinding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRoleBinding", ""
             ) as V1alpha1ClusterRoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1ClusterRoleBinding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRoleBinding", ""
             ) as V1alpha1ClusterRoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3734,7 +3734,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1ClusterRoleBinding", ""
             ) as V1alpha1ClusterRoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3747,21 +3747,21 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedRole
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedRole(response: ResponseContext): Promise<V1alpha1Role > {
+     public async replaceNamespacedRoleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1Role >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1Role = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1Role", ""
             ) as V1alpha1Role;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1Role = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1Role", ""
             ) as V1alpha1Role;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3773,7 +3773,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1Role", ""
             ) as V1alpha1Role;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -3786,21 +3786,21 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedRoleBinding
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedRoleBinding(response: ResponseContext): Promise<V1alpha1RoleBinding > {
+     public async replaceNamespacedRoleBindingWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1RoleBinding >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1RoleBinding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleBinding", ""
             ) as V1alpha1RoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1RoleBinding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleBinding", ""
             ) as V1alpha1RoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -3812,7 +3812,7 @@ export class RbacAuthorizationV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1RoleBinding", ""
             ) as V1alpha1RoleBinding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);

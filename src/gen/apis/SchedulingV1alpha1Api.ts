@@ -1,7 +1,7 @@
 // TODO: better import syntax?
 import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
 import {ObjectSerializer} from '../models/ObjectSerializer';
@@ -640,28 +640,28 @@ export class SchedulingV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createPriorityClass
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createPriorityClass(response: ResponseContext): Promise<V1alpha1PriorityClass > {
+     public async createPriorityClassWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1PriorityClass >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1PriorityClass = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1PriorityClass", ""
             ) as V1alpha1PriorityClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1PriorityClass = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1PriorityClass", ""
             ) as V1alpha1PriorityClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1alpha1PriorityClass = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1PriorityClass", ""
             ) as V1alpha1PriorityClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -673,7 +673,7 @@ export class SchedulingV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1PriorityClass", ""
             ) as V1alpha1PriorityClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -686,14 +686,14 @@ export class SchedulingV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionPriorityClass
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionPriorityClass(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionPriorityClassWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -705,7 +705,7 @@ export class SchedulingV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -718,21 +718,21 @@ export class SchedulingV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deletePriorityClass
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deletePriorityClass(response: ResponseContext): Promise<V1Status > {
+     public async deletePriorityClassWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -744,7 +744,7 @@ export class SchedulingV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -757,14 +757,14 @@ export class SchedulingV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to getAPIResources
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getAPIResources(response: ResponseContext): Promise<V1APIResourceList > {
+     public async getAPIResourcesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1APIResourceList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1APIResourceList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -776,7 +776,7 @@ export class SchedulingV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -789,14 +789,14 @@ export class SchedulingV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listPriorityClass
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listPriorityClass(response: ResponseContext): Promise<V1alpha1PriorityClassList > {
+     public async listPriorityClassWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1PriorityClassList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1PriorityClassList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1PriorityClassList", ""
             ) as V1alpha1PriorityClassList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -808,7 +808,7 @@ export class SchedulingV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1PriorityClassList", ""
             ) as V1alpha1PriorityClassList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -821,21 +821,21 @@ export class SchedulingV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchPriorityClass
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchPriorityClass(response: ResponseContext): Promise<V1alpha1PriorityClass > {
+     public async patchPriorityClassWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1PriorityClass >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1PriorityClass = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1PriorityClass", ""
             ) as V1alpha1PriorityClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1PriorityClass = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1PriorityClass", ""
             ) as V1alpha1PriorityClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -847,7 +847,7 @@ export class SchedulingV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1PriorityClass", ""
             ) as V1alpha1PriorityClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -860,14 +860,14 @@ export class SchedulingV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readPriorityClass
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readPriorityClass(response: ResponseContext): Promise<V1alpha1PriorityClass > {
+     public async readPriorityClassWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1PriorityClass >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1PriorityClass = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1PriorityClass", ""
             ) as V1alpha1PriorityClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -879,7 +879,7 @@ export class SchedulingV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1PriorityClass", ""
             ) as V1alpha1PriorityClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -892,21 +892,21 @@ export class SchedulingV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replacePriorityClass
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replacePriorityClass(response: ResponseContext): Promise<V1alpha1PriorityClass > {
+     public async replacePriorityClassWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1PriorityClass >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1PriorityClass = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1PriorityClass", ""
             ) as V1alpha1PriorityClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1PriorityClass = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1PriorityClass", ""
             ) as V1alpha1PriorityClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -918,7 +918,7 @@ export class SchedulingV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1PriorityClass", ""
             ) as V1alpha1PriorityClass;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
