@@ -1,6 +1,6 @@
 import cluster from "cluster";
-import { CoreV1Api, Middleware, RequestContext, ResponseContext,KubeConfig, PatchUtils, createConfiguration, AuthMethodsConfiguration, Configuration, ServerConfiguration } from "../dist";
-import { PromiseMiddlewareWrapper } from "../dist/gen/middleware";
+import { CoreV1Api, Middleware, RequestContext, ResponseContext,KubeConfig, createConfiguration, AuthMethodsConfiguration, Configuration, ServerConfiguration } from "../../../dist";
+import { PromiseMiddlewareWrapper } from "../../../dist/gen/middleware";
 
 // const k8s = require('@kubernetes/client-node');
 
@@ -22,10 +22,10 @@ k8sApi.listNamespacedPod({
             }
         }
     ];
-    const options = { "headers": { "Content-type": PatchUtils.PATCH_FORMAT_JSON_PATCH}};
+    const options = { "headers": { "Content-type": "application/json-patch+json"}};
     const headerPatchMiddleware = new PromiseMiddlewareWrapper({
         pre: async (requestContext: RequestContext) => {
-            requestContext.setHeaderParam("Content-type", PatchUtils.PATCH_FORMAT_JSON_PATCH);
+            requestContext.setHeaderParam("Content-type",  "application/json-patch+json");
             return requestContext;
         },
         post: async (responseContext: ResponseContext) => responseContext
