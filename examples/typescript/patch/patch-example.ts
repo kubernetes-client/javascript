@@ -38,12 +38,12 @@ k8sApi
             },
             post: async (responseContext: ResponseContext) => responseContext,
         });
-        let currentContext = kc.getCurrentContext();
-        let currentCluster = kc.getCluster(currentContext);
+        const currentContext = kc.getCurrentContext();
+        const currentCluster = kc.getCluster(currentContext);
         if (currentCluster === undefined || currentCluster === null) {
             throw new Error('Cluster is undefined');
         }
-        let server = currentCluster.server;
+        const server = currentCluster.server;
         if (server === undefined) {
             throw new Error('Server is undefined');
         }
@@ -57,7 +57,7 @@ k8sApi
             },
         });
 
-        let podName = res.items[0].metadata?.name;
+        const podName = res.items[0].metadata?.name;
         if (podName === undefined) {
             throw new Error('Pod name is undefined');
         }
@@ -77,6 +77,7 @@ k8sApi
             .catch((err) => {
                 // tslint:disable-next-line:no-console
                 console.log('Error: ');
+                // tslint:disable-next-line:no-console
                 console.log(err);
             });
     });
