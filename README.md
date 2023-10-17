@@ -64,7 +64,7 @@ const main = async () => {
         console.log('New namespace created: ', createNamespaceRes.body);
 
         const readNamespaceRes = await k8sApi.readNamespace(namespace.metadata.name);
-        console.log('Namespcace: ', readNamespaceRes.body);
+        console.log('Namespace: ', readNamespaceRes.body);
 
         await k8sApi.deleteNamespace(namespace.metadata.name, {});
     } catch (err) {
