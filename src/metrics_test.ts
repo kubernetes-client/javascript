@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import nock = require('nock');
 import { KubeConfig } from './config';
 import { V1Status, HttpError } from './gen/api';
-import { Metrics, NodeMetricsList, PodMetricsList, SinglePodMetrics } from './metrics';
+import { Metrics, NodeMetricsList, PodMetricsList, SingleNodeMetrics, SinglePodMetrics } from './metrics';
 
 const emptyPodMetrics: PodMetricsList = {
     kind: 'PodMetricsList',
@@ -47,6 +47,28 @@ const mockedPodMetrics: PodMetricsList = {
     ],
 };
 
+const mockedPodMetricsWithLabels: PodMetricsList = {
+    kind: 'PodMetricsList',
+    apiVersion: 'metrics.k8s.io/v1beta1',
+    metadata: { selfLink: '/apis/metrics.k8s.io/v1beta1/pods/' },
+    items: [
+        {
+            metadata: {
+                name: 'dice-roller-7c76898b4d-shm9p',
+                namespace: 'default',
+                selfLink: '/apis/metrics.k8s.io/v1beta1/namespaces/default/pods/dice-roller-7c76898b4d-shm9p',
+                creationTimestamp: '2021-09-26T11:57:27Z',
+                labels: {
+                    label: 'aLabel',
+                },
+            },
+            timestamp: '2021-09-26T11:57:21Z',
+            window: '30s',
+            containers: [{ name: 'nginx', usage: { cpu: '10', memory: '3912Ki' } }],
+        },
+    ],
+};
+
 const emptyNodeMetrics: NodeMetricsList = {
     kind: 'NodeMetricsList',
     apiVersion: 'metrics.k8s.io/v1beta1',
@@ -64,12 +86,30 @@ const mockedNodeMetrics: NodeMetricsList = {
                 name: 'a-node',
                 selfLink: '/apis/metrics.k8s.io/v1beta1/nodes/a-node',
                 creationTimestamp: '2021-09-26T16:01:53Z',
+                labels: {
+                    label: 'aLabel',
+                },
             },
             timestamp: '2021-09-26T16:01:11Z',
             window: '30s',
             usage: { cpu: '214650124n', memory: '801480Ki' },
         },
     ],
+};
+
+const mockedSingleNodeMetrics: SingleNodeMetrics = {
+    kind: 'NodeMetrics',
+    apiVersion: 'metrics.k8s.io/v1beta1',
+    metadata: {
+        name: 'a-node',
+        creationTimestamp: '2021-09-26T16:01:53Z',
+        labels: {
+            label: 'aLabel',
+        },
+    },
+    timestamp: '2021-09-26T16:01:11Z',
+    window: '30s',
+    usage: { cpu: '214650124n', memory: '801480Ki' },
 };
 
 const mockedSinglePodMetrics: SinglePodMetrics = {
@@ -167,6 +207,54 @@ describe('Metrics', () => {
 
             s.done();
         });
+
+        it('should return specified cluster scope pods metric list if given options', async () => {
+            const [metricsClient, scope] = systemUnderTest();
+            const options = {
+                labelSelector: 'label=aLabel',
+            };
+            const s = scope
+                .get('/apis/metrics.k8s.io/v1beta1/pods')
+                .query(options)
+                .reply(200, mockedPodMetricsWithLabels);
+
+            const response = await metricsClient.getPodMetrics(options);
+            expect(response).to.deep.equal(mockedPodMetricsWithLabels);
+            s.done();
+        });
+
+        it('should return specified namespace scope pods metric list if given options', async () => {
+            const [metricsClient, scope] = systemUnderTest();
+            const options = {
+                labelSelector: 'label=aLabel',
+            };
+            const s = scope
+                .get(`/apis/metrics.k8s.io/v1beta1/namespaces/${TEST_NAMESPACE}/pods`)
+                .query(options)
+                .reply(200, mockedPodMetricsWithLabels);
+
+            const response = await metricsClient.getPodMetrics(TEST_NAMESPACE, options);
+            expect(response).to.deep.equal(mockedPodMetricsWithLabels);
+            s.done();
+        });
+
+        it('should return specified single pod metrics if given namespace and pod name and options', async () => {
+            const podName = 'pod-name';
+            const [metricsClient, scope] = systemUnderTest();
+            const options = {
+                labelSelector: 'label=aLabel',
+            };
+            const s = scope
+                .get(`/apis/metrics.k8s.io/v1beta1/namespaces/${TEST_NAMESPACE}/pods/${podName}`)
+                .query(options)
+                .reply(200, mockedSinglePodMetrics);
+
+            const response = await metricsClient.getPodMetrics(TEST_NAMESPACE, podName, options);
+            expect(response).to.deep.equal(mockedSinglePodMetrics);
+
+            s.done();
+        });
+
         it('should when connection refused', async () => {
             const kc = new KubeConfig();
             kc.loadFromOptions({
@@ -261,6 +349,54 @@ describe('Metrics', () => {
 
             s.done();
         });
+
+        it('should return single node metrics if given node name', async () => {
+            const [metricsClient, scope] = systemUnderTest();
+            const nodeName = 'a-node';
+
+            const s = scope
+                .get(`/apis/metrics.k8s.io/v1beta1/nodes/${nodeName}`)
+                .reply(200, mockedSingleNodeMetrics);
+
+            const response = await metricsClient.getNodeMetrics(nodeName);
+            expect(response).to.deep.equal(mockedSingleNodeMetrics);
+
+            s.done();
+        });
+
+        it('should return specified nodes metrics list if given options', async () => {
+            const [metricsClient, scope] = systemUnderTest();
+            const options = {
+                labelSelector: 'label=aLabel',
+            };
+            const s = scope
+                .get('/apis/metrics.k8s.io/v1beta1/nodes')
+                .query(options)
+                .reply(200, mockedNodeMetrics);
+
+            const response = await metricsClient.getNodeMetrics(options);
+            expect(response).to.deep.equal(mockedNodeMetrics);
+
+            s.done();
+        });
+
+        it('should return specified single node metrics if given node name and options', async () => {
+            const [metricsClient, scope] = systemUnderTest();
+            const nodeName = 'a-node';
+            const options = {
+                labelSelector: 'label=aLabel',
+            };
+            const s = scope
+                .get(`/apis/metrics.k8s.io/v1beta1/nodes/${nodeName}`)
+                .query(options)
+                .reply(200, mockedSingleNodeMetrics);
+
+            const response = await metricsClient.getNodeMetrics(nodeName, options);
+            expect(response).to.deep.equal(mockedSingleNodeMetrics);
+
+            s.done();
+        });
+
         it('should resolve to error when 500', async () => {
             const response: V1Status = {
                 code: 12345,
