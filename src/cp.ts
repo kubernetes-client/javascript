@@ -27,34 +27,37 @@ export class Cp {
         tgtPath: string,
         cwd?: string,
     ): Promise<void> {
-        const tmpFileName = await generateTmpFileName();
-        const command = ['tar', 'zcf', '-'];
-        if (cwd) {
-            command.push('-C', cwd);
-        }
-        command.push(srcPath);
-        const writerStream = fs.createWriteStream(tmpFileName);
-        const errStream = new WritableStreamBuffer();
-        this.execInstance.exec(
-            namespace,
-            podName,
-            containerName,
-            command,
-            writerStream,
-            errStream,
-            null,
-            false,
-            async ({ status }) => {
-                await new Promise(resolve => writerStream.on('finish', resolve));
-                if (status === 'Failure' || errStream.size()) {
-                    throw new Error(`Error from cpFromPod - details: \n ${errStream.getContentsAsString()}`);
-                }
-                await tar.x({
-                    file: tmpFileName,
-                    cwd: tgtPath,
-                });
-            },
-        );
+        return new Promise<void>(async (resolve, reject) => {
+            const tmpFileName = await generateTmpFileName();
+            const command = ['tar', 'zcf', '-'];
+            if (cwd) {
+                command.push('-C', cwd);
+            }
+            command.push(srcPath);
+            const writerStream = fs.createWriteStream(tmpFileName);
+            const errStream = new WritableStreamBuffer();
+            await this.execInstance.exec(
+                namespace,
+                podName,
+                containerName,
+                command,
+                writerStream,
+                errStream,
+                null,
+                false,
+                async ({ status }) => {
+                    await new Promise((resolve) => writerStream.on('finish', resolve));
+                    if (status === 'Failure' || errStream.size()) {
+                        reject(new Error(`Error from cpFromPod - details: \n ${errStream.getContentsAsString()}`));
+                    }
+                    await tar.x({
+                        file: tmpFileName,
+                        cwd: tgtPath,
+                    });
+                    resolve();
+                },
+            );
+        });
     }
 
     /**
@@ -73,25 +76,28 @@ export class Cp {
         tgtPath: string,
         cwd?: string,
     ): Promise<void> {
-        const tmpFileName = await generateTmpFileName();
-        const command = ['tar', 'xf', '-', '-C', tgtPath];
-        await tar.c({ file: tmpFileName, cwd }, [srcPath]);
-        const readStream = fs.createReadStream(tmpFileName);
-        const errStream = new WritableStreamBuffer();
-        this.execInstance.exec(
-            namespace,
-            podName,
-            containerName,
-            command,
-            null,
-            errStream,
-            readStream,
-            false,
-            async ({ status }) => {
-                if (status === 'Failure' || errStream.size()) {
-                    throw new Error(`Error from cpToPod - details: \n ${errStream.getContentsAsString()}`);
-                }
-            },
-        );
+        return new Promise<void>(async (resolve, reject) => {
+            const tmpFileName = await generateTmpFileName();
+            const command = ['tar', 'xf', '-', '-C', tgtPath];
+            await tar.c({ file: tmpFileName, cwd }, [srcPath]);
+            const readStream = fs.createReadStream(tmpFileName);
+            const errStream = new WritableStreamBuffer();
+            await this.execInstance.exec(
+                namespace,
+                podName,
+                containerName,
+                command,
+                null,
+                errStream,
+                readStream,
+                false,
+                async ({ status }) => {
+                    if (status === 'Failure' || errStream.size()) {
+                        reject(new Error(`Error from cpToPod - details: \n ${errStream.getContentsAsString()}`));
+                    }
+                    return resolve();
+                },
+            );
+        });
     }
 }
