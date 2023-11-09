@@ -76,28 +76,25 @@ export class Cp {
         tgtPath: string,
         cwd?: string,
     ): Promise<void> {
-        return new Promise<void>(async (resolve, reject) => {
-            const tmpFileName = await generateTmpFileName();
-            const command = ['tar', 'xf', '-', '-C', tgtPath];
-            await tar.c({ file: tmpFileName, cwd }, [srcPath]);
-            const readStream = fs.createReadStream(tmpFileName);
-            const errStream = new WritableStreamBuffer();
-            await this.execInstance.exec(
-                namespace,
-                podName,
-                containerName,
-                command,
-                null,
-                errStream,
-                readStream,
-                false,
-                async ({ status }) => {
-                    if (status === 'Failure' || errStream.size()) {
-                        reject(new Error(`Error from cpToPod - details: \n ${errStream.getContentsAsString()}`));
-                    }
-                    return resolve();
-                },
-            );
-        });
+        const tmpFileName = await generateTmpFileName();
+        const command = ['tar', 'xf', '-', '-C', tgtPath];
+        await tar.c({ file: tmpFileName, cwd }, [srcPath]);
+        const readStream = fs.createReadStream(tmpFileName);
+        const errStream = new WritableStreamBuffer();
+        this.execInstance.exec(
+            namespace,
+            podName,
+            containerName,
+            command,
+            null,
+            errStream,
+            readStream,
+            false,
+            async ({ status }) => {
+                if (status === 'Failure' || errStream.size()) {
+                    throw new Error(`Error from cpToPod - details: \n ${errStream.getContentsAsString()}`);
+                }
+            },
+        );
     }
 }
