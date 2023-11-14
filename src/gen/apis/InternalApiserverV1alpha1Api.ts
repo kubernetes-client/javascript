@@ -1,7 +1,7 @@
 // TODO: better import syntax?
 import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
 import {ObjectSerializer} from '../models/ObjectSerializer';
@@ -847,28 +847,28 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createStorageVersion
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createStorageVersion(response: ResponseContext): Promise<V1alpha1StorageVersion > {
+     public async createStorageVersionWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1StorageVersion >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1StorageVersion = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1StorageVersion = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1alpha1StorageVersion = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -880,7 +880,7 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -893,14 +893,14 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionStorageVersion
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionStorageVersion(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionStorageVersionWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -912,7 +912,7 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -925,21 +925,21 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteStorageVersion
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteStorageVersion(response: ResponseContext): Promise<V1Status > {
+     public async deleteStorageVersionWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -951,7 +951,7 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -964,14 +964,14 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to getAPIResources
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getAPIResources(response: ResponseContext): Promise<V1APIResourceList > {
+     public async getAPIResourcesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1APIResourceList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1APIResourceList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -983,7 +983,7 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -996,14 +996,14 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listStorageVersion
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listStorageVersion(response: ResponseContext): Promise<V1alpha1StorageVersionList > {
+     public async listStorageVersionWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1StorageVersionList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1StorageVersionList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersionList", ""
             ) as V1alpha1StorageVersionList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1015,7 +1015,7 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersionList", ""
             ) as V1alpha1StorageVersionList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1028,21 +1028,21 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchStorageVersion
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchStorageVersion(response: ResponseContext): Promise<V1alpha1StorageVersion > {
+     public async patchStorageVersionWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1StorageVersion >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1StorageVersion = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1StorageVersion = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1054,7 +1054,7 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1067,21 +1067,21 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchStorageVersionStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchStorageVersionStatus(response: ResponseContext): Promise<V1alpha1StorageVersion > {
+     public async patchStorageVersionStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1StorageVersion >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1StorageVersion = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1StorageVersion = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1093,7 +1093,7 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1106,14 +1106,14 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readStorageVersion
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readStorageVersion(response: ResponseContext): Promise<V1alpha1StorageVersion > {
+     public async readStorageVersionWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1StorageVersion >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1StorageVersion = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1125,7 +1125,7 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1138,14 +1138,14 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readStorageVersionStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readStorageVersionStatus(response: ResponseContext): Promise<V1alpha1StorageVersion > {
+     public async readStorageVersionStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1StorageVersion >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1StorageVersion = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1157,7 +1157,7 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1170,21 +1170,21 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceStorageVersion
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceStorageVersion(response: ResponseContext): Promise<V1alpha1StorageVersion > {
+     public async replaceStorageVersionWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1StorageVersion >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1StorageVersion = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1StorageVersion = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1196,7 +1196,7 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1209,21 +1209,21 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceStorageVersionStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceStorageVersionStatus(response: ResponseContext): Promise<V1alpha1StorageVersion > {
+     public async replaceStorageVersionStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1StorageVersion >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1StorageVersion = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1StorageVersion = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1235,7 +1235,7 @@ export class InternalApiserverV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1StorageVersion", ""
             ) as V1alpha1StorageVersion;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);

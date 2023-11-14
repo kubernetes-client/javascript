@@ -1,7 +1,7 @@
 // TODO: better import syntax?
 import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
 import {ObjectSerializer} from '../models/ObjectSerializer';
@@ -1026,28 +1026,28 @@ export class AutoscalingV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedHorizontalPodAutoscaler
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedHorizontalPodAutoscaler(response: ResponseContext): Promise<V1HorizontalPodAutoscaler > {
+     public async createNamespacedHorizontalPodAutoscalerWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1HorizontalPodAutoscaler >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1HorizontalPodAutoscaler = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1HorizontalPodAutoscaler = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1HorizontalPodAutoscaler = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1059,7 +1059,7 @@ export class AutoscalingV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1072,14 +1072,14 @@ export class AutoscalingV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionNamespacedHorizontalPodAutoscaler
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionNamespacedHorizontalPodAutoscaler(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionNamespacedHorizontalPodAutoscalerWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1091,7 +1091,7 @@ export class AutoscalingV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1104,21 +1104,21 @@ export class AutoscalingV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNamespacedHorizontalPodAutoscaler
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNamespacedHorizontalPodAutoscaler(response: ResponseContext): Promise<V1Status > {
+     public async deleteNamespacedHorizontalPodAutoscalerWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1130,7 +1130,7 @@ export class AutoscalingV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1143,14 +1143,14 @@ export class AutoscalingV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to getAPIResources
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getAPIResources(response: ResponseContext): Promise<V1APIResourceList > {
+     public async getAPIResourcesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1APIResourceList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1APIResourceList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1162,7 +1162,7 @@ export class AutoscalingV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1175,14 +1175,14 @@ export class AutoscalingV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listHorizontalPodAutoscalerForAllNamespaces
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listHorizontalPodAutoscalerForAllNamespaces(response: ResponseContext): Promise<V1HorizontalPodAutoscalerList > {
+     public async listHorizontalPodAutoscalerForAllNamespacesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1HorizontalPodAutoscalerList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1HorizontalPodAutoscalerList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscalerList", ""
             ) as V1HorizontalPodAutoscalerList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1194,7 +1194,7 @@ export class AutoscalingV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscalerList", ""
             ) as V1HorizontalPodAutoscalerList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1207,14 +1207,14 @@ export class AutoscalingV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNamespacedHorizontalPodAutoscaler
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNamespacedHorizontalPodAutoscaler(response: ResponseContext): Promise<V1HorizontalPodAutoscalerList > {
+     public async listNamespacedHorizontalPodAutoscalerWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1HorizontalPodAutoscalerList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1HorizontalPodAutoscalerList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscalerList", ""
             ) as V1HorizontalPodAutoscalerList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1226,7 +1226,7 @@ export class AutoscalingV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscalerList", ""
             ) as V1HorizontalPodAutoscalerList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1239,21 +1239,21 @@ export class AutoscalingV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedHorizontalPodAutoscaler
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedHorizontalPodAutoscaler(response: ResponseContext): Promise<V1HorizontalPodAutoscaler > {
+     public async patchNamespacedHorizontalPodAutoscalerWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1HorizontalPodAutoscaler >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1HorizontalPodAutoscaler = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1HorizontalPodAutoscaler = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1265,7 +1265,7 @@ export class AutoscalingV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1278,21 +1278,21 @@ export class AutoscalingV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedHorizontalPodAutoscalerStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedHorizontalPodAutoscalerStatus(response: ResponseContext): Promise<V1HorizontalPodAutoscaler > {
+     public async patchNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1HorizontalPodAutoscaler >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1HorizontalPodAutoscaler = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1HorizontalPodAutoscaler = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1304,7 +1304,7 @@ export class AutoscalingV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1317,14 +1317,14 @@ export class AutoscalingV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedHorizontalPodAutoscaler
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedHorizontalPodAutoscaler(response: ResponseContext): Promise<V1HorizontalPodAutoscaler > {
+     public async readNamespacedHorizontalPodAutoscalerWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1HorizontalPodAutoscaler >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1HorizontalPodAutoscaler = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1336,7 +1336,7 @@ export class AutoscalingV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1349,14 +1349,14 @@ export class AutoscalingV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedHorizontalPodAutoscalerStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedHorizontalPodAutoscalerStatus(response: ResponseContext): Promise<V1HorizontalPodAutoscaler > {
+     public async readNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1HorizontalPodAutoscaler >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1HorizontalPodAutoscaler = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1368,7 +1368,7 @@ export class AutoscalingV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1381,21 +1381,21 @@ export class AutoscalingV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedHorizontalPodAutoscaler
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedHorizontalPodAutoscaler(response: ResponseContext): Promise<V1HorizontalPodAutoscaler > {
+     public async replaceNamespacedHorizontalPodAutoscalerWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1HorizontalPodAutoscaler >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1HorizontalPodAutoscaler = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1HorizontalPodAutoscaler = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1407,7 +1407,7 @@ export class AutoscalingV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1420,21 +1420,21 @@ export class AutoscalingV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedHorizontalPodAutoscalerStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedHorizontalPodAutoscalerStatus(response: ResponseContext): Promise<V1HorizontalPodAutoscaler > {
+     public async replaceNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1HorizontalPodAutoscaler >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1HorizontalPodAutoscaler = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1HorizontalPodAutoscaler = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1446,7 +1446,7 @@ export class AutoscalingV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1HorizontalPodAutoscaler", ""
             ) as V1HorizontalPodAutoscaler;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);

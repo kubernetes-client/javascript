@@ -1,7 +1,7 @@
 // TODO: better import syntax?
 import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
 import {ObjectSerializer} from '../models/ObjectSerializer';
@@ -1635,28 +1635,28 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createFlowSchema
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createFlowSchema(response: ResponseContext): Promise<V1beta1FlowSchema > {
+     public async createFlowSchemaWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1FlowSchema >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1FlowSchema = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1beta1FlowSchema = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1beta1FlowSchema = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1668,7 +1668,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1681,28 +1681,28 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createPriorityLevelConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createPriorityLevelConfiguration(response: ResponseContext): Promise<V1beta1PriorityLevelConfiguration > {
+     public async createPriorityLevelConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1PriorityLevelConfiguration >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1PriorityLevelConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1beta1PriorityLevelConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1beta1PriorityLevelConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1714,7 +1714,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1727,14 +1727,14 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionFlowSchema
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionFlowSchema(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionFlowSchemaWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1746,7 +1746,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1759,14 +1759,14 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionPriorityLevelConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionPriorityLevelConfiguration(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionPriorityLevelConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1778,7 +1778,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1791,21 +1791,21 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteFlowSchema
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteFlowSchema(response: ResponseContext): Promise<V1Status > {
+     public async deleteFlowSchemaWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1817,7 +1817,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1830,21 +1830,21 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deletePriorityLevelConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deletePriorityLevelConfiguration(response: ResponseContext): Promise<V1Status > {
+     public async deletePriorityLevelConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1856,7 +1856,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1869,14 +1869,14 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to getAPIResources
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getAPIResources(response: ResponseContext): Promise<V1APIResourceList > {
+     public async getAPIResourcesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1APIResourceList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1APIResourceList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1888,7 +1888,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1901,14 +1901,14 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listFlowSchema
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listFlowSchema(response: ResponseContext): Promise<V1beta1FlowSchemaList > {
+     public async listFlowSchemaWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1FlowSchemaList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1FlowSchemaList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchemaList", ""
             ) as V1beta1FlowSchemaList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1920,7 +1920,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchemaList", ""
             ) as V1beta1FlowSchemaList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1933,14 +1933,14 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listPriorityLevelConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listPriorityLevelConfiguration(response: ResponseContext): Promise<V1beta1PriorityLevelConfigurationList > {
+     public async listPriorityLevelConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1PriorityLevelConfigurationList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1PriorityLevelConfigurationList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfigurationList", ""
             ) as V1beta1PriorityLevelConfigurationList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1952,7 +1952,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfigurationList", ""
             ) as V1beta1PriorityLevelConfigurationList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1965,21 +1965,21 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchFlowSchema
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchFlowSchema(response: ResponseContext): Promise<V1beta1FlowSchema > {
+     public async patchFlowSchemaWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1FlowSchema >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1FlowSchema = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1beta1FlowSchema = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1991,7 +1991,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2004,21 +2004,21 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchFlowSchemaStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchFlowSchemaStatus(response: ResponseContext): Promise<V1beta1FlowSchema > {
+     public async patchFlowSchemaStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1FlowSchema >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1FlowSchema = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1beta1FlowSchema = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -2030,7 +2030,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2043,21 +2043,21 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchPriorityLevelConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchPriorityLevelConfiguration(response: ResponseContext): Promise<V1beta1PriorityLevelConfiguration > {
+     public async patchPriorityLevelConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1PriorityLevelConfiguration >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1PriorityLevelConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1beta1PriorityLevelConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -2069,7 +2069,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2082,21 +2082,21 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchPriorityLevelConfigurationStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchPriorityLevelConfigurationStatus(response: ResponseContext): Promise<V1beta1PriorityLevelConfiguration > {
+     public async patchPriorityLevelConfigurationStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1PriorityLevelConfiguration >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1PriorityLevelConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1beta1PriorityLevelConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -2108,7 +2108,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2121,14 +2121,14 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readFlowSchema
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readFlowSchema(response: ResponseContext): Promise<V1beta1FlowSchema > {
+     public async readFlowSchemaWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1FlowSchema >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1FlowSchema = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -2140,7 +2140,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2153,14 +2153,14 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readFlowSchemaStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readFlowSchemaStatus(response: ResponseContext): Promise<V1beta1FlowSchema > {
+     public async readFlowSchemaStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1FlowSchema >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1FlowSchema = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -2172,7 +2172,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2185,14 +2185,14 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readPriorityLevelConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readPriorityLevelConfiguration(response: ResponseContext): Promise<V1beta1PriorityLevelConfiguration > {
+     public async readPriorityLevelConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1PriorityLevelConfiguration >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1PriorityLevelConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -2204,7 +2204,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2217,14 +2217,14 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readPriorityLevelConfigurationStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readPriorityLevelConfigurationStatus(response: ResponseContext): Promise<V1beta1PriorityLevelConfiguration > {
+     public async readPriorityLevelConfigurationStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1PriorityLevelConfiguration >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1PriorityLevelConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -2236,7 +2236,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2249,21 +2249,21 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceFlowSchema
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceFlowSchema(response: ResponseContext): Promise<V1beta1FlowSchema > {
+     public async replaceFlowSchemaWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1FlowSchema >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1FlowSchema = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1beta1FlowSchema = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -2275,7 +2275,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2288,21 +2288,21 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceFlowSchemaStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceFlowSchemaStatus(response: ResponseContext): Promise<V1beta1FlowSchema > {
+     public async replaceFlowSchemaStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1FlowSchema >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1FlowSchema = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1beta1FlowSchema = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -2314,7 +2314,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1FlowSchema", ""
             ) as V1beta1FlowSchema;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2327,21 +2327,21 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replacePriorityLevelConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replacePriorityLevelConfiguration(response: ResponseContext): Promise<V1beta1PriorityLevelConfiguration > {
+     public async replacePriorityLevelConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1PriorityLevelConfiguration >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1PriorityLevelConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1beta1PriorityLevelConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -2353,7 +2353,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -2366,21 +2366,21 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replacePriorityLevelConfigurationStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replacePriorityLevelConfigurationStatus(response: ResponseContext): Promise<V1beta1PriorityLevelConfiguration > {
+     public async replacePriorityLevelConfigurationStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1beta1PriorityLevelConfiguration >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1beta1PriorityLevelConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1beta1PriorityLevelConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -2392,7 +2392,7 @@ export class FlowcontrolApiserverV1beta1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1beta1PriorityLevelConfiguration", ""
             ) as V1beta1PriorityLevelConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);

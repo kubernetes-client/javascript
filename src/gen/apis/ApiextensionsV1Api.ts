@@ -1,7 +1,7 @@
 // TODO: better import syntax?
 import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
 import {ObjectSerializer} from '../models/ObjectSerializer';
@@ -847,28 +847,28 @@ export class ApiextensionsV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createCustomResourceDefinition
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createCustomResourceDefinition(response: ResponseContext): Promise<V1CustomResourceDefinition > {
+     public async createCustomResourceDefinitionWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CustomResourceDefinition >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CustomResourceDefinition = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1CustomResourceDefinition = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1CustomResourceDefinition = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -880,7 +880,7 @@ export class ApiextensionsV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -893,14 +893,14 @@ export class ApiextensionsV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionCustomResourceDefinition
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionCustomResourceDefinition(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionCustomResourceDefinitionWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -912,7 +912,7 @@ export class ApiextensionsV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -925,21 +925,21 @@ export class ApiextensionsV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCustomResourceDefinition
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCustomResourceDefinition(response: ResponseContext): Promise<V1Status > {
+     public async deleteCustomResourceDefinitionWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -951,7 +951,7 @@ export class ApiextensionsV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -964,14 +964,14 @@ export class ApiextensionsV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to getAPIResources
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getAPIResources(response: ResponseContext): Promise<V1APIResourceList > {
+     public async getAPIResourcesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1APIResourceList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1APIResourceList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -983,7 +983,7 @@ export class ApiextensionsV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -996,14 +996,14 @@ export class ApiextensionsV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listCustomResourceDefinition
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listCustomResourceDefinition(response: ResponseContext): Promise<V1CustomResourceDefinitionList > {
+     public async listCustomResourceDefinitionWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CustomResourceDefinitionList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CustomResourceDefinitionList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinitionList", ""
             ) as V1CustomResourceDefinitionList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1015,7 +1015,7 @@ export class ApiextensionsV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinitionList", ""
             ) as V1CustomResourceDefinitionList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1028,21 +1028,21 @@ export class ApiextensionsV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchCustomResourceDefinition
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchCustomResourceDefinition(response: ResponseContext): Promise<V1CustomResourceDefinition > {
+     public async patchCustomResourceDefinitionWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CustomResourceDefinition >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CustomResourceDefinition = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1CustomResourceDefinition = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1054,7 +1054,7 @@ export class ApiextensionsV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1067,21 +1067,21 @@ export class ApiextensionsV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchCustomResourceDefinitionStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchCustomResourceDefinitionStatus(response: ResponseContext): Promise<V1CustomResourceDefinition > {
+     public async patchCustomResourceDefinitionStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CustomResourceDefinition >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CustomResourceDefinition = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1CustomResourceDefinition = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1093,7 +1093,7 @@ export class ApiextensionsV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1106,14 +1106,14 @@ export class ApiextensionsV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readCustomResourceDefinition
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readCustomResourceDefinition(response: ResponseContext): Promise<V1CustomResourceDefinition > {
+     public async readCustomResourceDefinitionWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CustomResourceDefinition >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CustomResourceDefinition = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1125,7 +1125,7 @@ export class ApiextensionsV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1138,14 +1138,14 @@ export class ApiextensionsV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readCustomResourceDefinitionStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readCustomResourceDefinitionStatus(response: ResponseContext): Promise<V1CustomResourceDefinition > {
+     public async readCustomResourceDefinitionStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CustomResourceDefinition >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CustomResourceDefinition = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1157,7 +1157,7 @@ export class ApiextensionsV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1170,21 +1170,21 @@ export class ApiextensionsV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceCustomResourceDefinition
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceCustomResourceDefinition(response: ResponseContext): Promise<V1CustomResourceDefinition > {
+     public async replaceCustomResourceDefinitionWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CustomResourceDefinition >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CustomResourceDefinition = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1CustomResourceDefinition = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1196,7 +1196,7 @@ export class ApiextensionsV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1209,21 +1209,21 @@ export class ApiextensionsV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceCustomResourceDefinitionStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceCustomResourceDefinitionStatus(response: ResponseContext): Promise<V1CustomResourceDefinition > {
+     public async replaceCustomResourceDefinitionStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CustomResourceDefinition >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CustomResourceDefinition = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1CustomResourceDefinition = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1235,7 +1235,7 @@ export class ApiextensionsV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CustomResourceDefinition", ""
             ) as V1CustomResourceDefinition;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);

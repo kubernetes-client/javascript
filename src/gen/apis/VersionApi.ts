@@ -1,7 +1,7 @@
 // TODO: better import syntax?
 import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
 import {ObjectSerializer} from '../models/ObjectSerializer';
@@ -57,14 +57,14 @@ export class VersionApiResponseProcessor {
      * @params response Response returned by the server for a request to getCode
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getCode(response: ResponseContext): Promise<VersionInfo > {
+     public async getCodeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<VersionInfo >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: VersionInfo = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "VersionInfo", ""
             ) as VersionInfo;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -76,7 +76,7 @@ export class VersionApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "VersionInfo", ""
             ) as VersionInfo;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);

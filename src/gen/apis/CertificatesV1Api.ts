@@ -1,7 +1,7 @@
 // TODO: better import syntax?
 import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
 import {ObjectSerializer} from '../models/ObjectSerializer';
@@ -1054,28 +1054,28 @@ export class CertificatesV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createCertificateSigningRequest
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createCertificateSigningRequest(response: ResponseContext): Promise<V1CertificateSigningRequest > {
+     public async createCertificateSigningRequestWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CertificateSigningRequest >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CertificateSigningRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1CertificateSigningRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1CertificateSigningRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1087,7 +1087,7 @@ export class CertificatesV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1100,21 +1100,21 @@ export class CertificatesV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCertificateSigningRequest
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCertificateSigningRequest(response: ResponseContext): Promise<V1Status > {
+     public async deleteCertificateSigningRequestWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1126,7 +1126,7 @@ export class CertificatesV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1139,14 +1139,14 @@ export class CertificatesV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionCertificateSigningRequest
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionCertificateSigningRequest(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionCertificateSigningRequestWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1158,7 +1158,7 @@ export class CertificatesV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1171,14 +1171,14 @@ export class CertificatesV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to getAPIResources
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getAPIResources(response: ResponseContext): Promise<V1APIResourceList > {
+     public async getAPIResourcesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1APIResourceList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1APIResourceList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1190,7 +1190,7 @@ export class CertificatesV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1203,14 +1203,14 @@ export class CertificatesV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listCertificateSigningRequest
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listCertificateSigningRequest(response: ResponseContext): Promise<V1CertificateSigningRequestList > {
+     public async listCertificateSigningRequestWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CertificateSigningRequestList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CertificateSigningRequestList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequestList", ""
             ) as V1CertificateSigningRequestList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1222,7 +1222,7 @@ export class CertificatesV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequestList", ""
             ) as V1CertificateSigningRequestList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1235,21 +1235,21 @@ export class CertificatesV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchCertificateSigningRequest
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchCertificateSigningRequest(response: ResponseContext): Promise<V1CertificateSigningRequest > {
+     public async patchCertificateSigningRequestWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CertificateSigningRequest >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CertificateSigningRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1CertificateSigningRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1261,7 +1261,7 @@ export class CertificatesV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1274,21 +1274,21 @@ export class CertificatesV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchCertificateSigningRequestApproval
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchCertificateSigningRequestApproval(response: ResponseContext): Promise<V1CertificateSigningRequest > {
+     public async patchCertificateSigningRequestApprovalWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CertificateSigningRequest >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CertificateSigningRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1CertificateSigningRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1300,7 +1300,7 @@ export class CertificatesV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1313,21 +1313,21 @@ export class CertificatesV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchCertificateSigningRequestStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchCertificateSigningRequestStatus(response: ResponseContext): Promise<V1CertificateSigningRequest > {
+     public async patchCertificateSigningRequestStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CertificateSigningRequest >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CertificateSigningRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1CertificateSigningRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1339,7 +1339,7 @@ export class CertificatesV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1352,14 +1352,14 @@ export class CertificatesV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readCertificateSigningRequest
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readCertificateSigningRequest(response: ResponseContext): Promise<V1CertificateSigningRequest > {
+     public async readCertificateSigningRequestWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CertificateSigningRequest >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CertificateSigningRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1371,7 +1371,7 @@ export class CertificatesV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1384,14 +1384,14 @@ export class CertificatesV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readCertificateSigningRequestApproval
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readCertificateSigningRequestApproval(response: ResponseContext): Promise<V1CertificateSigningRequest > {
+     public async readCertificateSigningRequestApprovalWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CertificateSigningRequest >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CertificateSigningRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1403,7 +1403,7 @@ export class CertificatesV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1416,14 +1416,14 @@ export class CertificatesV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readCertificateSigningRequestStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readCertificateSigningRequestStatus(response: ResponseContext): Promise<V1CertificateSigningRequest > {
+     public async readCertificateSigningRequestStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CertificateSigningRequest >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CertificateSigningRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1435,7 +1435,7 @@ export class CertificatesV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1448,21 +1448,21 @@ export class CertificatesV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceCertificateSigningRequest
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceCertificateSigningRequest(response: ResponseContext): Promise<V1CertificateSigningRequest > {
+     public async replaceCertificateSigningRequestWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CertificateSigningRequest >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CertificateSigningRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1CertificateSigningRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1474,7 +1474,7 @@ export class CertificatesV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1487,21 +1487,21 @@ export class CertificatesV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceCertificateSigningRequestApproval
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceCertificateSigningRequestApproval(response: ResponseContext): Promise<V1CertificateSigningRequest > {
+     public async replaceCertificateSigningRequestApprovalWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CertificateSigningRequest >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CertificateSigningRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1CertificateSigningRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1513,7 +1513,7 @@ export class CertificatesV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1526,21 +1526,21 @@ export class CertificatesV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceCertificateSigningRequestStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceCertificateSigningRequestStatus(response: ResponseContext): Promise<V1CertificateSigningRequest > {
+     public async replaceCertificateSigningRequestStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1CertificateSigningRequest >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1CertificateSigningRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1CertificateSigningRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1552,7 +1552,7 @@ export class CertificatesV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1CertificateSigningRequest", ""
             ) as V1CertificateSigningRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);

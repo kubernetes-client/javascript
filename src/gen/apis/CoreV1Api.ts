@@ -1,7 +1,7 @@
 // TODO: better import syntax?
 import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
 import {ObjectSerializer} from '../models/ObjectSerializer';
@@ -15945,14 +15945,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectDeleteNamespacedPodProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectDeleteNamespacedPodProxy(response: ResponseContext): Promise<string > {
+     public async connectDeleteNamespacedPodProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -15964,7 +15964,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -15977,14 +15977,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectDeleteNamespacedPodProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectDeleteNamespacedPodProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectDeleteNamespacedPodProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -15996,7 +15996,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16009,14 +16009,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectDeleteNamespacedServiceProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectDeleteNamespacedServiceProxy(response: ResponseContext): Promise<string > {
+     public async connectDeleteNamespacedServiceProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16028,7 +16028,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16041,14 +16041,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectDeleteNamespacedServiceProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectDeleteNamespacedServiceProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectDeleteNamespacedServiceProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16060,7 +16060,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16073,14 +16073,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectDeleteNodeProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectDeleteNodeProxy(response: ResponseContext): Promise<string > {
+     public async connectDeleteNodeProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16092,7 +16092,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16105,14 +16105,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectDeleteNodeProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectDeleteNodeProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectDeleteNodeProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16124,7 +16124,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16137,14 +16137,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectGetNamespacedPodAttach
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectGetNamespacedPodAttach(response: ResponseContext): Promise<string > {
+     public async connectGetNamespacedPodAttachWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16156,7 +16156,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16169,14 +16169,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectGetNamespacedPodExec
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectGetNamespacedPodExec(response: ResponseContext): Promise<string > {
+     public async connectGetNamespacedPodExecWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16188,7 +16188,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16201,14 +16201,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectGetNamespacedPodPortforward
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectGetNamespacedPodPortforward(response: ResponseContext): Promise<string > {
+     public async connectGetNamespacedPodPortforwardWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16220,7 +16220,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16233,14 +16233,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectGetNamespacedPodProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectGetNamespacedPodProxy(response: ResponseContext): Promise<string > {
+     public async connectGetNamespacedPodProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16252,7 +16252,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16265,14 +16265,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectGetNamespacedPodProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectGetNamespacedPodProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectGetNamespacedPodProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16284,7 +16284,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16297,14 +16297,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectGetNamespacedServiceProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectGetNamespacedServiceProxy(response: ResponseContext): Promise<string > {
+     public async connectGetNamespacedServiceProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16316,7 +16316,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16329,14 +16329,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectGetNamespacedServiceProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectGetNamespacedServiceProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectGetNamespacedServiceProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16348,7 +16348,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16361,14 +16361,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectGetNodeProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectGetNodeProxy(response: ResponseContext): Promise<string > {
+     public async connectGetNodeProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16380,7 +16380,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16393,14 +16393,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectGetNodeProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectGetNodeProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectGetNodeProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16412,7 +16412,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16425,14 +16425,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectHeadNamespacedPodProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectHeadNamespacedPodProxy(response: ResponseContext): Promise<string > {
+     public async connectHeadNamespacedPodProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16444,7 +16444,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16457,14 +16457,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectHeadNamespacedPodProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectHeadNamespacedPodProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectHeadNamespacedPodProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16476,7 +16476,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16489,14 +16489,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectHeadNamespacedServiceProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectHeadNamespacedServiceProxy(response: ResponseContext): Promise<string > {
+     public async connectHeadNamespacedServiceProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16508,7 +16508,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16521,14 +16521,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectHeadNamespacedServiceProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectHeadNamespacedServiceProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectHeadNamespacedServiceProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16540,7 +16540,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16553,14 +16553,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectHeadNodeProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectHeadNodeProxy(response: ResponseContext): Promise<string > {
+     public async connectHeadNodeProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16572,7 +16572,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16585,14 +16585,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectHeadNodeProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectHeadNodeProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectHeadNodeProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16604,7 +16604,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16617,14 +16617,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectOptionsNamespacedPodProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectOptionsNamespacedPodProxy(response: ResponseContext): Promise<string > {
+     public async connectOptionsNamespacedPodProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16636,7 +16636,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16649,14 +16649,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectOptionsNamespacedPodProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectOptionsNamespacedPodProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectOptionsNamespacedPodProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16668,7 +16668,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16681,14 +16681,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectOptionsNamespacedServiceProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectOptionsNamespacedServiceProxy(response: ResponseContext): Promise<string > {
+     public async connectOptionsNamespacedServiceProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16700,7 +16700,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16713,14 +16713,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectOptionsNamespacedServiceProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectOptionsNamespacedServiceProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectOptionsNamespacedServiceProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16732,7 +16732,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16745,14 +16745,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectOptionsNodeProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectOptionsNodeProxy(response: ResponseContext): Promise<string > {
+     public async connectOptionsNodeProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16764,7 +16764,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16777,14 +16777,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectOptionsNodeProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectOptionsNodeProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectOptionsNodeProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16796,7 +16796,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16809,14 +16809,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPatchNamespacedPodProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPatchNamespacedPodProxy(response: ResponseContext): Promise<string > {
+     public async connectPatchNamespacedPodProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16828,7 +16828,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16841,14 +16841,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPatchNamespacedPodProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPatchNamespacedPodProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectPatchNamespacedPodProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16860,7 +16860,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16873,14 +16873,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPatchNamespacedServiceProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPatchNamespacedServiceProxy(response: ResponseContext): Promise<string > {
+     public async connectPatchNamespacedServiceProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16892,7 +16892,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16905,14 +16905,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPatchNamespacedServiceProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPatchNamespacedServiceProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectPatchNamespacedServiceProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16924,7 +16924,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16937,14 +16937,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPatchNodeProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPatchNodeProxy(response: ResponseContext): Promise<string > {
+     public async connectPatchNodeProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16956,7 +16956,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -16969,14 +16969,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPatchNodeProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPatchNodeProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectPatchNodeProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -16988,7 +16988,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17001,14 +17001,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPostNamespacedPodAttach
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPostNamespacedPodAttach(response: ResponseContext): Promise<string > {
+     public async connectPostNamespacedPodAttachWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17020,7 +17020,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17033,14 +17033,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPostNamespacedPodExec
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPostNamespacedPodExec(response: ResponseContext): Promise<string > {
+     public async connectPostNamespacedPodExecWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17052,7 +17052,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17065,14 +17065,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPostNamespacedPodPortforward
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPostNamespacedPodPortforward(response: ResponseContext): Promise<string > {
+     public async connectPostNamespacedPodPortforwardWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17084,7 +17084,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17097,14 +17097,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPostNamespacedPodProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPostNamespacedPodProxy(response: ResponseContext): Promise<string > {
+     public async connectPostNamespacedPodProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17116,7 +17116,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17129,14 +17129,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPostNamespacedPodProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPostNamespacedPodProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectPostNamespacedPodProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17148,7 +17148,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17161,14 +17161,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPostNamespacedServiceProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPostNamespacedServiceProxy(response: ResponseContext): Promise<string > {
+     public async connectPostNamespacedServiceProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17180,7 +17180,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17193,14 +17193,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPostNamespacedServiceProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPostNamespacedServiceProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectPostNamespacedServiceProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17212,7 +17212,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17225,14 +17225,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPostNodeProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPostNodeProxy(response: ResponseContext): Promise<string > {
+     public async connectPostNodeProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17244,7 +17244,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17257,14 +17257,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPostNodeProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPostNodeProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectPostNodeProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17276,7 +17276,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17289,14 +17289,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPutNamespacedPodProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPutNamespacedPodProxy(response: ResponseContext): Promise<string > {
+     public async connectPutNamespacedPodProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17308,7 +17308,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17321,14 +17321,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPutNamespacedPodProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPutNamespacedPodProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectPutNamespacedPodProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17340,7 +17340,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17353,14 +17353,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPutNamespacedServiceProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPutNamespacedServiceProxy(response: ResponseContext): Promise<string > {
+     public async connectPutNamespacedServiceProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17372,7 +17372,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17385,14 +17385,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPutNamespacedServiceProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPutNamespacedServiceProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectPutNamespacedServiceProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17404,7 +17404,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17417,14 +17417,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPutNodeProxy
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPutNodeProxy(response: ResponseContext): Promise<string > {
+     public async connectPutNodeProxyWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17436,7 +17436,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17449,14 +17449,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to connectPutNodeProxyWithPath
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async connectPutNodeProxyWithPath(response: ResponseContext): Promise<string > {
+     public async connectPutNodeProxyWithPathWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17468,7 +17468,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17481,28 +17481,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespace
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespace(response: ResponseContext): Promise<V1Namespace > {
+     public async createNamespaceWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Namespace >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Namespace = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Namespace = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Namespace = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17514,7 +17514,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17527,28 +17527,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedBinding
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedBinding(response: ResponseContext): Promise<V1Binding > {
+     public async createNamespacedBindingWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Binding >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Binding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Binding", ""
             ) as V1Binding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Binding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Binding", ""
             ) as V1Binding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Binding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Binding", ""
             ) as V1Binding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17560,7 +17560,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Binding", ""
             ) as V1Binding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17573,28 +17573,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedConfigMap
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedConfigMap(response: ResponseContext): Promise<V1ConfigMap > {
+     public async createNamespacedConfigMapWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ConfigMap >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ConfigMap = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ConfigMap", ""
             ) as V1ConfigMap;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ConfigMap = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ConfigMap", ""
             ) as V1ConfigMap;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1ConfigMap = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ConfigMap", ""
             ) as V1ConfigMap;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17606,7 +17606,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ConfigMap", ""
             ) as V1ConfigMap;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17619,28 +17619,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedEndpoints
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedEndpoints(response: ResponseContext): Promise<V1Endpoints > {
+     public async createNamespacedEndpointsWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Endpoints >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Endpoints = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Endpoints", ""
             ) as V1Endpoints;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Endpoints = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Endpoints", ""
             ) as V1Endpoints;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Endpoints = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Endpoints", ""
             ) as V1Endpoints;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17652,7 +17652,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Endpoints", ""
             ) as V1Endpoints;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17665,28 +17665,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedEvent
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedEvent(response: ResponseContext): Promise<CoreV1Event > {
+     public async createNamespacedEventWithHttpInfo(response: ResponseContext): Promise<HttpInfo<CoreV1Event >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: CoreV1Event = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "CoreV1Event", ""
             ) as CoreV1Event;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: CoreV1Event = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "CoreV1Event", ""
             ) as CoreV1Event;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: CoreV1Event = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "CoreV1Event", ""
             ) as CoreV1Event;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17698,7 +17698,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "CoreV1Event", ""
             ) as CoreV1Event;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17711,28 +17711,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedLimitRange
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedLimitRange(response: ResponseContext): Promise<V1LimitRange > {
+     public async createNamespacedLimitRangeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1LimitRange >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1LimitRange = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LimitRange", ""
             ) as V1LimitRange;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1LimitRange = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LimitRange", ""
             ) as V1LimitRange;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1LimitRange = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LimitRange", ""
             ) as V1LimitRange;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17744,7 +17744,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LimitRange", ""
             ) as V1LimitRange;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17757,28 +17757,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedPersistentVolumeClaim
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedPersistentVolumeClaim(response: ResponseContext): Promise<V1PersistentVolumeClaim > {
+     public async createNamespacedPersistentVolumeClaimWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolumeClaim >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolumeClaim = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1PersistentVolumeClaim = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1PersistentVolumeClaim = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17790,7 +17790,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17803,28 +17803,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedPod
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedPod(response: ResponseContext): Promise<V1Pod > {
+     public async createNamespacedPodWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Pod >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17836,7 +17836,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17849,28 +17849,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedPodBinding
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedPodBinding(response: ResponseContext): Promise<V1Binding > {
+     public async createNamespacedPodBindingWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Binding >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Binding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Binding", ""
             ) as V1Binding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Binding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Binding", ""
             ) as V1Binding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Binding = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Binding", ""
             ) as V1Binding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17882,7 +17882,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Binding", ""
             ) as V1Binding;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17895,28 +17895,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedPodEviction
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedPodEviction(response: ResponseContext): Promise<V1Eviction > {
+     public async createNamespacedPodEvictionWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Eviction >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Eviction = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Eviction", ""
             ) as V1Eviction;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Eviction = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Eviction", ""
             ) as V1Eviction;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Eviction = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Eviction", ""
             ) as V1Eviction;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17928,7 +17928,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Eviction", ""
             ) as V1Eviction;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17941,28 +17941,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedPodTemplate
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedPodTemplate(response: ResponseContext): Promise<V1PodTemplate > {
+     public async createNamespacedPodTemplateWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PodTemplate >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PodTemplate = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplate", ""
             ) as V1PodTemplate;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1PodTemplate = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplate", ""
             ) as V1PodTemplate;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1PodTemplate = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplate", ""
             ) as V1PodTemplate;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -17974,7 +17974,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplate", ""
             ) as V1PodTemplate;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -17987,28 +17987,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedReplicationController
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedReplicationController(response: ResponseContext): Promise<V1ReplicationController > {
+     public async createNamespacedReplicationControllerWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ReplicationController >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ReplicationController = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ReplicationController = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1ReplicationController = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18020,7 +18020,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18033,28 +18033,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedResourceQuota
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedResourceQuota(response: ResponseContext): Promise<V1ResourceQuota > {
+     public async createNamespacedResourceQuotaWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ResourceQuota >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ResourceQuota = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ResourceQuota = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1ResourceQuota = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18066,7 +18066,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18079,28 +18079,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedSecret
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedSecret(response: ResponseContext): Promise<V1Secret > {
+     public async createNamespacedSecretWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Secret >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Secret = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Secret", ""
             ) as V1Secret;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Secret = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Secret", ""
             ) as V1Secret;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Secret = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Secret", ""
             ) as V1Secret;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18112,7 +18112,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Secret", ""
             ) as V1Secret;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18125,28 +18125,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedService
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedService(response: ResponseContext): Promise<V1Service > {
+     public async createNamespacedServiceWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Service >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Service = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Service = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Service = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18158,7 +18158,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18171,28 +18171,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedServiceAccount
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedServiceAccount(response: ResponseContext): Promise<V1ServiceAccount > {
+     public async createNamespacedServiceAccountWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ServiceAccount >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ServiceAccount = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccount", ""
             ) as V1ServiceAccount;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ServiceAccount = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccount", ""
             ) as V1ServiceAccount;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1ServiceAccount = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccount", ""
             ) as V1ServiceAccount;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18204,7 +18204,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccount", ""
             ) as V1ServiceAccount;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18217,28 +18217,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedServiceAccountToken
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedServiceAccountToken(response: ResponseContext): Promise<AuthenticationV1TokenRequest > {
+     public async createNamespacedServiceAccountTokenWithHttpInfo(response: ResponseContext): Promise<HttpInfo<AuthenticationV1TokenRequest >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: AuthenticationV1TokenRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "AuthenticationV1TokenRequest", ""
             ) as AuthenticationV1TokenRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: AuthenticationV1TokenRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "AuthenticationV1TokenRequest", ""
             ) as AuthenticationV1TokenRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: AuthenticationV1TokenRequest = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "AuthenticationV1TokenRequest", ""
             ) as AuthenticationV1TokenRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18250,7 +18250,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "AuthenticationV1TokenRequest", ""
             ) as AuthenticationV1TokenRequest;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18263,28 +18263,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNode
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNode(response: ResponseContext): Promise<V1Node > {
+     public async createNodeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Node >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Node = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Node = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Node = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18296,7 +18296,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18309,28 +18309,28 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createPersistentVolume
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createPersistentVolume(response: ResponseContext): Promise<V1PersistentVolume > {
+     public async createPersistentVolumeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolume >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolume = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1PersistentVolume = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1PersistentVolume = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18342,7 +18342,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18355,14 +18355,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionNamespacedConfigMap
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionNamespacedConfigMap(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionNamespacedConfigMapWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18374,7 +18374,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18387,14 +18387,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionNamespacedEndpoints
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionNamespacedEndpoints(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionNamespacedEndpointsWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18406,7 +18406,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18419,14 +18419,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionNamespacedEvent
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionNamespacedEvent(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionNamespacedEventWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18438,7 +18438,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18451,14 +18451,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionNamespacedLimitRange
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionNamespacedLimitRange(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionNamespacedLimitRangeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18470,7 +18470,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18483,14 +18483,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionNamespacedPersistentVolumeClaim
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionNamespacedPersistentVolumeClaim(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionNamespacedPersistentVolumeClaimWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18502,7 +18502,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18515,14 +18515,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionNamespacedPod
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionNamespacedPod(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionNamespacedPodWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18534,7 +18534,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18547,14 +18547,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionNamespacedPodTemplate
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionNamespacedPodTemplate(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionNamespacedPodTemplateWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18566,7 +18566,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18579,14 +18579,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionNamespacedReplicationController
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionNamespacedReplicationController(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionNamespacedReplicationControllerWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18598,7 +18598,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18611,14 +18611,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionNamespacedResourceQuota
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionNamespacedResourceQuota(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionNamespacedResourceQuotaWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18630,7 +18630,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18643,14 +18643,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionNamespacedSecret
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionNamespacedSecret(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionNamespacedSecretWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18662,7 +18662,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18675,14 +18675,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionNamespacedServiceAccount
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionNamespacedServiceAccount(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionNamespacedServiceAccountWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18694,7 +18694,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18707,14 +18707,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionNode
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionNode(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionNodeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18726,7 +18726,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18739,14 +18739,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionPersistentVolume
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionPersistentVolume(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionPersistentVolumeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18758,7 +18758,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18771,21 +18771,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNamespace
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNamespace(response: ResponseContext): Promise<V1Status > {
+     public async deleteNamespaceWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18797,7 +18797,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18810,21 +18810,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNamespacedConfigMap
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNamespacedConfigMap(response: ResponseContext): Promise<V1Status > {
+     public async deleteNamespacedConfigMapWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18836,7 +18836,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18849,21 +18849,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNamespacedEndpoints
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNamespacedEndpoints(response: ResponseContext): Promise<V1Status > {
+     public async deleteNamespacedEndpointsWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18875,7 +18875,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18888,21 +18888,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNamespacedEvent
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNamespacedEvent(response: ResponseContext): Promise<V1Status > {
+     public async deleteNamespacedEventWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18914,7 +18914,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18927,21 +18927,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNamespacedLimitRange
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNamespacedLimitRange(response: ResponseContext): Promise<V1Status > {
+     public async deleteNamespacedLimitRangeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18953,7 +18953,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -18966,21 +18966,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNamespacedPersistentVolumeClaim
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNamespacedPersistentVolumeClaim(response: ResponseContext): Promise<V1PersistentVolumeClaim > {
+     public async deleteNamespacedPersistentVolumeClaimWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolumeClaim >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolumeClaim = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1PersistentVolumeClaim = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -18992,7 +18992,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19005,21 +19005,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNamespacedPod
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNamespacedPod(response: ResponseContext): Promise<V1Pod > {
+     public async deleteNamespacedPodWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Pod >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19031,7 +19031,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19044,21 +19044,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNamespacedPodTemplate
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNamespacedPodTemplate(response: ResponseContext): Promise<V1PodTemplate > {
+     public async deleteNamespacedPodTemplateWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PodTemplate >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PodTemplate = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplate", ""
             ) as V1PodTemplate;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1PodTemplate = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplate", ""
             ) as V1PodTemplate;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19070,7 +19070,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplate", ""
             ) as V1PodTemplate;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19083,21 +19083,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNamespacedReplicationController
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNamespacedReplicationController(response: ResponseContext): Promise<V1Status > {
+     public async deleteNamespacedReplicationControllerWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19109,7 +19109,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19122,21 +19122,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNamespacedResourceQuota
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNamespacedResourceQuota(response: ResponseContext): Promise<V1ResourceQuota > {
+     public async deleteNamespacedResourceQuotaWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ResourceQuota >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ResourceQuota = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1ResourceQuota = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19148,7 +19148,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19161,21 +19161,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNamespacedSecret
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNamespacedSecret(response: ResponseContext): Promise<V1Status > {
+     public async deleteNamespacedSecretWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19187,7 +19187,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19200,21 +19200,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNamespacedService
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNamespacedService(response: ResponseContext): Promise<V1Status > {
+     public async deleteNamespacedServiceWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19226,7 +19226,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19239,21 +19239,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNamespacedServiceAccount
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNamespacedServiceAccount(response: ResponseContext): Promise<V1ServiceAccount > {
+     public async deleteNamespacedServiceAccountWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ServiceAccount >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ServiceAccount = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccount", ""
             ) as V1ServiceAccount;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1ServiceAccount = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccount", ""
             ) as V1ServiceAccount;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19265,7 +19265,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccount", ""
             ) as V1ServiceAccount;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19278,21 +19278,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNode
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNode(response: ResponseContext): Promise<V1Status > {
+     public async deleteNodeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19304,7 +19304,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19317,21 +19317,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deletePersistentVolume
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deletePersistentVolume(response: ResponseContext): Promise<V1PersistentVolume > {
+     public async deletePersistentVolumeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolume >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolume = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1PersistentVolume = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19343,7 +19343,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19356,14 +19356,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to getAPIResources
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getAPIResources(response: ResponseContext): Promise<V1APIResourceList > {
+     public async getAPIResourcesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1APIResourceList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1APIResourceList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19375,7 +19375,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19388,14 +19388,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listComponentStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listComponentStatus(response: ResponseContext): Promise<V1ComponentStatusList > {
+     public async listComponentStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ComponentStatusList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ComponentStatusList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ComponentStatusList", ""
             ) as V1ComponentStatusList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19407,7 +19407,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ComponentStatusList", ""
             ) as V1ComponentStatusList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19420,14 +19420,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listConfigMapForAllNamespaces
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listConfigMapForAllNamespaces(response: ResponseContext): Promise<V1ConfigMapList > {
+     public async listConfigMapForAllNamespacesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ConfigMapList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ConfigMapList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ConfigMapList", ""
             ) as V1ConfigMapList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19439,7 +19439,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ConfigMapList", ""
             ) as V1ConfigMapList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19452,14 +19452,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listEndpointsForAllNamespaces
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listEndpointsForAllNamespaces(response: ResponseContext): Promise<V1EndpointsList > {
+     public async listEndpointsForAllNamespacesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1EndpointsList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1EndpointsList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1EndpointsList", ""
             ) as V1EndpointsList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19471,7 +19471,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1EndpointsList", ""
             ) as V1EndpointsList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19484,14 +19484,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listEventForAllNamespaces
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listEventForAllNamespaces(response: ResponseContext): Promise<CoreV1EventList > {
+     public async listEventForAllNamespacesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<CoreV1EventList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: CoreV1EventList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "CoreV1EventList", ""
             ) as CoreV1EventList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19503,7 +19503,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "CoreV1EventList", ""
             ) as CoreV1EventList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19516,14 +19516,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listLimitRangeForAllNamespaces
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listLimitRangeForAllNamespaces(response: ResponseContext): Promise<V1LimitRangeList > {
+     public async listLimitRangeForAllNamespacesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1LimitRangeList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1LimitRangeList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LimitRangeList", ""
             ) as V1LimitRangeList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19535,7 +19535,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LimitRangeList", ""
             ) as V1LimitRangeList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19548,14 +19548,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNamespace
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNamespace(response: ResponseContext): Promise<V1NamespaceList > {
+     public async listNamespaceWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1NamespaceList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1NamespaceList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1NamespaceList", ""
             ) as V1NamespaceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19567,7 +19567,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1NamespaceList", ""
             ) as V1NamespaceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19580,14 +19580,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNamespacedConfigMap
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNamespacedConfigMap(response: ResponseContext): Promise<V1ConfigMapList > {
+     public async listNamespacedConfigMapWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ConfigMapList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ConfigMapList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ConfigMapList", ""
             ) as V1ConfigMapList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19599,7 +19599,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ConfigMapList", ""
             ) as V1ConfigMapList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19612,14 +19612,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNamespacedEndpoints
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNamespacedEndpoints(response: ResponseContext): Promise<V1EndpointsList > {
+     public async listNamespacedEndpointsWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1EndpointsList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1EndpointsList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1EndpointsList", ""
             ) as V1EndpointsList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19631,7 +19631,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1EndpointsList", ""
             ) as V1EndpointsList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19644,14 +19644,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNamespacedEvent
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNamespacedEvent(response: ResponseContext): Promise<CoreV1EventList > {
+     public async listNamespacedEventWithHttpInfo(response: ResponseContext): Promise<HttpInfo<CoreV1EventList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: CoreV1EventList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "CoreV1EventList", ""
             ) as CoreV1EventList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19663,7 +19663,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "CoreV1EventList", ""
             ) as CoreV1EventList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19676,14 +19676,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNamespacedLimitRange
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNamespacedLimitRange(response: ResponseContext): Promise<V1LimitRangeList > {
+     public async listNamespacedLimitRangeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1LimitRangeList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1LimitRangeList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LimitRangeList", ""
             ) as V1LimitRangeList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19695,7 +19695,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LimitRangeList", ""
             ) as V1LimitRangeList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19708,14 +19708,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNamespacedPersistentVolumeClaim
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNamespacedPersistentVolumeClaim(response: ResponseContext): Promise<V1PersistentVolumeClaimList > {
+     public async listNamespacedPersistentVolumeClaimWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolumeClaimList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolumeClaimList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaimList", ""
             ) as V1PersistentVolumeClaimList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19727,7 +19727,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaimList", ""
             ) as V1PersistentVolumeClaimList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19740,14 +19740,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNamespacedPod
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNamespacedPod(response: ResponseContext): Promise<V1PodList > {
+     public async listNamespacedPodWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PodList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PodList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodList", ""
             ) as V1PodList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19759,7 +19759,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodList", ""
             ) as V1PodList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19772,14 +19772,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNamespacedPodTemplate
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNamespacedPodTemplate(response: ResponseContext): Promise<V1PodTemplateList > {
+     public async listNamespacedPodTemplateWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PodTemplateList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PodTemplateList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplateList", ""
             ) as V1PodTemplateList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19791,7 +19791,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplateList", ""
             ) as V1PodTemplateList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19804,14 +19804,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNamespacedReplicationController
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNamespacedReplicationController(response: ResponseContext): Promise<V1ReplicationControllerList > {
+     public async listNamespacedReplicationControllerWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ReplicationControllerList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ReplicationControllerList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationControllerList", ""
             ) as V1ReplicationControllerList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19823,7 +19823,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationControllerList", ""
             ) as V1ReplicationControllerList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19836,14 +19836,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNamespacedResourceQuota
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNamespacedResourceQuota(response: ResponseContext): Promise<V1ResourceQuotaList > {
+     public async listNamespacedResourceQuotaWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ResourceQuotaList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ResourceQuotaList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuotaList", ""
             ) as V1ResourceQuotaList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19855,7 +19855,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuotaList", ""
             ) as V1ResourceQuotaList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19868,14 +19868,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNamespacedSecret
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNamespacedSecret(response: ResponseContext): Promise<V1SecretList > {
+     public async listNamespacedSecretWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1SecretList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1SecretList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1SecretList", ""
             ) as V1SecretList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19887,7 +19887,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1SecretList", ""
             ) as V1SecretList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19900,14 +19900,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNamespacedService
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNamespacedService(response: ResponseContext): Promise<V1ServiceList > {
+     public async listNamespacedServiceWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ServiceList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ServiceList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceList", ""
             ) as V1ServiceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19919,7 +19919,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceList", ""
             ) as V1ServiceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19932,14 +19932,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNamespacedServiceAccount
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNamespacedServiceAccount(response: ResponseContext): Promise<V1ServiceAccountList > {
+     public async listNamespacedServiceAccountWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ServiceAccountList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ServiceAccountList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccountList", ""
             ) as V1ServiceAccountList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19951,7 +19951,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccountList", ""
             ) as V1ServiceAccountList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19964,14 +19964,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNode
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNode(response: ResponseContext): Promise<V1NodeList > {
+     public async listNodeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1NodeList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1NodeList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1NodeList", ""
             ) as V1NodeList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -19983,7 +19983,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1NodeList", ""
             ) as V1NodeList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -19996,14 +19996,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listPersistentVolume
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listPersistentVolume(response: ResponseContext): Promise<V1PersistentVolumeList > {
+     public async listPersistentVolumeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolumeList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolumeList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeList", ""
             ) as V1PersistentVolumeList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20015,7 +20015,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeList", ""
             ) as V1PersistentVolumeList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20028,14 +20028,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listPersistentVolumeClaimForAllNamespaces
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listPersistentVolumeClaimForAllNamespaces(response: ResponseContext): Promise<V1PersistentVolumeClaimList > {
+     public async listPersistentVolumeClaimForAllNamespacesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolumeClaimList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolumeClaimList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaimList", ""
             ) as V1PersistentVolumeClaimList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20047,7 +20047,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaimList", ""
             ) as V1PersistentVolumeClaimList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20060,14 +20060,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listPodForAllNamespaces
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listPodForAllNamespaces(response: ResponseContext): Promise<V1PodList > {
+     public async listPodForAllNamespacesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PodList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PodList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodList", ""
             ) as V1PodList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20079,7 +20079,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodList", ""
             ) as V1PodList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20092,14 +20092,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listPodTemplateForAllNamespaces
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listPodTemplateForAllNamespaces(response: ResponseContext): Promise<V1PodTemplateList > {
+     public async listPodTemplateForAllNamespacesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PodTemplateList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PodTemplateList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplateList", ""
             ) as V1PodTemplateList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20111,7 +20111,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplateList", ""
             ) as V1PodTemplateList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20124,14 +20124,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listReplicationControllerForAllNamespaces
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listReplicationControllerForAllNamespaces(response: ResponseContext): Promise<V1ReplicationControllerList > {
+     public async listReplicationControllerForAllNamespacesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ReplicationControllerList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ReplicationControllerList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationControllerList", ""
             ) as V1ReplicationControllerList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20143,7 +20143,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationControllerList", ""
             ) as V1ReplicationControllerList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20156,14 +20156,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listResourceQuotaForAllNamespaces
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listResourceQuotaForAllNamespaces(response: ResponseContext): Promise<V1ResourceQuotaList > {
+     public async listResourceQuotaForAllNamespacesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ResourceQuotaList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ResourceQuotaList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuotaList", ""
             ) as V1ResourceQuotaList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20175,7 +20175,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuotaList", ""
             ) as V1ResourceQuotaList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20188,14 +20188,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listSecretForAllNamespaces
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listSecretForAllNamespaces(response: ResponseContext): Promise<V1SecretList > {
+     public async listSecretForAllNamespacesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1SecretList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1SecretList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1SecretList", ""
             ) as V1SecretList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20207,7 +20207,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1SecretList", ""
             ) as V1SecretList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20220,14 +20220,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listServiceAccountForAllNamespaces
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listServiceAccountForAllNamespaces(response: ResponseContext): Promise<V1ServiceAccountList > {
+     public async listServiceAccountForAllNamespacesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ServiceAccountList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ServiceAccountList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccountList", ""
             ) as V1ServiceAccountList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20239,7 +20239,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccountList", ""
             ) as V1ServiceAccountList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20252,14 +20252,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listServiceForAllNamespaces
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listServiceForAllNamespaces(response: ResponseContext): Promise<V1ServiceList > {
+     public async listServiceForAllNamespacesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ServiceList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ServiceList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceList", ""
             ) as V1ServiceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20271,7 +20271,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceList", ""
             ) as V1ServiceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20284,21 +20284,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespace
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespace(response: ResponseContext): Promise<V1Namespace > {
+     public async patchNamespaceWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Namespace >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Namespace = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Namespace = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20310,7 +20310,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20323,21 +20323,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespaceStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespaceStatus(response: ResponseContext): Promise<V1Namespace > {
+     public async patchNamespaceStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Namespace >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Namespace = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Namespace = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20349,7 +20349,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20362,21 +20362,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedConfigMap
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedConfigMap(response: ResponseContext): Promise<V1ConfigMap > {
+     public async patchNamespacedConfigMapWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ConfigMap >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ConfigMap = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ConfigMap", ""
             ) as V1ConfigMap;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ConfigMap = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ConfigMap", ""
             ) as V1ConfigMap;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20388,7 +20388,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ConfigMap", ""
             ) as V1ConfigMap;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20401,21 +20401,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedEndpoints
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedEndpoints(response: ResponseContext): Promise<V1Endpoints > {
+     public async patchNamespacedEndpointsWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Endpoints >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Endpoints = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Endpoints", ""
             ) as V1Endpoints;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Endpoints = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Endpoints", ""
             ) as V1Endpoints;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20427,7 +20427,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Endpoints", ""
             ) as V1Endpoints;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20440,21 +20440,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedEvent
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedEvent(response: ResponseContext): Promise<CoreV1Event > {
+     public async patchNamespacedEventWithHttpInfo(response: ResponseContext): Promise<HttpInfo<CoreV1Event >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: CoreV1Event = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "CoreV1Event", ""
             ) as CoreV1Event;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: CoreV1Event = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "CoreV1Event", ""
             ) as CoreV1Event;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20466,7 +20466,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "CoreV1Event", ""
             ) as CoreV1Event;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20479,21 +20479,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedLimitRange
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedLimitRange(response: ResponseContext): Promise<V1LimitRange > {
+     public async patchNamespacedLimitRangeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1LimitRange >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1LimitRange = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LimitRange", ""
             ) as V1LimitRange;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1LimitRange = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LimitRange", ""
             ) as V1LimitRange;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20505,7 +20505,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LimitRange", ""
             ) as V1LimitRange;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20518,21 +20518,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedPersistentVolumeClaim
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedPersistentVolumeClaim(response: ResponseContext): Promise<V1PersistentVolumeClaim > {
+     public async patchNamespacedPersistentVolumeClaimWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolumeClaim >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolumeClaim = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1PersistentVolumeClaim = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20544,7 +20544,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20557,21 +20557,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedPersistentVolumeClaimStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedPersistentVolumeClaimStatus(response: ResponseContext): Promise<V1PersistentVolumeClaim > {
+     public async patchNamespacedPersistentVolumeClaimStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolumeClaim >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolumeClaim = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1PersistentVolumeClaim = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20583,7 +20583,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20596,21 +20596,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedPod
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedPod(response: ResponseContext): Promise<V1Pod > {
+     public async patchNamespacedPodWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Pod >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20622,7 +20622,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20635,21 +20635,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedPodEphemeralcontainers
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedPodEphemeralcontainers(response: ResponseContext): Promise<V1Pod > {
+     public async patchNamespacedPodEphemeralcontainersWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Pod >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20661,7 +20661,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20674,21 +20674,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedPodStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedPodStatus(response: ResponseContext): Promise<V1Pod > {
+     public async patchNamespacedPodStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Pod >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20700,7 +20700,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20713,21 +20713,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedPodTemplate
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedPodTemplate(response: ResponseContext): Promise<V1PodTemplate > {
+     public async patchNamespacedPodTemplateWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PodTemplate >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PodTemplate = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplate", ""
             ) as V1PodTemplate;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1PodTemplate = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplate", ""
             ) as V1PodTemplate;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20739,7 +20739,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplate", ""
             ) as V1PodTemplate;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20752,21 +20752,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedReplicationController
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedReplicationController(response: ResponseContext): Promise<V1ReplicationController > {
+     public async patchNamespacedReplicationControllerWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ReplicationController >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ReplicationController = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ReplicationController = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20778,7 +20778,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20791,21 +20791,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedReplicationControllerScale
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedReplicationControllerScale(response: ResponseContext): Promise<V1Scale > {
+     public async patchNamespacedReplicationControllerScaleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Scale >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Scale = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Scale", ""
             ) as V1Scale;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Scale = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Scale", ""
             ) as V1Scale;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20817,7 +20817,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Scale", ""
             ) as V1Scale;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20830,21 +20830,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedReplicationControllerStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedReplicationControllerStatus(response: ResponseContext): Promise<V1ReplicationController > {
+     public async patchNamespacedReplicationControllerStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ReplicationController >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ReplicationController = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ReplicationController = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20856,7 +20856,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20869,21 +20869,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedResourceQuota
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedResourceQuota(response: ResponseContext): Promise<V1ResourceQuota > {
+     public async patchNamespacedResourceQuotaWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ResourceQuota >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ResourceQuota = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ResourceQuota = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20895,7 +20895,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20908,21 +20908,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedResourceQuotaStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedResourceQuotaStatus(response: ResponseContext): Promise<V1ResourceQuota > {
+     public async patchNamespacedResourceQuotaStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ResourceQuota >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ResourceQuota = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ResourceQuota = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20934,7 +20934,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20947,21 +20947,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedSecret
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedSecret(response: ResponseContext): Promise<V1Secret > {
+     public async patchNamespacedSecretWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Secret >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Secret = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Secret", ""
             ) as V1Secret;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Secret = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Secret", ""
             ) as V1Secret;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -20973,7 +20973,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Secret", ""
             ) as V1Secret;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -20986,21 +20986,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedService
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedService(response: ResponseContext): Promise<V1Service > {
+     public async patchNamespacedServiceWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Service >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Service = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Service = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21012,7 +21012,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21025,21 +21025,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedServiceAccount
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedServiceAccount(response: ResponseContext): Promise<V1ServiceAccount > {
+     public async patchNamespacedServiceAccountWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ServiceAccount >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ServiceAccount = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccount", ""
             ) as V1ServiceAccount;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ServiceAccount = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccount", ""
             ) as V1ServiceAccount;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21051,7 +21051,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccount", ""
             ) as V1ServiceAccount;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21064,21 +21064,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedServiceStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedServiceStatus(response: ResponseContext): Promise<V1Service > {
+     public async patchNamespacedServiceStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Service >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Service = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Service = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21090,7 +21090,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21103,21 +21103,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNode
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNode(response: ResponseContext): Promise<V1Node > {
+     public async patchNodeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Node >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Node = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Node = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21129,7 +21129,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21142,21 +21142,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNodeStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNodeStatus(response: ResponseContext): Promise<V1Node > {
+     public async patchNodeStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Node >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Node = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Node = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21168,7 +21168,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21181,21 +21181,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchPersistentVolume
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchPersistentVolume(response: ResponseContext): Promise<V1PersistentVolume > {
+     public async patchPersistentVolumeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolume >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolume = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1PersistentVolume = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21207,7 +21207,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21220,21 +21220,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchPersistentVolumeStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchPersistentVolumeStatus(response: ResponseContext): Promise<V1PersistentVolume > {
+     public async patchPersistentVolumeStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolume >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolume = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1PersistentVolume = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21246,7 +21246,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21259,14 +21259,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readComponentStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readComponentStatus(response: ResponseContext): Promise<V1ComponentStatus > {
+     public async readComponentStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ComponentStatus >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ComponentStatus = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ComponentStatus", ""
             ) as V1ComponentStatus;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21278,7 +21278,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ComponentStatus", ""
             ) as V1ComponentStatus;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21291,14 +21291,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespace
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespace(response: ResponseContext): Promise<V1Namespace > {
+     public async readNamespaceWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Namespace >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Namespace = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21310,7 +21310,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21323,14 +21323,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespaceStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespaceStatus(response: ResponseContext): Promise<V1Namespace > {
+     public async readNamespaceStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Namespace >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Namespace = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21342,7 +21342,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21355,14 +21355,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedConfigMap
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedConfigMap(response: ResponseContext): Promise<V1ConfigMap > {
+     public async readNamespacedConfigMapWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ConfigMap >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ConfigMap = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ConfigMap", ""
             ) as V1ConfigMap;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21374,7 +21374,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ConfigMap", ""
             ) as V1ConfigMap;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21387,14 +21387,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedEndpoints
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedEndpoints(response: ResponseContext): Promise<V1Endpoints > {
+     public async readNamespacedEndpointsWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Endpoints >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Endpoints = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Endpoints", ""
             ) as V1Endpoints;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21406,7 +21406,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Endpoints", ""
             ) as V1Endpoints;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21419,14 +21419,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedEvent
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedEvent(response: ResponseContext): Promise<CoreV1Event > {
+     public async readNamespacedEventWithHttpInfo(response: ResponseContext): Promise<HttpInfo<CoreV1Event >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: CoreV1Event = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "CoreV1Event", ""
             ) as CoreV1Event;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21438,7 +21438,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "CoreV1Event", ""
             ) as CoreV1Event;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21451,14 +21451,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedLimitRange
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedLimitRange(response: ResponseContext): Promise<V1LimitRange > {
+     public async readNamespacedLimitRangeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1LimitRange >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1LimitRange = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LimitRange", ""
             ) as V1LimitRange;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21470,7 +21470,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LimitRange", ""
             ) as V1LimitRange;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21483,14 +21483,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedPersistentVolumeClaim
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedPersistentVolumeClaim(response: ResponseContext): Promise<V1PersistentVolumeClaim > {
+     public async readNamespacedPersistentVolumeClaimWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolumeClaim >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolumeClaim = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21502,7 +21502,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21515,14 +21515,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedPersistentVolumeClaimStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedPersistentVolumeClaimStatus(response: ResponseContext): Promise<V1PersistentVolumeClaim > {
+     public async readNamespacedPersistentVolumeClaimStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolumeClaim >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolumeClaim = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21534,7 +21534,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21547,14 +21547,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedPod
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedPod(response: ResponseContext): Promise<V1Pod > {
+     public async readNamespacedPodWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Pod >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21566,7 +21566,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21579,14 +21579,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedPodEphemeralcontainers
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedPodEphemeralcontainers(response: ResponseContext): Promise<V1Pod > {
+     public async readNamespacedPodEphemeralcontainersWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Pod >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21598,7 +21598,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21611,14 +21611,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedPodLog
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedPodLog(response: ResponseContext): Promise<string > {
+     public async readNamespacedPodLogWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21630,7 +21630,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21643,14 +21643,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedPodStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedPodStatus(response: ResponseContext): Promise<V1Pod > {
+     public async readNamespacedPodStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Pod >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21662,7 +21662,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21675,14 +21675,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedPodTemplate
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedPodTemplate(response: ResponseContext): Promise<V1PodTemplate > {
+     public async readNamespacedPodTemplateWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PodTemplate >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PodTemplate = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplate", ""
             ) as V1PodTemplate;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21694,7 +21694,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplate", ""
             ) as V1PodTemplate;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21707,14 +21707,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedReplicationController
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedReplicationController(response: ResponseContext): Promise<V1ReplicationController > {
+     public async readNamespacedReplicationControllerWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ReplicationController >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ReplicationController = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21726,7 +21726,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21739,14 +21739,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedReplicationControllerScale
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedReplicationControllerScale(response: ResponseContext): Promise<V1Scale > {
+     public async readNamespacedReplicationControllerScaleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Scale >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Scale = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Scale", ""
             ) as V1Scale;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21758,7 +21758,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Scale", ""
             ) as V1Scale;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21771,14 +21771,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedReplicationControllerStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedReplicationControllerStatus(response: ResponseContext): Promise<V1ReplicationController > {
+     public async readNamespacedReplicationControllerStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ReplicationController >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ReplicationController = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21790,7 +21790,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21803,14 +21803,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedResourceQuota
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedResourceQuota(response: ResponseContext): Promise<V1ResourceQuota > {
+     public async readNamespacedResourceQuotaWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ResourceQuota >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ResourceQuota = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21822,7 +21822,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21835,14 +21835,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedResourceQuotaStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedResourceQuotaStatus(response: ResponseContext): Promise<V1ResourceQuota > {
+     public async readNamespacedResourceQuotaStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ResourceQuota >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ResourceQuota = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21854,7 +21854,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21867,14 +21867,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedSecret
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedSecret(response: ResponseContext): Promise<V1Secret > {
+     public async readNamespacedSecretWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Secret >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Secret = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Secret", ""
             ) as V1Secret;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21886,7 +21886,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Secret", ""
             ) as V1Secret;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21899,14 +21899,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedService
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedService(response: ResponseContext): Promise<V1Service > {
+     public async readNamespacedServiceWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Service >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Service = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21918,7 +21918,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21931,14 +21931,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedServiceAccount
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedServiceAccount(response: ResponseContext): Promise<V1ServiceAccount > {
+     public async readNamespacedServiceAccountWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ServiceAccount >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ServiceAccount = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccount", ""
             ) as V1ServiceAccount;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21950,7 +21950,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccount", ""
             ) as V1ServiceAccount;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21963,14 +21963,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedServiceStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedServiceStatus(response: ResponseContext): Promise<V1Service > {
+     public async readNamespacedServiceStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Service >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Service = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -21982,7 +21982,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -21995,14 +21995,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNode
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNode(response: ResponseContext): Promise<V1Node > {
+     public async readNodeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Node >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Node = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22014,7 +22014,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22027,14 +22027,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNodeStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNodeStatus(response: ResponseContext): Promise<V1Node > {
+     public async readNodeStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Node >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Node = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22046,7 +22046,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22059,14 +22059,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readPersistentVolume
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readPersistentVolume(response: ResponseContext): Promise<V1PersistentVolume > {
+     public async readPersistentVolumeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolume >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolume = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22078,7 +22078,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22091,14 +22091,14 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readPersistentVolumeStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readPersistentVolumeStatus(response: ResponseContext): Promise<V1PersistentVolume > {
+     public async readPersistentVolumeStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolume >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolume = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22110,7 +22110,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22123,21 +22123,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespace
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespace(response: ResponseContext): Promise<V1Namespace > {
+     public async replaceNamespaceWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Namespace >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Namespace = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Namespace = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22149,7 +22149,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22162,21 +22162,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespaceFinalize
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespaceFinalize(response: ResponseContext): Promise<V1Namespace > {
+     public async replaceNamespaceFinalizeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Namespace >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Namespace = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Namespace = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22188,7 +22188,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22201,21 +22201,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespaceStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespaceStatus(response: ResponseContext): Promise<V1Namespace > {
+     public async replaceNamespaceStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Namespace >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Namespace = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Namespace = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22227,7 +22227,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Namespace", ""
             ) as V1Namespace;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22240,21 +22240,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedConfigMap
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedConfigMap(response: ResponseContext): Promise<V1ConfigMap > {
+     public async replaceNamespacedConfigMapWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ConfigMap >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ConfigMap = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ConfigMap", ""
             ) as V1ConfigMap;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ConfigMap = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ConfigMap", ""
             ) as V1ConfigMap;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22266,7 +22266,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ConfigMap", ""
             ) as V1ConfigMap;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22279,21 +22279,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedEndpoints
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedEndpoints(response: ResponseContext): Promise<V1Endpoints > {
+     public async replaceNamespacedEndpointsWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Endpoints >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Endpoints = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Endpoints", ""
             ) as V1Endpoints;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Endpoints = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Endpoints", ""
             ) as V1Endpoints;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22305,7 +22305,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Endpoints", ""
             ) as V1Endpoints;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22318,21 +22318,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedEvent
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedEvent(response: ResponseContext): Promise<CoreV1Event > {
+     public async replaceNamespacedEventWithHttpInfo(response: ResponseContext): Promise<HttpInfo<CoreV1Event >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: CoreV1Event = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "CoreV1Event", ""
             ) as CoreV1Event;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: CoreV1Event = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "CoreV1Event", ""
             ) as CoreV1Event;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22344,7 +22344,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "CoreV1Event", ""
             ) as CoreV1Event;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22357,21 +22357,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedLimitRange
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedLimitRange(response: ResponseContext): Promise<V1LimitRange > {
+     public async replaceNamespacedLimitRangeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1LimitRange >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1LimitRange = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LimitRange", ""
             ) as V1LimitRange;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1LimitRange = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LimitRange", ""
             ) as V1LimitRange;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22383,7 +22383,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LimitRange", ""
             ) as V1LimitRange;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22396,21 +22396,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedPersistentVolumeClaim
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedPersistentVolumeClaim(response: ResponseContext): Promise<V1PersistentVolumeClaim > {
+     public async replaceNamespacedPersistentVolumeClaimWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolumeClaim >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolumeClaim = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1PersistentVolumeClaim = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22422,7 +22422,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22435,21 +22435,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedPersistentVolumeClaimStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedPersistentVolumeClaimStatus(response: ResponseContext): Promise<V1PersistentVolumeClaim > {
+     public async replaceNamespacedPersistentVolumeClaimStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolumeClaim >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolumeClaim = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1PersistentVolumeClaim = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22461,7 +22461,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolumeClaim", ""
             ) as V1PersistentVolumeClaim;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22474,21 +22474,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedPod
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedPod(response: ResponseContext): Promise<V1Pod > {
+     public async replaceNamespacedPodWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Pod >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22500,7 +22500,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22513,21 +22513,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedPodEphemeralcontainers
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedPodEphemeralcontainers(response: ResponseContext): Promise<V1Pod > {
+     public async replaceNamespacedPodEphemeralcontainersWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Pod >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22539,7 +22539,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22552,21 +22552,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedPodStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedPodStatus(response: ResponseContext): Promise<V1Pod > {
+     public async replaceNamespacedPodStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Pod >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Pod = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22578,7 +22578,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Pod", ""
             ) as V1Pod;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22591,21 +22591,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedPodTemplate
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedPodTemplate(response: ResponseContext): Promise<V1PodTemplate > {
+     public async replaceNamespacedPodTemplateWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PodTemplate >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PodTemplate = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplate", ""
             ) as V1PodTemplate;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1PodTemplate = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplate", ""
             ) as V1PodTemplate;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22617,7 +22617,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PodTemplate", ""
             ) as V1PodTemplate;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22630,21 +22630,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedReplicationController
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedReplicationController(response: ResponseContext): Promise<V1ReplicationController > {
+     public async replaceNamespacedReplicationControllerWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ReplicationController >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ReplicationController = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ReplicationController = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22656,7 +22656,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22669,21 +22669,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedReplicationControllerScale
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedReplicationControllerScale(response: ResponseContext): Promise<V1Scale > {
+     public async replaceNamespacedReplicationControllerScaleWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Scale >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Scale = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Scale", ""
             ) as V1Scale;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Scale = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Scale", ""
             ) as V1Scale;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22695,7 +22695,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Scale", ""
             ) as V1Scale;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22708,21 +22708,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedReplicationControllerStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedReplicationControllerStatus(response: ResponseContext): Promise<V1ReplicationController > {
+     public async replaceNamespacedReplicationControllerStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ReplicationController >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ReplicationController = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ReplicationController = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22734,7 +22734,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ReplicationController", ""
             ) as V1ReplicationController;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22747,21 +22747,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedResourceQuota
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedResourceQuota(response: ResponseContext): Promise<V1ResourceQuota > {
+     public async replaceNamespacedResourceQuotaWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ResourceQuota >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ResourceQuota = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ResourceQuota = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22773,7 +22773,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22786,21 +22786,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedResourceQuotaStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedResourceQuotaStatus(response: ResponseContext): Promise<V1ResourceQuota > {
+     public async replaceNamespacedResourceQuotaStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ResourceQuota >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ResourceQuota = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ResourceQuota = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22812,7 +22812,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ResourceQuota", ""
             ) as V1ResourceQuota;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22825,21 +22825,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedSecret
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedSecret(response: ResponseContext): Promise<V1Secret > {
+     public async replaceNamespacedSecretWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Secret >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Secret = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Secret", ""
             ) as V1Secret;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Secret = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Secret", ""
             ) as V1Secret;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22851,7 +22851,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Secret", ""
             ) as V1Secret;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22864,21 +22864,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedService
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedService(response: ResponseContext): Promise<V1Service > {
+     public async replaceNamespacedServiceWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Service >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Service = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Service = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22890,7 +22890,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22903,21 +22903,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedServiceAccount
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedServiceAccount(response: ResponseContext): Promise<V1ServiceAccount > {
+     public async replaceNamespacedServiceAccountWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ServiceAccount >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ServiceAccount = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccount", ""
             ) as V1ServiceAccount;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ServiceAccount = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccount", ""
             ) as V1ServiceAccount;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22929,7 +22929,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ServiceAccount", ""
             ) as V1ServiceAccount;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22942,21 +22942,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedServiceStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedServiceStatus(response: ResponseContext): Promise<V1Service > {
+     public async replaceNamespacedServiceStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Service >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Service = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Service = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -22968,7 +22968,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Service", ""
             ) as V1Service;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -22981,21 +22981,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNode
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNode(response: ResponseContext): Promise<V1Node > {
+     public async replaceNodeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Node >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Node = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Node = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -23007,7 +23007,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -23020,21 +23020,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNodeStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNodeStatus(response: ResponseContext): Promise<V1Node > {
+     public async replaceNodeStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Node >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Node = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1Node = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -23046,7 +23046,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Node", ""
             ) as V1Node;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -23059,21 +23059,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replacePersistentVolume
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replacePersistentVolume(response: ResponseContext): Promise<V1PersistentVolume > {
+     public async replacePersistentVolumeWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolume >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolume = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1PersistentVolume = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -23085,7 +23085,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -23098,21 +23098,21 @@ export class CoreV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replacePersistentVolumeStatus
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replacePersistentVolumeStatus(response: ResponseContext): Promise<V1PersistentVolume > {
+     public async replacePersistentVolumeStatusWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1PersistentVolume >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1PersistentVolume = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1PersistentVolume = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -23124,7 +23124,7 @@ export class CoreV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1PersistentVolume", ""
             ) as V1PersistentVolume;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);

@@ -1,7 +1,7 @@
 // TODO: better import syntax?
 import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
 import {ObjectSerializer} from '../models/ObjectSerializer';
@@ -56,14 +56,14 @@ export class WellKnownApiResponseProcessor {
      * @params response Response returned by the server for a request to getServiceAccountIssuerOpenIDConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getServiceAccountIssuerOpenIDConfiguration(response: ResponseContext): Promise<string > {
+     public async getServiceAccountIssuerOpenIDConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<string >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: string = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -75,7 +75,7 @@ export class WellKnownApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "string", ""
             ) as string;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);

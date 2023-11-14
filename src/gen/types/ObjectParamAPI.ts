@@ -1,4 +1,4 @@
-import { ResponseContext, RequestContext, HttpFile } from '../http/http';
+import { ResponseContext, RequestContext, HttpFile, HttpInfo } from '../http/http';
 import { Configuration} from '../configuration'
 
 import { AdmissionregistrationV1ServiceReference } from '../models/AdmissionregistrationV1ServiceReference';
@@ -538,6 +538,14 @@ export class ObjectAdmissionregistrationApi {
 
     public constructor(configuration: Configuration, requestFactory?: AdmissionregistrationApiRequestFactory, responseProcessor?: AdmissionregistrationApiResponseProcessor) {
         this.api = new ObservableAdmissionregistrationApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: AdmissionregistrationApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -1173,8 +1181,24 @@ export class ObjectAdmissionregistrationV1Api {
      * create a MutatingWebhookConfiguration
      * @param param the request object
      */
+    public createMutatingWebhookConfigurationWithHttpInfo(param: AdmissionregistrationV1ApiCreateMutatingWebhookConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1MutatingWebhookConfiguration>> {
+        return this.api.createMutatingWebhookConfigurationWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a MutatingWebhookConfiguration
+     * @param param the request object
+     */
     public createMutatingWebhookConfiguration(param: AdmissionregistrationV1ApiCreateMutatingWebhookConfigurationRequest, options?: Configuration): Promise<V1MutatingWebhookConfiguration> {
         return this.api.createMutatingWebhookConfiguration(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a ValidatingWebhookConfiguration
+     * @param param the request object
+     */
+    public createValidatingWebhookConfigurationWithHttpInfo(param: AdmissionregistrationV1ApiCreateValidatingWebhookConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1ValidatingWebhookConfiguration>> {
+        return this.api.createValidatingWebhookConfigurationWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -1189,8 +1213,24 @@ export class ObjectAdmissionregistrationV1Api {
      * delete collection of MutatingWebhookConfiguration
      * @param param the request object
      */
+    public deleteCollectionMutatingWebhookConfigurationWithHttpInfo(param: AdmissionregistrationV1ApiDeleteCollectionMutatingWebhookConfigurationRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionMutatingWebhookConfigurationWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of MutatingWebhookConfiguration
+     * @param param the request object
+     */
     public deleteCollectionMutatingWebhookConfiguration(param: AdmissionregistrationV1ApiDeleteCollectionMutatingWebhookConfigurationRequest = {}, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionMutatingWebhookConfiguration(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ValidatingWebhookConfiguration
+     * @param param the request object
+     */
+    public deleteCollectionValidatingWebhookConfigurationWithHttpInfo(param: AdmissionregistrationV1ApiDeleteCollectionValidatingWebhookConfigurationRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionValidatingWebhookConfigurationWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -1205,8 +1245,24 @@ export class ObjectAdmissionregistrationV1Api {
      * delete a MutatingWebhookConfiguration
      * @param param the request object
      */
+    public deleteMutatingWebhookConfigurationWithHttpInfo(param: AdmissionregistrationV1ApiDeleteMutatingWebhookConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteMutatingWebhookConfigurationWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a MutatingWebhookConfiguration
+     * @param param the request object
+     */
     public deleteMutatingWebhookConfiguration(param: AdmissionregistrationV1ApiDeleteMutatingWebhookConfigurationRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteMutatingWebhookConfiguration(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ValidatingWebhookConfiguration
+     * @param param the request object
+     */
+    public deleteValidatingWebhookConfigurationWithHttpInfo(param: AdmissionregistrationV1ApiDeleteValidatingWebhookConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteValidatingWebhookConfigurationWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -1221,8 +1277,24 @@ export class ObjectAdmissionregistrationV1Api {
      * get available resources
      * @param param the request object
      */
+    public getAPIResourcesWithHttpInfo(param: AdmissionregistrationV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
     public getAPIResources(param: AdmissionregistrationV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<V1APIResourceList> {
         return this.api.getAPIResources( options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind MutatingWebhookConfiguration
+     * @param param the request object
+     */
+    public listMutatingWebhookConfigurationWithHttpInfo(param: AdmissionregistrationV1ApiListMutatingWebhookConfigurationRequest = {}, options?: Configuration): Promise<HttpInfo<V1MutatingWebhookConfigurationList>> {
+        return this.api.listMutatingWebhookConfigurationWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -1237,8 +1309,24 @@ export class ObjectAdmissionregistrationV1Api {
      * list or watch objects of kind ValidatingWebhookConfiguration
      * @param param the request object
      */
+    public listValidatingWebhookConfigurationWithHttpInfo(param: AdmissionregistrationV1ApiListValidatingWebhookConfigurationRequest = {}, options?: Configuration): Promise<HttpInfo<V1ValidatingWebhookConfigurationList>> {
+        return this.api.listValidatingWebhookConfigurationWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ValidatingWebhookConfiguration
+     * @param param the request object
+     */
     public listValidatingWebhookConfiguration(param: AdmissionregistrationV1ApiListValidatingWebhookConfigurationRequest = {}, options?: Configuration): Promise<V1ValidatingWebhookConfigurationList> {
         return this.api.listValidatingWebhookConfiguration(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified MutatingWebhookConfiguration
+     * @param param the request object
+     */
+    public patchMutatingWebhookConfigurationWithHttpInfo(param: AdmissionregistrationV1ApiPatchMutatingWebhookConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1MutatingWebhookConfiguration>> {
+        return this.api.patchMutatingWebhookConfigurationWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -1253,8 +1341,24 @@ export class ObjectAdmissionregistrationV1Api {
      * partially update the specified ValidatingWebhookConfiguration
      * @param param the request object
      */
+    public patchValidatingWebhookConfigurationWithHttpInfo(param: AdmissionregistrationV1ApiPatchValidatingWebhookConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1ValidatingWebhookConfiguration>> {
+        return this.api.patchValidatingWebhookConfigurationWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ValidatingWebhookConfiguration
+     * @param param the request object
+     */
     public patchValidatingWebhookConfiguration(param: AdmissionregistrationV1ApiPatchValidatingWebhookConfigurationRequest, options?: Configuration): Promise<V1ValidatingWebhookConfiguration> {
         return this.api.patchValidatingWebhookConfiguration(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * read the specified MutatingWebhookConfiguration
+     * @param param the request object
+     */
+    public readMutatingWebhookConfigurationWithHttpInfo(param: AdmissionregistrationV1ApiReadMutatingWebhookConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1MutatingWebhookConfiguration>> {
+        return this.api.readMutatingWebhookConfigurationWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -1269,6 +1373,14 @@ export class ObjectAdmissionregistrationV1Api {
      * read the specified ValidatingWebhookConfiguration
      * @param param the request object
      */
+    public readValidatingWebhookConfigurationWithHttpInfo(param: AdmissionregistrationV1ApiReadValidatingWebhookConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1ValidatingWebhookConfiguration>> {
+        return this.api.readValidatingWebhookConfigurationWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ValidatingWebhookConfiguration
+     * @param param the request object
+     */
     public readValidatingWebhookConfiguration(param: AdmissionregistrationV1ApiReadValidatingWebhookConfigurationRequest, options?: Configuration): Promise<V1ValidatingWebhookConfiguration> {
         return this.api.readValidatingWebhookConfiguration(param.name, param.pretty,  options).toPromise();
     }
@@ -1277,8 +1389,24 @@ export class ObjectAdmissionregistrationV1Api {
      * replace the specified MutatingWebhookConfiguration
      * @param param the request object
      */
+    public replaceMutatingWebhookConfigurationWithHttpInfo(param: AdmissionregistrationV1ApiReplaceMutatingWebhookConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1MutatingWebhookConfiguration>> {
+        return this.api.replaceMutatingWebhookConfigurationWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified MutatingWebhookConfiguration
+     * @param param the request object
+     */
     public replaceMutatingWebhookConfiguration(param: AdmissionregistrationV1ApiReplaceMutatingWebhookConfigurationRequest, options?: Configuration): Promise<V1MutatingWebhookConfiguration> {
         return this.api.replaceMutatingWebhookConfiguration(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ValidatingWebhookConfiguration
+     * @param param the request object
+     */
+    public replaceValidatingWebhookConfigurationWithHttpInfo(param: AdmissionregistrationV1ApiReplaceValidatingWebhookConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1ValidatingWebhookConfiguration>> {
+        return this.api.replaceValidatingWebhookConfigurationWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -1302,6 +1430,14 @@ export class ObjectApiextensionsApi {
 
     public constructor(configuration: Configuration, requestFactory?: ApiextensionsApiRequestFactory, responseProcessor?: ApiextensionsApiResponseProcessor) {
         this.api = new ObservableApiextensionsApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: ApiextensionsApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -1721,8 +1857,24 @@ export class ObjectApiextensionsV1Api {
      * create a CustomResourceDefinition
      * @param param the request object
      */
+    public createCustomResourceDefinitionWithHttpInfo(param: ApiextensionsV1ApiCreateCustomResourceDefinitionRequest, options?: Configuration): Promise<HttpInfo<V1CustomResourceDefinition>> {
+        return this.api.createCustomResourceDefinitionWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a CustomResourceDefinition
+     * @param param the request object
+     */
     public createCustomResourceDefinition(param: ApiextensionsV1ApiCreateCustomResourceDefinitionRequest, options?: Configuration): Promise<V1CustomResourceDefinition> {
         return this.api.createCustomResourceDefinition(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of CustomResourceDefinition
+     * @param param the request object
+     */
+    public deleteCollectionCustomResourceDefinitionWithHttpInfo(param: ApiextensionsV1ApiDeleteCollectionCustomResourceDefinitionRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionCustomResourceDefinitionWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -1737,8 +1889,24 @@ export class ObjectApiextensionsV1Api {
      * delete a CustomResourceDefinition
      * @param param the request object
      */
+    public deleteCustomResourceDefinitionWithHttpInfo(param: ApiextensionsV1ApiDeleteCustomResourceDefinitionRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCustomResourceDefinitionWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a CustomResourceDefinition
+     * @param param the request object
+     */
     public deleteCustomResourceDefinition(param: ApiextensionsV1ApiDeleteCustomResourceDefinitionRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCustomResourceDefinition(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: ApiextensionsV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -1753,8 +1921,24 @@ export class ObjectApiextensionsV1Api {
      * list or watch objects of kind CustomResourceDefinition
      * @param param the request object
      */
+    public listCustomResourceDefinitionWithHttpInfo(param: ApiextensionsV1ApiListCustomResourceDefinitionRequest = {}, options?: Configuration): Promise<HttpInfo<V1CustomResourceDefinitionList>> {
+        return this.api.listCustomResourceDefinitionWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind CustomResourceDefinition
+     * @param param the request object
+     */
     public listCustomResourceDefinition(param: ApiextensionsV1ApiListCustomResourceDefinitionRequest = {}, options?: Configuration): Promise<V1CustomResourceDefinitionList> {
         return this.api.listCustomResourceDefinition(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified CustomResourceDefinition
+     * @param param the request object
+     */
+    public patchCustomResourceDefinitionWithHttpInfo(param: ApiextensionsV1ApiPatchCustomResourceDefinitionRequest, options?: Configuration): Promise<HttpInfo<V1CustomResourceDefinition>> {
+        return this.api.patchCustomResourceDefinitionWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -1769,8 +1953,24 @@ export class ObjectApiextensionsV1Api {
      * partially update status of the specified CustomResourceDefinition
      * @param param the request object
      */
+    public patchCustomResourceDefinitionStatusWithHttpInfo(param: ApiextensionsV1ApiPatchCustomResourceDefinitionStatusRequest, options?: Configuration): Promise<HttpInfo<V1CustomResourceDefinition>> {
+        return this.api.patchCustomResourceDefinitionStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified CustomResourceDefinition
+     * @param param the request object
+     */
     public patchCustomResourceDefinitionStatus(param: ApiextensionsV1ApiPatchCustomResourceDefinitionStatusRequest, options?: Configuration): Promise<V1CustomResourceDefinition> {
         return this.api.patchCustomResourceDefinitionStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * read the specified CustomResourceDefinition
+     * @param param the request object
+     */
+    public readCustomResourceDefinitionWithHttpInfo(param: ApiextensionsV1ApiReadCustomResourceDefinitionRequest, options?: Configuration): Promise<HttpInfo<V1CustomResourceDefinition>> {
+        return this.api.readCustomResourceDefinitionWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -1785,6 +1985,14 @@ export class ObjectApiextensionsV1Api {
      * read status of the specified CustomResourceDefinition
      * @param param the request object
      */
+    public readCustomResourceDefinitionStatusWithHttpInfo(param: ApiextensionsV1ApiReadCustomResourceDefinitionStatusRequest, options?: Configuration): Promise<HttpInfo<V1CustomResourceDefinition>> {
+        return this.api.readCustomResourceDefinitionStatusWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified CustomResourceDefinition
+     * @param param the request object
+     */
     public readCustomResourceDefinitionStatus(param: ApiextensionsV1ApiReadCustomResourceDefinitionStatusRequest, options?: Configuration): Promise<V1CustomResourceDefinition> {
         return this.api.readCustomResourceDefinitionStatus(param.name, param.pretty,  options).toPromise();
     }
@@ -1793,8 +2001,24 @@ export class ObjectApiextensionsV1Api {
      * replace the specified CustomResourceDefinition
      * @param param the request object
      */
+    public replaceCustomResourceDefinitionWithHttpInfo(param: ApiextensionsV1ApiReplaceCustomResourceDefinitionRequest, options?: Configuration): Promise<HttpInfo<V1CustomResourceDefinition>> {
+        return this.api.replaceCustomResourceDefinitionWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified CustomResourceDefinition
+     * @param param the request object
+     */
     public replaceCustomResourceDefinition(param: ApiextensionsV1ApiReplaceCustomResourceDefinitionRequest, options?: Configuration): Promise<V1CustomResourceDefinition> {
         return this.api.replaceCustomResourceDefinition(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified CustomResourceDefinition
+     * @param param the request object
+     */
+    public replaceCustomResourceDefinitionStatusWithHttpInfo(param: ApiextensionsV1ApiReplaceCustomResourceDefinitionStatusRequest, options?: Configuration): Promise<HttpInfo<V1CustomResourceDefinition>> {
+        return this.api.replaceCustomResourceDefinitionStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -1818,6 +2042,14 @@ export class ObjectApiregistrationApi {
 
     public constructor(configuration: Configuration, requestFactory?: ApiregistrationApiRequestFactory, responseProcessor?: ApiregistrationApiResponseProcessor) {
         this.api = new ObservableApiregistrationApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: ApiregistrationApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -2237,8 +2469,24 @@ export class ObjectApiregistrationV1Api {
      * create an APIService
      * @param param the request object
      */
+    public createAPIServiceWithHttpInfo(param: ApiregistrationV1ApiCreateAPIServiceRequest, options?: Configuration): Promise<HttpInfo<V1APIService>> {
+        return this.api.createAPIServiceWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create an APIService
+     * @param param the request object
+     */
     public createAPIService(param: ApiregistrationV1ApiCreateAPIServiceRequest, options?: Configuration): Promise<V1APIService> {
         return this.api.createAPIService(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete an APIService
+     * @param param the request object
+     */
+    public deleteAPIServiceWithHttpInfo(param: ApiregistrationV1ApiDeleteAPIServiceRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteAPIServiceWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -2253,8 +2501,24 @@ export class ObjectApiregistrationV1Api {
      * delete collection of APIService
      * @param param the request object
      */
+    public deleteCollectionAPIServiceWithHttpInfo(param: ApiregistrationV1ApiDeleteCollectionAPIServiceRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionAPIServiceWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of APIService
+     * @param param the request object
+     */
     public deleteCollectionAPIService(param: ApiregistrationV1ApiDeleteCollectionAPIServiceRequest = {}, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionAPIService(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: ApiregistrationV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -2269,8 +2533,24 @@ export class ObjectApiregistrationV1Api {
      * list or watch objects of kind APIService
      * @param param the request object
      */
+    public listAPIServiceWithHttpInfo(param: ApiregistrationV1ApiListAPIServiceRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIServiceList>> {
+        return this.api.listAPIServiceWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind APIService
+     * @param param the request object
+     */
     public listAPIService(param: ApiregistrationV1ApiListAPIServiceRequest = {}, options?: Configuration): Promise<V1APIServiceList> {
         return this.api.listAPIService(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified APIService
+     * @param param the request object
+     */
+    public patchAPIServiceWithHttpInfo(param: ApiregistrationV1ApiPatchAPIServiceRequest, options?: Configuration): Promise<HttpInfo<V1APIService>> {
+        return this.api.patchAPIServiceWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -2285,8 +2565,24 @@ export class ObjectApiregistrationV1Api {
      * partially update status of the specified APIService
      * @param param the request object
      */
+    public patchAPIServiceStatusWithHttpInfo(param: ApiregistrationV1ApiPatchAPIServiceStatusRequest, options?: Configuration): Promise<HttpInfo<V1APIService>> {
+        return this.api.patchAPIServiceStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified APIService
+     * @param param the request object
+     */
     public patchAPIServiceStatus(param: ApiregistrationV1ApiPatchAPIServiceStatusRequest, options?: Configuration): Promise<V1APIService> {
         return this.api.patchAPIServiceStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * read the specified APIService
+     * @param param the request object
+     */
+    public readAPIServiceWithHttpInfo(param: ApiregistrationV1ApiReadAPIServiceRequest, options?: Configuration): Promise<HttpInfo<V1APIService>> {
+        return this.api.readAPIServiceWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -2301,6 +2597,14 @@ export class ObjectApiregistrationV1Api {
      * read status of the specified APIService
      * @param param the request object
      */
+    public readAPIServiceStatusWithHttpInfo(param: ApiregistrationV1ApiReadAPIServiceStatusRequest, options?: Configuration): Promise<HttpInfo<V1APIService>> {
+        return this.api.readAPIServiceStatusWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified APIService
+     * @param param the request object
+     */
     public readAPIServiceStatus(param: ApiregistrationV1ApiReadAPIServiceStatusRequest, options?: Configuration): Promise<V1APIService> {
         return this.api.readAPIServiceStatus(param.name, param.pretty,  options).toPromise();
     }
@@ -2309,8 +2613,24 @@ export class ObjectApiregistrationV1Api {
      * replace the specified APIService
      * @param param the request object
      */
+    public replaceAPIServiceWithHttpInfo(param: ApiregistrationV1ApiReplaceAPIServiceRequest, options?: Configuration): Promise<HttpInfo<V1APIService>> {
+        return this.api.replaceAPIServiceWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified APIService
+     * @param param the request object
+     */
     public replaceAPIService(param: ApiregistrationV1ApiReplaceAPIServiceRequest, options?: Configuration): Promise<V1APIService> {
         return this.api.replaceAPIService(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified APIService
+     * @param param the request object
+     */
+    public replaceAPIServiceStatusWithHttpInfo(param: ApiregistrationV1ApiReplaceAPIServiceStatusRequest, options?: Configuration): Promise<HttpInfo<V1APIService>> {
+        return this.api.replaceAPIServiceStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -2340,6 +2660,14 @@ export class ObjectApisApi {
      * get available API versions
      * @param param the request object
      */
+    public getAPIVersionsWithHttpInfo(param: ApisApiGetAPIVersionsRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroupList>> {
+        return this.api.getAPIVersionsWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * get available API versions
+     * @param param the request object
+     */
     public getAPIVersions(param: ApisApiGetAPIVersionsRequest = {}, options?: Configuration): Promise<V1APIGroupList> {
         return this.api.getAPIVersions( options).toPromise();
     }
@@ -2357,6 +2685,14 @@ export class ObjectAppsApi {
 
     public constructor(configuration: Configuration, requestFactory?: AppsApiRequestFactory, responseProcessor?: AppsApiResponseProcessor) {
         this.api = new ObservableAppsApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: AppsApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -5161,8 +5497,24 @@ export class ObjectAppsV1Api {
      * create a ControllerRevision
      * @param param the request object
      */
+    public createNamespacedControllerRevisionWithHttpInfo(param: AppsV1ApiCreateNamespacedControllerRevisionRequest, options?: Configuration): Promise<HttpInfo<V1ControllerRevision>> {
+        return this.api.createNamespacedControllerRevisionWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a ControllerRevision
+     * @param param the request object
+     */
     public createNamespacedControllerRevision(param: AppsV1ApiCreateNamespacedControllerRevisionRequest, options?: Configuration): Promise<V1ControllerRevision> {
         return this.api.createNamespacedControllerRevision(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a DaemonSet
+     * @param param the request object
+     */
+    public createNamespacedDaemonSetWithHttpInfo(param: AppsV1ApiCreateNamespacedDaemonSetRequest, options?: Configuration): Promise<HttpInfo<V1DaemonSet>> {
+        return this.api.createNamespacedDaemonSetWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -5177,8 +5529,24 @@ export class ObjectAppsV1Api {
      * create a Deployment
      * @param param the request object
      */
+    public createNamespacedDeploymentWithHttpInfo(param: AppsV1ApiCreateNamespacedDeploymentRequest, options?: Configuration): Promise<HttpInfo<V1Deployment>> {
+        return this.api.createNamespacedDeploymentWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a Deployment
+     * @param param the request object
+     */
     public createNamespacedDeployment(param: AppsV1ApiCreateNamespacedDeploymentRequest, options?: Configuration): Promise<V1Deployment> {
         return this.api.createNamespacedDeployment(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a ReplicaSet
+     * @param param the request object
+     */
+    public createNamespacedReplicaSetWithHttpInfo(param: AppsV1ApiCreateNamespacedReplicaSetRequest, options?: Configuration): Promise<HttpInfo<V1ReplicaSet>> {
+        return this.api.createNamespacedReplicaSetWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -5193,8 +5561,24 @@ export class ObjectAppsV1Api {
      * create a StatefulSet
      * @param param the request object
      */
+    public createNamespacedStatefulSetWithHttpInfo(param: AppsV1ApiCreateNamespacedStatefulSetRequest, options?: Configuration): Promise<HttpInfo<V1StatefulSet>> {
+        return this.api.createNamespacedStatefulSetWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a StatefulSet
+     * @param param the request object
+     */
     public createNamespacedStatefulSet(param: AppsV1ApiCreateNamespacedStatefulSetRequest, options?: Configuration): Promise<V1StatefulSet> {
         return this.api.createNamespacedStatefulSet(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ControllerRevision
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedControllerRevisionWithHttpInfo(param: AppsV1ApiDeleteCollectionNamespacedControllerRevisionRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedControllerRevisionWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -5209,8 +5593,24 @@ export class ObjectAppsV1Api {
      * delete collection of DaemonSet
      * @param param the request object
      */
+    public deleteCollectionNamespacedDaemonSetWithHttpInfo(param: AppsV1ApiDeleteCollectionNamespacedDaemonSetRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedDaemonSetWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of DaemonSet
+     * @param param the request object
+     */
     public deleteCollectionNamespacedDaemonSet(param: AppsV1ApiDeleteCollectionNamespacedDaemonSetRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionNamespacedDaemonSet(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of Deployment
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedDeploymentWithHttpInfo(param: AppsV1ApiDeleteCollectionNamespacedDeploymentRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedDeploymentWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -5225,8 +5625,24 @@ export class ObjectAppsV1Api {
      * delete collection of ReplicaSet
      * @param param the request object
      */
+    public deleteCollectionNamespacedReplicaSetWithHttpInfo(param: AppsV1ApiDeleteCollectionNamespacedReplicaSetRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedReplicaSetWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ReplicaSet
+     * @param param the request object
+     */
     public deleteCollectionNamespacedReplicaSet(param: AppsV1ApiDeleteCollectionNamespacedReplicaSetRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionNamespacedReplicaSet(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of StatefulSet
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedStatefulSetWithHttpInfo(param: AppsV1ApiDeleteCollectionNamespacedStatefulSetRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedStatefulSetWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -5241,8 +5657,24 @@ export class ObjectAppsV1Api {
      * delete a ControllerRevision
      * @param param the request object
      */
+    public deleteNamespacedControllerRevisionWithHttpInfo(param: AppsV1ApiDeleteNamespacedControllerRevisionRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedControllerRevisionWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ControllerRevision
+     * @param param the request object
+     */
     public deleteNamespacedControllerRevision(param: AppsV1ApiDeleteNamespacedControllerRevisionRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedControllerRevision(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a DaemonSet
+     * @param param the request object
+     */
+    public deleteNamespacedDaemonSetWithHttpInfo(param: AppsV1ApiDeleteNamespacedDaemonSetRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedDaemonSetWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -5257,8 +5689,24 @@ export class ObjectAppsV1Api {
      * delete a Deployment
      * @param param the request object
      */
+    public deleteNamespacedDeploymentWithHttpInfo(param: AppsV1ApiDeleteNamespacedDeploymentRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedDeploymentWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a Deployment
+     * @param param the request object
+     */
     public deleteNamespacedDeployment(param: AppsV1ApiDeleteNamespacedDeploymentRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedDeployment(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ReplicaSet
+     * @param param the request object
+     */
+    public deleteNamespacedReplicaSetWithHttpInfo(param: AppsV1ApiDeleteNamespacedReplicaSetRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedReplicaSetWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -5273,8 +5721,24 @@ export class ObjectAppsV1Api {
      * delete a StatefulSet
      * @param param the request object
      */
+    public deleteNamespacedStatefulSetWithHttpInfo(param: AppsV1ApiDeleteNamespacedStatefulSetRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedStatefulSetWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a StatefulSet
+     * @param param the request object
+     */
     public deleteNamespacedStatefulSet(param: AppsV1ApiDeleteNamespacedStatefulSetRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedStatefulSet(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: AppsV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -5289,8 +5753,24 @@ export class ObjectAppsV1Api {
      * list or watch objects of kind ControllerRevision
      * @param param the request object
      */
+    public listControllerRevisionForAllNamespacesWithHttpInfo(param: AppsV1ApiListControllerRevisionForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1ControllerRevisionList>> {
+        return this.api.listControllerRevisionForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ControllerRevision
+     * @param param the request object
+     */
     public listControllerRevisionForAllNamespaces(param: AppsV1ApiListControllerRevisionForAllNamespacesRequest = {}, options?: Configuration): Promise<V1ControllerRevisionList> {
         return this.api.listControllerRevisionForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind DaemonSet
+     * @param param the request object
+     */
+    public listDaemonSetForAllNamespacesWithHttpInfo(param: AppsV1ApiListDaemonSetForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1DaemonSetList>> {
+        return this.api.listDaemonSetForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -5305,8 +5785,24 @@ export class ObjectAppsV1Api {
      * list or watch objects of kind Deployment
      * @param param the request object
      */
+    public listDeploymentForAllNamespacesWithHttpInfo(param: AppsV1ApiListDeploymentForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1DeploymentList>> {
+        return this.api.listDeploymentForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Deployment
+     * @param param the request object
+     */
     public listDeploymentForAllNamespaces(param: AppsV1ApiListDeploymentForAllNamespacesRequest = {}, options?: Configuration): Promise<V1DeploymentList> {
         return this.api.listDeploymentForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ControllerRevision
+     * @param param the request object
+     */
+    public listNamespacedControllerRevisionWithHttpInfo(param: AppsV1ApiListNamespacedControllerRevisionRequest, options?: Configuration): Promise<HttpInfo<V1ControllerRevisionList>> {
+        return this.api.listNamespacedControllerRevisionWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -5321,8 +5817,24 @@ export class ObjectAppsV1Api {
      * list or watch objects of kind DaemonSet
      * @param param the request object
      */
+    public listNamespacedDaemonSetWithHttpInfo(param: AppsV1ApiListNamespacedDaemonSetRequest, options?: Configuration): Promise<HttpInfo<V1DaemonSetList>> {
+        return this.api.listNamespacedDaemonSetWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind DaemonSet
+     * @param param the request object
+     */
     public listNamespacedDaemonSet(param: AppsV1ApiListNamespacedDaemonSetRequest, options?: Configuration): Promise<V1DaemonSetList> {
         return this.api.listNamespacedDaemonSet(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Deployment
+     * @param param the request object
+     */
+    public listNamespacedDeploymentWithHttpInfo(param: AppsV1ApiListNamespacedDeploymentRequest, options?: Configuration): Promise<HttpInfo<V1DeploymentList>> {
+        return this.api.listNamespacedDeploymentWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -5337,8 +5849,24 @@ export class ObjectAppsV1Api {
      * list or watch objects of kind ReplicaSet
      * @param param the request object
      */
+    public listNamespacedReplicaSetWithHttpInfo(param: AppsV1ApiListNamespacedReplicaSetRequest, options?: Configuration): Promise<HttpInfo<V1ReplicaSetList>> {
+        return this.api.listNamespacedReplicaSetWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ReplicaSet
+     * @param param the request object
+     */
     public listNamespacedReplicaSet(param: AppsV1ApiListNamespacedReplicaSetRequest, options?: Configuration): Promise<V1ReplicaSetList> {
         return this.api.listNamespacedReplicaSet(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind StatefulSet
+     * @param param the request object
+     */
+    public listNamespacedStatefulSetWithHttpInfo(param: AppsV1ApiListNamespacedStatefulSetRequest, options?: Configuration): Promise<HttpInfo<V1StatefulSetList>> {
+        return this.api.listNamespacedStatefulSetWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -5353,8 +5881,24 @@ export class ObjectAppsV1Api {
      * list or watch objects of kind ReplicaSet
      * @param param the request object
      */
+    public listReplicaSetForAllNamespacesWithHttpInfo(param: AppsV1ApiListReplicaSetForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1ReplicaSetList>> {
+        return this.api.listReplicaSetForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ReplicaSet
+     * @param param the request object
+     */
     public listReplicaSetForAllNamespaces(param: AppsV1ApiListReplicaSetForAllNamespacesRequest = {}, options?: Configuration): Promise<V1ReplicaSetList> {
         return this.api.listReplicaSetForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind StatefulSet
+     * @param param the request object
+     */
+    public listStatefulSetForAllNamespacesWithHttpInfo(param: AppsV1ApiListStatefulSetForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1StatefulSetList>> {
+        return this.api.listStatefulSetForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -5369,8 +5913,24 @@ export class ObjectAppsV1Api {
      * partially update the specified ControllerRevision
      * @param param the request object
      */
+    public patchNamespacedControllerRevisionWithHttpInfo(param: AppsV1ApiPatchNamespacedControllerRevisionRequest, options?: Configuration): Promise<HttpInfo<V1ControllerRevision>> {
+        return this.api.patchNamespacedControllerRevisionWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ControllerRevision
+     * @param param the request object
+     */
     public patchNamespacedControllerRevision(param: AppsV1ApiPatchNamespacedControllerRevisionRequest, options?: Configuration): Promise<V1ControllerRevision> {
         return this.api.patchNamespacedControllerRevision(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified DaemonSet
+     * @param param the request object
+     */
+    public patchNamespacedDaemonSetWithHttpInfo(param: AppsV1ApiPatchNamespacedDaemonSetRequest, options?: Configuration): Promise<HttpInfo<V1DaemonSet>> {
+        return this.api.patchNamespacedDaemonSetWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -5385,8 +5945,24 @@ export class ObjectAppsV1Api {
      * partially update status of the specified DaemonSet
      * @param param the request object
      */
+    public patchNamespacedDaemonSetStatusWithHttpInfo(param: AppsV1ApiPatchNamespacedDaemonSetStatusRequest, options?: Configuration): Promise<HttpInfo<V1DaemonSet>> {
+        return this.api.patchNamespacedDaemonSetStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified DaemonSet
+     * @param param the request object
+     */
     public patchNamespacedDaemonSetStatus(param: AppsV1ApiPatchNamespacedDaemonSetStatusRequest, options?: Configuration): Promise<V1DaemonSet> {
         return this.api.patchNamespacedDaemonSetStatus(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified Deployment
+     * @param param the request object
+     */
+    public patchNamespacedDeploymentWithHttpInfo(param: AppsV1ApiPatchNamespacedDeploymentRequest, options?: Configuration): Promise<HttpInfo<V1Deployment>> {
+        return this.api.patchNamespacedDeploymentWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -5401,8 +5977,24 @@ export class ObjectAppsV1Api {
      * partially update scale of the specified Deployment
      * @param param the request object
      */
+    public patchNamespacedDeploymentScaleWithHttpInfo(param: AppsV1ApiPatchNamespacedDeploymentScaleRequest, options?: Configuration): Promise<HttpInfo<V1Scale>> {
+        return this.api.patchNamespacedDeploymentScaleWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update scale of the specified Deployment
+     * @param param the request object
+     */
     public patchNamespacedDeploymentScale(param: AppsV1ApiPatchNamespacedDeploymentScaleRequest, options?: Configuration): Promise<V1Scale> {
         return this.api.patchNamespacedDeploymentScale(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified Deployment
+     * @param param the request object
+     */
+    public patchNamespacedDeploymentStatusWithHttpInfo(param: AppsV1ApiPatchNamespacedDeploymentStatusRequest, options?: Configuration): Promise<HttpInfo<V1Deployment>> {
+        return this.api.patchNamespacedDeploymentStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -5417,8 +6009,24 @@ export class ObjectAppsV1Api {
      * partially update the specified ReplicaSet
      * @param param the request object
      */
+    public patchNamespacedReplicaSetWithHttpInfo(param: AppsV1ApiPatchNamespacedReplicaSetRequest, options?: Configuration): Promise<HttpInfo<V1ReplicaSet>> {
+        return this.api.patchNamespacedReplicaSetWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ReplicaSet
+     * @param param the request object
+     */
     public patchNamespacedReplicaSet(param: AppsV1ApiPatchNamespacedReplicaSetRequest, options?: Configuration): Promise<V1ReplicaSet> {
         return this.api.patchNamespacedReplicaSet(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update scale of the specified ReplicaSet
+     * @param param the request object
+     */
+    public patchNamespacedReplicaSetScaleWithHttpInfo(param: AppsV1ApiPatchNamespacedReplicaSetScaleRequest, options?: Configuration): Promise<HttpInfo<V1Scale>> {
+        return this.api.patchNamespacedReplicaSetScaleWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -5433,8 +6041,24 @@ export class ObjectAppsV1Api {
      * partially update status of the specified ReplicaSet
      * @param param the request object
      */
+    public patchNamespacedReplicaSetStatusWithHttpInfo(param: AppsV1ApiPatchNamespacedReplicaSetStatusRequest, options?: Configuration): Promise<HttpInfo<V1ReplicaSet>> {
+        return this.api.patchNamespacedReplicaSetStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified ReplicaSet
+     * @param param the request object
+     */
     public patchNamespacedReplicaSetStatus(param: AppsV1ApiPatchNamespacedReplicaSetStatusRequest, options?: Configuration): Promise<V1ReplicaSet> {
         return this.api.patchNamespacedReplicaSetStatus(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified StatefulSet
+     * @param param the request object
+     */
+    public patchNamespacedStatefulSetWithHttpInfo(param: AppsV1ApiPatchNamespacedStatefulSetRequest, options?: Configuration): Promise<HttpInfo<V1StatefulSet>> {
+        return this.api.patchNamespacedStatefulSetWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -5449,8 +6073,24 @@ export class ObjectAppsV1Api {
      * partially update scale of the specified StatefulSet
      * @param param the request object
      */
+    public patchNamespacedStatefulSetScaleWithHttpInfo(param: AppsV1ApiPatchNamespacedStatefulSetScaleRequest, options?: Configuration): Promise<HttpInfo<V1Scale>> {
+        return this.api.patchNamespacedStatefulSetScaleWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update scale of the specified StatefulSet
+     * @param param the request object
+     */
     public patchNamespacedStatefulSetScale(param: AppsV1ApiPatchNamespacedStatefulSetScaleRequest, options?: Configuration): Promise<V1Scale> {
         return this.api.patchNamespacedStatefulSetScale(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified StatefulSet
+     * @param param the request object
+     */
+    public patchNamespacedStatefulSetStatusWithHttpInfo(param: AppsV1ApiPatchNamespacedStatefulSetStatusRequest, options?: Configuration): Promise<HttpInfo<V1StatefulSet>> {
+        return this.api.patchNamespacedStatefulSetStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -5465,8 +6105,24 @@ export class ObjectAppsV1Api {
      * read the specified ControllerRevision
      * @param param the request object
      */
+    public readNamespacedControllerRevisionWithHttpInfo(param: AppsV1ApiReadNamespacedControllerRevisionRequest, options?: Configuration): Promise<HttpInfo<V1ControllerRevision>> {
+        return this.api.readNamespacedControllerRevisionWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ControllerRevision
+     * @param param the request object
+     */
     public readNamespacedControllerRevision(param: AppsV1ApiReadNamespacedControllerRevisionRequest, options?: Configuration): Promise<V1ControllerRevision> {
         return this.api.readNamespacedControllerRevision(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified DaemonSet
+     * @param param the request object
+     */
+    public readNamespacedDaemonSetWithHttpInfo(param: AppsV1ApiReadNamespacedDaemonSetRequest, options?: Configuration): Promise<HttpInfo<V1DaemonSet>> {
+        return this.api.readNamespacedDaemonSetWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -5481,8 +6137,24 @@ export class ObjectAppsV1Api {
      * read status of the specified DaemonSet
      * @param param the request object
      */
+    public readNamespacedDaemonSetStatusWithHttpInfo(param: AppsV1ApiReadNamespacedDaemonSetStatusRequest, options?: Configuration): Promise<HttpInfo<V1DaemonSet>> {
+        return this.api.readNamespacedDaemonSetStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified DaemonSet
+     * @param param the request object
+     */
     public readNamespacedDaemonSetStatus(param: AppsV1ApiReadNamespacedDaemonSetStatusRequest, options?: Configuration): Promise<V1DaemonSet> {
         return this.api.readNamespacedDaemonSetStatus(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified Deployment
+     * @param param the request object
+     */
+    public readNamespacedDeploymentWithHttpInfo(param: AppsV1ApiReadNamespacedDeploymentRequest, options?: Configuration): Promise<HttpInfo<V1Deployment>> {
+        return this.api.readNamespacedDeploymentWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -5497,8 +6169,24 @@ export class ObjectAppsV1Api {
      * read scale of the specified Deployment
      * @param param the request object
      */
+    public readNamespacedDeploymentScaleWithHttpInfo(param: AppsV1ApiReadNamespacedDeploymentScaleRequest, options?: Configuration): Promise<HttpInfo<V1Scale>> {
+        return this.api.readNamespacedDeploymentScaleWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read scale of the specified Deployment
+     * @param param the request object
+     */
     public readNamespacedDeploymentScale(param: AppsV1ApiReadNamespacedDeploymentScaleRequest, options?: Configuration): Promise<V1Scale> {
         return this.api.readNamespacedDeploymentScale(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified Deployment
+     * @param param the request object
+     */
+    public readNamespacedDeploymentStatusWithHttpInfo(param: AppsV1ApiReadNamespacedDeploymentStatusRequest, options?: Configuration): Promise<HttpInfo<V1Deployment>> {
+        return this.api.readNamespacedDeploymentStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -5513,8 +6201,24 @@ export class ObjectAppsV1Api {
      * read the specified ReplicaSet
      * @param param the request object
      */
+    public readNamespacedReplicaSetWithHttpInfo(param: AppsV1ApiReadNamespacedReplicaSetRequest, options?: Configuration): Promise<HttpInfo<V1ReplicaSet>> {
+        return this.api.readNamespacedReplicaSetWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ReplicaSet
+     * @param param the request object
+     */
     public readNamespacedReplicaSet(param: AppsV1ApiReadNamespacedReplicaSetRequest, options?: Configuration): Promise<V1ReplicaSet> {
         return this.api.readNamespacedReplicaSet(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read scale of the specified ReplicaSet
+     * @param param the request object
+     */
+    public readNamespacedReplicaSetScaleWithHttpInfo(param: AppsV1ApiReadNamespacedReplicaSetScaleRequest, options?: Configuration): Promise<HttpInfo<V1Scale>> {
+        return this.api.readNamespacedReplicaSetScaleWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -5529,8 +6233,24 @@ export class ObjectAppsV1Api {
      * read status of the specified ReplicaSet
      * @param param the request object
      */
+    public readNamespacedReplicaSetStatusWithHttpInfo(param: AppsV1ApiReadNamespacedReplicaSetStatusRequest, options?: Configuration): Promise<HttpInfo<V1ReplicaSet>> {
+        return this.api.readNamespacedReplicaSetStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified ReplicaSet
+     * @param param the request object
+     */
     public readNamespacedReplicaSetStatus(param: AppsV1ApiReadNamespacedReplicaSetStatusRequest, options?: Configuration): Promise<V1ReplicaSet> {
         return this.api.readNamespacedReplicaSetStatus(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified StatefulSet
+     * @param param the request object
+     */
+    public readNamespacedStatefulSetWithHttpInfo(param: AppsV1ApiReadNamespacedStatefulSetRequest, options?: Configuration): Promise<HttpInfo<V1StatefulSet>> {
+        return this.api.readNamespacedStatefulSetWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -5545,8 +6265,24 @@ export class ObjectAppsV1Api {
      * read scale of the specified StatefulSet
      * @param param the request object
      */
+    public readNamespacedStatefulSetScaleWithHttpInfo(param: AppsV1ApiReadNamespacedStatefulSetScaleRequest, options?: Configuration): Promise<HttpInfo<V1Scale>> {
+        return this.api.readNamespacedStatefulSetScaleWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read scale of the specified StatefulSet
+     * @param param the request object
+     */
     public readNamespacedStatefulSetScale(param: AppsV1ApiReadNamespacedStatefulSetScaleRequest, options?: Configuration): Promise<V1Scale> {
         return this.api.readNamespacedStatefulSetScale(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified StatefulSet
+     * @param param the request object
+     */
+    public readNamespacedStatefulSetStatusWithHttpInfo(param: AppsV1ApiReadNamespacedStatefulSetStatusRequest, options?: Configuration): Promise<HttpInfo<V1StatefulSet>> {
+        return this.api.readNamespacedStatefulSetStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -5561,8 +6297,24 @@ export class ObjectAppsV1Api {
      * replace the specified ControllerRevision
      * @param param the request object
      */
+    public replaceNamespacedControllerRevisionWithHttpInfo(param: AppsV1ApiReplaceNamespacedControllerRevisionRequest, options?: Configuration): Promise<HttpInfo<V1ControllerRevision>> {
+        return this.api.replaceNamespacedControllerRevisionWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ControllerRevision
+     * @param param the request object
+     */
     public replaceNamespacedControllerRevision(param: AppsV1ApiReplaceNamespacedControllerRevisionRequest, options?: Configuration): Promise<V1ControllerRevision> {
         return this.api.replaceNamespacedControllerRevision(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified DaemonSet
+     * @param param the request object
+     */
+    public replaceNamespacedDaemonSetWithHttpInfo(param: AppsV1ApiReplaceNamespacedDaemonSetRequest, options?: Configuration): Promise<HttpInfo<V1DaemonSet>> {
+        return this.api.replaceNamespacedDaemonSetWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -5577,8 +6329,24 @@ export class ObjectAppsV1Api {
      * replace status of the specified DaemonSet
      * @param param the request object
      */
+    public replaceNamespacedDaemonSetStatusWithHttpInfo(param: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest, options?: Configuration): Promise<HttpInfo<V1DaemonSet>> {
+        return this.api.replaceNamespacedDaemonSetStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified DaemonSet
+     * @param param the request object
+     */
     public replaceNamespacedDaemonSetStatus(param: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest, options?: Configuration): Promise<V1DaemonSet> {
         return this.api.replaceNamespacedDaemonSetStatus(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified Deployment
+     * @param param the request object
+     */
+    public replaceNamespacedDeploymentWithHttpInfo(param: AppsV1ApiReplaceNamespacedDeploymentRequest, options?: Configuration): Promise<HttpInfo<V1Deployment>> {
+        return this.api.replaceNamespacedDeploymentWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -5593,8 +6361,24 @@ export class ObjectAppsV1Api {
      * replace scale of the specified Deployment
      * @param param the request object
      */
+    public replaceNamespacedDeploymentScaleWithHttpInfo(param: AppsV1ApiReplaceNamespacedDeploymentScaleRequest, options?: Configuration): Promise<HttpInfo<V1Scale>> {
+        return this.api.replaceNamespacedDeploymentScaleWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace scale of the specified Deployment
+     * @param param the request object
+     */
     public replaceNamespacedDeploymentScale(param: AppsV1ApiReplaceNamespacedDeploymentScaleRequest, options?: Configuration): Promise<V1Scale> {
         return this.api.replaceNamespacedDeploymentScale(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified Deployment
+     * @param param the request object
+     */
+    public replaceNamespacedDeploymentStatusWithHttpInfo(param: AppsV1ApiReplaceNamespacedDeploymentStatusRequest, options?: Configuration): Promise<HttpInfo<V1Deployment>> {
+        return this.api.replaceNamespacedDeploymentStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -5609,8 +6393,24 @@ export class ObjectAppsV1Api {
      * replace the specified ReplicaSet
      * @param param the request object
      */
+    public replaceNamespacedReplicaSetWithHttpInfo(param: AppsV1ApiReplaceNamespacedReplicaSetRequest, options?: Configuration): Promise<HttpInfo<V1ReplicaSet>> {
+        return this.api.replaceNamespacedReplicaSetWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ReplicaSet
+     * @param param the request object
+     */
     public replaceNamespacedReplicaSet(param: AppsV1ApiReplaceNamespacedReplicaSetRequest, options?: Configuration): Promise<V1ReplicaSet> {
         return this.api.replaceNamespacedReplicaSet(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace scale of the specified ReplicaSet
+     * @param param the request object
+     */
+    public replaceNamespacedReplicaSetScaleWithHttpInfo(param: AppsV1ApiReplaceNamespacedReplicaSetScaleRequest, options?: Configuration): Promise<HttpInfo<V1Scale>> {
+        return this.api.replaceNamespacedReplicaSetScaleWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -5625,8 +6425,24 @@ export class ObjectAppsV1Api {
      * replace status of the specified ReplicaSet
      * @param param the request object
      */
+    public replaceNamespacedReplicaSetStatusWithHttpInfo(param: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest, options?: Configuration): Promise<HttpInfo<V1ReplicaSet>> {
+        return this.api.replaceNamespacedReplicaSetStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified ReplicaSet
+     * @param param the request object
+     */
     public replaceNamespacedReplicaSetStatus(param: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest, options?: Configuration): Promise<V1ReplicaSet> {
         return this.api.replaceNamespacedReplicaSetStatus(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified StatefulSet
+     * @param param the request object
+     */
+    public replaceNamespacedStatefulSetWithHttpInfo(param: AppsV1ApiReplaceNamespacedStatefulSetRequest, options?: Configuration): Promise<HttpInfo<V1StatefulSet>> {
+        return this.api.replaceNamespacedStatefulSetWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -5641,8 +6457,24 @@ export class ObjectAppsV1Api {
      * replace scale of the specified StatefulSet
      * @param param the request object
      */
+    public replaceNamespacedStatefulSetScaleWithHttpInfo(param: AppsV1ApiReplaceNamespacedStatefulSetScaleRequest, options?: Configuration): Promise<HttpInfo<V1Scale>> {
+        return this.api.replaceNamespacedStatefulSetScaleWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace scale of the specified StatefulSet
+     * @param param the request object
+     */
     public replaceNamespacedStatefulSetScale(param: AppsV1ApiReplaceNamespacedStatefulSetScaleRequest, options?: Configuration): Promise<V1Scale> {
         return this.api.replaceNamespacedStatefulSetScale(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified StatefulSet
+     * @param param the request object
+     */
+    public replaceNamespacedStatefulSetStatusWithHttpInfo(param: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest, options?: Configuration): Promise<HttpInfo<V1StatefulSet>> {
+        return this.api.replaceNamespacedStatefulSetStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -5666,6 +6498,14 @@ export class ObjectAuthenticationApi {
 
     public constructor(configuration: Configuration, requestFactory?: AuthenticationApiRequestFactory, responseProcessor?: AuthenticationApiResponseProcessor) {
         this.api = new ObservableAuthenticationApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: AuthenticationApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -5722,8 +6562,24 @@ export class ObjectAuthenticationV1Api {
      * create a TokenReview
      * @param param the request object
      */
+    public createTokenReviewWithHttpInfo(param: AuthenticationV1ApiCreateTokenReviewRequest, options?: Configuration): Promise<HttpInfo<V1TokenReview>> {
+        return this.api.createTokenReviewWithHttpInfo(param.body, param.dryRun, param.fieldManager, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * create a TokenReview
+     * @param param the request object
+     */
     public createTokenReview(param: AuthenticationV1ApiCreateTokenReviewRequest, options?: Configuration): Promise<V1TokenReview> {
         return this.api.createTokenReview(param.body, param.dryRun, param.fieldManager, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: AuthenticationV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -5747,6 +6603,14 @@ export class ObjectAuthorizationApi {
 
     public constructor(configuration: Configuration, requestFactory?: AuthorizationApiRequestFactory, responseProcessor?: AuthorizationApiResponseProcessor) {
         this.api = new ObservableAuthorizationApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: AuthorizationApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -5890,8 +6754,24 @@ export class ObjectAuthorizationV1Api {
      * create a LocalSubjectAccessReview
      * @param param the request object
      */
+    public createNamespacedLocalSubjectAccessReviewWithHttpInfo(param: AuthorizationV1ApiCreateNamespacedLocalSubjectAccessReviewRequest, options?: Configuration): Promise<HttpInfo<V1LocalSubjectAccessReview>> {
+        return this.api.createNamespacedLocalSubjectAccessReviewWithHttpInfo(param.namespace, param.body, param.dryRun, param.fieldManager, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * create a LocalSubjectAccessReview
+     * @param param the request object
+     */
     public createNamespacedLocalSubjectAccessReview(param: AuthorizationV1ApiCreateNamespacedLocalSubjectAccessReviewRequest, options?: Configuration): Promise<V1LocalSubjectAccessReview> {
         return this.api.createNamespacedLocalSubjectAccessReview(param.namespace, param.body, param.dryRun, param.fieldManager, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * create a SelfSubjectAccessReview
+     * @param param the request object
+     */
+    public createSelfSubjectAccessReviewWithHttpInfo(param: AuthorizationV1ApiCreateSelfSubjectAccessReviewRequest, options?: Configuration): Promise<HttpInfo<V1SelfSubjectAccessReview>> {
+        return this.api.createSelfSubjectAccessReviewWithHttpInfo(param.body, param.dryRun, param.fieldManager, param.pretty,  options).toPromise();
     }
 
     /**
@@ -5906,6 +6786,14 @@ export class ObjectAuthorizationV1Api {
      * create a SelfSubjectRulesReview
      * @param param the request object
      */
+    public createSelfSubjectRulesReviewWithHttpInfo(param: AuthorizationV1ApiCreateSelfSubjectRulesReviewRequest, options?: Configuration): Promise<HttpInfo<V1SelfSubjectRulesReview>> {
+        return this.api.createSelfSubjectRulesReviewWithHttpInfo(param.body, param.dryRun, param.fieldManager, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * create a SelfSubjectRulesReview
+     * @param param the request object
+     */
     public createSelfSubjectRulesReview(param: AuthorizationV1ApiCreateSelfSubjectRulesReviewRequest, options?: Configuration): Promise<V1SelfSubjectRulesReview> {
         return this.api.createSelfSubjectRulesReview(param.body, param.dryRun, param.fieldManager, param.pretty,  options).toPromise();
     }
@@ -5914,8 +6802,24 @@ export class ObjectAuthorizationV1Api {
      * create a SubjectAccessReview
      * @param param the request object
      */
+    public createSubjectAccessReviewWithHttpInfo(param: AuthorizationV1ApiCreateSubjectAccessReviewRequest, options?: Configuration): Promise<HttpInfo<V1SubjectAccessReview>> {
+        return this.api.createSubjectAccessReviewWithHttpInfo(param.body, param.dryRun, param.fieldManager, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * create a SubjectAccessReview
+     * @param param the request object
+     */
     public createSubjectAccessReview(param: AuthorizationV1ApiCreateSubjectAccessReviewRequest, options?: Configuration): Promise<V1SubjectAccessReview> {
         return this.api.createSubjectAccessReview(param.body, param.dryRun, param.fieldManager, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: AuthorizationV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -5939,6 +6843,14 @@ export class ObjectAutoscalingApi {
 
     public constructor(configuration: Configuration, requestFactory?: AutoscalingApiRequestFactory, responseProcessor?: AutoscalingApiResponseProcessor) {
         this.api = new ObservableAutoscalingApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: AutoscalingApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -6481,8 +7393,24 @@ export class ObjectAutoscalingV1Api {
      * create a HorizontalPodAutoscaler
      * @param param the request object
      */
+    public createNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV1ApiCreateNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V1HorizontalPodAutoscaler>> {
+        return this.api.createNamespacedHorizontalPodAutoscalerWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a HorizontalPodAutoscaler
+     * @param param the request object
+     */
     public createNamespacedHorizontalPodAutoscaler(param: AutoscalingV1ApiCreateNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<V1HorizontalPodAutoscaler> {
         return this.api.createNamespacedHorizontalPodAutoscaler(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of HorizontalPodAutoscaler
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV1ApiDeleteCollectionNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedHorizontalPodAutoscalerWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -6497,8 +7425,24 @@ export class ObjectAutoscalingV1Api {
      * delete a HorizontalPodAutoscaler
      * @param param the request object
      */
+    public deleteNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV1ApiDeleteNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedHorizontalPodAutoscalerWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a HorizontalPodAutoscaler
+     * @param param the request object
+     */
     public deleteNamespacedHorizontalPodAutoscaler(param: AutoscalingV1ApiDeleteNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedHorizontalPodAutoscaler(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: AutoscalingV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -6513,8 +7457,24 @@ export class ObjectAutoscalingV1Api {
      * list or watch objects of kind HorizontalPodAutoscaler
      * @param param the request object
      */
+    public listHorizontalPodAutoscalerForAllNamespacesWithHttpInfo(param: AutoscalingV1ApiListHorizontalPodAutoscalerForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1HorizontalPodAutoscalerList>> {
+        return this.api.listHorizontalPodAutoscalerForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind HorizontalPodAutoscaler
+     * @param param the request object
+     */
     public listHorizontalPodAutoscalerForAllNamespaces(param: AutoscalingV1ApiListHorizontalPodAutoscalerForAllNamespacesRequest = {}, options?: Configuration): Promise<V1HorizontalPodAutoscalerList> {
         return this.api.listHorizontalPodAutoscalerForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind HorizontalPodAutoscaler
+     * @param param the request object
+     */
+    public listNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV1ApiListNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V1HorizontalPodAutoscalerList>> {
+        return this.api.listNamespacedHorizontalPodAutoscalerWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -6529,8 +7489,24 @@ export class ObjectAutoscalingV1Api {
      * partially update the specified HorizontalPodAutoscaler
      * @param param the request object
      */
+    public patchNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV1ApiPatchNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V1HorizontalPodAutoscaler>> {
+        return this.api.patchNamespacedHorizontalPodAutoscalerWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified HorizontalPodAutoscaler
+     * @param param the request object
+     */
     public patchNamespacedHorizontalPodAutoscaler(param: AutoscalingV1ApiPatchNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<V1HorizontalPodAutoscaler> {
         return this.api.patchNamespacedHorizontalPodAutoscaler(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified HorizontalPodAutoscaler
+     * @param param the request object
+     */
+    public patchNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(param: AutoscalingV1ApiPatchNamespacedHorizontalPodAutoscalerStatusRequest, options?: Configuration): Promise<HttpInfo<V1HorizontalPodAutoscaler>> {
+        return this.api.patchNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -6545,8 +7521,24 @@ export class ObjectAutoscalingV1Api {
      * read the specified HorizontalPodAutoscaler
      * @param param the request object
      */
+    public readNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV1ApiReadNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V1HorizontalPodAutoscaler>> {
+        return this.api.readNamespacedHorizontalPodAutoscalerWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified HorizontalPodAutoscaler
+     * @param param the request object
+     */
     public readNamespacedHorizontalPodAutoscaler(param: AutoscalingV1ApiReadNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<V1HorizontalPodAutoscaler> {
         return this.api.readNamespacedHorizontalPodAutoscaler(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified HorizontalPodAutoscaler
+     * @param param the request object
+     */
+    public readNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(param: AutoscalingV1ApiReadNamespacedHorizontalPodAutoscalerStatusRequest, options?: Configuration): Promise<HttpInfo<V1HorizontalPodAutoscaler>> {
+        return this.api.readNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -6561,8 +7553,24 @@ export class ObjectAutoscalingV1Api {
      * replace the specified HorizontalPodAutoscaler
      * @param param the request object
      */
+    public replaceNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV1ApiReplaceNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V1HorizontalPodAutoscaler>> {
+        return this.api.replaceNamespacedHorizontalPodAutoscalerWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified HorizontalPodAutoscaler
+     * @param param the request object
+     */
     public replaceNamespacedHorizontalPodAutoscaler(param: AutoscalingV1ApiReplaceNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<V1HorizontalPodAutoscaler> {
         return this.api.replaceNamespacedHorizontalPodAutoscaler(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified HorizontalPodAutoscaler
+     * @param param the request object
+     */
+    public replaceNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(param: AutoscalingV1ApiReplaceNamespacedHorizontalPodAutoscalerStatusRequest, options?: Configuration): Promise<HttpInfo<V1HorizontalPodAutoscaler>> {
+        return this.api.replaceNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -7105,8 +8113,24 @@ export class ObjectAutoscalingV2beta1Api {
      * create a HorizontalPodAutoscaler
      * @param param the request object
      */
+    public createNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV2beta1ApiCreateNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V2beta1HorizontalPodAutoscaler>> {
+        return this.api.createNamespacedHorizontalPodAutoscalerWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a HorizontalPodAutoscaler
+     * @param param the request object
+     */
     public createNamespacedHorizontalPodAutoscaler(param: AutoscalingV2beta1ApiCreateNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<V2beta1HorizontalPodAutoscaler> {
         return this.api.createNamespacedHorizontalPodAutoscaler(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of HorizontalPodAutoscaler
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV2beta1ApiDeleteCollectionNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedHorizontalPodAutoscalerWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -7121,8 +8145,24 @@ export class ObjectAutoscalingV2beta1Api {
      * delete a HorizontalPodAutoscaler
      * @param param the request object
      */
+    public deleteNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV2beta1ApiDeleteNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedHorizontalPodAutoscalerWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a HorizontalPodAutoscaler
+     * @param param the request object
+     */
     public deleteNamespacedHorizontalPodAutoscaler(param: AutoscalingV2beta1ApiDeleteNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedHorizontalPodAutoscaler(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: AutoscalingV2beta1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -7137,8 +8177,24 @@ export class ObjectAutoscalingV2beta1Api {
      * list or watch objects of kind HorizontalPodAutoscaler
      * @param param the request object
      */
+    public listHorizontalPodAutoscalerForAllNamespacesWithHttpInfo(param: AutoscalingV2beta1ApiListHorizontalPodAutoscalerForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V2beta1HorizontalPodAutoscalerList>> {
+        return this.api.listHorizontalPodAutoscalerForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind HorizontalPodAutoscaler
+     * @param param the request object
+     */
     public listHorizontalPodAutoscalerForAllNamespaces(param: AutoscalingV2beta1ApiListHorizontalPodAutoscalerForAllNamespacesRequest = {}, options?: Configuration): Promise<V2beta1HorizontalPodAutoscalerList> {
         return this.api.listHorizontalPodAutoscalerForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind HorizontalPodAutoscaler
+     * @param param the request object
+     */
+    public listNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV2beta1ApiListNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V2beta1HorizontalPodAutoscalerList>> {
+        return this.api.listNamespacedHorizontalPodAutoscalerWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -7153,8 +8209,24 @@ export class ObjectAutoscalingV2beta1Api {
      * partially update the specified HorizontalPodAutoscaler
      * @param param the request object
      */
+    public patchNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV2beta1ApiPatchNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V2beta1HorizontalPodAutoscaler>> {
+        return this.api.patchNamespacedHorizontalPodAutoscalerWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified HorizontalPodAutoscaler
+     * @param param the request object
+     */
     public patchNamespacedHorizontalPodAutoscaler(param: AutoscalingV2beta1ApiPatchNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<V2beta1HorizontalPodAutoscaler> {
         return this.api.patchNamespacedHorizontalPodAutoscaler(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified HorizontalPodAutoscaler
+     * @param param the request object
+     */
+    public patchNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(param: AutoscalingV2beta1ApiPatchNamespacedHorizontalPodAutoscalerStatusRequest, options?: Configuration): Promise<HttpInfo<V2beta1HorizontalPodAutoscaler>> {
+        return this.api.patchNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -7169,8 +8241,24 @@ export class ObjectAutoscalingV2beta1Api {
      * read the specified HorizontalPodAutoscaler
      * @param param the request object
      */
+    public readNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV2beta1ApiReadNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V2beta1HorizontalPodAutoscaler>> {
+        return this.api.readNamespacedHorizontalPodAutoscalerWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified HorizontalPodAutoscaler
+     * @param param the request object
+     */
     public readNamespacedHorizontalPodAutoscaler(param: AutoscalingV2beta1ApiReadNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<V2beta1HorizontalPodAutoscaler> {
         return this.api.readNamespacedHorizontalPodAutoscaler(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified HorizontalPodAutoscaler
+     * @param param the request object
+     */
+    public readNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(param: AutoscalingV2beta1ApiReadNamespacedHorizontalPodAutoscalerStatusRequest, options?: Configuration): Promise<HttpInfo<V2beta1HorizontalPodAutoscaler>> {
+        return this.api.readNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -7185,8 +8273,24 @@ export class ObjectAutoscalingV2beta1Api {
      * replace the specified HorizontalPodAutoscaler
      * @param param the request object
      */
+    public replaceNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV2beta1ApiReplaceNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V2beta1HorizontalPodAutoscaler>> {
+        return this.api.replaceNamespacedHorizontalPodAutoscalerWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified HorizontalPodAutoscaler
+     * @param param the request object
+     */
     public replaceNamespacedHorizontalPodAutoscaler(param: AutoscalingV2beta1ApiReplaceNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<V2beta1HorizontalPodAutoscaler> {
         return this.api.replaceNamespacedHorizontalPodAutoscaler(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified HorizontalPodAutoscaler
+     * @param param the request object
+     */
+    public replaceNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(param: AutoscalingV2beta1ApiReplaceNamespacedHorizontalPodAutoscalerStatusRequest, options?: Configuration): Promise<HttpInfo<V2beta1HorizontalPodAutoscaler>> {
+        return this.api.replaceNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -7729,8 +8833,24 @@ export class ObjectAutoscalingV2beta2Api {
      * create a HorizontalPodAutoscaler
      * @param param the request object
      */
+    public createNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV2beta2ApiCreateNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V2beta2HorizontalPodAutoscaler>> {
+        return this.api.createNamespacedHorizontalPodAutoscalerWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a HorizontalPodAutoscaler
+     * @param param the request object
+     */
     public createNamespacedHorizontalPodAutoscaler(param: AutoscalingV2beta2ApiCreateNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<V2beta2HorizontalPodAutoscaler> {
         return this.api.createNamespacedHorizontalPodAutoscaler(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of HorizontalPodAutoscaler
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV2beta2ApiDeleteCollectionNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedHorizontalPodAutoscalerWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -7745,8 +8865,24 @@ export class ObjectAutoscalingV2beta2Api {
      * delete a HorizontalPodAutoscaler
      * @param param the request object
      */
+    public deleteNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV2beta2ApiDeleteNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedHorizontalPodAutoscalerWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a HorizontalPodAutoscaler
+     * @param param the request object
+     */
     public deleteNamespacedHorizontalPodAutoscaler(param: AutoscalingV2beta2ApiDeleteNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedHorizontalPodAutoscaler(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: AutoscalingV2beta2ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -7761,8 +8897,24 @@ export class ObjectAutoscalingV2beta2Api {
      * list or watch objects of kind HorizontalPodAutoscaler
      * @param param the request object
      */
+    public listHorizontalPodAutoscalerForAllNamespacesWithHttpInfo(param: AutoscalingV2beta2ApiListHorizontalPodAutoscalerForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V2beta2HorizontalPodAutoscalerList>> {
+        return this.api.listHorizontalPodAutoscalerForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind HorizontalPodAutoscaler
+     * @param param the request object
+     */
     public listHorizontalPodAutoscalerForAllNamespaces(param: AutoscalingV2beta2ApiListHorizontalPodAutoscalerForAllNamespacesRequest = {}, options?: Configuration): Promise<V2beta2HorizontalPodAutoscalerList> {
         return this.api.listHorizontalPodAutoscalerForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind HorizontalPodAutoscaler
+     * @param param the request object
+     */
+    public listNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV2beta2ApiListNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V2beta2HorizontalPodAutoscalerList>> {
+        return this.api.listNamespacedHorizontalPodAutoscalerWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -7777,8 +8929,24 @@ export class ObjectAutoscalingV2beta2Api {
      * partially update the specified HorizontalPodAutoscaler
      * @param param the request object
      */
+    public patchNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV2beta2ApiPatchNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V2beta2HorizontalPodAutoscaler>> {
+        return this.api.patchNamespacedHorizontalPodAutoscalerWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified HorizontalPodAutoscaler
+     * @param param the request object
+     */
     public patchNamespacedHorizontalPodAutoscaler(param: AutoscalingV2beta2ApiPatchNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<V2beta2HorizontalPodAutoscaler> {
         return this.api.patchNamespacedHorizontalPodAutoscaler(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified HorizontalPodAutoscaler
+     * @param param the request object
+     */
+    public patchNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(param: AutoscalingV2beta2ApiPatchNamespacedHorizontalPodAutoscalerStatusRequest, options?: Configuration): Promise<HttpInfo<V2beta2HorizontalPodAutoscaler>> {
+        return this.api.patchNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -7793,8 +8961,24 @@ export class ObjectAutoscalingV2beta2Api {
      * read the specified HorizontalPodAutoscaler
      * @param param the request object
      */
+    public readNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV2beta2ApiReadNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V2beta2HorizontalPodAutoscaler>> {
+        return this.api.readNamespacedHorizontalPodAutoscalerWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified HorizontalPodAutoscaler
+     * @param param the request object
+     */
     public readNamespacedHorizontalPodAutoscaler(param: AutoscalingV2beta2ApiReadNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<V2beta2HorizontalPodAutoscaler> {
         return this.api.readNamespacedHorizontalPodAutoscaler(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified HorizontalPodAutoscaler
+     * @param param the request object
+     */
+    public readNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(param: AutoscalingV2beta2ApiReadNamespacedHorizontalPodAutoscalerStatusRequest, options?: Configuration): Promise<HttpInfo<V2beta2HorizontalPodAutoscaler>> {
+        return this.api.readNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -7809,8 +8993,24 @@ export class ObjectAutoscalingV2beta2Api {
      * replace the specified HorizontalPodAutoscaler
      * @param param the request object
      */
+    public replaceNamespacedHorizontalPodAutoscalerWithHttpInfo(param: AutoscalingV2beta2ApiReplaceNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<HttpInfo<V2beta2HorizontalPodAutoscaler>> {
+        return this.api.replaceNamespacedHorizontalPodAutoscalerWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified HorizontalPodAutoscaler
+     * @param param the request object
+     */
     public replaceNamespacedHorizontalPodAutoscaler(param: AutoscalingV2beta2ApiReplaceNamespacedHorizontalPodAutoscalerRequest, options?: Configuration): Promise<V2beta2HorizontalPodAutoscaler> {
         return this.api.replaceNamespacedHorizontalPodAutoscaler(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified HorizontalPodAutoscaler
+     * @param param the request object
+     */
+    public replaceNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(param: AutoscalingV2beta2ApiReplaceNamespacedHorizontalPodAutoscalerStatusRequest, options?: Configuration): Promise<HttpInfo<V2beta2HorizontalPodAutoscaler>> {
+        return this.api.replaceNamespacedHorizontalPodAutoscalerStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -7834,6 +9034,14 @@ export class ObjectBatchApi {
 
     public constructor(configuration: Configuration, requestFactory?: BatchApiRequestFactory, responseProcessor?: BatchApiResponseProcessor) {
         this.api = new ObservableBatchApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: BatchApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -8889,8 +10097,24 @@ export class ObjectBatchV1Api {
      * create a CronJob
      * @param param the request object
      */
+    public createNamespacedCronJobWithHttpInfo(param: BatchV1ApiCreateNamespacedCronJobRequest, options?: Configuration): Promise<HttpInfo<V1CronJob>> {
+        return this.api.createNamespacedCronJobWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a CronJob
+     * @param param the request object
+     */
     public createNamespacedCronJob(param: BatchV1ApiCreateNamespacedCronJobRequest, options?: Configuration): Promise<V1CronJob> {
         return this.api.createNamespacedCronJob(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a Job
+     * @param param the request object
+     */
+    public createNamespacedJobWithHttpInfo(param: BatchV1ApiCreateNamespacedJobRequest, options?: Configuration): Promise<HttpInfo<V1Job>> {
+        return this.api.createNamespacedJobWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -8905,8 +10129,24 @@ export class ObjectBatchV1Api {
      * delete collection of CronJob
      * @param param the request object
      */
+    public deleteCollectionNamespacedCronJobWithHttpInfo(param: BatchV1ApiDeleteCollectionNamespacedCronJobRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedCronJobWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of CronJob
+     * @param param the request object
+     */
     public deleteCollectionNamespacedCronJob(param: BatchV1ApiDeleteCollectionNamespacedCronJobRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionNamespacedCronJob(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of Job
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedJobWithHttpInfo(param: BatchV1ApiDeleteCollectionNamespacedJobRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedJobWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -8921,8 +10161,24 @@ export class ObjectBatchV1Api {
      * delete a CronJob
      * @param param the request object
      */
+    public deleteNamespacedCronJobWithHttpInfo(param: BatchV1ApiDeleteNamespacedCronJobRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedCronJobWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a CronJob
+     * @param param the request object
+     */
     public deleteNamespacedCronJob(param: BatchV1ApiDeleteNamespacedCronJobRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedCronJob(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a Job
+     * @param param the request object
+     */
+    public deleteNamespacedJobWithHttpInfo(param: BatchV1ApiDeleteNamespacedJobRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedJobWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -8937,8 +10193,24 @@ export class ObjectBatchV1Api {
      * get available resources
      * @param param the request object
      */
+    public getAPIResourcesWithHttpInfo(param: BatchV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
     public getAPIResources(param: BatchV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<V1APIResourceList> {
         return this.api.getAPIResources( options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind CronJob
+     * @param param the request object
+     */
+    public listCronJobForAllNamespacesWithHttpInfo(param: BatchV1ApiListCronJobForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1CronJobList>> {
+        return this.api.listCronJobForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -8953,8 +10225,24 @@ export class ObjectBatchV1Api {
      * list or watch objects of kind Job
      * @param param the request object
      */
+    public listJobForAllNamespacesWithHttpInfo(param: BatchV1ApiListJobForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1JobList>> {
+        return this.api.listJobForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Job
+     * @param param the request object
+     */
     public listJobForAllNamespaces(param: BatchV1ApiListJobForAllNamespacesRequest = {}, options?: Configuration): Promise<V1JobList> {
         return this.api.listJobForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind CronJob
+     * @param param the request object
+     */
+    public listNamespacedCronJobWithHttpInfo(param: BatchV1ApiListNamespacedCronJobRequest, options?: Configuration): Promise<HttpInfo<V1CronJobList>> {
+        return this.api.listNamespacedCronJobWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -8969,8 +10257,24 @@ export class ObjectBatchV1Api {
      * list or watch objects of kind Job
      * @param param the request object
      */
+    public listNamespacedJobWithHttpInfo(param: BatchV1ApiListNamespacedJobRequest, options?: Configuration): Promise<HttpInfo<V1JobList>> {
+        return this.api.listNamespacedJobWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Job
+     * @param param the request object
+     */
     public listNamespacedJob(param: BatchV1ApiListNamespacedJobRequest, options?: Configuration): Promise<V1JobList> {
         return this.api.listNamespacedJob(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified CronJob
+     * @param param the request object
+     */
+    public patchNamespacedCronJobWithHttpInfo(param: BatchV1ApiPatchNamespacedCronJobRequest, options?: Configuration): Promise<HttpInfo<V1CronJob>> {
+        return this.api.patchNamespacedCronJobWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -8985,8 +10289,24 @@ export class ObjectBatchV1Api {
      * partially update status of the specified CronJob
      * @param param the request object
      */
+    public patchNamespacedCronJobStatusWithHttpInfo(param: BatchV1ApiPatchNamespacedCronJobStatusRequest, options?: Configuration): Promise<HttpInfo<V1CronJob>> {
+        return this.api.patchNamespacedCronJobStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified CronJob
+     * @param param the request object
+     */
     public patchNamespacedCronJobStatus(param: BatchV1ApiPatchNamespacedCronJobStatusRequest, options?: Configuration): Promise<V1CronJob> {
         return this.api.patchNamespacedCronJobStatus(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified Job
+     * @param param the request object
+     */
+    public patchNamespacedJobWithHttpInfo(param: BatchV1ApiPatchNamespacedJobRequest, options?: Configuration): Promise<HttpInfo<V1Job>> {
+        return this.api.patchNamespacedJobWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -9001,8 +10321,24 @@ export class ObjectBatchV1Api {
      * partially update status of the specified Job
      * @param param the request object
      */
+    public patchNamespacedJobStatusWithHttpInfo(param: BatchV1ApiPatchNamespacedJobStatusRequest, options?: Configuration): Promise<HttpInfo<V1Job>> {
+        return this.api.patchNamespacedJobStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified Job
+     * @param param the request object
+     */
     public patchNamespacedJobStatus(param: BatchV1ApiPatchNamespacedJobStatusRequest, options?: Configuration): Promise<V1Job> {
         return this.api.patchNamespacedJobStatus(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * read the specified CronJob
+     * @param param the request object
+     */
+    public readNamespacedCronJobWithHttpInfo(param: BatchV1ApiReadNamespacedCronJobRequest, options?: Configuration): Promise<HttpInfo<V1CronJob>> {
+        return this.api.readNamespacedCronJobWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -9017,8 +10353,24 @@ export class ObjectBatchV1Api {
      * read status of the specified CronJob
      * @param param the request object
      */
+    public readNamespacedCronJobStatusWithHttpInfo(param: BatchV1ApiReadNamespacedCronJobStatusRequest, options?: Configuration): Promise<HttpInfo<V1CronJob>> {
+        return this.api.readNamespacedCronJobStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified CronJob
+     * @param param the request object
+     */
     public readNamespacedCronJobStatus(param: BatchV1ApiReadNamespacedCronJobStatusRequest, options?: Configuration): Promise<V1CronJob> {
         return this.api.readNamespacedCronJobStatus(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified Job
+     * @param param the request object
+     */
+    public readNamespacedJobWithHttpInfo(param: BatchV1ApiReadNamespacedJobRequest, options?: Configuration): Promise<HttpInfo<V1Job>> {
+        return this.api.readNamespacedJobWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -9033,8 +10385,24 @@ export class ObjectBatchV1Api {
      * read status of the specified Job
      * @param param the request object
      */
+    public readNamespacedJobStatusWithHttpInfo(param: BatchV1ApiReadNamespacedJobStatusRequest, options?: Configuration): Promise<HttpInfo<V1Job>> {
+        return this.api.readNamespacedJobStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified Job
+     * @param param the request object
+     */
     public readNamespacedJobStatus(param: BatchV1ApiReadNamespacedJobStatusRequest, options?: Configuration): Promise<V1Job> {
         return this.api.readNamespacedJobStatus(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified CronJob
+     * @param param the request object
+     */
+    public replaceNamespacedCronJobWithHttpInfo(param: BatchV1ApiReplaceNamespacedCronJobRequest, options?: Configuration): Promise<HttpInfo<V1CronJob>> {
+        return this.api.replaceNamespacedCronJobWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -9049,6 +10417,14 @@ export class ObjectBatchV1Api {
      * replace status of the specified CronJob
      * @param param the request object
      */
+    public replaceNamespacedCronJobStatusWithHttpInfo(param: BatchV1ApiReplaceNamespacedCronJobStatusRequest, options?: Configuration): Promise<HttpInfo<V1CronJob>> {
+        return this.api.replaceNamespacedCronJobStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified CronJob
+     * @param param the request object
+     */
     public replaceNamespacedCronJobStatus(param: BatchV1ApiReplaceNamespacedCronJobStatusRequest, options?: Configuration): Promise<V1CronJob> {
         return this.api.replaceNamespacedCronJobStatus(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
@@ -9057,8 +10433,24 @@ export class ObjectBatchV1Api {
      * replace the specified Job
      * @param param the request object
      */
+    public replaceNamespacedJobWithHttpInfo(param: BatchV1ApiReplaceNamespacedJobRequest, options?: Configuration): Promise<HttpInfo<V1Job>> {
+        return this.api.replaceNamespacedJobWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified Job
+     * @param param the request object
+     */
     public replaceNamespacedJob(param: BatchV1ApiReplaceNamespacedJobRequest, options?: Configuration): Promise<V1Job> {
         return this.api.replaceNamespacedJob(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified Job
+     * @param param the request object
+     */
+    public replaceNamespacedJobStatusWithHttpInfo(param: BatchV1ApiReplaceNamespacedJobStatusRequest, options?: Configuration): Promise<HttpInfo<V1Job>> {
+        return this.api.replaceNamespacedJobStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -9601,8 +10993,24 @@ export class ObjectBatchV1beta1Api {
      * create a CronJob
      * @param param the request object
      */
+    public createNamespacedCronJobWithHttpInfo(param: BatchV1beta1ApiCreateNamespacedCronJobRequest, options?: Configuration): Promise<HttpInfo<V1beta1CronJob>> {
+        return this.api.createNamespacedCronJobWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a CronJob
+     * @param param the request object
+     */
     public createNamespacedCronJob(param: BatchV1beta1ApiCreateNamespacedCronJobRequest, options?: Configuration): Promise<V1beta1CronJob> {
         return this.api.createNamespacedCronJob(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of CronJob
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedCronJobWithHttpInfo(param: BatchV1beta1ApiDeleteCollectionNamespacedCronJobRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedCronJobWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -9617,8 +11025,24 @@ export class ObjectBatchV1beta1Api {
      * delete a CronJob
      * @param param the request object
      */
+    public deleteNamespacedCronJobWithHttpInfo(param: BatchV1beta1ApiDeleteNamespacedCronJobRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedCronJobWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a CronJob
+     * @param param the request object
+     */
     public deleteNamespacedCronJob(param: BatchV1beta1ApiDeleteNamespacedCronJobRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedCronJob(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: BatchV1beta1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -9633,8 +11057,24 @@ export class ObjectBatchV1beta1Api {
      * list or watch objects of kind CronJob
      * @param param the request object
      */
+    public listCronJobForAllNamespacesWithHttpInfo(param: BatchV1beta1ApiListCronJobForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1beta1CronJobList>> {
+        return this.api.listCronJobForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind CronJob
+     * @param param the request object
+     */
     public listCronJobForAllNamespaces(param: BatchV1beta1ApiListCronJobForAllNamespacesRequest = {}, options?: Configuration): Promise<V1beta1CronJobList> {
         return this.api.listCronJobForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind CronJob
+     * @param param the request object
+     */
+    public listNamespacedCronJobWithHttpInfo(param: BatchV1beta1ApiListNamespacedCronJobRequest, options?: Configuration): Promise<HttpInfo<V1beta1CronJobList>> {
+        return this.api.listNamespacedCronJobWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -9649,8 +11089,24 @@ export class ObjectBatchV1beta1Api {
      * partially update the specified CronJob
      * @param param the request object
      */
+    public patchNamespacedCronJobWithHttpInfo(param: BatchV1beta1ApiPatchNamespacedCronJobRequest, options?: Configuration): Promise<HttpInfo<V1beta1CronJob>> {
+        return this.api.patchNamespacedCronJobWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified CronJob
+     * @param param the request object
+     */
     public patchNamespacedCronJob(param: BatchV1beta1ApiPatchNamespacedCronJobRequest, options?: Configuration): Promise<V1beta1CronJob> {
         return this.api.patchNamespacedCronJob(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified CronJob
+     * @param param the request object
+     */
+    public patchNamespacedCronJobStatusWithHttpInfo(param: BatchV1beta1ApiPatchNamespacedCronJobStatusRequest, options?: Configuration): Promise<HttpInfo<V1beta1CronJob>> {
+        return this.api.patchNamespacedCronJobStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -9665,8 +11121,24 @@ export class ObjectBatchV1beta1Api {
      * read the specified CronJob
      * @param param the request object
      */
+    public readNamespacedCronJobWithHttpInfo(param: BatchV1beta1ApiReadNamespacedCronJobRequest, options?: Configuration): Promise<HttpInfo<V1beta1CronJob>> {
+        return this.api.readNamespacedCronJobWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified CronJob
+     * @param param the request object
+     */
     public readNamespacedCronJob(param: BatchV1beta1ApiReadNamespacedCronJobRequest, options?: Configuration): Promise<V1beta1CronJob> {
         return this.api.readNamespacedCronJob(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified CronJob
+     * @param param the request object
+     */
+    public readNamespacedCronJobStatusWithHttpInfo(param: BatchV1beta1ApiReadNamespacedCronJobStatusRequest, options?: Configuration): Promise<HttpInfo<V1beta1CronJob>> {
+        return this.api.readNamespacedCronJobStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -9681,8 +11153,24 @@ export class ObjectBatchV1beta1Api {
      * replace the specified CronJob
      * @param param the request object
      */
+    public replaceNamespacedCronJobWithHttpInfo(param: BatchV1beta1ApiReplaceNamespacedCronJobRequest, options?: Configuration): Promise<HttpInfo<V1beta1CronJob>> {
+        return this.api.replaceNamespacedCronJobWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified CronJob
+     * @param param the request object
+     */
     public replaceNamespacedCronJob(param: BatchV1beta1ApiReplaceNamespacedCronJobRequest, options?: Configuration): Promise<V1beta1CronJob> {
         return this.api.replaceNamespacedCronJob(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified CronJob
+     * @param param the request object
+     */
+    public replaceNamespacedCronJobStatusWithHttpInfo(param: BatchV1beta1ApiReplaceNamespacedCronJobStatusRequest, options?: Configuration): Promise<HttpInfo<V1beta1CronJob>> {
+        return this.api.replaceNamespacedCronJobStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -9706,6 +11194,14 @@ export class ObjectCertificatesApi {
 
     public constructor(configuration: Configuration, requestFactory?: CertificatesApiRequestFactory, responseProcessor?: CertificatesApiResponseProcessor) {
         this.api = new ObservableCertificatesApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: CertificatesApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -10212,8 +11708,24 @@ export class ObjectCertificatesV1Api {
      * create a CertificateSigningRequest
      * @param param the request object
      */
+    public createCertificateSigningRequestWithHttpInfo(param: CertificatesV1ApiCreateCertificateSigningRequestRequest, options?: Configuration): Promise<HttpInfo<V1CertificateSigningRequest>> {
+        return this.api.createCertificateSigningRequestWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a CertificateSigningRequest
+     * @param param the request object
+     */
     public createCertificateSigningRequest(param: CertificatesV1ApiCreateCertificateSigningRequestRequest, options?: Configuration): Promise<V1CertificateSigningRequest> {
         return this.api.createCertificateSigningRequest(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete a CertificateSigningRequest
+     * @param param the request object
+     */
+    public deleteCertificateSigningRequestWithHttpInfo(param: CertificatesV1ApiDeleteCertificateSigningRequestRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCertificateSigningRequestWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -10228,8 +11740,24 @@ export class ObjectCertificatesV1Api {
      * delete collection of CertificateSigningRequest
      * @param param the request object
      */
+    public deleteCollectionCertificateSigningRequestWithHttpInfo(param: CertificatesV1ApiDeleteCollectionCertificateSigningRequestRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionCertificateSigningRequestWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of CertificateSigningRequest
+     * @param param the request object
+     */
     public deleteCollectionCertificateSigningRequest(param: CertificatesV1ApiDeleteCollectionCertificateSigningRequestRequest = {}, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionCertificateSigningRequest(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: CertificatesV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -10244,8 +11772,24 @@ export class ObjectCertificatesV1Api {
      * list or watch objects of kind CertificateSigningRequest
      * @param param the request object
      */
+    public listCertificateSigningRequestWithHttpInfo(param: CertificatesV1ApiListCertificateSigningRequestRequest = {}, options?: Configuration): Promise<HttpInfo<V1CertificateSigningRequestList>> {
+        return this.api.listCertificateSigningRequestWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind CertificateSigningRequest
+     * @param param the request object
+     */
     public listCertificateSigningRequest(param: CertificatesV1ApiListCertificateSigningRequestRequest = {}, options?: Configuration): Promise<V1CertificateSigningRequestList> {
         return this.api.listCertificateSigningRequest(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified CertificateSigningRequest
+     * @param param the request object
+     */
+    public patchCertificateSigningRequestWithHttpInfo(param: CertificatesV1ApiPatchCertificateSigningRequestRequest, options?: Configuration): Promise<HttpInfo<V1CertificateSigningRequest>> {
+        return this.api.patchCertificateSigningRequestWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -10260,8 +11804,24 @@ export class ObjectCertificatesV1Api {
      * partially update approval of the specified CertificateSigningRequest
      * @param param the request object
      */
+    public patchCertificateSigningRequestApprovalWithHttpInfo(param: CertificatesV1ApiPatchCertificateSigningRequestApprovalRequest, options?: Configuration): Promise<HttpInfo<V1CertificateSigningRequest>> {
+        return this.api.patchCertificateSigningRequestApprovalWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update approval of the specified CertificateSigningRequest
+     * @param param the request object
+     */
     public patchCertificateSigningRequestApproval(param: CertificatesV1ApiPatchCertificateSigningRequestApprovalRequest, options?: Configuration): Promise<V1CertificateSigningRequest> {
         return this.api.patchCertificateSigningRequestApproval(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified CertificateSigningRequest
+     * @param param the request object
+     */
+    public patchCertificateSigningRequestStatusWithHttpInfo(param: CertificatesV1ApiPatchCertificateSigningRequestStatusRequest, options?: Configuration): Promise<HttpInfo<V1CertificateSigningRequest>> {
+        return this.api.patchCertificateSigningRequestStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -10276,8 +11836,24 @@ export class ObjectCertificatesV1Api {
      * read the specified CertificateSigningRequest
      * @param param the request object
      */
+    public readCertificateSigningRequestWithHttpInfo(param: CertificatesV1ApiReadCertificateSigningRequestRequest, options?: Configuration): Promise<HttpInfo<V1CertificateSigningRequest>> {
+        return this.api.readCertificateSigningRequestWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified CertificateSigningRequest
+     * @param param the request object
+     */
     public readCertificateSigningRequest(param: CertificatesV1ApiReadCertificateSigningRequestRequest, options?: Configuration): Promise<V1CertificateSigningRequest> {
         return this.api.readCertificateSigningRequest(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read approval of the specified CertificateSigningRequest
+     * @param param the request object
+     */
+    public readCertificateSigningRequestApprovalWithHttpInfo(param: CertificatesV1ApiReadCertificateSigningRequestApprovalRequest, options?: Configuration): Promise<HttpInfo<V1CertificateSigningRequest>> {
+        return this.api.readCertificateSigningRequestApprovalWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -10292,8 +11868,24 @@ export class ObjectCertificatesV1Api {
      * read status of the specified CertificateSigningRequest
      * @param param the request object
      */
+    public readCertificateSigningRequestStatusWithHttpInfo(param: CertificatesV1ApiReadCertificateSigningRequestStatusRequest, options?: Configuration): Promise<HttpInfo<V1CertificateSigningRequest>> {
+        return this.api.readCertificateSigningRequestStatusWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified CertificateSigningRequest
+     * @param param the request object
+     */
     public readCertificateSigningRequestStatus(param: CertificatesV1ApiReadCertificateSigningRequestStatusRequest, options?: Configuration): Promise<V1CertificateSigningRequest> {
         return this.api.readCertificateSigningRequestStatus(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified CertificateSigningRequest
+     * @param param the request object
+     */
+    public replaceCertificateSigningRequestWithHttpInfo(param: CertificatesV1ApiReplaceCertificateSigningRequestRequest, options?: Configuration): Promise<HttpInfo<V1CertificateSigningRequest>> {
+        return this.api.replaceCertificateSigningRequestWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -10308,8 +11900,24 @@ export class ObjectCertificatesV1Api {
      * replace approval of the specified CertificateSigningRequest
      * @param param the request object
      */
+    public replaceCertificateSigningRequestApprovalWithHttpInfo(param: CertificatesV1ApiReplaceCertificateSigningRequestApprovalRequest, options?: Configuration): Promise<HttpInfo<V1CertificateSigningRequest>> {
+        return this.api.replaceCertificateSigningRequestApprovalWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace approval of the specified CertificateSigningRequest
+     * @param param the request object
+     */
     public replaceCertificateSigningRequestApproval(param: CertificatesV1ApiReplaceCertificateSigningRequestApprovalRequest, options?: Configuration): Promise<V1CertificateSigningRequest> {
         return this.api.replaceCertificateSigningRequestApproval(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified CertificateSigningRequest
+     * @param param the request object
+     */
+    public replaceCertificateSigningRequestStatusWithHttpInfo(param: CertificatesV1ApiReplaceCertificateSigningRequestStatusRequest, options?: Configuration): Promise<HttpInfo<V1CertificateSigningRequest>> {
+        return this.api.replaceCertificateSigningRequestStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -10333,6 +11941,14 @@ export class ObjectCoordinationApi {
 
     public constructor(configuration: Configuration, requestFactory?: CoordinationApiRequestFactory, responseProcessor?: CoordinationApiResponseProcessor) {
         this.api = new ObservableCoordinationApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: CoordinationApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -10770,8 +12386,24 @@ export class ObjectCoordinationV1Api {
      * create a Lease
      * @param param the request object
      */
+    public createNamespacedLeaseWithHttpInfo(param: CoordinationV1ApiCreateNamespacedLeaseRequest, options?: Configuration): Promise<HttpInfo<V1Lease>> {
+        return this.api.createNamespacedLeaseWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a Lease
+     * @param param the request object
+     */
     public createNamespacedLease(param: CoordinationV1ApiCreateNamespacedLeaseRequest, options?: Configuration): Promise<V1Lease> {
         return this.api.createNamespacedLease(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of Lease
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedLeaseWithHttpInfo(param: CoordinationV1ApiDeleteCollectionNamespacedLeaseRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedLeaseWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -10786,8 +12418,24 @@ export class ObjectCoordinationV1Api {
      * delete a Lease
      * @param param the request object
      */
+    public deleteNamespacedLeaseWithHttpInfo(param: CoordinationV1ApiDeleteNamespacedLeaseRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedLeaseWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a Lease
+     * @param param the request object
+     */
     public deleteNamespacedLease(param: CoordinationV1ApiDeleteNamespacedLeaseRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedLease(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: CoordinationV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -10802,8 +12450,24 @@ export class ObjectCoordinationV1Api {
      * list or watch objects of kind Lease
      * @param param the request object
      */
+    public listLeaseForAllNamespacesWithHttpInfo(param: CoordinationV1ApiListLeaseForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1LeaseList>> {
+        return this.api.listLeaseForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Lease
+     * @param param the request object
+     */
     public listLeaseForAllNamespaces(param: CoordinationV1ApiListLeaseForAllNamespacesRequest = {}, options?: Configuration): Promise<V1LeaseList> {
         return this.api.listLeaseForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Lease
+     * @param param the request object
+     */
+    public listNamespacedLeaseWithHttpInfo(param: CoordinationV1ApiListNamespacedLeaseRequest, options?: Configuration): Promise<HttpInfo<V1LeaseList>> {
+        return this.api.listNamespacedLeaseWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -10818,6 +12482,14 @@ export class ObjectCoordinationV1Api {
      * partially update the specified Lease
      * @param param the request object
      */
+    public patchNamespacedLeaseWithHttpInfo(param: CoordinationV1ApiPatchNamespacedLeaseRequest, options?: Configuration): Promise<HttpInfo<V1Lease>> {
+        return this.api.patchNamespacedLeaseWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified Lease
+     * @param param the request object
+     */
     public patchNamespacedLease(param: CoordinationV1ApiPatchNamespacedLeaseRequest, options?: Configuration): Promise<V1Lease> {
         return this.api.patchNamespacedLease(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
@@ -10826,8 +12498,24 @@ export class ObjectCoordinationV1Api {
      * read the specified Lease
      * @param param the request object
      */
+    public readNamespacedLeaseWithHttpInfo(param: CoordinationV1ApiReadNamespacedLeaseRequest, options?: Configuration): Promise<HttpInfo<V1Lease>> {
+        return this.api.readNamespacedLeaseWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified Lease
+     * @param param the request object
+     */
     public readNamespacedLease(param: CoordinationV1ApiReadNamespacedLeaseRequest, options?: Configuration): Promise<V1Lease> {
         return this.api.readNamespacedLease(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified Lease
+     * @param param the request object
+     */
+    public replaceNamespacedLeaseWithHttpInfo(param: CoordinationV1ApiReplaceNamespacedLeaseRequest, options?: Configuration): Promise<HttpInfo<V1Lease>> {
+        return this.api.replaceNamespacedLeaseWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -10851,6 +12539,14 @@ export class ObjectCoreApi {
 
     public constructor(configuration: Configuration, requestFactory?: CoreApiRequestFactory, responseProcessor?: CoreApiResponseProcessor) {
         this.api = new ObservableCoreApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get available API versions
+     * @param param the request object
+     */
+    public getAPIVersionsWithHttpInfo(param: CoreApiGetAPIVersionsRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIVersions>> {
+        return this.api.getAPIVersionsWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -19001,8 +20697,24 @@ export class ObjectCoreV1Api {
      * connect DELETE requests to proxy of Pod
      * @param param the request object
      */
+    public connectDeleteNamespacedPodProxyWithHttpInfo(param: CoreV1ApiConnectDeleteNamespacedPodProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectDeleteNamespacedPodProxyWithHttpInfo(param.name, param.namespace, param.path,  options).toPromise();
+    }
+
+    /**
+     * connect DELETE requests to proxy of Pod
+     * @param param the request object
+     */
     public connectDeleteNamespacedPodProxy(param: CoreV1ApiConnectDeleteNamespacedPodProxyRequest, options?: Configuration): Promise<string> {
         return this.api.connectDeleteNamespacedPodProxy(param.name, param.namespace, param.path,  options).toPromise();
+    }
+
+    /**
+     * connect DELETE requests to proxy of Pod
+     * @param param the request object
+     */
+    public connectDeleteNamespacedPodProxyWithPathWithHttpInfo(param: CoreV1ApiConnectDeleteNamespacedPodProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectDeleteNamespacedPodProxyWithPathWithHttpInfo(param.name, param.namespace, param.path, param.path2,  options).toPromise();
     }
 
     /**
@@ -19017,8 +20729,24 @@ export class ObjectCoreV1Api {
      * connect DELETE requests to proxy of Service
      * @param param the request object
      */
+    public connectDeleteNamespacedServiceProxyWithHttpInfo(param: CoreV1ApiConnectDeleteNamespacedServiceProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectDeleteNamespacedServiceProxyWithHttpInfo(param.name, param.namespace, param.path,  options).toPromise();
+    }
+
+    /**
+     * connect DELETE requests to proxy of Service
+     * @param param the request object
+     */
     public connectDeleteNamespacedServiceProxy(param: CoreV1ApiConnectDeleteNamespacedServiceProxyRequest, options?: Configuration): Promise<string> {
         return this.api.connectDeleteNamespacedServiceProxy(param.name, param.namespace, param.path,  options).toPromise();
+    }
+
+    /**
+     * connect DELETE requests to proxy of Service
+     * @param param the request object
+     */
+    public connectDeleteNamespacedServiceProxyWithPathWithHttpInfo(param: CoreV1ApiConnectDeleteNamespacedServiceProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectDeleteNamespacedServiceProxyWithPathWithHttpInfo(param.name, param.namespace, param.path, param.path2,  options).toPromise();
     }
 
     /**
@@ -19033,8 +20761,24 @@ export class ObjectCoreV1Api {
      * connect DELETE requests to proxy of Node
      * @param param the request object
      */
+    public connectDeleteNodeProxyWithHttpInfo(param: CoreV1ApiConnectDeleteNodeProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectDeleteNodeProxyWithHttpInfo(param.name, param.path,  options).toPromise();
+    }
+
+    /**
+     * connect DELETE requests to proxy of Node
+     * @param param the request object
+     */
     public connectDeleteNodeProxy(param: CoreV1ApiConnectDeleteNodeProxyRequest, options?: Configuration): Promise<string> {
         return this.api.connectDeleteNodeProxy(param.name, param.path,  options).toPromise();
+    }
+
+    /**
+     * connect DELETE requests to proxy of Node
+     * @param param the request object
+     */
+    public connectDeleteNodeProxyWithPathWithHttpInfo(param: CoreV1ApiConnectDeleteNodeProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectDeleteNodeProxyWithPathWithHttpInfo(param.name, param.path, param.path2,  options).toPromise();
     }
 
     /**
@@ -19049,8 +20793,24 @@ export class ObjectCoreV1Api {
      * connect GET requests to attach of Pod
      * @param param the request object
      */
+    public connectGetNamespacedPodAttachWithHttpInfo(param: CoreV1ApiConnectGetNamespacedPodAttachRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectGetNamespacedPodAttachWithHttpInfo(param.name, param.namespace, param.container, param.stderr, param.stdin, param.stdout, param.tty,  options).toPromise();
+    }
+
+    /**
+     * connect GET requests to attach of Pod
+     * @param param the request object
+     */
     public connectGetNamespacedPodAttach(param: CoreV1ApiConnectGetNamespacedPodAttachRequest, options?: Configuration): Promise<string> {
         return this.api.connectGetNamespacedPodAttach(param.name, param.namespace, param.container, param.stderr, param.stdin, param.stdout, param.tty,  options).toPromise();
+    }
+
+    /**
+     * connect GET requests to exec of Pod
+     * @param param the request object
+     */
+    public connectGetNamespacedPodExecWithHttpInfo(param: CoreV1ApiConnectGetNamespacedPodExecRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectGetNamespacedPodExecWithHttpInfo(param.name, param.namespace, param.command, param.container, param.stderr, param.stdin, param.stdout, param.tty,  options).toPromise();
     }
 
     /**
@@ -19065,8 +20825,24 @@ export class ObjectCoreV1Api {
      * connect GET requests to portforward of Pod
      * @param param the request object
      */
+    public connectGetNamespacedPodPortforwardWithHttpInfo(param: CoreV1ApiConnectGetNamespacedPodPortforwardRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectGetNamespacedPodPortforwardWithHttpInfo(param.name, param.namespace, param.ports,  options).toPromise();
+    }
+
+    /**
+     * connect GET requests to portforward of Pod
+     * @param param the request object
+     */
     public connectGetNamespacedPodPortforward(param: CoreV1ApiConnectGetNamespacedPodPortforwardRequest, options?: Configuration): Promise<string> {
         return this.api.connectGetNamespacedPodPortforward(param.name, param.namespace, param.ports,  options).toPromise();
+    }
+
+    /**
+     * connect GET requests to proxy of Pod
+     * @param param the request object
+     */
+    public connectGetNamespacedPodProxyWithHttpInfo(param: CoreV1ApiConnectGetNamespacedPodProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectGetNamespacedPodProxyWithHttpInfo(param.name, param.namespace, param.path,  options).toPromise();
     }
 
     /**
@@ -19081,8 +20857,24 @@ export class ObjectCoreV1Api {
      * connect GET requests to proxy of Pod
      * @param param the request object
      */
+    public connectGetNamespacedPodProxyWithPathWithHttpInfo(param: CoreV1ApiConnectGetNamespacedPodProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectGetNamespacedPodProxyWithPathWithHttpInfo(param.name, param.namespace, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect GET requests to proxy of Pod
+     * @param param the request object
+     */
     public connectGetNamespacedPodProxyWithPath(param: CoreV1ApiConnectGetNamespacedPodProxyWithPathRequest, options?: Configuration): Promise<string> {
         return this.api.connectGetNamespacedPodProxyWithPath(param.name, param.namespace, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect GET requests to proxy of Service
+     * @param param the request object
+     */
+    public connectGetNamespacedServiceProxyWithHttpInfo(param: CoreV1ApiConnectGetNamespacedServiceProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectGetNamespacedServiceProxyWithHttpInfo(param.name, param.namespace, param.path,  options).toPromise();
     }
 
     /**
@@ -19097,8 +20889,24 @@ export class ObjectCoreV1Api {
      * connect GET requests to proxy of Service
      * @param param the request object
      */
+    public connectGetNamespacedServiceProxyWithPathWithHttpInfo(param: CoreV1ApiConnectGetNamespacedServiceProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectGetNamespacedServiceProxyWithPathWithHttpInfo(param.name, param.namespace, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect GET requests to proxy of Service
+     * @param param the request object
+     */
     public connectGetNamespacedServiceProxyWithPath(param: CoreV1ApiConnectGetNamespacedServiceProxyWithPathRequest, options?: Configuration): Promise<string> {
         return this.api.connectGetNamespacedServiceProxyWithPath(param.name, param.namespace, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect GET requests to proxy of Node
+     * @param param the request object
+     */
+    public connectGetNodeProxyWithHttpInfo(param: CoreV1ApiConnectGetNodeProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectGetNodeProxyWithHttpInfo(param.name, param.path,  options).toPromise();
     }
 
     /**
@@ -19113,8 +20921,24 @@ export class ObjectCoreV1Api {
      * connect GET requests to proxy of Node
      * @param param the request object
      */
+    public connectGetNodeProxyWithPathWithHttpInfo(param: CoreV1ApiConnectGetNodeProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectGetNodeProxyWithPathWithHttpInfo(param.name, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect GET requests to proxy of Node
+     * @param param the request object
+     */
     public connectGetNodeProxyWithPath(param: CoreV1ApiConnectGetNodeProxyWithPathRequest, options?: Configuration): Promise<string> {
         return this.api.connectGetNodeProxyWithPath(param.name, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect HEAD requests to proxy of Pod
+     * @param param the request object
+     */
+    public connectHeadNamespacedPodProxyWithHttpInfo(param: CoreV1ApiConnectHeadNamespacedPodProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectHeadNamespacedPodProxyWithHttpInfo(param.name, param.namespace, param.path,  options).toPromise();
     }
 
     /**
@@ -19129,8 +20953,24 @@ export class ObjectCoreV1Api {
      * connect HEAD requests to proxy of Pod
      * @param param the request object
      */
+    public connectHeadNamespacedPodProxyWithPathWithHttpInfo(param: CoreV1ApiConnectHeadNamespacedPodProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectHeadNamespacedPodProxyWithPathWithHttpInfo(param.name, param.namespace, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect HEAD requests to proxy of Pod
+     * @param param the request object
+     */
     public connectHeadNamespacedPodProxyWithPath(param: CoreV1ApiConnectHeadNamespacedPodProxyWithPathRequest, options?: Configuration): Promise<string> {
         return this.api.connectHeadNamespacedPodProxyWithPath(param.name, param.namespace, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect HEAD requests to proxy of Service
+     * @param param the request object
+     */
+    public connectHeadNamespacedServiceProxyWithHttpInfo(param: CoreV1ApiConnectHeadNamespacedServiceProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectHeadNamespacedServiceProxyWithHttpInfo(param.name, param.namespace, param.path,  options).toPromise();
     }
 
     /**
@@ -19145,8 +20985,24 @@ export class ObjectCoreV1Api {
      * connect HEAD requests to proxy of Service
      * @param param the request object
      */
+    public connectHeadNamespacedServiceProxyWithPathWithHttpInfo(param: CoreV1ApiConnectHeadNamespacedServiceProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectHeadNamespacedServiceProxyWithPathWithHttpInfo(param.name, param.namespace, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect HEAD requests to proxy of Service
+     * @param param the request object
+     */
     public connectHeadNamespacedServiceProxyWithPath(param: CoreV1ApiConnectHeadNamespacedServiceProxyWithPathRequest, options?: Configuration): Promise<string> {
         return this.api.connectHeadNamespacedServiceProxyWithPath(param.name, param.namespace, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect HEAD requests to proxy of Node
+     * @param param the request object
+     */
+    public connectHeadNodeProxyWithHttpInfo(param: CoreV1ApiConnectHeadNodeProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectHeadNodeProxyWithHttpInfo(param.name, param.path,  options).toPromise();
     }
 
     /**
@@ -19161,8 +21017,24 @@ export class ObjectCoreV1Api {
      * connect HEAD requests to proxy of Node
      * @param param the request object
      */
+    public connectHeadNodeProxyWithPathWithHttpInfo(param: CoreV1ApiConnectHeadNodeProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectHeadNodeProxyWithPathWithHttpInfo(param.name, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect HEAD requests to proxy of Node
+     * @param param the request object
+     */
     public connectHeadNodeProxyWithPath(param: CoreV1ApiConnectHeadNodeProxyWithPathRequest, options?: Configuration): Promise<string> {
         return this.api.connectHeadNodeProxyWithPath(param.name, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect OPTIONS requests to proxy of Pod
+     * @param param the request object
+     */
+    public connectOptionsNamespacedPodProxyWithHttpInfo(param: CoreV1ApiConnectOptionsNamespacedPodProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectOptionsNamespacedPodProxyWithHttpInfo(param.name, param.namespace, param.path,  options).toPromise();
     }
 
     /**
@@ -19177,8 +21049,24 @@ export class ObjectCoreV1Api {
      * connect OPTIONS requests to proxy of Pod
      * @param param the request object
      */
+    public connectOptionsNamespacedPodProxyWithPathWithHttpInfo(param: CoreV1ApiConnectOptionsNamespacedPodProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectOptionsNamespacedPodProxyWithPathWithHttpInfo(param.name, param.namespace, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect OPTIONS requests to proxy of Pod
+     * @param param the request object
+     */
     public connectOptionsNamespacedPodProxyWithPath(param: CoreV1ApiConnectOptionsNamespacedPodProxyWithPathRequest, options?: Configuration): Promise<string> {
         return this.api.connectOptionsNamespacedPodProxyWithPath(param.name, param.namespace, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect OPTIONS requests to proxy of Service
+     * @param param the request object
+     */
+    public connectOptionsNamespacedServiceProxyWithHttpInfo(param: CoreV1ApiConnectOptionsNamespacedServiceProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectOptionsNamespacedServiceProxyWithHttpInfo(param.name, param.namespace, param.path,  options).toPromise();
     }
 
     /**
@@ -19193,8 +21081,24 @@ export class ObjectCoreV1Api {
      * connect OPTIONS requests to proxy of Service
      * @param param the request object
      */
+    public connectOptionsNamespacedServiceProxyWithPathWithHttpInfo(param: CoreV1ApiConnectOptionsNamespacedServiceProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectOptionsNamespacedServiceProxyWithPathWithHttpInfo(param.name, param.namespace, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect OPTIONS requests to proxy of Service
+     * @param param the request object
+     */
     public connectOptionsNamespacedServiceProxyWithPath(param: CoreV1ApiConnectOptionsNamespacedServiceProxyWithPathRequest, options?: Configuration): Promise<string> {
         return this.api.connectOptionsNamespacedServiceProxyWithPath(param.name, param.namespace, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect OPTIONS requests to proxy of Node
+     * @param param the request object
+     */
+    public connectOptionsNodeProxyWithHttpInfo(param: CoreV1ApiConnectOptionsNodeProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectOptionsNodeProxyWithHttpInfo(param.name, param.path,  options).toPromise();
     }
 
     /**
@@ -19209,8 +21113,24 @@ export class ObjectCoreV1Api {
      * connect OPTIONS requests to proxy of Node
      * @param param the request object
      */
+    public connectOptionsNodeProxyWithPathWithHttpInfo(param: CoreV1ApiConnectOptionsNodeProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectOptionsNodeProxyWithPathWithHttpInfo(param.name, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect OPTIONS requests to proxy of Node
+     * @param param the request object
+     */
     public connectOptionsNodeProxyWithPath(param: CoreV1ApiConnectOptionsNodeProxyWithPathRequest, options?: Configuration): Promise<string> {
         return this.api.connectOptionsNodeProxyWithPath(param.name, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect PATCH requests to proxy of Pod
+     * @param param the request object
+     */
+    public connectPatchNamespacedPodProxyWithHttpInfo(param: CoreV1ApiConnectPatchNamespacedPodProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPatchNamespacedPodProxyWithHttpInfo(param.name, param.namespace, param.path,  options).toPromise();
     }
 
     /**
@@ -19225,8 +21145,24 @@ export class ObjectCoreV1Api {
      * connect PATCH requests to proxy of Pod
      * @param param the request object
      */
+    public connectPatchNamespacedPodProxyWithPathWithHttpInfo(param: CoreV1ApiConnectPatchNamespacedPodProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPatchNamespacedPodProxyWithPathWithHttpInfo(param.name, param.namespace, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect PATCH requests to proxy of Pod
+     * @param param the request object
+     */
     public connectPatchNamespacedPodProxyWithPath(param: CoreV1ApiConnectPatchNamespacedPodProxyWithPathRequest, options?: Configuration): Promise<string> {
         return this.api.connectPatchNamespacedPodProxyWithPath(param.name, param.namespace, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect PATCH requests to proxy of Service
+     * @param param the request object
+     */
+    public connectPatchNamespacedServiceProxyWithHttpInfo(param: CoreV1ApiConnectPatchNamespacedServiceProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPatchNamespacedServiceProxyWithHttpInfo(param.name, param.namespace, param.path,  options).toPromise();
     }
 
     /**
@@ -19241,8 +21177,24 @@ export class ObjectCoreV1Api {
      * connect PATCH requests to proxy of Service
      * @param param the request object
      */
+    public connectPatchNamespacedServiceProxyWithPathWithHttpInfo(param: CoreV1ApiConnectPatchNamespacedServiceProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPatchNamespacedServiceProxyWithPathWithHttpInfo(param.name, param.namespace, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect PATCH requests to proxy of Service
+     * @param param the request object
+     */
     public connectPatchNamespacedServiceProxyWithPath(param: CoreV1ApiConnectPatchNamespacedServiceProxyWithPathRequest, options?: Configuration): Promise<string> {
         return this.api.connectPatchNamespacedServiceProxyWithPath(param.name, param.namespace, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect PATCH requests to proxy of Node
+     * @param param the request object
+     */
+    public connectPatchNodeProxyWithHttpInfo(param: CoreV1ApiConnectPatchNodeProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPatchNodeProxyWithHttpInfo(param.name, param.path,  options).toPromise();
     }
 
     /**
@@ -19257,8 +21209,24 @@ export class ObjectCoreV1Api {
      * connect PATCH requests to proxy of Node
      * @param param the request object
      */
+    public connectPatchNodeProxyWithPathWithHttpInfo(param: CoreV1ApiConnectPatchNodeProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPatchNodeProxyWithPathWithHttpInfo(param.name, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect PATCH requests to proxy of Node
+     * @param param the request object
+     */
     public connectPatchNodeProxyWithPath(param: CoreV1ApiConnectPatchNodeProxyWithPathRequest, options?: Configuration): Promise<string> {
         return this.api.connectPatchNodeProxyWithPath(param.name, param.path, param.path2,  options).toPromise();
+    }
+
+    /**
+     * connect POST requests to attach of Pod
+     * @param param the request object
+     */
+    public connectPostNamespacedPodAttachWithHttpInfo(param: CoreV1ApiConnectPostNamespacedPodAttachRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPostNamespacedPodAttachWithHttpInfo(param.name, param.namespace, param.container, param.stderr, param.stdin, param.stdout, param.tty,  options).toPromise();
     }
 
     /**
@@ -19273,8 +21241,24 @@ export class ObjectCoreV1Api {
      * connect POST requests to exec of Pod
      * @param param the request object
      */
+    public connectPostNamespacedPodExecWithHttpInfo(param: CoreV1ApiConnectPostNamespacedPodExecRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPostNamespacedPodExecWithHttpInfo(param.name, param.namespace, param.command, param.container, param.stderr, param.stdin, param.stdout, param.tty,  options).toPromise();
+    }
+
+    /**
+     * connect POST requests to exec of Pod
+     * @param param the request object
+     */
     public connectPostNamespacedPodExec(param: CoreV1ApiConnectPostNamespacedPodExecRequest, options?: Configuration): Promise<string> {
         return this.api.connectPostNamespacedPodExec(param.name, param.namespace, param.command, param.container, param.stderr, param.stdin, param.stdout, param.tty,  options).toPromise();
+    }
+
+    /**
+     * connect POST requests to portforward of Pod
+     * @param param the request object
+     */
+    public connectPostNamespacedPodPortforwardWithHttpInfo(param: CoreV1ApiConnectPostNamespacedPodPortforwardRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPostNamespacedPodPortforwardWithHttpInfo(param.name, param.namespace, param.ports,  options).toPromise();
     }
 
     /**
@@ -19289,8 +21273,24 @@ export class ObjectCoreV1Api {
      * connect POST requests to proxy of Pod
      * @param param the request object
      */
+    public connectPostNamespacedPodProxyWithHttpInfo(param: CoreV1ApiConnectPostNamespacedPodProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPostNamespacedPodProxyWithHttpInfo(param.name, param.namespace, param.path,  options).toPromise();
+    }
+
+    /**
+     * connect POST requests to proxy of Pod
+     * @param param the request object
+     */
     public connectPostNamespacedPodProxy(param: CoreV1ApiConnectPostNamespacedPodProxyRequest, options?: Configuration): Promise<string> {
         return this.api.connectPostNamespacedPodProxy(param.name, param.namespace, param.path,  options).toPromise();
+    }
+
+    /**
+     * connect POST requests to proxy of Pod
+     * @param param the request object
+     */
+    public connectPostNamespacedPodProxyWithPathWithHttpInfo(param: CoreV1ApiConnectPostNamespacedPodProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPostNamespacedPodProxyWithPathWithHttpInfo(param.name, param.namespace, param.path, param.path2,  options).toPromise();
     }
 
     /**
@@ -19305,8 +21305,24 @@ export class ObjectCoreV1Api {
      * connect POST requests to proxy of Service
      * @param param the request object
      */
+    public connectPostNamespacedServiceProxyWithHttpInfo(param: CoreV1ApiConnectPostNamespacedServiceProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPostNamespacedServiceProxyWithHttpInfo(param.name, param.namespace, param.path,  options).toPromise();
+    }
+
+    /**
+     * connect POST requests to proxy of Service
+     * @param param the request object
+     */
     public connectPostNamespacedServiceProxy(param: CoreV1ApiConnectPostNamespacedServiceProxyRequest, options?: Configuration): Promise<string> {
         return this.api.connectPostNamespacedServiceProxy(param.name, param.namespace, param.path,  options).toPromise();
+    }
+
+    /**
+     * connect POST requests to proxy of Service
+     * @param param the request object
+     */
+    public connectPostNamespacedServiceProxyWithPathWithHttpInfo(param: CoreV1ApiConnectPostNamespacedServiceProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPostNamespacedServiceProxyWithPathWithHttpInfo(param.name, param.namespace, param.path, param.path2,  options).toPromise();
     }
 
     /**
@@ -19321,8 +21337,24 @@ export class ObjectCoreV1Api {
      * connect POST requests to proxy of Node
      * @param param the request object
      */
+    public connectPostNodeProxyWithHttpInfo(param: CoreV1ApiConnectPostNodeProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPostNodeProxyWithHttpInfo(param.name, param.path,  options).toPromise();
+    }
+
+    /**
+     * connect POST requests to proxy of Node
+     * @param param the request object
+     */
     public connectPostNodeProxy(param: CoreV1ApiConnectPostNodeProxyRequest, options?: Configuration): Promise<string> {
         return this.api.connectPostNodeProxy(param.name, param.path,  options).toPromise();
+    }
+
+    /**
+     * connect POST requests to proxy of Node
+     * @param param the request object
+     */
+    public connectPostNodeProxyWithPathWithHttpInfo(param: CoreV1ApiConnectPostNodeProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPostNodeProxyWithPathWithHttpInfo(param.name, param.path, param.path2,  options).toPromise();
     }
 
     /**
@@ -19337,8 +21369,24 @@ export class ObjectCoreV1Api {
      * connect PUT requests to proxy of Pod
      * @param param the request object
      */
+    public connectPutNamespacedPodProxyWithHttpInfo(param: CoreV1ApiConnectPutNamespacedPodProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPutNamespacedPodProxyWithHttpInfo(param.name, param.namespace, param.path,  options).toPromise();
+    }
+
+    /**
+     * connect PUT requests to proxy of Pod
+     * @param param the request object
+     */
     public connectPutNamespacedPodProxy(param: CoreV1ApiConnectPutNamespacedPodProxyRequest, options?: Configuration): Promise<string> {
         return this.api.connectPutNamespacedPodProxy(param.name, param.namespace, param.path,  options).toPromise();
+    }
+
+    /**
+     * connect PUT requests to proxy of Pod
+     * @param param the request object
+     */
+    public connectPutNamespacedPodProxyWithPathWithHttpInfo(param: CoreV1ApiConnectPutNamespacedPodProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPutNamespacedPodProxyWithPathWithHttpInfo(param.name, param.namespace, param.path, param.path2,  options).toPromise();
     }
 
     /**
@@ -19353,8 +21401,24 @@ export class ObjectCoreV1Api {
      * connect PUT requests to proxy of Service
      * @param param the request object
      */
+    public connectPutNamespacedServiceProxyWithHttpInfo(param: CoreV1ApiConnectPutNamespacedServiceProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPutNamespacedServiceProxyWithHttpInfo(param.name, param.namespace, param.path,  options).toPromise();
+    }
+
+    /**
+     * connect PUT requests to proxy of Service
+     * @param param the request object
+     */
     public connectPutNamespacedServiceProxy(param: CoreV1ApiConnectPutNamespacedServiceProxyRequest, options?: Configuration): Promise<string> {
         return this.api.connectPutNamespacedServiceProxy(param.name, param.namespace, param.path,  options).toPromise();
+    }
+
+    /**
+     * connect PUT requests to proxy of Service
+     * @param param the request object
+     */
+    public connectPutNamespacedServiceProxyWithPathWithHttpInfo(param: CoreV1ApiConnectPutNamespacedServiceProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPutNamespacedServiceProxyWithPathWithHttpInfo(param.name, param.namespace, param.path, param.path2,  options).toPromise();
     }
 
     /**
@@ -19369,8 +21433,24 @@ export class ObjectCoreV1Api {
      * connect PUT requests to proxy of Node
      * @param param the request object
      */
+    public connectPutNodeProxyWithHttpInfo(param: CoreV1ApiConnectPutNodeProxyRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPutNodeProxyWithHttpInfo(param.name, param.path,  options).toPromise();
+    }
+
+    /**
+     * connect PUT requests to proxy of Node
+     * @param param the request object
+     */
     public connectPutNodeProxy(param: CoreV1ApiConnectPutNodeProxyRequest, options?: Configuration): Promise<string> {
         return this.api.connectPutNodeProxy(param.name, param.path,  options).toPromise();
+    }
+
+    /**
+     * connect PUT requests to proxy of Node
+     * @param param the request object
+     */
+    public connectPutNodeProxyWithPathWithHttpInfo(param: CoreV1ApiConnectPutNodeProxyWithPathRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.connectPutNodeProxyWithPathWithHttpInfo(param.name, param.path, param.path2,  options).toPromise();
     }
 
     /**
@@ -19385,8 +21465,24 @@ export class ObjectCoreV1Api {
      * create a Namespace
      * @param param the request object
      */
+    public createNamespaceWithHttpInfo(param: CoreV1ApiCreateNamespaceRequest, options?: Configuration): Promise<HttpInfo<V1Namespace>> {
+        return this.api.createNamespaceWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a Namespace
+     * @param param the request object
+     */
     public createNamespace(param: CoreV1ApiCreateNamespaceRequest, options?: Configuration): Promise<V1Namespace> {
         return this.api.createNamespace(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a Binding
+     * @param param the request object
+     */
+    public createNamespacedBindingWithHttpInfo(param: CoreV1ApiCreateNamespacedBindingRequest, options?: Configuration): Promise<HttpInfo<V1Binding>> {
+        return this.api.createNamespacedBindingWithHttpInfo(param.namespace, param.body, param.dryRun, param.fieldManager, param.pretty,  options).toPromise();
     }
 
     /**
@@ -19401,8 +21497,24 @@ export class ObjectCoreV1Api {
      * create a ConfigMap
      * @param param the request object
      */
+    public createNamespacedConfigMapWithHttpInfo(param: CoreV1ApiCreateNamespacedConfigMapRequest, options?: Configuration): Promise<HttpInfo<V1ConfigMap>> {
+        return this.api.createNamespacedConfigMapWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a ConfigMap
+     * @param param the request object
+     */
     public createNamespacedConfigMap(param: CoreV1ApiCreateNamespacedConfigMapRequest, options?: Configuration): Promise<V1ConfigMap> {
         return this.api.createNamespacedConfigMap(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create Endpoints
+     * @param param the request object
+     */
+    public createNamespacedEndpointsWithHttpInfo(param: CoreV1ApiCreateNamespacedEndpointsRequest, options?: Configuration): Promise<HttpInfo<V1Endpoints>> {
+        return this.api.createNamespacedEndpointsWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -19417,8 +21529,24 @@ export class ObjectCoreV1Api {
      * create an Event
      * @param param the request object
      */
+    public createNamespacedEventWithHttpInfo(param: CoreV1ApiCreateNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<CoreV1Event>> {
+        return this.api.createNamespacedEventWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create an Event
+     * @param param the request object
+     */
     public createNamespacedEvent(param: CoreV1ApiCreateNamespacedEventRequest, options?: Configuration): Promise<CoreV1Event> {
         return this.api.createNamespacedEvent(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a LimitRange
+     * @param param the request object
+     */
+    public createNamespacedLimitRangeWithHttpInfo(param: CoreV1ApiCreateNamespacedLimitRangeRequest, options?: Configuration): Promise<HttpInfo<V1LimitRange>> {
+        return this.api.createNamespacedLimitRangeWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -19433,8 +21561,24 @@ export class ObjectCoreV1Api {
      * create a PersistentVolumeClaim
      * @param param the request object
      */
+    public createNamespacedPersistentVolumeClaimWithHttpInfo(param: CoreV1ApiCreateNamespacedPersistentVolumeClaimRequest, options?: Configuration): Promise<HttpInfo<V1PersistentVolumeClaim>> {
+        return this.api.createNamespacedPersistentVolumeClaimWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a PersistentVolumeClaim
+     * @param param the request object
+     */
     public createNamespacedPersistentVolumeClaim(param: CoreV1ApiCreateNamespacedPersistentVolumeClaimRequest, options?: Configuration): Promise<V1PersistentVolumeClaim> {
         return this.api.createNamespacedPersistentVolumeClaim(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a Pod
+     * @param param the request object
+     */
+    public createNamespacedPodWithHttpInfo(param: CoreV1ApiCreateNamespacedPodRequest, options?: Configuration): Promise<HttpInfo<V1Pod>> {
+        return this.api.createNamespacedPodWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -19449,8 +21593,24 @@ export class ObjectCoreV1Api {
      * create binding of a Pod
      * @param param the request object
      */
+    public createNamespacedPodBindingWithHttpInfo(param: CoreV1ApiCreateNamespacedPodBindingRequest, options?: Configuration): Promise<HttpInfo<V1Binding>> {
+        return this.api.createNamespacedPodBindingWithHttpInfo(param.name, param.namespace, param.body, param.dryRun, param.fieldManager, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * create binding of a Pod
+     * @param param the request object
+     */
     public createNamespacedPodBinding(param: CoreV1ApiCreateNamespacedPodBindingRequest, options?: Configuration): Promise<V1Binding> {
         return this.api.createNamespacedPodBinding(param.name, param.namespace, param.body, param.dryRun, param.fieldManager, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * create eviction of a Pod
+     * @param param the request object
+     */
+    public createNamespacedPodEvictionWithHttpInfo(param: CoreV1ApiCreateNamespacedPodEvictionRequest, options?: Configuration): Promise<HttpInfo<V1Eviction>> {
+        return this.api.createNamespacedPodEvictionWithHttpInfo(param.name, param.namespace, param.body, param.dryRun, param.fieldManager, param.pretty,  options).toPromise();
     }
 
     /**
@@ -19465,8 +21625,24 @@ export class ObjectCoreV1Api {
      * create a PodTemplate
      * @param param the request object
      */
+    public createNamespacedPodTemplateWithHttpInfo(param: CoreV1ApiCreateNamespacedPodTemplateRequest, options?: Configuration): Promise<HttpInfo<V1PodTemplate>> {
+        return this.api.createNamespacedPodTemplateWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a PodTemplate
+     * @param param the request object
+     */
     public createNamespacedPodTemplate(param: CoreV1ApiCreateNamespacedPodTemplateRequest, options?: Configuration): Promise<V1PodTemplate> {
         return this.api.createNamespacedPodTemplate(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a ReplicationController
+     * @param param the request object
+     */
+    public createNamespacedReplicationControllerWithHttpInfo(param: CoreV1ApiCreateNamespacedReplicationControllerRequest, options?: Configuration): Promise<HttpInfo<V1ReplicationController>> {
+        return this.api.createNamespacedReplicationControllerWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -19481,8 +21657,24 @@ export class ObjectCoreV1Api {
      * create a ResourceQuota
      * @param param the request object
      */
+    public createNamespacedResourceQuotaWithHttpInfo(param: CoreV1ApiCreateNamespacedResourceQuotaRequest, options?: Configuration): Promise<HttpInfo<V1ResourceQuota>> {
+        return this.api.createNamespacedResourceQuotaWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a ResourceQuota
+     * @param param the request object
+     */
     public createNamespacedResourceQuota(param: CoreV1ApiCreateNamespacedResourceQuotaRequest, options?: Configuration): Promise<V1ResourceQuota> {
         return this.api.createNamespacedResourceQuota(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a Secret
+     * @param param the request object
+     */
+    public createNamespacedSecretWithHttpInfo(param: CoreV1ApiCreateNamespacedSecretRequest, options?: Configuration): Promise<HttpInfo<V1Secret>> {
+        return this.api.createNamespacedSecretWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -19497,8 +21689,24 @@ export class ObjectCoreV1Api {
      * create a Service
      * @param param the request object
      */
+    public createNamespacedServiceWithHttpInfo(param: CoreV1ApiCreateNamespacedServiceRequest, options?: Configuration): Promise<HttpInfo<V1Service>> {
+        return this.api.createNamespacedServiceWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a Service
+     * @param param the request object
+     */
     public createNamespacedService(param: CoreV1ApiCreateNamespacedServiceRequest, options?: Configuration): Promise<V1Service> {
         return this.api.createNamespacedService(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a ServiceAccount
+     * @param param the request object
+     */
+    public createNamespacedServiceAccountWithHttpInfo(param: CoreV1ApiCreateNamespacedServiceAccountRequest, options?: Configuration): Promise<HttpInfo<V1ServiceAccount>> {
+        return this.api.createNamespacedServiceAccountWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -19513,8 +21721,24 @@ export class ObjectCoreV1Api {
      * create token of a ServiceAccount
      * @param param the request object
      */
+    public createNamespacedServiceAccountTokenWithHttpInfo(param: CoreV1ApiCreateNamespacedServiceAccountTokenRequest, options?: Configuration): Promise<HttpInfo<AuthenticationV1TokenRequest>> {
+        return this.api.createNamespacedServiceAccountTokenWithHttpInfo(param.name, param.namespace, param.body, param.dryRun, param.fieldManager, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * create token of a ServiceAccount
+     * @param param the request object
+     */
     public createNamespacedServiceAccountToken(param: CoreV1ApiCreateNamespacedServiceAccountTokenRequest, options?: Configuration): Promise<AuthenticationV1TokenRequest> {
         return this.api.createNamespacedServiceAccountToken(param.name, param.namespace, param.body, param.dryRun, param.fieldManager, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * create a Node
+     * @param param the request object
+     */
+    public createNodeWithHttpInfo(param: CoreV1ApiCreateNodeRequest, options?: Configuration): Promise<HttpInfo<V1Node>> {
+        return this.api.createNodeWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -19529,8 +21753,24 @@ export class ObjectCoreV1Api {
      * create a PersistentVolume
      * @param param the request object
      */
+    public createPersistentVolumeWithHttpInfo(param: CoreV1ApiCreatePersistentVolumeRequest, options?: Configuration): Promise<HttpInfo<V1PersistentVolume>> {
+        return this.api.createPersistentVolumeWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a PersistentVolume
+     * @param param the request object
+     */
     public createPersistentVolume(param: CoreV1ApiCreatePersistentVolumeRequest, options?: Configuration): Promise<V1PersistentVolume> {
         return this.api.createPersistentVolume(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ConfigMap
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedConfigMapWithHttpInfo(param: CoreV1ApiDeleteCollectionNamespacedConfigMapRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedConfigMapWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -19545,8 +21785,24 @@ export class ObjectCoreV1Api {
      * delete collection of Endpoints
      * @param param the request object
      */
+    public deleteCollectionNamespacedEndpointsWithHttpInfo(param: CoreV1ApiDeleteCollectionNamespacedEndpointsRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedEndpointsWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of Endpoints
+     * @param param the request object
+     */
     public deleteCollectionNamespacedEndpoints(param: CoreV1ApiDeleteCollectionNamespacedEndpointsRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionNamespacedEndpoints(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of Event
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedEventWithHttpInfo(param: CoreV1ApiDeleteCollectionNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedEventWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -19561,8 +21817,24 @@ export class ObjectCoreV1Api {
      * delete collection of LimitRange
      * @param param the request object
      */
+    public deleteCollectionNamespacedLimitRangeWithHttpInfo(param: CoreV1ApiDeleteCollectionNamespacedLimitRangeRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedLimitRangeWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of LimitRange
+     * @param param the request object
+     */
     public deleteCollectionNamespacedLimitRange(param: CoreV1ApiDeleteCollectionNamespacedLimitRangeRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionNamespacedLimitRange(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of PersistentVolumeClaim
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedPersistentVolumeClaimWithHttpInfo(param: CoreV1ApiDeleteCollectionNamespacedPersistentVolumeClaimRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedPersistentVolumeClaimWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -19577,8 +21849,24 @@ export class ObjectCoreV1Api {
      * delete collection of Pod
      * @param param the request object
      */
+    public deleteCollectionNamespacedPodWithHttpInfo(param: CoreV1ApiDeleteCollectionNamespacedPodRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedPodWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of Pod
+     * @param param the request object
+     */
     public deleteCollectionNamespacedPod(param: CoreV1ApiDeleteCollectionNamespacedPodRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionNamespacedPod(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of PodTemplate
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedPodTemplateWithHttpInfo(param: CoreV1ApiDeleteCollectionNamespacedPodTemplateRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedPodTemplateWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -19593,8 +21881,24 @@ export class ObjectCoreV1Api {
      * delete collection of ReplicationController
      * @param param the request object
      */
+    public deleteCollectionNamespacedReplicationControllerWithHttpInfo(param: CoreV1ApiDeleteCollectionNamespacedReplicationControllerRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedReplicationControllerWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ReplicationController
+     * @param param the request object
+     */
     public deleteCollectionNamespacedReplicationController(param: CoreV1ApiDeleteCollectionNamespacedReplicationControllerRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionNamespacedReplicationController(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ResourceQuota
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedResourceQuotaWithHttpInfo(param: CoreV1ApiDeleteCollectionNamespacedResourceQuotaRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedResourceQuotaWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -19609,8 +21913,24 @@ export class ObjectCoreV1Api {
      * delete collection of Secret
      * @param param the request object
      */
+    public deleteCollectionNamespacedSecretWithHttpInfo(param: CoreV1ApiDeleteCollectionNamespacedSecretRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedSecretWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of Secret
+     * @param param the request object
+     */
     public deleteCollectionNamespacedSecret(param: CoreV1ApiDeleteCollectionNamespacedSecretRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionNamespacedSecret(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ServiceAccount
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedServiceAccountWithHttpInfo(param: CoreV1ApiDeleteCollectionNamespacedServiceAccountRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedServiceAccountWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -19625,8 +21945,24 @@ export class ObjectCoreV1Api {
      * delete collection of Node
      * @param param the request object
      */
+    public deleteCollectionNodeWithHttpInfo(param: CoreV1ApiDeleteCollectionNodeRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNodeWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of Node
+     * @param param the request object
+     */
     public deleteCollectionNode(param: CoreV1ApiDeleteCollectionNodeRequest = {}, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionNode(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of PersistentVolume
+     * @param param the request object
+     */
+    public deleteCollectionPersistentVolumeWithHttpInfo(param: CoreV1ApiDeleteCollectionPersistentVolumeRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionPersistentVolumeWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -19641,8 +21977,24 @@ export class ObjectCoreV1Api {
      * delete a Namespace
      * @param param the request object
      */
+    public deleteNamespaceWithHttpInfo(param: CoreV1ApiDeleteNamespaceRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespaceWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a Namespace
+     * @param param the request object
+     */
     public deleteNamespace(param: CoreV1ApiDeleteNamespaceRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespace(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ConfigMap
+     * @param param the request object
+     */
+    public deleteNamespacedConfigMapWithHttpInfo(param: CoreV1ApiDeleteNamespacedConfigMapRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedConfigMapWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -19657,8 +22009,24 @@ export class ObjectCoreV1Api {
      * delete Endpoints
      * @param param the request object
      */
+    public deleteNamespacedEndpointsWithHttpInfo(param: CoreV1ApiDeleteNamespacedEndpointsRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedEndpointsWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete Endpoints
+     * @param param the request object
+     */
     public deleteNamespacedEndpoints(param: CoreV1ApiDeleteNamespacedEndpointsRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedEndpoints(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete an Event
+     * @param param the request object
+     */
+    public deleteNamespacedEventWithHttpInfo(param: CoreV1ApiDeleteNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedEventWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -19673,8 +22041,24 @@ export class ObjectCoreV1Api {
      * delete a LimitRange
      * @param param the request object
      */
+    public deleteNamespacedLimitRangeWithHttpInfo(param: CoreV1ApiDeleteNamespacedLimitRangeRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedLimitRangeWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a LimitRange
+     * @param param the request object
+     */
     public deleteNamespacedLimitRange(param: CoreV1ApiDeleteNamespacedLimitRangeRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedLimitRange(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a PersistentVolumeClaim
+     * @param param the request object
+     */
+    public deleteNamespacedPersistentVolumeClaimWithHttpInfo(param: CoreV1ApiDeleteNamespacedPersistentVolumeClaimRequest, options?: Configuration): Promise<HttpInfo<V1PersistentVolumeClaim>> {
+        return this.api.deleteNamespacedPersistentVolumeClaimWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -19689,8 +22073,24 @@ export class ObjectCoreV1Api {
      * delete a Pod
      * @param param the request object
      */
+    public deleteNamespacedPodWithHttpInfo(param: CoreV1ApiDeleteNamespacedPodRequest, options?: Configuration): Promise<HttpInfo<V1Pod>> {
+        return this.api.deleteNamespacedPodWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a Pod
+     * @param param the request object
+     */
     public deleteNamespacedPod(param: CoreV1ApiDeleteNamespacedPodRequest, options?: Configuration): Promise<V1Pod> {
         return this.api.deleteNamespacedPod(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a PodTemplate
+     * @param param the request object
+     */
+    public deleteNamespacedPodTemplateWithHttpInfo(param: CoreV1ApiDeleteNamespacedPodTemplateRequest, options?: Configuration): Promise<HttpInfo<V1PodTemplate>> {
+        return this.api.deleteNamespacedPodTemplateWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -19705,8 +22105,24 @@ export class ObjectCoreV1Api {
      * delete a ReplicationController
      * @param param the request object
      */
+    public deleteNamespacedReplicationControllerWithHttpInfo(param: CoreV1ApiDeleteNamespacedReplicationControllerRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedReplicationControllerWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ReplicationController
+     * @param param the request object
+     */
     public deleteNamespacedReplicationController(param: CoreV1ApiDeleteNamespacedReplicationControllerRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedReplicationController(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ResourceQuota
+     * @param param the request object
+     */
+    public deleteNamespacedResourceQuotaWithHttpInfo(param: CoreV1ApiDeleteNamespacedResourceQuotaRequest, options?: Configuration): Promise<HttpInfo<V1ResourceQuota>> {
+        return this.api.deleteNamespacedResourceQuotaWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -19721,8 +22137,24 @@ export class ObjectCoreV1Api {
      * delete a Secret
      * @param param the request object
      */
+    public deleteNamespacedSecretWithHttpInfo(param: CoreV1ApiDeleteNamespacedSecretRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedSecretWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a Secret
+     * @param param the request object
+     */
     public deleteNamespacedSecret(param: CoreV1ApiDeleteNamespacedSecretRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedSecret(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a Service
+     * @param param the request object
+     */
+    public deleteNamespacedServiceWithHttpInfo(param: CoreV1ApiDeleteNamespacedServiceRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedServiceWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -19737,8 +22169,24 @@ export class ObjectCoreV1Api {
      * delete a ServiceAccount
      * @param param the request object
      */
+    public deleteNamespacedServiceAccountWithHttpInfo(param: CoreV1ApiDeleteNamespacedServiceAccountRequest, options?: Configuration): Promise<HttpInfo<V1ServiceAccount>> {
+        return this.api.deleteNamespacedServiceAccountWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ServiceAccount
+     * @param param the request object
+     */
     public deleteNamespacedServiceAccount(param: CoreV1ApiDeleteNamespacedServiceAccountRequest, options?: Configuration): Promise<V1ServiceAccount> {
         return this.api.deleteNamespacedServiceAccount(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a Node
+     * @param param the request object
+     */
+    public deleteNodeWithHttpInfo(param: CoreV1ApiDeleteNodeRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNodeWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -19753,8 +22201,24 @@ export class ObjectCoreV1Api {
      * delete a PersistentVolume
      * @param param the request object
      */
+    public deletePersistentVolumeWithHttpInfo(param: CoreV1ApiDeletePersistentVolumeRequest, options?: Configuration): Promise<HttpInfo<V1PersistentVolume>> {
+        return this.api.deletePersistentVolumeWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a PersistentVolume
+     * @param param the request object
+     */
     public deletePersistentVolume(param: CoreV1ApiDeletePersistentVolumeRequest, options?: Configuration): Promise<V1PersistentVolume> {
         return this.api.deletePersistentVolume(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: CoreV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -19769,8 +22233,24 @@ export class ObjectCoreV1Api {
      * list objects of kind ComponentStatus
      * @param param the request object
      */
+    public listComponentStatusWithHttpInfo(param: CoreV1ApiListComponentStatusRequest = {}, options?: Configuration): Promise<HttpInfo<V1ComponentStatusList>> {
+        return this.api.listComponentStatusWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list objects of kind ComponentStatus
+     * @param param the request object
+     */
     public listComponentStatus(param: CoreV1ApiListComponentStatusRequest = {}, options?: Configuration): Promise<V1ComponentStatusList> {
         return this.api.listComponentStatus(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ConfigMap
+     * @param param the request object
+     */
+    public listConfigMapForAllNamespacesWithHttpInfo(param: CoreV1ApiListConfigMapForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1ConfigMapList>> {
+        return this.api.listConfigMapForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -19785,8 +22265,24 @@ export class ObjectCoreV1Api {
      * list or watch objects of kind Endpoints
      * @param param the request object
      */
+    public listEndpointsForAllNamespacesWithHttpInfo(param: CoreV1ApiListEndpointsForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1EndpointsList>> {
+        return this.api.listEndpointsForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Endpoints
+     * @param param the request object
+     */
     public listEndpointsForAllNamespaces(param: CoreV1ApiListEndpointsForAllNamespacesRequest = {}, options?: Configuration): Promise<V1EndpointsList> {
         return this.api.listEndpointsForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Event
+     * @param param the request object
+     */
+    public listEventForAllNamespacesWithHttpInfo(param: CoreV1ApiListEventForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<CoreV1EventList>> {
+        return this.api.listEventForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -19801,8 +22297,24 @@ export class ObjectCoreV1Api {
      * list or watch objects of kind LimitRange
      * @param param the request object
      */
+    public listLimitRangeForAllNamespacesWithHttpInfo(param: CoreV1ApiListLimitRangeForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1LimitRangeList>> {
+        return this.api.listLimitRangeForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind LimitRange
+     * @param param the request object
+     */
     public listLimitRangeForAllNamespaces(param: CoreV1ApiListLimitRangeForAllNamespacesRequest = {}, options?: Configuration): Promise<V1LimitRangeList> {
         return this.api.listLimitRangeForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Namespace
+     * @param param the request object
+     */
+    public listNamespaceWithHttpInfo(param: CoreV1ApiListNamespaceRequest = {}, options?: Configuration): Promise<HttpInfo<V1NamespaceList>> {
+        return this.api.listNamespaceWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -19817,8 +22329,24 @@ export class ObjectCoreV1Api {
      * list or watch objects of kind ConfigMap
      * @param param the request object
      */
+    public listNamespacedConfigMapWithHttpInfo(param: CoreV1ApiListNamespacedConfigMapRequest, options?: Configuration): Promise<HttpInfo<V1ConfigMapList>> {
+        return this.api.listNamespacedConfigMapWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ConfigMap
+     * @param param the request object
+     */
     public listNamespacedConfigMap(param: CoreV1ApiListNamespacedConfigMapRequest, options?: Configuration): Promise<V1ConfigMapList> {
         return this.api.listNamespacedConfigMap(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Endpoints
+     * @param param the request object
+     */
+    public listNamespacedEndpointsWithHttpInfo(param: CoreV1ApiListNamespacedEndpointsRequest, options?: Configuration): Promise<HttpInfo<V1EndpointsList>> {
+        return this.api.listNamespacedEndpointsWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -19833,8 +22361,24 @@ export class ObjectCoreV1Api {
      * list or watch objects of kind Event
      * @param param the request object
      */
+    public listNamespacedEventWithHttpInfo(param: CoreV1ApiListNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<CoreV1EventList>> {
+        return this.api.listNamespacedEventWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Event
+     * @param param the request object
+     */
     public listNamespacedEvent(param: CoreV1ApiListNamespacedEventRequest, options?: Configuration): Promise<CoreV1EventList> {
         return this.api.listNamespacedEvent(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind LimitRange
+     * @param param the request object
+     */
+    public listNamespacedLimitRangeWithHttpInfo(param: CoreV1ApiListNamespacedLimitRangeRequest, options?: Configuration): Promise<HttpInfo<V1LimitRangeList>> {
+        return this.api.listNamespacedLimitRangeWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -19849,8 +22393,24 @@ export class ObjectCoreV1Api {
      * list or watch objects of kind PersistentVolumeClaim
      * @param param the request object
      */
+    public listNamespacedPersistentVolumeClaimWithHttpInfo(param: CoreV1ApiListNamespacedPersistentVolumeClaimRequest, options?: Configuration): Promise<HttpInfo<V1PersistentVolumeClaimList>> {
+        return this.api.listNamespacedPersistentVolumeClaimWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind PersistentVolumeClaim
+     * @param param the request object
+     */
     public listNamespacedPersistentVolumeClaim(param: CoreV1ApiListNamespacedPersistentVolumeClaimRequest, options?: Configuration): Promise<V1PersistentVolumeClaimList> {
         return this.api.listNamespacedPersistentVolumeClaim(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Pod
+     * @param param the request object
+     */
+    public listNamespacedPodWithHttpInfo(param: CoreV1ApiListNamespacedPodRequest, options?: Configuration): Promise<HttpInfo<V1PodList>> {
+        return this.api.listNamespacedPodWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -19865,8 +22425,24 @@ export class ObjectCoreV1Api {
      * list or watch objects of kind PodTemplate
      * @param param the request object
      */
+    public listNamespacedPodTemplateWithHttpInfo(param: CoreV1ApiListNamespacedPodTemplateRequest, options?: Configuration): Promise<HttpInfo<V1PodTemplateList>> {
+        return this.api.listNamespacedPodTemplateWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind PodTemplate
+     * @param param the request object
+     */
     public listNamespacedPodTemplate(param: CoreV1ApiListNamespacedPodTemplateRequest, options?: Configuration): Promise<V1PodTemplateList> {
         return this.api.listNamespacedPodTemplate(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ReplicationController
+     * @param param the request object
+     */
+    public listNamespacedReplicationControllerWithHttpInfo(param: CoreV1ApiListNamespacedReplicationControllerRequest, options?: Configuration): Promise<HttpInfo<V1ReplicationControllerList>> {
+        return this.api.listNamespacedReplicationControllerWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -19881,8 +22457,24 @@ export class ObjectCoreV1Api {
      * list or watch objects of kind ResourceQuota
      * @param param the request object
      */
+    public listNamespacedResourceQuotaWithHttpInfo(param: CoreV1ApiListNamespacedResourceQuotaRequest, options?: Configuration): Promise<HttpInfo<V1ResourceQuotaList>> {
+        return this.api.listNamespacedResourceQuotaWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceQuota
+     * @param param the request object
+     */
     public listNamespacedResourceQuota(param: CoreV1ApiListNamespacedResourceQuotaRequest, options?: Configuration): Promise<V1ResourceQuotaList> {
         return this.api.listNamespacedResourceQuota(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Secret
+     * @param param the request object
+     */
+    public listNamespacedSecretWithHttpInfo(param: CoreV1ApiListNamespacedSecretRequest, options?: Configuration): Promise<HttpInfo<V1SecretList>> {
+        return this.api.listNamespacedSecretWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -19897,8 +22489,24 @@ export class ObjectCoreV1Api {
      * list or watch objects of kind Service
      * @param param the request object
      */
+    public listNamespacedServiceWithHttpInfo(param: CoreV1ApiListNamespacedServiceRequest, options?: Configuration): Promise<HttpInfo<V1ServiceList>> {
+        return this.api.listNamespacedServiceWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Service
+     * @param param the request object
+     */
     public listNamespacedService(param: CoreV1ApiListNamespacedServiceRequest, options?: Configuration): Promise<V1ServiceList> {
         return this.api.listNamespacedService(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ServiceAccount
+     * @param param the request object
+     */
+    public listNamespacedServiceAccountWithHttpInfo(param: CoreV1ApiListNamespacedServiceAccountRequest, options?: Configuration): Promise<HttpInfo<V1ServiceAccountList>> {
+        return this.api.listNamespacedServiceAccountWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -19913,8 +22521,24 @@ export class ObjectCoreV1Api {
      * list or watch objects of kind Node
      * @param param the request object
      */
+    public listNodeWithHttpInfo(param: CoreV1ApiListNodeRequest = {}, options?: Configuration): Promise<HttpInfo<V1NodeList>> {
+        return this.api.listNodeWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Node
+     * @param param the request object
+     */
     public listNode(param: CoreV1ApiListNodeRequest = {}, options?: Configuration): Promise<V1NodeList> {
         return this.api.listNode(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind PersistentVolume
+     * @param param the request object
+     */
+    public listPersistentVolumeWithHttpInfo(param: CoreV1ApiListPersistentVolumeRequest = {}, options?: Configuration): Promise<HttpInfo<V1PersistentVolumeList>> {
+        return this.api.listPersistentVolumeWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -19929,8 +22553,24 @@ export class ObjectCoreV1Api {
      * list or watch objects of kind PersistentVolumeClaim
      * @param param the request object
      */
+    public listPersistentVolumeClaimForAllNamespacesWithHttpInfo(param: CoreV1ApiListPersistentVolumeClaimForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1PersistentVolumeClaimList>> {
+        return this.api.listPersistentVolumeClaimForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind PersistentVolumeClaim
+     * @param param the request object
+     */
     public listPersistentVolumeClaimForAllNamespaces(param: CoreV1ApiListPersistentVolumeClaimForAllNamespacesRequest = {}, options?: Configuration): Promise<V1PersistentVolumeClaimList> {
         return this.api.listPersistentVolumeClaimForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Pod
+     * @param param the request object
+     */
+    public listPodForAllNamespacesWithHttpInfo(param: CoreV1ApiListPodForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1PodList>> {
+        return this.api.listPodForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -19945,8 +22585,24 @@ export class ObjectCoreV1Api {
      * list or watch objects of kind PodTemplate
      * @param param the request object
      */
+    public listPodTemplateForAllNamespacesWithHttpInfo(param: CoreV1ApiListPodTemplateForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1PodTemplateList>> {
+        return this.api.listPodTemplateForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind PodTemplate
+     * @param param the request object
+     */
     public listPodTemplateForAllNamespaces(param: CoreV1ApiListPodTemplateForAllNamespacesRequest = {}, options?: Configuration): Promise<V1PodTemplateList> {
         return this.api.listPodTemplateForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ReplicationController
+     * @param param the request object
+     */
+    public listReplicationControllerForAllNamespacesWithHttpInfo(param: CoreV1ApiListReplicationControllerForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1ReplicationControllerList>> {
+        return this.api.listReplicationControllerForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -19961,8 +22617,24 @@ export class ObjectCoreV1Api {
      * list or watch objects of kind ResourceQuota
      * @param param the request object
      */
+    public listResourceQuotaForAllNamespacesWithHttpInfo(param: CoreV1ApiListResourceQuotaForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1ResourceQuotaList>> {
+        return this.api.listResourceQuotaForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceQuota
+     * @param param the request object
+     */
     public listResourceQuotaForAllNamespaces(param: CoreV1ApiListResourceQuotaForAllNamespacesRequest = {}, options?: Configuration): Promise<V1ResourceQuotaList> {
         return this.api.listResourceQuotaForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Secret
+     * @param param the request object
+     */
+    public listSecretForAllNamespacesWithHttpInfo(param: CoreV1ApiListSecretForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1SecretList>> {
+        return this.api.listSecretForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -19977,8 +22649,24 @@ export class ObjectCoreV1Api {
      * list or watch objects of kind ServiceAccount
      * @param param the request object
      */
+    public listServiceAccountForAllNamespacesWithHttpInfo(param: CoreV1ApiListServiceAccountForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1ServiceAccountList>> {
+        return this.api.listServiceAccountForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ServiceAccount
+     * @param param the request object
+     */
     public listServiceAccountForAllNamespaces(param: CoreV1ApiListServiceAccountForAllNamespacesRequest = {}, options?: Configuration): Promise<V1ServiceAccountList> {
         return this.api.listServiceAccountForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Service
+     * @param param the request object
+     */
+    public listServiceForAllNamespacesWithHttpInfo(param: CoreV1ApiListServiceForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1ServiceList>> {
+        return this.api.listServiceForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -19993,8 +22681,24 @@ export class ObjectCoreV1Api {
      * partially update the specified Namespace
      * @param param the request object
      */
+    public patchNamespaceWithHttpInfo(param: CoreV1ApiPatchNamespaceRequest, options?: Configuration): Promise<HttpInfo<V1Namespace>> {
+        return this.api.patchNamespaceWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified Namespace
+     * @param param the request object
+     */
     public patchNamespace(param: CoreV1ApiPatchNamespaceRequest, options?: Configuration): Promise<V1Namespace> {
         return this.api.patchNamespace(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified Namespace
+     * @param param the request object
+     */
+    public patchNamespaceStatusWithHttpInfo(param: CoreV1ApiPatchNamespaceStatusRequest, options?: Configuration): Promise<HttpInfo<V1Namespace>> {
+        return this.api.patchNamespaceStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -20009,8 +22713,24 @@ export class ObjectCoreV1Api {
      * partially update the specified ConfigMap
      * @param param the request object
      */
+    public patchNamespacedConfigMapWithHttpInfo(param: CoreV1ApiPatchNamespacedConfigMapRequest, options?: Configuration): Promise<HttpInfo<V1ConfigMap>> {
+        return this.api.patchNamespacedConfigMapWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ConfigMap
+     * @param param the request object
+     */
     public patchNamespacedConfigMap(param: CoreV1ApiPatchNamespacedConfigMapRequest, options?: Configuration): Promise<V1ConfigMap> {
         return this.api.patchNamespacedConfigMap(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified Endpoints
+     * @param param the request object
+     */
+    public patchNamespacedEndpointsWithHttpInfo(param: CoreV1ApiPatchNamespacedEndpointsRequest, options?: Configuration): Promise<HttpInfo<V1Endpoints>> {
+        return this.api.patchNamespacedEndpointsWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -20025,8 +22745,24 @@ export class ObjectCoreV1Api {
      * partially update the specified Event
      * @param param the request object
      */
+    public patchNamespacedEventWithHttpInfo(param: CoreV1ApiPatchNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<CoreV1Event>> {
+        return this.api.patchNamespacedEventWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified Event
+     * @param param the request object
+     */
     public patchNamespacedEvent(param: CoreV1ApiPatchNamespacedEventRequest, options?: Configuration): Promise<CoreV1Event> {
         return this.api.patchNamespacedEvent(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified LimitRange
+     * @param param the request object
+     */
+    public patchNamespacedLimitRangeWithHttpInfo(param: CoreV1ApiPatchNamespacedLimitRangeRequest, options?: Configuration): Promise<HttpInfo<V1LimitRange>> {
+        return this.api.patchNamespacedLimitRangeWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -20041,8 +22777,24 @@ export class ObjectCoreV1Api {
      * partially update the specified PersistentVolumeClaim
      * @param param the request object
      */
+    public patchNamespacedPersistentVolumeClaimWithHttpInfo(param: CoreV1ApiPatchNamespacedPersistentVolumeClaimRequest, options?: Configuration): Promise<HttpInfo<V1PersistentVolumeClaim>> {
+        return this.api.patchNamespacedPersistentVolumeClaimWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified PersistentVolumeClaim
+     * @param param the request object
+     */
     public patchNamespacedPersistentVolumeClaim(param: CoreV1ApiPatchNamespacedPersistentVolumeClaimRequest, options?: Configuration): Promise<V1PersistentVolumeClaim> {
         return this.api.patchNamespacedPersistentVolumeClaim(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified PersistentVolumeClaim
+     * @param param the request object
+     */
+    public patchNamespacedPersistentVolumeClaimStatusWithHttpInfo(param: CoreV1ApiPatchNamespacedPersistentVolumeClaimStatusRequest, options?: Configuration): Promise<HttpInfo<V1PersistentVolumeClaim>> {
+        return this.api.patchNamespacedPersistentVolumeClaimStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -20057,8 +22809,24 @@ export class ObjectCoreV1Api {
      * partially update the specified Pod
      * @param param the request object
      */
+    public patchNamespacedPodWithHttpInfo(param: CoreV1ApiPatchNamespacedPodRequest, options?: Configuration): Promise<HttpInfo<V1Pod>> {
+        return this.api.patchNamespacedPodWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified Pod
+     * @param param the request object
+     */
     public patchNamespacedPod(param: CoreV1ApiPatchNamespacedPodRequest, options?: Configuration): Promise<V1Pod> {
         return this.api.patchNamespacedPod(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update ephemeralcontainers of the specified Pod
+     * @param param the request object
+     */
+    public patchNamespacedPodEphemeralcontainersWithHttpInfo(param: CoreV1ApiPatchNamespacedPodEphemeralcontainersRequest, options?: Configuration): Promise<HttpInfo<V1Pod>> {
+        return this.api.patchNamespacedPodEphemeralcontainersWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -20073,8 +22841,24 @@ export class ObjectCoreV1Api {
      * partially update status of the specified Pod
      * @param param the request object
      */
+    public patchNamespacedPodStatusWithHttpInfo(param: CoreV1ApiPatchNamespacedPodStatusRequest, options?: Configuration): Promise<HttpInfo<V1Pod>> {
+        return this.api.patchNamespacedPodStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified Pod
+     * @param param the request object
+     */
     public patchNamespacedPodStatus(param: CoreV1ApiPatchNamespacedPodStatusRequest, options?: Configuration): Promise<V1Pod> {
         return this.api.patchNamespacedPodStatus(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified PodTemplate
+     * @param param the request object
+     */
+    public patchNamespacedPodTemplateWithHttpInfo(param: CoreV1ApiPatchNamespacedPodTemplateRequest, options?: Configuration): Promise<HttpInfo<V1PodTemplate>> {
+        return this.api.patchNamespacedPodTemplateWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -20089,8 +22873,24 @@ export class ObjectCoreV1Api {
      * partially update the specified ReplicationController
      * @param param the request object
      */
+    public patchNamespacedReplicationControllerWithHttpInfo(param: CoreV1ApiPatchNamespacedReplicationControllerRequest, options?: Configuration): Promise<HttpInfo<V1ReplicationController>> {
+        return this.api.patchNamespacedReplicationControllerWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ReplicationController
+     * @param param the request object
+     */
     public patchNamespacedReplicationController(param: CoreV1ApiPatchNamespacedReplicationControllerRequest, options?: Configuration): Promise<V1ReplicationController> {
         return this.api.patchNamespacedReplicationController(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update scale of the specified ReplicationController
+     * @param param the request object
+     */
+    public patchNamespacedReplicationControllerScaleWithHttpInfo(param: CoreV1ApiPatchNamespacedReplicationControllerScaleRequest, options?: Configuration): Promise<HttpInfo<V1Scale>> {
+        return this.api.patchNamespacedReplicationControllerScaleWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -20105,8 +22905,24 @@ export class ObjectCoreV1Api {
      * partially update status of the specified ReplicationController
      * @param param the request object
      */
+    public patchNamespacedReplicationControllerStatusWithHttpInfo(param: CoreV1ApiPatchNamespacedReplicationControllerStatusRequest, options?: Configuration): Promise<HttpInfo<V1ReplicationController>> {
+        return this.api.patchNamespacedReplicationControllerStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified ReplicationController
+     * @param param the request object
+     */
     public patchNamespacedReplicationControllerStatus(param: CoreV1ApiPatchNamespacedReplicationControllerStatusRequest, options?: Configuration): Promise<V1ReplicationController> {
         return this.api.patchNamespacedReplicationControllerStatus(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ResourceQuota
+     * @param param the request object
+     */
+    public patchNamespacedResourceQuotaWithHttpInfo(param: CoreV1ApiPatchNamespacedResourceQuotaRequest, options?: Configuration): Promise<HttpInfo<V1ResourceQuota>> {
+        return this.api.patchNamespacedResourceQuotaWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -20121,8 +22937,24 @@ export class ObjectCoreV1Api {
      * partially update status of the specified ResourceQuota
      * @param param the request object
      */
+    public patchNamespacedResourceQuotaStatusWithHttpInfo(param: CoreV1ApiPatchNamespacedResourceQuotaStatusRequest, options?: Configuration): Promise<HttpInfo<V1ResourceQuota>> {
+        return this.api.patchNamespacedResourceQuotaStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified ResourceQuota
+     * @param param the request object
+     */
     public patchNamespacedResourceQuotaStatus(param: CoreV1ApiPatchNamespacedResourceQuotaStatusRequest, options?: Configuration): Promise<V1ResourceQuota> {
         return this.api.patchNamespacedResourceQuotaStatus(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified Secret
+     * @param param the request object
+     */
+    public patchNamespacedSecretWithHttpInfo(param: CoreV1ApiPatchNamespacedSecretRequest, options?: Configuration): Promise<HttpInfo<V1Secret>> {
+        return this.api.patchNamespacedSecretWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -20137,8 +22969,24 @@ export class ObjectCoreV1Api {
      * partially update the specified Service
      * @param param the request object
      */
+    public patchNamespacedServiceWithHttpInfo(param: CoreV1ApiPatchNamespacedServiceRequest, options?: Configuration): Promise<HttpInfo<V1Service>> {
+        return this.api.patchNamespacedServiceWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified Service
+     * @param param the request object
+     */
     public patchNamespacedService(param: CoreV1ApiPatchNamespacedServiceRequest, options?: Configuration): Promise<V1Service> {
         return this.api.patchNamespacedService(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ServiceAccount
+     * @param param the request object
+     */
+    public patchNamespacedServiceAccountWithHttpInfo(param: CoreV1ApiPatchNamespacedServiceAccountRequest, options?: Configuration): Promise<HttpInfo<V1ServiceAccount>> {
+        return this.api.patchNamespacedServiceAccountWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -20153,8 +23001,24 @@ export class ObjectCoreV1Api {
      * partially update status of the specified Service
      * @param param the request object
      */
+    public patchNamespacedServiceStatusWithHttpInfo(param: CoreV1ApiPatchNamespacedServiceStatusRequest, options?: Configuration): Promise<HttpInfo<V1Service>> {
+        return this.api.patchNamespacedServiceStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified Service
+     * @param param the request object
+     */
     public patchNamespacedServiceStatus(param: CoreV1ApiPatchNamespacedServiceStatusRequest, options?: Configuration): Promise<V1Service> {
         return this.api.patchNamespacedServiceStatus(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified Node
+     * @param param the request object
+     */
+    public patchNodeWithHttpInfo(param: CoreV1ApiPatchNodeRequest, options?: Configuration): Promise<HttpInfo<V1Node>> {
+        return this.api.patchNodeWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -20169,8 +23033,24 @@ export class ObjectCoreV1Api {
      * partially update status of the specified Node
      * @param param the request object
      */
+    public patchNodeStatusWithHttpInfo(param: CoreV1ApiPatchNodeStatusRequest, options?: Configuration): Promise<HttpInfo<V1Node>> {
+        return this.api.patchNodeStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified Node
+     * @param param the request object
+     */
     public patchNodeStatus(param: CoreV1ApiPatchNodeStatusRequest, options?: Configuration): Promise<V1Node> {
         return this.api.patchNodeStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified PersistentVolume
+     * @param param the request object
+     */
+    public patchPersistentVolumeWithHttpInfo(param: CoreV1ApiPatchPersistentVolumeRequest, options?: Configuration): Promise<HttpInfo<V1PersistentVolume>> {
+        return this.api.patchPersistentVolumeWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -20185,8 +23065,24 @@ export class ObjectCoreV1Api {
      * partially update status of the specified PersistentVolume
      * @param param the request object
      */
+    public patchPersistentVolumeStatusWithHttpInfo(param: CoreV1ApiPatchPersistentVolumeStatusRequest, options?: Configuration): Promise<HttpInfo<V1PersistentVolume>> {
+        return this.api.patchPersistentVolumeStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified PersistentVolume
+     * @param param the request object
+     */
     public patchPersistentVolumeStatus(param: CoreV1ApiPatchPersistentVolumeStatusRequest, options?: Configuration): Promise<V1PersistentVolume> {
         return this.api.patchPersistentVolumeStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * read the specified ComponentStatus
+     * @param param the request object
+     */
+    public readComponentStatusWithHttpInfo(param: CoreV1ApiReadComponentStatusRequest, options?: Configuration): Promise<HttpInfo<V1ComponentStatus>> {
+        return this.api.readComponentStatusWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -20201,8 +23097,24 @@ export class ObjectCoreV1Api {
      * read the specified Namespace
      * @param param the request object
      */
+    public readNamespaceWithHttpInfo(param: CoreV1ApiReadNamespaceRequest, options?: Configuration): Promise<HttpInfo<V1Namespace>> {
+        return this.api.readNamespaceWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified Namespace
+     * @param param the request object
+     */
     public readNamespace(param: CoreV1ApiReadNamespaceRequest, options?: Configuration): Promise<V1Namespace> {
         return this.api.readNamespace(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified Namespace
+     * @param param the request object
+     */
+    public readNamespaceStatusWithHttpInfo(param: CoreV1ApiReadNamespaceStatusRequest, options?: Configuration): Promise<HttpInfo<V1Namespace>> {
+        return this.api.readNamespaceStatusWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -20217,8 +23129,24 @@ export class ObjectCoreV1Api {
      * read the specified ConfigMap
      * @param param the request object
      */
+    public readNamespacedConfigMapWithHttpInfo(param: CoreV1ApiReadNamespacedConfigMapRequest, options?: Configuration): Promise<HttpInfo<V1ConfigMap>> {
+        return this.api.readNamespacedConfigMapWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ConfigMap
+     * @param param the request object
+     */
     public readNamespacedConfigMap(param: CoreV1ApiReadNamespacedConfigMapRequest, options?: Configuration): Promise<V1ConfigMap> {
         return this.api.readNamespacedConfigMap(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified Endpoints
+     * @param param the request object
+     */
+    public readNamespacedEndpointsWithHttpInfo(param: CoreV1ApiReadNamespacedEndpointsRequest, options?: Configuration): Promise<HttpInfo<V1Endpoints>> {
+        return this.api.readNamespacedEndpointsWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -20233,8 +23161,24 @@ export class ObjectCoreV1Api {
      * read the specified Event
      * @param param the request object
      */
+    public readNamespacedEventWithHttpInfo(param: CoreV1ApiReadNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<CoreV1Event>> {
+        return this.api.readNamespacedEventWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified Event
+     * @param param the request object
+     */
     public readNamespacedEvent(param: CoreV1ApiReadNamespacedEventRequest, options?: Configuration): Promise<CoreV1Event> {
         return this.api.readNamespacedEvent(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified LimitRange
+     * @param param the request object
+     */
+    public readNamespacedLimitRangeWithHttpInfo(param: CoreV1ApiReadNamespacedLimitRangeRequest, options?: Configuration): Promise<HttpInfo<V1LimitRange>> {
+        return this.api.readNamespacedLimitRangeWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -20249,8 +23193,24 @@ export class ObjectCoreV1Api {
      * read the specified PersistentVolumeClaim
      * @param param the request object
      */
+    public readNamespacedPersistentVolumeClaimWithHttpInfo(param: CoreV1ApiReadNamespacedPersistentVolumeClaimRequest, options?: Configuration): Promise<HttpInfo<V1PersistentVolumeClaim>> {
+        return this.api.readNamespacedPersistentVolumeClaimWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified PersistentVolumeClaim
+     * @param param the request object
+     */
     public readNamespacedPersistentVolumeClaim(param: CoreV1ApiReadNamespacedPersistentVolumeClaimRequest, options?: Configuration): Promise<V1PersistentVolumeClaim> {
         return this.api.readNamespacedPersistentVolumeClaim(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified PersistentVolumeClaim
+     * @param param the request object
+     */
+    public readNamespacedPersistentVolumeClaimStatusWithHttpInfo(param: CoreV1ApiReadNamespacedPersistentVolumeClaimStatusRequest, options?: Configuration): Promise<HttpInfo<V1PersistentVolumeClaim>> {
+        return this.api.readNamespacedPersistentVolumeClaimStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -20265,8 +23225,24 @@ export class ObjectCoreV1Api {
      * read the specified Pod
      * @param param the request object
      */
+    public readNamespacedPodWithHttpInfo(param: CoreV1ApiReadNamespacedPodRequest, options?: Configuration): Promise<HttpInfo<V1Pod>> {
+        return this.api.readNamespacedPodWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified Pod
+     * @param param the request object
+     */
     public readNamespacedPod(param: CoreV1ApiReadNamespacedPodRequest, options?: Configuration): Promise<V1Pod> {
         return this.api.readNamespacedPod(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read ephemeralcontainers of the specified Pod
+     * @param param the request object
+     */
+    public readNamespacedPodEphemeralcontainersWithHttpInfo(param: CoreV1ApiReadNamespacedPodEphemeralcontainersRequest, options?: Configuration): Promise<HttpInfo<V1Pod>> {
+        return this.api.readNamespacedPodEphemeralcontainersWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -20281,8 +23257,24 @@ export class ObjectCoreV1Api {
      * read log of the specified Pod
      * @param param the request object
      */
+    public readNamespacedPodLogWithHttpInfo(param: CoreV1ApiReadNamespacedPodLogRequest, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.readNamespacedPodLogWithHttpInfo(param.name, param.namespace, param.container, param.follow, param.insecureSkipTLSVerifyBackend, param.limitBytes, param.pretty, param.previous, param.sinceSeconds, param.tailLines, param.timestamps,  options).toPromise();
+    }
+
+    /**
+     * read log of the specified Pod
+     * @param param the request object
+     */
     public readNamespacedPodLog(param: CoreV1ApiReadNamespacedPodLogRequest, options?: Configuration): Promise<string> {
         return this.api.readNamespacedPodLog(param.name, param.namespace, param.container, param.follow, param.insecureSkipTLSVerifyBackend, param.limitBytes, param.pretty, param.previous, param.sinceSeconds, param.tailLines, param.timestamps,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified Pod
+     * @param param the request object
+     */
+    public readNamespacedPodStatusWithHttpInfo(param: CoreV1ApiReadNamespacedPodStatusRequest, options?: Configuration): Promise<HttpInfo<V1Pod>> {
+        return this.api.readNamespacedPodStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -20297,8 +23289,24 @@ export class ObjectCoreV1Api {
      * read the specified PodTemplate
      * @param param the request object
      */
+    public readNamespacedPodTemplateWithHttpInfo(param: CoreV1ApiReadNamespacedPodTemplateRequest, options?: Configuration): Promise<HttpInfo<V1PodTemplate>> {
+        return this.api.readNamespacedPodTemplateWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified PodTemplate
+     * @param param the request object
+     */
     public readNamespacedPodTemplate(param: CoreV1ApiReadNamespacedPodTemplateRequest, options?: Configuration): Promise<V1PodTemplate> {
         return this.api.readNamespacedPodTemplate(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ReplicationController
+     * @param param the request object
+     */
+    public readNamespacedReplicationControllerWithHttpInfo(param: CoreV1ApiReadNamespacedReplicationControllerRequest, options?: Configuration): Promise<HttpInfo<V1ReplicationController>> {
+        return this.api.readNamespacedReplicationControllerWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -20313,8 +23321,24 @@ export class ObjectCoreV1Api {
      * read scale of the specified ReplicationController
      * @param param the request object
      */
+    public readNamespacedReplicationControllerScaleWithHttpInfo(param: CoreV1ApiReadNamespacedReplicationControllerScaleRequest, options?: Configuration): Promise<HttpInfo<V1Scale>> {
+        return this.api.readNamespacedReplicationControllerScaleWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read scale of the specified ReplicationController
+     * @param param the request object
+     */
     public readNamespacedReplicationControllerScale(param: CoreV1ApiReadNamespacedReplicationControllerScaleRequest, options?: Configuration): Promise<V1Scale> {
         return this.api.readNamespacedReplicationControllerScale(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified ReplicationController
+     * @param param the request object
+     */
+    public readNamespacedReplicationControllerStatusWithHttpInfo(param: CoreV1ApiReadNamespacedReplicationControllerStatusRequest, options?: Configuration): Promise<HttpInfo<V1ReplicationController>> {
+        return this.api.readNamespacedReplicationControllerStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -20329,8 +23353,24 @@ export class ObjectCoreV1Api {
      * read the specified ResourceQuota
      * @param param the request object
      */
+    public readNamespacedResourceQuotaWithHttpInfo(param: CoreV1ApiReadNamespacedResourceQuotaRequest, options?: Configuration): Promise<HttpInfo<V1ResourceQuota>> {
+        return this.api.readNamespacedResourceQuotaWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ResourceQuota
+     * @param param the request object
+     */
     public readNamespacedResourceQuota(param: CoreV1ApiReadNamespacedResourceQuotaRequest, options?: Configuration): Promise<V1ResourceQuota> {
         return this.api.readNamespacedResourceQuota(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified ResourceQuota
+     * @param param the request object
+     */
+    public readNamespacedResourceQuotaStatusWithHttpInfo(param: CoreV1ApiReadNamespacedResourceQuotaStatusRequest, options?: Configuration): Promise<HttpInfo<V1ResourceQuota>> {
+        return this.api.readNamespacedResourceQuotaStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -20345,8 +23385,24 @@ export class ObjectCoreV1Api {
      * read the specified Secret
      * @param param the request object
      */
+    public readNamespacedSecretWithHttpInfo(param: CoreV1ApiReadNamespacedSecretRequest, options?: Configuration): Promise<HttpInfo<V1Secret>> {
+        return this.api.readNamespacedSecretWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified Secret
+     * @param param the request object
+     */
     public readNamespacedSecret(param: CoreV1ApiReadNamespacedSecretRequest, options?: Configuration): Promise<V1Secret> {
         return this.api.readNamespacedSecret(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified Service
+     * @param param the request object
+     */
+    public readNamespacedServiceWithHttpInfo(param: CoreV1ApiReadNamespacedServiceRequest, options?: Configuration): Promise<HttpInfo<V1Service>> {
+        return this.api.readNamespacedServiceWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -20361,8 +23417,24 @@ export class ObjectCoreV1Api {
      * read the specified ServiceAccount
      * @param param the request object
      */
+    public readNamespacedServiceAccountWithHttpInfo(param: CoreV1ApiReadNamespacedServiceAccountRequest, options?: Configuration): Promise<HttpInfo<V1ServiceAccount>> {
+        return this.api.readNamespacedServiceAccountWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ServiceAccount
+     * @param param the request object
+     */
     public readNamespacedServiceAccount(param: CoreV1ApiReadNamespacedServiceAccountRequest, options?: Configuration): Promise<V1ServiceAccount> {
         return this.api.readNamespacedServiceAccount(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified Service
+     * @param param the request object
+     */
+    public readNamespacedServiceStatusWithHttpInfo(param: CoreV1ApiReadNamespacedServiceStatusRequest, options?: Configuration): Promise<HttpInfo<V1Service>> {
+        return this.api.readNamespacedServiceStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -20377,8 +23449,24 @@ export class ObjectCoreV1Api {
      * read the specified Node
      * @param param the request object
      */
+    public readNodeWithHttpInfo(param: CoreV1ApiReadNodeRequest, options?: Configuration): Promise<HttpInfo<V1Node>> {
+        return this.api.readNodeWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified Node
+     * @param param the request object
+     */
     public readNode(param: CoreV1ApiReadNodeRequest, options?: Configuration): Promise<V1Node> {
         return this.api.readNode(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified Node
+     * @param param the request object
+     */
+    public readNodeStatusWithHttpInfo(param: CoreV1ApiReadNodeStatusRequest, options?: Configuration): Promise<HttpInfo<V1Node>> {
+        return this.api.readNodeStatusWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -20393,8 +23481,24 @@ export class ObjectCoreV1Api {
      * read the specified PersistentVolume
      * @param param the request object
      */
+    public readPersistentVolumeWithHttpInfo(param: CoreV1ApiReadPersistentVolumeRequest, options?: Configuration): Promise<HttpInfo<V1PersistentVolume>> {
+        return this.api.readPersistentVolumeWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified PersistentVolume
+     * @param param the request object
+     */
     public readPersistentVolume(param: CoreV1ApiReadPersistentVolumeRequest, options?: Configuration): Promise<V1PersistentVolume> {
         return this.api.readPersistentVolume(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified PersistentVolume
+     * @param param the request object
+     */
+    public readPersistentVolumeStatusWithHttpInfo(param: CoreV1ApiReadPersistentVolumeStatusRequest, options?: Configuration): Promise<HttpInfo<V1PersistentVolume>> {
+        return this.api.readPersistentVolumeStatusWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -20409,8 +23513,24 @@ export class ObjectCoreV1Api {
      * replace the specified Namespace
      * @param param the request object
      */
+    public replaceNamespaceWithHttpInfo(param: CoreV1ApiReplaceNamespaceRequest, options?: Configuration): Promise<HttpInfo<V1Namespace>> {
+        return this.api.replaceNamespaceWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified Namespace
+     * @param param the request object
+     */
     public replaceNamespace(param: CoreV1ApiReplaceNamespaceRequest, options?: Configuration): Promise<V1Namespace> {
         return this.api.replaceNamespace(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace finalize of the specified Namespace
+     * @param param the request object
+     */
+    public replaceNamespaceFinalizeWithHttpInfo(param: CoreV1ApiReplaceNamespaceFinalizeRequest, options?: Configuration): Promise<HttpInfo<V1Namespace>> {
+        return this.api.replaceNamespaceFinalizeWithHttpInfo(param.name, param.body, param.dryRun, param.fieldManager, param.pretty,  options).toPromise();
     }
 
     /**
@@ -20425,8 +23545,24 @@ export class ObjectCoreV1Api {
      * replace status of the specified Namespace
      * @param param the request object
      */
+    public replaceNamespaceStatusWithHttpInfo(param: CoreV1ApiReplaceNamespaceStatusRequest, options?: Configuration): Promise<HttpInfo<V1Namespace>> {
+        return this.api.replaceNamespaceStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified Namespace
+     * @param param the request object
+     */
     public replaceNamespaceStatus(param: CoreV1ApiReplaceNamespaceStatusRequest, options?: Configuration): Promise<V1Namespace> {
         return this.api.replaceNamespaceStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ConfigMap
+     * @param param the request object
+     */
+    public replaceNamespacedConfigMapWithHttpInfo(param: CoreV1ApiReplaceNamespacedConfigMapRequest, options?: Configuration): Promise<HttpInfo<V1ConfigMap>> {
+        return this.api.replaceNamespacedConfigMapWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -20441,8 +23577,24 @@ export class ObjectCoreV1Api {
      * replace the specified Endpoints
      * @param param the request object
      */
+    public replaceNamespacedEndpointsWithHttpInfo(param: CoreV1ApiReplaceNamespacedEndpointsRequest, options?: Configuration): Promise<HttpInfo<V1Endpoints>> {
+        return this.api.replaceNamespacedEndpointsWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified Endpoints
+     * @param param the request object
+     */
     public replaceNamespacedEndpoints(param: CoreV1ApiReplaceNamespacedEndpointsRequest, options?: Configuration): Promise<V1Endpoints> {
         return this.api.replaceNamespacedEndpoints(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified Event
+     * @param param the request object
+     */
+    public replaceNamespacedEventWithHttpInfo(param: CoreV1ApiReplaceNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<CoreV1Event>> {
+        return this.api.replaceNamespacedEventWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -20457,8 +23609,24 @@ export class ObjectCoreV1Api {
      * replace the specified LimitRange
      * @param param the request object
      */
+    public replaceNamespacedLimitRangeWithHttpInfo(param: CoreV1ApiReplaceNamespacedLimitRangeRequest, options?: Configuration): Promise<HttpInfo<V1LimitRange>> {
+        return this.api.replaceNamespacedLimitRangeWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified LimitRange
+     * @param param the request object
+     */
     public replaceNamespacedLimitRange(param: CoreV1ApiReplaceNamespacedLimitRangeRequest, options?: Configuration): Promise<V1LimitRange> {
         return this.api.replaceNamespacedLimitRange(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified PersistentVolumeClaim
+     * @param param the request object
+     */
+    public replaceNamespacedPersistentVolumeClaimWithHttpInfo(param: CoreV1ApiReplaceNamespacedPersistentVolumeClaimRequest, options?: Configuration): Promise<HttpInfo<V1PersistentVolumeClaim>> {
+        return this.api.replaceNamespacedPersistentVolumeClaimWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -20473,8 +23641,24 @@ export class ObjectCoreV1Api {
      * replace status of the specified PersistentVolumeClaim
      * @param param the request object
      */
+    public replaceNamespacedPersistentVolumeClaimStatusWithHttpInfo(param: CoreV1ApiReplaceNamespacedPersistentVolumeClaimStatusRequest, options?: Configuration): Promise<HttpInfo<V1PersistentVolumeClaim>> {
+        return this.api.replaceNamespacedPersistentVolumeClaimStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified PersistentVolumeClaim
+     * @param param the request object
+     */
     public replaceNamespacedPersistentVolumeClaimStatus(param: CoreV1ApiReplaceNamespacedPersistentVolumeClaimStatusRequest, options?: Configuration): Promise<V1PersistentVolumeClaim> {
         return this.api.replaceNamespacedPersistentVolumeClaimStatus(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified Pod
+     * @param param the request object
+     */
+    public replaceNamespacedPodWithHttpInfo(param: CoreV1ApiReplaceNamespacedPodRequest, options?: Configuration): Promise<HttpInfo<V1Pod>> {
+        return this.api.replaceNamespacedPodWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -20489,8 +23673,24 @@ export class ObjectCoreV1Api {
      * replace ephemeralcontainers of the specified Pod
      * @param param the request object
      */
+    public replaceNamespacedPodEphemeralcontainersWithHttpInfo(param: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest, options?: Configuration): Promise<HttpInfo<V1Pod>> {
+        return this.api.replaceNamespacedPodEphemeralcontainersWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace ephemeralcontainers of the specified Pod
+     * @param param the request object
+     */
     public replaceNamespacedPodEphemeralcontainers(param: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest, options?: Configuration): Promise<V1Pod> {
         return this.api.replaceNamespacedPodEphemeralcontainers(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified Pod
+     * @param param the request object
+     */
+    public replaceNamespacedPodStatusWithHttpInfo(param: CoreV1ApiReplaceNamespacedPodStatusRequest, options?: Configuration): Promise<HttpInfo<V1Pod>> {
+        return this.api.replaceNamespacedPodStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -20505,8 +23705,24 @@ export class ObjectCoreV1Api {
      * replace the specified PodTemplate
      * @param param the request object
      */
+    public replaceNamespacedPodTemplateWithHttpInfo(param: CoreV1ApiReplaceNamespacedPodTemplateRequest, options?: Configuration): Promise<HttpInfo<V1PodTemplate>> {
+        return this.api.replaceNamespacedPodTemplateWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified PodTemplate
+     * @param param the request object
+     */
     public replaceNamespacedPodTemplate(param: CoreV1ApiReplaceNamespacedPodTemplateRequest, options?: Configuration): Promise<V1PodTemplate> {
         return this.api.replaceNamespacedPodTemplate(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ReplicationController
+     * @param param the request object
+     */
+    public replaceNamespacedReplicationControllerWithHttpInfo(param: CoreV1ApiReplaceNamespacedReplicationControllerRequest, options?: Configuration): Promise<HttpInfo<V1ReplicationController>> {
+        return this.api.replaceNamespacedReplicationControllerWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -20521,8 +23737,24 @@ export class ObjectCoreV1Api {
      * replace scale of the specified ReplicationController
      * @param param the request object
      */
+    public replaceNamespacedReplicationControllerScaleWithHttpInfo(param: CoreV1ApiReplaceNamespacedReplicationControllerScaleRequest, options?: Configuration): Promise<HttpInfo<V1Scale>> {
+        return this.api.replaceNamespacedReplicationControllerScaleWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace scale of the specified ReplicationController
+     * @param param the request object
+     */
     public replaceNamespacedReplicationControllerScale(param: CoreV1ApiReplaceNamespacedReplicationControllerScaleRequest, options?: Configuration): Promise<V1Scale> {
         return this.api.replaceNamespacedReplicationControllerScale(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified ReplicationController
+     * @param param the request object
+     */
+    public replaceNamespacedReplicationControllerStatusWithHttpInfo(param: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest, options?: Configuration): Promise<HttpInfo<V1ReplicationController>> {
+        return this.api.replaceNamespacedReplicationControllerStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -20537,8 +23769,24 @@ export class ObjectCoreV1Api {
      * replace the specified ResourceQuota
      * @param param the request object
      */
+    public replaceNamespacedResourceQuotaWithHttpInfo(param: CoreV1ApiReplaceNamespacedResourceQuotaRequest, options?: Configuration): Promise<HttpInfo<V1ResourceQuota>> {
+        return this.api.replaceNamespacedResourceQuotaWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ResourceQuota
+     * @param param the request object
+     */
     public replaceNamespacedResourceQuota(param: CoreV1ApiReplaceNamespacedResourceQuotaRequest, options?: Configuration): Promise<V1ResourceQuota> {
         return this.api.replaceNamespacedResourceQuota(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified ResourceQuota
+     * @param param the request object
+     */
+    public replaceNamespacedResourceQuotaStatusWithHttpInfo(param: CoreV1ApiReplaceNamespacedResourceQuotaStatusRequest, options?: Configuration): Promise<HttpInfo<V1ResourceQuota>> {
+        return this.api.replaceNamespacedResourceQuotaStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -20553,8 +23801,24 @@ export class ObjectCoreV1Api {
      * replace the specified Secret
      * @param param the request object
      */
+    public replaceNamespacedSecretWithHttpInfo(param: CoreV1ApiReplaceNamespacedSecretRequest, options?: Configuration): Promise<HttpInfo<V1Secret>> {
+        return this.api.replaceNamespacedSecretWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified Secret
+     * @param param the request object
+     */
     public replaceNamespacedSecret(param: CoreV1ApiReplaceNamespacedSecretRequest, options?: Configuration): Promise<V1Secret> {
         return this.api.replaceNamespacedSecret(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified Service
+     * @param param the request object
+     */
+    public replaceNamespacedServiceWithHttpInfo(param: CoreV1ApiReplaceNamespacedServiceRequest, options?: Configuration): Promise<HttpInfo<V1Service>> {
+        return this.api.replaceNamespacedServiceWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -20569,8 +23833,24 @@ export class ObjectCoreV1Api {
      * replace the specified ServiceAccount
      * @param param the request object
      */
+    public replaceNamespacedServiceAccountWithHttpInfo(param: CoreV1ApiReplaceNamespacedServiceAccountRequest, options?: Configuration): Promise<HttpInfo<V1ServiceAccount>> {
+        return this.api.replaceNamespacedServiceAccountWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ServiceAccount
+     * @param param the request object
+     */
     public replaceNamespacedServiceAccount(param: CoreV1ApiReplaceNamespacedServiceAccountRequest, options?: Configuration): Promise<V1ServiceAccount> {
         return this.api.replaceNamespacedServiceAccount(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified Service
+     * @param param the request object
+     */
+    public replaceNamespacedServiceStatusWithHttpInfo(param: CoreV1ApiReplaceNamespacedServiceStatusRequest, options?: Configuration): Promise<HttpInfo<V1Service>> {
+        return this.api.replaceNamespacedServiceStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -20585,8 +23865,24 @@ export class ObjectCoreV1Api {
      * replace the specified Node
      * @param param the request object
      */
+    public replaceNodeWithHttpInfo(param: CoreV1ApiReplaceNodeRequest, options?: Configuration): Promise<HttpInfo<V1Node>> {
+        return this.api.replaceNodeWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified Node
+     * @param param the request object
+     */
     public replaceNode(param: CoreV1ApiReplaceNodeRequest, options?: Configuration): Promise<V1Node> {
         return this.api.replaceNode(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified Node
+     * @param param the request object
+     */
+    public replaceNodeStatusWithHttpInfo(param: CoreV1ApiReplaceNodeStatusRequest, options?: Configuration): Promise<HttpInfo<V1Node>> {
+        return this.api.replaceNodeStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -20601,8 +23897,24 @@ export class ObjectCoreV1Api {
      * replace the specified PersistentVolume
      * @param param the request object
      */
+    public replacePersistentVolumeWithHttpInfo(param: CoreV1ApiReplacePersistentVolumeRequest, options?: Configuration): Promise<HttpInfo<V1PersistentVolume>> {
+        return this.api.replacePersistentVolumeWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified PersistentVolume
+     * @param param the request object
+     */
     public replacePersistentVolume(param: CoreV1ApiReplacePersistentVolumeRequest, options?: Configuration): Promise<V1PersistentVolume> {
         return this.api.replacePersistentVolume(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified PersistentVolume
+     * @param param the request object
+     */
+    public replacePersistentVolumeStatusWithHttpInfo(param: CoreV1ApiReplacePersistentVolumeStatusRequest, options?: Configuration): Promise<HttpInfo<V1PersistentVolume>> {
+        return this.api.replacePersistentVolumeStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -21940,8 +25252,24 @@ export class ObjectCustomObjectsApi {
      * Creates a cluster scoped Custom object
      * @param param the request object
      */
+    public createClusterCustomObjectWithHttpInfo(param: CustomObjectsApiCreateClusterCustomObjectRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.createClusterCustomObjectWithHttpInfo(param.group, param.version, param.plural, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * Creates a cluster scoped Custom object
+     * @param param the request object
+     */
     public createClusterCustomObject(param: CustomObjectsApiCreateClusterCustomObjectRequest, options?: Configuration): Promise<any> {
         return this.api.createClusterCustomObject(param.group, param.version, param.plural, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * Creates a namespace scoped Custom object
+     * @param param the request object
+     */
+    public createNamespacedCustomObjectWithHttpInfo(param: CustomObjectsApiCreateNamespacedCustomObjectRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.createNamespacedCustomObjectWithHttpInfo(param.group, param.version, param.namespace, param.plural, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -21956,8 +25284,24 @@ export class ObjectCustomObjectsApi {
      * Deletes the specified cluster scoped custom object
      * @param param the request object
      */
+    public deleteClusterCustomObjectWithHttpInfo(param: CustomObjectsApiDeleteClusterCustomObjectRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.deleteClusterCustomObjectWithHttpInfo(param.group, param.version, param.plural, param.name, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.dryRun, param.body,  options).toPromise();
+    }
+
+    /**
+     * Deletes the specified cluster scoped custom object
+     * @param param the request object
+     */
     public deleteClusterCustomObject(param: CustomObjectsApiDeleteClusterCustomObjectRequest, options?: Configuration): Promise<any> {
         return this.api.deleteClusterCustomObject(param.group, param.version, param.plural, param.name, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.dryRun, param.body,  options).toPromise();
+    }
+
+    /**
+     * Delete collection of cluster scoped custom objects
+     * @param param the request object
+     */
+    public deleteCollectionClusterCustomObjectWithHttpInfo(param: CustomObjectsApiDeleteCollectionClusterCustomObjectRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.deleteCollectionClusterCustomObjectWithHttpInfo(param.group, param.version, param.plural, param.pretty, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.dryRun, param.body,  options).toPromise();
     }
 
     /**
@@ -21972,8 +25316,24 @@ export class ObjectCustomObjectsApi {
      * Delete collection of namespace scoped custom objects
      * @param param the request object
      */
+    public deleteCollectionNamespacedCustomObjectWithHttpInfo(param: CustomObjectsApiDeleteCollectionNamespacedCustomObjectRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.deleteCollectionNamespacedCustomObjectWithHttpInfo(param.group, param.version, param.namespace, param.plural, param.pretty, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.dryRun, param.body,  options).toPromise();
+    }
+
+    /**
+     * Delete collection of namespace scoped custom objects
+     * @param param the request object
+     */
     public deleteCollectionNamespacedCustomObject(param: CustomObjectsApiDeleteCollectionNamespacedCustomObjectRequest, options?: Configuration): Promise<any> {
         return this.api.deleteCollectionNamespacedCustomObject(param.group, param.version, param.namespace, param.plural, param.pretty, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.dryRun, param.body,  options).toPromise();
+    }
+
+    /**
+     * Deletes the specified namespace scoped custom object
+     * @param param the request object
+     */
+    public deleteNamespacedCustomObjectWithHttpInfo(param: CustomObjectsApiDeleteNamespacedCustomObjectRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.deleteNamespacedCustomObjectWithHttpInfo(param.group, param.version, param.namespace, param.plural, param.name, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.dryRun, param.body,  options).toPromise();
     }
 
     /**
@@ -21988,8 +25348,24 @@ export class ObjectCustomObjectsApi {
      * get available resources
      * @param param the request object
      */
+    public getAPIResourcesWithHttpInfo(param: CustomObjectsApiGetAPIResourcesRequest, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo(param.group, param.version,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
     public getAPIResources(param: CustomObjectsApiGetAPIResourcesRequest, options?: Configuration): Promise<V1APIResourceList> {
         return this.api.getAPIResources(param.group, param.version,  options).toPromise();
+    }
+
+    /**
+     * Returns a cluster scoped custom object
+     * @param param the request object
+     */
+    public getClusterCustomObjectWithHttpInfo(param: CustomObjectsApiGetClusterCustomObjectRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.getClusterCustomObjectWithHttpInfo(param.group, param.version, param.plural, param.name,  options).toPromise();
     }
 
     /**
@@ -22004,8 +25380,24 @@ export class ObjectCustomObjectsApi {
      * read scale of the specified custom object
      * @param param the request object
      */
+    public getClusterCustomObjectScaleWithHttpInfo(param: CustomObjectsApiGetClusterCustomObjectScaleRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.getClusterCustomObjectScaleWithHttpInfo(param.group, param.version, param.plural, param.name,  options).toPromise();
+    }
+
+    /**
+     * read scale of the specified custom object
+     * @param param the request object
+     */
     public getClusterCustomObjectScale(param: CustomObjectsApiGetClusterCustomObjectScaleRequest, options?: Configuration): Promise<any> {
         return this.api.getClusterCustomObjectScale(param.group, param.version, param.plural, param.name,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified cluster scoped custom object
+     * @param param the request object
+     */
+    public getClusterCustomObjectStatusWithHttpInfo(param: CustomObjectsApiGetClusterCustomObjectStatusRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.getClusterCustomObjectStatusWithHttpInfo(param.group, param.version, param.plural, param.name,  options).toPromise();
     }
 
     /**
@@ -22020,8 +25412,24 @@ export class ObjectCustomObjectsApi {
      * Returns a namespace scoped custom object
      * @param param the request object
      */
+    public getNamespacedCustomObjectWithHttpInfo(param: CustomObjectsApiGetNamespacedCustomObjectRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.getNamespacedCustomObjectWithHttpInfo(param.group, param.version, param.namespace, param.plural, param.name,  options).toPromise();
+    }
+
+    /**
+     * Returns a namespace scoped custom object
+     * @param param the request object
+     */
     public getNamespacedCustomObject(param: CustomObjectsApiGetNamespacedCustomObjectRequest, options?: Configuration): Promise<any> {
         return this.api.getNamespacedCustomObject(param.group, param.version, param.namespace, param.plural, param.name,  options).toPromise();
+    }
+
+    /**
+     * read scale of the specified namespace scoped custom object
+     * @param param the request object
+     */
+    public getNamespacedCustomObjectScaleWithHttpInfo(param: CustomObjectsApiGetNamespacedCustomObjectScaleRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.getNamespacedCustomObjectScaleWithHttpInfo(param.group, param.version, param.namespace, param.plural, param.name,  options).toPromise();
     }
 
     /**
@@ -22036,8 +25444,24 @@ export class ObjectCustomObjectsApi {
      * read status of the specified namespace scoped custom object
      * @param param the request object
      */
+    public getNamespacedCustomObjectStatusWithHttpInfo(param: CustomObjectsApiGetNamespacedCustomObjectStatusRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.getNamespacedCustomObjectStatusWithHttpInfo(param.group, param.version, param.namespace, param.plural, param.name,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified namespace scoped custom object
+     * @param param the request object
+     */
     public getNamespacedCustomObjectStatus(param: CustomObjectsApiGetNamespacedCustomObjectStatusRequest, options?: Configuration): Promise<any> {
         return this.api.getNamespacedCustomObjectStatus(param.group, param.version, param.namespace, param.plural, param.name,  options).toPromise();
+    }
+
+    /**
+     * list or watch cluster scoped custom objects
+     * @param param the request object
+     */
+    public listClusterCustomObjectWithHttpInfo(param: CustomObjectsApiListClusterCustomObjectRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.listClusterCustomObjectWithHttpInfo(param.group, param.version, param.plural, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -22052,8 +25476,24 @@ export class ObjectCustomObjectsApi {
      * list or watch namespace scoped custom objects
      * @param param the request object
      */
+    public listNamespacedCustomObjectWithHttpInfo(param: CustomObjectsApiListNamespacedCustomObjectRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.listNamespacedCustomObjectWithHttpInfo(param.group, param.version, param.namespace, param.plural, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch namespace scoped custom objects
+     * @param param the request object
+     */
     public listNamespacedCustomObject(param: CustomObjectsApiListNamespacedCustomObjectRequest, options?: Configuration): Promise<any> {
         return this.api.listNamespacedCustomObject(param.group, param.version, param.namespace, param.plural, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * patch the specified cluster scoped custom object
+     * @param param the request object
+     */
+    public patchClusterCustomObjectWithHttpInfo(param: CustomObjectsApiPatchClusterCustomObjectRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.patchClusterCustomObjectWithHttpInfo(param.group, param.version, param.plural, param.name, param.body, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -22068,8 +25508,24 @@ export class ObjectCustomObjectsApi {
      * partially update scale of the specified cluster scoped custom object
      * @param param the request object
      */
+    public patchClusterCustomObjectScaleWithHttpInfo(param: CustomObjectsApiPatchClusterCustomObjectScaleRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.patchClusterCustomObjectScaleWithHttpInfo(param.group, param.version, param.plural, param.name, param.body, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update scale of the specified cluster scoped custom object
+     * @param param the request object
+     */
     public patchClusterCustomObjectScale(param: CustomObjectsApiPatchClusterCustomObjectScaleRequest, options?: Configuration): Promise<any> {
         return this.api.patchClusterCustomObjectScale(param.group, param.version, param.plural, param.name, param.body, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified cluster scoped custom object
+     * @param param the request object
+     */
+    public patchClusterCustomObjectStatusWithHttpInfo(param: CustomObjectsApiPatchClusterCustomObjectStatusRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.patchClusterCustomObjectStatusWithHttpInfo(param.group, param.version, param.plural, param.name, param.body, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -22084,8 +25540,24 @@ export class ObjectCustomObjectsApi {
      * patch the specified namespace scoped custom object
      * @param param the request object
      */
+    public patchNamespacedCustomObjectWithHttpInfo(param: CustomObjectsApiPatchNamespacedCustomObjectRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.patchNamespacedCustomObjectWithHttpInfo(param.group, param.version, param.namespace, param.plural, param.name, param.body, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * patch the specified namespace scoped custom object
+     * @param param the request object
+     */
     public patchNamespacedCustomObject(param: CustomObjectsApiPatchNamespacedCustomObjectRequest, options?: Configuration): Promise<any> {
         return this.api.patchNamespacedCustomObject(param.group, param.version, param.namespace, param.plural, param.name, param.body, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update scale of the specified namespace scoped custom object
+     * @param param the request object
+     */
+    public patchNamespacedCustomObjectScaleWithHttpInfo(param: CustomObjectsApiPatchNamespacedCustomObjectScaleRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.patchNamespacedCustomObjectScaleWithHttpInfo(param.group, param.version, param.namespace, param.plural, param.name, param.body, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -22100,8 +25572,24 @@ export class ObjectCustomObjectsApi {
      * partially update status of the specified namespace scoped custom object
      * @param param the request object
      */
+    public patchNamespacedCustomObjectStatusWithHttpInfo(param: CustomObjectsApiPatchNamespacedCustomObjectStatusRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.patchNamespacedCustomObjectStatusWithHttpInfo(param.group, param.version, param.namespace, param.plural, param.name, param.body, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified namespace scoped custom object
+     * @param param the request object
+     */
     public patchNamespacedCustomObjectStatus(param: CustomObjectsApiPatchNamespacedCustomObjectStatusRequest, options?: Configuration): Promise<any> {
         return this.api.patchNamespacedCustomObjectStatus(param.group, param.version, param.namespace, param.plural, param.name, param.body, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * replace the specified cluster scoped custom object
+     * @param param the request object
+     */
+    public replaceClusterCustomObjectWithHttpInfo(param: CustomObjectsApiReplaceClusterCustomObjectRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.replaceClusterCustomObjectWithHttpInfo(param.group, param.version, param.plural, param.name, param.body, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -22116,8 +25604,24 @@ export class ObjectCustomObjectsApi {
      * replace scale of the specified cluster scoped custom object
      * @param param the request object
      */
+    public replaceClusterCustomObjectScaleWithHttpInfo(param: CustomObjectsApiReplaceClusterCustomObjectScaleRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.replaceClusterCustomObjectScaleWithHttpInfo(param.group, param.version, param.plural, param.name, param.body, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace scale of the specified cluster scoped custom object
+     * @param param the request object
+     */
     public replaceClusterCustomObjectScale(param: CustomObjectsApiReplaceClusterCustomObjectScaleRequest, options?: Configuration): Promise<any> {
         return this.api.replaceClusterCustomObjectScale(param.group, param.version, param.plural, param.name, param.body, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the cluster scoped specified custom object
+     * @param param the request object
+     */
+    public replaceClusterCustomObjectStatusWithHttpInfo(param: CustomObjectsApiReplaceClusterCustomObjectStatusRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.replaceClusterCustomObjectStatusWithHttpInfo(param.group, param.version, param.plural, param.name, param.body, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -22132,6 +25636,14 @@ export class ObjectCustomObjectsApi {
      * replace the specified namespace scoped custom object
      * @param param the request object
      */
+    public replaceNamespacedCustomObjectWithHttpInfo(param: CustomObjectsApiReplaceNamespacedCustomObjectRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.replaceNamespacedCustomObjectWithHttpInfo(param.group, param.version, param.namespace, param.plural, param.name, param.body, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified namespace scoped custom object
+     * @param param the request object
+     */
     public replaceNamespacedCustomObject(param: CustomObjectsApiReplaceNamespacedCustomObjectRequest, options?: Configuration): Promise<any> {
         return this.api.replaceNamespacedCustomObject(param.group, param.version, param.namespace, param.plural, param.name, param.body, param.dryRun, param.fieldManager,  options).toPromise();
     }
@@ -22140,8 +25652,24 @@ export class ObjectCustomObjectsApi {
      * replace scale of the specified namespace scoped custom object
      * @param param the request object
      */
+    public replaceNamespacedCustomObjectScaleWithHttpInfo(param: CustomObjectsApiReplaceNamespacedCustomObjectScaleRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.replaceNamespacedCustomObjectScaleWithHttpInfo(param.group, param.version, param.namespace, param.plural, param.name, param.body, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace scale of the specified namespace scoped custom object
+     * @param param the request object
+     */
     public replaceNamespacedCustomObjectScale(param: CustomObjectsApiReplaceNamespacedCustomObjectScaleRequest, options?: Configuration): Promise<any> {
         return this.api.replaceNamespacedCustomObjectScale(param.group, param.version, param.namespace, param.plural, param.name, param.body, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified namespace scoped custom object
+     * @param param the request object
+     */
+    public replaceNamespacedCustomObjectStatusWithHttpInfo(param: CustomObjectsApiReplaceNamespacedCustomObjectStatusRequest, options?: Configuration): Promise<HttpInfo<any>> {
+        return this.api.replaceNamespacedCustomObjectStatusWithHttpInfo(param.group, param.version, param.namespace, param.plural, param.name, param.body, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -22165,6 +25693,14 @@ export class ObjectDiscoveryApi {
 
     public constructor(configuration: Configuration, requestFactory?: DiscoveryApiRequestFactory, responseProcessor?: DiscoveryApiResponseProcessor) {
         this.api = new ObservableDiscoveryApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: DiscoveryApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -22602,8 +26138,24 @@ export class ObjectDiscoveryV1Api {
      * create an EndpointSlice
      * @param param the request object
      */
+    public createNamespacedEndpointSliceWithHttpInfo(param: DiscoveryV1ApiCreateNamespacedEndpointSliceRequest, options?: Configuration): Promise<HttpInfo<V1EndpointSlice>> {
+        return this.api.createNamespacedEndpointSliceWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create an EndpointSlice
+     * @param param the request object
+     */
     public createNamespacedEndpointSlice(param: DiscoveryV1ApiCreateNamespacedEndpointSliceRequest, options?: Configuration): Promise<V1EndpointSlice> {
         return this.api.createNamespacedEndpointSlice(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of EndpointSlice
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedEndpointSliceWithHttpInfo(param: DiscoveryV1ApiDeleteCollectionNamespacedEndpointSliceRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedEndpointSliceWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -22618,8 +26170,24 @@ export class ObjectDiscoveryV1Api {
      * delete an EndpointSlice
      * @param param the request object
      */
+    public deleteNamespacedEndpointSliceWithHttpInfo(param: DiscoveryV1ApiDeleteNamespacedEndpointSliceRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedEndpointSliceWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete an EndpointSlice
+     * @param param the request object
+     */
     public deleteNamespacedEndpointSlice(param: DiscoveryV1ApiDeleteNamespacedEndpointSliceRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedEndpointSlice(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: DiscoveryV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -22634,8 +26202,24 @@ export class ObjectDiscoveryV1Api {
      * list or watch objects of kind EndpointSlice
      * @param param the request object
      */
+    public listEndpointSliceForAllNamespacesWithHttpInfo(param: DiscoveryV1ApiListEndpointSliceForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1EndpointSliceList>> {
+        return this.api.listEndpointSliceForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind EndpointSlice
+     * @param param the request object
+     */
     public listEndpointSliceForAllNamespaces(param: DiscoveryV1ApiListEndpointSliceForAllNamespacesRequest = {}, options?: Configuration): Promise<V1EndpointSliceList> {
         return this.api.listEndpointSliceForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind EndpointSlice
+     * @param param the request object
+     */
+    public listNamespacedEndpointSliceWithHttpInfo(param: DiscoveryV1ApiListNamespacedEndpointSliceRequest, options?: Configuration): Promise<HttpInfo<V1EndpointSliceList>> {
+        return this.api.listNamespacedEndpointSliceWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -22650,6 +26234,14 @@ export class ObjectDiscoveryV1Api {
      * partially update the specified EndpointSlice
      * @param param the request object
      */
+    public patchNamespacedEndpointSliceWithHttpInfo(param: DiscoveryV1ApiPatchNamespacedEndpointSliceRequest, options?: Configuration): Promise<HttpInfo<V1EndpointSlice>> {
+        return this.api.patchNamespacedEndpointSliceWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified EndpointSlice
+     * @param param the request object
+     */
     public patchNamespacedEndpointSlice(param: DiscoveryV1ApiPatchNamespacedEndpointSliceRequest, options?: Configuration): Promise<V1EndpointSlice> {
         return this.api.patchNamespacedEndpointSlice(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
@@ -22658,8 +26250,24 @@ export class ObjectDiscoveryV1Api {
      * read the specified EndpointSlice
      * @param param the request object
      */
+    public readNamespacedEndpointSliceWithHttpInfo(param: DiscoveryV1ApiReadNamespacedEndpointSliceRequest, options?: Configuration): Promise<HttpInfo<V1EndpointSlice>> {
+        return this.api.readNamespacedEndpointSliceWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified EndpointSlice
+     * @param param the request object
+     */
     public readNamespacedEndpointSlice(param: DiscoveryV1ApiReadNamespacedEndpointSliceRequest, options?: Configuration): Promise<V1EndpointSlice> {
         return this.api.readNamespacedEndpointSlice(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified EndpointSlice
+     * @param param the request object
+     */
+    public replaceNamespacedEndpointSliceWithHttpInfo(param: DiscoveryV1ApiReplaceNamespacedEndpointSliceRequest, options?: Configuration): Promise<HttpInfo<V1EndpointSlice>> {
+        return this.api.replaceNamespacedEndpointSliceWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -23097,8 +26705,24 @@ export class ObjectDiscoveryV1beta1Api {
      * create an EndpointSlice
      * @param param the request object
      */
+    public createNamespacedEndpointSliceWithHttpInfo(param: DiscoveryV1beta1ApiCreateNamespacedEndpointSliceRequest, options?: Configuration): Promise<HttpInfo<V1beta1EndpointSlice>> {
+        return this.api.createNamespacedEndpointSliceWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create an EndpointSlice
+     * @param param the request object
+     */
     public createNamespacedEndpointSlice(param: DiscoveryV1beta1ApiCreateNamespacedEndpointSliceRequest, options?: Configuration): Promise<V1beta1EndpointSlice> {
         return this.api.createNamespacedEndpointSlice(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of EndpointSlice
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedEndpointSliceWithHttpInfo(param: DiscoveryV1beta1ApiDeleteCollectionNamespacedEndpointSliceRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedEndpointSliceWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -23113,8 +26737,24 @@ export class ObjectDiscoveryV1beta1Api {
      * delete an EndpointSlice
      * @param param the request object
      */
+    public deleteNamespacedEndpointSliceWithHttpInfo(param: DiscoveryV1beta1ApiDeleteNamespacedEndpointSliceRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedEndpointSliceWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete an EndpointSlice
+     * @param param the request object
+     */
     public deleteNamespacedEndpointSlice(param: DiscoveryV1beta1ApiDeleteNamespacedEndpointSliceRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedEndpointSlice(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: DiscoveryV1beta1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -23129,8 +26769,24 @@ export class ObjectDiscoveryV1beta1Api {
      * list or watch objects of kind EndpointSlice
      * @param param the request object
      */
+    public listEndpointSliceForAllNamespacesWithHttpInfo(param: DiscoveryV1beta1ApiListEndpointSliceForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1beta1EndpointSliceList>> {
+        return this.api.listEndpointSliceForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind EndpointSlice
+     * @param param the request object
+     */
     public listEndpointSliceForAllNamespaces(param: DiscoveryV1beta1ApiListEndpointSliceForAllNamespacesRequest = {}, options?: Configuration): Promise<V1beta1EndpointSliceList> {
         return this.api.listEndpointSliceForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind EndpointSlice
+     * @param param the request object
+     */
+    public listNamespacedEndpointSliceWithHttpInfo(param: DiscoveryV1beta1ApiListNamespacedEndpointSliceRequest, options?: Configuration): Promise<HttpInfo<V1beta1EndpointSliceList>> {
+        return this.api.listNamespacedEndpointSliceWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -23145,6 +26801,14 @@ export class ObjectDiscoveryV1beta1Api {
      * partially update the specified EndpointSlice
      * @param param the request object
      */
+    public patchNamespacedEndpointSliceWithHttpInfo(param: DiscoveryV1beta1ApiPatchNamespacedEndpointSliceRequest, options?: Configuration): Promise<HttpInfo<V1beta1EndpointSlice>> {
+        return this.api.patchNamespacedEndpointSliceWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified EndpointSlice
+     * @param param the request object
+     */
     public patchNamespacedEndpointSlice(param: DiscoveryV1beta1ApiPatchNamespacedEndpointSliceRequest, options?: Configuration): Promise<V1beta1EndpointSlice> {
         return this.api.patchNamespacedEndpointSlice(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
@@ -23153,8 +26817,24 @@ export class ObjectDiscoveryV1beta1Api {
      * read the specified EndpointSlice
      * @param param the request object
      */
+    public readNamespacedEndpointSliceWithHttpInfo(param: DiscoveryV1beta1ApiReadNamespacedEndpointSliceRequest, options?: Configuration): Promise<HttpInfo<V1beta1EndpointSlice>> {
+        return this.api.readNamespacedEndpointSliceWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified EndpointSlice
+     * @param param the request object
+     */
     public readNamespacedEndpointSlice(param: DiscoveryV1beta1ApiReadNamespacedEndpointSliceRequest, options?: Configuration): Promise<V1beta1EndpointSlice> {
         return this.api.readNamespacedEndpointSlice(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified EndpointSlice
+     * @param param the request object
+     */
+    public replaceNamespacedEndpointSliceWithHttpInfo(param: DiscoveryV1beta1ApiReplaceNamespacedEndpointSliceRequest, options?: Configuration): Promise<HttpInfo<V1beta1EndpointSlice>> {
+        return this.api.replaceNamespacedEndpointSliceWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -23178,6 +26858,14 @@ export class ObjectEventsApi {
 
     public constructor(configuration: Configuration, requestFactory?: EventsApiRequestFactory, responseProcessor?: EventsApiResponseProcessor) {
         this.api = new ObservableEventsApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: EventsApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -23615,8 +27303,24 @@ export class ObjectEventsV1Api {
      * create an Event
      * @param param the request object
      */
+    public createNamespacedEventWithHttpInfo(param: EventsV1ApiCreateNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<EventsV1Event>> {
+        return this.api.createNamespacedEventWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create an Event
+     * @param param the request object
+     */
     public createNamespacedEvent(param: EventsV1ApiCreateNamespacedEventRequest, options?: Configuration): Promise<EventsV1Event> {
         return this.api.createNamespacedEvent(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of Event
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedEventWithHttpInfo(param: EventsV1ApiDeleteCollectionNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedEventWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -23631,8 +27335,24 @@ export class ObjectEventsV1Api {
      * delete an Event
      * @param param the request object
      */
+    public deleteNamespacedEventWithHttpInfo(param: EventsV1ApiDeleteNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedEventWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete an Event
+     * @param param the request object
+     */
     public deleteNamespacedEvent(param: EventsV1ApiDeleteNamespacedEventRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedEvent(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: EventsV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -23647,8 +27367,24 @@ export class ObjectEventsV1Api {
      * list or watch objects of kind Event
      * @param param the request object
      */
+    public listEventForAllNamespacesWithHttpInfo(param: EventsV1ApiListEventForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<EventsV1EventList>> {
+        return this.api.listEventForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Event
+     * @param param the request object
+     */
     public listEventForAllNamespaces(param: EventsV1ApiListEventForAllNamespacesRequest = {}, options?: Configuration): Promise<EventsV1EventList> {
         return this.api.listEventForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Event
+     * @param param the request object
+     */
+    public listNamespacedEventWithHttpInfo(param: EventsV1ApiListNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<EventsV1EventList>> {
+        return this.api.listNamespacedEventWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -23663,6 +27399,14 @@ export class ObjectEventsV1Api {
      * partially update the specified Event
      * @param param the request object
      */
+    public patchNamespacedEventWithHttpInfo(param: EventsV1ApiPatchNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<EventsV1Event>> {
+        return this.api.patchNamespacedEventWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified Event
+     * @param param the request object
+     */
     public patchNamespacedEvent(param: EventsV1ApiPatchNamespacedEventRequest, options?: Configuration): Promise<EventsV1Event> {
         return this.api.patchNamespacedEvent(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
@@ -23671,8 +27415,24 @@ export class ObjectEventsV1Api {
      * read the specified Event
      * @param param the request object
      */
+    public readNamespacedEventWithHttpInfo(param: EventsV1ApiReadNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<EventsV1Event>> {
+        return this.api.readNamespacedEventWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified Event
+     * @param param the request object
+     */
     public readNamespacedEvent(param: EventsV1ApiReadNamespacedEventRequest, options?: Configuration): Promise<EventsV1Event> {
         return this.api.readNamespacedEvent(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified Event
+     * @param param the request object
+     */
+    public replaceNamespacedEventWithHttpInfo(param: EventsV1ApiReplaceNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<EventsV1Event>> {
+        return this.api.replaceNamespacedEventWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -24110,8 +27870,24 @@ export class ObjectEventsV1beta1Api {
      * create an Event
      * @param param the request object
      */
+    public createNamespacedEventWithHttpInfo(param: EventsV1beta1ApiCreateNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<V1beta1Event>> {
+        return this.api.createNamespacedEventWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create an Event
+     * @param param the request object
+     */
     public createNamespacedEvent(param: EventsV1beta1ApiCreateNamespacedEventRequest, options?: Configuration): Promise<V1beta1Event> {
         return this.api.createNamespacedEvent(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of Event
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedEventWithHttpInfo(param: EventsV1beta1ApiDeleteCollectionNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedEventWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -24126,8 +27902,24 @@ export class ObjectEventsV1beta1Api {
      * delete an Event
      * @param param the request object
      */
+    public deleteNamespacedEventWithHttpInfo(param: EventsV1beta1ApiDeleteNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedEventWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete an Event
+     * @param param the request object
+     */
     public deleteNamespacedEvent(param: EventsV1beta1ApiDeleteNamespacedEventRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedEvent(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: EventsV1beta1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -24142,8 +27934,24 @@ export class ObjectEventsV1beta1Api {
      * list or watch objects of kind Event
      * @param param the request object
      */
+    public listEventForAllNamespacesWithHttpInfo(param: EventsV1beta1ApiListEventForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1beta1EventList>> {
+        return this.api.listEventForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Event
+     * @param param the request object
+     */
     public listEventForAllNamespaces(param: EventsV1beta1ApiListEventForAllNamespacesRequest = {}, options?: Configuration): Promise<V1beta1EventList> {
         return this.api.listEventForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Event
+     * @param param the request object
+     */
+    public listNamespacedEventWithHttpInfo(param: EventsV1beta1ApiListNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<V1beta1EventList>> {
+        return this.api.listNamespacedEventWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -24158,6 +27966,14 @@ export class ObjectEventsV1beta1Api {
      * partially update the specified Event
      * @param param the request object
      */
+    public patchNamespacedEventWithHttpInfo(param: EventsV1beta1ApiPatchNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<V1beta1Event>> {
+        return this.api.patchNamespacedEventWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified Event
+     * @param param the request object
+     */
     public patchNamespacedEvent(param: EventsV1beta1ApiPatchNamespacedEventRequest, options?: Configuration): Promise<V1beta1Event> {
         return this.api.patchNamespacedEvent(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
@@ -24166,8 +27982,24 @@ export class ObjectEventsV1beta1Api {
      * read the specified Event
      * @param param the request object
      */
+    public readNamespacedEventWithHttpInfo(param: EventsV1beta1ApiReadNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<V1beta1Event>> {
+        return this.api.readNamespacedEventWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified Event
+     * @param param the request object
+     */
     public readNamespacedEvent(param: EventsV1beta1ApiReadNamespacedEventRequest, options?: Configuration): Promise<V1beta1Event> {
         return this.api.readNamespacedEvent(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified Event
+     * @param param the request object
+     */
+    public replaceNamespacedEventWithHttpInfo(param: EventsV1beta1ApiReplaceNamespacedEventRequest, options?: Configuration): Promise<HttpInfo<V1beta1Event>> {
+        return this.api.replaceNamespacedEventWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -24191,6 +28023,14 @@ export class ObjectFlowcontrolApiserverApi {
 
     public constructor(configuration: Configuration, requestFactory?: FlowcontrolApiserverApiRequestFactory, responseProcessor?: FlowcontrolApiserverApiResponseProcessor) {
         this.api = new ObservableFlowcontrolApiserverApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: FlowcontrolApiserverApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -25000,8 +28840,24 @@ export class ObjectFlowcontrolApiserverV1beta1Api {
      * create a FlowSchema
      * @param param the request object
      */
+    public createFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiCreateFlowSchemaRequest, options?: Configuration): Promise<HttpInfo<V1beta1FlowSchema>> {
+        return this.api.createFlowSchemaWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a FlowSchema
+     * @param param the request object
+     */
     public createFlowSchema(param: FlowcontrolApiserverV1beta1ApiCreateFlowSchemaRequest, options?: Configuration): Promise<V1beta1FlowSchema> {
         return this.api.createFlowSchema(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a PriorityLevelConfiguration
+     * @param param the request object
+     */
+    public createPriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiCreatePriorityLevelConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1beta1PriorityLevelConfiguration>> {
+        return this.api.createPriorityLevelConfigurationWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -25016,8 +28872,24 @@ export class ObjectFlowcontrolApiserverV1beta1Api {
      * delete collection of FlowSchema
      * @param param the request object
      */
+    public deleteCollectionFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiDeleteCollectionFlowSchemaRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionFlowSchemaWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of FlowSchema
+     * @param param the request object
+     */
     public deleteCollectionFlowSchema(param: FlowcontrolApiserverV1beta1ApiDeleteCollectionFlowSchemaRequest = {}, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionFlowSchema(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of PriorityLevelConfiguration
+     * @param param the request object
+     */
+    public deleteCollectionPriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiDeleteCollectionPriorityLevelConfigurationRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionPriorityLevelConfigurationWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -25032,8 +28904,24 @@ export class ObjectFlowcontrolApiserverV1beta1Api {
      * delete a FlowSchema
      * @param param the request object
      */
+    public deleteFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiDeleteFlowSchemaRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteFlowSchemaWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a FlowSchema
+     * @param param the request object
+     */
     public deleteFlowSchema(param: FlowcontrolApiserverV1beta1ApiDeleteFlowSchemaRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteFlowSchema(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a PriorityLevelConfiguration
+     * @param param the request object
+     */
+    public deletePriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiDeletePriorityLevelConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deletePriorityLevelConfigurationWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -25048,8 +28936,24 @@ export class ObjectFlowcontrolApiserverV1beta1Api {
      * get available resources
      * @param param the request object
      */
+    public getAPIResourcesWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
     public getAPIResources(param: FlowcontrolApiserverV1beta1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<V1APIResourceList> {
         return this.api.getAPIResources( options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind FlowSchema
+     * @param param the request object
+     */
+    public listFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiListFlowSchemaRequest = {}, options?: Configuration): Promise<HttpInfo<V1beta1FlowSchemaList>> {
+        return this.api.listFlowSchemaWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -25064,8 +28968,24 @@ export class ObjectFlowcontrolApiserverV1beta1Api {
      * list or watch objects of kind PriorityLevelConfiguration
      * @param param the request object
      */
+    public listPriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiListPriorityLevelConfigurationRequest = {}, options?: Configuration): Promise<HttpInfo<V1beta1PriorityLevelConfigurationList>> {
+        return this.api.listPriorityLevelConfigurationWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind PriorityLevelConfiguration
+     * @param param the request object
+     */
     public listPriorityLevelConfiguration(param: FlowcontrolApiserverV1beta1ApiListPriorityLevelConfigurationRequest = {}, options?: Configuration): Promise<V1beta1PriorityLevelConfigurationList> {
         return this.api.listPriorityLevelConfiguration(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified FlowSchema
+     * @param param the request object
+     */
+    public patchFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiPatchFlowSchemaRequest, options?: Configuration): Promise<HttpInfo<V1beta1FlowSchema>> {
+        return this.api.patchFlowSchemaWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -25080,8 +29000,24 @@ export class ObjectFlowcontrolApiserverV1beta1Api {
      * partially update status of the specified FlowSchema
      * @param param the request object
      */
+    public patchFlowSchemaStatusWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiPatchFlowSchemaStatusRequest, options?: Configuration): Promise<HttpInfo<V1beta1FlowSchema>> {
+        return this.api.patchFlowSchemaStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified FlowSchema
+     * @param param the request object
+     */
     public patchFlowSchemaStatus(param: FlowcontrolApiserverV1beta1ApiPatchFlowSchemaStatusRequest, options?: Configuration): Promise<V1beta1FlowSchema> {
         return this.api.patchFlowSchemaStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified PriorityLevelConfiguration
+     * @param param the request object
+     */
+    public patchPriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiPatchPriorityLevelConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1beta1PriorityLevelConfiguration>> {
+        return this.api.patchPriorityLevelConfigurationWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -25096,8 +29032,24 @@ export class ObjectFlowcontrolApiserverV1beta1Api {
      * partially update status of the specified PriorityLevelConfiguration
      * @param param the request object
      */
+    public patchPriorityLevelConfigurationStatusWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiPatchPriorityLevelConfigurationStatusRequest, options?: Configuration): Promise<HttpInfo<V1beta1PriorityLevelConfiguration>> {
+        return this.api.patchPriorityLevelConfigurationStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified PriorityLevelConfiguration
+     * @param param the request object
+     */
     public patchPriorityLevelConfigurationStatus(param: FlowcontrolApiserverV1beta1ApiPatchPriorityLevelConfigurationStatusRequest, options?: Configuration): Promise<V1beta1PriorityLevelConfiguration> {
         return this.api.patchPriorityLevelConfigurationStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * read the specified FlowSchema
+     * @param param the request object
+     */
+    public readFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiReadFlowSchemaRequest, options?: Configuration): Promise<HttpInfo<V1beta1FlowSchema>> {
+        return this.api.readFlowSchemaWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -25112,8 +29064,24 @@ export class ObjectFlowcontrolApiserverV1beta1Api {
      * read status of the specified FlowSchema
      * @param param the request object
      */
+    public readFlowSchemaStatusWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiReadFlowSchemaStatusRequest, options?: Configuration): Promise<HttpInfo<V1beta1FlowSchema>> {
+        return this.api.readFlowSchemaStatusWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified FlowSchema
+     * @param param the request object
+     */
     public readFlowSchemaStatus(param: FlowcontrolApiserverV1beta1ApiReadFlowSchemaStatusRequest, options?: Configuration): Promise<V1beta1FlowSchema> {
         return this.api.readFlowSchemaStatus(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified PriorityLevelConfiguration
+     * @param param the request object
+     */
+    public readPriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiReadPriorityLevelConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1beta1PriorityLevelConfiguration>> {
+        return this.api.readPriorityLevelConfigurationWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -25128,8 +29096,24 @@ export class ObjectFlowcontrolApiserverV1beta1Api {
      * read status of the specified PriorityLevelConfiguration
      * @param param the request object
      */
+    public readPriorityLevelConfigurationStatusWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiReadPriorityLevelConfigurationStatusRequest, options?: Configuration): Promise<HttpInfo<V1beta1PriorityLevelConfiguration>> {
+        return this.api.readPriorityLevelConfigurationStatusWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified PriorityLevelConfiguration
+     * @param param the request object
+     */
     public readPriorityLevelConfigurationStatus(param: FlowcontrolApiserverV1beta1ApiReadPriorityLevelConfigurationStatusRequest, options?: Configuration): Promise<V1beta1PriorityLevelConfiguration> {
         return this.api.readPriorityLevelConfigurationStatus(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified FlowSchema
+     * @param param the request object
+     */
+    public replaceFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiReplaceFlowSchemaRequest, options?: Configuration): Promise<HttpInfo<V1beta1FlowSchema>> {
+        return this.api.replaceFlowSchemaWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -25144,6 +29128,14 @@ export class ObjectFlowcontrolApiserverV1beta1Api {
      * replace status of the specified FlowSchema
      * @param param the request object
      */
+    public replaceFlowSchemaStatusWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiReplaceFlowSchemaStatusRequest, options?: Configuration): Promise<HttpInfo<V1beta1FlowSchema>> {
+        return this.api.replaceFlowSchemaStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified FlowSchema
+     * @param param the request object
+     */
     public replaceFlowSchemaStatus(param: FlowcontrolApiserverV1beta1ApiReplaceFlowSchemaStatusRequest, options?: Configuration): Promise<V1beta1FlowSchema> {
         return this.api.replaceFlowSchemaStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
@@ -25152,8 +29144,24 @@ export class ObjectFlowcontrolApiserverV1beta1Api {
      * replace the specified PriorityLevelConfiguration
      * @param param the request object
      */
+    public replacePriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiReplacePriorityLevelConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1beta1PriorityLevelConfiguration>> {
+        return this.api.replacePriorityLevelConfigurationWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified PriorityLevelConfiguration
+     * @param param the request object
+     */
     public replacePriorityLevelConfiguration(param: FlowcontrolApiserverV1beta1ApiReplacePriorityLevelConfigurationRequest, options?: Configuration): Promise<V1beta1PriorityLevelConfiguration> {
         return this.api.replacePriorityLevelConfiguration(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified PriorityLevelConfiguration
+     * @param param the request object
+     */
+    public replacePriorityLevelConfigurationStatusWithHttpInfo(param: FlowcontrolApiserverV1beta1ApiReplacePriorityLevelConfigurationStatusRequest, options?: Configuration): Promise<HttpInfo<V1beta1PriorityLevelConfiguration>> {
+        return this.api.replacePriorityLevelConfigurationStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -25177,6 +29185,14 @@ export class ObjectInternalApiserverApi {
 
     public constructor(configuration: Configuration, requestFactory?: InternalApiserverApiRequestFactory, responseProcessor?: InternalApiserverApiResponseProcessor) {
         this.api = new ObservableInternalApiserverApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: InternalApiserverApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -25596,8 +29612,24 @@ export class ObjectInternalApiserverV1alpha1Api {
      * create a StorageVersion
      * @param param the request object
      */
+    public createStorageVersionWithHttpInfo(param: InternalApiserverV1alpha1ApiCreateStorageVersionRequest, options?: Configuration): Promise<HttpInfo<V1alpha1StorageVersion>> {
+        return this.api.createStorageVersionWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a StorageVersion
+     * @param param the request object
+     */
     public createStorageVersion(param: InternalApiserverV1alpha1ApiCreateStorageVersionRequest, options?: Configuration): Promise<V1alpha1StorageVersion> {
         return this.api.createStorageVersion(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of StorageVersion
+     * @param param the request object
+     */
+    public deleteCollectionStorageVersionWithHttpInfo(param: InternalApiserverV1alpha1ApiDeleteCollectionStorageVersionRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionStorageVersionWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -25612,8 +29644,24 @@ export class ObjectInternalApiserverV1alpha1Api {
      * delete a StorageVersion
      * @param param the request object
      */
+    public deleteStorageVersionWithHttpInfo(param: InternalApiserverV1alpha1ApiDeleteStorageVersionRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteStorageVersionWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a StorageVersion
+     * @param param the request object
+     */
     public deleteStorageVersion(param: InternalApiserverV1alpha1ApiDeleteStorageVersionRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteStorageVersion(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: InternalApiserverV1alpha1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -25628,8 +29676,24 @@ export class ObjectInternalApiserverV1alpha1Api {
      * list or watch objects of kind StorageVersion
      * @param param the request object
      */
+    public listStorageVersionWithHttpInfo(param: InternalApiserverV1alpha1ApiListStorageVersionRequest = {}, options?: Configuration): Promise<HttpInfo<V1alpha1StorageVersionList>> {
+        return this.api.listStorageVersionWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind StorageVersion
+     * @param param the request object
+     */
     public listStorageVersion(param: InternalApiserverV1alpha1ApiListStorageVersionRequest = {}, options?: Configuration): Promise<V1alpha1StorageVersionList> {
         return this.api.listStorageVersion(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified StorageVersion
+     * @param param the request object
+     */
+    public patchStorageVersionWithHttpInfo(param: InternalApiserverV1alpha1ApiPatchStorageVersionRequest, options?: Configuration): Promise<HttpInfo<V1alpha1StorageVersion>> {
+        return this.api.patchStorageVersionWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -25644,8 +29708,24 @@ export class ObjectInternalApiserverV1alpha1Api {
      * partially update status of the specified StorageVersion
      * @param param the request object
      */
+    public patchStorageVersionStatusWithHttpInfo(param: InternalApiserverV1alpha1ApiPatchStorageVersionStatusRequest, options?: Configuration): Promise<HttpInfo<V1alpha1StorageVersion>> {
+        return this.api.patchStorageVersionStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified StorageVersion
+     * @param param the request object
+     */
     public patchStorageVersionStatus(param: InternalApiserverV1alpha1ApiPatchStorageVersionStatusRequest, options?: Configuration): Promise<V1alpha1StorageVersion> {
         return this.api.patchStorageVersionStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * read the specified StorageVersion
+     * @param param the request object
+     */
+    public readStorageVersionWithHttpInfo(param: InternalApiserverV1alpha1ApiReadStorageVersionRequest, options?: Configuration): Promise<HttpInfo<V1alpha1StorageVersion>> {
+        return this.api.readStorageVersionWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -25660,6 +29740,14 @@ export class ObjectInternalApiserverV1alpha1Api {
      * read status of the specified StorageVersion
      * @param param the request object
      */
+    public readStorageVersionStatusWithHttpInfo(param: InternalApiserverV1alpha1ApiReadStorageVersionStatusRequest, options?: Configuration): Promise<HttpInfo<V1alpha1StorageVersion>> {
+        return this.api.readStorageVersionStatusWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified StorageVersion
+     * @param param the request object
+     */
     public readStorageVersionStatus(param: InternalApiserverV1alpha1ApiReadStorageVersionStatusRequest, options?: Configuration): Promise<V1alpha1StorageVersion> {
         return this.api.readStorageVersionStatus(param.name, param.pretty,  options).toPromise();
     }
@@ -25668,8 +29756,24 @@ export class ObjectInternalApiserverV1alpha1Api {
      * replace the specified StorageVersion
      * @param param the request object
      */
+    public replaceStorageVersionWithHttpInfo(param: InternalApiserverV1alpha1ApiReplaceStorageVersionRequest, options?: Configuration): Promise<HttpInfo<V1alpha1StorageVersion>> {
+        return this.api.replaceStorageVersionWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified StorageVersion
+     * @param param the request object
+     */
     public replaceStorageVersion(param: InternalApiserverV1alpha1ApiReplaceStorageVersionRequest, options?: Configuration): Promise<V1alpha1StorageVersion> {
         return this.api.replaceStorageVersion(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified StorageVersion
+     * @param param the request object
+     */
+    public replaceStorageVersionStatusWithHttpInfo(param: InternalApiserverV1alpha1ApiReplaceStorageVersionStatusRequest, options?: Configuration): Promise<HttpInfo<V1alpha1StorageVersion>> {
+        return this.api.replaceStorageVersionStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -25707,8 +29811,22 @@ export class ObjectLogsApi {
     /**
      * @param param the request object
      */
+    public logFileHandlerWithHttpInfo(param: LogsApiLogFileHandlerRequest, options?: Configuration): Promise<HttpInfo<void>> {
+        return this.api.logFileHandlerWithHttpInfo(param.logpath,  options).toPromise();
+    }
+
+    /**
+     * @param param the request object
+     */
     public logFileHandler(param: LogsApiLogFileHandlerRequest, options?: Configuration): Promise<void> {
         return this.api.logFileHandler(param.logpath,  options).toPromise();
+    }
+
+    /**
+     * @param param the request object
+     */
+    public logFileListHandlerWithHttpInfo(param: LogsApiLogFileListHandlerRequest = {}, options?: Configuration): Promise<HttpInfo<void>> {
+        return this.api.logFileListHandlerWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -25731,6 +29849,14 @@ export class ObjectNetworkingApi {
 
     public constructor(configuration: Configuration, requestFactory?: NetworkingApiRequestFactory, responseProcessor?: NetworkingApiResponseProcessor) {
         this.api = new ObservableNetworkingApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: NetworkingApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -26984,8 +31110,24 @@ export class ObjectNetworkingV1Api {
      * create an IngressClass
      * @param param the request object
      */
+    public createIngressClassWithHttpInfo(param: NetworkingV1ApiCreateIngressClassRequest, options?: Configuration): Promise<HttpInfo<V1IngressClass>> {
+        return this.api.createIngressClassWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create an IngressClass
+     * @param param the request object
+     */
     public createIngressClass(param: NetworkingV1ApiCreateIngressClassRequest, options?: Configuration): Promise<V1IngressClass> {
         return this.api.createIngressClass(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create an Ingress
+     * @param param the request object
+     */
+    public createNamespacedIngressWithHttpInfo(param: NetworkingV1ApiCreateNamespacedIngressRequest, options?: Configuration): Promise<HttpInfo<V1Ingress>> {
+        return this.api.createNamespacedIngressWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -27000,8 +31142,24 @@ export class ObjectNetworkingV1Api {
      * create a NetworkPolicy
      * @param param the request object
      */
+    public createNamespacedNetworkPolicyWithHttpInfo(param: NetworkingV1ApiCreateNamespacedNetworkPolicyRequest, options?: Configuration): Promise<HttpInfo<V1NetworkPolicy>> {
+        return this.api.createNamespacedNetworkPolicyWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a NetworkPolicy
+     * @param param the request object
+     */
     public createNamespacedNetworkPolicy(param: NetworkingV1ApiCreateNamespacedNetworkPolicyRequest, options?: Configuration): Promise<V1NetworkPolicy> {
         return this.api.createNamespacedNetworkPolicy(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of IngressClass
+     * @param param the request object
+     */
+    public deleteCollectionIngressClassWithHttpInfo(param: NetworkingV1ApiDeleteCollectionIngressClassRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionIngressClassWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -27016,8 +31174,24 @@ export class ObjectNetworkingV1Api {
      * delete collection of Ingress
      * @param param the request object
      */
+    public deleteCollectionNamespacedIngressWithHttpInfo(param: NetworkingV1ApiDeleteCollectionNamespacedIngressRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedIngressWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of Ingress
+     * @param param the request object
+     */
     public deleteCollectionNamespacedIngress(param: NetworkingV1ApiDeleteCollectionNamespacedIngressRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionNamespacedIngress(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of NetworkPolicy
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedNetworkPolicyWithHttpInfo(param: NetworkingV1ApiDeleteCollectionNamespacedNetworkPolicyRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedNetworkPolicyWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -27032,8 +31206,24 @@ export class ObjectNetworkingV1Api {
      * delete an IngressClass
      * @param param the request object
      */
+    public deleteIngressClassWithHttpInfo(param: NetworkingV1ApiDeleteIngressClassRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteIngressClassWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete an IngressClass
+     * @param param the request object
+     */
     public deleteIngressClass(param: NetworkingV1ApiDeleteIngressClassRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteIngressClass(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete an Ingress
+     * @param param the request object
+     */
+    public deleteNamespacedIngressWithHttpInfo(param: NetworkingV1ApiDeleteNamespacedIngressRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedIngressWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -27048,8 +31238,24 @@ export class ObjectNetworkingV1Api {
      * delete a NetworkPolicy
      * @param param the request object
      */
+    public deleteNamespacedNetworkPolicyWithHttpInfo(param: NetworkingV1ApiDeleteNamespacedNetworkPolicyRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedNetworkPolicyWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a NetworkPolicy
+     * @param param the request object
+     */
     public deleteNamespacedNetworkPolicy(param: NetworkingV1ApiDeleteNamespacedNetworkPolicyRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedNetworkPolicy(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: NetworkingV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -27064,8 +31270,24 @@ export class ObjectNetworkingV1Api {
      * list or watch objects of kind IngressClass
      * @param param the request object
      */
+    public listIngressClassWithHttpInfo(param: NetworkingV1ApiListIngressClassRequest = {}, options?: Configuration): Promise<HttpInfo<V1IngressClassList>> {
+        return this.api.listIngressClassWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind IngressClass
+     * @param param the request object
+     */
     public listIngressClass(param: NetworkingV1ApiListIngressClassRequest = {}, options?: Configuration): Promise<V1IngressClassList> {
         return this.api.listIngressClass(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Ingress
+     * @param param the request object
+     */
+    public listIngressForAllNamespacesWithHttpInfo(param: NetworkingV1ApiListIngressForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1IngressList>> {
+        return this.api.listIngressForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -27080,8 +31302,24 @@ export class ObjectNetworkingV1Api {
      * list or watch objects of kind Ingress
      * @param param the request object
      */
+    public listNamespacedIngressWithHttpInfo(param: NetworkingV1ApiListNamespacedIngressRequest, options?: Configuration): Promise<HttpInfo<V1IngressList>> {
+        return this.api.listNamespacedIngressWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Ingress
+     * @param param the request object
+     */
     public listNamespacedIngress(param: NetworkingV1ApiListNamespacedIngressRequest, options?: Configuration): Promise<V1IngressList> {
         return this.api.listNamespacedIngress(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind NetworkPolicy
+     * @param param the request object
+     */
+    public listNamespacedNetworkPolicyWithHttpInfo(param: NetworkingV1ApiListNamespacedNetworkPolicyRequest, options?: Configuration): Promise<HttpInfo<V1NetworkPolicyList>> {
+        return this.api.listNamespacedNetworkPolicyWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -27096,8 +31334,24 @@ export class ObjectNetworkingV1Api {
      * list or watch objects of kind NetworkPolicy
      * @param param the request object
      */
+    public listNetworkPolicyForAllNamespacesWithHttpInfo(param: NetworkingV1ApiListNetworkPolicyForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1NetworkPolicyList>> {
+        return this.api.listNetworkPolicyForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind NetworkPolicy
+     * @param param the request object
+     */
     public listNetworkPolicyForAllNamespaces(param: NetworkingV1ApiListNetworkPolicyForAllNamespacesRequest = {}, options?: Configuration): Promise<V1NetworkPolicyList> {
         return this.api.listNetworkPolicyForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified IngressClass
+     * @param param the request object
+     */
+    public patchIngressClassWithHttpInfo(param: NetworkingV1ApiPatchIngressClassRequest, options?: Configuration): Promise<HttpInfo<V1IngressClass>> {
+        return this.api.patchIngressClassWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -27112,8 +31366,24 @@ export class ObjectNetworkingV1Api {
      * partially update the specified Ingress
      * @param param the request object
      */
+    public patchNamespacedIngressWithHttpInfo(param: NetworkingV1ApiPatchNamespacedIngressRequest, options?: Configuration): Promise<HttpInfo<V1Ingress>> {
+        return this.api.patchNamespacedIngressWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified Ingress
+     * @param param the request object
+     */
     public patchNamespacedIngress(param: NetworkingV1ApiPatchNamespacedIngressRequest, options?: Configuration): Promise<V1Ingress> {
         return this.api.patchNamespacedIngress(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified Ingress
+     * @param param the request object
+     */
+    public patchNamespacedIngressStatusWithHttpInfo(param: NetworkingV1ApiPatchNamespacedIngressStatusRequest, options?: Configuration): Promise<HttpInfo<V1Ingress>> {
+        return this.api.patchNamespacedIngressStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -27128,8 +31398,24 @@ export class ObjectNetworkingV1Api {
      * partially update the specified NetworkPolicy
      * @param param the request object
      */
+    public patchNamespacedNetworkPolicyWithHttpInfo(param: NetworkingV1ApiPatchNamespacedNetworkPolicyRequest, options?: Configuration): Promise<HttpInfo<V1NetworkPolicy>> {
+        return this.api.patchNamespacedNetworkPolicyWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified NetworkPolicy
+     * @param param the request object
+     */
     public patchNamespacedNetworkPolicy(param: NetworkingV1ApiPatchNamespacedNetworkPolicyRequest, options?: Configuration): Promise<V1NetworkPolicy> {
         return this.api.patchNamespacedNetworkPolicy(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * read the specified IngressClass
+     * @param param the request object
+     */
+    public readIngressClassWithHttpInfo(param: NetworkingV1ApiReadIngressClassRequest, options?: Configuration): Promise<HttpInfo<V1IngressClass>> {
+        return this.api.readIngressClassWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -27144,8 +31430,24 @@ export class ObjectNetworkingV1Api {
      * read the specified Ingress
      * @param param the request object
      */
+    public readNamespacedIngressWithHttpInfo(param: NetworkingV1ApiReadNamespacedIngressRequest, options?: Configuration): Promise<HttpInfo<V1Ingress>> {
+        return this.api.readNamespacedIngressWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified Ingress
+     * @param param the request object
+     */
     public readNamespacedIngress(param: NetworkingV1ApiReadNamespacedIngressRequest, options?: Configuration): Promise<V1Ingress> {
         return this.api.readNamespacedIngress(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified Ingress
+     * @param param the request object
+     */
+    public readNamespacedIngressStatusWithHttpInfo(param: NetworkingV1ApiReadNamespacedIngressStatusRequest, options?: Configuration): Promise<HttpInfo<V1Ingress>> {
+        return this.api.readNamespacedIngressStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -27160,8 +31462,24 @@ export class ObjectNetworkingV1Api {
      * read the specified NetworkPolicy
      * @param param the request object
      */
+    public readNamespacedNetworkPolicyWithHttpInfo(param: NetworkingV1ApiReadNamespacedNetworkPolicyRequest, options?: Configuration): Promise<HttpInfo<V1NetworkPolicy>> {
+        return this.api.readNamespacedNetworkPolicyWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified NetworkPolicy
+     * @param param the request object
+     */
     public readNamespacedNetworkPolicy(param: NetworkingV1ApiReadNamespacedNetworkPolicyRequest, options?: Configuration): Promise<V1NetworkPolicy> {
         return this.api.readNamespacedNetworkPolicy(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified IngressClass
+     * @param param the request object
+     */
+    public replaceIngressClassWithHttpInfo(param: NetworkingV1ApiReplaceIngressClassRequest, options?: Configuration): Promise<HttpInfo<V1IngressClass>> {
+        return this.api.replaceIngressClassWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -27176,6 +31494,14 @@ export class ObjectNetworkingV1Api {
      * replace the specified Ingress
      * @param param the request object
      */
+    public replaceNamespacedIngressWithHttpInfo(param: NetworkingV1ApiReplaceNamespacedIngressRequest, options?: Configuration): Promise<HttpInfo<V1Ingress>> {
+        return this.api.replaceNamespacedIngressWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified Ingress
+     * @param param the request object
+     */
     public replaceNamespacedIngress(param: NetworkingV1ApiReplaceNamespacedIngressRequest, options?: Configuration): Promise<V1Ingress> {
         return this.api.replaceNamespacedIngress(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
@@ -27184,8 +31510,24 @@ export class ObjectNetworkingV1Api {
      * replace status of the specified Ingress
      * @param param the request object
      */
+    public replaceNamespacedIngressStatusWithHttpInfo(param: NetworkingV1ApiReplaceNamespacedIngressStatusRequest, options?: Configuration): Promise<HttpInfo<V1Ingress>> {
+        return this.api.replaceNamespacedIngressStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified Ingress
+     * @param param the request object
+     */
     public replaceNamespacedIngressStatus(param: NetworkingV1ApiReplaceNamespacedIngressStatusRequest, options?: Configuration): Promise<V1Ingress> {
         return this.api.replaceNamespacedIngressStatus(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified NetworkPolicy
+     * @param param the request object
+     */
+    public replaceNamespacedNetworkPolicyWithHttpInfo(param: NetworkingV1ApiReplaceNamespacedNetworkPolicyRequest, options?: Configuration): Promise<HttpInfo<V1NetworkPolicy>> {
+        return this.api.replaceNamespacedNetworkPolicyWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -27209,6 +31551,14 @@ export class ObjectNodeApi {
 
     public constructor(configuration: Configuration, requestFactory?: NodeApiRequestFactory, responseProcessor?: NodeApiResponseProcessor) {
         this.api = new ObservableNodeApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: NodeApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -27541,8 +31891,24 @@ export class ObjectNodeV1Api {
      * create a RuntimeClass
      * @param param the request object
      */
+    public createRuntimeClassWithHttpInfo(param: NodeV1ApiCreateRuntimeClassRequest, options?: Configuration): Promise<HttpInfo<V1RuntimeClass>> {
+        return this.api.createRuntimeClassWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a RuntimeClass
+     * @param param the request object
+     */
     public createRuntimeClass(param: NodeV1ApiCreateRuntimeClassRequest, options?: Configuration): Promise<V1RuntimeClass> {
         return this.api.createRuntimeClass(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of RuntimeClass
+     * @param param the request object
+     */
+    public deleteCollectionRuntimeClassWithHttpInfo(param: NodeV1ApiDeleteCollectionRuntimeClassRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionRuntimeClassWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -27557,8 +31923,24 @@ export class ObjectNodeV1Api {
      * delete a RuntimeClass
      * @param param the request object
      */
+    public deleteRuntimeClassWithHttpInfo(param: NodeV1ApiDeleteRuntimeClassRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteRuntimeClassWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a RuntimeClass
+     * @param param the request object
+     */
     public deleteRuntimeClass(param: NodeV1ApiDeleteRuntimeClassRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteRuntimeClass(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: NodeV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -27573,8 +31955,24 @@ export class ObjectNodeV1Api {
      * list or watch objects of kind RuntimeClass
      * @param param the request object
      */
+    public listRuntimeClassWithHttpInfo(param: NodeV1ApiListRuntimeClassRequest = {}, options?: Configuration): Promise<HttpInfo<V1RuntimeClassList>> {
+        return this.api.listRuntimeClassWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind RuntimeClass
+     * @param param the request object
+     */
     public listRuntimeClass(param: NodeV1ApiListRuntimeClassRequest = {}, options?: Configuration): Promise<V1RuntimeClassList> {
         return this.api.listRuntimeClass(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified RuntimeClass
+     * @param param the request object
+     */
+    public patchRuntimeClassWithHttpInfo(param: NodeV1ApiPatchRuntimeClassRequest, options?: Configuration): Promise<HttpInfo<V1RuntimeClass>> {
+        return this.api.patchRuntimeClassWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -27589,8 +31987,24 @@ export class ObjectNodeV1Api {
      * read the specified RuntimeClass
      * @param param the request object
      */
+    public readRuntimeClassWithHttpInfo(param: NodeV1ApiReadRuntimeClassRequest, options?: Configuration): Promise<HttpInfo<V1RuntimeClass>> {
+        return this.api.readRuntimeClassWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified RuntimeClass
+     * @param param the request object
+     */
     public readRuntimeClass(param: NodeV1ApiReadRuntimeClassRequest, options?: Configuration): Promise<V1RuntimeClass> {
         return this.api.readRuntimeClass(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified RuntimeClass
+     * @param param the request object
+     */
+    public replaceRuntimeClassWithHttpInfo(param: NodeV1ApiReplaceRuntimeClassRequest, options?: Configuration): Promise<HttpInfo<V1RuntimeClass>> {
+        return this.api.replaceRuntimeClassWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -27923,8 +32337,24 @@ export class ObjectNodeV1alpha1Api {
      * create a RuntimeClass
      * @param param the request object
      */
+    public createRuntimeClassWithHttpInfo(param: NodeV1alpha1ApiCreateRuntimeClassRequest, options?: Configuration): Promise<HttpInfo<V1alpha1RuntimeClass>> {
+        return this.api.createRuntimeClassWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a RuntimeClass
+     * @param param the request object
+     */
     public createRuntimeClass(param: NodeV1alpha1ApiCreateRuntimeClassRequest, options?: Configuration): Promise<V1alpha1RuntimeClass> {
         return this.api.createRuntimeClass(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of RuntimeClass
+     * @param param the request object
+     */
+    public deleteCollectionRuntimeClassWithHttpInfo(param: NodeV1alpha1ApiDeleteCollectionRuntimeClassRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionRuntimeClassWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -27939,8 +32369,24 @@ export class ObjectNodeV1alpha1Api {
      * delete a RuntimeClass
      * @param param the request object
      */
+    public deleteRuntimeClassWithHttpInfo(param: NodeV1alpha1ApiDeleteRuntimeClassRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteRuntimeClassWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a RuntimeClass
+     * @param param the request object
+     */
     public deleteRuntimeClass(param: NodeV1alpha1ApiDeleteRuntimeClassRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteRuntimeClass(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: NodeV1alpha1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -27955,8 +32401,24 @@ export class ObjectNodeV1alpha1Api {
      * list or watch objects of kind RuntimeClass
      * @param param the request object
      */
+    public listRuntimeClassWithHttpInfo(param: NodeV1alpha1ApiListRuntimeClassRequest = {}, options?: Configuration): Promise<HttpInfo<V1alpha1RuntimeClassList>> {
+        return this.api.listRuntimeClassWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind RuntimeClass
+     * @param param the request object
+     */
     public listRuntimeClass(param: NodeV1alpha1ApiListRuntimeClassRequest = {}, options?: Configuration): Promise<V1alpha1RuntimeClassList> {
         return this.api.listRuntimeClass(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified RuntimeClass
+     * @param param the request object
+     */
+    public patchRuntimeClassWithHttpInfo(param: NodeV1alpha1ApiPatchRuntimeClassRequest, options?: Configuration): Promise<HttpInfo<V1alpha1RuntimeClass>> {
+        return this.api.patchRuntimeClassWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -27971,8 +32433,24 @@ export class ObjectNodeV1alpha1Api {
      * read the specified RuntimeClass
      * @param param the request object
      */
+    public readRuntimeClassWithHttpInfo(param: NodeV1alpha1ApiReadRuntimeClassRequest, options?: Configuration): Promise<HttpInfo<V1alpha1RuntimeClass>> {
+        return this.api.readRuntimeClassWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified RuntimeClass
+     * @param param the request object
+     */
     public readRuntimeClass(param: NodeV1alpha1ApiReadRuntimeClassRequest, options?: Configuration): Promise<V1alpha1RuntimeClass> {
         return this.api.readRuntimeClass(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified RuntimeClass
+     * @param param the request object
+     */
+    public replaceRuntimeClassWithHttpInfo(param: NodeV1alpha1ApiReplaceRuntimeClassRequest, options?: Configuration): Promise<HttpInfo<V1alpha1RuntimeClass>> {
+        return this.api.replaceRuntimeClassWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -28305,8 +32783,24 @@ export class ObjectNodeV1beta1Api {
      * create a RuntimeClass
      * @param param the request object
      */
+    public createRuntimeClassWithHttpInfo(param: NodeV1beta1ApiCreateRuntimeClassRequest, options?: Configuration): Promise<HttpInfo<V1beta1RuntimeClass>> {
+        return this.api.createRuntimeClassWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a RuntimeClass
+     * @param param the request object
+     */
     public createRuntimeClass(param: NodeV1beta1ApiCreateRuntimeClassRequest, options?: Configuration): Promise<V1beta1RuntimeClass> {
         return this.api.createRuntimeClass(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of RuntimeClass
+     * @param param the request object
+     */
+    public deleteCollectionRuntimeClassWithHttpInfo(param: NodeV1beta1ApiDeleteCollectionRuntimeClassRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionRuntimeClassWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -28321,8 +32815,24 @@ export class ObjectNodeV1beta1Api {
      * delete a RuntimeClass
      * @param param the request object
      */
+    public deleteRuntimeClassWithHttpInfo(param: NodeV1beta1ApiDeleteRuntimeClassRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteRuntimeClassWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a RuntimeClass
+     * @param param the request object
+     */
     public deleteRuntimeClass(param: NodeV1beta1ApiDeleteRuntimeClassRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteRuntimeClass(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: NodeV1beta1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -28337,8 +32847,24 @@ export class ObjectNodeV1beta1Api {
      * list or watch objects of kind RuntimeClass
      * @param param the request object
      */
+    public listRuntimeClassWithHttpInfo(param: NodeV1beta1ApiListRuntimeClassRequest = {}, options?: Configuration): Promise<HttpInfo<V1beta1RuntimeClassList>> {
+        return this.api.listRuntimeClassWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind RuntimeClass
+     * @param param the request object
+     */
     public listRuntimeClass(param: NodeV1beta1ApiListRuntimeClassRequest = {}, options?: Configuration): Promise<V1beta1RuntimeClassList> {
         return this.api.listRuntimeClass(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified RuntimeClass
+     * @param param the request object
+     */
+    public patchRuntimeClassWithHttpInfo(param: NodeV1beta1ApiPatchRuntimeClassRequest, options?: Configuration): Promise<HttpInfo<V1beta1RuntimeClass>> {
+        return this.api.patchRuntimeClassWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -28353,8 +32879,24 @@ export class ObjectNodeV1beta1Api {
      * read the specified RuntimeClass
      * @param param the request object
      */
+    public readRuntimeClassWithHttpInfo(param: NodeV1beta1ApiReadRuntimeClassRequest, options?: Configuration): Promise<HttpInfo<V1beta1RuntimeClass>> {
+        return this.api.readRuntimeClassWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified RuntimeClass
+     * @param param the request object
+     */
     public readRuntimeClass(param: NodeV1beta1ApiReadRuntimeClassRequest, options?: Configuration): Promise<V1beta1RuntimeClass> {
         return this.api.readRuntimeClass(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified RuntimeClass
+     * @param param the request object
+     */
+    public replaceRuntimeClassWithHttpInfo(param: NodeV1beta1ApiReplaceRuntimeClassRequest, options?: Configuration): Promise<HttpInfo<V1beta1RuntimeClass>> {
+        return this.api.replaceRuntimeClassWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -28384,6 +32926,14 @@ export class ObjectOpenidApi {
      * get service account issuer OpenID JSON Web Key Set (contains public token verification keys)
      * @param param the request object
      */
+    public getServiceAccountIssuerOpenIDKeysetWithHttpInfo(param: OpenidApiGetServiceAccountIssuerOpenIDKeysetRequest = {}, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.getServiceAccountIssuerOpenIDKeysetWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * get service account issuer OpenID JSON Web Key Set (contains public token verification keys)
+     * @param param the request object
+     */
     public getServiceAccountIssuerOpenIDKeyset(param: OpenidApiGetServiceAccountIssuerOpenIDKeysetRequest = {}, options?: Configuration): Promise<string> {
         return this.api.getServiceAccountIssuerOpenIDKeyset( options).toPromise();
     }
@@ -28401,6 +32951,14 @@ export class ObjectPolicyApi {
 
     public constructor(configuration: Configuration, requestFactory?: PolicyApiRequestFactory, responseProcessor?: PolicyApiResponseProcessor) {
         this.api = new ObservablePolicyApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: PolicyApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -28943,8 +33501,24 @@ export class ObjectPolicyV1Api {
      * create a PodDisruptionBudget
      * @param param the request object
      */
+    public createNamespacedPodDisruptionBudgetWithHttpInfo(param: PolicyV1ApiCreateNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<HttpInfo<V1PodDisruptionBudget>> {
+        return this.api.createNamespacedPodDisruptionBudgetWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a PodDisruptionBudget
+     * @param param the request object
+     */
     public createNamespacedPodDisruptionBudget(param: PolicyV1ApiCreateNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<V1PodDisruptionBudget> {
         return this.api.createNamespacedPodDisruptionBudget(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of PodDisruptionBudget
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedPodDisruptionBudgetWithHttpInfo(param: PolicyV1ApiDeleteCollectionNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedPodDisruptionBudgetWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -28959,8 +33533,24 @@ export class ObjectPolicyV1Api {
      * delete a PodDisruptionBudget
      * @param param the request object
      */
+    public deleteNamespacedPodDisruptionBudgetWithHttpInfo(param: PolicyV1ApiDeleteNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedPodDisruptionBudgetWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a PodDisruptionBudget
+     * @param param the request object
+     */
     public deleteNamespacedPodDisruptionBudget(param: PolicyV1ApiDeleteNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedPodDisruptionBudget(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: PolicyV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -28975,8 +33565,24 @@ export class ObjectPolicyV1Api {
      * list or watch objects of kind PodDisruptionBudget
      * @param param the request object
      */
+    public listNamespacedPodDisruptionBudgetWithHttpInfo(param: PolicyV1ApiListNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<HttpInfo<V1PodDisruptionBudgetList>> {
+        return this.api.listNamespacedPodDisruptionBudgetWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind PodDisruptionBudget
+     * @param param the request object
+     */
     public listNamespacedPodDisruptionBudget(param: PolicyV1ApiListNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<V1PodDisruptionBudgetList> {
         return this.api.listNamespacedPodDisruptionBudget(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind PodDisruptionBudget
+     * @param param the request object
+     */
+    public listPodDisruptionBudgetForAllNamespacesWithHttpInfo(param: PolicyV1ApiListPodDisruptionBudgetForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1PodDisruptionBudgetList>> {
+        return this.api.listPodDisruptionBudgetForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -28991,8 +33597,24 @@ export class ObjectPolicyV1Api {
      * partially update the specified PodDisruptionBudget
      * @param param the request object
      */
+    public patchNamespacedPodDisruptionBudgetWithHttpInfo(param: PolicyV1ApiPatchNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<HttpInfo<V1PodDisruptionBudget>> {
+        return this.api.patchNamespacedPodDisruptionBudgetWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified PodDisruptionBudget
+     * @param param the request object
+     */
     public patchNamespacedPodDisruptionBudget(param: PolicyV1ApiPatchNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<V1PodDisruptionBudget> {
         return this.api.patchNamespacedPodDisruptionBudget(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified PodDisruptionBudget
+     * @param param the request object
+     */
+    public patchNamespacedPodDisruptionBudgetStatusWithHttpInfo(param: PolicyV1ApiPatchNamespacedPodDisruptionBudgetStatusRequest, options?: Configuration): Promise<HttpInfo<V1PodDisruptionBudget>> {
+        return this.api.patchNamespacedPodDisruptionBudgetStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -29007,8 +33629,24 @@ export class ObjectPolicyV1Api {
      * read the specified PodDisruptionBudget
      * @param param the request object
      */
+    public readNamespacedPodDisruptionBudgetWithHttpInfo(param: PolicyV1ApiReadNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<HttpInfo<V1PodDisruptionBudget>> {
+        return this.api.readNamespacedPodDisruptionBudgetWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified PodDisruptionBudget
+     * @param param the request object
+     */
     public readNamespacedPodDisruptionBudget(param: PolicyV1ApiReadNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<V1PodDisruptionBudget> {
         return this.api.readNamespacedPodDisruptionBudget(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified PodDisruptionBudget
+     * @param param the request object
+     */
+    public readNamespacedPodDisruptionBudgetStatusWithHttpInfo(param: PolicyV1ApiReadNamespacedPodDisruptionBudgetStatusRequest, options?: Configuration): Promise<HttpInfo<V1PodDisruptionBudget>> {
+        return this.api.readNamespacedPodDisruptionBudgetStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -29023,8 +33661,24 @@ export class ObjectPolicyV1Api {
      * replace the specified PodDisruptionBudget
      * @param param the request object
      */
+    public replaceNamespacedPodDisruptionBudgetWithHttpInfo(param: PolicyV1ApiReplaceNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<HttpInfo<V1PodDisruptionBudget>> {
+        return this.api.replaceNamespacedPodDisruptionBudgetWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified PodDisruptionBudget
+     * @param param the request object
+     */
     public replaceNamespacedPodDisruptionBudget(param: PolicyV1ApiReplaceNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<V1PodDisruptionBudget> {
         return this.api.replaceNamespacedPodDisruptionBudget(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified PodDisruptionBudget
+     * @param param the request object
+     */
+    public replaceNamespacedPodDisruptionBudgetStatusWithHttpInfo(param: PolicyV1ApiReplaceNamespacedPodDisruptionBudgetStatusRequest, options?: Configuration): Promise<HttpInfo<V1PodDisruptionBudget>> {
+        return this.api.replaceNamespacedPodDisruptionBudgetStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -29870,8 +34524,24 @@ export class ObjectPolicyV1beta1Api {
      * create a PodDisruptionBudget
      * @param param the request object
      */
+    public createNamespacedPodDisruptionBudgetWithHttpInfo(param: PolicyV1beta1ApiCreateNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<HttpInfo<V1beta1PodDisruptionBudget>> {
+        return this.api.createNamespacedPodDisruptionBudgetWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a PodDisruptionBudget
+     * @param param the request object
+     */
     public createNamespacedPodDisruptionBudget(param: PolicyV1beta1ApiCreateNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<V1beta1PodDisruptionBudget> {
         return this.api.createNamespacedPodDisruptionBudget(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a PodSecurityPolicy
+     * @param param the request object
+     */
+    public createPodSecurityPolicyWithHttpInfo(param: PolicyV1beta1ApiCreatePodSecurityPolicyRequest, options?: Configuration): Promise<HttpInfo<V1beta1PodSecurityPolicy>> {
+        return this.api.createPodSecurityPolicyWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -29886,8 +34556,24 @@ export class ObjectPolicyV1beta1Api {
      * delete collection of PodDisruptionBudget
      * @param param the request object
      */
+    public deleteCollectionNamespacedPodDisruptionBudgetWithHttpInfo(param: PolicyV1beta1ApiDeleteCollectionNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedPodDisruptionBudgetWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of PodDisruptionBudget
+     * @param param the request object
+     */
     public deleteCollectionNamespacedPodDisruptionBudget(param: PolicyV1beta1ApiDeleteCollectionNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionNamespacedPodDisruptionBudget(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of PodSecurityPolicy
+     * @param param the request object
+     */
+    public deleteCollectionPodSecurityPolicyWithHttpInfo(param: PolicyV1beta1ApiDeleteCollectionPodSecurityPolicyRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionPodSecurityPolicyWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -29902,8 +34588,24 @@ export class ObjectPolicyV1beta1Api {
      * delete a PodDisruptionBudget
      * @param param the request object
      */
+    public deleteNamespacedPodDisruptionBudgetWithHttpInfo(param: PolicyV1beta1ApiDeleteNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedPodDisruptionBudgetWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a PodDisruptionBudget
+     * @param param the request object
+     */
     public deleteNamespacedPodDisruptionBudget(param: PolicyV1beta1ApiDeleteNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedPodDisruptionBudget(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a PodSecurityPolicy
+     * @param param the request object
+     */
+    public deletePodSecurityPolicyWithHttpInfo(param: PolicyV1beta1ApiDeletePodSecurityPolicyRequest, options?: Configuration): Promise<HttpInfo<V1beta1PodSecurityPolicy>> {
+        return this.api.deletePodSecurityPolicyWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -29918,8 +34620,24 @@ export class ObjectPolicyV1beta1Api {
      * get available resources
      * @param param the request object
      */
+    public getAPIResourcesWithHttpInfo(param: PolicyV1beta1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
     public getAPIResources(param: PolicyV1beta1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<V1APIResourceList> {
         return this.api.getAPIResources( options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind PodDisruptionBudget
+     * @param param the request object
+     */
+    public listNamespacedPodDisruptionBudgetWithHttpInfo(param: PolicyV1beta1ApiListNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<HttpInfo<V1beta1PodDisruptionBudgetList>> {
+        return this.api.listNamespacedPodDisruptionBudgetWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -29934,8 +34652,24 @@ export class ObjectPolicyV1beta1Api {
      * list or watch objects of kind PodDisruptionBudget
      * @param param the request object
      */
+    public listPodDisruptionBudgetForAllNamespacesWithHttpInfo(param: PolicyV1beta1ApiListPodDisruptionBudgetForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1beta1PodDisruptionBudgetList>> {
+        return this.api.listPodDisruptionBudgetForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind PodDisruptionBudget
+     * @param param the request object
+     */
     public listPodDisruptionBudgetForAllNamespaces(param: PolicyV1beta1ApiListPodDisruptionBudgetForAllNamespacesRequest = {}, options?: Configuration): Promise<V1beta1PodDisruptionBudgetList> {
         return this.api.listPodDisruptionBudgetForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind PodSecurityPolicy
+     * @param param the request object
+     */
+    public listPodSecurityPolicyWithHttpInfo(param: PolicyV1beta1ApiListPodSecurityPolicyRequest = {}, options?: Configuration): Promise<HttpInfo<V1beta1PodSecurityPolicyList>> {
+        return this.api.listPodSecurityPolicyWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -29950,8 +34684,24 @@ export class ObjectPolicyV1beta1Api {
      * partially update the specified PodDisruptionBudget
      * @param param the request object
      */
+    public patchNamespacedPodDisruptionBudgetWithHttpInfo(param: PolicyV1beta1ApiPatchNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<HttpInfo<V1beta1PodDisruptionBudget>> {
+        return this.api.patchNamespacedPodDisruptionBudgetWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified PodDisruptionBudget
+     * @param param the request object
+     */
     public patchNamespacedPodDisruptionBudget(param: PolicyV1beta1ApiPatchNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<V1beta1PodDisruptionBudget> {
         return this.api.patchNamespacedPodDisruptionBudget(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified PodDisruptionBudget
+     * @param param the request object
+     */
+    public patchNamespacedPodDisruptionBudgetStatusWithHttpInfo(param: PolicyV1beta1ApiPatchNamespacedPodDisruptionBudgetStatusRequest, options?: Configuration): Promise<HttpInfo<V1beta1PodDisruptionBudget>> {
+        return this.api.patchNamespacedPodDisruptionBudgetStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -29966,8 +34716,24 @@ export class ObjectPolicyV1beta1Api {
      * partially update the specified PodSecurityPolicy
      * @param param the request object
      */
+    public patchPodSecurityPolicyWithHttpInfo(param: PolicyV1beta1ApiPatchPodSecurityPolicyRequest, options?: Configuration): Promise<HttpInfo<V1beta1PodSecurityPolicy>> {
+        return this.api.patchPodSecurityPolicyWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified PodSecurityPolicy
+     * @param param the request object
+     */
     public patchPodSecurityPolicy(param: PolicyV1beta1ApiPatchPodSecurityPolicyRequest, options?: Configuration): Promise<V1beta1PodSecurityPolicy> {
         return this.api.patchPodSecurityPolicy(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * read the specified PodDisruptionBudget
+     * @param param the request object
+     */
+    public readNamespacedPodDisruptionBudgetWithHttpInfo(param: PolicyV1beta1ApiReadNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<HttpInfo<V1beta1PodDisruptionBudget>> {
+        return this.api.readNamespacedPodDisruptionBudgetWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -29982,8 +34748,24 @@ export class ObjectPolicyV1beta1Api {
      * read status of the specified PodDisruptionBudget
      * @param param the request object
      */
+    public readNamespacedPodDisruptionBudgetStatusWithHttpInfo(param: PolicyV1beta1ApiReadNamespacedPodDisruptionBudgetStatusRequest, options?: Configuration): Promise<HttpInfo<V1beta1PodDisruptionBudget>> {
+        return this.api.readNamespacedPodDisruptionBudgetStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified PodDisruptionBudget
+     * @param param the request object
+     */
     public readNamespacedPodDisruptionBudgetStatus(param: PolicyV1beta1ApiReadNamespacedPodDisruptionBudgetStatusRequest, options?: Configuration): Promise<V1beta1PodDisruptionBudget> {
         return this.api.readNamespacedPodDisruptionBudgetStatus(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified PodSecurityPolicy
+     * @param param the request object
+     */
+    public readPodSecurityPolicyWithHttpInfo(param: PolicyV1beta1ApiReadPodSecurityPolicyRequest, options?: Configuration): Promise<HttpInfo<V1beta1PodSecurityPolicy>> {
+        return this.api.readPodSecurityPolicyWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -29998,6 +34780,14 @@ export class ObjectPolicyV1beta1Api {
      * replace the specified PodDisruptionBudget
      * @param param the request object
      */
+    public replaceNamespacedPodDisruptionBudgetWithHttpInfo(param: PolicyV1beta1ApiReplaceNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<HttpInfo<V1beta1PodDisruptionBudget>> {
+        return this.api.replaceNamespacedPodDisruptionBudgetWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified PodDisruptionBudget
+     * @param param the request object
+     */
     public replaceNamespacedPodDisruptionBudget(param: PolicyV1beta1ApiReplaceNamespacedPodDisruptionBudgetRequest, options?: Configuration): Promise<V1beta1PodDisruptionBudget> {
         return this.api.replaceNamespacedPodDisruptionBudget(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
@@ -30006,8 +34796,24 @@ export class ObjectPolicyV1beta1Api {
      * replace status of the specified PodDisruptionBudget
      * @param param the request object
      */
+    public replaceNamespacedPodDisruptionBudgetStatusWithHttpInfo(param: PolicyV1beta1ApiReplaceNamespacedPodDisruptionBudgetStatusRequest, options?: Configuration): Promise<HttpInfo<V1beta1PodDisruptionBudget>> {
+        return this.api.replaceNamespacedPodDisruptionBudgetStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified PodDisruptionBudget
+     * @param param the request object
+     */
     public replaceNamespacedPodDisruptionBudgetStatus(param: PolicyV1beta1ApiReplaceNamespacedPodDisruptionBudgetStatusRequest, options?: Configuration): Promise<V1beta1PodDisruptionBudget> {
         return this.api.replaceNamespacedPodDisruptionBudgetStatus(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified PodSecurityPolicy
+     * @param param the request object
+     */
+    public replacePodSecurityPolicyWithHttpInfo(param: PolicyV1beta1ApiReplacePodSecurityPolicyRequest, options?: Configuration): Promise<HttpInfo<V1beta1PodSecurityPolicy>> {
+        return this.api.replacePodSecurityPolicyWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -30031,6 +34837,14 @@ export class ObjectRbacAuthorizationApi {
 
     public constructor(configuration: Configuration, requestFactory?: RbacAuthorizationApiRequestFactory, responseProcessor?: RbacAuthorizationApiResponseProcessor) {
         this.api = new ObservableRbacAuthorizationApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: RbacAuthorizationApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -31482,8 +36296,24 @@ export class ObjectRbacAuthorizationV1Api {
      * create a ClusterRole
      * @param param the request object
      */
+    public createClusterRoleWithHttpInfo(param: RbacAuthorizationV1ApiCreateClusterRoleRequest, options?: Configuration): Promise<HttpInfo<V1ClusterRole>> {
+        return this.api.createClusterRoleWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a ClusterRole
+     * @param param the request object
+     */
     public createClusterRole(param: RbacAuthorizationV1ApiCreateClusterRoleRequest, options?: Configuration): Promise<V1ClusterRole> {
         return this.api.createClusterRole(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a ClusterRoleBinding
+     * @param param the request object
+     */
+    public createClusterRoleBindingWithHttpInfo(param: RbacAuthorizationV1ApiCreateClusterRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1ClusterRoleBinding>> {
+        return this.api.createClusterRoleBindingWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -31498,8 +36328,24 @@ export class ObjectRbacAuthorizationV1Api {
      * create a Role
      * @param param the request object
      */
+    public createNamespacedRoleWithHttpInfo(param: RbacAuthorizationV1ApiCreateNamespacedRoleRequest, options?: Configuration): Promise<HttpInfo<V1Role>> {
+        return this.api.createNamespacedRoleWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a Role
+     * @param param the request object
+     */
     public createNamespacedRole(param: RbacAuthorizationV1ApiCreateNamespacedRoleRequest, options?: Configuration): Promise<V1Role> {
         return this.api.createNamespacedRole(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a RoleBinding
+     * @param param the request object
+     */
+    public createNamespacedRoleBindingWithHttpInfo(param: RbacAuthorizationV1ApiCreateNamespacedRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1RoleBinding>> {
+        return this.api.createNamespacedRoleBindingWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -31514,8 +36360,24 @@ export class ObjectRbacAuthorizationV1Api {
      * delete a ClusterRole
      * @param param the request object
      */
+    public deleteClusterRoleWithHttpInfo(param: RbacAuthorizationV1ApiDeleteClusterRoleRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteClusterRoleWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ClusterRole
+     * @param param the request object
+     */
     public deleteClusterRole(param: RbacAuthorizationV1ApiDeleteClusterRoleRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteClusterRole(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ClusterRoleBinding
+     * @param param the request object
+     */
+    public deleteClusterRoleBindingWithHttpInfo(param: RbacAuthorizationV1ApiDeleteClusterRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteClusterRoleBindingWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -31530,8 +36392,24 @@ export class ObjectRbacAuthorizationV1Api {
      * delete collection of ClusterRole
      * @param param the request object
      */
+    public deleteCollectionClusterRoleWithHttpInfo(param: RbacAuthorizationV1ApiDeleteCollectionClusterRoleRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionClusterRoleWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ClusterRole
+     * @param param the request object
+     */
     public deleteCollectionClusterRole(param: RbacAuthorizationV1ApiDeleteCollectionClusterRoleRequest = {}, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionClusterRole(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ClusterRoleBinding
+     * @param param the request object
+     */
+    public deleteCollectionClusterRoleBindingWithHttpInfo(param: RbacAuthorizationV1ApiDeleteCollectionClusterRoleBindingRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionClusterRoleBindingWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -31546,8 +36424,24 @@ export class ObjectRbacAuthorizationV1Api {
      * delete collection of Role
      * @param param the request object
      */
+    public deleteCollectionNamespacedRoleWithHttpInfo(param: RbacAuthorizationV1ApiDeleteCollectionNamespacedRoleRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedRoleWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of Role
+     * @param param the request object
+     */
     public deleteCollectionNamespacedRole(param: RbacAuthorizationV1ApiDeleteCollectionNamespacedRoleRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionNamespacedRole(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of RoleBinding
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedRoleBindingWithHttpInfo(param: RbacAuthorizationV1ApiDeleteCollectionNamespacedRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedRoleBindingWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -31562,8 +36456,24 @@ export class ObjectRbacAuthorizationV1Api {
      * delete a Role
      * @param param the request object
      */
+    public deleteNamespacedRoleWithHttpInfo(param: RbacAuthorizationV1ApiDeleteNamespacedRoleRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedRoleWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a Role
+     * @param param the request object
+     */
     public deleteNamespacedRole(param: RbacAuthorizationV1ApiDeleteNamespacedRoleRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedRole(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a RoleBinding
+     * @param param the request object
+     */
+    public deleteNamespacedRoleBindingWithHttpInfo(param: RbacAuthorizationV1ApiDeleteNamespacedRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedRoleBindingWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -31578,8 +36488,24 @@ export class ObjectRbacAuthorizationV1Api {
      * get available resources
      * @param param the request object
      */
+    public getAPIResourcesWithHttpInfo(param: RbacAuthorizationV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
     public getAPIResources(param: RbacAuthorizationV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<V1APIResourceList> {
         return this.api.getAPIResources( options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ClusterRole
+     * @param param the request object
+     */
+    public listClusterRoleWithHttpInfo(param: RbacAuthorizationV1ApiListClusterRoleRequest = {}, options?: Configuration): Promise<HttpInfo<V1ClusterRoleList>> {
+        return this.api.listClusterRoleWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -31594,8 +36520,24 @@ export class ObjectRbacAuthorizationV1Api {
      * list or watch objects of kind ClusterRoleBinding
      * @param param the request object
      */
+    public listClusterRoleBindingWithHttpInfo(param: RbacAuthorizationV1ApiListClusterRoleBindingRequest = {}, options?: Configuration): Promise<HttpInfo<V1ClusterRoleBindingList>> {
+        return this.api.listClusterRoleBindingWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ClusterRoleBinding
+     * @param param the request object
+     */
     public listClusterRoleBinding(param: RbacAuthorizationV1ApiListClusterRoleBindingRequest = {}, options?: Configuration): Promise<V1ClusterRoleBindingList> {
         return this.api.listClusterRoleBinding(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Role
+     * @param param the request object
+     */
+    public listNamespacedRoleWithHttpInfo(param: RbacAuthorizationV1ApiListNamespacedRoleRequest, options?: Configuration): Promise<HttpInfo<V1RoleList>> {
+        return this.api.listNamespacedRoleWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -31610,8 +36552,24 @@ export class ObjectRbacAuthorizationV1Api {
      * list or watch objects of kind RoleBinding
      * @param param the request object
      */
+    public listNamespacedRoleBindingWithHttpInfo(param: RbacAuthorizationV1ApiListNamespacedRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1RoleBindingList>> {
+        return this.api.listNamespacedRoleBindingWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind RoleBinding
+     * @param param the request object
+     */
     public listNamespacedRoleBinding(param: RbacAuthorizationV1ApiListNamespacedRoleBindingRequest, options?: Configuration): Promise<V1RoleBindingList> {
         return this.api.listNamespacedRoleBinding(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind RoleBinding
+     * @param param the request object
+     */
+    public listRoleBindingForAllNamespacesWithHttpInfo(param: RbacAuthorizationV1ApiListRoleBindingForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1RoleBindingList>> {
+        return this.api.listRoleBindingForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -31626,8 +36584,24 @@ export class ObjectRbacAuthorizationV1Api {
      * list or watch objects of kind Role
      * @param param the request object
      */
+    public listRoleForAllNamespacesWithHttpInfo(param: RbacAuthorizationV1ApiListRoleForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1RoleList>> {
+        return this.api.listRoleForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Role
+     * @param param the request object
+     */
     public listRoleForAllNamespaces(param: RbacAuthorizationV1ApiListRoleForAllNamespacesRequest = {}, options?: Configuration): Promise<V1RoleList> {
         return this.api.listRoleForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ClusterRole
+     * @param param the request object
+     */
+    public patchClusterRoleWithHttpInfo(param: RbacAuthorizationV1ApiPatchClusterRoleRequest, options?: Configuration): Promise<HttpInfo<V1ClusterRole>> {
+        return this.api.patchClusterRoleWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -31642,8 +36616,24 @@ export class ObjectRbacAuthorizationV1Api {
      * partially update the specified ClusterRoleBinding
      * @param param the request object
      */
+    public patchClusterRoleBindingWithHttpInfo(param: RbacAuthorizationV1ApiPatchClusterRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1ClusterRoleBinding>> {
+        return this.api.patchClusterRoleBindingWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ClusterRoleBinding
+     * @param param the request object
+     */
     public patchClusterRoleBinding(param: RbacAuthorizationV1ApiPatchClusterRoleBindingRequest, options?: Configuration): Promise<V1ClusterRoleBinding> {
         return this.api.patchClusterRoleBinding(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified Role
+     * @param param the request object
+     */
+    public patchNamespacedRoleWithHttpInfo(param: RbacAuthorizationV1ApiPatchNamespacedRoleRequest, options?: Configuration): Promise<HttpInfo<V1Role>> {
+        return this.api.patchNamespacedRoleWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -31658,8 +36648,24 @@ export class ObjectRbacAuthorizationV1Api {
      * partially update the specified RoleBinding
      * @param param the request object
      */
+    public patchNamespacedRoleBindingWithHttpInfo(param: RbacAuthorizationV1ApiPatchNamespacedRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1RoleBinding>> {
+        return this.api.patchNamespacedRoleBindingWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified RoleBinding
+     * @param param the request object
+     */
     public patchNamespacedRoleBinding(param: RbacAuthorizationV1ApiPatchNamespacedRoleBindingRequest, options?: Configuration): Promise<V1RoleBinding> {
         return this.api.patchNamespacedRoleBinding(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * read the specified ClusterRole
+     * @param param the request object
+     */
+    public readClusterRoleWithHttpInfo(param: RbacAuthorizationV1ApiReadClusterRoleRequest, options?: Configuration): Promise<HttpInfo<V1ClusterRole>> {
+        return this.api.readClusterRoleWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -31674,8 +36680,24 @@ export class ObjectRbacAuthorizationV1Api {
      * read the specified ClusterRoleBinding
      * @param param the request object
      */
+    public readClusterRoleBindingWithHttpInfo(param: RbacAuthorizationV1ApiReadClusterRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1ClusterRoleBinding>> {
+        return this.api.readClusterRoleBindingWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ClusterRoleBinding
+     * @param param the request object
+     */
     public readClusterRoleBinding(param: RbacAuthorizationV1ApiReadClusterRoleBindingRequest, options?: Configuration): Promise<V1ClusterRoleBinding> {
         return this.api.readClusterRoleBinding(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified Role
+     * @param param the request object
+     */
+    public readNamespacedRoleWithHttpInfo(param: RbacAuthorizationV1ApiReadNamespacedRoleRequest, options?: Configuration): Promise<HttpInfo<V1Role>> {
+        return this.api.readNamespacedRoleWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -31690,8 +36712,24 @@ export class ObjectRbacAuthorizationV1Api {
      * read the specified RoleBinding
      * @param param the request object
      */
+    public readNamespacedRoleBindingWithHttpInfo(param: RbacAuthorizationV1ApiReadNamespacedRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1RoleBinding>> {
+        return this.api.readNamespacedRoleBindingWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified RoleBinding
+     * @param param the request object
+     */
     public readNamespacedRoleBinding(param: RbacAuthorizationV1ApiReadNamespacedRoleBindingRequest, options?: Configuration): Promise<V1RoleBinding> {
         return this.api.readNamespacedRoleBinding(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ClusterRole
+     * @param param the request object
+     */
+    public replaceClusterRoleWithHttpInfo(param: RbacAuthorizationV1ApiReplaceClusterRoleRequest, options?: Configuration): Promise<HttpInfo<V1ClusterRole>> {
+        return this.api.replaceClusterRoleWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -31706,6 +36744,14 @@ export class ObjectRbacAuthorizationV1Api {
      * replace the specified ClusterRoleBinding
      * @param param the request object
      */
+    public replaceClusterRoleBindingWithHttpInfo(param: RbacAuthorizationV1ApiReplaceClusterRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1ClusterRoleBinding>> {
+        return this.api.replaceClusterRoleBindingWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ClusterRoleBinding
+     * @param param the request object
+     */
     public replaceClusterRoleBinding(param: RbacAuthorizationV1ApiReplaceClusterRoleBindingRequest, options?: Configuration): Promise<V1ClusterRoleBinding> {
         return this.api.replaceClusterRoleBinding(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
@@ -31714,8 +36760,24 @@ export class ObjectRbacAuthorizationV1Api {
      * replace the specified Role
      * @param param the request object
      */
+    public replaceNamespacedRoleWithHttpInfo(param: RbacAuthorizationV1ApiReplaceNamespacedRoleRequest, options?: Configuration): Promise<HttpInfo<V1Role>> {
+        return this.api.replaceNamespacedRoleWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified Role
+     * @param param the request object
+     */
     public replaceNamespacedRole(param: RbacAuthorizationV1ApiReplaceNamespacedRoleRequest, options?: Configuration): Promise<V1Role> {
         return this.api.replaceNamespacedRole(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified RoleBinding
+     * @param param the request object
+     */
+    public replaceNamespacedRoleBindingWithHttpInfo(param: RbacAuthorizationV1ApiReplaceNamespacedRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1RoleBinding>> {
+        return this.api.replaceNamespacedRoleBindingWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -33167,8 +38229,24 @@ export class ObjectRbacAuthorizationV1alpha1Api {
      * create a ClusterRole
      * @param param the request object
      */
+    public createClusterRoleWithHttpInfo(param: RbacAuthorizationV1alpha1ApiCreateClusterRoleRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ClusterRole>> {
+        return this.api.createClusterRoleWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a ClusterRole
+     * @param param the request object
+     */
     public createClusterRole(param: RbacAuthorizationV1alpha1ApiCreateClusterRoleRequest, options?: Configuration): Promise<V1alpha1ClusterRole> {
         return this.api.createClusterRole(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a ClusterRoleBinding
+     * @param param the request object
+     */
+    public createClusterRoleBindingWithHttpInfo(param: RbacAuthorizationV1alpha1ApiCreateClusterRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ClusterRoleBinding>> {
+        return this.api.createClusterRoleBindingWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -33183,8 +38261,24 @@ export class ObjectRbacAuthorizationV1alpha1Api {
      * create a Role
      * @param param the request object
      */
+    public createNamespacedRoleWithHttpInfo(param: RbacAuthorizationV1alpha1ApiCreateNamespacedRoleRequest, options?: Configuration): Promise<HttpInfo<V1alpha1Role>> {
+        return this.api.createNamespacedRoleWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a Role
+     * @param param the request object
+     */
     public createNamespacedRole(param: RbacAuthorizationV1alpha1ApiCreateNamespacedRoleRequest, options?: Configuration): Promise<V1alpha1Role> {
         return this.api.createNamespacedRole(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a RoleBinding
+     * @param param the request object
+     */
+    public createNamespacedRoleBindingWithHttpInfo(param: RbacAuthorizationV1alpha1ApiCreateNamespacedRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1alpha1RoleBinding>> {
+        return this.api.createNamespacedRoleBindingWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -33199,8 +38293,24 @@ export class ObjectRbacAuthorizationV1alpha1Api {
      * delete a ClusterRole
      * @param param the request object
      */
+    public deleteClusterRoleWithHttpInfo(param: RbacAuthorizationV1alpha1ApiDeleteClusterRoleRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteClusterRoleWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ClusterRole
+     * @param param the request object
+     */
     public deleteClusterRole(param: RbacAuthorizationV1alpha1ApiDeleteClusterRoleRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteClusterRole(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ClusterRoleBinding
+     * @param param the request object
+     */
+    public deleteClusterRoleBindingWithHttpInfo(param: RbacAuthorizationV1alpha1ApiDeleteClusterRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteClusterRoleBindingWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -33215,8 +38325,24 @@ export class ObjectRbacAuthorizationV1alpha1Api {
      * delete collection of ClusterRole
      * @param param the request object
      */
+    public deleteCollectionClusterRoleWithHttpInfo(param: RbacAuthorizationV1alpha1ApiDeleteCollectionClusterRoleRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionClusterRoleWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ClusterRole
+     * @param param the request object
+     */
     public deleteCollectionClusterRole(param: RbacAuthorizationV1alpha1ApiDeleteCollectionClusterRoleRequest = {}, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionClusterRole(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ClusterRoleBinding
+     * @param param the request object
+     */
+    public deleteCollectionClusterRoleBindingWithHttpInfo(param: RbacAuthorizationV1alpha1ApiDeleteCollectionClusterRoleBindingRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionClusterRoleBindingWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -33231,8 +38357,24 @@ export class ObjectRbacAuthorizationV1alpha1Api {
      * delete collection of Role
      * @param param the request object
      */
+    public deleteCollectionNamespacedRoleWithHttpInfo(param: RbacAuthorizationV1alpha1ApiDeleteCollectionNamespacedRoleRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedRoleWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of Role
+     * @param param the request object
+     */
     public deleteCollectionNamespacedRole(param: RbacAuthorizationV1alpha1ApiDeleteCollectionNamespacedRoleRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionNamespacedRole(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of RoleBinding
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedRoleBindingWithHttpInfo(param: RbacAuthorizationV1alpha1ApiDeleteCollectionNamespacedRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedRoleBindingWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -33247,8 +38389,24 @@ export class ObjectRbacAuthorizationV1alpha1Api {
      * delete a Role
      * @param param the request object
      */
+    public deleteNamespacedRoleWithHttpInfo(param: RbacAuthorizationV1alpha1ApiDeleteNamespacedRoleRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedRoleWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a Role
+     * @param param the request object
+     */
     public deleteNamespacedRole(param: RbacAuthorizationV1alpha1ApiDeleteNamespacedRoleRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedRole(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a RoleBinding
+     * @param param the request object
+     */
+    public deleteNamespacedRoleBindingWithHttpInfo(param: RbacAuthorizationV1alpha1ApiDeleteNamespacedRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedRoleBindingWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -33263,8 +38421,24 @@ export class ObjectRbacAuthorizationV1alpha1Api {
      * get available resources
      * @param param the request object
      */
+    public getAPIResourcesWithHttpInfo(param: RbacAuthorizationV1alpha1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
     public getAPIResources(param: RbacAuthorizationV1alpha1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<V1APIResourceList> {
         return this.api.getAPIResources( options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ClusterRole
+     * @param param the request object
+     */
+    public listClusterRoleWithHttpInfo(param: RbacAuthorizationV1alpha1ApiListClusterRoleRequest = {}, options?: Configuration): Promise<HttpInfo<V1alpha1ClusterRoleList>> {
+        return this.api.listClusterRoleWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -33279,8 +38453,24 @@ export class ObjectRbacAuthorizationV1alpha1Api {
      * list or watch objects of kind ClusterRoleBinding
      * @param param the request object
      */
+    public listClusterRoleBindingWithHttpInfo(param: RbacAuthorizationV1alpha1ApiListClusterRoleBindingRequest = {}, options?: Configuration): Promise<HttpInfo<V1alpha1ClusterRoleBindingList>> {
+        return this.api.listClusterRoleBindingWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ClusterRoleBinding
+     * @param param the request object
+     */
     public listClusterRoleBinding(param: RbacAuthorizationV1alpha1ApiListClusterRoleBindingRequest = {}, options?: Configuration): Promise<V1alpha1ClusterRoleBindingList> {
         return this.api.listClusterRoleBinding(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Role
+     * @param param the request object
+     */
+    public listNamespacedRoleWithHttpInfo(param: RbacAuthorizationV1alpha1ApiListNamespacedRoleRequest, options?: Configuration): Promise<HttpInfo<V1alpha1RoleList>> {
+        return this.api.listNamespacedRoleWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -33295,8 +38485,24 @@ export class ObjectRbacAuthorizationV1alpha1Api {
      * list or watch objects of kind RoleBinding
      * @param param the request object
      */
+    public listNamespacedRoleBindingWithHttpInfo(param: RbacAuthorizationV1alpha1ApiListNamespacedRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1alpha1RoleBindingList>> {
+        return this.api.listNamespacedRoleBindingWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind RoleBinding
+     * @param param the request object
+     */
     public listNamespacedRoleBinding(param: RbacAuthorizationV1alpha1ApiListNamespacedRoleBindingRequest, options?: Configuration): Promise<V1alpha1RoleBindingList> {
         return this.api.listNamespacedRoleBinding(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind RoleBinding
+     * @param param the request object
+     */
+    public listRoleBindingForAllNamespacesWithHttpInfo(param: RbacAuthorizationV1alpha1ApiListRoleBindingForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1alpha1RoleBindingList>> {
+        return this.api.listRoleBindingForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -33311,8 +38517,24 @@ export class ObjectRbacAuthorizationV1alpha1Api {
      * list or watch objects of kind Role
      * @param param the request object
      */
+    public listRoleForAllNamespacesWithHttpInfo(param: RbacAuthorizationV1alpha1ApiListRoleForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1alpha1RoleList>> {
+        return this.api.listRoleForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind Role
+     * @param param the request object
+     */
     public listRoleForAllNamespaces(param: RbacAuthorizationV1alpha1ApiListRoleForAllNamespacesRequest = {}, options?: Configuration): Promise<V1alpha1RoleList> {
         return this.api.listRoleForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ClusterRole
+     * @param param the request object
+     */
+    public patchClusterRoleWithHttpInfo(param: RbacAuthorizationV1alpha1ApiPatchClusterRoleRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ClusterRole>> {
+        return this.api.patchClusterRoleWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -33327,8 +38549,24 @@ export class ObjectRbacAuthorizationV1alpha1Api {
      * partially update the specified ClusterRoleBinding
      * @param param the request object
      */
+    public patchClusterRoleBindingWithHttpInfo(param: RbacAuthorizationV1alpha1ApiPatchClusterRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ClusterRoleBinding>> {
+        return this.api.patchClusterRoleBindingWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ClusterRoleBinding
+     * @param param the request object
+     */
     public patchClusterRoleBinding(param: RbacAuthorizationV1alpha1ApiPatchClusterRoleBindingRequest, options?: Configuration): Promise<V1alpha1ClusterRoleBinding> {
         return this.api.patchClusterRoleBinding(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified Role
+     * @param param the request object
+     */
+    public patchNamespacedRoleWithHttpInfo(param: RbacAuthorizationV1alpha1ApiPatchNamespacedRoleRequest, options?: Configuration): Promise<HttpInfo<V1alpha1Role>> {
+        return this.api.patchNamespacedRoleWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -33343,8 +38581,24 @@ export class ObjectRbacAuthorizationV1alpha1Api {
      * partially update the specified RoleBinding
      * @param param the request object
      */
+    public patchNamespacedRoleBindingWithHttpInfo(param: RbacAuthorizationV1alpha1ApiPatchNamespacedRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1alpha1RoleBinding>> {
+        return this.api.patchNamespacedRoleBindingWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified RoleBinding
+     * @param param the request object
+     */
     public patchNamespacedRoleBinding(param: RbacAuthorizationV1alpha1ApiPatchNamespacedRoleBindingRequest, options?: Configuration): Promise<V1alpha1RoleBinding> {
         return this.api.patchNamespacedRoleBinding(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * read the specified ClusterRole
+     * @param param the request object
+     */
+    public readClusterRoleWithHttpInfo(param: RbacAuthorizationV1alpha1ApiReadClusterRoleRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ClusterRole>> {
+        return this.api.readClusterRoleWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -33359,8 +38613,24 @@ export class ObjectRbacAuthorizationV1alpha1Api {
      * read the specified ClusterRoleBinding
      * @param param the request object
      */
+    public readClusterRoleBindingWithHttpInfo(param: RbacAuthorizationV1alpha1ApiReadClusterRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ClusterRoleBinding>> {
+        return this.api.readClusterRoleBindingWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ClusterRoleBinding
+     * @param param the request object
+     */
     public readClusterRoleBinding(param: RbacAuthorizationV1alpha1ApiReadClusterRoleBindingRequest, options?: Configuration): Promise<V1alpha1ClusterRoleBinding> {
         return this.api.readClusterRoleBinding(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified Role
+     * @param param the request object
+     */
+    public readNamespacedRoleWithHttpInfo(param: RbacAuthorizationV1alpha1ApiReadNamespacedRoleRequest, options?: Configuration): Promise<HttpInfo<V1alpha1Role>> {
+        return this.api.readNamespacedRoleWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
     }
 
     /**
@@ -33375,8 +38645,24 @@ export class ObjectRbacAuthorizationV1alpha1Api {
      * read the specified RoleBinding
      * @param param the request object
      */
+    public readNamespacedRoleBindingWithHttpInfo(param: RbacAuthorizationV1alpha1ApiReadNamespacedRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1alpha1RoleBinding>> {
+        return this.api.readNamespacedRoleBindingWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified RoleBinding
+     * @param param the request object
+     */
     public readNamespacedRoleBinding(param: RbacAuthorizationV1alpha1ApiReadNamespacedRoleBindingRequest, options?: Configuration): Promise<V1alpha1RoleBinding> {
         return this.api.readNamespacedRoleBinding(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ClusterRole
+     * @param param the request object
+     */
+    public replaceClusterRoleWithHttpInfo(param: RbacAuthorizationV1alpha1ApiReplaceClusterRoleRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ClusterRole>> {
+        return this.api.replaceClusterRoleWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -33391,6 +38677,14 @@ export class ObjectRbacAuthorizationV1alpha1Api {
      * replace the specified ClusterRoleBinding
      * @param param the request object
      */
+    public replaceClusterRoleBindingWithHttpInfo(param: RbacAuthorizationV1alpha1ApiReplaceClusterRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ClusterRoleBinding>> {
+        return this.api.replaceClusterRoleBindingWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ClusterRoleBinding
+     * @param param the request object
+     */
     public replaceClusterRoleBinding(param: RbacAuthorizationV1alpha1ApiReplaceClusterRoleBindingRequest, options?: Configuration): Promise<V1alpha1ClusterRoleBinding> {
         return this.api.replaceClusterRoleBinding(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
@@ -33399,8 +38693,24 @@ export class ObjectRbacAuthorizationV1alpha1Api {
      * replace the specified Role
      * @param param the request object
      */
+    public replaceNamespacedRoleWithHttpInfo(param: RbacAuthorizationV1alpha1ApiReplaceNamespacedRoleRequest, options?: Configuration): Promise<HttpInfo<V1alpha1Role>> {
+        return this.api.replaceNamespacedRoleWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified Role
+     * @param param the request object
+     */
     public replaceNamespacedRole(param: RbacAuthorizationV1alpha1ApiReplaceNamespacedRoleRequest, options?: Configuration): Promise<V1alpha1Role> {
         return this.api.replaceNamespacedRole(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified RoleBinding
+     * @param param the request object
+     */
+    public replaceNamespacedRoleBindingWithHttpInfo(param: RbacAuthorizationV1alpha1ApiReplaceNamespacedRoleBindingRequest, options?: Configuration): Promise<HttpInfo<V1alpha1RoleBinding>> {
+        return this.api.replaceNamespacedRoleBindingWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -33424,6 +38734,14 @@ export class ObjectSchedulingApi {
 
     public constructor(configuration: Configuration, requestFactory?: SchedulingApiRequestFactory, responseProcessor?: SchedulingApiResponseProcessor) {
         this.api = new ObservableSchedulingApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: SchedulingApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -33756,8 +39074,24 @@ export class ObjectSchedulingV1Api {
      * create a PriorityClass
      * @param param the request object
      */
+    public createPriorityClassWithHttpInfo(param: SchedulingV1ApiCreatePriorityClassRequest, options?: Configuration): Promise<HttpInfo<V1PriorityClass>> {
+        return this.api.createPriorityClassWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a PriorityClass
+     * @param param the request object
+     */
     public createPriorityClass(param: SchedulingV1ApiCreatePriorityClassRequest, options?: Configuration): Promise<V1PriorityClass> {
         return this.api.createPriorityClass(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of PriorityClass
+     * @param param the request object
+     */
+    public deleteCollectionPriorityClassWithHttpInfo(param: SchedulingV1ApiDeleteCollectionPriorityClassRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionPriorityClassWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -33772,8 +39106,24 @@ export class ObjectSchedulingV1Api {
      * delete a PriorityClass
      * @param param the request object
      */
+    public deletePriorityClassWithHttpInfo(param: SchedulingV1ApiDeletePriorityClassRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deletePriorityClassWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a PriorityClass
+     * @param param the request object
+     */
     public deletePriorityClass(param: SchedulingV1ApiDeletePriorityClassRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deletePriorityClass(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: SchedulingV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -33788,8 +39138,24 @@ export class ObjectSchedulingV1Api {
      * list or watch objects of kind PriorityClass
      * @param param the request object
      */
+    public listPriorityClassWithHttpInfo(param: SchedulingV1ApiListPriorityClassRequest = {}, options?: Configuration): Promise<HttpInfo<V1PriorityClassList>> {
+        return this.api.listPriorityClassWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind PriorityClass
+     * @param param the request object
+     */
     public listPriorityClass(param: SchedulingV1ApiListPriorityClassRequest = {}, options?: Configuration): Promise<V1PriorityClassList> {
         return this.api.listPriorityClass(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified PriorityClass
+     * @param param the request object
+     */
+    public patchPriorityClassWithHttpInfo(param: SchedulingV1ApiPatchPriorityClassRequest, options?: Configuration): Promise<HttpInfo<V1PriorityClass>> {
+        return this.api.patchPriorityClassWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -33804,8 +39170,24 @@ export class ObjectSchedulingV1Api {
      * read the specified PriorityClass
      * @param param the request object
      */
+    public readPriorityClassWithHttpInfo(param: SchedulingV1ApiReadPriorityClassRequest, options?: Configuration): Promise<HttpInfo<V1PriorityClass>> {
+        return this.api.readPriorityClassWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified PriorityClass
+     * @param param the request object
+     */
     public readPriorityClass(param: SchedulingV1ApiReadPriorityClassRequest, options?: Configuration): Promise<V1PriorityClass> {
         return this.api.readPriorityClass(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified PriorityClass
+     * @param param the request object
+     */
+    public replacePriorityClassWithHttpInfo(param: SchedulingV1ApiReplacePriorityClassRequest, options?: Configuration): Promise<HttpInfo<V1PriorityClass>> {
+        return this.api.replacePriorityClassWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -34138,8 +39520,24 @@ export class ObjectSchedulingV1alpha1Api {
      * create a PriorityClass
      * @param param the request object
      */
+    public createPriorityClassWithHttpInfo(param: SchedulingV1alpha1ApiCreatePriorityClassRequest, options?: Configuration): Promise<HttpInfo<V1alpha1PriorityClass>> {
+        return this.api.createPriorityClassWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a PriorityClass
+     * @param param the request object
+     */
     public createPriorityClass(param: SchedulingV1alpha1ApiCreatePriorityClassRequest, options?: Configuration): Promise<V1alpha1PriorityClass> {
         return this.api.createPriorityClass(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of PriorityClass
+     * @param param the request object
+     */
+    public deleteCollectionPriorityClassWithHttpInfo(param: SchedulingV1alpha1ApiDeleteCollectionPriorityClassRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionPriorityClassWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -34154,8 +39552,24 @@ export class ObjectSchedulingV1alpha1Api {
      * delete a PriorityClass
      * @param param the request object
      */
+    public deletePriorityClassWithHttpInfo(param: SchedulingV1alpha1ApiDeletePriorityClassRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deletePriorityClassWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a PriorityClass
+     * @param param the request object
+     */
     public deletePriorityClass(param: SchedulingV1alpha1ApiDeletePriorityClassRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deletePriorityClass(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: SchedulingV1alpha1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -34170,8 +39584,24 @@ export class ObjectSchedulingV1alpha1Api {
      * list or watch objects of kind PriorityClass
      * @param param the request object
      */
+    public listPriorityClassWithHttpInfo(param: SchedulingV1alpha1ApiListPriorityClassRequest = {}, options?: Configuration): Promise<HttpInfo<V1alpha1PriorityClassList>> {
+        return this.api.listPriorityClassWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind PriorityClass
+     * @param param the request object
+     */
     public listPriorityClass(param: SchedulingV1alpha1ApiListPriorityClassRequest = {}, options?: Configuration): Promise<V1alpha1PriorityClassList> {
         return this.api.listPriorityClass(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified PriorityClass
+     * @param param the request object
+     */
+    public patchPriorityClassWithHttpInfo(param: SchedulingV1alpha1ApiPatchPriorityClassRequest, options?: Configuration): Promise<HttpInfo<V1alpha1PriorityClass>> {
+        return this.api.patchPriorityClassWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -34186,8 +39616,24 @@ export class ObjectSchedulingV1alpha1Api {
      * read the specified PriorityClass
      * @param param the request object
      */
+    public readPriorityClassWithHttpInfo(param: SchedulingV1alpha1ApiReadPriorityClassRequest, options?: Configuration): Promise<HttpInfo<V1alpha1PriorityClass>> {
+        return this.api.readPriorityClassWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified PriorityClass
+     * @param param the request object
+     */
     public readPriorityClass(param: SchedulingV1alpha1ApiReadPriorityClassRequest, options?: Configuration): Promise<V1alpha1PriorityClass> {
         return this.api.readPriorityClass(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified PriorityClass
+     * @param param the request object
+     */
+    public replacePriorityClassWithHttpInfo(param: SchedulingV1alpha1ApiReplacePriorityClassRequest, options?: Configuration): Promise<HttpInfo<V1alpha1PriorityClass>> {
+        return this.api.replacePriorityClassWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -34211,6 +39657,14 @@ export class ObjectStorageApi {
 
     public constructor(configuration: Configuration, requestFactory?: StorageApiRequestFactory, responseProcessor?: StorageApiResponseProcessor) {
         this.api = new ObservableStorageApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: StorageApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -35539,8 +40993,24 @@ export class ObjectStorageV1Api {
      * create a CSIDriver
      * @param param the request object
      */
+    public createCSIDriverWithHttpInfo(param: StorageV1ApiCreateCSIDriverRequest, options?: Configuration): Promise<HttpInfo<V1CSIDriver>> {
+        return this.api.createCSIDriverWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a CSIDriver
+     * @param param the request object
+     */
     public createCSIDriver(param: StorageV1ApiCreateCSIDriverRequest, options?: Configuration): Promise<V1CSIDriver> {
         return this.api.createCSIDriver(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a CSINode
+     * @param param the request object
+     */
+    public createCSINodeWithHttpInfo(param: StorageV1ApiCreateCSINodeRequest, options?: Configuration): Promise<HttpInfo<V1CSINode>> {
+        return this.api.createCSINodeWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -35555,8 +41025,24 @@ export class ObjectStorageV1Api {
      * create a StorageClass
      * @param param the request object
      */
+    public createStorageClassWithHttpInfo(param: StorageV1ApiCreateStorageClassRequest, options?: Configuration): Promise<HttpInfo<V1StorageClass>> {
+        return this.api.createStorageClassWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a StorageClass
+     * @param param the request object
+     */
     public createStorageClass(param: StorageV1ApiCreateStorageClassRequest, options?: Configuration): Promise<V1StorageClass> {
         return this.api.createStorageClass(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a VolumeAttachment
+     * @param param the request object
+     */
+    public createVolumeAttachmentWithHttpInfo(param: StorageV1ApiCreateVolumeAttachmentRequest, options?: Configuration): Promise<HttpInfo<V1VolumeAttachment>> {
+        return this.api.createVolumeAttachmentWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -35571,8 +41057,24 @@ export class ObjectStorageV1Api {
      * delete a CSIDriver
      * @param param the request object
      */
+    public deleteCSIDriverWithHttpInfo(param: StorageV1ApiDeleteCSIDriverRequest, options?: Configuration): Promise<HttpInfo<V1CSIDriver>> {
+        return this.api.deleteCSIDriverWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a CSIDriver
+     * @param param the request object
+     */
     public deleteCSIDriver(param: StorageV1ApiDeleteCSIDriverRequest, options?: Configuration): Promise<V1CSIDriver> {
         return this.api.deleteCSIDriver(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a CSINode
+     * @param param the request object
+     */
+    public deleteCSINodeWithHttpInfo(param: StorageV1ApiDeleteCSINodeRequest, options?: Configuration): Promise<HttpInfo<V1CSINode>> {
+        return this.api.deleteCSINodeWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -35587,8 +41089,24 @@ export class ObjectStorageV1Api {
      * delete collection of CSIDriver
      * @param param the request object
      */
+    public deleteCollectionCSIDriverWithHttpInfo(param: StorageV1ApiDeleteCollectionCSIDriverRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionCSIDriverWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of CSIDriver
+     * @param param the request object
+     */
     public deleteCollectionCSIDriver(param: StorageV1ApiDeleteCollectionCSIDriverRequest = {}, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionCSIDriver(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of CSINode
+     * @param param the request object
+     */
+    public deleteCollectionCSINodeWithHttpInfo(param: StorageV1ApiDeleteCollectionCSINodeRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionCSINodeWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -35603,8 +41121,24 @@ export class ObjectStorageV1Api {
      * delete collection of StorageClass
      * @param param the request object
      */
+    public deleteCollectionStorageClassWithHttpInfo(param: StorageV1ApiDeleteCollectionStorageClassRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionStorageClassWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of StorageClass
+     * @param param the request object
+     */
     public deleteCollectionStorageClass(param: StorageV1ApiDeleteCollectionStorageClassRequest = {}, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionStorageClass(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of VolumeAttachment
+     * @param param the request object
+     */
+    public deleteCollectionVolumeAttachmentWithHttpInfo(param: StorageV1ApiDeleteCollectionVolumeAttachmentRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionVolumeAttachmentWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -35619,8 +41153,24 @@ export class ObjectStorageV1Api {
      * delete a StorageClass
      * @param param the request object
      */
+    public deleteStorageClassWithHttpInfo(param: StorageV1ApiDeleteStorageClassRequest, options?: Configuration): Promise<HttpInfo<V1StorageClass>> {
+        return this.api.deleteStorageClassWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a StorageClass
+     * @param param the request object
+     */
     public deleteStorageClass(param: StorageV1ApiDeleteStorageClassRequest, options?: Configuration): Promise<V1StorageClass> {
         return this.api.deleteStorageClass(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a VolumeAttachment
+     * @param param the request object
+     */
+    public deleteVolumeAttachmentWithHttpInfo(param: StorageV1ApiDeleteVolumeAttachmentRequest, options?: Configuration): Promise<HttpInfo<V1VolumeAttachment>> {
+        return this.api.deleteVolumeAttachmentWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -35635,8 +41185,24 @@ export class ObjectStorageV1Api {
      * get available resources
      * @param param the request object
      */
+    public getAPIResourcesWithHttpInfo(param: StorageV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
     public getAPIResources(param: StorageV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<V1APIResourceList> {
         return this.api.getAPIResources( options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind CSIDriver
+     * @param param the request object
+     */
+    public listCSIDriverWithHttpInfo(param: StorageV1ApiListCSIDriverRequest = {}, options?: Configuration): Promise<HttpInfo<V1CSIDriverList>> {
+        return this.api.listCSIDriverWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -35651,8 +41217,24 @@ export class ObjectStorageV1Api {
      * list or watch objects of kind CSINode
      * @param param the request object
      */
+    public listCSINodeWithHttpInfo(param: StorageV1ApiListCSINodeRequest = {}, options?: Configuration): Promise<HttpInfo<V1CSINodeList>> {
+        return this.api.listCSINodeWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind CSINode
+     * @param param the request object
+     */
     public listCSINode(param: StorageV1ApiListCSINodeRequest = {}, options?: Configuration): Promise<V1CSINodeList> {
         return this.api.listCSINode(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind StorageClass
+     * @param param the request object
+     */
+    public listStorageClassWithHttpInfo(param: StorageV1ApiListStorageClassRequest = {}, options?: Configuration): Promise<HttpInfo<V1StorageClassList>> {
+        return this.api.listStorageClassWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -35667,8 +41249,24 @@ export class ObjectStorageV1Api {
      * list or watch objects of kind VolumeAttachment
      * @param param the request object
      */
+    public listVolumeAttachmentWithHttpInfo(param: StorageV1ApiListVolumeAttachmentRequest = {}, options?: Configuration): Promise<HttpInfo<V1VolumeAttachmentList>> {
+        return this.api.listVolumeAttachmentWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind VolumeAttachment
+     * @param param the request object
+     */
     public listVolumeAttachment(param: StorageV1ApiListVolumeAttachmentRequest = {}, options?: Configuration): Promise<V1VolumeAttachmentList> {
         return this.api.listVolumeAttachment(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified CSIDriver
+     * @param param the request object
+     */
+    public patchCSIDriverWithHttpInfo(param: StorageV1ApiPatchCSIDriverRequest, options?: Configuration): Promise<HttpInfo<V1CSIDriver>> {
+        return this.api.patchCSIDriverWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -35683,8 +41281,24 @@ export class ObjectStorageV1Api {
      * partially update the specified CSINode
      * @param param the request object
      */
+    public patchCSINodeWithHttpInfo(param: StorageV1ApiPatchCSINodeRequest, options?: Configuration): Promise<HttpInfo<V1CSINode>> {
+        return this.api.patchCSINodeWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified CSINode
+     * @param param the request object
+     */
     public patchCSINode(param: StorageV1ApiPatchCSINodeRequest, options?: Configuration): Promise<V1CSINode> {
         return this.api.patchCSINode(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified StorageClass
+     * @param param the request object
+     */
+    public patchStorageClassWithHttpInfo(param: StorageV1ApiPatchStorageClassRequest, options?: Configuration): Promise<HttpInfo<V1StorageClass>> {
+        return this.api.patchStorageClassWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -35699,8 +41313,24 @@ export class ObjectStorageV1Api {
      * partially update the specified VolumeAttachment
      * @param param the request object
      */
+    public patchVolumeAttachmentWithHttpInfo(param: StorageV1ApiPatchVolumeAttachmentRequest, options?: Configuration): Promise<HttpInfo<V1VolumeAttachment>> {
+        return this.api.patchVolumeAttachmentWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified VolumeAttachment
+     * @param param the request object
+     */
     public patchVolumeAttachment(param: StorageV1ApiPatchVolumeAttachmentRequest, options?: Configuration): Promise<V1VolumeAttachment> {
         return this.api.patchVolumeAttachment(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified VolumeAttachment
+     * @param param the request object
+     */
+    public patchVolumeAttachmentStatusWithHttpInfo(param: StorageV1ApiPatchVolumeAttachmentStatusRequest, options?: Configuration): Promise<HttpInfo<V1VolumeAttachment>> {
+        return this.api.patchVolumeAttachmentStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -35715,8 +41345,24 @@ export class ObjectStorageV1Api {
      * read the specified CSIDriver
      * @param param the request object
      */
+    public readCSIDriverWithHttpInfo(param: StorageV1ApiReadCSIDriverRequest, options?: Configuration): Promise<HttpInfo<V1CSIDriver>> {
+        return this.api.readCSIDriverWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified CSIDriver
+     * @param param the request object
+     */
     public readCSIDriver(param: StorageV1ApiReadCSIDriverRequest, options?: Configuration): Promise<V1CSIDriver> {
         return this.api.readCSIDriver(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified CSINode
+     * @param param the request object
+     */
+    public readCSINodeWithHttpInfo(param: StorageV1ApiReadCSINodeRequest, options?: Configuration): Promise<HttpInfo<V1CSINode>> {
+        return this.api.readCSINodeWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -35731,8 +41377,24 @@ export class ObjectStorageV1Api {
      * read the specified StorageClass
      * @param param the request object
      */
+    public readStorageClassWithHttpInfo(param: StorageV1ApiReadStorageClassRequest, options?: Configuration): Promise<HttpInfo<V1StorageClass>> {
+        return this.api.readStorageClassWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified StorageClass
+     * @param param the request object
+     */
     public readStorageClass(param: StorageV1ApiReadStorageClassRequest, options?: Configuration): Promise<V1StorageClass> {
         return this.api.readStorageClass(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified VolumeAttachment
+     * @param param the request object
+     */
+    public readVolumeAttachmentWithHttpInfo(param: StorageV1ApiReadVolumeAttachmentRequest, options?: Configuration): Promise<HttpInfo<V1VolumeAttachment>> {
+        return this.api.readVolumeAttachmentWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -35747,8 +41409,24 @@ export class ObjectStorageV1Api {
      * read status of the specified VolumeAttachment
      * @param param the request object
      */
+    public readVolumeAttachmentStatusWithHttpInfo(param: StorageV1ApiReadVolumeAttachmentStatusRequest, options?: Configuration): Promise<HttpInfo<V1VolumeAttachment>> {
+        return this.api.readVolumeAttachmentStatusWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified VolumeAttachment
+     * @param param the request object
+     */
     public readVolumeAttachmentStatus(param: StorageV1ApiReadVolumeAttachmentStatusRequest, options?: Configuration): Promise<V1VolumeAttachment> {
         return this.api.readVolumeAttachmentStatus(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified CSIDriver
+     * @param param the request object
+     */
+    public replaceCSIDriverWithHttpInfo(param: StorageV1ApiReplaceCSIDriverRequest, options?: Configuration): Promise<HttpInfo<V1CSIDriver>> {
+        return this.api.replaceCSIDriverWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -35763,8 +41441,24 @@ export class ObjectStorageV1Api {
      * replace the specified CSINode
      * @param param the request object
      */
+    public replaceCSINodeWithHttpInfo(param: StorageV1ApiReplaceCSINodeRequest, options?: Configuration): Promise<HttpInfo<V1CSINode>> {
+        return this.api.replaceCSINodeWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified CSINode
+     * @param param the request object
+     */
     public replaceCSINode(param: StorageV1ApiReplaceCSINodeRequest, options?: Configuration): Promise<V1CSINode> {
         return this.api.replaceCSINode(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified StorageClass
+     * @param param the request object
+     */
+    public replaceStorageClassWithHttpInfo(param: StorageV1ApiReplaceStorageClassRequest, options?: Configuration): Promise<HttpInfo<V1StorageClass>> {
+        return this.api.replaceStorageClassWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -35779,8 +41473,24 @@ export class ObjectStorageV1Api {
      * replace the specified VolumeAttachment
      * @param param the request object
      */
+    public replaceVolumeAttachmentWithHttpInfo(param: StorageV1ApiReplaceVolumeAttachmentRequest, options?: Configuration): Promise<HttpInfo<V1VolumeAttachment>> {
+        return this.api.replaceVolumeAttachmentWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified VolumeAttachment
+     * @param param the request object
+     */
     public replaceVolumeAttachment(param: StorageV1ApiReplaceVolumeAttachmentRequest, options?: Configuration): Promise<V1VolumeAttachment> {
         return this.api.replaceVolumeAttachment(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified VolumeAttachment
+     * @param param the request object
+     */
+    public replaceVolumeAttachmentStatusWithHttpInfo(param: StorageV1ApiReplaceVolumeAttachmentStatusRequest, options?: Configuration): Promise<HttpInfo<V1VolumeAttachment>> {
+        return this.api.replaceVolumeAttachmentStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -36521,8 +42231,24 @@ export class ObjectStorageV1alpha1Api {
      * create a CSIStorageCapacity
      * @param param the request object
      */
+    public createNamespacedCSIStorageCapacityWithHttpInfo(param: StorageV1alpha1ApiCreateNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<HttpInfo<V1alpha1CSIStorageCapacity>> {
+        return this.api.createNamespacedCSIStorageCapacityWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a CSIStorageCapacity
+     * @param param the request object
+     */
     public createNamespacedCSIStorageCapacity(param: StorageV1alpha1ApiCreateNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<V1alpha1CSIStorageCapacity> {
         return this.api.createNamespacedCSIStorageCapacity(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a VolumeAttachment
+     * @param param the request object
+     */
+    public createVolumeAttachmentWithHttpInfo(param: StorageV1alpha1ApiCreateVolumeAttachmentRequest, options?: Configuration): Promise<HttpInfo<V1alpha1VolumeAttachment>> {
+        return this.api.createVolumeAttachmentWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -36537,8 +42263,24 @@ export class ObjectStorageV1alpha1Api {
      * delete collection of CSIStorageCapacity
      * @param param the request object
      */
+    public deleteCollectionNamespacedCSIStorageCapacityWithHttpInfo(param: StorageV1alpha1ApiDeleteCollectionNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedCSIStorageCapacityWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of CSIStorageCapacity
+     * @param param the request object
+     */
     public deleteCollectionNamespacedCSIStorageCapacity(param: StorageV1alpha1ApiDeleteCollectionNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionNamespacedCSIStorageCapacity(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of VolumeAttachment
+     * @param param the request object
+     */
+    public deleteCollectionVolumeAttachmentWithHttpInfo(param: StorageV1alpha1ApiDeleteCollectionVolumeAttachmentRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionVolumeAttachmentWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -36553,8 +42295,24 @@ export class ObjectStorageV1alpha1Api {
      * delete a CSIStorageCapacity
      * @param param the request object
      */
+    public deleteNamespacedCSIStorageCapacityWithHttpInfo(param: StorageV1alpha1ApiDeleteNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedCSIStorageCapacityWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a CSIStorageCapacity
+     * @param param the request object
+     */
     public deleteNamespacedCSIStorageCapacity(param: StorageV1alpha1ApiDeleteNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedCSIStorageCapacity(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a VolumeAttachment
+     * @param param the request object
+     */
+    public deleteVolumeAttachmentWithHttpInfo(param: StorageV1alpha1ApiDeleteVolumeAttachmentRequest, options?: Configuration): Promise<HttpInfo<V1alpha1VolumeAttachment>> {
+        return this.api.deleteVolumeAttachmentWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -36569,8 +42327,24 @@ export class ObjectStorageV1alpha1Api {
      * get available resources
      * @param param the request object
      */
+    public getAPIResourcesWithHttpInfo(param: StorageV1alpha1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
     public getAPIResources(param: StorageV1alpha1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<V1APIResourceList> {
         return this.api.getAPIResources( options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind CSIStorageCapacity
+     * @param param the request object
+     */
+    public listCSIStorageCapacityForAllNamespacesWithHttpInfo(param: StorageV1alpha1ApiListCSIStorageCapacityForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1alpha1CSIStorageCapacityList>> {
+        return this.api.listCSIStorageCapacityForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -36585,8 +42359,24 @@ export class ObjectStorageV1alpha1Api {
      * list or watch objects of kind CSIStorageCapacity
      * @param param the request object
      */
+    public listNamespacedCSIStorageCapacityWithHttpInfo(param: StorageV1alpha1ApiListNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<HttpInfo<V1alpha1CSIStorageCapacityList>> {
+        return this.api.listNamespacedCSIStorageCapacityWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind CSIStorageCapacity
+     * @param param the request object
+     */
     public listNamespacedCSIStorageCapacity(param: StorageV1alpha1ApiListNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<V1alpha1CSIStorageCapacityList> {
         return this.api.listNamespacedCSIStorageCapacity(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind VolumeAttachment
+     * @param param the request object
+     */
+    public listVolumeAttachmentWithHttpInfo(param: StorageV1alpha1ApiListVolumeAttachmentRequest = {}, options?: Configuration): Promise<HttpInfo<V1alpha1VolumeAttachmentList>> {
+        return this.api.listVolumeAttachmentWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -36601,8 +42391,24 @@ export class ObjectStorageV1alpha1Api {
      * partially update the specified CSIStorageCapacity
      * @param param the request object
      */
+    public patchNamespacedCSIStorageCapacityWithHttpInfo(param: StorageV1alpha1ApiPatchNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<HttpInfo<V1alpha1CSIStorageCapacity>> {
+        return this.api.patchNamespacedCSIStorageCapacityWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified CSIStorageCapacity
+     * @param param the request object
+     */
     public patchNamespacedCSIStorageCapacity(param: StorageV1alpha1ApiPatchNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<V1alpha1CSIStorageCapacity> {
         return this.api.patchNamespacedCSIStorageCapacity(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified VolumeAttachment
+     * @param param the request object
+     */
+    public patchVolumeAttachmentWithHttpInfo(param: StorageV1alpha1ApiPatchVolumeAttachmentRequest, options?: Configuration): Promise<HttpInfo<V1alpha1VolumeAttachment>> {
+        return this.api.patchVolumeAttachmentWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
 
     /**
@@ -36617,8 +42423,24 @@ export class ObjectStorageV1alpha1Api {
      * read the specified CSIStorageCapacity
      * @param param the request object
      */
+    public readNamespacedCSIStorageCapacityWithHttpInfo(param: StorageV1alpha1ApiReadNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<HttpInfo<V1alpha1CSIStorageCapacity>> {
+        return this.api.readNamespacedCSIStorageCapacityWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified CSIStorageCapacity
+     * @param param the request object
+     */
     public readNamespacedCSIStorageCapacity(param: StorageV1alpha1ApiReadNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<V1alpha1CSIStorageCapacity> {
         return this.api.readNamespacedCSIStorageCapacity(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified VolumeAttachment
+     * @param param the request object
+     */
+    public readVolumeAttachmentWithHttpInfo(param: StorageV1alpha1ApiReadVolumeAttachmentRequest, options?: Configuration): Promise<HttpInfo<V1alpha1VolumeAttachment>> {
+        return this.api.readVolumeAttachmentWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -36633,8 +42455,24 @@ export class ObjectStorageV1alpha1Api {
      * replace the specified CSIStorageCapacity
      * @param param the request object
      */
+    public replaceNamespacedCSIStorageCapacityWithHttpInfo(param: StorageV1alpha1ApiReplaceNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<HttpInfo<V1alpha1CSIStorageCapacity>> {
+        return this.api.replaceNamespacedCSIStorageCapacityWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified CSIStorageCapacity
+     * @param param the request object
+     */
     public replaceNamespacedCSIStorageCapacity(param: StorageV1alpha1ApiReplaceNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<V1alpha1CSIStorageCapacity> {
         return this.api.replaceNamespacedCSIStorageCapacity(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * replace the specified VolumeAttachment
+     * @param param the request object
+     */
+    public replaceVolumeAttachmentWithHttpInfo(param: StorageV1alpha1ApiReplaceVolumeAttachmentRequest, options?: Configuration): Promise<HttpInfo<V1alpha1VolumeAttachment>> {
+        return this.api.replaceVolumeAttachmentWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -37072,8 +42910,24 @@ export class ObjectStorageV1beta1Api {
      * create a CSIStorageCapacity
      * @param param the request object
      */
+    public createNamespacedCSIStorageCapacityWithHttpInfo(param: StorageV1beta1ApiCreateNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<HttpInfo<V1beta1CSIStorageCapacity>> {
+        return this.api.createNamespacedCSIStorageCapacityWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * create a CSIStorageCapacity
+     * @param param the request object
+     */
     public createNamespacedCSIStorageCapacity(param: StorageV1beta1ApiCreateNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<V1beta1CSIStorageCapacity> {
         return this.api.createNamespacedCSIStorageCapacity(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
+    }
+
+    /**
+     * delete collection of CSIStorageCapacity
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedCSIStorageCapacityWithHttpInfo(param: StorageV1beta1ApiDeleteCollectionNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedCSIStorageCapacityWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -37088,8 +42942,24 @@ export class ObjectStorageV1beta1Api {
      * delete a CSIStorageCapacity
      * @param param the request object
      */
+    public deleteNamespacedCSIStorageCapacityWithHttpInfo(param: StorageV1beta1ApiDeleteNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedCSIStorageCapacityWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a CSIStorageCapacity
+     * @param param the request object
+     */
     public deleteNamespacedCSIStorageCapacity(param: StorageV1beta1ApiDeleteNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteNamespacedCSIStorageCapacity(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: StorageV1beta1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
     /**
@@ -37104,8 +42974,24 @@ export class ObjectStorageV1beta1Api {
      * list or watch objects of kind CSIStorageCapacity
      * @param param the request object
      */
+    public listCSIStorageCapacityForAllNamespacesWithHttpInfo(param: StorageV1beta1ApiListCSIStorageCapacityForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1beta1CSIStorageCapacityList>> {
+        return this.api.listCSIStorageCapacityForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind CSIStorageCapacity
+     * @param param the request object
+     */
     public listCSIStorageCapacityForAllNamespaces(param: StorageV1beta1ApiListCSIStorageCapacityForAllNamespacesRequest = {}, options?: Configuration): Promise<V1beta1CSIStorageCapacityList> {
         return this.api.listCSIStorageCapacityForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind CSIStorageCapacity
+     * @param param the request object
+     */
+    public listNamespacedCSIStorageCapacityWithHttpInfo(param: StorageV1beta1ApiListNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<HttpInfo<V1beta1CSIStorageCapacityList>> {
+        return this.api.listNamespacedCSIStorageCapacityWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -37120,6 +43006,14 @@ export class ObjectStorageV1beta1Api {
      * partially update the specified CSIStorageCapacity
      * @param param the request object
      */
+    public patchNamespacedCSIStorageCapacityWithHttpInfo(param: StorageV1beta1ApiPatchNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<HttpInfo<V1beta1CSIStorageCapacity>> {
+        return this.api.patchNamespacedCSIStorageCapacityWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified CSIStorageCapacity
+     * @param param the request object
+     */
     public patchNamespacedCSIStorageCapacity(param: StorageV1beta1ApiPatchNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<V1beta1CSIStorageCapacity> {
         return this.api.patchNamespacedCSIStorageCapacity(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.force,  options).toPromise();
     }
@@ -37128,8 +43022,24 @@ export class ObjectStorageV1beta1Api {
      * read the specified CSIStorageCapacity
      * @param param the request object
      */
+    public readNamespacedCSIStorageCapacityWithHttpInfo(param: StorageV1beta1ApiReadNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<HttpInfo<V1beta1CSIStorageCapacity>> {
+        return this.api.readNamespacedCSIStorageCapacityWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified CSIStorageCapacity
+     * @param param the request object
+     */
     public readNamespacedCSIStorageCapacity(param: StorageV1beta1ApiReadNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<V1beta1CSIStorageCapacity> {
         return this.api.readNamespacedCSIStorageCapacity(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified CSIStorageCapacity
+     * @param param the request object
+     */
+    public replaceNamespacedCSIStorageCapacityWithHttpInfo(param: StorageV1beta1ApiReplaceNamespacedCSIStorageCapacityRequest, options?: Configuration): Promise<HttpInfo<V1beta1CSIStorageCapacity>> {
+        return this.api.replaceNamespacedCSIStorageCapacityWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager,  options).toPromise();
     }
 
     /**
@@ -37159,6 +43069,14 @@ export class ObjectVersionApi {
      * get the code version
      * @param param the request object
      */
+    public getCodeWithHttpInfo(param: VersionApiGetCodeRequest = {}, options?: Configuration): Promise<HttpInfo<VersionInfo>> {
+        return this.api.getCodeWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * get the code version
+     * @param param the request object
+     */
     public getCode(param: VersionApiGetCodeRequest = {}, options?: Configuration): Promise<VersionInfo> {
         return this.api.getCode( options).toPromise();
     }
@@ -37176,6 +43094,14 @@ export class ObjectWellKnownApi {
 
     public constructor(configuration: Configuration, requestFactory?: WellKnownApiRequestFactory, responseProcessor?: WellKnownApiResponseProcessor) {
         this.api = new ObservableWellKnownApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get service account issuer OpenID configuration, also known as the \'OIDC discovery doc\'
+     * @param param the request object
+     */
+    public getServiceAccountIssuerOpenIDConfigurationWithHttpInfo(param: WellKnownApiGetServiceAccountIssuerOpenIDConfigurationRequest = {}, options?: Configuration): Promise<HttpInfo<string>> {
+        return this.api.getServiceAccountIssuerOpenIDConfigurationWithHttpInfo( options).toPromise();
     }
 
     /**

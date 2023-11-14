@@ -1,7 +1,7 @@
 // TODO: better import syntax?
 import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
 import {ObjectSerializer} from '../models/ObjectSerializer';
@@ -91,7 +91,7 @@ export class LogsApiResponseProcessor {
      * @params response Response returned by the server for a request to logFileHandler
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async logFileHandler(response: ResponseContext): Promise< void> {
+     public async logFileHandlerWithHttpInfo(response: ResponseContext): Promise<HttpInfo< void>> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -99,7 +99,7 @@ export class LogsApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            return;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, undefined);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -112,7 +112,7 @@ export class LogsApiResponseProcessor {
      * @params response Response returned by the server for a request to logFileListHandler
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async logFileListHandler(response: ResponseContext): Promise< void> {
+     public async logFileListHandlerWithHttpInfo(response: ResponseContext): Promise<HttpInfo< void>> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -120,7 +120,7 @@ export class LogsApiResponseProcessor {
 
         // Work around for missing responses in specification, e.g. for petstore.yaml
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
-            return;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, undefined);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);

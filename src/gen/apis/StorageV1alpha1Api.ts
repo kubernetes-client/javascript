@@ -1,7 +1,7 @@
 // TODO: better import syntax?
 import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
 import {ObjectSerializer} from '../models/ObjectSerializer';
@@ -1376,28 +1376,28 @@ export class StorageV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedCSIStorageCapacity
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedCSIStorageCapacity(response: ResponseContext): Promise<V1alpha1CSIStorageCapacity > {
+     public async createNamespacedCSIStorageCapacityWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1CSIStorageCapacity >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1CSIStorageCapacity = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1CSIStorageCapacity", ""
             ) as V1alpha1CSIStorageCapacity;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1CSIStorageCapacity = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1CSIStorageCapacity", ""
             ) as V1alpha1CSIStorageCapacity;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1alpha1CSIStorageCapacity = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1CSIStorageCapacity", ""
             ) as V1alpha1CSIStorageCapacity;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1409,7 +1409,7 @@ export class StorageV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1CSIStorageCapacity", ""
             ) as V1alpha1CSIStorageCapacity;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1422,28 +1422,28 @@ export class StorageV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createVolumeAttachment
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createVolumeAttachment(response: ResponseContext): Promise<V1alpha1VolumeAttachment > {
+     public async createVolumeAttachmentWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1VolumeAttachment >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1VolumeAttachment = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1VolumeAttachment", ""
             ) as V1alpha1VolumeAttachment;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1VolumeAttachment = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1VolumeAttachment", ""
             ) as V1alpha1VolumeAttachment;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1alpha1VolumeAttachment = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1VolumeAttachment", ""
             ) as V1alpha1VolumeAttachment;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1455,7 +1455,7 @@ export class StorageV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1VolumeAttachment", ""
             ) as V1alpha1VolumeAttachment;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1468,14 +1468,14 @@ export class StorageV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionNamespacedCSIStorageCapacity
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionNamespacedCSIStorageCapacity(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionNamespacedCSIStorageCapacityWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1487,7 +1487,7 @@ export class StorageV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1500,14 +1500,14 @@ export class StorageV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionVolumeAttachment
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionVolumeAttachment(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionVolumeAttachmentWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1519,7 +1519,7 @@ export class StorageV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1532,21 +1532,21 @@ export class StorageV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteNamespacedCSIStorageCapacity
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteNamespacedCSIStorageCapacity(response: ResponseContext): Promise<V1Status > {
+     public async deleteNamespacedCSIStorageCapacityWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1558,7 +1558,7 @@ export class StorageV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1571,21 +1571,21 @@ export class StorageV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteVolumeAttachment
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteVolumeAttachment(response: ResponseContext): Promise<V1alpha1VolumeAttachment > {
+     public async deleteVolumeAttachmentWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1VolumeAttachment >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1VolumeAttachment = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1VolumeAttachment", ""
             ) as V1alpha1VolumeAttachment;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1alpha1VolumeAttachment = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1VolumeAttachment", ""
             ) as V1alpha1VolumeAttachment;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1597,7 +1597,7 @@ export class StorageV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1VolumeAttachment", ""
             ) as V1alpha1VolumeAttachment;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1610,14 +1610,14 @@ export class StorageV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to getAPIResources
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getAPIResources(response: ResponseContext): Promise<V1APIResourceList > {
+     public async getAPIResourcesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1APIResourceList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1APIResourceList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1629,7 +1629,7 @@ export class StorageV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1642,14 +1642,14 @@ export class StorageV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listCSIStorageCapacityForAllNamespaces
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listCSIStorageCapacityForAllNamespaces(response: ResponseContext): Promise<V1alpha1CSIStorageCapacityList > {
+     public async listCSIStorageCapacityForAllNamespacesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1CSIStorageCapacityList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1CSIStorageCapacityList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1CSIStorageCapacityList", ""
             ) as V1alpha1CSIStorageCapacityList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1661,7 +1661,7 @@ export class StorageV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1CSIStorageCapacityList", ""
             ) as V1alpha1CSIStorageCapacityList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1674,14 +1674,14 @@ export class StorageV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listNamespacedCSIStorageCapacity
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listNamespacedCSIStorageCapacity(response: ResponseContext): Promise<V1alpha1CSIStorageCapacityList > {
+     public async listNamespacedCSIStorageCapacityWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1CSIStorageCapacityList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1CSIStorageCapacityList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1CSIStorageCapacityList", ""
             ) as V1alpha1CSIStorageCapacityList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1693,7 +1693,7 @@ export class StorageV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1CSIStorageCapacityList", ""
             ) as V1alpha1CSIStorageCapacityList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1706,14 +1706,14 @@ export class StorageV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listVolumeAttachment
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listVolumeAttachment(response: ResponseContext): Promise<V1alpha1VolumeAttachmentList > {
+     public async listVolumeAttachmentWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1VolumeAttachmentList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1VolumeAttachmentList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1VolumeAttachmentList", ""
             ) as V1alpha1VolumeAttachmentList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1725,7 +1725,7 @@ export class StorageV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1VolumeAttachmentList", ""
             ) as V1alpha1VolumeAttachmentList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1738,21 +1738,21 @@ export class StorageV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchNamespacedCSIStorageCapacity
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchNamespacedCSIStorageCapacity(response: ResponseContext): Promise<V1alpha1CSIStorageCapacity > {
+     public async patchNamespacedCSIStorageCapacityWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1CSIStorageCapacity >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1CSIStorageCapacity = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1CSIStorageCapacity", ""
             ) as V1alpha1CSIStorageCapacity;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1CSIStorageCapacity = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1CSIStorageCapacity", ""
             ) as V1alpha1CSIStorageCapacity;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1764,7 +1764,7 @@ export class StorageV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1CSIStorageCapacity", ""
             ) as V1alpha1CSIStorageCapacity;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1777,21 +1777,21 @@ export class StorageV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchVolumeAttachment
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchVolumeAttachment(response: ResponseContext): Promise<V1alpha1VolumeAttachment > {
+     public async patchVolumeAttachmentWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1VolumeAttachment >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1VolumeAttachment = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1VolumeAttachment", ""
             ) as V1alpha1VolumeAttachment;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1VolumeAttachment = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1VolumeAttachment", ""
             ) as V1alpha1VolumeAttachment;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1803,7 +1803,7 @@ export class StorageV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1VolumeAttachment", ""
             ) as V1alpha1VolumeAttachment;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1816,14 +1816,14 @@ export class StorageV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readNamespacedCSIStorageCapacity
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readNamespacedCSIStorageCapacity(response: ResponseContext): Promise<V1alpha1CSIStorageCapacity > {
+     public async readNamespacedCSIStorageCapacityWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1CSIStorageCapacity >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1CSIStorageCapacity = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1CSIStorageCapacity", ""
             ) as V1alpha1CSIStorageCapacity;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1835,7 +1835,7 @@ export class StorageV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1CSIStorageCapacity", ""
             ) as V1alpha1CSIStorageCapacity;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1848,14 +1848,14 @@ export class StorageV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readVolumeAttachment
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readVolumeAttachment(response: ResponseContext): Promise<V1alpha1VolumeAttachment > {
+     public async readVolumeAttachmentWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1VolumeAttachment >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1VolumeAttachment = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1VolumeAttachment", ""
             ) as V1alpha1VolumeAttachment;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1867,7 +1867,7 @@ export class StorageV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1VolumeAttachment", ""
             ) as V1alpha1VolumeAttachment;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1880,21 +1880,21 @@ export class StorageV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceNamespacedCSIStorageCapacity
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceNamespacedCSIStorageCapacity(response: ResponseContext): Promise<V1alpha1CSIStorageCapacity > {
+     public async replaceNamespacedCSIStorageCapacityWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1CSIStorageCapacity >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1CSIStorageCapacity = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1CSIStorageCapacity", ""
             ) as V1alpha1CSIStorageCapacity;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1CSIStorageCapacity = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1CSIStorageCapacity", ""
             ) as V1alpha1CSIStorageCapacity;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1906,7 +1906,7 @@ export class StorageV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1CSIStorageCapacity", ""
             ) as V1alpha1CSIStorageCapacity;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1919,21 +1919,21 @@ export class StorageV1alpha1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceVolumeAttachment
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceVolumeAttachment(response: ResponseContext): Promise<V1alpha1VolumeAttachment > {
+     public async replaceVolumeAttachmentWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1alpha1VolumeAttachment >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1alpha1VolumeAttachment = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1VolumeAttachment", ""
             ) as V1alpha1VolumeAttachment;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1alpha1VolumeAttachment = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1VolumeAttachment", ""
             ) as V1alpha1VolumeAttachment;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1945,7 +1945,7 @@ export class StorageV1alpha1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1alpha1VolumeAttachment", ""
             ) as V1alpha1VolumeAttachment;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);

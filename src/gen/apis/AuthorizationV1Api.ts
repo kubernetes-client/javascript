@@ -1,7 +1,7 @@
 // TODO: better import syntax?
 import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
 import {ObjectSerializer} from '../models/ObjectSerializer';
@@ -333,28 +333,28 @@ export class AuthorizationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createNamespacedLocalSubjectAccessReview
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createNamespacedLocalSubjectAccessReview(response: ResponseContext): Promise<V1LocalSubjectAccessReview > {
+     public async createNamespacedLocalSubjectAccessReviewWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1LocalSubjectAccessReview >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1LocalSubjectAccessReview = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LocalSubjectAccessReview", ""
             ) as V1LocalSubjectAccessReview;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1LocalSubjectAccessReview = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LocalSubjectAccessReview", ""
             ) as V1LocalSubjectAccessReview;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1LocalSubjectAccessReview = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LocalSubjectAccessReview", ""
             ) as V1LocalSubjectAccessReview;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -366,7 +366,7 @@ export class AuthorizationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1LocalSubjectAccessReview", ""
             ) as V1LocalSubjectAccessReview;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -379,28 +379,28 @@ export class AuthorizationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createSelfSubjectAccessReview
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createSelfSubjectAccessReview(response: ResponseContext): Promise<V1SelfSubjectAccessReview > {
+     public async createSelfSubjectAccessReviewWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1SelfSubjectAccessReview >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1SelfSubjectAccessReview = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1SelfSubjectAccessReview", ""
             ) as V1SelfSubjectAccessReview;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1SelfSubjectAccessReview = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1SelfSubjectAccessReview", ""
             ) as V1SelfSubjectAccessReview;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1SelfSubjectAccessReview = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1SelfSubjectAccessReview", ""
             ) as V1SelfSubjectAccessReview;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -412,7 +412,7 @@ export class AuthorizationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1SelfSubjectAccessReview", ""
             ) as V1SelfSubjectAccessReview;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -425,28 +425,28 @@ export class AuthorizationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createSelfSubjectRulesReview
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createSelfSubjectRulesReview(response: ResponseContext): Promise<V1SelfSubjectRulesReview > {
+     public async createSelfSubjectRulesReviewWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1SelfSubjectRulesReview >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1SelfSubjectRulesReview = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1SelfSubjectRulesReview", ""
             ) as V1SelfSubjectRulesReview;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1SelfSubjectRulesReview = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1SelfSubjectRulesReview", ""
             ) as V1SelfSubjectRulesReview;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1SelfSubjectRulesReview = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1SelfSubjectRulesReview", ""
             ) as V1SelfSubjectRulesReview;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -458,7 +458,7 @@ export class AuthorizationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1SelfSubjectRulesReview", ""
             ) as V1SelfSubjectRulesReview;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -471,28 +471,28 @@ export class AuthorizationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createSubjectAccessReview
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createSubjectAccessReview(response: ResponseContext): Promise<V1SubjectAccessReview > {
+     public async createSubjectAccessReviewWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1SubjectAccessReview >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1SubjectAccessReview = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1SubjectAccessReview", ""
             ) as V1SubjectAccessReview;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1SubjectAccessReview = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1SubjectAccessReview", ""
             ) as V1SubjectAccessReview;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1SubjectAccessReview = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1SubjectAccessReview", ""
             ) as V1SubjectAccessReview;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -504,7 +504,7 @@ export class AuthorizationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1SubjectAccessReview", ""
             ) as V1SubjectAccessReview;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -517,14 +517,14 @@ export class AuthorizationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to getAPIResources
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getAPIResources(response: ResponseContext): Promise<V1APIResourceList > {
+     public async getAPIResourcesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1APIResourceList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1APIResourceList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -536,7 +536,7 @@ export class AuthorizationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);

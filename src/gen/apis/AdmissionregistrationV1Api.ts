@@ -1,7 +1,7 @@
 // TODO: better import syntax?
 import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
 import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile} from '../http/http';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
 import {ObjectSerializer} from '../models/ObjectSerializer';
@@ -1221,28 +1221,28 @@ export class AdmissionregistrationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createMutatingWebhookConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createMutatingWebhookConfiguration(response: ResponseContext): Promise<V1MutatingWebhookConfiguration > {
+     public async createMutatingWebhookConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1MutatingWebhookConfiguration >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1MutatingWebhookConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1MutatingWebhookConfiguration", ""
             ) as V1MutatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1MutatingWebhookConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1MutatingWebhookConfiguration", ""
             ) as V1MutatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1MutatingWebhookConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1MutatingWebhookConfiguration", ""
             ) as V1MutatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1254,7 +1254,7 @@ export class AdmissionregistrationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1MutatingWebhookConfiguration", ""
             ) as V1MutatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1267,28 +1267,28 @@ export class AdmissionregistrationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to createValidatingWebhookConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async createValidatingWebhookConfiguration(response: ResponseContext): Promise<V1ValidatingWebhookConfiguration > {
+     public async createValidatingWebhookConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ValidatingWebhookConfiguration >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ValidatingWebhookConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ValidatingWebhookConfiguration", ""
             ) as V1ValidatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ValidatingWebhookConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ValidatingWebhookConfiguration", ""
             ) as V1ValidatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1ValidatingWebhookConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ValidatingWebhookConfiguration", ""
             ) as V1ValidatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1300,7 +1300,7 @@ export class AdmissionregistrationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ValidatingWebhookConfiguration", ""
             ) as V1ValidatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1313,14 +1313,14 @@ export class AdmissionregistrationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionMutatingWebhookConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionMutatingWebhookConfiguration(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionMutatingWebhookConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1332,7 +1332,7 @@ export class AdmissionregistrationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1345,14 +1345,14 @@ export class AdmissionregistrationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteCollectionValidatingWebhookConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteCollectionValidatingWebhookConfiguration(response: ResponseContext): Promise<V1Status > {
+     public async deleteCollectionValidatingWebhookConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1364,7 +1364,7 @@ export class AdmissionregistrationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1377,21 +1377,21 @@ export class AdmissionregistrationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteMutatingWebhookConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteMutatingWebhookConfiguration(response: ResponseContext): Promise<V1Status > {
+     public async deleteMutatingWebhookConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1403,7 +1403,7 @@ export class AdmissionregistrationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1416,21 +1416,21 @@ export class AdmissionregistrationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to deleteValidatingWebhookConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async deleteValidatingWebhookConfiguration(response: ResponseContext): Promise<V1Status > {
+     public async deleteValidatingWebhookConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1Status >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("202", response.httpStatusCode)) {
             const body: V1Status = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1442,7 +1442,7 @@ export class AdmissionregistrationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1Status", ""
             ) as V1Status;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1455,14 +1455,14 @@ export class AdmissionregistrationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to getAPIResources
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async getAPIResources(response: ResponseContext): Promise<V1APIResourceList > {
+     public async getAPIResourcesWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1APIResourceList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1APIResourceList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1474,7 +1474,7 @@ export class AdmissionregistrationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1APIResourceList", ""
             ) as V1APIResourceList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1487,14 +1487,14 @@ export class AdmissionregistrationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listMutatingWebhookConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listMutatingWebhookConfiguration(response: ResponseContext): Promise<V1MutatingWebhookConfigurationList > {
+     public async listMutatingWebhookConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1MutatingWebhookConfigurationList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1MutatingWebhookConfigurationList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1MutatingWebhookConfigurationList", ""
             ) as V1MutatingWebhookConfigurationList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1506,7 +1506,7 @@ export class AdmissionregistrationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1MutatingWebhookConfigurationList", ""
             ) as V1MutatingWebhookConfigurationList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1519,14 +1519,14 @@ export class AdmissionregistrationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to listValidatingWebhookConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async listValidatingWebhookConfiguration(response: ResponseContext): Promise<V1ValidatingWebhookConfigurationList > {
+     public async listValidatingWebhookConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ValidatingWebhookConfigurationList >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ValidatingWebhookConfigurationList = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ValidatingWebhookConfigurationList", ""
             ) as V1ValidatingWebhookConfigurationList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1538,7 +1538,7 @@ export class AdmissionregistrationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ValidatingWebhookConfigurationList", ""
             ) as V1ValidatingWebhookConfigurationList;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1551,21 +1551,21 @@ export class AdmissionregistrationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchMutatingWebhookConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchMutatingWebhookConfiguration(response: ResponseContext): Promise<V1MutatingWebhookConfiguration > {
+     public async patchMutatingWebhookConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1MutatingWebhookConfiguration >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1MutatingWebhookConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1MutatingWebhookConfiguration", ""
             ) as V1MutatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1MutatingWebhookConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1MutatingWebhookConfiguration", ""
             ) as V1MutatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1577,7 +1577,7 @@ export class AdmissionregistrationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1MutatingWebhookConfiguration", ""
             ) as V1MutatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1590,21 +1590,21 @@ export class AdmissionregistrationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to patchValidatingWebhookConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async patchValidatingWebhookConfiguration(response: ResponseContext): Promise<V1ValidatingWebhookConfiguration > {
+     public async patchValidatingWebhookConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ValidatingWebhookConfiguration >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ValidatingWebhookConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ValidatingWebhookConfiguration", ""
             ) as V1ValidatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ValidatingWebhookConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ValidatingWebhookConfiguration", ""
             ) as V1ValidatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1616,7 +1616,7 @@ export class AdmissionregistrationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ValidatingWebhookConfiguration", ""
             ) as V1ValidatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1629,14 +1629,14 @@ export class AdmissionregistrationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readMutatingWebhookConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readMutatingWebhookConfiguration(response: ResponseContext): Promise<V1MutatingWebhookConfiguration > {
+     public async readMutatingWebhookConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1MutatingWebhookConfiguration >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1MutatingWebhookConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1MutatingWebhookConfiguration", ""
             ) as V1MutatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1648,7 +1648,7 @@ export class AdmissionregistrationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1MutatingWebhookConfiguration", ""
             ) as V1MutatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1661,14 +1661,14 @@ export class AdmissionregistrationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to readValidatingWebhookConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async readValidatingWebhookConfiguration(response: ResponseContext): Promise<V1ValidatingWebhookConfiguration > {
+     public async readValidatingWebhookConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ValidatingWebhookConfiguration >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ValidatingWebhookConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ValidatingWebhookConfiguration", ""
             ) as V1ValidatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1680,7 +1680,7 @@ export class AdmissionregistrationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ValidatingWebhookConfiguration", ""
             ) as V1ValidatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1693,21 +1693,21 @@ export class AdmissionregistrationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceMutatingWebhookConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceMutatingWebhookConfiguration(response: ResponseContext): Promise<V1MutatingWebhookConfiguration > {
+     public async replaceMutatingWebhookConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1MutatingWebhookConfiguration >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1MutatingWebhookConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1MutatingWebhookConfiguration", ""
             ) as V1MutatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1MutatingWebhookConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1MutatingWebhookConfiguration", ""
             ) as V1MutatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1719,7 +1719,7 @@ export class AdmissionregistrationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1MutatingWebhookConfiguration", ""
             ) as V1MutatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
@@ -1732,21 +1732,21 @@ export class AdmissionregistrationV1ApiResponseProcessor {
      * @params response Response returned by the server for a request to replaceValidatingWebhookConfiguration
      * @throws ApiException if the response code was not in [200, 299]
      */
-     public async replaceValidatingWebhookConfiguration(response: ResponseContext): Promise<V1ValidatingWebhookConfiguration > {
+     public async replaceValidatingWebhookConfigurationWithHttpInfo(response: ResponseContext): Promise<HttpInfo<V1ValidatingWebhookConfiguration >> {
         const contentType = ObjectSerializer.normalizeMediaType(response.headers["content-type"]);
         if (isCodeInRange("200", response.httpStatusCode)) {
             const body: V1ValidatingWebhookConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ValidatingWebhookConfiguration", ""
             ) as V1ValidatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("201", response.httpStatusCode)) {
             const body: V1ValidatingWebhookConfiguration = ObjectSerializer.deserialize(
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ValidatingWebhookConfiguration", ""
             ) as V1ValidatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
         if (isCodeInRange("401", response.httpStatusCode)) {
             throw new ApiException<undefined>(response.httpStatusCode, "Unauthorized", undefined, response.headers);
@@ -1758,7 +1758,7 @@ export class AdmissionregistrationV1ApiResponseProcessor {
                 ObjectSerializer.parse(await response.body.text(), contentType),
                 "V1ValidatingWebhookConfiguration", ""
             ) as V1ValidatingWebhookConfiguration;
-            return body;
+            return new HttpInfo(response.httpStatusCode, response.headers, response.body, body);
         }
 
         throw new ApiException<string | Buffer | undefined>(response.httpStatusCode, "Unknown API Status Code!", await response.getBodyAsAny(), response.headers);
