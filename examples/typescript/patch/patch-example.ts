@@ -1,3 +1,4 @@
+// in a real program use require('@kubernetes/client-node')
 import {
     CoreV1Api,
     RequestContext,
@@ -8,8 +9,6 @@ import {
     ServerConfiguration,
 } from '../../../dist';
 import { PromiseMiddlewareWrapper } from '../../../dist/gen/middleware';
-
-// const k8s = require('@kubernetes/client-node');
 
 const kc = new KubeConfig();
 kc.loadFromDefault();
@@ -76,8 +75,6 @@ k8sApi
             })
             .catch((err) => {
                 // tslint:disable-next-line:no-console
-                console.log('Error: ');
-                // tslint:disable-next-line:no-console
-                console.log(err);
+                console.log('Error: ', err);
             });
     });

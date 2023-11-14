@@ -20,7 +20,6 @@ k8sApi.listNamespacedPod({ namespace }).then((res) => {
             },
         },
     ];
-    // TODO this method of passing the content type will change when we figure out a way to properly do this
     const headerPatchMiddleware = new PromiseMiddlewareWrapper({
         pre: async (requestContext) => {
             requestContext.setHeaderParam('Content-type', 'application/json-patch+json');
