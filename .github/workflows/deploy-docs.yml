@@ -12,7 +12,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '14.x'
+          node-version: '20'
       # Pre-check to validate that versions match between package.json
       # and package-lock.json. Needs to run before npm install
       - name: Validate package.json and package-lock.json versions
