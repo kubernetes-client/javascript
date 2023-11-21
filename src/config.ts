@@ -225,6 +225,10 @@ export class KubeConfig implements SecurityAuthentication {
             agentOptions.rejectUnauthorized = false;
         }
 
+        if (cluster && cluster.tlsServerName) {
+            agentOptions.servername = cluster.tlsServerName
+        }
+
         if (user && user.username) {
             const auth = Buffer.from(`${user.username}:${user.password}`).toString('base64');
             context.setHeaderParam('Authorization', `Basic ${auth}`);
@@ -514,6 +518,10 @@ export class KubeConfig implements SecurityAuthentication {
 
         if (cluster != null && cluster.skipTLSVerify) {
             opts.rejectUnauthorized = false;
+        }
+        if (cluster != null && cluster.tlsServerName) {
+            // WebSocket.ClientOptions types are missing the servername
+            (opts as any).servername = cluster.tlsServerName;
         }
         const ca = cluster != null ? bufferFromFileOrString(cluster.caFile, cluster.caData) : null;
         if (ca) {

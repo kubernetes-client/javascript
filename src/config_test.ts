@@ -25,6 +25,7 @@ const kcDupeUser = 'testdata/kubeconfig-dupe-user.yaml';
 const kcNoUserFileName = 'testdata/empty-user-kubeconfig.yaml';
 const kcInvalidContextFileName = 'testdata/empty-context-kubeconfig.yaml';
 const kcInvalidClusterFileName = 'testdata/empty-cluster-kubeconfig.yaml';
+const kcTlsServerNameFileName = 'testdata/tls-server-name-kubeconfig.yaml';
 
 use(chaiAsPromised);
 
@@ -274,20 +275,55 @@ describe('KubeConfig', () => {
     });
 
     describe('applyHTTPSOptions', () => {
-        it('should apply cert configs', () => {
+        it('should apply tls-server-name to https.RequestOptions', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcTlsServerNameFileName);
+
+            const opts: https.RequestOptions = {};
+            await kc.applyToHTTPSOptions(opts);
+
+            const expectedAgent = new https.Agent({
+                ca: Buffer.from('CADATA2', 'utf-8'),
+                cert: Buffer.from('USER_CADATA', 'utf-8'),
+                key:  Buffer.from('USER_CKDATA', 'utf-8'),
+                passphrase: undefined,
+                pfx: undefined,
+                rejectUnauthorized: false,
+                servername: 'kube.example2.com',
+            });
+
+            const expectedOptions: https.RequestOptions = {
+                headers: {},
+                rejectUnauthorized: false,
+                servername: 'kube.example2.com',
+                agent: expectedAgent,
+            };
+
+            assertRequestOptionsEqual(opts, expectedOptions);
+        });
+        it('should apply cert configs', async () => {
             const kc = new KubeConfig();
             kc.loadFromFile(kcFileName);
 
             const opts: https.RequestOptions = {};
-            kc.applyToHTTPSOptions(opts);
+            await kc.applyToHTTPSOptions(opts);
 
-            expect(opts).to.deep.equal({
-                headers: {},
+            const expectedAgent = new https.Agent({
                 ca: Buffer.from('CADATA2', 'utf-8'),
                 cert: Buffer.from('USER2_CADATA', 'utf-8'),
-                key: Buffer.from('USER2_CKDATA', 'utf-8'),
+                key:  Buffer.from('USER2_CKDATA', 'utf-8'),
+                passphrase: undefined,
+                pfx: undefined,
                 rejectUnauthorized: false,
             });
+
+            const expectedOptions: https.RequestOptions = {
+                headers: {},
+                rejectUnauthorized: false,
+                agent: expectedAgent,
+            };
+
+            assertRequestOptionsEqual(opts, expectedOptions);
         });
         it('should apply password', async () => {
             const kc = new KubeConfig();
