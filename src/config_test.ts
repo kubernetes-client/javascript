@@ -285,7 +285,7 @@ describe('KubeConfig', () => {
             const expectedAgent = new https.Agent({
                 ca: Buffer.from('CADATA2', 'utf-8'),
                 cert: Buffer.from('USER_CADATA', 'utf-8'),
-                key:  Buffer.from('USER_CKDATA', 'utf-8'),
+                key: Buffer.from('USER_CKDATA', 'utf-8'),
                 passphrase: undefined,
                 pfx: undefined,
                 rejectUnauthorized: false,
@@ -311,7 +311,7 @@ describe('KubeConfig', () => {
             const expectedAgent = new https.Agent({
                 ca: Buffer.from('CADATA2', 'utf-8'),
                 cert: Buffer.from('USER2_CADATA', 'utf-8'),
-                key:  Buffer.from('USER2_CKDATA', 'utf-8'),
+                key: Buffer.from('USER2_CKDATA', 'utf-8'),
                 passphrase: undefined,
                 pfx: undefined,
                 rejectUnauthorized: false,

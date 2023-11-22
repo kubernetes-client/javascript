@@ -226,7 +226,7 @@ export class KubeConfig implements SecurityAuthentication {
         }
 
         if (cluster && cluster.tlsServerName) {
-            agentOptions.servername = cluster.tlsServerName
+            agentOptions.servername = cluster.tlsServerName;
         }
 
         if (user && user.username) {

@@ -21,7 +21,7 @@ export interface Cluster {
     readonly caData?: string;
     caFile?: string;
     readonly server: string;
-    readonly tlsServerName?: string
+    readonly tlsServerName?: string;
     readonly skipTLSVerify: boolean;
 }
 
