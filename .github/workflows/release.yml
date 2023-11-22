@@ -1,0 +1,51 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      releaseVersion:
+        type: string
+        required: true
+        description: The version of this release. Must be a semantic version of the form X.Y.Z.
+      dry_run:
+        type: boolean
+        required: true
+        default: false
+        description: Dry run, will not push branches or upload the artifacts.
+      skip_tag:
+        type: boolean
+        required: true
+        default: false
+        description: If true, don't tag this release, just push it.
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout Javascript
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Install dependencies
+        run: npm install
+      - name: Package
+        run: ./build-package.sh
+      - name: Upload pre-release
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: npm publish --tag next
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+      - name: Tag release
+        if: ${{ github.event.inputs.skip_tag != 'true' }}
+        run: |
+          git config --global user.name 'Github Bot'
+          git config --global user.email '<>'
+          git tag ${{ github.events.inputs.version }}
+      - name: Push tag
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          git push ${{ github.events.inputs.version }}
