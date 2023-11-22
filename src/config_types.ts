@@ -21,6 +21,7 @@ export interface Cluster {
     readonly caData?: string;
     caFile?: string;
     readonly server: string;
+    readonly tlsServerName?: string;
     readonly skipTLSVerify: boolean;
 }
 
@@ -38,6 +39,7 @@ export function exportCluster(cluster: Cluster): any {
             'certificate-authority-data': cluster.caData,
             'certificate-authority': cluster.caFile,
             'insecure-skip-tls-verify': cluster.skipTLSVerify,
+            'tls-server-name': cluster.tlsServerName,
         },
     };
 }
@@ -60,6 +62,7 @@ function clusterIterator(onInvalidEntry: ActionOnInvalid): _.ListIterator<any, C
                 name: elt.name,
                 server: elt.cluster.server.replace(/\/$/, ''),
                 skipTLSVerify: elt.cluster['insecure-skip-tls-verify'] === true,
+                tlsServerName: elt.cluster['tls-server-name'],
             };
         } catch (err) {
             switch (onInvalidEntry) {
