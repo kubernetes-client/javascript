@@ -23,7 +23,7 @@ export class WellKnownApiRequestFactory extends BaseAPIRequestFactory {
         let _config = _options || this.configuration;
 
         // Path Params
-        const localVarPath = '/.well-known/openid-configuration/';
+        const localVarPath = '/.well-known/openid-configuration';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);

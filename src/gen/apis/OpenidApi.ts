@@ -23,7 +23,7 @@ export class OpenidApiRequestFactory extends BaseAPIRequestFactory {
         let _config = _options || this.configuration;
 
         // Path Params
-        const localVarPath = '/openid/v1/jwks/';
+        const localVarPath = '/openid/v1/jwks';
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);

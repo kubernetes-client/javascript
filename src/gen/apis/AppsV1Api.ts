@@ -37,8 +37,9 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      */
-    public async createNamespacedControllerRevision(namespace: string, body: V1ControllerRevision, pretty?: string, dryRun?: string, fieldManager?: string, _options?: Configuration): Promise<RequestContext> {
+    public async createNamespacedControllerRevision(namespace: string, body: V1ControllerRevision, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'namespace' is not null or undefined
@@ -51,6 +52,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "createNamespacedControllerRevision", "body");
         }
+
 
 
 
@@ -77,6 +79,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
 
@@ -111,8 +118,9 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      */
-    public async createNamespacedDaemonSet(namespace: string, body: V1DaemonSet, pretty?: string, dryRun?: string, fieldManager?: string, _options?: Configuration): Promise<RequestContext> {
+    public async createNamespacedDaemonSet(namespace: string, body: V1DaemonSet, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'namespace' is not null or undefined
@@ -125,6 +133,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "createNamespacedDaemonSet", "body");
         }
+
 
 
 
@@ -151,6 +160,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
 
@@ -185,8 +199,9 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      */
-    public async createNamespacedDeployment(namespace: string, body: V1Deployment, pretty?: string, dryRun?: string, fieldManager?: string, _options?: Configuration): Promise<RequestContext> {
+    public async createNamespacedDeployment(namespace: string, body: V1Deployment, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'namespace' is not null or undefined
@@ -199,6 +214,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "createNamespacedDeployment", "body");
         }
+
 
 
 
@@ -225,6 +241,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
 
@@ -259,8 +280,9 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      */
-    public async createNamespacedReplicaSet(namespace: string, body: V1ReplicaSet, pretty?: string, dryRun?: string, fieldManager?: string, _options?: Configuration): Promise<RequestContext> {
+    public async createNamespacedReplicaSet(namespace: string, body: V1ReplicaSet, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'namespace' is not null or undefined
@@ -273,6 +295,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "createNamespacedReplicaSet", "body");
         }
+
 
 
 
@@ -299,6 +322,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
 
@@ -333,8 +361,9 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      */
-    public async createNamespacedStatefulSet(namespace: string, body: V1StatefulSet, pretty?: string, dryRun?: string, fieldManager?: string, _options?: Configuration): Promise<RequestContext> {
+    public async createNamespacedStatefulSet(namespace: string, body: V1StatefulSet, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'namespace' is not null or undefined
@@ -347,6 +376,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "createNamespacedStatefulSet", "body");
         }
+
 
 
 
@@ -373,6 +403,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
 
@@ -414,16 +449,18 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param resourceVersion resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @param resourceVersionMatch resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @param sendInitialEvents &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param body 
      */
-    public async deleteCollectionNamespacedControllerRevision(namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, resourceVersionMatch?: string, timeoutSeconds?: number, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
+    public async deleteCollectionNamespacedControllerRevision(namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'namespace' is not null or undefined
         if (namespace === null || namespace === undefined) {
             throw new RequiredError("AppsV1Api", "deleteCollectionNamespacedControllerRevision", "namespace");
         }
+
 
 
 
@@ -500,6 +537,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (resourceVersionMatch !== undefined) {
             requestContext.setQueryParam("resourceVersionMatch", ObjectSerializer.serialize(resourceVersionMatch, "string", ""));
+        }
+
+        // Query Params
+        if (sendInitialEvents !== undefined) {
+            requestContext.setQueryParam("sendInitialEvents", ObjectSerializer.serialize(sendInitialEvents, "boolean", ""));
         }
 
         // Query Params
@@ -546,16 +588,18 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param resourceVersion resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @param resourceVersionMatch resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @param sendInitialEvents &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param body 
      */
-    public async deleteCollectionNamespacedDaemonSet(namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, resourceVersionMatch?: string, timeoutSeconds?: number, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
+    public async deleteCollectionNamespacedDaemonSet(namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'namespace' is not null or undefined
         if (namespace === null || namespace === undefined) {
             throw new RequiredError("AppsV1Api", "deleteCollectionNamespacedDaemonSet", "namespace");
         }
+
 
 
 
@@ -635,6 +679,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
+        if (sendInitialEvents !== undefined) {
+            requestContext.setQueryParam("sendInitialEvents", ObjectSerializer.serialize(sendInitialEvents, "boolean", ""));
+        }
+
+        // Query Params
         if (timeoutSeconds !== undefined) {
             requestContext.setQueryParam("timeoutSeconds", ObjectSerializer.serialize(timeoutSeconds, "number", ""));
         }
@@ -678,16 +727,18 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param resourceVersion resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @param resourceVersionMatch resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @param sendInitialEvents &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param body 
      */
-    public async deleteCollectionNamespacedDeployment(namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, resourceVersionMatch?: string, timeoutSeconds?: number, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
+    public async deleteCollectionNamespacedDeployment(namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'namespace' is not null or undefined
         if (namespace === null || namespace === undefined) {
             throw new RequiredError("AppsV1Api", "deleteCollectionNamespacedDeployment", "namespace");
         }
+
 
 
 
@@ -767,6 +818,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
+        if (sendInitialEvents !== undefined) {
+            requestContext.setQueryParam("sendInitialEvents", ObjectSerializer.serialize(sendInitialEvents, "boolean", ""));
+        }
+
+        // Query Params
         if (timeoutSeconds !== undefined) {
             requestContext.setQueryParam("timeoutSeconds", ObjectSerializer.serialize(timeoutSeconds, "number", ""));
         }
@@ -810,16 +866,18 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param resourceVersion resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @param resourceVersionMatch resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @param sendInitialEvents &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param body 
      */
-    public async deleteCollectionNamespacedReplicaSet(namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, resourceVersionMatch?: string, timeoutSeconds?: number, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
+    public async deleteCollectionNamespacedReplicaSet(namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'namespace' is not null or undefined
         if (namespace === null || namespace === undefined) {
             throw new RequiredError("AppsV1Api", "deleteCollectionNamespacedReplicaSet", "namespace");
         }
+
 
 
 
@@ -899,6 +957,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
+        if (sendInitialEvents !== undefined) {
+            requestContext.setQueryParam("sendInitialEvents", ObjectSerializer.serialize(sendInitialEvents, "boolean", ""));
+        }
+
+        // Query Params
         if (timeoutSeconds !== undefined) {
             requestContext.setQueryParam("timeoutSeconds", ObjectSerializer.serialize(timeoutSeconds, "number", ""));
         }
@@ -942,16 +1005,18 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param resourceVersion resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @param resourceVersionMatch resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @param sendInitialEvents &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param body 
      */
-    public async deleteCollectionNamespacedStatefulSet(namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, resourceVersionMatch?: string, timeoutSeconds?: number, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
+    public async deleteCollectionNamespacedStatefulSet(namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'namespace' is not null or undefined
         if (namespace === null || namespace === undefined) {
             throw new RequiredError("AppsV1Api", "deleteCollectionNamespacedStatefulSet", "namespace");
         }
+
 
 
 
@@ -1028,6 +1093,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (resourceVersionMatch !== undefined) {
             requestContext.setQueryParam("resourceVersionMatch", ObjectSerializer.serialize(resourceVersionMatch, "string", ""));
+        }
+
+        // Query Params
+        if (sendInitialEvents !== undefined) {
+            requestContext.setQueryParam("sendInitialEvents", ObjectSerializer.serialize(sendInitialEvents, "boolean", ""));
         }
 
         // Query Params
@@ -1554,11 +1624,13 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param resourceVersion resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @param resourceVersionMatch resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @param sendInitialEvents &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      */
-    public async listControllerRevisionForAllNamespaces(allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, pretty?: string, resourceVersion?: string, resourceVersionMatch?: string, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async listControllerRevisionForAllNamespaces(allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, pretty?: string, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
+
 
 
 
@@ -1618,6 +1690,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
+        if (sendInitialEvents !== undefined) {
+            requestContext.setQueryParam("sendInitialEvents", ObjectSerializer.serialize(sendInitialEvents, "boolean", ""));
+        }
+
+        // Query Params
         if (timeoutSeconds !== undefined) {
             requestContext.setQueryParam("timeoutSeconds", ObjectSerializer.serialize(timeoutSeconds, "number", ""));
         }
@@ -1653,11 +1730,13 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param resourceVersion resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @param resourceVersionMatch resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @param sendInitialEvents &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      */
-    public async listDaemonSetForAllNamespaces(allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, pretty?: string, resourceVersion?: string, resourceVersionMatch?: string, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async listDaemonSetForAllNamespaces(allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, pretty?: string, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
+
 
 
 
@@ -1717,6 +1796,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
+        if (sendInitialEvents !== undefined) {
+            requestContext.setQueryParam("sendInitialEvents", ObjectSerializer.serialize(sendInitialEvents, "boolean", ""));
+        }
+
+        // Query Params
         if (timeoutSeconds !== undefined) {
             requestContext.setQueryParam("timeoutSeconds", ObjectSerializer.serialize(timeoutSeconds, "number", ""));
         }
@@ -1752,11 +1836,13 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param resourceVersion resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @param resourceVersionMatch resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @param sendInitialEvents &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      */
-    public async listDeploymentForAllNamespaces(allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, pretty?: string, resourceVersion?: string, resourceVersionMatch?: string, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async listDeploymentForAllNamespaces(allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, pretty?: string, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
+
 
 
 
@@ -1816,6 +1902,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
+        if (sendInitialEvents !== undefined) {
+            requestContext.setQueryParam("sendInitialEvents", ObjectSerializer.serialize(sendInitialEvents, "boolean", ""));
+        }
+
+        // Query Params
         if (timeoutSeconds !== undefined) {
             requestContext.setQueryParam("timeoutSeconds", ObjectSerializer.serialize(timeoutSeconds, "number", ""));
         }
@@ -1852,16 +1943,18 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param limit limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
      * @param resourceVersion resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @param resourceVersionMatch resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @param sendInitialEvents &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      */
-    public async listNamespacedControllerRevision(namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, resourceVersion?: string, resourceVersionMatch?: string, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async listNamespacedControllerRevision(namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'namespace' is not null or undefined
         if (namespace === null || namespace === undefined) {
             throw new RequiredError("AppsV1Api", "listNamespacedControllerRevision", "namespace");
         }
+
 
 
 
@@ -1923,6 +2016,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
+        if (sendInitialEvents !== undefined) {
+            requestContext.setQueryParam("sendInitialEvents", ObjectSerializer.serialize(sendInitialEvents, "boolean", ""));
+        }
+
+        // Query Params
         if (timeoutSeconds !== undefined) {
             requestContext.setQueryParam("timeoutSeconds", ObjectSerializer.serialize(timeoutSeconds, "number", ""));
         }
@@ -1959,16 +2057,18 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param limit limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
      * @param resourceVersion resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @param resourceVersionMatch resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @param sendInitialEvents &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      */
-    public async listNamespacedDaemonSet(namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, resourceVersion?: string, resourceVersionMatch?: string, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async listNamespacedDaemonSet(namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'namespace' is not null or undefined
         if (namespace === null || namespace === undefined) {
             throw new RequiredError("AppsV1Api", "listNamespacedDaemonSet", "namespace");
         }
+
 
 
 
@@ -2030,6 +2130,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
+        if (sendInitialEvents !== undefined) {
+            requestContext.setQueryParam("sendInitialEvents", ObjectSerializer.serialize(sendInitialEvents, "boolean", ""));
+        }
+
+        // Query Params
         if (timeoutSeconds !== undefined) {
             requestContext.setQueryParam("timeoutSeconds", ObjectSerializer.serialize(timeoutSeconds, "number", ""));
         }
@@ -2066,16 +2171,18 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param limit limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
      * @param resourceVersion resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @param resourceVersionMatch resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @param sendInitialEvents &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      */
-    public async listNamespacedDeployment(namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, resourceVersion?: string, resourceVersionMatch?: string, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async listNamespacedDeployment(namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'namespace' is not null or undefined
         if (namespace === null || namespace === undefined) {
             throw new RequiredError("AppsV1Api", "listNamespacedDeployment", "namespace");
         }
+
 
 
 
@@ -2137,6 +2244,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
+        if (sendInitialEvents !== undefined) {
+            requestContext.setQueryParam("sendInitialEvents", ObjectSerializer.serialize(sendInitialEvents, "boolean", ""));
+        }
+
+        // Query Params
         if (timeoutSeconds !== undefined) {
             requestContext.setQueryParam("timeoutSeconds", ObjectSerializer.serialize(timeoutSeconds, "number", ""));
         }
@@ -2173,16 +2285,18 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param limit limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
      * @param resourceVersion resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @param resourceVersionMatch resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @param sendInitialEvents &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      */
-    public async listNamespacedReplicaSet(namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, resourceVersion?: string, resourceVersionMatch?: string, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async listNamespacedReplicaSet(namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'namespace' is not null or undefined
         if (namespace === null || namespace === undefined) {
             throw new RequiredError("AppsV1Api", "listNamespacedReplicaSet", "namespace");
         }
+
 
 
 
@@ -2244,6 +2358,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
+        if (sendInitialEvents !== undefined) {
+            requestContext.setQueryParam("sendInitialEvents", ObjectSerializer.serialize(sendInitialEvents, "boolean", ""));
+        }
+
+        // Query Params
         if (timeoutSeconds !== undefined) {
             requestContext.setQueryParam("timeoutSeconds", ObjectSerializer.serialize(timeoutSeconds, "number", ""));
         }
@@ -2280,16 +2399,18 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param limit limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
      * @param resourceVersion resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @param resourceVersionMatch resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @param sendInitialEvents &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      */
-    public async listNamespacedStatefulSet(namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, resourceVersion?: string, resourceVersionMatch?: string, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async listNamespacedStatefulSet(namespace: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'namespace' is not null or undefined
         if (namespace === null || namespace === undefined) {
             throw new RequiredError("AppsV1Api", "listNamespacedStatefulSet", "namespace");
         }
+
 
 
 
@@ -2351,6 +2472,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
+        if (sendInitialEvents !== undefined) {
+            requestContext.setQueryParam("sendInitialEvents", ObjectSerializer.serialize(sendInitialEvents, "boolean", ""));
+        }
+
+        // Query Params
         if (timeoutSeconds !== undefined) {
             requestContext.setQueryParam("timeoutSeconds", ObjectSerializer.serialize(timeoutSeconds, "number", ""));
         }
@@ -2386,11 +2512,13 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param resourceVersion resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @param resourceVersionMatch resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @param sendInitialEvents &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      */
-    public async listReplicaSetForAllNamespaces(allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, pretty?: string, resourceVersion?: string, resourceVersionMatch?: string, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async listReplicaSetForAllNamespaces(allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, pretty?: string, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
+
 
 
 
@@ -2450,6 +2578,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
+        if (sendInitialEvents !== undefined) {
+            requestContext.setQueryParam("sendInitialEvents", ObjectSerializer.serialize(sendInitialEvents, "boolean", ""));
+        }
+
+        // Query Params
         if (timeoutSeconds !== undefined) {
             requestContext.setQueryParam("timeoutSeconds", ObjectSerializer.serialize(timeoutSeconds, "number", ""));
         }
@@ -2485,11 +2618,13 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param resourceVersion resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @param resourceVersionMatch resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @param sendInitialEvents &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      */
-    public async listStatefulSetForAllNamespaces(allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, pretty?: string, resourceVersion?: string, resourceVersionMatch?: string, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async listStatefulSetForAllNamespaces(allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, pretty?: string, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
+
 
 
 
@@ -2549,6 +2684,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         }
 
         // Query Params
+        if (sendInitialEvents !== undefined) {
+            requestContext.setQueryParam("sendInitialEvents", ObjectSerializer.serialize(sendInitialEvents, "boolean", ""));
+        }
+
+        // Query Params
         if (timeoutSeconds !== undefined) {
             requestContext.setQueryParam("timeoutSeconds", ObjectSerializer.serialize(timeoutSeconds, "number", ""));
         }
@@ -2582,9 +2722,10 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @param force Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
      */
-    public async patchNamespacedControllerRevision(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async patchNamespacedControllerRevision(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -2603,6 +2744,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "patchNamespacedControllerRevision", "body");
         }
+
 
 
 
@@ -2631,6 +2773,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
         // Query Params
@@ -2679,9 +2826,10 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @param force Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
      */
-    public async patchNamespacedDaemonSet(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async patchNamespacedDaemonSet(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -2700,6 +2848,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "patchNamespacedDaemonSet", "body");
         }
+
 
 
 
@@ -2728,6 +2877,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
         // Query Params
@@ -2776,9 +2930,10 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @param force Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
      */
-    public async patchNamespacedDaemonSetStatus(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async patchNamespacedDaemonSetStatus(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -2797,6 +2952,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "patchNamespacedDaemonSetStatus", "body");
         }
+
 
 
 
@@ -2825,6 +2981,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
         // Query Params
@@ -2873,9 +3034,10 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @param force Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
      */
-    public async patchNamespacedDeployment(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async patchNamespacedDeployment(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -2894,6 +3056,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "patchNamespacedDeployment", "body");
         }
+
 
 
 
@@ -2922,6 +3085,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
         // Query Params
@@ -2970,9 +3138,10 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @param force Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
      */
-    public async patchNamespacedDeploymentScale(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async patchNamespacedDeploymentScale(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -2991,6 +3160,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "patchNamespacedDeploymentScale", "body");
         }
+
 
 
 
@@ -3019,6 +3189,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
         // Query Params
@@ -3067,9 +3242,10 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @param force Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
      */
-    public async patchNamespacedDeploymentStatus(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async patchNamespacedDeploymentStatus(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -3088,6 +3264,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "patchNamespacedDeploymentStatus", "body");
         }
+
 
 
 
@@ -3116,6 +3293,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
         // Query Params
@@ -3164,9 +3346,10 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @param force Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
      */
-    public async patchNamespacedReplicaSet(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async patchNamespacedReplicaSet(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -3185,6 +3368,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "patchNamespacedReplicaSet", "body");
         }
+
 
 
 
@@ -3213,6 +3397,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
         // Query Params
@@ -3261,9 +3450,10 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @param force Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
      */
-    public async patchNamespacedReplicaSetScale(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async patchNamespacedReplicaSetScale(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -3282,6 +3472,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "patchNamespacedReplicaSetScale", "body");
         }
+
 
 
 
@@ -3310,6 +3501,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
         // Query Params
@@ -3358,9 +3554,10 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @param force Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
      */
-    public async patchNamespacedReplicaSetStatus(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async patchNamespacedReplicaSetStatus(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -3379,6 +3576,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "patchNamespacedReplicaSetStatus", "body");
         }
+
 
 
 
@@ -3407,6 +3605,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
         // Query Params
@@ -3455,9 +3658,10 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @param force Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
      */
-    public async patchNamespacedStatefulSet(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async patchNamespacedStatefulSet(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -3476,6 +3680,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "patchNamespacedStatefulSet", "body");
         }
+
 
 
 
@@ -3504,6 +3709,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
         // Query Params
@@ -3552,9 +3762,10 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @param force Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
      */
-    public async patchNamespacedStatefulSetScale(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async patchNamespacedStatefulSetScale(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -3573,6 +3784,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "patchNamespacedStatefulSetScale", "body");
         }
+
 
 
 
@@ -3601,6 +3813,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
         // Query Params
@@ -3649,9 +3866,10 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @param force Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
      */
-    public async patchNamespacedStatefulSetStatus(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async patchNamespacedStatefulSetStatus(name: string, namespace: string, body: any, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, force?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -3670,6 +3888,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "patchNamespacedStatefulSetStatus", "body");
         }
+
 
 
 
@@ -3698,6 +3917,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
         // Query Params
@@ -4370,8 +4594,9 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      */
-    public async replaceNamespacedControllerRevision(name: string, namespace: string, body: V1ControllerRevision, pretty?: string, dryRun?: string, fieldManager?: string, _options?: Configuration): Promise<RequestContext> {
+    public async replaceNamespacedControllerRevision(name: string, namespace: string, body: V1ControllerRevision, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -4390,6 +4615,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "replaceNamespacedControllerRevision", "body");
         }
+
 
 
 
@@ -4417,6 +4643,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
 
@@ -4452,8 +4683,9 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      */
-    public async replaceNamespacedDaemonSet(name: string, namespace: string, body: V1DaemonSet, pretty?: string, dryRun?: string, fieldManager?: string, _options?: Configuration): Promise<RequestContext> {
+    public async replaceNamespacedDaemonSet(name: string, namespace: string, body: V1DaemonSet, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -4472,6 +4704,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "replaceNamespacedDaemonSet", "body");
         }
+
 
 
 
@@ -4499,6 +4732,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
 
@@ -4534,8 +4772,9 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      */
-    public async replaceNamespacedDaemonSetStatus(name: string, namespace: string, body: V1DaemonSet, pretty?: string, dryRun?: string, fieldManager?: string, _options?: Configuration): Promise<RequestContext> {
+    public async replaceNamespacedDaemonSetStatus(name: string, namespace: string, body: V1DaemonSet, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -4554,6 +4793,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "replaceNamespacedDaemonSetStatus", "body");
         }
+
 
 
 
@@ -4581,6 +4821,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
 
@@ -4616,8 +4861,9 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      */
-    public async replaceNamespacedDeployment(name: string, namespace: string, body: V1Deployment, pretty?: string, dryRun?: string, fieldManager?: string, _options?: Configuration): Promise<RequestContext> {
+    public async replaceNamespacedDeployment(name: string, namespace: string, body: V1Deployment, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -4636,6 +4882,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "replaceNamespacedDeployment", "body");
         }
+
 
 
 
@@ -4663,6 +4910,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
 
@@ -4698,8 +4950,9 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      */
-    public async replaceNamespacedDeploymentScale(name: string, namespace: string, body: V1Scale, pretty?: string, dryRun?: string, fieldManager?: string, _options?: Configuration): Promise<RequestContext> {
+    public async replaceNamespacedDeploymentScale(name: string, namespace: string, body: V1Scale, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -4718,6 +4971,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "replaceNamespacedDeploymentScale", "body");
         }
+
 
 
 
@@ -4745,6 +4999,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
 
@@ -4780,8 +5039,9 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      */
-    public async replaceNamespacedDeploymentStatus(name: string, namespace: string, body: V1Deployment, pretty?: string, dryRun?: string, fieldManager?: string, _options?: Configuration): Promise<RequestContext> {
+    public async replaceNamespacedDeploymentStatus(name: string, namespace: string, body: V1Deployment, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -4800,6 +5060,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "replaceNamespacedDeploymentStatus", "body");
         }
+
 
 
 
@@ -4827,6 +5088,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
 
@@ -4862,8 +5128,9 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      */
-    public async replaceNamespacedReplicaSet(name: string, namespace: string, body: V1ReplicaSet, pretty?: string, dryRun?: string, fieldManager?: string, _options?: Configuration): Promise<RequestContext> {
+    public async replaceNamespacedReplicaSet(name: string, namespace: string, body: V1ReplicaSet, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -4882,6 +5149,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "replaceNamespacedReplicaSet", "body");
         }
+
 
 
 
@@ -4909,6 +5177,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
 
@@ -4944,8 +5217,9 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      */
-    public async replaceNamespacedReplicaSetScale(name: string, namespace: string, body: V1Scale, pretty?: string, dryRun?: string, fieldManager?: string, _options?: Configuration): Promise<RequestContext> {
+    public async replaceNamespacedReplicaSetScale(name: string, namespace: string, body: V1Scale, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -4964,6 +5238,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "replaceNamespacedReplicaSetScale", "body");
         }
+
 
 
 
@@ -4991,6 +5266,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
 
@@ -5026,8 +5306,9 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      */
-    public async replaceNamespacedReplicaSetStatus(name: string, namespace: string, body: V1ReplicaSet, pretty?: string, dryRun?: string, fieldManager?: string, _options?: Configuration): Promise<RequestContext> {
+    public async replaceNamespacedReplicaSetStatus(name: string, namespace: string, body: V1ReplicaSet, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -5046,6 +5327,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "replaceNamespacedReplicaSetStatus", "body");
         }
+
 
 
 
@@ -5073,6 +5355,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
 
@@ -5108,8 +5395,9 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      */
-    public async replaceNamespacedStatefulSet(name: string, namespace: string, body: V1StatefulSet, pretty?: string, dryRun?: string, fieldManager?: string, _options?: Configuration): Promise<RequestContext> {
+    public async replaceNamespacedStatefulSet(name: string, namespace: string, body: V1StatefulSet, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -5128,6 +5416,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "replaceNamespacedStatefulSet", "body");
         }
+
 
 
 
@@ -5155,6 +5444,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
 
@@ -5190,8 +5484,9 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      */
-    public async replaceNamespacedStatefulSetScale(name: string, namespace: string, body: V1Scale, pretty?: string, dryRun?: string, fieldManager?: string, _options?: Configuration): Promise<RequestContext> {
+    public async replaceNamespacedStatefulSetScale(name: string, namespace: string, body: V1Scale, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -5210,6 +5505,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "replaceNamespacedStatefulSetScale", "body");
         }
+
 
 
 
@@ -5237,6 +5533,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
 
@@ -5272,8 +5573,9 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      */
-    public async replaceNamespacedStatefulSetStatus(name: string, namespace: string, body: V1StatefulSet, pretty?: string, dryRun?: string, fieldManager?: string, _options?: Configuration): Promise<RequestContext> {
+    public async replaceNamespacedStatefulSetStatus(name: string, namespace: string, body: V1StatefulSet, pretty?: string, dryRun?: string, fieldManager?: string, fieldValidation?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -5292,6 +5594,7 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AppsV1Api", "replaceNamespacedStatefulSetStatus", "body");
         }
+
 
 
 
@@ -5319,6 +5622,11 @@ export class AppsV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
 
