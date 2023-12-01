@@ -27,9 +27,10 @@ export class AuthorizationV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param body 
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      */
-    public async createNamespacedLocalSubjectAccessReview(namespace: string, body: V1LocalSubjectAccessReview, dryRun?: string, fieldManager?: string, pretty?: string, _options?: Configuration): Promise<RequestContext> {
+    public async createNamespacedLocalSubjectAccessReview(namespace: string, body: V1LocalSubjectAccessReview, dryRun?: string, fieldManager?: string, fieldValidation?: string, pretty?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'namespace' is not null or undefined
@@ -42,6 +43,7 @@ export class AuthorizationV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (body === null || body === undefined) {
             throw new RequiredError("AuthorizationV1Api", "createNamespacedLocalSubjectAccessReview", "body");
         }
+
 
 
 
@@ -63,6 +65,11 @@ export class AuthorizationV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
         // Query Params
@@ -100,15 +107,17 @@ export class AuthorizationV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param body 
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      */
-    public async createSelfSubjectAccessReview(body: V1SelfSubjectAccessReview, dryRun?: string, fieldManager?: string, pretty?: string, _options?: Configuration): Promise<RequestContext> {
+    public async createSelfSubjectAccessReview(body: V1SelfSubjectAccessReview, dryRun?: string, fieldManager?: string, fieldValidation?: string, pretty?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'body' is not null or undefined
         if (body === null || body === undefined) {
             throw new RequiredError("AuthorizationV1Api", "createSelfSubjectAccessReview", "body");
         }
+
 
 
 
@@ -129,6 +138,11 @@ export class AuthorizationV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
         // Query Params
@@ -166,15 +180,17 @@ export class AuthorizationV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param body 
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      */
-    public async createSelfSubjectRulesReview(body: V1SelfSubjectRulesReview, dryRun?: string, fieldManager?: string, pretty?: string, _options?: Configuration): Promise<RequestContext> {
+    public async createSelfSubjectRulesReview(body: V1SelfSubjectRulesReview, dryRun?: string, fieldManager?: string, fieldValidation?: string, pretty?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'body' is not null or undefined
         if (body === null || body === undefined) {
             throw new RequiredError("AuthorizationV1Api", "createSelfSubjectRulesReview", "body");
         }
+
 
 
 
@@ -195,6 +211,11 @@ export class AuthorizationV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
         // Query Params
@@ -232,15 +253,17 @@ export class AuthorizationV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param body 
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldManager fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @param fieldValidation fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      */
-    public async createSubjectAccessReview(body: V1SubjectAccessReview, dryRun?: string, fieldManager?: string, pretty?: string, _options?: Configuration): Promise<RequestContext> {
+    public async createSubjectAccessReview(body: V1SubjectAccessReview, dryRun?: string, fieldManager?: string, fieldValidation?: string, pretty?: string, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'body' is not null or undefined
         if (body === null || body === undefined) {
             throw new RequiredError("AuthorizationV1Api", "createSubjectAccessReview", "body");
         }
+
 
 
 
@@ -261,6 +284,11 @@ export class AuthorizationV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (fieldManager !== undefined) {
             requestContext.setQueryParam("fieldManager", ObjectSerializer.serialize(fieldManager, "string", ""));
+        }
+
+        // Query Params
+        if (fieldValidation !== undefined) {
+            requestContext.setQueryParam("fieldValidation", ObjectSerializer.serialize(fieldValidation, "string", ""));
         }
 
         // Query Params

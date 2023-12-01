@@ -55,7 +55,6 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -102,7 +101,6 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
           annotations: {
             "key": "key_example",
           },
-          clusterName: "clusterName_example",
           creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
           deletionGracePeriodSeconds: 1,
           deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -144,10 +142,33 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
         spec: {
           activeDeadlineSeconds: 1,
           backoffLimit: 1,
+          backoffLimitPerIndex: 1,
           completionMode: "completionMode_example",
           completions: 1,
           manualSelector: true,
+          maxFailedIndexes: 1,
           parallelism: 1,
+          podFailurePolicy: {
+            rules: [
+              {
+                action: "action_example",
+                onExitCodes: {
+                  containerName: "containerName_example",
+                  operator: "operator_example",
+                  values: [
+                    1,
+                  ],
+                },
+                onPodConditions: [
+                  {
+                    status: "status_example",
+                    type: "type_example",
+                  },
+                ],
+              },
+            ],
+          },
+          podReplacementPolicy: "podReplacementPolicy_example",
           selector: {
             matchExpressions: [
               {
@@ -168,7 +189,6 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
               annotations: {
                 "key": "key_example",
               },
-              clusterName: "clusterName_example",
               creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
               deletionGracePeriodSeconds: 1,
               deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -522,6 +542,10 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -561,6 +585,10 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -583,7 +611,18 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                     terminationGracePeriodSeconds: 1,
                     timeoutSeconds: 1,
                   },
+                  resizePolicy: [
+                    {
+                      resourceName: "resourceName_example",
+                      restartPolicy: "restartPolicy_example",
+                    },
+                  ],
                   resources: {
+                    claims: [
+                      {
+                        name: "name_example",
+                      },
+                    ],
                     limits: {
                       "key": "key_example",
                     },
@@ -591,6 +630,7 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                       "key": "key_example",
                     },
                   },
+                  restartPolicy: "restartPolicy_example",
                   securityContext: {
                     allowPrivilegeEscalation: true,
                     capabilities: {
@@ -631,6 +671,10 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -798,6 +842,10 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -837,6 +885,10 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -859,7 +911,18 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                     terminationGracePeriodSeconds: 1,
                     timeoutSeconds: 1,
                   },
+                  resizePolicy: [
+                    {
+                      resourceName: "resourceName_example",
+                      restartPolicy: "restartPolicy_example",
+                    },
+                  ],
                   resources: {
+                    claims: [
+                      {
+                        name: "name_example",
+                      },
+                    ],
                     limits: {
                       "key": "key_example",
                     },
@@ -867,6 +930,7 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                       "key": "key_example",
                     },
                   },
+                  restartPolicy: "restartPolicy_example",
                   securityContext: {
                     allowPrivilegeEscalation: true,
                     capabilities: {
@@ -907,6 +971,10 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -965,6 +1033,7 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
               hostIPC: true,
               hostNetwork: true,
               hostPID: true,
+              hostUsers: true,
               hostname: "hostname_example",
               imagePullSecrets: [
                 {
@@ -1076,6 +1145,10 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -1115,6 +1188,10 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -1137,7 +1214,18 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                     terminationGracePeriodSeconds: 1,
                     timeoutSeconds: 1,
                   },
+                  resizePolicy: [
+                    {
+                      resourceName: "resourceName_example",
+                      restartPolicy: "restartPolicy_example",
+                    },
+                  ],
                   resources: {
+                    claims: [
+                      {
+                        name: "name_example",
+                      },
+                    ],
                     limits: {
                       "key": "key_example",
                     },
@@ -1145,6 +1233,7 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                       "key": "key_example",
                     },
                   },
+                  restartPolicy: "restartPolicy_example",
                   securityContext: {
                     allowPrivilegeEscalation: true,
                     capabilities: {
@@ -1185,6 +1274,10 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -1235,6 +1328,9 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
               nodeSelector: {
                 "key": "key_example",
               },
+              os: {
+                name: "name_example",
+              },
               overhead: {
                 "key": "key_example",
               },
@@ -1246,9 +1342,23 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                   conditionType: "conditionType_example",
                 },
               ],
+              resourceClaims: [
+                {
+                  name: "name_example",
+                  source: {
+                    resourceClaimName: "resourceClaimName_example",
+                    resourceClaimTemplateName: "resourceClaimTemplateName_example",
+                  },
+                },
+              ],
               restartPolicy: "restartPolicy_example",
               runtimeClassName: "runtimeClassName_example",
               schedulerName: "schedulerName_example",
+              schedulingGates: [
+                {
+                  name: "name_example",
+                },
+              ],
               securityContext: {
                 fsGroup: 1,
                 fsGroupChangePolicy: "fsGroupChangePolicy_example",
@@ -1312,7 +1422,13 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                       "key": "key_example",
                     },
                   },
+                  matchLabelKeys: [
+                    "matchLabelKeys_example",
+                  ],
                   maxSkew: 1,
+                  minDomains: 1,
+                  nodeAffinityPolicy: "nodeAffinityPolicy_example",
+                  nodeTaintsPolicy: "nodeTaintsPolicy_example",
                   topologyKey: "topologyKey_example",
                   whenUnsatisfiable: "whenUnsatisfiable_example",
                 },
@@ -1409,7 +1525,6 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                         annotations: {
                           "key": "key_example",
                         },
-                        clusterName: "clusterName_example",
                         creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
                         deletionGracePeriodSeconds: 1,
                         deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -1461,8 +1576,14 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                           apiGroup: "apiGroup_example",
                           kind: "kind_example",
                           name: "name_example",
+                          namespace: "namespace_example",
                         },
                         resources: {
+                          claims: [
+                            {
+                              name: "name_example",
+                            },
+                          ],
                           limits: {
                             "key": "key_example",
                           },
@@ -1697,6 +1818,7 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
       startingDeadlineSeconds: 1,
       successfulJobsHistoryLimit: 1,
       suspend: true,
+      timeZone: "timeZone_example",
     },
     status: {
       active: [
@@ -1720,6 +1842,8 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.createNamespacedCronJob(body).then((data:any) => {
@@ -1737,6 +1861,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -1789,7 +1914,6 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -1831,10 +1955,33 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
     spec: {
       activeDeadlineSeconds: 1,
       backoffLimit: 1,
+      backoffLimitPerIndex: 1,
       completionMode: "completionMode_example",
       completions: 1,
       manualSelector: true,
+      maxFailedIndexes: 1,
       parallelism: 1,
+      podFailurePolicy: {
+        rules: [
+          {
+            action: "action_example",
+            onExitCodes: {
+              containerName: "containerName_example",
+              operator: "operator_example",
+              values: [
+                1,
+              ],
+            },
+            onPodConditions: [
+              {
+                status: "status_example",
+                type: "type_example",
+              },
+            ],
+          },
+        ],
+      },
+      podReplacementPolicy: "podReplacementPolicy_example",
       selector: {
         matchExpressions: [
           {
@@ -1855,7 +2002,6 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
           annotations: {
             "key": "key_example",
           },
-          clusterName: "clusterName_example",
           creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
           deletionGracePeriodSeconds: 1,
           deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -2209,6 +2355,10 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -2248,6 +2398,10 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -2270,7 +2424,18 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                 terminationGracePeriodSeconds: 1,
                 timeoutSeconds: 1,
               },
+              resizePolicy: [
+                {
+                  resourceName: "resourceName_example",
+                  restartPolicy: "restartPolicy_example",
+                },
+              ],
               resources: {
+                claims: [
+                  {
+                    name: "name_example",
+                  },
+                ],
                 limits: {
                   "key": "key_example",
                 },
@@ -2278,6 +2443,7 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                   "key": "key_example",
                 },
               },
+              restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
                 capabilities: {
@@ -2318,6 +2484,10 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -2485,6 +2655,10 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -2524,6 +2698,10 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -2546,7 +2724,18 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                 terminationGracePeriodSeconds: 1,
                 timeoutSeconds: 1,
               },
+              resizePolicy: [
+                {
+                  resourceName: "resourceName_example",
+                  restartPolicy: "restartPolicy_example",
+                },
+              ],
               resources: {
+                claims: [
+                  {
+                    name: "name_example",
+                  },
+                ],
                 limits: {
                   "key": "key_example",
                 },
@@ -2554,6 +2743,7 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                   "key": "key_example",
                 },
               },
+              restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
                 capabilities: {
@@ -2594,6 +2784,10 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -2652,6 +2846,7 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
           hostIPC: true,
           hostNetwork: true,
           hostPID: true,
+          hostUsers: true,
           hostname: "hostname_example",
           imagePullSecrets: [
             {
@@ -2763,6 +2958,10 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -2802,6 +3001,10 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -2824,7 +3027,18 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                 terminationGracePeriodSeconds: 1,
                 timeoutSeconds: 1,
               },
+              resizePolicy: [
+                {
+                  resourceName: "resourceName_example",
+                  restartPolicy: "restartPolicy_example",
+                },
+              ],
               resources: {
+                claims: [
+                  {
+                    name: "name_example",
+                  },
+                ],
                 limits: {
                   "key": "key_example",
                 },
@@ -2832,6 +3046,7 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                   "key": "key_example",
                 },
               },
+              restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
                 capabilities: {
@@ -2872,6 +3087,10 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -2922,6 +3141,9 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
           nodeSelector: {
             "key": "key_example",
           },
+          os: {
+            name: "name_example",
+          },
           overhead: {
             "key": "key_example",
           },
@@ -2933,9 +3155,23 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
               conditionType: "conditionType_example",
             },
           ],
+          resourceClaims: [
+            {
+              name: "name_example",
+              source: {
+                resourceClaimName: "resourceClaimName_example",
+                resourceClaimTemplateName: "resourceClaimTemplateName_example",
+              },
+            },
+          ],
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
+          schedulingGates: [
+            {
+              name: "name_example",
+            },
+          ],
           securityContext: {
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
@@ -2999,7 +3235,13 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                   "key": "key_example",
                 },
               },
+              matchLabelKeys: [
+                "matchLabelKeys_example",
+              ],
               maxSkew: 1,
+              minDomains: 1,
+              nodeAffinityPolicy: "nodeAffinityPolicy_example",
+              nodeTaintsPolicy: "nodeTaintsPolicy_example",
               topologyKey: "topologyKey_example",
               whenUnsatisfiable: "whenUnsatisfiable_example",
             },
@@ -3096,7 +3338,6 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                     annotations: {
                       "key": "key_example",
                     },
-                    clusterName: "clusterName_example",
                     creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
                     deletionGracePeriodSeconds: 1,
                     deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -3148,8 +3389,14 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                       apiGroup: "apiGroup_example",
                       kind: "kind_example",
                       name: "name_example",
+                      namespace: "namespace_example",
                     },
                     resources: {
+                      claims: [
+                        {
+                          name: "name_example",
+                        },
+                      ],
                       limits: {
                         "key": "key_example",
                       },
@@ -3394,8 +3641,11 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
         },
       ],
       failed: 1,
+      failedIndexes: "failedIndexes_example",
+      ready: 1,
       startTime: new Date('1970-01-01T00:00:00.00Z'),
       succeeded: 1,
+      terminating: 1,
       uncountedTerminatedPods: {
         failed: [
           "failed_example",
@@ -3412,6 +3662,8 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.createNamespacedJob(body).then((data:any) => {
@@ -3429,6 +3681,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -3495,6 +3748,8 @@ let body:.BatchV1ApiDeleteCollectionNamespacedCronJobRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // V1DeleteOptions (optional)
@@ -3537,6 +3792,7 @@ Name | Type | Description  | Notes
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
 
 
@@ -3602,6 +3858,8 @@ let body:.BatchV1ApiDeleteCollectionNamespacedJobRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // V1DeleteOptions (optional)
@@ -3644,6 +3902,7 @@ Name | Type | Description  | Notes
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
 
 
@@ -3930,6 +4189,8 @@ let body:.BatchV1ApiListCronJobForAllNamespacesRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -3954,6 +4215,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -4012,6 +4274,8 @@ let body:.BatchV1ApiListJobForAllNamespacesRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -4036,6 +4300,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -4096,6 +4361,8 @@ let body:.BatchV1ApiListNamespacedCronJobRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -4121,6 +4388,7 @@ Name | Type | Description  | Notes
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -4181,6 +4449,8 @@ let body:.BatchV1ApiListNamespacedJobRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -4206,6 +4476,7 @@ Name | Type | Description  | Notes
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -4260,6 +4531,8 @@ let body:.BatchV1ApiPatchNamespacedCronJobRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -4280,6 +4553,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -4334,6 +4608,8 @@ let body:.BatchV1ApiPatchNamespacedCronJobStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -4354,6 +4630,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -4408,6 +4685,8 @@ let body:.BatchV1ApiPatchNamespacedJobRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -4428,6 +4707,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -4482,6 +4762,8 @@ let body:.BatchV1ApiPatchNamespacedJobStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -4502,6 +4784,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -4800,7 +5083,6 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -4847,7 +5129,6 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
           annotations: {
             "key": "key_example",
           },
-          clusterName: "clusterName_example",
           creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
           deletionGracePeriodSeconds: 1,
           deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -4889,10 +5170,33 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
         spec: {
           activeDeadlineSeconds: 1,
           backoffLimit: 1,
+          backoffLimitPerIndex: 1,
           completionMode: "completionMode_example",
           completions: 1,
           manualSelector: true,
+          maxFailedIndexes: 1,
           parallelism: 1,
+          podFailurePolicy: {
+            rules: [
+              {
+                action: "action_example",
+                onExitCodes: {
+                  containerName: "containerName_example",
+                  operator: "operator_example",
+                  values: [
+                    1,
+                  ],
+                },
+                onPodConditions: [
+                  {
+                    status: "status_example",
+                    type: "type_example",
+                  },
+                ],
+              },
+            ],
+          },
+          podReplacementPolicy: "podReplacementPolicy_example",
           selector: {
             matchExpressions: [
               {
@@ -4913,7 +5217,6 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
               annotations: {
                 "key": "key_example",
               },
-              clusterName: "clusterName_example",
               creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
               deletionGracePeriodSeconds: 1,
               deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -5267,6 +5570,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -5306,6 +5613,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -5328,7 +5639,18 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                     terminationGracePeriodSeconds: 1,
                     timeoutSeconds: 1,
                   },
+                  resizePolicy: [
+                    {
+                      resourceName: "resourceName_example",
+                      restartPolicy: "restartPolicy_example",
+                    },
+                  ],
                   resources: {
+                    claims: [
+                      {
+                        name: "name_example",
+                      },
+                    ],
                     limits: {
                       "key": "key_example",
                     },
@@ -5336,6 +5658,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                       "key": "key_example",
                     },
                   },
+                  restartPolicy: "restartPolicy_example",
                   securityContext: {
                     allowPrivilegeEscalation: true,
                     capabilities: {
@@ -5376,6 +5699,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -5543,6 +5870,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -5582,6 +5913,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -5604,7 +5939,18 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                     terminationGracePeriodSeconds: 1,
                     timeoutSeconds: 1,
                   },
+                  resizePolicy: [
+                    {
+                      resourceName: "resourceName_example",
+                      restartPolicy: "restartPolicy_example",
+                    },
+                  ],
                   resources: {
+                    claims: [
+                      {
+                        name: "name_example",
+                      },
+                    ],
                     limits: {
                       "key": "key_example",
                     },
@@ -5612,6 +5958,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                       "key": "key_example",
                     },
                   },
+                  restartPolicy: "restartPolicy_example",
                   securityContext: {
                     allowPrivilegeEscalation: true,
                     capabilities: {
@@ -5652,6 +5999,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -5710,6 +6061,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
               hostIPC: true,
               hostNetwork: true,
               hostPID: true,
+              hostUsers: true,
               hostname: "hostname_example",
               imagePullSecrets: [
                 {
@@ -5821,6 +6173,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -5860,6 +6216,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -5882,7 +6242,18 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                     terminationGracePeriodSeconds: 1,
                     timeoutSeconds: 1,
                   },
+                  resizePolicy: [
+                    {
+                      resourceName: "resourceName_example",
+                      restartPolicy: "restartPolicy_example",
+                    },
+                  ],
                   resources: {
+                    claims: [
+                      {
+                        name: "name_example",
+                      },
+                    ],
                     limits: {
                       "key": "key_example",
                     },
@@ -5890,6 +6261,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                       "key": "key_example",
                     },
                   },
+                  restartPolicy: "restartPolicy_example",
                   securityContext: {
                     allowPrivilegeEscalation: true,
                     capabilities: {
@@ -5930,6 +6302,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -5980,6 +6356,9 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
               nodeSelector: {
                 "key": "key_example",
               },
+              os: {
+                name: "name_example",
+              },
               overhead: {
                 "key": "key_example",
               },
@@ -5991,9 +6370,23 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                   conditionType: "conditionType_example",
                 },
               ],
+              resourceClaims: [
+                {
+                  name: "name_example",
+                  source: {
+                    resourceClaimName: "resourceClaimName_example",
+                    resourceClaimTemplateName: "resourceClaimTemplateName_example",
+                  },
+                },
+              ],
               restartPolicy: "restartPolicy_example",
               runtimeClassName: "runtimeClassName_example",
               schedulerName: "schedulerName_example",
+              schedulingGates: [
+                {
+                  name: "name_example",
+                },
+              ],
               securityContext: {
                 fsGroup: 1,
                 fsGroupChangePolicy: "fsGroupChangePolicy_example",
@@ -6057,7 +6450,13 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                       "key": "key_example",
                     },
                   },
+                  matchLabelKeys: [
+                    "matchLabelKeys_example",
+                  ],
                   maxSkew: 1,
+                  minDomains: 1,
+                  nodeAffinityPolicy: "nodeAffinityPolicy_example",
+                  nodeTaintsPolicy: "nodeTaintsPolicy_example",
                   topologyKey: "topologyKey_example",
                   whenUnsatisfiable: "whenUnsatisfiable_example",
                 },
@@ -6154,7 +6553,6 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                         annotations: {
                           "key": "key_example",
                         },
-                        clusterName: "clusterName_example",
                         creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
                         deletionGracePeriodSeconds: 1,
                         deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -6206,8 +6604,14 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                           apiGroup: "apiGroup_example",
                           kind: "kind_example",
                           name: "name_example",
+                          namespace: "namespace_example",
                         },
                         resources: {
+                          claims: [
+                            {
+                              name: "name_example",
+                            },
+                          ],
                           limits: {
                             "key": "key_example",
                           },
@@ -6442,6 +6846,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
       startingDeadlineSeconds: 1,
       successfulJobsHistoryLimit: 1,
       suspend: true,
+      timeZone: "timeZone_example",
     },
     status: {
       active: [
@@ -6465,6 +6870,8 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedCronJob(body).then((data:any) => {
@@ -6483,6 +6890,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -6536,7 +6944,6 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -6583,7 +6990,6 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
           annotations: {
             "key": "key_example",
           },
-          clusterName: "clusterName_example",
           creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
           deletionGracePeriodSeconds: 1,
           deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -6625,10 +7031,33 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
         spec: {
           activeDeadlineSeconds: 1,
           backoffLimit: 1,
+          backoffLimitPerIndex: 1,
           completionMode: "completionMode_example",
           completions: 1,
           manualSelector: true,
+          maxFailedIndexes: 1,
           parallelism: 1,
+          podFailurePolicy: {
+            rules: [
+              {
+                action: "action_example",
+                onExitCodes: {
+                  containerName: "containerName_example",
+                  operator: "operator_example",
+                  values: [
+                    1,
+                  ],
+                },
+                onPodConditions: [
+                  {
+                    status: "status_example",
+                    type: "type_example",
+                  },
+                ],
+              },
+            ],
+          },
+          podReplacementPolicy: "podReplacementPolicy_example",
           selector: {
             matchExpressions: [
               {
@@ -6649,7 +7078,6 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
               annotations: {
                 "key": "key_example",
               },
-              clusterName: "clusterName_example",
               creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
               deletionGracePeriodSeconds: 1,
               deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -7003,6 +7431,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -7042,6 +7474,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -7064,7 +7500,18 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                     terminationGracePeriodSeconds: 1,
                     timeoutSeconds: 1,
                   },
+                  resizePolicy: [
+                    {
+                      resourceName: "resourceName_example",
+                      restartPolicy: "restartPolicy_example",
+                    },
+                  ],
                   resources: {
+                    claims: [
+                      {
+                        name: "name_example",
+                      },
+                    ],
                     limits: {
                       "key": "key_example",
                     },
@@ -7072,6 +7519,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       "key": "key_example",
                     },
                   },
+                  restartPolicy: "restartPolicy_example",
                   securityContext: {
                     allowPrivilegeEscalation: true,
                     capabilities: {
@@ -7112,6 +7560,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -7279,6 +7731,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -7318,6 +7774,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -7340,7 +7800,18 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                     terminationGracePeriodSeconds: 1,
                     timeoutSeconds: 1,
                   },
+                  resizePolicy: [
+                    {
+                      resourceName: "resourceName_example",
+                      restartPolicy: "restartPolicy_example",
+                    },
+                  ],
                   resources: {
+                    claims: [
+                      {
+                        name: "name_example",
+                      },
+                    ],
                     limits: {
                       "key": "key_example",
                     },
@@ -7348,6 +7819,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       "key": "key_example",
                     },
                   },
+                  restartPolicy: "restartPolicy_example",
                   securityContext: {
                     allowPrivilegeEscalation: true,
                     capabilities: {
@@ -7388,6 +7860,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -7446,6 +7922,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
               hostIPC: true,
               hostNetwork: true,
               hostPID: true,
+              hostUsers: true,
               hostname: "hostname_example",
               imagePullSecrets: [
                 {
@@ -7557,6 +8034,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -7596,6 +8077,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -7618,7 +8103,18 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                     terminationGracePeriodSeconds: 1,
                     timeoutSeconds: 1,
                   },
+                  resizePolicy: [
+                    {
+                      resourceName: "resourceName_example",
+                      restartPolicy: "restartPolicy_example",
+                    },
+                  ],
                   resources: {
+                    claims: [
+                      {
+                        name: "name_example",
+                      },
+                    ],
                     limits: {
                       "key": "key_example",
                     },
@@ -7626,6 +8122,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       "key": "key_example",
                     },
                   },
+                  restartPolicy: "restartPolicy_example",
                   securityContext: {
                     allowPrivilegeEscalation: true,
                     capabilities: {
@@ -7666,6 +8163,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       ],
                     },
                     failureThreshold: 1,
+                    grpc: {
+                      port: 1,
+                      service: "service_example",
+                    },
                     httpGet: {
                       host: "host_example",
                       httpHeaders: [
@@ -7716,6 +8217,9 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
               nodeSelector: {
                 "key": "key_example",
               },
+              os: {
+                name: "name_example",
+              },
               overhead: {
                 "key": "key_example",
               },
@@ -7727,9 +8231,23 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                   conditionType: "conditionType_example",
                 },
               ],
+              resourceClaims: [
+                {
+                  name: "name_example",
+                  source: {
+                    resourceClaimName: "resourceClaimName_example",
+                    resourceClaimTemplateName: "resourceClaimTemplateName_example",
+                  },
+                },
+              ],
               restartPolicy: "restartPolicy_example",
               runtimeClassName: "runtimeClassName_example",
               schedulerName: "schedulerName_example",
+              schedulingGates: [
+                {
+                  name: "name_example",
+                },
+              ],
               securityContext: {
                 fsGroup: 1,
                 fsGroupChangePolicy: "fsGroupChangePolicy_example",
@@ -7793,7 +8311,13 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       "key": "key_example",
                     },
                   },
+                  matchLabelKeys: [
+                    "matchLabelKeys_example",
+                  ],
                   maxSkew: 1,
+                  minDomains: 1,
+                  nodeAffinityPolicy: "nodeAffinityPolicy_example",
+                  nodeTaintsPolicy: "nodeTaintsPolicy_example",
                   topologyKey: "topologyKey_example",
                   whenUnsatisfiable: "whenUnsatisfiable_example",
                 },
@@ -7890,7 +8414,6 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                         annotations: {
                           "key": "key_example",
                         },
-                        clusterName: "clusterName_example",
                         creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
                         deletionGracePeriodSeconds: 1,
                         deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -7942,8 +8465,14 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                           apiGroup: "apiGroup_example",
                           kind: "kind_example",
                           name: "name_example",
+                          namespace: "namespace_example",
                         },
                         resources: {
+                          claims: [
+                            {
+                              name: "name_example",
+                            },
+                          ],
                           limits: {
                             "key": "key_example",
                           },
@@ -8178,6 +8707,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
       startingDeadlineSeconds: 1,
       successfulJobsHistoryLimit: 1,
       suspend: true,
+      timeZone: "timeZone_example",
     },
     status: {
       active: [
@@ -8201,6 +8731,8 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedCronJobStatus(body).then((data:any) => {
@@ -8219,6 +8751,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -8272,7 +8805,6 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -8314,10 +8846,33 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
     spec: {
       activeDeadlineSeconds: 1,
       backoffLimit: 1,
+      backoffLimitPerIndex: 1,
       completionMode: "completionMode_example",
       completions: 1,
       manualSelector: true,
+      maxFailedIndexes: 1,
       parallelism: 1,
+      podFailurePolicy: {
+        rules: [
+          {
+            action: "action_example",
+            onExitCodes: {
+              containerName: "containerName_example",
+              operator: "operator_example",
+              values: [
+                1,
+              ],
+            },
+            onPodConditions: [
+              {
+                status: "status_example",
+                type: "type_example",
+              },
+            ],
+          },
+        ],
+      },
+      podReplacementPolicy: "podReplacementPolicy_example",
       selector: {
         matchExpressions: [
           {
@@ -8338,7 +8893,6 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
           annotations: {
             "key": "key_example",
           },
-          clusterName: "clusterName_example",
           creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
           deletionGracePeriodSeconds: 1,
           deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -8692,6 +9246,10 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -8731,6 +9289,10 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -8753,7 +9315,18 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                 terminationGracePeriodSeconds: 1,
                 timeoutSeconds: 1,
               },
+              resizePolicy: [
+                {
+                  resourceName: "resourceName_example",
+                  restartPolicy: "restartPolicy_example",
+                },
+              ],
               resources: {
+                claims: [
+                  {
+                    name: "name_example",
+                  },
+                ],
                 limits: {
                   "key": "key_example",
                 },
@@ -8761,6 +9334,7 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                   "key": "key_example",
                 },
               },
+              restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
                 capabilities: {
@@ -8801,6 +9375,10 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -8968,6 +9546,10 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -9007,6 +9589,10 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -9029,7 +9615,18 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                 terminationGracePeriodSeconds: 1,
                 timeoutSeconds: 1,
               },
+              resizePolicy: [
+                {
+                  resourceName: "resourceName_example",
+                  restartPolicy: "restartPolicy_example",
+                },
+              ],
               resources: {
+                claims: [
+                  {
+                    name: "name_example",
+                  },
+                ],
                 limits: {
                   "key": "key_example",
                 },
@@ -9037,6 +9634,7 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                   "key": "key_example",
                 },
               },
+              restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
                 capabilities: {
@@ -9077,6 +9675,10 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -9135,6 +9737,7 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
           hostIPC: true,
           hostNetwork: true,
           hostPID: true,
+          hostUsers: true,
           hostname: "hostname_example",
           imagePullSecrets: [
             {
@@ -9246,6 +9849,10 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -9285,6 +9892,10 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -9307,7 +9918,18 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                 terminationGracePeriodSeconds: 1,
                 timeoutSeconds: 1,
               },
+              resizePolicy: [
+                {
+                  resourceName: "resourceName_example",
+                  restartPolicy: "restartPolicy_example",
+                },
+              ],
               resources: {
+                claims: [
+                  {
+                    name: "name_example",
+                  },
+                ],
                 limits: {
                   "key": "key_example",
                 },
@@ -9315,6 +9937,7 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                   "key": "key_example",
                 },
               },
+              restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
                 capabilities: {
@@ -9355,6 +9978,10 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -9405,6 +10032,9 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
           nodeSelector: {
             "key": "key_example",
           },
+          os: {
+            name: "name_example",
+          },
           overhead: {
             "key": "key_example",
           },
@@ -9416,9 +10046,23 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
               conditionType: "conditionType_example",
             },
           ],
+          resourceClaims: [
+            {
+              name: "name_example",
+              source: {
+                resourceClaimName: "resourceClaimName_example",
+                resourceClaimTemplateName: "resourceClaimTemplateName_example",
+              },
+            },
+          ],
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
+          schedulingGates: [
+            {
+              name: "name_example",
+            },
+          ],
           securityContext: {
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
@@ -9482,7 +10126,13 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                   "key": "key_example",
                 },
               },
+              matchLabelKeys: [
+                "matchLabelKeys_example",
+              ],
               maxSkew: 1,
+              minDomains: 1,
+              nodeAffinityPolicy: "nodeAffinityPolicy_example",
+              nodeTaintsPolicy: "nodeTaintsPolicy_example",
               topologyKey: "topologyKey_example",
               whenUnsatisfiable: "whenUnsatisfiable_example",
             },
@@ -9579,7 +10229,6 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                     annotations: {
                       "key": "key_example",
                     },
-                    clusterName: "clusterName_example",
                     creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
                     deletionGracePeriodSeconds: 1,
                     deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -9631,8 +10280,14 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                       apiGroup: "apiGroup_example",
                       kind: "kind_example",
                       name: "name_example",
+                      namespace: "namespace_example",
                     },
                     resources: {
+                      claims: [
+                        {
+                          name: "name_example",
+                        },
+                      ],
                       limits: {
                         "key": "key_example",
                       },
@@ -9877,8 +10532,11 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
         },
       ],
       failed: 1,
+      failedIndexes: "failedIndexes_example",
+      ready: 1,
       startTime: new Date('1970-01-01T00:00:00.00Z'),
       succeeded: 1,
+      terminating: 1,
       uncountedTerminatedPods: {
         failed: [
           "failed_example",
@@ -9895,6 +10553,8 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedJob(body).then((data:any) => {
@@ -9913,6 +10573,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -9966,7 +10627,6 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -10008,10 +10668,33 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
     spec: {
       activeDeadlineSeconds: 1,
       backoffLimit: 1,
+      backoffLimitPerIndex: 1,
       completionMode: "completionMode_example",
       completions: 1,
       manualSelector: true,
+      maxFailedIndexes: 1,
       parallelism: 1,
+      podFailurePolicy: {
+        rules: [
+          {
+            action: "action_example",
+            onExitCodes: {
+              containerName: "containerName_example",
+              operator: "operator_example",
+              values: [
+                1,
+              ],
+            },
+            onPodConditions: [
+              {
+                status: "status_example",
+                type: "type_example",
+              },
+            ],
+          },
+        ],
+      },
+      podReplacementPolicy: "podReplacementPolicy_example",
       selector: {
         matchExpressions: [
           {
@@ -10032,7 +10715,6 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
           annotations: {
             "key": "key_example",
           },
-          clusterName: "clusterName_example",
           creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
           deletionGracePeriodSeconds: 1,
           deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -10386,6 +11068,10 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -10425,6 +11111,10 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -10447,7 +11137,18 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                 terminationGracePeriodSeconds: 1,
                 timeoutSeconds: 1,
               },
+              resizePolicy: [
+                {
+                  resourceName: "resourceName_example",
+                  restartPolicy: "restartPolicy_example",
+                },
+              ],
               resources: {
+                claims: [
+                  {
+                    name: "name_example",
+                  },
+                ],
                 limits: {
                   "key": "key_example",
                 },
@@ -10455,6 +11156,7 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   "key": "key_example",
                 },
               },
+              restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
                 capabilities: {
@@ -10495,6 +11197,10 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -10662,6 +11368,10 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -10701,6 +11411,10 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -10723,7 +11437,18 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                 terminationGracePeriodSeconds: 1,
                 timeoutSeconds: 1,
               },
+              resizePolicy: [
+                {
+                  resourceName: "resourceName_example",
+                  restartPolicy: "restartPolicy_example",
+                },
+              ],
               resources: {
+                claims: [
+                  {
+                    name: "name_example",
+                  },
+                ],
                 limits: {
                   "key": "key_example",
                 },
@@ -10731,6 +11456,7 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   "key": "key_example",
                 },
               },
+              restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
                 capabilities: {
@@ -10771,6 +11497,10 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -10829,6 +11559,7 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
           hostIPC: true,
           hostNetwork: true,
           hostPID: true,
+          hostUsers: true,
           hostname: "hostname_example",
           imagePullSecrets: [
             {
@@ -10940,6 +11671,10 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -10979,6 +11714,10 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -11001,7 +11740,18 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                 terminationGracePeriodSeconds: 1,
                 timeoutSeconds: 1,
               },
+              resizePolicy: [
+                {
+                  resourceName: "resourceName_example",
+                  restartPolicy: "restartPolicy_example",
+                },
+              ],
               resources: {
+                claims: [
+                  {
+                    name: "name_example",
+                  },
+                ],
                 limits: {
                   "key": "key_example",
                 },
@@ -11009,6 +11759,7 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   "key": "key_example",
                 },
               },
+              restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
                 capabilities: {
@@ -11049,6 +11800,10 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -11099,6 +11854,9 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
           nodeSelector: {
             "key": "key_example",
           },
+          os: {
+            name: "name_example",
+          },
           overhead: {
             "key": "key_example",
           },
@@ -11110,9 +11868,23 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
               conditionType: "conditionType_example",
             },
           ],
+          resourceClaims: [
+            {
+              name: "name_example",
+              source: {
+                resourceClaimName: "resourceClaimName_example",
+                resourceClaimTemplateName: "resourceClaimTemplateName_example",
+              },
+            },
+          ],
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
+          schedulingGates: [
+            {
+              name: "name_example",
+            },
+          ],
           securityContext: {
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
@@ -11176,7 +11948,13 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   "key": "key_example",
                 },
               },
+              matchLabelKeys: [
+                "matchLabelKeys_example",
+              ],
               maxSkew: 1,
+              minDomains: 1,
+              nodeAffinityPolicy: "nodeAffinityPolicy_example",
+              nodeTaintsPolicy: "nodeTaintsPolicy_example",
               topologyKey: "topologyKey_example",
               whenUnsatisfiable: "whenUnsatisfiable_example",
             },
@@ -11273,7 +12051,6 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                     annotations: {
                       "key": "key_example",
                     },
-                    clusterName: "clusterName_example",
                     creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
                     deletionGracePeriodSeconds: 1,
                     deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -11325,8 +12102,14 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                       apiGroup: "apiGroup_example",
                       kind: "kind_example",
                       name: "name_example",
+                      namespace: "namespace_example",
                     },
                     resources: {
+                      claims: [
+                        {
+                          name: "name_example",
+                        },
+                      ],
                       limits: {
                         "key": "key_example",
                       },
@@ -11571,8 +12354,11 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
         },
       ],
       failed: 1,
+      failedIndexes: "failedIndexes_example",
+      ready: 1,
       startTime: new Date('1970-01-01T00:00:00.00Z'),
       succeeded: 1,
+      terminating: 1,
       uncountedTerminatedPods: {
         failed: [
           "failed_example",
@@ -11589,6 +12375,8 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedJobStatus(body).then((data:any) => {
@@ -11607,6 +12395,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type

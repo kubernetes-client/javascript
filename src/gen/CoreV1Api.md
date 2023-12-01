@@ -81,6 +81,7 @@ Method | HTTP request | Description
 [**deleteCollectionNamespacedReplicationController**](CoreV1Api.md#deleteCollectionNamespacedReplicationController) | **DELETE** /api/v1/namespaces/{namespace}/replicationcontrollers | 
 [**deleteCollectionNamespacedResourceQuota**](CoreV1Api.md#deleteCollectionNamespacedResourceQuota) | **DELETE** /api/v1/namespaces/{namespace}/resourcequotas | 
 [**deleteCollectionNamespacedSecret**](CoreV1Api.md#deleteCollectionNamespacedSecret) | **DELETE** /api/v1/namespaces/{namespace}/secrets | 
+[**deleteCollectionNamespacedService**](CoreV1Api.md#deleteCollectionNamespacedService) | **DELETE** /api/v1/namespaces/{namespace}/services | 
 [**deleteCollectionNamespacedServiceAccount**](CoreV1Api.md#deleteCollectionNamespacedServiceAccount) | **DELETE** /api/v1/namespaces/{namespace}/serviceaccounts | 
 [**deleteCollectionNode**](CoreV1Api.md#deleteCollectionNode) | **DELETE** /api/v1/nodes | 
 [**deleteCollectionPersistentVolume**](CoreV1Api.md#deleteCollectionPersistentVolume) | **DELETE** /api/v1/persistentvolumes | 
@@ -674,11 +675,11 @@ let body:.CoreV1ApiConnectGetNamespacedPodExecRequest = {
   command: "command_example",
   // string | Container in which to execute the command. Defaults to only container if there is only one container in the pod. (optional)
   container: "container_example",
-  // boolean | Redirect the standard error stream of the pod for this call. Defaults to true. (optional)
+  // boolean | Redirect the standard error stream of the pod for this call. (optional)
   stderr: true,
   // boolean | Redirect the standard input stream of the pod for this call. Defaults to false. (optional)
   stdin: true,
-  // boolean | Redirect the standard output stream of the pod for this call. Defaults to true. (optional)
+  // boolean | Redirect the standard output stream of the pod for this call. (optional)
   stdout: true,
   // boolean | TTY if true indicates that a tty will be allocated for the exec call. Defaults to false. (optional)
   tty: true,
@@ -698,9 +699,9 @@ Name | Type | Description  | Notes
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
  **command** | [**string**] | Command is the remote command to execute. argv array. Not executed within a shell. | (optional) defaults to undefined
  **container** | [**string**] | Container in which to execute the command. Defaults to only container if there is only one container in the pod. | (optional) defaults to undefined
- **stderr** | [**boolean**] | Redirect the standard error stream of the pod for this call. Defaults to true. | (optional) defaults to undefined
+ **stderr** | [**boolean**] | Redirect the standard error stream of the pod for this call. | (optional) defaults to undefined
  **stdin** | [**boolean**] | Redirect the standard input stream of the pod for this call. Defaults to false. | (optional) defaults to undefined
- **stdout** | [**boolean**] | Redirect the standard output stream of the pod for this call. Defaults to true. | (optional) defaults to undefined
+ **stdout** | [**boolean**] | Redirect the standard output stream of the pod for this call. | (optional) defaults to undefined
  **tty** | [**boolean**] | TTY if true indicates that a tty will be allocated for the exec call. Defaults to false. | (optional) defaults to undefined
 
 
@@ -2360,11 +2361,11 @@ let body:.CoreV1ApiConnectPostNamespacedPodExecRequest = {
   command: "command_example",
   // string | Container in which to execute the command. Defaults to only container if there is only one container in the pod. (optional)
   container: "container_example",
-  // boolean | Redirect the standard error stream of the pod for this call. Defaults to true. (optional)
+  // boolean | Redirect the standard error stream of the pod for this call. (optional)
   stderr: true,
   // boolean | Redirect the standard input stream of the pod for this call. Defaults to false. (optional)
   stdin: true,
-  // boolean | Redirect the standard output stream of the pod for this call. Defaults to true. (optional)
+  // boolean | Redirect the standard output stream of the pod for this call. (optional)
   stdout: true,
   // boolean | TTY if true indicates that a tty will be allocated for the exec call. Defaults to false. (optional)
   tty: true,
@@ -2384,9 +2385,9 @@ Name | Type | Description  | Notes
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
  **command** | [**string**] | Command is the remote command to execute. argv array. Not executed within a shell. | (optional) defaults to undefined
  **container** | [**string**] | Container in which to execute the command. Defaults to only container if there is only one container in the pod. | (optional) defaults to undefined
- **stderr** | [**boolean**] | Redirect the standard error stream of the pod for this call. Defaults to true. | (optional) defaults to undefined
+ **stderr** | [**boolean**] | Redirect the standard error stream of the pod for this call. | (optional) defaults to undefined
  **stdin** | [**boolean**] | Redirect the standard input stream of the pod for this call. Defaults to false. | (optional) defaults to undefined
- **stdout** | [**boolean**] | Redirect the standard output stream of the pod for this call. Defaults to true. | (optional) defaults to undefined
+ **stdout** | [**boolean**] | Redirect the standard output stream of the pod for this call. | (optional) defaults to undefined
  **tty** | [**boolean**] | TTY if true indicates that a tty will be allocated for the exec call. Defaults to false. | (optional) defaults to undefined
 
 
@@ -3235,7 +3236,6 @@ let body:.CoreV1ApiCreateNamespaceRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -3298,6 +3298,8 @@ let body:.CoreV1ApiCreateNamespaceRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.createNamespace(body).then((data:any) => {
@@ -3314,6 +3316,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -3366,7 +3369,6 @@ let body:.CoreV1ApiCreateNamespacedBindingRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -3419,6 +3421,8 @@ let body:.CoreV1ApiCreateNamespacedBindingRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // string | If \'true\', then the output is pretty printed. (optional)
   pretty: "pretty_example",
 };
@@ -3437,6 +3441,7 @@ Name | Type | Description  | Notes
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
 
 
@@ -3497,7 +3502,6 @@ let body:.CoreV1ApiCreateNamespacedConfigMapRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -3543,6 +3547,8 @@ let body:.CoreV1ApiCreateNamespacedConfigMapRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.createNamespacedConfigMap(body).then((data:any) => {
@@ -3560,6 +3566,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -3612,7 +3619,6 @@ let body:.CoreV1ApiCreateNamespacedEndpointsRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -3702,6 +3708,8 @@ let body:.CoreV1ApiCreateNamespacedEndpointsRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.createNamespacedEndpoints(body).then((data:any) => {
@@ -3719,6 +3727,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -3786,7 +3795,6 @@ let body:.CoreV1ApiCreateNamespacedEventRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -3853,6 +3861,8 @@ let body:.CoreV1ApiCreateNamespacedEventRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.createNamespacedEvent(body).then((data:any) => {
@@ -3870,6 +3880,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -3922,7 +3933,6 @@ let body:.CoreV1ApiCreateNamespacedLimitRangeRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -3990,6 +4000,8 @@ let body:.CoreV1ApiCreateNamespacedLimitRangeRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.createNamespacedLimitRange(body).then((data:any) => {
@@ -4007,6 +4019,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -4059,7 +4072,6 @@ let body:.CoreV1ApiCreateNamespacedPersistentVolumeClaimRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -4111,8 +4123,14 @@ let body:.CoreV1ApiCreateNamespacedPersistentVolumeClaimRequest = {
         apiGroup: "apiGroup_example",
         kind: "kind_example",
         name: "name_example",
+        namespace: "namespace_example",
       },
       resources: {
+        claims: [
+          {
+            name: "name_example",
+          },
+        ],
         limits: {
           "key": "key_example",
         },
@@ -4142,6 +4160,12 @@ let body:.CoreV1ApiCreateNamespacedPersistentVolumeClaimRequest = {
       accessModes: [
         "accessModes_example",
       ],
+      allocatedResourceStatuses: {
+        "key": "key_example",
+      },
+      allocatedResources: {
+        "key": "key_example",
+      },
       capacity: {
         "key": "key_example",
       },
@@ -4164,6 +4188,8 @@ let body:.CoreV1ApiCreateNamespacedPersistentVolumeClaimRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.createNamespacedPersistentVolumeClaim(body).then((data:any) => {
@@ -4181,6 +4207,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -4233,7 +4260,6 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -4587,6 +4613,10 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -4626,6 +4656,10 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -4648,7 +4682,18 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
             terminationGracePeriodSeconds: 1,
             timeoutSeconds: 1,
           },
+          resizePolicy: [
+            {
+              resourceName: "resourceName_example",
+              restartPolicy: "restartPolicy_example",
+            },
+          ],
           resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
             limits: {
               "key": "key_example",
             },
@@ -4656,6 +4701,7 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
               "key": "key_example",
             },
           },
+          restartPolicy: "restartPolicy_example",
           securityContext: {
             allowPrivilegeEscalation: true,
             capabilities: {
@@ -4696,6 +4742,10 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -4863,6 +4913,10 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -4902,6 +4956,10 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -4924,7 +4982,18 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
             terminationGracePeriodSeconds: 1,
             timeoutSeconds: 1,
           },
+          resizePolicy: [
+            {
+              resourceName: "resourceName_example",
+              restartPolicy: "restartPolicy_example",
+            },
+          ],
           resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
             limits: {
               "key": "key_example",
             },
@@ -4932,6 +5001,7 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
               "key": "key_example",
             },
           },
+          restartPolicy: "restartPolicy_example",
           securityContext: {
             allowPrivilegeEscalation: true,
             capabilities: {
@@ -4972,6 +5042,10 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -5030,6 +5104,7 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
       hostIPC: true,
       hostNetwork: true,
       hostPID: true,
+      hostUsers: true,
       hostname: "hostname_example",
       imagePullSecrets: [
         {
@@ -5141,6 +5216,10 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -5180,6 +5259,10 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -5202,7 +5285,18 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
             terminationGracePeriodSeconds: 1,
             timeoutSeconds: 1,
           },
+          resizePolicy: [
+            {
+              resourceName: "resourceName_example",
+              restartPolicy: "restartPolicy_example",
+            },
+          ],
           resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
             limits: {
               "key": "key_example",
             },
@@ -5210,6 +5304,7 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
               "key": "key_example",
             },
           },
+          restartPolicy: "restartPolicy_example",
           securityContext: {
             allowPrivilegeEscalation: true,
             capabilities: {
@@ -5250,6 +5345,10 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -5300,6 +5399,9 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
       nodeSelector: {
         "key": "key_example",
       },
+      os: {
+        name: "name_example",
+      },
       overhead: {
         "key": "key_example",
       },
@@ -5311,9 +5413,23 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
           conditionType: "conditionType_example",
         },
       ],
+      resourceClaims: [
+        {
+          name: "name_example",
+          source: {
+            resourceClaimName: "resourceClaimName_example",
+            resourceClaimTemplateName: "resourceClaimTemplateName_example",
+          },
+        },
+      ],
       restartPolicy: "restartPolicy_example",
       runtimeClassName: "runtimeClassName_example",
       schedulerName: "schedulerName_example",
+      schedulingGates: [
+        {
+          name: "name_example",
+        },
+      ],
       securityContext: {
         fsGroup: 1,
         fsGroupChangePolicy: "fsGroupChangePolicy_example",
@@ -5377,7 +5493,13 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
               "key": "key_example",
             },
           },
+          matchLabelKeys: [
+            "matchLabelKeys_example",
+          ],
           maxSkew: 1,
+          minDomains: 1,
+          nodeAffinityPolicy: "nodeAffinityPolicy_example",
+          nodeTaintsPolicy: "nodeTaintsPolicy_example",
           topologyKey: "topologyKey_example",
           whenUnsatisfiable: "whenUnsatisfiable_example",
         },
@@ -5474,7 +5596,6 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
                 annotations: {
                   "key": "key_example",
                 },
-                clusterName: "clusterName_example",
                 creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
                 deletionGracePeriodSeconds: 1,
                 deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -5526,8 +5647,14 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
                   apiGroup: "apiGroup_example",
                   kind: "kind_example",
                   name: "name_example",
+                  namespace: "namespace_example",
                 },
                 resources: {
+                  claims: [
+                    {
+                      name: "name_example",
+                    },
+                  ],
                   limits: {
                     "key": "key_example",
                   },
@@ -5767,6 +5894,9 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
       ],
       containerStatuses: [
         {
+          allocatedResources: {
+            "key": "key_example",
+          },
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -5790,6 +5920,19 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
           },
           name: "name_example",
           ready: true,
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartCount: 1,
           started: true,
           state: {
@@ -5814,6 +5957,9 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
       ],
       ephemeralContainerStatuses: [
         {
+          allocatedResources: {
+            "key": "key_example",
+          },
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -5837,6 +5983,19 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
           },
           name: "name_example",
           ready: true,
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartCount: 1,
           started: true,
           state: {
@@ -5860,8 +6019,16 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
         },
       ],
       hostIP: "hostIP_example",
+      hostIPs: [
+        {
+          ip: "ip_example",
+        },
+      ],
       initContainerStatuses: [
         {
+          allocatedResources: {
+            "key": "key_example",
+          },
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -5885,6 +6052,19 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
           },
           name: "name_example",
           ready: true,
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartCount: 1,
           started: true,
           state: {
@@ -5918,6 +6098,13 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
       ],
       qosClass: "qosClass_example",
       reason: "reason_example",
+      resize: "resize_example",
+      resourceClaimStatuses: [
+        {
+          name: "name_example",
+          resourceClaimName: "resourceClaimName_example",
+        },
+      ],
       startTime: new Date('1970-01-01T00:00:00.00Z'),
     },
   },
@@ -5927,6 +6114,8 @@ let body:.CoreV1ApiCreateNamespacedPodRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.createNamespacedPod(body).then((data:any) => {
@@ -5944,6 +6133,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -5998,7 +6188,6 @@ let body:.CoreV1ApiCreateNamespacedPodBindingRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -6051,6 +6240,8 @@ let body:.CoreV1ApiCreateNamespacedPodBindingRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // string | If \'true\', then the output is pretty printed. (optional)
   pretty: "pretty_example",
 };
@@ -6070,6 +6261,7 @@ Name | Type | Description  | Notes
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
 
 
@@ -6139,7 +6331,6 @@ let body:.CoreV1ApiCreateNamespacedPodEvictionRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -6183,6 +6374,8 @@ let body:.CoreV1ApiCreateNamespacedPodEvictionRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // string | If \'true\', then the output is pretty printed. (optional)
   pretty: "pretty_example",
 };
@@ -6202,6 +6395,7 @@ Name | Type | Description  | Notes
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
 
 
@@ -6255,7 +6449,6 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -6299,7 +6492,6 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
         annotations: {
           "key": "key_example",
         },
-        clusterName: "clusterName_example",
         creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
         deletionGracePeriodSeconds: 1,
         deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -6653,6 +6845,10 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 ],
               },
               failureThreshold: 1,
+              grpc: {
+                port: 1,
+                service: "service_example",
+              },
               httpGet: {
                 host: "host_example",
                 httpHeaders: [
@@ -6692,6 +6888,10 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 ],
               },
               failureThreshold: 1,
+              grpc: {
+                port: 1,
+                service: "service_example",
+              },
               httpGet: {
                 host: "host_example",
                 httpHeaders: [
@@ -6714,7 +6914,18 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
               terminationGracePeriodSeconds: 1,
               timeoutSeconds: 1,
             },
+            resizePolicy: [
+              {
+                resourceName: "resourceName_example",
+                restartPolicy: "restartPolicy_example",
+              },
+            ],
             resources: {
+              claims: [
+                {
+                  name: "name_example",
+                },
+              ],
               limits: {
                 "key": "key_example",
               },
@@ -6722,6 +6933,7 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 "key": "key_example",
               },
             },
+            restartPolicy: "restartPolicy_example",
             securityContext: {
               allowPrivilegeEscalation: true,
               capabilities: {
@@ -6762,6 +6974,10 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 ],
               },
               failureThreshold: 1,
+              grpc: {
+                port: 1,
+                service: "service_example",
+              },
               httpGet: {
                 host: "host_example",
                 httpHeaders: [
@@ -6929,6 +7145,10 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 ],
               },
               failureThreshold: 1,
+              grpc: {
+                port: 1,
+                service: "service_example",
+              },
               httpGet: {
                 host: "host_example",
                 httpHeaders: [
@@ -6968,6 +7188,10 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 ],
               },
               failureThreshold: 1,
+              grpc: {
+                port: 1,
+                service: "service_example",
+              },
               httpGet: {
                 host: "host_example",
                 httpHeaders: [
@@ -6990,7 +7214,18 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
               terminationGracePeriodSeconds: 1,
               timeoutSeconds: 1,
             },
+            resizePolicy: [
+              {
+                resourceName: "resourceName_example",
+                restartPolicy: "restartPolicy_example",
+              },
+            ],
             resources: {
+              claims: [
+                {
+                  name: "name_example",
+                },
+              ],
               limits: {
                 "key": "key_example",
               },
@@ -6998,6 +7233,7 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 "key": "key_example",
               },
             },
+            restartPolicy: "restartPolicy_example",
             securityContext: {
               allowPrivilegeEscalation: true,
               capabilities: {
@@ -7038,6 +7274,10 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 ],
               },
               failureThreshold: 1,
+              grpc: {
+                port: 1,
+                service: "service_example",
+              },
               httpGet: {
                 host: "host_example",
                 httpHeaders: [
@@ -7096,6 +7336,7 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
         hostIPC: true,
         hostNetwork: true,
         hostPID: true,
+        hostUsers: true,
         hostname: "hostname_example",
         imagePullSecrets: [
           {
@@ -7207,6 +7448,10 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 ],
               },
               failureThreshold: 1,
+              grpc: {
+                port: 1,
+                service: "service_example",
+              },
               httpGet: {
                 host: "host_example",
                 httpHeaders: [
@@ -7246,6 +7491,10 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 ],
               },
               failureThreshold: 1,
+              grpc: {
+                port: 1,
+                service: "service_example",
+              },
               httpGet: {
                 host: "host_example",
                 httpHeaders: [
@@ -7268,7 +7517,18 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
               terminationGracePeriodSeconds: 1,
               timeoutSeconds: 1,
             },
+            resizePolicy: [
+              {
+                resourceName: "resourceName_example",
+                restartPolicy: "restartPolicy_example",
+              },
+            ],
             resources: {
+              claims: [
+                {
+                  name: "name_example",
+                },
+              ],
               limits: {
                 "key": "key_example",
               },
@@ -7276,6 +7536,7 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 "key": "key_example",
               },
             },
+            restartPolicy: "restartPolicy_example",
             securityContext: {
               allowPrivilegeEscalation: true,
               capabilities: {
@@ -7316,6 +7577,10 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 ],
               },
               failureThreshold: 1,
+              grpc: {
+                port: 1,
+                service: "service_example",
+              },
               httpGet: {
                 host: "host_example",
                 httpHeaders: [
@@ -7366,6 +7631,9 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
         nodeSelector: {
           "key": "key_example",
         },
+        os: {
+          name: "name_example",
+        },
         overhead: {
           "key": "key_example",
         },
@@ -7377,9 +7645,23 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
             conditionType: "conditionType_example",
           },
         ],
+        resourceClaims: [
+          {
+            name: "name_example",
+            source: {
+              resourceClaimName: "resourceClaimName_example",
+              resourceClaimTemplateName: "resourceClaimTemplateName_example",
+            },
+          },
+        ],
         restartPolicy: "restartPolicy_example",
         runtimeClassName: "runtimeClassName_example",
         schedulerName: "schedulerName_example",
+        schedulingGates: [
+          {
+            name: "name_example",
+          },
+        ],
         securityContext: {
           fsGroup: 1,
           fsGroupChangePolicy: "fsGroupChangePolicy_example",
@@ -7443,7 +7725,13 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 "key": "key_example",
               },
             },
+            matchLabelKeys: [
+              "matchLabelKeys_example",
+            ],
             maxSkew: 1,
+            minDomains: 1,
+            nodeAffinityPolicy: "nodeAffinityPolicy_example",
+            nodeTaintsPolicy: "nodeTaintsPolicy_example",
             topologyKey: "topologyKey_example",
             whenUnsatisfiable: "whenUnsatisfiable_example",
           },
@@ -7540,7 +7828,6 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
                   annotations: {
                     "key": "key_example",
                   },
-                  clusterName: "clusterName_example",
                   creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
                   deletionGracePeriodSeconds: 1,
                   deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -7592,8 +7879,14 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
                     apiGroup: "apiGroup_example",
                     kind: "kind_example",
                     name: "name_example",
+                    namespace: "namespace_example",
                   },
                   resources: {
+                    claims: [
+                      {
+                        name: "name_example",
+                      },
+                    ],
                     limits: {
                       "key": "key_example",
                     },
@@ -7828,6 +8121,8 @@ let body:.CoreV1ApiCreateNamespacedPodTemplateRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.createNamespacedPodTemplate(body).then((data:any) => {
@@ -7845,6 +8140,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -7897,7 +8193,6 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -7947,7 +8242,6 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
           annotations: {
             "key": "key_example",
           },
-          clusterName: "clusterName_example",
           creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
           deletionGracePeriodSeconds: 1,
           deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -8301,6 +8595,10 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -8340,6 +8638,10 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -8362,7 +8664,18 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                 terminationGracePeriodSeconds: 1,
                 timeoutSeconds: 1,
               },
+              resizePolicy: [
+                {
+                  resourceName: "resourceName_example",
+                  restartPolicy: "restartPolicy_example",
+                },
+              ],
               resources: {
+                claims: [
+                  {
+                    name: "name_example",
+                  },
+                ],
                 limits: {
                   "key": "key_example",
                 },
@@ -8370,6 +8683,7 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   "key": "key_example",
                 },
               },
+              restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
                 capabilities: {
@@ -8410,6 +8724,10 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -8577,6 +8895,10 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -8616,6 +8938,10 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -8638,7 +8964,18 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                 terminationGracePeriodSeconds: 1,
                 timeoutSeconds: 1,
               },
+              resizePolicy: [
+                {
+                  resourceName: "resourceName_example",
+                  restartPolicy: "restartPolicy_example",
+                },
+              ],
               resources: {
+                claims: [
+                  {
+                    name: "name_example",
+                  },
+                ],
                 limits: {
                   "key": "key_example",
                 },
@@ -8646,6 +8983,7 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   "key": "key_example",
                 },
               },
+              restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
                 capabilities: {
@@ -8686,6 +9024,10 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -8744,6 +9086,7 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
           hostIPC: true,
           hostNetwork: true,
           hostPID: true,
+          hostUsers: true,
           hostname: "hostname_example",
           imagePullSecrets: [
             {
@@ -8855,6 +9198,10 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -8894,6 +9241,10 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -8916,7 +9267,18 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                 terminationGracePeriodSeconds: 1,
                 timeoutSeconds: 1,
               },
+              resizePolicy: [
+                {
+                  resourceName: "resourceName_example",
+                  restartPolicy: "restartPolicy_example",
+                },
+              ],
               resources: {
+                claims: [
+                  {
+                    name: "name_example",
+                  },
+                ],
                 limits: {
                   "key": "key_example",
                 },
@@ -8924,6 +9286,7 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   "key": "key_example",
                 },
               },
+              restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
                 capabilities: {
@@ -8964,6 +9327,10 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -9014,6 +9381,9 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
           nodeSelector: {
             "key": "key_example",
           },
+          os: {
+            name: "name_example",
+          },
           overhead: {
             "key": "key_example",
           },
@@ -9025,9 +9395,23 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
               conditionType: "conditionType_example",
             },
           ],
+          resourceClaims: [
+            {
+              name: "name_example",
+              source: {
+                resourceClaimName: "resourceClaimName_example",
+                resourceClaimTemplateName: "resourceClaimTemplateName_example",
+              },
+            },
+          ],
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
+          schedulingGates: [
+            {
+              name: "name_example",
+            },
+          ],
           securityContext: {
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
@@ -9091,7 +9475,13 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   "key": "key_example",
                 },
               },
+              matchLabelKeys: [
+                "matchLabelKeys_example",
+              ],
               maxSkew: 1,
+              minDomains: 1,
+              nodeAffinityPolicy: "nodeAffinityPolicy_example",
+              nodeTaintsPolicy: "nodeTaintsPolicy_example",
               topologyKey: "topologyKey_example",
               whenUnsatisfiable: "whenUnsatisfiable_example",
             },
@@ -9188,7 +9578,6 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                     annotations: {
                       "key": "key_example",
                     },
-                    clusterName: "clusterName_example",
                     creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
                     deletionGracePeriodSeconds: 1,
                     deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -9240,8 +9629,14 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                       apiGroup: "apiGroup_example",
                       kind: "kind_example",
                       name: "name_example",
+                      namespace: "namespace_example",
                     },
                     resources: {
+                      claims: [
+                        {
+                          name: "name_example",
+                        },
+                      ],
                       limits: {
                         "key": "key_example",
                       },
@@ -9493,6 +9888,8 @@ let body:.CoreV1ApiCreateNamespacedReplicationControllerRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.createNamespacedReplicationController(body).then((data:any) => {
@@ -9510,6 +9907,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -9562,7 +9960,6 @@ let body:.CoreV1ApiCreateNamespacedResourceQuotaRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -9635,6 +10032,8 @@ let body:.CoreV1ApiCreateNamespacedResourceQuotaRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.createNamespacedResourceQuota(body).then((data:any) => {
@@ -9652,6 +10051,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -9708,7 +10108,6 @@ let body:.CoreV1ApiCreateNamespacedSecretRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -9758,6 +10157,8 @@ let body:.CoreV1ApiCreateNamespacedSecretRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.createNamespacedSecret(body).then((data:any) => {
@@ -9775,6 +10176,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -9827,7 +10229,6 @@ let body:.CoreV1ApiCreateNamespacedServiceRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -9944,6 +10345,8 @@ let body:.CoreV1ApiCreateNamespacedServiceRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.createNamespacedService(body).then((data:any) => {
@@ -9961,6 +10364,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -10019,7 +10423,6 @@ let body:.CoreV1ApiCreateNamespacedServiceAccountRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -10076,6 +10479,8 @@ let body:.CoreV1ApiCreateNamespacedServiceAccountRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.createNamespacedServiceAccount(body).then((data:any) => {
@@ -10093,6 +10498,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -10147,7 +10553,6 @@ let body:.CoreV1ApiCreateNamespacedServiceAccountTokenRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -10207,6 +10612,8 @@ let body:.CoreV1ApiCreateNamespacedServiceAccountTokenRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // string | If \'true\', then the output is pretty printed. (optional)
   pretty: "pretty_example",
 };
@@ -10226,6 +10633,7 @@ Name | Type | Description  | Notes
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
 
 
@@ -10277,7 +10685,6 @@ let body:.CoreV1ApiCreateNodeRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -10438,6 +10845,8 @@ let body:.CoreV1ApiCreateNodeRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.createNode(body).then((data:any) => {
@@ -10454,6 +10863,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -10504,7 +10914,6 @@ let body:.CoreV1ApiCreatePersistentVolumeRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -10612,6 +11021,10 @@ let body:.CoreV1ApiCreatePersistentVolumeRequest = {
         },
         driver: "driver_example",
         fsType: "fsType_example",
+        nodeExpandSecretRef: {
+          name: "name_example",
+          namespace: "namespace_example",
+        },
         nodePublishSecretRef: {
           name: "name_example",
           namespace: "namespace_example",
@@ -10798,6 +11211,7 @@ let body:.CoreV1ApiCreatePersistentVolumeRequest = {
       },
     },
     status: {
+      lastPhaseTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
       message: "message_example",
       phase: "phase_example",
       reason: "reason_example",
@@ -10809,6 +11223,8 @@ let body:.CoreV1ApiCreatePersistentVolumeRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.createPersistentVolume(body).then((data:any) => {
@@ -10825,6 +11241,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -10891,6 +11308,8 @@ let body:.CoreV1ApiDeleteCollectionNamespacedConfigMapRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // V1DeleteOptions (optional)
@@ -10933,6 +11352,7 @@ Name | Type | Description  | Notes
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
 
 
@@ -10998,6 +11418,8 @@ let body:.CoreV1ApiDeleteCollectionNamespacedEndpointsRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // V1DeleteOptions (optional)
@@ -11040,6 +11462,7 @@ Name | Type | Description  | Notes
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
 
 
@@ -11105,6 +11528,8 @@ let body:.CoreV1ApiDeleteCollectionNamespacedEventRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // V1DeleteOptions (optional)
@@ -11147,6 +11572,7 @@ Name | Type | Description  | Notes
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
 
 
@@ -11212,6 +11638,8 @@ let body:.CoreV1ApiDeleteCollectionNamespacedLimitRangeRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // V1DeleteOptions (optional)
@@ -11254,6 +11682,7 @@ Name | Type | Description  | Notes
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
 
 
@@ -11319,6 +11748,8 @@ let body:.CoreV1ApiDeleteCollectionNamespacedPersistentVolumeClaimRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // V1DeleteOptions (optional)
@@ -11361,6 +11792,7 @@ Name | Type | Description  | Notes
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
 
 
@@ -11426,6 +11858,8 @@ let body:.CoreV1ApiDeleteCollectionNamespacedPodRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // V1DeleteOptions (optional)
@@ -11468,6 +11902,7 @@ Name | Type | Description  | Notes
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
 
 
@@ -11533,6 +11968,8 @@ let body:.CoreV1ApiDeleteCollectionNamespacedPodTemplateRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // V1DeleteOptions (optional)
@@ -11575,6 +12012,7 @@ Name | Type | Description  | Notes
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
 
 
@@ -11640,6 +12078,8 @@ let body:.CoreV1ApiDeleteCollectionNamespacedReplicationControllerRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // V1DeleteOptions (optional)
@@ -11682,6 +12122,7 @@ Name | Type | Description  | Notes
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
 
 
@@ -11747,6 +12188,8 @@ let body:.CoreV1ApiDeleteCollectionNamespacedResourceQuotaRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // V1DeleteOptions (optional)
@@ -11789,6 +12232,7 @@ Name | Type | Description  | Notes
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
 
 
@@ -11854,6 +12298,8 @@ let body:.CoreV1ApiDeleteCollectionNamespacedSecretRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // V1DeleteOptions (optional)
@@ -11896,6 +12342,117 @@ Name | Type | Description  | Notes
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
+ **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
+
+
+### Return type
+
+**V1Status**
+
+### Authorization
+
+[BearerToken](README.md#BearerToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **deleteCollectionNamespacedService**
+> V1Status deleteCollectionNamespacedService()
+
+delete collection of Service
+
+### Example
+
+
+```typescript
+import {  } from '';
+import * as fs from 'fs';
+
+const configuration = .createConfiguration();
+const apiInstance = new .CoreV1Api(configuration);
+
+let body:.CoreV1ApiDeleteCollectionNamespacedServiceRequest = {
+  // string | object name and auth scope, such as for teams and projects
+  namespace: "namespace_example",
+  // string | If \'true\', then the output is pretty printed. (optional)
+  pretty: "pretty_example",
+  // string | The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
+  _continue: "continue_example",
+  // string | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+  dryRun: "dryRun_example",
+  // string | A selector to restrict the list of returned objects by their fields. Defaults to everything. (optional)
+  fieldSelector: "fieldSelector_example",
+  // number | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
+  gracePeriodSeconds: 1,
+  // string | A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
+  labelSelector: "labelSelector_example",
+  // number | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
+  limit: 1,
+  // boolean | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
+  orphanDependents: true,
+  // string | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
+  propagationPolicy: "propagationPolicy_example",
+  // string | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
+  resourceVersion: "resourceVersion_example",
+  // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
+  resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
+  // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
+  timeoutSeconds: 1,
+  // V1DeleteOptions (optional)
+  body: {
+    apiVersion: "apiVersion_example",
+    dryRun: [
+      "dryRun_example",
+    ],
+    gracePeriodSeconds: 1,
+    kind: "kind_example",
+    orphanDependents: true,
+    preconditions: {
+      resourceVersion: "resourceVersion_example",
+      uid: "uid_example",
+    },
+    propagationPolicy: "propagationPolicy_example",
+  },
+};
+
+apiInstance.deleteCollectionNamespacedService(body).then((data:any) => {
+  console.log('API called successfully. Returned data: ' + data);
+}).catch((error:any) => console.error(error));
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **V1DeleteOptions**|  |
+ **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **_continue** | [**string**] | The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | (optional) defaults to undefined
+ **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
+ **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
+ **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
+ **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
+ **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
+ **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
+ **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
 
 
@@ -11961,6 +12518,8 @@ let body:.CoreV1ApiDeleteCollectionNamespacedServiceAccountRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // V1DeleteOptions (optional)
@@ -12003,6 +12562,7 @@ Name | Type | Description  | Notes
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
 
 
@@ -12066,6 +12626,8 @@ let body:.CoreV1ApiDeleteCollectionNodeRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // V1DeleteOptions (optional)
@@ -12107,6 +12669,7 @@ Name | Type | Description  | Notes
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
 
 
@@ -12170,6 +12733,8 @@ let body:.CoreV1ApiDeleteCollectionPersistentVolumeRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // V1DeleteOptions (optional)
@@ -12211,6 +12776,7 @@ Name | Type | Description  | Notes
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
 
 
@@ -13224,7 +13790,7 @@ Name | Type | Description  | Notes
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
 # **deleteNamespacedService**
-> V1Status deleteNamespacedService()
+> V1Service deleteNamespacedService()
 
 delete a Service
 
@@ -13292,7 +13858,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**V1Status**
+**V1Service**
 
 ### Authorization
 
@@ -13658,6 +14224,8 @@ let body:.CoreV1ApiListComponentStatusRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -13682,6 +14250,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -13740,6 +14309,8 @@ let body:.CoreV1ApiListConfigMapForAllNamespacesRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -13764,6 +14335,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -13822,6 +14394,8 @@ let body:.CoreV1ApiListEndpointsForAllNamespacesRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -13846,6 +14420,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -13904,6 +14479,8 @@ let body:.CoreV1ApiListEventForAllNamespacesRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -13928,6 +14505,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -13986,6 +14564,8 @@ let body:.CoreV1ApiListLimitRangeForAllNamespacesRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -14010,6 +14590,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -14068,6 +14649,8 @@ let body:.CoreV1ApiListNamespaceRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -14092,6 +14675,7 @@ Name | Type | Description  | Notes
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -14152,6 +14736,8 @@ let body:.CoreV1ApiListNamespacedConfigMapRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -14177,6 +14763,7 @@ Name | Type | Description  | Notes
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -14237,6 +14824,8 @@ let body:.CoreV1ApiListNamespacedEndpointsRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -14262,6 +14851,7 @@ Name | Type | Description  | Notes
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -14322,6 +14912,8 @@ let body:.CoreV1ApiListNamespacedEventRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -14347,6 +14939,7 @@ Name | Type | Description  | Notes
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -14407,6 +15000,8 @@ let body:.CoreV1ApiListNamespacedLimitRangeRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -14432,6 +15027,7 @@ Name | Type | Description  | Notes
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -14492,6 +15088,8 @@ let body:.CoreV1ApiListNamespacedPersistentVolumeClaimRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -14517,6 +15115,7 @@ Name | Type | Description  | Notes
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -14577,6 +15176,8 @@ let body:.CoreV1ApiListNamespacedPodRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -14602,6 +15203,7 @@ Name | Type | Description  | Notes
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -14662,6 +15264,8 @@ let body:.CoreV1ApiListNamespacedPodTemplateRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -14687,6 +15291,7 @@ Name | Type | Description  | Notes
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -14747,6 +15352,8 @@ let body:.CoreV1ApiListNamespacedReplicationControllerRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -14772,6 +15379,7 @@ Name | Type | Description  | Notes
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -14832,6 +15440,8 @@ let body:.CoreV1ApiListNamespacedResourceQuotaRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -14857,6 +15467,7 @@ Name | Type | Description  | Notes
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -14917,6 +15528,8 @@ let body:.CoreV1ApiListNamespacedSecretRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -14942,6 +15555,7 @@ Name | Type | Description  | Notes
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -15002,6 +15616,8 @@ let body:.CoreV1ApiListNamespacedServiceRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -15027,6 +15643,7 @@ Name | Type | Description  | Notes
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -15087,6 +15704,8 @@ let body:.CoreV1ApiListNamespacedServiceAccountRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -15112,6 +15731,7 @@ Name | Type | Description  | Notes
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -15170,6 +15790,8 @@ let body:.CoreV1ApiListNodeRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -15194,6 +15816,7 @@ Name | Type | Description  | Notes
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -15252,6 +15875,8 @@ let body:.CoreV1ApiListPersistentVolumeRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -15276,6 +15901,7 @@ Name | Type | Description  | Notes
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -15334,6 +15960,8 @@ let body:.CoreV1ApiListPersistentVolumeClaimForAllNamespacesRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -15358,6 +15986,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -15416,6 +16045,8 @@ let body:.CoreV1ApiListPodForAllNamespacesRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -15440,6 +16071,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -15498,6 +16130,8 @@ let body:.CoreV1ApiListPodTemplateForAllNamespacesRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -15522,6 +16156,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -15580,6 +16215,8 @@ let body:.CoreV1ApiListReplicationControllerForAllNamespacesRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -15604,6 +16241,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -15662,6 +16300,8 @@ let body:.CoreV1ApiListResourceQuotaForAllNamespacesRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -15686,6 +16326,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -15744,6 +16385,8 @@ let body:.CoreV1ApiListSecretForAllNamespacesRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -15768,6 +16411,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -15826,6 +16470,8 @@ let body:.CoreV1ApiListServiceAccountForAllNamespacesRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -15850,6 +16496,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -15908,6 +16555,8 @@ let body:.CoreV1ApiListServiceForAllNamespacesRequest = {
   resourceVersion: "resourceVersion_example",
   // string | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersionMatch: "resourceVersionMatch_example",
+  // boolean | `sendInitialEvents=true` may be set together with `watch=true`. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \"Bookmark\" event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with `\"k8s.io/initial-events-end\": \"true\"` annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When `sendInitialEvents` option is set, we require `resourceVersionMatch` option to also be set. The semantic of the watch request is as following: - `resourceVersionMatch` = NotOlderThan   is interpreted as \"data at least as new as the provided `resourceVersion`\"   and the bookmark event is send when the state is synced   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.   If `resourceVersion` is unset, this is interpreted as \"consistent read\" and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - `resourceVersionMatch` set to any other value or unset   Invalid error is returned.  Defaults to true if `resourceVersion=\"\"` or `resourceVersion=\"0\"` (for backward compatibility reasons) and to false otherwise. (optional)
+  sendInitialEvents: true,
   // number | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. (optional)
   timeoutSeconds: 1,
   // boolean | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. (optional)
@@ -15932,6 +16581,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
+ **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
  **timeoutSeconds** | [**number**] | Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity. | (optional) defaults to undefined
  **watch** | [**boolean**] | Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion. | (optional) defaults to undefined
 
@@ -15984,6 +16634,8 @@ let body:.CoreV1ApiPatchNamespaceRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -16003,6 +16655,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -16055,6 +16708,8 @@ let body:.CoreV1ApiPatchNamespaceStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -16074,6 +16729,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -16128,6 +16784,8 @@ let body:.CoreV1ApiPatchNamespacedConfigMapRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -16148,6 +16806,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -16202,6 +16861,8 @@ let body:.CoreV1ApiPatchNamespacedEndpointsRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -16222,6 +16883,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -16276,6 +16938,8 @@ let body:.CoreV1ApiPatchNamespacedEventRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -16296,6 +16960,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -16350,6 +17015,8 @@ let body:.CoreV1ApiPatchNamespacedLimitRangeRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -16370,6 +17037,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -16424,6 +17092,8 @@ let body:.CoreV1ApiPatchNamespacedPersistentVolumeClaimRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -16444,6 +17114,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -16498,6 +17169,8 @@ let body:.CoreV1ApiPatchNamespacedPersistentVolumeClaimStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -16518,6 +17191,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -16572,6 +17246,8 @@ let body:.CoreV1ApiPatchNamespacedPodRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -16592,6 +17268,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -16646,6 +17323,8 @@ let body:.CoreV1ApiPatchNamespacedPodEphemeralcontainersRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -16666,6 +17345,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -16720,6 +17400,8 @@ let body:.CoreV1ApiPatchNamespacedPodStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -16740,6 +17422,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -16794,6 +17477,8 @@ let body:.CoreV1ApiPatchNamespacedPodTemplateRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -16814,6 +17499,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -16868,6 +17554,8 @@ let body:.CoreV1ApiPatchNamespacedReplicationControllerRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -16888,6 +17576,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -16942,6 +17631,8 @@ let body:.CoreV1ApiPatchNamespacedReplicationControllerScaleRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -16962,6 +17653,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -17016,6 +17708,8 @@ let body:.CoreV1ApiPatchNamespacedReplicationControllerStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -17036,6 +17730,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -17090,6 +17785,8 @@ let body:.CoreV1ApiPatchNamespacedResourceQuotaRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -17110,6 +17807,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -17164,6 +17862,8 @@ let body:.CoreV1ApiPatchNamespacedResourceQuotaStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -17184,6 +17884,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -17238,6 +17939,8 @@ let body:.CoreV1ApiPatchNamespacedSecretRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -17258,6 +17961,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -17312,6 +18016,8 @@ let body:.CoreV1ApiPatchNamespacedServiceRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -17332,6 +18038,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -17386,6 +18093,8 @@ let body:.CoreV1ApiPatchNamespacedServiceAccountRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -17406,6 +18115,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -17460,6 +18170,8 @@ let body:.CoreV1ApiPatchNamespacedServiceStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -17480,6 +18192,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -17532,6 +18245,8 @@ let body:.CoreV1ApiPatchNodeRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -17551,6 +18266,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -17603,6 +18319,8 @@ let body:.CoreV1ApiPatchNodeStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -17622,6 +18340,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -17674,6 +18393,8 @@ let body:.CoreV1ApiPatchPersistentVolumeRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -17693,6 +18414,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -17745,6 +18467,8 @@ let body:.CoreV1ApiPatchPersistentVolumeStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // boolean | Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
   force: true,
 };
@@ -17764,6 +18488,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
 
 
@@ -19466,7 +20191,6 @@ let body:.CoreV1ApiReplaceNamespaceRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -19529,6 +20253,8 @@ let body:.CoreV1ApiReplaceNamespaceRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespace(body).then((data:any) => {
@@ -19546,6 +20272,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -19597,7 +20324,6 @@ let body:.CoreV1ApiReplaceNamespaceFinalizeRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -19658,6 +20384,8 @@ let body:.CoreV1ApiReplaceNamespaceFinalizeRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
   // string | If \'true\', then the output is pretty printed. (optional)
   pretty: "pretty_example",
 };
@@ -19676,6 +20404,7 @@ Name | Type | Description  | Notes
  **name** | [**string**] | name of the Namespace | defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
 
 
@@ -19728,7 +20457,6 @@ let body:.CoreV1ApiReplaceNamespaceStatusRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -19791,6 +20519,8 @@ let body:.CoreV1ApiReplaceNamespaceStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespaceStatus(body).then((data:any) => {
@@ -19808,6 +20538,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -19868,7 +20599,6 @@ let body:.CoreV1ApiReplaceNamespacedConfigMapRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -19914,6 +20644,8 @@ let body:.CoreV1ApiReplaceNamespacedConfigMapRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedConfigMap(body).then((data:any) => {
@@ -19932,6 +20664,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -19985,7 +20718,6 @@ let body:.CoreV1ApiReplaceNamespacedEndpointsRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -20075,6 +20807,8 @@ let body:.CoreV1ApiReplaceNamespacedEndpointsRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedEndpoints(body).then((data:any) => {
@@ -20093,6 +20827,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -20161,7 +20896,6 @@ let body:.CoreV1ApiReplaceNamespacedEventRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -20228,6 +20962,8 @@ let body:.CoreV1ApiReplaceNamespacedEventRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedEvent(body).then((data:any) => {
@@ -20246,6 +20982,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -20299,7 +21036,6 @@ let body:.CoreV1ApiReplaceNamespacedLimitRangeRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -20367,6 +21103,8 @@ let body:.CoreV1ApiReplaceNamespacedLimitRangeRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedLimitRange(body).then((data:any) => {
@@ -20385,6 +21123,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -20438,7 +21177,6 @@ let body:.CoreV1ApiReplaceNamespacedPersistentVolumeClaimRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -20490,8 +21228,14 @@ let body:.CoreV1ApiReplaceNamespacedPersistentVolumeClaimRequest = {
         apiGroup: "apiGroup_example",
         kind: "kind_example",
         name: "name_example",
+        namespace: "namespace_example",
       },
       resources: {
+        claims: [
+          {
+            name: "name_example",
+          },
+        ],
         limits: {
           "key": "key_example",
         },
@@ -20521,6 +21265,12 @@ let body:.CoreV1ApiReplaceNamespacedPersistentVolumeClaimRequest = {
       accessModes: [
         "accessModes_example",
       ],
+      allocatedResourceStatuses: {
+        "key": "key_example",
+      },
+      allocatedResources: {
+        "key": "key_example",
+      },
       capacity: {
         "key": "key_example",
       },
@@ -20543,6 +21293,8 @@ let body:.CoreV1ApiReplaceNamespacedPersistentVolumeClaimRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedPersistentVolumeClaim(body).then((data:any) => {
@@ -20561,6 +21313,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -20614,7 +21367,6 @@ let body:.CoreV1ApiReplaceNamespacedPersistentVolumeClaimStatusRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -20666,8 +21418,14 @@ let body:.CoreV1ApiReplaceNamespacedPersistentVolumeClaimStatusRequest = {
         apiGroup: "apiGroup_example",
         kind: "kind_example",
         name: "name_example",
+        namespace: "namespace_example",
       },
       resources: {
+        claims: [
+          {
+            name: "name_example",
+          },
+        ],
         limits: {
           "key": "key_example",
         },
@@ -20697,6 +21455,12 @@ let body:.CoreV1ApiReplaceNamespacedPersistentVolumeClaimStatusRequest = {
       accessModes: [
         "accessModes_example",
       ],
+      allocatedResourceStatuses: {
+        "key": "key_example",
+      },
+      allocatedResources: {
+        "key": "key_example",
+      },
       capacity: {
         "key": "key_example",
       },
@@ -20719,6 +21483,8 @@ let body:.CoreV1ApiReplaceNamespacedPersistentVolumeClaimStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedPersistentVolumeClaimStatus(body).then((data:any) => {
@@ -20737,6 +21503,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -20790,7 +21557,6 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -21144,6 +21910,10 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -21183,6 +21953,10 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -21205,7 +21979,18 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
             terminationGracePeriodSeconds: 1,
             timeoutSeconds: 1,
           },
+          resizePolicy: [
+            {
+              resourceName: "resourceName_example",
+              restartPolicy: "restartPolicy_example",
+            },
+          ],
           resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
             limits: {
               "key": "key_example",
             },
@@ -21213,6 +21998,7 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
               "key": "key_example",
             },
           },
+          restartPolicy: "restartPolicy_example",
           securityContext: {
             allowPrivilegeEscalation: true,
             capabilities: {
@@ -21253,6 +22039,10 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -21420,6 +22210,10 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -21459,6 +22253,10 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -21481,7 +22279,18 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
             terminationGracePeriodSeconds: 1,
             timeoutSeconds: 1,
           },
+          resizePolicy: [
+            {
+              resourceName: "resourceName_example",
+              restartPolicy: "restartPolicy_example",
+            },
+          ],
           resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
             limits: {
               "key": "key_example",
             },
@@ -21489,6 +22298,7 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
               "key": "key_example",
             },
           },
+          restartPolicy: "restartPolicy_example",
           securityContext: {
             allowPrivilegeEscalation: true,
             capabilities: {
@@ -21529,6 +22339,10 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -21587,6 +22401,7 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
       hostIPC: true,
       hostNetwork: true,
       hostPID: true,
+      hostUsers: true,
       hostname: "hostname_example",
       imagePullSecrets: [
         {
@@ -21698,6 +22513,10 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -21737,6 +22556,10 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -21759,7 +22582,18 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
             terminationGracePeriodSeconds: 1,
             timeoutSeconds: 1,
           },
+          resizePolicy: [
+            {
+              resourceName: "resourceName_example",
+              restartPolicy: "restartPolicy_example",
+            },
+          ],
           resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
             limits: {
               "key": "key_example",
             },
@@ -21767,6 +22601,7 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
               "key": "key_example",
             },
           },
+          restartPolicy: "restartPolicy_example",
           securityContext: {
             allowPrivilegeEscalation: true,
             capabilities: {
@@ -21807,6 +22642,10 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -21857,6 +22696,9 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
       nodeSelector: {
         "key": "key_example",
       },
+      os: {
+        name: "name_example",
+      },
       overhead: {
         "key": "key_example",
       },
@@ -21868,9 +22710,23 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
           conditionType: "conditionType_example",
         },
       ],
+      resourceClaims: [
+        {
+          name: "name_example",
+          source: {
+            resourceClaimName: "resourceClaimName_example",
+            resourceClaimTemplateName: "resourceClaimTemplateName_example",
+          },
+        },
+      ],
       restartPolicy: "restartPolicy_example",
       runtimeClassName: "runtimeClassName_example",
       schedulerName: "schedulerName_example",
+      schedulingGates: [
+        {
+          name: "name_example",
+        },
+      ],
       securityContext: {
         fsGroup: 1,
         fsGroupChangePolicy: "fsGroupChangePolicy_example",
@@ -21934,7 +22790,13 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
               "key": "key_example",
             },
           },
+          matchLabelKeys: [
+            "matchLabelKeys_example",
+          ],
           maxSkew: 1,
+          minDomains: 1,
+          nodeAffinityPolicy: "nodeAffinityPolicy_example",
+          nodeTaintsPolicy: "nodeTaintsPolicy_example",
           topologyKey: "topologyKey_example",
           whenUnsatisfiable: "whenUnsatisfiable_example",
         },
@@ -22031,7 +22893,6 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
                 annotations: {
                   "key": "key_example",
                 },
-                clusterName: "clusterName_example",
                 creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
                 deletionGracePeriodSeconds: 1,
                 deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -22083,8 +22944,14 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
                   apiGroup: "apiGroup_example",
                   kind: "kind_example",
                   name: "name_example",
+                  namespace: "namespace_example",
                 },
                 resources: {
+                  claims: [
+                    {
+                      name: "name_example",
+                    },
+                  ],
                   limits: {
                     "key": "key_example",
                   },
@@ -22324,6 +23191,9 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
       ],
       containerStatuses: [
         {
+          allocatedResources: {
+            "key": "key_example",
+          },
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -22347,6 +23217,19 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
           },
           name: "name_example",
           ready: true,
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartCount: 1,
           started: true,
           state: {
@@ -22371,6 +23254,9 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
       ],
       ephemeralContainerStatuses: [
         {
+          allocatedResources: {
+            "key": "key_example",
+          },
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -22394,6 +23280,19 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
           },
           name: "name_example",
           ready: true,
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartCount: 1,
           started: true,
           state: {
@@ -22417,8 +23316,16 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
         },
       ],
       hostIP: "hostIP_example",
+      hostIPs: [
+        {
+          ip: "ip_example",
+        },
+      ],
       initContainerStatuses: [
         {
+          allocatedResources: {
+            "key": "key_example",
+          },
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -22442,6 +23349,19 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
           },
           name: "name_example",
           ready: true,
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartCount: 1,
           started: true,
           state: {
@@ -22475,6 +23395,13 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
       ],
       qosClass: "qosClass_example",
       reason: "reason_example",
+      resize: "resize_example",
+      resourceClaimStatuses: [
+        {
+          name: "name_example",
+          resourceClaimName: "resourceClaimName_example",
+        },
+      ],
       startTime: new Date('1970-01-01T00:00:00.00Z'),
     },
   },
@@ -22484,6 +23411,8 @@ let body:.CoreV1ApiReplaceNamespacedPodRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedPod(body).then((data:any) => {
@@ -22502,6 +23431,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -22555,7 +23485,6 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -22909,6 +23838,10 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -22948,6 +23881,10 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -22970,7 +23907,18 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             terminationGracePeriodSeconds: 1,
             timeoutSeconds: 1,
           },
+          resizePolicy: [
+            {
+              resourceName: "resourceName_example",
+              restartPolicy: "restartPolicy_example",
+            },
+          ],
           resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
             limits: {
               "key": "key_example",
             },
@@ -22978,6 +23926,7 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               "key": "key_example",
             },
           },
+          restartPolicy: "restartPolicy_example",
           securityContext: {
             allowPrivilegeEscalation: true,
             capabilities: {
@@ -23018,6 +23967,10 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -23185,6 +24138,10 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -23224,6 +24181,10 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -23246,7 +24207,18 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             terminationGracePeriodSeconds: 1,
             timeoutSeconds: 1,
           },
+          resizePolicy: [
+            {
+              resourceName: "resourceName_example",
+              restartPolicy: "restartPolicy_example",
+            },
+          ],
           resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
             limits: {
               "key": "key_example",
             },
@@ -23254,6 +24226,7 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               "key": "key_example",
             },
           },
+          restartPolicy: "restartPolicy_example",
           securityContext: {
             allowPrivilegeEscalation: true,
             capabilities: {
@@ -23294,6 +24267,10 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -23352,6 +24329,7 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
       hostIPC: true,
       hostNetwork: true,
       hostPID: true,
+      hostUsers: true,
       hostname: "hostname_example",
       imagePullSecrets: [
         {
@@ -23463,6 +24441,10 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -23502,6 +24484,10 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -23524,7 +24510,18 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             terminationGracePeriodSeconds: 1,
             timeoutSeconds: 1,
           },
+          resizePolicy: [
+            {
+              resourceName: "resourceName_example",
+              restartPolicy: "restartPolicy_example",
+            },
+          ],
           resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
             limits: {
               "key": "key_example",
             },
@@ -23532,6 +24529,7 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               "key": "key_example",
             },
           },
+          restartPolicy: "restartPolicy_example",
           securityContext: {
             allowPrivilegeEscalation: true,
             capabilities: {
@@ -23572,6 +24570,10 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -23622,6 +24624,9 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
       nodeSelector: {
         "key": "key_example",
       },
+      os: {
+        name: "name_example",
+      },
       overhead: {
         "key": "key_example",
       },
@@ -23633,9 +24638,23 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
           conditionType: "conditionType_example",
         },
       ],
+      resourceClaims: [
+        {
+          name: "name_example",
+          source: {
+            resourceClaimName: "resourceClaimName_example",
+            resourceClaimTemplateName: "resourceClaimTemplateName_example",
+          },
+        },
+      ],
       restartPolicy: "restartPolicy_example",
       runtimeClassName: "runtimeClassName_example",
       schedulerName: "schedulerName_example",
+      schedulingGates: [
+        {
+          name: "name_example",
+        },
+      ],
       securityContext: {
         fsGroup: 1,
         fsGroupChangePolicy: "fsGroupChangePolicy_example",
@@ -23699,7 +24718,13 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               "key": "key_example",
             },
           },
+          matchLabelKeys: [
+            "matchLabelKeys_example",
+          ],
           maxSkew: 1,
+          minDomains: 1,
+          nodeAffinityPolicy: "nodeAffinityPolicy_example",
+          nodeTaintsPolicy: "nodeTaintsPolicy_example",
           topologyKey: "topologyKey_example",
           whenUnsatisfiable: "whenUnsatisfiable_example",
         },
@@ -23796,7 +24821,6 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                 annotations: {
                   "key": "key_example",
                 },
-                clusterName: "clusterName_example",
                 creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
                 deletionGracePeriodSeconds: 1,
                 deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -23848,8 +24872,14 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                   apiGroup: "apiGroup_example",
                   kind: "kind_example",
                   name: "name_example",
+                  namespace: "namespace_example",
                 },
                 resources: {
+                  claims: [
+                    {
+                      name: "name_example",
+                    },
+                  ],
                   limits: {
                     "key": "key_example",
                   },
@@ -24089,6 +25119,9 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
       ],
       containerStatuses: [
         {
+          allocatedResources: {
+            "key": "key_example",
+          },
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -24112,6 +25145,19 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
           },
           name: "name_example",
           ready: true,
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartCount: 1,
           started: true,
           state: {
@@ -24136,6 +25182,9 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
       ],
       ephemeralContainerStatuses: [
         {
+          allocatedResources: {
+            "key": "key_example",
+          },
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -24159,6 +25208,19 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
           },
           name: "name_example",
           ready: true,
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartCount: 1,
           started: true,
           state: {
@@ -24182,8 +25244,16 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
         },
       ],
       hostIP: "hostIP_example",
+      hostIPs: [
+        {
+          ip: "ip_example",
+        },
+      ],
       initContainerStatuses: [
         {
+          allocatedResources: {
+            "key": "key_example",
+          },
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -24207,6 +25277,19 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
           },
           name: "name_example",
           ready: true,
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartCount: 1,
           started: true,
           state: {
@@ -24240,6 +25323,13 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
       ],
       qosClass: "qosClass_example",
       reason: "reason_example",
+      resize: "resize_example",
+      resourceClaimStatuses: [
+        {
+          name: "name_example",
+          resourceClaimName: "resourceClaimName_example",
+        },
+      ],
       startTime: new Date('1970-01-01T00:00:00.00Z'),
     },
   },
@@ -24249,6 +25339,8 @@ let body:.CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedPodEphemeralcontainers(body).then((data:any) => {
@@ -24267,6 +25359,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -24320,7 +25413,6 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -24674,6 +25766,10 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -24713,6 +25809,10 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -24735,7 +25835,18 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
             terminationGracePeriodSeconds: 1,
             timeoutSeconds: 1,
           },
+          resizePolicy: [
+            {
+              resourceName: "resourceName_example",
+              restartPolicy: "restartPolicy_example",
+            },
+          ],
           resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
             limits: {
               "key": "key_example",
             },
@@ -24743,6 +25854,7 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
               "key": "key_example",
             },
           },
+          restartPolicy: "restartPolicy_example",
           securityContext: {
             allowPrivilegeEscalation: true,
             capabilities: {
@@ -24783,6 +25895,10 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -24950,6 +26066,10 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -24989,6 +26109,10 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -25011,7 +26135,18 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
             terminationGracePeriodSeconds: 1,
             timeoutSeconds: 1,
           },
+          resizePolicy: [
+            {
+              resourceName: "resourceName_example",
+              restartPolicy: "restartPolicy_example",
+            },
+          ],
           resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
             limits: {
               "key": "key_example",
             },
@@ -25019,6 +26154,7 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
               "key": "key_example",
             },
           },
+          restartPolicy: "restartPolicy_example",
           securityContext: {
             allowPrivilegeEscalation: true,
             capabilities: {
@@ -25059,6 +26195,10 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -25117,6 +26257,7 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
       hostIPC: true,
       hostNetwork: true,
       hostPID: true,
+      hostUsers: true,
       hostname: "hostname_example",
       imagePullSecrets: [
         {
@@ -25228,6 +26369,10 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -25267,6 +26412,10 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -25289,7 +26438,18 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
             terminationGracePeriodSeconds: 1,
             timeoutSeconds: 1,
           },
+          resizePolicy: [
+            {
+              resourceName: "resourceName_example",
+              restartPolicy: "restartPolicy_example",
+            },
+          ],
           resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
             limits: {
               "key": "key_example",
             },
@@ -25297,6 +26457,7 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
               "key": "key_example",
             },
           },
+          restartPolicy: "restartPolicy_example",
           securityContext: {
             allowPrivilegeEscalation: true,
             capabilities: {
@@ -25337,6 +26498,10 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
               ],
             },
             failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
             httpGet: {
               host: "host_example",
               httpHeaders: [
@@ -25387,6 +26552,9 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
       nodeSelector: {
         "key": "key_example",
       },
+      os: {
+        name: "name_example",
+      },
       overhead: {
         "key": "key_example",
       },
@@ -25398,9 +26566,23 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
           conditionType: "conditionType_example",
         },
       ],
+      resourceClaims: [
+        {
+          name: "name_example",
+          source: {
+            resourceClaimName: "resourceClaimName_example",
+            resourceClaimTemplateName: "resourceClaimTemplateName_example",
+          },
+        },
+      ],
       restartPolicy: "restartPolicy_example",
       runtimeClassName: "runtimeClassName_example",
       schedulerName: "schedulerName_example",
+      schedulingGates: [
+        {
+          name: "name_example",
+        },
+      ],
       securityContext: {
         fsGroup: 1,
         fsGroupChangePolicy: "fsGroupChangePolicy_example",
@@ -25464,7 +26646,13 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
               "key": "key_example",
             },
           },
+          matchLabelKeys: [
+            "matchLabelKeys_example",
+          ],
           maxSkew: 1,
+          minDomains: 1,
+          nodeAffinityPolicy: "nodeAffinityPolicy_example",
+          nodeTaintsPolicy: "nodeTaintsPolicy_example",
           topologyKey: "topologyKey_example",
           whenUnsatisfiable: "whenUnsatisfiable_example",
         },
@@ -25561,7 +26749,6 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
                 annotations: {
                   "key": "key_example",
                 },
-                clusterName: "clusterName_example",
                 creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
                 deletionGracePeriodSeconds: 1,
                 deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -25613,8 +26800,14 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
                   apiGroup: "apiGroup_example",
                   kind: "kind_example",
                   name: "name_example",
+                  namespace: "namespace_example",
                 },
                 resources: {
+                  claims: [
+                    {
+                      name: "name_example",
+                    },
+                  ],
                   limits: {
                     "key": "key_example",
                   },
@@ -25854,6 +27047,9 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
       ],
       containerStatuses: [
         {
+          allocatedResources: {
+            "key": "key_example",
+          },
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -25877,6 +27073,19 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
           },
           name: "name_example",
           ready: true,
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartCount: 1,
           started: true,
           state: {
@@ -25901,6 +27110,9 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
       ],
       ephemeralContainerStatuses: [
         {
+          allocatedResources: {
+            "key": "key_example",
+          },
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -25924,6 +27136,19 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
           },
           name: "name_example",
           ready: true,
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartCount: 1,
           started: true,
           state: {
@@ -25947,8 +27172,16 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
         },
       ],
       hostIP: "hostIP_example",
+      hostIPs: [
+        {
+          ip: "ip_example",
+        },
+      ],
       initContainerStatuses: [
         {
+          allocatedResources: {
+            "key": "key_example",
+          },
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -25972,6 +27205,19 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
           },
           name: "name_example",
           ready: true,
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartCount: 1,
           started: true,
           state: {
@@ -26005,6 +27251,13 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
       ],
       qosClass: "qosClass_example",
       reason: "reason_example",
+      resize: "resize_example",
+      resourceClaimStatuses: [
+        {
+          name: "name_example",
+          resourceClaimName: "resourceClaimName_example",
+        },
+      ],
       startTime: new Date('1970-01-01T00:00:00.00Z'),
     },
   },
@@ -26014,6 +27267,8 @@ let body:.CoreV1ApiReplaceNamespacedPodStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedPodStatus(body).then((data:any) => {
@@ -26032,6 +27287,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -26085,7 +27341,6 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -26129,7 +27384,6 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
         annotations: {
           "key": "key_example",
         },
-        clusterName: "clusterName_example",
         creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
         deletionGracePeriodSeconds: 1,
         deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -26483,6 +27737,10 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 ],
               },
               failureThreshold: 1,
+              grpc: {
+                port: 1,
+                service: "service_example",
+              },
               httpGet: {
                 host: "host_example",
                 httpHeaders: [
@@ -26522,6 +27780,10 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 ],
               },
               failureThreshold: 1,
+              grpc: {
+                port: 1,
+                service: "service_example",
+              },
               httpGet: {
                 host: "host_example",
                 httpHeaders: [
@@ -26544,7 +27806,18 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
               terminationGracePeriodSeconds: 1,
               timeoutSeconds: 1,
             },
+            resizePolicy: [
+              {
+                resourceName: "resourceName_example",
+                restartPolicy: "restartPolicy_example",
+              },
+            ],
             resources: {
+              claims: [
+                {
+                  name: "name_example",
+                },
+              ],
               limits: {
                 "key": "key_example",
               },
@@ -26552,6 +27825,7 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 "key": "key_example",
               },
             },
+            restartPolicy: "restartPolicy_example",
             securityContext: {
               allowPrivilegeEscalation: true,
               capabilities: {
@@ -26592,6 +27866,10 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 ],
               },
               failureThreshold: 1,
+              grpc: {
+                port: 1,
+                service: "service_example",
+              },
               httpGet: {
                 host: "host_example",
                 httpHeaders: [
@@ -26759,6 +28037,10 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 ],
               },
               failureThreshold: 1,
+              grpc: {
+                port: 1,
+                service: "service_example",
+              },
               httpGet: {
                 host: "host_example",
                 httpHeaders: [
@@ -26798,6 +28080,10 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 ],
               },
               failureThreshold: 1,
+              grpc: {
+                port: 1,
+                service: "service_example",
+              },
               httpGet: {
                 host: "host_example",
                 httpHeaders: [
@@ -26820,7 +28106,18 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
               terminationGracePeriodSeconds: 1,
               timeoutSeconds: 1,
             },
+            resizePolicy: [
+              {
+                resourceName: "resourceName_example",
+                restartPolicy: "restartPolicy_example",
+              },
+            ],
             resources: {
+              claims: [
+                {
+                  name: "name_example",
+                },
+              ],
               limits: {
                 "key": "key_example",
               },
@@ -26828,6 +28125,7 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 "key": "key_example",
               },
             },
+            restartPolicy: "restartPolicy_example",
             securityContext: {
               allowPrivilegeEscalation: true,
               capabilities: {
@@ -26868,6 +28166,10 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 ],
               },
               failureThreshold: 1,
+              grpc: {
+                port: 1,
+                service: "service_example",
+              },
               httpGet: {
                 host: "host_example",
                 httpHeaders: [
@@ -26926,6 +28228,7 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
         hostIPC: true,
         hostNetwork: true,
         hostPID: true,
+        hostUsers: true,
         hostname: "hostname_example",
         imagePullSecrets: [
           {
@@ -27037,6 +28340,10 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 ],
               },
               failureThreshold: 1,
+              grpc: {
+                port: 1,
+                service: "service_example",
+              },
               httpGet: {
                 host: "host_example",
                 httpHeaders: [
@@ -27076,6 +28383,10 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 ],
               },
               failureThreshold: 1,
+              grpc: {
+                port: 1,
+                service: "service_example",
+              },
               httpGet: {
                 host: "host_example",
                 httpHeaders: [
@@ -27098,7 +28409,18 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
               terminationGracePeriodSeconds: 1,
               timeoutSeconds: 1,
             },
+            resizePolicy: [
+              {
+                resourceName: "resourceName_example",
+                restartPolicy: "restartPolicy_example",
+              },
+            ],
             resources: {
+              claims: [
+                {
+                  name: "name_example",
+                },
+              ],
               limits: {
                 "key": "key_example",
               },
@@ -27106,6 +28428,7 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 "key": "key_example",
               },
             },
+            restartPolicy: "restartPolicy_example",
             securityContext: {
               allowPrivilegeEscalation: true,
               capabilities: {
@@ -27146,6 +28469,10 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 ],
               },
               failureThreshold: 1,
+              grpc: {
+                port: 1,
+                service: "service_example",
+              },
               httpGet: {
                 host: "host_example",
                 httpHeaders: [
@@ -27196,6 +28523,9 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
         nodeSelector: {
           "key": "key_example",
         },
+        os: {
+          name: "name_example",
+        },
         overhead: {
           "key": "key_example",
         },
@@ -27207,9 +28537,23 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
             conditionType: "conditionType_example",
           },
         ],
+        resourceClaims: [
+          {
+            name: "name_example",
+            source: {
+              resourceClaimName: "resourceClaimName_example",
+              resourceClaimTemplateName: "resourceClaimTemplateName_example",
+            },
+          },
+        ],
         restartPolicy: "restartPolicy_example",
         runtimeClassName: "runtimeClassName_example",
         schedulerName: "schedulerName_example",
+        schedulingGates: [
+          {
+            name: "name_example",
+          },
+        ],
         securityContext: {
           fsGroup: 1,
           fsGroupChangePolicy: "fsGroupChangePolicy_example",
@@ -27273,7 +28617,13 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 "key": "key_example",
               },
             },
+            matchLabelKeys: [
+              "matchLabelKeys_example",
+            ],
             maxSkew: 1,
+            minDomains: 1,
+            nodeAffinityPolicy: "nodeAffinityPolicy_example",
+            nodeTaintsPolicy: "nodeTaintsPolicy_example",
             topologyKey: "topologyKey_example",
             whenUnsatisfiable: "whenUnsatisfiable_example",
           },
@@ -27370,7 +28720,6 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                   annotations: {
                     "key": "key_example",
                   },
-                  clusterName: "clusterName_example",
                   creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
                   deletionGracePeriodSeconds: 1,
                   deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -27422,8 +28771,14 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                     apiGroup: "apiGroup_example",
                     kind: "kind_example",
                     name: "name_example",
+                    namespace: "namespace_example",
                   },
                   resources: {
+                    claims: [
+                      {
+                        name: "name_example",
+                      },
+                    ],
                     limits: {
                       "key": "key_example",
                     },
@@ -27658,6 +29013,8 @@ let body:.CoreV1ApiReplaceNamespacedPodTemplateRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedPodTemplate(body).then((data:any) => {
@@ -27676,6 +29033,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -27729,7 +29087,6 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -27779,7 +29136,6 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
           annotations: {
             "key": "key_example",
           },
-          clusterName: "clusterName_example",
           creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
           deletionGracePeriodSeconds: 1,
           deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -28133,6 +29489,10 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -28172,6 +29532,10 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -28194,7 +29558,18 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                 terminationGracePeriodSeconds: 1,
                 timeoutSeconds: 1,
               },
+              resizePolicy: [
+                {
+                  resourceName: "resourceName_example",
+                  restartPolicy: "restartPolicy_example",
+                },
+              ],
               resources: {
+                claims: [
+                  {
+                    name: "name_example",
+                  },
+                ],
                 limits: {
                   "key": "key_example",
                 },
@@ -28202,6 +29577,7 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   "key": "key_example",
                 },
               },
+              restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
                 capabilities: {
@@ -28242,6 +29618,10 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -28409,6 +29789,10 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -28448,6 +29832,10 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -28470,7 +29858,18 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                 terminationGracePeriodSeconds: 1,
                 timeoutSeconds: 1,
               },
+              resizePolicy: [
+                {
+                  resourceName: "resourceName_example",
+                  restartPolicy: "restartPolicy_example",
+                },
+              ],
               resources: {
+                claims: [
+                  {
+                    name: "name_example",
+                  },
+                ],
                 limits: {
                   "key": "key_example",
                 },
@@ -28478,6 +29877,7 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   "key": "key_example",
                 },
               },
+              restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
                 capabilities: {
@@ -28518,6 +29918,10 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -28576,6 +29980,7 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
           hostIPC: true,
           hostNetwork: true,
           hostPID: true,
+          hostUsers: true,
           hostname: "hostname_example",
           imagePullSecrets: [
             {
@@ -28687,6 +30092,10 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -28726,6 +30135,10 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -28748,7 +30161,18 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                 terminationGracePeriodSeconds: 1,
                 timeoutSeconds: 1,
               },
+              resizePolicy: [
+                {
+                  resourceName: "resourceName_example",
+                  restartPolicy: "restartPolicy_example",
+                },
+              ],
               resources: {
+                claims: [
+                  {
+                    name: "name_example",
+                  },
+                ],
                 limits: {
                   "key": "key_example",
                 },
@@ -28756,6 +30180,7 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   "key": "key_example",
                 },
               },
+              restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
                 capabilities: {
@@ -28796,6 +30221,10 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -28846,6 +30275,9 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
           nodeSelector: {
             "key": "key_example",
           },
+          os: {
+            name: "name_example",
+          },
           overhead: {
             "key": "key_example",
           },
@@ -28857,9 +30289,23 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
               conditionType: "conditionType_example",
             },
           ],
+          resourceClaims: [
+            {
+              name: "name_example",
+              source: {
+                resourceClaimName: "resourceClaimName_example",
+                resourceClaimTemplateName: "resourceClaimTemplateName_example",
+              },
+            },
+          ],
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
+          schedulingGates: [
+            {
+              name: "name_example",
+            },
+          ],
           securityContext: {
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
@@ -28923,7 +30369,13 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   "key": "key_example",
                 },
               },
+              matchLabelKeys: [
+                "matchLabelKeys_example",
+              ],
               maxSkew: 1,
+              minDomains: 1,
+              nodeAffinityPolicy: "nodeAffinityPolicy_example",
+              nodeTaintsPolicy: "nodeTaintsPolicy_example",
               topologyKey: "topologyKey_example",
               whenUnsatisfiable: "whenUnsatisfiable_example",
             },
@@ -29020,7 +30472,6 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                     annotations: {
                       "key": "key_example",
                     },
-                    clusterName: "clusterName_example",
                     creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
                     deletionGracePeriodSeconds: 1,
                     deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -29072,8 +30523,14 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                       apiGroup: "apiGroup_example",
                       kind: "kind_example",
                       name: "name_example",
+                      namespace: "namespace_example",
                     },
                     resources: {
+                      claims: [
+                        {
+                          name: "name_example",
+                        },
+                      ],
                       limits: {
                         "key": "key_example",
                       },
@@ -29325,6 +30782,8 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedReplicationController(body).then((data:any) => {
@@ -29343,6 +30802,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -29396,7 +30856,6 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerScaleRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -29449,6 +30908,8 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerScaleRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedReplicationControllerScale(body).then((data:any) => {
@@ -29467,6 +30928,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -29520,7 +30982,6 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -29570,7 +31031,6 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
           annotations: {
             "key": "key_example",
           },
-          clusterName: "clusterName_example",
           creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
           deletionGracePeriodSeconds: 1,
           deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -29924,6 +31384,10 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -29963,6 +31427,10 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -29985,7 +31453,18 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                 terminationGracePeriodSeconds: 1,
                 timeoutSeconds: 1,
               },
+              resizePolicy: [
+                {
+                  resourceName: "resourceName_example",
+                  restartPolicy: "restartPolicy_example",
+                },
+              ],
               resources: {
+                claims: [
+                  {
+                    name: "name_example",
+                  },
+                ],
                 limits: {
                   "key": "key_example",
                 },
@@ -29993,6 +31472,7 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   "key": "key_example",
                 },
               },
+              restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
                 capabilities: {
@@ -30033,6 +31513,10 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -30200,6 +31684,10 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -30239,6 +31727,10 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -30261,7 +31753,18 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                 terminationGracePeriodSeconds: 1,
                 timeoutSeconds: 1,
               },
+              resizePolicy: [
+                {
+                  resourceName: "resourceName_example",
+                  restartPolicy: "restartPolicy_example",
+                },
+              ],
               resources: {
+                claims: [
+                  {
+                    name: "name_example",
+                  },
+                ],
                 limits: {
                   "key": "key_example",
                 },
@@ -30269,6 +31772,7 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   "key": "key_example",
                 },
               },
+              restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
                 capabilities: {
@@ -30309,6 +31813,10 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -30367,6 +31875,7 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
           hostIPC: true,
           hostNetwork: true,
           hostPID: true,
+          hostUsers: true,
           hostname: "hostname_example",
           imagePullSecrets: [
             {
@@ -30478,6 +31987,10 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -30517,6 +32030,10 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -30539,7 +32056,18 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                 terminationGracePeriodSeconds: 1,
                 timeoutSeconds: 1,
               },
+              resizePolicy: [
+                {
+                  resourceName: "resourceName_example",
+                  restartPolicy: "restartPolicy_example",
+                },
+              ],
               resources: {
+                claims: [
+                  {
+                    name: "name_example",
+                  },
+                ],
                 limits: {
                   "key": "key_example",
                 },
@@ -30547,6 +32075,7 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   "key": "key_example",
                 },
               },
+              restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
                 capabilities: {
@@ -30587,6 +32116,10 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   ],
                 },
                 failureThreshold: 1,
+                grpc: {
+                  port: 1,
+                  service: "service_example",
+                },
                 httpGet: {
                   host: "host_example",
                   httpHeaders: [
@@ -30637,6 +32170,9 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
           nodeSelector: {
             "key": "key_example",
           },
+          os: {
+            name: "name_example",
+          },
           overhead: {
             "key": "key_example",
           },
@@ -30648,9 +32184,23 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
               conditionType: "conditionType_example",
             },
           ],
+          resourceClaims: [
+            {
+              name: "name_example",
+              source: {
+                resourceClaimName: "resourceClaimName_example",
+                resourceClaimTemplateName: "resourceClaimTemplateName_example",
+              },
+            },
+          ],
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
+          schedulingGates: [
+            {
+              name: "name_example",
+            },
+          ],
           securityContext: {
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
@@ -30714,7 +32264,13 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   "key": "key_example",
                 },
               },
+              matchLabelKeys: [
+                "matchLabelKeys_example",
+              ],
               maxSkew: 1,
+              minDomains: 1,
+              nodeAffinityPolicy: "nodeAffinityPolicy_example",
+              nodeTaintsPolicy: "nodeTaintsPolicy_example",
               topologyKey: "topologyKey_example",
               whenUnsatisfiable: "whenUnsatisfiable_example",
             },
@@ -30811,7 +32367,6 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                     annotations: {
                       "key": "key_example",
                     },
-                    clusterName: "clusterName_example",
                     creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
                     deletionGracePeriodSeconds: 1,
                     deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -30863,8 +32418,14 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                       apiGroup: "apiGroup_example",
                       kind: "kind_example",
                       name: "name_example",
+                      namespace: "namespace_example",
                     },
                     resources: {
+                      claims: [
+                        {
+                          name: "name_example",
+                        },
+                      ],
                       limits: {
                         "key": "key_example",
                       },
@@ -31116,6 +32677,8 @@ let body:.CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedReplicationControllerStatus(body).then((data:any) => {
@@ -31134,6 +32697,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -31187,7 +32751,6 @@ let body:.CoreV1ApiReplaceNamespacedResourceQuotaRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -31260,6 +32823,8 @@ let body:.CoreV1ApiReplaceNamespacedResourceQuotaRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedResourceQuota(body).then((data:any) => {
@@ -31278,6 +32843,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -31331,7 +32897,6 @@ let body:.CoreV1ApiReplaceNamespacedResourceQuotaStatusRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -31404,6 +32969,8 @@ let body:.CoreV1ApiReplaceNamespacedResourceQuotaStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedResourceQuotaStatus(body).then((data:any) => {
@@ -31422,6 +32989,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -31479,7 +33047,6 @@ let body:.CoreV1ApiReplaceNamespacedSecretRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -31529,6 +33096,8 @@ let body:.CoreV1ApiReplaceNamespacedSecretRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedSecret(body).then((data:any) => {
@@ -31547,6 +33116,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -31600,7 +33170,6 @@ let body:.CoreV1ApiReplaceNamespacedServiceRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -31717,6 +33286,8 @@ let body:.CoreV1ApiReplaceNamespacedServiceRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedService(body).then((data:any) => {
@@ -31735,6 +33306,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -31794,7 +33366,6 @@ let body:.CoreV1ApiReplaceNamespacedServiceAccountRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -31851,6 +33422,8 @@ let body:.CoreV1ApiReplaceNamespacedServiceAccountRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedServiceAccount(body).then((data:any) => {
@@ -31869,6 +33442,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -31922,7 +33496,6 @@ let body:.CoreV1ApiReplaceNamespacedServiceStatusRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -32039,6 +33612,8 @@ let body:.CoreV1ApiReplaceNamespacedServiceStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNamespacedServiceStatus(body).then((data:any) => {
@@ -32057,6 +33632,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -32108,7 +33684,6 @@ let body:.CoreV1ApiReplaceNodeRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -32269,6 +33844,8 @@ let body:.CoreV1ApiReplaceNodeRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNode(body).then((data:any) => {
@@ -32286,6 +33863,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -32337,7 +33915,6 @@ let body:.CoreV1ApiReplaceNodeStatusRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -32498,6 +34075,8 @@ let body:.CoreV1ApiReplaceNodeStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replaceNodeStatus(body).then((data:any) => {
@@ -32515,6 +34094,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -32566,7 +34146,6 @@ let body:.CoreV1ApiReplacePersistentVolumeRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -32674,6 +34253,10 @@ let body:.CoreV1ApiReplacePersistentVolumeRequest = {
         },
         driver: "driver_example",
         fsType: "fsType_example",
+        nodeExpandSecretRef: {
+          name: "name_example",
+          namespace: "namespace_example",
+        },
         nodePublishSecretRef: {
           name: "name_example",
           namespace: "namespace_example",
@@ -32860,6 +34443,7 @@ let body:.CoreV1ApiReplacePersistentVolumeRequest = {
       },
     },
     status: {
+      lastPhaseTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
       message: "message_example",
       phase: "phase_example",
       reason: "reason_example",
@@ -32871,6 +34455,8 @@ let body:.CoreV1ApiReplacePersistentVolumeRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replacePersistentVolume(body).then((data:any) => {
@@ -32888,6 +34474,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
@@ -32939,7 +34526,6 @@ let body:.CoreV1ApiReplacePersistentVolumeStatusRequest = {
       annotations: {
         "key": "key_example",
       },
-      clusterName: "clusterName_example",
       creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
       deletionGracePeriodSeconds: 1,
       deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
@@ -33047,6 +34633,10 @@ let body:.CoreV1ApiReplacePersistentVolumeStatusRequest = {
         },
         driver: "driver_example",
         fsType: "fsType_example",
+        nodeExpandSecretRef: {
+          name: "name_example",
+          namespace: "namespace_example",
+        },
         nodePublishSecretRef: {
           name: "name_example",
           namespace: "namespace_example",
@@ -33233,6 +34823,7 @@ let body:.CoreV1ApiReplacePersistentVolumeStatusRequest = {
       },
     },
     status: {
+      lastPhaseTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
       message: "message_example",
       phase: "phase_example",
       reason: "reason_example",
@@ -33244,6 +34835,8 @@ let body:.CoreV1ApiReplacePersistentVolumeStatusRequest = {
   dryRun: "dryRun_example",
   // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
+  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
 };
 
 apiInstance.replacePersistentVolumeStatus(body).then((data:any) => {
@@ -33261,6 +34854,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
 
 
 ### Return type
