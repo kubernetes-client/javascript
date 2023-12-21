@@ -24,7 +24,5 @@ jobs:
       - run: node version-check.js
       - run: npm ci
       - run: npm test
-        env:
-          NODE_OPTIONS: --max-old-space-size=8192
       - run: npm run lint
       - run: npm audit --audit-level=critical
