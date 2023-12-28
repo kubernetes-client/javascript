@@ -341,7 +341,7 @@ export class KubeConfig implements SecurityAuthentication {
     }
 
     public mergeConfig(config: KubeConfig, preserveContext: boolean = false): void {
-        if (!preserveContext) {
+        if (!preserveContext && config.currentContext) {
             this.currentContext = config.currentContext;
         }
         config.clusters.forEach((cluster: Cluster) => {
