@@ -211,6 +211,12 @@ export class KubeConfig {
         const clusterName = 'inCluster';
         const userName = 'inClusterUser';
         const contextName = 'inClusterContext';
+        const tokenFile = process.env.TOKEN_FILE_PATH
+            ? process.env.TOKEN_FILE_PATH
+            : `${pathPrefix}${Config.SERVICEACCOUNT_TOKEN_PATH}`;
+        const caFile = process.env.KUBERNETES_CA_FILE_PATH
+            ? process.env.KUBERNETES_CA_FILE_PATH
+            : `${pathPrefix}${Config.SERVICEACCOUNT_CA_PATH}`;
 
         let scheme = 'https';
         if (port === '80' || port === '8080' || port === '8001') {
@@ -226,7 +232,7 @@ export class KubeConfig {
         this.clusters = [
             {
                 name: clusterName,
-                caFile: `${pathPrefix}${Config.SERVICEACCOUNT_CA_PATH}`,
+                caFile,
                 server: `${scheme}://${serverHost}:${port}`,
                 skipTLSVerify: false,
             },
@@ -237,7 +243,7 @@ export class KubeConfig {
                 authProvider: {
                     name: 'tokenFile',
                     config: {
-                        tokenFile: `${pathPrefix}${Config.SERVICEACCOUNT_TOKEN_PATH}`,
+                        tokenFile,
                     },
                 },
             },
