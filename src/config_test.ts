@@ -152,6 +152,93 @@ describe('KubeConfig', () => {
         });
     });
 
+    describe('loadFromCluster', () => {
+        let originalTokenPath: string | undefined;
+        let originalCaFilePath: string | undefined;
+
+        before(() => {
+            originalTokenPath = process.env['TOKEN_FILE_PATH'];
+            originalCaFilePath = process.env['KUBERNETES_CA_FILE_PATH'];
+
+            delete process.env['TOKEN_FILE_PATH'];
+            delete process.env['KUBERNETES_CA_FILE_PATH'];
+        });
+
+        after(() => {
+            delete process.env['TOKEN_FILE_PATH'];
+            delete process.env['KUBERNETES_CA_FILE_PATH'];
+
+            if (originalTokenPath) {
+                process.env['TOKEN_FILE_PATH'] = originalTokenPath;
+            }
+
+            if (originalCaFilePath) {
+                process.env['KUBERNETES_CA_FILE_PATH'] = originalCaFilePath;
+            }
+        });
+
+        it('should load from default env vars', () => {
+            const kc = new KubeConfig();
+            const cluster = {
+                name: 'inCluster',
+                server: 'https://undefined:undefined',
+                skipTLSVerify: false,
+                caFile: '/var/run/secrets/kubernetes.io/serviceaccount/ca.crt',
+            } as Cluster;
+
+            const user = {
+                authProvider: {
+                    name: 'tokenFile',
+                    config: {
+                        tokenFile: '/var/run/secrets/kubernetes.io/serviceaccount/token',
+                    },
+                },
+                name: 'inClusterUser',
+            } as User;
+
+            kc.loadFromCluster();
+
+            const clusterOut = kc.getCurrentCluster();
+
+            expect(cluster).to.deep.equals(clusterOut);
+
+            const userOut = kc.getCurrentUser();
+            expect(userOut).to.deep.equals(user);
+        });
+
+        it('should support custom token file path', () => {
+            const kc = new KubeConfig();
+            process.env['TOKEN_FILE_PATH'] = '/etc/tokenFile';
+            process.env['KUBERNETES_CA_FILE_PATH'] = '/etc/ca.crt';
+
+            const cluster = {
+                name: 'inCluster',
+                server: 'https://undefined:undefined',
+                skipTLSVerify: false,
+                caFile: '/etc/ca.crt',
+            } as Cluster;
+
+            const user = {
+                authProvider: {
+                    name: 'tokenFile',
+                    config: {
+                        tokenFile: '/etc/tokenFile',
+                    },
+                },
+                name: 'inClusterUser',
+            } as User;
+
+            kc.loadFromCluster();
+
+            const clusterOut = kc.getCurrentCluster();
+
+            expect(cluster).to.deep.equals(clusterOut);
+
+            const userOut = kc.getCurrentUser();
+            expect(userOut).to.deep.equals(user);
+        });
+    });
+
     describe('clusterConstructor', () => {
         it('should load from options', () => {
             const cluster = {
