@@ -369,7 +369,10 @@ export class KubeConfig {
             }
         }
 
-        if (fileExists(Config.SERVICEACCOUNT_TOKEN_PATH)) {
+        if (
+            fileExists(Config.SERVICEACCOUNT_TOKEN_PATH) ||
+            (process.env.TOKEN_FILE_PATH !== undefined && process.env.TOKEN_FILE_PATH !== '')
+        ) {
             this.loadFromCluster();
             return;
         }
