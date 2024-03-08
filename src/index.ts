@@ -15,3 +15,6 @@ export * from './patch';
 export * from './metrics';
 export * from './object';
 export { ConfigOptions, User, Cluster, Context } from './config_types';
+
+// Export AbortError and FetchError so that instanceof checks in user code will definitely use the same instances
+export { AbortError, FetchError } from 'node-fetch';
