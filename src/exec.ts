@@ -27,7 +27,7 @@ export class Exec {
      * @param {boolean} tty - Should the command execute in a TTY enabled session.
      * @param {(V1Status) => void} statusCallback -
      *       A callback to received the status (e.g. exit code) from the command, optional.
-     * @return {string} This is the result
+     * @return {Promise<WebSocket>} A promise that will return the web socket created for this command.
      */
     public async exec(
         namespace: string,
@@ -39,7 +39,7 @@ export class Exec {
         stdin: stream.Readable | null,
         tty: boolean,
         statusCallback?: (status: V1Status) => void,
-    ): Promise<WebSocket> {
+    ): Promise<WebSocket.WebSocket> {
         const query = {
             stdout: stdout != null,
             stderr: stderr != null,
