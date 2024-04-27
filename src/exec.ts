@@ -39,7 +39,7 @@ export class Exec {
         stdin: stream.Readable | null,
         tty: boolean,
         statusCallback?: (status: V1Status) => void,
-    ): Promise<WebSocket> {
+    ): Promise<WebSocket.WebSocket> {
         const query = {
             stdout: stdout != null,
             stderr: stderr != null,
