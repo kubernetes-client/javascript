@@ -49,7 +49,7 @@ describe('Attach', () => {
         it('should correctly attach to streams', async () => {
             const kc = new KubeConfig();
             const fakeWebSocketInterface: WebSocketInterface = mock(WebSocketHandler);
-            const fakeWebSocket: WebSocket = mock(WebSocket);
+            const fakeWebSocket: WebSocket.WebSocket = mock(WebSocket);
             const callAwaiter: CallAwaiter = new CallAwaiter();
             const attach = new Attach(kc, instance(fakeWebSocketInterface));
             const osStream = new ResizableWriteableStreamBuffer();
@@ -63,7 +63,7 @@ describe('Attach', () => {
             const path = `/api/v1/namespaces/${namespace}/pods/${pod}/attach`;
             const args = `container=${container}&stderr=true&stdin=true&stdout=true&tty=false`;
 
-            const fakeConn: WebSocket = instance(fakeWebSocket);
+            const fakeConn: WebSocket.WebSocket = instance(fakeWebSocket);
             when(fakeWebSocketInterface.connect(`${path}?${args}`, null, anyFunction())).thenResolve(
                 fakeConn,
             );

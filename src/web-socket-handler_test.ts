@@ -114,13 +114,16 @@ describe('WebSocket', () => {
             } as User,
         ];
 
-        const mockWs = {} as WebSocket;
+        const mockWs = {} as WebSocket.WebSocket;
         let uriOut = '';
 
-        const handler = new WebSocketHandler(kc, (uri: string, opts: WebSocket.ClientOptions): WebSocket => {
-            uriOut = uri;
-            return mockWs as WebSocket;
-        });
+        const handler = new WebSocketHandler(
+            kc,
+            (uri: string, opts: WebSocket.ClientOptions): WebSocket.WebSocket => {
+                uriOut = uri;
+                return mockWs as WebSocket.WebSocket;
+            },
+        );
         const path = '/some/path';
 
         const promise = handler.connect(path, null, null);
@@ -162,13 +165,16 @@ describe('WebSocket', () => {
             } as User,
         ];
 
-        const mockWs = {} as WebSocket;
+        const mockWs = {} as WebSocket.WebSocket;
         let uriOut = '';
 
-        const handler = new WebSocketHandler(kc, (uri: string, opts: WebSocket.ClientOptions): WebSocket => {
-            uriOut = uri;
-            return mockWs as WebSocket;
-        });
+        const handler = new WebSocketHandler(
+            kc,
+            (uri: string, opts: WebSocket.ClientOptions): WebSocket.WebSocket => {
+                uriOut = uri;
+                return mockWs as WebSocket.WebSocket;
+            },
+        );
         const path = '/some/path';
 
         const promise = handler.connect(path, null, null);
@@ -228,13 +234,16 @@ describe('WebSocket', () => {
             close: () => {
                 closeCount++;
             },
-        } as WebSocket;
+        } as WebSocket.WebSocket;
         let uriOut = '';
 
-        const handler = new WebSocketHandler(kc, (uri: string, opts: WebSocket.ClientOptions): WebSocket => {
-            uriOut = uri;
-            return mockWs as WebSocket;
-        });
+        const handler = new WebSocketHandler(
+            kc,
+            (uri: string, opts: WebSocket.ClientOptions): WebSocket.WebSocket => {
+                uriOut = uri;
+                return mockWs as WebSocket.WebSocket;
+            },
+        );
         const path = '/some/path';
 
         let textReceived = '';
@@ -296,7 +305,7 @@ describe('WebSocket', () => {
 
 describe('Restartable Handle Standard Input', () => {
     it('should throw on negative retry', () => {
-        const p = new Promise<WebSocket>(() => {});
+        const p = new Promise<WebSocket.WebSocket>(() => {});
         expect(() => WebSocketHandler.restartableHandleStandardInput(() => p, null, 0, -1)).to.throw(
             "retryCount can't be lower than 0.",
         );
@@ -311,10 +320,10 @@ describe('Restartable Handle Standard Input', () => {
         WebSocketHandler.processData(
             'some test data',
             null,
-            (): Promise<WebSocket> => {
-                return new Promise<WebSocket>((resolve) => {
+            (): Promise<WebSocket.WebSocket> => {
+                return new Promise<WebSocket.WebSocket>((resolve) => {
                     count++;
-                    resolve(ws as WebSocket);
+                    resolve(ws as WebSocket.WebSocket);
                 });
             },
             0,

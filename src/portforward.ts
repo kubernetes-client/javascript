@@ -24,7 +24,7 @@ export class PortForward {
         err: stream.Writable | null,
         input: stream.Readable,
         retryCount: number = 0,
-    ): Promise<WebSocket | (() => WebSocket | null)> {
+    ): Promise<WebSocket.WebSocket | (() => WebSocket.WebSocket | null)> {
         if (targetPorts.length === 0) {
             throw new Error('You must provide at least one port to forward to.');
         }
@@ -41,7 +41,7 @@ export class PortForward {
             needsToReadPortNumber[index * 2 + 1] = true;
         });
         const path = `/api/v1/namespaces/${namespace}/pods/${podName}/portforward?${queryStr}`;
-        const createWebSocket = (): Promise<WebSocket> => {
+        const createWebSocket = (): Promise<WebSocket.WebSocket> => {
             return this.handler.connect(path, null, (streamNum: number, buff: Buffer | string): boolean => {
                 if (streamNum >= targetPorts.length * 2) {
                     return !this.disconnectOnErr;

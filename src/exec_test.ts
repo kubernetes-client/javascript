@@ -56,7 +56,7 @@ describe('Exec', () => {
         it('should correctly attach to streams', async () => {
             const kc = new KubeConfig();
             const fakeWebSocketInterface: WebSocketInterface = mock(WebSocketHandler);
-            const fakeWebSocket: WebSocket = mock(WebSocket);
+            const fakeWebSocket: WebSocket.WebSocket = mock(WebSocket);
             const callAwaiter: CallAwaiter = new CallAwaiter();
             const exec = new Exec(kc, instance(fakeWebSocketInterface));
             const osStream = new ResizableWriteableStreamBuffer();
@@ -73,7 +73,7 @@ describe('Exec', () => {
 
             let statusOut = {} as V1Status;
 
-            const fakeConn: WebSocket = instance(fakeWebSocket);
+            const fakeConn: WebSocket.WebSocket = instance(fakeWebSocket);
             when(fakeWebSocketInterface.connect(`${path}?${args}`, null, anyFunction())).thenResolve(
                 fakeConn,
             );
