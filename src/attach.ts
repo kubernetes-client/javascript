@@ -23,7 +23,7 @@ export class Attach {
         stderr: stream.Writable | any,
         stdin: stream.Readable | any,
         tty: boolean,
-    ): Promise<WebSocket> {
+    ): Promise<WebSocket.WebSocket> {
         const query = {
             container: containerName,
             stderr: stderr != null,

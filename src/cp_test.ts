@@ -44,7 +44,7 @@ describe('Cp', () => {
         it('should run extract tar command to a url', async () => {
             const kc = new KubeConfig();
             const fakeWebSocketInterface: WebSocketInterface = mock(WebSocketHandler);
-            const fakeWebSocket: WebSocket = mock(WebSocket) as WebSocket;
+            const fakeWebSocket: WebSocket.WebSocket = mock(WebSocket) as WebSocket.WebSocket;
             const callAwaiter: CallAwaiter = new CallAwaiter();
             const exec = new Exec(kc, instance(fakeWebSocketInterface));
             const cp = new Cp(kc, exec);
@@ -67,7 +67,7 @@ describe('Cp', () => {
             };
             const queryStr = querystring.stringify(query);
 
-            const fakeConn: WebSocket = instance(fakeWebSocket);
+            const fakeConn: WebSocket.WebSocket = instance(fakeWebSocket);
             when(fakeWebSocketInterface.connect(`${path}?${queryStr}`, null, anyFunction())).thenResolve(
                 fakeConn,
             );

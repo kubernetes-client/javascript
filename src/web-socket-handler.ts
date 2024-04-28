@@ -11,7 +11,7 @@ export interface WebSocketInterface {
         path: string,
         textHandler: ((text: string) => boolean) | null,
         binaryHandler: ((stream: number, buff: Buffer) => boolean) | null,
-    ): Promise<WebSocket>;
+    ): Promise<WebSocket.WebSocket>;
 }
 
 export class WebSocketHandler implements WebSocketInterface {
@@ -50,7 +50,7 @@ export class WebSocketHandler implements WebSocketInterface {
     }
 
     public static handleStandardInput(
-        ws: WebSocket,
+        ws: WebSocket.WebSocket,
         stdin: stream.Readable | any,
         streamNum: number = 0,
     ): boolean {
@@ -74,11 +74,11 @@ export class WebSocketHandler implements WebSocketInterface {
 
     public static async processData(
         data: string | Buffer,
-        ws: WebSocket | null,
-        createWS: () => Promise<WebSocket>,
+        ws: WebSocket.WebSocket | null,
+        createWS: () => Promise<WebSocket.WebSocket>,
         streamNum: number = 0,
         retryCount: number = 3,
-    ): Promise<WebSocket | null> {
+    ): Promise<WebSocket.WebSocket | null> {
         const buff = Buffer.alloc(data.length + 1);
 
         buff.writeInt8(streamNum, 0);
@@ -108,17 +108,17 @@ export class WebSocketHandler implements WebSocketInterface {
     }
 
     public static restartableHandleStandardInput(
-        createWS: () => Promise<WebSocket>,
+        createWS: () => Promise<WebSocket.WebSocket>,
         stdin: stream.Readable | any,
         streamNum: number = 0,
         retryCount: number = 3,
-    ): () => WebSocket | null {
+    ): () => WebSocket.WebSocket | null {
         if (retryCount < 0) {
             throw new Error("retryCount can't be lower than 0.");
         }
 
         let queue: Promise<void> = Promise.resolve();
-        let ws: WebSocket | null = null;
+        let ws: WebSocket.WebSocket | null = null;
 
         stdin.on('data', (data) => {
             queue = queue.then(async () => {
@@ -138,7 +138,7 @@ export class WebSocketHandler implements WebSocketInterface {
     // factory is really just for test injection
     public constructor(
         readonly config: KubeConfig,
-        readonly socketFactory?: (uri: string, opts: WebSocket.ClientOptions) => WebSocket,
+        readonly socketFactory?: (uri: string, opts: WebSocket.ClientOptions) => WebSocket.WebSocket,
     ) {}
 
     /**
@@ -153,7 +153,7 @@ export class WebSocketHandler implements WebSocketInterface {
         path: string,
         textHandler: ((text: string) => boolean) | null,
         binaryHandler: ((stream: number, buff: Buffer) => boolean) | null,
-    ): Promise<WebSocket> {
+    ): Promise<WebSocket.WebSocket> {
         const cluster = this.config.getCurrentCluster();
         if (!cluster) {
             throw new Error('No cluster is defined.');
@@ -168,7 +168,7 @@ export class WebSocketHandler implements WebSocketInterface {
 
         await this.config.applyToHTTPSOptions(opts);
 
-        return await new Promise<WebSocket>((resolve, reject) => {
+        return await new Promise<WebSocket.WebSocket>((resolve, reject) => {
             const client = this.socketFactory
                 ? this.socketFactory(uri, opts)
                 : new WebSocket(uri, protocols, opts);
