@@ -112,6 +112,10 @@ export * from './storageV1Api';
 import { StorageV1Api } from './storageV1Api';
 export * from './storageV1alpha1Api';
 import { StorageV1alpha1Api } from './storageV1alpha1Api';
+export * from './storagemigrationApi';
+import { StoragemigrationApi } from './storagemigrationApi';
+export * from './storagemigrationV1alpha1Api';
+import { StoragemigrationV1alpha1Api } from './storagemigrationV1alpha1Api';
 export * from './versionApi';
 import { VersionApi } from './versionApi';
 export * from './wellKnownApi';
@@ -127,4 +131,4 @@ export class HttpError extends Error {
 
 export { RequestFile } from '../model/models';
 
-export const APIS = [AdmissionregistrationApi, AdmissionregistrationV1Api, AdmissionregistrationV1alpha1Api, AdmissionregistrationV1beta1Api, ApiextensionsApi, ApiextensionsV1Api, ApiregistrationApi, ApiregistrationV1Api, ApisApi, AppsApi, AppsV1Api, AuthenticationApi, AuthenticationV1Api, AuthenticationV1alpha1Api, AuthenticationV1beta1Api, AuthorizationApi, AuthorizationV1Api, AutoscalingApi, AutoscalingV1Api, AutoscalingV2Api, BatchApi, BatchV1Api, CertificatesApi, CertificatesV1Api, CertificatesV1alpha1Api, CoordinationApi, CoordinationV1Api, CoreApi, CoreV1Api, CustomObjectsApi, DiscoveryApi, DiscoveryV1Api, EventsApi, EventsV1Api, FlowcontrolApiserverApi, FlowcontrolApiserverV1Api, FlowcontrolApiserverV1beta3Api, InternalApiserverApi, InternalApiserverV1alpha1Api, LogsApi, NetworkingApi, NetworkingV1Api, NetworkingV1alpha1Api, NodeApi, NodeV1Api, OpenidApi, PolicyApi, PolicyV1Api, RbacAuthorizationApi, RbacAuthorizationV1Api, ResourceApi, ResourceV1alpha2Api, SchedulingApi, SchedulingV1Api, StorageApi, StorageV1Api, StorageV1alpha1Api, VersionApi, WellKnownApi];
+export const APIS = [AdmissionregistrationApi, AdmissionregistrationV1Api, AdmissionregistrationV1alpha1Api, AdmissionregistrationV1beta1Api, ApiextensionsApi, ApiextensionsV1Api, ApiregistrationApi, ApiregistrationV1Api, ApisApi, AppsApi, AppsV1Api, AuthenticationApi, AuthenticationV1Api, AuthenticationV1alpha1Api, AuthenticationV1beta1Api, AuthorizationApi, AuthorizationV1Api, AutoscalingApi, AutoscalingV1Api, AutoscalingV2Api, BatchApi, BatchV1Api, CertificatesApi, CertificatesV1Api, CertificatesV1alpha1Api, CoordinationApi, CoordinationV1Api, CoreApi, CoreV1Api, CustomObjectsApi, DiscoveryApi, DiscoveryV1Api, EventsApi, EventsV1Api, FlowcontrolApiserverApi, FlowcontrolApiserverV1Api, FlowcontrolApiserverV1beta3Api, InternalApiserverApi, InternalApiserverV1alpha1Api, LogsApi, NetworkingApi, NetworkingV1Api, NetworkingV1alpha1Api, NodeApi, NodeV1Api, OpenidApi, PolicyApi, PolicyV1Api, RbacAuthorizationApi, RbacAuthorizationV1Api, ResourceApi, ResourceV1alpha2Api, SchedulingApi, SchedulingV1Api, StorageApi, StorageV1Api, StorageV1alpha1Api, StoragemigrationApi, StoragemigrationV1alpha1Api, VersionApi, WellKnownApi];
