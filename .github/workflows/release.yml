@@ -54,8 +54,8 @@ jobs:
         run: |
           git config --global user.name 'Github Bot'
           git config --global user.email '<>'
-          git tag ${{ github.events.inputs.version }}
+          git tag ${{ github.events.inputs.releaseVersion }}
       - name: Push tag
         if: ${{ github.event.inputs.dry_run != 'true' }}
         run: |
-          git push ${{ github.events.inputs.version }}
+          git push ${{ github.events.inputs.releaseVersion }}
