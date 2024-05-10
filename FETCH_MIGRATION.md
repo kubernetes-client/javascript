@@ -2,9 +2,9 @@
 
 Request is fully deprecated requiring us to switch libraries (see [#414](https://github.com/kubernetes-client/javascript/issues/414) for more information). There were a few [different options](https://github.com/kubernetes-client/javascript/issues/414#issuecomment-978031677) for how this swap should be implemented but moving to a new open-api generator option was chosen since this project will acquire the advantages of an up-to-date open-api generator version.
 
-Fetch was selected as the new HTTP request library for this project due to its widespread adoption across the JavaScript ecosystem. Additonally, potential future updates to this project could allow this client to be available with browser JavaScript since fetch is native to the browser ([#165](https://github.com/kubernetes-client/javascript/issues/165)).
+Fetch was selected as the new HTTP request library for this project due to its widespread adoption across the JavaScript ecosystem. Additionally, potential future updates to this project could allow this client to be available with browser JavaScript since fetch is native to the browser ([#165](https://github.com/kubernetes-client/javascript/issues/165)).
 
-[Node-fetch](https://www.npmjs.com/package/node-fetch) is our specific fetch package since it is the largest Node.js compatable implementation. Fetch is not implemented by default in Node.
+[Node-fetch](https://www.npmjs.com/package/node-fetch) is our specific fetch package since it is the largest Node.js compatible implementation. Fetch is not implemented by default in Node.
 
 For more details see the initial discussion ([#754](https://github.com/kubernetes-client/javascript/issues/754)).
 
