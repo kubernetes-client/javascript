@@ -5,6 +5,6 @@ export function jsonpath(path: string, json: object): any {
         path,
         json,
 
-        preventEval: true,
+        eval: false,
     });
 }
