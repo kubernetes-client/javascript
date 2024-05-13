@@ -84,7 +84,7 @@
         "@types/mocha": "^10.0.1",
         "@types/mock-fs": "^4.13.1",
         "c8": "^9.0.0",
-        "chai": "^4.2.0",
+        "chai": "^5.1.1",
         "chai-as-promised": "^7.1.1",
         "husky": "^9.0.6",
         "jasmine": "^5.0.0",
