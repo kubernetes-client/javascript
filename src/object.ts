@@ -3,13 +3,13 @@ import request = require('request');
 import {
     ApisApi,
     HttpError,
-    ObjectSerializer,
     V1APIResource,
     V1APIResourceList,
     V1DeleteOptions,
     V1Status,
 } from './api';
 import { KubeConfig } from './config';
+import ObjectSerializer from './serializer';
 import { KubernetesListObject, KubernetesObject } from './types';
 
 /** Union type of body types returned by KubernetesObjectApi. */
@@ -50,6 +50,7 @@ enum KubernetesPatchStrategies {
     /** Merge with different strategies depending on field metadata. */
     StrategicMergePatch = 'application/strategic-merge-patch+json',
 }
+
 
 /**
  * Dynamically construct Kubernetes API request URIs so client does not have to know what type of object it is acting
@@ -499,7 +500,7 @@ export class KubernetesObjectApi extends ApisApi {
      *
      * @param spec Kubernetes resource spec which must define kind and apiVersion properties.
      * @param action API action, see [[K8sApiAction]].
-     * @return tail of resource-specific URIDeploym
+     * @return tail of resource-specific URI
      */
     protected async specUriPath(spec: KubernetesObject, action: KubernetesApiAction): Promise<string> {
         if (!spec.kind) {
