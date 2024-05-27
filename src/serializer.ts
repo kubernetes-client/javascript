@@ -1,13 +1,13 @@
 import { ObjectSerializer } from "./api";
 import { V1ObjectMeta } from "./gen/model/v1ObjectMeta";
 
-export type AttributeType = {
+type AttributeType = {
     name: string;
     baseName: string;
     type: string;
 };
 
-export class KubernetesObject {
+class KubernetesObject {
     /**
     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
     */
@@ -68,14 +68,12 @@ class KubernetesObjectSerializer {
         }
 
         const instance: Record<string, any> = {};
-        const attributeTypes = KubernetesObject.attributeTypeMap;
-        for (let index = 0; index < attributeTypes.length; index++) {
-            let attributeType = attributeTypes[index];
+        for (const attributeType of KubernetesObject.attributeTypeMap) {
             instance[attributeType.name] = ObjectSerializer.serialize(data[attributeType.baseName], attributeType.type);
         }
         // add all unknown properties as is.
         for (const [key, value] of Object.entries(data)) {
-            if (attributeTypes.find((t) => t.name === key)) {
+            if (KubernetesObject.attributeTypeMap.find((t) => t.name === key)) {
                 continue;
             }
             instance[key] = value;
@@ -96,14 +94,12 @@ class KubernetesObjectSerializer {
         }
 
         const instance = new KubernetesObject();
-        const attributeTypes = KubernetesObject.attributeTypeMap;
-        for (let index = 0; index < attributeTypes.length; index++) {
-            let attributeType = attributeTypes[index];
+        for (const attributeType of KubernetesObject.attributeTypeMap) {
             instance[attributeType.name] = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type);
         }
         // add all unknown properties as is.
         for (const [key, value] of Object.entries(data)) {
-            if (attributeTypes.find((t) => t.name === key)) {
+            if (KubernetesObject.attributeTypeMap.find((t) => t.name === key)) {
                 continue;
             }
             instance[key] = value;
