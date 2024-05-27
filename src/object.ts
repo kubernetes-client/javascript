@@ -28,7 +28,7 @@ type KubernetesObjectHeader<T extends KubernetesObject | KubernetesObject> = Pic
 > & {
     metadata: {
         name: string;
-        namespace: string;
+        namespace?: string;
     };
 };
 
