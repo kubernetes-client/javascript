@@ -11,7 +11,7 @@ import {
     UPDATE,
 } from './informer';
 import { KubernetesObject } from './types';
-import { ObjectSerializer } from './util';
+import { ObjectSerializer } from './serializer';
 import { Watch } from './watch';
 
 export interface ObjectCache<T> {
