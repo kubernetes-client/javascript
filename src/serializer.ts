@@ -22,17 +22,17 @@ class KubernetesObject {
         {
             name: 'apiVersion',
             baseName: 'apiVersion',
-            type: 'string'
+            type: 'string',
         },
         {
             name: 'kind',
             baseName: 'kind',
-            type: 'string'
+            type: 'string',
         },
         {
             name: 'metadata',
             baseName: 'metadata',
-            type: 'V1ObjectMeta'
+            type: 'V1ObjectMeta',
         },
     ];
 }
@@ -44,7 +44,6 @@ const isKubernetesObject = (data: unknown): boolean =>
  * Wraps the ObjectSerializer to support custom resources and generic Kubernetes objects.
  */
 class KubernetesObjectSerializer {
-
     private static _instance: KubernetesObjectSerializer;
 
     public static get instance(): KubernetesObjectSerializer {
@@ -59,7 +58,7 @@ class KubernetesObjectSerializer {
 
     public serialize(data: any, type: string): any {
         const obj = ObjectSerializer.serialize(data, type);
-        if(obj !== data) {
+        if (obj !== data) {
             return obj;
         }
 
@@ -69,7 +68,10 @@ class KubernetesObjectSerializer {
 
         const instance: Record<string, any> = {};
         for (const attributeType of KubernetesObject.attributeTypeMap) {
-            instance[attributeType.name] = ObjectSerializer.serialize(data[attributeType.baseName], attributeType.type);
+            instance[attributeType.name] = ObjectSerializer.serialize(
+                data[attributeType.baseName],
+                attributeType.type,
+            );
         }
         // add all unknown properties as is.
         for (const [key, value] of Object.entries(data)) {
@@ -79,7 +81,6 @@ class KubernetesObjectSerializer {
             instance[key] = value;
         }
         return instance;
-
     }
 
     public deserialize(data: any, type: string): any {
@@ -95,7 +96,10 @@ class KubernetesObjectSerializer {
 
         const instance = new KubernetesObject();
         for (const attributeType of KubernetesObject.attributeTypeMap) {
-            instance[attributeType.name] = ObjectSerializer.deserialize(data[attributeType.baseName], attributeType.type);
+            instance[attributeType.name] = ObjectSerializer.deserialize(
+                data[attributeType.baseName],
+                attributeType.type,
+            );
         }
         // add all unknown properties as is.
         for (const [key, value] of Object.entries(data)) {

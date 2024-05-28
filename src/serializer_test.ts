@@ -2,7 +2,6 @@ import { expect } from 'chai';
 import KubernetesObjectSerializer from './serializer';
 
 describe('KubernetesObjectSerializer', () => {
-
     describe('serialize', () => {
         it('should serialize a known object', () => {
             const s = {
@@ -188,5 +187,4 @@ describe('KubernetesObjectSerializer', () => {
             expect(res).to.deep.equal(s);
         });
     });
-
 });

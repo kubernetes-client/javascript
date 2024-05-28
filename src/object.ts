@@ -1,13 +1,6 @@
 import * as http from 'http';
 import request = require('request');
-import {
-    ApisApi,
-    HttpError,
-    V1APIResource,
-    V1APIResourceList,
-    V1DeleteOptions,
-    V1Status,
-} from './api';
+import { ApisApi, HttpError, V1APIResource, V1APIResourceList, V1DeleteOptions, V1Status } from './api';
 import { KubeConfig } from './config';
 import ObjectSerializer from './serializer';
 import { KubernetesListObject, KubernetesObject } from './types';
@@ -50,7 +43,6 @@ enum KubernetesPatchStrategies {
     /** Merge with different strategies depending on field metadata. */
     StrategicMergePatch = 'application/strategic-merge-patch+json',
 }
-
 
 /**
  * Dynamically construct Kubernetes API request URIs so client does not have to know what type of object it is acting
