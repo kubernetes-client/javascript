@@ -1818,8 +1818,7 @@ describe('KubernetesObject', () => {
                 key: 'value',
             });
             expect(custom.metadata).to.be.ok;
-            // TODO(schrodit): this should be a Date rather than a string
-            expect(custom.metadata!.creationTimestamp).to.equal('2022-01-01T00:00:00.000Z');
+            expect(custom.metadata!.creationTimestamp).to.deep.equal(new Date('2022-01-01T00:00:00.000Z'));
             scope.done();
         });
 

@@ -1,15 +1,8 @@
 import * as http from 'http';
 import request = require('request');
-import {
-    ApisApi,
-    HttpError,
-    ObjectSerializer,
-    V1APIResource,
-    V1APIResourceList,
-    V1DeleteOptions,
-    V1Status,
-} from './api';
+import { ApisApi, HttpError, V1APIResource, V1APIResourceList, V1DeleteOptions, V1Status } from './api';
 import { KubeConfig } from './config';
+import ObjectSerializer from './serializer';
 import { KubernetesListObject, KubernetesObject } from './types';
 
 /** Union type of body types returned by KubernetesObjectApi. */
@@ -499,7 +492,7 @@ export class KubernetesObjectApi extends ApisApi {
      *
      * @param spec Kubernetes resource spec which must define kind and apiVersion properties.
      * @param action API action, see [[K8sApiAction]].
-     * @return tail of resource-specific URIDeploym
+     * @return tail of resource-specific URI
      */
     protected async specUriPath(spec: KubernetesObject, action: KubernetesApiAction): Promise<string> {
         if (!spec.kind) {
