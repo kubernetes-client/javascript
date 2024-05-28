@@ -179,6 +179,14 @@ describe('KubernetesObjectSerializer', () => {
                 },
             });
         });
+
+        it('should deserialize a unknown primitive', () => {
+            const s = {
+                key: 'value',
+            };
+            const res = KubernetesObjectSerializer.serialize(s, 'unknown');
+            expect(res).to.deep.equal(s);
+        });
     });
 
 });

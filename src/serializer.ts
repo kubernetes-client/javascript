@@ -1,5 +1,5 @@
-import { ObjectSerializer } from "./api";
-import { V1ObjectMeta } from "./gen/model/v1ObjectMeta";
+import { ObjectSerializer } from './api';
+import { V1ObjectMeta } from './gen/model/v1ObjectMeta';
 
 type AttributeType = {
     name: string;
@@ -9,36 +9,36 @@ type AttributeType = {
 
 class KubernetesObject {
     /**
-    * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-    */
+     * APIVersion defines the versioned schema of this representation of an object. Servers should convert recognized schemas to the latest internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+     */
     'apiVersion'?: string;
     /**
-    * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-    */
+     * Kind is a string value representing the REST resource this object represents. Servers may infer this from the endpoint the client submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+     */
     'kind'?: string;
     'metadata'?: V1ObjectMeta;
 
     static attributeTypeMap: AttributeType[] = [
         {
-            "name": "apiVersion",
-            "baseName": "apiVersion",
-            "type": "string"
+            name: 'apiVersion',
+            baseName: 'apiVersion',
+            type: 'string'
         },
         {
-            "name": "kind",
-            "baseName": "kind",
-            "type": "string"
+            name: 'kind',
+            baseName: 'kind',
+            type: 'string'
         },
         {
-            "name": "metadata",
-            "baseName": "metadata",
-            "type": "V1ObjectMeta"
+            name: 'metadata',
+            baseName: 'metadata',
+            type: 'V1ObjectMeta'
         },
     ];
 }
 
 const isKubernetesObject = (data: unknown): boolean =>
-    !!data && typeof data === "object" && 'apiVersion' in data && 'kind' in data;
+    !!data && typeof data === 'object' && 'apiVersion' in data && 'kind' in data;
 
 /**
  * Wraps the ObjectSerializer to support custom resources and generic Kubernetes objects.
@@ -47,7 +47,7 @@ class KubernetesObjectSerializer {
 
     private static _instance: KubernetesObjectSerializer;
 
-    public static get instance() {
+    public static get instance(): KubernetesObjectSerializer {
         if (this._instance) {
             return this._instance;
         }
@@ -57,7 +57,7 @@ class KubernetesObjectSerializer {
 
     private constructor() {}
 
-    public serialize(data: any, type: string) {
+    public serialize(data: any, type: string): any {
         const obj = ObjectSerializer.serialize(data, type);
         if(obj !== data) {
             return obj;
@@ -82,7 +82,7 @@ class KubernetesObjectSerializer {
 
     }
 
-    public deserialize(data: any, type: string) {
+    public deserialize(data: any, type: string): any {
         const obj = ObjectSerializer.deserialize(data, type);
         if (obj !== data) {
             // the serializer knows the type and already deserialized it.
