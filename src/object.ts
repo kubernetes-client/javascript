@@ -11,8 +11,8 @@ import {
     V1Status,
 } from './api';
 import { KubeConfig } from './config';
+import { ObjectSerializer } from './serializer';
 import { KubernetesListObject, KubernetesObject } from './types';
-import { ObjectSerializer } from './util';
 import { from, mergeMap, of } from './gen/rxjsStub';
 import { PatchStrategy } from './patch';
 
@@ -482,7 +482,7 @@ export class KubernetesObjectApi {
      *
      * @param spec Kubernetes resource spec which must define kind and apiVersion properties.
      * @param action API action, see [[K8sApiAction]].
-     * @return tail of resource-specific URIDeploym
+     * @return tail of resource-specific URI
      */
     protected async specUriPath(spec: KubernetesObject, action: KubernetesApiAction): Promise<string> {
         if (!spec.kind) {
