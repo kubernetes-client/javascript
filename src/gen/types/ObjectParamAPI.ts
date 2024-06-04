@@ -15,6 +15,8 @@ import { DiscoveryV1EndpointPort } from '../models/DiscoveryV1EndpointPort';
 import { EventsV1Event } from '../models/EventsV1Event';
 import { EventsV1EventList } from '../models/EventsV1EventList';
 import { EventsV1EventSeries } from '../models/EventsV1EventSeries';
+import { FlowcontrolV1Subject } from '../models/FlowcontrolV1Subject';
+import { RbacV1Subject } from '../models/RbacV1Subject';
 import { StorageV1TokenRequest } from '../models/StorageV1TokenRequest';
 import { V1APIGroup } from '../models/V1APIGroup';
 import { V1APIGroupList } from '../models/V1APIGroupList';
@@ -62,6 +64,7 @@ import { V1ClusterRole } from '../models/V1ClusterRole';
 import { V1ClusterRoleBinding } from '../models/V1ClusterRoleBinding';
 import { V1ClusterRoleBindingList } from '../models/V1ClusterRoleBindingList';
 import { V1ClusterRoleList } from '../models/V1ClusterRoleList';
+import { V1ClusterTrustBundleProjection } from '../models/V1ClusterTrustBundleProjection';
 import { V1ComponentCondition } from '../models/V1ComponentCondition';
 import { V1ComponentStatus } from '../models/V1ComponentStatus';
 import { V1ComponentStatusList } from '../models/V1ComponentStatusList';
@@ -136,17 +139,25 @@ import { V1EphemeralVolumeSource } from '../models/V1EphemeralVolumeSource';
 import { V1EventSource } from '../models/V1EventSource';
 import { V1Eviction } from '../models/V1Eviction';
 import { V1ExecAction } from '../models/V1ExecAction';
+import { V1ExemptPriorityLevelConfiguration } from '../models/V1ExemptPriorityLevelConfiguration';
 import { V1ExternalDocumentation } from '../models/V1ExternalDocumentation';
 import { V1FCVolumeSource } from '../models/V1FCVolumeSource';
 import { V1FlexPersistentVolumeSource } from '../models/V1FlexPersistentVolumeSource';
 import { V1FlexVolumeSource } from '../models/V1FlexVolumeSource';
 import { V1FlockerVolumeSource } from '../models/V1FlockerVolumeSource';
+import { V1FlowDistinguisherMethod } from '../models/V1FlowDistinguisherMethod';
+import { V1FlowSchema } from '../models/V1FlowSchema';
+import { V1FlowSchemaCondition } from '../models/V1FlowSchemaCondition';
+import { V1FlowSchemaList } from '../models/V1FlowSchemaList';
+import { V1FlowSchemaSpec } from '../models/V1FlowSchemaSpec';
+import { V1FlowSchemaStatus } from '../models/V1FlowSchemaStatus';
 import { V1ForZone } from '../models/V1ForZone';
 import { V1GCEPersistentDiskVolumeSource } from '../models/V1GCEPersistentDiskVolumeSource';
 import { V1GRPCAction } from '../models/V1GRPCAction';
 import { V1GitRepoVolumeSource } from '../models/V1GitRepoVolumeSource';
 import { V1GlusterfsPersistentVolumeSource } from '../models/V1GlusterfsPersistentVolumeSource';
 import { V1GlusterfsVolumeSource } from '../models/V1GlusterfsVolumeSource';
+import { V1GroupSubject } from '../models/V1GroupSubject';
 import { V1GroupVersionForDiscovery } from '../models/V1GroupVersionForDiscovery';
 import { V1HTTPGetAction } from '../models/V1HTTPGetAction';
 import { V1HTTPHeader } from '../models/V1HTTPHeader';
@@ -196,6 +207,8 @@ import { V1LimitRange } from '../models/V1LimitRange';
 import { V1LimitRangeItem } from '../models/V1LimitRangeItem';
 import { V1LimitRangeList } from '../models/V1LimitRangeList';
 import { V1LimitRangeSpec } from '../models/V1LimitRangeSpec';
+import { V1LimitResponse } from '../models/V1LimitResponse';
+import { V1LimitedPriorityLevelConfiguration } from '../models/V1LimitedPriorityLevelConfiguration';
 import { V1ListMeta } from '../models/V1ListMeta';
 import { V1LoadBalancerIngress } from '../models/V1LoadBalancerIngress';
 import { V1LoadBalancerStatus } from '../models/V1LoadBalancerStatus';
@@ -204,6 +217,7 @@ import { V1LocalSubjectAccessReview } from '../models/V1LocalSubjectAccessReview
 import { V1LocalVolumeSource } from '../models/V1LocalVolumeSource';
 import { V1ManagedFieldsEntry } from '../models/V1ManagedFieldsEntry';
 import { V1MatchCondition } from '../models/V1MatchCondition';
+import { V1ModifyVolumeStatus } from '../models/V1ModifyVolumeStatus';
 import { V1MutatingWebhook } from '../models/V1MutatingWebhook';
 import { V1MutatingWebhookConfiguration } from '../models/V1MutatingWebhookConfiguration';
 import { V1MutatingWebhookConfigurationList } from '../models/V1MutatingWebhookConfigurationList';
@@ -235,6 +249,7 @@ import { V1NodeSpec } from '../models/V1NodeSpec';
 import { V1NodeStatus } from '../models/V1NodeStatus';
 import { V1NodeSystemInfo } from '../models/V1NodeSystemInfo';
 import { V1NonResourceAttributes } from '../models/V1NonResourceAttributes';
+import { V1NonResourcePolicyRule } from '../models/V1NonResourcePolicyRule';
 import { V1NonResourceRule } from '../models/V1NonResourceRule';
 import { V1ObjectFieldSelector } from '../models/V1ObjectFieldSelector';
 import { V1ObjectMeta } from '../models/V1ObjectMeta';
@@ -282,14 +297,22 @@ import { V1PodTemplate } from '../models/V1PodTemplate';
 import { V1PodTemplateList } from '../models/V1PodTemplateList';
 import { V1PodTemplateSpec } from '../models/V1PodTemplateSpec';
 import { V1PolicyRule } from '../models/V1PolicyRule';
+import { V1PolicyRulesWithSubjects } from '../models/V1PolicyRulesWithSubjects';
 import { V1PortStatus } from '../models/V1PortStatus';
 import { V1PortworxVolumeSource } from '../models/V1PortworxVolumeSource';
 import { V1Preconditions } from '../models/V1Preconditions';
 import { V1PreferredSchedulingTerm } from '../models/V1PreferredSchedulingTerm';
 import { V1PriorityClass } from '../models/V1PriorityClass';
 import { V1PriorityClassList } from '../models/V1PriorityClassList';
+import { V1PriorityLevelConfiguration } from '../models/V1PriorityLevelConfiguration';
+import { V1PriorityLevelConfigurationCondition } from '../models/V1PriorityLevelConfigurationCondition';
+import { V1PriorityLevelConfigurationList } from '../models/V1PriorityLevelConfigurationList';
+import { V1PriorityLevelConfigurationReference } from '../models/V1PriorityLevelConfigurationReference';
+import { V1PriorityLevelConfigurationSpec } from '../models/V1PriorityLevelConfigurationSpec';
+import { V1PriorityLevelConfigurationStatus } from '../models/V1PriorityLevelConfigurationStatus';
 import { V1Probe } from '../models/V1Probe';
 import { V1ProjectedVolumeSource } from '../models/V1ProjectedVolumeSource';
+import { V1QueuingConfiguration } from '../models/V1QueuingConfiguration';
 import { V1QuobyteVolumeSource } from '../models/V1QuobyteVolumeSource';
 import { V1RBDPersistentVolumeSource } from '../models/V1RBDPersistentVolumeSource';
 import { V1RBDVolumeSource } from '../models/V1RBDVolumeSource';
@@ -306,6 +329,7 @@ import { V1ReplicationControllerStatus } from '../models/V1ReplicationController
 import { V1ResourceAttributes } from '../models/V1ResourceAttributes';
 import { V1ResourceClaim } from '../models/V1ResourceClaim';
 import { V1ResourceFieldSelector } from '../models/V1ResourceFieldSelector';
+import { V1ResourcePolicyRule } from '../models/V1ResourcePolicyRule';
 import { V1ResourceQuota } from '../models/V1ResourceQuota';
 import { V1ResourceQuotaList } from '../models/V1ResourceQuotaList';
 import { V1ResourceQuotaSpec } from '../models/V1ResourceQuotaSpec';
@@ -351,6 +375,7 @@ import { V1ServerAddressByClientCIDR } from '../models/V1ServerAddressByClientCI
 import { V1Service } from '../models/V1Service';
 import { V1ServiceAccount } from '../models/V1ServiceAccount';
 import { V1ServiceAccountList } from '../models/V1ServiceAccountList';
+import { V1ServiceAccountSubject } from '../models/V1ServiceAccountSubject';
 import { V1ServiceAccountTokenProjection } from '../models/V1ServiceAccountTokenProjection';
 import { V1ServiceBackendPort } from '../models/V1ServiceBackendPort';
 import { V1ServiceList } from '../models/V1ServiceList';
@@ -358,6 +383,7 @@ import { V1ServicePort } from '../models/V1ServicePort';
 import { V1ServiceSpec } from '../models/V1ServiceSpec';
 import { V1ServiceStatus } from '../models/V1ServiceStatus';
 import { V1SessionAffinityConfig } from '../models/V1SessionAffinityConfig';
+import { V1SleepAction } from '../models/V1SleepAction';
 import { V1StatefulSet } from '../models/V1StatefulSet';
 import { V1StatefulSetCondition } from '../models/V1StatefulSetCondition';
 import { V1StatefulSetList } from '../models/V1StatefulSetList';
@@ -373,7 +399,6 @@ import { V1StorageClass } from '../models/V1StorageClass';
 import { V1StorageClassList } from '../models/V1StorageClassList';
 import { V1StorageOSPersistentVolumeSource } from '../models/V1StorageOSPersistentVolumeSource';
 import { V1StorageOSVolumeSource } from '../models/V1StorageOSVolumeSource';
-import { V1Subject } from '../models/V1Subject';
 import { V1SubjectAccessReview } from '../models/V1SubjectAccessReview';
 import { V1SubjectAccessReviewSpec } from '../models/V1SubjectAccessReviewSpec';
 import { V1SubjectAccessReviewStatus } from '../models/V1SubjectAccessReviewStatus';
@@ -394,6 +419,7 @@ import { V1TypedLocalObjectReference } from '../models/V1TypedLocalObjectReferen
 import { V1TypedObjectReference } from '../models/V1TypedObjectReference';
 import { V1UncountedTerminatedPods } from '../models/V1UncountedTerminatedPods';
 import { V1UserInfo } from '../models/V1UserInfo';
+import { V1UserSubject } from '../models/V1UserSubject';
 import { V1ValidatingWebhook } from '../models/V1ValidatingWebhook';
 import { V1ValidatingWebhookConfiguration } from '../models/V1ValidatingWebhookConfiguration';
 import { V1ValidatingWebhookConfigurationList } from '../models/V1ValidatingWebhookConfigurationList';
@@ -410,15 +436,13 @@ import { V1VolumeMount } from '../models/V1VolumeMount';
 import { V1VolumeNodeAffinity } from '../models/V1VolumeNodeAffinity';
 import { V1VolumeNodeResources } from '../models/V1VolumeNodeResources';
 import { V1VolumeProjection } from '../models/V1VolumeProjection';
+import { V1VolumeResourceRequirements } from '../models/V1VolumeResourceRequirements';
 import { V1VsphereVirtualDiskVolumeSource } from '../models/V1VsphereVirtualDiskVolumeSource';
 import { V1WatchEvent } from '../models/V1WatchEvent';
 import { V1WebhookConversion } from '../models/V1WebhookConversion';
 import { V1WeightedPodAffinityTerm } from '../models/V1WeightedPodAffinityTerm';
 import { V1WindowsSecurityContextOptions } from '../models/V1WindowsSecurityContextOptions';
 import { V1alpha1AuditAnnotation } from '../models/V1alpha1AuditAnnotation';
-import { V1alpha1ClusterCIDR } from '../models/V1alpha1ClusterCIDR';
-import { V1alpha1ClusterCIDRList } from '../models/V1alpha1ClusterCIDRList';
-import { V1alpha1ClusterCIDRSpec } from '../models/V1alpha1ClusterCIDRSpec';
 import { V1alpha1ClusterTrustBundle } from '../models/V1alpha1ClusterTrustBundle';
 import { V1alpha1ClusterTrustBundleList } from '../models/V1alpha1ClusterTrustBundleList';
 import { V1alpha1ClusterTrustBundleSpec } from '../models/V1alpha1ClusterTrustBundleSpec';
@@ -435,6 +459,10 @@ import { V1alpha1ParentReference } from '../models/V1alpha1ParentReference';
 import { V1alpha1SelfSubjectReview } from '../models/V1alpha1SelfSubjectReview';
 import { V1alpha1SelfSubjectReviewStatus } from '../models/V1alpha1SelfSubjectReviewStatus';
 import { V1alpha1ServerStorageVersion } from '../models/V1alpha1ServerStorageVersion';
+import { V1alpha1ServiceCIDR } from '../models/V1alpha1ServiceCIDR';
+import { V1alpha1ServiceCIDRList } from '../models/V1alpha1ServiceCIDRList';
+import { V1alpha1ServiceCIDRSpec } from '../models/V1alpha1ServiceCIDRSpec';
+import { V1alpha1ServiceCIDRStatus } from '../models/V1alpha1ServiceCIDRStatus';
 import { V1alpha1StorageVersion } from '../models/V1alpha1StorageVersion';
 import { V1alpha1StorageVersionCondition } from '../models/V1alpha1StorageVersionCondition';
 import { V1alpha1StorageVersionList } from '../models/V1alpha1StorageVersionList';
@@ -449,6 +477,8 @@ import { V1alpha1ValidatingAdmissionPolicySpec } from '../models/V1alpha1Validat
 import { V1alpha1ValidatingAdmissionPolicyStatus } from '../models/V1alpha1ValidatingAdmissionPolicyStatus';
 import { V1alpha1Validation } from '../models/V1alpha1Validation';
 import { V1alpha1Variable } from '../models/V1alpha1Variable';
+import { V1alpha1VolumeAttributesClass } from '../models/V1alpha1VolumeAttributesClass';
+import { V1alpha1VolumeAttributesClassList } from '../models/V1alpha1VolumeAttributesClassList';
 import { V1alpha2AllocationResult } from '../models/V1alpha2AllocationResult';
 import { V1alpha2PodSchedulingContext } from '../models/V1alpha2PodSchedulingContext';
 import { V1alpha2PodSchedulingContextList } from '../models/V1alpha2PodSchedulingContextList';
@@ -487,29 +517,6 @@ import { V1beta1ValidatingAdmissionPolicySpec } from '../models/V1beta1Validatin
 import { V1beta1ValidatingAdmissionPolicyStatus } from '../models/V1beta1ValidatingAdmissionPolicyStatus';
 import { V1beta1Validation } from '../models/V1beta1Validation';
 import { V1beta1Variable } from '../models/V1beta1Variable';
-import { V1beta2ExemptPriorityLevelConfiguration } from '../models/V1beta2ExemptPriorityLevelConfiguration';
-import { V1beta2FlowDistinguisherMethod } from '../models/V1beta2FlowDistinguisherMethod';
-import { V1beta2FlowSchema } from '../models/V1beta2FlowSchema';
-import { V1beta2FlowSchemaCondition } from '../models/V1beta2FlowSchemaCondition';
-import { V1beta2FlowSchemaList } from '../models/V1beta2FlowSchemaList';
-import { V1beta2FlowSchemaSpec } from '../models/V1beta2FlowSchemaSpec';
-import { V1beta2FlowSchemaStatus } from '../models/V1beta2FlowSchemaStatus';
-import { V1beta2GroupSubject } from '../models/V1beta2GroupSubject';
-import { V1beta2LimitResponse } from '../models/V1beta2LimitResponse';
-import { V1beta2LimitedPriorityLevelConfiguration } from '../models/V1beta2LimitedPriorityLevelConfiguration';
-import { V1beta2NonResourcePolicyRule } from '../models/V1beta2NonResourcePolicyRule';
-import { V1beta2PolicyRulesWithSubjects } from '../models/V1beta2PolicyRulesWithSubjects';
-import { V1beta2PriorityLevelConfiguration } from '../models/V1beta2PriorityLevelConfiguration';
-import { V1beta2PriorityLevelConfigurationCondition } from '../models/V1beta2PriorityLevelConfigurationCondition';
-import { V1beta2PriorityLevelConfigurationList } from '../models/V1beta2PriorityLevelConfigurationList';
-import { V1beta2PriorityLevelConfigurationReference } from '../models/V1beta2PriorityLevelConfigurationReference';
-import { V1beta2PriorityLevelConfigurationSpec } from '../models/V1beta2PriorityLevelConfigurationSpec';
-import { V1beta2PriorityLevelConfigurationStatus } from '../models/V1beta2PriorityLevelConfigurationStatus';
-import { V1beta2QueuingConfiguration } from '../models/V1beta2QueuingConfiguration';
-import { V1beta2ResourcePolicyRule } from '../models/V1beta2ResourcePolicyRule';
-import { V1beta2ServiceAccountSubject } from '../models/V1beta2ServiceAccountSubject';
-import { V1beta2Subject } from '../models/V1beta2Subject';
-import { V1beta2UserSubject } from '../models/V1beta2UserSubject';
 import { V1beta3ExemptPriorityLevelConfiguration } from '../models/V1beta3ExemptPriorityLevelConfiguration';
 import { V1beta3FlowDistinguisherMethod } from '../models/V1beta3FlowDistinguisherMethod';
 import { V1beta3FlowSchema } from '../models/V1beta3FlowSchema';
@@ -601,7 +608,7 @@ export interface AdmissionregistrationV1ApiCreateMutatingWebhookConfigurationReq
      */
     body: V1MutatingWebhookConfiguration
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1ApicreateMutatingWebhookConfiguration
      */
@@ -634,7 +641,7 @@ export interface AdmissionregistrationV1ApiCreateValidatingWebhookConfigurationR
      */
     body: V1ValidatingWebhookConfiguration
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1ApicreateValidatingWebhookConfiguration
      */
@@ -661,7 +668,7 @@ export interface AdmissionregistrationV1ApiCreateValidatingWebhookConfigurationR
 
 export interface AdmissionregistrationV1ApiDeleteCollectionMutatingWebhookConfigurationRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1ApideleteCollectionMutatingWebhookConfiguration
      */
@@ -748,7 +755,7 @@ export interface AdmissionregistrationV1ApiDeleteCollectionMutatingWebhookConfig
 
 export interface AdmissionregistrationV1ApiDeleteCollectionValidatingWebhookConfigurationRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1ApideleteCollectionValidatingWebhookConfiguration
      */
@@ -841,7 +848,7 @@ export interface AdmissionregistrationV1ApiDeleteMutatingWebhookConfigurationReq
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1ApideleteMutatingWebhookConfiguration
      */
@@ -886,7 +893,7 @@ export interface AdmissionregistrationV1ApiDeleteValidatingWebhookConfigurationR
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1ApideleteValidatingWebhookConfiguration
      */
@@ -928,7 +935,7 @@ export interface AdmissionregistrationV1ApiGetAPIResourcesRequest {
 
 export interface AdmissionregistrationV1ApiListMutatingWebhookConfigurationRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1ApilistMutatingWebhookConfiguration
      */
@@ -997,7 +1004,7 @@ export interface AdmissionregistrationV1ApiListMutatingWebhookConfigurationReque
 
 export interface AdmissionregistrationV1ApiListValidatingWebhookConfigurationRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1ApilistValidatingWebhookConfiguration
      */
@@ -1078,7 +1085,7 @@ export interface AdmissionregistrationV1ApiPatchMutatingWebhookConfigurationRequ
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1ApipatchMutatingWebhookConfiguration
      */
@@ -1123,7 +1130,7 @@ export interface AdmissionregistrationV1ApiPatchValidatingWebhookConfigurationRe
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1ApipatchValidatingWebhookConfiguration
      */
@@ -1162,7 +1169,7 @@ export interface AdmissionregistrationV1ApiReadMutatingWebhookConfigurationReque
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1ApireadMutatingWebhookConfiguration
      */
@@ -1177,7 +1184,7 @@ export interface AdmissionregistrationV1ApiReadValidatingWebhookConfigurationReq
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1ApireadValidatingWebhookConfiguration
      */
@@ -1198,7 +1205,7 @@ export interface AdmissionregistrationV1ApiReplaceMutatingWebhookConfigurationRe
      */
     body: V1MutatingWebhookConfiguration
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1ApireplaceMutatingWebhookConfiguration
      */
@@ -1237,7 +1244,7 @@ export interface AdmissionregistrationV1ApiReplaceValidatingWebhookConfiguration
      */
     body: V1ValidatingWebhookConfiguration
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1ApireplaceValidatingWebhookConfiguration
      */
@@ -1522,7 +1529,7 @@ export interface AdmissionregistrationV1alpha1ApiCreateValidatingAdmissionPolicy
      */
     body: V1alpha1ValidatingAdmissionPolicy
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1alpha1ApicreateValidatingAdmissionPolicy
      */
@@ -1555,7 +1562,7 @@ export interface AdmissionregistrationV1alpha1ApiCreateValidatingAdmissionPolicy
      */
     body: V1alpha1ValidatingAdmissionPolicyBinding
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1alpha1ApicreateValidatingAdmissionPolicyBinding
      */
@@ -1582,7 +1589,7 @@ export interface AdmissionregistrationV1alpha1ApiCreateValidatingAdmissionPolicy
 
 export interface AdmissionregistrationV1alpha1ApiDeleteCollectionValidatingAdmissionPolicyRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1alpha1ApideleteCollectionValidatingAdmissionPolicy
      */
@@ -1669,7 +1676,7 @@ export interface AdmissionregistrationV1alpha1ApiDeleteCollectionValidatingAdmis
 
 export interface AdmissionregistrationV1alpha1ApiDeleteCollectionValidatingAdmissionPolicyBindingRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1alpha1ApideleteCollectionValidatingAdmissionPolicyBinding
      */
@@ -1762,7 +1769,7 @@ export interface AdmissionregistrationV1alpha1ApiDeleteValidatingAdmissionPolicy
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1alpha1ApideleteValidatingAdmissionPolicy
      */
@@ -1807,7 +1814,7 @@ export interface AdmissionregistrationV1alpha1ApiDeleteValidatingAdmissionPolicy
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1alpha1ApideleteValidatingAdmissionPolicyBinding
      */
@@ -1849,7 +1856,7 @@ export interface AdmissionregistrationV1alpha1ApiGetAPIResourcesRequest {
 
 export interface AdmissionregistrationV1alpha1ApiListValidatingAdmissionPolicyRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1alpha1ApilistValidatingAdmissionPolicy
      */
@@ -1918,7 +1925,7 @@ export interface AdmissionregistrationV1alpha1ApiListValidatingAdmissionPolicyRe
 
 export interface AdmissionregistrationV1alpha1ApiListValidatingAdmissionPolicyBindingRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1alpha1ApilistValidatingAdmissionPolicyBinding
      */
@@ -1999,7 +2006,7 @@ export interface AdmissionregistrationV1alpha1ApiPatchValidatingAdmissionPolicyR
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1alpha1ApipatchValidatingAdmissionPolicy
      */
@@ -2044,7 +2051,7 @@ export interface AdmissionregistrationV1alpha1ApiPatchValidatingAdmissionPolicyB
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1alpha1ApipatchValidatingAdmissionPolicyBinding
      */
@@ -2089,7 +2096,7 @@ export interface AdmissionregistrationV1alpha1ApiPatchValidatingAdmissionPolicyS
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1alpha1ApipatchValidatingAdmissionPolicyStatus
      */
@@ -2128,7 +2135,7 @@ export interface AdmissionregistrationV1alpha1ApiReadValidatingAdmissionPolicyRe
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1alpha1ApireadValidatingAdmissionPolicy
      */
@@ -2143,7 +2150,7 @@ export interface AdmissionregistrationV1alpha1ApiReadValidatingAdmissionPolicyBi
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1alpha1ApireadValidatingAdmissionPolicyBinding
      */
@@ -2158,7 +2165,7 @@ export interface AdmissionregistrationV1alpha1ApiReadValidatingAdmissionPolicySt
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1alpha1ApireadValidatingAdmissionPolicyStatus
      */
@@ -2179,7 +2186,7 @@ export interface AdmissionregistrationV1alpha1ApiReplaceValidatingAdmissionPolic
      */
     body: V1alpha1ValidatingAdmissionPolicy
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1alpha1ApireplaceValidatingAdmissionPolicy
      */
@@ -2218,7 +2225,7 @@ export interface AdmissionregistrationV1alpha1ApiReplaceValidatingAdmissionPolic
      */
     body: V1alpha1ValidatingAdmissionPolicyBinding
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1alpha1ApireplaceValidatingAdmissionPolicyBinding
      */
@@ -2257,7 +2264,7 @@ export interface AdmissionregistrationV1alpha1ApiReplaceValidatingAdmissionPolic
      */
     body: V1alpha1ValidatingAdmissionPolicy
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1alpha1ApireplaceValidatingAdmissionPolicyStatus
      */
@@ -2590,7 +2597,7 @@ export interface AdmissionregistrationV1beta1ApiCreateValidatingAdmissionPolicyR
      */
     body: V1beta1ValidatingAdmissionPolicy
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1beta1ApicreateValidatingAdmissionPolicy
      */
@@ -2623,7 +2630,7 @@ export interface AdmissionregistrationV1beta1ApiCreateValidatingAdmissionPolicyB
      */
     body: V1beta1ValidatingAdmissionPolicyBinding
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1beta1ApicreateValidatingAdmissionPolicyBinding
      */
@@ -2650,7 +2657,7 @@ export interface AdmissionregistrationV1beta1ApiCreateValidatingAdmissionPolicyB
 
 export interface AdmissionregistrationV1beta1ApiDeleteCollectionValidatingAdmissionPolicyRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1beta1ApideleteCollectionValidatingAdmissionPolicy
      */
@@ -2737,7 +2744,7 @@ export interface AdmissionregistrationV1beta1ApiDeleteCollectionValidatingAdmiss
 
 export interface AdmissionregistrationV1beta1ApiDeleteCollectionValidatingAdmissionPolicyBindingRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1beta1ApideleteCollectionValidatingAdmissionPolicyBinding
      */
@@ -2830,7 +2837,7 @@ export interface AdmissionregistrationV1beta1ApiDeleteValidatingAdmissionPolicyR
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1beta1ApideleteValidatingAdmissionPolicy
      */
@@ -2875,7 +2882,7 @@ export interface AdmissionregistrationV1beta1ApiDeleteValidatingAdmissionPolicyB
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1beta1ApideleteValidatingAdmissionPolicyBinding
      */
@@ -2917,7 +2924,7 @@ export interface AdmissionregistrationV1beta1ApiGetAPIResourcesRequest {
 
 export interface AdmissionregistrationV1beta1ApiListValidatingAdmissionPolicyRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1beta1ApilistValidatingAdmissionPolicy
      */
@@ -2986,7 +2993,7 @@ export interface AdmissionregistrationV1beta1ApiListValidatingAdmissionPolicyReq
 
 export interface AdmissionregistrationV1beta1ApiListValidatingAdmissionPolicyBindingRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1beta1ApilistValidatingAdmissionPolicyBinding
      */
@@ -3067,7 +3074,7 @@ export interface AdmissionregistrationV1beta1ApiPatchValidatingAdmissionPolicyRe
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1beta1ApipatchValidatingAdmissionPolicy
      */
@@ -3112,7 +3119,7 @@ export interface AdmissionregistrationV1beta1ApiPatchValidatingAdmissionPolicyBi
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1beta1ApipatchValidatingAdmissionPolicyBinding
      */
@@ -3157,7 +3164,7 @@ export interface AdmissionregistrationV1beta1ApiPatchValidatingAdmissionPolicySt
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1beta1ApipatchValidatingAdmissionPolicyStatus
      */
@@ -3196,7 +3203,7 @@ export interface AdmissionregistrationV1beta1ApiReadValidatingAdmissionPolicyReq
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1beta1ApireadValidatingAdmissionPolicy
      */
@@ -3211,7 +3218,7 @@ export interface AdmissionregistrationV1beta1ApiReadValidatingAdmissionPolicyBin
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1beta1ApireadValidatingAdmissionPolicyBinding
      */
@@ -3226,7 +3233,7 @@ export interface AdmissionregistrationV1beta1ApiReadValidatingAdmissionPolicySta
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1beta1ApireadValidatingAdmissionPolicyStatus
      */
@@ -3247,7 +3254,7 @@ export interface AdmissionregistrationV1beta1ApiReplaceValidatingAdmissionPolicy
      */
     body: V1beta1ValidatingAdmissionPolicy
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1beta1ApireplaceValidatingAdmissionPolicy
      */
@@ -3286,7 +3293,7 @@ export interface AdmissionregistrationV1beta1ApiReplaceValidatingAdmissionPolicy
      */
     body: V1beta1ValidatingAdmissionPolicyBinding
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1beta1ApireplaceValidatingAdmissionPolicyBinding
      */
@@ -3325,7 +3332,7 @@ export interface AdmissionregistrationV1beta1ApiReplaceValidatingAdmissionPolicy
      */
     body: V1beta1ValidatingAdmissionPolicy
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AdmissionregistrationV1beta1ApireplaceValidatingAdmissionPolicyStatus
      */
@@ -3689,7 +3696,7 @@ export interface ApiextensionsV1ApiCreateCustomResourceDefinitionRequest {
      */
     body: V1CustomResourceDefinition
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiextensionsV1ApicreateCustomResourceDefinition
      */
@@ -3716,7 +3723,7 @@ export interface ApiextensionsV1ApiCreateCustomResourceDefinitionRequest {
 
 export interface ApiextensionsV1ApiDeleteCollectionCustomResourceDefinitionRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiextensionsV1ApideleteCollectionCustomResourceDefinition
      */
@@ -3809,7 +3816,7 @@ export interface ApiextensionsV1ApiDeleteCustomResourceDefinitionRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiextensionsV1ApideleteCustomResourceDefinition
      */
@@ -3851,7 +3858,7 @@ export interface ApiextensionsV1ApiGetAPIResourcesRequest {
 
 export interface ApiextensionsV1ApiListCustomResourceDefinitionRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiextensionsV1ApilistCustomResourceDefinition
      */
@@ -3932,7 +3939,7 @@ export interface ApiextensionsV1ApiPatchCustomResourceDefinitionRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiextensionsV1ApipatchCustomResourceDefinition
      */
@@ -3977,7 +3984,7 @@ export interface ApiextensionsV1ApiPatchCustomResourceDefinitionStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiextensionsV1ApipatchCustomResourceDefinitionStatus
      */
@@ -4016,7 +4023,7 @@ export interface ApiextensionsV1ApiReadCustomResourceDefinitionRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiextensionsV1ApireadCustomResourceDefinition
      */
@@ -4031,7 +4038,7 @@ export interface ApiextensionsV1ApiReadCustomResourceDefinitionStatusRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiextensionsV1ApireadCustomResourceDefinitionStatus
      */
@@ -4052,7 +4059,7 @@ export interface ApiextensionsV1ApiReplaceCustomResourceDefinitionRequest {
      */
     body: V1CustomResourceDefinition
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiextensionsV1ApireplaceCustomResourceDefinition
      */
@@ -4091,7 +4098,7 @@ export interface ApiextensionsV1ApiReplaceCustomResourceDefinitionStatusRequest 
      */
     body: V1CustomResourceDefinition
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiextensionsV1ApireplaceCustomResourceDefinitionStatus
      */
@@ -4343,7 +4350,7 @@ export interface ApiregistrationV1ApiCreateAPIServiceRequest {
      */
     body: V1APIService
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiregistrationV1ApicreateAPIService
      */
@@ -4376,7 +4383,7 @@ export interface ApiregistrationV1ApiDeleteAPIServiceRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiregistrationV1ApideleteAPIService
      */
@@ -4415,7 +4422,7 @@ export interface ApiregistrationV1ApiDeleteAPIServiceRequest {
 
 export interface ApiregistrationV1ApiDeleteCollectionAPIServiceRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiregistrationV1ApideleteCollectionAPIService
      */
@@ -4505,7 +4512,7 @@ export interface ApiregistrationV1ApiGetAPIResourcesRequest {
 
 export interface ApiregistrationV1ApiListAPIServiceRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiregistrationV1ApilistAPIService
      */
@@ -4586,7 +4593,7 @@ export interface ApiregistrationV1ApiPatchAPIServiceRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiregistrationV1ApipatchAPIService
      */
@@ -4631,7 +4638,7 @@ export interface ApiregistrationV1ApiPatchAPIServiceStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiregistrationV1ApipatchAPIServiceStatus
      */
@@ -4670,7 +4677,7 @@ export interface ApiregistrationV1ApiReadAPIServiceRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiregistrationV1ApireadAPIService
      */
@@ -4685,7 +4692,7 @@ export interface ApiregistrationV1ApiReadAPIServiceStatusRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiregistrationV1ApireadAPIServiceStatus
      */
@@ -4706,7 +4713,7 @@ export interface ApiregistrationV1ApiReplaceAPIServiceRequest {
      */
     body: V1APIService
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiregistrationV1ApireplaceAPIService
      */
@@ -4745,7 +4752,7 @@ export interface ApiregistrationV1ApiReplaceAPIServiceStatusRequest {
      */
     body: V1APIService
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ApiregistrationV1ApireplaceAPIServiceStatus
      */
@@ -5034,7 +5041,7 @@ export interface AppsV1ApiCreateNamespacedControllerRevisionRequest {
      */
     body: V1ControllerRevision
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApicreateNamespacedControllerRevision
      */
@@ -5073,7 +5080,7 @@ export interface AppsV1ApiCreateNamespacedDaemonSetRequest {
      */
     body: V1DaemonSet
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApicreateNamespacedDaemonSet
      */
@@ -5112,7 +5119,7 @@ export interface AppsV1ApiCreateNamespacedDeploymentRequest {
      */
     body: V1Deployment
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApicreateNamespacedDeployment
      */
@@ -5151,7 +5158,7 @@ export interface AppsV1ApiCreateNamespacedReplicaSetRequest {
      */
     body: V1ReplicaSet
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApicreateNamespacedReplicaSet
      */
@@ -5190,7 +5197,7 @@ export interface AppsV1ApiCreateNamespacedStatefulSetRequest {
      */
     body: V1StatefulSet
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApicreateNamespacedStatefulSet
      */
@@ -5223,7 +5230,7 @@ export interface AppsV1ApiDeleteCollectionNamespacedControllerRevisionRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApideleteCollectionNamespacedControllerRevision
      */
@@ -5316,7 +5323,7 @@ export interface AppsV1ApiDeleteCollectionNamespacedDaemonSetRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApideleteCollectionNamespacedDaemonSet
      */
@@ -5409,7 +5416,7 @@ export interface AppsV1ApiDeleteCollectionNamespacedDeploymentRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApideleteCollectionNamespacedDeployment
      */
@@ -5502,7 +5509,7 @@ export interface AppsV1ApiDeleteCollectionNamespacedReplicaSetRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApideleteCollectionNamespacedReplicaSet
      */
@@ -5595,7 +5602,7 @@ export interface AppsV1ApiDeleteCollectionNamespacedStatefulSetRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApideleteCollectionNamespacedStatefulSet
      */
@@ -5694,7 +5701,7 @@ export interface AppsV1ApiDeleteNamespacedControllerRevisionRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApideleteNamespacedControllerRevision
      */
@@ -5745,7 +5752,7 @@ export interface AppsV1ApiDeleteNamespacedDaemonSetRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApideleteNamespacedDaemonSet
      */
@@ -5796,7 +5803,7 @@ export interface AppsV1ApiDeleteNamespacedDeploymentRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApideleteNamespacedDeployment
      */
@@ -5847,7 +5854,7 @@ export interface AppsV1ApiDeleteNamespacedReplicaSetRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApideleteNamespacedReplicaSet
      */
@@ -5898,7 +5905,7 @@ export interface AppsV1ApiDeleteNamespacedStatefulSetRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApideleteNamespacedStatefulSet
      */
@@ -5970,7 +5977,7 @@ export interface AppsV1ApiListControllerRevisionForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApilistControllerRevisionForAllNamespaces
      */
@@ -6039,7 +6046,7 @@ export interface AppsV1ApiListDaemonSetForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApilistDaemonSetForAllNamespaces
      */
@@ -6108,7 +6115,7 @@ export interface AppsV1ApiListDeploymentForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApilistDeploymentForAllNamespaces
      */
@@ -6153,7 +6160,7 @@ export interface AppsV1ApiListNamespacedControllerRevisionRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApilistNamespacedControllerRevision
      */
@@ -6228,7 +6235,7 @@ export interface AppsV1ApiListNamespacedDaemonSetRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApilistNamespacedDaemonSet
      */
@@ -6303,7 +6310,7 @@ export interface AppsV1ApiListNamespacedDeploymentRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApilistNamespacedDeployment
      */
@@ -6378,7 +6385,7 @@ export interface AppsV1ApiListNamespacedReplicaSetRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApilistNamespacedReplicaSet
      */
@@ -6453,7 +6460,7 @@ export interface AppsV1ApiListNamespacedStatefulSetRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApilistNamespacedStatefulSet
      */
@@ -6552,7 +6559,7 @@ export interface AppsV1ApiListReplicaSetForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApilistReplicaSetForAllNamespaces
      */
@@ -6621,7 +6628,7 @@ export interface AppsV1ApiListStatefulSetForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApilistStatefulSetForAllNamespaces
      */
@@ -6678,7 +6685,7 @@ export interface AppsV1ApiPatchNamespacedControllerRevisionRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApipatchNamespacedControllerRevision
      */
@@ -6729,7 +6736,7 @@ export interface AppsV1ApiPatchNamespacedDaemonSetRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApipatchNamespacedDaemonSet
      */
@@ -6780,7 +6787,7 @@ export interface AppsV1ApiPatchNamespacedDaemonSetStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApipatchNamespacedDaemonSetStatus
      */
@@ -6831,7 +6838,7 @@ export interface AppsV1ApiPatchNamespacedDeploymentRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApipatchNamespacedDeployment
      */
@@ -6882,7 +6889,7 @@ export interface AppsV1ApiPatchNamespacedDeploymentScaleRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApipatchNamespacedDeploymentScale
      */
@@ -6933,7 +6940,7 @@ export interface AppsV1ApiPatchNamespacedDeploymentStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApipatchNamespacedDeploymentStatus
      */
@@ -6984,7 +6991,7 @@ export interface AppsV1ApiPatchNamespacedReplicaSetRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApipatchNamespacedReplicaSet
      */
@@ -7035,7 +7042,7 @@ export interface AppsV1ApiPatchNamespacedReplicaSetScaleRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApipatchNamespacedReplicaSetScale
      */
@@ -7086,7 +7093,7 @@ export interface AppsV1ApiPatchNamespacedReplicaSetStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApipatchNamespacedReplicaSetStatus
      */
@@ -7137,7 +7144,7 @@ export interface AppsV1ApiPatchNamespacedStatefulSetRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApipatchNamespacedStatefulSet
      */
@@ -7188,7 +7195,7 @@ export interface AppsV1ApiPatchNamespacedStatefulSetScaleRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApipatchNamespacedStatefulSetScale
      */
@@ -7239,7 +7246,7 @@ export interface AppsV1ApiPatchNamespacedStatefulSetStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApipatchNamespacedStatefulSetStatus
      */
@@ -7284,7 +7291,7 @@ export interface AppsV1ApiReadNamespacedControllerRevisionRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireadNamespacedControllerRevision
      */
@@ -7305,7 +7312,7 @@ export interface AppsV1ApiReadNamespacedDaemonSetRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireadNamespacedDaemonSet
      */
@@ -7326,7 +7333,7 @@ export interface AppsV1ApiReadNamespacedDaemonSetStatusRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireadNamespacedDaemonSetStatus
      */
@@ -7347,7 +7354,7 @@ export interface AppsV1ApiReadNamespacedDeploymentRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireadNamespacedDeployment
      */
@@ -7368,7 +7375,7 @@ export interface AppsV1ApiReadNamespacedDeploymentScaleRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireadNamespacedDeploymentScale
      */
@@ -7389,7 +7396,7 @@ export interface AppsV1ApiReadNamespacedDeploymentStatusRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireadNamespacedDeploymentStatus
      */
@@ -7410,7 +7417,7 @@ export interface AppsV1ApiReadNamespacedReplicaSetRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireadNamespacedReplicaSet
      */
@@ -7431,7 +7438,7 @@ export interface AppsV1ApiReadNamespacedReplicaSetScaleRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireadNamespacedReplicaSetScale
      */
@@ -7452,7 +7459,7 @@ export interface AppsV1ApiReadNamespacedReplicaSetStatusRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireadNamespacedReplicaSetStatus
      */
@@ -7473,7 +7480,7 @@ export interface AppsV1ApiReadNamespacedStatefulSetRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireadNamespacedStatefulSet
      */
@@ -7494,7 +7501,7 @@ export interface AppsV1ApiReadNamespacedStatefulSetScaleRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireadNamespacedStatefulSetScale
      */
@@ -7515,7 +7522,7 @@ export interface AppsV1ApiReadNamespacedStatefulSetStatusRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireadNamespacedStatefulSetStatus
      */
@@ -7542,7 +7549,7 @@ export interface AppsV1ApiReplaceNamespacedControllerRevisionRequest {
      */
     body: V1ControllerRevision
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireplaceNamespacedControllerRevision
      */
@@ -7587,7 +7594,7 @@ export interface AppsV1ApiReplaceNamespacedDaemonSetRequest {
      */
     body: V1DaemonSet
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireplaceNamespacedDaemonSet
      */
@@ -7632,7 +7639,7 @@ export interface AppsV1ApiReplaceNamespacedDaemonSetStatusRequest {
      */
     body: V1DaemonSet
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireplaceNamespacedDaemonSetStatus
      */
@@ -7677,7 +7684,7 @@ export interface AppsV1ApiReplaceNamespacedDeploymentRequest {
      */
     body: V1Deployment
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireplaceNamespacedDeployment
      */
@@ -7722,7 +7729,7 @@ export interface AppsV1ApiReplaceNamespacedDeploymentScaleRequest {
      */
     body: V1Scale
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireplaceNamespacedDeploymentScale
      */
@@ -7767,7 +7774,7 @@ export interface AppsV1ApiReplaceNamespacedDeploymentStatusRequest {
      */
     body: V1Deployment
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireplaceNamespacedDeploymentStatus
      */
@@ -7812,7 +7819,7 @@ export interface AppsV1ApiReplaceNamespacedReplicaSetRequest {
      */
     body: V1ReplicaSet
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireplaceNamespacedReplicaSet
      */
@@ -7857,7 +7864,7 @@ export interface AppsV1ApiReplaceNamespacedReplicaSetScaleRequest {
      */
     body: V1Scale
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireplaceNamespacedReplicaSetScale
      */
@@ -7902,7 +7909,7 @@ export interface AppsV1ApiReplaceNamespacedReplicaSetStatusRequest {
      */
     body: V1ReplicaSet
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireplaceNamespacedReplicaSetStatus
      */
@@ -7947,7 +7954,7 @@ export interface AppsV1ApiReplaceNamespacedStatefulSetRequest {
      */
     body: V1StatefulSet
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireplaceNamespacedStatefulSet
      */
@@ -7992,7 +7999,7 @@ export interface AppsV1ApiReplaceNamespacedStatefulSetScaleRequest {
      */
     body: V1Scale
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireplaceNamespacedStatefulSetScale
      */
@@ -8037,7 +8044,7 @@ export interface AppsV1ApiReplaceNamespacedStatefulSetStatusRequest {
      */
     body: V1StatefulSet
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AppsV1ApireplaceNamespacedStatefulSetStatus
      */
@@ -9123,7 +9130,7 @@ export interface AuthenticationV1ApiCreateSelfSubjectReviewRequest {
      */
     fieldValidation?: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AuthenticationV1ApicreateSelfSubjectReview
      */
@@ -9156,7 +9163,7 @@ export interface AuthenticationV1ApiCreateTokenReviewRequest {
      */
     fieldValidation?: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AuthenticationV1ApicreateTokenReview
      */
@@ -9252,7 +9259,7 @@ export interface AuthenticationV1alpha1ApiCreateSelfSubjectReviewRequest {
      */
     fieldValidation?: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AuthenticationV1alpha1ApicreateSelfSubjectReview
      */
@@ -9332,7 +9339,7 @@ export interface AuthenticationV1beta1ApiCreateSelfSubjectReviewRequest {
      */
     fieldValidation?: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AuthenticationV1beta1ApicreateSelfSubjectReview
      */
@@ -9449,7 +9456,7 @@ export interface AuthorizationV1ApiCreateNamespacedLocalSubjectAccessReviewReque
      */
     fieldValidation?: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AuthorizationV1ApicreateNamespacedLocalSubjectAccessReview
      */
@@ -9482,7 +9489,7 @@ export interface AuthorizationV1ApiCreateSelfSubjectAccessReviewRequest {
      */
     fieldValidation?: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AuthorizationV1ApicreateSelfSubjectAccessReview
      */
@@ -9515,7 +9522,7 @@ export interface AuthorizationV1ApiCreateSelfSubjectRulesReviewRequest {
      */
     fieldValidation?: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AuthorizationV1ApicreateSelfSubjectRulesReview
      */
@@ -9548,7 +9555,7 @@ export interface AuthorizationV1ApiCreateSubjectAccessReviewRequest {
      */
     fieldValidation?: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AuthorizationV1ApicreateSubjectAccessReview
      */
@@ -9695,7 +9702,7 @@ export interface AutoscalingV1ApiCreateNamespacedHorizontalPodAutoscalerRequest 
      */
     body: V1HorizontalPodAutoscaler
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV1ApicreateNamespacedHorizontalPodAutoscaler
      */
@@ -9728,7 +9735,7 @@ export interface AutoscalingV1ApiDeleteCollectionNamespacedHorizontalPodAutoscal
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV1ApideleteCollectionNamespacedHorizontalPodAutoscaler
      */
@@ -9827,7 +9834,7 @@ export interface AutoscalingV1ApiDeleteNamespacedHorizontalPodAutoscalerRequest 
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV1ApideleteNamespacedHorizontalPodAutoscaler
      */
@@ -9899,7 +9906,7 @@ export interface AutoscalingV1ApiListHorizontalPodAutoscalerForAllNamespacesRequ
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV1ApilistHorizontalPodAutoscalerForAllNamespaces
      */
@@ -9944,7 +9951,7 @@ export interface AutoscalingV1ApiListNamespacedHorizontalPodAutoscalerRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV1ApilistNamespacedHorizontalPodAutoscaler
      */
@@ -10031,7 +10038,7 @@ export interface AutoscalingV1ApiPatchNamespacedHorizontalPodAutoscalerRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV1ApipatchNamespacedHorizontalPodAutoscaler
      */
@@ -10082,7 +10089,7 @@ export interface AutoscalingV1ApiPatchNamespacedHorizontalPodAutoscalerStatusReq
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV1ApipatchNamespacedHorizontalPodAutoscalerStatus
      */
@@ -10127,7 +10134,7 @@ export interface AutoscalingV1ApiReadNamespacedHorizontalPodAutoscalerRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV1ApireadNamespacedHorizontalPodAutoscaler
      */
@@ -10148,7 +10155,7 @@ export interface AutoscalingV1ApiReadNamespacedHorizontalPodAutoscalerStatusRequ
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV1ApireadNamespacedHorizontalPodAutoscalerStatus
      */
@@ -10175,7 +10182,7 @@ export interface AutoscalingV1ApiReplaceNamespacedHorizontalPodAutoscalerRequest
      */
     body: V1HorizontalPodAutoscaler
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV1ApireplaceNamespacedHorizontalPodAutoscaler
      */
@@ -10220,7 +10227,7 @@ export interface AutoscalingV1ApiReplaceNamespacedHorizontalPodAutoscalerStatusR
      */
     body: V1HorizontalPodAutoscaler
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV1ApireplaceNamespacedHorizontalPodAutoscalerStatus
      */
@@ -10463,7 +10470,7 @@ export interface AutoscalingV2ApiCreateNamespacedHorizontalPodAutoscalerRequest 
      */
     body: V2HorizontalPodAutoscaler
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV2ApicreateNamespacedHorizontalPodAutoscaler
      */
@@ -10496,7 +10503,7 @@ export interface AutoscalingV2ApiDeleteCollectionNamespacedHorizontalPodAutoscal
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV2ApideleteCollectionNamespacedHorizontalPodAutoscaler
      */
@@ -10595,7 +10602,7 @@ export interface AutoscalingV2ApiDeleteNamespacedHorizontalPodAutoscalerRequest 
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV2ApideleteNamespacedHorizontalPodAutoscaler
      */
@@ -10667,7 +10674,7 @@ export interface AutoscalingV2ApiListHorizontalPodAutoscalerForAllNamespacesRequ
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV2ApilistHorizontalPodAutoscalerForAllNamespaces
      */
@@ -10712,7 +10719,7 @@ export interface AutoscalingV2ApiListNamespacedHorizontalPodAutoscalerRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV2ApilistNamespacedHorizontalPodAutoscaler
      */
@@ -10799,7 +10806,7 @@ export interface AutoscalingV2ApiPatchNamespacedHorizontalPodAutoscalerRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV2ApipatchNamespacedHorizontalPodAutoscaler
      */
@@ -10850,7 +10857,7 @@ export interface AutoscalingV2ApiPatchNamespacedHorizontalPodAutoscalerStatusReq
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV2ApipatchNamespacedHorizontalPodAutoscalerStatus
      */
@@ -10895,7 +10902,7 @@ export interface AutoscalingV2ApiReadNamespacedHorizontalPodAutoscalerRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV2ApireadNamespacedHorizontalPodAutoscaler
      */
@@ -10916,7 +10923,7 @@ export interface AutoscalingV2ApiReadNamespacedHorizontalPodAutoscalerStatusRequ
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV2ApireadNamespacedHorizontalPodAutoscalerStatus
      */
@@ -10943,7 +10950,7 @@ export interface AutoscalingV2ApiReplaceNamespacedHorizontalPodAutoscalerRequest
      */
     body: V2HorizontalPodAutoscaler
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV2ApireplaceNamespacedHorizontalPodAutoscaler
      */
@@ -10988,7 +10995,7 @@ export interface AutoscalingV2ApiReplaceNamespacedHorizontalPodAutoscalerStatusR
      */
     body: V2HorizontalPodAutoscaler
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof AutoscalingV2ApireplaceNamespacedHorizontalPodAutoscalerStatus
      */
@@ -11262,7 +11269,7 @@ export interface BatchV1ApiCreateNamespacedCronJobRequest {
      */
     body: V1CronJob
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApicreateNamespacedCronJob
      */
@@ -11301,7 +11308,7 @@ export interface BatchV1ApiCreateNamespacedJobRequest {
      */
     body: V1Job
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApicreateNamespacedJob
      */
@@ -11334,7 +11341,7 @@ export interface BatchV1ApiDeleteCollectionNamespacedCronJobRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApideleteCollectionNamespacedCronJob
      */
@@ -11427,7 +11434,7 @@ export interface BatchV1ApiDeleteCollectionNamespacedJobRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApideleteCollectionNamespacedJob
      */
@@ -11526,7 +11533,7 @@ export interface BatchV1ApiDeleteNamespacedCronJobRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApideleteNamespacedCronJob
      */
@@ -11577,7 +11584,7 @@ export interface BatchV1ApiDeleteNamespacedJobRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApideleteNamespacedJob
      */
@@ -11649,7 +11656,7 @@ export interface BatchV1ApiListCronJobForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApilistCronJobForAllNamespaces
      */
@@ -11718,7 +11725,7 @@ export interface BatchV1ApiListJobForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApilistJobForAllNamespaces
      */
@@ -11763,7 +11770,7 @@ export interface BatchV1ApiListNamespacedCronJobRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApilistNamespacedCronJob
      */
@@ -11838,7 +11845,7 @@ export interface BatchV1ApiListNamespacedJobRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApilistNamespacedJob
      */
@@ -11925,7 +11932,7 @@ export interface BatchV1ApiPatchNamespacedCronJobRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApipatchNamespacedCronJob
      */
@@ -11976,7 +11983,7 @@ export interface BatchV1ApiPatchNamespacedCronJobStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApipatchNamespacedCronJobStatus
      */
@@ -12027,7 +12034,7 @@ export interface BatchV1ApiPatchNamespacedJobRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApipatchNamespacedJob
      */
@@ -12078,7 +12085,7 @@ export interface BatchV1ApiPatchNamespacedJobStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApipatchNamespacedJobStatus
      */
@@ -12123,7 +12130,7 @@ export interface BatchV1ApiReadNamespacedCronJobRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApireadNamespacedCronJob
      */
@@ -12144,7 +12151,7 @@ export interface BatchV1ApiReadNamespacedCronJobStatusRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApireadNamespacedCronJobStatus
      */
@@ -12165,7 +12172,7 @@ export interface BatchV1ApiReadNamespacedJobRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApireadNamespacedJob
      */
@@ -12186,7 +12193,7 @@ export interface BatchV1ApiReadNamespacedJobStatusRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApireadNamespacedJobStatus
      */
@@ -12213,7 +12220,7 @@ export interface BatchV1ApiReplaceNamespacedCronJobRequest {
      */
     body: V1CronJob
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApireplaceNamespacedCronJob
      */
@@ -12258,7 +12265,7 @@ export interface BatchV1ApiReplaceNamespacedCronJobStatusRequest {
      */
     body: V1CronJob
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApireplaceNamespacedCronJobStatus
      */
@@ -12303,7 +12310,7 @@ export interface BatchV1ApiReplaceNamespacedJobRequest {
      */
     body: V1Job
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApireplaceNamespacedJob
      */
@@ -12348,7 +12355,7 @@ export interface BatchV1ApiReplaceNamespacedJobStatusRequest {
      */
     body: V1Job
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof BatchV1ApireplaceNamespacedJobStatus
      */
@@ -12792,7 +12799,7 @@ export interface CertificatesV1ApiCreateCertificateSigningRequestRequest {
      */
     body: V1CertificateSigningRequest
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1ApicreateCertificateSigningRequest
      */
@@ -12825,7 +12832,7 @@ export interface CertificatesV1ApiDeleteCertificateSigningRequestRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1ApideleteCertificateSigningRequest
      */
@@ -12864,7 +12871,7 @@ export interface CertificatesV1ApiDeleteCertificateSigningRequestRequest {
 
 export interface CertificatesV1ApiDeleteCollectionCertificateSigningRequestRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1ApideleteCollectionCertificateSigningRequest
      */
@@ -12954,7 +12961,7 @@ export interface CertificatesV1ApiGetAPIResourcesRequest {
 
 export interface CertificatesV1ApiListCertificateSigningRequestRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1ApilistCertificateSigningRequest
      */
@@ -13035,7 +13042,7 @@ export interface CertificatesV1ApiPatchCertificateSigningRequestRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1ApipatchCertificateSigningRequest
      */
@@ -13080,7 +13087,7 @@ export interface CertificatesV1ApiPatchCertificateSigningRequestApprovalRequest 
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1ApipatchCertificateSigningRequestApproval
      */
@@ -13125,7 +13132,7 @@ export interface CertificatesV1ApiPatchCertificateSigningRequestStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1ApipatchCertificateSigningRequestStatus
      */
@@ -13164,7 +13171,7 @@ export interface CertificatesV1ApiReadCertificateSigningRequestRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1ApireadCertificateSigningRequest
      */
@@ -13179,7 +13186,7 @@ export interface CertificatesV1ApiReadCertificateSigningRequestApprovalRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1ApireadCertificateSigningRequestApproval
      */
@@ -13194,7 +13201,7 @@ export interface CertificatesV1ApiReadCertificateSigningRequestStatusRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1ApireadCertificateSigningRequestStatus
      */
@@ -13215,7 +13222,7 @@ export interface CertificatesV1ApiReplaceCertificateSigningRequestRequest {
      */
     body: V1CertificateSigningRequest
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1ApireplaceCertificateSigningRequest
      */
@@ -13254,7 +13261,7 @@ export interface CertificatesV1ApiReplaceCertificateSigningRequestApprovalReques
      */
     body: V1CertificateSigningRequest
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1ApireplaceCertificateSigningRequestApproval
      */
@@ -13293,7 +13300,7 @@ export interface CertificatesV1ApiReplaceCertificateSigningRequestStatusRequest 
      */
     body: V1CertificateSigningRequest
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1ApireplaceCertificateSigningRequestStatus
      */
@@ -13562,7 +13569,7 @@ export interface CertificatesV1alpha1ApiCreateClusterTrustBundleRequest {
      */
     body: V1alpha1ClusterTrustBundle
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1alpha1ApicreateClusterTrustBundle
      */
@@ -13595,7 +13602,7 @@ export interface CertificatesV1alpha1ApiDeleteClusterTrustBundleRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1alpha1ApideleteClusterTrustBundle
      */
@@ -13634,7 +13641,7 @@ export interface CertificatesV1alpha1ApiDeleteClusterTrustBundleRequest {
 
 export interface CertificatesV1alpha1ApiDeleteCollectionClusterTrustBundleRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1alpha1ApideleteCollectionClusterTrustBundle
      */
@@ -13724,7 +13731,7 @@ export interface CertificatesV1alpha1ApiGetAPIResourcesRequest {
 
 export interface CertificatesV1alpha1ApiListClusterTrustBundleRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1alpha1ApilistClusterTrustBundle
      */
@@ -13805,7 +13812,7 @@ export interface CertificatesV1alpha1ApiPatchClusterTrustBundleRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1alpha1ApipatchClusterTrustBundle
      */
@@ -13844,7 +13851,7 @@ export interface CertificatesV1alpha1ApiReadClusterTrustBundleRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1alpha1ApireadClusterTrustBundle
      */
@@ -13865,7 +13872,7 @@ export interface CertificatesV1alpha1ApiReplaceClusterTrustBundleRequest {
      */
     body: V1alpha1ClusterTrustBundle
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CertificatesV1alpha1ApireplaceClusterTrustBundle
      */
@@ -14075,7 +14082,7 @@ export interface CoordinationV1ApiCreateNamespacedLeaseRequest {
      */
     body: V1Lease
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoordinationV1ApicreateNamespacedLease
      */
@@ -14108,7 +14115,7 @@ export interface CoordinationV1ApiDeleteCollectionNamespacedLeaseRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoordinationV1ApideleteCollectionNamespacedLease
      */
@@ -14207,7 +14214,7 @@ export interface CoordinationV1ApiDeleteNamespacedLeaseRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoordinationV1ApideleteNamespacedLease
      */
@@ -14279,7 +14286,7 @@ export interface CoordinationV1ApiListLeaseForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoordinationV1ApilistLeaseForAllNamespaces
      */
@@ -14324,7 +14331,7 @@ export interface CoordinationV1ApiListNamespacedLeaseRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoordinationV1ApilistNamespacedLease
      */
@@ -14411,7 +14418,7 @@ export interface CoordinationV1ApiPatchNamespacedLeaseRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoordinationV1ApipatchNamespacedLease
      */
@@ -14456,7 +14463,7 @@ export interface CoordinationV1ApiReadNamespacedLeaseRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoordinationV1ApireadNamespacedLease
      */
@@ -14483,7 +14490,7 @@ export interface CoordinationV1ApiReplaceNamespacedLeaseRequest {
      */
     body: V1Lease
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoordinationV1ApireplaceNamespacedLease
      */
@@ -15861,7 +15868,7 @@ export interface CoreV1ApiCreateNamespaceRequest {
      */
     body: V1Namespace
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreateNamespace
      */
@@ -15918,7 +15925,7 @@ export interface CoreV1ApiCreateNamespacedBindingRequest {
      */
     fieldValidation?: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreateNamespacedBinding
      */
@@ -15939,7 +15946,7 @@ export interface CoreV1ApiCreateNamespacedConfigMapRequest {
      */
     body: V1ConfigMap
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreateNamespacedConfigMap
      */
@@ -15978,7 +15985,7 @@ export interface CoreV1ApiCreateNamespacedEndpointsRequest {
      */
     body: V1Endpoints
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreateNamespacedEndpoints
      */
@@ -16017,7 +16024,7 @@ export interface CoreV1ApiCreateNamespacedEventRequest {
      */
     body: CoreV1Event
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreateNamespacedEvent
      */
@@ -16056,7 +16063,7 @@ export interface CoreV1ApiCreateNamespacedLimitRangeRequest {
      */
     body: V1LimitRange
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreateNamespacedLimitRange
      */
@@ -16095,7 +16102,7 @@ export interface CoreV1ApiCreateNamespacedPersistentVolumeClaimRequest {
      */
     body: V1PersistentVolumeClaim
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreateNamespacedPersistentVolumeClaim
      */
@@ -16134,7 +16141,7 @@ export interface CoreV1ApiCreateNamespacedPodRequest {
      */
     body: V1Pod
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreateNamespacedPod
      */
@@ -16197,7 +16204,7 @@ export interface CoreV1ApiCreateNamespacedPodBindingRequest {
      */
     fieldValidation?: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreateNamespacedPodBinding
      */
@@ -16242,7 +16249,7 @@ export interface CoreV1ApiCreateNamespacedPodEvictionRequest {
      */
     fieldValidation?: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreateNamespacedPodEviction
      */
@@ -16263,7 +16270,7 @@ export interface CoreV1ApiCreateNamespacedPodTemplateRequest {
      */
     body: V1PodTemplate
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreateNamespacedPodTemplate
      */
@@ -16302,7 +16309,7 @@ export interface CoreV1ApiCreateNamespacedReplicationControllerRequest {
      */
     body: V1ReplicationController
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreateNamespacedReplicationController
      */
@@ -16341,7 +16348,7 @@ export interface CoreV1ApiCreateNamespacedResourceQuotaRequest {
      */
     body: V1ResourceQuota
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreateNamespacedResourceQuota
      */
@@ -16380,7 +16387,7 @@ export interface CoreV1ApiCreateNamespacedSecretRequest {
      */
     body: V1Secret
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreateNamespacedSecret
      */
@@ -16419,7 +16426,7 @@ export interface CoreV1ApiCreateNamespacedServiceRequest {
      */
     body: V1Service
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreateNamespacedService
      */
@@ -16458,7 +16465,7 @@ export interface CoreV1ApiCreateNamespacedServiceAccountRequest {
      */
     body: V1ServiceAccount
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreateNamespacedServiceAccount
      */
@@ -16521,7 +16528,7 @@ export interface CoreV1ApiCreateNamespacedServiceAccountTokenRequest {
      */
     fieldValidation?: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreateNamespacedServiceAccountToken
      */
@@ -16536,7 +16543,7 @@ export interface CoreV1ApiCreateNodeRequest {
      */
     body: V1Node
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreateNode
      */
@@ -16569,7 +16576,7 @@ export interface CoreV1ApiCreatePersistentVolumeRequest {
      */
     body: V1PersistentVolume
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApicreatePersistentVolume
      */
@@ -16602,7 +16609,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedConfigMapRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedConfigMap
      */
@@ -16695,7 +16702,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedEndpointsRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedEndpoints
      */
@@ -16788,7 +16795,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedEvent
      */
@@ -16881,7 +16888,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedLimitRangeRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedLimitRange
      */
@@ -16974,7 +16981,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedPersistentVolumeClaimRequest
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedPersistentVolumeClaim
      */
@@ -17067,7 +17074,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedPodRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedPod
      */
@@ -17160,7 +17167,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedPodTemplateRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedPodTemplate
      */
@@ -17253,7 +17260,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedReplicationControllerRequest
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedReplicationController
      */
@@ -17346,7 +17353,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedResourceQuotaRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedResourceQuota
      */
@@ -17439,7 +17446,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedSecretRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedSecret
      */
@@ -17532,7 +17539,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedServiceRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedService
      */
@@ -17625,7 +17632,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedServiceAccountRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteCollectionNamespacedServiceAccount
      */
@@ -17712,7 +17719,7 @@ export interface CoreV1ApiDeleteCollectionNamespacedServiceAccountRequest {
 
 export interface CoreV1ApiDeleteCollectionNodeRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteCollectionNode
      */
@@ -17799,7 +17806,7 @@ export interface CoreV1ApiDeleteCollectionNodeRequest {
 
 export interface CoreV1ApiDeleteCollectionPersistentVolumeRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteCollectionPersistentVolume
      */
@@ -17892,7 +17899,7 @@ export interface CoreV1ApiDeleteNamespaceRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteNamespace
      */
@@ -17943,7 +17950,7 @@ export interface CoreV1ApiDeleteNamespacedConfigMapRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteNamespacedConfigMap
      */
@@ -17994,7 +18001,7 @@ export interface CoreV1ApiDeleteNamespacedEndpointsRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteNamespacedEndpoints
      */
@@ -18045,7 +18052,7 @@ export interface CoreV1ApiDeleteNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteNamespacedEvent
      */
@@ -18096,7 +18103,7 @@ export interface CoreV1ApiDeleteNamespacedLimitRangeRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteNamespacedLimitRange
      */
@@ -18147,7 +18154,7 @@ export interface CoreV1ApiDeleteNamespacedPersistentVolumeClaimRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteNamespacedPersistentVolumeClaim
      */
@@ -18198,7 +18205,7 @@ export interface CoreV1ApiDeleteNamespacedPodRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteNamespacedPod
      */
@@ -18249,7 +18256,7 @@ export interface CoreV1ApiDeleteNamespacedPodTemplateRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteNamespacedPodTemplate
      */
@@ -18300,7 +18307,7 @@ export interface CoreV1ApiDeleteNamespacedReplicationControllerRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteNamespacedReplicationController
      */
@@ -18351,7 +18358,7 @@ export interface CoreV1ApiDeleteNamespacedResourceQuotaRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteNamespacedResourceQuota
      */
@@ -18402,7 +18409,7 @@ export interface CoreV1ApiDeleteNamespacedSecretRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteNamespacedSecret
      */
@@ -18453,7 +18460,7 @@ export interface CoreV1ApiDeleteNamespacedServiceRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteNamespacedService
      */
@@ -18504,7 +18511,7 @@ export interface CoreV1ApiDeleteNamespacedServiceAccountRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteNamespacedServiceAccount
      */
@@ -18549,7 +18556,7 @@ export interface CoreV1ApiDeleteNodeRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideleteNode
      */
@@ -18594,7 +18601,7 @@ export interface CoreV1ApiDeletePersistentVolumeRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApideletePersistentVolume
      */
@@ -18666,7 +18673,7 @@ export interface CoreV1ApiListComponentStatusRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistComponentStatus
      */
@@ -18735,7 +18742,7 @@ export interface CoreV1ApiListConfigMapForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistConfigMapForAllNamespaces
      */
@@ -18804,7 +18811,7 @@ export interface CoreV1ApiListEndpointsForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistEndpointsForAllNamespaces
      */
@@ -18873,7 +18880,7 @@ export interface CoreV1ApiListEventForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistEventForAllNamespaces
      */
@@ -18942,7 +18949,7 @@ export interface CoreV1ApiListLimitRangeForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistLimitRangeForAllNamespaces
      */
@@ -18981,7 +18988,7 @@ export interface CoreV1ApiListLimitRangeForAllNamespacesRequest {
 
 export interface CoreV1ApiListNamespaceRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistNamespace
      */
@@ -19056,7 +19063,7 @@ export interface CoreV1ApiListNamespacedConfigMapRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistNamespacedConfigMap
      */
@@ -19131,7 +19138,7 @@ export interface CoreV1ApiListNamespacedEndpointsRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistNamespacedEndpoints
      */
@@ -19206,7 +19213,7 @@ export interface CoreV1ApiListNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistNamespacedEvent
      */
@@ -19281,7 +19288,7 @@ export interface CoreV1ApiListNamespacedLimitRangeRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistNamespacedLimitRange
      */
@@ -19356,7 +19363,7 @@ export interface CoreV1ApiListNamespacedPersistentVolumeClaimRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistNamespacedPersistentVolumeClaim
      */
@@ -19431,7 +19438,7 @@ export interface CoreV1ApiListNamespacedPodRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistNamespacedPod
      */
@@ -19506,7 +19513,7 @@ export interface CoreV1ApiListNamespacedPodTemplateRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistNamespacedPodTemplate
      */
@@ -19581,7 +19588,7 @@ export interface CoreV1ApiListNamespacedReplicationControllerRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistNamespacedReplicationController
      */
@@ -19656,7 +19663,7 @@ export interface CoreV1ApiListNamespacedResourceQuotaRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistNamespacedResourceQuota
      */
@@ -19731,7 +19738,7 @@ export interface CoreV1ApiListNamespacedSecretRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistNamespacedSecret
      */
@@ -19806,7 +19813,7 @@ export interface CoreV1ApiListNamespacedServiceRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistNamespacedService
      */
@@ -19881,7 +19888,7 @@ export interface CoreV1ApiListNamespacedServiceAccountRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistNamespacedServiceAccount
      */
@@ -19950,7 +19957,7 @@ export interface CoreV1ApiListNamespacedServiceAccountRequest {
 
 export interface CoreV1ApiListNodeRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistNode
      */
@@ -20019,7 +20026,7 @@ export interface CoreV1ApiListNodeRequest {
 
 export interface CoreV1ApiListPersistentVolumeRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistPersistentVolume
      */
@@ -20118,7 +20125,7 @@ export interface CoreV1ApiListPersistentVolumeClaimForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistPersistentVolumeClaimForAllNamespaces
      */
@@ -20187,7 +20194,7 @@ export interface CoreV1ApiListPodForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistPodForAllNamespaces
      */
@@ -20256,7 +20263,7 @@ export interface CoreV1ApiListPodTemplateForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistPodTemplateForAllNamespaces
      */
@@ -20325,7 +20332,7 @@ export interface CoreV1ApiListReplicationControllerForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistReplicationControllerForAllNamespaces
      */
@@ -20394,7 +20401,7 @@ export interface CoreV1ApiListResourceQuotaForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistResourceQuotaForAllNamespaces
      */
@@ -20463,7 +20470,7 @@ export interface CoreV1ApiListSecretForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistSecretForAllNamespaces
      */
@@ -20532,7 +20539,7 @@ export interface CoreV1ApiListServiceAccountForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistServiceAccountForAllNamespaces
      */
@@ -20601,7 +20608,7 @@ export interface CoreV1ApiListServiceForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApilistServiceForAllNamespaces
      */
@@ -20652,7 +20659,7 @@ export interface CoreV1ApiPatchNamespaceRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespace
      */
@@ -20697,7 +20704,7 @@ export interface CoreV1ApiPatchNamespaceStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespaceStatus
      */
@@ -20748,7 +20755,7 @@ export interface CoreV1ApiPatchNamespacedConfigMapRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedConfigMap
      */
@@ -20799,7 +20806,7 @@ export interface CoreV1ApiPatchNamespacedEndpointsRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedEndpoints
      */
@@ -20850,7 +20857,7 @@ export interface CoreV1ApiPatchNamespacedEventRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedEvent
      */
@@ -20901,7 +20908,7 @@ export interface CoreV1ApiPatchNamespacedLimitRangeRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedLimitRange
      */
@@ -20952,7 +20959,7 @@ export interface CoreV1ApiPatchNamespacedPersistentVolumeClaimRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedPersistentVolumeClaim
      */
@@ -21003,7 +21010,7 @@ export interface CoreV1ApiPatchNamespacedPersistentVolumeClaimStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedPersistentVolumeClaimStatus
      */
@@ -21054,7 +21061,7 @@ export interface CoreV1ApiPatchNamespacedPodRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedPod
      */
@@ -21105,7 +21112,7 @@ export interface CoreV1ApiPatchNamespacedPodEphemeralcontainersRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedPodEphemeralcontainers
      */
@@ -21156,7 +21163,7 @@ export interface CoreV1ApiPatchNamespacedPodStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedPodStatus
      */
@@ -21207,7 +21214,7 @@ export interface CoreV1ApiPatchNamespacedPodTemplateRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedPodTemplate
      */
@@ -21258,7 +21265,7 @@ export interface CoreV1ApiPatchNamespacedReplicationControllerRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedReplicationController
      */
@@ -21309,7 +21316,7 @@ export interface CoreV1ApiPatchNamespacedReplicationControllerScaleRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedReplicationControllerScale
      */
@@ -21360,7 +21367,7 @@ export interface CoreV1ApiPatchNamespacedReplicationControllerStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedReplicationControllerStatus
      */
@@ -21411,7 +21418,7 @@ export interface CoreV1ApiPatchNamespacedResourceQuotaRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedResourceQuota
      */
@@ -21462,7 +21469,7 @@ export interface CoreV1ApiPatchNamespacedResourceQuotaStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedResourceQuotaStatus
      */
@@ -21513,7 +21520,7 @@ export interface CoreV1ApiPatchNamespacedSecretRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedSecret
      */
@@ -21564,7 +21571,7 @@ export interface CoreV1ApiPatchNamespacedServiceRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedService
      */
@@ -21615,7 +21622,7 @@ export interface CoreV1ApiPatchNamespacedServiceAccountRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedServiceAccount
      */
@@ -21666,7 +21673,7 @@ export interface CoreV1ApiPatchNamespacedServiceStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNamespacedServiceStatus
      */
@@ -21711,7 +21718,7 @@ export interface CoreV1ApiPatchNodeRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNode
      */
@@ -21756,7 +21763,7 @@ export interface CoreV1ApiPatchNodeStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchNodeStatus
      */
@@ -21801,7 +21808,7 @@ export interface CoreV1ApiPatchPersistentVolumeRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchPersistentVolume
      */
@@ -21846,7 +21853,7 @@ export interface CoreV1ApiPatchPersistentVolumeStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApipatchPersistentVolumeStatus
      */
@@ -21885,7 +21892,7 @@ export interface CoreV1ApiReadComponentStatusRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadComponentStatus
      */
@@ -21900,7 +21907,7 @@ export interface CoreV1ApiReadNamespaceRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespace
      */
@@ -21915,7 +21922,7 @@ export interface CoreV1ApiReadNamespaceStatusRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespaceStatus
      */
@@ -21936,7 +21943,7 @@ export interface CoreV1ApiReadNamespacedConfigMapRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedConfigMap
      */
@@ -21957,7 +21964,7 @@ export interface CoreV1ApiReadNamespacedEndpointsRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedEndpoints
      */
@@ -21978,7 +21985,7 @@ export interface CoreV1ApiReadNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedEvent
      */
@@ -21999,7 +22006,7 @@ export interface CoreV1ApiReadNamespacedLimitRangeRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedLimitRange
      */
@@ -22020,7 +22027,7 @@ export interface CoreV1ApiReadNamespacedPersistentVolumeClaimRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedPersistentVolumeClaim
      */
@@ -22041,7 +22048,7 @@ export interface CoreV1ApiReadNamespacedPersistentVolumeClaimStatusRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedPersistentVolumeClaimStatus
      */
@@ -22062,7 +22069,7 @@ export interface CoreV1ApiReadNamespacedPodRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedPod
      */
@@ -22083,7 +22090,7 @@ export interface CoreV1ApiReadNamespacedPodEphemeralcontainersRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedPodEphemeralcontainers
      */
@@ -22128,7 +22135,7 @@ export interface CoreV1ApiReadNamespacedPodLogRequest {
      */
     limitBytes?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedPodLog
      */
@@ -22173,7 +22180,7 @@ export interface CoreV1ApiReadNamespacedPodStatusRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedPodStatus
      */
@@ -22194,7 +22201,7 @@ export interface CoreV1ApiReadNamespacedPodTemplateRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedPodTemplate
      */
@@ -22215,7 +22222,7 @@ export interface CoreV1ApiReadNamespacedReplicationControllerRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedReplicationController
      */
@@ -22236,7 +22243,7 @@ export interface CoreV1ApiReadNamespacedReplicationControllerScaleRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedReplicationControllerScale
      */
@@ -22257,7 +22264,7 @@ export interface CoreV1ApiReadNamespacedReplicationControllerStatusRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedReplicationControllerStatus
      */
@@ -22278,7 +22285,7 @@ export interface CoreV1ApiReadNamespacedResourceQuotaRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedResourceQuota
      */
@@ -22299,7 +22306,7 @@ export interface CoreV1ApiReadNamespacedResourceQuotaStatusRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedResourceQuotaStatus
      */
@@ -22320,7 +22327,7 @@ export interface CoreV1ApiReadNamespacedSecretRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedSecret
      */
@@ -22341,7 +22348,7 @@ export interface CoreV1ApiReadNamespacedServiceRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedService
      */
@@ -22362,7 +22369,7 @@ export interface CoreV1ApiReadNamespacedServiceAccountRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedServiceAccount
      */
@@ -22383,7 +22390,7 @@ export interface CoreV1ApiReadNamespacedServiceStatusRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNamespacedServiceStatus
      */
@@ -22398,7 +22405,7 @@ export interface CoreV1ApiReadNodeRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNode
      */
@@ -22413,7 +22420,7 @@ export interface CoreV1ApiReadNodeStatusRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadNodeStatus
      */
@@ -22428,7 +22435,7 @@ export interface CoreV1ApiReadPersistentVolumeRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadPersistentVolume
      */
@@ -22443,7 +22450,7 @@ export interface CoreV1ApiReadPersistentVolumeStatusRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireadPersistentVolumeStatus
      */
@@ -22464,7 +22471,7 @@ export interface CoreV1ApiReplaceNamespaceRequest {
      */
     body: V1Namespace
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespace
      */
@@ -22521,7 +22528,7 @@ export interface CoreV1ApiReplaceNamespaceFinalizeRequest {
      */
     fieldValidation?: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespaceFinalize
      */
@@ -22542,7 +22549,7 @@ export interface CoreV1ApiReplaceNamespaceStatusRequest {
      */
     body: V1Namespace
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespaceStatus
      */
@@ -22587,7 +22594,7 @@ export interface CoreV1ApiReplaceNamespacedConfigMapRequest {
      */
     body: V1ConfigMap
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedConfigMap
      */
@@ -22632,7 +22639,7 @@ export interface CoreV1ApiReplaceNamespacedEndpointsRequest {
      */
     body: V1Endpoints
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedEndpoints
      */
@@ -22677,7 +22684,7 @@ export interface CoreV1ApiReplaceNamespacedEventRequest {
      */
     body: CoreV1Event
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedEvent
      */
@@ -22722,7 +22729,7 @@ export interface CoreV1ApiReplaceNamespacedLimitRangeRequest {
      */
     body: V1LimitRange
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedLimitRange
      */
@@ -22767,7 +22774,7 @@ export interface CoreV1ApiReplaceNamespacedPersistentVolumeClaimRequest {
      */
     body: V1PersistentVolumeClaim
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedPersistentVolumeClaim
      */
@@ -22812,7 +22819,7 @@ export interface CoreV1ApiReplaceNamespacedPersistentVolumeClaimStatusRequest {
      */
     body: V1PersistentVolumeClaim
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedPersistentVolumeClaimStatus
      */
@@ -22857,7 +22864,7 @@ export interface CoreV1ApiReplaceNamespacedPodRequest {
      */
     body: V1Pod
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedPod
      */
@@ -22902,7 +22909,7 @@ export interface CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest {
      */
     body: V1Pod
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedPodEphemeralcontainers
      */
@@ -22947,7 +22954,7 @@ export interface CoreV1ApiReplaceNamespacedPodStatusRequest {
      */
     body: V1Pod
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedPodStatus
      */
@@ -22992,7 +22999,7 @@ export interface CoreV1ApiReplaceNamespacedPodTemplateRequest {
      */
     body: V1PodTemplate
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedPodTemplate
      */
@@ -23037,7 +23044,7 @@ export interface CoreV1ApiReplaceNamespacedReplicationControllerRequest {
      */
     body: V1ReplicationController
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedReplicationController
      */
@@ -23082,7 +23089,7 @@ export interface CoreV1ApiReplaceNamespacedReplicationControllerScaleRequest {
      */
     body: V1Scale
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedReplicationControllerScale
      */
@@ -23127,7 +23134,7 @@ export interface CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest {
      */
     body: V1ReplicationController
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedReplicationControllerStatus
      */
@@ -23172,7 +23179,7 @@ export interface CoreV1ApiReplaceNamespacedResourceQuotaRequest {
      */
     body: V1ResourceQuota
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedResourceQuota
      */
@@ -23217,7 +23224,7 @@ export interface CoreV1ApiReplaceNamespacedResourceQuotaStatusRequest {
      */
     body: V1ResourceQuota
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedResourceQuotaStatus
      */
@@ -23262,7 +23269,7 @@ export interface CoreV1ApiReplaceNamespacedSecretRequest {
      */
     body: V1Secret
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedSecret
      */
@@ -23307,7 +23314,7 @@ export interface CoreV1ApiReplaceNamespacedServiceRequest {
      */
     body: V1Service
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedService
      */
@@ -23352,7 +23359,7 @@ export interface CoreV1ApiReplaceNamespacedServiceAccountRequest {
      */
     body: V1ServiceAccount
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedServiceAccount
      */
@@ -23397,7 +23404,7 @@ export interface CoreV1ApiReplaceNamespacedServiceStatusRequest {
      */
     body: V1Service
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNamespacedServiceStatus
      */
@@ -23436,7 +23443,7 @@ export interface CoreV1ApiReplaceNodeRequest {
      */
     body: V1Node
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNode
      */
@@ -23475,7 +23482,7 @@ export interface CoreV1ApiReplaceNodeStatusRequest {
      */
     body: V1Node
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplaceNodeStatus
      */
@@ -23514,7 +23521,7 @@ export interface CoreV1ApiReplacePersistentVolumeRequest {
      */
     body: V1PersistentVolume
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplacePersistentVolume
      */
@@ -23553,7 +23560,7 @@ export interface CoreV1ApiReplacePersistentVolumeStatusRequest {
      */
     body: V1PersistentVolume
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof CoreV1ApireplacePersistentVolumeStatus
      */
@@ -28638,7 +28645,7 @@ export interface DiscoveryV1ApiCreateNamespacedEndpointSliceRequest {
      */
     body: V1EndpointSlice
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof DiscoveryV1ApicreateNamespacedEndpointSlice
      */
@@ -28671,7 +28678,7 @@ export interface DiscoveryV1ApiDeleteCollectionNamespacedEndpointSliceRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof DiscoveryV1ApideleteCollectionNamespacedEndpointSlice
      */
@@ -28770,7 +28777,7 @@ export interface DiscoveryV1ApiDeleteNamespacedEndpointSliceRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof DiscoveryV1ApideleteNamespacedEndpointSlice
      */
@@ -28842,7 +28849,7 @@ export interface DiscoveryV1ApiListEndpointSliceForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof DiscoveryV1ApilistEndpointSliceForAllNamespaces
      */
@@ -28887,7 +28894,7 @@ export interface DiscoveryV1ApiListNamespacedEndpointSliceRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof DiscoveryV1ApilistNamespacedEndpointSlice
      */
@@ -28974,7 +28981,7 @@ export interface DiscoveryV1ApiPatchNamespacedEndpointSliceRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof DiscoveryV1ApipatchNamespacedEndpointSlice
      */
@@ -29019,7 +29026,7 @@ export interface DiscoveryV1ApiReadNamespacedEndpointSliceRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof DiscoveryV1ApireadNamespacedEndpointSlice
      */
@@ -29046,7 +29053,7 @@ export interface DiscoveryV1ApiReplaceNamespacedEndpointSliceRequest {
      */
     body: V1EndpointSlice
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof DiscoveryV1ApireplaceNamespacedEndpointSlice
      */
@@ -29272,7 +29279,7 @@ export interface EventsV1ApiCreateNamespacedEventRequest {
      */
     body: EventsV1Event
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof EventsV1ApicreateNamespacedEvent
      */
@@ -29305,7 +29312,7 @@ export interface EventsV1ApiDeleteCollectionNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof EventsV1ApideleteCollectionNamespacedEvent
      */
@@ -29404,7 +29411,7 @@ export interface EventsV1ApiDeleteNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof EventsV1ApideleteNamespacedEvent
      */
@@ -29476,7 +29483,7 @@ export interface EventsV1ApiListEventForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof EventsV1ApilistEventForAllNamespaces
      */
@@ -29521,7 +29528,7 @@ export interface EventsV1ApiListNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof EventsV1ApilistNamespacedEvent
      */
@@ -29608,7 +29615,7 @@ export interface EventsV1ApiPatchNamespacedEventRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof EventsV1ApipatchNamespacedEvent
      */
@@ -29653,7 +29660,7 @@ export interface EventsV1ApiReadNamespacedEventRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof EventsV1ApireadNamespacedEvent
      */
@@ -29680,7 +29687,7 @@ export interface EventsV1ApiReplaceNamespacedEventRequest {
      */
     body: EventsV1Event
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof EventsV1ApireplaceNamespacedEvent
      */
@@ -29889,888 +29896,888 @@ export class ObjectFlowcontrolApiserverApi {
 
 }
 
-import { ObservableFlowcontrolApiserverV1beta2Api } from "./ObservableAPI";
-import { FlowcontrolApiserverV1beta2ApiRequestFactory, FlowcontrolApiserverV1beta2ApiResponseProcessor} from "../apis/FlowcontrolApiserverV1beta2Api";
+import { ObservableFlowcontrolApiserverV1Api } from "./ObservableAPI";
+import { FlowcontrolApiserverV1ApiRequestFactory, FlowcontrolApiserverV1ApiResponseProcessor} from "../apis/FlowcontrolApiserverV1Api";
 
-export interface FlowcontrolApiserverV1beta2ApiCreateFlowSchemaRequest {
+export interface FlowcontrolApiserverV1ApiCreateFlowSchemaRequest {
     /**
      * 
-     * @type V1beta2FlowSchema
-     * @memberof FlowcontrolApiserverV1beta2ApicreateFlowSchema
+     * @type V1FlowSchema
+     * @memberof FlowcontrolApiserverV1ApicreateFlowSchema
      */
-    body: V1beta2FlowSchema
+    body: V1FlowSchema
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApicreateFlowSchema
+     * @memberof FlowcontrolApiserverV1ApicreateFlowSchema
      */
     pretty?: string
     /**
      * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApicreateFlowSchema
+     * @memberof FlowcontrolApiserverV1ApicreateFlowSchema
      */
     dryRun?: string
     /**
      * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApicreateFlowSchema
+     * @memberof FlowcontrolApiserverV1ApicreateFlowSchema
      */
     fieldManager?: string
     /**
      * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApicreateFlowSchema
+     * @memberof FlowcontrolApiserverV1ApicreateFlowSchema
      */
     fieldValidation?: string
 }
 
-export interface FlowcontrolApiserverV1beta2ApiCreatePriorityLevelConfigurationRequest {
+export interface FlowcontrolApiserverV1ApiCreatePriorityLevelConfigurationRequest {
     /**
      * 
-     * @type V1beta2PriorityLevelConfiguration
-     * @memberof FlowcontrolApiserverV1beta2ApicreatePriorityLevelConfiguration
+     * @type V1PriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApicreatePriorityLevelConfiguration
      */
-    body: V1beta2PriorityLevelConfiguration
+    body: V1PriorityLevelConfiguration
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApicreatePriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApicreatePriorityLevelConfiguration
      */
     pretty?: string
     /**
      * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApicreatePriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApicreatePriorityLevelConfiguration
      */
     dryRun?: string
     /**
      * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApicreatePriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApicreatePriorityLevelConfiguration
      */
     fieldManager?: string
     /**
      * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApicreatePriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApicreatePriorityLevelConfiguration
      */
     fieldValidation?: string
 }
 
-export interface FlowcontrolApiserverV1beta2ApiDeleteCollectionFlowSchemaRequest {
+export interface FlowcontrolApiserverV1ApiDeleteCollectionFlowSchemaRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionFlowSchema
      */
     pretty?: string
     /**
      * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionFlowSchema
      */
     _continue?: string
     /**
      * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionFlowSchema
      */
     dryRun?: string
     /**
      * A selector to restrict the list of returned objects by their fields. Defaults to everything.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionFlowSchema
      */
     fieldSelector?: string
     /**
      * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
      * @type number
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionFlowSchema
      */
     gracePeriodSeconds?: number
     /**
      * A selector to restrict the list of returned objects by their labels. Defaults to everything.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionFlowSchema
      */
     labelSelector?: string
     /**
      * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
      * @type number
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionFlowSchema
      */
     limit?: number
     /**
      * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionFlowSchema
      */
     orphanDependents?: boolean
     /**
      * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionFlowSchema
      */
     propagationPolicy?: string
     /**
      * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionFlowSchema
      */
     resourceVersion?: string
     /**
      * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionFlowSchema
      */
     resourceVersionMatch?: string
     /**
      * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @type boolean
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionFlowSchema
      */
     sendInitialEvents?: boolean
     /**
      * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @type number
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionFlowSchema
      */
     timeoutSeconds?: number
     /**
      * 
      * @type V1DeleteOptions
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionFlowSchema
      */
     body?: V1DeleteOptions
 }
 
-export interface FlowcontrolApiserverV1beta2ApiDeleteCollectionPriorityLevelConfigurationRequest {
+export interface FlowcontrolApiserverV1ApiDeleteCollectionPriorityLevelConfigurationRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionPriorityLevelConfiguration
      */
     pretty?: string
     /**
      * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionPriorityLevelConfiguration
      */
     _continue?: string
     /**
      * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionPriorityLevelConfiguration
      */
     dryRun?: string
     /**
      * A selector to restrict the list of returned objects by their fields. Defaults to everything.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionPriorityLevelConfiguration
      */
     fieldSelector?: string
     /**
      * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
      * @type number
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionPriorityLevelConfiguration
      */
     gracePeriodSeconds?: number
     /**
      * A selector to restrict the list of returned objects by their labels. Defaults to everything.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionPriorityLevelConfiguration
      */
     labelSelector?: string
     /**
      * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
      * @type number
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionPriorityLevelConfiguration
      */
     limit?: number
     /**
      * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionPriorityLevelConfiguration
      */
     orphanDependents?: boolean
     /**
      * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionPriorityLevelConfiguration
      */
     propagationPolicy?: string
     /**
      * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionPriorityLevelConfiguration
      */
     resourceVersion?: string
     /**
      * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionPriorityLevelConfiguration
      */
     resourceVersionMatch?: string
     /**
      * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @type boolean
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionPriorityLevelConfiguration
      */
     sendInitialEvents?: boolean
     /**
      * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @type number
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionPriorityLevelConfiguration
      */
     timeoutSeconds?: number
     /**
      * 
      * @type V1DeleteOptions
-     * @memberof FlowcontrolApiserverV1beta2ApideleteCollectionPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideleteCollectionPriorityLevelConfiguration
      */
     body?: V1DeleteOptions
 }
 
-export interface FlowcontrolApiserverV1beta2ApiDeleteFlowSchemaRequest {
+export interface FlowcontrolApiserverV1ApiDeleteFlowSchemaRequest {
     /**
      * name of the FlowSchema
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteFlowSchema
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteFlowSchema
      */
     pretty?: string
     /**
      * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteFlowSchema
      */
     dryRun?: string
     /**
      * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
      * @type number
-     * @memberof FlowcontrolApiserverV1beta2ApideleteFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteFlowSchema
      */
     gracePeriodSeconds?: number
     /**
      * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
-     * @memberof FlowcontrolApiserverV1beta2ApideleteFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteFlowSchema
      */
     orphanDependents?: boolean
     /**
      * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideleteFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteFlowSchema
      */
     propagationPolicy?: string
     /**
      * 
      * @type V1DeleteOptions
-     * @memberof FlowcontrolApiserverV1beta2ApideleteFlowSchema
+     * @memberof FlowcontrolApiserverV1ApideleteFlowSchema
      */
     body?: V1DeleteOptions
 }
 
-export interface FlowcontrolApiserverV1beta2ApiDeletePriorityLevelConfigurationRequest {
+export interface FlowcontrolApiserverV1ApiDeletePriorityLevelConfigurationRequest {
     /**
      * name of the PriorityLevelConfiguration
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideletePriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideletePriorityLevelConfiguration
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideletePriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideletePriorityLevelConfiguration
      */
     pretty?: string
     /**
      * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideletePriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideletePriorityLevelConfiguration
      */
     dryRun?: string
     /**
      * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
      * @type number
-     * @memberof FlowcontrolApiserverV1beta2ApideletePriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideletePriorityLevelConfiguration
      */
     gracePeriodSeconds?: number
     /**
      * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
-     * @memberof FlowcontrolApiserverV1beta2ApideletePriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideletePriorityLevelConfiguration
      */
     orphanDependents?: boolean
     /**
      * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApideletePriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideletePriorityLevelConfiguration
      */
     propagationPolicy?: string
     /**
      * 
      * @type V1DeleteOptions
-     * @memberof FlowcontrolApiserverV1beta2ApideletePriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApideletePriorityLevelConfiguration
      */
     body?: V1DeleteOptions
 }
 
-export interface FlowcontrolApiserverV1beta2ApiGetAPIResourcesRequest {
+export interface FlowcontrolApiserverV1ApiGetAPIResourcesRequest {
 }
 
-export interface FlowcontrolApiserverV1beta2ApiListFlowSchemaRequest {
+export interface FlowcontrolApiserverV1ApiListFlowSchemaRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApilistFlowSchema
+     * @memberof FlowcontrolApiserverV1ApilistFlowSchema
      */
     pretty?: string
     /**
      * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
-     * @memberof FlowcontrolApiserverV1beta2ApilistFlowSchema
+     * @memberof FlowcontrolApiserverV1ApilistFlowSchema
      */
     allowWatchBookmarks?: boolean
     /**
      * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApilistFlowSchema
+     * @memberof FlowcontrolApiserverV1ApilistFlowSchema
      */
     _continue?: string
     /**
      * A selector to restrict the list of returned objects by their fields. Defaults to everything.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApilistFlowSchema
+     * @memberof FlowcontrolApiserverV1ApilistFlowSchema
      */
     fieldSelector?: string
     /**
      * A selector to restrict the list of returned objects by their labels. Defaults to everything.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApilistFlowSchema
+     * @memberof FlowcontrolApiserverV1ApilistFlowSchema
      */
     labelSelector?: string
     /**
      * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
      * @type number
-     * @memberof FlowcontrolApiserverV1beta2ApilistFlowSchema
+     * @memberof FlowcontrolApiserverV1ApilistFlowSchema
      */
     limit?: number
     /**
      * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApilistFlowSchema
+     * @memberof FlowcontrolApiserverV1ApilistFlowSchema
      */
     resourceVersion?: string
     /**
      * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApilistFlowSchema
+     * @memberof FlowcontrolApiserverV1ApilistFlowSchema
      */
     resourceVersionMatch?: string
     /**
      * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @type boolean
-     * @memberof FlowcontrolApiserverV1beta2ApilistFlowSchema
+     * @memberof FlowcontrolApiserverV1ApilistFlowSchema
      */
     sendInitialEvents?: boolean
     /**
      * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @type number
-     * @memberof FlowcontrolApiserverV1beta2ApilistFlowSchema
+     * @memberof FlowcontrolApiserverV1ApilistFlowSchema
      */
     timeoutSeconds?: number
     /**
      * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      * @type boolean
-     * @memberof FlowcontrolApiserverV1beta2ApilistFlowSchema
+     * @memberof FlowcontrolApiserverV1ApilistFlowSchema
      */
     watch?: boolean
 }
 
-export interface FlowcontrolApiserverV1beta2ApiListPriorityLevelConfigurationRequest {
+export interface FlowcontrolApiserverV1ApiListPriorityLevelConfigurationRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApilistPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApilistPriorityLevelConfiguration
      */
     pretty?: string
     /**
      * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
      * @type boolean
-     * @memberof FlowcontrolApiserverV1beta2ApilistPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApilistPriorityLevelConfiguration
      */
     allowWatchBookmarks?: boolean
     /**
      * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApilistPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApilistPriorityLevelConfiguration
      */
     _continue?: string
     /**
      * A selector to restrict the list of returned objects by their fields. Defaults to everything.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApilistPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApilistPriorityLevelConfiguration
      */
     fieldSelector?: string
     /**
      * A selector to restrict the list of returned objects by their labels. Defaults to everything.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApilistPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApilistPriorityLevelConfiguration
      */
     labelSelector?: string
     /**
      * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
      * @type number
-     * @memberof FlowcontrolApiserverV1beta2ApilistPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApilistPriorityLevelConfiguration
      */
     limit?: number
     /**
      * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApilistPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApilistPriorityLevelConfiguration
      */
     resourceVersion?: string
     /**
      * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApilistPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApilistPriorityLevelConfiguration
      */
     resourceVersionMatch?: string
     /**
      * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
      * @type boolean
-     * @memberof FlowcontrolApiserverV1beta2ApilistPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApilistPriorityLevelConfiguration
      */
     sendInitialEvents?: boolean
     /**
      * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @type number
-     * @memberof FlowcontrolApiserverV1beta2ApilistPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApilistPriorityLevelConfiguration
      */
     timeoutSeconds?: number
     /**
      * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      * @type boolean
-     * @memberof FlowcontrolApiserverV1beta2ApilistPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApilistPriorityLevelConfiguration
      */
     watch?: boolean
 }
 
-export interface FlowcontrolApiserverV1beta2ApiPatchFlowSchemaRequest {
+export interface FlowcontrolApiserverV1ApiPatchFlowSchemaRequest {
     /**
      * name of the FlowSchema
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchFlowSchema
+     * @memberof FlowcontrolApiserverV1ApipatchFlowSchema
      */
     name: string
     /**
      * 
      * @type any
-     * @memberof FlowcontrolApiserverV1beta2ApipatchFlowSchema
+     * @memberof FlowcontrolApiserverV1ApipatchFlowSchema
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchFlowSchema
+     * @memberof FlowcontrolApiserverV1ApipatchFlowSchema
      */
     pretty?: string
     /**
      * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchFlowSchema
+     * @memberof FlowcontrolApiserverV1ApipatchFlowSchema
      */
     dryRun?: string
     /**
      * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchFlowSchema
+     * @memberof FlowcontrolApiserverV1ApipatchFlowSchema
      */
     fieldManager?: string
     /**
      * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchFlowSchema
+     * @memberof FlowcontrolApiserverV1ApipatchFlowSchema
      */
     fieldValidation?: string
     /**
      * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
      * @type boolean
-     * @memberof FlowcontrolApiserverV1beta2ApipatchFlowSchema
+     * @memberof FlowcontrolApiserverV1ApipatchFlowSchema
      */
     force?: boolean
 }
 
-export interface FlowcontrolApiserverV1beta2ApiPatchFlowSchemaStatusRequest {
+export interface FlowcontrolApiserverV1ApiPatchFlowSchemaStatusRequest {
     /**
      * name of the FlowSchema
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchFlowSchemaStatus
+     * @memberof FlowcontrolApiserverV1ApipatchFlowSchemaStatus
      */
     name: string
     /**
      * 
      * @type any
-     * @memberof FlowcontrolApiserverV1beta2ApipatchFlowSchemaStatus
+     * @memberof FlowcontrolApiserverV1ApipatchFlowSchemaStatus
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchFlowSchemaStatus
+     * @memberof FlowcontrolApiserverV1ApipatchFlowSchemaStatus
      */
     pretty?: string
     /**
      * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchFlowSchemaStatus
+     * @memberof FlowcontrolApiserverV1ApipatchFlowSchemaStatus
      */
     dryRun?: string
     /**
      * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchFlowSchemaStatus
+     * @memberof FlowcontrolApiserverV1ApipatchFlowSchemaStatus
      */
     fieldManager?: string
     /**
      * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchFlowSchemaStatus
+     * @memberof FlowcontrolApiserverV1ApipatchFlowSchemaStatus
      */
     fieldValidation?: string
     /**
      * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
      * @type boolean
-     * @memberof FlowcontrolApiserverV1beta2ApipatchFlowSchemaStatus
+     * @memberof FlowcontrolApiserverV1ApipatchFlowSchemaStatus
      */
     force?: boolean
 }
 
-export interface FlowcontrolApiserverV1beta2ApiPatchPriorityLevelConfigurationRequest {
+export interface FlowcontrolApiserverV1ApiPatchPriorityLevelConfigurationRequest {
     /**
      * name of the PriorityLevelConfiguration
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApipatchPriorityLevelConfiguration
      */
     name: string
     /**
      * 
      * @type any
-     * @memberof FlowcontrolApiserverV1beta2ApipatchPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApipatchPriorityLevelConfiguration
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApipatchPriorityLevelConfiguration
      */
     pretty?: string
     /**
      * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApipatchPriorityLevelConfiguration
      */
     dryRun?: string
     /**
      * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApipatchPriorityLevelConfiguration
      */
     fieldManager?: string
     /**
      * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApipatchPriorityLevelConfiguration
      */
     fieldValidation?: string
     /**
      * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
      * @type boolean
-     * @memberof FlowcontrolApiserverV1beta2ApipatchPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApipatchPriorityLevelConfiguration
      */
     force?: boolean
 }
 
-export interface FlowcontrolApiserverV1beta2ApiPatchPriorityLevelConfigurationStatusRequest {
+export interface FlowcontrolApiserverV1ApiPatchPriorityLevelConfigurationStatusRequest {
     /**
      * name of the PriorityLevelConfiguration
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchPriorityLevelConfigurationStatus
+     * @memberof FlowcontrolApiserverV1ApipatchPriorityLevelConfigurationStatus
      */
     name: string
     /**
      * 
      * @type any
-     * @memberof FlowcontrolApiserverV1beta2ApipatchPriorityLevelConfigurationStatus
+     * @memberof FlowcontrolApiserverV1ApipatchPriorityLevelConfigurationStatus
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchPriorityLevelConfigurationStatus
+     * @memberof FlowcontrolApiserverV1ApipatchPriorityLevelConfigurationStatus
      */
     pretty?: string
     /**
      * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchPriorityLevelConfigurationStatus
+     * @memberof FlowcontrolApiserverV1ApipatchPriorityLevelConfigurationStatus
      */
     dryRun?: string
     /**
      * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchPriorityLevelConfigurationStatus
+     * @memberof FlowcontrolApiserverV1ApipatchPriorityLevelConfigurationStatus
      */
     fieldManager?: string
     /**
      * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApipatchPriorityLevelConfigurationStatus
+     * @memberof FlowcontrolApiserverV1ApipatchPriorityLevelConfigurationStatus
      */
     fieldValidation?: string
     /**
      * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
      * @type boolean
-     * @memberof FlowcontrolApiserverV1beta2ApipatchPriorityLevelConfigurationStatus
+     * @memberof FlowcontrolApiserverV1ApipatchPriorityLevelConfigurationStatus
      */
     force?: boolean
 }
 
-export interface FlowcontrolApiserverV1beta2ApiReadFlowSchemaRequest {
+export interface FlowcontrolApiserverV1ApiReadFlowSchemaRequest {
     /**
      * name of the FlowSchema
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireadFlowSchema
+     * @memberof FlowcontrolApiserverV1ApireadFlowSchema
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireadFlowSchema
+     * @memberof FlowcontrolApiserverV1ApireadFlowSchema
      */
     pretty?: string
 }
 
-export interface FlowcontrolApiserverV1beta2ApiReadFlowSchemaStatusRequest {
+export interface FlowcontrolApiserverV1ApiReadFlowSchemaStatusRequest {
     /**
      * name of the FlowSchema
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireadFlowSchemaStatus
+     * @memberof FlowcontrolApiserverV1ApireadFlowSchemaStatus
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireadFlowSchemaStatus
+     * @memberof FlowcontrolApiserverV1ApireadFlowSchemaStatus
      */
     pretty?: string
 }
 
-export interface FlowcontrolApiserverV1beta2ApiReadPriorityLevelConfigurationRequest {
+export interface FlowcontrolApiserverV1ApiReadPriorityLevelConfigurationRequest {
     /**
      * name of the PriorityLevelConfiguration
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireadPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApireadPriorityLevelConfiguration
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireadPriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApireadPriorityLevelConfiguration
      */
     pretty?: string
 }
 
-export interface FlowcontrolApiserverV1beta2ApiReadPriorityLevelConfigurationStatusRequest {
+export interface FlowcontrolApiserverV1ApiReadPriorityLevelConfigurationStatusRequest {
     /**
      * name of the PriorityLevelConfiguration
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireadPriorityLevelConfigurationStatus
+     * @memberof FlowcontrolApiserverV1ApireadPriorityLevelConfigurationStatus
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireadPriorityLevelConfigurationStatus
+     * @memberof FlowcontrolApiserverV1ApireadPriorityLevelConfigurationStatus
      */
     pretty?: string
 }
 
-export interface FlowcontrolApiserverV1beta2ApiReplaceFlowSchemaRequest {
+export interface FlowcontrolApiserverV1ApiReplaceFlowSchemaRequest {
     /**
      * name of the FlowSchema
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplaceFlowSchema
+     * @memberof FlowcontrolApiserverV1ApireplaceFlowSchema
      */
     name: string
     /**
      * 
-     * @type V1beta2FlowSchema
-     * @memberof FlowcontrolApiserverV1beta2ApireplaceFlowSchema
+     * @type V1FlowSchema
+     * @memberof FlowcontrolApiserverV1ApireplaceFlowSchema
      */
-    body: V1beta2FlowSchema
+    body: V1FlowSchema
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplaceFlowSchema
+     * @memberof FlowcontrolApiserverV1ApireplaceFlowSchema
      */
     pretty?: string
     /**
      * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplaceFlowSchema
+     * @memberof FlowcontrolApiserverV1ApireplaceFlowSchema
      */
     dryRun?: string
     /**
      * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplaceFlowSchema
+     * @memberof FlowcontrolApiserverV1ApireplaceFlowSchema
      */
     fieldManager?: string
     /**
      * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplaceFlowSchema
+     * @memberof FlowcontrolApiserverV1ApireplaceFlowSchema
      */
     fieldValidation?: string
 }
 
-export interface FlowcontrolApiserverV1beta2ApiReplaceFlowSchemaStatusRequest {
+export interface FlowcontrolApiserverV1ApiReplaceFlowSchemaStatusRequest {
     /**
      * name of the FlowSchema
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplaceFlowSchemaStatus
+     * @memberof FlowcontrolApiserverV1ApireplaceFlowSchemaStatus
      */
     name: string
     /**
      * 
-     * @type V1beta2FlowSchema
-     * @memberof FlowcontrolApiserverV1beta2ApireplaceFlowSchemaStatus
+     * @type V1FlowSchema
+     * @memberof FlowcontrolApiserverV1ApireplaceFlowSchemaStatus
      */
-    body: V1beta2FlowSchema
+    body: V1FlowSchema
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplaceFlowSchemaStatus
+     * @memberof FlowcontrolApiserverV1ApireplaceFlowSchemaStatus
      */
     pretty?: string
     /**
      * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplaceFlowSchemaStatus
+     * @memberof FlowcontrolApiserverV1ApireplaceFlowSchemaStatus
      */
     dryRun?: string
     /**
      * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplaceFlowSchemaStatus
+     * @memberof FlowcontrolApiserverV1ApireplaceFlowSchemaStatus
      */
     fieldManager?: string
     /**
      * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplaceFlowSchemaStatus
+     * @memberof FlowcontrolApiserverV1ApireplaceFlowSchemaStatus
      */
     fieldValidation?: string
 }
 
-export interface FlowcontrolApiserverV1beta2ApiReplacePriorityLevelConfigurationRequest {
+export interface FlowcontrolApiserverV1ApiReplacePriorityLevelConfigurationRequest {
     /**
      * name of the PriorityLevelConfiguration
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplacePriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApireplacePriorityLevelConfiguration
      */
     name: string
     /**
      * 
-     * @type V1beta2PriorityLevelConfiguration
-     * @memberof FlowcontrolApiserverV1beta2ApireplacePriorityLevelConfiguration
+     * @type V1PriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApireplacePriorityLevelConfiguration
      */
-    body: V1beta2PriorityLevelConfiguration
+    body: V1PriorityLevelConfiguration
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplacePriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApireplacePriorityLevelConfiguration
      */
     pretty?: string
     /**
      * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplacePriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApireplacePriorityLevelConfiguration
      */
     dryRun?: string
     /**
      * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplacePriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApireplacePriorityLevelConfiguration
      */
     fieldManager?: string
     /**
      * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplacePriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApireplacePriorityLevelConfiguration
      */
     fieldValidation?: string
 }
 
-export interface FlowcontrolApiserverV1beta2ApiReplacePriorityLevelConfigurationStatusRequest {
+export interface FlowcontrolApiserverV1ApiReplacePriorityLevelConfigurationStatusRequest {
     /**
      * name of the PriorityLevelConfiguration
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplacePriorityLevelConfigurationStatus
+     * @memberof FlowcontrolApiserverV1ApireplacePriorityLevelConfigurationStatus
      */
     name: string
     /**
      * 
-     * @type V1beta2PriorityLevelConfiguration
-     * @memberof FlowcontrolApiserverV1beta2ApireplacePriorityLevelConfigurationStatus
+     * @type V1PriorityLevelConfiguration
+     * @memberof FlowcontrolApiserverV1ApireplacePriorityLevelConfigurationStatus
      */
-    body: V1beta2PriorityLevelConfiguration
+    body: V1PriorityLevelConfiguration
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplacePriorityLevelConfigurationStatus
+     * @memberof FlowcontrolApiserverV1ApireplacePriorityLevelConfigurationStatus
      */
     pretty?: string
     /**
      * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplacePriorityLevelConfigurationStatus
+     * @memberof FlowcontrolApiserverV1ApireplacePriorityLevelConfigurationStatus
      */
     dryRun?: string
     /**
      * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplacePriorityLevelConfigurationStatus
+     * @memberof FlowcontrolApiserverV1ApireplacePriorityLevelConfigurationStatus
      */
     fieldManager?: string
     /**
      * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @type string
-     * @memberof FlowcontrolApiserverV1beta2ApireplacePriorityLevelConfigurationStatus
+     * @memberof FlowcontrolApiserverV1ApireplacePriorityLevelConfigurationStatus
      */
     fieldValidation?: string
 }
 
-export class ObjectFlowcontrolApiserverV1beta2Api {
-    private api: ObservableFlowcontrolApiserverV1beta2Api
+export class ObjectFlowcontrolApiserverV1Api {
+    private api: ObservableFlowcontrolApiserverV1Api
 
-    public constructor(configuration: Configuration, requestFactory?: FlowcontrolApiserverV1beta2ApiRequestFactory, responseProcessor?: FlowcontrolApiserverV1beta2ApiResponseProcessor) {
-        this.api = new ObservableFlowcontrolApiserverV1beta2Api(configuration, requestFactory, responseProcessor);
+    public constructor(configuration: Configuration, requestFactory?: FlowcontrolApiserverV1ApiRequestFactory, responseProcessor?: FlowcontrolApiserverV1ApiResponseProcessor) {
+        this.api = new ObservableFlowcontrolApiserverV1Api(configuration, requestFactory, responseProcessor);
     }
 
     /**
      * create a FlowSchema
      * @param param the request object
      */
-    public createFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiCreateFlowSchemaRequest, options?: Configuration): Promise<HttpInfo<V1beta2FlowSchema>> {
+    public createFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1ApiCreateFlowSchemaRequest, options?: Configuration): Promise<HttpInfo<V1FlowSchema>> {
         return this.api.createFlowSchemaWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
@@ -30778,7 +30785,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * create a FlowSchema
      * @param param the request object
      */
-    public createFlowSchema(param: FlowcontrolApiserverV1beta2ApiCreateFlowSchemaRequest, options?: Configuration): Promise<V1beta2FlowSchema> {
+    public createFlowSchema(param: FlowcontrolApiserverV1ApiCreateFlowSchemaRequest, options?: Configuration): Promise<V1FlowSchema> {
         return this.api.createFlowSchema(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
@@ -30786,7 +30793,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * create a PriorityLevelConfiguration
      * @param param the request object
      */
-    public createPriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiCreatePriorityLevelConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1beta2PriorityLevelConfiguration>> {
+    public createPriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1ApiCreatePriorityLevelConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1PriorityLevelConfiguration>> {
         return this.api.createPriorityLevelConfigurationWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
@@ -30794,7 +30801,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * create a PriorityLevelConfiguration
      * @param param the request object
      */
-    public createPriorityLevelConfiguration(param: FlowcontrolApiserverV1beta2ApiCreatePriorityLevelConfigurationRequest, options?: Configuration): Promise<V1beta2PriorityLevelConfiguration> {
+    public createPriorityLevelConfiguration(param: FlowcontrolApiserverV1ApiCreatePriorityLevelConfigurationRequest, options?: Configuration): Promise<V1PriorityLevelConfiguration> {
         return this.api.createPriorityLevelConfiguration(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
@@ -30802,7 +30809,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * delete collection of FlowSchema
      * @param param the request object
      */
-    public deleteCollectionFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiDeleteCollectionFlowSchemaRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+    public deleteCollectionFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1ApiDeleteCollectionFlowSchemaRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
         return this.api.deleteCollectionFlowSchemaWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
@@ -30810,7 +30817,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * delete collection of FlowSchema
      * @param param the request object
      */
-    public deleteCollectionFlowSchema(param: FlowcontrolApiserverV1beta2ApiDeleteCollectionFlowSchemaRequest = {}, options?: Configuration): Promise<V1Status> {
+    public deleteCollectionFlowSchema(param: FlowcontrolApiserverV1ApiDeleteCollectionFlowSchemaRequest = {}, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionFlowSchema(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
@@ -30818,7 +30825,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * delete collection of PriorityLevelConfiguration
      * @param param the request object
      */
-    public deleteCollectionPriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiDeleteCollectionPriorityLevelConfigurationRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+    public deleteCollectionPriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1ApiDeleteCollectionPriorityLevelConfigurationRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
         return this.api.deleteCollectionPriorityLevelConfigurationWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
@@ -30826,7 +30833,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * delete collection of PriorityLevelConfiguration
      * @param param the request object
      */
-    public deleteCollectionPriorityLevelConfiguration(param: FlowcontrolApiserverV1beta2ApiDeleteCollectionPriorityLevelConfigurationRequest = {}, options?: Configuration): Promise<V1Status> {
+    public deleteCollectionPriorityLevelConfiguration(param: FlowcontrolApiserverV1ApiDeleteCollectionPriorityLevelConfigurationRequest = {}, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionPriorityLevelConfiguration(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
@@ -30834,7 +30841,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * delete a FlowSchema
      * @param param the request object
      */
-    public deleteFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiDeleteFlowSchemaRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+    public deleteFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1ApiDeleteFlowSchemaRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
         return this.api.deleteFlowSchemaWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
@@ -30842,7 +30849,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * delete a FlowSchema
      * @param param the request object
      */
-    public deleteFlowSchema(param: FlowcontrolApiserverV1beta2ApiDeleteFlowSchemaRequest, options?: Configuration): Promise<V1Status> {
+    public deleteFlowSchema(param: FlowcontrolApiserverV1ApiDeleteFlowSchemaRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteFlowSchema(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
@@ -30850,7 +30857,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * delete a PriorityLevelConfiguration
      * @param param the request object
      */
-    public deletePriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiDeletePriorityLevelConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+    public deletePriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1ApiDeletePriorityLevelConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
         return this.api.deletePriorityLevelConfigurationWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
@@ -30858,7 +30865,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * delete a PriorityLevelConfiguration
      * @param param the request object
      */
-    public deletePriorityLevelConfiguration(param: FlowcontrolApiserverV1beta2ApiDeletePriorityLevelConfigurationRequest, options?: Configuration): Promise<V1Status> {
+    public deletePriorityLevelConfiguration(param: FlowcontrolApiserverV1ApiDeletePriorityLevelConfigurationRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deletePriorityLevelConfiguration(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
@@ -30866,7 +30873,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * get available resources
      * @param param the request object
      */
-    public getAPIResourcesWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+    public getAPIResourcesWithHttpInfo(param: FlowcontrolApiserverV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
         return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
     }
 
@@ -30874,7 +30881,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * get available resources
      * @param param the request object
      */
-    public getAPIResources(param: FlowcontrolApiserverV1beta2ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<V1APIResourceList> {
+    public getAPIResources(param: FlowcontrolApiserverV1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<V1APIResourceList> {
         return this.api.getAPIResources( options).toPromise();
     }
 
@@ -30882,7 +30889,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * list or watch objects of kind FlowSchema
      * @param param the request object
      */
-    public listFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiListFlowSchemaRequest = {}, options?: Configuration): Promise<HttpInfo<V1beta2FlowSchemaList>> {
+    public listFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1ApiListFlowSchemaRequest = {}, options?: Configuration): Promise<HttpInfo<V1FlowSchemaList>> {
         return this.api.listFlowSchemaWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
@@ -30890,7 +30897,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * list or watch objects of kind FlowSchema
      * @param param the request object
      */
-    public listFlowSchema(param: FlowcontrolApiserverV1beta2ApiListFlowSchemaRequest = {}, options?: Configuration): Promise<V1beta2FlowSchemaList> {
+    public listFlowSchema(param: FlowcontrolApiserverV1ApiListFlowSchemaRequest = {}, options?: Configuration): Promise<V1FlowSchemaList> {
         return this.api.listFlowSchema(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
@@ -30898,7 +30905,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * list or watch objects of kind PriorityLevelConfiguration
      * @param param the request object
      */
-    public listPriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiListPriorityLevelConfigurationRequest = {}, options?: Configuration): Promise<HttpInfo<V1beta2PriorityLevelConfigurationList>> {
+    public listPriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1ApiListPriorityLevelConfigurationRequest = {}, options?: Configuration): Promise<HttpInfo<V1PriorityLevelConfigurationList>> {
         return this.api.listPriorityLevelConfigurationWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
@@ -30906,7 +30913,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * list or watch objects of kind PriorityLevelConfiguration
      * @param param the request object
      */
-    public listPriorityLevelConfiguration(param: FlowcontrolApiserverV1beta2ApiListPriorityLevelConfigurationRequest = {}, options?: Configuration): Promise<V1beta2PriorityLevelConfigurationList> {
+    public listPriorityLevelConfiguration(param: FlowcontrolApiserverV1ApiListPriorityLevelConfigurationRequest = {}, options?: Configuration): Promise<V1PriorityLevelConfigurationList> {
         return this.api.listPriorityLevelConfiguration(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
@@ -30914,7 +30921,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * partially update the specified FlowSchema
      * @param param the request object
      */
-    public patchFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiPatchFlowSchemaRequest, options?: Configuration): Promise<HttpInfo<V1beta2FlowSchema>> {
+    public patchFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1ApiPatchFlowSchemaRequest, options?: Configuration): Promise<HttpInfo<V1FlowSchema>> {
         return this.api.patchFlowSchemaWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
     }
 
@@ -30922,7 +30929,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * partially update the specified FlowSchema
      * @param param the request object
      */
-    public patchFlowSchema(param: FlowcontrolApiserverV1beta2ApiPatchFlowSchemaRequest, options?: Configuration): Promise<V1beta2FlowSchema> {
+    public patchFlowSchema(param: FlowcontrolApiserverV1ApiPatchFlowSchemaRequest, options?: Configuration): Promise<V1FlowSchema> {
         return this.api.patchFlowSchema(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
     }
 
@@ -30930,7 +30937,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * partially update status of the specified FlowSchema
      * @param param the request object
      */
-    public patchFlowSchemaStatusWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiPatchFlowSchemaStatusRequest, options?: Configuration): Promise<HttpInfo<V1beta2FlowSchema>> {
+    public patchFlowSchemaStatusWithHttpInfo(param: FlowcontrolApiserverV1ApiPatchFlowSchemaStatusRequest, options?: Configuration): Promise<HttpInfo<V1FlowSchema>> {
         return this.api.patchFlowSchemaStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
     }
 
@@ -30938,7 +30945,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * partially update status of the specified FlowSchema
      * @param param the request object
      */
-    public patchFlowSchemaStatus(param: FlowcontrolApiserverV1beta2ApiPatchFlowSchemaStatusRequest, options?: Configuration): Promise<V1beta2FlowSchema> {
+    public patchFlowSchemaStatus(param: FlowcontrolApiserverV1ApiPatchFlowSchemaStatusRequest, options?: Configuration): Promise<V1FlowSchema> {
         return this.api.patchFlowSchemaStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
     }
 
@@ -30946,7 +30953,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * partially update the specified PriorityLevelConfiguration
      * @param param the request object
      */
-    public patchPriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiPatchPriorityLevelConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1beta2PriorityLevelConfiguration>> {
+    public patchPriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1ApiPatchPriorityLevelConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1PriorityLevelConfiguration>> {
         return this.api.patchPriorityLevelConfigurationWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
     }
 
@@ -30954,7 +30961,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * partially update the specified PriorityLevelConfiguration
      * @param param the request object
      */
-    public patchPriorityLevelConfiguration(param: FlowcontrolApiserverV1beta2ApiPatchPriorityLevelConfigurationRequest, options?: Configuration): Promise<V1beta2PriorityLevelConfiguration> {
+    public patchPriorityLevelConfiguration(param: FlowcontrolApiserverV1ApiPatchPriorityLevelConfigurationRequest, options?: Configuration): Promise<V1PriorityLevelConfiguration> {
         return this.api.patchPriorityLevelConfiguration(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
     }
 
@@ -30962,7 +30969,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * partially update status of the specified PriorityLevelConfiguration
      * @param param the request object
      */
-    public patchPriorityLevelConfigurationStatusWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiPatchPriorityLevelConfigurationStatusRequest, options?: Configuration): Promise<HttpInfo<V1beta2PriorityLevelConfiguration>> {
+    public patchPriorityLevelConfigurationStatusWithHttpInfo(param: FlowcontrolApiserverV1ApiPatchPriorityLevelConfigurationStatusRequest, options?: Configuration): Promise<HttpInfo<V1PriorityLevelConfiguration>> {
         return this.api.patchPriorityLevelConfigurationStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
     }
 
@@ -30970,7 +30977,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * partially update status of the specified PriorityLevelConfiguration
      * @param param the request object
      */
-    public patchPriorityLevelConfigurationStatus(param: FlowcontrolApiserverV1beta2ApiPatchPriorityLevelConfigurationStatusRequest, options?: Configuration): Promise<V1beta2PriorityLevelConfiguration> {
+    public patchPriorityLevelConfigurationStatus(param: FlowcontrolApiserverV1ApiPatchPriorityLevelConfigurationStatusRequest, options?: Configuration): Promise<V1PriorityLevelConfiguration> {
         return this.api.patchPriorityLevelConfigurationStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
     }
 
@@ -30978,7 +30985,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * read the specified FlowSchema
      * @param param the request object
      */
-    public readFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiReadFlowSchemaRequest, options?: Configuration): Promise<HttpInfo<V1beta2FlowSchema>> {
+    public readFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1ApiReadFlowSchemaRequest, options?: Configuration): Promise<HttpInfo<V1FlowSchema>> {
         return this.api.readFlowSchemaWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
@@ -30986,7 +30993,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * read the specified FlowSchema
      * @param param the request object
      */
-    public readFlowSchema(param: FlowcontrolApiserverV1beta2ApiReadFlowSchemaRequest, options?: Configuration): Promise<V1beta2FlowSchema> {
+    public readFlowSchema(param: FlowcontrolApiserverV1ApiReadFlowSchemaRequest, options?: Configuration): Promise<V1FlowSchema> {
         return this.api.readFlowSchema(param.name, param.pretty,  options).toPromise();
     }
 
@@ -30994,7 +31001,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * read status of the specified FlowSchema
      * @param param the request object
      */
-    public readFlowSchemaStatusWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiReadFlowSchemaStatusRequest, options?: Configuration): Promise<HttpInfo<V1beta2FlowSchema>> {
+    public readFlowSchemaStatusWithHttpInfo(param: FlowcontrolApiserverV1ApiReadFlowSchemaStatusRequest, options?: Configuration): Promise<HttpInfo<V1FlowSchema>> {
         return this.api.readFlowSchemaStatusWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
@@ -31002,7 +31009,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * read status of the specified FlowSchema
      * @param param the request object
      */
-    public readFlowSchemaStatus(param: FlowcontrolApiserverV1beta2ApiReadFlowSchemaStatusRequest, options?: Configuration): Promise<V1beta2FlowSchema> {
+    public readFlowSchemaStatus(param: FlowcontrolApiserverV1ApiReadFlowSchemaStatusRequest, options?: Configuration): Promise<V1FlowSchema> {
         return this.api.readFlowSchemaStatus(param.name, param.pretty,  options).toPromise();
     }
 
@@ -31010,7 +31017,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * read the specified PriorityLevelConfiguration
      * @param param the request object
      */
-    public readPriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiReadPriorityLevelConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1beta2PriorityLevelConfiguration>> {
+    public readPriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1ApiReadPriorityLevelConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1PriorityLevelConfiguration>> {
         return this.api.readPriorityLevelConfigurationWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
@@ -31018,7 +31025,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * read the specified PriorityLevelConfiguration
      * @param param the request object
      */
-    public readPriorityLevelConfiguration(param: FlowcontrolApiserverV1beta2ApiReadPriorityLevelConfigurationRequest, options?: Configuration): Promise<V1beta2PriorityLevelConfiguration> {
+    public readPriorityLevelConfiguration(param: FlowcontrolApiserverV1ApiReadPriorityLevelConfigurationRequest, options?: Configuration): Promise<V1PriorityLevelConfiguration> {
         return this.api.readPriorityLevelConfiguration(param.name, param.pretty,  options).toPromise();
     }
 
@@ -31026,7 +31033,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * read status of the specified PriorityLevelConfiguration
      * @param param the request object
      */
-    public readPriorityLevelConfigurationStatusWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiReadPriorityLevelConfigurationStatusRequest, options?: Configuration): Promise<HttpInfo<V1beta2PriorityLevelConfiguration>> {
+    public readPriorityLevelConfigurationStatusWithHttpInfo(param: FlowcontrolApiserverV1ApiReadPriorityLevelConfigurationStatusRequest, options?: Configuration): Promise<HttpInfo<V1PriorityLevelConfiguration>> {
         return this.api.readPriorityLevelConfigurationStatusWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
@@ -31034,7 +31041,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * read status of the specified PriorityLevelConfiguration
      * @param param the request object
      */
-    public readPriorityLevelConfigurationStatus(param: FlowcontrolApiserverV1beta2ApiReadPriorityLevelConfigurationStatusRequest, options?: Configuration): Promise<V1beta2PriorityLevelConfiguration> {
+    public readPriorityLevelConfigurationStatus(param: FlowcontrolApiserverV1ApiReadPriorityLevelConfigurationStatusRequest, options?: Configuration): Promise<V1PriorityLevelConfiguration> {
         return this.api.readPriorityLevelConfigurationStatus(param.name, param.pretty,  options).toPromise();
     }
 
@@ -31042,7 +31049,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * replace the specified FlowSchema
      * @param param the request object
      */
-    public replaceFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiReplaceFlowSchemaRequest, options?: Configuration): Promise<HttpInfo<V1beta2FlowSchema>> {
+    public replaceFlowSchemaWithHttpInfo(param: FlowcontrolApiserverV1ApiReplaceFlowSchemaRequest, options?: Configuration): Promise<HttpInfo<V1FlowSchema>> {
         return this.api.replaceFlowSchemaWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
@@ -31050,7 +31057,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * replace the specified FlowSchema
      * @param param the request object
      */
-    public replaceFlowSchema(param: FlowcontrolApiserverV1beta2ApiReplaceFlowSchemaRequest, options?: Configuration): Promise<V1beta2FlowSchema> {
+    public replaceFlowSchema(param: FlowcontrolApiserverV1ApiReplaceFlowSchemaRequest, options?: Configuration): Promise<V1FlowSchema> {
         return this.api.replaceFlowSchema(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
@@ -31058,7 +31065,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * replace status of the specified FlowSchema
      * @param param the request object
      */
-    public replaceFlowSchemaStatusWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiReplaceFlowSchemaStatusRequest, options?: Configuration): Promise<HttpInfo<V1beta2FlowSchema>> {
+    public replaceFlowSchemaStatusWithHttpInfo(param: FlowcontrolApiserverV1ApiReplaceFlowSchemaStatusRequest, options?: Configuration): Promise<HttpInfo<V1FlowSchema>> {
         return this.api.replaceFlowSchemaStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
@@ -31066,7 +31073,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * replace status of the specified FlowSchema
      * @param param the request object
      */
-    public replaceFlowSchemaStatus(param: FlowcontrolApiserverV1beta2ApiReplaceFlowSchemaStatusRequest, options?: Configuration): Promise<V1beta2FlowSchema> {
+    public replaceFlowSchemaStatus(param: FlowcontrolApiserverV1ApiReplaceFlowSchemaStatusRequest, options?: Configuration): Promise<V1FlowSchema> {
         return this.api.replaceFlowSchemaStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
@@ -31074,7 +31081,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * replace the specified PriorityLevelConfiguration
      * @param param the request object
      */
-    public replacePriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiReplacePriorityLevelConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1beta2PriorityLevelConfiguration>> {
+    public replacePriorityLevelConfigurationWithHttpInfo(param: FlowcontrolApiserverV1ApiReplacePriorityLevelConfigurationRequest, options?: Configuration): Promise<HttpInfo<V1PriorityLevelConfiguration>> {
         return this.api.replacePriorityLevelConfigurationWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
@@ -31082,7 +31089,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * replace the specified PriorityLevelConfiguration
      * @param param the request object
      */
-    public replacePriorityLevelConfiguration(param: FlowcontrolApiserverV1beta2ApiReplacePriorityLevelConfigurationRequest, options?: Configuration): Promise<V1beta2PriorityLevelConfiguration> {
+    public replacePriorityLevelConfiguration(param: FlowcontrolApiserverV1ApiReplacePriorityLevelConfigurationRequest, options?: Configuration): Promise<V1PriorityLevelConfiguration> {
         return this.api.replacePriorityLevelConfiguration(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
@@ -31090,7 +31097,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * replace status of the specified PriorityLevelConfiguration
      * @param param the request object
      */
-    public replacePriorityLevelConfigurationStatusWithHttpInfo(param: FlowcontrolApiserverV1beta2ApiReplacePriorityLevelConfigurationStatusRequest, options?: Configuration): Promise<HttpInfo<V1beta2PriorityLevelConfiguration>> {
+    public replacePriorityLevelConfigurationStatusWithHttpInfo(param: FlowcontrolApiserverV1ApiReplacePriorityLevelConfigurationStatusRequest, options?: Configuration): Promise<HttpInfo<V1PriorityLevelConfiguration>> {
         return this.api.replacePriorityLevelConfigurationStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
@@ -31098,7 +31105,7 @@ export class ObjectFlowcontrolApiserverV1beta2Api {
      * replace status of the specified PriorityLevelConfiguration
      * @param param the request object
      */
-    public replacePriorityLevelConfigurationStatus(param: FlowcontrolApiserverV1beta2ApiReplacePriorityLevelConfigurationStatusRequest, options?: Configuration): Promise<V1beta2PriorityLevelConfiguration> {
+    public replacePriorityLevelConfigurationStatus(param: FlowcontrolApiserverV1ApiReplacePriorityLevelConfigurationStatusRequest, options?: Configuration): Promise<V1PriorityLevelConfiguration> {
         return this.api.replacePriorityLevelConfigurationStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
@@ -31115,7 +31122,7 @@ export interface FlowcontrolApiserverV1beta3ApiCreateFlowSchemaRequest {
      */
     body: V1beta3FlowSchema
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApicreateFlowSchema
      */
@@ -31148,7 +31155,7 @@ export interface FlowcontrolApiserverV1beta3ApiCreatePriorityLevelConfigurationR
      */
     body: V1beta3PriorityLevelConfiguration
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApicreatePriorityLevelConfiguration
      */
@@ -31175,7 +31182,7 @@ export interface FlowcontrolApiserverV1beta3ApiCreatePriorityLevelConfigurationR
 
 export interface FlowcontrolApiserverV1beta3ApiDeleteCollectionFlowSchemaRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApideleteCollectionFlowSchema
      */
@@ -31262,7 +31269,7 @@ export interface FlowcontrolApiserverV1beta3ApiDeleteCollectionFlowSchemaRequest
 
 export interface FlowcontrolApiserverV1beta3ApiDeleteCollectionPriorityLevelConfigurationRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApideleteCollectionPriorityLevelConfiguration
      */
@@ -31355,7 +31362,7 @@ export interface FlowcontrolApiserverV1beta3ApiDeleteFlowSchemaRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApideleteFlowSchema
      */
@@ -31400,7 +31407,7 @@ export interface FlowcontrolApiserverV1beta3ApiDeletePriorityLevelConfigurationR
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApideletePriorityLevelConfiguration
      */
@@ -31442,7 +31449,7 @@ export interface FlowcontrolApiserverV1beta3ApiGetAPIResourcesRequest {
 
 export interface FlowcontrolApiserverV1beta3ApiListFlowSchemaRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApilistFlowSchema
      */
@@ -31511,7 +31518,7 @@ export interface FlowcontrolApiserverV1beta3ApiListFlowSchemaRequest {
 
 export interface FlowcontrolApiserverV1beta3ApiListPriorityLevelConfigurationRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApilistPriorityLevelConfiguration
      */
@@ -31592,7 +31599,7 @@ export interface FlowcontrolApiserverV1beta3ApiPatchFlowSchemaRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApipatchFlowSchema
      */
@@ -31637,7 +31644,7 @@ export interface FlowcontrolApiserverV1beta3ApiPatchFlowSchemaStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApipatchFlowSchemaStatus
      */
@@ -31682,7 +31689,7 @@ export interface FlowcontrolApiserverV1beta3ApiPatchPriorityLevelConfigurationRe
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApipatchPriorityLevelConfiguration
      */
@@ -31727,7 +31734,7 @@ export interface FlowcontrolApiserverV1beta3ApiPatchPriorityLevelConfigurationSt
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApipatchPriorityLevelConfigurationStatus
      */
@@ -31766,7 +31773,7 @@ export interface FlowcontrolApiserverV1beta3ApiReadFlowSchemaRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApireadFlowSchema
      */
@@ -31781,7 +31788,7 @@ export interface FlowcontrolApiserverV1beta3ApiReadFlowSchemaStatusRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApireadFlowSchemaStatus
      */
@@ -31796,7 +31803,7 @@ export interface FlowcontrolApiserverV1beta3ApiReadPriorityLevelConfigurationReq
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApireadPriorityLevelConfiguration
      */
@@ -31811,7 +31818,7 @@ export interface FlowcontrolApiserverV1beta3ApiReadPriorityLevelConfigurationSta
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApireadPriorityLevelConfigurationStatus
      */
@@ -31832,7 +31839,7 @@ export interface FlowcontrolApiserverV1beta3ApiReplaceFlowSchemaRequest {
      */
     body: V1beta3FlowSchema
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApireplaceFlowSchema
      */
@@ -31871,7 +31878,7 @@ export interface FlowcontrolApiserverV1beta3ApiReplaceFlowSchemaStatusRequest {
      */
     body: V1beta3FlowSchema
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApireplaceFlowSchemaStatus
      */
@@ -31910,7 +31917,7 @@ export interface FlowcontrolApiserverV1beta3ApiReplacePriorityLevelConfiguration
      */
     body: V1beta3PriorityLevelConfiguration
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApireplacePriorityLevelConfiguration
      */
@@ -31949,7 +31956,7 @@ export interface FlowcontrolApiserverV1beta3ApiReplacePriorityLevelConfiguration
      */
     body: V1beta3PriorityLevelConfiguration
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof FlowcontrolApiserverV1beta3ApireplacePriorityLevelConfigurationStatus
      */
@@ -32361,7 +32368,7 @@ export interface InternalApiserverV1alpha1ApiCreateStorageVersionRequest {
      */
     body: V1alpha1StorageVersion
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof InternalApiserverV1alpha1ApicreateStorageVersion
      */
@@ -32388,7 +32395,7 @@ export interface InternalApiserverV1alpha1ApiCreateStorageVersionRequest {
 
 export interface InternalApiserverV1alpha1ApiDeleteCollectionStorageVersionRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof InternalApiserverV1alpha1ApideleteCollectionStorageVersion
      */
@@ -32481,7 +32488,7 @@ export interface InternalApiserverV1alpha1ApiDeleteStorageVersionRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof InternalApiserverV1alpha1ApideleteStorageVersion
      */
@@ -32523,7 +32530,7 @@ export interface InternalApiserverV1alpha1ApiGetAPIResourcesRequest {
 
 export interface InternalApiserverV1alpha1ApiListStorageVersionRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof InternalApiserverV1alpha1ApilistStorageVersion
      */
@@ -32604,7 +32611,7 @@ export interface InternalApiserverV1alpha1ApiPatchStorageVersionRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof InternalApiserverV1alpha1ApipatchStorageVersion
      */
@@ -32649,7 +32656,7 @@ export interface InternalApiserverV1alpha1ApiPatchStorageVersionStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof InternalApiserverV1alpha1ApipatchStorageVersionStatus
      */
@@ -32688,7 +32695,7 @@ export interface InternalApiserverV1alpha1ApiReadStorageVersionRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof InternalApiserverV1alpha1ApireadStorageVersion
      */
@@ -32703,7 +32710,7 @@ export interface InternalApiserverV1alpha1ApiReadStorageVersionStatusRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof InternalApiserverV1alpha1ApireadStorageVersionStatus
      */
@@ -32724,7 +32731,7 @@ export interface InternalApiserverV1alpha1ApiReplaceStorageVersionRequest {
      */
     body: V1alpha1StorageVersion
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof InternalApiserverV1alpha1ApireplaceStorageVersion
      */
@@ -32763,7 +32770,7 @@ export interface InternalApiserverV1alpha1ApiReplaceStorageVersionStatusRequest 
      */
     body: V1alpha1StorageVersion
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof InternalApiserverV1alpha1ApireplaceStorageVersionStatus
      */
@@ -33067,7 +33074,7 @@ export interface NetworkingV1ApiCreateIngressClassRequest {
      */
     body: V1IngressClass
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApicreateIngressClass
      */
@@ -33106,7 +33113,7 @@ export interface NetworkingV1ApiCreateNamespacedIngressRequest {
      */
     body: V1Ingress
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApicreateNamespacedIngress
      */
@@ -33145,7 +33152,7 @@ export interface NetworkingV1ApiCreateNamespacedNetworkPolicyRequest {
      */
     body: V1NetworkPolicy
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApicreateNamespacedNetworkPolicy
      */
@@ -33172,7 +33179,7 @@ export interface NetworkingV1ApiCreateNamespacedNetworkPolicyRequest {
 
 export interface NetworkingV1ApiDeleteCollectionIngressClassRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApideleteCollectionIngressClass
      */
@@ -33265,7 +33272,7 @@ export interface NetworkingV1ApiDeleteCollectionNamespacedIngressRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApideleteCollectionNamespacedIngress
      */
@@ -33358,7 +33365,7 @@ export interface NetworkingV1ApiDeleteCollectionNamespacedNetworkPolicyRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApideleteCollectionNamespacedNetworkPolicy
      */
@@ -33451,7 +33458,7 @@ export interface NetworkingV1ApiDeleteIngressClassRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApideleteIngressClass
      */
@@ -33502,7 +33509,7 @@ export interface NetworkingV1ApiDeleteNamespacedIngressRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApideleteNamespacedIngress
      */
@@ -33553,7 +33560,7 @@ export interface NetworkingV1ApiDeleteNamespacedNetworkPolicyRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApideleteNamespacedNetworkPolicy
      */
@@ -33595,7 +33602,7 @@ export interface NetworkingV1ApiGetAPIResourcesRequest {
 
 export interface NetworkingV1ApiListIngressClassRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApilistIngressClass
      */
@@ -33694,7 +33701,7 @@ export interface NetworkingV1ApiListIngressForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApilistIngressForAllNamespaces
      */
@@ -33739,7 +33746,7 @@ export interface NetworkingV1ApiListNamespacedIngressRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApilistNamespacedIngress
      */
@@ -33814,7 +33821,7 @@ export interface NetworkingV1ApiListNamespacedNetworkPolicyRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApilistNamespacedNetworkPolicy
      */
@@ -33913,7 +33920,7 @@ export interface NetworkingV1ApiListNetworkPolicyForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApilistNetworkPolicyForAllNamespaces
      */
@@ -33964,7 +33971,7 @@ export interface NetworkingV1ApiPatchIngressClassRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApipatchIngressClass
      */
@@ -34015,7 +34022,7 @@ export interface NetworkingV1ApiPatchNamespacedIngressRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApipatchNamespacedIngress
      */
@@ -34066,7 +34073,7 @@ export interface NetworkingV1ApiPatchNamespacedIngressStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApipatchNamespacedIngressStatus
      */
@@ -34117,7 +34124,7 @@ export interface NetworkingV1ApiPatchNamespacedNetworkPolicyRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApipatchNamespacedNetworkPolicy
      */
@@ -34156,7 +34163,7 @@ export interface NetworkingV1ApiReadIngressClassRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApireadIngressClass
      */
@@ -34177,7 +34184,7 @@ export interface NetworkingV1ApiReadNamespacedIngressRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApireadNamespacedIngress
      */
@@ -34198,7 +34205,7 @@ export interface NetworkingV1ApiReadNamespacedIngressStatusRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApireadNamespacedIngressStatus
      */
@@ -34219,7 +34226,7 @@ export interface NetworkingV1ApiReadNamespacedNetworkPolicyRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApireadNamespacedNetworkPolicy
      */
@@ -34240,7 +34247,7 @@ export interface NetworkingV1ApiReplaceIngressClassRequest {
      */
     body: V1IngressClass
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApireplaceIngressClass
      */
@@ -34285,7 +34292,7 @@ export interface NetworkingV1ApiReplaceNamespacedIngressRequest {
      */
     body: V1Ingress
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApireplaceNamespacedIngress
      */
@@ -34330,7 +34337,7 @@ export interface NetworkingV1ApiReplaceNamespacedIngressStatusRequest {
      */
     body: V1Ingress
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApireplaceNamespacedIngressStatus
      */
@@ -34375,7 +34382,7 @@ export interface NetworkingV1ApiReplaceNamespacedNetworkPolicyRequest {
      */
     body: V1NetworkPolicy
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1ApireplaceNamespacedNetworkPolicy
      */
@@ -34844,39 +34851,6 @@ export class ObjectNetworkingV1Api {
 import { ObservableNetworkingV1alpha1Api } from "./ObservableAPI";
 import { NetworkingV1alpha1ApiRequestFactory, NetworkingV1alpha1ApiResponseProcessor} from "../apis/NetworkingV1alpha1Api";
 
-export interface NetworkingV1alpha1ApiCreateClusterCIDRRequest {
-    /**
-     * 
-     * @type V1alpha1ClusterCIDR
-     * @memberof NetworkingV1alpha1ApicreateClusterCIDR
-     */
-    body: V1alpha1ClusterCIDR
-    /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
-     * @type string
-     * @memberof NetworkingV1alpha1ApicreateClusterCIDR
-     */
-    pretty?: string
-    /**
-     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
-     * @type string
-     * @memberof NetworkingV1alpha1ApicreateClusterCIDR
-     */
-    dryRun?: string
-    /**
-     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
-     * @type string
-     * @memberof NetworkingV1alpha1ApicreateClusterCIDR
-     */
-    fieldManager?: string
-    /**
-     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
-     * @type string
-     * @memberof NetworkingV1alpha1ApicreateClusterCIDR
-     */
-    fieldValidation?: string
-}
-
 export interface NetworkingV1alpha1ApiCreateIPAddressRequest {
     /**
      * 
@@ -34885,7 +34859,7 @@ export interface NetworkingV1alpha1ApiCreateIPAddressRequest {
      */
     body: V1alpha1IPAddress
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1alpha1ApicreateIPAddress
      */
@@ -34910,141 +34884,42 @@ export interface NetworkingV1alpha1ApiCreateIPAddressRequest {
     fieldValidation?: string
 }
 
-export interface NetworkingV1alpha1ApiDeleteClusterCIDRRequest {
+export interface NetworkingV1alpha1ApiCreateServiceCIDRRequest {
     /**
-     * name of the ClusterCIDR
-     * @type string
-     * @memberof NetworkingV1alpha1ApideleteClusterCIDR
+     * 
+     * @type V1alpha1ServiceCIDR
+     * @memberof NetworkingV1alpha1ApicreateServiceCIDR
      */
-    name: string
+    body: V1alpha1ServiceCIDR
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof NetworkingV1alpha1ApideleteClusterCIDR
+     * @memberof NetworkingV1alpha1ApicreateServiceCIDR
      */
     pretty?: string
     /**
      * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @type string
-     * @memberof NetworkingV1alpha1ApideleteClusterCIDR
+     * @memberof NetworkingV1alpha1ApicreateServiceCIDR
      */
     dryRun?: string
     /**
-     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
-     * @type number
-     * @memberof NetworkingV1alpha1ApideleteClusterCIDR
-     */
-    gracePeriodSeconds?: number
-    /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
-     * @type boolean
-     * @memberof NetworkingV1alpha1ApideleteClusterCIDR
-     */
-    orphanDependents?: boolean
-    /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
      * @type string
-     * @memberof NetworkingV1alpha1ApideleteClusterCIDR
+     * @memberof NetworkingV1alpha1ApicreateServiceCIDR
      */
-    propagationPolicy?: string
+    fieldManager?: string
     /**
-     * 
-     * @type V1DeleteOptions
-     * @memberof NetworkingV1alpha1ApideleteClusterCIDR
-     */
-    body?: V1DeleteOptions
-}
-
-export interface NetworkingV1alpha1ApiDeleteCollectionClusterCIDRRequest {
-    /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @type string
-     * @memberof NetworkingV1alpha1ApideleteCollectionClusterCIDR
+     * @memberof NetworkingV1alpha1ApicreateServiceCIDR
      */
-    pretty?: string
-    /**
-     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
-     * @type string
-     * @memberof NetworkingV1alpha1ApideleteCollectionClusterCIDR
-     */
-    _continue?: string
-    /**
-     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
-     * @type string
-     * @memberof NetworkingV1alpha1ApideleteCollectionClusterCIDR
-     */
-    dryRun?: string
-    /**
-     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
-     * @type string
-     * @memberof NetworkingV1alpha1ApideleteCollectionClusterCIDR
-     */
-    fieldSelector?: string
-    /**
-     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
-     * @type number
-     * @memberof NetworkingV1alpha1ApideleteCollectionClusterCIDR
-     */
-    gracePeriodSeconds?: number
-    /**
-     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
-     * @type string
-     * @memberof NetworkingV1alpha1ApideleteCollectionClusterCIDR
-     */
-    labelSelector?: string
-    /**
-     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
-     * @type number
-     * @memberof NetworkingV1alpha1ApideleteCollectionClusterCIDR
-     */
-    limit?: number
-    /**
-     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
-     * @type boolean
-     * @memberof NetworkingV1alpha1ApideleteCollectionClusterCIDR
-     */
-    orphanDependents?: boolean
-    /**
-     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
-     * @type string
-     * @memberof NetworkingV1alpha1ApideleteCollectionClusterCIDR
-     */
-    propagationPolicy?: string
-    /**
-     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
-     * @type string
-     * @memberof NetworkingV1alpha1ApideleteCollectionClusterCIDR
-     */
-    resourceVersion?: string
-    /**
-     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
-     * @type string
-     * @memberof NetworkingV1alpha1ApideleteCollectionClusterCIDR
-     */
-    resourceVersionMatch?: string
-    /**
-     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
-     * @type boolean
-     * @memberof NetworkingV1alpha1ApideleteCollectionClusterCIDR
-     */
-    sendInitialEvents?: boolean
-    /**
-     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
-     * @type number
-     * @memberof NetworkingV1alpha1ApideleteCollectionClusterCIDR
-     */
-    timeoutSeconds?: number
-    /**
-     * 
-     * @type V1DeleteOptions
-     * @memberof NetworkingV1alpha1ApideleteCollectionClusterCIDR
-     */
-    body?: V1DeleteOptions
+    fieldValidation?: string
 }
 
 export interface NetworkingV1alpha1ApiDeleteCollectionIPAddressRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1alpha1ApideleteCollectionIPAddress
      */
@@ -35125,6 +35000,93 @@ export interface NetworkingV1alpha1ApiDeleteCollectionIPAddressRequest {
      * 
      * @type V1DeleteOptions
      * @memberof NetworkingV1alpha1ApideleteCollectionIPAddress
+     */
+    body?: V1DeleteOptions
+}
+
+export interface NetworkingV1alpha1ApiDeleteCollectionServiceCIDRRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof NetworkingV1alpha1ApideleteCollectionServiceCIDR
+     */
+    pretty?: string
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof NetworkingV1alpha1ApideleteCollectionServiceCIDR
+     */
+    _continue?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof NetworkingV1alpha1ApideleteCollectionServiceCIDR
+     */
+    dryRun?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof NetworkingV1alpha1ApideleteCollectionServiceCIDR
+     */
+    fieldSelector?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @type number
+     * @memberof NetworkingV1alpha1ApideleteCollectionServiceCIDR
+     */
+    gracePeriodSeconds?: number
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof NetworkingV1alpha1ApideleteCollectionServiceCIDR
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof NetworkingV1alpha1ApideleteCollectionServiceCIDR
+     */
+    limit?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * @type boolean
+     * @memberof NetworkingV1alpha1ApideleteCollectionServiceCIDR
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * @type string
+     * @memberof NetworkingV1alpha1ApideleteCollectionServiceCIDR
+     */
+    propagationPolicy?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof NetworkingV1alpha1ApideleteCollectionServiceCIDR
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof NetworkingV1alpha1ApideleteCollectionServiceCIDR
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof NetworkingV1alpha1ApideleteCollectionServiceCIDR
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof NetworkingV1alpha1ApideleteCollectionServiceCIDR
+     */
+    timeoutSeconds?: number
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof NetworkingV1alpha1ApideleteCollectionServiceCIDR
      */
     body?: V1DeleteOptions
 }
@@ -35137,7 +35099,7 @@ export interface NetworkingV1alpha1ApiDeleteIPAddressRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1alpha1ApideleteIPAddress
      */
@@ -35174,190 +35136,190 @@ export interface NetworkingV1alpha1ApiDeleteIPAddressRequest {
     body?: V1DeleteOptions
 }
 
-export interface NetworkingV1alpha1ApiGetAPIResourcesRequest {
-}
-
-export interface NetworkingV1alpha1ApiListClusterCIDRRequest {
+export interface NetworkingV1alpha1ApiDeleteServiceCIDRRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * name of the ServiceCIDR
      * @type string
-     * @memberof NetworkingV1alpha1ApilistClusterCIDR
-     */
-    pretty?: string
-    /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
-     * @type boolean
-     * @memberof NetworkingV1alpha1ApilistClusterCIDR
-     */
-    allowWatchBookmarks?: boolean
-    /**
-     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
-     * @type string
-     * @memberof NetworkingV1alpha1ApilistClusterCIDR
-     */
-    _continue?: string
-    /**
-     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
-     * @type string
-     * @memberof NetworkingV1alpha1ApilistClusterCIDR
-     */
-    fieldSelector?: string
-    /**
-     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
-     * @type string
-     * @memberof NetworkingV1alpha1ApilistClusterCIDR
-     */
-    labelSelector?: string
-    /**
-     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
-     * @type number
-     * @memberof NetworkingV1alpha1ApilistClusterCIDR
-     */
-    limit?: number
-    /**
-     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
-     * @type string
-     * @memberof NetworkingV1alpha1ApilistClusterCIDR
-     */
-    resourceVersion?: string
-    /**
-     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
-     * @type string
-     * @memberof NetworkingV1alpha1ApilistClusterCIDR
-     */
-    resourceVersionMatch?: string
-    /**
-     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
-     * @type boolean
-     * @memberof NetworkingV1alpha1ApilistClusterCIDR
-     */
-    sendInitialEvents?: boolean
-    /**
-     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
-     * @type number
-     * @memberof NetworkingV1alpha1ApilistClusterCIDR
-     */
-    timeoutSeconds?: number
-    /**
-     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
-     * @type boolean
-     * @memberof NetworkingV1alpha1ApilistClusterCIDR
-     */
-    watch?: boolean
-}
-
-export interface NetworkingV1alpha1ApiListIPAddressRequest {
-    /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
-     * @type string
-     * @memberof NetworkingV1alpha1ApilistIPAddress
-     */
-    pretty?: string
-    /**
-     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
-     * @type boolean
-     * @memberof NetworkingV1alpha1ApilistIPAddress
-     */
-    allowWatchBookmarks?: boolean
-    /**
-     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
-     * @type string
-     * @memberof NetworkingV1alpha1ApilistIPAddress
-     */
-    _continue?: string
-    /**
-     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
-     * @type string
-     * @memberof NetworkingV1alpha1ApilistIPAddress
-     */
-    fieldSelector?: string
-    /**
-     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
-     * @type string
-     * @memberof NetworkingV1alpha1ApilistIPAddress
-     */
-    labelSelector?: string
-    /**
-     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
-     * @type number
-     * @memberof NetworkingV1alpha1ApilistIPAddress
-     */
-    limit?: number
-    /**
-     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
-     * @type string
-     * @memberof NetworkingV1alpha1ApilistIPAddress
-     */
-    resourceVersion?: string
-    /**
-     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
-     * @type string
-     * @memberof NetworkingV1alpha1ApilistIPAddress
-     */
-    resourceVersionMatch?: string
-    /**
-     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
-     * @type boolean
-     * @memberof NetworkingV1alpha1ApilistIPAddress
-     */
-    sendInitialEvents?: boolean
-    /**
-     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
-     * @type number
-     * @memberof NetworkingV1alpha1ApilistIPAddress
-     */
-    timeoutSeconds?: number
-    /**
-     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
-     * @type boolean
-     * @memberof NetworkingV1alpha1ApilistIPAddress
-     */
-    watch?: boolean
-}
-
-export interface NetworkingV1alpha1ApiPatchClusterCIDRRequest {
-    /**
-     * name of the ClusterCIDR
-     * @type string
-     * @memberof NetworkingV1alpha1ApipatchClusterCIDR
+     * @memberof NetworkingV1alpha1ApideleteServiceCIDR
      */
     name: string
     /**
-     * 
-     * @type any
-     * @memberof NetworkingV1alpha1ApipatchClusterCIDR
-     */
-    body: any
-    /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof NetworkingV1alpha1ApipatchClusterCIDR
+     * @memberof NetworkingV1alpha1ApideleteServiceCIDR
      */
     pretty?: string
     /**
      * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @type string
-     * @memberof NetworkingV1alpha1ApipatchClusterCIDR
+     * @memberof NetworkingV1alpha1ApideleteServiceCIDR
      */
     dryRun?: string
     /**
-     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
-     * @type string
-     * @memberof NetworkingV1alpha1ApipatchClusterCIDR
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @type number
+     * @memberof NetworkingV1alpha1ApideleteServiceCIDR
      */
-    fieldManager?: string
+    gracePeriodSeconds?: number
     /**
-     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
-     * @type string
-     * @memberof NetworkingV1alpha1ApipatchClusterCIDR
-     */
-    fieldValidation?: string
-    /**
-     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @type boolean
-     * @memberof NetworkingV1alpha1ApipatchClusterCIDR
+     * @memberof NetworkingV1alpha1ApideleteServiceCIDR
      */
-    force?: boolean
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * @type string
+     * @memberof NetworkingV1alpha1ApideleteServiceCIDR
+     */
+    propagationPolicy?: string
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof NetworkingV1alpha1ApideleteServiceCIDR
+     */
+    body?: V1DeleteOptions
+}
+
+export interface NetworkingV1alpha1ApiGetAPIResourcesRequest {
+}
+
+export interface NetworkingV1alpha1ApiListIPAddressRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof NetworkingV1alpha1ApilistIPAddress
+     */
+    pretty?: string
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * @type boolean
+     * @memberof NetworkingV1alpha1ApilistIPAddress
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof NetworkingV1alpha1ApilistIPAddress
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof NetworkingV1alpha1ApilistIPAddress
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof NetworkingV1alpha1ApilistIPAddress
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof NetworkingV1alpha1ApilistIPAddress
+     */
+    limit?: number
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof NetworkingV1alpha1ApilistIPAddress
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof NetworkingV1alpha1ApilistIPAddress
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof NetworkingV1alpha1ApilistIPAddress
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof NetworkingV1alpha1ApilistIPAddress
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * @type boolean
+     * @memberof NetworkingV1alpha1ApilistIPAddress
+     */
+    watch?: boolean
+}
+
+export interface NetworkingV1alpha1ApiListServiceCIDRRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof NetworkingV1alpha1ApilistServiceCIDR
+     */
+    pretty?: string
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * @type boolean
+     * @memberof NetworkingV1alpha1ApilistServiceCIDR
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof NetworkingV1alpha1ApilistServiceCIDR
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof NetworkingV1alpha1ApilistServiceCIDR
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof NetworkingV1alpha1ApilistServiceCIDR
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof NetworkingV1alpha1ApilistServiceCIDR
+     */
+    limit?: number
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof NetworkingV1alpha1ApilistServiceCIDR
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof NetworkingV1alpha1ApilistServiceCIDR
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof NetworkingV1alpha1ApilistServiceCIDR
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof NetworkingV1alpha1ApilistServiceCIDR
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * @type boolean
+     * @memberof NetworkingV1alpha1ApilistServiceCIDR
+     */
+    watch?: boolean
 }
 
 export interface NetworkingV1alpha1ApiPatchIPAddressRequest {
@@ -35374,7 +35336,7 @@ export interface NetworkingV1alpha1ApiPatchIPAddressRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1alpha1ApipatchIPAddress
      */
@@ -35405,19 +35367,94 @@ export interface NetworkingV1alpha1ApiPatchIPAddressRequest {
     force?: boolean
 }
 
-export interface NetworkingV1alpha1ApiReadClusterCIDRRequest {
+export interface NetworkingV1alpha1ApiPatchServiceCIDRRequest {
     /**
-     * name of the ClusterCIDR
+     * name of the ServiceCIDR
      * @type string
-     * @memberof NetworkingV1alpha1ApireadClusterCIDR
+     * @memberof NetworkingV1alpha1ApipatchServiceCIDR
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * 
+     * @type any
+     * @memberof NetworkingV1alpha1ApipatchServiceCIDR
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof NetworkingV1alpha1ApireadClusterCIDR
+     * @memberof NetworkingV1alpha1ApipatchServiceCIDR
      */
     pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof NetworkingV1alpha1ApipatchServiceCIDR
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @type string
+     * @memberof NetworkingV1alpha1ApipatchServiceCIDR
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof NetworkingV1alpha1ApipatchServiceCIDR
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * @type boolean
+     * @memberof NetworkingV1alpha1ApipatchServiceCIDR
+     */
+    force?: boolean
+}
+
+export interface NetworkingV1alpha1ApiPatchServiceCIDRStatusRequest {
+    /**
+     * name of the ServiceCIDR
+     * @type string
+     * @memberof NetworkingV1alpha1ApipatchServiceCIDRStatus
+     */
+    name: string
+    /**
+     * 
+     * @type any
+     * @memberof NetworkingV1alpha1ApipatchServiceCIDRStatus
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof NetworkingV1alpha1ApipatchServiceCIDRStatus
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof NetworkingV1alpha1ApipatchServiceCIDRStatus
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @type string
+     * @memberof NetworkingV1alpha1ApipatchServiceCIDRStatus
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof NetworkingV1alpha1ApipatchServiceCIDRStatus
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * @type boolean
+     * @memberof NetworkingV1alpha1ApipatchServiceCIDRStatus
+     */
+    force?: boolean
 }
 
 export interface NetworkingV1alpha1ApiReadIPAddressRequest {
@@ -35428,50 +35465,41 @@ export interface NetworkingV1alpha1ApiReadIPAddressRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1alpha1ApireadIPAddress
      */
     pretty?: string
 }
 
-export interface NetworkingV1alpha1ApiReplaceClusterCIDRRequest {
+export interface NetworkingV1alpha1ApiReadServiceCIDRRequest {
     /**
-     * name of the ClusterCIDR
+     * name of the ServiceCIDR
      * @type string
-     * @memberof NetworkingV1alpha1ApireplaceClusterCIDR
+     * @memberof NetworkingV1alpha1ApireadServiceCIDR
      */
     name: string
     /**
-     * 
-     * @type V1alpha1ClusterCIDR
-     * @memberof NetworkingV1alpha1ApireplaceClusterCIDR
-     */
-    body: V1alpha1ClusterCIDR
-    /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof NetworkingV1alpha1ApireplaceClusterCIDR
+     * @memberof NetworkingV1alpha1ApireadServiceCIDR
      */
     pretty?: string
+}
+
+export interface NetworkingV1alpha1ApiReadServiceCIDRStatusRequest {
     /**
-     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * name of the ServiceCIDR
      * @type string
-     * @memberof NetworkingV1alpha1ApireplaceClusterCIDR
+     * @memberof NetworkingV1alpha1ApireadServiceCIDRStatus
      */
-    dryRun?: string
+    name: string
     /**
-     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
-     * @memberof NetworkingV1alpha1ApireplaceClusterCIDR
+     * @memberof NetworkingV1alpha1ApireadServiceCIDRStatus
      */
-    fieldManager?: string
-    /**
-     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
-     * @type string
-     * @memberof NetworkingV1alpha1ApireplaceClusterCIDR
-     */
-    fieldValidation?: string
+    pretty?: string
 }
 
 export interface NetworkingV1alpha1ApiReplaceIPAddressRequest {
@@ -35488,7 +35516,7 @@ export interface NetworkingV1alpha1ApiReplaceIPAddressRequest {
      */
     body: V1alpha1IPAddress
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NetworkingV1alpha1ApireplaceIPAddress
      */
@@ -35513,27 +35541,89 @@ export interface NetworkingV1alpha1ApiReplaceIPAddressRequest {
     fieldValidation?: string
 }
 
+export interface NetworkingV1alpha1ApiReplaceServiceCIDRRequest {
+    /**
+     * name of the ServiceCIDR
+     * @type string
+     * @memberof NetworkingV1alpha1ApireplaceServiceCIDR
+     */
+    name: string
+    /**
+     * 
+     * @type V1alpha1ServiceCIDR
+     * @memberof NetworkingV1alpha1ApireplaceServiceCIDR
+     */
+    body: V1alpha1ServiceCIDR
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof NetworkingV1alpha1ApireplaceServiceCIDR
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof NetworkingV1alpha1ApireplaceServiceCIDR
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @type string
+     * @memberof NetworkingV1alpha1ApireplaceServiceCIDR
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof NetworkingV1alpha1ApireplaceServiceCIDR
+     */
+    fieldValidation?: string
+}
+
+export interface NetworkingV1alpha1ApiReplaceServiceCIDRStatusRequest {
+    /**
+     * name of the ServiceCIDR
+     * @type string
+     * @memberof NetworkingV1alpha1ApireplaceServiceCIDRStatus
+     */
+    name: string
+    /**
+     * 
+     * @type V1alpha1ServiceCIDR
+     * @memberof NetworkingV1alpha1ApireplaceServiceCIDRStatus
+     */
+    body: V1alpha1ServiceCIDR
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof NetworkingV1alpha1ApireplaceServiceCIDRStatus
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof NetworkingV1alpha1ApireplaceServiceCIDRStatus
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @type string
+     * @memberof NetworkingV1alpha1ApireplaceServiceCIDRStatus
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof NetworkingV1alpha1ApireplaceServiceCIDRStatus
+     */
+    fieldValidation?: string
+}
+
 export class ObjectNetworkingV1alpha1Api {
     private api: ObservableNetworkingV1alpha1Api
 
     public constructor(configuration: Configuration, requestFactory?: NetworkingV1alpha1ApiRequestFactory, responseProcessor?: NetworkingV1alpha1ApiResponseProcessor) {
         this.api = new ObservableNetworkingV1alpha1Api(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * create a ClusterCIDR
-     * @param param the request object
-     */
-    public createClusterCIDRWithHttpInfo(param: NetworkingV1alpha1ApiCreateClusterCIDRRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ClusterCIDR>> {
-        return this.api.createClusterCIDRWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
-    }
-
-    /**
-     * create a ClusterCIDR
-     * @param param the request object
-     */
-    public createClusterCIDR(param: NetworkingV1alpha1ApiCreateClusterCIDRRequest, options?: Configuration): Promise<V1alpha1ClusterCIDR> {
-        return this.api.createClusterCIDR(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
     /**
@@ -35553,35 +35643,19 @@ export class ObjectNetworkingV1alpha1Api {
     }
 
     /**
-     * delete a ClusterCIDR
+     * create a ServiceCIDR
      * @param param the request object
      */
-    public deleteClusterCIDRWithHttpInfo(param: NetworkingV1alpha1ApiDeleteClusterCIDRRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
-        return this.api.deleteClusterCIDRWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    public createServiceCIDRWithHttpInfo(param: NetworkingV1alpha1ApiCreateServiceCIDRRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ServiceCIDR>> {
+        return this.api.createServiceCIDRWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
     /**
-     * delete a ClusterCIDR
+     * create a ServiceCIDR
      * @param param the request object
      */
-    public deleteClusterCIDR(param: NetworkingV1alpha1ApiDeleteClusterCIDRRequest, options?: Configuration): Promise<V1Status> {
-        return this.api.deleteClusterCIDR(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
-    }
-
-    /**
-     * delete collection of ClusterCIDR
-     * @param param the request object
-     */
-    public deleteCollectionClusterCIDRWithHttpInfo(param: NetworkingV1alpha1ApiDeleteCollectionClusterCIDRRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
-        return this.api.deleteCollectionClusterCIDRWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
-    }
-
-    /**
-     * delete collection of ClusterCIDR
-     * @param param the request object
-     */
-    public deleteCollectionClusterCIDR(param: NetworkingV1alpha1ApiDeleteCollectionClusterCIDRRequest = {}, options?: Configuration): Promise<V1Status> {
-        return this.api.deleteCollectionClusterCIDR(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    public createServiceCIDR(param: NetworkingV1alpha1ApiCreateServiceCIDRRequest, options?: Configuration): Promise<V1alpha1ServiceCIDR> {
+        return this.api.createServiceCIDR(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
     /**
@@ -35601,6 +35675,22 @@ export class ObjectNetworkingV1alpha1Api {
     }
 
     /**
+     * delete collection of ServiceCIDR
+     * @param param the request object
+     */
+    public deleteCollectionServiceCIDRWithHttpInfo(param: NetworkingV1alpha1ApiDeleteCollectionServiceCIDRRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionServiceCIDRWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ServiceCIDR
+     * @param param the request object
+     */
+    public deleteCollectionServiceCIDR(param: NetworkingV1alpha1ApiDeleteCollectionServiceCIDRRequest = {}, options?: Configuration): Promise<V1Status> {
+        return this.api.deleteCollectionServiceCIDR(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
      * delete an IPAddress
      * @param param the request object
      */
@@ -35614,6 +35704,22 @@ export class ObjectNetworkingV1alpha1Api {
      */
     public deleteIPAddress(param: NetworkingV1alpha1ApiDeleteIPAddressRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteIPAddress(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ServiceCIDR
+     * @param param the request object
+     */
+    public deleteServiceCIDRWithHttpInfo(param: NetworkingV1alpha1ApiDeleteServiceCIDRRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteServiceCIDRWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ServiceCIDR
+     * @param param the request object
+     */
+    public deleteServiceCIDR(param: NetworkingV1alpha1ApiDeleteServiceCIDRRequest, options?: Configuration): Promise<V1Status> {
+        return this.api.deleteServiceCIDR(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -35633,22 +35739,6 @@ export class ObjectNetworkingV1alpha1Api {
     }
 
     /**
-     * list or watch objects of kind ClusterCIDR
-     * @param param the request object
-     */
-    public listClusterCIDRWithHttpInfo(param: NetworkingV1alpha1ApiListClusterCIDRRequest = {}, options?: Configuration): Promise<HttpInfo<V1alpha1ClusterCIDRList>> {
-        return this.api.listClusterCIDRWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
-    }
-
-    /**
-     * list or watch objects of kind ClusterCIDR
-     * @param param the request object
-     */
-    public listClusterCIDR(param: NetworkingV1alpha1ApiListClusterCIDRRequest = {}, options?: Configuration): Promise<V1alpha1ClusterCIDRList> {
-        return this.api.listClusterCIDR(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
-    }
-
-    /**
      * list or watch objects of kind IPAddress
      * @param param the request object
      */
@@ -35665,19 +35755,19 @@ export class ObjectNetworkingV1alpha1Api {
     }
 
     /**
-     * partially update the specified ClusterCIDR
+     * list or watch objects of kind ServiceCIDR
      * @param param the request object
      */
-    public patchClusterCIDRWithHttpInfo(param: NetworkingV1alpha1ApiPatchClusterCIDRRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ClusterCIDR>> {
-        return this.api.patchClusterCIDRWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    public listServiceCIDRWithHttpInfo(param: NetworkingV1alpha1ApiListServiceCIDRRequest = {}, options?: Configuration): Promise<HttpInfo<V1alpha1ServiceCIDRList>> {
+        return this.api.listServiceCIDRWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
-     * partially update the specified ClusterCIDR
+     * list or watch objects of kind ServiceCIDR
      * @param param the request object
      */
-    public patchClusterCIDR(param: NetworkingV1alpha1ApiPatchClusterCIDRRequest, options?: Configuration): Promise<V1alpha1ClusterCIDR> {
-        return this.api.patchClusterCIDR(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    public listServiceCIDR(param: NetworkingV1alpha1ApiListServiceCIDRRequest = {}, options?: Configuration): Promise<V1alpha1ServiceCIDRList> {
+        return this.api.listServiceCIDR(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -35697,19 +35787,35 @@ export class ObjectNetworkingV1alpha1Api {
     }
 
     /**
-     * read the specified ClusterCIDR
+     * partially update the specified ServiceCIDR
      * @param param the request object
      */
-    public readClusterCIDRWithHttpInfo(param: NetworkingV1alpha1ApiReadClusterCIDRRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ClusterCIDR>> {
-        return this.api.readClusterCIDRWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    public patchServiceCIDRWithHttpInfo(param: NetworkingV1alpha1ApiPatchServiceCIDRRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ServiceCIDR>> {
+        return this.api.patchServiceCIDRWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
     }
 
     /**
-     * read the specified ClusterCIDR
+     * partially update the specified ServiceCIDR
      * @param param the request object
      */
-    public readClusterCIDR(param: NetworkingV1alpha1ApiReadClusterCIDRRequest, options?: Configuration): Promise<V1alpha1ClusterCIDR> {
-        return this.api.readClusterCIDR(param.name, param.pretty,  options).toPromise();
+    public patchServiceCIDR(param: NetworkingV1alpha1ApiPatchServiceCIDRRequest, options?: Configuration): Promise<V1alpha1ServiceCIDR> {
+        return this.api.patchServiceCIDR(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified ServiceCIDR
+     * @param param the request object
+     */
+    public patchServiceCIDRStatusWithHttpInfo(param: NetworkingV1alpha1ApiPatchServiceCIDRStatusRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ServiceCIDR>> {
+        return this.api.patchServiceCIDRStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified ServiceCIDR
+     * @param param the request object
+     */
+    public patchServiceCIDRStatus(param: NetworkingV1alpha1ApiPatchServiceCIDRStatusRequest, options?: Configuration): Promise<V1alpha1ServiceCIDR> {
+        return this.api.patchServiceCIDRStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
     }
 
     /**
@@ -35729,19 +35835,35 @@ export class ObjectNetworkingV1alpha1Api {
     }
 
     /**
-     * replace the specified ClusterCIDR
+     * read the specified ServiceCIDR
      * @param param the request object
      */
-    public replaceClusterCIDRWithHttpInfo(param: NetworkingV1alpha1ApiReplaceClusterCIDRRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ClusterCIDR>> {
-        return this.api.replaceClusterCIDRWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    public readServiceCIDRWithHttpInfo(param: NetworkingV1alpha1ApiReadServiceCIDRRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ServiceCIDR>> {
+        return this.api.readServiceCIDRWithHttpInfo(param.name, param.pretty,  options).toPromise();
     }
 
     /**
-     * replace the specified ClusterCIDR
+     * read the specified ServiceCIDR
      * @param param the request object
      */
-    public replaceClusterCIDR(param: NetworkingV1alpha1ApiReplaceClusterCIDRRequest, options?: Configuration): Promise<V1alpha1ClusterCIDR> {
-        return this.api.replaceClusterCIDR(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    public readServiceCIDR(param: NetworkingV1alpha1ApiReadServiceCIDRRequest, options?: Configuration): Promise<V1alpha1ServiceCIDR> {
+        return this.api.readServiceCIDR(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified ServiceCIDR
+     * @param param the request object
+     */
+    public readServiceCIDRStatusWithHttpInfo(param: NetworkingV1alpha1ApiReadServiceCIDRStatusRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ServiceCIDR>> {
+        return this.api.readServiceCIDRStatusWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified ServiceCIDR
+     * @param param the request object
+     */
+    public readServiceCIDRStatus(param: NetworkingV1alpha1ApiReadServiceCIDRStatusRequest, options?: Configuration): Promise<V1alpha1ServiceCIDR> {
+        return this.api.readServiceCIDRStatus(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -35758,6 +35880,38 @@ export class ObjectNetworkingV1alpha1Api {
      */
     public replaceIPAddress(param: NetworkingV1alpha1ApiReplaceIPAddressRequest, options?: Configuration): Promise<V1alpha1IPAddress> {
         return this.api.replaceIPAddress(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ServiceCIDR
+     * @param param the request object
+     */
+    public replaceServiceCIDRWithHttpInfo(param: NetworkingV1alpha1ApiReplaceServiceCIDRRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ServiceCIDR>> {
+        return this.api.replaceServiceCIDRWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ServiceCIDR
+     * @param param the request object
+     */
+    public replaceServiceCIDR(param: NetworkingV1alpha1ApiReplaceServiceCIDRRequest, options?: Configuration): Promise<V1alpha1ServiceCIDR> {
+        return this.api.replaceServiceCIDR(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified ServiceCIDR
+     * @param param the request object
+     */
+    public replaceServiceCIDRStatusWithHttpInfo(param: NetworkingV1alpha1ApiReplaceServiceCIDRStatusRequest, options?: Configuration): Promise<HttpInfo<V1alpha1ServiceCIDR>> {
+        return this.api.replaceServiceCIDRStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified ServiceCIDR
+     * @param param the request object
+     */
+    public replaceServiceCIDRStatus(param: NetworkingV1alpha1ApiReplaceServiceCIDRStatusRequest, options?: Configuration): Promise<V1alpha1ServiceCIDR> {
+        return this.api.replaceServiceCIDRStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
 }
@@ -35804,7 +35958,7 @@ export interface NodeV1ApiCreateRuntimeClassRequest {
      */
     body: V1RuntimeClass
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NodeV1ApicreateRuntimeClass
      */
@@ -35831,7 +35985,7 @@ export interface NodeV1ApiCreateRuntimeClassRequest {
 
 export interface NodeV1ApiDeleteCollectionRuntimeClassRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NodeV1ApideleteCollectionRuntimeClass
      */
@@ -35924,7 +36078,7 @@ export interface NodeV1ApiDeleteRuntimeClassRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NodeV1ApideleteRuntimeClass
      */
@@ -35966,7 +36120,7 @@ export interface NodeV1ApiGetAPIResourcesRequest {
 
 export interface NodeV1ApiListRuntimeClassRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NodeV1ApilistRuntimeClass
      */
@@ -36047,7 +36201,7 @@ export interface NodeV1ApiPatchRuntimeClassRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NodeV1ApipatchRuntimeClass
      */
@@ -36086,7 +36240,7 @@ export interface NodeV1ApiReadRuntimeClassRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NodeV1ApireadRuntimeClass
      */
@@ -36107,7 +36261,7 @@ export interface NodeV1ApiReplaceRuntimeClassRequest {
      */
     body: V1RuntimeClass
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof NodeV1ApireplaceRuntimeClass
      */
@@ -36348,7 +36502,7 @@ export interface PolicyV1ApiCreateNamespacedPodDisruptionBudgetRequest {
      */
     body: V1PodDisruptionBudget
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof PolicyV1ApicreateNamespacedPodDisruptionBudget
      */
@@ -36381,7 +36535,7 @@ export interface PolicyV1ApiDeleteCollectionNamespacedPodDisruptionBudgetRequest
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof PolicyV1ApideleteCollectionNamespacedPodDisruptionBudget
      */
@@ -36480,7 +36634,7 @@ export interface PolicyV1ApiDeleteNamespacedPodDisruptionBudgetRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof PolicyV1ApideleteNamespacedPodDisruptionBudget
      */
@@ -36528,7 +36682,7 @@ export interface PolicyV1ApiListNamespacedPodDisruptionBudgetRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof PolicyV1ApilistNamespacedPodDisruptionBudget
      */
@@ -36627,7 +36781,7 @@ export interface PolicyV1ApiListPodDisruptionBudgetForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof PolicyV1ApilistPodDisruptionBudgetForAllNamespaces
      */
@@ -36684,7 +36838,7 @@ export interface PolicyV1ApiPatchNamespacedPodDisruptionBudgetRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof PolicyV1ApipatchNamespacedPodDisruptionBudget
      */
@@ -36735,7 +36889,7 @@ export interface PolicyV1ApiPatchNamespacedPodDisruptionBudgetStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof PolicyV1ApipatchNamespacedPodDisruptionBudgetStatus
      */
@@ -36780,7 +36934,7 @@ export interface PolicyV1ApiReadNamespacedPodDisruptionBudgetRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof PolicyV1ApireadNamespacedPodDisruptionBudget
      */
@@ -36801,7 +36955,7 @@ export interface PolicyV1ApiReadNamespacedPodDisruptionBudgetStatusRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof PolicyV1ApireadNamespacedPodDisruptionBudgetStatus
      */
@@ -36828,7 +36982,7 @@ export interface PolicyV1ApiReplaceNamespacedPodDisruptionBudgetRequest {
      */
     body: V1PodDisruptionBudget
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof PolicyV1ApireplaceNamespacedPodDisruptionBudget
      */
@@ -36873,7 +37027,7 @@ export interface PolicyV1ApiReplaceNamespacedPodDisruptionBudgetStatusRequest {
      */
     body: V1PodDisruptionBudget
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof PolicyV1ApireplaceNamespacedPodDisruptionBudgetStatus
      */
@@ -37141,7 +37295,7 @@ export interface RbacAuthorizationV1ApiCreateClusterRoleRequest {
      */
     body: V1ClusterRole
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApicreateClusterRole
      */
@@ -37174,7 +37328,7 @@ export interface RbacAuthorizationV1ApiCreateClusterRoleBindingRequest {
      */
     body: V1ClusterRoleBinding
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApicreateClusterRoleBinding
      */
@@ -37213,7 +37367,7 @@ export interface RbacAuthorizationV1ApiCreateNamespacedRoleRequest {
      */
     body: V1Role
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApicreateNamespacedRole
      */
@@ -37252,7 +37406,7 @@ export interface RbacAuthorizationV1ApiCreateNamespacedRoleBindingRequest {
      */
     body: V1RoleBinding
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApicreateNamespacedRoleBinding
      */
@@ -37285,7 +37439,7 @@ export interface RbacAuthorizationV1ApiDeleteClusterRoleRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApideleteClusterRole
      */
@@ -37330,7 +37484,7 @@ export interface RbacAuthorizationV1ApiDeleteClusterRoleBindingRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApideleteClusterRoleBinding
      */
@@ -37369,7 +37523,7 @@ export interface RbacAuthorizationV1ApiDeleteClusterRoleBindingRequest {
 
 export interface RbacAuthorizationV1ApiDeleteCollectionClusterRoleRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApideleteCollectionClusterRole
      */
@@ -37456,7 +37610,7 @@ export interface RbacAuthorizationV1ApiDeleteCollectionClusterRoleRequest {
 
 export interface RbacAuthorizationV1ApiDeleteCollectionClusterRoleBindingRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApideleteCollectionClusterRoleBinding
      */
@@ -37549,7 +37703,7 @@ export interface RbacAuthorizationV1ApiDeleteCollectionNamespacedRoleRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApideleteCollectionNamespacedRole
      */
@@ -37642,7 +37796,7 @@ export interface RbacAuthorizationV1ApiDeleteCollectionNamespacedRoleBindingRequ
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApideleteCollectionNamespacedRoleBinding
      */
@@ -37741,7 +37895,7 @@ export interface RbacAuthorizationV1ApiDeleteNamespacedRoleRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApideleteNamespacedRole
      */
@@ -37792,7 +37946,7 @@ export interface RbacAuthorizationV1ApiDeleteNamespacedRoleBindingRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApideleteNamespacedRoleBinding
      */
@@ -37834,7 +37988,7 @@ export interface RbacAuthorizationV1ApiGetAPIResourcesRequest {
 
 export interface RbacAuthorizationV1ApiListClusterRoleRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApilistClusterRole
      */
@@ -37903,7 +38057,7 @@ export interface RbacAuthorizationV1ApiListClusterRoleRequest {
 
 export interface RbacAuthorizationV1ApiListClusterRoleBindingRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApilistClusterRoleBinding
      */
@@ -37978,7 +38132,7 @@ export interface RbacAuthorizationV1ApiListNamespacedRoleRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApilistNamespacedRole
      */
@@ -38053,7 +38207,7 @@ export interface RbacAuthorizationV1ApiListNamespacedRoleBindingRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApilistNamespacedRoleBinding
      */
@@ -38152,7 +38306,7 @@ export interface RbacAuthorizationV1ApiListRoleBindingForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApilistRoleBindingForAllNamespaces
      */
@@ -38221,7 +38375,7 @@ export interface RbacAuthorizationV1ApiListRoleForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApilistRoleForAllNamespaces
      */
@@ -38272,7 +38426,7 @@ export interface RbacAuthorizationV1ApiPatchClusterRoleRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApipatchClusterRole
      */
@@ -38317,7 +38471,7 @@ export interface RbacAuthorizationV1ApiPatchClusterRoleBindingRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApipatchClusterRoleBinding
      */
@@ -38368,7 +38522,7 @@ export interface RbacAuthorizationV1ApiPatchNamespacedRoleRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApipatchNamespacedRole
      */
@@ -38419,7 +38573,7 @@ export interface RbacAuthorizationV1ApiPatchNamespacedRoleBindingRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApipatchNamespacedRoleBinding
      */
@@ -38458,7 +38612,7 @@ export interface RbacAuthorizationV1ApiReadClusterRoleRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApireadClusterRole
      */
@@ -38473,7 +38627,7 @@ export interface RbacAuthorizationV1ApiReadClusterRoleBindingRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApireadClusterRoleBinding
      */
@@ -38494,7 +38648,7 @@ export interface RbacAuthorizationV1ApiReadNamespacedRoleRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApireadNamespacedRole
      */
@@ -38515,7 +38669,7 @@ export interface RbacAuthorizationV1ApiReadNamespacedRoleBindingRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApireadNamespacedRoleBinding
      */
@@ -38536,7 +38690,7 @@ export interface RbacAuthorizationV1ApiReplaceClusterRoleRequest {
      */
     body: V1ClusterRole
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApireplaceClusterRole
      */
@@ -38575,7 +38729,7 @@ export interface RbacAuthorizationV1ApiReplaceClusterRoleBindingRequest {
      */
     body: V1ClusterRoleBinding
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApireplaceClusterRoleBinding
      */
@@ -38620,7 +38774,7 @@ export interface RbacAuthorizationV1ApiReplaceNamespacedRoleRequest {
      */
     body: V1Role
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApireplaceNamespacedRole
      */
@@ -38665,7 +38819,7 @@ export interface RbacAuthorizationV1ApiReplaceNamespacedRoleBindingRequest {
      */
     body: V1RoleBinding
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof RbacAuthorizationV1ApireplaceNamespacedRoleBinding
      */
@@ -39243,7 +39397,7 @@ export interface ResourceV1alpha2ApiCreateNamespacedPodSchedulingContextRequest 
      */
     body: V1alpha2PodSchedulingContext
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApicreateNamespacedPodSchedulingContext
      */
@@ -39282,7 +39436,7 @@ export interface ResourceV1alpha2ApiCreateNamespacedResourceClaimRequest {
      */
     body: V1alpha2ResourceClaim
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApicreateNamespacedResourceClaim
      */
@@ -39321,7 +39475,7 @@ export interface ResourceV1alpha2ApiCreateNamespacedResourceClaimTemplateRequest
      */
     body: V1alpha2ResourceClaimTemplate
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApicreateNamespacedResourceClaimTemplate
      */
@@ -39354,7 +39508,7 @@ export interface ResourceV1alpha2ApiCreateResourceClassRequest {
      */
     body: V1alpha2ResourceClass
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApicreateResourceClass
      */
@@ -39387,7 +39541,7 @@ export interface ResourceV1alpha2ApiDeleteCollectionNamespacedPodSchedulingConte
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApideleteCollectionNamespacedPodSchedulingContext
      */
@@ -39480,7 +39634,7 @@ export interface ResourceV1alpha2ApiDeleteCollectionNamespacedResourceClaimReque
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClaim
      */
@@ -39573,7 +39727,7 @@ export interface ResourceV1alpha2ApiDeleteCollectionNamespacedResourceClaimTempl
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClaimTemplate
      */
@@ -39660,7 +39814,7 @@ export interface ResourceV1alpha2ApiDeleteCollectionNamespacedResourceClaimTempl
 
 export interface ResourceV1alpha2ApiDeleteCollectionResourceClassRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApideleteCollectionResourceClass
      */
@@ -39759,7 +39913,7 @@ export interface ResourceV1alpha2ApiDeleteNamespacedPodSchedulingContextRequest 
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApideleteNamespacedPodSchedulingContext
      */
@@ -39810,7 +39964,7 @@ export interface ResourceV1alpha2ApiDeleteNamespacedResourceClaimRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApideleteNamespacedResourceClaim
      */
@@ -39861,7 +40015,7 @@ export interface ResourceV1alpha2ApiDeleteNamespacedResourceClaimTemplateRequest
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApideleteNamespacedResourceClaimTemplate
      */
@@ -39906,7 +40060,7 @@ export interface ResourceV1alpha2ApiDeleteResourceClassRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApideleteResourceClass
      */
@@ -39954,7 +40108,7 @@ export interface ResourceV1alpha2ApiListNamespacedPodSchedulingContextRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApilistNamespacedPodSchedulingContext
      */
@@ -40029,7 +40183,7 @@ export interface ResourceV1alpha2ApiListNamespacedResourceClaimRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApilistNamespacedResourceClaim
      */
@@ -40104,7 +40258,7 @@ export interface ResourceV1alpha2ApiListNamespacedResourceClaimTemplateRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApilistNamespacedResourceClaimTemplate
      */
@@ -40203,7 +40357,7 @@ export interface ResourceV1alpha2ApiListPodSchedulingContextForAllNamespacesRequ
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApilistPodSchedulingContextForAllNamespaces
      */
@@ -40272,7 +40426,7 @@ export interface ResourceV1alpha2ApiListResourceClaimForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApilistResourceClaimForAllNamespaces
      */
@@ -40341,7 +40495,7 @@ export interface ResourceV1alpha2ApiListResourceClaimTemplateForAllNamespacesReq
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApilistResourceClaimTemplateForAllNamespaces
      */
@@ -40380,7 +40534,7 @@ export interface ResourceV1alpha2ApiListResourceClaimTemplateForAllNamespacesReq
 
 export interface ResourceV1alpha2ApiListResourceClassRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApilistResourceClass
      */
@@ -40467,7 +40621,7 @@ export interface ResourceV1alpha2ApiPatchNamespacedPodSchedulingContextRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApipatchNamespacedPodSchedulingContext
      */
@@ -40518,7 +40672,7 @@ export interface ResourceV1alpha2ApiPatchNamespacedPodSchedulingContextStatusReq
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApipatchNamespacedPodSchedulingContextStatus
      */
@@ -40569,7 +40723,7 @@ export interface ResourceV1alpha2ApiPatchNamespacedResourceClaimRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApipatchNamespacedResourceClaim
      */
@@ -40620,7 +40774,7 @@ export interface ResourceV1alpha2ApiPatchNamespacedResourceClaimStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApipatchNamespacedResourceClaimStatus
      */
@@ -40671,7 +40825,7 @@ export interface ResourceV1alpha2ApiPatchNamespacedResourceClaimTemplateRequest 
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApipatchNamespacedResourceClaimTemplate
      */
@@ -40716,7 +40870,7 @@ export interface ResourceV1alpha2ApiPatchResourceClassRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApipatchResourceClass
      */
@@ -40761,7 +40915,7 @@ export interface ResourceV1alpha2ApiReadNamespacedPodSchedulingContextRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApireadNamespacedPodSchedulingContext
      */
@@ -40782,7 +40936,7 @@ export interface ResourceV1alpha2ApiReadNamespacedPodSchedulingContextStatusRequ
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApireadNamespacedPodSchedulingContextStatus
      */
@@ -40803,7 +40957,7 @@ export interface ResourceV1alpha2ApiReadNamespacedResourceClaimRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApireadNamespacedResourceClaim
      */
@@ -40824,7 +40978,7 @@ export interface ResourceV1alpha2ApiReadNamespacedResourceClaimStatusRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApireadNamespacedResourceClaimStatus
      */
@@ -40845,7 +40999,7 @@ export interface ResourceV1alpha2ApiReadNamespacedResourceClaimTemplateRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApireadNamespacedResourceClaimTemplate
      */
@@ -40860,7 +41014,7 @@ export interface ResourceV1alpha2ApiReadResourceClassRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApireadResourceClass
      */
@@ -40887,7 +41041,7 @@ export interface ResourceV1alpha2ApiReplaceNamespacedPodSchedulingContextRequest
      */
     body: V1alpha2PodSchedulingContext
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApireplaceNamespacedPodSchedulingContext
      */
@@ -40932,7 +41086,7 @@ export interface ResourceV1alpha2ApiReplaceNamespacedPodSchedulingContextStatusR
      */
     body: V1alpha2PodSchedulingContext
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApireplaceNamespacedPodSchedulingContextStatus
      */
@@ -40977,7 +41131,7 @@ export interface ResourceV1alpha2ApiReplaceNamespacedResourceClaimRequest {
      */
     body: V1alpha2ResourceClaim
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApireplaceNamespacedResourceClaim
      */
@@ -41022,7 +41176,7 @@ export interface ResourceV1alpha2ApiReplaceNamespacedResourceClaimStatusRequest 
      */
     body: V1alpha2ResourceClaim
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApireplaceNamespacedResourceClaimStatus
      */
@@ -41067,7 +41221,7 @@ export interface ResourceV1alpha2ApiReplaceNamespacedResourceClaimTemplateReques
      */
     body: V1alpha2ResourceClaimTemplate
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApireplaceNamespacedResourceClaimTemplate
      */
@@ -41106,7 +41260,7 @@ export interface ResourceV1alpha2ApiReplaceResourceClassRequest {
      */
     body: V1alpha2ResourceClass
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApireplaceResourceClass
      */
@@ -41790,7 +41944,7 @@ export interface SchedulingV1ApiCreatePriorityClassRequest {
      */
     body: V1PriorityClass
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof SchedulingV1ApicreatePriorityClass
      */
@@ -41817,7 +41971,7 @@ export interface SchedulingV1ApiCreatePriorityClassRequest {
 
 export interface SchedulingV1ApiDeleteCollectionPriorityClassRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof SchedulingV1ApideleteCollectionPriorityClass
      */
@@ -41910,7 +42064,7 @@ export interface SchedulingV1ApiDeletePriorityClassRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof SchedulingV1ApideletePriorityClass
      */
@@ -41952,7 +42106,7 @@ export interface SchedulingV1ApiGetAPIResourcesRequest {
 
 export interface SchedulingV1ApiListPriorityClassRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof SchedulingV1ApilistPriorityClass
      */
@@ -42033,7 +42187,7 @@ export interface SchedulingV1ApiPatchPriorityClassRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof SchedulingV1ApipatchPriorityClass
      */
@@ -42072,7 +42226,7 @@ export interface SchedulingV1ApiReadPriorityClassRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof SchedulingV1ApireadPriorityClass
      */
@@ -42093,7 +42247,7 @@ export interface SchedulingV1ApiReplacePriorityClassRequest {
      */
     body: V1PriorityClass
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof SchedulingV1ApireplacePriorityClass
      */
@@ -42297,7 +42451,7 @@ export interface StorageV1ApiCreateCSIDriverRequest {
      */
     body: V1CSIDriver
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApicreateCSIDriver
      */
@@ -42330,7 +42484,7 @@ export interface StorageV1ApiCreateCSINodeRequest {
      */
     body: V1CSINode
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApicreateCSINode
      */
@@ -42369,7 +42523,7 @@ export interface StorageV1ApiCreateNamespacedCSIStorageCapacityRequest {
      */
     body: V1CSIStorageCapacity
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApicreateNamespacedCSIStorageCapacity
      */
@@ -42402,7 +42556,7 @@ export interface StorageV1ApiCreateStorageClassRequest {
      */
     body: V1StorageClass
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApicreateStorageClass
      */
@@ -42435,7 +42589,7 @@ export interface StorageV1ApiCreateVolumeAttachmentRequest {
      */
     body: V1VolumeAttachment
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApicreateVolumeAttachment
      */
@@ -42468,7 +42622,7 @@ export interface StorageV1ApiDeleteCSIDriverRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApideleteCSIDriver
      */
@@ -42513,7 +42667,7 @@ export interface StorageV1ApiDeleteCSINodeRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApideleteCSINode
      */
@@ -42552,7 +42706,7 @@ export interface StorageV1ApiDeleteCSINodeRequest {
 
 export interface StorageV1ApiDeleteCollectionCSIDriverRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApideleteCollectionCSIDriver
      */
@@ -42639,7 +42793,7 @@ export interface StorageV1ApiDeleteCollectionCSIDriverRequest {
 
 export interface StorageV1ApiDeleteCollectionCSINodeRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApideleteCollectionCSINode
      */
@@ -42732,7 +42886,7 @@ export interface StorageV1ApiDeleteCollectionNamespacedCSIStorageCapacityRequest
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApideleteCollectionNamespacedCSIStorageCapacity
      */
@@ -42819,7 +42973,7 @@ export interface StorageV1ApiDeleteCollectionNamespacedCSIStorageCapacityRequest
 
 export interface StorageV1ApiDeleteCollectionStorageClassRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApideleteCollectionStorageClass
      */
@@ -42906,7 +43060,7 @@ export interface StorageV1ApiDeleteCollectionStorageClassRequest {
 
 export interface StorageV1ApiDeleteCollectionVolumeAttachmentRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApideleteCollectionVolumeAttachment
      */
@@ -43005,7 +43159,7 @@ export interface StorageV1ApiDeleteNamespacedCSIStorageCapacityRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApideleteNamespacedCSIStorageCapacity
      */
@@ -43050,7 +43204,7 @@ export interface StorageV1ApiDeleteStorageClassRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApideleteStorageClass
      */
@@ -43095,7 +43249,7 @@ export interface StorageV1ApiDeleteVolumeAttachmentRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApideleteVolumeAttachment
      */
@@ -43137,7 +43291,7 @@ export interface StorageV1ApiGetAPIResourcesRequest {
 
 export interface StorageV1ApiListCSIDriverRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApilistCSIDriver
      */
@@ -43206,7 +43360,7 @@ export interface StorageV1ApiListCSIDriverRequest {
 
 export interface StorageV1ApiListCSINodeRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApilistCSINode
      */
@@ -43305,7 +43459,7 @@ export interface StorageV1ApiListCSIStorageCapacityForAllNamespacesRequest {
      */
     limit?: number
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApilistCSIStorageCapacityForAllNamespaces
      */
@@ -43350,7 +43504,7 @@ export interface StorageV1ApiListNamespacedCSIStorageCapacityRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApilistNamespacedCSIStorageCapacity
      */
@@ -43419,7 +43573,7 @@ export interface StorageV1ApiListNamespacedCSIStorageCapacityRequest {
 
 export interface StorageV1ApiListStorageClassRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApilistStorageClass
      */
@@ -43488,7 +43642,7 @@ export interface StorageV1ApiListStorageClassRequest {
 
 export interface StorageV1ApiListVolumeAttachmentRequest {
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApilistVolumeAttachment
      */
@@ -43569,7 +43723,7 @@ export interface StorageV1ApiPatchCSIDriverRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApipatchCSIDriver
      */
@@ -43614,7 +43768,7 @@ export interface StorageV1ApiPatchCSINodeRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApipatchCSINode
      */
@@ -43665,7 +43819,7 @@ export interface StorageV1ApiPatchNamespacedCSIStorageCapacityRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApipatchNamespacedCSIStorageCapacity
      */
@@ -43710,7 +43864,7 @@ export interface StorageV1ApiPatchStorageClassRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApipatchStorageClass
      */
@@ -43755,7 +43909,7 @@ export interface StorageV1ApiPatchVolumeAttachmentRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApipatchVolumeAttachment
      */
@@ -43800,7 +43954,7 @@ export interface StorageV1ApiPatchVolumeAttachmentStatusRequest {
      */
     body: any
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApipatchVolumeAttachmentStatus
      */
@@ -43839,7 +43993,7 @@ export interface StorageV1ApiReadCSIDriverRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApireadCSIDriver
      */
@@ -43854,7 +44008,7 @@ export interface StorageV1ApiReadCSINodeRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApireadCSINode
      */
@@ -43875,7 +44029,7 @@ export interface StorageV1ApiReadNamespacedCSIStorageCapacityRequest {
      */
     namespace: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApireadNamespacedCSIStorageCapacity
      */
@@ -43890,7 +44044,7 @@ export interface StorageV1ApiReadStorageClassRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApireadStorageClass
      */
@@ -43905,7 +44059,7 @@ export interface StorageV1ApiReadVolumeAttachmentRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApireadVolumeAttachment
      */
@@ -43920,7 +44074,7 @@ export interface StorageV1ApiReadVolumeAttachmentStatusRequest {
      */
     name: string
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApireadVolumeAttachmentStatus
      */
@@ -43941,7 +44095,7 @@ export interface StorageV1ApiReplaceCSIDriverRequest {
      */
     body: V1CSIDriver
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApireplaceCSIDriver
      */
@@ -43980,7 +44134,7 @@ export interface StorageV1ApiReplaceCSINodeRequest {
      */
     body: V1CSINode
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApireplaceCSINode
      */
@@ -44025,7 +44179,7 @@ export interface StorageV1ApiReplaceNamespacedCSIStorageCapacityRequest {
      */
     body: V1CSIStorageCapacity
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApireplaceNamespacedCSIStorageCapacity
      */
@@ -44064,7 +44218,7 @@ export interface StorageV1ApiReplaceStorageClassRequest {
      */
     body: V1StorageClass
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApireplaceStorageClass
      */
@@ -44103,7 +44257,7 @@ export interface StorageV1ApiReplaceVolumeAttachmentRequest {
      */
     body: V1VolumeAttachment
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApireplaceVolumeAttachment
      */
@@ -44142,7 +44296,7 @@ export interface StorageV1ApiReplaceVolumeAttachmentStatusRequest {
      */
     body: V1VolumeAttachment
     /**
-     * If \&#39;true\&#39;, then the output is pretty printed.
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof StorageV1ApireplaceVolumeAttachmentStatus
      */
@@ -44812,6 +44966,482 @@ export class ObjectStorageV1Api {
      */
     public replaceVolumeAttachmentStatus(param: StorageV1ApiReplaceVolumeAttachmentStatusRequest, options?: Configuration): Promise<V1VolumeAttachment> {
         return this.api.replaceVolumeAttachmentStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+}
+
+import { ObservableStorageV1alpha1Api } from "./ObservableAPI";
+import { StorageV1alpha1ApiRequestFactory, StorageV1alpha1ApiResponseProcessor} from "../apis/StorageV1alpha1Api";
+
+export interface StorageV1alpha1ApiCreateVolumeAttributesClassRequest {
+    /**
+     * 
+     * @type V1alpha1VolumeAttributesClass
+     * @memberof StorageV1alpha1ApicreateVolumeAttributesClass
+     */
+    body: V1alpha1VolumeAttributesClass
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof StorageV1alpha1ApicreateVolumeAttributesClass
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof StorageV1alpha1ApicreateVolumeAttributesClass
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @type string
+     * @memberof StorageV1alpha1ApicreateVolumeAttributesClass
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof StorageV1alpha1ApicreateVolumeAttributesClass
+     */
+    fieldValidation?: string
+}
+
+export interface StorageV1alpha1ApiDeleteCollectionVolumeAttributesClassRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof StorageV1alpha1ApideleteCollectionVolumeAttributesClass
+     */
+    pretty?: string
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof StorageV1alpha1ApideleteCollectionVolumeAttributesClass
+     */
+    _continue?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof StorageV1alpha1ApideleteCollectionVolumeAttributesClass
+     */
+    dryRun?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof StorageV1alpha1ApideleteCollectionVolumeAttributesClass
+     */
+    fieldSelector?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @type number
+     * @memberof StorageV1alpha1ApideleteCollectionVolumeAttributesClass
+     */
+    gracePeriodSeconds?: number
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof StorageV1alpha1ApideleteCollectionVolumeAttributesClass
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof StorageV1alpha1ApideleteCollectionVolumeAttributesClass
+     */
+    limit?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * @type boolean
+     * @memberof StorageV1alpha1ApideleteCollectionVolumeAttributesClass
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * @type string
+     * @memberof StorageV1alpha1ApideleteCollectionVolumeAttributesClass
+     */
+    propagationPolicy?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof StorageV1alpha1ApideleteCollectionVolumeAttributesClass
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof StorageV1alpha1ApideleteCollectionVolumeAttributesClass
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof StorageV1alpha1ApideleteCollectionVolumeAttributesClass
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof StorageV1alpha1ApideleteCollectionVolumeAttributesClass
+     */
+    timeoutSeconds?: number
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof StorageV1alpha1ApideleteCollectionVolumeAttributesClass
+     */
+    body?: V1DeleteOptions
+}
+
+export interface StorageV1alpha1ApiDeleteVolumeAttributesClassRequest {
+    /**
+     * name of the VolumeAttributesClass
+     * @type string
+     * @memberof StorageV1alpha1ApideleteVolumeAttributesClass
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof StorageV1alpha1ApideleteVolumeAttributesClass
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof StorageV1alpha1ApideleteVolumeAttributesClass
+     */
+    dryRun?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @type number
+     * @memberof StorageV1alpha1ApideleteVolumeAttributesClass
+     */
+    gracePeriodSeconds?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * @type boolean
+     * @memberof StorageV1alpha1ApideleteVolumeAttributesClass
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * @type string
+     * @memberof StorageV1alpha1ApideleteVolumeAttributesClass
+     */
+    propagationPolicy?: string
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof StorageV1alpha1ApideleteVolumeAttributesClass
+     */
+    body?: V1DeleteOptions
+}
+
+export interface StorageV1alpha1ApiGetAPIResourcesRequest {
+}
+
+export interface StorageV1alpha1ApiListVolumeAttributesClassRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof StorageV1alpha1ApilistVolumeAttributesClass
+     */
+    pretty?: string
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * @type boolean
+     * @memberof StorageV1alpha1ApilistVolumeAttributesClass
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof StorageV1alpha1ApilistVolumeAttributesClass
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof StorageV1alpha1ApilistVolumeAttributesClass
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof StorageV1alpha1ApilistVolumeAttributesClass
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof StorageV1alpha1ApilistVolumeAttributesClass
+     */
+    limit?: number
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof StorageV1alpha1ApilistVolumeAttributesClass
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof StorageV1alpha1ApilistVolumeAttributesClass
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof StorageV1alpha1ApilistVolumeAttributesClass
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof StorageV1alpha1ApilistVolumeAttributesClass
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * @type boolean
+     * @memberof StorageV1alpha1ApilistVolumeAttributesClass
+     */
+    watch?: boolean
+}
+
+export interface StorageV1alpha1ApiPatchVolumeAttributesClassRequest {
+    /**
+     * name of the VolumeAttributesClass
+     * @type string
+     * @memberof StorageV1alpha1ApipatchVolumeAttributesClass
+     */
+    name: string
+    /**
+     * 
+     * @type any
+     * @memberof StorageV1alpha1ApipatchVolumeAttributesClass
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof StorageV1alpha1ApipatchVolumeAttributesClass
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof StorageV1alpha1ApipatchVolumeAttributesClass
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @type string
+     * @memberof StorageV1alpha1ApipatchVolumeAttributesClass
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof StorageV1alpha1ApipatchVolumeAttributesClass
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * @type boolean
+     * @memberof StorageV1alpha1ApipatchVolumeAttributesClass
+     */
+    force?: boolean
+}
+
+export interface StorageV1alpha1ApiReadVolumeAttributesClassRequest {
+    /**
+     * name of the VolumeAttributesClass
+     * @type string
+     * @memberof StorageV1alpha1ApireadVolumeAttributesClass
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof StorageV1alpha1ApireadVolumeAttributesClass
+     */
+    pretty?: string
+}
+
+export interface StorageV1alpha1ApiReplaceVolumeAttributesClassRequest {
+    /**
+     * name of the VolumeAttributesClass
+     * @type string
+     * @memberof StorageV1alpha1ApireplaceVolumeAttributesClass
+     */
+    name: string
+    /**
+     * 
+     * @type V1alpha1VolumeAttributesClass
+     * @memberof StorageV1alpha1ApireplaceVolumeAttributesClass
+     */
+    body: V1alpha1VolumeAttributesClass
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof StorageV1alpha1ApireplaceVolumeAttributesClass
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof StorageV1alpha1ApireplaceVolumeAttributesClass
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @type string
+     * @memberof StorageV1alpha1ApireplaceVolumeAttributesClass
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof StorageV1alpha1ApireplaceVolumeAttributesClass
+     */
+    fieldValidation?: string
+}
+
+export class ObjectStorageV1alpha1Api {
+    private api: ObservableStorageV1alpha1Api
+
+    public constructor(configuration: Configuration, requestFactory?: StorageV1alpha1ApiRequestFactory, responseProcessor?: StorageV1alpha1ApiResponseProcessor) {
+        this.api = new ObservableStorageV1alpha1Api(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * create a VolumeAttributesClass
+     * @param param the request object
+     */
+    public createVolumeAttributesClassWithHttpInfo(param: StorageV1alpha1ApiCreateVolumeAttributesClassRequest, options?: Configuration): Promise<HttpInfo<V1alpha1VolumeAttributesClass>> {
+        return this.api.createVolumeAttributesClassWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create a VolumeAttributesClass
+     * @param param the request object
+     */
+    public createVolumeAttributesClass(param: StorageV1alpha1ApiCreateVolumeAttributesClassRequest, options?: Configuration): Promise<V1alpha1VolumeAttributesClass> {
+        return this.api.createVolumeAttributesClass(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * delete collection of VolumeAttributesClass
+     * @param param the request object
+     */
+    public deleteCollectionVolumeAttributesClassWithHttpInfo(param: StorageV1alpha1ApiDeleteCollectionVolumeAttributesClassRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionVolumeAttributesClassWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of VolumeAttributesClass
+     * @param param the request object
+     */
+    public deleteCollectionVolumeAttributesClass(param: StorageV1alpha1ApiDeleteCollectionVolumeAttributesClassRequest = {}, options?: Configuration): Promise<V1Status> {
+        return this.api.deleteCollectionVolumeAttributesClass(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a VolumeAttributesClass
+     * @param param the request object
+     */
+    public deleteVolumeAttributesClassWithHttpInfo(param: StorageV1alpha1ApiDeleteVolumeAttributesClassRequest, options?: Configuration): Promise<HttpInfo<V1alpha1VolumeAttributesClass>> {
+        return this.api.deleteVolumeAttributesClassWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a VolumeAttributesClass
+     * @param param the request object
+     */
+    public deleteVolumeAttributesClass(param: StorageV1alpha1ApiDeleteVolumeAttributesClassRequest, options?: Configuration): Promise<V1alpha1VolumeAttributesClass> {
+        return this.api.deleteVolumeAttributesClass(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: StorageV1alpha1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResources(param: StorageV1alpha1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<V1APIResourceList> {
+        return this.api.getAPIResources( options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind VolumeAttributesClass
+     * @param param the request object
+     */
+    public listVolumeAttributesClassWithHttpInfo(param: StorageV1alpha1ApiListVolumeAttributesClassRequest = {}, options?: Configuration): Promise<HttpInfo<V1alpha1VolumeAttributesClassList>> {
+        return this.api.listVolumeAttributesClassWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind VolumeAttributesClass
+     * @param param the request object
+     */
+    public listVolumeAttributesClass(param: StorageV1alpha1ApiListVolumeAttributesClassRequest = {}, options?: Configuration): Promise<V1alpha1VolumeAttributesClassList> {
+        return this.api.listVolumeAttributesClass(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified VolumeAttributesClass
+     * @param param the request object
+     */
+    public patchVolumeAttributesClassWithHttpInfo(param: StorageV1alpha1ApiPatchVolumeAttributesClassRequest, options?: Configuration): Promise<HttpInfo<V1alpha1VolumeAttributesClass>> {
+        return this.api.patchVolumeAttributesClassWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified VolumeAttributesClass
+     * @param param the request object
+     */
+    public patchVolumeAttributesClass(param: StorageV1alpha1ApiPatchVolumeAttributesClassRequest, options?: Configuration): Promise<V1alpha1VolumeAttributesClass> {
+        return this.api.patchVolumeAttributesClass(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * read the specified VolumeAttributesClass
+     * @param param the request object
+     */
+    public readVolumeAttributesClassWithHttpInfo(param: StorageV1alpha1ApiReadVolumeAttributesClassRequest, options?: Configuration): Promise<HttpInfo<V1alpha1VolumeAttributesClass>> {
+        return this.api.readVolumeAttributesClassWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified VolumeAttributesClass
+     * @param param the request object
+     */
+    public readVolumeAttributesClass(param: StorageV1alpha1ApiReadVolumeAttributesClassRequest, options?: Configuration): Promise<V1alpha1VolumeAttributesClass> {
+        return this.api.readVolumeAttributesClass(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified VolumeAttributesClass
+     * @param param the request object
+     */
+    public replaceVolumeAttributesClassWithHttpInfo(param: StorageV1alpha1ApiReplaceVolumeAttributesClassRequest, options?: Configuration): Promise<HttpInfo<V1alpha1VolumeAttributesClass>> {
+        return this.api.replaceVolumeAttributesClassWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified VolumeAttributesClass
+     * @param param the request object
+     */
+    public replaceVolumeAttributesClass(param: StorageV1alpha1ApiReplaceVolumeAttributesClassRequest, options?: Configuration): Promise<V1alpha1VolumeAttributesClass> {
+        return this.api.replaceVolumeAttributesClass(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
 }
