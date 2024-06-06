@@ -299,6 +299,12 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                             "key": "key_example",
                           },
                         },
+                        matchLabelKeys: [
+                          "matchLabelKeys_example",
+                        ],
+                        mismatchLabelKeys: [
+                          "mismatchLabelKeys_example",
+                        ],
                         namespaceSelector: {
                           matchExpressions: [
                             {
@@ -337,6 +343,12 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                           "key": "key_example",
                         },
                       },
+                      matchLabelKeys: [
+                        "matchLabelKeys_example",
+                      ],
+                      mismatchLabelKeys: [
+                        "mismatchLabelKeys_example",
+                      ],
                       namespaceSelector: {
                         matchExpressions: [
                           {
@@ -376,6 +388,12 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                             "key": "key_example",
                           },
                         },
+                        matchLabelKeys: [
+                          "matchLabelKeys_example",
+                        ],
+                        mismatchLabelKeys: [
+                          "mismatchLabelKeys_example",
+                        ],
                         namespaceSelector: {
                           matchExpressions: [
                             {
@@ -414,6 +432,12 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                           "key": "key_example",
                         },
                       },
+                      matchLabelKeys: [
+                        "matchLabelKeys_example",
+                      ],
+                      mismatchLabelKeys: [
+                        "mismatchLabelKeys_example",
+                      ],
                       namespaceSelector: {
                         matchExpressions: [
                           {
@@ -506,6 +530,9 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                         port: "port_example",
                         scheme: "scheme_example",
                       },
+                      sleep: {
+                        seconds: 1,
+                      },
                       tcpSocket: {
                         host: "host_example",
                         port: "port_example",
@@ -528,6 +555,9 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                         path: "path_example",
                         port: "port_example",
                         scheme: "scheme_example",
+                      },
+                      sleep: {
+                        seconds: 1,
                       },
                       tcpSocket: {
                         host: "host_example",
@@ -806,6 +836,9 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                         port: "port_example",
                         scheme: "scheme_example",
                       },
+                      sleep: {
+                        seconds: 1,
+                      },
                       tcpSocket: {
                         host: "host_example",
                         port: "port_example",
@@ -828,6 +861,9 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                         path: "path_example",
                         port: "port_example",
                         scheme: "scheme_example",
+                      },
+                      sleep: {
+                        seconds: 1,
                       },
                       tcpSocket: {
                         host: "host_example",
@@ -1109,6 +1145,9 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                         port: "port_example",
                         scheme: "scheme_example",
                       },
+                      sleep: {
+                        seconds: 1,
+                      },
                       tcpSocket: {
                         host: "host_example",
                         port: "port_example",
@@ -1131,6 +1170,9 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                         path: "path_example",
                         port: "port_example",
                         scheme: "scheme_example",
+                      },
+                      sleep: {
+                        seconds: 1,
                       },
                       tcpSocket: {
                         host: "host_example",
@@ -1579,11 +1621,6 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                           namespace: "namespace_example",
                         },
                         resources: {
-                          claims: [
-                            {
-                              name: "name_example",
-                            },
-                          ],
                           limits: {
                             "key": "key_example",
                           },
@@ -1606,6 +1643,7 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                           },
                         },
                         storageClassName: "storageClassName_example",
+                        volumeAttributesClassName: "volumeAttributesClassName_example",
                         volumeMode: "volumeMode_example",
                         volumeName: "volumeName_example",
                       },
@@ -1697,6 +1735,26 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                     defaultMode: 1,
                     sources: [
                       {
+                        clusterTrustBundle: {
+                          labelSelector: {
+                            matchExpressions: [
+                              {
+                                key: "key_example",
+                                operator: "operator_example",
+                                values: [
+                                  "values_example",
+                                ],
+                              },
+                            ],
+                            matchLabels: {
+                              "key": "key_example",
+                            },
+                          },
+                          name: "name_example",
+                          optional: true,
+                          path: "path_example",
+                          signerName: "signerName_example",
+                        },
                         configMap: {
                           items: [
                             {
@@ -1836,7 +1894,7 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
       lastSuccessfulTime: new Date('1970-01-01T00:00:00.00Z'),
     },
   },
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
   // string | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
   dryRun: "dryRun_example",
@@ -1858,7 +1916,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **V1CronJob**|  |
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
  **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
@@ -2112,6 +2170,12 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                         "key": "key_example",
                       },
                     },
+                    matchLabelKeys: [
+                      "matchLabelKeys_example",
+                    ],
+                    mismatchLabelKeys: [
+                      "mismatchLabelKeys_example",
+                    ],
                     namespaceSelector: {
                       matchExpressions: [
                         {
@@ -2150,6 +2214,12 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                       "key": "key_example",
                     },
                   },
+                  matchLabelKeys: [
+                    "matchLabelKeys_example",
+                  ],
+                  mismatchLabelKeys: [
+                    "mismatchLabelKeys_example",
+                  ],
                   namespaceSelector: {
                     matchExpressions: [
                       {
@@ -2189,6 +2259,12 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                         "key": "key_example",
                       },
                     },
+                    matchLabelKeys: [
+                      "matchLabelKeys_example",
+                    ],
+                    mismatchLabelKeys: [
+                      "mismatchLabelKeys_example",
+                    ],
                     namespaceSelector: {
                       matchExpressions: [
                         {
@@ -2227,6 +2303,12 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                       "key": "key_example",
                     },
                   },
+                  matchLabelKeys: [
+                    "matchLabelKeys_example",
+                  ],
+                  mismatchLabelKeys: [
+                    "mismatchLabelKeys_example",
+                  ],
                   namespaceSelector: {
                     matchExpressions: [
                       {
@@ -2319,6 +2401,9 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                     port: "port_example",
                     scheme: "scheme_example",
                   },
+                  sleep: {
+                    seconds: 1,
+                  },
                   tcpSocket: {
                     host: "host_example",
                     port: "port_example",
@@ -2341,6 +2426,9 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                     path: "path_example",
                     port: "port_example",
                     scheme: "scheme_example",
+                  },
+                  sleep: {
+                    seconds: 1,
                   },
                   tcpSocket: {
                     host: "host_example",
@@ -2619,6 +2707,9 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                     port: "port_example",
                     scheme: "scheme_example",
                   },
+                  sleep: {
+                    seconds: 1,
+                  },
                   tcpSocket: {
                     host: "host_example",
                     port: "port_example",
@@ -2641,6 +2732,9 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                     path: "path_example",
                     port: "port_example",
                     scheme: "scheme_example",
+                  },
+                  sleep: {
+                    seconds: 1,
                   },
                   tcpSocket: {
                     host: "host_example",
@@ -2922,6 +3016,9 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                     port: "port_example",
                     scheme: "scheme_example",
                   },
+                  sleep: {
+                    seconds: 1,
+                  },
                   tcpSocket: {
                     host: "host_example",
                     port: "port_example",
@@ -2944,6 +3041,9 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                     path: "path_example",
                     port: "port_example",
                     scheme: "scheme_example",
+                  },
+                  sleep: {
+                    seconds: 1,
                   },
                   tcpSocket: {
                     host: "host_example",
@@ -3392,11 +3492,6 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                       namespace: "namespace_example",
                     },
                     resources: {
-                      claims: [
-                        {
-                          name: "name_example",
-                        },
-                      ],
                       limits: {
                         "key": "key_example",
                       },
@@ -3419,6 +3514,7 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                       },
                     },
                     storageClassName: "storageClassName_example",
+                    volumeAttributesClassName: "volumeAttributesClassName_example",
                     volumeMode: "volumeMode_example",
                     volumeName: "volumeName_example",
                   },
@@ -3510,6 +3606,26 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                 defaultMode: 1,
                 sources: [
                   {
+                    clusterTrustBundle: {
+                      labelSelector: {
+                        matchExpressions: [
+                          {
+                            key: "key_example",
+                            operator: "operator_example",
+                            values: [
+                              "values_example",
+                            ],
+                          },
+                        ],
+                        matchLabels: {
+                          "key": "key_example",
+                        },
+                      },
+                      name: "name_example",
+                      optional: true,
+                      path: "path_example",
+                      signerName: "signerName_example",
+                    },
                     configMap: {
                       items: [
                         {
@@ -3656,7 +3772,7 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
       },
     },
   },
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
   // string | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
   dryRun: "dryRun_example",
@@ -3678,7 +3794,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **V1Job**|  |
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
  **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
@@ -3726,7 +3842,7 @@ const apiInstance = new .BatchV1Api(configuration);
 let body:.BatchV1ApiDeleteCollectionNamespacedCronJobRequest = {
   // string | object name and auth scope, such as for teams and projects
   namespace: "namespace_example",
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
   // string | The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
   _continue: "continue_example",
@@ -3781,7 +3897,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **V1DeleteOptions**|  |
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **_continue** | [**string**] | The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
@@ -3836,7 +3952,7 @@ const apiInstance = new .BatchV1Api(configuration);
 let body:.BatchV1ApiDeleteCollectionNamespacedJobRequest = {
   // string | object name and auth scope, such as for teams and projects
   namespace: "namespace_example",
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
   // string | The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
   _continue: "continue_example",
@@ -3891,7 +4007,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **V1DeleteOptions**|  |
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **_continue** | [**string**] | The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
@@ -3948,7 +4064,7 @@ let body:.BatchV1ApiDeleteNamespacedCronJobRequest = {
   name: "name_example",
   // string | object name and auth scope, such as for teams and projects
   namespace: "namespace_example",
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
   // string | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
   dryRun: "dryRun_example",
@@ -3988,7 +4104,7 @@ Name | Type | Description  | Notes
  **body** | **V1DeleteOptions**|  |
  **name** | [**string**] | name of the CronJob | defaults to undefined
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -4038,7 +4154,7 @@ let body:.BatchV1ApiDeleteNamespacedJobRequest = {
   name: "name_example",
   // string | object name and auth scope, such as for teams and projects
   namespace: "namespace_example",
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
   // string | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
   dryRun: "dryRun_example",
@@ -4078,7 +4194,7 @@ Name | Type | Description  | Notes
  **body** | **V1DeleteOptions**|  |
  **name** | [**string**] | name of the Job | defaults to undefined
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -4183,7 +4299,7 @@ let body:.BatchV1ApiListCronJobForAllNamespacesRequest = {
   labelSelector: "labelSelector_example",
   // number | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
   limit: 1,
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
   // string | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersion: "resourceVersion_example",
@@ -4212,7 +4328,7 @@ Name | Type | Description  | Notes
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
@@ -4268,7 +4384,7 @@ let body:.BatchV1ApiListJobForAllNamespacesRequest = {
   labelSelector: "labelSelector_example",
   // number | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
   limit: 1,
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
   // string | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset (optional)
   resourceVersion: "resourceVersion_example",
@@ -4297,7 +4413,7 @@ Name | Type | Description  | Notes
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **resourceVersion** | [**string**] | resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **resourceVersionMatch** | [**string**] | resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset | (optional) defaults to undefined
  **sendInitialEvents** | [**boolean**] | &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise. | (optional) defaults to undefined
@@ -4345,7 +4461,7 @@ const apiInstance = new .BatchV1Api(configuration);
 let body:.BatchV1ApiListNamespacedCronJobRequest = {
   // string | object name and auth scope, such as for teams and projects
   namespace: "namespace_example",
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
   // boolean | allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\'s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. (optional)
   allowWatchBookmarks: true,
@@ -4380,7 +4496,7 @@ apiInstance.listNamespacedCronJob(body).then((data:any) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **allowWatchBookmarks** | [**boolean**] | allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. | (optional) defaults to undefined
  **_continue** | [**string**] | The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
@@ -4433,7 +4549,7 @@ const apiInstance = new .BatchV1Api(configuration);
 let body:.BatchV1ApiListNamespacedJobRequest = {
   // string | object name and auth scope, such as for teams and projects
   namespace: "namespace_example",
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
   // boolean | allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\'s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. (optional)
   allowWatchBookmarks: true,
@@ -4468,7 +4584,7 @@ apiInstance.listNamespacedJob(body).then((data:any) => {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **allowWatchBookmarks** | [**boolean**] | allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. | (optional) defaults to undefined
  **_continue** | [**string**] | The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
@@ -4525,7 +4641,7 @@ let body:.BatchV1ApiPatchNamespacedCronJobRequest = {
   namespace: "namespace_example",
   // any
   body: {},
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
   // string | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
   dryRun: "dryRun_example",
@@ -4550,7 +4666,7 @@ Name | Type | Description  | Notes
  **body** | **any**|  |
  **name** | [**string**] | name of the CronJob | defaults to undefined
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
  **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
@@ -4602,7 +4718,7 @@ let body:.BatchV1ApiPatchNamespacedCronJobStatusRequest = {
   namespace: "namespace_example",
   // any
   body: {},
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
   // string | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
   dryRun: "dryRun_example",
@@ -4627,7 +4743,7 @@ Name | Type | Description  | Notes
  **body** | **any**|  |
  **name** | [**string**] | name of the CronJob | defaults to undefined
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
  **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
@@ -4679,7 +4795,7 @@ let body:.BatchV1ApiPatchNamespacedJobRequest = {
   namespace: "namespace_example",
   // any
   body: {},
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
   // string | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
   dryRun: "dryRun_example",
@@ -4704,7 +4820,7 @@ Name | Type | Description  | Notes
  **body** | **any**|  |
  **name** | [**string**] | name of the Job | defaults to undefined
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
  **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
@@ -4756,7 +4872,7 @@ let body:.BatchV1ApiPatchNamespacedJobStatusRequest = {
   namespace: "namespace_example",
   // any
   body: {},
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
   // string | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
   dryRun: "dryRun_example",
@@ -4781,7 +4897,7 @@ Name | Type | Description  | Notes
  **body** | **any**|  |
  **name** | [**string**] | name of the Job | defaults to undefined
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
  **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
@@ -4831,7 +4947,7 @@ let body:.BatchV1ApiReadNamespacedCronJobRequest = {
   name: "name_example",
   // string | object name and auth scope, such as for teams and projects
   namespace: "namespace_example",
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
 };
 
@@ -4847,7 +4963,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | [**string**] | name of the CronJob | defaults to undefined
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
 
 
 ### Return type
@@ -4892,7 +5008,7 @@ let body:.BatchV1ApiReadNamespacedCronJobStatusRequest = {
   name: "name_example",
   // string | object name and auth scope, such as for teams and projects
   namespace: "namespace_example",
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
 };
 
@@ -4908,7 +5024,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | [**string**] | name of the CronJob | defaults to undefined
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
 
 
 ### Return type
@@ -4953,7 +5069,7 @@ let body:.BatchV1ApiReadNamespacedJobRequest = {
   name: "name_example",
   // string | object name and auth scope, such as for teams and projects
   namespace: "namespace_example",
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
 };
 
@@ -4969,7 +5085,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | [**string**] | name of the Job | defaults to undefined
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
 
 
 ### Return type
@@ -5014,7 +5130,7 @@ let body:.BatchV1ApiReadNamespacedJobStatusRequest = {
   name: "name_example",
   // string | object name and auth scope, such as for teams and projects
   namespace: "namespace_example",
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
 };
 
@@ -5030,7 +5146,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | [**string**] | name of the Job | defaults to undefined
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
 
 
 ### Return type
@@ -5327,6 +5443,12 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                             "key": "key_example",
                           },
                         },
+                        matchLabelKeys: [
+                          "matchLabelKeys_example",
+                        ],
+                        mismatchLabelKeys: [
+                          "mismatchLabelKeys_example",
+                        ],
                         namespaceSelector: {
                           matchExpressions: [
                             {
@@ -5365,6 +5487,12 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                           "key": "key_example",
                         },
                       },
+                      matchLabelKeys: [
+                        "matchLabelKeys_example",
+                      ],
+                      mismatchLabelKeys: [
+                        "mismatchLabelKeys_example",
+                      ],
                       namespaceSelector: {
                         matchExpressions: [
                           {
@@ -5404,6 +5532,12 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                             "key": "key_example",
                           },
                         },
+                        matchLabelKeys: [
+                          "matchLabelKeys_example",
+                        ],
+                        mismatchLabelKeys: [
+                          "mismatchLabelKeys_example",
+                        ],
                         namespaceSelector: {
                           matchExpressions: [
                             {
@@ -5442,6 +5576,12 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                           "key": "key_example",
                         },
                       },
+                      matchLabelKeys: [
+                        "matchLabelKeys_example",
+                      ],
+                      mismatchLabelKeys: [
+                        "mismatchLabelKeys_example",
+                      ],
                       namespaceSelector: {
                         matchExpressions: [
                           {
@@ -5534,6 +5674,9 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                         port: "port_example",
                         scheme: "scheme_example",
                       },
+                      sleep: {
+                        seconds: 1,
+                      },
                       tcpSocket: {
                         host: "host_example",
                         port: "port_example",
@@ -5556,6 +5699,9 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                         path: "path_example",
                         port: "port_example",
                         scheme: "scheme_example",
+                      },
+                      sleep: {
+                        seconds: 1,
                       },
                       tcpSocket: {
                         host: "host_example",
@@ -5834,6 +5980,9 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                         port: "port_example",
                         scheme: "scheme_example",
                       },
+                      sleep: {
+                        seconds: 1,
+                      },
                       tcpSocket: {
                         host: "host_example",
                         port: "port_example",
@@ -5856,6 +6005,9 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                         path: "path_example",
                         port: "port_example",
                         scheme: "scheme_example",
+                      },
+                      sleep: {
+                        seconds: 1,
                       },
                       tcpSocket: {
                         host: "host_example",
@@ -6137,6 +6289,9 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                         port: "port_example",
                         scheme: "scheme_example",
                       },
+                      sleep: {
+                        seconds: 1,
+                      },
                       tcpSocket: {
                         host: "host_example",
                         port: "port_example",
@@ -6159,6 +6314,9 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                         path: "path_example",
                         port: "port_example",
                         scheme: "scheme_example",
+                      },
+                      sleep: {
+                        seconds: 1,
                       },
                       tcpSocket: {
                         host: "host_example",
@@ -6607,11 +6765,6 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                           namespace: "namespace_example",
                         },
                         resources: {
-                          claims: [
-                            {
-                              name: "name_example",
-                            },
-                          ],
                           limits: {
                             "key": "key_example",
                           },
@@ -6634,6 +6787,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                           },
                         },
                         storageClassName: "storageClassName_example",
+                        volumeAttributesClassName: "volumeAttributesClassName_example",
                         volumeMode: "volumeMode_example",
                         volumeName: "volumeName_example",
                       },
@@ -6725,6 +6879,26 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                     defaultMode: 1,
                     sources: [
                       {
+                        clusterTrustBundle: {
+                          labelSelector: {
+                            matchExpressions: [
+                              {
+                                key: "key_example",
+                                operator: "operator_example",
+                                values: [
+                                  "values_example",
+                                ],
+                              },
+                            ],
+                            matchLabels: {
+                              "key": "key_example",
+                            },
+                          },
+                          name: "name_example",
+                          optional: true,
+                          path: "path_example",
+                          signerName: "signerName_example",
+                        },
                         configMap: {
                           items: [
                             {
@@ -6864,7 +7038,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
       lastSuccessfulTime: new Date('1970-01-01T00:00:00.00Z'),
     },
   },
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
   // string | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
   dryRun: "dryRun_example",
@@ -6887,7 +7061,7 @@ Name | Type | Description  | Notes
  **body** | **V1CronJob**|  |
  **name** | [**string**] | name of the CronJob | defaults to undefined
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
  **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
@@ -7188,6 +7362,12 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                             "key": "key_example",
                           },
                         },
+                        matchLabelKeys: [
+                          "matchLabelKeys_example",
+                        ],
+                        mismatchLabelKeys: [
+                          "mismatchLabelKeys_example",
+                        ],
                         namespaceSelector: {
                           matchExpressions: [
                             {
@@ -7226,6 +7406,12 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                           "key": "key_example",
                         },
                       },
+                      matchLabelKeys: [
+                        "matchLabelKeys_example",
+                      ],
+                      mismatchLabelKeys: [
+                        "mismatchLabelKeys_example",
+                      ],
                       namespaceSelector: {
                         matchExpressions: [
                           {
@@ -7265,6 +7451,12 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                             "key": "key_example",
                           },
                         },
+                        matchLabelKeys: [
+                          "matchLabelKeys_example",
+                        ],
+                        mismatchLabelKeys: [
+                          "mismatchLabelKeys_example",
+                        ],
                         namespaceSelector: {
                           matchExpressions: [
                             {
@@ -7303,6 +7495,12 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                           "key": "key_example",
                         },
                       },
+                      matchLabelKeys: [
+                        "matchLabelKeys_example",
+                      ],
+                      mismatchLabelKeys: [
+                        "mismatchLabelKeys_example",
+                      ],
                       namespaceSelector: {
                         matchExpressions: [
                           {
@@ -7395,6 +7593,9 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                         port: "port_example",
                         scheme: "scheme_example",
                       },
+                      sleep: {
+                        seconds: 1,
+                      },
                       tcpSocket: {
                         host: "host_example",
                         port: "port_example",
@@ -7417,6 +7618,9 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                         path: "path_example",
                         port: "port_example",
                         scheme: "scheme_example",
+                      },
+                      sleep: {
+                        seconds: 1,
                       },
                       tcpSocket: {
                         host: "host_example",
@@ -7695,6 +7899,9 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                         port: "port_example",
                         scheme: "scheme_example",
                       },
+                      sleep: {
+                        seconds: 1,
+                      },
                       tcpSocket: {
                         host: "host_example",
                         port: "port_example",
@@ -7717,6 +7924,9 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                         path: "path_example",
                         port: "port_example",
                         scheme: "scheme_example",
+                      },
+                      sleep: {
+                        seconds: 1,
                       },
                       tcpSocket: {
                         host: "host_example",
@@ -7998,6 +8208,9 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                         port: "port_example",
                         scheme: "scheme_example",
                       },
+                      sleep: {
+                        seconds: 1,
+                      },
                       tcpSocket: {
                         host: "host_example",
                         port: "port_example",
@@ -8020,6 +8233,9 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                         path: "path_example",
                         port: "port_example",
                         scheme: "scheme_example",
+                      },
+                      sleep: {
+                        seconds: 1,
                       },
                       tcpSocket: {
                         host: "host_example",
@@ -8468,11 +8684,6 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                           namespace: "namespace_example",
                         },
                         resources: {
-                          claims: [
-                            {
-                              name: "name_example",
-                            },
-                          ],
                           limits: {
                             "key": "key_example",
                           },
@@ -8495,6 +8706,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                           },
                         },
                         storageClassName: "storageClassName_example",
+                        volumeAttributesClassName: "volumeAttributesClassName_example",
                         volumeMode: "volumeMode_example",
                         volumeName: "volumeName_example",
                       },
@@ -8586,6 +8798,26 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                     defaultMode: 1,
                     sources: [
                       {
+                        clusterTrustBundle: {
+                          labelSelector: {
+                            matchExpressions: [
+                              {
+                                key: "key_example",
+                                operator: "operator_example",
+                                values: [
+                                  "values_example",
+                                ],
+                              },
+                            ],
+                            matchLabels: {
+                              "key": "key_example",
+                            },
+                          },
+                          name: "name_example",
+                          optional: true,
+                          path: "path_example",
+                          signerName: "signerName_example",
+                        },
                         configMap: {
                           items: [
                             {
@@ -8725,7 +8957,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
       lastSuccessfulTime: new Date('1970-01-01T00:00:00.00Z'),
     },
   },
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
   // string | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
   dryRun: "dryRun_example",
@@ -8748,7 +8980,7 @@ Name | Type | Description  | Notes
  **body** | **V1CronJob**|  |
  **name** | [**string**] | name of the CronJob | defaults to undefined
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
  **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
@@ -9003,6 +9235,12 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                         "key": "key_example",
                       },
                     },
+                    matchLabelKeys: [
+                      "matchLabelKeys_example",
+                    ],
+                    mismatchLabelKeys: [
+                      "mismatchLabelKeys_example",
+                    ],
                     namespaceSelector: {
                       matchExpressions: [
                         {
@@ -9041,6 +9279,12 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                       "key": "key_example",
                     },
                   },
+                  matchLabelKeys: [
+                    "matchLabelKeys_example",
+                  ],
+                  mismatchLabelKeys: [
+                    "mismatchLabelKeys_example",
+                  ],
                   namespaceSelector: {
                     matchExpressions: [
                       {
@@ -9080,6 +9324,12 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                         "key": "key_example",
                       },
                     },
+                    matchLabelKeys: [
+                      "matchLabelKeys_example",
+                    ],
+                    mismatchLabelKeys: [
+                      "mismatchLabelKeys_example",
+                    ],
                     namespaceSelector: {
                       matchExpressions: [
                         {
@@ -9118,6 +9368,12 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                       "key": "key_example",
                     },
                   },
+                  matchLabelKeys: [
+                    "matchLabelKeys_example",
+                  ],
+                  mismatchLabelKeys: [
+                    "mismatchLabelKeys_example",
+                  ],
                   namespaceSelector: {
                     matchExpressions: [
                       {
@@ -9210,6 +9466,9 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                     port: "port_example",
                     scheme: "scheme_example",
                   },
+                  sleep: {
+                    seconds: 1,
+                  },
                   tcpSocket: {
                     host: "host_example",
                     port: "port_example",
@@ -9232,6 +9491,9 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                     path: "path_example",
                     port: "port_example",
                     scheme: "scheme_example",
+                  },
+                  sleep: {
+                    seconds: 1,
                   },
                   tcpSocket: {
                     host: "host_example",
@@ -9510,6 +9772,9 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                     port: "port_example",
                     scheme: "scheme_example",
                   },
+                  sleep: {
+                    seconds: 1,
+                  },
                   tcpSocket: {
                     host: "host_example",
                     port: "port_example",
@@ -9532,6 +9797,9 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                     path: "path_example",
                     port: "port_example",
                     scheme: "scheme_example",
+                  },
+                  sleep: {
+                    seconds: 1,
                   },
                   tcpSocket: {
                     host: "host_example",
@@ -9813,6 +10081,9 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                     port: "port_example",
                     scheme: "scheme_example",
                   },
+                  sleep: {
+                    seconds: 1,
+                  },
                   tcpSocket: {
                     host: "host_example",
                     port: "port_example",
@@ -9835,6 +10106,9 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                     path: "path_example",
                     port: "port_example",
                     scheme: "scheme_example",
+                  },
+                  sleep: {
+                    seconds: 1,
                   },
                   tcpSocket: {
                     host: "host_example",
@@ -10283,11 +10557,6 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                       namespace: "namespace_example",
                     },
                     resources: {
-                      claims: [
-                        {
-                          name: "name_example",
-                        },
-                      ],
                       limits: {
                         "key": "key_example",
                       },
@@ -10310,6 +10579,7 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                       },
                     },
                     storageClassName: "storageClassName_example",
+                    volumeAttributesClassName: "volumeAttributesClassName_example",
                     volumeMode: "volumeMode_example",
                     volumeName: "volumeName_example",
                   },
@@ -10401,6 +10671,26 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                 defaultMode: 1,
                 sources: [
                   {
+                    clusterTrustBundle: {
+                      labelSelector: {
+                        matchExpressions: [
+                          {
+                            key: "key_example",
+                            operator: "operator_example",
+                            values: [
+                              "values_example",
+                            ],
+                          },
+                        ],
+                        matchLabels: {
+                          "key": "key_example",
+                        },
+                      },
+                      name: "name_example",
+                      optional: true,
+                      path: "path_example",
+                      signerName: "signerName_example",
+                    },
                     configMap: {
                       items: [
                         {
@@ -10547,7 +10837,7 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
       },
     },
   },
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
   // string | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
   dryRun: "dryRun_example",
@@ -10570,7 +10860,7 @@ Name | Type | Description  | Notes
  **body** | **V1Job**|  |
  **name** | [**string**] | name of the Job | defaults to undefined
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
  **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
@@ -10825,6 +11115,12 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                         "key": "key_example",
                       },
                     },
+                    matchLabelKeys: [
+                      "matchLabelKeys_example",
+                    ],
+                    mismatchLabelKeys: [
+                      "mismatchLabelKeys_example",
+                    ],
                     namespaceSelector: {
                       matchExpressions: [
                         {
@@ -10863,6 +11159,12 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                       "key": "key_example",
                     },
                   },
+                  matchLabelKeys: [
+                    "matchLabelKeys_example",
+                  ],
+                  mismatchLabelKeys: [
+                    "mismatchLabelKeys_example",
+                  ],
                   namespaceSelector: {
                     matchExpressions: [
                       {
@@ -10902,6 +11204,12 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                         "key": "key_example",
                       },
                     },
+                    matchLabelKeys: [
+                      "matchLabelKeys_example",
+                    ],
+                    mismatchLabelKeys: [
+                      "mismatchLabelKeys_example",
+                    ],
                     namespaceSelector: {
                       matchExpressions: [
                         {
@@ -10940,6 +11248,12 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                       "key": "key_example",
                     },
                   },
+                  matchLabelKeys: [
+                    "matchLabelKeys_example",
+                  ],
+                  mismatchLabelKeys: [
+                    "mismatchLabelKeys_example",
+                  ],
                   namespaceSelector: {
                     matchExpressions: [
                       {
@@ -11032,6 +11346,9 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                     port: "port_example",
                     scheme: "scheme_example",
                   },
+                  sleep: {
+                    seconds: 1,
+                  },
                   tcpSocket: {
                     host: "host_example",
                     port: "port_example",
@@ -11054,6 +11371,9 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                     path: "path_example",
                     port: "port_example",
                     scheme: "scheme_example",
+                  },
+                  sleep: {
+                    seconds: 1,
                   },
                   tcpSocket: {
                     host: "host_example",
@@ -11332,6 +11652,9 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                     port: "port_example",
                     scheme: "scheme_example",
                   },
+                  sleep: {
+                    seconds: 1,
+                  },
                   tcpSocket: {
                     host: "host_example",
                     port: "port_example",
@@ -11354,6 +11677,9 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                     path: "path_example",
                     port: "port_example",
                     scheme: "scheme_example",
+                  },
+                  sleep: {
+                    seconds: 1,
                   },
                   tcpSocket: {
                     host: "host_example",
@@ -11635,6 +11961,9 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                     port: "port_example",
                     scheme: "scheme_example",
                   },
+                  sleep: {
+                    seconds: 1,
+                  },
                   tcpSocket: {
                     host: "host_example",
                     port: "port_example",
@@ -11657,6 +11986,9 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                     path: "path_example",
                     port: "port_example",
                     scheme: "scheme_example",
+                  },
+                  sleep: {
+                    seconds: 1,
                   },
                   tcpSocket: {
                     host: "host_example",
@@ -12105,11 +12437,6 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                       namespace: "namespace_example",
                     },
                     resources: {
-                      claims: [
-                        {
-                          name: "name_example",
-                        },
-                      ],
                       limits: {
                         "key": "key_example",
                       },
@@ -12132,6 +12459,7 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                       },
                     },
                     storageClassName: "storageClassName_example",
+                    volumeAttributesClassName: "volumeAttributesClassName_example",
                     volumeMode: "volumeMode_example",
                     volumeName: "volumeName_example",
                   },
@@ -12223,6 +12551,26 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                 defaultMode: 1,
                 sources: [
                   {
+                    clusterTrustBundle: {
+                      labelSelector: {
+                        matchExpressions: [
+                          {
+                            key: "key_example",
+                            operator: "operator_example",
+                            values: [
+                              "values_example",
+                            ],
+                          },
+                        ],
+                        matchLabels: {
+                          "key": "key_example",
+                        },
+                      },
+                      name: "name_example",
+                      optional: true,
+                      path: "path_example",
+                      signerName: "signerName_example",
+                    },
                     configMap: {
                       items: [
                         {
@@ -12369,7 +12717,7 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
       },
     },
   },
-  // string | If \'true\', then the output is pretty printed. (optional)
+  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
   // string | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
   dryRun: "dryRun_example",
@@ -12392,7 +12740,7 @@ Name | Type | Description  | Notes
  **body** | **V1Job**|  |
  **name** | [**string**] | name of the Job | defaults to undefined
  **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
  **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
