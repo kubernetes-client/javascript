@@ -1,6 +1,6 @@
 {
     "name": "@kubernetes/client-node",
-    "version": "1.0.0-rc5",
+    "version": "1.0.0-rc6",
     "description": "NodeJS client for kubernetes",
     "repository": {
         "type": "git",
