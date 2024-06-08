@@ -31,7 +31,9 @@ import { V1APIVersions } from '../models/V1APIVersions';
 import { V1AWSElasticBlockStoreVolumeSource } from '../models/V1AWSElasticBlockStoreVolumeSource';
 import { V1Affinity } from '../models/V1Affinity';
 import { V1AggregationRule } from '../models/V1AggregationRule';
+import { V1AppArmorProfile } from '../models/V1AppArmorProfile';
 import { V1AttachedVolume } from '../models/V1AttachedVolume';
+import { V1AuditAnnotation } from '../models/V1AuditAnnotation';
 import { V1AzureDiskVolumeSource } from '../models/V1AzureDiskVolumeSource';
 import { V1AzureFilePersistentVolumeSource } from '../models/V1AzureFilePersistentVolumeSource';
 import { V1AzureFileVolumeSource } from '../models/V1AzureFileVolumeSource';
@@ -140,6 +142,7 @@ import { V1EventSource } from '../models/V1EventSource';
 import { V1Eviction } from '../models/V1Eviction';
 import { V1ExecAction } from '../models/V1ExecAction';
 import { V1ExemptPriorityLevelConfiguration } from '../models/V1ExemptPriorityLevelConfiguration';
+import { V1ExpressionWarning } from '../models/V1ExpressionWarning';
 import { V1ExternalDocumentation } from '../models/V1ExternalDocumentation';
 import { V1FCVolumeSource } from '../models/V1FCVolumeSource';
 import { V1FlexPersistentVolumeSource } from '../models/V1FlexPersistentVolumeSource';
@@ -217,11 +220,13 @@ import { V1LocalSubjectAccessReview } from '../models/V1LocalSubjectAccessReview
 import { V1LocalVolumeSource } from '../models/V1LocalVolumeSource';
 import { V1ManagedFieldsEntry } from '../models/V1ManagedFieldsEntry';
 import { V1MatchCondition } from '../models/V1MatchCondition';
+import { V1MatchResources } from '../models/V1MatchResources';
 import { V1ModifyVolumeStatus } from '../models/V1ModifyVolumeStatus';
 import { V1MutatingWebhook } from '../models/V1MutatingWebhook';
 import { V1MutatingWebhookConfiguration } from '../models/V1MutatingWebhookConfiguration';
 import { V1MutatingWebhookConfigurationList } from '../models/V1MutatingWebhookConfigurationList';
 import { V1NFSVolumeSource } from '../models/V1NFSVolumeSource';
+import { V1NamedRuleWithOperations } from '../models/V1NamedRuleWithOperations';
 import { V1Namespace } from '../models/V1Namespace';
 import { V1NamespaceCondition } from '../models/V1NamespaceCondition';
 import { V1NamespaceList } from '../models/V1NamespaceList';
@@ -242,6 +247,8 @@ import { V1NodeConfigSource } from '../models/V1NodeConfigSource';
 import { V1NodeConfigStatus } from '../models/V1NodeConfigStatus';
 import { V1NodeDaemonEndpoints } from '../models/V1NodeDaemonEndpoints';
 import { V1NodeList } from '../models/V1NodeList';
+import { V1NodeRuntimeHandler } from '../models/V1NodeRuntimeHandler';
+import { V1NodeRuntimeHandlerFeatures } from '../models/V1NodeRuntimeHandlerFeatures';
 import { V1NodeSelector } from '../models/V1NodeSelector';
 import { V1NodeSelectorRequirement } from '../models/V1NodeSelectorRequirement';
 import { V1NodeSelectorTerm } from '../models/V1NodeSelectorTerm';
@@ -256,6 +263,8 @@ import { V1ObjectMeta } from '../models/V1ObjectMeta';
 import { V1ObjectReference } from '../models/V1ObjectReference';
 import { V1Overhead } from '../models/V1Overhead';
 import { V1OwnerReference } from '../models/V1OwnerReference';
+import { V1ParamKind } from '../models/V1ParamKind';
+import { V1ParamRef } from '../models/V1ParamRef';
 import { V1PersistentVolume } from '../models/V1PersistentVolume';
 import { V1PersistentVolumeClaim } from '../models/V1PersistentVolumeClaim';
 import { V1PersistentVolumeClaimCondition } from '../models/V1PersistentVolumeClaimCondition';
@@ -365,6 +374,7 @@ import { V1SecretProjection } from '../models/V1SecretProjection';
 import { V1SecretReference } from '../models/V1SecretReference';
 import { V1SecretVolumeSource } from '../models/V1SecretVolumeSource';
 import { V1SecurityContext } from '../models/V1SecurityContext';
+import { V1SelectableField } from '../models/V1SelectableField';
 import { V1SelfSubjectAccessReview } from '../models/V1SelfSubjectAccessReview';
 import { V1SelfSubjectAccessReviewSpec } from '../models/V1SelfSubjectAccessReviewSpec';
 import { V1SelfSubjectReview } from '../models/V1SelfSubjectReview';
@@ -403,6 +413,8 @@ import { V1SubjectAccessReview } from '../models/V1SubjectAccessReview';
 import { V1SubjectAccessReviewSpec } from '../models/V1SubjectAccessReviewSpec';
 import { V1SubjectAccessReviewStatus } from '../models/V1SubjectAccessReviewStatus';
 import { V1SubjectRulesReviewStatus } from '../models/V1SubjectRulesReviewStatus';
+import { V1SuccessPolicy } from '../models/V1SuccessPolicy';
+import { V1SuccessPolicyRule } from '../models/V1SuccessPolicyRule';
 import { V1Sysctl } from '../models/V1Sysctl';
 import { V1TCPSocketAction } from '../models/V1TCPSocketAction';
 import { V1Taint } from '../models/V1Taint';
@@ -415,15 +427,25 @@ import { V1Toleration } from '../models/V1Toleration';
 import { V1TopologySelectorLabelRequirement } from '../models/V1TopologySelectorLabelRequirement';
 import { V1TopologySelectorTerm } from '../models/V1TopologySelectorTerm';
 import { V1TopologySpreadConstraint } from '../models/V1TopologySpreadConstraint';
+import { V1TypeChecking } from '../models/V1TypeChecking';
 import { V1TypedLocalObjectReference } from '../models/V1TypedLocalObjectReference';
 import { V1TypedObjectReference } from '../models/V1TypedObjectReference';
 import { V1UncountedTerminatedPods } from '../models/V1UncountedTerminatedPods';
 import { V1UserInfo } from '../models/V1UserInfo';
 import { V1UserSubject } from '../models/V1UserSubject';
+import { V1ValidatingAdmissionPolicy } from '../models/V1ValidatingAdmissionPolicy';
+import { V1ValidatingAdmissionPolicyBinding } from '../models/V1ValidatingAdmissionPolicyBinding';
+import { V1ValidatingAdmissionPolicyBindingList } from '../models/V1ValidatingAdmissionPolicyBindingList';
+import { V1ValidatingAdmissionPolicyBindingSpec } from '../models/V1ValidatingAdmissionPolicyBindingSpec';
+import { V1ValidatingAdmissionPolicyList } from '../models/V1ValidatingAdmissionPolicyList';
+import { V1ValidatingAdmissionPolicySpec } from '../models/V1ValidatingAdmissionPolicySpec';
+import { V1ValidatingAdmissionPolicyStatus } from '../models/V1ValidatingAdmissionPolicyStatus';
 import { V1ValidatingWebhook } from '../models/V1ValidatingWebhook';
 import { V1ValidatingWebhookConfiguration } from '../models/V1ValidatingWebhookConfiguration';
 import { V1ValidatingWebhookConfigurationList } from '../models/V1ValidatingWebhookConfigurationList';
+import { V1Validation } from '../models/V1Validation';
 import { V1ValidationRule } from '../models/V1ValidationRule';
+import { V1Variable } from '../models/V1Variable';
 import { V1Volume } from '../models/V1Volume';
 import { V1VolumeAttachment } from '../models/V1VolumeAttachment';
 import { V1VolumeAttachmentList } from '../models/V1VolumeAttachmentList';
@@ -433,6 +455,7 @@ import { V1VolumeAttachmentStatus } from '../models/V1VolumeAttachmentStatus';
 import { V1VolumeDevice } from '../models/V1VolumeDevice';
 import { V1VolumeError } from '../models/V1VolumeError';
 import { V1VolumeMount } from '../models/V1VolumeMount';
+import { V1VolumeMountStatus } from '../models/V1VolumeMountStatus';
 import { V1VolumeNodeAffinity } from '../models/V1VolumeNodeAffinity';
 import { V1VolumeNodeResources } from '../models/V1VolumeNodeResources';
 import { V1VolumeProjection } from '../models/V1VolumeProjection';
@@ -447,11 +470,13 @@ import { V1alpha1ClusterTrustBundle } from '../models/V1alpha1ClusterTrustBundle
 import { V1alpha1ClusterTrustBundleList } from '../models/V1alpha1ClusterTrustBundleList';
 import { V1alpha1ClusterTrustBundleSpec } from '../models/V1alpha1ClusterTrustBundleSpec';
 import { V1alpha1ExpressionWarning } from '../models/V1alpha1ExpressionWarning';
+import { V1alpha1GroupVersionResource } from '../models/V1alpha1GroupVersionResource';
 import { V1alpha1IPAddress } from '../models/V1alpha1IPAddress';
 import { V1alpha1IPAddressList } from '../models/V1alpha1IPAddressList';
 import { V1alpha1IPAddressSpec } from '../models/V1alpha1IPAddressSpec';
 import { V1alpha1MatchCondition } from '../models/V1alpha1MatchCondition';
 import { V1alpha1MatchResources } from '../models/V1alpha1MatchResources';
+import { V1alpha1MigrationCondition } from '../models/V1alpha1MigrationCondition';
 import { V1alpha1NamedRuleWithOperations } from '../models/V1alpha1NamedRuleWithOperations';
 import { V1alpha1ParamKind } from '../models/V1alpha1ParamKind';
 import { V1alpha1ParamRef } from '../models/V1alpha1ParamRef';
@@ -466,6 +491,10 @@ import { V1alpha1ServiceCIDRStatus } from '../models/V1alpha1ServiceCIDRStatus';
 import { V1alpha1StorageVersion } from '../models/V1alpha1StorageVersion';
 import { V1alpha1StorageVersionCondition } from '../models/V1alpha1StorageVersionCondition';
 import { V1alpha1StorageVersionList } from '../models/V1alpha1StorageVersionList';
+import { V1alpha1StorageVersionMigration } from '../models/V1alpha1StorageVersionMigration';
+import { V1alpha1StorageVersionMigrationList } from '../models/V1alpha1StorageVersionMigrationList';
+import { V1alpha1StorageVersionMigrationSpec } from '../models/V1alpha1StorageVersionMigrationSpec';
+import { V1alpha1StorageVersionMigrationStatus } from '../models/V1alpha1StorageVersionMigrationStatus';
 import { V1alpha1StorageVersionStatus } from '../models/V1alpha1StorageVersionStatus';
 import { V1alpha1TypeChecking } from '../models/V1alpha1TypeChecking';
 import { V1alpha1ValidatingAdmissionPolicy } from '../models/V1alpha1ValidatingAdmissionPolicy';
@@ -480,6 +509,16 @@ import { V1alpha1Variable } from '../models/V1alpha1Variable';
 import { V1alpha1VolumeAttributesClass } from '../models/V1alpha1VolumeAttributesClass';
 import { V1alpha1VolumeAttributesClassList } from '../models/V1alpha1VolumeAttributesClassList';
 import { V1alpha2AllocationResult } from '../models/V1alpha2AllocationResult';
+import { V1alpha2DriverAllocationResult } from '../models/V1alpha2DriverAllocationResult';
+import { V1alpha2DriverRequests } from '../models/V1alpha2DriverRequests';
+import { V1alpha2NamedResourcesAllocationResult } from '../models/V1alpha2NamedResourcesAllocationResult';
+import { V1alpha2NamedResourcesAttribute } from '../models/V1alpha2NamedResourcesAttribute';
+import { V1alpha2NamedResourcesFilter } from '../models/V1alpha2NamedResourcesFilter';
+import { V1alpha2NamedResourcesInstance } from '../models/V1alpha2NamedResourcesInstance';
+import { V1alpha2NamedResourcesIntSlice } from '../models/V1alpha2NamedResourcesIntSlice';
+import { V1alpha2NamedResourcesRequest } from '../models/V1alpha2NamedResourcesRequest';
+import { V1alpha2NamedResourcesResources } from '../models/V1alpha2NamedResourcesResources';
+import { V1alpha2NamedResourcesStringSlice } from '../models/V1alpha2NamedResourcesStringSlice';
 import { V1alpha2PodSchedulingContext } from '../models/V1alpha2PodSchedulingContext';
 import { V1alpha2PodSchedulingContextList } from '../models/V1alpha2PodSchedulingContextList';
 import { V1alpha2PodSchedulingContextSpec } from '../models/V1alpha2PodSchedulingContextSpec';
@@ -487,6 +526,8 @@ import { V1alpha2PodSchedulingContextStatus } from '../models/V1alpha2PodSchedul
 import { V1alpha2ResourceClaim } from '../models/V1alpha2ResourceClaim';
 import { V1alpha2ResourceClaimConsumerReference } from '../models/V1alpha2ResourceClaimConsumerReference';
 import { V1alpha2ResourceClaimList } from '../models/V1alpha2ResourceClaimList';
+import { V1alpha2ResourceClaimParameters } from '../models/V1alpha2ResourceClaimParameters';
+import { V1alpha2ResourceClaimParametersList } from '../models/V1alpha2ResourceClaimParametersList';
 import { V1alpha2ResourceClaimParametersReference } from '../models/V1alpha2ResourceClaimParametersReference';
 import { V1alpha2ResourceClaimSchedulingStatus } from '../models/V1alpha2ResourceClaimSchedulingStatus';
 import { V1alpha2ResourceClaimSpec } from '../models/V1alpha2ResourceClaimSpec';
@@ -496,8 +537,16 @@ import { V1alpha2ResourceClaimTemplateList } from '../models/V1alpha2ResourceCla
 import { V1alpha2ResourceClaimTemplateSpec } from '../models/V1alpha2ResourceClaimTemplateSpec';
 import { V1alpha2ResourceClass } from '../models/V1alpha2ResourceClass';
 import { V1alpha2ResourceClassList } from '../models/V1alpha2ResourceClassList';
+import { V1alpha2ResourceClassParameters } from '../models/V1alpha2ResourceClassParameters';
+import { V1alpha2ResourceClassParametersList } from '../models/V1alpha2ResourceClassParametersList';
 import { V1alpha2ResourceClassParametersReference } from '../models/V1alpha2ResourceClassParametersReference';
+import { V1alpha2ResourceFilter } from '../models/V1alpha2ResourceFilter';
 import { V1alpha2ResourceHandle } from '../models/V1alpha2ResourceHandle';
+import { V1alpha2ResourceRequest } from '../models/V1alpha2ResourceRequest';
+import { V1alpha2ResourceSlice } from '../models/V1alpha2ResourceSlice';
+import { V1alpha2ResourceSliceList } from '../models/V1alpha2ResourceSliceList';
+import { V1alpha2StructuredResourceHandle } from '../models/V1alpha2StructuredResourceHandle';
+import { V1alpha2VendorParameters } from '../models/V1alpha2VendorParameters';
 import { V1beta1AuditAnnotation } from '../models/V1beta1AuditAnnotation';
 import { V1beta1ExpressionWarning } from '../models/V1beta1ExpressionWarning';
 import { V1beta1MatchCondition } from '../models/V1beta1MatchCondition';
@@ -633,6 +682,72 @@ export interface AdmissionregistrationV1ApiCreateMutatingWebhookConfigurationReq
     fieldValidation?: string
 }
 
+export interface AdmissionregistrationV1ApiCreateValidatingAdmissionPolicyRequest {
+    /**
+     * 
+     * @type V1ValidatingAdmissionPolicy
+     * @memberof AdmissionregistrationV1ApicreateValidatingAdmissionPolicy
+     */
+    body: V1ValidatingAdmissionPolicy
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof AdmissionregistrationV1ApicreateValidatingAdmissionPolicy
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof AdmissionregistrationV1ApicreateValidatingAdmissionPolicy
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @type string
+     * @memberof AdmissionregistrationV1ApicreateValidatingAdmissionPolicy
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof AdmissionregistrationV1ApicreateValidatingAdmissionPolicy
+     */
+    fieldValidation?: string
+}
+
+export interface AdmissionregistrationV1ApiCreateValidatingAdmissionPolicyBindingRequest {
+    /**
+     * 
+     * @type V1ValidatingAdmissionPolicyBinding
+     * @memberof AdmissionregistrationV1ApicreateValidatingAdmissionPolicyBinding
+     */
+    body: V1ValidatingAdmissionPolicyBinding
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof AdmissionregistrationV1ApicreateValidatingAdmissionPolicyBinding
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof AdmissionregistrationV1ApicreateValidatingAdmissionPolicyBinding
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @type string
+     * @memberof AdmissionregistrationV1ApicreateValidatingAdmissionPolicyBinding
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof AdmissionregistrationV1ApicreateValidatingAdmissionPolicyBinding
+     */
+    fieldValidation?: string
+}
+
 export interface AdmissionregistrationV1ApiCreateValidatingWebhookConfigurationRequest {
     /**
      * 
@@ -749,6 +864,180 @@ export interface AdmissionregistrationV1ApiDeleteCollectionMutatingWebhookConfig
      * 
      * @type V1DeleteOptions
      * @memberof AdmissionregistrationV1ApideleteCollectionMutatingWebhookConfiguration
+     */
+    body?: V1DeleteOptions
+}
+
+export interface AdmissionregistrationV1ApiDeleteCollectionValidatingAdmissionPolicyRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicy
+     */
+    pretty?: string
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicy
+     */
+    _continue?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicy
+     */
+    dryRun?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicy
+     */
+    fieldSelector?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @type number
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicy
+     */
+    gracePeriodSeconds?: number
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicy
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicy
+     */
+    limit?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * @type boolean
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicy
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicy
+     */
+    propagationPolicy?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicy
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicy
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicy
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicy
+     */
+    timeoutSeconds?: number
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicy
+     */
+    body?: V1DeleteOptions
+}
+
+export interface AdmissionregistrationV1ApiDeleteCollectionValidatingAdmissionPolicyBindingRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicyBinding
+     */
+    pretty?: string
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicyBinding
+     */
+    _continue?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicyBinding
+     */
+    dryRun?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicyBinding
+     */
+    fieldSelector?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @type number
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicyBinding
+     */
+    gracePeriodSeconds?: number
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicyBinding
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicyBinding
+     */
+    limit?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * @type boolean
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicyBinding
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicyBinding
+     */
+    propagationPolicy?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicyBinding
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicyBinding
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicyBinding
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicyBinding
+     */
+    timeoutSeconds?: number
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof AdmissionregistrationV1ApideleteCollectionValidatingAdmissionPolicyBinding
      */
     body?: V1DeleteOptions
 }
@@ -885,6 +1174,96 @@ export interface AdmissionregistrationV1ApiDeleteMutatingWebhookConfigurationReq
     body?: V1DeleteOptions
 }
 
+export interface AdmissionregistrationV1ApiDeleteValidatingAdmissionPolicyRequest {
+    /**
+     * name of the ValidatingAdmissionPolicy
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteValidatingAdmissionPolicy
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteValidatingAdmissionPolicy
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteValidatingAdmissionPolicy
+     */
+    dryRun?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @type number
+     * @memberof AdmissionregistrationV1ApideleteValidatingAdmissionPolicy
+     */
+    gracePeriodSeconds?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * @type boolean
+     * @memberof AdmissionregistrationV1ApideleteValidatingAdmissionPolicy
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteValidatingAdmissionPolicy
+     */
+    propagationPolicy?: string
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof AdmissionregistrationV1ApideleteValidatingAdmissionPolicy
+     */
+    body?: V1DeleteOptions
+}
+
+export interface AdmissionregistrationV1ApiDeleteValidatingAdmissionPolicyBindingRequest {
+    /**
+     * name of the ValidatingAdmissionPolicyBinding
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteValidatingAdmissionPolicyBinding
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteValidatingAdmissionPolicyBinding
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteValidatingAdmissionPolicyBinding
+     */
+    dryRun?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @type number
+     * @memberof AdmissionregistrationV1ApideleteValidatingAdmissionPolicyBinding
+     */
+    gracePeriodSeconds?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * @type boolean
+     * @memberof AdmissionregistrationV1ApideleteValidatingAdmissionPolicyBinding
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * @type string
+     * @memberof AdmissionregistrationV1ApideleteValidatingAdmissionPolicyBinding
+     */
+    propagationPolicy?: string
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof AdmissionregistrationV1ApideleteValidatingAdmissionPolicyBinding
+     */
+    body?: V1DeleteOptions
+}
+
 export interface AdmissionregistrationV1ApiDeleteValidatingWebhookConfigurationRequest {
     /**
      * name of the ValidatingWebhookConfiguration
@@ -998,6 +1377,144 @@ export interface AdmissionregistrationV1ApiListMutatingWebhookConfigurationReque
      * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      * @type boolean
      * @memberof AdmissionregistrationV1ApilistMutatingWebhookConfiguration
+     */
+    watch?: boolean
+}
+
+export interface AdmissionregistrationV1ApiListValidatingAdmissionPolicyRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicy
+     */
+    pretty?: string
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * @type boolean
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicy
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicy
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicy
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicy
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicy
+     */
+    limit?: number
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicy
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicy
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicy
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicy
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * @type boolean
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicy
+     */
+    watch?: boolean
+}
+
+export interface AdmissionregistrationV1ApiListValidatingAdmissionPolicyBindingRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicyBinding
+     */
+    pretty?: string
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * @type boolean
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicyBinding
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicyBinding
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicyBinding
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicyBinding
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicyBinding
+     */
+    limit?: number
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicyBinding
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicyBinding
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicyBinding
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicyBinding
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * @type boolean
+     * @memberof AdmissionregistrationV1ApilistValidatingAdmissionPolicyBinding
      */
     watch?: boolean
 }
@@ -1116,6 +1633,141 @@ export interface AdmissionregistrationV1ApiPatchMutatingWebhookConfigurationRequ
     force?: boolean
 }
 
+export interface AdmissionregistrationV1ApiPatchValidatingAdmissionPolicyRequest {
+    /**
+     * name of the ValidatingAdmissionPolicy
+     * @type string
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicy
+     */
+    name: string
+    /**
+     * 
+     * @type any
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicy
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicy
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicy
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @type string
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicy
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicy
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * @type boolean
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicy
+     */
+    force?: boolean
+}
+
+export interface AdmissionregistrationV1ApiPatchValidatingAdmissionPolicyBindingRequest {
+    /**
+     * name of the ValidatingAdmissionPolicyBinding
+     * @type string
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicyBinding
+     */
+    name: string
+    /**
+     * 
+     * @type any
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicyBinding
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicyBinding
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicyBinding
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @type string
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicyBinding
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicyBinding
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * @type boolean
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicyBinding
+     */
+    force?: boolean
+}
+
+export interface AdmissionregistrationV1ApiPatchValidatingAdmissionPolicyStatusRequest {
+    /**
+     * name of the ValidatingAdmissionPolicy
+     * @type string
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicyStatus
+     */
+    name: string
+    /**
+     * 
+     * @type any
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicyStatus
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicyStatus
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicyStatus
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @type string
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicyStatus
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicyStatus
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * @type boolean
+     * @memberof AdmissionregistrationV1ApipatchValidatingAdmissionPolicyStatus
+     */
+    force?: boolean
+}
+
 export interface AdmissionregistrationV1ApiPatchValidatingWebhookConfigurationRequest {
     /**
      * name of the ValidatingWebhookConfiguration
@@ -1176,6 +1828,51 @@ export interface AdmissionregistrationV1ApiReadMutatingWebhookConfigurationReque
     pretty?: string
 }
 
+export interface AdmissionregistrationV1ApiReadValidatingAdmissionPolicyRequest {
+    /**
+     * name of the ValidatingAdmissionPolicy
+     * @type string
+     * @memberof AdmissionregistrationV1ApireadValidatingAdmissionPolicy
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof AdmissionregistrationV1ApireadValidatingAdmissionPolicy
+     */
+    pretty?: string
+}
+
+export interface AdmissionregistrationV1ApiReadValidatingAdmissionPolicyBindingRequest {
+    /**
+     * name of the ValidatingAdmissionPolicyBinding
+     * @type string
+     * @memberof AdmissionregistrationV1ApireadValidatingAdmissionPolicyBinding
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof AdmissionregistrationV1ApireadValidatingAdmissionPolicyBinding
+     */
+    pretty?: string
+}
+
+export interface AdmissionregistrationV1ApiReadValidatingAdmissionPolicyStatusRequest {
+    /**
+     * name of the ValidatingAdmissionPolicy
+     * @type string
+     * @memberof AdmissionregistrationV1ApireadValidatingAdmissionPolicyStatus
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof AdmissionregistrationV1ApireadValidatingAdmissionPolicyStatus
+     */
+    pretty?: string
+}
+
 export interface AdmissionregistrationV1ApiReadValidatingWebhookConfigurationRequest {
     /**
      * name of the ValidatingWebhookConfiguration
@@ -1226,6 +1923,123 @@ export interface AdmissionregistrationV1ApiReplaceMutatingWebhookConfigurationRe
      * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @type string
      * @memberof AdmissionregistrationV1ApireplaceMutatingWebhookConfiguration
+     */
+    fieldValidation?: string
+}
+
+export interface AdmissionregistrationV1ApiReplaceValidatingAdmissionPolicyRequest {
+    /**
+     * name of the ValidatingAdmissionPolicy
+     * @type string
+     * @memberof AdmissionregistrationV1ApireplaceValidatingAdmissionPolicy
+     */
+    name: string
+    /**
+     * 
+     * @type V1ValidatingAdmissionPolicy
+     * @memberof AdmissionregistrationV1ApireplaceValidatingAdmissionPolicy
+     */
+    body: V1ValidatingAdmissionPolicy
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof AdmissionregistrationV1ApireplaceValidatingAdmissionPolicy
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof AdmissionregistrationV1ApireplaceValidatingAdmissionPolicy
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @type string
+     * @memberof AdmissionregistrationV1ApireplaceValidatingAdmissionPolicy
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof AdmissionregistrationV1ApireplaceValidatingAdmissionPolicy
+     */
+    fieldValidation?: string
+}
+
+export interface AdmissionregistrationV1ApiReplaceValidatingAdmissionPolicyBindingRequest {
+    /**
+     * name of the ValidatingAdmissionPolicyBinding
+     * @type string
+     * @memberof AdmissionregistrationV1ApireplaceValidatingAdmissionPolicyBinding
+     */
+    name: string
+    /**
+     * 
+     * @type V1ValidatingAdmissionPolicyBinding
+     * @memberof AdmissionregistrationV1ApireplaceValidatingAdmissionPolicyBinding
+     */
+    body: V1ValidatingAdmissionPolicyBinding
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof AdmissionregistrationV1ApireplaceValidatingAdmissionPolicyBinding
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof AdmissionregistrationV1ApireplaceValidatingAdmissionPolicyBinding
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @type string
+     * @memberof AdmissionregistrationV1ApireplaceValidatingAdmissionPolicyBinding
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof AdmissionregistrationV1ApireplaceValidatingAdmissionPolicyBinding
+     */
+    fieldValidation?: string
+}
+
+export interface AdmissionregistrationV1ApiReplaceValidatingAdmissionPolicyStatusRequest {
+    /**
+     * name of the ValidatingAdmissionPolicy
+     * @type string
+     * @memberof AdmissionregistrationV1ApireplaceValidatingAdmissionPolicyStatus
+     */
+    name: string
+    /**
+     * 
+     * @type V1ValidatingAdmissionPolicy
+     * @memberof AdmissionregistrationV1ApireplaceValidatingAdmissionPolicyStatus
+     */
+    body: V1ValidatingAdmissionPolicy
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof AdmissionregistrationV1ApireplaceValidatingAdmissionPolicyStatus
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof AdmissionregistrationV1ApireplaceValidatingAdmissionPolicyStatus
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @type string
+     * @memberof AdmissionregistrationV1ApireplaceValidatingAdmissionPolicyStatus
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof AdmissionregistrationV1ApireplaceValidatingAdmissionPolicyStatus
      */
     fieldValidation?: string
 }
@@ -1293,6 +2107,38 @@ export class ObjectAdmissionregistrationV1Api {
     }
 
     /**
+     * create a ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public createValidatingAdmissionPolicyWithHttpInfo(param: AdmissionregistrationV1ApiCreateValidatingAdmissionPolicyRequest, options?: Configuration): Promise<HttpInfo<V1ValidatingAdmissionPolicy>> {
+        return this.api.createValidatingAdmissionPolicyWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create a ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public createValidatingAdmissionPolicy(param: AdmissionregistrationV1ApiCreateValidatingAdmissionPolicyRequest, options?: Configuration): Promise<V1ValidatingAdmissionPolicy> {
+        return this.api.createValidatingAdmissionPolicy(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create a ValidatingAdmissionPolicyBinding
+     * @param param the request object
+     */
+    public createValidatingAdmissionPolicyBindingWithHttpInfo(param: AdmissionregistrationV1ApiCreateValidatingAdmissionPolicyBindingRequest, options?: Configuration): Promise<HttpInfo<V1ValidatingAdmissionPolicyBinding>> {
+        return this.api.createValidatingAdmissionPolicyBindingWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create a ValidatingAdmissionPolicyBinding
+     * @param param the request object
+     */
+    public createValidatingAdmissionPolicyBinding(param: AdmissionregistrationV1ApiCreateValidatingAdmissionPolicyBindingRequest, options?: Configuration): Promise<V1ValidatingAdmissionPolicyBinding> {
+        return this.api.createValidatingAdmissionPolicyBinding(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
      * create a ValidatingWebhookConfiguration
      * @param param the request object
      */
@@ -1325,6 +2171,38 @@ export class ObjectAdmissionregistrationV1Api {
     }
 
     /**
+     * delete collection of ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public deleteCollectionValidatingAdmissionPolicyWithHttpInfo(param: AdmissionregistrationV1ApiDeleteCollectionValidatingAdmissionPolicyRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionValidatingAdmissionPolicyWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public deleteCollectionValidatingAdmissionPolicy(param: AdmissionregistrationV1ApiDeleteCollectionValidatingAdmissionPolicyRequest = {}, options?: Configuration): Promise<V1Status> {
+        return this.api.deleteCollectionValidatingAdmissionPolicy(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ValidatingAdmissionPolicyBinding
+     * @param param the request object
+     */
+    public deleteCollectionValidatingAdmissionPolicyBindingWithHttpInfo(param: AdmissionregistrationV1ApiDeleteCollectionValidatingAdmissionPolicyBindingRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionValidatingAdmissionPolicyBindingWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ValidatingAdmissionPolicyBinding
+     * @param param the request object
+     */
+    public deleteCollectionValidatingAdmissionPolicyBinding(param: AdmissionregistrationV1ApiDeleteCollectionValidatingAdmissionPolicyBindingRequest = {}, options?: Configuration): Promise<V1Status> {
+        return this.api.deleteCollectionValidatingAdmissionPolicyBinding(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
      * delete collection of ValidatingWebhookConfiguration
      * @param param the request object
      */
@@ -1354,6 +2232,38 @@ export class ObjectAdmissionregistrationV1Api {
      */
     public deleteMutatingWebhookConfiguration(param: AdmissionregistrationV1ApiDeleteMutatingWebhookConfigurationRequest, options?: Configuration): Promise<V1Status> {
         return this.api.deleteMutatingWebhookConfiguration(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public deleteValidatingAdmissionPolicyWithHttpInfo(param: AdmissionregistrationV1ApiDeleteValidatingAdmissionPolicyRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteValidatingAdmissionPolicyWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public deleteValidatingAdmissionPolicy(param: AdmissionregistrationV1ApiDeleteValidatingAdmissionPolicyRequest, options?: Configuration): Promise<V1Status> {
+        return this.api.deleteValidatingAdmissionPolicy(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ValidatingAdmissionPolicyBinding
+     * @param param the request object
+     */
+    public deleteValidatingAdmissionPolicyBindingWithHttpInfo(param: AdmissionregistrationV1ApiDeleteValidatingAdmissionPolicyBindingRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteValidatingAdmissionPolicyBindingWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ValidatingAdmissionPolicyBinding
+     * @param param the request object
+     */
+    public deleteValidatingAdmissionPolicyBinding(param: AdmissionregistrationV1ApiDeleteValidatingAdmissionPolicyBindingRequest, options?: Configuration): Promise<V1Status> {
+        return this.api.deleteValidatingAdmissionPolicyBinding(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -1405,6 +2315,38 @@ export class ObjectAdmissionregistrationV1Api {
     }
 
     /**
+     * list or watch objects of kind ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public listValidatingAdmissionPolicyWithHttpInfo(param: AdmissionregistrationV1ApiListValidatingAdmissionPolicyRequest = {}, options?: Configuration): Promise<HttpInfo<V1ValidatingAdmissionPolicyList>> {
+        return this.api.listValidatingAdmissionPolicyWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public listValidatingAdmissionPolicy(param: AdmissionregistrationV1ApiListValidatingAdmissionPolicyRequest = {}, options?: Configuration): Promise<V1ValidatingAdmissionPolicyList> {
+        return this.api.listValidatingAdmissionPolicy(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ValidatingAdmissionPolicyBinding
+     * @param param the request object
+     */
+    public listValidatingAdmissionPolicyBindingWithHttpInfo(param: AdmissionregistrationV1ApiListValidatingAdmissionPolicyBindingRequest = {}, options?: Configuration): Promise<HttpInfo<V1ValidatingAdmissionPolicyBindingList>> {
+        return this.api.listValidatingAdmissionPolicyBindingWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ValidatingAdmissionPolicyBinding
+     * @param param the request object
+     */
+    public listValidatingAdmissionPolicyBinding(param: AdmissionregistrationV1ApiListValidatingAdmissionPolicyBindingRequest = {}, options?: Configuration): Promise<V1ValidatingAdmissionPolicyBindingList> {
+        return this.api.listValidatingAdmissionPolicyBinding(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
      * list or watch objects of kind ValidatingWebhookConfiguration
      * @param param the request object
      */
@@ -1434,6 +2376,54 @@ export class ObjectAdmissionregistrationV1Api {
      */
     public patchMutatingWebhookConfiguration(param: AdmissionregistrationV1ApiPatchMutatingWebhookConfigurationRequest, options?: Configuration): Promise<V1MutatingWebhookConfiguration> {
         return this.api.patchMutatingWebhookConfiguration(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public patchValidatingAdmissionPolicyWithHttpInfo(param: AdmissionregistrationV1ApiPatchValidatingAdmissionPolicyRequest, options?: Configuration): Promise<HttpInfo<V1ValidatingAdmissionPolicy>> {
+        return this.api.patchValidatingAdmissionPolicyWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public patchValidatingAdmissionPolicy(param: AdmissionregistrationV1ApiPatchValidatingAdmissionPolicyRequest, options?: Configuration): Promise<V1ValidatingAdmissionPolicy> {
+        return this.api.patchValidatingAdmissionPolicy(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ValidatingAdmissionPolicyBinding
+     * @param param the request object
+     */
+    public patchValidatingAdmissionPolicyBindingWithHttpInfo(param: AdmissionregistrationV1ApiPatchValidatingAdmissionPolicyBindingRequest, options?: Configuration): Promise<HttpInfo<V1ValidatingAdmissionPolicyBinding>> {
+        return this.api.patchValidatingAdmissionPolicyBindingWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ValidatingAdmissionPolicyBinding
+     * @param param the request object
+     */
+    public patchValidatingAdmissionPolicyBinding(param: AdmissionregistrationV1ApiPatchValidatingAdmissionPolicyBindingRequest, options?: Configuration): Promise<V1ValidatingAdmissionPolicyBinding> {
+        return this.api.patchValidatingAdmissionPolicyBinding(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public patchValidatingAdmissionPolicyStatusWithHttpInfo(param: AdmissionregistrationV1ApiPatchValidatingAdmissionPolicyStatusRequest, options?: Configuration): Promise<HttpInfo<V1ValidatingAdmissionPolicy>> {
+        return this.api.patchValidatingAdmissionPolicyStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public patchValidatingAdmissionPolicyStatus(param: AdmissionregistrationV1ApiPatchValidatingAdmissionPolicyStatusRequest, options?: Configuration): Promise<V1ValidatingAdmissionPolicy> {
+        return this.api.patchValidatingAdmissionPolicyStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
     }
 
     /**
@@ -1469,6 +2459,54 @@ export class ObjectAdmissionregistrationV1Api {
     }
 
     /**
+     * read the specified ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public readValidatingAdmissionPolicyWithHttpInfo(param: AdmissionregistrationV1ApiReadValidatingAdmissionPolicyRequest, options?: Configuration): Promise<HttpInfo<V1ValidatingAdmissionPolicy>> {
+        return this.api.readValidatingAdmissionPolicyWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public readValidatingAdmissionPolicy(param: AdmissionregistrationV1ApiReadValidatingAdmissionPolicyRequest, options?: Configuration): Promise<V1ValidatingAdmissionPolicy> {
+        return this.api.readValidatingAdmissionPolicy(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ValidatingAdmissionPolicyBinding
+     * @param param the request object
+     */
+    public readValidatingAdmissionPolicyBindingWithHttpInfo(param: AdmissionregistrationV1ApiReadValidatingAdmissionPolicyBindingRequest, options?: Configuration): Promise<HttpInfo<V1ValidatingAdmissionPolicyBinding>> {
+        return this.api.readValidatingAdmissionPolicyBindingWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ValidatingAdmissionPolicyBinding
+     * @param param the request object
+     */
+    public readValidatingAdmissionPolicyBinding(param: AdmissionregistrationV1ApiReadValidatingAdmissionPolicyBindingRequest, options?: Configuration): Promise<V1ValidatingAdmissionPolicyBinding> {
+        return this.api.readValidatingAdmissionPolicyBinding(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public readValidatingAdmissionPolicyStatusWithHttpInfo(param: AdmissionregistrationV1ApiReadValidatingAdmissionPolicyStatusRequest, options?: Configuration): Promise<HttpInfo<V1ValidatingAdmissionPolicy>> {
+        return this.api.readValidatingAdmissionPolicyStatusWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public readValidatingAdmissionPolicyStatus(param: AdmissionregistrationV1ApiReadValidatingAdmissionPolicyStatusRequest, options?: Configuration): Promise<V1ValidatingAdmissionPolicy> {
+        return this.api.readValidatingAdmissionPolicyStatus(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
      * read the specified ValidatingWebhookConfiguration
      * @param param the request object
      */
@@ -1498,6 +2536,54 @@ export class ObjectAdmissionregistrationV1Api {
      */
     public replaceMutatingWebhookConfiguration(param: AdmissionregistrationV1ApiReplaceMutatingWebhookConfigurationRequest, options?: Configuration): Promise<V1MutatingWebhookConfiguration> {
         return this.api.replaceMutatingWebhookConfiguration(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public replaceValidatingAdmissionPolicyWithHttpInfo(param: AdmissionregistrationV1ApiReplaceValidatingAdmissionPolicyRequest, options?: Configuration): Promise<HttpInfo<V1ValidatingAdmissionPolicy>> {
+        return this.api.replaceValidatingAdmissionPolicyWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public replaceValidatingAdmissionPolicy(param: AdmissionregistrationV1ApiReplaceValidatingAdmissionPolicyRequest, options?: Configuration): Promise<V1ValidatingAdmissionPolicy> {
+        return this.api.replaceValidatingAdmissionPolicy(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ValidatingAdmissionPolicyBinding
+     * @param param the request object
+     */
+    public replaceValidatingAdmissionPolicyBindingWithHttpInfo(param: AdmissionregistrationV1ApiReplaceValidatingAdmissionPolicyBindingRequest, options?: Configuration): Promise<HttpInfo<V1ValidatingAdmissionPolicyBinding>> {
+        return this.api.replaceValidatingAdmissionPolicyBindingWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ValidatingAdmissionPolicyBinding
+     * @param param the request object
+     */
+    public replaceValidatingAdmissionPolicyBinding(param: AdmissionregistrationV1ApiReplaceValidatingAdmissionPolicyBindingRequest, options?: Configuration): Promise<V1ValidatingAdmissionPolicyBinding> {
+        return this.api.replaceValidatingAdmissionPolicyBinding(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public replaceValidatingAdmissionPolicyStatusWithHttpInfo(param: AdmissionregistrationV1ApiReplaceValidatingAdmissionPolicyStatusRequest, options?: Configuration): Promise<HttpInfo<V1ValidatingAdmissionPolicy>> {
+        return this.api.replaceValidatingAdmissionPolicyStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified ValidatingAdmissionPolicy
+     * @param param the request object
+     */
+    public replaceValidatingAdmissionPolicyStatus(param: AdmissionregistrationV1ApiReplaceValidatingAdmissionPolicyStatusRequest, options?: Configuration): Promise<V1ValidatingAdmissionPolicy> {
+        return this.api.replaceValidatingAdmissionPolicyStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
     /**
@@ -39461,6 +40547,45 @@ export interface ResourceV1alpha2ApiCreateNamespacedResourceClaimRequest {
     fieldValidation?: string
 }
 
+export interface ResourceV1alpha2ApiCreateNamespacedResourceClaimParametersRequest {
+    /**
+     * object name and auth scope, such as for teams and projects
+     * @type string
+     * @memberof ResourceV1alpha2ApicreateNamespacedResourceClaimParameters
+     */
+    namespace: string
+    /**
+     * 
+     * @type V1alpha2ResourceClaimParameters
+     * @memberof ResourceV1alpha2ApicreateNamespacedResourceClaimParameters
+     */
+    body: V1alpha2ResourceClaimParameters
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApicreateNamespacedResourceClaimParameters
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof ResourceV1alpha2ApicreateNamespacedResourceClaimParameters
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @type string
+     * @memberof ResourceV1alpha2ApicreateNamespacedResourceClaimParameters
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof ResourceV1alpha2ApicreateNamespacedResourceClaimParameters
+     */
+    fieldValidation?: string
+}
+
 export interface ResourceV1alpha2ApiCreateNamespacedResourceClaimTemplateRequest {
     /**
      * object name and auth scope, such as for teams and projects
@@ -39500,6 +40625,45 @@ export interface ResourceV1alpha2ApiCreateNamespacedResourceClaimTemplateRequest
     fieldValidation?: string
 }
 
+export interface ResourceV1alpha2ApiCreateNamespacedResourceClassParametersRequest {
+    /**
+     * object name and auth scope, such as for teams and projects
+     * @type string
+     * @memberof ResourceV1alpha2ApicreateNamespacedResourceClassParameters
+     */
+    namespace: string
+    /**
+     * 
+     * @type V1alpha2ResourceClassParameters
+     * @memberof ResourceV1alpha2ApicreateNamespacedResourceClassParameters
+     */
+    body: V1alpha2ResourceClassParameters
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApicreateNamespacedResourceClassParameters
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof ResourceV1alpha2ApicreateNamespacedResourceClassParameters
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @type string
+     * @memberof ResourceV1alpha2ApicreateNamespacedResourceClassParameters
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof ResourceV1alpha2ApicreateNamespacedResourceClassParameters
+     */
+    fieldValidation?: string
+}
+
 export interface ResourceV1alpha2ApiCreateResourceClassRequest {
     /**
      * 
@@ -39529,6 +40693,39 @@ export interface ResourceV1alpha2ApiCreateResourceClassRequest {
      * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @type string
      * @memberof ResourceV1alpha2ApicreateResourceClass
+     */
+    fieldValidation?: string
+}
+
+export interface ResourceV1alpha2ApiCreateResourceSliceRequest {
+    /**
+     * 
+     * @type V1alpha2ResourceSlice
+     * @memberof ResourceV1alpha2ApicreateResourceSlice
+     */
+    body: V1alpha2ResourceSlice
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApicreateResourceSlice
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof ResourceV1alpha2ApicreateResourceSlice
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @type string
+     * @memberof ResourceV1alpha2ApicreateResourceSlice
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof ResourceV1alpha2ApicreateResourceSlice
      */
     fieldValidation?: string
 }
@@ -39719,6 +40916,99 @@ export interface ResourceV1alpha2ApiDeleteCollectionNamespacedResourceClaimReque
     body?: V1DeleteOptions
 }
 
+export interface ResourceV1alpha2ApiDeleteCollectionNamespacedResourceClaimParametersRequest {
+    /**
+     * object name and auth scope, such as for teams and projects
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClaimParameters
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClaimParameters
+     */
+    pretty?: string
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClaimParameters
+     */
+    _continue?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClaimParameters
+     */
+    dryRun?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClaimParameters
+     */
+    fieldSelector?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @type number
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClaimParameters
+     */
+    gracePeriodSeconds?: number
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClaimParameters
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClaimParameters
+     */
+    limit?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClaimParameters
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClaimParameters
+     */
+    propagationPolicy?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClaimParameters
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClaimParameters
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClaimParameters
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClaimParameters
+     */
+    timeoutSeconds?: number
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClaimParameters
+     */
+    body?: V1DeleteOptions
+}
+
 export interface ResourceV1alpha2ApiDeleteCollectionNamespacedResourceClaimTemplateRequest {
     /**
      * object name and auth scope, such as for teams and projects
@@ -39812,6 +41102,99 @@ export interface ResourceV1alpha2ApiDeleteCollectionNamespacedResourceClaimTempl
     body?: V1DeleteOptions
 }
 
+export interface ResourceV1alpha2ApiDeleteCollectionNamespacedResourceClassParametersRequest {
+    /**
+     * object name and auth scope, such as for teams and projects
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClassParameters
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClassParameters
+     */
+    pretty?: string
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClassParameters
+     */
+    _continue?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClassParameters
+     */
+    dryRun?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClassParameters
+     */
+    fieldSelector?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @type number
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClassParameters
+     */
+    gracePeriodSeconds?: number
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClassParameters
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClassParameters
+     */
+    limit?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClassParameters
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClassParameters
+     */
+    propagationPolicy?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClassParameters
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClassParameters
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClassParameters
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClassParameters
+     */
+    timeoutSeconds?: number
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof ResourceV1alpha2ApideleteCollectionNamespacedResourceClassParameters
+     */
+    body?: V1DeleteOptions
+}
+
 export interface ResourceV1alpha2ApiDeleteCollectionResourceClassRequest {
     /**
      * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
@@ -39895,6 +41278,93 @@ export interface ResourceV1alpha2ApiDeleteCollectionResourceClassRequest {
      * 
      * @type V1DeleteOptions
      * @memberof ResourceV1alpha2ApideleteCollectionResourceClass
+     */
+    body?: V1DeleteOptions
+}
+
+export interface ResourceV1alpha2ApiDeleteCollectionResourceSliceRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionResourceSlice
+     */
+    pretty?: string
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionResourceSlice
+     */
+    _continue?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionResourceSlice
+     */
+    dryRun?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionResourceSlice
+     */
+    fieldSelector?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @type number
+     * @memberof ResourceV1alpha2ApideleteCollectionResourceSlice
+     */
+    gracePeriodSeconds?: number
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionResourceSlice
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof ResourceV1alpha2ApideleteCollectionResourceSlice
+     */
+    limit?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApideleteCollectionResourceSlice
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionResourceSlice
+     */
+    propagationPolicy?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionResourceSlice
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteCollectionResourceSlice
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApideleteCollectionResourceSlice
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof ResourceV1alpha2ApideleteCollectionResourceSlice
+     */
+    timeoutSeconds?: number
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof ResourceV1alpha2ApideleteCollectionResourceSlice
      */
     body?: V1DeleteOptions
 }
@@ -40001,6 +41471,57 @@ export interface ResourceV1alpha2ApiDeleteNamespacedResourceClaimRequest {
     body?: V1DeleteOptions
 }
 
+export interface ResourceV1alpha2ApiDeleteNamespacedResourceClaimParametersRequest {
+    /**
+     * name of the ResourceClaimParameters
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteNamespacedResourceClaimParameters
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteNamespacedResourceClaimParameters
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteNamespacedResourceClaimParameters
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteNamespacedResourceClaimParameters
+     */
+    dryRun?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @type number
+     * @memberof ResourceV1alpha2ApideleteNamespacedResourceClaimParameters
+     */
+    gracePeriodSeconds?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApideleteNamespacedResourceClaimParameters
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteNamespacedResourceClaimParameters
+     */
+    propagationPolicy?: string
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof ResourceV1alpha2ApideleteNamespacedResourceClaimParameters
+     */
+    body?: V1DeleteOptions
+}
+
 export interface ResourceV1alpha2ApiDeleteNamespacedResourceClaimTemplateRequest {
     /**
      * name of the ResourceClaimTemplate
@@ -40052,6 +41573,57 @@ export interface ResourceV1alpha2ApiDeleteNamespacedResourceClaimTemplateRequest
     body?: V1DeleteOptions
 }
 
+export interface ResourceV1alpha2ApiDeleteNamespacedResourceClassParametersRequest {
+    /**
+     * name of the ResourceClassParameters
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteNamespacedResourceClassParameters
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteNamespacedResourceClassParameters
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteNamespacedResourceClassParameters
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteNamespacedResourceClassParameters
+     */
+    dryRun?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @type number
+     * @memberof ResourceV1alpha2ApideleteNamespacedResourceClassParameters
+     */
+    gracePeriodSeconds?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApideleteNamespacedResourceClassParameters
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteNamespacedResourceClassParameters
+     */
+    propagationPolicy?: string
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof ResourceV1alpha2ApideleteNamespacedResourceClassParameters
+     */
+    body?: V1DeleteOptions
+}
+
 export interface ResourceV1alpha2ApiDeleteResourceClassRequest {
     /**
      * name of the ResourceClass
@@ -40093,6 +41665,51 @@ export interface ResourceV1alpha2ApiDeleteResourceClassRequest {
      * 
      * @type V1DeleteOptions
      * @memberof ResourceV1alpha2ApideleteResourceClass
+     */
+    body?: V1DeleteOptions
+}
+
+export interface ResourceV1alpha2ApiDeleteResourceSliceRequest {
+    /**
+     * name of the ResourceSlice
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteResourceSlice
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteResourceSlice
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteResourceSlice
+     */
+    dryRun?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @type number
+     * @memberof ResourceV1alpha2ApideleteResourceSlice
+     */
+    gracePeriodSeconds?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApideleteResourceSlice
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * @type string
+     * @memberof ResourceV1alpha2ApideleteResourceSlice
+     */
+    propagationPolicy?: string
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof ResourceV1alpha2ApideleteResourceSlice
      */
     body?: V1DeleteOptions
 }
@@ -40250,6 +41867,81 @@ export interface ResourceV1alpha2ApiListNamespacedResourceClaimRequest {
     watch?: boolean
 }
 
+export interface ResourceV1alpha2ApiListNamespacedResourceClaimParametersRequest {
+    /**
+     * object name and auth scope, such as for teams and projects
+     * @type string
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClaimParameters
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClaimParameters
+     */
+    pretty?: string
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClaimParameters
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClaimParameters
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClaimParameters
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClaimParameters
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClaimParameters
+     */
+    limit?: number
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClaimParameters
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClaimParameters
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClaimParameters
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClaimParameters
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClaimParameters
+     */
+    watch?: boolean
+}
+
 export interface ResourceV1alpha2ApiListNamespacedResourceClaimTemplateRequest {
     /**
      * object name and auth scope, such as for teams and projects
@@ -40321,6 +42013,81 @@ export interface ResourceV1alpha2ApiListNamespacedResourceClaimTemplateRequest {
      * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      * @type boolean
      * @memberof ResourceV1alpha2ApilistNamespacedResourceClaimTemplate
+     */
+    watch?: boolean
+}
+
+export interface ResourceV1alpha2ApiListNamespacedResourceClassParametersRequest {
+    /**
+     * object name and auth scope, such as for teams and projects
+     * @type string
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClassParameters
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClassParameters
+     */
+    pretty?: string
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClassParameters
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClassParameters
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClassParameters
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClassParameters
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClassParameters
+     */
+    limit?: number
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClassParameters
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClassParameters
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClassParameters
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClassParameters
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApilistNamespacedResourceClassParameters
      */
     watch?: boolean
 }
@@ -40463,6 +42230,75 @@ export interface ResourceV1alpha2ApiListResourceClaimForAllNamespacesRequest {
     watch?: boolean
 }
 
+export interface ResourceV1alpha2ApiListResourceClaimParametersForAllNamespacesRequest {
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApilistResourceClaimParametersForAllNamespaces
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof ResourceV1alpha2ApilistResourceClaimParametersForAllNamespaces
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof ResourceV1alpha2ApilistResourceClaimParametersForAllNamespaces
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof ResourceV1alpha2ApilistResourceClaimParametersForAllNamespaces
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof ResourceV1alpha2ApilistResourceClaimParametersForAllNamespaces
+     */
+    limit?: number
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApilistResourceClaimParametersForAllNamespaces
+     */
+    pretty?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof ResourceV1alpha2ApilistResourceClaimParametersForAllNamespaces
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof ResourceV1alpha2ApilistResourceClaimParametersForAllNamespaces
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApilistResourceClaimParametersForAllNamespaces
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof ResourceV1alpha2ApilistResourceClaimParametersForAllNamespaces
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApilistResourceClaimParametersForAllNamespaces
+     */
+    watch?: boolean
+}
+
 export interface ResourceV1alpha2ApiListResourceClaimTemplateForAllNamespacesRequest {
     /**
      * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
@@ -40597,6 +42433,144 @@ export interface ResourceV1alpha2ApiListResourceClassRequest {
      * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
      * @type boolean
      * @memberof ResourceV1alpha2ApilistResourceClass
+     */
+    watch?: boolean
+}
+
+export interface ResourceV1alpha2ApiListResourceClassParametersForAllNamespacesRequest {
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApilistResourceClassParametersForAllNamespaces
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof ResourceV1alpha2ApilistResourceClassParametersForAllNamespaces
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof ResourceV1alpha2ApilistResourceClassParametersForAllNamespaces
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof ResourceV1alpha2ApilistResourceClassParametersForAllNamespaces
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof ResourceV1alpha2ApilistResourceClassParametersForAllNamespaces
+     */
+    limit?: number
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApilistResourceClassParametersForAllNamespaces
+     */
+    pretty?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof ResourceV1alpha2ApilistResourceClassParametersForAllNamespaces
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof ResourceV1alpha2ApilistResourceClassParametersForAllNamespaces
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApilistResourceClassParametersForAllNamespaces
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof ResourceV1alpha2ApilistResourceClassParametersForAllNamespaces
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApilistResourceClassParametersForAllNamespaces
+     */
+    watch?: boolean
+}
+
+export interface ResourceV1alpha2ApiListResourceSliceRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApilistResourceSlice
+     */
+    pretty?: string
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApilistResourceSlice
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof ResourceV1alpha2ApilistResourceSlice
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof ResourceV1alpha2ApilistResourceSlice
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof ResourceV1alpha2ApilistResourceSlice
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof ResourceV1alpha2ApilistResourceSlice
+     */
+    limit?: number
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof ResourceV1alpha2ApilistResourceSlice
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof ResourceV1alpha2ApilistResourceSlice
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApilistResourceSlice
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof ResourceV1alpha2ApilistResourceSlice
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApilistResourceSlice
      */
     watch?: boolean
 }
@@ -40754,6 +42728,57 @@ export interface ResourceV1alpha2ApiPatchNamespacedResourceClaimRequest {
     force?: boolean
 }
 
+export interface ResourceV1alpha2ApiPatchNamespacedResourceClaimParametersRequest {
+    /**
+     * name of the ResourceClaimParameters
+     * @type string
+     * @memberof ResourceV1alpha2ApipatchNamespacedResourceClaimParameters
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * @type string
+     * @memberof ResourceV1alpha2ApipatchNamespacedResourceClaimParameters
+     */
+    namespace: string
+    /**
+     * 
+     * @type any
+     * @memberof ResourceV1alpha2ApipatchNamespacedResourceClaimParameters
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApipatchNamespacedResourceClaimParameters
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof ResourceV1alpha2ApipatchNamespacedResourceClaimParameters
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @type string
+     * @memberof ResourceV1alpha2ApipatchNamespacedResourceClaimParameters
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof ResourceV1alpha2ApipatchNamespacedResourceClaimParameters
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApipatchNamespacedResourceClaimParameters
+     */
+    force?: boolean
+}
+
 export interface ResourceV1alpha2ApiPatchNamespacedResourceClaimStatusRequest {
     /**
      * name of the ResourceClaim
@@ -40856,6 +42881,57 @@ export interface ResourceV1alpha2ApiPatchNamespacedResourceClaimTemplateRequest 
     force?: boolean
 }
 
+export interface ResourceV1alpha2ApiPatchNamespacedResourceClassParametersRequest {
+    /**
+     * name of the ResourceClassParameters
+     * @type string
+     * @memberof ResourceV1alpha2ApipatchNamespacedResourceClassParameters
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * @type string
+     * @memberof ResourceV1alpha2ApipatchNamespacedResourceClassParameters
+     */
+    namespace: string
+    /**
+     * 
+     * @type any
+     * @memberof ResourceV1alpha2ApipatchNamespacedResourceClassParameters
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApipatchNamespacedResourceClassParameters
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof ResourceV1alpha2ApipatchNamespacedResourceClassParameters
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @type string
+     * @memberof ResourceV1alpha2ApipatchNamespacedResourceClassParameters
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof ResourceV1alpha2ApipatchNamespacedResourceClassParameters
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApipatchNamespacedResourceClassParameters
+     */
+    force?: boolean
+}
+
 export interface ResourceV1alpha2ApiPatchResourceClassRequest {
     /**
      * name of the ResourceClass
@@ -40897,6 +42973,51 @@ export interface ResourceV1alpha2ApiPatchResourceClassRequest {
      * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
      * @type boolean
      * @memberof ResourceV1alpha2ApipatchResourceClass
+     */
+    force?: boolean
+}
+
+export interface ResourceV1alpha2ApiPatchResourceSliceRequest {
+    /**
+     * name of the ResourceSlice
+     * @type string
+     * @memberof ResourceV1alpha2ApipatchResourceSlice
+     */
+    name: string
+    /**
+     * 
+     * @type any
+     * @memberof ResourceV1alpha2ApipatchResourceSlice
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApipatchResourceSlice
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof ResourceV1alpha2ApipatchResourceSlice
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @type string
+     * @memberof ResourceV1alpha2ApipatchResourceSlice
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof ResourceV1alpha2ApipatchResourceSlice
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * @type boolean
+     * @memberof ResourceV1alpha2ApipatchResourceSlice
      */
     force?: boolean
 }
@@ -40964,6 +43085,27 @@ export interface ResourceV1alpha2ApiReadNamespacedResourceClaimRequest {
     pretty?: string
 }
 
+export interface ResourceV1alpha2ApiReadNamespacedResourceClaimParametersRequest {
+    /**
+     * name of the ResourceClaimParameters
+     * @type string
+     * @memberof ResourceV1alpha2ApireadNamespacedResourceClaimParameters
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * @type string
+     * @memberof ResourceV1alpha2ApireadNamespacedResourceClaimParameters
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApireadNamespacedResourceClaimParameters
+     */
+    pretty?: string
+}
+
 export interface ResourceV1alpha2ApiReadNamespacedResourceClaimStatusRequest {
     /**
      * name of the ResourceClaim
@@ -41006,6 +43148,27 @@ export interface ResourceV1alpha2ApiReadNamespacedResourceClaimTemplateRequest {
     pretty?: string
 }
 
+export interface ResourceV1alpha2ApiReadNamespacedResourceClassParametersRequest {
+    /**
+     * name of the ResourceClassParameters
+     * @type string
+     * @memberof ResourceV1alpha2ApireadNamespacedResourceClassParameters
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * @type string
+     * @memberof ResourceV1alpha2ApireadNamespacedResourceClassParameters
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApireadNamespacedResourceClassParameters
+     */
+    pretty?: string
+}
+
 export interface ResourceV1alpha2ApiReadResourceClassRequest {
     /**
      * name of the ResourceClass
@@ -41017,6 +43180,21 @@ export interface ResourceV1alpha2ApiReadResourceClassRequest {
      * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @type string
      * @memberof ResourceV1alpha2ApireadResourceClass
+     */
+    pretty?: string
+}
+
+export interface ResourceV1alpha2ApiReadResourceSliceRequest {
+    /**
+     * name of the ResourceSlice
+     * @type string
+     * @memberof ResourceV1alpha2ApireadResourceSlice
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApireadResourceSlice
      */
     pretty?: string
 }
@@ -41156,6 +43334,51 @@ export interface ResourceV1alpha2ApiReplaceNamespacedResourceClaimRequest {
     fieldValidation?: string
 }
 
+export interface ResourceV1alpha2ApiReplaceNamespacedResourceClaimParametersRequest {
+    /**
+     * name of the ResourceClaimParameters
+     * @type string
+     * @memberof ResourceV1alpha2ApireplaceNamespacedResourceClaimParameters
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * @type string
+     * @memberof ResourceV1alpha2ApireplaceNamespacedResourceClaimParameters
+     */
+    namespace: string
+    /**
+     * 
+     * @type V1alpha2ResourceClaimParameters
+     * @memberof ResourceV1alpha2ApireplaceNamespacedResourceClaimParameters
+     */
+    body: V1alpha2ResourceClaimParameters
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApireplaceNamespacedResourceClaimParameters
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof ResourceV1alpha2ApireplaceNamespacedResourceClaimParameters
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @type string
+     * @memberof ResourceV1alpha2ApireplaceNamespacedResourceClaimParameters
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof ResourceV1alpha2ApireplaceNamespacedResourceClaimParameters
+     */
+    fieldValidation?: string
+}
+
 export interface ResourceV1alpha2ApiReplaceNamespacedResourceClaimStatusRequest {
     /**
      * name of the ResourceClaim
@@ -41246,6 +43469,51 @@ export interface ResourceV1alpha2ApiReplaceNamespacedResourceClaimTemplateReques
     fieldValidation?: string
 }
 
+export interface ResourceV1alpha2ApiReplaceNamespacedResourceClassParametersRequest {
+    /**
+     * name of the ResourceClassParameters
+     * @type string
+     * @memberof ResourceV1alpha2ApireplaceNamespacedResourceClassParameters
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * @type string
+     * @memberof ResourceV1alpha2ApireplaceNamespacedResourceClassParameters
+     */
+    namespace: string
+    /**
+     * 
+     * @type V1alpha2ResourceClassParameters
+     * @memberof ResourceV1alpha2ApireplaceNamespacedResourceClassParameters
+     */
+    body: V1alpha2ResourceClassParameters
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApireplaceNamespacedResourceClassParameters
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof ResourceV1alpha2ApireplaceNamespacedResourceClassParameters
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @type string
+     * @memberof ResourceV1alpha2ApireplaceNamespacedResourceClassParameters
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof ResourceV1alpha2ApireplaceNamespacedResourceClassParameters
+     */
+    fieldValidation?: string
+}
+
 export interface ResourceV1alpha2ApiReplaceResourceClassRequest {
     /**
      * name of the ResourceClass
@@ -41281,6 +43549,45 @@ export interface ResourceV1alpha2ApiReplaceResourceClassRequest {
      * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
      * @type string
      * @memberof ResourceV1alpha2ApireplaceResourceClass
+     */
+    fieldValidation?: string
+}
+
+export interface ResourceV1alpha2ApiReplaceResourceSliceRequest {
+    /**
+     * name of the ResourceSlice
+     * @type string
+     * @memberof ResourceV1alpha2ApireplaceResourceSlice
+     */
+    name: string
+    /**
+     * 
+     * @type V1alpha2ResourceSlice
+     * @memberof ResourceV1alpha2ApireplaceResourceSlice
+     */
+    body: V1alpha2ResourceSlice
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof ResourceV1alpha2ApireplaceResourceSlice
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof ResourceV1alpha2ApireplaceResourceSlice
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @type string
+     * @memberof ResourceV1alpha2ApireplaceResourceSlice
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof ResourceV1alpha2ApireplaceResourceSlice
      */
     fieldValidation?: string
 }
@@ -41325,6 +43632,22 @@ export class ObjectResourceV1alpha2Api {
     }
 
     /**
+     * create ResourceClaimParameters
+     * @param param the request object
+     */
+    public createNamespacedResourceClaimParametersWithHttpInfo(param: ResourceV1alpha2ApiCreateNamespacedResourceClaimParametersRequest, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceClaimParameters>> {
+        return this.api.createNamespacedResourceClaimParametersWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create ResourceClaimParameters
+     * @param param the request object
+     */
+    public createNamespacedResourceClaimParameters(param: ResourceV1alpha2ApiCreateNamespacedResourceClaimParametersRequest, options?: Configuration): Promise<V1alpha2ResourceClaimParameters> {
+        return this.api.createNamespacedResourceClaimParameters(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
      * create a ResourceClaimTemplate
      * @param param the request object
      */
@@ -41341,6 +43664,22 @@ export class ObjectResourceV1alpha2Api {
     }
 
     /**
+     * create ResourceClassParameters
+     * @param param the request object
+     */
+    public createNamespacedResourceClassParametersWithHttpInfo(param: ResourceV1alpha2ApiCreateNamespacedResourceClassParametersRequest, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceClassParameters>> {
+        return this.api.createNamespacedResourceClassParametersWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create ResourceClassParameters
+     * @param param the request object
+     */
+    public createNamespacedResourceClassParameters(param: ResourceV1alpha2ApiCreateNamespacedResourceClassParametersRequest, options?: Configuration): Promise<V1alpha2ResourceClassParameters> {
+        return this.api.createNamespacedResourceClassParameters(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
      * create a ResourceClass
      * @param param the request object
      */
@@ -41354,6 +43693,22 @@ export class ObjectResourceV1alpha2Api {
      */
     public createResourceClass(param: ResourceV1alpha2ApiCreateResourceClassRequest, options?: Configuration): Promise<V1alpha2ResourceClass> {
         return this.api.createResourceClass(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create a ResourceSlice
+     * @param param the request object
+     */
+    public createResourceSliceWithHttpInfo(param: ResourceV1alpha2ApiCreateResourceSliceRequest, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceSlice>> {
+        return this.api.createResourceSliceWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create a ResourceSlice
+     * @param param the request object
+     */
+    public createResourceSlice(param: ResourceV1alpha2ApiCreateResourceSliceRequest, options?: Configuration): Promise<V1alpha2ResourceSlice> {
+        return this.api.createResourceSlice(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
     /**
@@ -41389,6 +43744,22 @@ export class ObjectResourceV1alpha2Api {
     }
 
     /**
+     * delete collection of ResourceClaimParameters
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedResourceClaimParametersWithHttpInfo(param: ResourceV1alpha2ApiDeleteCollectionNamespacedResourceClaimParametersRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedResourceClaimParametersWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ResourceClaimParameters
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedResourceClaimParameters(param: ResourceV1alpha2ApiDeleteCollectionNamespacedResourceClaimParametersRequest, options?: Configuration): Promise<V1Status> {
+        return this.api.deleteCollectionNamespacedResourceClaimParameters(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
      * delete collection of ResourceClaimTemplate
      * @param param the request object
      */
@@ -41405,6 +43776,22 @@ export class ObjectResourceV1alpha2Api {
     }
 
     /**
+     * delete collection of ResourceClassParameters
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedResourceClassParametersWithHttpInfo(param: ResourceV1alpha2ApiDeleteCollectionNamespacedResourceClassParametersRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedResourceClassParametersWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ResourceClassParameters
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedResourceClassParameters(param: ResourceV1alpha2ApiDeleteCollectionNamespacedResourceClassParametersRequest, options?: Configuration): Promise<V1Status> {
+        return this.api.deleteCollectionNamespacedResourceClassParameters(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
      * delete collection of ResourceClass
      * @param param the request object
      */
@@ -41418,6 +43805,22 @@ export class ObjectResourceV1alpha2Api {
      */
     public deleteCollectionResourceClass(param: ResourceV1alpha2ApiDeleteCollectionResourceClassRequest = {}, options?: Configuration): Promise<V1Status> {
         return this.api.deleteCollectionResourceClass(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ResourceSlice
+     * @param param the request object
+     */
+    public deleteCollectionResourceSliceWithHttpInfo(param: ResourceV1alpha2ApiDeleteCollectionResourceSliceRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionResourceSliceWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ResourceSlice
+     * @param param the request object
+     */
+    public deleteCollectionResourceSlice(param: ResourceV1alpha2ApiDeleteCollectionResourceSliceRequest = {}, options?: Configuration): Promise<V1Status> {
+        return this.api.deleteCollectionResourceSlice(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
     }
 
     /**
@@ -41453,6 +43856,22 @@ export class ObjectResourceV1alpha2Api {
     }
 
     /**
+     * delete ResourceClaimParameters
+     * @param param the request object
+     */
+    public deleteNamespacedResourceClaimParametersWithHttpInfo(param: ResourceV1alpha2ApiDeleteNamespacedResourceClaimParametersRequest, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceClaimParameters>> {
+        return this.api.deleteNamespacedResourceClaimParametersWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete ResourceClaimParameters
+     * @param param the request object
+     */
+    public deleteNamespacedResourceClaimParameters(param: ResourceV1alpha2ApiDeleteNamespacedResourceClaimParametersRequest, options?: Configuration): Promise<V1alpha2ResourceClaimParameters> {
+        return this.api.deleteNamespacedResourceClaimParameters(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
      * delete a ResourceClaimTemplate
      * @param param the request object
      */
@@ -41469,6 +43888,22 @@ export class ObjectResourceV1alpha2Api {
     }
 
     /**
+     * delete ResourceClassParameters
+     * @param param the request object
+     */
+    public deleteNamespacedResourceClassParametersWithHttpInfo(param: ResourceV1alpha2ApiDeleteNamespacedResourceClassParametersRequest, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceClassParameters>> {
+        return this.api.deleteNamespacedResourceClassParametersWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete ResourceClassParameters
+     * @param param the request object
+     */
+    public deleteNamespacedResourceClassParameters(param: ResourceV1alpha2ApiDeleteNamespacedResourceClassParametersRequest, options?: Configuration): Promise<V1alpha2ResourceClassParameters> {
+        return this.api.deleteNamespacedResourceClassParameters(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
      * delete a ResourceClass
      * @param param the request object
      */
@@ -41482,6 +43917,22 @@ export class ObjectResourceV1alpha2Api {
      */
     public deleteResourceClass(param: ResourceV1alpha2ApiDeleteResourceClassRequest, options?: Configuration): Promise<V1alpha2ResourceClass> {
         return this.api.deleteResourceClass(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ResourceSlice
+     * @param param the request object
+     */
+    public deleteResourceSliceWithHttpInfo(param: ResourceV1alpha2ApiDeleteResourceSliceRequest, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceSlice>> {
+        return this.api.deleteResourceSliceWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ResourceSlice
+     * @param param the request object
+     */
+    public deleteResourceSlice(param: ResourceV1alpha2ApiDeleteResourceSliceRequest, options?: Configuration): Promise<V1alpha2ResourceSlice> {
+        return this.api.deleteResourceSlice(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -41533,6 +43984,22 @@ export class ObjectResourceV1alpha2Api {
     }
 
     /**
+     * list or watch objects of kind ResourceClaimParameters
+     * @param param the request object
+     */
+    public listNamespacedResourceClaimParametersWithHttpInfo(param: ResourceV1alpha2ApiListNamespacedResourceClaimParametersRequest, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceClaimParametersList>> {
+        return this.api.listNamespacedResourceClaimParametersWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceClaimParameters
+     * @param param the request object
+     */
+    public listNamespacedResourceClaimParameters(param: ResourceV1alpha2ApiListNamespacedResourceClaimParametersRequest, options?: Configuration): Promise<V1alpha2ResourceClaimParametersList> {
+        return this.api.listNamespacedResourceClaimParameters(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
      * list or watch objects of kind ResourceClaimTemplate
      * @param param the request object
      */
@@ -41546,6 +44013,22 @@ export class ObjectResourceV1alpha2Api {
      */
     public listNamespacedResourceClaimTemplate(param: ResourceV1alpha2ApiListNamespacedResourceClaimTemplateRequest, options?: Configuration): Promise<V1alpha2ResourceClaimTemplateList> {
         return this.api.listNamespacedResourceClaimTemplate(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceClassParameters
+     * @param param the request object
+     */
+    public listNamespacedResourceClassParametersWithHttpInfo(param: ResourceV1alpha2ApiListNamespacedResourceClassParametersRequest, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceClassParametersList>> {
+        return this.api.listNamespacedResourceClassParametersWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceClassParameters
+     * @param param the request object
+     */
+    public listNamespacedResourceClassParameters(param: ResourceV1alpha2ApiListNamespacedResourceClassParametersRequest, options?: Configuration): Promise<V1alpha2ResourceClassParametersList> {
+        return this.api.listNamespacedResourceClassParameters(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -41581,6 +44064,22 @@ export class ObjectResourceV1alpha2Api {
     }
 
     /**
+     * list or watch objects of kind ResourceClaimParameters
+     * @param param the request object
+     */
+    public listResourceClaimParametersForAllNamespacesWithHttpInfo(param: ResourceV1alpha2ApiListResourceClaimParametersForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceClaimParametersList>> {
+        return this.api.listResourceClaimParametersForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceClaimParameters
+     * @param param the request object
+     */
+    public listResourceClaimParametersForAllNamespaces(param: ResourceV1alpha2ApiListResourceClaimParametersForAllNamespacesRequest = {}, options?: Configuration): Promise<V1alpha2ResourceClaimParametersList> {
+        return this.api.listResourceClaimParametersForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
      * list or watch objects of kind ResourceClaimTemplate
      * @param param the request object
      */
@@ -41610,6 +44109,38 @@ export class ObjectResourceV1alpha2Api {
      */
     public listResourceClass(param: ResourceV1alpha2ApiListResourceClassRequest = {}, options?: Configuration): Promise<V1alpha2ResourceClassList> {
         return this.api.listResourceClass(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceClassParameters
+     * @param param the request object
+     */
+    public listResourceClassParametersForAllNamespacesWithHttpInfo(param: ResourceV1alpha2ApiListResourceClassParametersForAllNamespacesRequest = {}, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceClassParametersList>> {
+        return this.api.listResourceClassParametersForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceClassParameters
+     * @param param the request object
+     */
+    public listResourceClassParametersForAllNamespaces(param: ResourceV1alpha2ApiListResourceClassParametersForAllNamespacesRequest = {}, options?: Configuration): Promise<V1alpha2ResourceClassParametersList> {
+        return this.api.listResourceClassParametersForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceSlice
+     * @param param the request object
+     */
+    public listResourceSliceWithHttpInfo(param: ResourceV1alpha2ApiListResourceSliceRequest = {}, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceSliceList>> {
+        return this.api.listResourceSliceWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceSlice
+     * @param param the request object
+     */
+    public listResourceSlice(param: ResourceV1alpha2ApiListResourceSliceRequest = {}, options?: Configuration): Promise<V1alpha2ResourceSliceList> {
+        return this.api.listResourceSlice(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -41661,6 +44192,22 @@ export class ObjectResourceV1alpha2Api {
     }
 
     /**
+     * partially update the specified ResourceClaimParameters
+     * @param param the request object
+     */
+    public patchNamespacedResourceClaimParametersWithHttpInfo(param: ResourceV1alpha2ApiPatchNamespacedResourceClaimParametersRequest, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceClaimParameters>> {
+        return this.api.patchNamespacedResourceClaimParametersWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ResourceClaimParameters
+     * @param param the request object
+     */
+    public patchNamespacedResourceClaimParameters(param: ResourceV1alpha2ApiPatchNamespacedResourceClaimParametersRequest, options?: Configuration): Promise<V1alpha2ResourceClaimParameters> {
+        return this.api.patchNamespacedResourceClaimParameters(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
      * partially update status of the specified ResourceClaim
      * @param param the request object
      */
@@ -41693,6 +44240,22 @@ export class ObjectResourceV1alpha2Api {
     }
 
     /**
+     * partially update the specified ResourceClassParameters
+     * @param param the request object
+     */
+    public patchNamespacedResourceClassParametersWithHttpInfo(param: ResourceV1alpha2ApiPatchNamespacedResourceClassParametersRequest, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceClassParameters>> {
+        return this.api.patchNamespacedResourceClassParametersWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ResourceClassParameters
+     * @param param the request object
+     */
+    public patchNamespacedResourceClassParameters(param: ResourceV1alpha2ApiPatchNamespacedResourceClassParametersRequest, options?: Configuration): Promise<V1alpha2ResourceClassParameters> {
+        return this.api.patchNamespacedResourceClassParameters(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
      * partially update the specified ResourceClass
      * @param param the request object
      */
@@ -41706,6 +44269,22 @@ export class ObjectResourceV1alpha2Api {
      */
     public patchResourceClass(param: ResourceV1alpha2ApiPatchResourceClassRequest, options?: Configuration): Promise<V1alpha2ResourceClass> {
         return this.api.patchResourceClass(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ResourceSlice
+     * @param param the request object
+     */
+    public patchResourceSliceWithHttpInfo(param: ResourceV1alpha2ApiPatchResourceSliceRequest, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceSlice>> {
+        return this.api.patchResourceSliceWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ResourceSlice
+     * @param param the request object
+     */
+    public patchResourceSlice(param: ResourceV1alpha2ApiPatchResourceSliceRequest, options?: Configuration): Promise<V1alpha2ResourceSlice> {
+        return this.api.patchResourceSlice(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
     }
 
     /**
@@ -41757,6 +44336,22 @@ export class ObjectResourceV1alpha2Api {
     }
 
     /**
+     * read the specified ResourceClaimParameters
+     * @param param the request object
+     */
+    public readNamespacedResourceClaimParametersWithHttpInfo(param: ResourceV1alpha2ApiReadNamespacedResourceClaimParametersRequest, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceClaimParameters>> {
+        return this.api.readNamespacedResourceClaimParametersWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ResourceClaimParameters
+     * @param param the request object
+     */
+    public readNamespacedResourceClaimParameters(param: ResourceV1alpha2ApiReadNamespacedResourceClaimParametersRequest, options?: Configuration): Promise<V1alpha2ResourceClaimParameters> {
+        return this.api.readNamespacedResourceClaimParameters(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
      * read status of the specified ResourceClaim
      * @param param the request object
      */
@@ -41789,6 +44384,22 @@ export class ObjectResourceV1alpha2Api {
     }
 
     /**
+     * read the specified ResourceClassParameters
+     * @param param the request object
+     */
+    public readNamespacedResourceClassParametersWithHttpInfo(param: ResourceV1alpha2ApiReadNamespacedResourceClassParametersRequest, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceClassParameters>> {
+        return this.api.readNamespacedResourceClassParametersWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ResourceClassParameters
+     * @param param the request object
+     */
+    public readNamespacedResourceClassParameters(param: ResourceV1alpha2ApiReadNamespacedResourceClassParametersRequest, options?: Configuration): Promise<V1alpha2ResourceClassParameters> {
+        return this.api.readNamespacedResourceClassParameters(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
      * read the specified ResourceClass
      * @param param the request object
      */
@@ -41802,6 +44413,22 @@ export class ObjectResourceV1alpha2Api {
      */
     public readResourceClass(param: ResourceV1alpha2ApiReadResourceClassRequest, options?: Configuration): Promise<V1alpha2ResourceClass> {
         return this.api.readResourceClass(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ResourceSlice
+     * @param param the request object
+     */
+    public readResourceSliceWithHttpInfo(param: ResourceV1alpha2ApiReadResourceSliceRequest, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceSlice>> {
+        return this.api.readResourceSliceWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ResourceSlice
+     * @param param the request object
+     */
+    public readResourceSlice(param: ResourceV1alpha2ApiReadResourceSliceRequest, options?: Configuration): Promise<V1alpha2ResourceSlice> {
+        return this.api.readResourceSlice(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -41853,6 +44480,22 @@ export class ObjectResourceV1alpha2Api {
     }
 
     /**
+     * replace the specified ResourceClaimParameters
+     * @param param the request object
+     */
+    public replaceNamespacedResourceClaimParametersWithHttpInfo(param: ResourceV1alpha2ApiReplaceNamespacedResourceClaimParametersRequest, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceClaimParameters>> {
+        return this.api.replaceNamespacedResourceClaimParametersWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ResourceClaimParameters
+     * @param param the request object
+     */
+    public replaceNamespacedResourceClaimParameters(param: ResourceV1alpha2ApiReplaceNamespacedResourceClaimParametersRequest, options?: Configuration): Promise<V1alpha2ResourceClaimParameters> {
+        return this.api.replaceNamespacedResourceClaimParameters(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
      * replace status of the specified ResourceClaim
      * @param param the request object
      */
@@ -41885,6 +44528,22 @@ export class ObjectResourceV1alpha2Api {
     }
 
     /**
+     * replace the specified ResourceClassParameters
+     * @param param the request object
+     */
+    public replaceNamespacedResourceClassParametersWithHttpInfo(param: ResourceV1alpha2ApiReplaceNamespacedResourceClassParametersRequest, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceClassParameters>> {
+        return this.api.replaceNamespacedResourceClassParametersWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ResourceClassParameters
+     * @param param the request object
+     */
+    public replaceNamespacedResourceClassParameters(param: ResourceV1alpha2ApiReplaceNamespacedResourceClassParametersRequest, options?: Configuration): Promise<V1alpha2ResourceClassParameters> {
+        return this.api.replaceNamespacedResourceClassParameters(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
      * replace the specified ResourceClass
      * @param param the request object
      */
@@ -41898,6 +44557,22 @@ export class ObjectResourceV1alpha2Api {
      */
     public replaceResourceClass(param: ResourceV1alpha2ApiReplaceResourceClassRequest, options?: Configuration): Promise<V1alpha2ResourceClass> {
         return this.api.replaceResourceClass(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ResourceSlice
+     * @param param the request object
+     */
+    public replaceResourceSliceWithHttpInfo(param: ResourceV1alpha2ApiReplaceResourceSliceRequest, options?: Configuration): Promise<HttpInfo<V1alpha2ResourceSlice>> {
+        return this.api.replaceResourceSliceWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ResourceSlice
+     * @param param the request object
+     */
+    public replaceResourceSlice(param: ResourceV1alpha2ApiReplaceResourceSliceRequest, options?: Configuration): Promise<V1alpha2ResourceSlice> {
+        return this.api.replaceResourceSlice(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
 }
@@ -45442,6 +48117,660 @@ export class ObjectStorageV1alpha1Api {
      */
     public replaceVolumeAttributesClass(param: StorageV1alpha1ApiReplaceVolumeAttributesClassRequest, options?: Configuration): Promise<V1alpha1VolumeAttributesClass> {
         return this.api.replaceVolumeAttributesClass(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+}
+
+import { ObservableStoragemigrationApi } from "./ObservableAPI";
+import { StoragemigrationApiRequestFactory, StoragemigrationApiResponseProcessor} from "../apis/StoragemigrationApi";
+
+export interface StoragemigrationApiGetAPIGroupRequest {
+}
+
+export class ObjectStoragemigrationApi {
+    private api: ObservableStoragemigrationApi
+
+    public constructor(configuration: Configuration, requestFactory?: StoragemigrationApiRequestFactory, responseProcessor?: StoragemigrationApiResponseProcessor) {
+        this.api = new ObservableStoragemigrationApi(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroupWithHttpInfo(param: StoragemigrationApiGetAPIGroupRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIGroup>> {
+        return this.api.getAPIGroupWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * get information of a group
+     * @param param the request object
+     */
+    public getAPIGroup(param: StoragemigrationApiGetAPIGroupRequest = {}, options?: Configuration): Promise<V1APIGroup> {
+        return this.api.getAPIGroup( options).toPromise();
+    }
+
+}
+
+import { ObservableStoragemigrationV1alpha1Api } from "./ObservableAPI";
+import { StoragemigrationV1alpha1ApiRequestFactory, StoragemigrationV1alpha1ApiResponseProcessor} from "../apis/StoragemigrationV1alpha1Api";
+
+export interface StoragemigrationV1alpha1ApiCreateStorageVersionMigrationRequest {
+    /**
+     * 
+     * @type V1alpha1StorageVersionMigration
+     * @memberof StoragemigrationV1alpha1ApicreateStorageVersionMigration
+     */
+    body: V1alpha1StorageVersionMigration
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApicreateStorageVersionMigration
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApicreateStorageVersionMigration
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApicreateStorageVersionMigration
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApicreateStorageVersionMigration
+     */
+    fieldValidation?: string
+}
+
+export interface StoragemigrationV1alpha1ApiDeleteCollectionStorageVersionMigrationRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApideleteCollectionStorageVersionMigration
+     */
+    pretty?: string
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApideleteCollectionStorageVersionMigration
+     */
+    _continue?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApideleteCollectionStorageVersionMigration
+     */
+    dryRun?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApideleteCollectionStorageVersionMigration
+     */
+    fieldSelector?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @type number
+     * @memberof StoragemigrationV1alpha1ApideleteCollectionStorageVersionMigration
+     */
+    gracePeriodSeconds?: number
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApideleteCollectionStorageVersionMigration
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof StoragemigrationV1alpha1ApideleteCollectionStorageVersionMigration
+     */
+    limit?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * @type boolean
+     * @memberof StoragemigrationV1alpha1ApideleteCollectionStorageVersionMigration
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApideleteCollectionStorageVersionMigration
+     */
+    propagationPolicy?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApideleteCollectionStorageVersionMigration
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApideleteCollectionStorageVersionMigration
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof StoragemigrationV1alpha1ApideleteCollectionStorageVersionMigration
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof StoragemigrationV1alpha1ApideleteCollectionStorageVersionMigration
+     */
+    timeoutSeconds?: number
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof StoragemigrationV1alpha1ApideleteCollectionStorageVersionMigration
+     */
+    body?: V1DeleteOptions
+}
+
+export interface StoragemigrationV1alpha1ApiDeleteStorageVersionMigrationRequest {
+    /**
+     * name of the StorageVersionMigration
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApideleteStorageVersionMigration
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApideleteStorageVersionMigration
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApideleteStorageVersionMigration
+     */
+    dryRun?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @type number
+     * @memberof StoragemigrationV1alpha1ApideleteStorageVersionMigration
+     */
+    gracePeriodSeconds?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * @type boolean
+     * @memberof StoragemigrationV1alpha1ApideleteStorageVersionMigration
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApideleteStorageVersionMigration
+     */
+    propagationPolicy?: string
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof StoragemigrationV1alpha1ApideleteStorageVersionMigration
+     */
+    body?: V1DeleteOptions
+}
+
+export interface StoragemigrationV1alpha1ApiGetAPIResourcesRequest {
+}
+
+export interface StoragemigrationV1alpha1ApiListStorageVersionMigrationRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApilistStorageVersionMigration
+     */
+    pretty?: string
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * @type boolean
+     * @memberof StoragemigrationV1alpha1ApilistStorageVersionMigration
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApilistStorageVersionMigration
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApilistStorageVersionMigration
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApilistStorageVersionMigration
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * @type number
+     * @memberof StoragemigrationV1alpha1ApilistStorageVersionMigration
+     */
+    limit?: number
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApilistStorageVersionMigration
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApilistStorageVersionMigration
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * @type boolean
+     * @memberof StoragemigrationV1alpha1ApilistStorageVersionMigration
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * @type number
+     * @memberof StoragemigrationV1alpha1ApilistStorageVersionMigration
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * @type boolean
+     * @memberof StoragemigrationV1alpha1ApilistStorageVersionMigration
+     */
+    watch?: boolean
+}
+
+export interface StoragemigrationV1alpha1ApiPatchStorageVersionMigrationRequest {
+    /**
+     * name of the StorageVersionMigration
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApipatchStorageVersionMigration
+     */
+    name: string
+    /**
+     * 
+     * @type any
+     * @memberof StoragemigrationV1alpha1ApipatchStorageVersionMigration
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApipatchStorageVersionMigration
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApipatchStorageVersionMigration
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApipatchStorageVersionMigration
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApipatchStorageVersionMigration
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * @type boolean
+     * @memberof StoragemigrationV1alpha1ApipatchStorageVersionMigration
+     */
+    force?: boolean
+}
+
+export interface StoragemigrationV1alpha1ApiPatchStorageVersionMigrationStatusRequest {
+    /**
+     * name of the StorageVersionMigration
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApipatchStorageVersionMigrationStatus
+     */
+    name: string
+    /**
+     * 
+     * @type any
+     * @memberof StoragemigrationV1alpha1ApipatchStorageVersionMigrationStatus
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApipatchStorageVersionMigrationStatus
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApipatchStorageVersionMigrationStatus
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApipatchStorageVersionMigrationStatus
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApipatchStorageVersionMigrationStatus
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * @type boolean
+     * @memberof StoragemigrationV1alpha1ApipatchStorageVersionMigrationStatus
+     */
+    force?: boolean
+}
+
+export interface StoragemigrationV1alpha1ApiReadStorageVersionMigrationRequest {
+    /**
+     * name of the StorageVersionMigration
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApireadStorageVersionMigration
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApireadStorageVersionMigration
+     */
+    pretty?: string
+}
+
+export interface StoragemigrationV1alpha1ApiReadStorageVersionMigrationStatusRequest {
+    /**
+     * name of the StorageVersionMigration
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApireadStorageVersionMigrationStatus
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApireadStorageVersionMigrationStatus
+     */
+    pretty?: string
+}
+
+export interface StoragemigrationV1alpha1ApiReplaceStorageVersionMigrationRequest {
+    /**
+     * name of the StorageVersionMigration
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApireplaceStorageVersionMigration
+     */
+    name: string
+    /**
+     * 
+     * @type V1alpha1StorageVersionMigration
+     * @memberof StoragemigrationV1alpha1ApireplaceStorageVersionMigration
+     */
+    body: V1alpha1StorageVersionMigration
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApireplaceStorageVersionMigration
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApireplaceStorageVersionMigration
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApireplaceStorageVersionMigration
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApireplaceStorageVersionMigration
+     */
+    fieldValidation?: string
+}
+
+export interface StoragemigrationV1alpha1ApiReplaceStorageVersionMigrationStatusRequest {
+    /**
+     * name of the StorageVersionMigration
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApireplaceStorageVersionMigrationStatus
+     */
+    name: string
+    /**
+     * 
+     * @type V1alpha1StorageVersionMigration
+     * @memberof StoragemigrationV1alpha1ApireplaceStorageVersionMigrationStatus
+     */
+    body: V1alpha1StorageVersionMigration
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApireplaceStorageVersionMigrationStatus
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApireplaceStorageVersionMigrationStatus
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApireplaceStorageVersionMigrationStatus
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * @type string
+     * @memberof StoragemigrationV1alpha1ApireplaceStorageVersionMigrationStatus
+     */
+    fieldValidation?: string
+}
+
+export class ObjectStoragemigrationV1alpha1Api {
+    private api: ObservableStoragemigrationV1alpha1Api
+
+    public constructor(configuration: Configuration, requestFactory?: StoragemigrationV1alpha1ApiRequestFactory, responseProcessor?: StoragemigrationV1alpha1ApiResponseProcessor) {
+        this.api = new ObservableStoragemigrationV1alpha1Api(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * create a StorageVersionMigration
+     * @param param the request object
+     */
+    public createStorageVersionMigrationWithHttpInfo(param: StoragemigrationV1alpha1ApiCreateStorageVersionMigrationRequest, options?: Configuration): Promise<HttpInfo<V1alpha1StorageVersionMigration>> {
+        return this.api.createStorageVersionMigrationWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create a StorageVersionMigration
+     * @param param the request object
+     */
+    public createStorageVersionMigration(param: StoragemigrationV1alpha1ApiCreateStorageVersionMigrationRequest, options?: Configuration): Promise<V1alpha1StorageVersionMigration> {
+        return this.api.createStorageVersionMigration(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * delete collection of StorageVersionMigration
+     * @param param the request object
+     */
+    public deleteCollectionStorageVersionMigrationWithHttpInfo(param: StoragemigrationV1alpha1ApiDeleteCollectionStorageVersionMigrationRequest = {}, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionStorageVersionMigrationWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of StorageVersionMigration
+     * @param param the request object
+     */
+    public deleteCollectionStorageVersionMigration(param: StoragemigrationV1alpha1ApiDeleteCollectionStorageVersionMigrationRequest = {}, options?: Configuration): Promise<V1Status> {
+        return this.api.deleteCollectionStorageVersionMigration(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a StorageVersionMigration
+     * @param param the request object
+     */
+    public deleteStorageVersionMigrationWithHttpInfo(param: StoragemigrationV1alpha1ApiDeleteStorageVersionMigrationRequest, options?: Configuration): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteStorageVersionMigrationWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a StorageVersionMigration
+     * @param param the request object
+     */
+    public deleteStorageVersionMigration(param: StoragemigrationV1alpha1ApiDeleteStorageVersionMigrationRequest, options?: Configuration): Promise<V1Status> {
+        return this.api.deleteStorageVersionMigration(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: StoragemigrationV1alpha1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResources(param: StoragemigrationV1alpha1ApiGetAPIResourcesRequest = {}, options?: Configuration): Promise<V1APIResourceList> {
+        return this.api.getAPIResources( options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind StorageVersionMigration
+     * @param param the request object
+     */
+    public listStorageVersionMigrationWithHttpInfo(param: StoragemigrationV1alpha1ApiListStorageVersionMigrationRequest = {}, options?: Configuration): Promise<HttpInfo<V1alpha1StorageVersionMigrationList>> {
+        return this.api.listStorageVersionMigrationWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind StorageVersionMigration
+     * @param param the request object
+     */
+    public listStorageVersionMigration(param: StoragemigrationV1alpha1ApiListStorageVersionMigrationRequest = {}, options?: Configuration): Promise<V1alpha1StorageVersionMigrationList> {
+        return this.api.listStorageVersionMigration(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified StorageVersionMigration
+     * @param param the request object
+     */
+    public patchStorageVersionMigrationWithHttpInfo(param: StoragemigrationV1alpha1ApiPatchStorageVersionMigrationRequest, options?: Configuration): Promise<HttpInfo<V1alpha1StorageVersionMigration>> {
+        return this.api.patchStorageVersionMigrationWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified StorageVersionMigration
+     * @param param the request object
+     */
+    public patchStorageVersionMigration(param: StoragemigrationV1alpha1ApiPatchStorageVersionMigrationRequest, options?: Configuration): Promise<V1alpha1StorageVersionMigration> {
+        return this.api.patchStorageVersionMigration(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified StorageVersionMigration
+     * @param param the request object
+     */
+    public patchStorageVersionMigrationStatusWithHttpInfo(param: StoragemigrationV1alpha1ApiPatchStorageVersionMigrationStatusRequest, options?: Configuration): Promise<HttpInfo<V1alpha1StorageVersionMigration>> {
+        return this.api.patchStorageVersionMigrationStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified StorageVersionMigration
+     * @param param the request object
+     */
+    public patchStorageVersionMigrationStatus(param: StoragemigrationV1alpha1ApiPatchStorageVersionMigrationStatusRequest, options?: Configuration): Promise<V1alpha1StorageVersionMigration> {
+        return this.api.patchStorageVersionMigrationStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * read the specified StorageVersionMigration
+     * @param param the request object
+     */
+    public readStorageVersionMigrationWithHttpInfo(param: StoragemigrationV1alpha1ApiReadStorageVersionMigrationRequest, options?: Configuration): Promise<HttpInfo<V1alpha1StorageVersionMigration>> {
+        return this.api.readStorageVersionMigrationWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified StorageVersionMigration
+     * @param param the request object
+     */
+    public readStorageVersionMigration(param: StoragemigrationV1alpha1ApiReadStorageVersionMigrationRequest, options?: Configuration): Promise<V1alpha1StorageVersionMigration> {
+        return this.api.readStorageVersionMigration(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified StorageVersionMigration
+     * @param param the request object
+     */
+    public readStorageVersionMigrationStatusWithHttpInfo(param: StoragemigrationV1alpha1ApiReadStorageVersionMigrationStatusRequest, options?: Configuration): Promise<HttpInfo<V1alpha1StorageVersionMigration>> {
+        return this.api.readStorageVersionMigrationStatusWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified StorageVersionMigration
+     * @param param the request object
+     */
+    public readStorageVersionMigrationStatus(param: StoragemigrationV1alpha1ApiReadStorageVersionMigrationStatusRequest, options?: Configuration): Promise<V1alpha1StorageVersionMigration> {
+        return this.api.readStorageVersionMigrationStatus(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified StorageVersionMigration
+     * @param param the request object
+     */
+    public replaceStorageVersionMigrationWithHttpInfo(param: StoragemigrationV1alpha1ApiReplaceStorageVersionMigrationRequest, options?: Configuration): Promise<HttpInfo<V1alpha1StorageVersionMigration>> {
+        return this.api.replaceStorageVersionMigrationWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified StorageVersionMigration
+     * @param param the request object
+     */
+    public replaceStorageVersionMigration(param: StoragemigrationV1alpha1ApiReplaceStorageVersionMigrationRequest, options?: Configuration): Promise<V1alpha1StorageVersionMigration> {
+        return this.api.replaceStorageVersionMigration(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified StorageVersionMigration
+     * @param param the request object
+     */
+    public replaceStorageVersionMigrationStatusWithHttpInfo(param: StoragemigrationV1alpha1ApiReplaceStorageVersionMigrationStatusRequest, options?: Configuration): Promise<HttpInfo<V1alpha1StorageVersionMigration>> {
+        return this.api.replaceStorageVersionMigrationStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified StorageVersionMigration
+     * @param param the request object
+     */
+    public replaceStorageVersionMigrationStatus(param: StoragemigrationV1alpha1ApiReplaceStorageVersionMigrationStatusRequest, options?: Configuration): Promise<V1alpha1StorageVersionMigration> {
+        return this.api.replaceStorageVersionMigrationStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
 }

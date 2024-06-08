@@ -145,6 +145,7 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
           backoffLimitPerIndex: 1,
           completionMode: "completionMode_example",
           completions: 1,
+          managedBy: "managedBy_example",
           manualSelector: true,
           maxFailedIndexes: 1,
           parallelism: 1,
@@ -182,6 +183,14 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
             matchLabels: {
               "key": "key_example",
             },
+          },
+          successPolicy: {
+            rules: [
+              {
+                succeededCount: 1,
+                succeededIndexes: "succeededIndexes_example",
+              },
+            ],
           },
           suspend: true,
           template: {
@@ -663,6 +672,10 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                   restartPolicy: "restartPolicy_example",
                   securityContext: {
                     allowPrivilegeEscalation: true,
+                    appArmorProfile: {
+                      localhostProfile: "localhostProfile_example",
+                      type: "type_example",
+                    },
                     capabilities: {
                       add: [
                         "add_example",
@@ -744,6 +757,7 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                       mountPropagation: "mountPropagation_example",
                       name: "name_example",
                       readOnly: true,
+                      recursiveReadOnly: "recursiveReadOnly_example",
                       subPath: "subPath_example",
                       subPathExpr: "subPathExpr_example",
                     },
@@ -969,6 +983,10 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                   restartPolicy: "restartPolicy_example",
                   securityContext: {
                     allowPrivilegeEscalation: true,
+                    appArmorProfile: {
+                      localhostProfile: "localhostProfile_example",
+                      type: "type_example",
+                    },
                     capabilities: {
                       add: [
                         "add_example",
@@ -1051,6 +1069,7 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                       mountPropagation: "mountPropagation_example",
                       name: "name_example",
                       readOnly: true,
+                      recursiveReadOnly: "recursiveReadOnly_example",
                       subPath: "subPath_example",
                       subPathExpr: "subPathExpr_example",
                     },
@@ -1278,6 +1297,10 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                   restartPolicy: "restartPolicy_example",
                   securityContext: {
                     allowPrivilegeEscalation: true,
+                    appArmorProfile: {
+                      localhostProfile: "localhostProfile_example",
+                      type: "type_example",
+                    },
                     capabilities: {
                       add: [
                         "add_example",
@@ -1359,6 +1382,7 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                       mountPropagation: "mountPropagation_example",
                       name: "name_example",
                       readOnly: true,
+                      recursiveReadOnly: "recursiveReadOnly_example",
                       subPath: "subPath_example",
                       subPathExpr: "subPathExpr_example",
                     },
@@ -1402,6 +1426,10 @@ let body:.BatchV1ApiCreateNamespacedCronJobRequest = {
                 },
               ],
               securityContext: {
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 fsGroup: 1,
                 fsGroupChangePolicy: "fsGroupChangePolicy_example",
                 runAsGroup: 1,
@@ -2016,6 +2044,7 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
       backoffLimitPerIndex: 1,
       completionMode: "completionMode_example",
       completions: 1,
+      managedBy: "managedBy_example",
       manualSelector: true,
       maxFailedIndexes: 1,
       parallelism: 1,
@@ -2053,6 +2082,14 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
         matchLabels: {
           "key": "key_example",
         },
+      },
+      successPolicy: {
+        rules: [
+          {
+            succeededCount: 1,
+            succeededIndexes: "succeededIndexes_example",
+          },
+        ],
       },
       suspend: true,
       template: {
@@ -2534,6 +2571,10 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -2615,6 +2656,7 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -2840,6 +2882,10 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -2922,6 +2968,7 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -3149,6 +3196,10 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -3230,6 +3281,7 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -3273,6 +3325,10 @@ let body:.BatchV1ApiCreateNamespacedJobRequest = {
             },
           ],
           securityContext: {
+            appArmorProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
             runAsGroup: 1,
@@ -5289,6 +5345,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
           backoffLimitPerIndex: 1,
           completionMode: "completionMode_example",
           completions: 1,
+          managedBy: "managedBy_example",
           manualSelector: true,
           maxFailedIndexes: 1,
           parallelism: 1,
@@ -5326,6 +5383,14 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
             matchLabels: {
               "key": "key_example",
             },
+          },
+          successPolicy: {
+            rules: [
+              {
+                succeededCount: 1,
+                succeededIndexes: "succeededIndexes_example",
+              },
+            ],
           },
           suspend: true,
           template: {
@@ -5807,6 +5872,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                   restartPolicy: "restartPolicy_example",
                   securityContext: {
                     allowPrivilegeEscalation: true,
+                    appArmorProfile: {
+                      localhostProfile: "localhostProfile_example",
+                      type: "type_example",
+                    },
                     capabilities: {
                       add: [
                         "add_example",
@@ -5888,6 +5957,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                       mountPropagation: "mountPropagation_example",
                       name: "name_example",
                       readOnly: true,
+                      recursiveReadOnly: "recursiveReadOnly_example",
                       subPath: "subPath_example",
                       subPathExpr: "subPathExpr_example",
                     },
@@ -6113,6 +6183,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                   restartPolicy: "restartPolicy_example",
                   securityContext: {
                     allowPrivilegeEscalation: true,
+                    appArmorProfile: {
+                      localhostProfile: "localhostProfile_example",
+                      type: "type_example",
+                    },
                     capabilities: {
                       add: [
                         "add_example",
@@ -6195,6 +6269,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                       mountPropagation: "mountPropagation_example",
                       name: "name_example",
                       readOnly: true,
+                      recursiveReadOnly: "recursiveReadOnly_example",
                       subPath: "subPath_example",
                       subPathExpr: "subPathExpr_example",
                     },
@@ -6422,6 +6497,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                   restartPolicy: "restartPolicy_example",
                   securityContext: {
                     allowPrivilegeEscalation: true,
+                    appArmorProfile: {
+                      localhostProfile: "localhostProfile_example",
+                      type: "type_example",
+                    },
                     capabilities: {
                       add: [
                         "add_example",
@@ -6503,6 +6582,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                       mountPropagation: "mountPropagation_example",
                       name: "name_example",
                       readOnly: true,
+                      recursiveReadOnly: "recursiveReadOnly_example",
                       subPath: "subPath_example",
                       subPathExpr: "subPathExpr_example",
                     },
@@ -6546,6 +6626,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobRequest = {
                 },
               ],
               securityContext: {
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 fsGroup: 1,
                 fsGroupChangePolicy: "fsGroupChangePolicy_example",
                 runAsGroup: 1,
@@ -7208,6 +7292,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
           backoffLimitPerIndex: 1,
           completionMode: "completionMode_example",
           completions: 1,
+          managedBy: "managedBy_example",
           manualSelector: true,
           maxFailedIndexes: 1,
           parallelism: 1,
@@ -7245,6 +7330,14 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
             matchLabels: {
               "key": "key_example",
             },
+          },
+          successPolicy: {
+            rules: [
+              {
+                succeededCount: 1,
+                succeededIndexes: "succeededIndexes_example",
+              },
+            ],
           },
           suspend: true,
           template: {
@@ -7726,6 +7819,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                   restartPolicy: "restartPolicy_example",
                   securityContext: {
                     allowPrivilegeEscalation: true,
+                    appArmorProfile: {
+                      localhostProfile: "localhostProfile_example",
+                      type: "type_example",
+                    },
                     capabilities: {
                       add: [
                         "add_example",
@@ -7807,6 +7904,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       mountPropagation: "mountPropagation_example",
                       name: "name_example",
                       readOnly: true,
+                      recursiveReadOnly: "recursiveReadOnly_example",
                       subPath: "subPath_example",
                       subPathExpr: "subPathExpr_example",
                     },
@@ -8032,6 +8130,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                   restartPolicy: "restartPolicy_example",
                   securityContext: {
                     allowPrivilegeEscalation: true,
+                    appArmorProfile: {
+                      localhostProfile: "localhostProfile_example",
+                      type: "type_example",
+                    },
                     capabilities: {
                       add: [
                         "add_example",
@@ -8114,6 +8216,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       mountPropagation: "mountPropagation_example",
                       name: "name_example",
                       readOnly: true,
+                      recursiveReadOnly: "recursiveReadOnly_example",
                       subPath: "subPath_example",
                       subPathExpr: "subPathExpr_example",
                     },
@@ -8341,6 +8444,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                   restartPolicy: "restartPolicy_example",
                   securityContext: {
                     allowPrivilegeEscalation: true,
+                    appArmorProfile: {
+                      localhostProfile: "localhostProfile_example",
+                      type: "type_example",
+                    },
                     capabilities: {
                       add: [
                         "add_example",
@@ -8422,6 +8529,7 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       mountPropagation: "mountPropagation_example",
                       name: "name_example",
                       readOnly: true,
+                      recursiveReadOnly: "recursiveReadOnly_example",
                       subPath: "subPath_example",
                       subPathExpr: "subPathExpr_example",
                     },
@@ -8465,6 +8573,10 @@ let body:.BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                 },
               ],
               securityContext: {
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 fsGroup: 1,
                 fsGroupChangePolicy: "fsGroupChangePolicy_example",
                 runAsGroup: 1,
@@ -9081,6 +9193,7 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
       backoffLimitPerIndex: 1,
       completionMode: "completionMode_example",
       completions: 1,
+      managedBy: "managedBy_example",
       manualSelector: true,
       maxFailedIndexes: 1,
       parallelism: 1,
@@ -9118,6 +9231,14 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
         matchLabels: {
           "key": "key_example",
         },
+      },
+      successPolicy: {
+        rules: [
+          {
+            succeededCount: 1,
+            succeededIndexes: "succeededIndexes_example",
+          },
+        ],
       },
       suspend: true,
       template: {
@@ -9599,6 +9720,10 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -9680,6 +9805,7 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -9905,6 +10031,10 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -9987,6 +10117,7 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -10214,6 +10345,10 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -10295,6 +10430,7 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -10338,6 +10474,10 @@ let body:.BatchV1ApiReplaceNamespacedJobRequest = {
             },
           ],
           securityContext: {
+            appArmorProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
             runAsGroup: 1,
@@ -10961,6 +11101,7 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
       backoffLimitPerIndex: 1,
       completionMode: "completionMode_example",
       completions: 1,
+      managedBy: "managedBy_example",
       manualSelector: true,
       maxFailedIndexes: 1,
       parallelism: 1,
@@ -10998,6 +11139,14 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
         matchLabels: {
           "key": "key_example",
         },
+      },
+      successPolicy: {
+        rules: [
+          {
+            succeededCount: 1,
+            succeededIndexes: "succeededIndexes_example",
+          },
+        ],
       },
       suspend: true,
       template: {
@@ -11479,6 +11628,10 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -11560,6 +11713,7 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -11785,6 +11939,10 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -11867,6 +12025,7 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -12094,6 +12253,10 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -12175,6 +12338,7 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -12218,6 +12382,10 @@ let body:.BatchV1ApiReplaceNamespacedJobStatusRequest = {
             },
           ],
           securityContext: {
+            appArmorProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
             runAsGroup: 1,

@@ -208,6 +208,11 @@ let body:.ApiextensionsV1ApiCreateCustomResourceDefinitionRequest = {
               ],
             },
           },
+          selectableFields: [
+            {
+              jsonPath: "jsonPath_example",
+            },
+          ],
           served: true,
           storage: true,
           subresources: {
@@ -1084,6 +1089,11 @@ let body:.ApiextensionsV1ApiReplaceCustomResourceDefinitionRequest = {
               ],
             },
           },
+          selectableFields: [
+            {
+              jsonPath: "jsonPath_example",
+            },
+          ],
           served: true,
           storage: true,
           subresources: {
@@ -1368,6 +1378,11 @@ let body:.ApiextensionsV1ApiReplaceCustomResourceDefinitionStatusRequest = {
               ],
             },
           },
+          selectableFields: [
+            {
+              jsonPath: "jsonPath_example",
+            },
+          ],
           served: true,
           storage: true,
           subresources: {

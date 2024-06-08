@@ -747,6 +747,10 @@ let body:.AppsV1ApiCreateNamespacedDaemonSetRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -828,6 +832,7 @@ let body:.AppsV1ApiCreateNamespacedDaemonSetRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -1053,6 +1058,10 @@ let body:.AppsV1ApiCreateNamespacedDaemonSetRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -1135,6 +1144,7 @@ let body:.AppsV1ApiCreateNamespacedDaemonSetRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -1362,6 +1372,10 @@ let body:.AppsV1ApiCreateNamespacedDaemonSetRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -1443,6 +1457,7 @@ let body:.AppsV1ApiCreateNamespacedDaemonSetRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -1486,6 +1501,10 @@ let body:.AppsV1ApiCreateNamespacedDaemonSetRequest = {
             },
           ],
           securityContext: {
+            appArmorProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
             runAsGroup: 1,
@@ -2604,6 +2623,10 @@ let body:.AppsV1ApiCreateNamespacedDeploymentRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -2685,6 +2708,7 @@ let body:.AppsV1ApiCreateNamespacedDeploymentRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -2910,6 +2934,10 @@ let body:.AppsV1ApiCreateNamespacedDeploymentRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -2992,6 +3020,7 @@ let body:.AppsV1ApiCreateNamespacedDeploymentRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -3219,6 +3248,10 @@ let body:.AppsV1ApiCreateNamespacedDeploymentRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -3300,6 +3333,7 @@ let body:.AppsV1ApiCreateNamespacedDeploymentRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -3343,6 +3377,10 @@ let body:.AppsV1ApiCreateNamespacedDeploymentRequest = {
             },
           ],
           securityContext: {
+            appArmorProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
             runAsGroup: 1,
@@ -4443,6 +4481,10 @@ let body:.AppsV1ApiCreateNamespacedReplicaSetRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -4524,6 +4566,7 @@ let body:.AppsV1ApiCreateNamespacedReplicaSetRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -4749,6 +4792,10 @@ let body:.AppsV1ApiCreateNamespacedReplicaSetRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -4831,6 +4878,7 @@ let body:.AppsV1ApiCreateNamespacedReplicaSetRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -5058,6 +5106,10 @@ let body:.AppsV1ApiCreateNamespacedReplicaSetRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -5139,6 +5191,7 @@ let body:.AppsV1ApiCreateNamespacedReplicaSetRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -5182,6 +5235,10 @@ let body:.AppsV1ApiCreateNamespacedReplicaSetRequest = {
             },
           ],
           securityContext: {
+            appArmorProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
             runAsGroup: 1,
@@ -6289,6 +6346,10 @@ let body:.AppsV1ApiCreateNamespacedStatefulSetRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -6370,6 +6431,7 @@ let body:.AppsV1ApiCreateNamespacedStatefulSetRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -6595,6 +6657,10 @@ let body:.AppsV1ApiCreateNamespacedStatefulSetRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -6677,6 +6743,7 @@ let body:.AppsV1ApiCreateNamespacedStatefulSetRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -6904,6 +6971,10 @@ let body:.AppsV1ApiCreateNamespacedStatefulSetRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -6985,6 +7056,7 @@ let body:.AppsV1ApiCreateNamespacedStatefulSetRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -7028,6 +7100,10 @@ let body:.AppsV1ApiCreateNamespacedStatefulSetRequest = {
             },
           ],
           securityContext: {
+            appArmorProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
             runAsGroup: 1,
@@ -11949,6 +12025,10 @@ let body:.AppsV1ApiReplaceNamespacedDaemonSetRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -12030,6 +12110,7 @@ let body:.AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -12255,6 +12336,10 @@ let body:.AppsV1ApiReplaceNamespacedDaemonSetRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -12337,6 +12422,7 @@ let body:.AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -12564,6 +12650,10 @@ let body:.AppsV1ApiReplaceNamespacedDaemonSetRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -12645,6 +12735,7 @@ let body:.AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -12688,6 +12779,10 @@ let body:.AppsV1ApiReplaceNamespacedDaemonSetRequest = {
             },
           ],
           securityContext: {
+            appArmorProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
             runAsGroup: 1,
@@ -13798,6 +13893,10 @@ let body:.AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -13879,6 +13978,7 @@ let body:.AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -14104,6 +14204,10 @@ let body:.AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -14186,6 +14290,7 @@ let body:.AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -14413,6 +14518,10 @@ let body:.AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -14494,6 +14603,7 @@ let body:.AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -14537,6 +14647,10 @@ let body:.AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
             },
           ],
           securityContext: {
+            appArmorProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
             runAsGroup: 1,
@@ -15657,6 +15771,10 @@ let body:.AppsV1ApiReplaceNamespacedDeploymentRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -15738,6 +15856,7 @@ let body:.AppsV1ApiReplaceNamespacedDeploymentRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -15963,6 +16082,10 @@ let body:.AppsV1ApiReplaceNamespacedDeploymentRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -16045,6 +16168,7 @@ let body:.AppsV1ApiReplaceNamespacedDeploymentRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -16272,6 +16396,10 @@ let body:.AppsV1ApiReplaceNamespacedDeploymentRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -16353,6 +16481,7 @@ let body:.AppsV1ApiReplaceNamespacedDeploymentRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -16396,6 +16525,10 @@ let body:.AppsV1ApiReplaceNamespacedDeploymentRequest = {
             },
           ],
           securityContext: {
+            appArmorProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
             runAsGroup: 1,
@@ -17634,6 +17767,10 @@ let body:.AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -17715,6 +17852,7 @@ let body:.AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -17940,6 +18078,10 @@ let body:.AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -18022,6 +18164,7 @@ let body:.AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -18249,6 +18392,10 @@ let body:.AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -18330,6 +18477,7 @@ let body:.AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -18373,6 +18521,10 @@ let body:.AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
             },
           ],
           securityContext: {
+            appArmorProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
             runAsGroup: 1,
@@ -19475,6 +19627,10 @@ let body:.AppsV1ApiReplaceNamespacedReplicaSetRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -19556,6 +19712,7 @@ let body:.AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -19781,6 +19938,10 @@ let body:.AppsV1ApiReplaceNamespacedReplicaSetRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -19863,6 +20024,7 @@ let body:.AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -20090,6 +20252,10 @@ let body:.AppsV1ApiReplaceNamespacedReplicaSetRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -20171,6 +20337,7 @@ let body:.AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -20214,6 +20381,10 @@ let body:.AppsV1ApiReplaceNamespacedReplicaSetRequest = {
             },
           ],
           securityContext: {
+            appArmorProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
             runAsGroup: 1,
@@ -21439,6 +21610,10 @@ let body:.AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -21520,6 +21695,7 @@ let body:.AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -21745,6 +21921,10 @@ let body:.AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -21827,6 +22007,7 @@ let body:.AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -22054,6 +22235,10 @@ let body:.AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -22135,6 +22320,7 @@ let body:.AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -22178,6 +22364,10 @@ let body:.AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
             },
           ],
           securityContext: {
+            appArmorProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
             runAsGroup: 1,
@@ -23287,6 +23477,10 @@ let body:.AppsV1ApiReplaceNamespacedStatefulSetRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -23368,6 +23562,7 @@ let body:.AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -23593,6 +23788,10 @@ let body:.AppsV1ApiReplaceNamespacedStatefulSetRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -23675,6 +23874,7 @@ let body:.AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -23902,6 +24102,10 @@ let body:.AppsV1ApiReplaceNamespacedStatefulSetRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -23983,6 +24187,7 @@ let body:.AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -24026,6 +24231,10 @@ let body:.AppsV1ApiReplaceNamespacedStatefulSetRequest = {
             },
           ],
           securityContext: {
+            appArmorProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
             runAsGroup: 1,
@@ -25392,6 +25601,10 @@ let body:.AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -25473,6 +25686,7 @@ let body:.AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -25698,6 +25912,10 @@ let body:.AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -25780,6 +25998,7 @@ let body:.AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -26007,6 +26226,10 @@ let body:.AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
               restartPolicy: "restartPolicy_example",
               securityContext: {
                 allowPrivilegeEscalation: true,
+                appArmorProfile: {
+                  localhostProfile: "localhostProfile_example",
+                  type: "type_example",
+                },
                 capabilities: {
                   add: [
                     "add_example",
@@ -26088,6 +26311,7 @@ let body:.AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
                   readOnly: true,
+                  recursiveReadOnly: "recursiveReadOnly_example",
                   subPath: "subPath_example",
                   subPathExpr: "subPathExpr_example",
                 },
@@ -26131,6 +26355,10 @@ let body:.AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
             },
           ],
           securityContext: {
+            appArmorProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
             fsGroup: 1,
             fsGroupChangePolicy: "fsGroupChangePolicy_example",
             runAsGroup: 1,
