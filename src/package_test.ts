@@ -7,6 +7,9 @@ describe('package', () => {
         const v1 = require('../package.json').version;
         const v2 = require('../package-lock.json').version;
         expect(v1).to.equal(v2);
+
+        const v3 = require('../package-lock.json').packages[''].version;
+        expect(v1).to.equal(v3);
     });
 
     it('package-lock should only reference npm', () => {
