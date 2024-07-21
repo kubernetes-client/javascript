@@ -38,8 +38,8 @@ export class Exec {
         stderr: stream.Writable | null,
         stdin: stream.Readable | null,
         tty: boolean,
-        statusCallback?: (status: V1Status) => void,
-    ): Promise<WebSocket.WebSocket> {
+        statusCallback?: (result: any) => void,
+    ): Promise<WebSocket.WebSocket | void> {
         const query = {
             stdout: stdout != null,
             stderr: stderr != null,
@@ -50,16 +50,26 @@ export class Exec {
         };
         const queryStr = querystring.stringify(query);
         const path = `/api/v1/namespaces/${namespace}/pods/${podName}/exec?${queryStr}`;
-        const conn = await this.handler.connect(path, null, (streamNum: number, buff: Buffer): boolean => {
-            const status = WebSocketHandler.handleStandardStreams(streamNum, buff, stdout, stderr);
-            if (status != null) {
-                if (statusCallback) {
-                    statusCallback(status);
+        let conn;
+        try {
+            conn = await this.handler.connect(path, null, (streamNum: number, buff: Buffer): boolean => {
+                const status = WebSocketHandler.handleStandardStreams(streamNum, buff, stdout, stderr);
+                if (status != null) {
+                    if (statusCallback) {
+                        statusCallback(status);
+                    }
+                    return false;
                 }
-                return false;
+                return true;
+            });
+        } catch (e) {
+            if (statusCallback) {
+                let msg = (e as Error).message;
+                statusCallback({ status: 'Failure', errorMessage: msg });
+                return;
             }
-            return true;
-        });
+        }
+
         if (stdin != null) {
             WebSocketHandler.handleStandardInput(conn, stdin, WebSocketHandler.StdinStream);
         }
@@ -67,6 +77,10 @@ export class Exec {
             this.terminalSizeQueue = new TerminalSizeQueue();
             WebSocketHandler.handleStandardInput(conn, this.terminalSizeQueue, WebSocketHandler.ResizeStream);
             this.terminalSizeQueue.handleResizes(stdout as any as ResizableStream);
+        }
+
+        if (statusCallback) {
+            statusCallback({});
         }
         return conn;
     }

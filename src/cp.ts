@@ -25,7 +25,7 @@ export class Cp {
         containerName: string,
         srcPath: string,
         tgtPath: string,
-        cwd?: string,
+        cwd?: string
     ): Promise<void> {
         const tmpFileName = await generateTmpFileName();
         const command = ['tar', 'zcf', '-'];
@@ -72,6 +72,7 @@ export class Cp {
         srcPath: string,
         tgtPath: string,
         cwd?: string,
+        callback?: (error: Error | null, status?: any) => void,
     ): Promise<void> {
         const tmpFileName = await generateTmpFileName();
         const command = ['tar', 'xf', '-', '-C', tgtPath];
@@ -89,8 +90,9 @@ export class Cp {
             false,
             async ({ status }) => {
                 if (status === 'Failure' || errStream.size()) {
-                    throw new Error(`Error from cpToPod - details: \n ${errStream.getContentsAsString()}`);
+                    if (callback) return callback(new Error(`Error from cpToPod - details: \n ${errStream.getContentsAsString()}`));
                 }
+                if (callback) return callback(null, status);
             },
         );
     }
