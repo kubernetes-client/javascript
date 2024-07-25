@@ -192,6 +192,39 @@ describe('ExecAuth', () => {
         expect(opts.headers.Authorization).to.be.undefined;
     });
 
+    it('should throw on spawnSync errors', () => {
+        // TODO: fix this test for Windows
+        if (process.platform === 'win32') {
+            return;
+        }
+        const auth = new ExecAuth();
+        (auth as any).execFn = (
+            command: string,
+            args: string[],
+            opts: child_process.SpawnOptions,
+        ): child_process.SpawnSyncReturns<Buffer> => {
+            return {
+                error: new Error('Error: spawnSync /path/to/bin ENOENT'),
+            } as child_process.SpawnSyncReturns<Buffer>;
+        };
+
+        const user = {
+            name: 'user',
+            authProvider: {
+                config: {
+                    exec: {
+                        command: '/path/to/bin',
+                    },
+                },
+            },
+        };
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
+
+        const promise = auth.applyAuthentication(user, opts);
+        return expect(promise).to.eventually.be.rejected.and.not.instanceOf(TypeError);
+    });
+
     it('should throw on exec errors', () => {
         // TODO: fix this test for Windows
         if (process.platform === 'win32') {
