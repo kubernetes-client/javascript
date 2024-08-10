@@ -4,6 +4,7 @@ import { ApisApi, HttpError, V1APIResource, V1APIResourceList, V1DeleteOptions, 
 import { KubeConfig } from './config';
 import ObjectSerializer from './serializer';
 import { KubernetesListObject, KubernetesObject } from './types';
+import { RequestResult, Watch } from './watch';
 
 /** Union type of body types returned by KubernetesObjectApi. */
 type KubernetesObjectResponseBody =
@@ -45,6 +46,60 @@ enum KubernetesPatchStrategies {
 }
 
 /**
+ * Describes the type of an watch event.
+ * Object is:
+ * - If Type is Added or Modified: the new state of the object.
+ * - If Type is Deleted: the state of the object immediately before deletion.
+ * - If Type is Bookmark: the object (instance of a type being watched) where
+ *   only ResourceVersion field is set. On successful restart of watch from a
+ *   bookmark resourceVersion, client is guaranteed to not get repeat event
+ *   nor miss any events.
+ * - If Type is Error: *api.Status is recommended; other types may make sense
+ *   depending on context.
+ */
+export enum KubernetesEventType {
+    ADDED = 'ADDED',
+    MODIFIED = 'MODIFIED',
+    DELETED = 'DELETED',
+    BOOKMARK = 'BOOKMARK',
+    ERROR = 'ERROR',
+}
+
+export type WatchObject<T extends KubernetesObject | KubernetesObject> = {
+    type: KubernetesEventType;
+    object: T;
+};
+
+export type WatchCallback<T extends KubernetesObject | KubernetesObject> = (
+    phase: KubernetesEventType,
+    apiObj: T,
+    watchObj?: WatchObject<T>,
+) => void;
+
+export type WatchOptions = {
+    /**
+     * To mitigate the impact of short history window,
+     * the Kubernetes API provides a watch event named BOOKMARK.
+     * It is a special kind of event to mark that all changes
+     * up to a given resourceVersion the client is requesting
+     * have already been sent.
+     *
+     * See https://kubernetes.io/docs/reference/using-api/api-concepts/#watch-bookmarks
+     */
+    allowWatchBookmarks?: boolean;
+    /**
+     * Start watch at the given resource version.
+     * Starting at a specific resource version means that only events
+     * starting from that versions are included in the watch stream.
+     */
+    resourceVersion?: string;
+};
+
+export type WatchResult = {
+    abort: () => void;
+};
+
+/**
  * Dynamically construct Kubernetes API request URIs so client does not have to know what type of object it is acting
  * on.
  */
@@ -60,6 +115,7 @@ export class KubernetesObjectApi extends ApisApi {
     public static makeApiClient(kc: KubeConfig): KubernetesObjectApi {
         const client = kc.makeApiClient(KubernetesObjectApi);
         client.setDefaultNamespace(kc);
+        client.watcher = new Watch(kc);
         return client;
     }
 
@@ -68,6 +124,8 @@ export class KubernetesObjectApi extends ApisApi {
 
     /** Cache resource API response. */
     protected apiVersionResourceCache: Record<string, V1APIResourceList> = {};
+
+    protected watcher?: Watch;
 
     /**
      * Create any Kubernetes resource.
@@ -472,6 +530,45 @@ export class KubernetesObjectApi extends ApisApi {
         };
 
         return this.requestPromise(localVarRequestOptions);
+    }
+
+    /**
+     * Watches the given resources and calls provided callback with the parsed json object
+     * upon event received over the watcher connection.
+     *
+     * @param resource defines the resources to watch. Namespace is optional.
+     *                 Undefined namespace means to watch all namespaces.
+     * @param options Optional options that are passed to the watch request.
+     * @param callback callback function that is called with the parsed json object upon event received.
+     * @param done callback is called either when connection is closed or when there
+     *             is an error. In either case, watcher takes care of properly closing the
+     *             underlaying connection so that it doesn't leak any resources.
+     *
+     * @returns WatchResult object that can be used to abort the watch.
+     */
+    public async watch<T>({
+        resource,
+        options = {},
+        callback,
+        done,
+    }: {
+        resource: {
+            apiVersion: string;
+            kind: string;
+            namespace?: string;
+        };
+        options?: WatchOptions;
+        callback: WatchCallback<T>;
+        done: (err: unknown) => void;
+    }): Promise<WatchResult> {
+        if (!this.watcher) {
+            throw new Error('Watcher not initialized');
+        }
+        const resourcePath = await this.specUriPath(resource, 'list');
+        const res: RequestResult = await this.watcher.watch(resourcePath, options, callback, done);
+        return {
+            abort: () => res.abort(),
+        };
     }
 
     /** Set default namespace from current context, if available. */
