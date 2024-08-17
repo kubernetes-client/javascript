@@ -546,7 +546,7 @@ export class KubernetesObjectApi extends ApisApi {
      *
      * @returns WatchResult object that can be used to abort the watch.
      */
-    public async watch<T>({
+    public async watch<T extends KubernetesObject | KubernetesObject>({
         resource,
         options = {},
         callback,
@@ -564,8 +564,39 @@ export class KubernetesObjectApi extends ApisApi {
         if (!this.watcher) {
             throw new Error('Watcher not initialized');
         }
-        const resourcePath = await this.specUriPath(resource, 'list');
-        const res: RequestResult = await this.watcher.watch(resourcePath, options, callback, done);
+        const resourcePath = new URL(
+            await this.specUriPath(
+                {
+                    apiVersion: resource.apiVersion,
+                    kind: resource.kind,
+                    metadata: {
+                        namespace: resource.namespace,
+                    },
+                },
+                'list',
+            ),
+        ).pathname;
+        const type = await this.getSerializationType(resource.apiVersion, resource.kind);
+        const cb: WatchCallback<T> = (phase: KubernetesEventType, apiObj: T, watchObj?: WatchObject<T>) => {
+            const obj = ObjectSerializer.deserialize(apiObj, type);
+            callback(
+                phase,
+                obj,
+                watchObj
+                    ? {
+                          ...watchObj,
+                          object: obj,
+                      }
+                    : undefined,
+            );
+        };
+        const res: RequestResult = await this.watcher.watch(
+            resourcePath,
+            options,
+            // required to convert to less strict type.
+            cb as (phase: string, apiObj: any, watchObj?: any) => void,
+            done,
+        );
         return {
             abort: () => res.abort(),
         };

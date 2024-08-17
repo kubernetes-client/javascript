@@ -1,69 +1,17 @@
 import { fail } from 'assert';
 import { expect } from 'chai';
 import nock = require('nock');
+import { PassThrough } from 'stream';
+import { IncomingMessage } from 'http';
 import { V1APIResource, V1APIResourceList, V1Secret } from './api';
 import { KubeConfig } from './config';
+import { Cluster, Context, User } from './config_types';
 import { KubernetesObjectApi } from './object';
 import { KubernetesObject } from './types';
+import { resolvablePromise } from './util';
 
-describe('KubernetesObject', () => {
-    const testConfigOptions = {
-        clusters: [{ name: 'dc', server: 'https://d.i.y' }],
-        users: [{ name: 'ian', password: 'mackaye' }],
-        contexts: [{ name: 'dischord', cluster: 'dc', user: 'ian' }],
-        currentContext: 'dischord',
-    };
-
-    describe('makeApiClient', () => {
-        it('should create the client', () => {
-            const kc = new KubeConfig();
-            kc.loadFromOptions(testConfigOptions);
-            const c = KubernetesObjectApi.makeApiClient(kc);
-            expect(c).to.be.ok;
-            expect((c as any).defaultNamespace).to.equal('default');
-        });
-
-        it('should set the default namespace from context', () => {
-            const kc = new KubeConfig();
-            kc.loadFromOptions({
-                clusters: [{ name: 'dc', server: 'https://d.i.y' }],
-                users: [{ name: 'ian', password: 'mackaye' }],
-                contexts: [{ name: 'dischord', cluster: 'dc', user: 'ian', namespace: 'straight-edge' }],
-                currentContext: 'dischord',
-            });
-            const c = KubernetesObjectApi.makeApiClient(kc);
-            expect(c).to.be.ok;
-            expect((c as any).defaultNamespace).to.equal('straight-edge');
-        });
-    });
-
-    class KubernetesObjectApiTest extends KubernetesObjectApi {
-        public static makeApiClient(kc?: KubeConfig): KubernetesObjectApiTest {
-            if (!kc) {
-                kc = new KubeConfig();
-                kc.loadFromOptions(testConfigOptions);
-            }
-            const client = kc.makeApiClient(KubernetesObjectApiTest);
-            client.setDefaultNamespace(kc);
-            return client;
-        }
-        public apiVersionResourceCache: Record<string, V1APIResourceList> = {};
-        public async specUriPath(spec: KubernetesObject, method: any): Promise<string> {
-            return super.specUriPath(spec, method);
-        }
-        public generateHeaders(
-            optionsHeaders: { [name: string]: string },
-            action: string = 'GET',
-        ): { [name: string]: string } {
-            return super.generateHeaders(optionsHeaders, action);
-        }
-        public async resource(apiVersion: string, kind: string): Promise<V1APIResource | undefined> {
-            return super.resource(apiVersion, kind);
-        }
-    }
-
-    const resourceBodies = {
-        core: `{
+const resourceBodies = {
+    core: `{
   "groupVersion": "v1",
   "kind": "APIResourceList",
   "resources": [
@@ -254,7 +202,7 @@ describe('KubernetesObject', () => {
   ]
 }`,
 
-        apps: `{
+    apps: `{
   "apiVersion": "v1",
   "groupVersion": "apps/v1",
   "kind": "APIResourceList",
@@ -327,7 +275,7 @@ describe('KubernetesObject', () => {
     }
   ]
 }`,
-        extensions: `{
+    extensions: `{
   "groupVersion": "extensions/v1beta1",
   "kind": "APIResourceList",
   "resources": [
@@ -412,7 +360,7 @@ describe('KubernetesObject', () => {
     }
   ]
 }`,
-        networking: `{
+    networking: `{
   "apiVersion": "v1",
   "groupVersion": "networking.k8s.io/v1",
   "kind": "APIResourceList",
@@ -424,7 +372,7 @@ describe('KubernetesObject', () => {
     }
   ]
 }`,
-        rbac: `{
+    rbac: `{
   "apiVersion": "v1",
   "groupVersion": "rbac.authorization.k8s.io/v1",
   "kind": "APIResourceList",
@@ -451,7 +399,7 @@ describe('KubernetesObject', () => {
     }
   ]
 }`,
-        storage: `{
+    storage: `{
   "apiVersion": "v1",
   "groupVersion": "storage.k8s.io/v1",
   "kind": "APIResourceList",
@@ -473,7 +421,63 @@ describe('KubernetesObject', () => {
     }
   ]
 }`,
+};
+
+describe('KubernetesObject', () => {
+    const testConfigOptions = {
+        clusters: [{ name: 'dc', server: 'https://d.i.y' }],
+        users: [{ name: 'ian', password: 'mackaye' }],
+        contexts: [{ name: 'dischord', cluster: 'dc', user: 'ian' }],
+        currentContext: 'dischord',
     };
+
+    describe('makeApiClient', () => {
+        it('should create the client', () => {
+            const kc = new KubeConfig();
+            kc.loadFromOptions(testConfigOptions);
+            const c = KubernetesObjectApi.makeApiClient(kc);
+            expect(c).to.be.ok;
+            expect((c as any).defaultNamespace).to.equal('default');
+        });
+
+        it('should set the default namespace from context', () => {
+            const kc = new KubeConfig();
+            kc.loadFromOptions({
+                clusters: [{ name: 'dc', server: 'https://d.i.y' }],
+                users: [{ name: 'ian', password: 'mackaye' }],
+                contexts: [{ name: 'dischord', cluster: 'dc', user: 'ian', namespace: 'straight-edge' }],
+                currentContext: 'dischord',
+            });
+            const c = KubernetesObjectApi.makeApiClient(kc);
+            expect(c).to.be.ok;
+            expect((c as any).defaultNamespace).to.equal('straight-edge');
+        });
+    });
+
+    class KubernetesObjectApiTest extends KubernetesObjectApi {
+        public static makeApiClient(kc?: KubeConfig): KubernetesObjectApiTest {
+            if (!kc) {
+                kc = new KubeConfig();
+                kc.loadFromOptions(testConfigOptions);
+            }
+            const client = kc.makeApiClient(KubernetesObjectApiTest);
+            client.setDefaultNamespace(kc);
+            return client;
+        }
+        public apiVersionResourceCache: Record<string, V1APIResourceList> = {};
+        public async specUriPath(spec: KubernetesObject, method: any): Promise<string> {
+            return super.specUriPath(spec, method);
+        }
+        public generateHeaders(
+            optionsHeaders: { [name: string]: string },
+            action: string = 'GET',
+        ): { [name: string]: string } {
+            return super.generateHeaders(optionsHeaders, action);
+        }
+        public async resource(apiVersion: string, kind: string): Promise<V1APIResource | undefined> {
+            return super.resource(apiVersion, kind);
+        }
+    }
 
     describe('specUriPath', () => {
         it('should return a namespaced path', async () => {
@@ -2112,5 +2116,231 @@ describe('KubernetesObject', () => {
             }
             expect(thrown).to.be.true;
         });
+    });
+});
+
+describe('watch', () => {
+    const server = 'https://d.i.y';
+    const fakeConfig: {
+        clusters: Cluster[];
+        contexts: Context[];
+        users: User[];
+    } = {
+        clusters: [
+            {
+                name: 'cluster',
+                server,
+            } as Cluster,
+        ],
+        contexts: [
+            {
+                cluster: 'cluster',
+                user: 'user',
+            } as Context,
+        ],
+        users: [
+            {
+                name: 'user',
+            } as User,
+        ],
+    };
+
+    const testObject = {
+        apiVersion: 'v1',
+        kind: 'Secret',
+        metadata: {
+            name: 'k8s-js-client-test',
+            namespace: 'default',
+            creationTimestamp: '2022-01-01T00:00:00.000Z',
+            uid: undefined,
+            annotations: undefined,
+            labels: undefined,
+            finalizers: undefined,
+            generateName: undefined,
+            selfLink: undefined,
+            resourceVersion: undefined,
+            generation: undefined,
+            ownerReferences: undefined,
+            deletionTimestamp: undefined,
+            deletionGracePeriodSeconds: undefined,
+            managedFields: undefined,
+        },
+        data: {
+            key: 'value',
+        },
+        type: undefined,
+        immutable: undefined,
+        stringData: undefined,
+    };
+
+    it('watch with namespace -> receive events', async () => {
+        const kc = new KubeConfig();
+        Object.assign(kc, fakeConfig);
+        const client = KubernetesObjectApi.makeApiClient(kc);
+
+        const stream = new PassThrough();
+        let response: IncomingMessage | undefined;
+
+        const s = nock('https://d.i.y')
+            .get('/api/v1')
+            .reply(200, resourceBodies.core)
+            .get('/api/v1/namespaces/default/secrets')
+            .query({
+                watch: 'true',
+            })
+            .reply(200, function (): PassThrough {
+                this.req.on('response', (r) => {
+                    response = r;
+                });
+                stream.push(
+                    JSON.stringify({
+                        type: 'ADDED',
+                        object: testObject,
+                    }) + '\n',
+                );
+                return stream;
+            });
+
+        const receivedObjects: V1Secret[] = [];
+        const done = resolvablePromise<void>();
+        const { abort } = await client.watch<V1Secret>({
+            resource: {
+                apiVersion: 'v1',
+                kind: 'Secret',
+                namespace: 'default',
+            },
+            callback: (phase, obj) => {
+                receivedObjects.push(obj);
+                if (receivedObjects.length === 1) {
+                    done.resolve();
+                }
+            },
+            done: () => {},
+        });
+
+        await done;
+        abort();
+
+        expect(receivedObjects).to.have.length(1);
+        expect(receivedObjects[0]).to.be.instanceof(V1Secret);
+
+        s.done();
+        stream.destroy();
+    });
+
+    it('watch all namespaces -> receive events', async () => {
+        const kc = new KubeConfig();
+        Object.assign(kc, fakeConfig);
+        const client = KubernetesObjectApi.makeApiClient(kc);
+
+        const stream = new PassThrough();
+        let response: IncomingMessage | undefined;
+
+        const s = nock('https://d.i.y')
+            .get('/api/v1')
+            .reply(200, resourceBodies.core)
+            .get('/api/v1/secrets')
+            .query({
+                watch: 'true',
+            })
+            .reply(200, function (): PassThrough {
+                this.req.on('response', (r) => {
+                    response = r;
+                });
+                stream.push(
+                    JSON.stringify({
+                        type: 'ADDED',
+                        object: testObject,
+                    }) + '\n',
+                );
+                return stream;
+            });
+
+        const receivedObjects: V1Secret[] = [];
+        const done = resolvablePromise<void>();
+        const { abort } = await client.watch<V1Secret>({
+            resource: {
+                apiVersion: 'v1',
+                kind: 'Secret',
+            },
+            callback: (phase, obj) => {
+                receivedObjects.push(obj);
+                if (receivedObjects.length === 1) {
+                    done.resolve();
+                }
+            },
+            done: () => {},
+        });
+
+        await done;
+        abort();
+
+        expect(receivedObjects).to.have.length(1);
+        expect(receivedObjects[0]).to.be.instanceof(V1Secret);
+
+        s.done();
+        stream.destroy();
+    });
+
+    it('receive multiple events', async () => {
+        const kc = new KubeConfig();
+        Object.assign(kc, fakeConfig);
+        const client = KubernetesObjectApi.makeApiClient(kc);
+
+        const stream = new PassThrough();
+        let response: IncomingMessage | undefined;
+
+        const s = nock('https://d.i.y')
+            .get('/api/v1')
+            .reply(200, resourceBodies.core)
+            .get('/api/v1/namespaces/default/secrets')
+            .query({
+                watch: 'true',
+            })
+            .reply(200, function (): PassThrough {
+                this.req.on('response', (r) => {
+                    response = r;
+                });
+                stream.push(
+                    JSON.stringify({
+                        type: 'ADDED',
+                        object: testObject,
+                    }) + '\n',
+                );
+                stream.push(
+                    JSON.stringify({
+                        type: 'MODIFIED',
+                        object: testObject,
+                    }) + '\n',
+                );
+                return stream;
+            });
+
+        const receivedObjects: V1Secret[] = [];
+        const receivedPhases: string[] = [];
+        const done = resolvablePromise<void>();
+        const { abort } = await client.watch<V1Secret>({
+            resource: {
+                apiVersion: 'v1',
+                kind: 'Secret',
+                namespace: 'default',
+            },
+            callback: (phase, obj) => {
+                receivedPhases.push(phase);
+                receivedObjects.push(obj);
+                if (receivedObjects.length === 2) {
+                    done.resolve();
+                }
+            },
+            done: () => {},
+        });
+
+        await done;
+        abort();
+
+        expect(receivedPhases).to.deep.equal(['ADDED', 'MODIFIED']);
+
+        s.done();
+        stream.destroy();
     });
 });
