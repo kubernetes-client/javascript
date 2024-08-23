@@ -170,7 +170,7 @@ export async function generateTmpFileName(): Promise<string> {
  * unhandled promise rejection which can cause process termination (in node).
  */
 export const awaitLater = <T, P extends Promise<T>>(p: P): P => {
-    p.catch(() => {});
+    p.catch(() => {}); // tslint:disable-line:no-empty
     return p;
 };
 
