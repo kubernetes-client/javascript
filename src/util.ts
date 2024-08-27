@@ -162,3 +162,35 @@ export async function generateTmpFileName(): Promise<string> {
 
     throw new Error('Cannot generate tmp file name');
 }
+
+/**
+ * If you don't want to or can't await a promise right await and need to store
+ * it in a variable to await it later, wrap it with this function.
+ * Otherwise, if the promise rejects before you await it, it will cause an
+ * unhandled promise rejection which can cause process termination (in node).
+ */
+export const awaitLater = <T, P extends Promise<T>>(p: P): P => {
+    p.catch(() => {}); // tslint:disable-line:no-empty
+    return p;
+};
+
+export interface ResolvablePromise<T> extends Promise<T> {
+    resolve: (value: T) => void;
+    reject: (error: Error) => void;
+}
+
+export const resolvablePromise = <T>(): ResolvablePromise<T> => {
+    let resolve: (value: T) => void;
+    let reject: (error: Error) => void;
+
+    const promise = awaitLater(
+        new Promise<T>((res, rej) => {
+            resolve = res;
+            reject = rej;
+        }),
+    ) as ResolvablePromise<T>;
+
+    promise.resolve = resolve!;
+    promise.reject = reject!;
+    return promise;
+};
