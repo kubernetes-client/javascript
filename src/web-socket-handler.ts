@@ -6,11 +6,14 @@ import { KubeConfig } from './config';
 
 const protocols = ['v4.channel.k8s.io', 'v3.channel.k8s.io', 'v2.channel.k8s.io', 'channel.k8s.io'];
 
+export type TextHandler = (text: string) => boolean;
+export type BinaryHandler = (stream: number, buff: Buffer) => boolean;
+
 export interface WebSocketInterface {
     connect(
         path: string,
-        textHandler: ((text: string) => boolean) | null,
-        binaryHandler: ((stream: number, buff: Buffer) => boolean) | null,
+        textHandler: TextHandler | null,
+        binaryHandler: BinaryHandler | null,
     ): Promise<WebSocket.WebSocket>;
 }
 
