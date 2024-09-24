@@ -16,7 +16,7 @@ import { randomUUID } from 'crypto';
 import { sleep } from './util';
 
 describe('Cp', () => {
-    let tmpDir: string | undefined;
+    let tmpDir = '';
 
     beforeEach(() => {
         tmpDir = `${tmpdir()}/${randomUUID()}`;
@@ -31,11 +31,6 @@ describe('Cp', () => {
 
     describe('cpFromPod', () => {
         it('should run create tar command to a url', async () => {
-            // make the compile happy
-            if (!tmpDir) {
-                throw new Error('tmpDir not initialized');
-            }
-
             const kc = new KubeConfig();
             const fakeWebSocketInterface: WebSocketInterface = mock(WebSocketHandler);
             const fakeWebSocket: WebSocket.WebSocket = mock(WebSocket);
@@ -106,11 +101,6 @@ describe('Cp', () => {
 
     describe('cpToPod', () => {
         it('should run extract tar command to a url', async () => {
-            // make the compile happy
-            if (!tmpDir) {
-                throw new Error('tmpDir not initialized');
-            }
-
             const kc = new KubeConfig();
             const fakeWebSocketInterface: WebSocketInterface = mock(WebSocketHandler);
             const fakeWebSocket: WebSocket.WebSocket = mock(WebSocket) as WebSocket.WebSocket;
