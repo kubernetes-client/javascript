@@ -194,3 +194,7 @@ export const resolvablePromise = <T>(): ResolvablePromise<T> => {
     promise.reject = reject!;
     return promise;
 };
+
+export const sleep = (ms: number): Promise<void> => {
+    return new Promise<void>((resolve) => setTimeout(resolve));
+};
