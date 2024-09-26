@@ -12,7 +12,7 @@ jobs:
     strategy:
       matrix:
         # Remove specific version from 20 when https://github.com/tschaub/mock-fs/issues/380 is fixed
-        node: [ '20.7.0', '18', '16' ]
+        node: [ '22', '20.7.0', '18', '16' ]
     name: Node ${{ matrix.node }} validation
     steps:
       - uses: actions/checkout@v2
