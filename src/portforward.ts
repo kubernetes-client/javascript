@@ -1,7 +1,6 @@
 import WebSocket = require('isomorphic-ws');
 import querystring = require('querystring');
 import stream = require('stream');
-import { isUndefined } from 'util';
 
 import { KubeConfig } from './config';
 import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
@@ -13,7 +12,7 @@ export class PortForward {
     // handler is a parameter really only for injecting for testing.
     constructor(config: KubeConfig, disconnectOnErr?: boolean, handler?: WebSocketInterface) {
         this.handler = handler || new WebSocketHandler(config);
-        this.disconnectOnErr = isUndefined(disconnectOnErr) ? true : disconnectOnErr;
+        this.disconnectOnErr = disconnectOnErr === undefined ? true : disconnectOnErr;
     }
 
     // TODO: support multiple ports for real...
