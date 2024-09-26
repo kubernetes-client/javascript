@@ -75,7 +75,7 @@
         "tslib": "^2.5.0",
         "underscore": "^1.9.1",
         "url-parse": "^1.4.3",
-        "ws": "^8.13.0"
+        "ws": "^8.18.0"
     },
     "devDependencies": {
         "@types/byline": "^4.2.31",
