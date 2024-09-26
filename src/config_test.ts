@@ -337,9 +337,9 @@ describe('KubeConfig', () => {
 
             expect(opts).to.deep.equal({
                 headers: {},
-                ca: new Buffer('CADATA2', 'utf-8'),
-                cert: new Buffer('USER_CADATA', 'utf-8'),
-                key: new Buffer('USER_CKDATA', 'utf-8'),
+                ca: Buffer.from('CADATA2', 'utf-8'),
+                cert: Buffer.from('USER_CADATA', 'utf-8'),
+                key: Buffer.from('USER_CKDATA', 'utf-8'),
                 rejectUnauthorized: false,
                 servername: 'kube.example2.com',
             });
@@ -357,9 +357,9 @@ describe('KubeConfig', () => {
             expect(opts).to.deep.equal({
                 url: 'https://company.com',
                 headers: {},
-                ca: new Buffer('CADATA2', 'utf-8'),
-                cert: new Buffer('USER_CADATA', 'utf-8'),
-                key: new Buffer('USER_CKDATA', 'utf-8'),
+                ca: Buffer.from('CADATA2', 'utf-8'),
+                cert: Buffer.from('USER_CADATA', 'utf-8'),
+                key: Buffer.from('USER_CKDATA', 'utf-8'),
                 rejectUnauthorized: false,
                 strictSSL: false,
                 agentOptions: {
@@ -376,9 +376,9 @@ describe('KubeConfig', () => {
 
             expect(opts).to.deep.equal({
                 headers: {},
-                ca: new Buffer('CADATA2', 'utf-8'),
-                cert: new Buffer('USER2_CADATA', 'utf-8'),
-                key: new Buffer('USER2_CKDATA', 'utf-8'),
+                ca: Buffer.from('CADATA2', 'utf-8'),
+                cert: Buffer.from('USER2_CADATA', 'utf-8'),
+                key: Buffer.from('USER2_CKDATA', 'utf-8'),
                 rejectUnauthorized: false,
             });
         });
@@ -393,7 +393,7 @@ describe('KubeConfig', () => {
             await kc.applyToRequest(opts);
             expect(opts).to.deep.equal({
                 headers: {},
-                ca: new Buffer('CADATA2', 'utf-8'),
+                ca: Buffer.from('CADATA2', 'utf-8'),
                 auth: {
                     username: 'foo',
                     password: 'bar',
