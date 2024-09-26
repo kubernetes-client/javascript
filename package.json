@@ -67,7 +67,7 @@
     "stream-buffers": "^3.0.2",
     "tar": "^7.0.0",
     "tslib": "^2.4.1",
-    "ws": "^8.11.0"
+    "ws": "^8.18.0"
   },
   "devDependencies": {
     "@types/byline": "^4.2.31",
