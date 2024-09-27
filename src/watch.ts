@@ -1,5 +1,4 @@
-import byline = require('byline');
-import { RequestOptions } from 'https';
+import { createInterface } from 'node:readline';
 import fetch from 'node-fetch';
 import { AbortSignal } from 'node-fetch/externals';
 import { URL } from 'url';
@@ -52,18 +51,6 @@ export class Watch {
                 done(err);
             }
         };
-        const stream = byline.createStream();
-        stream.on('error', doneCallOnce);
-        stream.on('close', () => doneCallOnce(null));
-        stream.on('finish', () => doneCallOnce(null));
-        stream.on('data', (line) => {
-            try {
-                const data = JSON.parse(line.toString());
-                callback(data.type, data.object, data);
-            } catch (ignore) {
-                // ignore parse errors
-            }
-        });
 
         await fetch(watchURL, requestInit)
             .then((response) => {
@@ -71,7 +58,19 @@ export class Watch {
                     response.body.on('error', doneCallOnce);
                     response.body.on('close', () => doneCallOnce(null));
                     response.body.on('finish', () => doneCallOnce(null));
-                    response.body.pipe(stream);
+
+                    const lines = createInterface(response.body);
+                    lines.on('error', doneCallOnce);
+                    lines.on('close', () => doneCallOnce(null));
+                    lines.on('finish', () => doneCallOnce(null));
+                    lines.on('line', (line) => {
+                        try {
+                            const data = JSON.parse(line.toString());
+                            callback(data.type, data.object, data);
+                        } catch (ignore) {
+                            // ignore parse errors
+                        }
+                    });
                 } else {
                     const error = new Error(response.statusText) as Error & {
                         statusCode: number | undefined;
