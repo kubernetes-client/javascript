@@ -51,18 +51,11 @@ export class WebSocketHandler implements WebSocketInterface {
 
     public static handleStandardInput(
         ws: WebSocket.WebSocket,
-        stdin: stream.Readable | any,
+        stdin: stream.Readable,
         streamNum: number = 0,
     ): boolean {
         stdin.on('data', (data) => {
-            const buff = Buffer.alloc(data.length + 1);
-            buff.writeInt8(streamNum, 0);
-            if (data instanceof Buffer) {
-                data.copy(buff, 1);
-            } else {
-                buff.write(data, 1);
-            }
-            ws.send(buff);
+            ws.send(copyChunkForWebSocket(streamNum, data, stdin.readableEncoding));
         });
 
         stdin.on('end', () => {
@@ -78,16 +71,9 @@ export class WebSocketHandler implements WebSocketInterface {
         createWS: () => Promise<WebSocket.WebSocket>,
         streamNum: number = 0,
         retryCount: number = 3,
+        encoding?: BufferEncoding | null,
     ): Promise<WebSocket.WebSocket | null> {
-        const buff = Buffer.alloc(data.length + 1);
-
-        buff.writeInt8(streamNum, 0);
-        if (data instanceof Buffer) {
-            data.copy(buff, 1);
-        } else {
-            buff.write(data, 1);
-        }
-
+        const buff = copyChunkForWebSocket(streamNum, data, encoding);
         let i = 0;
         for (; i < retryCount; ++i) {
             if (ws !== null && ws.readyState === WebSocket.OPEN) {
@@ -109,7 +95,7 @@ export class WebSocketHandler implements WebSocketInterface {
 
     public static restartableHandleStandardInput(
         createWS: () => Promise<WebSocket.WebSocket>,
-        stdin: stream.Readable | any,
+        stdin: stream.Readable,
         streamNum: number = 0,
         retryCount: number = 3,
     ): () => WebSocket.WebSocket | null {
@@ -122,7 +108,14 @@ export class WebSocketHandler implements WebSocketInterface {
 
         stdin.on('data', (data) => {
             queue = queue.then(async () => {
-                ws = await WebSocketHandler.processData(data, ws, createWS, streamNum, retryCount);
+                ws = await WebSocketHandler.processData(
+                    data,
+                    ws,
+                    createWS,
+                    streamNum,
+                    retryCount,
+                    stdin.readableEncoding,
+                );
             });
         });
 
@@ -200,4 +193,25 @@ export class WebSocketHandler implements WebSocketInterface {
             };
         });
     }
+}
+
+function copyChunkForWebSocket(
+    streamNum: number,
+    chunk: string | Buffer,
+    encoding?: BufferEncoding | null,
+): Buffer {
+    let buff: Buffer;
+
+    if (chunk instanceof Buffer) {
+        buff = Buffer.alloc(chunk.length + 1);
+        chunk.copy(buff, 1);
+    } else {
+        encoding ??= 'utf-8';
+        const size = Buffer.byteLength(chunk, encoding);
+        buff = Buffer.alloc(size + 1);
+        buff.write(chunk, 1, size, encoding);
+    }
+
+    buff.writeInt8(streamNum, 0);
+    return buff;
 }
