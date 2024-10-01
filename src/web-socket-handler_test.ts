@@ -1,3 +1,4 @@
+import { Readable } from 'node:stream';
 import { promisify } from 'util';
 import { expect } from 'chai';
 import WebSocket = require('isomorphic-ws');
@@ -303,14 +304,30 @@ describe('WebSocket', () => {
             expect(datum).to.equal(fill);
         }
     });
+    it('handles multi-byte characters', () => {
+        return new Promise((resolve) => {
+            const stream = new Readable({ read() {} });
+            const mockWs = {
+                close() {},
+                send(data) {
+                    expect(data).to.deep.equal(Buffer.from([0x0f, 0xe2, 0x98, 0x83]));
+                    resolve(undefined);
+                },
+            } as WebSocket.WebSocket;
+
+            stream.setEncoding('utf8');
+            stream.push('☃');
+            WebSocketHandler.handleStandardInput(mockWs, stream, 0x0f);
+        });
+    });
 });
 
 describe('Restartable Handle Standard Input', () => {
     it('should throw on negative retry', () => {
         const p = new Promise<WebSocket.WebSocket>(() => {});
-        expect(() => WebSocketHandler.restartableHandleStandardInput(() => p, null, 0, -1)).to.throw(
-            "retryCount can't be lower than 0.",
-        );
+        expect(() =>
+            WebSocketHandler.restartableHandleStandardInput(() => p, new Readable({ read() {} }), 0, -1),
+        ).to.throw("retryCount can't be lower than 0.");
     });
 
     it('should retry n times', () => {
