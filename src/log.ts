@@ -37,6 +37,12 @@ export interface LogOptions {
     sinceSeconds?: number;
 
     /**
+     * Only return logs after a specific date (RFC3339). Defaults to all logs.
+     * Only one of sinceSeconds or sinceTime may be specified.
+     */
+    sinceTime?: string;
+
+    /**
      * If set, the number of lines from the end of the logs to show. If not specified, logs are shown from the creation
      * of the container or sinceSeconds or sinceTime
      */
@@ -63,6 +69,12 @@ export function AddOptionsToSearchParams(
     searchParams.set('previous', options?.previous?.toString() || 'false');
     if (options?.sinceSeconds) {
         searchParams.set('sinceSeconds', options?.sinceSeconds?.toString() || 'false');
+    }
+    if (options?.sinceTime) {
+        if (options?.sinceSeconds) {
+            throw new Error('at most one of sinceTime or sinceSeconds may be specified');
+        }
+        searchParams.set('sinceTime', options?.sinceTime);
     }
     if (options?.tailLines) {
         searchParams.set('tailLines', options?.tailLines?.toString() || 'false');
