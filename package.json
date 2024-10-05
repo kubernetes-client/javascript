@@ -59,7 +59,6 @@
         "@types/node-fetch": "^2.6.9",
         "@types/stream-buffers": "^3.0.3",
         "@types/tar": "^6.1.1",
-        "@types/underscore": "^1.8.9",
         "@types/ws": "^8.5.4",
         "form-data": "^4.0.0",
         "isomorphic-ws": "^5.0.0",
@@ -72,7 +71,6 @@
         "tar": "^7.0.0",
         "tmp-promise": "^3.0.2",
         "tslib": "^2.5.0",
-        "underscore": "^1.9.1",
         "url-parse": "^1.4.3",
         "ws": "^8.18.0"
     },
