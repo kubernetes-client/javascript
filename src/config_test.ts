@@ -1,12 +1,12 @@
-import { readFileSync } from 'fs';
-import * as https from 'https';
-import { Agent, RequestOptions } from 'https';
-import { join } from 'path';
+import { readFileSync } from 'node:fs';
+import * as https from 'node:https';
+import { Agent, RequestOptions } from 'node:https';
+import { join } from 'node:path';
 
 import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import mockfs = require('mock-fs');
-import * as path from 'path';
+import * as path from 'node:path';
 
 import { Headers } from 'node-fetch';
 import { HttpMethod } from '.';

@@ -1,7 +1,6 @@
 import fetch from 'node-fetch';
 import { AbortSignal } from 'node-fetch/externals';
-import { Writable } from 'stream';
-import { URL, URLSearchParams } from 'url';
+import { Writable } from 'node:stream';
 import { ApiException } from './api';
 import { KubeConfig } from './config';
 import { V1Status } from './gen';

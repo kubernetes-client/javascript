@@ -1,5 +1,5 @@
 import { anything, anyFunction, instance, mock, verify, when } from 'ts-mockito';
-import * as querystring from 'querystring';
+import * as querystring from 'node:querystring';
 import WebSocket = require('isomorphic-ws');
 
 import { CallAwaiter } from '../test';

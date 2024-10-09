@@ -1,4 +1,4 @@
-import { fail } from 'assert';
+import { fail } from 'node:assert';
 import { expect } from 'chai';
 import nock = require('nock');
 import { Configuration, V1APIResource, V1APIResourceList, V1Secret } from './api';

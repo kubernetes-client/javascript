@@ -1,6 +1,6 @@
 import { use, expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
-import { join } from 'path';
+import { join } from 'node:path';
 
 import { User, Cluster } from './config_types';
 import { AzureAuth } from './azure_auth';

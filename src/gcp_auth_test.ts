@@ -1,11 +1,11 @@
 import { expect } from 'chai';
-import { join } from 'path';
+import { join } from 'node:path';
 
 import { User, Cluster } from './config_types';
 import { GoogleCloudPlatformAuth } from './gcp_auth';
 import { KubeConfig } from './config';
 import { HttpMethod, RequestContext } from './gen';
-import { Agent } from 'https';
+import { Agent } from 'node:https';
 
 describe('GoogleCloudPlatformAuth', () => {
     const testUrl1 = 'https://test-gcp.com';

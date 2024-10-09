@@ -1,5 +1,5 @@
-import * as proc from 'child_process';
-import https = require('https');
+import * as proc from 'node:child_process';
+import https = require('node:https');
 import * as jsonpath from 'jsonpath-plus';
 
 import { Authenticator } from './auth';

@@ -1,4 +1,4 @@
-import https = require('https');
+import https = require('node:https');
 
 import { User } from './config_types';
 import WebSocket = require('isomorphic-ws');

@@ -2,14 +2,14 @@ import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 use(chaiAsPromised);
 
-import https from 'https';
-import { OutgoingHttpHeaders } from 'http';
+import https from 'node:https';
+import { OutgoingHttpHeaders } from 'node:http';
 
 import { ExecAuth } from './exec_auth';
 import { User } from './config_types';
-import { fail } from 'assert';
+import { fail } from 'node:assert';
 
-import child_process = require('child_process');
+import child_process = require('node:child_process');
 
 describe('ExecAuth', () => {
     it('should claim correctly', () => {

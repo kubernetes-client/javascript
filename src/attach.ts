@@ -1,6 +1,6 @@
 import WebSocket = require('isomorphic-ws');
-import querystring = require('querystring');
-import stream = require('stream');
+import querystring = require('node:querystring');
+import stream = require('node:stream');
 
 import { KubeConfig } from './config';
 import { isResizable, ResizableStream, TerminalSizeQueue } from './terminal-size-queue';

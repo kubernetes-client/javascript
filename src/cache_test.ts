@@ -3,8 +3,6 @@ import chaiAsPromised = require('chai-as-promised');
 
 import * as mock from 'ts-mockito';
 
-import http = require('http');
-
 import { V1ListMeta, V1Namespace, V1NamespaceList, V1ObjectMeta, V1Pod } from './api';
 import { deleteItems, deleteObject, ListWatch } from './cache';
 import { KubeConfig } from './config';

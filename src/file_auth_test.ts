@@ -1,6 +1,6 @@
 import { expect } from 'chai';
-import { OutgoingHttpHeaders } from 'http';
-import https from 'https';
+import { OutgoingHttpHeaders } from 'node:http';
+import https from 'node:https';
 import mockfs from 'mock-fs';
 
 import { User } from './config_types';

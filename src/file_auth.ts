@@ -1,5 +1,5 @@
-import fs = require('fs');
-import https = require('https');
+import fs = require('node:fs');
+import https = require('node:https');
 
 import { Authenticator } from './auth';
 import { User } from './config_types';

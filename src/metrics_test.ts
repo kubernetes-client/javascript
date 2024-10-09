@@ -1,8 +1,8 @@
-import { fail } from 'assert';
+import { fail } from 'node:assert';
 import { expect } from 'chai';
 import nock = require('nock');
 import { KubeConfig } from './config';
-import { V1Status, HttpException, ApiException } from './gen';
+import { V1Status, ApiException } from './gen';
 import { Metrics, NodeMetricsList, PodMetricsList } from './metrics';
 
 const emptyPodMetrics: PodMetricsList = {

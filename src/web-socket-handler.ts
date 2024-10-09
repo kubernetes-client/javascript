@@ -1,5 +1,5 @@
 import WebSocket = require('isomorphic-ws');
-import stream = require('stream');
+import stream = require('node:stream');
 
 import { V1Status } from './api';
 import { KubeConfig } from './config';

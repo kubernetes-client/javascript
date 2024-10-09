@@ -1,5 +1,5 @@
 import WebSocket = require('isomorphic-ws');
-import querystring = require('querystring');
+import querystring = require('node:querystring');
 import stream = require('stream');
 
 import { V1Status } from './api';
