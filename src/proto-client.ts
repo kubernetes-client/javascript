@@ -1,4 +1,4 @@
-import http = require('node:http');
+import http from 'node:http';
 
 import { KubeConfig } from './config';
 

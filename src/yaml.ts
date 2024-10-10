@@ -1,4 +1,4 @@
-import * as yaml from 'js-yaml';
+import yaml from 'js-yaml';
 
 export function loadYaml<T>(data: string, opts?: yaml.LoadOptions): T {
     return yaml.load(data, opts) as any as T;

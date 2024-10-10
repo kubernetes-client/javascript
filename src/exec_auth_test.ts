@@ -9,7 +9,7 @@ import { ExecAuth } from './exec_auth';
 import { User } from './config_types';
 import { fail } from 'node:assert';
 
-import child_process = require('node:child_process');
+import child_process from 'node:child_process';
 
 describe('ExecAuth', () => {
     it('should claim correctly', () => {

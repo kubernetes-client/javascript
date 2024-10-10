@@ -1,6 +1,6 @@
 import { fail } from 'node:assert';
 import { expect } from 'chai';
-import nock = require('nock');
+import nock from 'nock';
 import { Configuration, V1APIResource, V1APIResourceList, V1Secret } from './api';
 import { KubeConfig } from './config';
 import { KubernetesObjectApi } from './object';
