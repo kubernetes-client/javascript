@@ -1,6 +1,6 @@
 // in a real program use require('@kubernetes/client-node')
 import * as k8s from '../../../dist';
-import * as stream from 'stream';
+import * as stream from 'node:stream';
 
 const command = process.argv[2];
 

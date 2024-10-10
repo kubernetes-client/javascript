@@ -1,4 +1,4 @@
-import * as fs from 'fs';
+import * as fs from 'node:fs';
 import { WritableStreamBuffer } from 'stream-buffers';
 import * as tar from 'tar';
 import * as tmp from 'tmp-promise';

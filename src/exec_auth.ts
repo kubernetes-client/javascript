@@ -1,10 +1,10 @@
-import { OutgoingHttpHeaders } from 'http';
-import https = require('https');
+import { OutgoingHttpHeaders } from 'node:http';
+import https = require('node:https');
 
 import { Authenticator } from './auth';
 import { User } from './config_types';
 
-import child_process = require('child_process');
+import child_process = require('node:child_process');
 
 export interface CredentialStatus {
     readonly token: string;

@@ -1,6 +1,5 @@
 import { expect } from 'chai';
 import { AddOptionsToSearchParams, LogOptions } from './log';
-import { URLSearchParams } from 'url';
 
 describe('Log', () => {
     describe('AddOptionsToSearchParams', () => {

@@ -1,6 +1,5 @@
-import { deepStrictEqual } from 'assert';
 import { expect } from 'chai';
-import { RequestOptions, Agent } from 'https';
+import { RequestOptions, Agent } from 'node:https';
 import { Matcher } from 'ts-mockito/lib/matcher/type/Matcher';
 
 export function matchBuffer(channel: number, contents: string): StringBufferMatcher {

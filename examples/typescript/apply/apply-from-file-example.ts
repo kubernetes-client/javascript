@@ -1,7 +1,7 @@
 // in a real program use require('@kubernetes/client-node')
 import * as k8s from '../../../dist';
 import * as yaml from 'js-yaml';
-import { promises as fs } from 'fs';
+import * as fs from 'node:fs/promises';
 
 /**
  * Replicate the functionality of `kubectl apply`.  That is, create the resources defined in the `specFile` if they do

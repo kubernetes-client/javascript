@@ -1,6 +1,6 @@
 // in a real program use require('@kubernetes/client-node')
 import * as k8s from '../../../dist';
-import * as net from 'net';
+import * as net from 'node:net';
 
 const kc = new k8s.KubeConfig();
 kc.loadFromDefault();

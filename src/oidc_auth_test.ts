@@ -1,8 +1,7 @@
 import { expect } from 'chai';
-import { OutgoingHttpHeaders } from 'http';
-import https from 'https';
+import { OutgoingHttpHeaders } from 'node:http';
+import https from 'node:https';
 import { base64url } from 'rfc4648';
-import { TextEncoder } from 'util';
 
 import { User } from './config_types';
 import { OpenIDConnectAuth } from './oidc_auth';

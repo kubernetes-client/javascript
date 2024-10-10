@@ -1,5 +1,4 @@
-import http = require('http');
-import url = require('url');
+import http = require('node:http');
 
 import { KubeConfig } from './config';
 
@@ -8,7 +7,7 @@ export class ProtoClient {
 
     public async get(msgType: any, requestPath: string): Promise<any> {
         const server = this.config.getCurrentCluster()!.server;
-        const u = new url.URL(server);
+        const u = new URL(server);
         const options = {
             path: requestPath,
             hostname: u.hostname,

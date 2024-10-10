@@ -1,5 +1,5 @@
 import { Readable } from 'node:stream';
-import { promisify } from 'util';
+import { setImmediate as setImmediatePromise } from 'node:timers/promises';
 import { expect } from 'chai';
 import WebSocket = require('isomorphic-ws');
 import { WritableStreamBuffer } from 'stream-buffers';
@@ -8,8 +8,6 @@ import { V1Status } from './api';
 import { KubeConfig } from './config';
 import { Cluster, Context, User } from './config_types';
 import { WebSocketHandler } from './web-socket-handler';
-
-const setImmediatePromise = promisify(setImmediate);
 
 describe('WebSocket', () => {
     it('should throw on unknown code', () => {

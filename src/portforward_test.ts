@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
-import { anyFunction, capture, instance, mock, reset, verify } from 'ts-mockito';
+import { anyFunction, capture, instance, mock, verify } from 'ts-mockito';
 
 import { KubeConfig } from './config';
 import { PortForward } from './portforward';

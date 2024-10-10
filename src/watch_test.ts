@@ -1,12 +1,10 @@
 import { expect } from 'chai';
-// import { anything, capture, instance, mock, spy, verify, when } from 'ts-mockito';
-
 import nock = require('nock');
-import { PassThrough } from 'stream';
+import { PassThrough } from 'node:stream';
 import { KubeConfig } from './config';
 import { Cluster, Context, User } from './config_types';
 import { Watch } from './watch';
-import { IncomingMessage } from 'http';
+import { IncomingMessage } from 'node:http';
 
 const server = 'http://foo.company.com';
 

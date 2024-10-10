@@ -1,7 +1,6 @@
-import https from 'https';
+import https from 'node:https';
 import { Client, Issuer } from 'openid-client';
 import { base64url } from 'rfc4648';
-import { TextDecoder } from 'util';
 
 import { Authenticator } from './auth';
 import { User } from './config_types';
