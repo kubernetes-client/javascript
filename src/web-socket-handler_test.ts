@@ -1,7 +1,7 @@
 import { Readable } from 'node:stream';
 import { setImmediate as setImmediatePromise } from 'node:timers/promises';
 import { expect } from 'chai';
-import WebSocket = require('isomorphic-ws');
+import WebSocket from 'isomorphic-ws';
 import { WritableStreamBuffer } from 'stream-buffers';
 
 import { V1Status } from './api';

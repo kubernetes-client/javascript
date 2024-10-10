@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import nock = require('nock');
+import nock from 'nock';
 import { PassThrough } from 'node:stream';
 import { KubeConfig } from './config';
 import { Cluster, Context, User } from './config_types';

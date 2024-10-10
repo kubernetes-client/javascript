@@ -1,7 +1,7 @@
 import { expect, use } from 'chai';
-import chaiAsPromised = require('chai-as-promised');
+import chaiAsPromised from 'chai-as-promised';
 
-import * as mock from 'ts-mockito';
+import mock from 'ts-mockito';
 
 import { V1ListMeta, V1Namespace, V1NamespaceList, V1ObjectMeta, V1Pod } from './api';
 import { deleteItems, deleteObject, ListWatch } from './cache';
@@ -11,7 +11,7 @@ import { ListPromise } from './informer';
 
 use(chaiAsPromised);
 
-import nock = require('nock');
+import nock from 'nock';
 import { Watch } from './watch';
 
 const server = 'http://foo.company.com';
