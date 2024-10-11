@@ -1,7 +1,7 @@
-import * as fs from 'node:fs';
+import fs from 'node:fs';
 import { WritableStreamBuffer } from 'stream-buffers';
 import * as tar from 'tar';
-import * as tmp from 'tmp-promise';
+import tmp from 'tmp-promise';
 
 import { KubeConfig } from './config';
 import { Exec } from './exec';

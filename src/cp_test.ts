@@ -1,6 +1,6 @@
 import { anything, anyFunction, instance, mock, verify, when } from 'ts-mockito';
-import * as querystring from 'node:querystring';
-import WebSocket = require('isomorphic-ws');
+import querystring from 'node:querystring';
+import WebSocket from 'isomorphic-ws';
 
 import { CallAwaiter } from '../test';
 import { KubeConfig } from './config';

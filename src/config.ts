@@ -1,11 +1,11 @@
-import fs = require('node:fs');
-import https = require('node:https');
-import yaml = require('js-yaml');
-import net = require('node:net');
-import path = require('node:path');
+import fs from 'node:fs';
+import https from 'node:https';
+import yaml from 'js-yaml';
+import net from 'node:net';
+import path from 'node:path';
 
 import { Headers, RequestInit } from 'node-fetch';
-import * as api from './api';
+import { RequestContext } from './api';
 import { Authenticator } from './auth';
 import { AzureAuth } from './azure_auth';
 import {
@@ -31,8 +31,8 @@ import {
     ServerConfiguration,
 } from './gen';
 import { OpenIDConnectAuth } from './oidc_auth';
-import WebSocket = require('isomorphic-ws');
-import child_process = require('node:child_process');
+import WebSocket from 'isomorphic-ws';
+import child_process from 'node:child_process';
 
 const SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
 const SERVICEACCOUNT_CA_PATH: string = SERVICEACCOUNT_ROOT + '/ca.crt';
@@ -212,7 +212,7 @@ export class KubeConfig implements SecurityAuthentication {
      * Applies SecurityAuthentication to RequestContext of an API Call from API Client
      * @param context
      */
-    public async applySecurityAuthentication(context: api.RequestContext): Promise<void> {
+    public async applySecurityAuthentication(context: RequestContext): Promise<void> {
         const cluster = this.getCurrentCluster();
         const user = this.getCurrentUser();
 

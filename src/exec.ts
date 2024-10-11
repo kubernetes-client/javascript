@@ -1,6 +1,6 @@
-import WebSocket = require('isomorphic-ws');
-import querystring = require('node:querystring');
-import stream = require('stream');
+import WebSocket from 'isomorphic-ws';
+import querystring from 'node:querystring';
+import stream from 'stream';
 
 import { V1Status } from './api';
 import { KubeConfig } from './config';
