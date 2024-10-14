@@ -186,6 +186,11 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
 
     private watchHandler(phase: string, obj: T, watchObj?: any): void {
         switch (phase) {
+            case 'ERROR':
+                if ((obj as { code?: number }).code === 410) {
+                    this.resourceVersion = '';
+                }
+                break;
             case 'ADDED':
             case 'MODIFIED':
                 addOrUpdateObject(
