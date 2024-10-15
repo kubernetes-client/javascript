@@ -1098,6 +1098,75 @@ describe('ListWatchCache', () => {
         expect(listCalls).to.be.equal(2);
     });
 
+    it('should list if the watch cannot be restarted from the latest resourceVersion with an ERROR event', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const list: V1Pod[] = [];
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+
+        let listCalls = 0;
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve) => {
+                listCalls++;
+                resolve(listObj);
+            });
+        };
+        let promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve(new AbortController());
+            });
+        });
+
+        const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
+
+        informer.start();
+        await promise;
+
+        const [, , watchHandler] = mock.capture(fakeWatch.watch).last();
+        watchHandler(
+            'ADDED',
+            {
+                metadata: {
+                    name: 'name3',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+            { metadata: { resourceVersion: '23456' } },
+        );
+
+        await informer.stop();
+
+        let errorEmitted = false;
+        informer.on('error', () => (errorEmitted = true));
+
+        promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve(new AbortController());
+            });
+        });
+
+        informer.start();
+        await promise;
+
+        const [, , watchHandler2, doneHandler] = mock.capture(fakeWatch.watch).last();
+        watchHandler2('ERROR', {
+            code: 410,
+        });
+        doneHandler(undefined);
+        mock.verify(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).twice();
+        expect(errorEmitted).to.equal(false);
+        expect(listCalls).to.be.equal(2);
+    });
+
     it('should send label selector', async () => {
         const APP_LABEL_SELECTOR = 'app=foo';
 
