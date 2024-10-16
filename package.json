@@ -94,7 +94,7 @@
     "typescript": "~5.6.2"
   },
   "optionalDependencies": {
-    "openid-client": "^5.3.0"
+    "openid-client": "^6.0.0"
   },
   "bugs": {
     "url": "https://github.com/kubernetes-client/javascript/issues"
