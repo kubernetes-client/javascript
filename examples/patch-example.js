@@ -1,7 +1,5 @@
-// in a real program use require('@kubernetes/client-node')
-const k8s = require('../dist/index');
-const { createConfiguration, ServerConfiguration } = require('../dist');
-const { PromiseMiddlewareWrapper } = require('../dist/gen/middleware');
+import * as k8s from '@kubernetes/client-node';
+import { PromiseMiddlewareWrapper } from '@kubernetes/client-node/dist/gen/middleware.js';
 
 const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
@@ -10,7 +8,8 @@ const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
 const namespace = 'default';
 
-k8sApi.listNamespacedPod({ namespace }).then((res) => {
+try {
+    const res = await k8sApi.listNamespacedPod({ namespace });
     const patch = [
         {
             op: 'replace',
@@ -37,24 +36,22 @@ k8sApi.listNamespacedPod({ namespace }).then((res) => {
         throw new Error('Server is undefined');
     }
 
-    const baseServerConfig = new ServerConfiguration(server, {});
-    const configuration = createConfiguration({
+    const baseServerConfig = new k8s.ServerConfiguration(server, {});
+    const configuration = k8s.createConfiguration({
         middleware: [headerPatchMiddleware],
         baseServer: baseServerConfig,
         authMethods: {
             default: kc,
         },
     });
-    k8sApi
+
+    await k8sApi
         .patchNamespacedPod(
             { name: res?.items?.[0].metadata?.name ?? '', namespace, body: patch },
             configuration,
         )
-        .then(() => {
-            console.log('Patched.');
-        })
-        .catch((err) => {
-            console.log('Error: ');
-            console.log(err);
-        });
-});
+    console.log('Patched.');
+} catch (err) {
+    console.error('Error: ');
+    console.error(err);
+}

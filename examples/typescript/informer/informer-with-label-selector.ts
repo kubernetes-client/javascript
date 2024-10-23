@@ -1,6 +1,5 @@
-// tslint:disable:no-console
-// in a real program use require('@kubernetes/client-node')
-import * as k8s from '../../../dist/index';
+import * as k8s from '@kubernetes/client-node';
+import { setTimeout as delay } from 'node:timers/promises';
 
 const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
@@ -33,17 +32,17 @@ const createPod = async (name: string, app: string) => {
             containers: [appPodContainer],
         },
     } as k8s.V1Pod;
-    await k8sApi.createNamespacedPod({ namespace, body: appPod }).catch((e) => console.error(e));
-    console.log('create', name);
+    try {
+        await k8sApi.createNamespacedPod({ namespace, body: appPod });
+        console.log('create', name);
+    } catch (e) {
+        console.error(e);
+    }
 };
 
 const deletePod = async (podName: string, podNamespace: string) => {
     await k8sApi.deleteNamespacedPod({ name: podName, namespace: podNamespace });
     console.log('delete', podName);
-};
-
-const delay = (ms: number) => {
-    return new Promise((resolve) => setTimeout(resolve, ms));
 };
 
 const informer = k8s.makeInformer(kc, `/api/v1/namespaces/${namespace}/pods`, listFn, APP_LABEL_SELECTOR);
@@ -65,13 +64,12 @@ informer.on('error', (err: k8s.V1Pod) => {
     }, 5000);
 });
 
-informer.start().then(() => {
-    setTimeout(async () => {
-        await createPod('server-foo', 'foo');
-        await delay(5000);
-        await createPod('server-bar', 'bar');
-        await delay(5000);
-        await deletePod('server-foo', namespace);
-        await deletePod('server-bar', namespace);
-    }, 5000);
-});
+await informer.start();
+setTimeout(async () => {
+    await createPod('server-foo', 'foo');
+    await delay(5000);
+    await createPod('server-bar', 'bar');
+    await delay(5000);
+    await deletePod('server-foo', namespace);
+    await deletePod('server-bar', namespace);
+}, 5000);

@@ -1,7 +1,6 @@
-// in a real program use require('@kubernetes/client-node')
-import * as k8s from '../../../dist';
-import * as yaml from 'js-yaml';
-import * as fs from 'node:fs/promises';
+import * as k8s from '@kubernetes/client-node';
+import yaml from 'js-yaml';
+import fs from 'node:fs/promises';
 
 /**
  * Replicate the functionality of `kubectl apply`.  That is, create the resources defined in the `specFile` if they do
@@ -25,7 +24,6 @@ export async function apply(specPath: string): Promise<k8s.KubernetesObject[]> {
         // without metadata out
         spec.metadata = spec.metadata || {};
         spec.metadata.annotations = spec.metadata.annotations || {};
-        delete spec.metadata.annotations['kubectl.kubernetes.io/last-applied-configuration'];
         spec.metadata.annotations['kubectl.kubernetes.io/last-applied-configuration'] = JSON.stringify(spec);
         try {
             // try to get the resource, if it does not exist an error will be thrown and we will end up in the catch

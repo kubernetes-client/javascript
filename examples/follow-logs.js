@@ -1,6 +1,5 @@
-// in a real program use require('@kubernetes/client-node')
-const k8s = require('../dist/index');
-const stream = require('stream');
+import * as k8s from '@kubernetes/client-node';
+import stream from 'node:stream';
 
 const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
@@ -18,19 +17,19 @@ logStream.on('data', (chunk) => {
     process.stdout.write(chunk);
 });
 
-log.log(namespace, pod, container, logStream, {
-    follow: true,
-    tailLines: 50,
-    pretty: false,
-    timestamps: false,
-})
-    .catch((err) => {
-        console.error(err);
-    })
-    .then((req) => {
-        // disconnects after 5 seconds
-        setTimeout(function () {
-            //Note: You might have to install AbortController if you are using node version < 15.0.0
-            req.abort();
-        }, 5000);
+try {
+    const req = await log.log(namespace, pod, container, logStream, {
+        follow: true,
+        tailLines: 50,
+        pretty: false,
+        timestamps: false,
     });
+
+    // disconnects after 5 seconds
+    setTimeout(() => {
+        // Note: You might have to install AbortController if you are using Node version < 15.0.0
+        req.abort();
+    }, 5000);
+} catch (err) {
+    console.error(err);
+}

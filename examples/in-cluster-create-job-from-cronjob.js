@@ -1,5 +1,4 @@
-// in a real program use require('@kubernetes/client-node')
-const k8s = require('../dist/index');
+import * as k8s from '@kubernetes/client-node';
 
 const namespace = 'default';
 
@@ -21,19 +20,11 @@ metadata.annotations = {
 };
 job.metadata = metadata;
 
-batchV1beta1Api
-    .readNamespacedCronJob({ name: cronJobName, namespace })
-    .then((cronJobRes) => {
-        job.spec = cronJobRes?.spec?.jobTemplate.spec;
-        batchV1Api
-            .createNamespacedJob({ namespace, body: job })
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    })
-    .catch((err) => {
-        console.log(err);
-    });
+try {
+    const cronJobRes = await batchV1beta1Api.readNamespacedCronJob({ name: cronJobName, namespace });
+    job.spec = cronJobRes?.spec?.jobTemplate.spec;
+    const res = await batchV1Api..createNamespacedJob({ namespace, body: job });
+    console.log(res);
+} catch (err) {
+    console.error(err);
+}
