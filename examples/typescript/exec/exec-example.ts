@@ -1,6 +1,5 @@
-// in a real program use require('@kubernetes/client-node')
-import * as k8s from '../../../dist';
-import * as stream from 'node:stream';
+import * as k8s from '@kubernetes/client-node';
+import stream from 'node:stream';
 
 const command = process.argv[2];
 
@@ -23,9 +22,7 @@ exec.exec(
     process.stdin as stream.Readable,
     true /* tty */,
     (status: k8s.V1Status) => {
-        // tslint:disable-next-line:no-console
         console.log('Exited with status:');
-        // tslint:disable-next-line:no-console
         console.log(JSON.stringify(status, null, 2));
     },
 );

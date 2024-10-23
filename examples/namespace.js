@@ -1,5 +1,4 @@
-// in a real program use require('@kubernetes/client-node')
-const k8s = require('../dist/index');
+import * as k8s from '@kubernetes/client-node';
 
 const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
@@ -12,16 +11,13 @@ var namespace = {
     },
 };
 
-k8sApi.createNamespace({ body: namespace }).then(
-    (response) => {
-        console.log('Created namespace');
-        console.log(response);
-        k8sApi.readNamespace({ name: namespace.metadata.name }).then((response) => {
-            console.log(response);
-            k8sApi.deleteNamespace({ name: namespace.metadata.name });
-        });
-    },
-    (err) => {
-        console.log('Error!: ' + err);
-    },
-);
+try {
+    const response = await k8sApi.createNamespace({ body: namespace });
+    console.log('Created namespace');
+    console.log(response);
+    const res = await k8sApi.readNamespace({ name: namespace.metadata.name });
+    console.log(res);
+    await k8sApi.deleteNamespace({ name: namespace.metadata.name });
+} catch (err) {
+    console.error('Error!: ' + err);
+}

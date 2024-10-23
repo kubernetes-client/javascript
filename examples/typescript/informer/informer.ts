@@ -1,7 +1,4 @@
-// tslint:disable:no-console
-
-// in a real program use require('@kubernetes/client-node')
-import * as k8s from '../../../dist/index';
+import * as k8s from '@kubernetes/client-node';
 
 const kc = new k8s.KubeConfig();
 

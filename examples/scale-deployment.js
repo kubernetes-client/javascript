@@ -1,5 +1,4 @@
-// in a real program use require('@kubernetes/client-node')
-const k8s = require('../dist/index');
+import * as k8s from '@kubernetes/client-node';
 
 const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
