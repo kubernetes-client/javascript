@@ -66,17 +66,13 @@ export class GoogleCloudPlatformAuth implements Authenticator {
         if (!cmd) {
             throw new Error('Token is expired!');
         }
-        // Wrap cmd in quotes to make it cope with spaces in path
-        cmd = `"${cmd}"`;
-        const args = config['cmd-args'];
-        if (args) {
-            cmd = cmd + ' ' + args;
-        }
+        const cmdPath = config['cmd-path'];
+        const args = config['cmd-args'] ? config['cmd-args'].split(' ') : [];
         // TODO: Cache to file?
         // TODO: do this asynchronously
         let output: any;
         try {
-            output = proc.execSync(cmd);
+            output = proc.execFileSync(cmdPath, args);
         } catch (err) {
             throw new Error('Failed to refresh token: ' + (err as Error).message);
         }
