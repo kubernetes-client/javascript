@@ -1,5 +1,5 @@
 import https from 'node:https';
-import { Client, Issuer } from 'openid-client';
+import * as oidc from 'openid-client';
 import { base64url } from 'rfc4648';
 
 import { Authenticator } from './auth';
@@ -9,6 +9,29 @@ interface JwtObj {
     header: any;
     payload: any;
     signature: string;
+}
+
+interface Token {
+    id_token: string;
+    refresh_token: string;
+    expires_at: number;
+}
+
+interface Client {
+    refresh(token: string): Promise<Token>;
+}
+
+class oidcClient implements Client {
+    public constructor(readonly config: oidc.Configuration) {}
+
+    public async refresh(token: string): Promise<Token> {
+        const newToken = await oidc.refreshTokenGrant(this.config, token);
+        return {
+            id_token: newToken.id_token,
+            refresh_token: newToken.refresh_token,
+            expires_at: newToken.expiresIn(),
+        } as Token;
+    }
 }
 
 export class OpenIDConnectAuth implements Authenticator {
@@ -95,16 +118,13 @@ export class OpenIDConnectAuth implements Authenticator {
             const newToken = await client.refresh(user.authProvider.config['refresh-token']);
             user.authProvider.config['id-token'] = newToken.id_token;
             user.authProvider.config['refresh-token'] = newToken.refresh_token;
-            this.currentTokenExpiration = newToken.expires_at || 0;
+            this.currentTokenExpiration = newToken.expires_at;
         }
         return user.authProvider.config['id-token'];
     }
 
     private async getClient(user: User): Promise<Client> {
-        const oidcIssuer = await Issuer.discover(user.authProvider.config['idp-issuer-url']);
-        return new oidcIssuer.Client({
-            client_id: user.authProvider.config['client-id'],
-            client_secret: user.authProvider.config['client-secret'],
-        });
+        const configuration = await oidc.discovery(user.authProvider.config['idp-issuer-url'], user.authProvider.config['client-id']);
+        return new oidcClient(configuration);
     }
 }
