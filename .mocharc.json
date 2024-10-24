@@ -1,6 +1,5 @@
 {
-  // Specify "require" for CommonJS
-  "require": "ts-node/register",
+  "require": "tsx",
   "extensions": ["ts"],
   "spec": [
     "src/**/*_test.ts"
