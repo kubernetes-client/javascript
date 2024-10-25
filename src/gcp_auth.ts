@@ -83,10 +83,6 @@ export class GoogleCloudPlatformAuth implements Authenticator {
             throw new Error('Failed to refresh token: ' + (err as Error).message);
         }
 
-        // remove leading and trailing `'` from the output
-        output = output.toString();
-        output = output.replace(/'/g, '');
-        output = output.replace(/\'$/, '');
         const resultObj = JSON.parse(output);
 
         const tokenPathKeyInConfig = config['token-key'];
