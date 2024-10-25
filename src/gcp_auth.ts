@@ -66,7 +66,14 @@ export class GoogleCloudPlatformAuth implements Authenticator {
         if (!cmd) {
             throw new Error('Token is expired!');
         }
-        const args = config['cmd-args'] ? config['cmd-args'].split(' ') : [];
+        const args = (config['cmd-args'] ? config['cmd-args'].split(' ') : []).map(
+            (arg: string): string => {
+                if (arg[0] == '\'' || arg[0] == '"') {
+                    return arg.substring(1, arg.length-1);
+                }
+                return arg;
+            }
+        );
         // TODO: Cache to file?
         // TODO: do this asynchronously
         let output: any;
