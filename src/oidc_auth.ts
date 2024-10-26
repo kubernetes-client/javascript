@@ -137,7 +137,7 @@ export class OpenIDConnectAuth implements Authenticator {
         const configuration = await oidc.discovery(
             user.authProvider.config['idp-issuer-url'],
             user.authProvider.config['client-id'],
-            metadata
+            metadata,
         );
         return new OidcClient(configuration);
     }
