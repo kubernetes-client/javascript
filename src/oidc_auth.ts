@@ -21,7 +21,7 @@ interface Client {
     refresh(token: string): Promise<Token>;
 }
 
-class oidcClient implements Client {
+class OidcClient implements Client {
     public constructor(readonly config: oidc.Configuration) {}
 
     public async refresh(token: string): Promise<Token> {
@@ -124,7 +124,10 @@ export class OpenIDConnectAuth implements Authenticator {
     }
 
     private async getClient(user: User): Promise<Client> {
-        const configuration = await oidc.discovery(user.authProvider.config['idp-issuer-url'], user.authProvider.config['client-id']);
-        return new oidcClient(configuration);
+        const configuration = await oidc.discovery(
+            user.authProvider.config['idp-issuer-url'],
+            user.authProvider.config['client-id'],
+        );
+        return new OidcClient(configuration);
     }
 }
