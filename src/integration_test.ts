@@ -1,12 +1,11 @@
 import { expect, use } from 'chai';
-import chaiAsPromised = require('chai-as-promised');
+import chaiAsPromised from 'chai-as-promised';
+use(chaiAsPromised);
 import nock = require('nock');
 
 import { CoreV1Api } from './api';
 import { KubeConfig } from './config';
 import { Cluster, User } from './config_types';
-
-use(chaiAsPromised);
 
 describe('FullRequest', () => {
     describe('getPods', () => {

@@ -1,6 +1,6 @@
 import child_process = require('child_process');
 import { expect, use } from 'chai';
-import chaiAsPromised = require('chai-as-promised');
+import chaiAsPromised from 'chai-as-promised';
 use(chaiAsPromised);
 
 import request = require('request');
