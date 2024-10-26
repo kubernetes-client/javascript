@@ -62,21 +62,21 @@ export class GoogleCloudPlatformAuth implements Authenticator {
     }
 
     private updateAccessToken(config: Config): void {
-        let cmd = config['cmd-path'];
+        const cmd = config['cmd-path'];
         if (!cmd) {
             throw new Error('Token is expired!');
         }
-        // Wrap cmd in quotes to make it cope with spaces in path
-        cmd = `"${cmd}"`;
-        const args = config['cmd-args'];
-        if (args) {
-            cmd = cmd + ' ' + args;
-        }
+        const args = (config['cmd-args'] ? config['cmd-args'].split(' ') : []).map((arg: string): string => {
+            if (arg[0] === "'" || arg[0] === '"') {
+                return arg.substring(1, arg.length - 1);
+            }
+            return arg;
+        });
         // TODO: Cache to file?
         // TODO: do this asynchronously
         let output: any;
         try {
-            output = proc.execSync(cmd);
+            output = proc.execFileSync(cmd, args);
         } catch (err) {
             throw new Error('Failed to refresh token: ' + (err as Error).message);
         }
