@@ -1,5 +1,6 @@
 import https = require('https');
-import { Client, ClientMetadata, Issuer } from 'openid-client';
+import * as oidc from 'openid-client';
+import { ClientMetadata } from 'openid-client';
 import request = require('request');
 import { base64url } from 'rfc4648';
 import { TextDecoder } from 'util';
@@ -11,6 +12,29 @@ interface JwtObj {
     header: any;
     payload: any;
     signature: string;
+}
+
+interface Token {
+    id_token: string;
+    refresh_token: string;
+    expires_at: number;
+}
+
+interface Client {
+    refresh(token: string): Promise<Token>;
+}
+
+class OidcClient implements Client {
+    public constructor(readonly config: oidc.Configuration) {}
+
+    public async refresh(token: string): Promise<Token> {
+        const newToken = await oidc.refreshTokenGrant(this.config, token);
+        return {
+            id_token: newToken.id_token,
+            refresh_token: newToken.refresh_token,
+            expires_at: newToken.expiresIn(),
+        } as Token;
+    }
 }
 
 export class OpenIDConnectAuth implements Authenticator {
@@ -97,22 +121,24 @@ export class OpenIDConnectAuth implements Authenticator {
             const newToken = await client.refresh(user.authProvider.config['refresh-token']);
             user.authProvider.config['id-token'] = newToken.id_token;
             user.authProvider.config['refresh-token'] = newToken.refresh_token;
-            this.currentTokenExpiration = newToken.expires_at || 0;
+            this.currentTokenExpiration = newToken.expires_at;
         }
         return user.authProvider.config['id-token'];
     }
 
     private async getClient(user: User): Promise<Client> {
-        const oidcIssuer = await Issuer.discover(user.authProvider.config['idp-issuer-url']);
         const metadata: ClientMetadata = {
             client_id: user.authProvider.config['client-id'],
             client_secret: user.authProvider.config['client-secret'],
         };
-
         if (!user.authProvider.config['client-secret']) {
             metadata.token_endpoint_auth_method = 'none';
         }
-
-        return new oidcIssuer.Client(metadata);
+        const configuration = await oidc.discovery(
+            user.authProvider.config['idp-issuer-url'],
+            user.authProvider.config['client-id'],
+            metadata,
+        );
+        return new OidcClient(configuration);
     }
 }
