@@ -1,6 +1,7 @@
 import { expect, use } from 'chai';
 import * as request from 'request';
-import chaiAsPromised = require('chai-as-promised');
+import chaiAsPromised from 'chai-as-promised';
+use(chaiAsPromised);
 
 import * as mock from 'ts-mockito';
 
@@ -13,8 +14,6 @@ import { deleteObject, ListWatch, deleteItems, CacheMap, cacheMapFromList } from
 import { KubeConfig } from './config';
 import { Cluster, Context, User } from './config_types';
 import { ADD, UPDATE, DELETE, ERROR, ListPromise, CHANGE } from './informer';
-
-use(chaiAsPromised);
 
 import { DefaultRequest, RequestResult, Watch } from './watch';
 
