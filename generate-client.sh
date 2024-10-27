@@ -22,4 +22,5 @@ fi
 TYPESCRIPT="${GEN_ROOT}/openapi/typescript.sh"
 echo ">>> Running ${TYPESCRIPT}"
 ${TYPESCRIPT} src/gen settings
+rm -f src/gen/package.json
 echo ">>> Done."
