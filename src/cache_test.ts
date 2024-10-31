@@ -3,8 +3,8 @@ import chaiAsPromised from 'chai-as-promised';
 
 import mock from 'ts-mockito';
 
-import { V1ListMeta, V1Namespace, V1NamespaceList, V1ObjectMeta, V1Pod } from './api';
-import { deleteItems, deleteObject, ListWatch } from './cache';
+import { V1Namespace, V1NamespaceList, V1ObjectMeta, V1Pod, V1PodList, V1ListMeta } from './api';
+import { deleteObject, ListWatch, deleteItems, CacheMap, cacheMapFromList, addOrUpdateObject } from './cache';
 import { KubeConfig } from './config';
 import { Cluster, Context, User } from './config_types';
 import { ListPromise } from './informer';
@@ -62,26 +62,26 @@ describe('ListWatchCache', () => {
 
     it('should perform basic caching', async () => {
         const fakeWatch = mock.mock(Watch);
-        const list: V1Namespace[] = [
+        const list: V1Pod[] = [
             {
                 metadata: {
                     name: 'name1',
                     namespace: 'default',
                 } as V1ObjectMeta,
-            } as V1Namespace,
+            } as V1Pod,
             {
                 metadata: {
                     name: 'name2',
                     namespace: 'default',
                 } as V1ObjectMeta,
-            } as V1Namespace,
+            } as V1Pod,
         ];
         const listObj = {
             metadata: {
                 resourceVersion: '12345',
             } as V1ListMeta,
             items: list,
-        } as V1NamespaceList;
+        } as V1PodList;
 
         const emptyObj = {
             metadata: {
@@ -93,13 +93,13 @@ describe('ListWatchCache', () => {
                         name: 'name3',
                         namespace: 'default',
                     } as V1ObjectMeta,
-                } as V1Namespace,
+                } as V1Pod,
             ],
-        } as V1NamespaceList;
+        } as V1PodList;
 
         let calls = 0;
-        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
-            return new Promise<V1NamespaceList>((resolve, reject) => {
+        const listFn: ListPromise<V1Pod> = function (): Promise<V1PodList> {
+            return new Promise<V1PodList>((resolve, reject) => {
                 if (calls++ === 0) {
                     resolve(listObj);
                 } else {
@@ -120,25 +120,22 @@ describe('ListWatchCache', () => {
         expect(pathOut).to.equal('/some/path');
         expect(cache.list()).to.deep.equal(list);
 
-        expect(cache.get('name1')).to.equal(list[0]);
-        expect(cache.get('name2')).to.equal(list[1]);
-
         expect(cache.list('default')).to.deep.equal(list);
-        expect(cache.list('non-existent')).to.be.undefined;
+        expect(cache.list('non-existent')).to.deep.equal([]);
 
         watchHandler('ADDED', {
             metadata: {
                 name: 'name3',
                 namespace: 'other',
             } as V1ObjectMeta,
-        } as V1Namespace);
+        } as V1Pod);
 
         expect(cache.list().length).to.equal(3);
         expect(cache.get('name3')).to.not.equal(null);
 
         expect(cache.list('default').length).to.equal(2);
         expect(cache.list('other').length).to.equal(1);
-        expect(cache.list('non-existent')).to.be.undefined;
+        expect(cache.list('non-existent')).to.deep.equal([]);
 
         watchHandler('MODIFIED', {
             metadata: {
@@ -146,7 +143,7 @@ describe('ListWatchCache', () => {
                 namespace: 'other',
                 resourceVersion: 'baz',
             } as V1ObjectMeta,
-        } as V1Namespace);
+        } as V1Pod);
         expect(cache.list().length).to.equal(3);
         const obj3 = cache.get('name3');
         expect(obj3).to.not.equal(null);
@@ -160,7 +157,7 @@ describe('ListWatchCache', () => {
                 name: 'name2',
                 namespace: 'default',
             } as V1ObjectMeta,
-        } as V1Namespace);
+        } as V1Pod);
         expect(cache.list().length).to.equal(2);
         expect(cache.get('name2')).to.equal(undefined);
 
@@ -172,14 +169,14 @@ describe('ListWatchCache', () => {
                 name: 'name2',
                 namespace: 'default',
             } as V1ObjectMeta,
-        } as V1Namespace);
+        } as V1Pod);
 
         const error = new Error('Gone') as Error & { statusCode: number | undefined };
         error.statusCode = 410;
         await doneHandler(error);
-        expect(cache.list().length, 'all namespace list').to.equal(1);
-        expect(cache.list('default').length, 'default namespace list').to.equal(1);
-        expect(cache.list('other'), 'other namespace list').to.be.undefined;
+        expect(cache.list().length, 'all pod list').to.equal(1);
+        expect(cache.list('default').length, 'default pod list').to.equal(1);
+        expect(cache.list('other'), 'other pod list').to.deep.equal([]);
     });
 
     it('should perform work as an informer', async () => {
@@ -553,10 +550,10 @@ describe('ListWatchCache', () => {
                 resourceVersion: '12345',
             } as V1ListMeta,
             items: list,
-        } as V1NamespaceList;
+        } as V1PodList;
 
-        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
-            return new Promise<V1NamespaceList>((resolve, reject) => {
+        const listFn: ListPromise<V1Pod> = function (): Promise<V1PodList> {
+            return new Promise<V1PodList>((resolve, reject) => {
                 resolve(listObj);
             });
         };
@@ -572,9 +569,6 @@ describe('ListWatchCache', () => {
         const [pathOut, , watchHandler] = mock.capture(fakeWatch.watch).last();
         expect(pathOut).to.equal('/some/path');
         expect(cache.list()).to.deep.equal(list);
-
-        expect(cache.get('name1')).to.equal(list[0]);
-        expect(cache.get('name2')).to.equal(list[1]);
 
         expect(cache.list('ns1').length).to.equal(1);
         expect(cache.list('ns1')[0].metadata!.name).to.equal('name1');
@@ -627,6 +621,81 @@ describe('ListWatchCache', () => {
         expect(cache.get('name2', 'ns2')).to.equal(undefined);
     });
 
+    it('should perform non-namespace caching', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const list: V1Namespace[] = [
+            {
+                metadata: {
+                    name: 'name1',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+            {
+                metadata: {
+                    name: 'name2',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+        ];
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve, reject) => {
+                resolve(listObj);
+            });
+        };
+        const promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve(new AbortController());
+            });
+        });
+        const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
+        await promise;
+        const [pathOut, , watchHandler] = mock.capture(fakeWatch.watch).last();
+        expect(pathOut).to.equal('/some/path');
+        expect(cache.list()).to.deep.equal(list);
+        expect(cache.get('name1')).to.not.equal(null);
+        expect(cache.get('name2')).to.not.equal(null);
+
+        expect(cache.list('ns1')).to.deep.equal([]);
+
+        watchHandler('ADDED', {
+            metadata: {
+                name: 'name3',
+            } as V1ObjectMeta,
+        } as V1Namespace);
+
+        expect(cache.list().length).to.equal(3);
+        expect(cache.get('name3')).to.not.equal(null);
+
+        watchHandler('MODIFIED', {
+            metadata: {
+                name: 'name3',
+                resourceVersion: 'baz',
+            } as V1ObjectMeta,
+        } as V1Namespace);
+        expect(cache.list().length).to.equal(3);
+        const obj3 = cache.get('name3');
+        expect(obj3).to.not.equal(null);
+        if (obj3) {
+            expect(obj3.metadata!.name).to.equal('name3');
+            expect(obj3.metadata!.resourceVersion).to.equal('baz');
+        }
+
+        watchHandler('DELETED', {
+            metadata: {
+                name: 'name2',
+            } as V1ObjectMeta,
+        } as V1Namespace);
+        expect(cache.list().length).to.equal(2);
+        expect(cache.get('name2', 'ns2')).to.equal(undefined);
+    });
+
     it('should delete an object correctly', () => {
         const list: V1Pod[] = [
             {
@@ -642,27 +711,31 @@ describe('ListWatchCache', () => {
                 } as V1ObjectMeta,
             } as V1Pod,
         ];
-        deleteObject(list, {
+        const objs: CacheMap<V1Pod> = new Map();
+        list.forEach((elt: V1Pod) => {
+            addOrUpdateObject(objs, elt);
+        });
+        deleteObject(objs, {
             metadata: {
                 name: 'other',
                 namespace: 'ns1',
             },
         } as V1Pod);
-        expect(list.length).to.equal(2);
-        deleteObject(list, {
+        expect(objs.size).to.equal(2);
+        deleteObject(objs, {
             metadata: {
                 name: 'name1',
                 namespace: 'ns2',
             },
         } as V1Pod);
-        expect(list.length).to.equal(2);
-        deleteObject(list, {
+        expect(objs.size).to.equal(2);
+        deleteObject(objs, {
             metadata: {
                 name: 'name1',
                 namespace: 'ns1',
             },
         } as V1Pod);
-        expect(list.length).to.equal(1);
+        expect(objs.size).to.equal(1);
     });
 
     it('should not call handlers which have been unregistered', async () => {
@@ -1297,7 +1370,12 @@ describe('delete items', () => {
         ];
         const pods: V1Pod[] = [];
 
-        deleteItems(listA, listB, [(obj?: V1Pod) => pods.push(obj!)]);
+        const objs: CacheMap<V1Pod> = new Map();
+        listA.forEach((elt) => {
+            addOrUpdateObject(objs, elt);
+        });
+
+        deleteItems(objs, listB, [(obj?: V1Pod) => pods.push(obj!)]);
         expect(pods).to.deep.equal(expected);
     });
 
