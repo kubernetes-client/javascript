@@ -293,7 +293,6 @@ function isSameVersion<T extends KubernetesObject>(o1: any, o2: T): boolean {
     );
 }
 
-
 // Public for testing.
 export function deleteObject<T extends KubernetesObject>(
     objects: CacheMap<T>,

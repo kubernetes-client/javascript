@@ -1373,7 +1373,7 @@ describe('delete items', () => {
         const objs: CacheMap<V1Pod> = new Map();
         listA.forEach((elt) => {
             addOrUpdateObject(objs, elt);
-        })
+        });
 
         deleteItems(objs, listB, [(obj?: V1Pod) => pods.push(obj!)]);
         expect(pods).to.deep.equal(expected);
