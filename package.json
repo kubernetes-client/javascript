@@ -18,7 +18,7 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
-        "format": "prettier --loglevel error --write \"./src/**/*.ts\"",
+        "format": "prettier --log-level error --write \"./src/**/*.ts\"",
         "lint": "tslint --project \".\" && prettier --check \"./src/**/*.ts\" && tslint --project \"./examples/typescript\"",
         "clean": "rm -Rf node_modules/ dist/",
         "build": "tsc",
@@ -88,6 +88,7 @@
         "mock-fs": "^5.2.0",
         "nock": "^13.2.9",
         "prettier": "^3.0.0",
+        "pretty-quick": "^4.0.0",
         "source-map-support": "^0.5.9",
         "ts-mockito": "^2.3.1",
         "tslint": "^6.1.3",
