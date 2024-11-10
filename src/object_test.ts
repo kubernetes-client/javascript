@@ -1,4 +1,3 @@
-import { fail } from 'node:assert';
 import { expect } from 'chai';
 import nock from 'nock';
 import { Configuration, V1APIResource, V1APIResourceList, V1Secret } from './api';
@@ -6,7 +5,6 @@ import { KubeConfig } from './config';
 import { KubernetesObjectApi } from './object';
 import { KubernetesObject } from './types';
 import { of } from './gen/rxjsStub';
-import { ApiException } from '../dist';
 
 describe('KubernetesObject', () => {
     const testConfigOptions = {
@@ -892,19 +890,10 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            let thrown = false;
-            try {
-                await c.specUriPath(o, 'create');
-                expect.fail('should have thrown error');
-            } catch (e) {
-                thrown = true;
-                if (e instanceof Error) {
-                    expect(e.message).to.equal('Required spec property kind is not set');
-                } else {
-                    fail(`unknown exception: ${e}`);
-                }
-            }
-            expect(thrown).to.be.true;
+            await expect(c.specUriPath(o, 'create')).to.be.rejectedWith(
+                Error,
+                'Required spec property kind is not set',
+            );
         });
 
         it('should throw an error if name required and missing', async () => {
@@ -919,19 +908,11 @@ describe('KubernetesObject', () => {
             const scope = nock('https://d.i.y')
                 .get('/api/v1')
                 .reply(200, resourceBodies.core, contentTypeJsonHeader);
-            let thrown = false;
-            try {
-                await c.specUriPath(o, 'read');
-                expect.fail('should have thrown error');
-            } catch (e) {
-                thrown = true;
-                if (e instanceof Error) {
-                    expect(e.message).to.equal('Required spec property name is not set');
-                } else {
-                    fail(`unknown exception: ${e}`);
-                }
-            }
-            expect(thrown).to.be.true;
+
+            await expect(c.specUriPath(o, 'read')).to.be.rejectedWith(
+                Error,
+                'Required spec property name is not set',
+            );
             scope.done();
         });
 
@@ -948,19 +929,10 @@ describe('KubernetesObject', () => {
             const scope = nock('https://d.i.y')
                 .get('/api/v1')
                 .reply(200, resourceBodies.core, contentTypeJsonHeader);
-            let thrown = false;
-            try {
-                await c.specUriPath(o, 'create');
-                expect.fail('should have thrown error');
-            } catch (e) {
-                thrown = true;
-                if (e instanceof Error) {
-                    expect(e.message).to.equal('Unrecognized API version and kind: v1 Ingress');
-                } else {
-                    fail(`unknown exception: ${e}`);
-                }
-            }
-            expect(thrown).to.be.true;
+            await expect(c.specUriPath(o, 'create')).to.be.rejectedWith(
+                Error,
+                'Unrecognized API version and kind: v1 Ingress',
+            );
             scope.done();
         });
     });
@@ -973,39 +945,19 @@ describe('KubernetesObject', () => {
 
         it('should throw an error if apiVersion not set', async () => {
             for (const a of [null, undefined]) {
-                let thrown = false;
-                try {
-                    await client.resource(a as unknown as string, 'Service');
-                } catch (e) {
-                    thrown = true;
-                    if (e instanceof Error) {
-                        expect(e.message).to.equal(
-                            'Required parameter apiVersion was null or undefined when calling resource',
-                        );
-                    } else {
-                        fail(`unknown exception: ${e}`);
-                    }
-                }
-                expect(thrown).to.be.true;
+                await expect(client.resource(a as unknown as string, 'Service')).to.be.rejectedWith(
+                    Error,
+                    'Required parameter apiVersion was null or undefined when calling resource',
+                );
             }
         });
 
         it('should throw an error if kind not set', async () => {
             for (const a of [null, undefined]) {
-                let thrown = false;
-                try {
-                    await client.resource('v1', a as unknown as string);
-                } catch (e) {
-                    thrown = true;
-                    if (e instanceof Error) {
-                        expect(e.message).to.equal(
-                            'Required parameter kind was null or undefined when calling resource',
-                        );
-                    } else {
-                        fail(`unknown exception: ${e}`);
-                    }
-                }
-                expect(thrown).to.be.true;
+                await expect(client.resource('v1', a as unknown as string)).to.be.rejectedWith(
+                    Error,
+                    'Required parameter kind was null or undefined when calling resource',
+                );
             }
         });
 
@@ -1911,23 +1863,12 @@ describe('KubernetesObject', () => {
             const methods = [client.create, client.patch, client.read, client.replace, client.delete];
             for (const s of [null, undefined]) {
                 for (const m of methods) {
-                    let thrown = false;
-                    try {
-                        // TODO: Figure out why Typescript barfs if we do m.call
-                        const hack_m = m as any;
-                        await hack_m.call(client, s);
-                        expect.fail('should have thrown an error');
-                    } catch (e) {
-                        thrown = true;
-                        if (e instanceof Error) {
-                            expect(e.message).to.contain(
-                                'Required parameter spec was null or undefined when calling ',
-                            );
-                        } else {
-                            fail(`unknown exception: ${e}`);
-                        }
-                    }
-                    expect(thrown).to.be.true;
+                    // TODO: Figure out why Typescript barfs if we do m.call
+                    const hack_m = m as any;
+                    await expect(hack_m.call(client, s)).to.be.rejectedWith(
+                        Error,
+                        'Required parameter spec was null or undefined when calling ',
+                    );
                 }
             }
         });
@@ -1954,19 +1895,7 @@ describe('KubernetesObject', () => {
                 },
             };
             nock('https://d.i.y');
-            let thrown = false;
-            try {
-                await client.read(s);
-                expect.fail('should have thrown error');
-            } catch (e) {
-                thrown = true;
-                if (e instanceof Error) {
-                    expect(e.message).to.contain('Nock: No match for request');
-                } else {
-                    fail(`unknown exception: ${e}`);
-                }
-            }
-            expect(thrown).to.be.true;
+            await expect(client.read(s)).to.be.rejectedWith(Error, 'Nock: No match for request');
         });
 
         it('should throw an error if name not valid', async () => {
@@ -2018,18 +1947,11 @@ describe('KubernetesObject', () => {
 }`,
                     contentTypeJsonHeader,
                 );
-            let thrown = false;
-            try {
-                await client.create(s);
-            } catch (e) {
-                thrown = true;
-                if (e instanceof Error) {
-                    expect((e as ApiException<string | Buffer | undefined>).code).to.equal(422);
-                } else {
-                    fail(`unknown exception: ${e}`);
-                }
-            }
-            expect(thrown).to.be.true;
+
+            await expect(client.create(s)).to.be.rejected.then((e) => {
+                expect(e).to.be.an.instanceOf(Error);
+                expect(e.code).to.equal(422);
+            });
             scope.done();
         });
 
@@ -2070,58 +1992,28 @@ describe('KubernetesObject', () => {
             const scope = nock('https://d.i.y')
                 .get('/apis/applications/v1')
                 .reply(404, '{}', contentTypeJsonHeader);
-            let thrown = false;
-            try {
-                await client.create(d);
-            } catch (e) {
-                thrown = true;
-                if (e instanceof Error) {
-                    expect((e as ApiException<string | Buffer | undefined>).code).to.equal(404);
-                    expect(e.message).to.satisfy((m: string) =>
-                        m.startsWith('Failed to fetch resource metadata for applications/v1/Deployment'),
-                    );
-                } else {
-                    fail(`unknown exception: ${e}`);
-                }
-            }
-            expect(thrown).to.be.true;
+            await expect(client.create(d)).to.be.rejected.then((e) => {
+                expect(e).to.be.an.instanceOf(Error);
+                expect(e.code).to.equal(404);
+                expect(e.message).to.contain(
+                    'Failed to fetch resource metadata for applications/v1/Deployment',
+                );
+            });
             scope.done();
         });
 
         it('should throw error if no apiVersion', async () => {
-            let thrown = false;
-            try {
-                await (client.list as any)(undefined, undefined);
-                expect.fail('should have thrown an error');
-            } catch (e) {
-                thrown = true;
-                if (e instanceof Error) {
-                    expect(e.message).to.contain(
-                        'Required parameter apiVersion was null or undefined when calling ',
-                    );
-                } else {
-                    fail(`unknown exception: ${e}`);
-                }
-            }
-            expect(thrown).to.be.true;
+            await expect((client.list as any)(undefined, undefined)).to.be.rejectedWith(
+                Error,
+                'Required parameter apiVersion was null or undefined when calling ',
+            );
         });
 
         it('should throw error if no kind', async () => {
-            let thrown = false;
-            try {
-                await (client.list as any)('', undefined);
-                expect.fail('should have thrown an error');
-            } catch (e) {
-                thrown = true;
-                if (e instanceof Error) {
-                    expect(e.message).to.contain(
-                        'Required parameter kind was null or undefined when calling ',
-                    );
-                } else {
-                    fail(`unknown exception: ${e}`);
-                }
-            }
-            expect(thrown).to.be.true;
+            await expect((client.list as any)('', undefined)).to.be.rejectedWith(
+                Error,
+                'Required parameter kind was null or undefined when calling ',
+            );
         });
     });
 });
