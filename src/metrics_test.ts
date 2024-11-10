@@ -1,4 +1,3 @@
-import { fail } from 'node:assert';
 import { expect } from 'chai';
 import nock from 'nock';
 import { KubeConfig } from './config';
@@ -147,15 +146,10 @@ describe('Metrics', () => {
                 currentContext: 'currentContext',
             });
             const metricsClient = new Metrics(kc);
-            try {
-                await metricsClient.getPodMetrics();
-                fail('expected thrown error');
-            } catch (e) {
-                expect(e instanceof ApiException);
-                if (e instanceof ApiException) {
-                    expect(e.message).to.include('connect ECONNREFUSED 127.0.0.1:51011');
-                }
-            }
+            await expect(metricsClient.getPodMetrics()).to.be.rejectedWith(
+                ApiException,
+                'connect ECONNREFUSED 127.0.0.1:51011',
+            );
         });
         it('should throw when no current cluster', async () => {
             const [metricsClient, scope] = systemUnderTest({
@@ -163,16 +157,10 @@ describe('Metrics', () => {
                 users: [{ name: 'user', password: 'password' }],
                 contexts: [{ name: 'currentContext', cluster: 'cluster', user: 'user' }],
             });
-
-            try {
-                await metricsClient.getPodMetrics();
-                fail('expected thrown error');
-            } catch (e) {
-                expect(e instanceof ApiException);
-                if (e instanceof ApiException) {
-                    expect(e.message).to.equal('No currently active cluster');
-                }
-            }
+            await expect(metricsClient.getPodMetrics()).to.be.rejectedWith(
+                Error,
+                'No currently active cluster',
+            );
             scope.done();
         });
         it('should resolve to error when 500 - V1 Status', async () => {
@@ -183,16 +171,11 @@ describe('Metrics', () => {
             const [metricsClient, scope] = systemUnderTest();
             const s = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(500, response);
 
-            try {
-                await metricsClient.getPodMetrics();
-                fail('expected thrown error');
-            } catch (e) {
-                if (!(e instanceof ApiException)) {
-                    fail('expected ApiException error');
-                }
+            await expect(metricsClient.getPodMetrics()).to.be.rejected.then((e) => {
+                expect(e).to.be.an.instanceOf(ApiException);
                 expect(e.code).to.equal(response.code);
                 expect(e.body.message).to.equal(response.message);
-            }
+            });
             s.done();
         });
         it('should resolve to error when 500 - non-V1Status', async () => {
@@ -200,16 +183,11 @@ describe('Metrics', () => {
             const [metricsClient, scope] = systemUnderTest();
             const s = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(500, response);
 
-            try {
-                await metricsClient.getPodMetrics();
-                fail('expected thrown error');
-            } catch (e) {
-                if (!(e instanceof ApiException)) {
-                    fail('expected ApiException error');
-                }
+            await expect(metricsClient.getPodMetrics()).to.be.rejected.then((e) => {
+                expect(e).to.be.an.instanceOf(ApiException);
                 expect(e.code).to.equal(500);
                 expect(e.message).to.include('Error occurred in metrics request');
-            }
+            });
             s.done();
         });
     });
@@ -239,16 +217,11 @@ describe('Metrics', () => {
             const [metricsClient, scope] = systemUnderTest();
             const s = scope.get('/apis/metrics.k8s.io/v1beta1/nodes').reply(500, response);
 
-            try {
-                await metricsClient.getNodeMetrics();
-                fail('expected thrown error');
-            } catch (e) {
-                if (!(e instanceof ApiException)) {
-                    fail('expected ApiException error');
-                }
+            await expect(metricsClient.getNodeMetrics()).to.be.rejected.then((e) => {
+                expect(e).to.be.an.instanceOf(ApiException);
                 expect(e.code).to.equal(response.code);
                 expect(e.body.message).to.equal(response.message);
-            }
+            });
             s.done();
         });
     });

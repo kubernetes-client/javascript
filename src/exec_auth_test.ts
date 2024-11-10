@@ -7,7 +7,6 @@ import { OutgoingHttpHeaders } from 'node:http';
 
 import { ExecAuth } from './exec_auth';
 import { User } from './config_types';
-import { fail } from 'node:assert';
 
 import child_process from 'node:child_process';
 
@@ -336,10 +335,6 @@ describe('ExecAuth', () => {
             },
             opts,
         );
-        if (!opts.headers) {
-            fail('unexpected null headers!');
-        } else {
-            expect(opts.headers.Authorization).to.equal('Bearer foo');
-        }
+        expect(opts.headers?.Authorization).to.equal('Bearer foo');
     });
 });

@@ -123,17 +123,11 @@ describe('PortForward', () => {
         const osStream = new WritableStreamBuffer();
         const isStream = new ReadableStreamBuffer();
 
-        try {
-            await portForward.portForward('ns', 'pod', [], osStream, osStream, isStream);
-            expect(false, 'should have thrown').to.equal(true);
-        } catch (err: any) {
-            expect(err.toString()).to.equal('Error: You must provide at least one port to forward to.');
-        }
-        try {
-            await portForward.portForward('ns', 'pod', [1, 2], osStream, osStream, isStream);
-            expect(false, 'should have thrown').to.equal(true);
-        } catch (err: any) {
-            expect(err.toString()).to.equal('Error: Only one port is currently supported for port-forward');
-        }
+        await expect(
+            portForward.portForward('ns', 'pod', [], osStream, osStream, isStream),
+        ).to.be.rejectedWith(Error, 'You must provide at least one port to forward to.');
+        await expect(
+            portForward.portForward('ns', 'pod', [1, 2], osStream, osStream, isStream),
+        ).to.be.rejectedWith(Error, 'Only one port is currently supported for port-forward');
     });
 });

@@ -134,13 +134,7 @@ describe('WebSocket', () => {
             target: mockWs,
         });
 
-        let rejected = false;
-        try {
-            const val = await promise;
-        } catch (err) {
-            rejected = true;
-        }
-        expect(rejected).to.equal(true);
+        await expect(promise).to.be.rejected;
     });
     it('should connect properly', async () => {
         const kc = new KubeConfig();
