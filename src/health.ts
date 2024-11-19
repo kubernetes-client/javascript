@@ -1,6 +1,5 @@
 import fetch from 'node-fetch';
 import { AbortSignal } from 'node-fetch/externals';
-import { URL } from 'url';
 import { KubeConfig } from './config';
 import { RequestOptions } from 'node:https';
 
