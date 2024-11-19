@@ -124,7 +124,7 @@ describe('Health', () => {
             scope.done();
         });
 
-        it('should return false when fetch throws an error', async () => {
+        it('should throw an error when fetch throws an error', async () => {
             const kc = new KubeConfig();
             const cluster = {
                 name: 'foo',
@@ -141,8 +141,7 @@ describe('Health', () => {
             scope.get('/livez').replyWithError(new Error('an error'));
             const health = new Health(kc);
 
-            const r = await health.livez({});
-            expect(r).to.be.false;
+            await expect(health.livez({})).to.be.rejectedWith('Error occurred in health request');
             scope.done();
         });
     });

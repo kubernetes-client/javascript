@@ -39,17 +39,17 @@ export class Health {
             const status = response.status;
             if (status === 200) {
                 return true;
-            } else if (status === 404) {
+            }
+            if (status === 404) {
                 if (path === '/healthz') {
                     // /livez/readyz return 404 and healthz also returns 404, let's consider it is live
                     return true;
                 }
                 return this.healthz(opts);
-            } else {
-                return false;
             }
-        } catch {
             return false;
+        } catch {
+            throw new Error('Error occurred in health request');
         }
     }
 }
