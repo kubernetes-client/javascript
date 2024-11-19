@@ -4,7 +4,13 @@ import stream from 'node:stream';
 import { V1Status } from './api';
 import { KubeConfig } from './config';
 
-const protocols = ['v4.channel.k8s.io', 'v3.channel.k8s.io', 'v2.channel.k8s.io', 'channel.k8s.io'];
+const protocols = [
+    'v5.channel.k8s.io',
+    'v4.channel.k8s.io',
+    'v3.channel.k8s.io',
+    'v2.channel.k8s.io',
+    'channel.k8s.io',
+];
 
 export interface WebSocketInterface {
     connect(
@@ -14,12 +20,37 @@ export interface WebSocketInterface {
     ): Promise<WebSocket.WebSocket>;
 }
 
+export interface StreamInterface {
+    stdin: stream.Readable;
+    stdout: stream.Writable;
+    stderr: stream.Writable;
+}
+
 export class WebSocketHandler implements WebSocketInterface {
     public static readonly StdinStream: number = 0;
     public static readonly StdoutStream: number = 1;
     public static readonly StderrStream: number = 2;
     public static readonly StatusStream: number = 3;
     public static readonly ResizeStream: number = 4;
+    public static readonly CloseStream: number = 255;
+
+    public static supportsClose(protocol: string): boolean {
+        return protocol === 'v5.channel.k8s.io';
+    }
+
+    public static closeStream(streamNum: number, streams: StreamInterface): void {
+        switch (streamNum) {
+            case WebSocketHandler.StdinStream:
+                streams.stdin.pause();
+                break;
+            case WebSocketHandler.StdoutStream:
+                streams.stdout.end();
+                break;
+            case WebSocketHandler.StderrStream:
+                streams.stderr.end();
+                break;
+        }
+    }
 
     public static handleStandardStreams(
         streamNum: number,
@@ -36,6 +67,7 @@ export class WebSocketHandler implements WebSocketInterface {
             stderr.write(buff);
         } else if (streamNum === WebSocketHandler.StatusStream) {
             // stream closing.
+            // Hacky, change tests to use the stream interface
             if (stdout && stdout !== process.stdout) {
                 stdout.end();
             }
@@ -59,6 +91,12 @@ export class WebSocketHandler implements WebSocketInterface {
         });
 
         stdin.on('end', () => {
+            if (WebSocketHandler.supportsClose(ws.protocol)) {
+                const buff = Buffer.alloc(2);
+                buff.writeUint8(this.CloseStream, 0);
+                buff.writeUint8(this.StdinStream, 1);
+                ws.send(buff);
+            }
             ws.close();
         });
         // Keep the stream open
@@ -131,7 +169,16 @@ export class WebSocketHandler implements WebSocketInterface {
     // factory is really just for test injection
     public constructor(
         readonly config: KubeConfig,
-        readonly socketFactory?: (uri: string, opts: WebSocket.ClientOptions) => WebSocket.WebSocket,
+        readonly socketFactory?: (
+            uri: string,
+            protocols: string[],
+            opts: WebSocket.ClientOptions,
+        ) => WebSocket.WebSocket,
+        readonly streams: StreamInterface = {
+            stdin: process.stdin,
+            stdout: process.stdout,
+            stderr: process.stderr,
+        },
     ) {}
 
     /**
@@ -163,7 +210,7 @@ export class WebSocketHandler implements WebSocketInterface {
 
         return await new Promise<WebSocket.WebSocket>((resolve, reject) => {
             const client = this.socketFactory
-                ? this.socketFactory(uri, opts)
+                ? this.socketFactory(uri, protocols, opts)
                 : new WebSocket(uri, protocols, opts);
             let resolved = false;
 
@@ -181,11 +228,17 @@ export class WebSocketHandler implements WebSocketInterface {
             client.onmessage = ({ data }: { data: WebSocket.Data }) => {
                 // TODO: support ArrayBuffer and Buffer[] data types?
                 if (typeof data === 'string') {
+                    if (data.charCodeAt(0) === WebSocketHandler.CloseStream) {
+                        WebSocketHandler.closeStream(data.charCodeAt(1), this.streams);
+                    }
                     if (textHandler && !textHandler(data)) {
                         client.close();
                     }
                 } else if (data instanceof Buffer) {
-                    const streamNum = data.readInt8(0);
+                    const streamNum = data.readUint8(0);
+                    if (streamNum === WebSocketHandler.CloseStream) {
+                        WebSocketHandler.closeStream(data.readInt8(1), this.streams);
+                    }
                     if (binaryHandler && !binaryHandler(streamNum, data.slice(1))) {
                         client.close();
                     }
