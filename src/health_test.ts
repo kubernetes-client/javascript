@@ -123,5 +123,27 @@ describe('Health', () => {
             expect(r).to.be.true;
             scope.done();
         });
+
+        it('should return false when fetch throws an error', async () => {
+            const kc = new KubeConfig();
+            const cluster = {
+                name: 'foo',
+                server: 'https://server.com',
+            } as Cluster;
+
+            const user = {
+                name: 'my-user',
+                password: 'some-password',
+            } as User;
+            kc.loadFromClusterAndUser(cluster, user);
+
+            const scope = nock('https://server.com');
+            scope.get('/livez').replyWithError(new Error('an error'));
+            const health = new Health(kc);
+
+            const r = await health.livez({});
+            expect(r).to.be.false;
+            scope.done();
+        });
     });
 });

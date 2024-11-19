@@ -2,7 +2,7 @@ import fetch from 'node-fetch';
 import { AbortSignal } from 'node-fetch/externals';
 import { URL } from 'url';
 import { KubeConfig } from './config';
-import { RequestOptions } from 'https';
+import { RequestOptions } from 'node:https';
 
 export class Health {
     public config: KubeConfig;
@@ -35,23 +35,22 @@ export class Health {
         requestInit.signal = controller.signal as AbortSignal;
         requestInit.method = 'GET';
 
-        return await fetch(requestURL.toString(), requestInit)
-            .then((response) => {
-                const status = response.status;
-                if (status === 200) {
+        try {
+            const response = await fetch(requestURL.toString(), requestInit);
+            const status = response.status;
+            if (status === 200) {
+                return true;
+            } else if (status === 404) {
+                if (path === '/healthz') {
+                    // /livez/readyz return 404 and healthz also returns 404, let's consider it is live
                     return true;
-                } else if (status === 404) {
-                    if (path === '/healthz') {
-                        // /livez/readyz return 404 and healthz also returns 404, let's consider it is live
-                        return true;
-                    }
-                    return this.healthz(opts);
-                } else {
-                    return false;
                 }
-            })
-            .catch((err) => {
+                return this.healthz(opts);
+            } else {
                 return false;
-            });
+            }
+        } catch {
+            return false;
+        }
     }
 }
