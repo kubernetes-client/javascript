@@ -1,5 +1,4 @@
 import fetch from 'node-fetch';
-import { AbortSignal } from 'node-fetch/externals';
 import { KubeConfig } from './config';
 import { RequestOptions } from 'node:https';
 
@@ -30,8 +29,9 @@ export class Health {
 
         const requestURL = new URL(cluster.server + path);
         const requestInit = await this.config.applyToFetchOptions(opts);
-        const controller = new AbortController();
-        requestInit.signal = controller.signal as AbortSignal;
+        if (opts.signal) {
+            requestInit.signal = opts.signal;
+        }
         requestInit.method = 'GET';
 
         try {
