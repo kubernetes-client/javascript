@@ -36,7 +36,7 @@ export class Cp {
         const writerStream = fs.createWriteStream(tmpFileName);
         const errStream = new WritableStreamBuffer();
         return new Promise<void>((resolve, reject) => {
-            const conn = await this.execInstance
+            this.execInstance
                 .exec(
                     namespace,
                     podName,
