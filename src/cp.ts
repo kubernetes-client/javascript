@@ -66,10 +66,12 @@ export class Cp {
                         }
                     },
                 )
+                .then((conn) => {
+                    conn.onclose = (event) => {
+                        resolve();
+                    };
+                })
                 .catch(reject);
-            conn.onclose = (event) => {
-                resolve();
-            };
         });
     }
 
@@ -95,7 +97,7 @@ export class Cp {
         const readStream = fs.createReadStream(tmpFileName);
         const errStream = new WritableStreamBuffer();
         return new Promise<void>((resolve, reject) => {
-            const conn = await this.execInstance
+            this.execInstance
                 .exec(
                     namespace,
                     podName,
@@ -118,10 +120,12 @@ export class Cp {
                         }
                     },
                 )
+                .then((conn) => {
+                    conn.onclose = (event) => {
+                        resolve();
+                    };
+                })
                 .catch(reject);
-            conn.onclose = (event) => {
-                resolve();
-            };
         });
     }
 }
