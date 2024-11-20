@@ -1,4 +1,4 @@
-import fetch from 'node-fetch';
+import fetch, { AbortError } from 'node-fetch';
 import { KubeConfig } from './config';
 import { RequestOptions } from 'node:https';
 
@@ -48,7 +48,10 @@ export class Health {
                 return this.healthz(opts);
             }
             return false;
-        } catch {
+        } catch (err: unknown) {
+            if (err instanceof Error && err.name === 'AbortError') {
+                throw err;
+            }
             throw new Error('Error occurred in health request');
         }
     }
