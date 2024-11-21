@@ -25,7 +25,7 @@
         "generate": "./generate-client.sh",
         "watch": "tsc --watch",
         "test": "c8 mocha",
-        "prepare": "npm run build && husky install",
+        "prepare": "npm run build && husky",
         "prepack": "npm run build",
         "docs": "typedoc src/gen/api"
     },
