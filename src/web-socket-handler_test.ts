@@ -2,7 +2,7 @@ import { promisify } from 'util';
 import { expect } from 'chai';
 import WebSocket = require('isomorphic-ws');
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
-import stream = require('stream');
+import stream from 'node:stream';
 
 import { V1Status } from './api';
 import { KubeConfig } from './config';
@@ -401,7 +401,7 @@ describe('V5 protocol support', () => {
         stdinStream.emit('end');
         expect(sent).to.not.be.null;
         expect(sent!.readUint8(0)).to.equal(255); // CLOSE signal
-        expect(sent!.readUInt8(1)).to.equal(0); // Stdin stream is #0
+        expect(sent!.readUint8(1)).to.equal(0); // Stdin stream is #0
     });
 });
 

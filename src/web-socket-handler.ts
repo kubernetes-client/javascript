@@ -42,13 +42,11 @@ export class WebSocketHandler implements WebSocketInterface {
     }
 
     public static closeStream(streamNum: number, streams: StreamInterface): void {
-        console.log('Closing stream: ' + streamNum);
         switch (streamNum) {
             case WebSocketHandler.StdinStream:
                 streams.stdin.pause();
                 break;
             case WebSocketHandler.StdoutStream:
-                console.log('closing stdout');
                 streams.stdout.end();
                 break;
             case WebSocketHandler.StderrStream:
@@ -249,7 +247,6 @@ export class WebSocketHandler implements WebSocketInterface {
                 } else if (data instanceof Buffer) {
                     const streamNum = data.readUint8(0);
                     if (streamNum === WebSocketHandler.CloseStream) {
-                        console.log('Closing stream!');
                         WebSocketHandler.closeStream(data.readInt8(1), this.streams);
                     }
                     if (binaryHandler && !binaryHandler(streamNum, data.subarray(1))) {
