@@ -60,17 +60,28 @@ describe('ExecAuth', () => {
         const auth = new ExecAuth();
         (auth as any).execFn = (
             command: string,
-            args: string[],
-            opts: child_process.SpawnOptions,
-        ): child_process.SpawnSyncReturns<Buffer> => {
+            args?: readonly string[],
+            options?: child_process.SpawnOptionsWithoutStdio,
+        ): child_process.ChildProcessWithoutNullStreams => {
             return {
-                status: 0,
-                stdout: Buffer.from(JSON.stringify({ status: { token: 'foo' } })),
-            } as child_process.SpawnSyncReturns<Buffer>;
+                stdout: {
+                    on: (_data: string, f: (data: Buffer | string) => void) => {
+                        f(Buffer.from(JSON.stringify({ status: { token: 'foo' } })));
+                    },
+                },
+                stderr: {
+                    on: () => {},
+                },
+                on: (op: string, f: any) => {
+                    if (op === 'close') {
+                        f(0);
+                    }
+                },
+            } as unknown as child_process.ChildProcessWithoutNullStreams;
         };
         const opts = {} as https.RequestOptions;
         opts.headers = {} as OutgoingHttpHeaders;
-        auth.applyAuthentication(
+        await auth.applyAuthentication(
             {
                 name: 'user',
                 authProvider: {
@@ -94,15 +105,30 @@ describe('ExecAuth', () => {
         const auth = new ExecAuth();
         (auth as any).execFn = (
             command: string,
-            args: string[],
-            opts: child_process.SpawnOptions,
-        ): child_process.SpawnSyncReturns<Buffer> => {
+            args?: readonly string[],
+            options?: child_process.SpawnOptionsWithoutStdio,
+        ): child_process.ChildProcessWithoutNullStreams => {
             return {
-                status: 0,
-                stdout: Buffer.from(
-                    JSON.stringify({ status: { clientCertificateData: 'foo', clientKeyData: 'bar' } }),
-                ),
-            } as child_process.SpawnSyncReturns<Buffer>;
+                stdout: {
+                    on: (_data: string, f: (data: Buffer | string) => void) => {
+                        f(
+                            Buffer.from(
+                                JSON.stringify({
+                                    status: { clientCertificateData: 'foo', clientKeyData: 'bar' },
+                                }),
+                            ),
+                        );
+                    },
+                },
+                stderr: {
+                    on: () => {},
+                },
+                on: (op: string, f: any) => {
+                    if (op === 'close') {
+                        f(0);
+                    }
+                },
+            } as unknown as child_process.ChildProcessWithoutNullStreams;
         };
 
         const user = {
@@ -119,7 +145,7 @@ describe('ExecAuth', () => {
         opts.headers = {} as OutgoingHttpHeaders;
         opts.headers = {} as OutgoingHttpHeaders;
 
-        auth.applyAuthentication(user, opts);
+        await auth.applyAuthentication(user, opts);
         expect(opts.headers.Authorization).to.be.undefined;
         expect(opts.cert).to.equal('foo');
         expect(opts.key).to.equal('bar');
@@ -136,18 +162,31 @@ describe('ExecAuth', () => {
         var tokenValue = 'foo';
         (auth as any).execFn = (
             command: string,
-            args: string[],
-            opts: child_process.SpawnOptions,
-        ): child_process.SpawnSyncReturns<Buffer> => {
+            args?: readonly string[],
+            options?: child_process.SpawnOptionsWithoutStdio,
+        ): child_process.ChildProcessWithoutNullStreams => {
             execCount++;
             return {
-                status: 0,
-                stdout: Buffer.from(
-                    JSON.stringify({
-                        status: { token: tokenValue, expirationTimestamp: expire },
-                    }),
-                ),
-            } as child_process.SpawnSyncReturns<Buffer>;
+                stdout: {
+                    on: (_data: string, f: (data: Buffer | string) => void) => {
+                        f(
+                            Buffer.from(
+                                JSON.stringify({
+                                    status: { token: tokenValue, expirationTimestamp: expire },
+                                }),
+                            ),
+                        );
+                    },
+                },
+                stderr: {
+                    on: () => {},
+                },
+                on: (op: string, f: any) => {
+                    if (op === 'close') {
+                        f(0);
+                    }
+                },
+            } as unknown as child_process.ChildProcessWithoutNullStreams;
         };
 
         const user = {
@@ -207,6 +246,26 @@ describe('ExecAuth', () => {
             } as child_process.SpawnSyncReturns<Buffer>;
         };
 
+        (auth as any).execFn = (
+            command: string,
+            args?: readonly string[],
+            options?: child_process.SpawnOptionsWithoutStdio,
+        ): child_process.ChildProcessWithoutNullStreams => {
+            return {
+                stdout: {
+                    on: (_data: string, f: (data: Buffer | string) => void) => {},
+                },
+                stderr: {
+                    on: () => {},
+                },
+                on: (op: string, f: any) => {
+                    if (op === 'error') {
+                        throw new Error('Error: spawnSync /path/to/bin ENOENT');
+                    }
+                },
+            } as unknown as child_process.ChildProcessWithoutNullStreams;
+        };
+
         const user = {
             name: 'user',
             authProvider: {
@@ -230,16 +289,29 @@ describe('ExecAuth', () => {
             return;
         }
         const auth = new ExecAuth();
+
         (auth as any).execFn = (
             command: string,
-            args: string[],
-            opts: child_process.SpawnOptions,
-        ): child_process.SpawnSyncReturns<Buffer> => {
+            args?: readonly string[],
+            options?: child_process.SpawnOptionsWithoutStdio,
+        ): child_process.ChildProcessWithoutNullStreams => {
             return {
-                status: 100,
-                stdout: Buffer.from(JSON.stringify({ status: { token: 'foo' } })),
-                stderr: Buffer.from('Some error!'),
-            } as child_process.SpawnSyncReturns<Buffer>;
+                stdout: {
+                    on: (_data: string, f: (data: Buffer | string) => void) => {
+                        f(Buffer.from(JSON.stringify({ status: { token: 'foo' } })));
+                    },
+                },
+                stderr: {
+                    on: (_data: string, f: (data: Buffer | string) => void) => {
+                        f(Buffer.from('Some error!'));
+                    },
+                },
+                on: (op: string, f: any) => {
+                    if (op === 'close') {
+                        f(100);
+                    }
+                },
+            } as unknown as child_process.ChildProcessWithoutNullStreams;
         };
 
         const user = {
@@ -265,18 +337,30 @@ describe('ExecAuth', () => {
             return;
         }
         const auth = new ExecAuth();
-        let optsOut: child_process.SpawnOptions = {};
+        let optsOut: child_process.SpawnOptions | undefined = {};
         (auth as any).execFn = (
             command: string,
-            args: string[],
-            opts: child_process.SpawnOptions,
-        ): child_process.SpawnSyncReturns<Buffer> => {
-            optsOut = opts;
+            args?: readonly string[],
+            options?: child_process.SpawnOptionsWithoutStdio,
+        ): child_process.ChildProcessWithoutNullStreams => {
+            optsOut = options;
             return {
-                status: 0,
-                stdout: Buffer.from(JSON.stringify({ status: { token: 'foo' } })),
-            } as child_process.SpawnSyncReturns<Buffer>;
+                stdout: {
+                    on: (_data: string, f: (data: Buffer | string) => void) => {
+                        f(Buffer.from(JSON.stringify({ status: { token: 'foo' } })));
+                    },
+                },
+                stderr: {
+                    on: () => {},
+                },
+                on: (op: string, f: any) => {
+                    if (op === 'close') {
+                        f(0);
+                    }
+                },
+            } as unknown as child_process.ChildProcessWithoutNullStreams;
         };
+
         process.env.BLABBLE = 'flubble';
         const opts = {} as https.RequestOptions;
         opts.headers = {} as OutgoingHttpHeaders;
@@ -313,16 +397,28 @@ describe('ExecAuth', () => {
         const auth = new ExecAuth();
         (auth as any).execFn = (
             command: string,
-            args: string[],
-            opts: child_process.SpawnOptions,
-        ): child_process.SpawnSyncReturns<Buffer> => {
+            args?: readonly string[],
+            options?: child_process.SpawnOptionsWithoutStdio,
+        ): child_process.ChildProcessWithoutNullStreams => {
             return {
-                status: 0,
-                stdout: Buffer.from(JSON.stringify({ status: { token: 'foo' } })),
-            } as child_process.SpawnSyncReturns<Buffer>;
+                stdout: {
+                    on: (_data: string, f: (data: Buffer | string) => void) => {
+                        f(Buffer.from(JSON.stringify({ status: { token: 'foo' } })));
+                    },
+                },
+                stderr: {
+                    on: () => {},
+                },
+                on: (op: string, f: any) => {
+                    if (op === 'close') {
+                        f(0);
+                    }
+                },
+            } as unknown as child_process.ChildProcessWithoutNullStreams;
         };
+
         const opts = {} as https.RequestOptions;
-        auth.applyAuthentication(
+        await auth.applyAuthentication(
             {
                 name: 'user',
                 authProvider: {
