@@ -65,11 +65,13 @@ describe('ExecAuth', () => {
         ): child_process.ChildProcessWithoutNullStreams => {
             return {
                 stdout: {
+                    setEncoding: () => {},
                     on: (_data: string, f: (data: Buffer | string) => void) => {
                         f(Buffer.from(JSON.stringify({ status: { token: 'foo' } })));
                     },
                 },
                 stderr: {
+                    setEncoding: () => {},
                     on: () => {},
                 },
                 on: (op: string, f: any) => {
@@ -110,6 +112,7 @@ describe('ExecAuth', () => {
         ): child_process.ChildProcessWithoutNullStreams => {
             return {
                 stdout: {
+                    setEncoding: () => {},
                     on: (_data: string, f: (data: Buffer | string) => void) => {
                         f(
                             Buffer.from(
@@ -121,6 +124,7 @@ describe('ExecAuth', () => {
                     },
                 },
                 stderr: {
+                    setEncoding: () => {},
                     on: () => {},
                 },
                 on: (op: string, f: any) => {
@@ -168,6 +172,7 @@ describe('ExecAuth', () => {
             execCount++;
             return {
                 stdout: {
+                    setEncoding: () => {},
                     on: (_data: string, f: (data: Buffer | string) => void) => {
                         f(
                             Buffer.from(
@@ -179,6 +184,7 @@ describe('ExecAuth', () => {
                     },
                 },
                 stderr: {
+                    setEncoding: () => {},
                     on: () => {},
                 },
                 on: (op: string, f: any) => {
@@ -253,9 +259,11 @@ describe('ExecAuth', () => {
         ): child_process.ChildProcessWithoutNullStreams => {
             return {
                 stdout: {
+                    setEncoding: () => {},
                     on: (_data: string, f: (data: Buffer | string) => void) => {},
                 },
                 stderr: {
+                    setEncoding: () => {},
                     on: () => {},
                 },
                 on: (op: string, f: any) => {
@@ -297,11 +305,13 @@ describe('ExecAuth', () => {
         ): child_process.ChildProcessWithoutNullStreams => {
             return {
                 stdout: {
+                    setEncoding: () => {},
                     on: (_data: string, f: (data: Buffer | string) => void) => {
                         f(Buffer.from(JSON.stringify({ status: { token: 'foo' } })));
                     },
                 },
                 stderr: {
+                    setEncoding: () => {},
                     on: (_data: string, f: (data: Buffer | string) => void) => {
                         f(Buffer.from('Some error!'));
                     },
@@ -346,11 +356,13 @@ describe('ExecAuth', () => {
             optsOut = options;
             return {
                 stdout: {
+                    setEncoding: () => {},
                     on: (_data: string, f: (data: Buffer | string) => void) => {
                         f(Buffer.from(JSON.stringify({ status: { token: 'foo' } })));
                     },
                 },
                 stderr: {
+                    setEncoding: () => {},
                     on: () => {},
                 },
                 on: (op: string, f: any) => {
@@ -402,11 +414,13 @@ describe('ExecAuth', () => {
         ): child_process.ChildProcessWithoutNullStreams => {
             return {
                 stdout: {
+                    setEncoding: () => {},
                     on: (_data: string, f: (data: Buffer | string) => void) => {
                         f(Buffer.from(JSON.stringify({ status: { token: 'foo' } })));
                     },
                 },
                 stderr: {
+                    setEncoding: () => {},
                     on: () => {},
                 },
                 on: (op: string, f: any) => {

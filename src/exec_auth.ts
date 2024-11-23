@@ -100,11 +100,14 @@ export class ExecAuth implements Authenticator {
             opts = { ...opts, env };
         }
 
-        return new Promise((accept, reject) => {
+        return new Promise((resolve, reject) => {
             let stdoutData: string = '';
             let stderrData: string = '';
+            let savedError: Error | undefined = undefined;
 
             const subprocess = this.execFn(exec.command, exec.args, opts);
+            subprocess.stdout.setEncoding('utf8');
+            subprocess.stderr.setEncoding('utf8');
 
             subprocess.stdout.on('data', (data: Buffer | string) => {
                 stdoutData += data.toString('utf8');
@@ -115,16 +118,26 @@ export class ExecAuth implements Authenticator {
             });
 
             subprocess.on('error', (error) => {
+                savedError = error;
                 throw error;
             });
 
             subprocess.on('close', (code) => {
-                if (code !== 0) {
-                    throw new Error(stderrData);
+                if (savedError) {
+                    reject(savedError);
+                    return;
                 }
-                const obj = JSON.parse(stdoutData) as Credential;
-                this.tokenCache[user.name] = obj;
-                accept(obj);
+                if (code !== 0) {
+                    reject(new Error(stderrData));
+                    return;
+                }
+                try {
+                    const obj = JSON.parse(stdoutData) as Credential;
+                    this.tokenCache[user.name] = obj;
+                    resolve(obj);
+                } catch (error) {
+                    reject(error);
+                }
             });
         });
     }
