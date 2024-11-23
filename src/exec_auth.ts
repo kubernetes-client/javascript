@@ -109,17 +109,16 @@ export class ExecAuth implements Authenticator {
             subprocess.stdout.setEncoding('utf8');
             subprocess.stderr.setEncoding('utf8');
 
-            subprocess.stdout.on('data', (data: Buffer | string) => {
-                stdoutData += data.toString('utf8');
+            subprocess.stdout.on('data', (data: string) => {
+                stdoutData += data;
             });
 
-            subprocess.stderr.on('data', (data) => {
-                stderrData += data.toString('utf8');
+            subprocess.stderr.on('data', (data: string) => {
+                stderrData += data;
             });
 
             subprocess.on('error', (error) => {
                 savedError = error;
-                throw error;
             });
 
             subprocess.on('close', (code) => {
