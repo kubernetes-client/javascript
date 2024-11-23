@@ -20,10 +20,10 @@ export interface Credential {
 export class ExecAuth implements Authenticator {
     private readonly tokenCache: { [key: string]: Credential | null } = {};
     private execFn: (
-        cmd: string,
-        args: string[],
-        opts: child_process.SpawnOptions,
-    ) => child_process.SpawnSyncReturns<Buffer> = child_process.spawnSync;
+        command: string,
+        args?: readonly string[],
+        options?: child_process.SpawnOptionsWithoutStdio,
+    ) => child_process.ChildProcessWithoutNullStreams = child_process.spawn;
 
     public isAuthProvider(user: User): boolean {
         if (!user) {
@@ -41,7 +41,7 @@ export class ExecAuth implements Authenticator {
     }
 
     public async applyAuthentication(user: User, opts: https.RequestOptions): Promise<void> {
-        const credential = this.getCredential(user);
+        const credential = await this.getCredential(user);
         if (!credential) {
             return;
         }
@@ -70,7 +70,7 @@ export class ExecAuth implements Authenticator {
         return null;
     }
 
-    private getCredential(user: User): Credential | null {
+    private async getCredential(user: User): Promise<Credential | null> {
         // TODO: Add a unit test for token caching.
         const cachedToken = this.tokenCache[user.name];
         if (cachedToken) {
@@ -99,15 +99,45 @@ export class ExecAuth implements Authenticator {
             exec.env.forEach((elt) => (env[elt.name] = elt.value));
             opts = { ...opts, env };
         }
-        const result = this.execFn(exec.command, exec.args, opts);
-        if (result.error) {
-            throw result.error;
-        }
-        if (result.status === 0) {
-            const obj = JSON.parse(result.stdout.toString('utf8')) as Credential;
-            this.tokenCache[user.name] = obj;
-            return obj;
-        }
-        throw new Error(result.stderr.toString('utf8'));
+
+        return new Promise((resolve, reject) => {
+            let stdoutData: string = '';
+            let stderrData: string = '';
+            let savedError: Error | undefined = undefined;
+
+            const subprocess = this.execFn(exec.command, exec.args, opts);
+            subprocess.stdout.setEncoding('utf8');
+            subprocess.stderr.setEncoding('utf8');
+
+            subprocess.stdout.on('data', (data: string) => {
+                stdoutData += data;
+            });
+
+            subprocess.stderr.on('data', (data: string) => {
+                stderrData += data;
+            });
+
+            subprocess.on('error', (error) => {
+                savedError = error;
+            });
+
+            subprocess.on('close', (code) => {
+                if (savedError) {
+                    reject(savedError);
+                    return;
+                }
+                if (code !== 0) {
+                    reject(new Error(stderrData));
+                    return;
+                }
+                try {
+                    const obj = JSON.parse(stdoutData) as Credential;
+                    this.tokenCache[user.name] = obj;
+                    resolve(obj);
+                } catch (error) {
+                    reject(error);
+                }
+            });
+        });
     }
 }
