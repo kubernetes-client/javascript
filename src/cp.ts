@@ -67,9 +67,9 @@ export class Cp {
                     },
                 )
                 .then((conn) => {
-                    conn.onclose = (event) => {
+                    conn.on('close', () => {
                         resolve();
-                    };
+                    });
                 })
                 .catch(reject);
         });
@@ -121,9 +121,9 @@ export class Cp {
                     },
                 )
                 .then((conn) => {
-                    conn.onclose = (event) => {
+                    conn.on('close', () => {
                         resolve();
-                    };
+                    });
                 })
                 .catch(reject);
         });
