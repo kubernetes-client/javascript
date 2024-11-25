@@ -59,7 +59,6 @@ export * from './v1CertificateSigningRequestSpec';
 export * from './v1CertificateSigningRequestStatus';
 export * from './v1CinderPersistentVolumeSource';
 export * from './v1CinderVolumeSource';
-export * from './v1ClaimSource';
 export * from './v1ClientIPConfig';
 export * from './v1ClusterRole';
 export * from './v1ClusterRoleBinding';
@@ -86,6 +85,7 @@ export * from './v1ContainerStateRunning';
 export * from './v1ContainerStateTerminated';
 export * from './v1ContainerStateWaiting';
 export * from './v1ContainerStatus';
+export * from './v1ContainerUser';
 export * from './v1ControllerRevision';
 export * from './v1ControllerRevisionList';
 export * from './v1CronJob';
@@ -144,6 +144,8 @@ export * from './v1ExemptPriorityLevelConfiguration';
 export * from './v1ExpressionWarning';
 export * from './v1ExternalDocumentation';
 export * from './v1FCVolumeSource';
+export * from './v1FieldSelectorAttributes';
+export * from './v1FieldSelectorRequirement';
 export * from './v1FlexPersistentVolumeSource';
 export * from './v1FlexVolumeSource';
 export * from './v1FlockerVolumeSource';
@@ -175,6 +177,7 @@ export * from './v1HostPathVolumeSource';
 export * from './v1IPBlock';
 export * from './v1ISCSIPersistentVolumeSource';
 export * from './v1ISCSIVolumeSource';
+export * from './v1ImageVolumeSource';
 export * from './v1Ingress';
 export * from './v1IngressBackend';
 export * from './v1IngressClass';
@@ -199,6 +202,7 @@ export * from './v1JobStatus';
 export * from './v1JobTemplateSpec';
 export * from './v1KeyToPath';
 export * from './v1LabelSelector';
+export * from './v1LabelSelectorAttributes';
 export * from './v1LabelSelectorRequirement';
 export * from './v1Lease';
 export * from './v1LeaseList';
@@ -211,6 +215,7 @@ export * from './v1LimitRangeList';
 export * from './v1LimitRangeSpec';
 export * from './v1LimitResponse';
 export * from './v1LimitedPriorityLevelConfiguration';
+export * from './v1LinuxContainerUser';
 export * from './v1ListMeta';
 export * from './v1LoadBalancerIngress';
 export * from './v1LoadBalancerStatus';
@@ -245,6 +250,7 @@ export * from './v1NodeCondition';
 export * from './v1NodeConfigSource';
 export * from './v1NodeConfigStatus';
 export * from './v1NodeDaemonEndpoints';
+export * from './v1NodeFeatures';
 export * from './v1NodeList';
 export * from './v1NodeRuntimeHandler';
 export * from './v1NodeRuntimeHandlerFeatures';
@@ -337,6 +343,7 @@ export * from './v1ReplicationControllerStatus';
 export * from './v1ResourceAttributes';
 export * from './v1ResourceClaim';
 export * from './v1ResourceFieldSelector';
+export * from './v1ResourceHealth';
 export * from './v1ResourcePolicyRule';
 export * from './v1ResourceQuota';
 export * from './v1ResourceQuotaList';
@@ -344,6 +351,7 @@ export * from './v1ResourceQuotaSpec';
 export * from './v1ResourceQuotaStatus';
 export * from './v1ResourceRequirements';
 export * from './v1ResourceRule';
+export * from './v1ResourceStatus';
 export * from './v1Role';
 export * from './v1RoleBinding';
 export * from './v1RoleBindingList';
@@ -470,23 +478,18 @@ export * from './v1alpha1ClusterTrustBundleList';
 export * from './v1alpha1ClusterTrustBundleSpec';
 export * from './v1alpha1ExpressionWarning';
 export * from './v1alpha1GroupVersionResource';
-export * from './v1alpha1IPAddress';
-export * from './v1alpha1IPAddressList';
-export * from './v1alpha1IPAddressSpec';
+export * from './v1alpha1LeaseCandidate';
+export * from './v1alpha1LeaseCandidateList';
+export * from './v1alpha1LeaseCandidateSpec';
 export * from './v1alpha1MatchCondition';
 export * from './v1alpha1MatchResources';
 export * from './v1alpha1MigrationCondition';
 export * from './v1alpha1NamedRuleWithOperations';
 export * from './v1alpha1ParamKind';
 export * from './v1alpha1ParamRef';
-export * from './v1alpha1ParentReference';
 export * from './v1alpha1SelfSubjectReview';
 export * from './v1alpha1SelfSubjectReviewStatus';
 export * from './v1alpha1ServerStorageVersion';
-export * from './v1alpha1ServiceCIDR';
-export * from './v1alpha1ServiceCIDRList';
-export * from './v1alpha1ServiceCIDRSpec';
-export * from './v1alpha1ServiceCIDRStatus';
 export * from './v1alpha1StorageVersion';
 export * from './v1alpha1StorageVersionCondition';
 export * from './v1alpha1StorageVersionList';
@@ -507,54 +510,58 @@ export * from './v1alpha1Validation';
 export * from './v1alpha1Variable';
 export * from './v1alpha1VolumeAttributesClass';
 export * from './v1alpha1VolumeAttributesClassList';
-export * from './v1alpha2AllocationResult';
-export * from './v1alpha2DriverAllocationResult';
-export * from './v1alpha2DriverRequests';
-export * from './v1alpha2NamedResourcesAllocationResult';
-export * from './v1alpha2NamedResourcesAttribute';
-export * from './v1alpha2NamedResourcesFilter';
-export * from './v1alpha2NamedResourcesInstance';
-export * from './v1alpha2NamedResourcesIntSlice';
-export * from './v1alpha2NamedResourcesRequest';
-export * from './v1alpha2NamedResourcesResources';
-export * from './v1alpha2NamedResourcesStringSlice';
-export * from './v1alpha2PodSchedulingContext';
-export * from './v1alpha2PodSchedulingContextList';
-export * from './v1alpha2PodSchedulingContextSpec';
-export * from './v1alpha2PodSchedulingContextStatus';
-export * from './v1alpha2ResourceClaim';
-export * from './v1alpha2ResourceClaimConsumerReference';
-export * from './v1alpha2ResourceClaimList';
-export * from './v1alpha2ResourceClaimParameters';
-export * from './v1alpha2ResourceClaimParametersList';
-export * from './v1alpha2ResourceClaimParametersReference';
-export * from './v1alpha2ResourceClaimSchedulingStatus';
-export * from './v1alpha2ResourceClaimSpec';
-export * from './v1alpha2ResourceClaimStatus';
-export * from './v1alpha2ResourceClaimTemplate';
-export * from './v1alpha2ResourceClaimTemplateList';
-export * from './v1alpha2ResourceClaimTemplateSpec';
-export * from './v1alpha2ResourceClass';
-export * from './v1alpha2ResourceClassList';
-export * from './v1alpha2ResourceClassParameters';
-export * from './v1alpha2ResourceClassParametersList';
-export * from './v1alpha2ResourceClassParametersReference';
-export * from './v1alpha2ResourceFilter';
-export * from './v1alpha2ResourceHandle';
-export * from './v1alpha2ResourceRequest';
-export * from './v1alpha2ResourceSlice';
-export * from './v1alpha2ResourceSliceList';
-export * from './v1alpha2StructuredResourceHandle';
-export * from './v1alpha2VendorParameters';
+export * from './v1alpha3AllocationResult';
+export * from './v1alpha3BasicDevice';
+export * from './v1alpha3CELDeviceSelector';
+export * from './v1alpha3Device';
+export * from './v1alpha3DeviceAllocationConfiguration';
+export * from './v1alpha3DeviceAllocationResult';
+export * from './v1alpha3DeviceAttribute';
+export * from './v1alpha3DeviceClaim';
+export * from './v1alpha3DeviceClaimConfiguration';
+export * from './v1alpha3DeviceClass';
+export * from './v1alpha3DeviceClassConfiguration';
+export * from './v1alpha3DeviceClassList';
+export * from './v1alpha3DeviceClassSpec';
+export * from './v1alpha3DeviceConstraint';
+export * from './v1alpha3DeviceRequest';
+export * from './v1alpha3DeviceRequestAllocationResult';
+export * from './v1alpha3DeviceSelector';
+export * from './v1alpha3OpaqueDeviceConfiguration';
+export * from './v1alpha3PodSchedulingContext';
+export * from './v1alpha3PodSchedulingContextList';
+export * from './v1alpha3PodSchedulingContextSpec';
+export * from './v1alpha3PodSchedulingContextStatus';
+export * from './v1alpha3ResourceClaim';
+export * from './v1alpha3ResourceClaimConsumerReference';
+export * from './v1alpha3ResourceClaimList';
+export * from './v1alpha3ResourceClaimSchedulingStatus';
+export * from './v1alpha3ResourceClaimSpec';
+export * from './v1alpha3ResourceClaimStatus';
+export * from './v1alpha3ResourceClaimTemplate';
+export * from './v1alpha3ResourceClaimTemplateList';
+export * from './v1alpha3ResourceClaimTemplateSpec';
+export * from './v1alpha3ResourcePool';
+export * from './v1alpha3ResourceSlice';
+export * from './v1alpha3ResourceSliceList';
+export * from './v1alpha3ResourceSliceSpec';
 export * from './v1beta1AuditAnnotation';
 export * from './v1beta1ExpressionWarning';
+export * from './v1beta1IPAddress';
+export * from './v1beta1IPAddressList';
+export * from './v1beta1IPAddressSpec';
 export * from './v1beta1MatchCondition';
 export * from './v1beta1MatchResources';
 export * from './v1beta1NamedRuleWithOperations';
 export * from './v1beta1ParamKind';
 export * from './v1beta1ParamRef';
+export * from './v1beta1ParentReference';
 export * from './v1beta1SelfSubjectReview';
 export * from './v1beta1SelfSubjectReviewStatus';
+export * from './v1beta1ServiceCIDR';
+export * from './v1beta1ServiceCIDRList';
+export * from './v1beta1ServiceCIDRSpec';
+export * from './v1beta1ServiceCIDRStatus';
 export * from './v1beta1TypeChecking';
 export * from './v1beta1ValidatingAdmissionPolicy';
 export * from './v1beta1ValidatingAdmissionPolicyBinding';
@@ -565,6 +572,8 @@ export * from './v1beta1ValidatingAdmissionPolicySpec';
 export * from './v1beta1ValidatingAdmissionPolicyStatus';
 export * from './v1beta1Validation';
 export * from './v1beta1Variable';
+export * from './v1beta1VolumeAttributesClass';
+export * from './v1beta1VolumeAttributesClassList';
 export * from './v1beta3ExemptPriorityLevelConfiguration';
 export * from './v1beta3FlowDistinguisherMethod';
 export * from './v1beta3FlowSchema';
@@ -686,7 +695,6 @@ import { V1CertificateSigningRequestSpec } from './v1CertificateSigningRequestSp
 import { V1CertificateSigningRequestStatus } from './v1CertificateSigningRequestStatus';
 import { V1CinderPersistentVolumeSource } from './v1CinderPersistentVolumeSource';
 import { V1CinderVolumeSource } from './v1CinderVolumeSource';
-import { V1ClaimSource } from './v1ClaimSource';
 import { V1ClientIPConfig } from './v1ClientIPConfig';
 import { V1ClusterRole } from './v1ClusterRole';
 import { V1ClusterRoleBinding } from './v1ClusterRoleBinding';
@@ -713,6 +721,7 @@ import { V1ContainerStateRunning } from './v1ContainerStateRunning';
 import { V1ContainerStateTerminated } from './v1ContainerStateTerminated';
 import { V1ContainerStateWaiting } from './v1ContainerStateWaiting';
 import { V1ContainerStatus } from './v1ContainerStatus';
+import { V1ContainerUser } from './v1ContainerUser';
 import { V1ControllerRevision } from './v1ControllerRevision';
 import { V1ControllerRevisionList } from './v1ControllerRevisionList';
 import { V1CronJob } from './v1CronJob';
@@ -771,6 +780,8 @@ import { V1ExemptPriorityLevelConfiguration } from './v1ExemptPriorityLevelConfi
 import { V1ExpressionWarning } from './v1ExpressionWarning';
 import { V1ExternalDocumentation } from './v1ExternalDocumentation';
 import { V1FCVolumeSource } from './v1FCVolumeSource';
+import { V1FieldSelectorAttributes } from './v1FieldSelectorAttributes';
+import { V1FieldSelectorRequirement } from './v1FieldSelectorRequirement';
 import { V1FlexPersistentVolumeSource } from './v1FlexPersistentVolumeSource';
 import { V1FlexVolumeSource } from './v1FlexVolumeSource';
 import { V1FlockerVolumeSource } from './v1FlockerVolumeSource';
@@ -802,6 +813,7 @@ import { V1HostPathVolumeSource } from './v1HostPathVolumeSource';
 import { V1IPBlock } from './v1IPBlock';
 import { V1ISCSIPersistentVolumeSource } from './v1ISCSIPersistentVolumeSource';
 import { V1ISCSIVolumeSource } from './v1ISCSIVolumeSource';
+import { V1ImageVolumeSource } from './v1ImageVolumeSource';
 import { V1Ingress } from './v1Ingress';
 import { V1IngressBackend } from './v1IngressBackend';
 import { V1IngressClass } from './v1IngressClass';
@@ -826,6 +838,7 @@ import { V1JobStatus } from './v1JobStatus';
 import { V1JobTemplateSpec } from './v1JobTemplateSpec';
 import { V1KeyToPath } from './v1KeyToPath';
 import { V1LabelSelector } from './v1LabelSelector';
+import { V1LabelSelectorAttributes } from './v1LabelSelectorAttributes';
 import { V1LabelSelectorRequirement } from './v1LabelSelectorRequirement';
 import { V1Lease } from './v1Lease';
 import { V1LeaseList } from './v1LeaseList';
@@ -838,6 +851,7 @@ import { V1LimitRangeList } from './v1LimitRangeList';
 import { V1LimitRangeSpec } from './v1LimitRangeSpec';
 import { V1LimitResponse } from './v1LimitResponse';
 import { V1LimitedPriorityLevelConfiguration } from './v1LimitedPriorityLevelConfiguration';
+import { V1LinuxContainerUser } from './v1LinuxContainerUser';
 import { V1ListMeta } from './v1ListMeta';
 import { V1LoadBalancerIngress } from './v1LoadBalancerIngress';
 import { V1LoadBalancerStatus } from './v1LoadBalancerStatus';
@@ -872,6 +886,7 @@ import { V1NodeCondition } from './v1NodeCondition';
 import { V1NodeConfigSource } from './v1NodeConfigSource';
 import { V1NodeConfigStatus } from './v1NodeConfigStatus';
 import { V1NodeDaemonEndpoints } from './v1NodeDaemonEndpoints';
+import { V1NodeFeatures } from './v1NodeFeatures';
 import { V1NodeList } from './v1NodeList';
 import { V1NodeRuntimeHandler } from './v1NodeRuntimeHandler';
 import { V1NodeRuntimeHandlerFeatures } from './v1NodeRuntimeHandlerFeatures';
@@ -964,6 +979,7 @@ import { V1ReplicationControllerStatus } from './v1ReplicationControllerStatus';
 import { V1ResourceAttributes } from './v1ResourceAttributes';
 import { V1ResourceClaim } from './v1ResourceClaim';
 import { V1ResourceFieldSelector } from './v1ResourceFieldSelector';
+import { V1ResourceHealth } from './v1ResourceHealth';
 import { V1ResourcePolicyRule } from './v1ResourcePolicyRule';
 import { V1ResourceQuota } from './v1ResourceQuota';
 import { V1ResourceQuotaList } from './v1ResourceQuotaList';
@@ -971,6 +987,7 @@ import { V1ResourceQuotaSpec } from './v1ResourceQuotaSpec';
 import { V1ResourceQuotaStatus } from './v1ResourceQuotaStatus';
 import { V1ResourceRequirements } from './v1ResourceRequirements';
 import { V1ResourceRule } from './v1ResourceRule';
+import { V1ResourceStatus } from './v1ResourceStatus';
 import { V1Role } from './v1Role';
 import { V1RoleBinding } from './v1RoleBinding';
 import { V1RoleBindingList } from './v1RoleBindingList';
@@ -1097,23 +1114,18 @@ import { V1alpha1ClusterTrustBundleList } from './v1alpha1ClusterTrustBundleList
 import { V1alpha1ClusterTrustBundleSpec } from './v1alpha1ClusterTrustBundleSpec';
 import { V1alpha1ExpressionWarning } from './v1alpha1ExpressionWarning';
 import { V1alpha1GroupVersionResource } from './v1alpha1GroupVersionResource';
-import { V1alpha1IPAddress } from './v1alpha1IPAddress';
-import { V1alpha1IPAddressList } from './v1alpha1IPAddressList';
-import { V1alpha1IPAddressSpec } from './v1alpha1IPAddressSpec';
+import { V1alpha1LeaseCandidate } from './v1alpha1LeaseCandidate';
+import { V1alpha1LeaseCandidateList } from './v1alpha1LeaseCandidateList';
+import { V1alpha1LeaseCandidateSpec } from './v1alpha1LeaseCandidateSpec';
 import { V1alpha1MatchCondition } from './v1alpha1MatchCondition';
 import { V1alpha1MatchResources } from './v1alpha1MatchResources';
 import { V1alpha1MigrationCondition } from './v1alpha1MigrationCondition';
 import { V1alpha1NamedRuleWithOperations } from './v1alpha1NamedRuleWithOperations';
 import { V1alpha1ParamKind } from './v1alpha1ParamKind';
 import { V1alpha1ParamRef } from './v1alpha1ParamRef';
-import { V1alpha1ParentReference } from './v1alpha1ParentReference';
 import { V1alpha1SelfSubjectReview } from './v1alpha1SelfSubjectReview';
 import { V1alpha1SelfSubjectReviewStatus } from './v1alpha1SelfSubjectReviewStatus';
 import { V1alpha1ServerStorageVersion } from './v1alpha1ServerStorageVersion';
-import { V1alpha1ServiceCIDR } from './v1alpha1ServiceCIDR';
-import { V1alpha1ServiceCIDRList } from './v1alpha1ServiceCIDRList';
-import { V1alpha1ServiceCIDRSpec } from './v1alpha1ServiceCIDRSpec';
-import { V1alpha1ServiceCIDRStatus } from './v1alpha1ServiceCIDRStatus';
 import { V1alpha1StorageVersion } from './v1alpha1StorageVersion';
 import { V1alpha1StorageVersionCondition } from './v1alpha1StorageVersionCondition';
 import { V1alpha1StorageVersionList } from './v1alpha1StorageVersionList';
@@ -1134,54 +1146,58 @@ import { V1alpha1Validation } from './v1alpha1Validation';
 import { V1alpha1Variable } from './v1alpha1Variable';
 import { V1alpha1VolumeAttributesClass } from './v1alpha1VolumeAttributesClass';
 import { V1alpha1VolumeAttributesClassList } from './v1alpha1VolumeAttributesClassList';
-import { V1alpha2AllocationResult } from './v1alpha2AllocationResult';
-import { V1alpha2DriverAllocationResult } from './v1alpha2DriverAllocationResult';
-import { V1alpha2DriverRequests } from './v1alpha2DriverRequests';
-import { V1alpha2NamedResourcesAllocationResult } from './v1alpha2NamedResourcesAllocationResult';
-import { V1alpha2NamedResourcesAttribute } from './v1alpha2NamedResourcesAttribute';
-import { V1alpha2NamedResourcesFilter } from './v1alpha2NamedResourcesFilter';
-import { V1alpha2NamedResourcesInstance } from './v1alpha2NamedResourcesInstance';
-import { V1alpha2NamedResourcesIntSlice } from './v1alpha2NamedResourcesIntSlice';
-import { V1alpha2NamedResourcesRequest } from './v1alpha2NamedResourcesRequest';
-import { V1alpha2NamedResourcesResources } from './v1alpha2NamedResourcesResources';
-import { V1alpha2NamedResourcesStringSlice } from './v1alpha2NamedResourcesStringSlice';
-import { V1alpha2PodSchedulingContext } from './v1alpha2PodSchedulingContext';
-import { V1alpha2PodSchedulingContextList } from './v1alpha2PodSchedulingContextList';
-import { V1alpha2PodSchedulingContextSpec } from './v1alpha2PodSchedulingContextSpec';
-import { V1alpha2PodSchedulingContextStatus } from './v1alpha2PodSchedulingContextStatus';
-import { V1alpha2ResourceClaim } from './v1alpha2ResourceClaim';
-import { V1alpha2ResourceClaimConsumerReference } from './v1alpha2ResourceClaimConsumerReference';
-import { V1alpha2ResourceClaimList } from './v1alpha2ResourceClaimList';
-import { V1alpha2ResourceClaimParameters } from './v1alpha2ResourceClaimParameters';
-import { V1alpha2ResourceClaimParametersList } from './v1alpha2ResourceClaimParametersList';
-import { V1alpha2ResourceClaimParametersReference } from './v1alpha2ResourceClaimParametersReference';
-import { V1alpha2ResourceClaimSchedulingStatus } from './v1alpha2ResourceClaimSchedulingStatus';
-import { V1alpha2ResourceClaimSpec } from './v1alpha2ResourceClaimSpec';
-import { V1alpha2ResourceClaimStatus } from './v1alpha2ResourceClaimStatus';
-import { V1alpha2ResourceClaimTemplate } from './v1alpha2ResourceClaimTemplate';
-import { V1alpha2ResourceClaimTemplateList } from './v1alpha2ResourceClaimTemplateList';
-import { V1alpha2ResourceClaimTemplateSpec } from './v1alpha2ResourceClaimTemplateSpec';
-import { V1alpha2ResourceClass } from './v1alpha2ResourceClass';
-import { V1alpha2ResourceClassList } from './v1alpha2ResourceClassList';
-import { V1alpha2ResourceClassParameters } from './v1alpha2ResourceClassParameters';
-import { V1alpha2ResourceClassParametersList } from './v1alpha2ResourceClassParametersList';
-import { V1alpha2ResourceClassParametersReference } from './v1alpha2ResourceClassParametersReference';
-import { V1alpha2ResourceFilter } from './v1alpha2ResourceFilter';
-import { V1alpha2ResourceHandle } from './v1alpha2ResourceHandle';
-import { V1alpha2ResourceRequest } from './v1alpha2ResourceRequest';
-import { V1alpha2ResourceSlice } from './v1alpha2ResourceSlice';
-import { V1alpha2ResourceSliceList } from './v1alpha2ResourceSliceList';
-import { V1alpha2StructuredResourceHandle } from './v1alpha2StructuredResourceHandle';
-import { V1alpha2VendorParameters } from './v1alpha2VendorParameters';
+import { V1alpha3AllocationResult } from './v1alpha3AllocationResult';
+import { V1alpha3BasicDevice } from './v1alpha3BasicDevice';
+import { V1alpha3CELDeviceSelector } from './v1alpha3CELDeviceSelector';
+import { V1alpha3Device } from './v1alpha3Device';
+import { V1alpha3DeviceAllocationConfiguration } from './v1alpha3DeviceAllocationConfiguration';
+import { V1alpha3DeviceAllocationResult } from './v1alpha3DeviceAllocationResult';
+import { V1alpha3DeviceAttribute } from './v1alpha3DeviceAttribute';
+import { V1alpha3DeviceClaim } from './v1alpha3DeviceClaim';
+import { V1alpha3DeviceClaimConfiguration } from './v1alpha3DeviceClaimConfiguration';
+import { V1alpha3DeviceClass } from './v1alpha3DeviceClass';
+import { V1alpha3DeviceClassConfiguration } from './v1alpha3DeviceClassConfiguration';
+import { V1alpha3DeviceClassList } from './v1alpha3DeviceClassList';
+import { V1alpha3DeviceClassSpec } from './v1alpha3DeviceClassSpec';
+import { V1alpha3DeviceConstraint } from './v1alpha3DeviceConstraint';
+import { V1alpha3DeviceRequest } from './v1alpha3DeviceRequest';
+import { V1alpha3DeviceRequestAllocationResult } from './v1alpha3DeviceRequestAllocationResult';
+import { V1alpha3DeviceSelector } from './v1alpha3DeviceSelector';
+import { V1alpha3OpaqueDeviceConfiguration } from './v1alpha3OpaqueDeviceConfiguration';
+import { V1alpha3PodSchedulingContext } from './v1alpha3PodSchedulingContext';
+import { V1alpha3PodSchedulingContextList } from './v1alpha3PodSchedulingContextList';
+import { V1alpha3PodSchedulingContextSpec } from './v1alpha3PodSchedulingContextSpec';
+import { V1alpha3PodSchedulingContextStatus } from './v1alpha3PodSchedulingContextStatus';
+import { V1alpha3ResourceClaim } from './v1alpha3ResourceClaim';
+import { V1alpha3ResourceClaimConsumerReference } from './v1alpha3ResourceClaimConsumerReference';
+import { V1alpha3ResourceClaimList } from './v1alpha3ResourceClaimList';
+import { V1alpha3ResourceClaimSchedulingStatus } from './v1alpha3ResourceClaimSchedulingStatus';
+import { V1alpha3ResourceClaimSpec } from './v1alpha3ResourceClaimSpec';
+import { V1alpha3ResourceClaimStatus } from './v1alpha3ResourceClaimStatus';
+import { V1alpha3ResourceClaimTemplate } from './v1alpha3ResourceClaimTemplate';
+import { V1alpha3ResourceClaimTemplateList } from './v1alpha3ResourceClaimTemplateList';
+import { V1alpha3ResourceClaimTemplateSpec } from './v1alpha3ResourceClaimTemplateSpec';
+import { V1alpha3ResourcePool } from './v1alpha3ResourcePool';
+import { V1alpha3ResourceSlice } from './v1alpha3ResourceSlice';
+import { V1alpha3ResourceSliceList } from './v1alpha3ResourceSliceList';
+import { V1alpha3ResourceSliceSpec } from './v1alpha3ResourceSliceSpec';
 import { V1beta1AuditAnnotation } from './v1beta1AuditAnnotation';
 import { V1beta1ExpressionWarning } from './v1beta1ExpressionWarning';
+import { V1beta1IPAddress } from './v1beta1IPAddress';
+import { V1beta1IPAddressList } from './v1beta1IPAddressList';
+import { V1beta1IPAddressSpec } from './v1beta1IPAddressSpec';
 import { V1beta1MatchCondition } from './v1beta1MatchCondition';
 import { V1beta1MatchResources } from './v1beta1MatchResources';
 import { V1beta1NamedRuleWithOperations } from './v1beta1NamedRuleWithOperations';
 import { V1beta1ParamKind } from './v1beta1ParamKind';
 import { V1beta1ParamRef } from './v1beta1ParamRef';
+import { V1beta1ParentReference } from './v1beta1ParentReference';
 import { V1beta1SelfSubjectReview } from './v1beta1SelfSubjectReview';
 import { V1beta1SelfSubjectReviewStatus } from './v1beta1SelfSubjectReviewStatus';
+import { V1beta1ServiceCIDR } from './v1beta1ServiceCIDR';
+import { V1beta1ServiceCIDRList } from './v1beta1ServiceCIDRList';
+import { V1beta1ServiceCIDRSpec } from './v1beta1ServiceCIDRSpec';
+import { V1beta1ServiceCIDRStatus } from './v1beta1ServiceCIDRStatus';
 import { V1beta1TypeChecking } from './v1beta1TypeChecking';
 import { V1beta1ValidatingAdmissionPolicy } from './v1beta1ValidatingAdmissionPolicy';
 import { V1beta1ValidatingAdmissionPolicyBinding } from './v1beta1ValidatingAdmissionPolicyBinding';
@@ -1192,6 +1208,8 @@ import { V1beta1ValidatingAdmissionPolicySpec } from './v1beta1ValidatingAdmissi
 import { V1beta1ValidatingAdmissionPolicyStatus } from './v1beta1ValidatingAdmissionPolicyStatus';
 import { V1beta1Validation } from './v1beta1Validation';
 import { V1beta1Variable } from './v1beta1Variable';
+import { V1beta1VolumeAttributesClass } from './v1beta1VolumeAttributesClass';
+import { V1beta1VolumeAttributesClassList } from './v1beta1VolumeAttributesClassList';
 import { V1beta3ExemptPriorityLevelConfiguration } from './v1beta3ExemptPriorityLevelConfiguration';
 import { V1beta3FlowDistinguisherMethod } from './v1beta3FlowDistinguisherMethod';
 import { V1beta3FlowSchema } from './v1beta3FlowSchema';
@@ -1316,7 +1334,6 @@ let typeMap: {[index: string]: any} = {
     "V1CertificateSigningRequestStatus": V1CertificateSigningRequestStatus,
     "V1CinderPersistentVolumeSource": V1CinderPersistentVolumeSource,
     "V1CinderVolumeSource": V1CinderVolumeSource,
-    "V1ClaimSource": V1ClaimSource,
     "V1ClientIPConfig": V1ClientIPConfig,
     "V1ClusterRole": V1ClusterRole,
     "V1ClusterRoleBinding": V1ClusterRoleBinding,
@@ -1343,6 +1360,7 @@ let typeMap: {[index: string]: any} = {
     "V1ContainerStateTerminated": V1ContainerStateTerminated,
     "V1ContainerStateWaiting": V1ContainerStateWaiting,
     "V1ContainerStatus": V1ContainerStatus,
+    "V1ContainerUser": V1ContainerUser,
     "V1ControllerRevision": V1ControllerRevision,
     "V1ControllerRevisionList": V1ControllerRevisionList,
     "V1CronJob": V1CronJob,
@@ -1401,6 +1419,8 @@ let typeMap: {[index: string]: any} = {
     "V1ExpressionWarning": V1ExpressionWarning,
     "V1ExternalDocumentation": V1ExternalDocumentation,
     "V1FCVolumeSource": V1FCVolumeSource,
+    "V1FieldSelectorAttributes": V1FieldSelectorAttributes,
+    "V1FieldSelectorRequirement": V1FieldSelectorRequirement,
     "V1FlexPersistentVolumeSource": V1FlexPersistentVolumeSource,
     "V1FlexVolumeSource": V1FlexVolumeSource,
     "V1FlockerVolumeSource": V1FlockerVolumeSource,
@@ -1432,6 +1452,7 @@ let typeMap: {[index: string]: any} = {
     "V1IPBlock": V1IPBlock,
     "V1ISCSIPersistentVolumeSource": V1ISCSIPersistentVolumeSource,
     "V1ISCSIVolumeSource": V1ISCSIVolumeSource,
+    "V1ImageVolumeSource": V1ImageVolumeSource,
     "V1Ingress": V1Ingress,
     "V1IngressBackend": V1IngressBackend,
     "V1IngressClass": V1IngressClass,
@@ -1456,6 +1477,7 @@ let typeMap: {[index: string]: any} = {
     "V1JobTemplateSpec": V1JobTemplateSpec,
     "V1KeyToPath": V1KeyToPath,
     "V1LabelSelector": V1LabelSelector,
+    "V1LabelSelectorAttributes": V1LabelSelectorAttributes,
     "V1LabelSelectorRequirement": V1LabelSelectorRequirement,
     "V1Lease": V1Lease,
     "V1LeaseList": V1LeaseList,
@@ -1468,6 +1490,7 @@ let typeMap: {[index: string]: any} = {
     "V1LimitRangeSpec": V1LimitRangeSpec,
     "V1LimitResponse": V1LimitResponse,
     "V1LimitedPriorityLevelConfiguration": V1LimitedPriorityLevelConfiguration,
+    "V1LinuxContainerUser": V1LinuxContainerUser,
     "V1ListMeta": V1ListMeta,
     "V1LoadBalancerIngress": V1LoadBalancerIngress,
     "V1LoadBalancerStatus": V1LoadBalancerStatus,
@@ -1502,6 +1525,7 @@ let typeMap: {[index: string]: any} = {
     "V1NodeConfigSource": V1NodeConfigSource,
     "V1NodeConfigStatus": V1NodeConfigStatus,
     "V1NodeDaemonEndpoints": V1NodeDaemonEndpoints,
+    "V1NodeFeatures": V1NodeFeatures,
     "V1NodeList": V1NodeList,
     "V1NodeRuntimeHandler": V1NodeRuntimeHandler,
     "V1NodeRuntimeHandlerFeatures": V1NodeRuntimeHandlerFeatures,
@@ -1594,6 +1618,7 @@ let typeMap: {[index: string]: any} = {
     "V1ResourceAttributes": V1ResourceAttributes,
     "V1ResourceClaim": V1ResourceClaim,
     "V1ResourceFieldSelector": V1ResourceFieldSelector,
+    "V1ResourceHealth": V1ResourceHealth,
     "V1ResourcePolicyRule": V1ResourcePolicyRule,
     "V1ResourceQuota": V1ResourceQuota,
     "V1ResourceQuotaList": V1ResourceQuotaList,
@@ -1601,6 +1626,7 @@ let typeMap: {[index: string]: any} = {
     "V1ResourceQuotaStatus": V1ResourceQuotaStatus,
     "V1ResourceRequirements": V1ResourceRequirements,
     "V1ResourceRule": V1ResourceRule,
+    "V1ResourceStatus": V1ResourceStatus,
     "V1Role": V1Role,
     "V1RoleBinding": V1RoleBinding,
     "V1RoleBindingList": V1RoleBindingList,
@@ -1727,23 +1753,18 @@ let typeMap: {[index: string]: any} = {
     "V1alpha1ClusterTrustBundleSpec": V1alpha1ClusterTrustBundleSpec,
     "V1alpha1ExpressionWarning": V1alpha1ExpressionWarning,
     "V1alpha1GroupVersionResource": V1alpha1GroupVersionResource,
-    "V1alpha1IPAddress": V1alpha1IPAddress,
-    "V1alpha1IPAddressList": V1alpha1IPAddressList,
-    "V1alpha1IPAddressSpec": V1alpha1IPAddressSpec,
+    "V1alpha1LeaseCandidate": V1alpha1LeaseCandidate,
+    "V1alpha1LeaseCandidateList": V1alpha1LeaseCandidateList,
+    "V1alpha1LeaseCandidateSpec": V1alpha1LeaseCandidateSpec,
     "V1alpha1MatchCondition": V1alpha1MatchCondition,
     "V1alpha1MatchResources": V1alpha1MatchResources,
     "V1alpha1MigrationCondition": V1alpha1MigrationCondition,
     "V1alpha1NamedRuleWithOperations": V1alpha1NamedRuleWithOperations,
     "V1alpha1ParamKind": V1alpha1ParamKind,
     "V1alpha1ParamRef": V1alpha1ParamRef,
-    "V1alpha1ParentReference": V1alpha1ParentReference,
     "V1alpha1SelfSubjectReview": V1alpha1SelfSubjectReview,
     "V1alpha1SelfSubjectReviewStatus": V1alpha1SelfSubjectReviewStatus,
     "V1alpha1ServerStorageVersion": V1alpha1ServerStorageVersion,
-    "V1alpha1ServiceCIDR": V1alpha1ServiceCIDR,
-    "V1alpha1ServiceCIDRList": V1alpha1ServiceCIDRList,
-    "V1alpha1ServiceCIDRSpec": V1alpha1ServiceCIDRSpec,
-    "V1alpha1ServiceCIDRStatus": V1alpha1ServiceCIDRStatus,
     "V1alpha1StorageVersion": V1alpha1StorageVersion,
     "V1alpha1StorageVersionCondition": V1alpha1StorageVersionCondition,
     "V1alpha1StorageVersionList": V1alpha1StorageVersionList,
@@ -1764,54 +1785,58 @@ let typeMap: {[index: string]: any} = {
     "V1alpha1Variable": V1alpha1Variable,
     "V1alpha1VolumeAttributesClass": V1alpha1VolumeAttributesClass,
     "V1alpha1VolumeAttributesClassList": V1alpha1VolumeAttributesClassList,
-    "V1alpha2AllocationResult": V1alpha2AllocationResult,
-    "V1alpha2DriverAllocationResult": V1alpha2DriverAllocationResult,
-    "V1alpha2DriverRequests": V1alpha2DriverRequests,
-    "V1alpha2NamedResourcesAllocationResult": V1alpha2NamedResourcesAllocationResult,
-    "V1alpha2NamedResourcesAttribute": V1alpha2NamedResourcesAttribute,
-    "V1alpha2NamedResourcesFilter": V1alpha2NamedResourcesFilter,
-    "V1alpha2NamedResourcesInstance": V1alpha2NamedResourcesInstance,
-    "V1alpha2NamedResourcesIntSlice": V1alpha2NamedResourcesIntSlice,
-    "V1alpha2NamedResourcesRequest": V1alpha2NamedResourcesRequest,
-    "V1alpha2NamedResourcesResources": V1alpha2NamedResourcesResources,
-    "V1alpha2NamedResourcesStringSlice": V1alpha2NamedResourcesStringSlice,
-    "V1alpha2PodSchedulingContext": V1alpha2PodSchedulingContext,
-    "V1alpha2PodSchedulingContextList": V1alpha2PodSchedulingContextList,
-    "V1alpha2PodSchedulingContextSpec": V1alpha2PodSchedulingContextSpec,
-    "V1alpha2PodSchedulingContextStatus": V1alpha2PodSchedulingContextStatus,
-    "V1alpha2ResourceClaim": V1alpha2ResourceClaim,
-    "V1alpha2ResourceClaimConsumerReference": V1alpha2ResourceClaimConsumerReference,
-    "V1alpha2ResourceClaimList": V1alpha2ResourceClaimList,
-    "V1alpha2ResourceClaimParameters": V1alpha2ResourceClaimParameters,
-    "V1alpha2ResourceClaimParametersList": V1alpha2ResourceClaimParametersList,
-    "V1alpha2ResourceClaimParametersReference": V1alpha2ResourceClaimParametersReference,
-    "V1alpha2ResourceClaimSchedulingStatus": V1alpha2ResourceClaimSchedulingStatus,
-    "V1alpha2ResourceClaimSpec": V1alpha2ResourceClaimSpec,
-    "V1alpha2ResourceClaimStatus": V1alpha2ResourceClaimStatus,
-    "V1alpha2ResourceClaimTemplate": V1alpha2ResourceClaimTemplate,
-    "V1alpha2ResourceClaimTemplateList": V1alpha2ResourceClaimTemplateList,
-    "V1alpha2ResourceClaimTemplateSpec": V1alpha2ResourceClaimTemplateSpec,
-    "V1alpha2ResourceClass": V1alpha2ResourceClass,
-    "V1alpha2ResourceClassList": V1alpha2ResourceClassList,
-    "V1alpha2ResourceClassParameters": V1alpha2ResourceClassParameters,
-    "V1alpha2ResourceClassParametersList": V1alpha2ResourceClassParametersList,
-    "V1alpha2ResourceClassParametersReference": V1alpha2ResourceClassParametersReference,
-    "V1alpha2ResourceFilter": V1alpha2ResourceFilter,
-    "V1alpha2ResourceHandle": V1alpha2ResourceHandle,
-    "V1alpha2ResourceRequest": V1alpha2ResourceRequest,
-    "V1alpha2ResourceSlice": V1alpha2ResourceSlice,
-    "V1alpha2ResourceSliceList": V1alpha2ResourceSliceList,
-    "V1alpha2StructuredResourceHandle": V1alpha2StructuredResourceHandle,
-    "V1alpha2VendorParameters": V1alpha2VendorParameters,
+    "V1alpha3AllocationResult": V1alpha3AllocationResult,
+    "V1alpha3BasicDevice": V1alpha3BasicDevice,
+    "V1alpha3CELDeviceSelector": V1alpha3CELDeviceSelector,
+    "V1alpha3Device": V1alpha3Device,
+    "V1alpha3DeviceAllocationConfiguration": V1alpha3DeviceAllocationConfiguration,
+    "V1alpha3DeviceAllocationResult": V1alpha3DeviceAllocationResult,
+    "V1alpha3DeviceAttribute": V1alpha3DeviceAttribute,
+    "V1alpha3DeviceClaim": V1alpha3DeviceClaim,
+    "V1alpha3DeviceClaimConfiguration": V1alpha3DeviceClaimConfiguration,
+    "V1alpha3DeviceClass": V1alpha3DeviceClass,
+    "V1alpha3DeviceClassConfiguration": V1alpha3DeviceClassConfiguration,
+    "V1alpha3DeviceClassList": V1alpha3DeviceClassList,
+    "V1alpha3DeviceClassSpec": V1alpha3DeviceClassSpec,
+    "V1alpha3DeviceConstraint": V1alpha3DeviceConstraint,
+    "V1alpha3DeviceRequest": V1alpha3DeviceRequest,
+    "V1alpha3DeviceRequestAllocationResult": V1alpha3DeviceRequestAllocationResult,
+    "V1alpha3DeviceSelector": V1alpha3DeviceSelector,
+    "V1alpha3OpaqueDeviceConfiguration": V1alpha3OpaqueDeviceConfiguration,
+    "V1alpha3PodSchedulingContext": V1alpha3PodSchedulingContext,
+    "V1alpha3PodSchedulingContextList": V1alpha3PodSchedulingContextList,
+    "V1alpha3PodSchedulingContextSpec": V1alpha3PodSchedulingContextSpec,
+    "V1alpha3PodSchedulingContextStatus": V1alpha3PodSchedulingContextStatus,
+    "V1alpha3ResourceClaim": V1alpha3ResourceClaim,
+    "V1alpha3ResourceClaimConsumerReference": V1alpha3ResourceClaimConsumerReference,
+    "V1alpha3ResourceClaimList": V1alpha3ResourceClaimList,
+    "V1alpha3ResourceClaimSchedulingStatus": V1alpha3ResourceClaimSchedulingStatus,
+    "V1alpha3ResourceClaimSpec": V1alpha3ResourceClaimSpec,
+    "V1alpha3ResourceClaimStatus": V1alpha3ResourceClaimStatus,
+    "V1alpha3ResourceClaimTemplate": V1alpha3ResourceClaimTemplate,
+    "V1alpha3ResourceClaimTemplateList": V1alpha3ResourceClaimTemplateList,
+    "V1alpha3ResourceClaimTemplateSpec": V1alpha3ResourceClaimTemplateSpec,
+    "V1alpha3ResourcePool": V1alpha3ResourcePool,
+    "V1alpha3ResourceSlice": V1alpha3ResourceSlice,
+    "V1alpha3ResourceSliceList": V1alpha3ResourceSliceList,
+    "V1alpha3ResourceSliceSpec": V1alpha3ResourceSliceSpec,
     "V1beta1AuditAnnotation": V1beta1AuditAnnotation,
     "V1beta1ExpressionWarning": V1beta1ExpressionWarning,
+    "V1beta1IPAddress": V1beta1IPAddress,
+    "V1beta1IPAddressList": V1beta1IPAddressList,
+    "V1beta1IPAddressSpec": V1beta1IPAddressSpec,
     "V1beta1MatchCondition": V1beta1MatchCondition,
     "V1beta1MatchResources": V1beta1MatchResources,
     "V1beta1NamedRuleWithOperations": V1beta1NamedRuleWithOperations,
     "V1beta1ParamKind": V1beta1ParamKind,
     "V1beta1ParamRef": V1beta1ParamRef,
+    "V1beta1ParentReference": V1beta1ParentReference,
     "V1beta1SelfSubjectReview": V1beta1SelfSubjectReview,
     "V1beta1SelfSubjectReviewStatus": V1beta1SelfSubjectReviewStatus,
+    "V1beta1ServiceCIDR": V1beta1ServiceCIDR,
+    "V1beta1ServiceCIDRList": V1beta1ServiceCIDRList,
+    "V1beta1ServiceCIDRSpec": V1beta1ServiceCIDRSpec,
+    "V1beta1ServiceCIDRStatus": V1beta1ServiceCIDRStatus,
     "V1beta1TypeChecking": V1beta1TypeChecking,
     "V1beta1ValidatingAdmissionPolicy": V1beta1ValidatingAdmissionPolicy,
     "V1beta1ValidatingAdmissionPolicyBinding": V1beta1ValidatingAdmissionPolicyBinding,
@@ -1822,6 +1847,8 @@ let typeMap: {[index: string]: any} = {
     "V1beta1ValidatingAdmissionPolicyStatus": V1beta1ValidatingAdmissionPolicyStatus,
     "V1beta1Validation": V1beta1Validation,
     "V1beta1Variable": V1beta1Variable,
+    "V1beta1VolumeAttributesClass": V1beta1VolumeAttributesClass,
+    "V1beta1VolumeAttributesClassList": V1beta1VolumeAttributesClassList,
     "V1beta3ExemptPriorityLevelConfiguration": V1beta3ExemptPriorityLevelConfiguration,
     "V1beta3FlowDistinguisherMethod": V1beta3FlowDistinguisherMethod,
     "V1beta3FlowSchema": V1beta3FlowSchema,
