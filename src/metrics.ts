@@ -88,44 +88,45 @@ export class Metrics {
         const requestInit = await this.config.applyToFetchOptions({});
         requestInit.method = 'GET';
 
-        return fetch(requestURL, requestInit)
-            .then((response) => {
-                return Promise.all([response.json(), response.status, response]);
-            })
-            .then(([json, status, response]) => {
-                if (status === 200) {
-                    return json as T;
+        try {
+            const response = await fetch(requestURL, requestInit);
+            const json = await response.json();
+            const { status } = response;
+
+            if (status === 200) {
+                return json as T;
+            }
+
+            if (status === 500) {
+                const v1status = json as V1Status;
+                const v1code = v1status.code;
+                const v1message = v1status.message;
+                if (v1code !== undefined && v1message !== undefined) {
+                    throw new ApiException<undefined | V1Status>(
+                        v1code,
+                        v1message,
+                        v1status,
+                        normalizeResponseHeaders(response),
+                    );
                 }
-                if (status === 500) {
-                    const v1status = json as V1Status;
-                    const v1code = v1status.code;
-                    const v1message = v1status.message;
-                    if (v1code !== undefined && v1message !== undefined) {
-                        throw new ApiException<undefined | V1Status>(
-                            v1code,
-                            v1message,
-                            v1status,
-                            normalizeResponseHeaders(response),
-                        );
-                    }
-                }
-                throw new ApiException<undefined>(
-                    status,
-                    'Error occurred in metrics request',
-                    undefined,
-                    normalizeResponseHeaders(response),
-                );
-            })
-            .catch((e) => {
-                if (e instanceof ApiException) {
-                    throw e;
-                }
-                throw new ApiException<undefined | V1Status>(
-                    500,
-                    `Error occurred in metrics request: ${e.message}`,
-                    {},
-                    {},
-                );
-            });
+            }
+
+            throw new ApiException<undefined>(
+                status,
+                'Error occurred in metrics request',
+                undefined,
+                normalizeResponseHeaders(response),
+            );
+        } catch (e: any) {
+            if (e instanceof ApiException) {
+                throw e;
+            }
+            throw new ApiException<undefined | V1Status>(
+                500,
+                `Error occurred in metrics request: ${e.message}`,
+                {},
+                {},
+            );
+        }
     }
 }
