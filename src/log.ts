@@ -163,7 +163,11 @@ export class Log {
                 );
             }
         } catch (err: any) {
-            throw new ApiException<undefined>(err, 'Error occurred in log request', undefined, err);
+            if (err instanceof ApiException) {
+                throw err;
+            }
+
+            throw new ApiException<undefined>(500, 'Error occurred in log request', undefined, {});
         }
 
         return controller;
