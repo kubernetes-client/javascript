@@ -1,6 +1,5 @@
 import { createInterface } from 'node:readline';
 import fetch from 'node-fetch';
-import { AbortSignal } from 'node-fetch/externals';
 import { KubeConfig } from './config';
 
 export class Watch {

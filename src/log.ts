@@ -1,5 +1,4 @@
 import fetch from 'node-fetch';
-import { AbortSignal } from 'node-fetch/externals';
 import { Writable } from 'node:stream';
 import { ApiException } from './api';
 import { KubeConfig } from './config';
