@@ -50,34 +50,36 @@ export class Watch {
             }
         };
 
-        await fetch(watchURL, requestInit)
-            .then((response) => {
-                if (response.status === 200) {
-                    response.body.on('error', doneCallOnce);
-                    response.body.on('close', () => doneCallOnce(null));
-                    response.body.on('finish', () => doneCallOnce(null));
+        try {
+            const response = await fetch(watchURL, requestInit);
 
-                    const lines = createInterface(response.body);
-                    lines.on('error', doneCallOnce);
-                    lines.on('close', () => doneCallOnce(null));
-                    lines.on('finish', () => doneCallOnce(null));
-                    lines.on('line', (line) => {
-                        try {
-                            const data = JSON.parse(line.toString());
-                            callback(data.type, data.object, data);
-                        } catch (ignore) {
-                            // ignore parse errors
-                        }
-                    });
-                } else {
-                    const error = new Error(response.statusText) as Error & {
-                        statusCode: number | undefined;
-                    };
-                    error.statusCode = response.status;
-                    throw error;
-                }
-            })
-            .catch(doneCallOnce);
+            if (response.status === 200) {
+                response.body.on('error', doneCallOnce);
+                response.body.on('close', () => doneCallOnce(null));
+                response.body.on('finish', () => doneCallOnce(null));
+
+                const lines = createInterface(response.body);
+                lines.on('error', doneCallOnce);
+                lines.on('close', () => doneCallOnce(null));
+                lines.on('finish', () => doneCallOnce(null));
+                lines.on('line', (line) => {
+                    try {
+                        const data = JSON.parse(line.toString());
+                        callback(data.type, data.object, data);
+                    } catch (ignore) {
+                        // ignore parse errors
+                    }
+                });
+            } else {
+                const error = new Error(response.statusText) as Error & {
+                    statusCode: number | undefined;
+                };
+                error.statusCode = response.status;
+                throw error;
+            }
+        } catch (err) {
+            doneCallOnce(err);
+        }
 
         return controller;
     }
