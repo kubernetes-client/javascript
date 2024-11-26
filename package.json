@@ -71,7 +71,6 @@
         "tar": "^7.0.0",
         "tmp-promise": "^3.0.2",
         "tslib": "^2.5.0",
-        "url-parse": "^1.4.3",
         "ws": "^8.18.0"
     },
     "devDependencies": {
