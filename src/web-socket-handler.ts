@@ -1,8 +1,8 @@
 import WebSocket from 'isomorphic-ws';
 import stream from 'node:stream';
 
-import { V1Status } from './api';
-import { KubeConfig } from './config';
+import { V1Status } from './api.js';
+import { KubeConfig } from './config.js';
 
 const protocols = [
     'v5.channel.k8s.io',

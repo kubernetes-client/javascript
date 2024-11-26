@@ -1,4 +1,4 @@
-import { ObjectSerializer as InternalSerializer, V1ObjectMeta } from './gen/models/ObjectSerializer';
+import { ObjectSerializer as InternalSerializer, V1ObjectMeta } from './gen/models/ObjectSerializer.js';
 
 type AttributeType = {
     name: string;

@@ -1,8 +1,8 @@
 import { OutgoingHttpHeaders } from 'node:http';
 import https from 'node:https';
 
-import { Authenticator } from './auth';
-import { User } from './config_types';
+import { Authenticator } from './auth.js';
+import { User } from './config_types.js';
 
 import child_process from 'node:child_process';
 

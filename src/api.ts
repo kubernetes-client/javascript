@@ -1,1 +1,1 @@
-export * from './gen';
+export * from './gen/index.js';

@@ -1,8 +1,8 @@
 import fs from 'node:fs';
 import https from 'node:https';
 
-import { Authenticator } from './auth';
-import { User } from './config_types';
+import { Authenticator } from './auth.js';
+import { User } from './config_types.js';
 
 export class FileAuth implements Authenticator {
     private token: string | null = null;

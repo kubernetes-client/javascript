@@ -2,10 +2,10 @@ import WebSocket from 'isomorphic-ws';
 import querystring from 'node:querystring';
 import stream from 'stream';
 
-import { V1Status } from './api';
-import { KubeConfig } from './config';
-import { isResizable, ResizableStream, TerminalSizeQueue } from './terminal-size-queue';
-import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
+import { V1Status } from './api.js';
+import { KubeConfig } from './config.js';
+import { isResizable, ResizableStream, TerminalSizeQueue } from './terminal-size-queue.js';
+import { WebSocketHandler, WebSocketInterface } from './web-socket-handler.js';
 
 export class Exec {
     public 'handler': WebSocketInterface;

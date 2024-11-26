@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 
-import { V1Namespace } from './api';
-import { dumpYaml, loadAllYaml, loadYaml } from './yaml';
+import { V1Namespace } from './api.js';
+import { dumpYaml, loadAllYaml, loadYaml } from './yaml.js';
 
 describe('yaml', () => {
     it('should load safely', () => {

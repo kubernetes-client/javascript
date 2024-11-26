@@ -3,8 +3,8 @@ import { OutgoingHttpHeaders } from 'node:http';
 import https from 'node:https';
 import { base64url } from 'rfc4648';
 
-import { User } from './config_types';
-import { OpenIDConnectAuth } from './oidc_auth';
+import { User } from './config_types.js';
+import { OpenIDConnectAuth } from './oidc_auth.js';
 
 function encode(value: string): string {
     return base64url.stringify(new TextEncoder().encode(value));

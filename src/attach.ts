@@ -2,9 +2,9 @@ import WebSocket from 'isomorphic-ws';
 import querystring from 'node:querystring';
 import stream from 'node:stream';
 
-import { KubeConfig } from './config';
-import { isResizable, ResizableStream, TerminalSizeQueue } from './terminal-size-queue';
-import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
+import { KubeConfig } from './config.js';
+import { isResizable, ResizableStream, TerminalSizeQueue } from './terminal-size-queue.js';
+import { WebSocketHandler, WebSocketInterface } from './web-socket-handler.js';
 
 export class Attach {
     public 'handler': WebSocketInterface;

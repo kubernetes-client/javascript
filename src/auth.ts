@@ -1,6 +1,6 @@
 import https from 'node:https';
 
-import { User } from './config_types';
+import { User } from './config_types.js';
 import WebSocket from 'isomorphic-ws';
 
 export interface Authenticator {

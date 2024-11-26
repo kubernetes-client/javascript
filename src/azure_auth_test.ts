@@ -2,10 +2,10 @@ import { use, expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import { join } from 'node:path';
 
-import { User, Cluster } from './config_types';
-import { AzureAuth } from './azure_auth';
-import { KubeConfig } from './config';
-import { HttpMethod, RequestContext } from '.';
+import { User, Cluster } from './config_types.js';
+import { AzureAuth } from './azure_auth.js';
+import { KubeConfig } from './config.js';
+import { HttpMethod, RequestContext } from './index.js';
 
 use(chaiAsPromised);
 

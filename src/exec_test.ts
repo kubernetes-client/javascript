@@ -4,11 +4,11 @@ import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
 import { anyFunction, anything, capture, instance, mock, verify, when } from 'ts-mockito';
 
 import { CallAwaiter, matchBuffer, ResizableWriteableStreamBuffer } from '../test';
-import { V1Status } from './api';
-import { KubeConfig } from './config';
-import { Exec } from './exec';
-import { TerminalSize } from './terminal-size-queue';
-import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
+import { V1Status } from './api.js';
+import { KubeConfig } from './config.js';
+import { Exec } from './exec.js';
+import { TerminalSize } from './terminal-size-queue.js';
+import { WebSocketHandler, WebSocketInterface } from './web-socket-handler.js';
 
 describe('Exec', () => {
     describe('basic', () => {

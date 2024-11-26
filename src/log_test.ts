@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { AddOptionsToSearchParams, LogOptions } from './log';
+import { AddOptionsToSearchParams, LogOptions } from './log.js';
 
 describe('Log', () => {
     describe('AddOptionsToSearchParams', () => {

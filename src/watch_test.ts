@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import nock from 'nock';
 import { PassThrough } from 'node:stream';
-import { KubeConfig } from './config';
-import { Cluster, Context, User } from './config_types';
-import { Watch } from './watch';
+import { KubeConfig } from './config.js';
+import { Cluster, Context, User } from './config_types.js';
+import { Watch } from './watch.js';
 import { IncomingMessage } from 'node:http';
 
 const server = 'http://foo.company.com';

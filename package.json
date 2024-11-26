@@ -2,6 +2,7 @@
     "name": "@kubernetes/client-node",
     "version": "1.0.0-rc7",
     "description": "NodeJS client for kubernetes",
+    "type": "module",
     "repository": {
         "type": "git",
         "url": "https://github.com/kubernetes-client/javascript.git"

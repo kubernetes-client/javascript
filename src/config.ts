@@ -5,9 +5,9 @@ import net from 'node:net';
 import path from 'node:path';
 
 import { Headers, RequestInit } from 'node-fetch';
-import { RequestContext } from './api';
-import { Authenticator } from './auth';
-import { AzureAuth } from './azure_auth';
+import { RequestContext } from './api.js';
+import { Authenticator } from './auth.js';
+import { AzureAuth } from './azure_auth.js';
 import {
     Cluster,
     ConfigOptions,
@@ -19,18 +19,18 @@ import {
     newContexts,
     newUsers,
     User,
-} from './config_types';
-import { ExecAuth } from './exec_auth';
-import { FileAuth } from './file_auth';
-import { GoogleCloudPlatformAuth } from './gcp_auth';
+} from './config_types.js';
+import { ExecAuth } from './exec_auth.js';
+import { FileAuth } from './file_auth.js';
+import { GoogleCloudPlatformAuth } from './gcp_auth.js';
 import {
     AuthMethodsConfiguration,
     Configuration,
     createConfiguration,
     SecurityAuthentication,
     ServerConfiguration,
-} from './gen';
-import { OpenIDConnectAuth } from './oidc_auth';
+} from './gen/index.js';
+import { OpenIDConnectAuth } from './oidc_auth.js';
 import WebSocket from 'isomorphic-ws';
 import child_process from 'node:child_process';
 

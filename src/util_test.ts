@@ -1,6 +1,6 @@
 import { expect, assert } from 'chai';
 import { Response } from 'node-fetch';
-import { CoreV1Api, V1Container, V1Pod } from './api';
+import { CoreV1Api, V1Container, V1Pod } from './api.js';
 import {
     normalizeResponseHeaders,
     findSuffix,
@@ -8,7 +8,7 @@ import {
     quantityToScalar,
     totalCPU,
     totalMemory,
-} from './util';
+} from './util.js';
 
 describe('Utils', () => {
     it('should get zero pods for a node', async () => {

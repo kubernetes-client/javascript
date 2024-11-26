@@ -1,5 +1,5 @@
-import { CoreV1Api, V1Node, V1Pod, V1PodList } from './gen';
-import { Metrics, PodMetric } from './metrics';
+import { CoreV1Api, V1Node, V1Pod, V1PodList } from './gen/index.js';
+import { Metrics, PodMetric } from './metrics.js';
 import {
     add,
     podsForNode,
@@ -8,7 +8,7 @@ import {
     totalCPUForContainer,
     totalMemory,
     totalMemoryForContainer,
-} from './util';
+} from './util.js';
 
 export class ResourceUsage {
     constructor(

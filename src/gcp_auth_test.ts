@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 import { join } from 'node:path';
 
-import { User, Cluster } from './config_types';
-import { GoogleCloudPlatformAuth } from './gcp_auth';
-import { KubeConfig } from './config';
-import { HttpMethod, RequestContext } from './gen';
+import { User, Cluster } from './config_types.js';
+import { GoogleCloudPlatformAuth } from './gcp_auth.js';
+import { KubeConfig } from './config.js';
+import { HttpMethod, RequestContext } from './gen/index.js';
 import { Agent } from 'node:https';
 
 describe('GoogleCloudPlatformAuth', () => {

@@ -4,10 +4,10 @@ import { expect } from 'chai';
 import WebSocket from 'isomorphic-ws';
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
 
-import { V1Status } from './api';
-import { KubeConfig } from './config';
-import { Cluster, Context, User } from './config_types';
-import { WebSocketHandler } from './web-socket-handler';
+import { V1Status } from './api.js';
+import { KubeConfig } from './config.js';
+import { Cluster, Context, User } from './config_types.js';
+import { WebSocketHandler } from './web-socket-handler.js';
 
 describe('WebSocket', () => {
     it('should throw on unknown code', () => {

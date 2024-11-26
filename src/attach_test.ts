@@ -4,10 +4,10 @@ import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
 import { anyFunction, anything, capture, instance, mock, verify, when } from 'ts-mockito';
 
 import { CallAwaiter, matchBuffer, ResizableWriteableStreamBuffer } from '../test';
-import { Attach } from './attach';
-import { KubeConfig } from './config';
-import { TerminalSize } from './terminal-size-queue';
-import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
+import { Attach } from './attach.js';
+import { KubeConfig } from './config.js';
+import { TerminalSize } from './terminal-size-queue.js';
+import { WebSocketHandler, WebSocketInterface } from './web-socket-handler.js';
 
 describe('Attach', () => {
     describe('basic', () => {

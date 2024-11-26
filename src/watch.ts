@@ -1,6 +1,6 @@
 import { createInterface } from 'node:readline';
 import fetch from 'node-fetch';
-import { KubeConfig } from './config';
+import { KubeConfig } from './config.js';
 
 export class Watch {
     public static SERVER_SIDE_CLOSE: object = { error: 'Connection closed on server' };

@@ -1,9 +1,9 @@
 import fetch from 'node-fetch';
 import { Writable } from 'node:stream';
-import { ApiException } from './api';
-import { KubeConfig } from './config';
-import { V1Status } from './gen';
-import { normalizeResponseHeaders } from './util';
+import { ApiException } from './api.js';
+import { KubeConfig } from './config.js';
+import { V1Status } from './gen/index.js';
+import { normalizeResponseHeaders } from './util.js';
 
 export interface LogOptions {
     /**

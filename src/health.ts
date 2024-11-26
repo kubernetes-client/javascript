@@ -1,5 +1,5 @@
-import fetch, { AbortError } from 'node-fetch';
-import { KubeConfig } from './config';
+import fetch from 'node-fetch';
+import { KubeConfig } from './config.js';
 import { RequestOptions } from 'node:https';
 
 export class Health {

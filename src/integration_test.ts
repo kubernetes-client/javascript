@@ -2,9 +2,9 @@ import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import nock from 'nock';
 
-import { CoreV1Api } from './api';
-import { KubeConfig } from './config';
-import { Cluster, User } from './config_types';
+import { CoreV1Api } from './api.js';
+import { KubeConfig } from './config.js';
+import { Cluster, User } from './config_types.js';
 
 use(chaiAsPromised);
 

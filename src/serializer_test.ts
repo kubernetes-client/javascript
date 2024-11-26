@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { ObjectSerializer } from './serializer';
+import { ObjectSerializer } from './serializer.js';
 
 describe('ObjectSerializer', () => {
     describe('serialize', () => {

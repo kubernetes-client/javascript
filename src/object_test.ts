@@ -1,10 +1,10 @@
 import { expect } from 'chai';
 import nock from 'nock';
-import { Configuration, V1APIResource, V1APIResourceList, V1Secret } from './api';
-import { KubeConfig } from './config';
-import { KubernetesObjectApi } from './object';
-import { KubernetesObject } from './types';
-import { of } from './gen/rxjsStub';
+import { Configuration, V1APIResource, V1APIResourceList, V1Secret } from './api.js';
+import { KubeConfig } from './config.js';
+import { KubernetesObjectApi } from './object.js';
+import { KubernetesObject } from './types.js';
+import { of } from './gen/rxjsStub.js';
 
 describe('KubernetesObject', () => {
     const testConfigOptions = {

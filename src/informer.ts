@@ -1,7 +1,7 @@
-import { ListWatch } from './cache';
-import { KubeConfig } from './config';
-import { KubernetesListObject, KubernetesObject } from './types';
-import { Watch } from './watch';
+import { ListWatch } from './cache.js';
+import { KubeConfig } from './config.js';
+import { KubernetesListObject, KubernetesObject } from './types.js';
+import { Watch } from './watch.js';
 
 export type ObjectCallback<T extends KubernetesObject> = (obj: T) => void;
 export type ErrorCallback = (err?: any) => void;

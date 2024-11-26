@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import nock from 'nock';
-import { KubeConfig } from './config';
-import { Metrics, PodMetricsList } from './metrics';
-import { topPods } from './top';
-import { CoreV1Api, V1Pod } from './api';
+import { KubeConfig } from './config.js';
+import { Metrics, PodMetricsList } from './metrics.js';
+import { topPods } from './top.js';
+import { CoreV1Api, V1Pod } from './api.js';
 
 const emptyPodMetrics: PodMetricsList = {
     kind: 'PodMetricsList',
