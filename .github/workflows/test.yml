@@ -1,28 +1,27 @@
 name: Kubernetes Javascript Client - Validation
 
 on:
-  push:
-    branches: [ master, release-1.x ]
-  pull_request:
-    branches: [ master, release-1.x ]
+    push:
+        branches: [master, release-1.x]
+    pull_request:
+        branches: [master, release-1.x]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        # Remove specific version from 20 when https://github.com/tschaub/mock-fs/issues/380 is fixed
-        node: [ '22', '20.7.0', '18' ]
-    name: Node ${{ matrix.node }} validation
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node }}
-      # Pre-check to validate that versions match between package.json
-      # and package-lock.json. Needs to run before npm install
-      - run: node version-check.js
-      - run: npm ci
-      - run: npm test
-      - run: npm run lint
-      - run: npm audit --audit-level=critical
+    build:
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                node: ['23', '22', '20', '18']
+        name: Node ${{ matrix.node }} validation
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: ${{ matrix.node }}
+            # Pre-check to validate that versions match between package.json
+            # and package-lock.json. Needs to run before npm install
+            - run: node version-check.js
+            - run: npm ci
+            - run: npm test
+            - run: npm run lint
+            - run: npm audit --audit-level=critical
