@@ -23,6 +23,8 @@ export class V1ClientIPConfig {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "timeoutSeconds",
@@ -38,4 +40,3 @@ export class V1ClientIPConfig {
     public constructor() {
     }
 }
-

@@ -39,6 +39,8 @@ export class V1ResourcePolicyRule {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "apiGroups",
@@ -78,4 +80,3 @@ export class V1ResourcePolicyRule {
     public constructor() {
     }
 }
-

@@ -34,6 +34,8 @@ export class V1beta3PolicyRulesWithSubjects {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "nonResourceRules",
@@ -61,4 +63,3 @@ export class V1beta3PolicyRulesWithSubjects {
     public constructor() {
     }
 }
-

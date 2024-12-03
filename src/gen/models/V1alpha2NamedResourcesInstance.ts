@@ -28,6 +28,8 @@ export class V1alpha2NamedResourcesInstance {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "attributes",
@@ -49,4 +51,3 @@ export class V1alpha2NamedResourcesInstance {
     public constructor() {
     }
 }
-

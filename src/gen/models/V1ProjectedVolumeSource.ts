@@ -28,6 +28,8 @@ export class V1ProjectedVolumeSource {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "defaultMode",
@@ -49,4 +51,3 @@ export class V1ProjectedVolumeSource {
     public constructor() {
     }
 }
-

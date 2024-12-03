@@ -43,6 +43,8 @@ export class V1LimitRangeItem {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "_default",
@@ -88,4 +90,3 @@ export class V1LimitRangeItem {
     public constructor() {
     }
 }
-

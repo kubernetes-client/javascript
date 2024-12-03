@@ -22,6 +22,8 @@ export class V1Lifecycle {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "postStart",
@@ -43,4 +45,3 @@ export class V1Lifecycle {
     public constructor() {
     }
 }
-

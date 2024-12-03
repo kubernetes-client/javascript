@@ -27,6 +27,8 @@ export class V1ContainerResizePolicy {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "resourceName",
@@ -48,4 +50,3 @@ export class V1ContainerResizePolicy {
     public constructor() {
     }
 }
-

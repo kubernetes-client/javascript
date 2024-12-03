@@ -36,6 +36,8 @@ export class V2HorizontalPodAutoscalerSpec {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "behavior",
@@ -75,4 +77,3 @@ export class V2HorizontalPodAutoscalerSpec {
     public constructor() {
     }
 }
-

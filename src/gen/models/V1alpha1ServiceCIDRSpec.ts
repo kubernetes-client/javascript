@@ -23,6 +23,8 @@ export class V1alpha1ServiceCIDRSpec {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "cidrs",
@@ -38,4 +40,3 @@ export class V1alpha1ServiceCIDRSpec {
     public constructor() {
     }
 }
-

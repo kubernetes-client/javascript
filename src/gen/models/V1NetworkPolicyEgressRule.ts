@@ -29,6 +29,8 @@ export class V1NetworkPolicyEgressRule {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "ports",
@@ -50,4 +52,3 @@ export class V1NetworkPolicyEgressRule {
     public constructor() {
     }
 }
-

@@ -29,6 +29,8 @@ export class ApiextensionsV1WebhookClientConfig {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "caBundle",
@@ -56,4 +58,3 @@ export class ApiextensionsV1WebhookClientConfig {
     public constructor() {
     }
 }
-

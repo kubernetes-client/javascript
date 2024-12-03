@@ -28,6 +28,8 @@ export class V1NamespaceStatus {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "conditions",
@@ -49,4 +51,3 @@ export class V1NamespaceStatus {
     public constructor() {
     }
 }
-

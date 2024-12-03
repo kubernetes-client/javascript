@@ -35,6 +35,8 @@ export class DiscoveryV1EndpointPort {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "appProtocol",
@@ -68,4 +70,3 @@ export class DiscoveryV1EndpointPort {
     public constructor() {
     }
 }
-

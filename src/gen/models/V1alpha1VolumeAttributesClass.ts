@@ -37,6 +37,8 @@ export class V1alpha1VolumeAttributesClass {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "apiVersion",
@@ -76,4 +78,3 @@ export class V1alpha1VolumeAttributesClass {
     public constructor() {
     }
 }
-

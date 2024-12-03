@@ -31,6 +31,8 @@ export class V1GlusterfsVolumeSource {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "endpoints",
@@ -58,4 +60,3 @@ export class V1GlusterfsVolumeSource {
     public constructor() {
     }
 }
-

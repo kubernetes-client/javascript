@@ -25,6 +25,8 @@ export class V1IngressClassSpec {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "controller",
@@ -46,4 +48,3 @@ export class V1IngressClassSpec {
     public constructor() {
     }
 }
-

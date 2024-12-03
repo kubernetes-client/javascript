@@ -16,17 +16,15 @@ get service account issuer OpenID JSON Web Key Set (contains public token verifi
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, OpenidApi } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .OpenidApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new OpenidApi(configuration);
 
-let body:any = {};
+const request = {};
 
-apiInstance.getServiceAccountIssuerOpenIDKeyset(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getServiceAccountIssuerOpenIDKeyset(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 

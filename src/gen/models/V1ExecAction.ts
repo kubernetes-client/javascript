@@ -23,6 +23,8 @@ export class V1ExecAction {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "command",
@@ -38,4 +40,3 @@ export class V1ExecAction {
     public constructor() {
     }
 }
-

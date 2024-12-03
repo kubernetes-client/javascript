@@ -29,6 +29,8 @@ export class V1PodAffinity {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "preferredDuringSchedulingIgnoredDuringExecution",
@@ -50,4 +52,3 @@ export class V1PodAffinity {
     public constructor() {
     }
 }
-
