@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { CoreV1Event } from '../models/CoreV1Event';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { CoreV1Event } from '../models/CoreV1Event.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * EventList is a list of events.

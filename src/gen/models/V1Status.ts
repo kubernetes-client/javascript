@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1StatusDetails } from '../models/V1StatusDetails';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1StatusDetails } from '../models/V1StatusDetails.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Status is a return value for calls that don\'t return other objects.

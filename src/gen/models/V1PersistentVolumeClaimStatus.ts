@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ModifyVolumeStatus } from '../models/V1ModifyVolumeStatus';
-import { V1PersistentVolumeClaimCondition } from '../models/V1PersistentVolumeClaimCondition';
-import { HttpFile } from '../http/http';
+import { V1ModifyVolumeStatus } from '../models/V1ModifyVolumeStatus.js';
+import { V1PersistentVolumeClaimCondition } from '../models/V1PersistentVolumeClaimCondition.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PersistentVolumeClaimStatus is the current status of a persistent volume claim.

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { HttpFile } from '../http/http';
+import { HttpFile } from '../http/http.js';
 
 /**
 * StatefulSetOrdinals describes the policy used for replica ordinal assignment in this StatefulSet.

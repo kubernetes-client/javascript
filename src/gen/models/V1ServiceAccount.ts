@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1LocalObjectReference } from '../models/V1LocalObjectReference';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1ObjectReference } from '../models/V1ObjectReference';
-import { HttpFile } from '../http/http';
+import { V1LocalObjectReference } from '../models/V1LocalObjectReference.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1ObjectReference } from '../models/V1ObjectReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ServiceAccount binds together: * a name, understood by users, and perhaps by peripheral systems, for an identity * a principal that can be authenticated and authorized * a set of secrets

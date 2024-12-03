@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1IngressLoadBalancerIngress } from '../models/V1IngressLoadBalancerIngress';
-import { HttpFile } from '../http/http';
+import { V1IngressLoadBalancerIngress } from '../models/V1IngressLoadBalancerIngress.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * IngressLoadBalancerStatus represents the status of a load-balancer.

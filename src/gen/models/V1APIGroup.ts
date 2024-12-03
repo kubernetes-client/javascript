@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1GroupVersionForDiscovery } from '../models/V1GroupVersionForDiscovery';
-import { V1ServerAddressByClientCIDR } from '../models/V1ServerAddressByClientCIDR';
-import { HttpFile } from '../http/http';
+import { V1GroupVersionForDiscovery } from '../models/V1GroupVersionForDiscovery.js';
+import { V1ServerAddressByClientCIDR } from '../models/V1ServerAddressByClientCIDR.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * APIGroup contains the name, the supported versions, and the preferred version of a group.

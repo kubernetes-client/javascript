@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { V1ExecAction } from '../models/V1ExecAction';
-import { V1HTTPGetAction } from '../models/V1HTTPGetAction';
-import { V1SleepAction } from '../models/V1SleepAction';
-import { V1TCPSocketAction } from '../models/V1TCPSocketAction';
-import { HttpFile } from '../http/http';
+import { V1ExecAction } from '../models/V1ExecAction.js';
+import { V1HTTPGetAction } from '../models/V1HTTPGetAction.js';
+import { V1SleepAction } from '../models/V1SleepAction.js';
+import { V1TCPSocketAction } from '../models/V1TCPSocketAction.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * LifecycleHandler defines a specific action that should be taken in a lifecycle hook. One and only one of the fields, except TCPSocket must be specified.

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectFieldSelector } from '../models/V1ObjectFieldSelector';
-import { V1ResourceFieldSelector } from '../models/V1ResourceFieldSelector';
-import { HttpFile } from '../http/http';
+import { V1ObjectFieldSelector } from '../models/V1ObjectFieldSelector.js';
+import { V1ResourceFieldSelector } from '../models/V1ResourceFieldSelector.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * DownwardAPIVolumeFile represents information to create the file containing the pod field

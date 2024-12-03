@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { HttpFile } from '../http/http';
+import { HttpFile } from '../http/http.js';
 
 /**
 * NonResourceAttributes includes the authorization attributes available for non-resource requests to the Authorizer interface

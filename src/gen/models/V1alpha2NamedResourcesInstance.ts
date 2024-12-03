@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1alpha2NamedResourcesAttribute } from '../models/V1alpha2NamedResourcesAttribute';
-import { HttpFile } from '../http/http';
+import { V1alpha2NamedResourcesAttribute } from '../models/V1alpha2NamedResourcesAttribute.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * NamedResourcesInstance represents one individual hardware instance that can be selected based on its attributes.

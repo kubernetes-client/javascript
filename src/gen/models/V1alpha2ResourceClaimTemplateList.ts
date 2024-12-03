@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1alpha2ResourceClaimTemplate } from '../models/V1alpha2ResourceClaimTemplate';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1alpha2ResourceClaimTemplate } from '../models/V1alpha2ResourceClaimTemplate.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ResourceClaimTemplateList is a collection of claim templates.

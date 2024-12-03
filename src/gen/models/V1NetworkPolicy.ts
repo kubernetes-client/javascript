@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1NetworkPolicySpec } from '../models/V1NetworkPolicySpec';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { HttpFile } from '../http/http';
+import { V1NetworkPolicySpec } from '../models/V1NetworkPolicySpec.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * NetworkPolicy describes what network traffic is allowed for a set of Pods

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectReference } from '../models/V1ObjectReference';
-import { HttpFile } from '../http/http';
+import { V1ObjectReference } from '../models/V1ObjectReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * CronJobStatus represents the current state of a cron job.

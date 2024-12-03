@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1StatefulSet } from '../models/V1StatefulSet';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1StatefulSet } from '../models/V1StatefulSet.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * StatefulSetList is a collection of StatefulSets.

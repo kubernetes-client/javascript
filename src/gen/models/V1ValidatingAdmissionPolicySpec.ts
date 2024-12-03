@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { V1AuditAnnotation } from '../models/V1AuditAnnotation';
-import { V1MatchCondition } from '../models/V1MatchCondition';
-import { V1MatchResources } from '../models/V1MatchResources';
-import { V1ParamKind } from '../models/V1ParamKind';
-import { V1Validation } from '../models/V1Validation';
-import { V1Variable } from '../models/V1Variable';
-import { HttpFile } from '../http/http';
+import { V1AuditAnnotation } from '../models/V1AuditAnnotation.js';
+import { V1MatchCondition } from '../models/V1MatchCondition.js';
+import { V1MatchResources } from '../models/V1MatchResources.js';
+import { V1ParamKind } from '../models/V1ParamKind.js';
+import { V1Validation } from '../models/V1Validation.js';
+import { V1Variable } from '../models/V1Variable.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ValidatingAdmissionPolicySpec is the specification of the desired behavior of the AdmissionPolicy.

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ManagedFieldsEntry } from '../models/V1ManagedFieldsEntry';
-import { V1OwnerReference } from '../models/V1OwnerReference';
-import { HttpFile } from '../http/http';
+import { V1ManagedFieldsEntry } from '../models/V1ManagedFieldsEntry.js';
+import { V1OwnerReference } from '../models/V1OwnerReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ObjectMeta is metadata that all persisted resources must have, which includes all objects users must create.

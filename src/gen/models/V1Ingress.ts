@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1IngressSpec } from '../models/V1IngressSpec';
-import { V1IngressStatus } from '../models/V1IngressStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { HttpFile } from '../http/http';
+import { V1IngressSpec } from '../models/V1IngressSpec.js';
+import { V1IngressStatus } from '../models/V1IngressStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Ingress is a collection of rules that allow inbound connections to reach the endpoints defined by a backend. An Ingress can be configured to give services externally-reachable urls, load balance traffic, terminate SSL, offer name based virtual hosting etc.

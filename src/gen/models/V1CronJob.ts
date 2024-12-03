@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1CronJobSpec } from '../models/V1CronJobSpec';
-import { V1CronJobStatus } from '../models/V1CronJobStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { HttpFile } from '../http/http';
+import { V1CronJobSpec } from '../models/V1CronJobSpec.js';
+import { V1CronJobStatus } from '../models/V1CronJobStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * CronJob represents the configuration of a single cron job.

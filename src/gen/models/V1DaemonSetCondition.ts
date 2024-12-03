@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { HttpFile } from '../http/http';
+import { HttpFile } from '../http/http.js';
 
 /**
 * DaemonSetCondition describes the state of a DaemonSet at a certain point.

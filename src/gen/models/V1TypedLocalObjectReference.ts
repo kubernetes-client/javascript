@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { HttpFile } from '../http/http';
+import { HttpFile } from '../http/http.js';
 
 /**
 * TypedLocalObjectReference contains enough information to let you locate the typed referenced object inside the same namespace.

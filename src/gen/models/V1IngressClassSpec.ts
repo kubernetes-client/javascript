@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1IngressClassParametersReference } from '../models/V1IngressClassParametersReference';
-import { HttpFile } from '../http/http';
+import { V1IngressClassParametersReference } from '../models/V1IngressClassParametersReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * IngressClassSpec provides information about the class of an Ingress.

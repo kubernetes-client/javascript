@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1LocalObjectReference } from '../models/V1LocalObjectReference';
-import { HttpFile } from '../http/http';
+import { V1LocalObjectReference } from '../models/V1LocalObjectReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Represents a cinder volume resource in Openstack. A Cinder volume must exist before mounting to a container. The volume must also be in the same region as the kubelet. Cinder volumes support ownership management and SELinux relabeling.

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ClientIPConfig } from '../models/V1ClientIPConfig';
-import { HttpFile } from '../http/http';
+import { V1ClientIPConfig } from '../models/V1ClientIPConfig.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * SessionAffinityConfig represents the configurations of session affinity.

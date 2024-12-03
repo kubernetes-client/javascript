@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1ServiceAccount } from '../models/V1ServiceAccount';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1ServiceAccount } from '../models/V1ServiceAccount.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ServiceAccountList is a list of ServiceAccount objects

@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1NamespaceSpec } from '../models/V1NamespaceSpec';
-import { V1NamespaceStatus } from '../models/V1NamespaceStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { HttpFile } from '../http/http';
+import { V1NamespaceSpec } from '../models/V1NamespaceSpec.js';
+import { V1NamespaceStatus } from '../models/V1NamespaceStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Namespace provides a scope for Names. Use of multiple namespaces is optional.

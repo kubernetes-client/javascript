@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1alpha2DriverAllocationResult } from '../models/V1alpha2DriverAllocationResult';
-import { HttpFile } from '../http/http';
+import { V1alpha2DriverAllocationResult } from '../models/V1alpha2DriverAllocationResult.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * StructuredResourceHandle is the in-tree representation of the allocation result.

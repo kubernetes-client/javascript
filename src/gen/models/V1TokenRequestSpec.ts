@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1BoundObjectReference } from '../models/V1BoundObjectReference';
-import { HttpFile } from '../http/http';
+import { V1BoundObjectReference } from '../models/V1BoundObjectReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * TokenRequestSpec contains client provided parameters of a token request.

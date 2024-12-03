@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelectorRequirement } from '../models/V1LabelSelectorRequirement';
-import { HttpFile } from '../http/http';
+import { V1LabelSelectorRequirement } from '../models/V1LabelSelectorRequirement.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * A label selector is a label query over a set of resources. The result of matchLabels and matchExpressions are ANDed. An empty label selector matches all objects. A null label selector matches no objects.

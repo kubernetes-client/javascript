@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1Secret } from '../models/V1Secret';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1Secret } from '../models/V1Secret.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * SecretList is a list of Secret.

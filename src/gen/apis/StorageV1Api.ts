@@ -1,28 +1,28 @@
 // TODO: better import syntax?
-import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
-import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
+import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi.js';
+import {Configuration} from '../configuration.js';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http.js';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
-import {ObjectSerializer} from '../models/ObjectSerializer';
-import {ApiException} from './exception';
-import {canConsumeForm, isCodeInRange} from '../util';
-import {SecurityAuthentication} from '../auth/auth';
+import {ObjectSerializer} from '../models/ObjectSerializer.js';
+import {ApiException} from './exception.js';
+import {canConsumeForm, isCodeInRange} from '../util.js';
+import {SecurityAuthentication} from '../auth/auth.js';
 
 
-import { V1APIResourceList } from '../models/V1APIResourceList';
-import { V1CSIDriver } from '../models/V1CSIDriver';
-import { V1CSIDriverList } from '../models/V1CSIDriverList';
-import { V1CSINode } from '../models/V1CSINode';
-import { V1CSINodeList } from '../models/V1CSINodeList';
-import { V1CSIStorageCapacity } from '../models/V1CSIStorageCapacity';
-import { V1CSIStorageCapacityList } from '../models/V1CSIStorageCapacityList';
-import { V1DeleteOptions } from '../models/V1DeleteOptions';
-import { V1Status } from '../models/V1Status';
-import { V1StorageClass } from '../models/V1StorageClass';
-import { V1StorageClassList } from '../models/V1StorageClassList';
-import { V1VolumeAttachment } from '../models/V1VolumeAttachment';
-import { V1VolumeAttachmentList } from '../models/V1VolumeAttachmentList';
+import { V1APIResourceList } from '../models/V1APIResourceList.js';
+import { V1CSIDriver } from '../models/V1CSIDriver.js';
+import { V1CSIDriverList } from '../models/V1CSIDriverList.js';
+import { V1CSINode } from '../models/V1CSINode.js';
+import { V1CSINodeList } from '../models/V1CSINodeList.js';
+import { V1CSIStorageCapacity } from '../models/V1CSIStorageCapacity.js';
+import { V1CSIStorageCapacityList } from '../models/V1CSIStorageCapacityList.js';
+import { V1DeleteOptions } from '../models/V1DeleteOptions.js';
+import { V1Status } from '../models/V1Status.js';
+import { V1StorageClass } from '../models/V1StorageClass.js';
+import { V1StorageClassList } from '../models/V1StorageClassList.js';
+import { V1VolumeAttachment } from '../models/V1VolumeAttachment.js';
+import { V1VolumeAttachmentList } from '../models/V1VolumeAttachmentList.js';
 
 /**
  * no description

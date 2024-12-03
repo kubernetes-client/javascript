@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1alpha2ResourceClassParametersReference } from '../models/V1alpha2ResourceClassParametersReference';
-import { V1alpha2ResourceFilter } from '../models/V1alpha2ResourceFilter';
-import { V1alpha2VendorParameters } from '../models/V1alpha2VendorParameters';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1alpha2ResourceClassParametersReference } from '../models/V1alpha2ResourceClassParametersReference.js';
+import { V1alpha2ResourceFilter } from '../models/V1alpha2ResourceFilter.js';
+import { V1alpha2VendorParameters } from '../models/V1alpha2VendorParameters.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ResourceClassParameters defines resource requests for a ResourceClass in an in-tree format understood by Kubernetes.

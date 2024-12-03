@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ConfigMap } from '../models/V1ConfigMap';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1ConfigMap } from '../models/V1ConfigMap.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ConfigMapList is a resource containing a list of ConfigMap objects.

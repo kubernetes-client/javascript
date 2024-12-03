@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeSpec } from '../models/V1NodeSpec';
-import { V1NodeStatus } from '../models/V1NodeStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { HttpFile } from '../http/http';
+import { V1NodeSpec } from '../models/V1NodeSpec.js';
+import { V1NodeStatus } from '../models/V1NodeStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Node is a worker node in Kubernetes. Each node will have a unique identifier in the cache (i.e. in etcd).

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ConfigMapNodeConfigSource } from '../models/V1ConfigMapNodeConfigSource';
-import { HttpFile } from '../http/http';
+import { V1ConfigMapNodeConfigSource } from '../models/V1ConfigMapNodeConfigSource.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * NodeConfigSource specifies a source of node configuration. Exactly one subfield (excluding metadata) must be non-nil. This API is deprecated since 1.22

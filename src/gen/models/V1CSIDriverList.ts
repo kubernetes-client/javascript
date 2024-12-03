@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1CSIDriver } from '../models/V1CSIDriver';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1CSIDriver } from '../models/V1CSIDriver.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * CSIDriverList is a collection of CSIDriver objects.

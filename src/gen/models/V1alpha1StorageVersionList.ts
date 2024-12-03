@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1alpha1StorageVersion } from '../models/V1alpha1StorageVersion';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1alpha1StorageVersion } from '../models/V1alpha1StorageVersion.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * A list of StorageVersions.

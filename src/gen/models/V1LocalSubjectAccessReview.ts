@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1SubjectAccessReviewSpec } from '../models/V1SubjectAccessReviewSpec';
-import { V1SubjectAccessReviewStatus } from '../models/V1SubjectAccessReviewStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1SubjectAccessReviewSpec } from '../models/V1SubjectAccessReviewSpec.js';
+import { V1SubjectAccessReviewStatus } from '../models/V1SubjectAccessReviewStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * LocalSubjectAccessReview checks whether or not a user or group can perform an action in a given namespace. Having a namespace scoped resource makes it much easier to grant namespace scoped policy that includes permissions checking.

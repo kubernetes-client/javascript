@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeConfigSource } from '../models/V1NodeConfigSource';
-import { HttpFile } from '../http/http';
+import { V1NodeConfigSource } from '../models/V1NodeConfigSource.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * NodeConfigStatus describes the status of the config assigned by Node.Spec.ConfigSource.

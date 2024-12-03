@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ServicePort } from '../models/V1ServicePort';
-import { V1SessionAffinityConfig } from '../models/V1SessionAffinityConfig';
-import { HttpFile } from '../http/http';
+import { V1ServicePort } from '../models/V1ServicePort.js';
+import { V1SessionAffinityConfig } from '../models/V1SessionAffinityConfig.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ServiceSpec describes the attributes that a user creates on a service.

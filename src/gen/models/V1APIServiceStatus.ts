@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1APIServiceCondition } from '../models/V1APIServiceCondition';
-import { HttpFile } from '../http/http';
+import { V1APIServiceCondition } from '../models/V1APIServiceCondition.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * APIServiceStatus contains derived information about an API server

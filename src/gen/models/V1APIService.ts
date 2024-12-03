@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1APIServiceSpec } from '../models/V1APIServiceSpec';
-import { V1APIServiceStatus } from '../models/V1APIServiceStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { HttpFile } from '../http/http';
+import { V1APIServiceSpec } from '../models/V1APIServiceSpec.js';
+import { V1APIServiceStatus } from '../models/V1APIServiceStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * APIService represents a server for a particular GroupVersion. Name must be \"version.group\".

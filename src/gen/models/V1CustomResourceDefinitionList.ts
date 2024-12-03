@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1CustomResourceDefinition } from '../models/V1CustomResourceDefinition';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1CustomResourceDefinition } from '../models/V1CustomResourceDefinition.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * CustomResourceDefinitionList is a list of CustomResourceDefinition objects.

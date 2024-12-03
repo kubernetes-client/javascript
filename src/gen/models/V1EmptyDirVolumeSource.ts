@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { HttpFile } from '../http/http';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Represents an empty directory for a pod. Empty directory volumes support ownership management and SELinux relabeling.

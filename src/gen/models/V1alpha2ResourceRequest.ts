@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1alpha2NamedResourcesRequest } from '../models/V1alpha2NamedResourcesRequest';
-import { HttpFile } from '../http/http';
+import { V1alpha2NamedResourcesRequest } from '../models/V1alpha2NamedResourcesRequest.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ResourceRequest is a request for resources from one particular driver.

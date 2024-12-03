@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1VolumeAttachment } from '../models/V1VolumeAttachment';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1VolumeAttachment } from '../models/V1VolumeAttachment.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * VolumeAttachmentList is a collection of VolumeAttachment objects.

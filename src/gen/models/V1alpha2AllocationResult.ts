@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeSelector } from '../models/V1NodeSelector';
-import { V1alpha2ResourceHandle } from '../models/V1alpha2ResourceHandle';
-import { HttpFile } from '../http/http';
+import { V1NodeSelector } from '../models/V1NodeSelector.js';
+import { V1alpha2ResourceHandle } from '../models/V1alpha2ResourceHandle.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * AllocationResult contains attributes of an allocated resource.

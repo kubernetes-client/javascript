@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V2HorizontalPodAutoscalerCondition } from '../models/V2HorizontalPodAutoscalerCondition';
-import { V2MetricStatus } from '../models/V2MetricStatus';
-import { HttpFile } from '../http/http';
+import { V2HorizontalPodAutoscalerCondition } from '../models/V2HorizontalPodAutoscalerCondition.js';
+import { V2MetricStatus } from '../models/V2MetricStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * HorizontalPodAutoscalerStatus describes the current status of a horizontal pod autoscaler.

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1UserInfo } from '../models/V1UserInfo';
-import { HttpFile } from '../http/http';
+import { V1UserInfo } from '../models/V1UserInfo.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * SelfSubjectReviewStatus is filled by the kube-apiserver and sent back to a user.

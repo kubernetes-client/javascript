@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ClusterRole } from '../models/V1ClusterRole';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1ClusterRole } from '../models/V1ClusterRole.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ClusterRoleList is a collection of ClusterRoles

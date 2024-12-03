@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ControllerRevision } from '../models/V1ControllerRevision';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1ControllerRevision } from '../models/V1ControllerRevision.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ControllerRevisionList is a resource containing a list of ControllerRevision objects.

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { IntOrString } from '../../types';
-import { V1HTTPHeader } from '../models/V1HTTPHeader';
-import { HttpFile } from '../http/http';
+import { IntOrString } from '../../types.js';
+import { V1HTTPHeader } from '../models/V1HTTPHeader.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * HTTPGetAction describes an action based on HTTP Get requests.

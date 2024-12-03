@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { StorageV1TokenRequest } from '../models/StorageV1TokenRequest';
-import { HttpFile } from '../http/http';
+import { StorageV1TokenRequest } from '../models/StorageV1TokenRequest.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * CSIDriverSpec is the specification of a CSIDriver.

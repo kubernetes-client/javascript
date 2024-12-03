@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { V1ExecAction } from '../models/V1ExecAction';
-import { V1GRPCAction } from '../models/V1GRPCAction';
-import { V1HTTPGetAction } from '../models/V1HTTPGetAction';
-import { V1TCPSocketAction } from '../models/V1TCPSocketAction';
-import { HttpFile } from '../http/http';
+import { V1ExecAction } from '../models/V1ExecAction.js';
+import { V1GRPCAction } from '../models/V1GRPCAction.js';
+import { V1HTTPGetAction } from '../models/V1HTTPGetAction.js';
+import { V1TCPSocketAction } from '../models/V1TCPSocketAction.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Probe describes a health check to be performed against a container to determine whether it is alive or ready to receive traffic.

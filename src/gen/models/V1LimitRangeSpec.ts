@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1LimitRangeItem } from '../models/V1LimitRangeItem';
-import { HttpFile } from '../http/http';
+import { V1LimitRangeItem } from '../models/V1LimitRangeItem.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * LimitRangeSpec defines a min/max usage limit for resources that match on kind.

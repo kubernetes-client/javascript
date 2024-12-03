@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1Endpoints } from '../models/V1Endpoints';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1Endpoints } from '../models/V1Endpoints.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * EndpointsList is a list of endpoints.

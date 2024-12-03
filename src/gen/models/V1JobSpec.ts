@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelector } from '../models/V1LabelSelector';
-import { V1PodFailurePolicy } from '../models/V1PodFailurePolicy';
-import { V1PodTemplateSpec } from '../models/V1PodTemplateSpec';
-import { V1SuccessPolicy } from '../models/V1SuccessPolicy';
-import { HttpFile } from '../http/http';
+import { V1LabelSelector } from '../models/V1LabelSelector.js';
+import { V1PodFailurePolicy } from '../models/V1PodFailurePolicy.js';
+import { V1PodTemplateSpec } from '../models/V1PodTemplateSpec.js';
+import { V1SuccessPolicy } from '../models/V1SuccessPolicy.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * JobSpec describes how the job execution will look like.

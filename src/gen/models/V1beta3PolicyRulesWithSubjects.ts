@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1beta3NonResourcePolicyRule } from '../models/V1beta3NonResourcePolicyRule';
-import { V1beta3ResourcePolicyRule } from '../models/V1beta3ResourcePolicyRule';
-import { V1beta3Subject } from '../models/V1beta3Subject';
-import { HttpFile } from '../http/http';
+import { V1beta3NonResourcePolicyRule } from '../models/V1beta3NonResourcePolicyRule.js';
+import { V1beta3ResourcePolicyRule } from '../models/V1beta3ResourcePolicyRule.js';
+import { V1beta3Subject } from '../models/V1beta3Subject.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PolicyRulesWithSubjects prescribes a test that applies to a request to an apiserver. The test considers the subject making the request, the verb being requested, and the resource to be acted upon. This PolicyRulesWithSubjects matches a request if and only if both (a) at least one member of subjects matches the request and (b) at least one member of resourceRules or nonResourceRules matches the request.

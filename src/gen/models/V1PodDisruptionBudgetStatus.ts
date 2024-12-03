@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1Condition } from '../models/V1Condition';
-import { HttpFile } from '../http/http';
+import { V1Condition } from '../models/V1Condition.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PodDisruptionBudgetStatus represents information about the status of a PodDisruptionBudget. Status may trail the actual state of a system.

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1StatusCause } from '../models/V1StatusCause';
-import { HttpFile } from '../http/http';
+import { V1StatusCause } from '../models/V1StatusCause.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * StatusDetails is a set of additional properties that MAY be set by the server to provide additional information about a response. The Reason field of a Status object defines what attributes will be set. Clients must ignore fields that do not match the defined type of each attribute, and should assume that any attribute may be empty, invalid, or under defined.

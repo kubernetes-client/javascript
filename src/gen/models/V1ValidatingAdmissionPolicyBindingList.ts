@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1ValidatingAdmissionPolicyBinding } from '../models/V1ValidatingAdmissionPolicyBinding';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1ValidatingAdmissionPolicyBinding } from '../models/V1ValidatingAdmissionPolicyBinding.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ValidatingAdmissionPolicyBindingList is a list of ValidatingAdmissionPolicyBinding.

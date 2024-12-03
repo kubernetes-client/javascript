@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1VolumeError } from '../models/V1VolumeError';
-import { HttpFile } from '../http/http';
+import { V1VolumeError } from '../models/V1VolumeError.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * VolumeAttachmentStatus is the status of a VolumeAttachment request.

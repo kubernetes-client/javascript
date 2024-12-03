@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1Toleration } from '../models/V1Toleration';
-import { HttpFile } from '../http/http';
+import { V1Toleration } from '../models/V1Toleration.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Scheduling specifies the scheduling constraints for nodes supporting a RuntimeClass.

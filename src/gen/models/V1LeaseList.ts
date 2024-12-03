@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1Lease } from '../models/V1Lease';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1Lease } from '../models/V1Lease.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * LeaseList is a list of Lease objects.

@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { V1CustomResourceColumnDefinition } from '../models/V1CustomResourceColumnDefinition';
-import { V1CustomResourceSubresources } from '../models/V1CustomResourceSubresources';
-import { V1CustomResourceValidation } from '../models/V1CustomResourceValidation';
-import { V1SelectableField } from '../models/V1SelectableField';
-import { HttpFile } from '../http/http';
+import { V1CustomResourceColumnDefinition } from '../models/V1CustomResourceColumnDefinition.js';
+import { V1CustomResourceSubresources } from '../models/V1CustomResourceSubresources.js';
+import { V1CustomResourceValidation } from '../models/V1CustomResourceValidation.js';
+import { V1SelectableField } from '../models/V1SelectableField.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * CustomResourceDefinitionVersion describes a version for CRD.

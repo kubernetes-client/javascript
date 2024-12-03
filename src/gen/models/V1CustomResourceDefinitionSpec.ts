@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1CustomResourceConversion } from '../models/V1CustomResourceConversion';
-import { V1CustomResourceDefinitionNames } from '../models/V1CustomResourceDefinitionNames';
-import { V1CustomResourceDefinitionVersion } from '../models/V1CustomResourceDefinitionVersion';
-import { HttpFile } from '../http/http';
+import { V1CustomResourceConversion } from '../models/V1CustomResourceConversion.js';
+import { V1CustomResourceDefinitionNames } from '../models/V1CustomResourceDefinitionNames.js';
+import { V1CustomResourceDefinitionVersion } from '../models/V1CustomResourceDefinitionVersion.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * CustomResourceDefinitionSpec describes how a user wants their resource to appear

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1RollingUpdateDeployment } from '../models/V1RollingUpdateDeployment';
-import { HttpFile } from '../http/http';
+import { V1RollingUpdateDeployment } from '../models/V1RollingUpdateDeployment.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * DeploymentStrategy describes how to replace existing pods with new ones.

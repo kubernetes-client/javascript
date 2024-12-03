@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1DaemonSetSpec } from '../models/V1DaemonSetSpec';
-import { V1DaemonSetStatus } from '../models/V1DaemonSetStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { HttpFile } from '../http/http';
+import { V1DaemonSetSpec } from '../models/V1DaemonSetSpec.js';
+import { V1DaemonSetStatus } from '../models/V1DaemonSetStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * DaemonSet represents the configuration of a daemon set.

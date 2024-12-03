@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1JobSpec } from '../models/V1JobSpec';
-import { V1JobStatus } from '../models/V1JobStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { HttpFile } from '../http/http';
+import { V1JobSpec } from '../models/V1JobSpec.js';
+import { V1JobStatus } from '../models/V1JobStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Job represents the configuration of a single job.

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ExternalDocumentation } from '../models/V1ExternalDocumentation';
-import { V1ValidationRule } from '../models/V1ValidationRule';
-import { HttpFile } from '../http/http';
+import { V1ExternalDocumentation } from '../models/V1ExternalDocumentation.js';
+import { V1ValidationRule } from '../models/V1ValidationRule.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * JSONSchemaProps is a JSON-Schema following Specification Draft 4 (http://json-schema.org/).

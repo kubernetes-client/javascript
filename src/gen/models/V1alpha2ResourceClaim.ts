@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1alpha2ResourceClaimSpec } from '../models/V1alpha2ResourceClaimSpec';
-import { V1alpha2ResourceClaimStatus } from '../models/V1alpha2ResourceClaimStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1alpha2ResourceClaimSpec } from '../models/V1alpha2ResourceClaimSpec.js';
+import { V1alpha2ResourceClaimStatus } from '../models/V1alpha2ResourceClaimStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ResourceClaim describes which resources are needed by a resource consumer. Its status tracks whether the resource has been allocated and what the resulting attributes are.  This is an alpha type and requires enabling the DynamicResourceAllocation feature gate.

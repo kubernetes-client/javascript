@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1SuccessPolicyRule } from '../models/V1SuccessPolicyRule';
-import { HttpFile } from '../http/http';
+import { V1SuccessPolicyRule } from '../models/V1SuccessPolicyRule.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * SuccessPolicy describes when a Job can be declared as succeeded based on the success of some indexes.

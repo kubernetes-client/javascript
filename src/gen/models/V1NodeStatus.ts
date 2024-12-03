@@ -10,15 +10,15 @@
  * Do not edit the class manually.
  */
 
-import { V1AttachedVolume } from '../models/V1AttachedVolume';
-import { V1ContainerImage } from '../models/V1ContainerImage';
-import { V1NodeAddress } from '../models/V1NodeAddress';
-import { V1NodeCondition } from '../models/V1NodeCondition';
-import { V1NodeConfigStatus } from '../models/V1NodeConfigStatus';
-import { V1NodeDaemonEndpoints } from '../models/V1NodeDaemonEndpoints';
-import { V1NodeRuntimeHandler } from '../models/V1NodeRuntimeHandler';
-import { V1NodeSystemInfo } from '../models/V1NodeSystemInfo';
-import { HttpFile } from '../http/http';
+import { V1AttachedVolume } from '../models/V1AttachedVolume.js';
+import { V1ContainerImage } from '../models/V1ContainerImage.js';
+import { V1NodeAddress } from '../models/V1NodeAddress.js';
+import { V1NodeCondition } from '../models/V1NodeCondition.js';
+import { V1NodeConfigStatus } from '../models/V1NodeConfigStatus.js';
+import { V1NodeDaemonEndpoints } from '../models/V1NodeDaemonEndpoints.js';
+import { V1NodeRuntimeHandler } from '../models/V1NodeRuntimeHandler.js';
+import { V1NodeSystemInfo } from '../models/V1NodeSystemInfo.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * NodeStatus is information about the current status of a node.

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1PodAffinityTerm } from '../models/V1PodAffinityTerm';
-import { HttpFile } from '../http/http';
+import { V1PodAffinityTerm } from '../models/V1PodAffinityTerm.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * The weights of all of the matched WeightedPodAffinityTerm fields are added per-node to find the most preferred node(s)

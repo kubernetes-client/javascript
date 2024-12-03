@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1PodSpec } from '../models/V1PodSpec';
-import { V1PodStatus } from '../models/V1PodStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1PodSpec } from '../models/V1PodSpec.js';
+import { V1PodStatus } from '../models/V1PodStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Pod is a collection of containers that can run on a host. This resource is created by clients and scheduled onto hosts.

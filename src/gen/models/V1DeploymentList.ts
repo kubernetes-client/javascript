@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1Deployment } from '../models/V1Deployment';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1Deployment } from '../models/V1Deployment.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * DeploymentList is a list of Deployments.

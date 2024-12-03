@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1PodAffinityTerm } from '../models/V1PodAffinityTerm';
-import { V1WeightedPodAffinityTerm } from '../models/V1WeightedPodAffinityTerm';
-import { HttpFile } from '../http/http';
+import { V1PodAffinityTerm } from '../models/V1PodAffinityTerm.js';
+import { V1WeightedPodAffinityTerm } from '../models/V1WeightedPodAffinityTerm.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Pod affinity is a group of inter pod affinity scheduling rules.

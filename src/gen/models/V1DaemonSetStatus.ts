@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1DaemonSetCondition } from '../models/V1DaemonSetCondition';
-import { HttpFile } from '../http/http';
+import { V1DaemonSetCondition } from '../models/V1DaemonSetCondition.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * DaemonSetStatus represents the current status of a daemon set.

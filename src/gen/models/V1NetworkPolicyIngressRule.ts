@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1NetworkPolicyPeer } from '../models/V1NetworkPolicyPeer';
-import { V1NetworkPolicyPort } from '../models/V1NetworkPolicyPort';
-import { HttpFile } from '../http/http';
+import { V1NetworkPolicyPeer } from '../models/V1NetworkPolicyPeer.js';
+import { V1NetworkPolicyPort } from '../models/V1NetworkPolicyPort.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * NetworkPolicyIngressRule describes a particular set of traffic that is allowed to the pods matched by a NetworkPolicySpec\'s podSelector. The traffic must match both ports and from.

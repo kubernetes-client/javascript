@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { V2ContainerResourceMetricSource } from '../models/V2ContainerResourceMetricSource';
-import { V2ExternalMetricSource } from '../models/V2ExternalMetricSource';
-import { V2ObjectMetricSource } from '../models/V2ObjectMetricSource';
-import { V2PodsMetricSource } from '../models/V2PodsMetricSource';
-import { V2ResourceMetricSource } from '../models/V2ResourceMetricSource';
-import { HttpFile } from '../http/http';
+import { V2ContainerResourceMetricSource } from '../models/V2ContainerResourceMetricSource.js';
+import { V2ExternalMetricSource } from '../models/V2ExternalMetricSource.js';
+import { V2ObjectMetricSource } from '../models/V2ObjectMetricSource.js';
+import { V2PodsMetricSource } from '../models/V2PodsMetricSource.js';
+import { V2ResourceMetricSource } from '../models/V2ResourceMetricSource.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * MetricSpec specifies how to scale based on a single metric (only `type` and one other matching field should be set at once).

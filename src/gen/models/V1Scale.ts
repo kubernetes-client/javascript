@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1ScaleSpec } from '../models/V1ScaleSpec';
-import { V1ScaleStatus } from '../models/V1ScaleStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1ScaleSpec } from '../models/V1ScaleSpec.js';
+import { V1ScaleStatus } from '../models/V1ScaleStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Scale represents a scaling request for a resource.

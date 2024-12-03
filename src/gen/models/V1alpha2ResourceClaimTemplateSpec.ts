@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1alpha2ResourceClaimSpec } from '../models/V1alpha2ResourceClaimSpec';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1alpha2ResourceClaimSpec } from '../models/V1alpha2ResourceClaimSpec.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ResourceClaimTemplateSpec contains the metadata and fields for a ResourceClaim.

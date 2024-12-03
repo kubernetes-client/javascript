@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { HttpFile } from '../http/http';
+import { HttpFile } from '../http/http.js';
 
 /**
 * An API server instance reports the version it can decode and the version it encodes objects to when persisting objects in the backend.

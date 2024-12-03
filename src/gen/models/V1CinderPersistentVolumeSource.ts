@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1SecretReference } from '../models/V1SecretReference';
-import { HttpFile } from '../http/http';
+import { V1SecretReference } from '../models/V1SecretReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Represents a cinder volume resource in Openstack. A Cinder volume must exist before mounting to a container. The volume must also be in the same region as the kubelet. Cinder volumes support ownership management and SELinux relabeling.

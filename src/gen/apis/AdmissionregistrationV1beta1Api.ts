@@ -1,22 +1,22 @@
 // TODO: better import syntax?
-import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
-import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
+import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi.js';
+import {Configuration} from '../configuration.js';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http.js';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
-import {ObjectSerializer} from '../models/ObjectSerializer';
-import {ApiException} from './exception';
-import {canConsumeForm, isCodeInRange} from '../util';
-import {SecurityAuthentication} from '../auth/auth';
+import {ObjectSerializer} from '../models/ObjectSerializer.js';
+import {ApiException} from './exception.js';
+import {canConsumeForm, isCodeInRange} from '../util.js';
+import {SecurityAuthentication} from '../auth/auth.js';
 
 
-import { V1APIResourceList } from '../models/V1APIResourceList';
-import { V1DeleteOptions } from '../models/V1DeleteOptions';
-import { V1Status } from '../models/V1Status';
-import { V1beta1ValidatingAdmissionPolicy } from '../models/V1beta1ValidatingAdmissionPolicy';
-import { V1beta1ValidatingAdmissionPolicyBinding } from '../models/V1beta1ValidatingAdmissionPolicyBinding';
-import { V1beta1ValidatingAdmissionPolicyBindingList } from '../models/V1beta1ValidatingAdmissionPolicyBindingList';
-import { V1beta1ValidatingAdmissionPolicyList } from '../models/V1beta1ValidatingAdmissionPolicyList';
+import { V1APIResourceList } from '../models/V1APIResourceList.js';
+import { V1DeleteOptions } from '../models/V1DeleteOptions.js';
+import { V1Status } from '../models/V1Status.js';
+import { V1beta1ValidatingAdmissionPolicy } from '../models/V1beta1ValidatingAdmissionPolicy.js';
+import { V1beta1ValidatingAdmissionPolicyBinding } from '../models/V1beta1ValidatingAdmissionPolicyBinding.js';
+import { V1beta1ValidatingAdmissionPolicyBindingList } from '../models/V1beta1ValidatingAdmissionPolicyBindingList.js';
+import { V1beta1ValidatingAdmissionPolicyList } from '../models/V1beta1ValidatingAdmissionPolicyList.js';
 
 /**
  * no description

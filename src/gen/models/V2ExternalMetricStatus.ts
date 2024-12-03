@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V2MetricIdentifier } from '../models/V2MetricIdentifier';
-import { V2MetricValueStatus } from '../models/V2MetricValueStatus';
-import { HttpFile } from '../http/http';
+import { V2MetricIdentifier } from '../models/V2MetricIdentifier.js';
+import { V2MetricValueStatus } from '../models/V2MetricValueStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ExternalMetricStatus indicates the current value of a global metric not associated with any Kubernetes object.

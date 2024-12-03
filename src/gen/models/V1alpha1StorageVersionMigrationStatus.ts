@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1alpha1MigrationCondition } from '../models/V1alpha1MigrationCondition';
-import { HttpFile } from '../http/http';
+import { V1alpha1MigrationCondition } from '../models/V1alpha1MigrationCondition.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Status of the storage version migration.

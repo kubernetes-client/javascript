@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1PolicyRule } from '../models/V1PolicyRule';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1PolicyRule } from '../models/V1PolicyRule.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Role is a namespaced, logical grouping of PolicyRules that can be referenced as a unit by a RoleBinding.

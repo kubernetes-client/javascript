@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ReplicationControllerCondition } from '../models/V1ReplicationControllerCondition';
-import { HttpFile } from '../http/http';
+import { V1ReplicationControllerCondition } from '../models/V1ReplicationControllerCondition.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ReplicationControllerStatus represents the current status of a replication controller.

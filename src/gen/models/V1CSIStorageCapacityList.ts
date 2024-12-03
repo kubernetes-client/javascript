@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1CSIStorageCapacity } from '../models/V1CSIStorageCapacity';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1CSIStorageCapacity } from '../models/V1CSIStorageCapacity.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * CSIStorageCapacityList is a collection of CSIStorageCapacity objects.

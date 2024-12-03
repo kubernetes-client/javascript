@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelector } from '../models/V1LabelSelector';
-import { V1NetworkPolicyEgressRule } from '../models/V1NetworkPolicyEgressRule';
-import { V1NetworkPolicyIngressRule } from '../models/V1NetworkPolicyIngressRule';
-import { HttpFile } from '../http/http';
+import { V1LabelSelector } from '../models/V1LabelSelector.js';
+import { V1NetworkPolicyEgressRule } from '../models/V1NetworkPolicyEgressRule.js';
+import { V1NetworkPolicyIngressRule } from '../models/V1NetworkPolicyIngressRule.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * NetworkPolicySpec provides the specification of a NetworkPolicy

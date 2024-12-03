@@ -3,9 +3,9 @@ import  FormData from "form-data";
 import { URL, URLSearchParams } from 'url';
 import * as http from 'http';
 import * as https from 'https';
-import { Observable, from } from '../rxjsStub';
+import { Observable, from } from '../rxjsStub.js';
 
-export * from './isomorphic-fetch';
+export * from './isomorphic-fetch.js';
 
 /**
  * Represents an HTTP method.

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1KeyToPath } from '../models/V1KeyToPath';
-import { HttpFile } from '../http/http';
+import { V1KeyToPath } from '../models/V1KeyToPath.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Adapts a ConfigMap into a volume.  The contents of the target ConfigMap\'s Data field will be presented in a volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths. ConfigMap volumes support ownership management and SELinux relabeling.

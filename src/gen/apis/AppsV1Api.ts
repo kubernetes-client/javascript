@@ -1,29 +1,29 @@
 // TODO: better import syntax?
-import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
-import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
+import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi.js';
+import {Configuration} from '../configuration.js';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http.js';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
-import {ObjectSerializer} from '../models/ObjectSerializer';
-import {ApiException} from './exception';
-import {canConsumeForm, isCodeInRange} from '../util';
-import {SecurityAuthentication} from '../auth/auth';
+import {ObjectSerializer} from '../models/ObjectSerializer.js';
+import {ApiException} from './exception.js';
+import {canConsumeForm, isCodeInRange} from '../util.js';
+import {SecurityAuthentication} from '../auth/auth.js';
 
 
-import { V1APIResourceList } from '../models/V1APIResourceList';
-import { V1ControllerRevision } from '../models/V1ControllerRevision';
-import { V1ControllerRevisionList } from '../models/V1ControllerRevisionList';
-import { V1DaemonSet } from '../models/V1DaemonSet';
-import { V1DaemonSetList } from '../models/V1DaemonSetList';
-import { V1DeleteOptions } from '../models/V1DeleteOptions';
-import { V1Deployment } from '../models/V1Deployment';
-import { V1DeploymentList } from '../models/V1DeploymentList';
-import { V1ReplicaSet } from '../models/V1ReplicaSet';
-import { V1ReplicaSetList } from '../models/V1ReplicaSetList';
-import { V1Scale } from '../models/V1Scale';
-import { V1StatefulSet } from '../models/V1StatefulSet';
-import { V1StatefulSetList } from '../models/V1StatefulSetList';
-import { V1Status } from '../models/V1Status';
+import { V1APIResourceList } from '../models/V1APIResourceList.js';
+import { V1ControllerRevision } from '../models/V1ControllerRevision.js';
+import { V1ControllerRevisionList } from '../models/V1ControllerRevisionList.js';
+import { V1DaemonSet } from '../models/V1DaemonSet.js';
+import { V1DaemonSetList } from '../models/V1DaemonSetList.js';
+import { V1DeleteOptions } from '../models/V1DeleteOptions.js';
+import { V1Deployment } from '../models/V1Deployment.js';
+import { V1DeploymentList } from '../models/V1DeploymentList.js';
+import { V1ReplicaSet } from '../models/V1ReplicaSet.js';
+import { V1ReplicaSetList } from '../models/V1ReplicaSetList.js';
+import { V1Scale } from '../models/V1Scale.js';
+import { V1StatefulSet } from '../models/V1StatefulSet.js';
+import { V1StatefulSetList } from '../models/V1StatefulSetList.js';
+import { V1Status } from '../models/V1Status.js';
 
 /**
  * no description

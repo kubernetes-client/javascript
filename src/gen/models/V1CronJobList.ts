@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1CronJob } from '../models/V1CronJob';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1CronJob } from '../models/V1CronJob.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * CronJobList is a collection of cron jobs.

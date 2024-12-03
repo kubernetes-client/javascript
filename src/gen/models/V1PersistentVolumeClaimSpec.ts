@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelector } from '../models/V1LabelSelector';
-import { V1TypedLocalObjectReference } from '../models/V1TypedLocalObjectReference';
-import { V1TypedObjectReference } from '../models/V1TypedObjectReference';
-import { V1VolumeResourceRequirements } from '../models/V1VolumeResourceRequirements';
-import { HttpFile } from '../http/http';
+import { V1LabelSelector } from '../models/V1LabelSelector.js';
+import { V1TypedLocalObjectReference } from '../models/V1TypedLocalObjectReference.js';
+import { V1TypedObjectReference } from '../models/V1TypedObjectReference.js';
+import { V1VolumeResourceRequirements } from '../models/V1VolumeResourceRequirements.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PersistentVolumeClaimSpec describes the common attributes of storage devices and allows a Source for provider-specific attributes

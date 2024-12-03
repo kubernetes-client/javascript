@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1beta3FlowSchemaCondition } from '../models/V1beta3FlowSchemaCondition';
-import { HttpFile } from '../http/http';
+import { V1beta3FlowSchemaCondition } from '../models/V1beta3FlowSchemaCondition.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * FlowSchemaStatus represents the current state of a FlowSchema.

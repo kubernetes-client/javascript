@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1JobTemplateSpec } from '../models/V1JobTemplateSpec';
-import { HttpFile } from '../http/http';
+import { V1JobTemplateSpec } from '../models/V1JobTemplateSpec.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * CronJobSpec describes how the job execution will look like and when it will actually run.

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1alpha2PodSchedulingContext } from '../models/V1alpha2PodSchedulingContext';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1alpha2PodSchedulingContext } from '../models/V1alpha2PodSchedulingContext.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PodSchedulingContextList is a collection of Pod scheduling objects.

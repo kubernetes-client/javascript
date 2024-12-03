@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1SelfSubjectAccessReviewSpec } from '../models/V1SelfSubjectAccessReviewSpec';
-import { V1SubjectAccessReviewStatus } from '../models/V1SubjectAccessReviewStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1SelfSubjectAccessReviewSpec } from '../models/V1SelfSubjectAccessReviewSpec.js';
+import { V1SubjectAccessReviewStatus } from '../models/V1SubjectAccessReviewStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * SelfSubjectAccessReview checks whether or the current user can perform an action.  Not filling in a spec.namespace means \"in all namespaces\".  Self is a special case, because users should always be able to check whether they can perform an action

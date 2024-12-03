@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1EndpointConditions } from '../models/V1EndpointConditions';
-import { V1EndpointHints } from '../models/V1EndpointHints';
-import { V1ObjectReference } from '../models/V1ObjectReference';
-import { HttpFile } from '../http/http';
+import { V1EndpointConditions } from '../models/V1EndpointConditions.js';
+import { V1EndpointHints } from '../models/V1EndpointHints.js';
+import { V1ObjectReference } from '../models/V1ObjectReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Endpoint represents a single logical \"backend\" implementing a service.

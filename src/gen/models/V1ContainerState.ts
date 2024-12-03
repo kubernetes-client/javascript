@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ContainerStateRunning } from '../models/V1ContainerStateRunning';
-import { V1ContainerStateTerminated } from '../models/V1ContainerStateTerminated';
-import { V1ContainerStateWaiting } from '../models/V1ContainerStateWaiting';
-import { HttpFile } from '../http/http';
+import { V1ContainerStateRunning } from '../models/V1ContainerStateRunning.js';
+import { V1ContainerStateTerminated } from '../models/V1ContainerStateTerminated.js';
+import { V1ContainerStateWaiting } from '../models/V1ContainerStateWaiting.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ContainerState holds a possible state of container. Only one of its members may be specified. If none of them is specified, the default one is ContainerStateWaiting.

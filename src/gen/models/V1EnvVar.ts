@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1EnvVarSource } from '../models/V1EnvVarSource';
-import { HttpFile } from '../http/http';
+import { V1EnvVarSource } from '../models/V1EnvVarSource.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * EnvVar represents an environment variable present in a Container.

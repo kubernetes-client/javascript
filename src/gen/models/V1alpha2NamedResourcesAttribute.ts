@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1alpha2NamedResourcesIntSlice } from '../models/V1alpha2NamedResourcesIntSlice';
-import { V1alpha2NamedResourcesStringSlice } from '../models/V1alpha2NamedResourcesStringSlice';
-import { HttpFile } from '../http/http';
+import { V1alpha2NamedResourcesIntSlice } from '../models/V1alpha2NamedResourcesIntSlice.js';
+import { V1alpha2NamedResourcesStringSlice } from '../models/V1alpha2NamedResourcesStringSlice.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * NamedResourcesAttribute is a combination of an attribute name and its value.

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1RoleBinding } from '../models/V1RoleBinding';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1RoleBinding } from '../models/V1RoleBinding.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * RoleBindingList is a collection of RoleBindings

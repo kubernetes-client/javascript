@@ -10,13 +10,13 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelector } from '../models/V1LabelSelector';
-import { V1PersistentVolumeClaim } from '../models/V1PersistentVolumeClaim';
-import { V1PodTemplateSpec } from '../models/V1PodTemplateSpec';
-import { V1StatefulSetOrdinals } from '../models/V1StatefulSetOrdinals';
-import { V1StatefulSetPersistentVolumeClaimRetentionPolicy } from '../models/V1StatefulSetPersistentVolumeClaimRetentionPolicy';
-import { V1StatefulSetUpdateStrategy } from '../models/V1StatefulSetUpdateStrategy';
-import { HttpFile } from '../http/http';
+import { V1LabelSelector } from '../models/V1LabelSelector.js';
+import { V1PersistentVolumeClaim } from '../models/V1PersistentVolumeClaim.js';
+import { V1PodTemplateSpec } from '../models/V1PodTemplateSpec.js';
+import { V1StatefulSetOrdinals } from '../models/V1StatefulSetOrdinals.js';
+import { V1StatefulSetPersistentVolumeClaimRetentionPolicy } from '../models/V1StatefulSetPersistentVolumeClaimRetentionPolicy.js';
+import { V1StatefulSetUpdateStrategy } from '../models/V1StatefulSetUpdateStrategy.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * A StatefulSetSpec is the specification of a StatefulSet.

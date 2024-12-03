@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1DaemonEndpoint } from '../models/V1DaemonEndpoint';
-import { HttpFile } from '../http/http';
+import { V1DaemonEndpoint } from '../models/V1DaemonEndpoint.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * NodeDaemonEndpoints lists ports opened by daemons running on the Node.

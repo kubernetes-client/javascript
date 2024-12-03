@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeSelectorRequirement } from '../models/V1NodeSelectorRequirement';
-import { HttpFile } from '../http/http';
+import { V1NodeSelectorRequirement } from '../models/V1NodeSelectorRequirement.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * A null or empty node selector term matches no objects. The requirements of them are ANDed. The TopologySelectorTerm type implements a subset of the NodeSelectorTerm.

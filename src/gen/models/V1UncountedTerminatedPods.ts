@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { HttpFile } from '../http/http';
+import { HttpFile } from '../http/http.js';
 
 /**
 * UncountedTerminatedPods holds UIDs of Pods that have terminated but haven\'t been accounted in Job status counters.

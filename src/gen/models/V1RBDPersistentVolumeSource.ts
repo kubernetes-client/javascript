@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1SecretReference } from '../models/V1SecretReference';
-import { HttpFile } from '../http/http';
+import { V1SecretReference } from '../models/V1SecretReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Represents a Rados Block Device mount that lasts the lifetime of a pod. RBD volumes support ownership management and SELinux relabeling.

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1RuntimeClass } from '../models/V1RuntimeClass';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1RuntimeClass } from '../models/V1RuntimeClass.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * RuntimeClassList is a list of RuntimeClass objects.

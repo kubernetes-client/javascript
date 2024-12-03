@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1alpha1StorageVersionStatus } from '../models/V1alpha1StorageVersionStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1alpha1StorageVersionStatus } from '../models/V1alpha1StorageVersionStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Storage version of a specific resource.

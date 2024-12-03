@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { V2ContainerResourceMetricStatus } from '../models/V2ContainerResourceMetricStatus';
-import { V2ExternalMetricStatus } from '../models/V2ExternalMetricStatus';
-import { V2ObjectMetricStatus } from '../models/V2ObjectMetricStatus';
-import { V2PodsMetricStatus } from '../models/V2PodsMetricStatus';
-import { V2ResourceMetricStatus } from '../models/V2ResourceMetricStatus';
-import { HttpFile } from '../http/http';
+import { V2ContainerResourceMetricStatus } from '../models/V2ContainerResourceMetricStatus.js';
+import { V2ExternalMetricStatus } from '../models/V2ExternalMetricStatus.js';
+import { V2ObjectMetricStatus } from '../models/V2ObjectMetricStatus.js';
+import { V2PodsMetricStatus } from '../models/V2PodsMetricStatus.js';
+import { V2ResourceMetricStatus } from '../models/V2ResourceMetricStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * MetricStatus describes the last-read state of a single metric.

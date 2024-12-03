@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { V1ConfigMapKeySelector } from '../models/V1ConfigMapKeySelector';
-import { V1ObjectFieldSelector } from '../models/V1ObjectFieldSelector';
-import { V1ResourceFieldSelector } from '../models/V1ResourceFieldSelector';
-import { V1SecretKeySelector } from '../models/V1SecretKeySelector';
-import { HttpFile } from '../http/http';
+import { V1ConfigMapKeySelector } from '../models/V1ConfigMapKeySelector.js';
+import { V1ObjectFieldSelector } from '../models/V1ObjectFieldSelector.js';
+import { V1ResourceFieldSelector } from '../models/V1ResourceFieldSelector.js';
+import { V1SecretKeySelector } from '../models/V1SecretKeySelector.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * EnvVarSource represents a source for the value of an EnvVar.

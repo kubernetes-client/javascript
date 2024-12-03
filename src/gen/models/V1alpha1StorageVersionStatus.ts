@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1alpha1ServerStorageVersion } from '../models/V1alpha1ServerStorageVersion';
-import { V1alpha1StorageVersionCondition } from '../models/V1alpha1StorageVersionCondition';
-import { HttpFile } from '../http/http';
+import { V1alpha1ServerStorageVersion } from '../models/V1alpha1ServerStorageVersion.js';
+import { V1alpha1StorageVersionCondition } from '../models/V1alpha1StorageVersionCondition.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * API server instances report the versions they can decode and the version they encode objects to when persisting objects in the backend.

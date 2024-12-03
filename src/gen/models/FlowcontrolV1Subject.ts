@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1GroupSubject } from '../models/V1GroupSubject';
-import { V1ServiceAccountSubject } from '../models/V1ServiceAccountSubject';
-import { V1UserSubject } from '../models/V1UserSubject';
-import { HttpFile } from '../http/http';
+import { V1GroupSubject } from '../models/V1GroupSubject.js';
+import { V1ServiceAccountSubject } from '../models/V1ServiceAccountSubject.js';
+import { V1UserSubject } from '../models/V1UserSubject.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Subject matches the originator of a request, as identified by the request authentication system. There are three ways of matching an originator; by user, group, or service account.

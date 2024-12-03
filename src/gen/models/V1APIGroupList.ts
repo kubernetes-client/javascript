@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1APIGroup } from '../models/V1APIGroup';
-import { HttpFile } from '../http/http';
+import { V1APIGroup } from '../models/V1APIGroup.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * APIGroupList is a list of APIGroup, to allow clients to discover the API at /apis.

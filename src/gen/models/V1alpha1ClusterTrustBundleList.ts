@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1alpha1ClusterTrustBundle } from '../models/V1alpha1ClusterTrustBundle';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1alpha1ClusterTrustBundle } from '../models/V1alpha1ClusterTrustBundle.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ClusterTrustBundleList is a collection of ClusterTrustBundle objects

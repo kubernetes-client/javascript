@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1MicroTime } from '../../types';
-import { HttpFile } from '../http/http';
+import { V1MicroTime } from '../../types.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * EventSeries contain information on series of events, i.e. thing that was/is happening continuously for some time.

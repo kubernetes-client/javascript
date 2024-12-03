@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V2MetricIdentifier } from '../models/V2MetricIdentifier';
-import { V2MetricTarget } from '../models/V2MetricTarget';
-import { HttpFile } from '../http/http';
+import { V2MetricIdentifier } from '../models/V2MetricIdentifier.js';
+import { V2MetricTarget } from '../models/V2MetricTarget.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PodsMetricSource indicates how to scale on a metric describing each pod in the current scale target (for example, transactions-processed-per-second). The values will be averaged together before being compared to the target value.

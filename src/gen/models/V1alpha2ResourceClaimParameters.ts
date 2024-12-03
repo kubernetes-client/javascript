@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1alpha2DriverRequests } from '../models/V1alpha2DriverRequests';
-import { V1alpha2ResourceClaimParametersReference } from '../models/V1alpha2ResourceClaimParametersReference';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1alpha2DriverRequests } from '../models/V1alpha2DriverRequests.js';
+import { V1alpha2ResourceClaimParametersReference } from '../models/V1alpha2ResourceClaimParametersReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ResourceClaimParameters defines resource requests for a ResourceClaim in an in-tree format understood by Kubernetes.

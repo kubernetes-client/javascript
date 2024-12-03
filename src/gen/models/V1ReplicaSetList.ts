@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1ReplicaSet } from '../models/V1ReplicaSet';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1ReplicaSet } from '../models/V1ReplicaSet.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ReplicaSetList is a collection of ReplicaSets.

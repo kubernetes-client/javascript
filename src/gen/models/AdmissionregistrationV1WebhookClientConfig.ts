@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { AdmissionregistrationV1ServiceReference } from '../models/AdmissionregistrationV1ServiceReference';
-import { HttpFile } from '../http/http';
+import { AdmissionregistrationV1ServiceReference } from '../models/AdmissionregistrationV1ServiceReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * WebhookClientConfig contains the information to make a TLS connection with the webhook

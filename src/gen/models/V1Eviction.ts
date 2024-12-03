@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1DeleteOptions } from '../models/V1DeleteOptions';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { HttpFile } from '../http/http';
+import { V1DeleteOptions } from '../models/V1DeleteOptions.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Eviction evicts a pod from its node subject to certain policies and safety constraints. This is a subresource of Pod.  A request to cause such an eviction is created by POSTing to .../pods/<pod name>/evictions.

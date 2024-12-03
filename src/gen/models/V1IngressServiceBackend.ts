@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ServiceBackendPort } from '../models/V1ServiceBackendPort';
-import { HttpFile } from '../http/http';
+import { V1ServiceBackendPort } from '../models/V1ServiceBackendPort.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * IngressServiceBackend references a Kubernetes Service as a Backend.

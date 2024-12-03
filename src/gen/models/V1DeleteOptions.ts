@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1Preconditions } from '../models/V1Preconditions';
-import { HttpFile } from '../http/http';
+import { V1Preconditions } from '../models/V1Preconditions.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * DeleteOptions may be provided when deleting an API object.

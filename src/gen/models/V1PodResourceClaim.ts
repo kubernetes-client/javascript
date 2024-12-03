@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ClaimSource } from '../models/V1ClaimSource';
-import { HttpFile } from '../http/http';
+import { V1ClaimSource } from '../models/V1ClaimSource.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PodResourceClaim references exactly one ResourceClaim through a ClaimSource. It adds a name to it that uniquely identifies the ResourceClaim inside the Pod. Containers that need access to the ResourceClaim reference it with this name.

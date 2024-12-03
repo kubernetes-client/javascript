@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V2MetricValueStatus } from '../models/V2MetricValueStatus';
-import { HttpFile } from '../http/http';
+import { V2MetricValueStatus } from '../models/V2MetricValueStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ContainerResourceMetricStatus indicates the current value of a resource metric known to Kubernetes, as specified in requests and limits, describing a single container in each pod in the current scale target (e.g. CPU or memory).  Such metrics are built in to Kubernetes, and have special scaling options on top of those available to normal per-pod metrics using the \"pods\" source.

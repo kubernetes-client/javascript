@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1ReplicationController } from '../models/V1ReplicationController';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1ReplicationController } from '../models/V1ReplicationController.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ReplicationControllerList is a collection of replication controllers.

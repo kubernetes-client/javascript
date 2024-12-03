@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1IngressBackend } from '../models/V1IngressBackend';
-import { V1IngressRule } from '../models/V1IngressRule';
-import { V1IngressTLS } from '../models/V1IngressTLS';
-import { HttpFile } from '../http/http';
+import { V1IngressBackend } from '../models/V1IngressBackend.js';
+import { V1IngressRule } from '../models/V1IngressRule.js';
+import { V1IngressTLS } from '../models/V1IngressTLS.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * IngressSpec describes the Ingress the user wishes to exist.

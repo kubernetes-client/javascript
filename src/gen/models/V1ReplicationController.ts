@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1ReplicationControllerSpec } from '../models/V1ReplicationControllerSpec';
-import { V1ReplicationControllerStatus } from '../models/V1ReplicationControllerStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1ReplicationControllerSpec } from '../models/V1ReplicationControllerSpec.js';
+import { V1ReplicationControllerStatus } from '../models/V1ReplicationControllerStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ReplicationController represents the configuration of a replication controller.

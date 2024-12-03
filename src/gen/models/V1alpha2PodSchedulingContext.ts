@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1alpha2PodSchedulingContextSpec } from '../models/V1alpha2PodSchedulingContextSpec';
-import { V1alpha2PodSchedulingContextStatus } from '../models/V1alpha2PodSchedulingContextStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1alpha2PodSchedulingContextSpec } from '../models/V1alpha2PodSchedulingContextSpec.js';
+import { V1alpha2PodSchedulingContextStatus } from '../models/V1alpha2PodSchedulingContextStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PodSchedulingContext objects hold information that is needed to schedule a Pod with ResourceClaims that use \"WaitForFirstConsumer\" allocation mode.  This is an alpha type and requires enabling the DynamicResourceAllocation feature gate.

@@ -10,31 +10,31 @@
  * Do not edit the class manually.
  */
 
-import { V1AWSElasticBlockStoreVolumeSource } from '../models/V1AWSElasticBlockStoreVolumeSource';
-import { V1AzureDiskVolumeSource } from '../models/V1AzureDiskVolumeSource';
-import { V1AzureFilePersistentVolumeSource } from '../models/V1AzureFilePersistentVolumeSource';
-import { V1CSIPersistentVolumeSource } from '../models/V1CSIPersistentVolumeSource';
-import { V1CephFSPersistentVolumeSource } from '../models/V1CephFSPersistentVolumeSource';
-import { V1CinderPersistentVolumeSource } from '../models/V1CinderPersistentVolumeSource';
-import { V1FCVolumeSource } from '../models/V1FCVolumeSource';
-import { V1FlexPersistentVolumeSource } from '../models/V1FlexPersistentVolumeSource';
-import { V1FlockerVolumeSource } from '../models/V1FlockerVolumeSource';
-import { V1GCEPersistentDiskVolumeSource } from '../models/V1GCEPersistentDiskVolumeSource';
-import { V1GlusterfsPersistentVolumeSource } from '../models/V1GlusterfsPersistentVolumeSource';
-import { V1HostPathVolumeSource } from '../models/V1HostPathVolumeSource';
-import { V1ISCSIPersistentVolumeSource } from '../models/V1ISCSIPersistentVolumeSource';
-import { V1LocalVolumeSource } from '../models/V1LocalVolumeSource';
-import { V1NFSVolumeSource } from '../models/V1NFSVolumeSource';
-import { V1ObjectReference } from '../models/V1ObjectReference';
-import { V1PhotonPersistentDiskVolumeSource } from '../models/V1PhotonPersistentDiskVolumeSource';
-import { V1PortworxVolumeSource } from '../models/V1PortworxVolumeSource';
-import { V1QuobyteVolumeSource } from '../models/V1QuobyteVolumeSource';
-import { V1RBDPersistentVolumeSource } from '../models/V1RBDPersistentVolumeSource';
-import { V1ScaleIOPersistentVolumeSource } from '../models/V1ScaleIOPersistentVolumeSource';
-import { V1StorageOSPersistentVolumeSource } from '../models/V1StorageOSPersistentVolumeSource';
-import { V1VolumeNodeAffinity } from '../models/V1VolumeNodeAffinity';
-import { V1VsphereVirtualDiskVolumeSource } from '../models/V1VsphereVirtualDiskVolumeSource';
-import { HttpFile } from '../http/http';
+import { V1AWSElasticBlockStoreVolumeSource } from '../models/V1AWSElasticBlockStoreVolumeSource.js';
+import { V1AzureDiskVolumeSource } from '../models/V1AzureDiskVolumeSource.js';
+import { V1AzureFilePersistentVolumeSource } from '../models/V1AzureFilePersistentVolumeSource.js';
+import { V1CSIPersistentVolumeSource } from '../models/V1CSIPersistentVolumeSource.js';
+import { V1CephFSPersistentVolumeSource } from '../models/V1CephFSPersistentVolumeSource.js';
+import { V1CinderPersistentVolumeSource } from '../models/V1CinderPersistentVolumeSource.js';
+import { V1FCVolumeSource } from '../models/V1FCVolumeSource.js';
+import { V1FlexPersistentVolumeSource } from '../models/V1FlexPersistentVolumeSource.js';
+import { V1FlockerVolumeSource } from '../models/V1FlockerVolumeSource.js';
+import { V1GCEPersistentDiskVolumeSource } from '../models/V1GCEPersistentDiskVolumeSource.js';
+import { V1GlusterfsPersistentVolumeSource } from '../models/V1GlusterfsPersistentVolumeSource.js';
+import { V1HostPathVolumeSource } from '../models/V1HostPathVolumeSource.js';
+import { V1ISCSIPersistentVolumeSource } from '../models/V1ISCSIPersistentVolumeSource.js';
+import { V1LocalVolumeSource } from '../models/V1LocalVolumeSource.js';
+import { V1NFSVolumeSource } from '../models/V1NFSVolumeSource.js';
+import { V1ObjectReference } from '../models/V1ObjectReference.js';
+import { V1PhotonPersistentDiskVolumeSource } from '../models/V1PhotonPersistentDiskVolumeSource.js';
+import { V1PortworxVolumeSource } from '../models/V1PortworxVolumeSource.js';
+import { V1QuobyteVolumeSource } from '../models/V1QuobyteVolumeSource.js';
+import { V1RBDPersistentVolumeSource } from '../models/V1RBDPersistentVolumeSource.js';
+import { V1ScaleIOPersistentVolumeSource } from '../models/V1ScaleIOPersistentVolumeSource.js';
+import { V1StorageOSPersistentVolumeSource } from '../models/V1StorageOSPersistentVolumeSource.js';
+import { V1VolumeNodeAffinity } from '../models/V1VolumeNodeAffinity.js';
+import { V1VsphereVirtualDiskVolumeSource } from '../models/V1VsphereVirtualDiskVolumeSource.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PersistentVolumeSpec is the specification of a persistent volume.

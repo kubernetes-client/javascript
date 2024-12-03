@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ApiextensionsV1ServiceReference } from '../models/ApiextensionsV1ServiceReference';
-import { HttpFile } from '../http/http';
+import { ApiextensionsV1ServiceReference } from '../models/ApiextensionsV1ServiceReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * WebhookClientConfig contains the information to make a TLS connection with the webhook.

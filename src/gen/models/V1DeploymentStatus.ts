@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1DeploymentCondition } from '../models/V1DeploymentCondition';
-import { HttpFile } from '../http/http';
+import { V1DeploymentCondition } from '../models/V1DeploymentCondition.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * DeploymentStatus is the most recently observed status of the Deployment.
