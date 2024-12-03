@@ -21,6 +21,8 @@ export class V1IngressStatus {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "loadBalancer",
@@ -36,4 +38,3 @@ export class V1IngressStatus {
     public constructor() {
     }
 }
-

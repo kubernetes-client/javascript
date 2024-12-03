@@ -23,6 +23,8 @@ export class V2ExternalMetricSource {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "metric",
@@ -44,4 +46,3 @@ export class V2ExternalMetricSource {
     public constructor() {
     }
 }
-

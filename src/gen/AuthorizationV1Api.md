@@ -20,16 +20,16 @@ create a LocalSubjectAccessReview
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, AuthorizationV1Api } from '';
+import type { AuthorizationV1ApiCreateNamespacedLocalSubjectAccessReviewRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .AuthorizationV1Api(configuration);
+const configuration = createConfiguration();
+const apiInstance = new AuthorizationV1Api(configuration);
 
-let body:.AuthorizationV1ApiCreateNamespacedLocalSubjectAccessReviewRequest = {
-  // string | object name and auth scope, such as for teams and projects
+const request: AuthorizationV1ApiCreateNamespacedLocalSubjectAccessReviewRequest = {
+    // object name and auth scope, such as for teams and projects
   namespace: "namespace_example",
-  // V1LocalSubjectAccessReview
+  
   body: {
     apiVersion: "apiVersion_example",
     kind: "kind_example",
@@ -107,19 +107,18 @@ let body:.AuthorizationV1ApiCreateNamespacedLocalSubjectAccessReviewRequest = {
       reason: "reason_example",
     },
   },
-  // string | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+    // When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
   dryRun: "dryRun_example",
-  // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
+    // fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
-  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+    // fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
   fieldValidation: "fieldValidation_example",
-  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
+    // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
 };
 
-apiInstance.createNamespacedLocalSubjectAccessReview(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.createNamespacedLocalSubjectAccessReview(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -168,14 +167,14 @@ create a SelfSubjectAccessReview
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, AuthorizationV1Api } from '';
+import type { AuthorizationV1ApiCreateSelfSubjectAccessReviewRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .AuthorizationV1Api(configuration);
+const configuration = createConfiguration();
+const apiInstance = new AuthorizationV1Api(configuration);
 
-let body:.AuthorizationV1ApiCreateSelfSubjectAccessReviewRequest = {
-  // V1SelfSubjectAccessReview
+const request: AuthorizationV1ApiCreateSelfSubjectAccessReviewRequest = {
+  
   body: {
     apiVersion: "apiVersion_example",
     kind: "kind_example",
@@ -243,19 +242,18 @@ let body:.AuthorizationV1ApiCreateSelfSubjectAccessReviewRequest = {
       reason: "reason_example",
     },
   },
-  // string | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+    // When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
   dryRun: "dryRun_example",
-  // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
+    // fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
-  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+    // fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
   fieldValidation: "fieldValidation_example",
-  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
+    // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
 };
 
-apiInstance.createSelfSubjectAccessReview(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.createSelfSubjectAccessReview(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -303,14 +301,14 @@ create a SelfSubjectRulesReview
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, AuthorizationV1Api } from '';
+import type { AuthorizationV1ApiCreateSelfSubjectRulesReviewRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .AuthorizationV1Api(configuration);
+const configuration = createConfiguration();
+const apiInstance = new AuthorizationV1Api(configuration);
 
-let body:.AuthorizationV1ApiCreateSelfSubjectRulesReviewRequest = {
-  // V1SelfSubjectRulesReview
+const request: AuthorizationV1ApiCreateSelfSubjectRulesReviewRequest = {
+  
   body: {
     apiVersion: "apiVersion_example",
     kind: "kind_example",
@@ -390,19 +388,18 @@ let body:.AuthorizationV1ApiCreateSelfSubjectRulesReviewRequest = {
       ],
     },
   },
-  // string | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+    // When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
   dryRun: "dryRun_example",
-  // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
+    // fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
-  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+    // fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
   fieldValidation: "fieldValidation_example",
-  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
+    // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
 };
 
-apiInstance.createSelfSubjectRulesReview(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.createSelfSubjectRulesReview(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -450,14 +447,14 @@ create a SubjectAccessReview
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, AuthorizationV1Api } from '';
+import type { AuthorizationV1ApiCreateSubjectAccessReviewRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .AuthorizationV1Api(configuration);
+const configuration = createConfiguration();
+const apiInstance = new AuthorizationV1Api(configuration);
 
-let body:.AuthorizationV1ApiCreateSubjectAccessReviewRequest = {
-  // V1SubjectAccessReview
+const request: AuthorizationV1ApiCreateSubjectAccessReviewRequest = {
+  
   body: {
     apiVersion: "apiVersion_example",
     kind: "kind_example",
@@ -535,19 +532,18 @@ let body:.AuthorizationV1ApiCreateSubjectAccessReviewRequest = {
       reason: "reason_example",
     },
   },
-  // string | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+    // When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
   dryRun: "dryRun_example",
-  // string | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
+    // fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
   fieldManager: "fieldManager_example",
-  // string | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+    // fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
   fieldValidation: "fieldValidation_example",
-  // string | If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
+    // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
 };
 
-apiInstance.createSubjectAccessReview(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.createSubjectAccessReview(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -595,17 +591,15 @@ get available resources
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, AuthorizationV1Api } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .AuthorizationV1Api(configuration);
+const configuration = createConfiguration();
+const apiInstance = new AuthorizationV1Api(configuration);
 
-let body:any = {};
+const request = {};
 
-apiInstance.getAPIResources(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getAPIResources(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 

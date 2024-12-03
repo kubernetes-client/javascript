@@ -1,5 +1,5 @@
+.gitattributes
 .gitignore
-.openapi-generator-ignore
 AdmissionregistrationApi.md
 AdmissionregistrationV1Api.md
 AdmissionregistrationV1alpha1Api.md

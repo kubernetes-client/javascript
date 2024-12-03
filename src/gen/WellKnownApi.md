@@ -16,17 +16,15 @@ get service account issuer OpenID configuration, also known as the \'OIDC discov
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, WellKnownApi } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .WellKnownApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new WellKnownApi(configuration);
 
-let body:any = {};
+const request = {};
 
-apiInstance.getServiceAccountIssuerOpenIDConfiguration(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getServiceAccountIssuerOpenIDConfiguration(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 

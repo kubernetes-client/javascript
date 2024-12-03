@@ -59,6 +59,8 @@ export class V1NodeSystemInfo {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "architecture",
@@ -128,4 +130,3 @@ export class V1NodeSystemInfo {
     public constructor() {
     }
 }
-

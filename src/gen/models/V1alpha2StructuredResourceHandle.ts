@@ -36,6 +36,8 @@ export class V1alpha2StructuredResourceHandle {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "nodeName",
@@ -69,4 +71,3 @@ export class V1alpha2StructuredResourceHandle {
     public constructor() {
     }
 }
-

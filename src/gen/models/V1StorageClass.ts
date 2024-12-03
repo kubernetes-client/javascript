@@ -58,6 +58,8 @@ export class V1StorageClass {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "allowVolumeExpansion",
@@ -127,4 +129,3 @@ export class V1StorageClass {
     public constructor() {
     }
 }
-

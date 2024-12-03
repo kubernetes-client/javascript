@@ -27,6 +27,8 @@ export class V1FlockerVolumeSource {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "datasetName",
@@ -48,4 +50,3 @@ export class V1FlockerVolumeSource {
     public constructor() {
     }
 }
-

@@ -16,17 +16,15 @@ get the code version
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, VersionApi } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .VersionApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new VersionApi(configuration);
 
-let body:any = {};
+const request = {};
 
-apiInstance.getCode(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getCode(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 

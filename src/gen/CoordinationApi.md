@@ -16,17 +16,15 @@ get information of a group
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, CoordinationApi } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .CoordinationApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new CoordinationApi(configuration);
 
-let body:any = {};
+const request = {};
 
-apiInstance.getAPIGroup(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.getAPIGroup(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 

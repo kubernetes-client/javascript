@@ -35,6 +35,8 @@ export class V1ListMeta {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "_continue",
@@ -68,4 +70,3 @@ export class V1ListMeta {
     public constructor() {
     }
 }
-

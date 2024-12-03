@@ -16,20 +16,19 @@ Method | HTTP request | Description
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, LogsApi } from '';
+import type { LogsApiLogFileHandlerRequest } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .LogsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new LogsApi(configuration);
 
-let body:.LogsApiLogFileHandlerRequest = {
-  // string | path to the log
+const request: LogsApiLogFileHandlerRequest = {
+    // path to the log
   logpath: "logpath_example",
 };
 
-apiInstance.logFileHandler(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.logFileHandler(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 
@@ -69,17 +68,15 @@ void (empty response body)
 
 
 ```typescript
-import {  } from '';
-import * as fs from 'fs';
+import { createConfiguration, LogsApi } from '';
 
-const configuration = .createConfiguration();
-const apiInstance = new .LogsApi(configuration);
+const configuration = createConfiguration();
+const apiInstance = new LogsApi(configuration);
 
-let body:any = {};
+const request = {};
 
-apiInstance.logFileListHandler(body).then((data:any) => {
-  console.log('API called successfully. Returned data: ' + data);
-}).catch((error:any) => console.error(error));
+const data = await apiInstance.logFileListHandler(request);
+console.log('API called successfully. Returned data:', data);
 ```
 
 

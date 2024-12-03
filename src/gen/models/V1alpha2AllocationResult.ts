@@ -30,6 +30,8 @@ export class V1alpha2AllocationResult {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "availableOnNodes",
@@ -57,4 +59,3 @@ export class V1alpha2AllocationResult {
     public constructor() {
     }
 }
-

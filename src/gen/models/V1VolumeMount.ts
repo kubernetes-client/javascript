@@ -47,6 +47,8 @@ export class V1VolumeMount {
 
     static readonly discriminator: string | undefined = undefined;
 
+    static readonly mapping: {[index: string]: string} | undefined = undefined;
+
     static readonly attributeTypeMap: Array<{name: string, baseName: string, type: string, format: string}> = [
         {
             "name": "mountPath",
@@ -98,4 +100,3 @@ export class V1VolumeMount {
     public constructor() {
     }
 }
-
