@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1alpha1ServiceCIDR } from '../models/V1alpha1ServiceCIDR';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1alpha1ServiceCIDR } from '../models/V1alpha1ServiceCIDR.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ServiceCIDRList contains a list of ServiceCIDR objects.

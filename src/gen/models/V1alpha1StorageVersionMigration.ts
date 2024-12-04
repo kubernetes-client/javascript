@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1alpha1StorageVersionMigrationSpec } from '../models/V1alpha1StorageVersionMigrationSpec';
-import { V1alpha1StorageVersionMigrationStatus } from '../models/V1alpha1StorageVersionMigrationStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1alpha1StorageVersionMigrationSpec } from '../models/V1alpha1StorageVersionMigrationSpec.js';
+import { V1alpha1StorageVersionMigrationStatus } from '../models/V1alpha1StorageVersionMigrationStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * StorageVersionMigration represents a migration of stored data to the latest storage version.

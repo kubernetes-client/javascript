@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1PodTemplateSpec } from '../models/V1PodTemplateSpec';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1PodTemplateSpec } from '../models/V1PodTemplateSpec.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PodTemplate describes a template for creating copies of a predefined pod.

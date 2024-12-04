@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { HttpFile } from '../http/http';
+import { HttpFile } from '../http/http.js';
 
 /**
 * A topology selector requirement is a selector that matches given label. This is an alpha feature and may change in the future.

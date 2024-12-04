@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1DaemonSet } from '../models/V1DaemonSet';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1DaemonSet } from '../models/V1DaemonSet.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * DaemonSetList is a collection of daemon sets.

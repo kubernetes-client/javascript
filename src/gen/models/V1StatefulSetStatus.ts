@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1StatefulSetCondition } from '../models/V1StatefulSetCondition';
-import { HttpFile } from '../http/http';
+import { V1StatefulSetCondition } from '../models/V1StatefulSetCondition.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * StatefulSetStatus represents the current state of a StatefulSet.

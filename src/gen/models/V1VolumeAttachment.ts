@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1VolumeAttachmentSpec } from '../models/V1VolumeAttachmentSpec';
-import { V1VolumeAttachmentStatus } from '../models/V1VolumeAttachmentStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1VolumeAttachmentSpec } from '../models/V1VolumeAttachmentSpec.js';
+import { V1VolumeAttachmentStatus } from '../models/V1VolumeAttachmentStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * VolumeAttachment captures the intent to attach or detach the specified volume to/from the specified node.  VolumeAttachment objects are non-namespaced.

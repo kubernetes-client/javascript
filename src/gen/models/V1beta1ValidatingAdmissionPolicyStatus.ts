@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1Condition } from '../models/V1Condition';
-import { V1beta1TypeChecking } from '../models/V1beta1TypeChecking';
-import { HttpFile } from '../http/http';
+import { V1Condition } from '../models/V1Condition.js';
+import { V1beta1TypeChecking } from '../models/V1beta1TypeChecking.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ValidatingAdmissionPolicyStatus represents the status of an admission validation policy.

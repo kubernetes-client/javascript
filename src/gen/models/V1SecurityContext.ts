@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { V1AppArmorProfile } from '../models/V1AppArmorProfile';
-import { V1Capabilities } from '../models/V1Capabilities';
-import { V1SELinuxOptions } from '../models/V1SELinuxOptions';
-import { V1SeccompProfile } from '../models/V1SeccompProfile';
-import { V1WindowsSecurityContextOptions } from '../models/V1WindowsSecurityContextOptions';
-import { HttpFile } from '../http/http';
+import { V1AppArmorProfile } from '../models/V1AppArmorProfile.js';
+import { V1Capabilities } from '../models/V1Capabilities.js';
+import { V1SELinuxOptions } from '../models/V1SELinuxOptions.js';
+import { V1SeccompProfile } from '../models/V1SeccompProfile.js';
+import { V1WindowsSecurityContextOptions } from '../models/V1WindowsSecurityContextOptions.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * SecurityContext holds security configuration that will be applied to a container. Some fields are present in both SecurityContext and PodSecurityContext.  When both are set, the values in SecurityContext take precedence.

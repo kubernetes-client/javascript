@@ -1,622 +1,622 @@
-import { ResponseContext, RequestContext, HttpFile, HttpInfo } from '../http/http';
-import { Configuration} from '../configuration'
+import { ResponseContext, RequestContext, HttpFile, HttpInfo } from '../http/http.js';
+import { Configuration} from '../configuration.js'
 
-import { AdmissionregistrationV1ServiceReference } from '../models/AdmissionregistrationV1ServiceReference';
-import { AdmissionregistrationV1WebhookClientConfig } from '../models/AdmissionregistrationV1WebhookClientConfig';
-import { ApiextensionsV1ServiceReference } from '../models/ApiextensionsV1ServiceReference';
-import { ApiextensionsV1WebhookClientConfig } from '../models/ApiextensionsV1WebhookClientConfig';
-import { ApiregistrationV1ServiceReference } from '../models/ApiregistrationV1ServiceReference';
-import { AuthenticationV1TokenRequest } from '../models/AuthenticationV1TokenRequest';
-import { CoreV1EndpointPort } from '../models/CoreV1EndpointPort';
-import { CoreV1Event } from '../models/CoreV1Event';
-import { CoreV1EventList } from '../models/CoreV1EventList';
-import { CoreV1EventSeries } from '../models/CoreV1EventSeries';
-import { DiscoveryV1EndpointPort } from '../models/DiscoveryV1EndpointPort';
-import { EventsV1Event } from '../models/EventsV1Event';
-import { EventsV1EventList } from '../models/EventsV1EventList';
-import { EventsV1EventSeries } from '../models/EventsV1EventSeries';
-import { FlowcontrolV1Subject } from '../models/FlowcontrolV1Subject';
-import { RbacV1Subject } from '../models/RbacV1Subject';
-import { StorageV1TokenRequest } from '../models/StorageV1TokenRequest';
-import { V1APIGroup } from '../models/V1APIGroup';
-import { V1APIGroupList } from '../models/V1APIGroupList';
-import { V1APIResource } from '../models/V1APIResource';
-import { V1APIResourceList } from '../models/V1APIResourceList';
-import { V1APIService } from '../models/V1APIService';
-import { V1APIServiceCondition } from '../models/V1APIServiceCondition';
-import { V1APIServiceList } from '../models/V1APIServiceList';
-import { V1APIServiceSpec } from '../models/V1APIServiceSpec';
-import { V1APIServiceStatus } from '../models/V1APIServiceStatus';
-import { V1APIVersions } from '../models/V1APIVersions';
-import { V1AWSElasticBlockStoreVolumeSource } from '../models/V1AWSElasticBlockStoreVolumeSource';
-import { V1Affinity } from '../models/V1Affinity';
-import { V1AggregationRule } from '../models/V1AggregationRule';
-import { V1AppArmorProfile } from '../models/V1AppArmorProfile';
-import { V1AttachedVolume } from '../models/V1AttachedVolume';
-import { V1AuditAnnotation } from '../models/V1AuditAnnotation';
-import { V1AzureDiskVolumeSource } from '../models/V1AzureDiskVolumeSource';
-import { V1AzureFilePersistentVolumeSource } from '../models/V1AzureFilePersistentVolumeSource';
-import { V1AzureFileVolumeSource } from '../models/V1AzureFileVolumeSource';
-import { V1Binding } from '../models/V1Binding';
-import { V1BoundObjectReference } from '../models/V1BoundObjectReference';
-import { V1CSIDriver } from '../models/V1CSIDriver';
-import { V1CSIDriverList } from '../models/V1CSIDriverList';
-import { V1CSIDriverSpec } from '../models/V1CSIDriverSpec';
-import { V1CSINode } from '../models/V1CSINode';
-import { V1CSINodeDriver } from '../models/V1CSINodeDriver';
-import { V1CSINodeList } from '../models/V1CSINodeList';
-import { V1CSINodeSpec } from '../models/V1CSINodeSpec';
-import { V1CSIPersistentVolumeSource } from '../models/V1CSIPersistentVolumeSource';
-import { V1CSIStorageCapacity } from '../models/V1CSIStorageCapacity';
-import { V1CSIStorageCapacityList } from '../models/V1CSIStorageCapacityList';
-import { V1CSIVolumeSource } from '../models/V1CSIVolumeSource';
-import { V1Capabilities } from '../models/V1Capabilities';
-import { V1CephFSPersistentVolumeSource } from '../models/V1CephFSPersistentVolumeSource';
-import { V1CephFSVolumeSource } from '../models/V1CephFSVolumeSource';
-import { V1CertificateSigningRequest } from '../models/V1CertificateSigningRequest';
-import { V1CertificateSigningRequestCondition } from '../models/V1CertificateSigningRequestCondition';
-import { V1CertificateSigningRequestList } from '../models/V1CertificateSigningRequestList';
-import { V1CertificateSigningRequestSpec } from '../models/V1CertificateSigningRequestSpec';
-import { V1CertificateSigningRequestStatus } from '../models/V1CertificateSigningRequestStatus';
-import { V1CinderPersistentVolumeSource } from '../models/V1CinderPersistentVolumeSource';
-import { V1CinderVolumeSource } from '../models/V1CinderVolumeSource';
-import { V1ClaimSource } from '../models/V1ClaimSource';
-import { V1ClientIPConfig } from '../models/V1ClientIPConfig';
-import { V1ClusterRole } from '../models/V1ClusterRole';
-import { V1ClusterRoleBinding } from '../models/V1ClusterRoleBinding';
-import { V1ClusterRoleBindingList } from '../models/V1ClusterRoleBindingList';
-import { V1ClusterRoleList } from '../models/V1ClusterRoleList';
-import { V1ClusterTrustBundleProjection } from '../models/V1ClusterTrustBundleProjection';
-import { V1ComponentCondition } from '../models/V1ComponentCondition';
-import { V1ComponentStatus } from '../models/V1ComponentStatus';
-import { V1ComponentStatusList } from '../models/V1ComponentStatusList';
-import { V1Condition } from '../models/V1Condition';
-import { V1ConfigMap } from '../models/V1ConfigMap';
-import { V1ConfigMapEnvSource } from '../models/V1ConfigMapEnvSource';
-import { V1ConfigMapKeySelector } from '../models/V1ConfigMapKeySelector';
-import { V1ConfigMapList } from '../models/V1ConfigMapList';
-import { V1ConfigMapNodeConfigSource } from '../models/V1ConfigMapNodeConfigSource';
-import { V1ConfigMapProjection } from '../models/V1ConfigMapProjection';
-import { V1ConfigMapVolumeSource } from '../models/V1ConfigMapVolumeSource';
-import { V1Container } from '../models/V1Container';
-import { V1ContainerImage } from '../models/V1ContainerImage';
-import { V1ContainerPort } from '../models/V1ContainerPort';
-import { V1ContainerResizePolicy } from '../models/V1ContainerResizePolicy';
-import { V1ContainerState } from '../models/V1ContainerState';
-import { V1ContainerStateRunning } from '../models/V1ContainerStateRunning';
-import { V1ContainerStateTerminated } from '../models/V1ContainerStateTerminated';
-import { V1ContainerStateWaiting } from '../models/V1ContainerStateWaiting';
-import { V1ContainerStatus } from '../models/V1ContainerStatus';
-import { V1ControllerRevision } from '../models/V1ControllerRevision';
-import { V1ControllerRevisionList } from '../models/V1ControllerRevisionList';
-import { V1CronJob } from '../models/V1CronJob';
-import { V1CronJobList } from '../models/V1CronJobList';
-import { V1CronJobSpec } from '../models/V1CronJobSpec';
-import { V1CronJobStatus } from '../models/V1CronJobStatus';
-import { V1CrossVersionObjectReference } from '../models/V1CrossVersionObjectReference';
-import { V1CustomResourceColumnDefinition } from '../models/V1CustomResourceColumnDefinition';
-import { V1CustomResourceConversion } from '../models/V1CustomResourceConversion';
-import { V1CustomResourceDefinition } from '../models/V1CustomResourceDefinition';
-import { V1CustomResourceDefinitionCondition } from '../models/V1CustomResourceDefinitionCondition';
-import { V1CustomResourceDefinitionList } from '../models/V1CustomResourceDefinitionList';
-import { V1CustomResourceDefinitionNames } from '../models/V1CustomResourceDefinitionNames';
-import { V1CustomResourceDefinitionSpec } from '../models/V1CustomResourceDefinitionSpec';
-import { V1CustomResourceDefinitionStatus } from '../models/V1CustomResourceDefinitionStatus';
-import { V1CustomResourceDefinitionVersion } from '../models/V1CustomResourceDefinitionVersion';
-import { V1CustomResourceSubresourceScale } from '../models/V1CustomResourceSubresourceScale';
-import { V1CustomResourceSubresources } from '../models/V1CustomResourceSubresources';
-import { V1CustomResourceValidation } from '../models/V1CustomResourceValidation';
-import { V1DaemonEndpoint } from '../models/V1DaemonEndpoint';
-import { V1DaemonSet } from '../models/V1DaemonSet';
-import { V1DaemonSetCondition } from '../models/V1DaemonSetCondition';
-import { V1DaemonSetList } from '../models/V1DaemonSetList';
-import { V1DaemonSetSpec } from '../models/V1DaemonSetSpec';
-import { V1DaemonSetStatus } from '../models/V1DaemonSetStatus';
-import { V1DaemonSetUpdateStrategy } from '../models/V1DaemonSetUpdateStrategy';
-import { V1DeleteOptions } from '../models/V1DeleteOptions';
-import { V1Deployment } from '../models/V1Deployment';
-import { V1DeploymentCondition } from '../models/V1DeploymentCondition';
-import { V1DeploymentList } from '../models/V1DeploymentList';
-import { V1DeploymentSpec } from '../models/V1DeploymentSpec';
-import { V1DeploymentStatus } from '../models/V1DeploymentStatus';
-import { V1DeploymentStrategy } from '../models/V1DeploymentStrategy';
-import { V1DownwardAPIProjection } from '../models/V1DownwardAPIProjection';
-import { V1DownwardAPIVolumeFile } from '../models/V1DownwardAPIVolumeFile';
-import { V1DownwardAPIVolumeSource } from '../models/V1DownwardAPIVolumeSource';
-import { V1EmptyDirVolumeSource } from '../models/V1EmptyDirVolumeSource';
-import { V1Endpoint } from '../models/V1Endpoint';
-import { V1EndpointAddress } from '../models/V1EndpointAddress';
-import { V1EndpointConditions } from '../models/V1EndpointConditions';
-import { V1EndpointHints } from '../models/V1EndpointHints';
-import { V1EndpointSlice } from '../models/V1EndpointSlice';
-import { V1EndpointSliceList } from '../models/V1EndpointSliceList';
-import { V1EndpointSubset } from '../models/V1EndpointSubset';
-import { V1Endpoints } from '../models/V1Endpoints';
-import { V1EndpointsList } from '../models/V1EndpointsList';
-import { V1EnvFromSource } from '../models/V1EnvFromSource';
-import { V1EnvVar } from '../models/V1EnvVar';
-import { V1EnvVarSource } from '../models/V1EnvVarSource';
-import { V1EphemeralContainer } from '../models/V1EphemeralContainer';
-import { V1EphemeralVolumeSource } from '../models/V1EphemeralVolumeSource';
-import { V1EventSource } from '../models/V1EventSource';
-import { V1Eviction } from '../models/V1Eviction';
-import { V1ExecAction } from '../models/V1ExecAction';
-import { V1ExemptPriorityLevelConfiguration } from '../models/V1ExemptPriorityLevelConfiguration';
-import { V1ExpressionWarning } from '../models/V1ExpressionWarning';
-import { V1ExternalDocumentation } from '../models/V1ExternalDocumentation';
-import { V1FCVolumeSource } from '../models/V1FCVolumeSource';
-import { V1FlexPersistentVolumeSource } from '../models/V1FlexPersistentVolumeSource';
-import { V1FlexVolumeSource } from '../models/V1FlexVolumeSource';
-import { V1FlockerVolumeSource } from '../models/V1FlockerVolumeSource';
-import { V1FlowDistinguisherMethod } from '../models/V1FlowDistinguisherMethod';
-import { V1FlowSchema } from '../models/V1FlowSchema';
-import { V1FlowSchemaCondition } from '../models/V1FlowSchemaCondition';
-import { V1FlowSchemaList } from '../models/V1FlowSchemaList';
-import { V1FlowSchemaSpec } from '../models/V1FlowSchemaSpec';
-import { V1FlowSchemaStatus } from '../models/V1FlowSchemaStatus';
-import { V1ForZone } from '../models/V1ForZone';
-import { V1GCEPersistentDiskVolumeSource } from '../models/V1GCEPersistentDiskVolumeSource';
-import { V1GRPCAction } from '../models/V1GRPCAction';
-import { V1GitRepoVolumeSource } from '../models/V1GitRepoVolumeSource';
-import { V1GlusterfsPersistentVolumeSource } from '../models/V1GlusterfsPersistentVolumeSource';
-import { V1GlusterfsVolumeSource } from '../models/V1GlusterfsVolumeSource';
-import { V1GroupSubject } from '../models/V1GroupSubject';
-import { V1GroupVersionForDiscovery } from '../models/V1GroupVersionForDiscovery';
-import { V1HTTPGetAction } from '../models/V1HTTPGetAction';
-import { V1HTTPHeader } from '../models/V1HTTPHeader';
-import { V1HTTPIngressPath } from '../models/V1HTTPIngressPath';
-import { V1HTTPIngressRuleValue } from '../models/V1HTTPIngressRuleValue';
-import { V1HorizontalPodAutoscaler } from '../models/V1HorizontalPodAutoscaler';
-import { V1HorizontalPodAutoscalerList } from '../models/V1HorizontalPodAutoscalerList';
-import { V1HorizontalPodAutoscalerSpec } from '../models/V1HorizontalPodAutoscalerSpec';
-import { V1HorizontalPodAutoscalerStatus } from '../models/V1HorizontalPodAutoscalerStatus';
-import { V1HostAlias } from '../models/V1HostAlias';
-import { V1HostIP } from '../models/V1HostIP';
-import { V1HostPathVolumeSource } from '../models/V1HostPathVolumeSource';
-import { V1IPBlock } from '../models/V1IPBlock';
-import { V1ISCSIPersistentVolumeSource } from '../models/V1ISCSIPersistentVolumeSource';
-import { V1ISCSIVolumeSource } from '../models/V1ISCSIVolumeSource';
-import { V1Ingress } from '../models/V1Ingress';
-import { V1IngressBackend } from '../models/V1IngressBackend';
-import { V1IngressClass } from '../models/V1IngressClass';
-import { V1IngressClassList } from '../models/V1IngressClassList';
-import { V1IngressClassParametersReference } from '../models/V1IngressClassParametersReference';
-import { V1IngressClassSpec } from '../models/V1IngressClassSpec';
-import { V1IngressList } from '../models/V1IngressList';
-import { V1IngressLoadBalancerIngress } from '../models/V1IngressLoadBalancerIngress';
-import { V1IngressLoadBalancerStatus } from '../models/V1IngressLoadBalancerStatus';
-import { V1IngressPortStatus } from '../models/V1IngressPortStatus';
-import { V1IngressRule } from '../models/V1IngressRule';
-import { V1IngressServiceBackend } from '../models/V1IngressServiceBackend';
-import { V1IngressSpec } from '../models/V1IngressSpec';
-import { V1IngressStatus } from '../models/V1IngressStatus';
-import { V1IngressTLS } from '../models/V1IngressTLS';
-import { V1JSONSchemaProps } from '../models/V1JSONSchemaProps';
-import { V1Job } from '../models/V1Job';
-import { V1JobCondition } from '../models/V1JobCondition';
-import { V1JobList } from '../models/V1JobList';
-import { V1JobSpec } from '../models/V1JobSpec';
-import { V1JobStatus } from '../models/V1JobStatus';
-import { V1JobTemplateSpec } from '../models/V1JobTemplateSpec';
-import { V1KeyToPath } from '../models/V1KeyToPath';
-import { V1LabelSelector } from '../models/V1LabelSelector';
-import { V1LabelSelectorRequirement } from '../models/V1LabelSelectorRequirement';
-import { V1Lease } from '../models/V1Lease';
-import { V1LeaseList } from '../models/V1LeaseList';
-import { V1LeaseSpec } from '../models/V1LeaseSpec';
-import { V1Lifecycle } from '../models/V1Lifecycle';
-import { V1LifecycleHandler } from '../models/V1LifecycleHandler';
-import { V1LimitRange } from '../models/V1LimitRange';
-import { V1LimitRangeItem } from '../models/V1LimitRangeItem';
-import { V1LimitRangeList } from '../models/V1LimitRangeList';
-import { V1LimitRangeSpec } from '../models/V1LimitRangeSpec';
-import { V1LimitResponse } from '../models/V1LimitResponse';
-import { V1LimitedPriorityLevelConfiguration } from '../models/V1LimitedPriorityLevelConfiguration';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1LoadBalancerIngress } from '../models/V1LoadBalancerIngress';
-import { V1LoadBalancerStatus } from '../models/V1LoadBalancerStatus';
-import { V1LocalObjectReference } from '../models/V1LocalObjectReference';
-import { V1LocalSubjectAccessReview } from '../models/V1LocalSubjectAccessReview';
-import { V1LocalVolumeSource } from '../models/V1LocalVolumeSource';
-import { V1ManagedFieldsEntry } from '../models/V1ManagedFieldsEntry';
-import { V1MatchCondition } from '../models/V1MatchCondition';
-import { V1MatchResources } from '../models/V1MatchResources';
-import { V1ModifyVolumeStatus } from '../models/V1ModifyVolumeStatus';
-import { V1MutatingWebhook } from '../models/V1MutatingWebhook';
-import { V1MutatingWebhookConfiguration } from '../models/V1MutatingWebhookConfiguration';
-import { V1MutatingWebhookConfigurationList } from '../models/V1MutatingWebhookConfigurationList';
-import { V1NFSVolumeSource } from '../models/V1NFSVolumeSource';
-import { V1NamedRuleWithOperations } from '../models/V1NamedRuleWithOperations';
-import { V1Namespace } from '../models/V1Namespace';
-import { V1NamespaceCondition } from '../models/V1NamespaceCondition';
-import { V1NamespaceList } from '../models/V1NamespaceList';
-import { V1NamespaceSpec } from '../models/V1NamespaceSpec';
-import { V1NamespaceStatus } from '../models/V1NamespaceStatus';
-import { V1NetworkPolicy } from '../models/V1NetworkPolicy';
-import { V1NetworkPolicyEgressRule } from '../models/V1NetworkPolicyEgressRule';
-import { V1NetworkPolicyIngressRule } from '../models/V1NetworkPolicyIngressRule';
-import { V1NetworkPolicyList } from '../models/V1NetworkPolicyList';
-import { V1NetworkPolicyPeer } from '../models/V1NetworkPolicyPeer';
-import { V1NetworkPolicyPort } from '../models/V1NetworkPolicyPort';
-import { V1NetworkPolicySpec } from '../models/V1NetworkPolicySpec';
-import { V1Node } from '../models/V1Node';
-import { V1NodeAddress } from '../models/V1NodeAddress';
-import { V1NodeAffinity } from '../models/V1NodeAffinity';
-import { V1NodeCondition } from '../models/V1NodeCondition';
-import { V1NodeConfigSource } from '../models/V1NodeConfigSource';
-import { V1NodeConfigStatus } from '../models/V1NodeConfigStatus';
-import { V1NodeDaemonEndpoints } from '../models/V1NodeDaemonEndpoints';
-import { V1NodeList } from '../models/V1NodeList';
-import { V1NodeRuntimeHandler } from '../models/V1NodeRuntimeHandler';
-import { V1NodeRuntimeHandlerFeatures } from '../models/V1NodeRuntimeHandlerFeatures';
-import { V1NodeSelector } from '../models/V1NodeSelector';
-import { V1NodeSelectorRequirement } from '../models/V1NodeSelectorRequirement';
-import { V1NodeSelectorTerm } from '../models/V1NodeSelectorTerm';
-import { V1NodeSpec } from '../models/V1NodeSpec';
-import { V1NodeStatus } from '../models/V1NodeStatus';
-import { V1NodeSystemInfo } from '../models/V1NodeSystemInfo';
-import { V1NonResourceAttributes } from '../models/V1NonResourceAttributes';
-import { V1NonResourcePolicyRule } from '../models/V1NonResourcePolicyRule';
-import { V1NonResourceRule } from '../models/V1NonResourceRule';
-import { V1ObjectFieldSelector } from '../models/V1ObjectFieldSelector';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1ObjectReference } from '../models/V1ObjectReference';
-import { V1Overhead } from '../models/V1Overhead';
-import { V1OwnerReference } from '../models/V1OwnerReference';
-import { V1ParamKind } from '../models/V1ParamKind';
-import { V1ParamRef } from '../models/V1ParamRef';
-import { V1PersistentVolume } from '../models/V1PersistentVolume';
-import { V1PersistentVolumeClaim } from '../models/V1PersistentVolumeClaim';
-import { V1PersistentVolumeClaimCondition } from '../models/V1PersistentVolumeClaimCondition';
-import { V1PersistentVolumeClaimList } from '../models/V1PersistentVolumeClaimList';
-import { V1PersistentVolumeClaimSpec } from '../models/V1PersistentVolumeClaimSpec';
-import { V1PersistentVolumeClaimStatus } from '../models/V1PersistentVolumeClaimStatus';
-import { V1PersistentVolumeClaimTemplate } from '../models/V1PersistentVolumeClaimTemplate';
-import { V1PersistentVolumeClaimVolumeSource } from '../models/V1PersistentVolumeClaimVolumeSource';
-import { V1PersistentVolumeList } from '../models/V1PersistentVolumeList';
-import { V1PersistentVolumeSpec } from '../models/V1PersistentVolumeSpec';
-import { V1PersistentVolumeStatus } from '../models/V1PersistentVolumeStatus';
-import { V1PhotonPersistentDiskVolumeSource } from '../models/V1PhotonPersistentDiskVolumeSource';
-import { V1Pod } from '../models/V1Pod';
-import { V1PodAffinity } from '../models/V1PodAffinity';
-import { V1PodAffinityTerm } from '../models/V1PodAffinityTerm';
-import { V1PodAntiAffinity } from '../models/V1PodAntiAffinity';
-import { V1PodCondition } from '../models/V1PodCondition';
-import { V1PodDNSConfig } from '../models/V1PodDNSConfig';
-import { V1PodDNSConfigOption } from '../models/V1PodDNSConfigOption';
-import { V1PodDisruptionBudget } from '../models/V1PodDisruptionBudget';
-import { V1PodDisruptionBudgetList } from '../models/V1PodDisruptionBudgetList';
-import { V1PodDisruptionBudgetSpec } from '../models/V1PodDisruptionBudgetSpec';
-import { V1PodDisruptionBudgetStatus } from '../models/V1PodDisruptionBudgetStatus';
-import { V1PodFailurePolicy } from '../models/V1PodFailurePolicy';
-import { V1PodFailurePolicyOnExitCodesRequirement } from '../models/V1PodFailurePolicyOnExitCodesRequirement';
-import { V1PodFailurePolicyOnPodConditionsPattern } from '../models/V1PodFailurePolicyOnPodConditionsPattern';
-import { V1PodFailurePolicyRule } from '../models/V1PodFailurePolicyRule';
-import { V1PodIP } from '../models/V1PodIP';
-import { V1PodList } from '../models/V1PodList';
-import { V1PodOS } from '../models/V1PodOS';
-import { V1PodReadinessGate } from '../models/V1PodReadinessGate';
-import { V1PodResourceClaim } from '../models/V1PodResourceClaim';
-import { V1PodResourceClaimStatus } from '../models/V1PodResourceClaimStatus';
-import { V1PodSchedulingGate } from '../models/V1PodSchedulingGate';
-import { V1PodSecurityContext } from '../models/V1PodSecurityContext';
-import { V1PodSpec } from '../models/V1PodSpec';
-import { V1PodStatus } from '../models/V1PodStatus';
-import { V1PodTemplate } from '../models/V1PodTemplate';
-import { V1PodTemplateList } from '../models/V1PodTemplateList';
-import { V1PodTemplateSpec } from '../models/V1PodTemplateSpec';
-import { V1PolicyRule } from '../models/V1PolicyRule';
-import { V1PolicyRulesWithSubjects } from '../models/V1PolicyRulesWithSubjects';
-import { V1PortStatus } from '../models/V1PortStatus';
-import { V1PortworxVolumeSource } from '../models/V1PortworxVolumeSource';
-import { V1Preconditions } from '../models/V1Preconditions';
-import { V1PreferredSchedulingTerm } from '../models/V1PreferredSchedulingTerm';
-import { V1PriorityClass } from '../models/V1PriorityClass';
-import { V1PriorityClassList } from '../models/V1PriorityClassList';
-import { V1PriorityLevelConfiguration } from '../models/V1PriorityLevelConfiguration';
-import { V1PriorityLevelConfigurationCondition } from '../models/V1PriorityLevelConfigurationCondition';
-import { V1PriorityLevelConfigurationList } from '../models/V1PriorityLevelConfigurationList';
-import { V1PriorityLevelConfigurationReference } from '../models/V1PriorityLevelConfigurationReference';
-import { V1PriorityLevelConfigurationSpec } from '../models/V1PriorityLevelConfigurationSpec';
-import { V1PriorityLevelConfigurationStatus } from '../models/V1PriorityLevelConfigurationStatus';
-import { V1Probe } from '../models/V1Probe';
-import { V1ProjectedVolumeSource } from '../models/V1ProjectedVolumeSource';
-import { V1QueuingConfiguration } from '../models/V1QueuingConfiguration';
-import { V1QuobyteVolumeSource } from '../models/V1QuobyteVolumeSource';
-import { V1RBDPersistentVolumeSource } from '../models/V1RBDPersistentVolumeSource';
-import { V1RBDVolumeSource } from '../models/V1RBDVolumeSource';
-import { V1ReplicaSet } from '../models/V1ReplicaSet';
-import { V1ReplicaSetCondition } from '../models/V1ReplicaSetCondition';
-import { V1ReplicaSetList } from '../models/V1ReplicaSetList';
-import { V1ReplicaSetSpec } from '../models/V1ReplicaSetSpec';
-import { V1ReplicaSetStatus } from '../models/V1ReplicaSetStatus';
-import { V1ReplicationController } from '../models/V1ReplicationController';
-import { V1ReplicationControllerCondition } from '../models/V1ReplicationControllerCondition';
-import { V1ReplicationControllerList } from '../models/V1ReplicationControllerList';
-import { V1ReplicationControllerSpec } from '../models/V1ReplicationControllerSpec';
-import { V1ReplicationControllerStatus } from '../models/V1ReplicationControllerStatus';
-import { V1ResourceAttributes } from '../models/V1ResourceAttributes';
-import { V1ResourceClaim } from '../models/V1ResourceClaim';
-import { V1ResourceFieldSelector } from '../models/V1ResourceFieldSelector';
-import { V1ResourcePolicyRule } from '../models/V1ResourcePolicyRule';
-import { V1ResourceQuota } from '../models/V1ResourceQuota';
-import { V1ResourceQuotaList } from '../models/V1ResourceQuotaList';
-import { V1ResourceQuotaSpec } from '../models/V1ResourceQuotaSpec';
-import { V1ResourceQuotaStatus } from '../models/V1ResourceQuotaStatus';
-import { V1ResourceRequirements } from '../models/V1ResourceRequirements';
-import { V1ResourceRule } from '../models/V1ResourceRule';
-import { V1Role } from '../models/V1Role';
-import { V1RoleBinding } from '../models/V1RoleBinding';
-import { V1RoleBindingList } from '../models/V1RoleBindingList';
-import { V1RoleList } from '../models/V1RoleList';
-import { V1RoleRef } from '../models/V1RoleRef';
-import { V1RollingUpdateDaemonSet } from '../models/V1RollingUpdateDaemonSet';
-import { V1RollingUpdateDeployment } from '../models/V1RollingUpdateDeployment';
-import { V1RollingUpdateStatefulSetStrategy } from '../models/V1RollingUpdateStatefulSetStrategy';
-import { V1RuleWithOperations } from '../models/V1RuleWithOperations';
-import { V1RuntimeClass } from '../models/V1RuntimeClass';
-import { V1RuntimeClassList } from '../models/V1RuntimeClassList';
-import { V1SELinuxOptions } from '../models/V1SELinuxOptions';
-import { V1Scale } from '../models/V1Scale';
-import { V1ScaleIOPersistentVolumeSource } from '../models/V1ScaleIOPersistentVolumeSource';
-import { V1ScaleIOVolumeSource } from '../models/V1ScaleIOVolumeSource';
-import { V1ScaleSpec } from '../models/V1ScaleSpec';
-import { V1ScaleStatus } from '../models/V1ScaleStatus';
-import { V1Scheduling } from '../models/V1Scheduling';
-import { V1ScopeSelector } from '../models/V1ScopeSelector';
-import { V1ScopedResourceSelectorRequirement } from '../models/V1ScopedResourceSelectorRequirement';
-import { V1SeccompProfile } from '../models/V1SeccompProfile';
-import { V1Secret } from '../models/V1Secret';
-import { V1SecretEnvSource } from '../models/V1SecretEnvSource';
-import { V1SecretKeySelector } from '../models/V1SecretKeySelector';
-import { V1SecretList } from '../models/V1SecretList';
-import { V1SecretProjection } from '../models/V1SecretProjection';
-import { V1SecretReference } from '../models/V1SecretReference';
-import { V1SecretVolumeSource } from '../models/V1SecretVolumeSource';
-import { V1SecurityContext } from '../models/V1SecurityContext';
-import { V1SelectableField } from '../models/V1SelectableField';
-import { V1SelfSubjectAccessReview } from '../models/V1SelfSubjectAccessReview';
-import { V1SelfSubjectAccessReviewSpec } from '../models/V1SelfSubjectAccessReviewSpec';
-import { V1SelfSubjectReview } from '../models/V1SelfSubjectReview';
-import { V1SelfSubjectReviewStatus } from '../models/V1SelfSubjectReviewStatus';
-import { V1SelfSubjectRulesReview } from '../models/V1SelfSubjectRulesReview';
-import { V1SelfSubjectRulesReviewSpec } from '../models/V1SelfSubjectRulesReviewSpec';
-import { V1ServerAddressByClientCIDR } from '../models/V1ServerAddressByClientCIDR';
-import { V1Service } from '../models/V1Service';
-import { V1ServiceAccount } from '../models/V1ServiceAccount';
-import { V1ServiceAccountList } from '../models/V1ServiceAccountList';
-import { V1ServiceAccountSubject } from '../models/V1ServiceAccountSubject';
-import { V1ServiceAccountTokenProjection } from '../models/V1ServiceAccountTokenProjection';
-import { V1ServiceBackendPort } from '../models/V1ServiceBackendPort';
-import { V1ServiceList } from '../models/V1ServiceList';
-import { V1ServicePort } from '../models/V1ServicePort';
-import { V1ServiceSpec } from '../models/V1ServiceSpec';
-import { V1ServiceStatus } from '../models/V1ServiceStatus';
-import { V1SessionAffinityConfig } from '../models/V1SessionAffinityConfig';
-import { V1SleepAction } from '../models/V1SleepAction';
-import { V1StatefulSet } from '../models/V1StatefulSet';
-import { V1StatefulSetCondition } from '../models/V1StatefulSetCondition';
-import { V1StatefulSetList } from '../models/V1StatefulSetList';
-import { V1StatefulSetOrdinals } from '../models/V1StatefulSetOrdinals';
-import { V1StatefulSetPersistentVolumeClaimRetentionPolicy } from '../models/V1StatefulSetPersistentVolumeClaimRetentionPolicy';
-import { V1StatefulSetSpec } from '../models/V1StatefulSetSpec';
-import { V1StatefulSetStatus } from '../models/V1StatefulSetStatus';
-import { V1StatefulSetUpdateStrategy } from '../models/V1StatefulSetUpdateStrategy';
-import { V1Status } from '../models/V1Status';
-import { V1StatusCause } from '../models/V1StatusCause';
-import { V1StatusDetails } from '../models/V1StatusDetails';
-import { V1StorageClass } from '../models/V1StorageClass';
-import { V1StorageClassList } from '../models/V1StorageClassList';
-import { V1StorageOSPersistentVolumeSource } from '../models/V1StorageOSPersistentVolumeSource';
-import { V1StorageOSVolumeSource } from '../models/V1StorageOSVolumeSource';
-import { V1SubjectAccessReview } from '../models/V1SubjectAccessReview';
-import { V1SubjectAccessReviewSpec } from '../models/V1SubjectAccessReviewSpec';
-import { V1SubjectAccessReviewStatus } from '../models/V1SubjectAccessReviewStatus';
-import { V1SubjectRulesReviewStatus } from '../models/V1SubjectRulesReviewStatus';
-import { V1SuccessPolicy } from '../models/V1SuccessPolicy';
-import { V1SuccessPolicyRule } from '../models/V1SuccessPolicyRule';
-import { V1Sysctl } from '../models/V1Sysctl';
-import { V1TCPSocketAction } from '../models/V1TCPSocketAction';
-import { V1Taint } from '../models/V1Taint';
-import { V1TokenRequestSpec } from '../models/V1TokenRequestSpec';
-import { V1TokenRequestStatus } from '../models/V1TokenRequestStatus';
-import { V1TokenReview } from '../models/V1TokenReview';
-import { V1TokenReviewSpec } from '../models/V1TokenReviewSpec';
-import { V1TokenReviewStatus } from '../models/V1TokenReviewStatus';
-import { V1Toleration } from '../models/V1Toleration';
-import { V1TopologySelectorLabelRequirement } from '../models/V1TopologySelectorLabelRequirement';
-import { V1TopologySelectorTerm } from '../models/V1TopologySelectorTerm';
-import { V1TopologySpreadConstraint } from '../models/V1TopologySpreadConstraint';
-import { V1TypeChecking } from '../models/V1TypeChecking';
-import { V1TypedLocalObjectReference } from '../models/V1TypedLocalObjectReference';
-import { V1TypedObjectReference } from '../models/V1TypedObjectReference';
-import { V1UncountedTerminatedPods } from '../models/V1UncountedTerminatedPods';
-import { V1UserInfo } from '../models/V1UserInfo';
-import { V1UserSubject } from '../models/V1UserSubject';
-import { V1ValidatingAdmissionPolicy } from '../models/V1ValidatingAdmissionPolicy';
-import { V1ValidatingAdmissionPolicyBinding } from '../models/V1ValidatingAdmissionPolicyBinding';
-import { V1ValidatingAdmissionPolicyBindingList } from '../models/V1ValidatingAdmissionPolicyBindingList';
-import { V1ValidatingAdmissionPolicyBindingSpec } from '../models/V1ValidatingAdmissionPolicyBindingSpec';
-import { V1ValidatingAdmissionPolicyList } from '../models/V1ValidatingAdmissionPolicyList';
-import { V1ValidatingAdmissionPolicySpec } from '../models/V1ValidatingAdmissionPolicySpec';
-import { V1ValidatingAdmissionPolicyStatus } from '../models/V1ValidatingAdmissionPolicyStatus';
-import { V1ValidatingWebhook } from '../models/V1ValidatingWebhook';
-import { V1ValidatingWebhookConfiguration } from '../models/V1ValidatingWebhookConfiguration';
-import { V1ValidatingWebhookConfigurationList } from '../models/V1ValidatingWebhookConfigurationList';
-import { V1Validation } from '../models/V1Validation';
-import { V1ValidationRule } from '../models/V1ValidationRule';
-import { V1Variable } from '../models/V1Variable';
-import { V1Volume } from '../models/V1Volume';
-import { V1VolumeAttachment } from '../models/V1VolumeAttachment';
-import { V1VolumeAttachmentList } from '../models/V1VolumeAttachmentList';
-import { V1VolumeAttachmentSource } from '../models/V1VolumeAttachmentSource';
-import { V1VolumeAttachmentSpec } from '../models/V1VolumeAttachmentSpec';
-import { V1VolumeAttachmentStatus } from '../models/V1VolumeAttachmentStatus';
-import { V1VolumeDevice } from '../models/V1VolumeDevice';
-import { V1VolumeError } from '../models/V1VolumeError';
-import { V1VolumeMount } from '../models/V1VolumeMount';
-import { V1VolumeMountStatus } from '../models/V1VolumeMountStatus';
-import { V1VolumeNodeAffinity } from '../models/V1VolumeNodeAffinity';
-import { V1VolumeNodeResources } from '../models/V1VolumeNodeResources';
-import { V1VolumeProjection } from '../models/V1VolumeProjection';
-import { V1VolumeResourceRequirements } from '../models/V1VolumeResourceRequirements';
-import { V1VsphereVirtualDiskVolumeSource } from '../models/V1VsphereVirtualDiskVolumeSource';
-import { V1WatchEvent } from '../models/V1WatchEvent';
-import { V1WebhookConversion } from '../models/V1WebhookConversion';
-import { V1WeightedPodAffinityTerm } from '../models/V1WeightedPodAffinityTerm';
-import { V1WindowsSecurityContextOptions } from '../models/V1WindowsSecurityContextOptions';
-import { V1alpha1AuditAnnotation } from '../models/V1alpha1AuditAnnotation';
-import { V1alpha1ClusterTrustBundle } from '../models/V1alpha1ClusterTrustBundle';
-import { V1alpha1ClusterTrustBundleList } from '../models/V1alpha1ClusterTrustBundleList';
-import { V1alpha1ClusterTrustBundleSpec } from '../models/V1alpha1ClusterTrustBundleSpec';
-import { V1alpha1ExpressionWarning } from '../models/V1alpha1ExpressionWarning';
-import { V1alpha1GroupVersionResource } from '../models/V1alpha1GroupVersionResource';
-import { V1alpha1IPAddress } from '../models/V1alpha1IPAddress';
-import { V1alpha1IPAddressList } from '../models/V1alpha1IPAddressList';
-import { V1alpha1IPAddressSpec } from '../models/V1alpha1IPAddressSpec';
-import { V1alpha1MatchCondition } from '../models/V1alpha1MatchCondition';
-import { V1alpha1MatchResources } from '../models/V1alpha1MatchResources';
-import { V1alpha1MigrationCondition } from '../models/V1alpha1MigrationCondition';
-import { V1alpha1NamedRuleWithOperations } from '../models/V1alpha1NamedRuleWithOperations';
-import { V1alpha1ParamKind } from '../models/V1alpha1ParamKind';
-import { V1alpha1ParamRef } from '../models/V1alpha1ParamRef';
-import { V1alpha1ParentReference } from '../models/V1alpha1ParentReference';
-import { V1alpha1SelfSubjectReview } from '../models/V1alpha1SelfSubjectReview';
-import { V1alpha1SelfSubjectReviewStatus } from '../models/V1alpha1SelfSubjectReviewStatus';
-import { V1alpha1ServerStorageVersion } from '../models/V1alpha1ServerStorageVersion';
-import { V1alpha1ServiceCIDR } from '../models/V1alpha1ServiceCIDR';
-import { V1alpha1ServiceCIDRList } from '../models/V1alpha1ServiceCIDRList';
-import { V1alpha1ServiceCIDRSpec } from '../models/V1alpha1ServiceCIDRSpec';
-import { V1alpha1ServiceCIDRStatus } from '../models/V1alpha1ServiceCIDRStatus';
-import { V1alpha1StorageVersion } from '../models/V1alpha1StorageVersion';
-import { V1alpha1StorageVersionCondition } from '../models/V1alpha1StorageVersionCondition';
-import { V1alpha1StorageVersionList } from '../models/V1alpha1StorageVersionList';
-import { V1alpha1StorageVersionMigration } from '../models/V1alpha1StorageVersionMigration';
-import { V1alpha1StorageVersionMigrationList } from '../models/V1alpha1StorageVersionMigrationList';
-import { V1alpha1StorageVersionMigrationSpec } from '../models/V1alpha1StorageVersionMigrationSpec';
-import { V1alpha1StorageVersionMigrationStatus } from '../models/V1alpha1StorageVersionMigrationStatus';
-import { V1alpha1StorageVersionStatus } from '../models/V1alpha1StorageVersionStatus';
-import { V1alpha1TypeChecking } from '../models/V1alpha1TypeChecking';
-import { V1alpha1ValidatingAdmissionPolicy } from '../models/V1alpha1ValidatingAdmissionPolicy';
-import { V1alpha1ValidatingAdmissionPolicyBinding } from '../models/V1alpha1ValidatingAdmissionPolicyBinding';
-import { V1alpha1ValidatingAdmissionPolicyBindingList } from '../models/V1alpha1ValidatingAdmissionPolicyBindingList';
-import { V1alpha1ValidatingAdmissionPolicyBindingSpec } from '../models/V1alpha1ValidatingAdmissionPolicyBindingSpec';
-import { V1alpha1ValidatingAdmissionPolicyList } from '../models/V1alpha1ValidatingAdmissionPolicyList';
-import { V1alpha1ValidatingAdmissionPolicySpec } from '../models/V1alpha1ValidatingAdmissionPolicySpec';
-import { V1alpha1ValidatingAdmissionPolicyStatus } from '../models/V1alpha1ValidatingAdmissionPolicyStatus';
-import { V1alpha1Validation } from '../models/V1alpha1Validation';
-import { V1alpha1Variable } from '../models/V1alpha1Variable';
-import { V1alpha1VolumeAttributesClass } from '../models/V1alpha1VolumeAttributesClass';
-import { V1alpha1VolumeAttributesClassList } from '../models/V1alpha1VolumeAttributesClassList';
-import { V1alpha2AllocationResult } from '../models/V1alpha2AllocationResult';
-import { V1alpha2DriverAllocationResult } from '../models/V1alpha2DriverAllocationResult';
-import { V1alpha2DriverRequests } from '../models/V1alpha2DriverRequests';
-import { V1alpha2NamedResourcesAllocationResult } from '../models/V1alpha2NamedResourcesAllocationResult';
-import { V1alpha2NamedResourcesAttribute } from '../models/V1alpha2NamedResourcesAttribute';
-import { V1alpha2NamedResourcesFilter } from '../models/V1alpha2NamedResourcesFilter';
-import { V1alpha2NamedResourcesInstance } from '../models/V1alpha2NamedResourcesInstance';
-import { V1alpha2NamedResourcesIntSlice } from '../models/V1alpha2NamedResourcesIntSlice';
-import { V1alpha2NamedResourcesRequest } from '../models/V1alpha2NamedResourcesRequest';
-import { V1alpha2NamedResourcesResources } from '../models/V1alpha2NamedResourcesResources';
-import { V1alpha2NamedResourcesStringSlice } from '../models/V1alpha2NamedResourcesStringSlice';
-import { V1alpha2PodSchedulingContext } from '../models/V1alpha2PodSchedulingContext';
-import { V1alpha2PodSchedulingContextList } from '../models/V1alpha2PodSchedulingContextList';
-import { V1alpha2PodSchedulingContextSpec } from '../models/V1alpha2PodSchedulingContextSpec';
-import { V1alpha2PodSchedulingContextStatus } from '../models/V1alpha2PodSchedulingContextStatus';
-import { V1alpha2ResourceClaim } from '../models/V1alpha2ResourceClaim';
-import { V1alpha2ResourceClaimConsumerReference } from '../models/V1alpha2ResourceClaimConsumerReference';
-import { V1alpha2ResourceClaimList } from '../models/V1alpha2ResourceClaimList';
-import { V1alpha2ResourceClaimParameters } from '../models/V1alpha2ResourceClaimParameters';
-import { V1alpha2ResourceClaimParametersList } from '../models/V1alpha2ResourceClaimParametersList';
-import { V1alpha2ResourceClaimParametersReference } from '../models/V1alpha2ResourceClaimParametersReference';
-import { V1alpha2ResourceClaimSchedulingStatus } from '../models/V1alpha2ResourceClaimSchedulingStatus';
-import { V1alpha2ResourceClaimSpec } from '../models/V1alpha2ResourceClaimSpec';
-import { V1alpha2ResourceClaimStatus } from '../models/V1alpha2ResourceClaimStatus';
-import { V1alpha2ResourceClaimTemplate } from '../models/V1alpha2ResourceClaimTemplate';
-import { V1alpha2ResourceClaimTemplateList } from '../models/V1alpha2ResourceClaimTemplateList';
-import { V1alpha2ResourceClaimTemplateSpec } from '../models/V1alpha2ResourceClaimTemplateSpec';
-import { V1alpha2ResourceClass } from '../models/V1alpha2ResourceClass';
-import { V1alpha2ResourceClassList } from '../models/V1alpha2ResourceClassList';
-import { V1alpha2ResourceClassParameters } from '../models/V1alpha2ResourceClassParameters';
-import { V1alpha2ResourceClassParametersList } from '../models/V1alpha2ResourceClassParametersList';
-import { V1alpha2ResourceClassParametersReference } from '../models/V1alpha2ResourceClassParametersReference';
-import { V1alpha2ResourceFilter } from '../models/V1alpha2ResourceFilter';
-import { V1alpha2ResourceHandle } from '../models/V1alpha2ResourceHandle';
-import { V1alpha2ResourceRequest } from '../models/V1alpha2ResourceRequest';
-import { V1alpha2ResourceSlice } from '../models/V1alpha2ResourceSlice';
-import { V1alpha2ResourceSliceList } from '../models/V1alpha2ResourceSliceList';
-import { V1alpha2StructuredResourceHandle } from '../models/V1alpha2StructuredResourceHandle';
-import { V1alpha2VendorParameters } from '../models/V1alpha2VendorParameters';
-import { V1beta1AuditAnnotation } from '../models/V1beta1AuditAnnotation';
-import { V1beta1ExpressionWarning } from '../models/V1beta1ExpressionWarning';
-import { V1beta1MatchCondition } from '../models/V1beta1MatchCondition';
-import { V1beta1MatchResources } from '../models/V1beta1MatchResources';
-import { V1beta1NamedRuleWithOperations } from '../models/V1beta1NamedRuleWithOperations';
-import { V1beta1ParamKind } from '../models/V1beta1ParamKind';
-import { V1beta1ParamRef } from '../models/V1beta1ParamRef';
-import { V1beta1SelfSubjectReview } from '../models/V1beta1SelfSubjectReview';
-import { V1beta1SelfSubjectReviewStatus } from '../models/V1beta1SelfSubjectReviewStatus';
-import { V1beta1TypeChecking } from '../models/V1beta1TypeChecking';
-import { V1beta1ValidatingAdmissionPolicy } from '../models/V1beta1ValidatingAdmissionPolicy';
-import { V1beta1ValidatingAdmissionPolicyBinding } from '../models/V1beta1ValidatingAdmissionPolicyBinding';
-import { V1beta1ValidatingAdmissionPolicyBindingList } from '../models/V1beta1ValidatingAdmissionPolicyBindingList';
-import { V1beta1ValidatingAdmissionPolicyBindingSpec } from '../models/V1beta1ValidatingAdmissionPolicyBindingSpec';
-import { V1beta1ValidatingAdmissionPolicyList } from '../models/V1beta1ValidatingAdmissionPolicyList';
-import { V1beta1ValidatingAdmissionPolicySpec } from '../models/V1beta1ValidatingAdmissionPolicySpec';
-import { V1beta1ValidatingAdmissionPolicyStatus } from '../models/V1beta1ValidatingAdmissionPolicyStatus';
-import { V1beta1Validation } from '../models/V1beta1Validation';
-import { V1beta1Variable } from '../models/V1beta1Variable';
-import { V1beta3ExemptPriorityLevelConfiguration } from '../models/V1beta3ExemptPriorityLevelConfiguration';
-import { V1beta3FlowDistinguisherMethod } from '../models/V1beta3FlowDistinguisherMethod';
-import { V1beta3FlowSchema } from '../models/V1beta3FlowSchema';
-import { V1beta3FlowSchemaCondition } from '../models/V1beta3FlowSchemaCondition';
-import { V1beta3FlowSchemaList } from '../models/V1beta3FlowSchemaList';
-import { V1beta3FlowSchemaSpec } from '../models/V1beta3FlowSchemaSpec';
-import { V1beta3FlowSchemaStatus } from '../models/V1beta3FlowSchemaStatus';
-import { V1beta3GroupSubject } from '../models/V1beta3GroupSubject';
-import { V1beta3LimitResponse } from '../models/V1beta3LimitResponse';
-import { V1beta3LimitedPriorityLevelConfiguration } from '../models/V1beta3LimitedPriorityLevelConfiguration';
-import { V1beta3NonResourcePolicyRule } from '../models/V1beta3NonResourcePolicyRule';
-import { V1beta3PolicyRulesWithSubjects } from '../models/V1beta3PolicyRulesWithSubjects';
-import { V1beta3PriorityLevelConfiguration } from '../models/V1beta3PriorityLevelConfiguration';
-import { V1beta3PriorityLevelConfigurationCondition } from '../models/V1beta3PriorityLevelConfigurationCondition';
-import { V1beta3PriorityLevelConfigurationList } from '../models/V1beta3PriorityLevelConfigurationList';
-import { V1beta3PriorityLevelConfigurationReference } from '../models/V1beta3PriorityLevelConfigurationReference';
-import { V1beta3PriorityLevelConfigurationSpec } from '../models/V1beta3PriorityLevelConfigurationSpec';
-import { V1beta3PriorityLevelConfigurationStatus } from '../models/V1beta3PriorityLevelConfigurationStatus';
-import { V1beta3QueuingConfiguration } from '../models/V1beta3QueuingConfiguration';
-import { V1beta3ResourcePolicyRule } from '../models/V1beta3ResourcePolicyRule';
-import { V1beta3ServiceAccountSubject } from '../models/V1beta3ServiceAccountSubject';
-import { V1beta3Subject } from '../models/V1beta3Subject';
-import { V1beta3UserSubject } from '../models/V1beta3UserSubject';
-import { V2ContainerResourceMetricSource } from '../models/V2ContainerResourceMetricSource';
-import { V2ContainerResourceMetricStatus } from '../models/V2ContainerResourceMetricStatus';
-import { V2CrossVersionObjectReference } from '../models/V2CrossVersionObjectReference';
-import { V2ExternalMetricSource } from '../models/V2ExternalMetricSource';
-import { V2ExternalMetricStatus } from '../models/V2ExternalMetricStatus';
-import { V2HPAScalingPolicy } from '../models/V2HPAScalingPolicy';
-import { V2HPAScalingRules } from '../models/V2HPAScalingRules';
-import { V2HorizontalPodAutoscaler } from '../models/V2HorizontalPodAutoscaler';
-import { V2HorizontalPodAutoscalerBehavior } from '../models/V2HorizontalPodAutoscalerBehavior';
-import { V2HorizontalPodAutoscalerCondition } from '../models/V2HorizontalPodAutoscalerCondition';
-import { V2HorizontalPodAutoscalerList } from '../models/V2HorizontalPodAutoscalerList';
-import { V2HorizontalPodAutoscalerSpec } from '../models/V2HorizontalPodAutoscalerSpec';
-import { V2HorizontalPodAutoscalerStatus } from '../models/V2HorizontalPodAutoscalerStatus';
-import { V2MetricIdentifier } from '../models/V2MetricIdentifier';
-import { V2MetricSpec } from '../models/V2MetricSpec';
-import { V2MetricStatus } from '../models/V2MetricStatus';
-import { V2MetricTarget } from '../models/V2MetricTarget';
-import { V2MetricValueStatus } from '../models/V2MetricValueStatus';
-import { V2ObjectMetricSource } from '../models/V2ObjectMetricSource';
-import { V2ObjectMetricStatus } from '../models/V2ObjectMetricStatus';
-import { V2PodsMetricSource } from '../models/V2PodsMetricSource';
-import { V2PodsMetricStatus } from '../models/V2PodsMetricStatus';
-import { V2ResourceMetricSource } from '../models/V2ResourceMetricSource';
-import { V2ResourceMetricStatus } from '../models/V2ResourceMetricStatus';
-import { VersionInfo } from '../models/VersionInfo';
+import { AdmissionregistrationV1ServiceReference } from '../models/AdmissionregistrationV1ServiceReference.js';
+import { AdmissionregistrationV1WebhookClientConfig } from '../models/AdmissionregistrationV1WebhookClientConfig.js';
+import { ApiextensionsV1ServiceReference } from '../models/ApiextensionsV1ServiceReference.js';
+import { ApiextensionsV1WebhookClientConfig } from '../models/ApiextensionsV1WebhookClientConfig.js';
+import { ApiregistrationV1ServiceReference } from '../models/ApiregistrationV1ServiceReference.js';
+import { AuthenticationV1TokenRequest } from '../models/AuthenticationV1TokenRequest.js';
+import { CoreV1EndpointPort } from '../models/CoreV1EndpointPort.js';
+import { CoreV1Event } from '../models/CoreV1Event.js';
+import { CoreV1EventList } from '../models/CoreV1EventList.js';
+import { CoreV1EventSeries } from '../models/CoreV1EventSeries.js';
+import { DiscoveryV1EndpointPort } from '../models/DiscoveryV1EndpointPort.js';
+import { EventsV1Event } from '../models/EventsV1Event.js';
+import { EventsV1EventList } from '../models/EventsV1EventList.js';
+import { EventsV1EventSeries } from '../models/EventsV1EventSeries.js';
+import { FlowcontrolV1Subject } from '../models/FlowcontrolV1Subject.js';
+import { RbacV1Subject } from '../models/RbacV1Subject.js';
+import { StorageV1TokenRequest } from '../models/StorageV1TokenRequest.js';
+import { V1APIGroup } from '../models/V1APIGroup.js';
+import { V1APIGroupList } from '../models/V1APIGroupList.js';
+import { V1APIResource } from '../models/V1APIResource.js';
+import { V1APIResourceList } from '../models/V1APIResourceList.js';
+import { V1APIService } from '../models/V1APIService.js';
+import { V1APIServiceCondition } from '../models/V1APIServiceCondition.js';
+import { V1APIServiceList } from '../models/V1APIServiceList.js';
+import { V1APIServiceSpec } from '../models/V1APIServiceSpec.js';
+import { V1APIServiceStatus } from '../models/V1APIServiceStatus.js';
+import { V1APIVersions } from '../models/V1APIVersions.js';
+import { V1AWSElasticBlockStoreVolumeSource } from '../models/V1AWSElasticBlockStoreVolumeSource.js';
+import { V1Affinity } from '../models/V1Affinity.js';
+import { V1AggregationRule } from '../models/V1AggregationRule.js';
+import { V1AppArmorProfile } from '../models/V1AppArmorProfile.js';
+import { V1AttachedVolume } from '../models/V1AttachedVolume.js';
+import { V1AuditAnnotation } from '../models/V1AuditAnnotation.js';
+import { V1AzureDiskVolumeSource } from '../models/V1AzureDiskVolumeSource.js';
+import { V1AzureFilePersistentVolumeSource } from '../models/V1AzureFilePersistentVolumeSource.js';
+import { V1AzureFileVolumeSource } from '../models/V1AzureFileVolumeSource.js';
+import { V1Binding } from '../models/V1Binding.js';
+import { V1BoundObjectReference } from '../models/V1BoundObjectReference.js';
+import { V1CSIDriver } from '../models/V1CSIDriver.js';
+import { V1CSIDriverList } from '../models/V1CSIDriverList.js';
+import { V1CSIDriverSpec } from '../models/V1CSIDriverSpec.js';
+import { V1CSINode } from '../models/V1CSINode.js';
+import { V1CSINodeDriver } from '../models/V1CSINodeDriver.js';
+import { V1CSINodeList } from '../models/V1CSINodeList.js';
+import { V1CSINodeSpec } from '../models/V1CSINodeSpec.js';
+import { V1CSIPersistentVolumeSource } from '../models/V1CSIPersistentVolumeSource.js';
+import { V1CSIStorageCapacity } from '../models/V1CSIStorageCapacity.js';
+import { V1CSIStorageCapacityList } from '../models/V1CSIStorageCapacityList.js';
+import { V1CSIVolumeSource } from '../models/V1CSIVolumeSource.js';
+import { V1Capabilities } from '../models/V1Capabilities.js';
+import { V1CephFSPersistentVolumeSource } from '../models/V1CephFSPersistentVolumeSource.js';
+import { V1CephFSVolumeSource } from '../models/V1CephFSVolumeSource.js';
+import { V1CertificateSigningRequest } from '../models/V1CertificateSigningRequest.js';
+import { V1CertificateSigningRequestCondition } from '../models/V1CertificateSigningRequestCondition.js';
+import { V1CertificateSigningRequestList } from '../models/V1CertificateSigningRequestList.js';
+import { V1CertificateSigningRequestSpec } from '../models/V1CertificateSigningRequestSpec.js';
+import { V1CertificateSigningRequestStatus } from '../models/V1CertificateSigningRequestStatus.js';
+import { V1CinderPersistentVolumeSource } from '../models/V1CinderPersistentVolumeSource.js';
+import { V1CinderVolumeSource } from '../models/V1CinderVolumeSource.js';
+import { V1ClaimSource } from '../models/V1ClaimSource.js';
+import { V1ClientIPConfig } from '../models/V1ClientIPConfig.js';
+import { V1ClusterRole } from '../models/V1ClusterRole.js';
+import { V1ClusterRoleBinding } from '../models/V1ClusterRoleBinding.js';
+import { V1ClusterRoleBindingList } from '../models/V1ClusterRoleBindingList.js';
+import { V1ClusterRoleList } from '../models/V1ClusterRoleList.js';
+import { V1ClusterTrustBundleProjection } from '../models/V1ClusterTrustBundleProjection.js';
+import { V1ComponentCondition } from '../models/V1ComponentCondition.js';
+import { V1ComponentStatus } from '../models/V1ComponentStatus.js';
+import { V1ComponentStatusList } from '../models/V1ComponentStatusList.js';
+import { V1Condition } from '../models/V1Condition.js';
+import { V1ConfigMap } from '../models/V1ConfigMap.js';
+import { V1ConfigMapEnvSource } from '../models/V1ConfigMapEnvSource.js';
+import { V1ConfigMapKeySelector } from '../models/V1ConfigMapKeySelector.js';
+import { V1ConfigMapList } from '../models/V1ConfigMapList.js';
+import { V1ConfigMapNodeConfigSource } from '../models/V1ConfigMapNodeConfigSource.js';
+import { V1ConfigMapProjection } from '../models/V1ConfigMapProjection.js';
+import { V1ConfigMapVolumeSource } from '../models/V1ConfigMapVolumeSource.js';
+import { V1Container } from '../models/V1Container.js';
+import { V1ContainerImage } from '../models/V1ContainerImage.js';
+import { V1ContainerPort } from '../models/V1ContainerPort.js';
+import { V1ContainerResizePolicy } from '../models/V1ContainerResizePolicy.js';
+import { V1ContainerState } from '../models/V1ContainerState.js';
+import { V1ContainerStateRunning } from '../models/V1ContainerStateRunning.js';
+import { V1ContainerStateTerminated } from '../models/V1ContainerStateTerminated.js';
+import { V1ContainerStateWaiting } from '../models/V1ContainerStateWaiting.js';
+import { V1ContainerStatus } from '../models/V1ContainerStatus.js';
+import { V1ControllerRevision } from '../models/V1ControllerRevision.js';
+import { V1ControllerRevisionList } from '../models/V1ControllerRevisionList.js';
+import { V1CronJob } from '../models/V1CronJob.js';
+import { V1CronJobList } from '../models/V1CronJobList.js';
+import { V1CronJobSpec } from '../models/V1CronJobSpec.js';
+import { V1CronJobStatus } from '../models/V1CronJobStatus.js';
+import { V1CrossVersionObjectReference } from '../models/V1CrossVersionObjectReference.js';
+import { V1CustomResourceColumnDefinition } from '../models/V1CustomResourceColumnDefinition.js';
+import { V1CustomResourceConversion } from '../models/V1CustomResourceConversion.js';
+import { V1CustomResourceDefinition } from '../models/V1CustomResourceDefinition.js';
+import { V1CustomResourceDefinitionCondition } from '../models/V1CustomResourceDefinitionCondition.js';
+import { V1CustomResourceDefinitionList } from '../models/V1CustomResourceDefinitionList.js';
+import { V1CustomResourceDefinitionNames } from '../models/V1CustomResourceDefinitionNames.js';
+import { V1CustomResourceDefinitionSpec } from '../models/V1CustomResourceDefinitionSpec.js';
+import { V1CustomResourceDefinitionStatus } from '../models/V1CustomResourceDefinitionStatus.js';
+import { V1CustomResourceDefinitionVersion } from '../models/V1CustomResourceDefinitionVersion.js';
+import { V1CustomResourceSubresourceScale } from '../models/V1CustomResourceSubresourceScale.js';
+import { V1CustomResourceSubresources } from '../models/V1CustomResourceSubresources.js';
+import { V1CustomResourceValidation } from '../models/V1CustomResourceValidation.js';
+import { V1DaemonEndpoint } from '../models/V1DaemonEndpoint.js';
+import { V1DaemonSet } from '../models/V1DaemonSet.js';
+import { V1DaemonSetCondition } from '../models/V1DaemonSetCondition.js';
+import { V1DaemonSetList } from '../models/V1DaemonSetList.js';
+import { V1DaemonSetSpec } from '../models/V1DaemonSetSpec.js';
+import { V1DaemonSetStatus } from '../models/V1DaemonSetStatus.js';
+import { V1DaemonSetUpdateStrategy } from '../models/V1DaemonSetUpdateStrategy.js';
+import { V1DeleteOptions } from '../models/V1DeleteOptions.js';
+import { V1Deployment } from '../models/V1Deployment.js';
+import { V1DeploymentCondition } from '../models/V1DeploymentCondition.js';
+import { V1DeploymentList } from '../models/V1DeploymentList.js';
+import { V1DeploymentSpec } from '../models/V1DeploymentSpec.js';
+import { V1DeploymentStatus } from '../models/V1DeploymentStatus.js';
+import { V1DeploymentStrategy } from '../models/V1DeploymentStrategy.js';
+import { V1DownwardAPIProjection } from '../models/V1DownwardAPIProjection.js';
+import { V1DownwardAPIVolumeFile } from '../models/V1DownwardAPIVolumeFile.js';
+import { V1DownwardAPIVolumeSource } from '../models/V1DownwardAPIVolumeSource.js';
+import { V1EmptyDirVolumeSource } from '../models/V1EmptyDirVolumeSource.js';
+import { V1Endpoint } from '../models/V1Endpoint.js';
+import { V1EndpointAddress } from '../models/V1EndpointAddress.js';
+import { V1EndpointConditions } from '../models/V1EndpointConditions.js';
+import { V1EndpointHints } from '../models/V1EndpointHints.js';
+import { V1EndpointSlice } from '../models/V1EndpointSlice.js';
+import { V1EndpointSliceList } from '../models/V1EndpointSliceList.js';
+import { V1EndpointSubset } from '../models/V1EndpointSubset.js';
+import { V1Endpoints } from '../models/V1Endpoints.js';
+import { V1EndpointsList } from '../models/V1EndpointsList.js';
+import { V1EnvFromSource } from '../models/V1EnvFromSource.js';
+import { V1EnvVar } from '../models/V1EnvVar.js';
+import { V1EnvVarSource } from '../models/V1EnvVarSource.js';
+import { V1EphemeralContainer } from '../models/V1EphemeralContainer.js';
+import { V1EphemeralVolumeSource } from '../models/V1EphemeralVolumeSource.js';
+import { V1EventSource } from '../models/V1EventSource.js';
+import { V1Eviction } from '../models/V1Eviction.js';
+import { V1ExecAction } from '../models/V1ExecAction.js';
+import { V1ExemptPriorityLevelConfiguration } from '../models/V1ExemptPriorityLevelConfiguration.js';
+import { V1ExpressionWarning } from '../models/V1ExpressionWarning.js';
+import { V1ExternalDocumentation } from '../models/V1ExternalDocumentation.js';
+import { V1FCVolumeSource } from '../models/V1FCVolumeSource.js';
+import { V1FlexPersistentVolumeSource } from '../models/V1FlexPersistentVolumeSource.js';
+import { V1FlexVolumeSource } from '../models/V1FlexVolumeSource.js';
+import { V1FlockerVolumeSource } from '../models/V1FlockerVolumeSource.js';
+import { V1FlowDistinguisherMethod } from '../models/V1FlowDistinguisherMethod.js';
+import { V1FlowSchema } from '../models/V1FlowSchema.js';
+import { V1FlowSchemaCondition } from '../models/V1FlowSchemaCondition.js';
+import { V1FlowSchemaList } from '../models/V1FlowSchemaList.js';
+import { V1FlowSchemaSpec } from '../models/V1FlowSchemaSpec.js';
+import { V1FlowSchemaStatus } from '../models/V1FlowSchemaStatus.js';
+import { V1ForZone } from '../models/V1ForZone.js';
+import { V1GCEPersistentDiskVolumeSource } from '../models/V1GCEPersistentDiskVolumeSource.js';
+import { V1GRPCAction } from '../models/V1GRPCAction.js';
+import { V1GitRepoVolumeSource } from '../models/V1GitRepoVolumeSource.js';
+import { V1GlusterfsPersistentVolumeSource } from '../models/V1GlusterfsPersistentVolumeSource.js';
+import { V1GlusterfsVolumeSource } from '../models/V1GlusterfsVolumeSource.js';
+import { V1GroupSubject } from '../models/V1GroupSubject.js';
+import { V1GroupVersionForDiscovery } from '../models/V1GroupVersionForDiscovery.js';
+import { V1HTTPGetAction } from '../models/V1HTTPGetAction.js';
+import { V1HTTPHeader } from '../models/V1HTTPHeader.js';
+import { V1HTTPIngressPath } from '../models/V1HTTPIngressPath.js';
+import { V1HTTPIngressRuleValue } from '../models/V1HTTPIngressRuleValue.js';
+import { V1HorizontalPodAutoscaler } from '../models/V1HorizontalPodAutoscaler.js';
+import { V1HorizontalPodAutoscalerList } from '../models/V1HorizontalPodAutoscalerList.js';
+import { V1HorizontalPodAutoscalerSpec } from '../models/V1HorizontalPodAutoscalerSpec.js';
+import { V1HorizontalPodAutoscalerStatus } from '../models/V1HorizontalPodAutoscalerStatus.js';
+import { V1HostAlias } from '../models/V1HostAlias.js';
+import { V1HostIP } from '../models/V1HostIP.js';
+import { V1HostPathVolumeSource } from '../models/V1HostPathVolumeSource.js';
+import { V1IPBlock } from '../models/V1IPBlock.js';
+import { V1ISCSIPersistentVolumeSource } from '../models/V1ISCSIPersistentVolumeSource.js';
+import { V1ISCSIVolumeSource } from '../models/V1ISCSIVolumeSource.js';
+import { V1Ingress } from '../models/V1Ingress.js';
+import { V1IngressBackend } from '../models/V1IngressBackend.js';
+import { V1IngressClass } from '../models/V1IngressClass.js';
+import { V1IngressClassList } from '../models/V1IngressClassList.js';
+import { V1IngressClassParametersReference } from '../models/V1IngressClassParametersReference.js';
+import { V1IngressClassSpec } from '../models/V1IngressClassSpec.js';
+import { V1IngressList } from '../models/V1IngressList.js';
+import { V1IngressLoadBalancerIngress } from '../models/V1IngressLoadBalancerIngress.js';
+import { V1IngressLoadBalancerStatus } from '../models/V1IngressLoadBalancerStatus.js';
+import { V1IngressPortStatus } from '../models/V1IngressPortStatus.js';
+import { V1IngressRule } from '../models/V1IngressRule.js';
+import { V1IngressServiceBackend } from '../models/V1IngressServiceBackend.js';
+import { V1IngressSpec } from '../models/V1IngressSpec.js';
+import { V1IngressStatus } from '../models/V1IngressStatus.js';
+import { V1IngressTLS } from '../models/V1IngressTLS.js';
+import { V1JSONSchemaProps } from '../models/V1JSONSchemaProps.js';
+import { V1Job } from '../models/V1Job.js';
+import { V1JobCondition } from '../models/V1JobCondition.js';
+import { V1JobList } from '../models/V1JobList.js';
+import { V1JobSpec } from '../models/V1JobSpec.js';
+import { V1JobStatus } from '../models/V1JobStatus.js';
+import { V1JobTemplateSpec } from '../models/V1JobTemplateSpec.js';
+import { V1KeyToPath } from '../models/V1KeyToPath.js';
+import { V1LabelSelector } from '../models/V1LabelSelector.js';
+import { V1LabelSelectorRequirement } from '../models/V1LabelSelectorRequirement.js';
+import { V1Lease } from '../models/V1Lease.js';
+import { V1LeaseList } from '../models/V1LeaseList.js';
+import { V1LeaseSpec } from '../models/V1LeaseSpec.js';
+import { V1Lifecycle } from '../models/V1Lifecycle.js';
+import { V1LifecycleHandler } from '../models/V1LifecycleHandler.js';
+import { V1LimitRange } from '../models/V1LimitRange.js';
+import { V1LimitRangeItem } from '../models/V1LimitRangeItem.js';
+import { V1LimitRangeList } from '../models/V1LimitRangeList.js';
+import { V1LimitRangeSpec } from '../models/V1LimitRangeSpec.js';
+import { V1LimitResponse } from '../models/V1LimitResponse.js';
+import { V1LimitedPriorityLevelConfiguration } from '../models/V1LimitedPriorityLevelConfiguration.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1LoadBalancerIngress } from '../models/V1LoadBalancerIngress.js';
+import { V1LoadBalancerStatus } from '../models/V1LoadBalancerStatus.js';
+import { V1LocalObjectReference } from '../models/V1LocalObjectReference.js';
+import { V1LocalSubjectAccessReview } from '../models/V1LocalSubjectAccessReview.js';
+import { V1LocalVolumeSource } from '../models/V1LocalVolumeSource.js';
+import { V1ManagedFieldsEntry } from '../models/V1ManagedFieldsEntry.js';
+import { V1MatchCondition } from '../models/V1MatchCondition.js';
+import { V1MatchResources } from '../models/V1MatchResources.js';
+import { V1ModifyVolumeStatus } from '../models/V1ModifyVolumeStatus.js';
+import { V1MutatingWebhook } from '../models/V1MutatingWebhook.js';
+import { V1MutatingWebhookConfiguration } from '../models/V1MutatingWebhookConfiguration.js';
+import { V1MutatingWebhookConfigurationList } from '../models/V1MutatingWebhookConfigurationList.js';
+import { V1NFSVolumeSource } from '../models/V1NFSVolumeSource.js';
+import { V1NamedRuleWithOperations } from '../models/V1NamedRuleWithOperations.js';
+import { V1Namespace } from '../models/V1Namespace.js';
+import { V1NamespaceCondition } from '../models/V1NamespaceCondition.js';
+import { V1NamespaceList } from '../models/V1NamespaceList.js';
+import { V1NamespaceSpec } from '../models/V1NamespaceSpec.js';
+import { V1NamespaceStatus } from '../models/V1NamespaceStatus.js';
+import { V1NetworkPolicy } from '../models/V1NetworkPolicy.js';
+import { V1NetworkPolicyEgressRule } from '../models/V1NetworkPolicyEgressRule.js';
+import { V1NetworkPolicyIngressRule } from '../models/V1NetworkPolicyIngressRule.js';
+import { V1NetworkPolicyList } from '../models/V1NetworkPolicyList.js';
+import { V1NetworkPolicyPeer } from '../models/V1NetworkPolicyPeer.js';
+import { V1NetworkPolicyPort } from '../models/V1NetworkPolicyPort.js';
+import { V1NetworkPolicySpec } from '../models/V1NetworkPolicySpec.js';
+import { V1Node } from '../models/V1Node.js';
+import { V1NodeAddress } from '../models/V1NodeAddress.js';
+import { V1NodeAffinity } from '../models/V1NodeAffinity.js';
+import { V1NodeCondition } from '../models/V1NodeCondition.js';
+import { V1NodeConfigSource } from '../models/V1NodeConfigSource.js';
+import { V1NodeConfigStatus } from '../models/V1NodeConfigStatus.js';
+import { V1NodeDaemonEndpoints } from '../models/V1NodeDaemonEndpoints.js';
+import { V1NodeList } from '../models/V1NodeList.js';
+import { V1NodeRuntimeHandler } from '../models/V1NodeRuntimeHandler.js';
+import { V1NodeRuntimeHandlerFeatures } from '../models/V1NodeRuntimeHandlerFeatures.js';
+import { V1NodeSelector } from '../models/V1NodeSelector.js';
+import { V1NodeSelectorRequirement } from '../models/V1NodeSelectorRequirement.js';
+import { V1NodeSelectorTerm } from '../models/V1NodeSelectorTerm.js';
+import { V1NodeSpec } from '../models/V1NodeSpec.js';
+import { V1NodeStatus } from '../models/V1NodeStatus.js';
+import { V1NodeSystemInfo } from '../models/V1NodeSystemInfo.js';
+import { V1NonResourceAttributes } from '../models/V1NonResourceAttributes.js';
+import { V1NonResourcePolicyRule } from '../models/V1NonResourcePolicyRule.js';
+import { V1NonResourceRule } from '../models/V1NonResourceRule.js';
+import { V1ObjectFieldSelector } from '../models/V1ObjectFieldSelector.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1ObjectReference } from '../models/V1ObjectReference.js';
+import { V1Overhead } from '../models/V1Overhead.js';
+import { V1OwnerReference } from '../models/V1OwnerReference.js';
+import { V1ParamKind } from '../models/V1ParamKind.js';
+import { V1ParamRef } from '../models/V1ParamRef.js';
+import { V1PersistentVolume } from '../models/V1PersistentVolume.js';
+import { V1PersistentVolumeClaim } from '../models/V1PersistentVolumeClaim.js';
+import { V1PersistentVolumeClaimCondition } from '../models/V1PersistentVolumeClaimCondition.js';
+import { V1PersistentVolumeClaimList } from '../models/V1PersistentVolumeClaimList.js';
+import { V1PersistentVolumeClaimSpec } from '../models/V1PersistentVolumeClaimSpec.js';
+import { V1PersistentVolumeClaimStatus } from '../models/V1PersistentVolumeClaimStatus.js';
+import { V1PersistentVolumeClaimTemplate } from '../models/V1PersistentVolumeClaimTemplate.js';
+import { V1PersistentVolumeClaimVolumeSource } from '../models/V1PersistentVolumeClaimVolumeSource.js';
+import { V1PersistentVolumeList } from '../models/V1PersistentVolumeList.js';
+import { V1PersistentVolumeSpec } from '../models/V1PersistentVolumeSpec.js';
+import { V1PersistentVolumeStatus } from '../models/V1PersistentVolumeStatus.js';
+import { V1PhotonPersistentDiskVolumeSource } from '../models/V1PhotonPersistentDiskVolumeSource.js';
+import { V1Pod } from '../models/V1Pod.js';
+import { V1PodAffinity } from '../models/V1PodAffinity.js';
+import { V1PodAffinityTerm } from '../models/V1PodAffinityTerm.js';
+import { V1PodAntiAffinity } from '../models/V1PodAntiAffinity.js';
+import { V1PodCondition } from '../models/V1PodCondition.js';
+import { V1PodDNSConfig } from '../models/V1PodDNSConfig.js';
+import { V1PodDNSConfigOption } from '../models/V1PodDNSConfigOption.js';
+import { V1PodDisruptionBudget } from '../models/V1PodDisruptionBudget.js';
+import { V1PodDisruptionBudgetList } from '../models/V1PodDisruptionBudgetList.js';
+import { V1PodDisruptionBudgetSpec } from '../models/V1PodDisruptionBudgetSpec.js';
+import { V1PodDisruptionBudgetStatus } from '../models/V1PodDisruptionBudgetStatus.js';
+import { V1PodFailurePolicy } from '../models/V1PodFailurePolicy.js';
+import { V1PodFailurePolicyOnExitCodesRequirement } from '../models/V1PodFailurePolicyOnExitCodesRequirement.js';
+import { V1PodFailurePolicyOnPodConditionsPattern } from '../models/V1PodFailurePolicyOnPodConditionsPattern.js';
+import { V1PodFailurePolicyRule } from '../models/V1PodFailurePolicyRule.js';
+import { V1PodIP } from '../models/V1PodIP.js';
+import { V1PodList } from '../models/V1PodList.js';
+import { V1PodOS } from '../models/V1PodOS.js';
+import { V1PodReadinessGate } from '../models/V1PodReadinessGate.js';
+import { V1PodResourceClaim } from '../models/V1PodResourceClaim.js';
+import { V1PodResourceClaimStatus } from '../models/V1PodResourceClaimStatus.js';
+import { V1PodSchedulingGate } from '../models/V1PodSchedulingGate.js';
+import { V1PodSecurityContext } from '../models/V1PodSecurityContext.js';
+import { V1PodSpec } from '../models/V1PodSpec.js';
+import { V1PodStatus } from '../models/V1PodStatus.js';
+import { V1PodTemplate } from '../models/V1PodTemplate.js';
+import { V1PodTemplateList } from '../models/V1PodTemplateList.js';
+import { V1PodTemplateSpec } from '../models/V1PodTemplateSpec.js';
+import { V1PolicyRule } from '../models/V1PolicyRule.js';
+import { V1PolicyRulesWithSubjects } from '../models/V1PolicyRulesWithSubjects.js';
+import { V1PortStatus } from '../models/V1PortStatus.js';
+import { V1PortworxVolumeSource } from '../models/V1PortworxVolumeSource.js';
+import { V1Preconditions } from '../models/V1Preconditions.js';
+import { V1PreferredSchedulingTerm } from '../models/V1PreferredSchedulingTerm.js';
+import { V1PriorityClass } from '../models/V1PriorityClass.js';
+import { V1PriorityClassList } from '../models/V1PriorityClassList.js';
+import { V1PriorityLevelConfiguration } from '../models/V1PriorityLevelConfiguration.js';
+import { V1PriorityLevelConfigurationCondition } from '../models/V1PriorityLevelConfigurationCondition.js';
+import { V1PriorityLevelConfigurationList } from '../models/V1PriorityLevelConfigurationList.js';
+import { V1PriorityLevelConfigurationReference } from '../models/V1PriorityLevelConfigurationReference.js';
+import { V1PriorityLevelConfigurationSpec } from '../models/V1PriorityLevelConfigurationSpec.js';
+import { V1PriorityLevelConfigurationStatus } from '../models/V1PriorityLevelConfigurationStatus.js';
+import { V1Probe } from '../models/V1Probe.js';
+import { V1ProjectedVolumeSource } from '../models/V1ProjectedVolumeSource.js';
+import { V1QueuingConfiguration } from '../models/V1QueuingConfiguration.js';
+import { V1QuobyteVolumeSource } from '../models/V1QuobyteVolumeSource.js';
+import { V1RBDPersistentVolumeSource } from '../models/V1RBDPersistentVolumeSource.js';
+import { V1RBDVolumeSource } from '../models/V1RBDVolumeSource.js';
+import { V1ReplicaSet } from '../models/V1ReplicaSet.js';
+import { V1ReplicaSetCondition } from '../models/V1ReplicaSetCondition.js';
+import { V1ReplicaSetList } from '../models/V1ReplicaSetList.js';
+import { V1ReplicaSetSpec } from '../models/V1ReplicaSetSpec.js';
+import { V1ReplicaSetStatus } from '../models/V1ReplicaSetStatus.js';
+import { V1ReplicationController } from '../models/V1ReplicationController.js';
+import { V1ReplicationControllerCondition } from '../models/V1ReplicationControllerCondition.js';
+import { V1ReplicationControllerList } from '../models/V1ReplicationControllerList.js';
+import { V1ReplicationControllerSpec } from '../models/V1ReplicationControllerSpec.js';
+import { V1ReplicationControllerStatus } from '../models/V1ReplicationControllerStatus.js';
+import { V1ResourceAttributes } from '../models/V1ResourceAttributes.js';
+import { V1ResourceClaim } from '../models/V1ResourceClaim.js';
+import { V1ResourceFieldSelector } from '../models/V1ResourceFieldSelector.js';
+import { V1ResourcePolicyRule } from '../models/V1ResourcePolicyRule.js';
+import { V1ResourceQuota } from '../models/V1ResourceQuota.js';
+import { V1ResourceQuotaList } from '../models/V1ResourceQuotaList.js';
+import { V1ResourceQuotaSpec } from '../models/V1ResourceQuotaSpec.js';
+import { V1ResourceQuotaStatus } from '../models/V1ResourceQuotaStatus.js';
+import { V1ResourceRequirements } from '../models/V1ResourceRequirements.js';
+import { V1ResourceRule } from '../models/V1ResourceRule.js';
+import { V1Role } from '../models/V1Role.js';
+import { V1RoleBinding } from '../models/V1RoleBinding.js';
+import { V1RoleBindingList } from '../models/V1RoleBindingList.js';
+import { V1RoleList } from '../models/V1RoleList.js';
+import { V1RoleRef } from '../models/V1RoleRef.js';
+import { V1RollingUpdateDaemonSet } from '../models/V1RollingUpdateDaemonSet.js';
+import { V1RollingUpdateDeployment } from '../models/V1RollingUpdateDeployment.js';
+import { V1RollingUpdateStatefulSetStrategy } from '../models/V1RollingUpdateStatefulSetStrategy.js';
+import { V1RuleWithOperations } from '../models/V1RuleWithOperations.js';
+import { V1RuntimeClass } from '../models/V1RuntimeClass.js';
+import { V1RuntimeClassList } from '../models/V1RuntimeClassList.js';
+import { V1SELinuxOptions } from '../models/V1SELinuxOptions.js';
+import { V1Scale } from '../models/V1Scale.js';
+import { V1ScaleIOPersistentVolumeSource } from '../models/V1ScaleIOPersistentVolumeSource.js';
+import { V1ScaleIOVolumeSource } from '../models/V1ScaleIOVolumeSource.js';
+import { V1ScaleSpec } from '../models/V1ScaleSpec.js';
+import { V1ScaleStatus } from '../models/V1ScaleStatus.js';
+import { V1Scheduling } from '../models/V1Scheduling.js';
+import { V1ScopeSelector } from '../models/V1ScopeSelector.js';
+import { V1ScopedResourceSelectorRequirement } from '../models/V1ScopedResourceSelectorRequirement.js';
+import { V1SeccompProfile } from '../models/V1SeccompProfile.js';
+import { V1Secret } from '../models/V1Secret.js';
+import { V1SecretEnvSource } from '../models/V1SecretEnvSource.js';
+import { V1SecretKeySelector } from '../models/V1SecretKeySelector.js';
+import { V1SecretList } from '../models/V1SecretList.js';
+import { V1SecretProjection } from '../models/V1SecretProjection.js';
+import { V1SecretReference } from '../models/V1SecretReference.js';
+import { V1SecretVolumeSource } from '../models/V1SecretVolumeSource.js';
+import { V1SecurityContext } from '../models/V1SecurityContext.js';
+import { V1SelectableField } from '../models/V1SelectableField.js';
+import { V1SelfSubjectAccessReview } from '../models/V1SelfSubjectAccessReview.js';
+import { V1SelfSubjectAccessReviewSpec } from '../models/V1SelfSubjectAccessReviewSpec.js';
+import { V1SelfSubjectReview } from '../models/V1SelfSubjectReview.js';
+import { V1SelfSubjectReviewStatus } from '../models/V1SelfSubjectReviewStatus.js';
+import { V1SelfSubjectRulesReview } from '../models/V1SelfSubjectRulesReview.js';
+import { V1SelfSubjectRulesReviewSpec } from '../models/V1SelfSubjectRulesReviewSpec.js';
+import { V1ServerAddressByClientCIDR } from '../models/V1ServerAddressByClientCIDR.js';
+import { V1Service } from '../models/V1Service.js';
+import { V1ServiceAccount } from '../models/V1ServiceAccount.js';
+import { V1ServiceAccountList } from '../models/V1ServiceAccountList.js';
+import { V1ServiceAccountSubject } from '../models/V1ServiceAccountSubject.js';
+import { V1ServiceAccountTokenProjection } from '../models/V1ServiceAccountTokenProjection.js';
+import { V1ServiceBackendPort } from '../models/V1ServiceBackendPort.js';
+import { V1ServiceList } from '../models/V1ServiceList.js';
+import { V1ServicePort } from '../models/V1ServicePort.js';
+import { V1ServiceSpec } from '../models/V1ServiceSpec.js';
+import { V1ServiceStatus } from '../models/V1ServiceStatus.js';
+import { V1SessionAffinityConfig } from '../models/V1SessionAffinityConfig.js';
+import { V1SleepAction } from '../models/V1SleepAction.js';
+import { V1StatefulSet } from '../models/V1StatefulSet.js';
+import { V1StatefulSetCondition } from '../models/V1StatefulSetCondition.js';
+import { V1StatefulSetList } from '../models/V1StatefulSetList.js';
+import { V1StatefulSetOrdinals } from '../models/V1StatefulSetOrdinals.js';
+import { V1StatefulSetPersistentVolumeClaimRetentionPolicy } from '../models/V1StatefulSetPersistentVolumeClaimRetentionPolicy.js';
+import { V1StatefulSetSpec } from '../models/V1StatefulSetSpec.js';
+import { V1StatefulSetStatus } from '../models/V1StatefulSetStatus.js';
+import { V1StatefulSetUpdateStrategy } from '../models/V1StatefulSetUpdateStrategy.js';
+import { V1Status } from '../models/V1Status.js';
+import { V1StatusCause } from '../models/V1StatusCause.js';
+import { V1StatusDetails } from '../models/V1StatusDetails.js';
+import { V1StorageClass } from '../models/V1StorageClass.js';
+import { V1StorageClassList } from '../models/V1StorageClassList.js';
+import { V1StorageOSPersistentVolumeSource } from '../models/V1StorageOSPersistentVolumeSource.js';
+import { V1StorageOSVolumeSource } from '../models/V1StorageOSVolumeSource.js';
+import { V1SubjectAccessReview } from '../models/V1SubjectAccessReview.js';
+import { V1SubjectAccessReviewSpec } from '../models/V1SubjectAccessReviewSpec.js';
+import { V1SubjectAccessReviewStatus } from '../models/V1SubjectAccessReviewStatus.js';
+import { V1SubjectRulesReviewStatus } from '../models/V1SubjectRulesReviewStatus.js';
+import { V1SuccessPolicy } from '../models/V1SuccessPolicy.js';
+import { V1SuccessPolicyRule } from '../models/V1SuccessPolicyRule.js';
+import { V1Sysctl } from '../models/V1Sysctl.js';
+import { V1TCPSocketAction } from '../models/V1TCPSocketAction.js';
+import { V1Taint } from '../models/V1Taint.js';
+import { V1TokenRequestSpec } from '../models/V1TokenRequestSpec.js';
+import { V1TokenRequestStatus } from '../models/V1TokenRequestStatus.js';
+import { V1TokenReview } from '../models/V1TokenReview.js';
+import { V1TokenReviewSpec } from '../models/V1TokenReviewSpec.js';
+import { V1TokenReviewStatus } from '../models/V1TokenReviewStatus.js';
+import { V1Toleration } from '../models/V1Toleration.js';
+import { V1TopologySelectorLabelRequirement } from '../models/V1TopologySelectorLabelRequirement.js';
+import { V1TopologySelectorTerm } from '../models/V1TopologySelectorTerm.js';
+import { V1TopologySpreadConstraint } from '../models/V1TopologySpreadConstraint.js';
+import { V1TypeChecking } from '../models/V1TypeChecking.js';
+import { V1TypedLocalObjectReference } from '../models/V1TypedLocalObjectReference.js';
+import { V1TypedObjectReference } from '../models/V1TypedObjectReference.js';
+import { V1UncountedTerminatedPods } from '../models/V1UncountedTerminatedPods.js';
+import { V1UserInfo } from '../models/V1UserInfo.js';
+import { V1UserSubject } from '../models/V1UserSubject.js';
+import { V1ValidatingAdmissionPolicy } from '../models/V1ValidatingAdmissionPolicy.js';
+import { V1ValidatingAdmissionPolicyBinding } from '../models/V1ValidatingAdmissionPolicyBinding.js';
+import { V1ValidatingAdmissionPolicyBindingList } from '../models/V1ValidatingAdmissionPolicyBindingList.js';
+import { V1ValidatingAdmissionPolicyBindingSpec } from '../models/V1ValidatingAdmissionPolicyBindingSpec.js';
+import { V1ValidatingAdmissionPolicyList } from '../models/V1ValidatingAdmissionPolicyList.js';
+import { V1ValidatingAdmissionPolicySpec } from '../models/V1ValidatingAdmissionPolicySpec.js';
+import { V1ValidatingAdmissionPolicyStatus } from '../models/V1ValidatingAdmissionPolicyStatus.js';
+import { V1ValidatingWebhook } from '../models/V1ValidatingWebhook.js';
+import { V1ValidatingWebhookConfiguration } from '../models/V1ValidatingWebhookConfiguration.js';
+import { V1ValidatingWebhookConfigurationList } from '../models/V1ValidatingWebhookConfigurationList.js';
+import { V1Validation } from '../models/V1Validation.js';
+import { V1ValidationRule } from '../models/V1ValidationRule.js';
+import { V1Variable } from '../models/V1Variable.js';
+import { V1Volume } from '../models/V1Volume.js';
+import { V1VolumeAttachment } from '../models/V1VolumeAttachment.js';
+import { V1VolumeAttachmentList } from '../models/V1VolumeAttachmentList.js';
+import { V1VolumeAttachmentSource } from '../models/V1VolumeAttachmentSource.js';
+import { V1VolumeAttachmentSpec } from '../models/V1VolumeAttachmentSpec.js';
+import { V1VolumeAttachmentStatus } from '../models/V1VolumeAttachmentStatus.js';
+import { V1VolumeDevice } from '../models/V1VolumeDevice.js';
+import { V1VolumeError } from '../models/V1VolumeError.js';
+import { V1VolumeMount } from '../models/V1VolumeMount.js';
+import { V1VolumeMountStatus } from '../models/V1VolumeMountStatus.js';
+import { V1VolumeNodeAffinity } from '../models/V1VolumeNodeAffinity.js';
+import { V1VolumeNodeResources } from '../models/V1VolumeNodeResources.js';
+import { V1VolumeProjection } from '../models/V1VolumeProjection.js';
+import { V1VolumeResourceRequirements } from '../models/V1VolumeResourceRequirements.js';
+import { V1VsphereVirtualDiskVolumeSource } from '../models/V1VsphereVirtualDiskVolumeSource.js';
+import { V1WatchEvent } from '../models/V1WatchEvent.js';
+import { V1WebhookConversion } from '../models/V1WebhookConversion.js';
+import { V1WeightedPodAffinityTerm } from '../models/V1WeightedPodAffinityTerm.js';
+import { V1WindowsSecurityContextOptions } from '../models/V1WindowsSecurityContextOptions.js';
+import { V1alpha1AuditAnnotation } from '../models/V1alpha1AuditAnnotation.js';
+import { V1alpha1ClusterTrustBundle } from '../models/V1alpha1ClusterTrustBundle.js';
+import { V1alpha1ClusterTrustBundleList } from '../models/V1alpha1ClusterTrustBundleList.js';
+import { V1alpha1ClusterTrustBundleSpec } from '../models/V1alpha1ClusterTrustBundleSpec.js';
+import { V1alpha1ExpressionWarning } from '../models/V1alpha1ExpressionWarning.js';
+import { V1alpha1GroupVersionResource } from '../models/V1alpha1GroupVersionResource.js';
+import { V1alpha1IPAddress } from '../models/V1alpha1IPAddress.js';
+import { V1alpha1IPAddressList } from '../models/V1alpha1IPAddressList.js';
+import { V1alpha1IPAddressSpec } from '../models/V1alpha1IPAddressSpec.js';
+import { V1alpha1MatchCondition } from '../models/V1alpha1MatchCondition.js';
+import { V1alpha1MatchResources } from '../models/V1alpha1MatchResources.js';
+import { V1alpha1MigrationCondition } from '../models/V1alpha1MigrationCondition.js';
+import { V1alpha1NamedRuleWithOperations } from '../models/V1alpha1NamedRuleWithOperations.js';
+import { V1alpha1ParamKind } from '../models/V1alpha1ParamKind.js';
+import { V1alpha1ParamRef } from '../models/V1alpha1ParamRef.js';
+import { V1alpha1ParentReference } from '../models/V1alpha1ParentReference.js';
+import { V1alpha1SelfSubjectReview } from '../models/V1alpha1SelfSubjectReview.js';
+import { V1alpha1SelfSubjectReviewStatus } from '../models/V1alpha1SelfSubjectReviewStatus.js';
+import { V1alpha1ServerStorageVersion } from '../models/V1alpha1ServerStorageVersion.js';
+import { V1alpha1ServiceCIDR } from '../models/V1alpha1ServiceCIDR.js';
+import { V1alpha1ServiceCIDRList } from '../models/V1alpha1ServiceCIDRList.js';
+import { V1alpha1ServiceCIDRSpec } from '../models/V1alpha1ServiceCIDRSpec.js';
+import { V1alpha1ServiceCIDRStatus } from '../models/V1alpha1ServiceCIDRStatus.js';
+import { V1alpha1StorageVersion } from '../models/V1alpha1StorageVersion.js';
+import { V1alpha1StorageVersionCondition } from '../models/V1alpha1StorageVersionCondition.js';
+import { V1alpha1StorageVersionList } from '../models/V1alpha1StorageVersionList.js';
+import { V1alpha1StorageVersionMigration } from '../models/V1alpha1StorageVersionMigration.js';
+import { V1alpha1StorageVersionMigrationList } from '../models/V1alpha1StorageVersionMigrationList.js';
+import { V1alpha1StorageVersionMigrationSpec } from '../models/V1alpha1StorageVersionMigrationSpec.js';
+import { V1alpha1StorageVersionMigrationStatus } from '../models/V1alpha1StorageVersionMigrationStatus.js';
+import { V1alpha1StorageVersionStatus } from '../models/V1alpha1StorageVersionStatus.js';
+import { V1alpha1TypeChecking } from '../models/V1alpha1TypeChecking.js';
+import { V1alpha1ValidatingAdmissionPolicy } from '../models/V1alpha1ValidatingAdmissionPolicy.js';
+import { V1alpha1ValidatingAdmissionPolicyBinding } from '../models/V1alpha1ValidatingAdmissionPolicyBinding.js';
+import { V1alpha1ValidatingAdmissionPolicyBindingList } from '../models/V1alpha1ValidatingAdmissionPolicyBindingList.js';
+import { V1alpha1ValidatingAdmissionPolicyBindingSpec } from '../models/V1alpha1ValidatingAdmissionPolicyBindingSpec.js';
+import { V1alpha1ValidatingAdmissionPolicyList } from '../models/V1alpha1ValidatingAdmissionPolicyList.js';
+import { V1alpha1ValidatingAdmissionPolicySpec } from '../models/V1alpha1ValidatingAdmissionPolicySpec.js';
+import { V1alpha1ValidatingAdmissionPolicyStatus } from '../models/V1alpha1ValidatingAdmissionPolicyStatus.js';
+import { V1alpha1Validation } from '../models/V1alpha1Validation.js';
+import { V1alpha1Variable } from '../models/V1alpha1Variable.js';
+import { V1alpha1VolumeAttributesClass } from '../models/V1alpha1VolumeAttributesClass.js';
+import { V1alpha1VolumeAttributesClassList } from '../models/V1alpha1VolumeAttributesClassList.js';
+import { V1alpha2AllocationResult } from '../models/V1alpha2AllocationResult.js';
+import { V1alpha2DriverAllocationResult } from '../models/V1alpha2DriverAllocationResult.js';
+import { V1alpha2DriverRequests } from '../models/V1alpha2DriverRequests.js';
+import { V1alpha2NamedResourcesAllocationResult } from '../models/V1alpha2NamedResourcesAllocationResult.js';
+import { V1alpha2NamedResourcesAttribute } from '../models/V1alpha2NamedResourcesAttribute.js';
+import { V1alpha2NamedResourcesFilter } from '../models/V1alpha2NamedResourcesFilter.js';
+import { V1alpha2NamedResourcesInstance } from '../models/V1alpha2NamedResourcesInstance.js';
+import { V1alpha2NamedResourcesIntSlice } from '../models/V1alpha2NamedResourcesIntSlice.js';
+import { V1alpha2NamedResourcesRequest } from '../models/V1alpha2NamedResourcesRequest.js';
+import { V1alpha2NamedResourcesResources } from '../models/V1alpha2NamedResourcesResources.js';
+import { V1alpha2NamedResourcesStringSlice } from '../models/V1alpha2NamedResourcesStringSlice.js';
+import { V1alpha2PodSchedulingContext } from '../models/V1alpha2PodSchedulingContext.js';
+import { V1alpha2PodSchedulingContextList } from '../models/V1alpha2PodSchedulingContextList.js';
+import { V1alpha2PodSchedulingContextSpec } from '../models/V1alpha2PodSchedulingContextSpec.js';
+import { V1alpha2PodSchedulingContextStatus } from '../models/V1alpha2PodSchedulingContextStatus.js';
+import { V1alpha2ResourceClaim } from '../models/V1alpha2ResourceClaim.js';
+import { V1alpha2ResourceClaimConsumerReference } from '../models/V1alpha2ResourceClaimConsumerReference.js';
+import { V1alpha2ResourceClaimList } from '../models/V1alpha2ResourceClaimList.js';
+import { V1alpha2ResourceClaimParameters } from '../models/V1alpha2ResourceClaimParameters.js';
+import { V1alpha2ResourceClaimParametersList } from '../models/V1alpha2ResourceClaimParametersList.js';
+import { V1alpha2ResourceClaimParametersReference } from '../models/V1alpha2ResourceClaimParametersReference.js';
+import { V1alpha2ResourceClaimSchedulingStatus } from '../models/V1alpha2ResourceClaimSchedulingStatus.js';
+import { V1alpha2ResourceClaimSpec } from '../models/V1alpha2ResourceClaimSpec.js';
+import { V1alpha2ResourceClaimStatus } from '../models/V1alpha2ResourceClaimStatus.js';
+import { V1alpha2ResourceClaimTemplate } from '../models/V1alpha2ResourceClaimTemplate.js';
+import { V1alpha2ResourceClaimTemplateList } from '../models/V1alpha2ResourceClaimTemplateList.js';
+import { V1alpha2ResourceClaimTemplateSpec } from '../models/V1alpha2ResourceClaimTemplateSpec.js';
+import { V1alpha2ResourceClass } from '../models/V1alpha2ResourceClass.js';
+import { V1alpha2ResourceClassList } from '../models/V1alpha2ResourceClassList.js';
+import { V1alpha2ResourceClassParameters } from '../models/V1alpha2ResourceClassParameters.js';
+import { V1alpha2ResourceClassParametersList } from '../models/V1alpha2ResourceClassParametersList.js';
+import { V1alpha2ResourceClassParametersReference } from '../models/V1alpha2ResourceClassParametersReference.js';
+import { V1alpha2ResourceFilter } from '../models/V1alpha2ResourceFilter.js';
+import { V1alpha2ResourceHandle } from '../models/V1alpha2ResourceHandle.js';
+import { V1alpha2ResourceRequest } from '../models/V1alpha2ResourceRequest.js';
+import { V1alpha2ResourceSlice } from '../models/V1alpha2ResourceSlice.js';
+import { V1alpha2ResourceSliceList } from '../models/V1alpha2ResourceSliceList.js';
+import { V1alpha2StructuredResourceHandle } from '../models/V1alpha2StructuredResourceHandle.js';
+import { V1alpha2VendorParameters } from '../models/V1alpha2VendorParameters.js';
+import { V1beta1AuditAnnotation } from '../models/V1beta1AuditAnnotation.js';
+import { V1beta1ExpressionWarning } from '../models/V1beta1ExpressionWarning.js';
+import { V1beta1MatchCondition } from '../models/V1beta1MatchCondition.js';
+import { V1beta1MatchResources } from '../models/V1beta1MatchResources.js';
+import { V1beta1NamedRuleWithOperations } from '../models/V1beta1NamedRuleWithOperations.js';
+import { V1beta1ParamKind } from '../models/V1beta1ParamKind.js';
+import { V1beta1ParamRef } from '../models/V1beta1ParamRef.js';
+import { V1beta1SelfSubjectReview } from '../models/V1beta1SelfSubjectReview.js';
+import { V1beta1SelfSubjectReviewStatus } from '../models/V1beta1SelfSubjectReviewStatus.js';
+import { V1beta1TypeChecking } from '../models/V1beta1TypeChecking.js';
+import { V1beta1ValidatingAdmissionPolicy } from '../models/V1beta1ValidatingAdmissionPolicy.js';
+import { V1beta1ValidatingAdmissionPolicyBinding } from '../models/V1beta1ValidatingAdmissionPolicyBinding.js';
+import { V1beta1ValidatingAdmissionPolicyBindingList } from '../models/V1beta1ValidatingAdmissionPolicyBindingList.js';
+import { V1beta1ValidatingAdmissionPolicyBindingSpec } from '../models/V1beta1ValidatingAdmissionPolicyBindingSpec.js';
+import { V1beta1ValidatingAdmissionPolicyList } from '../models/V1beta1ValidatingAdmissionPolicyList.js';
+import { V1beta1ValidatingAdmissionPolicySpec } from '../models/V1beta1ValidatingAdmissionPolicySpec.js';
+import { V1beta1ValidatingAdmissionPolicyStatus } from '../models/V1beta1ValidatingAdmissionPolicyStatus.js';
+import { V1beta1Validation } from '../models/V1beta1Validation.js';
+import { V1beta1Variable } from '../models/V1beta1Variable.js';
+import { V1beta3ExemptPriorityLevelConfiguration } from '../models/V1beta3ExemptPriorityLevelConfiguration.js';
+import { V1beta3FlowDistinguisherMethod } from '../models/V1beta3FlowDistinguisherMethod.js';
+import { V1beta3FlowSchema } from '../models/V1beta3FlowSchema.js';
+import { V1beta3FlowSchemaCondition } from '../models/V1beta3FlowSchemaCondition.js';
+import { V1beta3FlowSchemaList } from '../models/V1beta3FlowSchemaList.js';
+import { V1beta3FlowSchemaSpec } from '../models/V1beta3FlowSchemaSpec.js';
+import { V1beta3FlowSchemaStatus } from '../models/V1beta3FlowSchemaStatus.js';
+import { V1beta3GroupSubject } from '../models/V1beta3GroupSubject.js';
+import { V1beta3LimitResponse } from '../models/V1beta3LimitResponse.js';
+import { V1beta3LimitedPriorityLevelConfiguration } from '../models/V1beta3LimitedPriorityLevelConfiguration.js';
+import { V1beta3NonResourcePolicyRule } from '../models/V1beta3NonResourcePolicyRule.js';
+import { V1beta3PolicyRulesWithSubjects } from '../models/V1beta3PolicyRulesWithSubjects.js';
+import { V1beta3PriorityLevelConfiguration } from '../models/V1beta3PriorityLevelConfiguration.js';
+import { V1beta3PriorityLevelConfigurationCondition } from '../models/V1beta3PriorityLevelConfigurationCondition.js';
+import { V1beta3PriorityLevelConfigurationList } from '../models/V1beta3PriorityLevelConfigurationList.js';
+import { V1beta3PriorityLevelConfigurationReference } from '../models/V1beta3PriorityLevelConfigurationReference.js';
+import { V1beta3PriorityLevelConfigurationSpec } from '../models/V1beta3PriorityLevelConfigurationSpec.js';
+import { V1beta3PriorityLevelConfigurationStatus } from '../models/V1beta3PriorityLevelConfigurationStatus.js';
+import { V1beta3QueuingConfiguration } from '../models/V1beta3QueuingConfiguration.js';
+import { V1beta3ResourcePolicyRule } from '../models/V1beta3ResourcePolicyRule.js';
+import { V1beta3ServiceAccountSubject } from '../models/V1beta3ServiceAccountSubject.js';
+import { V1beta3Subject } from '../models/V1beta3Subject.js';
+import { V1beta3UserSubject } from '../models/V1beta3UserSubject.js';
+import { V2ContainerResourceMetricSource } from '../models/V2ContainerResourceMetricSource.js';
+import { V2ContainerResourceMetricStatus } from '../models/V2ContainerResourceMetricStatus.js';
+import { V2CrossVersionObjectReference } from '../models/V2CrossVersionObjectReference.js';
+import { V2ExternalMetricSource } from '../models/V2ExternalMetricSource.js';
+import { V2ExternalMetricStatus } from '../models/V2ExternalMetricStatus.js';
+import { V2HPAScalingPolicy } from '../models/V2HPAScalingPolicy.js';
+import { V2HPAScalingRules } from '../models/V2HPAScalingRules.js';
+import { V2HorizontalPodAutoscaler } from '../models/V2HorizontalPodAutoscaler.js';
+import { V2HorizontalPodAutoscalerBehavior } from '../models/V2HorizontalPodAutoscalerBehavior.js';
+import { V2HorizontalPodAutoscalerCondition } from '../models/V2HorizontalPodAutoscalerCondition.js';
+import { V2HorizontalPodAutoscalerList } from '../models/V2HorizontalPodAutoscalerList.js';
+import { V2HorizontalPodAutoscalerSpec } from '../models/V2HorizontalPodAutoscalerSpec.js';
+import { V2HorizontalPodAutoscalerStatus } from '../models/V2HorizontalPodAutoscalerStatus.js';
+import { V2MetricIdentifier } from '../models/V2MetricIdentifier.js';
+import { V2MetricSpec } from '../models/V2MetricSpec.js';
+import { V2MetricStatus } from '../models/V2MetricStatus.js';
+import { V2MetricTarget } from '../models/V2MetricTarget.js';
+import { V2MetricValueStatus } from '../models/V2MetricValueStatus.js';
+import { V2ObjectMetricSource } from '../models/V2ObjectMetricSource.js';
+import { V2ObjectMetricStatus } from '../models/V2ObjectMetricStatus.js';
+import { V2PodsMetricSource } from '../models/V2PodsMetricSource.js';
+import { V2PodsMetricStatus } from '../models/V2PodsMetricStatus.js';
+import { V2ResourceMetricSource } from '../models/V2ResourceMetricSource.js';
+import { V2ResourceMetricStatus } from '../models/V2ResourceMetricStatus.js';
+import { VersionInfo } from '../models/VersionInfo.js';
 
-import { ObservableAdmissionregistrationApi } from "./ObservableAPI";
-import { AdmissionregistrationApiRequestFactory, AdmissionregistrationApiResponseProcessor} from "../apis/AdmissionregistrationApi";
+import { ObservableAdmissionregistrationApi } from "./ObservableAPI.js";
+import { AdmissionregistrationApiRequestFactory, AdmissionregistrationApiResponseProcessor} from "../apis/AdmissionregistrationApi.js";
 
 export interface AdmissionregistrationApiGetAPIGroupRequest {
 }
@@ -646,8 +646,8 @@ export class ObjectAdmissionregistrationApi {
 
 }
 
-import { ObservableAdmissionregistrationV1Api } from "./ObservableAPI";
-import { AdmissionregistrationV1ApiRequestFactory, AdmissionregistrationV1ApiResponseProcessor} from "../apis/AdmissionregistrationV1Api";
+import { ObservableAdmissionregistrationV1Api } from "./ObservableAPI.js";
+import { AdmissionregistrationV1ApiRequestFactory, AdmissionregistrationV1ApiResponseProcessor} from "../apis/AdmissionregistrationV1Api.js";
 
 export interface AdmissionregistrationV1ApiCreateMutatingWebhookConfigurationRequest {
     /**
@@ -2805,8 +2805,8 @@ export class ObjectAdmissionregistrationV1Api {
 
 }
 
-import { ObservableAdmissionregistrationV1alpha1Api } from "./ObservableAPI";
-import { AdmissionregistrationV1alpha1ApiRequestFactory, AdmissionregistrationV1alpha1ApiResponseProcessor} from "../apis/AdmissionregistrationV1alpha1Api";
+import { ObservableAdmissionregistrationV1alpha1Api } from "./ObservableAPI.js";
+import { AdmissionregistrationV1alpha1ApiRequestFactory, AdmissionregistrationV1alpha1ApiResponseProcessor} from "../apis/AdmissionregistrationV1alpha1Api.js";
 
 export interface AdmissionregistrationV1alpha1ApiCreateValidatingAdmissionPolicyRequest {
     /**
@@ -3980,8 +3980,8 @@ export class ObjectAdmissionregistrationV1alpha1Api {
 
 }
 
-import { ObservableAdmissionregistrationV1beta1Api } from "./ObservableAPI";
-import { AdmissionregistrationV1beta1ApiRequestFactory, AdmissionregistrationV1beta1ApiResponseProcessor} from "../apis/AdmissionregistrationV1beta1Api";
+import { ObservableAdmissionregistrationV1beta1Api } from "./ObservableAPI.js";
+import { AdmissionregistrationV1beta1ApiRequestFactory, AdmissionregistrationV1beta1ApiResponseProcessor} from "../apis/AdmissionregistrationV1beta1Api.js";
 
 export interface AdmissionregistrationV1beta1ApiCreateValidatingAdmissionPolicyRequest {
     /**
@@ -5155,8 +5155,8 @@ export class ObjectAdmissionregistrationV1beta1Api {
 
 }
 
-import { ObservableApiextensionsApi } from "./ObservableAPI";
-import { ApiextensionsApiRequestFactory, ApiextensionsApiResponseProcessor} from "../apis/ApiextensionsApi";
+import { ObservableApiextensionsApi } from "./ObservableAPI.js";
+import { ApiextensionsApiRequestFactory, ApiextensionsApiResponseProcessor} from "../apis/ApiextensionsApi.js";
 
 export interface ApiextensionsApiGetAPIGroupRequest {
 }
@@ -5186,8 +5186,8 @@ export class ObjectApiextensionsApi {
 
 }
 
-import { ObservableApiextensionsV1Api } from "./ObservableAPI";
-import { ApiextensionsV1ApiRequestFactory, ApiextensionsV1ApiResponseProcessor} from "../apis/ApiextensionsV1Api";
+import { ObservableApiextensionsV1Api } from "./ObservableAPI.js";
+import { ApiextensionsV1ApiRequestFactory, ApiextensionsV1ApiResponseProcessor} from "../apis/ApiextensionsV1Api.js";
 
 export interface ApiextensionsV1ApiCreateCustomResourceDefinitionRequest {
     /**
@@ -5869,8 +5869,8 @@ export class ObjectApiextensionsV1Api {
 
 }
 
-import { ObservableApiregistrationApi } from "./ObservableAPI";
-import { ApiregistrationApiRequestFactory, ApiregistrationApiResponseProcessor} from "../apis/ApiregistrationApi";
+import { ObservableApiregistrationApi } from "./ObservableAPI.js";
+import { ApiregistrationApiRequestFactory, ApiregistrationApiResponseProcessor} from "../apis/ApiregistrationApi.js";
 
 export interface ApiregistrationApiGetAPIGroupRequest {
 }
@@ -5900,8 +5900,8 @@ export class ObjectApiregistrationApi {
 
 }
 
-import { ObservableApiregistrationV1Api } from "./ObservableAPI";
-import { ApiregistrationV1ApiRequestFactory, ApiregistrationV1ApiResponseProcessor} from "../apis/ApiregistrationV1Api";
+import { ObservableApiregistrationV1Api } from "./ObservableAPI.js";
+import { ApiregistrationV1ApiRequestFactory, ApiregistrationV1ApiResponseProcessor} from "../apis/ApiregistrationV1Api.js";
 
 export interface ApiregistrationV1ApiCreateAPIServiceRequest {
     /**
@@ -6583,8 +6583,8 @@ export class ObjectApiregistrationV1Api {
 
 }
 
-import { ObservableApisApi } from "./ObservableAPI";
-import { ApisApiRequestFactory, ApisApiResponseProcessor} from "../apis/ApisApi";
+import { ObservableApisApi } from "./ObservableAPI.js";
+import { ApisApiRequestFactory, ApisApiResponseProcessor} from "../apis/ApisApi.js";
 
 export interface ApisApiGetAPIVersionsRequest {
 }
@@ -6614,8 +6614,8 @@ export class ObjectApisApi {
 
 }
 
-import { ObservableAppsApi } from "./ObservableAPI";
-import { AppsApiRequestFactory, AppsApiResponseProcessor} from "../apis/AppsApi";
+import { ObservableAppsApi } from "./ObservableAPI.js";
+import { AppsApiRequestFactory, AppsApiResponseProcessor} from "../apis/AppsApi.js";
 
 export interface AppsApiGetAPIGroupRequest {
 }
@@ -6645,8 +6645,8 @@ export class ObjectAppsApi {
 
 }
 
-import { ObservableAppsV1Api } from "./ObservableAPI";
-import { AppsV1ApiRequestFactory, AppsV1ApiResponseProcessor} from "../apis/AppsV1Api";
+import { ObservableAppsV1Api } from "./ObservableAPI.js";
+import { AppsV1ApiRequestFactory, AppsV1ApiResponseProcessor} from "../apis/AppsV1Api.js";
 
 export interface AppsV1ApiCreateNamespacedControllerRevisionRequest {
     /**
@@ -11128,8 +11128,8 @@ export class ObjectAppsV1Api {
 
 }
 
-import { ObservableAuthenticationApi } from "./ObservableAPI";
-import { AuthenticationApiRequestFactory, AuthenticationApiResponseProcessor} from "../apis/AuthenticationApi";
+import { ObservableAuthenticationApi } from "./ObservableAPI.js";
+import { AuthenticationApiRequestFactory, AuthenticationApiResponseProcessor} from "../apis/AuthenticationApi.js";
 
 export interface AuthenticationApiGetAPIGroupRequest {
 }
@@ -11159,8 +11159,8 @@ export class ObjectAuthenticationApi {
 
 }
 
-import { ObservableAuthenticationV1Api } from "./ObservableAPI";
-import { AuthenticationV1ApiRequestFactory, AuthenticationV1ApiResponseProcessor} from "../apis/AuthenticationV1Api";
+import { ObservableAuthenticationV1Api } from "./ObservableAPI.js";
+import { AuthenticationV1ApiRequestFactory, AuthenticationV1ApiResponseProcessor} from "../apis/AuthenticationV1Api.js";
 
 export interface AuthenticationV1ApiCreateSelfSubjectReviewRequest {
     /**
@@ -11296,8 +11296,8 @@ export class ObjectAuthenticationV1Api {
 
 }
 
-import { ObservableAuthenticationV1alpha1Api } from "./ObservableAPI";
-import { AuthenticationV1alpha1ApiRequestFactory, AuthenticationV1alpha1ApiResponseProcessor} from "../apis/AuthenticationV1alpha1Api";
+import { ObservableAuthenticationV1alpha1Api } from "./ObservableAPI.js";
+import { AuthenticationV1alpha1ApiRequestFactory, AuthenticationV1alpha1ApiResponseProcessor} from "../apis/AuthenticationV1alpha1Api.js";
 
 export interface AuthenticationV1alpha1ApiCreateSelfSubjectReviewRequest {
     /**
@@ -11380,8 +11380,8 @@ export class ObjectAuthenticationV1alpha1Api {
 
 }
 
-import { ObservableAuthenticationV1beta1Api } from "./ObservableAPI";
-import { AuthenticationV1beta1ApiRequestFactory, AuthenticationV1beta1ApiResponseProcessor} from "../apis/AuthenticationV1beta1Api";
+import { ObservableAuthenticationV1beta1Api } from "./ObservableAPI.js";
+import { AuthenticationV1beta1ApiRequestFactory, AuthenticationV1beta1ApiResponseProcessor} from "../apis/AuthenticationV1beta1Api.js";
 
 export interface AuthenticationV1beta1ApiCreateSelfSubjectReviewRequest {
     /**
@@ -11464,8 +11464,8 @@ export class ObjectAuthenticationV1beta1Api {
 
 }
 
-import { ObservableAuthorizationApi } from "./ObservableAPI";
-import { AuthorizationApiRequestFactory, AuthorizationApiResponseProcessor} from "../apis/AuthorizationApi";
+import { ObservableAuthorizationApi } from "./ObservableAPI.js";
+import { AuthorizationApiRequestFactory, AuthorizationApiResponseProcessor} from "../apis/AuthorizationApi.js";
 
 export interface AuthorizationApiGetAPIGroupRequest {
 }
@@ -11495,8 +11495,8 @@ export class ObjectAuthorizationApi {
 
 }
 
-import { ObservableAuthorizationV1Api } from "./ObservableAPI";
-import { AuthorizationV1ApiRequestFactory, AuthorizationV1ApiResponseProcessor} from "../apis/AuthorizationV1Api";
+import { ObservableAuthorizationV1Api } from "./ObservableAPI.js";
+import { AuthorizationV1ApiRequestFactory, AuthorizationV1ApiResponseProcessor} from "../apis/AuthorizationV1Api.js";
 
 export interface AuthorizationV1ApiCreateNamespacedLocalSubjectAccessReviewRequest {
     /**
@@ -11745,8 +11745,8 @@ export class ObjectAuthorizationV1Api {
 
 }
 
-import { ObservableAutoscalingApi } from "./ObservableAPI";
-import { AutoscalingApiRequestFactory, AutoscalingApiResponseProcessor} from "../apis/AutoscalingApi";
+import { ObservableAutoscalingApi } from "./ObservableAPI.js";
+import { AutoscalingApiRequestFactory, AutoscalingApiResponseProcessor} from "../apis/AutoscalingApi.js";
 
 export interface AutoscalingApiGetAPIGroupRequest {
 }
@@ -11776,8 +11776,8 @@ export class ObjectAutoscalingApi {
 
 }
 
-import { ObservableAutoscalingV1Api } from "./ObservableAPI";
-import { AutoscalingV1ApiRequestFactory, AutoscalingV1ApiResponseProcessor} from "../apis/AutoscalingV1Api";
+import { ObservableAutoscalingV1Api } from "./ObservableAPI.js";
+import { AutoscalingV1ApiRequestFactory, AutoscalingV1ApiResponseProcessor} from "../apis/AutoscalingV1Api.js";
 
 export interface AutoscalingV1ApiCreateNamespacedHorizontalPodAutoscalerRequest {
     /**
@@ -12625,8 +12625,8 @@ export class ObjectAutoscalingV1Api {
 
 }
 
-import { ObservableAutoscalingV2Api } from "./ObservableAPI";
-import { AutoscalingV2ApiRequestFactory, AutoscalingV2ApiResponseProcessor} from "../apis/AutoscalingV2Api";
+import { ObservableAutoscalingV2Api } from "./ObservableAPI.js";
+import { AutoscalingV2ApiRequestFactory, AutoscalingV2ApiResponseProcessor} from "../apis/AutoscalingV2Api.js";
 
 export interface AutoscalingV2ApiCreateNamespacedHorizontalPodAutoscalerRequest {
     /**
@@ -13474,8 +13474,8 @@ export class ObjectAutoscalingV2Api {
 
 }
 
-import { ObservableBatchApi } from "./ObservableAPI";
-import { BatchApiRequestFactory, BatchApiResponseProcessor} from "../apis/BatchApi";
+import { ObservableBatchApi } from "./ObservableAPI.js";
+import { BatchApiRequestFactory, BatchApiResponseProcessor} from "../apis/BatchApi.js";
 
 export interface BatchApiGetAPIGroupRequest {
 }
@@ -13505,8 +13505,8 @@ export class ObjectBatchApi {
 
 }
 
-import { ObservableBatchV1Api } from "./ObservableAPI";
-import { BatchV1ApiRequestFactory, BatchV1ApiResponseProcessor} from "../apis/BatchV1Api";
+import { ObservableBatchV1Api } from "./ObservableAPI.js";
+import { BatchV1ApiRequestFactory, BatchV1ApiResponseProcessor} from "../apis/BatchV1Api.js";
 
 export interface BatchV1ApiCreateNamespacedCronJobRequest {
     /**
@@ -15172,8 +15172,8 @@ export class ObjectBatchV1Api {
 
 }
 
-import { ObservableCertificatesApi } from "./ObservableAPI";
-import { CertificatesApiRequestFactory, CertificatesApiResponseProcessor} from "../apis/CertificatesApi";
+import { ObservableCertificatesApi } from "./ObservableAPI.js";
+import { CertificatesApiRequestFactory, CertificatesApiResponseProcessor} from "../apis/CertificatesApi.js";
 
 export interface CertificatesApiGetAPIGroupRequest {
 }
@@ -15203,8 +15203,8 @@ export class ObjectCertificatesApi {
 
 }
 
-import { ObservableCertificatesV1Api } from "./ObservableAPI";
-import { CertificatesV1ApiRequestFactory, CertificatesV1ApiResponseProcessor} from "../apis/CertificatesV1Api";
+import { ObservableCertificatesV1Api } from "./ObservableAPI.js";
+import { CertificatesV1ApiRequestFactory, CertificatesV1ApiResponseProcessor} from "../apis/CertificatesV1Api.js";
 
 export interface CertificatesV1ApiCreateCertificateSigningRequestRequest {
     /**
@@ -16046,8 +16046,8 @@ export class ObjectCertificatesV1Api {
 
 }
 
-import { ObservableCertificatesV1alpha1Api } from "./ObservableAPI";
-import { CertificatesV1alpha1ApiRequestFactory, CertificatesV1alpha1ApiResponseProcessor} from "../apis/CertificatesV1alpha1Api";
+import { ObservableCertificatesV1alpha1Api } from "./ObservableAPI.js";
+import { CertificatesV1alpha1ApiRequestFactory, CertificatesV1alpha1ApiResponseProcessor} from "../apis/CertificatesV1alpha1Api.js";
 
 export interface CertificatesV1alpha1ApiCreateClusterTrustBundleRequest {
     /**
@@ -16569,8 +16569,8 @@ export class ObjectCertificatesV1alpha1Api {
 
 }
 
-import { ObservableCoordinationApi } from "./ObservableAPI";
-import { CoordinationApiRequestFactory, CoordinationApiResponseProcessor} from "../apis/CoordinationApi";
+import { ObservableCoordinationApi } from "./ObservableAPI.js";
+import { CoordinationApiRequestFactory, CoordinationApiResponseProcessor} from "../apis/CoordinationApi.js";
 
 export interface CoordinationApiGetAPIGroupRequest {
 }
@@ -16600,8 +16600,8 @@ export class ObjectCoordinationApi {
 
 }
 
-import { ObservableCoordinationV1Api } from "./ObservableAPI";
-import { CoordinationV1ApiRequestFactory, CoordinationV1ApiResponseProcessor} from "../apis/CoordinationV1Api";
+import { ObservableCoordinationV1Api } from "./ObservableAPI.js";
+import { CoordinationV1ApiRequestFactory, CoordinationV1ApiResponseProcessor} from "../apis/CoordinationV1Api.js";
 
 export interface CoordinationV1ApiCreateNamespacedLeaseRequest {
     /**
@@ -17268,8 +17268,8 @@ export class ObjectCoordinationV1Api {
 
 }
 
-import { ObservableCoreApi } from "./ObservableAPI";
-import { CoreApiRequestFactory, CoreApiResponseProcessor} from "../apis/CoreApi";
+import { ObservableCoreApi } from "./ObservableAPI.js";
+import { CoreApiRequestFactory, CoreApiResponseProcessor} from "../apis/CoreApi.js";
 
 export interface CoreApiGetAPIVersionsRequest {
 }
@@ -17299,8 +17299,8 @@ export class ObjectCoreApi {
 
 }
 
-import { ObservableCoreV1Api } from "./ObservableAPI";
-import { CoreV1ApiRequestFactory, CoreV1ApiResponseProcessor} from "../apis/CoreV1Api";
+import { ObservableCoreV1Api } from "./ObservableAPI.js";
+import { CoreV1ApiRequestFactory, CoreV1ApiResponseProcessor} from "../apis/CoreV1Api.js";
 
 export interface CoreV1ApiConnectDeleteNamespacedPodProxyRequest {
     /**
@@ -30722,8 +30722,8 @@ export class ObjectCoreV1Api {
 
 }
 
-import { ObservableCustomObjectsApi } from "./ObservableAPI";
-import { CustomObjectsApiRequestFactory, CustomObjectsApiResponseProcessor} from "../apis/CustomObjectsApi";
+import { ObservableCustomObjectsApi } from "./ObservableAPI.js";
+import { CustomObjectsApiRequestFactory, CustomObjectsApiResponseProcessor} from "../apis/CustomObjectsApi.js";
 
 export interface CustomObjectsApiCreateClusterCustomObjectRequest {
     /**
@@ -32664,8 +32664,8 @@ export class ObjectCustomObjectsApi {
 
 }
 
-import { ObservableDiscoveryApi } from "./ObservableAPI";
-import { DiscoveryApiRequestFactory, DiscoveryApiResponseProcessor} from "../apis/DiscoveryApi";
+import { ObservableDiscoveryApi } from "./ObservableAPI.js";
+import { DiscoveryApiRequestFactory, DiscoveryApiResponseProcessor} from "../apis/DiscoveryApi.js";
 
 export interface DiscoveryApiGetAPIGroupRequest {
 }
@@ -32695,8 +32695,8 @@ export class ObjectDiscoveryApi {
 
 }
 
-import { ObservableDiscoveryV1Api } from "./ObservableAPI";
-import { DiscoveryV1ApiRequestFactory, DiscoveryV1ApiResponseProcessor} from "../apis/DiscoveryV1Api";
+import { ObservableDiscoveryV1Api } from "./ObservableAPI.js";
+import { DiscoveryV1ApiRequestFactory, DiscoveryV1ApiResponseProcessor} from "../apis/DiscoveryV1Api.js";
 
 export interface DiscoveryV1ApiCreateNamespacedEndpointSliceRequest {
     /**
@@ -33363,8 +33363,8 @@ export class ObjectDiscoveryV1Api {
 
 }
 
-import { ObservableEventsApi } from "./ObservableAPI";
-import { EventsApiRequestFactory, EventsApiResponseProcessor} from "../apis/EventsApi";
+import { ObservableEventsApi } from "./ObservableAPI.js";
+import { EventsApiRequestFactory, EventsApiResponseProcessor} from "../apis/EventsApi.js";
 
 export interface EventsApiGetAPIGroupRequest {
 }
@@ -33394,8 +33394,8 @@ export class ObjectEventsApi {
 
 }
 
-import { ObservableEventsV1Api } from "./ObservableAPI";
-import { EventsV1ApiRequestFactory, EventsV1ApiResponseProcessor} from "../apis/EventsV1Api";
+import { ObservableEventsV1Api } from "./ObservableAPI.js";
+import { EventsV1ApiRequestFactory, EventsV1ApiResponseProcessor} from "../apis/EventsV1Api.js";
 
 export interface EventsV1ApiCreateNamespacedEventRequest {
     /**
@@ -34062,8 +34062,8 @@ export class ObjectEventsV1Api {
 
 }
 
-import { ObservableFlowcontrolApiserverApi } from "./ObservableAPI";
-import { FlowcontrolApiserverApiRequestFactory, FlowcontrolApiserverApiResponseProcessor} from "../apis/FlowcontrolApiserverApi";
+import { ObservableFlowcontrolApiserverApi } from "./ObservableAPI.js";
+import { FlowcontrolApiserverApiRequestFactory, FlowcontrolApiserverApiResponseProcessor} from "../apis/FlowcontrolApiserverApi.js";
 
 export interface FlowcontrolApiserverApiGetAPIGroupRequest {
 }
@@ -34093,8 +34093,8 @@ export class ObjectFlowcontrolApiserverApi {
 
 }
 
-import { ObservableFlowcontrolApiserverV1Api } from "./ObservableAPI";
-import { FlowcontrolApiserverV1ApiRequestFactory, FlowcontrolApiserverV1ApiResponseProcessor} from "../apis/FlowcontrolApiserverV1Api";
+import { ObservableFlowcontrolApiserverV1Api } from "./ObservableAPI.js";
+import { FlowcontrolApiserverV1ApiRequestFactory, FlowcontrolApiserverV1ApiResponseProcessor} from "../apis/FlowcontrolApiserverV1Api.js";
 
 export interface FlowcontrolApiserverV1ApiCreateFlowSchemaRequest {
     /**
@@ -35428,8 +35428,8 @@ export class ObjectFlowcontrolApiserverV1Api {
 
 }
 
-import { ObservableFlowcontrolApiserverV1beta3Api } from "./ObservableAPI";
-import { FlowcontrolApiserverV1beta3ApiRequestFactory, FlowcontrolApiserverV1beta3ApiResponseProcessor} from "../apis/FlowcontrolApiserverV1beta3Api";
+import { ObservableFlowcontrolApiserverV1beta3Api } from "./ObservableAPI.js";
+import { FlowcontrolApiserverV1beta3ApiRequestFactory, FlowcontrolApiserverV1beta3ApiResponseProcessor} from "../apis/FlowcontrolApiserverV1beta3Api.js";
 
 export interface FlowcontrolApiserverV1beta3ApiCreateFlowSchemaRequest {
     /**
@@ -36763,8 +36763,8 @@ export class ObjectFlowcontrolApiserverV1beta3Api {
 
 }
 
-import { ObservableInternalApiserverApi } from "./ObservableAPI";
-import { InternalApiserverApiRequestFactory, InternalApiserverApiResponseProcessor} from "../apis/InternalApiserverApi";
+import { ObservableInternalApiserverApi } from "./ObservableAPI.js";
+import { InternalApiserverApiRequestFactory, InternalApiserverApiResponseProcessor} from "../apis/InternalApiserverApi.js";
 
 export interface InternalApiserverApiGetAPIGroupRequest {
 }
@@ -36794,8 +36794,8 @@ export class ObjectInternalApiserverApi {
 
 }
 
-import { ObservableInternalApiserverV1alpha1Api } from "./ObservableAPI";
-import { InternalApiserverV1alpha1ApiRequestFactory, InternalApiserverV1alpha1ApiResponseProcessor} from "../apis/InternalApiserverV1alpha1Api";
+import { ObservableInternalApiserverV1alpha1Api } from "./ObservableAPI.js";
+import { InternalApiserverV1alpha1ApiRequestFactory, InternalApiserverV1alpha1ApiResponseProcessor} from "../apis/InternalApiserverV1alpha1Api.js";
 
 export interface InternalApiserverV1alpha1ApiCreateStorageVersionRequest {
     /**
@@ -37477,8 +37477,8 @@ export class ObjectInternalApiserverV1alpha1Api {
 
 }
 
-import { ObservableLogsApi } from "./ObservableAPI";
-import { LogsApiRequestFactory, LogsApiResponseProcessor} from "../apis/LogsApi";
+import { ObservableLogsApi } from "./ObservableAPI.js";
+import { LogsApiRequestFactory, LogsApiResponseProcessor} from "../apis/LogsApi.js";
 
 export interface LogsApiLogFileHandlerRequest {
     /**
@@ -37530,8 +37530,8 @@ export class ObjectLogsApi {
 
 }
 
-import { ObservableNetworkingApi } from "./ObservableAPI";
-import { NetworkingApiRequestFactory, NetworkingApiResponseProcessor} from "../apis/NetworkingApi";
+import { ObservableNetworkingApi } from "./ObservableAPI.js";
+import { NetworkingApiRequestFactory, NetworkingApiResponseProcessor} from "../apis/NetworkingApi.js";
 
 export interface NetworkingApiGetAPIGroupRequest {
 }
@@ -37561,8 +37561,8 @@ export class ObjectNetworkingApi {
 
 }
 
-import { ObservableNetworkingV1Api } from "./ObservableAPI";
-import { NetworkingV1ApiRequestFactory, NetworkingV1ApiResponseProcessor} from "../apis/NetworkingV1Api";
+import { ObservableNetworkingV1Api } from "./ObservableAPI.js";
+import { NetworkingV1ApiRequestFactory, NetworkingV1ApiResponseProcessor} from "../apis/NetworkingV1Api.js";
 
 export interface NetworkingV1ApiCreateIngressClassRequest {
     /**
@@ -39539,8 +39539,8 @@ export class ObjectNetworkingV1Api {
 
 }
 
-import { ObservableNetworkingV1alpha1Api } from "./ObservableAPI";
-import { NetworkingV1alpha1ApiRequestFactory, NetworkingV1alpha1ApiResponseProcessor} from "../apis/NetworkingV1alpha1Api";
+import { ObservableNetworkingV1alpha1Api } from "./ObservableAPI.js";
+import { NetworkingV1alpha1ApiRequestFactory, NetworkingV1alpha1ApiResponseProcessor} from "../apis/NetworkingV1alpha1Api.js";
 
 export interface NetworkingV1alpha1ApiCreateIPAddressRequest {
     /**
@@ -40714,8 +40714,8 @@ export class ObjectNetworkingV1alpha1Api {
 
 }
 
-import { ObservableNodeApi } from "./ObservableAPI";
-import { NodeApiRequestFactory, NodeApiResponseProcessor} from "../apis/NodeApi";
+import { ObservableNodeApi } from "./ObservableAPI.js";
+import { NodeApiRequestFactory, NodeApiResponseProcessor} from "../apis/NodeApi.js";
 
 export interface NodeApiGetAPIGroupRequest {
 }
@@ -40745,8 +40745,8 @@ export class ObjectNodeApi {
 
 }
 
-import { ObservableNodeV1Api } from "./ObservableAPI";
-import { NodeV1ApiRequestFactory, NodeV1ApiResponseProcessor} from "../apis/NodeV1Api";
+import { ObservableNodeV1Api } from "./ObservableAPI.js";
+import { NodeV1ApiRequestFactory, NodeV1ApiResponseProcessor} from "../apis/NodeV1Api.js";
 
 export interface NodeV1ApiCreateRuntimeClassRequest {
     /**
@@ -41268,8 +41268,8 @@ export class ObjectNodeV1Api {
 
 }
 
-import { ObservableOpenidApi } from "./ObservableAPI";
-import { OpenidApiRequestFactory, OpenidApiResponseProcessor} from "../apis/OpenidApi";
+import { ObservableOpenidApi } from "./ObservableAPI.js";
+import { OpenidApiRequestFactory, OpenidApiResponseProcessor} from "../apis/OpenidApi.js";
 
 export interface OpenidApiGetServiceAccountIssuerOpenIDKeysetRequest {
 }
@@ -41299,8 +41299,8 @@ export class ObjectOpenidApi {
 
 }
 
-import { ObservablePolicyApi } from "./ObservableAPI";
-import { PolicyApiRequestFactory, PolicyApiResponseProcessor} from "../apis/PolicyApi";
+import { ObservablePolicyApi } from "./ObservableAPI.js";
+import { PolicyApiRequestFactory, PolicyApiResponseProcessor} from "../apis/PolicyApi.js";
 
 export interface PolicyApiGetAPIGroupRequest {
 }
@@ -41330,8 +41330,8 @@ export class ObjectPolicyApi {
 
 }
 
-import { ObservablePolicyV1Api } from "./ObservableAPI";
-import { PolicyV1ApiRequestFactory, PolicyV1ApiResponseProcessor} from "../apis/PolicyV1Api";
+import { ObservablePolicyV1Api } from "./ObservableAPI.js";
+import { PolicyV1ApiRequestFactory, PolicyV1ApiResponseProcessor} from "../apis/PolicyV1Api.js";
 
 export interface PolicyV1ApiCreateNamespacedPodDisruptionBudgetRequest {
     /**
@@ -42179,8 +42179,8 @@ export class ObjectPolicyV1Api {
 
 }
 
-import { ObservableRbacAuthorizationApi } from "./ObservableAPI";
-import { RbacAuthorizationApiRequestFactory, RbacAuthorizationApiResponseProcessor} from "../apis/RbacAuthorizationApi";
+import { ObservableRbacAuthorizationApi } from "./ObservableAPI.js";
+import { RbacAuthorizationApiRequestFactory, RbacAuthorizationApiResponseProcessor} from "../apis/RbacAuthorizationApi.js";
 
 export interface RbacAuthorizationApiGetAPIGroupRequest {
 }
@@ -42210,8 +42210,8 @@ export class ObjectRbacAuthorizationApi {
 
 }
 
-import { ObservableRbacAuthorizationV1Api } from "./ObservableAPI";
-import { RbacAuthorizationV1ApiRequestFactory, RbacAuthorizationV1ApiResponseProcessor} from "../apis/RbacAuthorizationV1Api";
+import { ObservableRbacAuthorizationV1Api } from "./ObservableAPI.js";
+import { RbacAuthorizationV1ApiRequestFactory, RbacAuthorizationV1ApiResponseProcessor} from "../apis/RbacAuthorizationV1Api.js";
 
 export interface RbacAuthorizationV1ApiCreateClusterRoleRequest {
     /**
@@ -44499,8 +44499,8 @@ export class ObjectRbacAuthorizationV1Api {
 
 }
 
-import { ObservableResourceApi } from "./ObservableAPI";
-import { ResourceApiRequestFactory, ResourceApiResponseProcessor} from "../apis/ResourceApi";
+import { ObservableResourceApi } from "./ObservableAPI.js";
+import { ResourceApiRequestFactory, ResourceApiResponseProcessor} from "../apis/ResourceApi.js";
 
 export interface ResourceApiGetAPIGroupRequest {
 }
@@ -44530,8 +44530,8 @@ export class ObjectResourceApi {
 
 }
 
-import { ObservableResourceV1alpha2Api } from "./ObservableAPI";
-import { ResourceV1alpha2ApiRequestFactory, ResourceV1alpha2ApiResponseProcessor} from "../apis/ResourceV1alpha2Api";
+import { ObservableResourceV1alpha2Api } from "./ObservableAPI.js";
+import { ResourceV1alpha2ApiRequestFactory, ResourceV1alpha2ApiResponseProcessor} from "../apis/ResourceV1alpha2Api.js";
 
 export interface ResourceV1alpha2ApiCreateNamespacedPodSchedulingContextRequest {
     /**
@@ -49092,8 +49092,8 @@ export class ObjectResourceV1alpha2Api {
 
 }
 
-import { ObservableSchedulingApi } from "./ObservableAPI";
-import { SchedulingApiRequestFactory, SchedulingApiResponseProcessor} from "../apis/SchedulingApi";
+import { ObservableSchedulingApi } from "./ObservableAPI.js";
+import { SchedulingApiRequestFactory, SchedulingApiResponseProcessor} from "../apis/SchedulingApi.js";
 
 export interface SchedulingApiGetAPIGroupRequest {
 }
@@ -49123,8 +49123,8 @@ export class ObjectSchedulingApi {
 
 }
 
-import { ObservableSchedulingV1Api } from "./ObservableAPI";
-import { SchedulingV1ApiRequestFactory, SchedulingV1ApiResponseProcessor} from "../apis/SchedulingV1Api";
+import { ObservableSchedulingV1Api } from "./ObservableAPI.js";
+import { SchedulingV1ApiRequestFactory, SchedulingV1ApiResponseProcessor} from "../apis/SchedulingV1Api.js";
 
 export interface SchedulingV1ApiCreatePriorityClassRequest {
     /**
@@ -49646,8 +49646,8 @@ export class ObjectSchedulingV1Api {
 
 }
 
-import { ObservableStorageApi } from "./ObservableAPI";
-import { StorageApiRequestFactory, StorageApiResponseProcessor} from "../apis/StorageApi";
+import { ObservableStorageApi } from "./ObservableAPI.js";
+import { StorageApiRequestFactory, StorageApiResponseProcessor} from "../apis/StorageApi.js";
 
 export interface StorageApiGetAPIGroupRequest {
 }
@@ -49677,8 +49677,8 @@ export class ObjectStorageApi {
 
 }
 
-import { ObservableStorageV1Api } from "./ObservableAPI";
-import { StorageV1ApiRequestFactory, StorageV1ApiResponseProcessor} from "../apis/StorageV1Api";
+import { ObservableStorageV1Api } from "./ObservableAPI.js";
+import { StorageV1ApiRequestFactory, StorageV1ApiResponseProcessor} from "../apis/StorageV1Api.js";
 
 export interface StorageV1ApiCreateCSIDriverRequest {
     /**
@@ -52473,8 +52473,8 @@ export class ObjectStorageV1Api {
 
 }
 
-import { ObservableStorageV1alpha1Api } from "./ObservableAPI";
-import { StorageV1alpha1ApiRequestFactory, StorageV1alpha1ApiResponseProcessor} from "../apis/StorageV1alpha1Api";
+import { ObservableStorageV1alpha1Api } from "./ObservableAPI.js";
+import { StorageV1alpha1ApiRequestFactory, StorageV1alpha1ApiResponseProcessor} from "../apis/StorageV1alpha1Api.js";
 
 export interface StorageV1alpha1ApiCreateVolumeAttributesClassRequest {
     /**
@@ -52996,8 +52996,8 @@ export class ObjectStorageV1alpha1Api {
 
 }
 
-import { ObservableStoragemigrationApi } from "./ObservableAPI";
-import { StoragemigrationApiRequestFactory, StoragemigrationApiResponseProcessor} from "../apis/StoragemigrationApi";
+import { ObservableStoragemigrationApi } from "./ObservableAPI.js";
+import { StoragemigrationApiRequestFactory, StoragemigrationApiResponseProcessor} from "../apis/StoragemigrationApi.js";
 
 export interface StoragemigrationApiGetAPIGroupRequest {
 }
@@ -53027,8 +53027,8 @@ export class ObjectStoragemigrationApi {
 
 }
 
-import { ObservableStoragemigrationV1alpha1Api } from "./ObservableAPI";
-import { StoragemigrationV1alpha1ApiRequestFactory, StoragemigrationV1alpha1ApiResponseProcessor} from "../apis/StoragemigrationV1alpha1Api";
+import { ObservableStoragemigrationV1alpha1Api } from "./ObservableAPI.js";
+import { StoragemigrationV1alpha1ApiRequestFactory, StoragemigrationV1alpha1ApiResponseProcessor} from "../apis/StoragemigrationV1alpha1Api.js";
 
 export interface StoragemigrationV1alpha1ApiCreateStorageVersionMigrationRequest {
     /**
@@ -53710,8 +53710,8 @@ export class ObjectStoragemigrationV1alpha1Api {
 
 }
 
-import { ObservableVersionApi } from "./ObservableAPI";
-import { VersionApiRequestFactory, VersionApiResponseProcessor} from "../apis/VersionApi";
+import { ObservableVersionApi } from "./ObservableAPI.js";
+import { VersionApiRequestFactory, VersionApiResponseProcessor} from "../apis/VersionApi.js";
 
 export interface VersionApiGetCodeRequest {
 }
@@ -53741,8 +53741,8 @@ export class ObjectVersionApi {
 
 }
 
-import { ObservableWellKnownApi } from "./ObservableAPI";
-import { WellKnownApiRequestFactory, WellKnownApiResponseProcessor} from "../apis/WellKnownApi";
+import { ObservableWellKnownApi } from "./ObservableAPI.js";
+import { WellKnownApiRequestFactory, WellKnownApiResponseProcessor} from "../apis/WellKnownApi.js";
 
 export interface WellKnownApiGetServiceAccountIssuerOpenIDConfigurationRequest {
 }

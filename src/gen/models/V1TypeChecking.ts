@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ExpressionWarning } from '../models/V1ExpressionWarning';
-import { HttpFile } from '../http/http';
+import { V1ExpressionWarning } from '../models/V1ExpressionWarning.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * TypeChecking contains results of type checking the expressions in the ValidatingAdmissionPolicy

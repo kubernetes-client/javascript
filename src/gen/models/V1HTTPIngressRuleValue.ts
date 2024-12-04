@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1HTTPIngressPath } from '../models/V1HTTPIngressPath';
-import { HttpFile } from '../http/http';
+import { V1HTTPIngressPath } from '../models/V1HTTPIngressPath.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * HTTPIngressRuleValue is a list of http selectors pointing to backends. In the example: http://<host>/<path>?<searchpart> -> backend where where parts of the url correspond to RFC 3986, this resource will be used to match against everything after the last \'/\' and before the first \'?\' or \'#\'.

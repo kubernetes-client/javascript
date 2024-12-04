@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ApiextensionsV1WebhookClientConfig } from '../models/ApiextensionsV1WebhookClientConfig';
-import { HttpFile } from '../http/http';
+import { ApiextensionsV1WebhookClientConfig } from '../models/ApiextensionsV1WebhookClientConfig.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * WebhookConversion describes how to call a conversion webhook

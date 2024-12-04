@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1beta3FlowDistinguisherMethod } from '../models/V1beta3FlowDistinguisherMethod';
-import { V1beta3PolicyRulesWithSubjects } from '../models/V1beta3PolicyRulesWithSubjects';
-import { V1beta3PriorityLevelConfigurationReference } from '../models/V1beta3PriorityLevelConfigurationReference';
-import { HttpFile } from '../http/http';
+import { V1beta3FlowDistinguisherMethod } from '../models/V1beta3FlowDistinguisherMethod.js';
+import { V1beta3PolicyRulesWithSubjects } from '../models/V1beta3PolicyRulesWithSubjects.js';
+import { V1beta3PriorityLevelConfigurationReference } from '../models/V1beta3PriorityLevelConfigurationReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * FlowSchemaSpec describes how the FlowSchema\'s specification looks like.

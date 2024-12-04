@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { IntOrString } from '../../types';
-import { HttpFile } from '../http/http';
+import { IntOrString } from '../../types.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * NetworkPolicyPort describes a port to allow traffic on

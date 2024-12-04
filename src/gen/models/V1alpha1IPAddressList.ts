@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1alpha1IPAddress } from '../models/V1alpha1IPAddress';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1alpha1IPAddress } from '../models/V1alpha1IPAddress.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * IPAddressList contains a list of IPAddress.

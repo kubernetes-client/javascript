@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1alpha2StructuredResourceHandle } from '../models/V1alpha2StructuredResourceHandle';
-import { HttpFile } from '../http/http';
+import { V1alpha2StructuredResourceHandle } from '../models/V1alpha2StructuredResourceHandle.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ResourceHandle holds opaque resource data for processing by a specific kubelet plugin.

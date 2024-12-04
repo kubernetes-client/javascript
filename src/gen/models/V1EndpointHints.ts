@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ForZone } from '../models/V1ForZone';
-import { HttpFile } from '../http/http';
+import { V1ForZone } from '../models/V1ForZone.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * EndpointHints provides hints describing how an endpoint should be consumed.

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { HttpFile } from '../http/http';
+import { HttpFile } from '../http/http.js';
 
 /**
 * SeccompProfile defines a pod/container\'s seccomp profile settings. Only one profile source may be set.

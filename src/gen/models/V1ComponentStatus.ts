@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ComponentCondition } from '../models/V1ComponentCondition';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { HttpFile } from '../http/http';
+import { V1ComponentCondition } from '../models/V1ComponentCondition.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ComponentStatus (and ComponentStatusList) holds the cluster validation info. Deprecated: This API is deprecated in v1.19+

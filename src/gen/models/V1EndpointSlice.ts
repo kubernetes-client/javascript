@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { DiscoveryV1EndpointPort } from '../models/DiscoveryV1EndpointPort';
-import { V1Endpoint } from '../models/V1Endpoint';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { HttpFile } from '../http/http';
+import { DiscoveryV1EndpointPort } from '../models/DiscoveryV1EndpointPort.js';
+import { V1Endpoint } from '../models/V1Endpoint.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * EndpointSlice represents a subset of the endpoints that implement a service. For a given service there may be multiple EndpointSlice objects, selected by labels, which must be joined to produce the full set of endpoints.

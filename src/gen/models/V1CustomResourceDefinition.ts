@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1CustomResourceDefinitionSpec } from '../models/V1CustomResourceDefinitionSpec';
-import { V1CustomResourceDefinitionStatus } from '../models/V1CustomResourceDefinitionStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { HttpFile } from '../http/http';
+import { V1CustomResourceDefinitionSpec } from '../models/V1CustomResourceDefinitionSpec.js';
+import { V1CustomResourceDefinitionStatus } from '../models/V1CustomResourceDefinitionStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * CustomResourceDefinition represents a resource that should be exposed on the API server.  Its name MUST be in the format <.spec.name>.<.spec.group>.

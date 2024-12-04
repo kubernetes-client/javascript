@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1IngressServiceBackend } from '../models/V1IngressServiceBackend';
-import { V1TypedLocalObjectReference } from '../models/V1TypedLocalObjectReference';
-import { HttpFile } from '../http/http';
+import { V1IngressServiceBackend } from '../models/V1IngressServiceBackend.js';
+import { V1TypedLocalObjectReference } from '../models/V1TypedLocalObjectReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * IngressBackend describes all endpoints for a given service and port.

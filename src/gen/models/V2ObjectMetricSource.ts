@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V2CrossVersionObjectReference } from '../models/V2CrossVersionObjectReference';
-import { V2MetricIdentifier } from '../models/V2MetricIdentifier';
-import { V2MetricTarget } from '../models/V2MetricTarget';
-import { HttpFile } from '../http/http';
+import { V2CrossVersionObjectReference } from '../models/V2CrossVersionObjectReference.js';
+import { V2MetricIdentifier } from '../models/V2MetricIdentifier.js';
+import { V2MetricTarget } from '../models/V2MetricTarget.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ObjectMetricSource indicates how to scale on a metric describing a kubernetes object (for example, hits-per-second on an Ingress object).

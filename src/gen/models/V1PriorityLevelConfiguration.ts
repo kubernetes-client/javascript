@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1PriorityLevelConfigurationSpec } from '../models/V1PriorityLevelConfigurationSpec';
-import { V1PriorityLevelConfigurationStatus } from '../models/V1PriorityLevelConfigurationStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1PriorityLevelConfigurationSpec } from '../models/V1PriorityLevelConfigurationSpec.js';
+import { V1PriorityLevelConfigurationStatus } from '../models/V1PriorityLevelConfigurationStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PriorityLevelConfiguration represents the configuration of a priority level.

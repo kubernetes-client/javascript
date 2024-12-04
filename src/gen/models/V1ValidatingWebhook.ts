@@ -10,11 +10,11 @@
  * Do not edit the class manually.
  */
 
-import { AdmissionregistrationV1WebhookClientConfig } from '../models/AdmissionregistrationV1WebhookClientConfig';
-import { V1LabelSelector } from '../models/V1LabelSelector';
-import { V1MatchCondition } from '../models/V1MatchCondition';
-import { V1RuleWithOperations } from '../models/V1RuleWithOperations';
-import { HttpFile } from '../http/http';
+import { AdmissionregistrationV1WebhookClientConfig } from '../models/AdmissionregistrationV1WebhookClientConfig.js';
+import { V1LabelSelector } from '../models/V1LabelSelector.js';
+import { V1MatchCondition } from '../models/V1MatchCondition.js';
+import { V1RuleWithOperations } from '../models/V1RuleWithOperations.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ValidatingWebhook describes an admission webhook and the resources and operations it applies to.

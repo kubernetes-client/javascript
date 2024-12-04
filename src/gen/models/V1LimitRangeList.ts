@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1LimitRange } from '../models/V1LimitRange';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1LimitRange } from '../models/V1LimitRange.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * LimitRangeList is a list of LimitRange items.

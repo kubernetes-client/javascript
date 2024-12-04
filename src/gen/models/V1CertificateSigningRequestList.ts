@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1CertificateSigningRequest } from '../models/V1CertificateSigningRequest';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1CertificateSigningRequest } from '../models/V1CertificateSigningRequest.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * CertificateSigningRequestList is a collection of CertificateSigningRequest objects

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1PodTemplate } from '../models/V1PodTemplate';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1PodTemplate } from '../models/V1PodTemplate.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PodTemplateList is a list of PodTemplates.

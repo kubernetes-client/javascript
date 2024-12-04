@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1beta3QueuingConfiguration } from '../models/V1beta3QueuingConfiguration';
-import { HttpFile } from '../http/http';
+import { V1beta3QueuingConfiguration } from '../models/V1beta3QueuingConfiguration.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * LimitResponse defines how to handle requests that can not be executed right now.

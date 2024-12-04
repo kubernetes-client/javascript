@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelector } from '../models/V1LabelSelector';
-import { HttpFile } from '../http/http';
+import { V1LabelSelector } from '../models/V1LabelSelector.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ParamRef describes how to locate the params to be used as input to expressions of rules applied by a policy binding.

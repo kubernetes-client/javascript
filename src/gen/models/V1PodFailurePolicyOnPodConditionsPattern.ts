@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { HttpFile } from '../http/http';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PodFailurePolicyOnPodConditionsPattern describes a pattern for matching an actual pod condition type.

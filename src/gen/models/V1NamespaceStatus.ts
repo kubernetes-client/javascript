@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1NamespaceCondition } from '../models/V1NamespaceCondition';
-import { HttpFile } from '../http/http';
+import { V1NamespaceCondition } from '../models/V1NamespaceCondition.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * NamespaceStatus is information about the current status of a Namespace.

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1StorageClass } from '../models/V1StorageClass';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1StorageClass } from '../models/V1StorageClass.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * StorageClassList is a collection of storage classes.

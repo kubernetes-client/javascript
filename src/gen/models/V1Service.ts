@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1ServiceSpec } from '../models/V1ServiceSpec';
-import { V1ServiceStatus } from '../models/V1ServiceStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1ServiceSpec } from '../models/V1ServiceSpec.js';
+import { V1ServiceStatus } from '../models/V1ServiceStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Service is a named abstraction of software service (for example, mysql) consisting of local port (for example 3306) that the proxy listens on, and the selector that determines which pods will answer requests sent through the proxy.

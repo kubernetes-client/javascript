@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1PodDisruptionBudget } from '../models/V1PodDisruptionBudget';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1PodDisruptionBudget } from '../models/V1PodDisruptionBudget.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PodDisruptionBudgetList is a collection of PodDisruptionBudgets.

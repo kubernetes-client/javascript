@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1alpha2ResourceClaimSchedulingStatus } from '../models/V1alpha2ResourceClaimSchedulingStatus';
-import { HttpFile } from '../http/http';
+import { V1alpha2ResourceClaimSchedulingStatus } from '../models/V1alpha2ResourceClaimSchedulingStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PodSchedulingContextStatus describes where resources for the Pod can be allocated.

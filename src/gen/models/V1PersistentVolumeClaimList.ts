@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1PersistentVolumeClaim } from '../models/V1PersistentVolumeClaim';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1PersistentVolumeClaim } from '../models/V1PersistentVolumeClaim.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PersistentVolumeClaimList is a list of PersistentVolumeClaim items.

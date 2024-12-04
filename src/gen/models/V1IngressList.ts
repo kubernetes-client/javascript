@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1Ingress } from '../models/V1Ingress';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1Ingress } from '../models/V1Ingress.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * IngressList is a collection of Ingress.

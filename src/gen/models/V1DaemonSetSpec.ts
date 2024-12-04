@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1DaemonSetUpdateStrategy } from '../models/V1DaemonSetUpdateStrategy';
-import { V1LabelSelector } from '../models/V1LabelSelector';
-import { V1PodTemplateSpec } from '../models/V1PodTemplateSpec';
-import { HttpFile } from '../http/http';
+import { V1DaemonSetUpdateStrategy } from '../models/V1DaemonSetUpdateStrategy.js';
+import { V1LabelSelector } from '../models/V1LabelSelector.js';
+import { V1PodTemplateSpec } from '../models/V1PodTemplateSpec.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * DaemonSetSpec is the specification of a daemon set.

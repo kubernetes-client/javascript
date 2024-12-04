@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1ReplicaSetSpec } from '../models/V1ReplicaSetSpec';
-import { V1ReplicaSetStatus } from '../models/V1ReplicaSetStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1ReplicaSetSpec } from '../models/V1ReplicaSetSpec.js';
+import { V1ReplicaSetStatus } from '../models/V1ReplicaSetStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ReplicaSet ensures that a specified number of pod replicas are running at any given time.

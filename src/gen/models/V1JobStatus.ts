@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1JobCondition } from '../models/V1JobCondition';
-import { V1UncountedTerminatedPods } from '../models/V1UncountedTerminatedPods';
-import { HttpFile } from '../http/http';
+import { V1JobCondition } from '../models/V1JobCondition.js';
+import { V1UncountedTerminatedPods } from '../models/V1UncountedTerminatedPods.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * JobStatus represents the current state of a Job.

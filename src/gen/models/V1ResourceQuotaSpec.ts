@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ScopeSelector } from '../models/V1ScopeSelector';
-import { HttpFile } from '../http/http';
+import { V1ScopeSelector } from '../models/V1ScopeSelector.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ResourceQuotaSpec defines the desired hard limits to enforce for Quota.

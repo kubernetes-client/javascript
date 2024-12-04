@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1alpha1VolumeAttributesClass } from '../models/V1alpha1VolumeAttributesClass';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1alpha1VolumeAttributesClass } from '../models/V1alpha1VolumeAttributesClass.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * VolumeAttributesClassList is a collection of VolumeAttributesClass objects.

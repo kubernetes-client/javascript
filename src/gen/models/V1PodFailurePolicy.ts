@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1PodFailurePolicyRule } from '../models/V1PodFailurePolicyRule';
-import { HttpFile } from '../http/http';
+import { V1PodFailurePolicyRule } from '../models/V1PodFailurePolicyRule.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PodFailurePolicy describes how failed pods influence the backoffLimit.

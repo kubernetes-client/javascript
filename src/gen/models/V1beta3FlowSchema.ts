@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1beta3FlowSchemaSpec } from '../models/V1beta3FlowSchemaSpec';
-import { V1beta3FlowSchemaStatus } from '../models/V1beta3FlowSchemaStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1beta3FlowSchemaSpec } from '../models/V1beta3FlowSchemaSpec.js';
+import { V1beta3FlowSchemaStatus } from '../models/V1beta3FlowSchemaStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * FlowSchema defines the schema of a group of flows. Note that a flow is made up of a set of inbound API requests with similar attributes and is identified by a pair of strings: the name of the FlowSchema and a \"flow distinguisher\".

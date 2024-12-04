@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1DownwardAPIVolumeFile } from '../models/V1DownwardAPIVolumeFile';
-import { HttpFile } from '../http/http';
+import { V1DownwardAPIVolumeFile } from '../models/V1DownwardAPIVolumeFile.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Represents downward API info for projecting into a projected volume. Note that this is identical to a downwardAPI volume source without the default mode.

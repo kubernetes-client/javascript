@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V2CrossVersionObjectReference } from '../models/V2CrossVersionObjectReference';
-import { V2HorizontalPodAutoscalerBehavior } from '../models/V2HorizontalPodAutoscalerBehavior';
-import { V2MetricSpec } from '../models/V2MetricSpec';
-import { HttpFile } from '../http/http';
+import { V2CrossVersionObjectReference } from '../models/V2CrossVersionObjectReference.js';
+import { V2HorizontalPodAutoscalerBehavior } from '../models/V2HorizontalPodAutoscalerBehavior.js';
+import { V2MetricSpec } from '../models/V2MetricSpec.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * HorizontalPodAutoscalerSpec describes the desired functionality of the HorizontalPodAutoscaler.

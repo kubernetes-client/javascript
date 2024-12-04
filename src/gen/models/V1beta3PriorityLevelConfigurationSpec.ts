@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1beta3ExemptPriorityLevelConfiguration } from '../models/V1beta3ExemptPriorityLevelConfiguration';
-import { V1beta3LimitedPriorityLevelConfiguration } from '../models/V1beta3LimitedPriorityLevelConfiguration';
-import { HttpFile } from '../http/http';
+import { V1beta3ExemptPriorityLevelConfiguration } from '../models/V1beta3ExemptPriorityLevelConfiguration.js';
+import { V1beta3LimitedPriorityLevelConfiguration } from '../models/V1beta3LimitedPriorityLevelConfiguration.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PriorityLevelConfigurationSpec specifies the configuration of a priority level.

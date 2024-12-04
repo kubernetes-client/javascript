@@ -10,21 +10,21 @@
  * Do not edit the class manually.
  */
 
-import { V1Affinity } from '../models/V1Affinity';
-import { V1Container } from '../models/V1Container';
-import { V1EphemeralContainer } from '../models/V1EphemeralContainer';
-import { V1HostAlias } from '../models/V1HostAlias';
-import { V1LocalObjectReference } from '../models/V1LocalObjectReference';
-import { V1PodDNSConfig } from '../models/V1PodDNSConfig';
-import { V1PodOS } from '../models/V1PodOS';
-import { V1PodReadinessGate } from '../models/V1PodReadinessGate';
-import { V1PodResourceClaim } from '../models/V1PodResourceClaim';
-import { V1PodSchedulingGate } from '../models/V1PodSchedulingGate';
-import { V1PodSecurityContext } from '../models/V1PodSecurityContext';
-import { V1Toleration } from '../models/V1Toleration';
-import { V1TopologySpreadConstraint } from '../models/V1TopologySpreadConstraint';
-import { V1Volume } from '../models/V1Volume';
-import { HttpFile } from '../http/http';
+import { V1Affinity } from '../models/V1Affinity.js';
+import { V1Container } from '../models/V1Container.js';
+import { V1EphemeralContainer } from '../models/V1EphemeralContainer.js';
+import { V1HostAlias } from '../models/V1HostAlias.js';
+import { V1LocalObjectReference } from '../models/V1LocalObjectReference.js';
+import { V1PodDNSConfig } from '../models/V1PodDNSConfig.js';
+import { V1PodOS } from '../models/V1PodOS.js';
+import { V1PodReadinessGate } from '../models/V1PodReadinessGate.js';
+import { V1PodResourceClaim } from '../models/V1PodResourceClaim.js';
+import { V1PodSchedulingGate } from '../models/V1PodSchedulingGate.js';
+import { V1PodSecurityContext } from '../models/V1PodSecurityContext.js';
+import { V1Toleration } from '../models/V1Toleration.js';
+import { V1TopologySpreadConstraint } from '../models/V1TopologySpreadConstraint.js';
+import { V1Volume } from '../models/V1Volume.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PodSpec is a description of a pod.

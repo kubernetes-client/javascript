@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1Namespace } from '../models/V1Namespace';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1Namespace } from '../models/V1Namespace.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * NamespaceList is a list of Namespaces.

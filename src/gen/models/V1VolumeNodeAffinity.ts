@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeSelector } from '../models/V1NodeSelector';
-import { HttpFile } from '../http/http';
+import { V1NodeSelector } from '../models/V1NodeSelector.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * VolumeNodeAffinity defines constraints that limit what nodes this volume can be accessed from.

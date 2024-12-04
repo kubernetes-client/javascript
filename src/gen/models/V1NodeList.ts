@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1Node } from '../models/V1Node';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1Node } from '../models/V1Node.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * NodeList is the whole list of all Nodes which have been registered with master.

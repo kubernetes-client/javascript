@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1KeyToPath } from '../models/V1KeyToPath';
-import { HttpFile } from '../http/http';
+import { V1KeyToPath } from '../models/V1KeyToPath.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Adapts a Secret into a volume.  The contents of the target Secret\'s Data field will be presented in a volume as files using the keys in the Data field as the file names. Secret volumes support ownership management and SELinux relabeling.

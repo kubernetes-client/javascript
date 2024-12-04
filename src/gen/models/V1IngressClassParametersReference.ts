@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { HttpFile } from '../http/http';
+import { HttpFile } from '../http/http.js';
 
 /**
 * IngressClassParametersReference identifies an API object. This can be used to specify a cluster or namespace-scoped resource.

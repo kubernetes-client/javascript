@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ServerAddressByClientCIDR } from '../models/V1ServerAddressByClientCIDR';
-import { HttpFile } from '../http/http';
+import { V1ServerAddressByClientCIDR } from '../models/V1ServerAddressByClientCIDR.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * APIVersions lists the versions that are available, to allow clients to discover the API at /api, which is the root path of the legacy v1 API.

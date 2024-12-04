@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1HorizontalPodAutoscaler } from '../models/V1HorizontalPodAutoscaler';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1HorizontalPodAutoscaler } from '../models/V1HorizontalPodAutoscaler.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * list of horizontal pod autoscaler objects.

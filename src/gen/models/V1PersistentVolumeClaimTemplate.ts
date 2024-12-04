@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1PersistentVolumeClaimSpec } from '../models/V1PersistentVolumeClaimSpec';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1PersistentVolumeClaimSpec } from '../models/V1PersistentVolumeClaimSpec.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PersistentVolumeClaimTemplate is used to produce PersistentVolumeClaim objects as part of an EphemeralVolumeSource.

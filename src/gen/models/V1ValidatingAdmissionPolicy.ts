@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1ValidatingAdmissionPolicySpec } from '../models/V1ValidatingAdmissionPolicySpec';
-import { V1ValidatingAdmissionPolicyStatus } from '../models/V1ValidatingAdmissionPolicyStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1ValidatingAdmissionPolicySpec } from '../models/V1ValidatingAdmissionPolicySpec.js';
+import { V1ValidatingAdmissionPolicyStatus } from '../models/V1ValidatingAdmissionPolicyStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ValidatingAdmissionPolicy describes the definition of an admission validation policy that accepts or rejects an object without changing it.

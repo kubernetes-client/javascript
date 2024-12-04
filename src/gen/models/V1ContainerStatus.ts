@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ContainerState } from '../models/V1ContainerState';
-import { V1ResourceRequirements } from '../models/V1ResourceRequirements';
-import { V1VolumeMountStatus } from '../models/V1VolumeMountStatus';
-import { HttpFile } from '../http/http';
+import { V1ContainerState } from '../models/V1ContainerState.js';
+import { V1ResourceRequirements } from '../models/V1ResourceRequirements.js';
+import { V1VolumeMountStatus } from '../models/V1VolumeMountStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ContainerStatus contains details for the current status of this container.

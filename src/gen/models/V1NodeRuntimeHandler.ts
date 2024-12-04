@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeRuntimeHandlerFeatures } from '../models/V1NodeRuntimeHandlerFeatures';
-import { HttpFile } from '../http/http';
+import { V1NodeRuntimeHandlerFeatures } from '../models/V1NodeRuntimeHandlerFeatures.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * NodeRuntimeHandler is a set of runtime handler information.

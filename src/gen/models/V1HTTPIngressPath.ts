@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1IngressBackend } from '../models/V1IngressBackend';
-import { HttpFile } from '../http/http';
+import { V1IngressBackend } from '../models/V1IngressBackend.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * HTTPIngressPath associates a path with a backend. Incoming urls matching the path are forwarded to the backend.

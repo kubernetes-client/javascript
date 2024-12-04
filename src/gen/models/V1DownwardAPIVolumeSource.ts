@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1DownwardAPIVolumeFile } from '../models/V1DownwardAPIVolumeFile';
-import { HttpFile } from '../http/http';
+import { V1DownwardAPIVolumeFile } from '../models/V1DownwardAPIVolumeFile.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * DownwardAPIVolumeSource represents a volume containing downward API info. Downward API volumes support ownership management and SELinux relabeling.

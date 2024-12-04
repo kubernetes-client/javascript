@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1TokenRequestSpec } from '../models/V1TokenRequestSpec';
-import { V1TokenRequestStatus } from '../models/V1TokenRequestStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1TokenRequestSpec } from '../models/V1TokenRequestSpec.js';
+import { V1TokenRequestStatus } from '../models/V1TokenRequestStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * TokenRequest requests a token for a given service account.

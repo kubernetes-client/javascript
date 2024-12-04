@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1beta3PriorityLevelConfiguration } from '../models/V1beta3PriorityLevelConfiguration';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1beta3PriorityLevelConfiguration } from '../models/V1beta3PriorityLevelConfiguration.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PriorityLevelConfigurationList is a list of PriorityLevelConfiguration objects.

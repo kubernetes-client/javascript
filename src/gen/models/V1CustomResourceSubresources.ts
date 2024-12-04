@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1CustomResourceSubresourceScale } from '../models/V1CustomResourceSubresourceScale';
-import { HttpFile } from '../http/http';
+import { V1CustomResourceSubresourceScale } from '../models/V1CustomResourceSubresourceScale.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * CustomResourceSubresources defines the status and scale subresources for CustomResources.

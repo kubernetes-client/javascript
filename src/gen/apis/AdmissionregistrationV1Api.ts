@@ -1,26 +1,26 @@
 // TODO: better import syntax?
-import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
-import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
+import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi.js';
+import {Configuration} from '../configuration.js';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http.js';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
-import {ObjectSerializer} from '../models/ObjectSerializer';
-import {ApiException} from './exception';
-import {canConsumeForm, isCodeInRange} from '../util';
-import {SecurityAuthentication} from '../auth/auth';
+import {ObjectSerializer} from '../models/ObjectSerializer.js';
+import {ApiException} from './exception.js';
+import {canConsumeForm, isCodeInRange} from '../util.js';
+import {SecurityAuthentication} from '../auth/auth.js';
 
 
-import { V1APIResourceList } from '../models/V1APIResourceList';
-import { V1DeleteOptions } from '../models/V1DeleteOptions';
-import { V1MutatingWebhookConfiguration } from '../models/V1MutatingWebhookConfiguration';
-import { V1MutatingWebhookConfigurationList } from '../models/V1MutatingWebhookConfigurationList';
-import { V1Status } from '../models/V1Status';
-import { V1ValidatingAdmissionPolicy } from '../models/V1ValidatingAdmissionPolicy';
-import { V1ValidatingAdmissionPolicyBinding } from '../models/V1ValidatingAdmissionPolicyBinding';
-import { V1ValidatingAdmissionPolicyBindingList } from '../models/V1ValidatingAdmissionPolicyBindingList';
-import { V1ValidatingAdmissionPolicyList } from '../models/V1ValidatingAdmissionPolicyList';
-import { V1ValidatingWebhookConfiguration } from '../models/V1ValidatingWebhookConfiguration';
-import { V1ValidatingWebhookConfigurationList } from '../models/V1ValidatingWebhookConfigurationList';
+import { V1APIResourceList } from '../models/V1APIResourceList.js';
+import { V1DeleteOptions } from '../models/V1DeleteOptions.js';
+import { V1MutatingWebhookConfiguration } from '../models/V1MutatingWebhookConfiguration.js';
+import { V1MutatingWebhookConfigurationList } from '../models/V1MutatingWebhookConfigurationList.js';
+import { V1Status } from '../models/V1Status.js';
+import { V1ValidatingAdmissionPolicy } from '../models/V1ValidatingAdmissionPolicy.js';
+import { V1ValidatingAdmissionPolicyBinding } from '../models/V1ValidatingAdmissionPolicyBinding.js';
+import { V1ValidatingAdmissionPolicyBindingList } from '../models/V1ValidatingAdmissionPolicyBindingList.js';
+import { V1ValidatingAdmissionPolicyList } from '../models/V1ValidatingAdmissionPolicyList.js';
+import { V1ValidatingWebhookConfiguration } from '../models/V1ValidatingWebhookConfiguration.js';
+import { V1ValidatingWebhookConfigurationList } from '../models/V1ValidatingWebhookConfigurationList.js';
 
 /**
  * no description

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeSelector } from '../models/V1NodeSelector';
-import { V1PreferredSchedulingTerm } from '../models/V1PreferredSchedulingTerm';
-import { HttpFile } from '../http/http';
+import { V1NodeSelector } from '../models/V1NodeSelector.js';
+import { V1PreferredSchedulingTerm } from '../models/V1PreferredSchedulingTerm.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Node affinity is a group of node affinity scheduling rules.

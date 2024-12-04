@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1LocalObjectReference } from '../models/V1LocalObjectReference';
-import { HttpFile } from '../http/http';
+import { V1LocalObjectReference } from '../models/V1LocalObjectReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Represents a StorageOS persistent volume resource.

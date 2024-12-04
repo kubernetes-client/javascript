@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ComponentStatus } from '../models/V1ComponentStatus';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1ComponentStatus } from '../models/V1ComponentStatus.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Status of all the conditions for the component as a list of ComponentStatus objects. Deprecated: This API is deprecated in v1.19+

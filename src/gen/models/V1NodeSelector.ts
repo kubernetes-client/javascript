@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeSelectorTerm } from '../models/V1NodeSelectorTerm';
-import { HttpFile } from '../http/http';
+import { V1NodeSelectorTerm } from '../models/V1NodeSelectorTerm.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * A node selector represents the union of the results of one or more label queries over a set of nodes; that is, it represents the OR of the selectors represented by the node selector terms.

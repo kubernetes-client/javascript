@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1VolumeNodeResources } from '../models/V1VolumeNodeResources';
-import { HttpFile } from '../http/http';
+import { V1VolumeNodeResources } from '../models/V1VolumeNodeResources.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * CSINodeDriver holds information about the specification of one CSI driver installed on a node

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1ValidatingWebhookConfiguration } from '../models/V1ValidatingWebhookConfiguration';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1ValidatingWebhookConfiguration } from '../models/V1ValidatingWebhookConfiguration.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ValidatingWebhookConfigurationList is a list of ValidatingWebhookConfiguration.

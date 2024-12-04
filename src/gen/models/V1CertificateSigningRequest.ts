@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1CertificateSigningRequestSpec } from '../models/V1CertificateSigningRequestSpec';
-import { V1CertificateSigningRequestStatus } from '../models/V1CertificateSigningRequestStatus';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { HttpFile } from '../http/http';
+import { V1CertificateSigningRequestSpec } from '../models/V1CertificateSigningRequestSpec.js';
+import { V1CertificateSigningRequestStatus } from '../models/V1CertificateSigningRequestStatus.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * CertificateSigningRequest objects provide a mechanism to obtain x509 certificates by submitting a certificate signing request, and having it asynchronously approved and issued.  Kubelets use this API to obtain:  1. client certificates to authenticate to kube-apiserver (with the \"kubernetes.io/kube-apiserver-client-kubelet\" signerName).  2. serving certificates for TLS endpoints kube-apiserver can connect to securely (with the \"kubernetes.io/kubelet-serving\" signerName).  This API can be used to request client certificates to authenticate to kube-apiserver (with the \"kubernetes.io/kube-apiserver-client\" signerName), or to obtain certificates from custom non-Kubernetes signers.

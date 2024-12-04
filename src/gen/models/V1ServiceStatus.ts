@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1Condition } from '../models/V1Condition';
-import { V1LoadBalancerStatus } from '../models/V1LoadBalancerStatus';
-import { HttpFile } from '../http/http';
+import { V1Condition } from '../models/V1Condition.js';
+import { V1LoadBalancerStatus } from '../models/V1LoadBalancerStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ServiceStatus represents the current status of a service.

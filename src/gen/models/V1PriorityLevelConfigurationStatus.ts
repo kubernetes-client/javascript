@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1PriorityLevelConfigurationCondition } from '../models/V1PriorityLevelConfigurationCondition';
-import { HttpFile } from '../http/http';
+import { V1PriorityLevelConfigurationCondition } from '../models/V1PriorityLevelConfigurationCondition.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PriorityLevelConfigurationStatus represents the current state of a \"request-priority\".

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1VolumeAttachmentSource } from '../models/V1VolumeAttachmentSource';
-import { HttpFile } from '../http/http';
+import { V1VolumeAttachmentSource } from '../models/V1VolumeAttachmentSource.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * VolumeAttachmentSpec is the specification of a VolumeAttachment request.

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ResourceClaim } from '../models/V1ResourceClaim';
-import { HttpFile } from '../http/http';
+import { V1ResourceClaim } from '../models/V1ResourceClaim.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ResourceRequirements describes the compute resource requirements.

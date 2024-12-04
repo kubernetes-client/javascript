@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1APIService } from '../models/V1APIService';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1APIService } from '../models/V1APIService.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * APIServiceList is a list of APIService objects.

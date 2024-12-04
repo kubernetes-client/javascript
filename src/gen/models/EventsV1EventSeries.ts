@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1MicroTime } from '../../types';
-import { HttpFile } from '../http/http';
+import { V1MicroTime } from '../../types.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * EventSeries contain information on series of events, i.e. thing that was/is happening continuously for some time. How often to update the EventSeries is up to the event reporters. The default event reporter in \"k8s.io/client-go/tools/events/event_broadcaster.go\" shows how this struct is updated on heartbeats and can guide customized reporter implementations.

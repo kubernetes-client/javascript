@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelector } from '../models/V1LabelSelector';
-import { V1alpha1NamedRuleWithOperations } from '../models/V1alpha1NamedRuleWithOperations';
-import { HttpFile } from '../http/http';
+import { V1LabelSelector } from '../models/V1LabelSelector.js';
+import { V1alpha1NamedRuleWithOperations } from '../models/V1alpha1NamedRuleWithOperations.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * MatchResources decides whether to run the admission control policy on an object based on whether it meets the match criteria. The exclude rules take precedence over include rules (if a resource matches both, it is excluded)

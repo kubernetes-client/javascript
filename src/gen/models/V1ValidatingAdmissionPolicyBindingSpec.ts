@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1MatchResources } from '../models/V1MatchResources';
-import { V1ParamRef } from '../models/V1ParamRef';
-import { HttpFile } from '../http/http';
+import { V1MatchResources } from '../models/V1MatchResources.js';
+import { V1ParamRef } from '../models/V1ParamRef.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ValidatingAdmissionPolicyBindingSpec is the specification of the ValidatingAdmissionPolicyBinding.

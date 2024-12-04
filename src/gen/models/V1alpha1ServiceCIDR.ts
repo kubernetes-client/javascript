@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1alpha1ServiceCIDRSpec } from '../models/V1alpha1ServiceCIDRSpec';
-import { V1alpha1ServiceCIDRStatus } from '../models/V1alpha1ServiceCIDRStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1alpha1ServiceCIDRSpec } from '../models/V1alpha1ServiceCIDRSpec.js';
+import { V1alpha1ServiceCIDRStatus } from '../models/V1alpha1ServiceCIDRStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ServiceCIDR defines a range of IP addresses using CIDR format (e.g. 192.168.0.0/24 or 2001:db2::/64). This range is used to allocate ClusterIPs to Service objects.

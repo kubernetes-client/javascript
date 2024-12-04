@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1LabelSelector } from '../models/V1LabelSelector';
-import { HttpFile } from '../http/http';
+import { V1LabelSelector } from '../models/V1LabelSelector.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * TopologySpreadConstraint specifies how to spread matching pods among the given topology.

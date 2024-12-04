@@ -1,26 +1,26 @@
 // TODO: better import syntax?
-import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
-import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
+import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi.js';
+import {Configuration} from '../configuration.js';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http.js';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
-import {ObjectSerializer} from '../models/ObjectSerializer';
-import {ApiException} from './exception';
-import {canConsumeForm, isCodeInRange} from '../util';
-import {SecurityAuthentication} from '../auth/auth';
+import {ObjectSerializer} from '../models/ObjectSerializer.js';
+import {ApiException} from './exception.js';
+import {canConsumeForm, isCodeInRange} from '../util.js';
+import {SecurityAuthentication} from '../auth/auth.js';
 
 
-import { V1APIResourceList } from '../models/V1APIResourceList';
-import { V1ClusterRole } from '../models/V1ClusterRole';
-import { V1ClusterRoleBinding } from '../models/V1ClusterRoleBinding';
-import { V1ClusterRoleBindingList } from '../models/V1ClusterRoleBindingList';
-import { V1ClusterRoleList } from '../models/V1ClusterRoleList';
-import { V1DeleteOptions } from '../models/V1DeleteOptions';
-import { V1Role } from '../models/V1Role';
-import { V1RoleBinding } from '../models/V1RoleBinding';
-import { V1RoleBindingList } from '../models/V1RoleBindingList';
-import { V1RoleList } from '../models/V1RoleList';
-import { V1Status } from '../models/V1Status';
+import { V1APIResourceList } from '../models/V1APIResourceList.js';
+import { V1ClusterRole } from '../models/V1ClusterRole.js';
+import { V1ClusterRoleBinding } from '../models/V1ClusterRoleBinding.js';
+import { V1ClusterRoleBindingList } from '../models/V1ClusterRoleBindingList.js';
+import { V1ClusterRoleList } from '../models/V1ClusterRoleList.js';
+import { V1DeleteOptions } from '../models/V1DeleteOptions.js';
+import { V1Role } from '../models/V1Role.js';
+import { V1RoleBinding } from '../models/V1RoleBinding.js';
+import { V1RoleBindingList } from '../models/V1RoleBindingList.js';
+import { V1RoleList } from '../models/V1RoleList.js';
+import { V1Status } from '../models/V1Status.js';
 
 /**
  * no description

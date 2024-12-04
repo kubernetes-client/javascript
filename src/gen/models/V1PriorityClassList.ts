@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1PriorityClass } from '../models/V1PriorityClass';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1PriorityClass } from '../models/V1PriorityClass.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PriorityClassList is a collection of priority classes.

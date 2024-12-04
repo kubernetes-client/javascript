@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1ResourceQuota } from '../models/V1ResourceQuota';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1ResourceQuota } from '../models/V1ResourceQuota.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ResourceQuotaList is a list of ResourceQuota items.

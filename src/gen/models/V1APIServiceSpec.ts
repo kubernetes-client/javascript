@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { ApiregistrationV1ServiceReference } from '../models/ApiregistrationV1ServiceReference';
-import { HttpFile } from '../http/http';
+import { ApiregistrationV1ServiceReference } from '../models/ApiregistrationV1ServiceReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * APIServiceSpec contains information for locating and communicating with a server. Only https is supported, though you are able to disable certificate verification.

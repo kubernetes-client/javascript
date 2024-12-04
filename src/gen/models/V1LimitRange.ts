@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1LimitRangeSpec } from '../models/V1LimitRangeSpec';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { HttpFile } from '../http/http';
+import { V1LimitRangeSpec } from '../models/V1LimitRangeSpec.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * LimitRange sets resource usage limits for each kind of resource in a Namespace.

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1alpha1GroupVersionResource } from '../models/V1alpha1GroupVersionResource';
-import { HttpFile } from '../http/http';
+import { V1alpha1GroupVersionResource } from '../models/V1alpha1GroupVersionResource.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Spec of the storage version migration.

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1Service } from '../models/V1Service';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1Service } from '../models/V1Service.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ServiceList holds a list of services.

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1RollingUpdateStatefulSetStrategy } from '../models/V1RollingUpdateStatefulSetStrategy';
-import { HttpFile } from '../http/http';
+import { V1RollingUpdateStatefulSetStrategy } from '../models/V1RollingUpdateStatefulSetStrategy.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * StatefulSetUpdateStrategy indicates the strategy that the StatefulSet controller will use to perform updates. It includes any additional parameters necessary to perform the update for the indicated strategy.

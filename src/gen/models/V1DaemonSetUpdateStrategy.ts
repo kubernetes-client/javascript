@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1RollingUpdateDaemonSet } from '../models/V1RollingUpdateDaemonSet';
-import { HttpFile } from '../http/http';
+import { V1RollingUpdateDaemonSet } from '../models/V1RollingUpdateDaemonSet.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * DaemonSetUpdateStrategy is a struct used to control the update strategy for a DaemonSet.

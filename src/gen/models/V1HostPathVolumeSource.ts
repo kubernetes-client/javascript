@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { HttpFile } from '../http/http';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Represents a host path mapped into a pod. Host path volumes do not support ownership management or SELinux relabeling.

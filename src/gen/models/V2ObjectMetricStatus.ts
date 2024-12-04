@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V2CrossVersionObjectReference } from '../models/V2CrossVersionObjectReference';
-import { V2MetricIdentifier } from '../models/V2MetricIdentifier';
-import { V2MetricValueStatus } from '../models/V2MetricValueStatus';
-import { HttpFile } from '../http/http';
+import { V2CrossVersionObjectReference } from '../models/V2CrossVersionObjectReference.js';
+import { V2MetricIdentifier } from '../models/V2MetricIdentifier.js';
+import { V2MetricValueStatus } from '../models/V2MetricValueStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ObjectMetricStatus indicates the current value of a metric describing a kubernetes object (for example, hits-per-second on an Ingress object).

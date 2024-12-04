@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1VolumeProjection } from '../models/V1VolumeProjection';
-import { HttpFile } from '../http/http';
+import { V1VolumeProjection } from '../models/V1VolumeProjection.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Represents a projected volume source

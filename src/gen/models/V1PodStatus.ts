@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { V1ContainerStatus } from '../models/V1ContainerStatus';
-import { V1HostIP } from '../models/V1HostIP';
-import { V1PodCondition } from '../models/V1PodCondition';
-import { V1PodIP } from '../models/V1PodIP';
-import { V1PodResourceClaimStatus } from '../models/V1PodResourceClaimStatus';
-import { HttpFile } from '../http/http';
+import { V1ContainerStatus } from '../models/V1ContainerStatus.js';
+import { V1HostIP } from '../models/V1HostIP.js';
+import { V1PodCondition } from '../models/V1PodCondition.js';
+import { V1PodIP } from '../models/V1PodIP.js';
+import { V1PodResourceClaimStatus } from '../models/V1PodResourceClaimStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PodStatus represents information about the status of a pod. Status may trail the actual state of a system, especially if the node that hosts the pod cannot contact the control plane.

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1LimitResponse } from '../models/V1LimitResponse';
-import { HttpFile } from '../http/http';
+import { V1LimitResponse } from '../models/V1LimitResponse.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * LimitedPriorityLevelConfiguration specifies how to handle requests that are subject to limits. It addresses two issues:   - How are requests for this priority level limited?   - What should be done with requests that exceed the limit?

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1JSONSchemaProps } from '../models/V1JSONSchemaProps';
-import { HttpFile } from '../http/http';
+import { V1JSONSchemaProps } from '../models/V1JSONSchemaProps.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * CustomResourceValidation is a list of validation methods for CustomResources.

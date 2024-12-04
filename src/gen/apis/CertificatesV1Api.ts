@@ -1,20 +1,20 @@
 // TODO: better import syntax?
-import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
-import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
+import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi.js';
+import {Configuration} from '../configuration.js';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http.js';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
-import {ObjectSerializer} from '../models/ObjectSerializer';
-import {ApiException} from './exception';
-import {canConsumeForm, isCodeInRange} from '../util';
-import {SecurityAuthentication} from '../auth/auth';
+import {ObjectSerializer} from '../models/ObjectSerializer.js';
+import {ApiException} from './exception.js';
+import {canConsumeForm, isCodeInRange} from '../util.js';
+import {SecurityAuthentication} from '../auth/auth.js';
 
 
-import { V1APIResourceList } from '../models/V1APIResourceList';
-import { V1CertificateSigningRequest } from '../models/V1CertificateSigningRequest';
-import { V1CertificateSigningRequestList } from '../models/V1CertificateSigningRequestList';
-import { V1DeleteOptions } from '../models/V1DeleteOptions';
-import { V1Status } from '../models/V1Status';
+import { V1APIResourceList } from '../models/V1APIResourceList.js';
+import { V1CertificateSigningRequest } from '../models/V1CertificateSigningRequest.js';
+import { V1CertificateSigningRequestList } from '../models/V1CertificateSigningRequestList.js';
+import { V1DeleteOptions } from '../models/V1DeleteOptions.js';
+import { V1Status } from '../models/V1Status.js';
 
 /**
  * no description

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1PortStatus } from '../models/V1PortStatus';
-import { HttpFile } from '../http/http';
+import { V1PortStatus } from '../models/V1PortStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * LoadBalancerIngress represents the status of a load-balancer ingress point: traffic intended for the service should be sent to an ingress point.

@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { IntOrString } from '../../types';
-import { V1LabelSelector } from '../models/V1LabelSelector';
-import { HttpFile } from '../http/http';
+import { IntOrString } from '../../types.js';
+import { V1LabelSelector } from '../models/V1LabelSelector.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PodDisruptionBudgetSpec is a description of a PodDisruptionBudget.

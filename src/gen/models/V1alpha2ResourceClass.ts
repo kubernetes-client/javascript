@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeSelector } from '../models/V1NodeSelector';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1alpha2ResourceClassParametersReference } from '../models/V1alpha2ResourceClassParametersReference';
-import { HttpFile } from '../http/http';
+import { V1NodeSelector } from '../models/V1NodeSelector.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1alpha2ResourceClassParametersReference } from '../models/V1alpha2ResourceClassParametersReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ResourceClass is used by administrators to influence how resources are allocated.  This is an alpha type and requires enabling the DynamicResourceAllocation feature gate.

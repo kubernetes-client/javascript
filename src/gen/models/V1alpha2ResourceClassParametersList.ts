@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1alpha2ResourceClassParameters } from '../models/V1alpha2ResourceClassParameters';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1alpha2ResourceClassParameters } from '../models/V1alpha2ResourceClassParameters.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ResourceClassParametersList is a collection of ResourceClassParameters.

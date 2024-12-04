@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1alpha2NamedResourcesResources } from '../models/V1alpha2NamedResourcesResources';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1alpha2NamedResourcesResources } from '../models/V1alpha2NamedResourcesResources.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ResourceSlice provides information about available resources on individual nodes.

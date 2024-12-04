@@ -1,32 +1,32 @@
 // TODO: better import syntax?
-import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
-import {Configuration} from '../configuration';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
+import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi.js';
+import {Configuration} from '../configuration.js';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http.js';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
-import {ObjectSerializer} from '../models/ObjectSerializer';
-import {ApiException} from './exception';
-import {canConsumeForm, isCodeInRange} from '../util';
-import {SecurityAuthentication} from '../auth/auth';
+import {ObjectSerializer} from '../models/ObjectSerializer.js';
+import {ApiException} from './exception.js';
+import {canConsumeForm, isCodeInRange} from '../util.js';
+import {SecurityAuthentication} from '../auth/auth.js';
 
 
-import { V1APIResourceList } from '../models/V1APIResourceList';
-import { V1DeleteOptions } from '../models/V1DeleteOptions';
-import { V1Status } from '../models/V1Status';
-import { V1alpha2PodSchedulingContext } from '../models/V1alpha2PodSchedulingContext';
-import { V1alpha2PodSchedulingContextList } from '../models/V1alpha2PodSchedulingContextList';
-import { V1alpha2ResourceClaim } from '../models/V1alpha2ResourceClaim';
-import { V1alpha2ResourceClaimList } from '../models/V1alpha2ResourceClaimList';
-import { V1alpha2ResourceClaimParameters } from '../models/V1alpha2ResourceClaimParameters';
-import { V1alpha2ResourceClaimParametersList } from '../models/V1alpha2ResourceClaimParametersList';
-import { V1alpha2ResourceClaimTemplate } from '../models/V1alpha2ResourceClaimTemplate';
-import { V1alpha2ResourceClaimTemplateList } from '../models/V1alpha2ResourceClaimTemplateList';
-import { V1alpha2ResourceClass } from '../models/V1alpha2ResourceClass';
-import { V1alpha2ResourceClassList } from '../models/V1alpha2ResourceClassList';
-import { V1alpha2ResourceClassParameters } from '../models/V1alpha2ResourceClassParameters';
-import { V1alpha2ResourceClassParametersList } from '../models/V1alpha2ResourceClassParametersList';
-import { V1alpha2ResourceSlice } from '../models/V1alpha2ResourceSlice';
-import { V1alpha2ResourceSliceList } from '../models/V1alpha2ResourceSliceList';
+import { V1APIResourceList } from '../models/V1APIResourceList.js';
+import { V1DeleteOptions } from '../models/V1DeleteOptions.js';
+import { V1Status } from '../models/V1Status.js';
+import { V1alpha2PodSchedulingContext } from '../models/V1alpha2PodSchedulingContext.js';
+import { V1alpha2PodSchedulingContextList } from '../models/V1alpha2PodSchedulingContextList.js';
+import { V1alpha2ResourceClaim } from '../models/V1alpha2ResourceClaim.js';
+import { V1alpha2ResourceClaimList } from '../models/V1alpha2ResourceClaimList.js';
+import { V1alpha2ResourceClaimParameters } from '../models/V1alpha2ResourceClaimParameters.js';
+import { V1alpha2ResourceClaimParametersList } from '../models/V1alpha2ResourceClaimParametersList.js';
+import { V1alpha2ResourceClaimTemplate } from '../models/V1alpha2ResourceClaimTemplate.js';
+import { V1alpha2ResourceClaimTemplateList } from '../models/V1alpha2ResourceClaimTemplateList.js';
+import { V1alpha2ResourceClass } from '../models/V1alpha2ResourceClass.js';
+import { V1alpha2ResourceClassList } from '../models/V1alpha2ResourceClassList.js';
+import { V1alpha2ResourceClassParameters } from '../models/V1alpha2ResourceClassParameters.js';
+import { V1alpha2ResourceClassParametersList } from '../models/V1alpha2ResourceClassParametersList.js';
+import { V1alpha2ResourceSlice } from '../models/V1alpha2ResourceSlice.js';
+import { V1alpha2ResourceSliceList } from '../models/V1alpha2ResourceSliceList.js';
 
 /**
  * no description

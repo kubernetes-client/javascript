@@ -10,17 +10,17 @@
  * Do not edit the class manually.
  */
 
-import { V1ContainerPort } from '../models/V1ContainerPort';
-import { V1ContainerResizePolicy } from '../models/V1ContainerResizePolicy';
-import { V1EnvFromSource } from '../models/V1EnvFromSource';
-import { V1EnvVar } from '../models/V1EnvVar';
-import { V1Lifecycle } from '../models/V1Lifecycle';
-import { V1Probe } from '../models/V1Probe';
-import { V1ResourceRequirements } from '../models/V1ResourceRequirements';
-import { V1SecurityContext } from '../models/V1SecurityContext';
-import { V1VolumeDevice } from '../models/V1VolumeDevice';
-import { V1VolumeMount } from '../models/V1VolumeMount';
-import { HttpFile } from '../http/http';
+import { V1ContainerPort } from '../models/V1ContainerPort.js';
+import { V1ContainerResizePolicy } from '../models/V1ContainerResizePolicy.js';
+import { V1EnvFromSource } from '../models/V1EnvFromSource.js';
+import { V1EnvVar } from '../models/V1EnvVar.js';
+import { V1Lifecycle } from '../models/V1Lifecycle.js';
+import { V1Probe } from '../models/V1Probe.js';
+import { V1ResourceRequirements } from '../models/V1ResourceRequirements.js';
+import { V1SecurityContext } from '../models/V1SecurityContext.js';
+import { V1VolumeDevice } from '../models/V1VolumeDevice.js';
+import { V1VolumeMount } from '../models/V1VolumeMount.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * A single application container that you want to run within a pod.

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1SecretReference } from '../models/V1SecretReference';
-import { HttpFile } from '../http/http';
+import { V1SecretReference } from '../models/V1SecretReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * FlexPersistentVolumeSource represents a generic persistent volume resource that is provisioned/attached using an exec based plugin.

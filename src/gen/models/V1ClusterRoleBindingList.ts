@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ClusterRoleBinding } from '../models/V1ClusterRoleBinding';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1ClusterRoleBinding } from '../models/V1ClusterRoleBinding.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ClusterRoleBindingList is a collection of ClusterRoleBindings

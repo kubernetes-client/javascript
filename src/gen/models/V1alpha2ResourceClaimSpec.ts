@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1alpha2ResourceClaimParametersReference } from '../models/V1alpha2ResourceClaimParametersReference';
-import { HttpFile } from '../http/http';
+import { V1alpha2ResourceClaimParametersReference } from '../models/V1alpha2ResourceClaimParametersReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ResourceClaimSpec defines how a resource is to be allocated.

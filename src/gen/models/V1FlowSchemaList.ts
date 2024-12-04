@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1FlowSchema } from '../models/V1FlowSchema';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1FlowSchema } from '../models/V1FlowSchema.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * FlowSchemaList is a list of FlowSchema objects.

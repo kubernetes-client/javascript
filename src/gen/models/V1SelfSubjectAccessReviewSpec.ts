@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1NonResourceAttributes } from '../models/V1NonResourceAttributes';
-import { V1ResourceAttributes } from '../models/V1ResourceAttributes';
-import { HttpFile } from '../http/http';
+import { V1NonResourceAttributes } from '../models/V1NonResourceAttributes.js';
+import { V1ResourceAttributes } from '../models/V1ResourceAttributes.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * SelfSubjectAccessReviewSpec is a description of the access request.  Exactly one of ResourceAuthorizationAttributes and NonResourceAuthorizationAttributes must be set

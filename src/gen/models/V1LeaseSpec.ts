@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1MicroTime } from '../../types';
-import { HttpFile } from '../http/http';
+import { V1MicroTime } from '../../types.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * LeaseSpec is a specification of a Lease.

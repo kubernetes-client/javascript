@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1PersistentVolumeSpec } from '../models/V1PersistentVolumeSpec';
-import { V1PersistentVolumeStatus } from '../models/V1PersistentVolumeStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1PersistentVolumeSpec } from '../models/V1PersistentVolumeSpec.js';
+import { V1PersistentVolumeStatus } from '../models/V1PersistentVolumeStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PersistentVolume (PV) is a storage resource provisioned by an administrator. It is analogous to a node. More info: https://kubernetes.io/docs/concepts/storage/persistent-volumes

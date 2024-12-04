@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1Job } from '../models/V1Job';
-import { V1ListMeta } from '../models/V1ListMeta';
-import { HttpFile } from '../http/http';
+import { V1Job } from '../models/V1Job.js';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * JobList is a collection of jobs.

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ScopedResourceSelectorRequirement } from '../models/V1ScopedResourceSelectorRequirement';
-import { HttpFile } from '../http/http';
+import { V1ScopedResourceSelectorRequirement } from '../models/V1ScopedResourceSelectorRequirement.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * A scope selector represents the AND of the selectors represented by the scoped-resource selector requirements.

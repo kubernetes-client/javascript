@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeConfigSource } from '../models/V1NodeConfigSource';
-import { V1Taint } from '../models/V1Taint';
-import { HttpFile } from '../http/http';
+import { V1NodeConfigSource } from '../models/V1NodeConfigSource.js';
+import { V1Taint } from '../models/V1Taint.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * NodeSpec describes the attributes that a node is created with.

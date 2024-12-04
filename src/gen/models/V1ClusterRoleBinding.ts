@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { RbacV1Subject } from '../models/RbacV1Subject';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1RoleRef } from '../models/V1RoleRef';
-import { HttpFile } from '../http/http';
+import { RbacV1Subject } from '../models/RbacV1Subject.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1RoleRef } from '../models/V1RoleRef.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ClusterRoleBinding references a ClusterRole, but not contain it.  It can reference a ClusterRole in the global namespace, and adds who information via Subject.

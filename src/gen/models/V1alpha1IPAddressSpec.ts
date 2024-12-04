@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1alpha1ParentReference } from '../models/V1alpha1ParentReference';
-import { HttpFile } from '../http/http';
+import { V1alpha1ParentReference } from '../models/V1alpha1ParentReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * IPAddressSpec describe the attributes in an IP Address.

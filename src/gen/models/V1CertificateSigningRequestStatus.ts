@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1CertificateSigningRequestCondition } from '../models/V1CertificateSigningRequestCondition';
-import { HttpFile } from '../http/http';
+import { V1CertificateSigningRequestCondition } from '../models/V1CertificateSigningRequestCondition.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * CertificateSigningRequestStatus contains conditions used to indicate approved/denied/failed status of the request, and the issued certificate.

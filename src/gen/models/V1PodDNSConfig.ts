@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1PodDNSConfigOption } from '../models/V1PodDNSConfigOption';
-import { HttpFile } from '../http/http';
+import { V1PodDNSConfigOption } from '../models/V1PodDNSConfigOption.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PodDNSConfig defines the DNS parameters of a pod in addition to those generated from DNSPolicy.

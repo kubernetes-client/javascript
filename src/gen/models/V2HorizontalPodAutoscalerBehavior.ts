@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V2HPAScalingRules } from '../models/V2HPAScalingRules';
-import { HttpFile } from '../http/http';
+import { V2HPAScalingRules } from '../models/V2HPAScalingRules.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * HorizontalPodAutoscalerBehavior configures the scaling behavior of the target in both Up and Down directions (scaleUp and scaleDown fields respectively).

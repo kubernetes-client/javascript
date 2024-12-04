@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { V1TokenReviewSpec } from '../models/V1TokenReviewSpec';
-import { V1TokenReviewStatus } from '../models/V1TokenReviewStatus';
-import { HttpFile } from '../http/http';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { V1TokenReviewSpec } from '../models/V1TokenReviewSpec.js';
+import { V1TokenReviewStatus } from '../models/V1TokenReviewStatus.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * TokenReview attempts to authenticate a token to a known user. Note: TokenReview requests may be cached by the webhook token authenticator plugin in the kube-apiserver.

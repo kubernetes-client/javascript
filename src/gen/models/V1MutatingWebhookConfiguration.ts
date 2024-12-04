@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1MutatingWebhook } from '../models/V1MutatingWebhook';
-import { V1ObjectMeta } from '../models/V1ObjectMeta';
-import { HttpFile } from '../http/http';
+import { V1MutatingWebhook } from '../models/V1MutatingWebhook.js';
+import { V1ObjectMeta } from '../models/V1ObjectMeta.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * MutatingWebhookConfiguration describes the configuration of and admission webhook that accept or reject and may change the object.

@@ -10,7 +10,7 @@
  * Do not edit the class manually.
  */
 
-import { HttpFile } from '../http/http';
+import { HttpFile } from '../http/http.js';
 
 /**
 * SecretEnvSource selects a Secret to populate the environment variables with.  The contents of the target Secret\'s Data field will represent the key-value pairs as environment variables.

@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1SecretReference } from '../models/V1SecretReference';
-import { HttpFile } from '../http/http';
+import { V1SecretReference } from '../models/V1SecretReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Represents a Ceph Filesystem mount that lasts the lifetime of a pod Cephfs volumes do not support ownership management or SELinux relabeling.

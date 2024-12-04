@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1NetworkPolicy } from '../models/V1NetworkPolicy';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1NetworkPolicy } from '../models/V1NetworkPolicy.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * NetworkPolicyList is a list of NetworkPolicy objects.

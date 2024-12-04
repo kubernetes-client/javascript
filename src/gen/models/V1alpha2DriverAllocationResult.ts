@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1alpha2NamedResourcesAllocationResult } from '../models/V1alpha2NamedResourcesAllocationResult';
-import { HttpFile } from '../http/http';
+import { V1alpha2NamedResourcesAllocationResult } from '../models/V1alpha2NamedResourcesAllocationResult.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * DriverAllocationResult contains vendor parameters and the allocation result for one request.

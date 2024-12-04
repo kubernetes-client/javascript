@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1alpha2AllocationResult } from '../models/V1alpha2AllocationResult';
-import { V1alpha2ResourceClaimConsumerReference } from '../models/V1alpha2ResourceClaimConsumerReference';
-import { HttpFile } from '../http/http';
+import { V1alpha2AllocationResult } from '../models/V1alpha2AllocationResult.js';
+import { V1alpha2ResourceClaimConsumerReference } from '../models/V1alpha2ResourceClaimConsumerReference.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ResourceClaimStatus tracks whether the resource has been allocated and what the resulting attributes are.

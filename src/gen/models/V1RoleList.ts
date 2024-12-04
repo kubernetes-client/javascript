@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1Role } from '../models/V1Role';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1Role } from '../models/V1Role.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * RoleList is a collection of Roles

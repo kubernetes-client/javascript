@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1ReplicaSetCondition } from '../models/V1ReplicaSetCondition';
-import { HttpFile } from '../http/http';
+import { V1ReplicaSetCondition } from '../models/V1ReplicaSetCondition.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ReplicaSetStatus represents the current status of a ReplicaSet.

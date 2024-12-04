@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1ListMeta } from '../models/V1ListMeta';
-import { V1PersistentVolume } from '../models/V1PersistentVolume';
-import { HttpFile } from '../http/http';
+import { V1ListMeta } from '../models/V1ListMeta.js';
+import { V1PersistentVolume } from '../models/V1PersistentVolume.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * PersistentVolumeList is a list of PersistentVolume items.

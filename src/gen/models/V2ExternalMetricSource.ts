@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V2MetricIdentifier } from '../models/V2MetricIdentifier';
-import { V2MetricTarget } from '../models/V2MetricTarget';
-import { HttpFile } from '../http/http';
+import { V2MetricIdentifier } from '../models/V2MetricIdentifier.js';
+import { V2MetricTarget } from '../models/V2MetricTarget.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * ExternalMetricSource indicates how to scale on a metric not associated with any Kubernetes object (for example length of queue in cloud messaging service, or QPS from loadbalancer running outside of cluster).

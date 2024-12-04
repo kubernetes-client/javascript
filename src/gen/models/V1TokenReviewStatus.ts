@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1UserInfo } from '../models/V1UserInfo';
-import { HttpFile } from '../http/http';
+import { V1UserInfo } from '../models/V1UserInfo.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * TokenReviewStatus is the result of the token authentication request.

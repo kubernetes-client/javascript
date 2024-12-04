@@ -10,10 +10,10 @@
  * Do not edit the class manually.
  */
 
-import { V1NodeAffinity } from '../models/V1NodeAffinity';
-import { V1PodAffinity } from '../models/V1PodAffinity';
-import { V1PodAntiAffinity } from '../models/V1PodAntiAffinity';
-import { HttpFile } from '../http/http';
+import { V1NodeAffinity } from '../models/V1NodeAffinity.js';
+import { V1PodAffinity } from '../models/V1PodAffinity.js';
+import { V1PodAntiAffinity } from '../models/V1PodAntiAffinity.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Affinity is a group of affinity scheduling rules.

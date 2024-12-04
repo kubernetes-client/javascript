@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1CSINodeDriver } from '../models/V1CSINodeDriver';
-import { HttpFile } from '../http/http';
+import { V1CSINodeDriver } from '../models/V1CSINodeDriver.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * CSINodeSpec holds information about the specification of all CSI drivers installed on a node

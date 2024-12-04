@@ -10,9 +10,9 @@
  * Do not edit the class manually.
  */
 
-import { V1IPBlock } from '../models/V1IPBlock';
-import { V1LabelSelector } from '../models/V1LabelSelector';
-import { HttpFile } from '../http/http';
+import { V1IPBlock } from '../models/V1IPBlock.js';
+import { V1LabelSelector } from '../models/V1LabelSelector.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * NetworkPolicyPeer describes a peer to allow traffic to/from. Only certain combinations of fields are allowed

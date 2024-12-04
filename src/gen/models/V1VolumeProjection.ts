@@ -10,12 +10,12 @@
  * Do not edit the class manually.
  */
 
-import { V1ClusterTrustBundleProjection } from '../models/V1ClusterTrustBundleProjection';
-import { V1ConfigMapProjection } from '../models/V1ConfigMapProjection';
-import { V1DownwardAPIProjection } from '../models/V1DownwardAPIProjection';
-import { V1SecretProjection } from '../models/V1SecretProjection';
-import { V1ServiceAccountTokenProjection } from '../models/V1ServiceAccountTokenProjection';
-import { HttpFile } from '../http/http';
+import { V1ClusterTrustBundleProjection } from '../models/V1ClusterTrustBundleProjection.js';
+import { V1ConfigMapProjection } from '../models/V1ConfigMapProjection.js';
+import { V1DownwardAPIProjection } from '../models/V1DownwardAPIProjection.js';
+import { V1SecretProjection } from '../models/V1SecretProjection.js';
+import { V1ServiceAccountTokenProjection } from '../models/V1ServiceAccountTokenProjection.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Projection that may be projected along with other supported volume types

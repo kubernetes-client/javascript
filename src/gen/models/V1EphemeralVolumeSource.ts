@@ -10,8 +10,8 @@
  * Do not edit the class manually.
  */
 
-import { V1PersistentVolumeClaimTemplate } from '../models/V1PersistentVolumeClaimTemplate';
-import { HttpFile } from '../http/http';
+import { V1PersistentVolumeClaimTemplate } from '../models/V1PersistentVolumeClaimTemplate.js';
+import { HttpFile } from '../http/http.js';
 
 /**
 * Represents an ephemeral volume that is handled by a normal storage driver.
