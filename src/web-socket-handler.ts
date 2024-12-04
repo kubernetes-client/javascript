@@ -262,7 +262,7 @@ function copyChunkForWebSocket(
         encoding ??= 'utf-8';
         const size = Buffer.byteLength(chunk, encoding);
         buff = Buffer.alloc(size + 1);
-        buff.write(chunk, 1, size, encoding);
+        buff.write(chunk as string, 1, size, encoding);
     }
 
     buff.writeInt8(streamNum, 0);
