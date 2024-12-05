@@ -1,11 +1,14 @@
 import { use, expect } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
-import { join } from 'node:path';
+import { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-import { User, Cluster } from './config_types';
-import { AzureAuth } from './azure_auth';
-import { KubeConfig } from './config';
-import { HttpMethod, RequestContext } from '.';
+import { User, Cluster } from './config_types.js';
+import { AzureAuth } from './azure_auth.js';
+import { KubeConfig } from './config.js';
+import { HttpMethod, RequestContext } from './index.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 use(chaiAsPromised);
 

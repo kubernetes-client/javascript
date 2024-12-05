@@ -2,8 +2,8 @@ import https from 'node:https';
 import * as oidc from 'openid-client';
 import { base64url } from 'rfc4648';
 
-import { Authenticator } from './auth';
-import { User } from './config_types';
+import { Authenticator } from './auth.js';
+import { User } from './config_types.js';
 
 interface JwtObj {
     header: any;

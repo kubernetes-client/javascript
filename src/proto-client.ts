@@ -1,6 +1,6 @@
 import http from 'node:http';
 
-import { KubeConfig } from './config';
+import { KubeConfig } from './config.js';
 
 export class ProtoClient {
     public readonly 'config': KubeConfig;

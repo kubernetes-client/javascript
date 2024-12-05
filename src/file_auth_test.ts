@@ -3,8 +3,8 @@ import { OutgoingHttpHeaders } from 'node:http';
 import https from 'node:https';
 import mockfs from 'mock-fs';
 
-import { User } from './config_types';
-import { FileAuth } from './file_auth';
+import { User } from './config_types.js';
+import { FileAuth } from './file_auth.js';
 
 describe('FileAuth', () => {
     it('should refresh when null', async () => {

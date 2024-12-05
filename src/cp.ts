@@ -3,8 +3,8 @@ import { WritableStreamBuffer } from 'stream-buffers';
 import * as tar from 'tar';
 import tmp from 'tmp-promise';
 
-import { KubeConfig } from './config';
-import { Exec } from './exec';
+import { KubeConfig } from './config.js';
+import { Exec } from './exec.js';
 
 export class Cp {
     public execInstance: Exec;

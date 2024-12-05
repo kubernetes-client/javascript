@@ -1,9 +1,9 @@
 import { expect } from 'chai';
 import nock from 'nock';
 
-import { KubeConfig } from './config';
-import { Health } from './health';
-import { Cluster, User } from './config_types';
+import { KubeConfig } from './config.js';
+import { Health } from './health.js';
+import { Cluster, User } from './config_types.js';
 
 describe('Health', () => {
     describe('livez', () => {

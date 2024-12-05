@@ -1,19 +1,20 @@
 import { readFileSync } from 'node:fs';
 import https from 'node:https';
 import { Agent, RequestOptions } from 'node:https';
-import path, { join } from 'node:path';
+import path, { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
 import mockfs from 'mock-fs';
 
 import { Headers } from 'node-fetch';
-import { HttpMethod } from '.';
+import { HttpMethod } from './index.js';
 import { assertRequestAgentsEqual, assertRequestOptionsEqual } from '../test/match-buffer';
-import { CoreV1Api, RequestContext } from './api';
-import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolutePath } from './config';
-import { ActionOnInvalid, Cluster, newClusters, newContexts, newUsers, User } from './config_types';
-import { ExecAuth } from './exec_auth';
+import { CoreV1Api, RequestContext } from './api.js';
+import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolutePath } from './config.js';
+import { ActionOnInvalid, Cluster, newClusters, newContexts, newUsers, User } from './config_types.js';
+import { ExecAuth } from './exec_auth.js';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
 const kc2FileName = 'testdata/kubeconfig-2.yaml';
@@ -25,6 +26,8 @@ const kcNoUserFileName = 'testdata/empty-user-kubeconfig.yaml';
 const kcInvalidContextFileName = 'testdata/empty-context-kubeconfig.yaml';
 const kcInvalidClusterFileName = 'testdata/empty-cluster-kubeconfig.yaml';
 const kcTlsServerNameFileName = 'testdata/tls-server-name-kubeconfig.yaml';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 use(chaiAsPromised);
 

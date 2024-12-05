@@ -5,8 +5,8 @@ use(chaiAsPromised);
 import https from 'node:https';
 import { OutgoingHttpHeaders } from 'node:http';
 
-import { ExecAuth } from './exec_auth';
-import { User } from './config_types';
+import { ExecAuth } from './exec_auth.js';
+import { User } from './config_types.js';
 
 import child_process from 'node:child_process';
 

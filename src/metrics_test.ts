@@ -1,8 +1,8 @@
 import { expect } from 'chai';
 import nock from 'nock';
-import { KubeConfig } from './config';
-import { V1Status, ApiException } from './gen';
-import { Metrics, NodeMetricsList, PodMetricsList } from './metrics';
+import { KubeConfig } from './config.js';
+import { V1Status, ApiException } from './gen/index.js';
+import { Metrics, NodeMetricsList, PodMetricsList } from './metrics.js';
 
 const emptyPodMetrics: PodMetricsList = {
     kind: 'PodMetricsList',

@@ -3,10 +3,10 @@ import querystring from 'node:querystring';
 import WebSocket from 'isomorphic-ws';
 
 import { CallAwaiter } from '../test';
-import { KubeConfig } from './config';
-import { Exec } from './exec';
-import { Cp } from './cp';
-import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
+import { KubeConfig } from './config.js';
+import { Exec } from './exec.js';
+import { Cp } from './cp.js';
+import { WebSocketHandler, WebSocketInterface } from './web-socket-handler.js';
 
 describe('Cp', () => {
     describe('cpFromPod', () => {

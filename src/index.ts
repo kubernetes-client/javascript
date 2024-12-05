@@ -1,21 +1,21 @@
-export * from './config';
-export * from './cache';
-export * from './api';
-export * from './attach';
-export * from './watch';
-export * from './exec';
-export * from './portforward';
-export * from './types';
-export * from './yaml';
-export * from './log';
-export * from './informer';
-export * from './top';
-export * from './cp';
-export * from './patch';
-export * from './metrics';
-export * from './object';
-export * from './health';
-export { ConfigOptions, User, Cluster, Context } from './config_types';
+export * from './config.js';
+export * from './cache.js';
+export * from './api.js';
+export * from './attach.js';
+export * from './watch.js';
+export * from './exec.js';
+export * from './portforward.js';
+export * from './types.js';
+export * from './yaml.js';
+export * from './log.js';
+export * from './informer.js';
+export * from './top.js';
+export * from './cp.js';
+export * from './patch.js';
+export * from './metrics.js';
+export * from './object.js';
+export * from './health.js';
+export { type ConfigOptions, type User, type Cluster, type Context } from './config_types.js';
 
-// Export AbortError and FetchError so that instanceof checks in user code will definitely use the same instances
-export { AbortError, FetchError } from 'node-fetch';
+// Export FetchError so that instanceof checks in user code will definitely use the same instance
+export { FetchError } from 'node-fetch';

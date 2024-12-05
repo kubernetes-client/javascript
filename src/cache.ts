@@ -9,10 +9,10 @@ import {
     ListPromise,
     ObjectCallback,
     UPDATE,
-} from './informer';
-import { KubernetesObject } from './types';
-import { ObjectSerializer } from './serializer';
-import { Watch } from './watch';
+} from './informer.js';
+import { KubernetesObject } from './types.js';
+import { ObjectSerializer } from './serializer.js';
+import { Watch } from './watch.js';
 
 export interface ObjectCache<T> {
     get(name: string, namespace?: string): T | undefined;

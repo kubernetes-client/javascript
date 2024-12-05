@@ -1,9 +1,9 @@
 import proc from 'node:child_process';
 import https from 'node:https';
-import jsonpath from 'jsonpath-plus';
+import * as jsonpath from 'jsonpath-plus';
 
-import { Authenticator } from './auth';
-import { User } from './config_types';
+import { Authenticator } from './auth.js';
+import { User } from './config_types.js';
 
 /* FIXME: maybe we can extend the User and User.authProvider type to have a proper type.
 Currently user.authProvider has `any` type and so we don't have a type for user.authProvider.config.

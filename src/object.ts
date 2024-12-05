@@ -9,12 +9,12 @@ import {
     V1APIResourceList,
     V1DeleteOptions,
     V1Status,
-} from './api';
-import { KubeConfig } from './config';
-import { ObjectSerializer } from './serializer';
-import { KubernetesListObject, KubernetesObject } from './types';
-import { from, mergeMap, of } from './gen/rxjsStub';
-import { PatchStrategy } from './patch';
+} from './api.js';
+import { KubeConfig } from './config.js';
+import { ObjectSerializer } from './serializer.js';
+import { KubernetesListObject, KubernetesObject } from './types.js';
+import { from, mergeMap, of } from './gen/rxjsStub.js';
+import { PatchStrategy } from './patch.js';
 
 /** Kubernetes API verbs. */
 type KubernetesApiAction = 'create' | 'delete' | 'patch' | 'read' | 'list' | 'replace';

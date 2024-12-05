@@ -1,4 +1,4 @@
-import { V1ListMeta, V1ObjectMeta } from './api';
+import { V1ListMeta, V1ObjectMeta } from './api.js';
 
 export interface KubernetesObject {
     apiVersion?: string;

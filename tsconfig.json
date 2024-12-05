@@ -1,10 +1,10 @@
 {
     "compilerOptions": {
-        "module": "commonjs",
+        "module": "nodenext",
         "noImplicitAny": false,
         "target": "es2019",
-        "lib": ["es2021"],
-        "moduleResolution": "node",
+        "lib": ["es2023"],
+        "moduleResolution": "nodenext",
         "removeComments": false,
         "sourceMap": true,
         "noLib": false,

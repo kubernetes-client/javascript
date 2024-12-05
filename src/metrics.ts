@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
-import { KubeConfig } from './config';
-import { ApiException, V1Status } from './gen';
-import { normalizeResponseHeaders } from './util';
+import { KubeConfig } from './config.js';
+import { ApiException, V1Status } from './gen/index.js';
+import { normalizeResponseHeaders } from './util.js';
 
 export interface Usage {
     cpu: string;
