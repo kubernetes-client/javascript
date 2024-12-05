@@ -1,7 +1,8 @@
 import { readFileSync } from 'node:fs';
 import https from 'node:https';
 import { Agent, RequestOptions } from 'node:https';
-import path, { join } from 'node:path';
+import path, { dirname, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 import { expect, use } from 'chai';
 import chaiAsPromised from 'chai-as-promised';
@@ -25,6 +26,8 @@ const kcNoUserFileName = 'testdata/empty-user-kubeconfig.yaml';
 const kcInvalidContextFileName = 'testdata/empty-context-kubeconfig.yaml';
 const kcInvalidClusterFileName = 'testdata/empty-cluster-kubeconfig.yaml';
 const kcTlsServerNameFileName = 'testdata/tls-server-name-kubeconfig.yaml';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 use(chaiAsPromised);
 

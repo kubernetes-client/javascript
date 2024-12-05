@@ -1,4 +1,6 @@
+import { createRequire } from 'node:module';
 import { expect } from 'chai';
+const require = createRequire(import.meta.url);
 
 // Generic set of tests to verify the package is built and configured correctly
 describe('package', () => {

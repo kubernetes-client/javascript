@@ -15,7 +15,7 @@ export * from './patch.js';
 export * from './metrics.js';
 export * from './object.js';
 export * from './health.js';
-export { ConfigOptions, User, Cluster, Context } from './config_types.js';
+export { type ConfigOptions, type User, type Cluster, type Context } from './config_types.js';
 
 // Export FetchError so that instanceof checks in user code will definitely use the same instance
 export { FetchError } from 'node-fetch';
