@@ -412,7 +412,6 @@ describe('KubeConfig', () => {
             const opts = {} as requestlib.Options;
 
             await kc.applyToRequest(opts);
-            console.log(opts);
 
             expect(opts).to.deep.equal({
                 headers: {},
@@ -427,9 +426,7 @@ describe('KubeConfig', () => {
             kc.loadFromFile(kcProxyUrl);
 
             const opts = {} as requestlib.Options;
-
             await kc.applyToRequest(opts);
-
             expect(opts.agent).to.exist;
         });
     });
