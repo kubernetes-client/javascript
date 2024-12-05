@@ -126,7 +126,7 @@ export class WebSocketHandler implements WebSocketInterface {
         if (data instanceof Buffer) {
             data.copy(buff, 1);
         } else {
-            buff.write(data, 1);
+            buff.write(data as string, 1);
         }
 
         let i = 0;
