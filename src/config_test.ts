@@ -18,6 +18,7 @@ const kc2FileName = 'testdata/kubeconfig-2.yaml';
 const kcDupeCluster = 'testdata/kubeconfig-dupe-cluster.yaml';
 const kcDupeContext = 'testdata/kubeconfig-dupe-context.yaml';
 const kcDupeUser = 'testdata/kubeconfig-dupe-user.yaml';
+const kcProxyUrl = 'testdata/kubeconfig-proxy-url.yaml';
 
 const kcNoUserFileName = 'testdata/empty-user-kubeconfig.yaml';
 const kcInvalidContextFileName = 'testdata/empty-context-kubeconfig.yaml';
@@ -423,7 +424,7 @@ describe('KubeConfig', () => {
         });
         it('should apply agent to request.Options', async () => {
             const kc = new KubeConfig();
-            kc.loadFromFile(kcFileName);
+            kc.loadFromFile(kcProxyUrl);
 
             const opts = {} as requestlib.Options;
 
