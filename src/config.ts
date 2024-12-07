@@ -172,7 +172,7 @@ export class KubeConfig {
             opts.agentOptions = { servername: cluster.tlsServerName } as https.AgentOptions;
         }
 
-        if (cluster?.proxyUrl) {
+        if (cluster && cluster.proxyUrl) {
             if (cluster.proxyUrl.startsWith('socks')) {
                 opts.agent = new SocksProxyAgent.SocksProxyAgent(cluster.proxyUrl);
             } else {
