@@ -18,6 +18,7 @@ const kc2FileName = 'testdata/kubeconfig-2.yaml';
 const kcDupeCluster = 'testdata/kubeconfig-dupe-cluster.yaml';
 const kcDupeContext = 'testdata/kubeconfig-dupe-context.yaml';
 const kcDupeUser = 'testdata/kubeconfig-dupe-user.yaml';
+const kcProxyUrl = 'testdata/kubeconfig-proxy-url.yaml';
 
 const kcNoUserFileName = 'testdata/empty-user-kubeconfig.yaml';
 const kcInvalidContextFileName = 'testdata/empty-context-kubeconfig.yaml';
@@ -36,6 +37,7 @@ function validateFileLoad(kc: KubeConfig) {
     expect(cluster1.name).to.equal('cluster1');
     expect(cluster1.caData).to.equal('Q0FEQVRB');
     expect(cluster1.server).to.equal('http://example.com');
+    expect(cluster1.proxyUrl).to.equal('socks5://localhost:1181');
     expect(cluster2.name).to.equal('cluster2');
     expect(cluster2.caData).to.equal('Q0FEQVRBMg==');
     expect(cluster2.server).to.equal('http://example2.com');
@@ -402,6 +404,30 @@ describe('KubeConfig', () => {
                 strictSSL: false,
                 rejectUnauthorized: false,
             });
+        });
+        it('should apply proxy to request.Options', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kc2FileName);
+
+            const opts = {} as requestlib.Options;
+
+            await kc.applyToRequest(opts);
+
+            expect(opts).to.deep.equal({
+                headers: {},
+                ca: Buffer.from('CADAT@', 'utf-8'),
+                cert: Buffer.from(']SER_CADATA', 'utf-8'),
+                key: Buffer.from(']SER_CKDATA', 'utf-8'),
+                proxy: 'https://localhost:1181',
+            });
+        });
+        it('should apply agent to request.Options', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcProxyUrl);
+
+            const opts = {} as requestlib.Options;
+            await kc.applyToRequest(opts);
+            expect(opts.agent).to.exist;
         });
     });
 
