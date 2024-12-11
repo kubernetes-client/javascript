@@ -7,6 +7,7 @@ import path = require('path');
 
 import request = require('request');
 import WebSocket = require('ws');
+import SocksProxyAgent = require('socks-proxy-agent');
 
 import * as api from './api';
 import { Authenticator } from './auth';
@@ -169,6 +170,14 @@ export class KubeConfig {
 
         if (cluster && cluster.tlsServerName) {
             opts.agentOptions = { servername: cluster.tlsServerName } as https.AgentOptions;
+        }
+
+        if (cluster && cluster.proxyUrl) {
+            if (cluster.proxyUrl.startsWith('socks')) {
+                opts.agent = new SocksProxyAgent.SocksProxyAgent(cluster.proxyUrl);
+            } else {
+                opts.proxy = cluster.proxyUrl;
+            }
         }
     }
 
