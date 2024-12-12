@@ -1,8 +1,8 @@
-import { HttpLibrary } from "./http/http.js";
-import { Middleware, PromiseMiddleware, PromiseMiddlewareWrapper } from "./middleware.js";
-import { IsomorphicFetchHttpLibrary as DefaultHttpLibrary } from "./http/isomorphic-fetch.js";
-import { BaseServerConfiguration, server1 } from "./servers.js";
-import { configureAuthMethods, AuthMethods, AuthMethodsConfiguration } from "./auth/auth.js";
+import { HttpLibrary } from "./http/http";
+import { Middleware, PromiseMiddleware, PromiseMiddlewareWrapper } from "./middleware";
+import { IsomorphicFetchHttpLibrary as DefaultHttpLibrary } from "./http/isomorphic-fetch";
+import { BaseServerConfiguration, server1 } from "./servers";
+import { configureAuthMethods, AuthMethods, AuthMethodsConfiguration } from "./auth/auth";
 
 export interface Configuration {
     readonly baseServer: BaseServerConfiguration;

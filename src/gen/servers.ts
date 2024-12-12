@@ -1,4 +1,4 @@
-import { RequestContext, HttpMethod } from "./http/http.js";
+import { RequestContext, HttpMethod } from "./http/http";
 
 export interface BaseServerConfiguration {
     makeRequestContext(endpoint: string, httpMethod: HttpMethod): RequestContext;

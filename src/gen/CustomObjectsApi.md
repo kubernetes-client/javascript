@@ -219,6 +219,7 @@ const request: CustomObjectsApiDeleteClusterCustomObjectRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -310,6 +311,7 @@ const request: CustomObjectsApiDeleteCollectionClusterCustomObjectRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -403,6 +405,7 @@ const request: CustomObjectsApiDeleteCollectionNamespacedCustomObjectRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -497,6 +500,7 @@ const request: CustomObjectsApiDeleteNamespacedCustomObjectRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {

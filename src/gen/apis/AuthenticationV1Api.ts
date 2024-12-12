@@ -1,18 +1,18 @@
 // TODO: better import syntax?
-import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi.js';
-import {Configuration} from '../configuration.js';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http.js';
+import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
+import {Configuration} from '../configuration';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
-import {ObjectSerializer} from '../models/ObjectSerializer.js';
-import {ApiException} from './exception.js';
-import {canConsumeForm, isCodeInRange} from '../util.js';
-import {SecurityAuthentication} from '../auth/auth.js';
+import {ObjectSerializer} from '../models/ObjectSerializer';
+import {ApiException} from './exception';
+import {canConsumeForm, isCodeInRange} from '../util';
+import {SecurityAuthentication} from '../auth/auth';
 
 
-import { V1APIResourceList } from '../models/V1APIResourceList.js';
-import { V1SelfSubjectReview } from '../models/V1SelfSubjectReview.js';
-import { V1TokenReview } from '../models/V1TokenReview.js';
+import { V1APIResourceList } from '../models/V1APIResourceList';
+import { V1SelfSubjectReview } from '../models/V1SelfSubjectReview';
+import { V1TokenReview } from '../models/V1TokenReview';
 
 /**
  * no description

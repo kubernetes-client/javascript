@@ -173,7 +173,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -734,6 +734,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -1045,6 +1046,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -1359,6 +1361,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -1485,12 +1488,24 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
           resourceClaims: [
             {
               name: "name_example",
-              source: {
-                resourceClaimName: "resourceClaimName_example",
-                resourceClaimTemplateName: "resourceClaimTemplateName_example",
-              },
+              resourceClaimName: "resourceClaimName_example",
+              resourceClaimTemplateName: "resourceClaimTemplateName_example",
             },
           ],
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
@@ -1509,6 +1524,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
             runAsGroup: 1,
             runAsNonRoot: true,
             runAsUser: 1,
+            seLinuxChangePolicy: "seLinuxChangePolicy_example",
             seLinuxOptions: {
               level: "level_example",
               role: "role_example",
@@ -1522,6 +1538,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
             supplementalGroups: [
               1,
             ],
+            supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
             sysctls: [
               {
                 name: "name_example",
@@ -1797,6 +1814,10 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                 path: "path_example",
                 type: "type_example",
               },
+              image: {
+                pullPolicy: "pullPolicy_example",
+                reference: "reference_example",
+              },
               iscsi: {
                 chapAuthDiscovery: true,
                 chapAuthSession: true,
@@ -2038,7 +2059,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -2609,6 +2630,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -2920,6 +2942,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -3234,6 +3257,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -3360,12 +3384,24 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
           resourceClaims: [
             {
               name: "name_example",
-              source: {
-                resourceClaimName: "resourceClaimName_example",
-                resourceClaimTemplateName: "resourceClaimTemplateName_example",
-              },
+              resourceClaimName: "resourceClaimName_example",
+              resourceClaimTemplateName: "resourceClaimTemplateName_example",
             },
           ],
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
@@ -3384,6 +3420,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
             runAsGroup: 1,
             runAsNonRoot: true,
             runAsUser: 1,
+            seLinuxChangePolicy: "seLinuxChangePolicy_example",
             seLinuxOptions: {
               level: "level_example",
               role: "role_example",
@@ -3397,6 +3434,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
             supplementalGroups: [
               1,
             ],
+            supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
             sysctls: [
               {
                 name: "name_example",
@@ -3672,6 +3710,10 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                 path: "path_example",
                 type: "type_example",
               },
+              image: {
+                pullPolicy: "pullPolicy_example",
+                reference: "reference_example",
+              },
               iscsi: {
                 chapAuthDiscovery: true,
                 chapAuthSession: true,
@@ -3905,7 +3947,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -4466,6 +4508,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -4777,6 +4820,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -5091,6 +5135,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -5217,12 +5262,24 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
           resourceClaims: [
             {
               name: "name_example",
-              source: {
-                resourceClaimName: "resourceClaimName_example",
-                resourceClaimTemplateName: "resourceClaimTemplateName_example",
-              },
+              resourceClaimName: "resourceClaimName_example",
+              resourceClaimTemplateName: "resourceClaimTemplateName_example",
             },
           ],
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
@@ -5241,6 +5298,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
             runAsGroup: 1,
             runAsNonRoot: true,
             runAsUser: 1,
+            seLinuxChangePolicy: "seLinuxChangePolicy_example",
             seLinuxOptions: {
               level: "level_example",
               role: "role_example",
@@ -5254,6 +5312,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
             supplementalGroups: [
               1,
             ],
+            supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
             sysctls: [
               {
                 name: "name_example",
@@ -5529,6 +5588,10 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                 path: "path_example",
                 type: "type_example",
               },
+              image: {
+                pullPolicy: "pullPolicy_example",
+                reference: "reference_example",
+              },
               iscsi: {
                 chapAuthDiscovery: true,
                 chapAuthSession: true,
@@ -5759,7 +5822,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -6330,6 +6393,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -6641,6 +6705,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -6955,6 +7020,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -7081,12 +7147,24 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
           resourceClaims: [
             {
               name: "name_example",
-              source: {
-                resourceClaimName: "resourceClaimName_example",
-                resourceClaimTemplateName: "resourceClaimTemplateName_example",
-              },
+              resourceClaimName: "resourceClaimName_example",
+              resourceClaimTemplateName: "resourceClaimTemplateName_example",
             },
           ],
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
@@ -7105,6 +7183,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
             runAsGroup: 1,
             runAsNonRoot: true,
             runAsUser: 1,
+            seLinuxChangePolicy: "seLinuxChangePolicy_example",
             seLinuxOptions: {
               level: "level_example",
               role: "role_example",
@@ -7118,6 +7197,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
             supplementalGroups: [
               1,
             ],
+            supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
             sysctls: [
               {
                 name: "name_example",
@@ -7392,6 +7472,10 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
               hostPath: {
                 path: "path_example",
                 type: "type_example",
+              },
+              image: {
+                pullPolicy: "pullPolicy_example",
+                reference: "reference_example",
               },
               iscsi: {
                 chapAuthDiscovery: true,
@@ -7754,7 +7838,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -7795,6 +7879,8 @@ const request: AppsV1ApiDeleteCollectionNamespacedControllerRevisionRequest = {
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -7818,6 +7904,7 @@ const request: AppsV1ApiDeleteCollectionNamespacedControllerRevisionRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -7844,6 +7931,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -7865,7 +7953,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -7904,6 +7992,8 @@ const request: AppsV1ApiDeleteCollectionNamespacedDaemonSetRequest = {
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -7927,6 +8017,7 @@ const request: AppsV1ApiDeleteCollectionNamespacedDaemonSetRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -7953,6 +8044,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -7974,7 +8066,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -8013,6 +8105,8 @@ const request: AppsV1ApiDeleteCollectionNamespacedDeploymentRequest = {
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -8036,6 +8130,7 @@ const request: AppsV1ApiDeleteCollectionNamespacedDeploymentRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -8062,6 +8157,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -8083,7 +8179,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -8122,6 +8218,8 @@ const request: AppsV1ApiDeleteCollectionNamespacedReplicaSetRequest = {
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -8145,6 +8243,7 @@ const request: AppsV1ApiDeleteCollectionNamespacedReplicaSetRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -8171,6 +8270,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -8192,7 +8292,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -8231,6 +8331,8 @@ const request: AppsV1ApiDeleteCollectionNamespacedStatefulSetRequest = {
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -8254,6 +8356,7 @@ const request: AppsV1ApiDeleteCollectionNamespacedStatefulSetRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -8280,6 +8383,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -8301,7 +8405,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -8338,6 +8442,8 @@ const request: AppsV1ApiDeleteNamespacedControllerRevisionRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -8349,6 +8455,7 @@ const request: AppsV1ApiDeleteNamespacedControllerRevisionRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -8374,6 +8481,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -8389,7 +8497,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -8427,6 +8535,8 @@ const request: AppsV1ApiDeleteNamespacedDaemonSetRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -8438,6 +8548,7 @@ const request: AppsV1ApiDeleteNamespacedDaemonSetRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -8463,6 +8574,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -8478,7 +8590,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -8516,6 +8628,8 @@ const request: AppsV1ApiDeleteNamespacedDeploymentRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -8527,6 +8641,7 @@ const request: AppsV1ApiDeleteNamespacedDeploymentRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -8552,6 +8667,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -8567,7 +8683,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -8605,6 +8721,8 @@ const request: AppsV1ApiDeleteNamespacedReplicaSetRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -8616,6 +8734,7 @@ const request: AppsV1ApiDeleteNamespacedReplicaSetRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -8641,6 +8760,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -8656,7 +8776,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -8694,6 +8814,8 @@ const request: AppsV1ApiDeleteNamespacedStatefulSetRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -8705,6 +8827,7 @@ const request: AppsV1ApiDeleteNamespacedStatefulSetRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -8730,6 +8853,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -8745,7 +8869,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -8793,7 +8917,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -8877,7 +9001,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -8961,7 +9085,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -9045,7 +9169,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -9132,7 +9256,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -9219,7 +9343,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -9306,7 +9430,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -9393,7 +9517,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -9480,7 +9604,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -9564,7 +9688,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -9648,7 +9772,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -9722,8 +9846,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -9798,8 +9922,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -9874,8 +9998,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -9950,8 +10074,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10026,8 +10150,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10102,8 +10226,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10178,8 +10302,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10254,8 +10378,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10330,8 +10454,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10406,8 +10530,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10482,8 +10606,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10558,8 +10682,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10620,7 +10744,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10680,7 +10804,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10740,7 +10864,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10800,7 +10924,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10860,7 +10984,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10920,7 +11044,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10980,7 +11104,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -11040,7 +11164,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -11100,7 +11224,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -11160,7 +11284,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -11220,7 +11344,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -11280,7 +11404,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -11399,7 +11523,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -11961,6 +12085,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -12272,6 +12397,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -12586,6 +12712,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -12712,12 +12839,24 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
           resourceClaims: [
             {
               name: "name_example",
-              source: {
-                resourceClaimName: "resourceClaimName_example",
-                resourceClaimTemplateName: "resourceClaimTemplateName_example",
-              },
+              resourceClaimName: "resourceClaimName_example",
+              resourceClaimTemplateName: "resourceClaimTemplateName_example",
             },
           ],
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
@@ -12736,6 +12875,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
             runAsGroup: 1,
             runAsNonRoot: true,
             runAsUser: 1,
+            seLinuxChangePolicy: "seLinuxChangePolicy_example",
             seLinuxOptions: {
               level: "level_example",
               role: "role_example",
@@ -12749,6 +12889,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
             supplementalGroups: [
               1,
             ],
+            supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
             sysctls: [
               {
                 name: "name_example",
@@ -13024,6 +13165,10 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                 path: "path_example",
                 type: "type_example",
               },
+              image: {
+                pullPolicy: "pullPolicy_example",
+                reference: "reference_example",
+              },
               iscsi: {
                 chapAuthDiscovery: true,
                 chapAuthSession: true,
@@ -13266,7 +13411,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -13828,6 +13973,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -14139,6 +14285,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -14453,6 +14600,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -14579,12 +14727,24 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
           resourceClaims: [
             {
               name: "name_example",
-              source: {
-                resourceClaimName: "resourceClaimName_example",
-                resourceClaimTemplateName: "resourceClaimTemplateName_example",
-              },
+              resourceClaimName: "resourceClaimName_example",
+              resourceClaimTemplateName: "resourceClaimTemplateName_example",
             },
           ],
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
@@ -14603,6 +14763,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
             runAsGroup: 1,
             runAsNonRoot: true,
             runAsUser: 1,
+            seLinuxChangePolicy: "seLinuxChangePolicy_example",
             seLinuxOptions: {
               level: "level_example",
               role: "role_example",
@@ -14616,6 +14777,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
             supplementalGroups: [
               1,
             ],
+            supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
             sysctls: [
               {
                 name: "name_example",
@@ -14891,6 +15053,10 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                 path: "path_example",
                 type: "type_example",
               },
+              image: {
+                pullPolicy: "pullPolicy_example",
+                reference: "reference_example",
+              },
               iscsi: {
                 chapAuthDiscovery: true,
                 chapAuthSession: true,
@@ -15133,7 +15299,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -15705,6 +15871,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -16016,6 +16183,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -16330,6 +16498,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -16456,12 +16625,24 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
           resourceClaims: [
             {
               name: "name_example",
-              source: {
-                resourceClaimName: "resourceClaimName_example",
-                resourceClaimTemplateName: "resourceClaimTemplateName_example",
-              },
+              resourceClaimName: "resourceClaimName_example",
+              resourceClaimTemplateName: "resourceClaimTemplateName_example",
             },
           ],
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
@@ -16480,6 +16661,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
             runAsGroup: 1,
             runAsNonRoot: true,
             runAsUser: 1,
+            seLinuxChangePolicy: "seLinuxChangePolicy_example",
             seLinuxOptions: {
               level: "level_example",
               role: "role_example",
@@ -16493,6 +16675,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
             supplementalGroups: [
               1,
             ],
+            supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
             sysctls: [
               {
                 name: "name_example",
@@ -16768,6 +16951,10 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                 path: "path_example",
                 type: "type_example",
               },
+              image: {
+                pullPolicy: "pullPolicy_example",
+                reference: "reference_example",
+              },
               iscsi: {
                 chapAuthDiscovery: true,
                 chapAuthSession: true,
@@ -17002,7 +17189,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -17127,7 +17314,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -17699,6 +17886,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -18010,6 +18198,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -18324,6 +18513,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -18450,12 +18640,24 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
           resourceClaims: [
             {
               name: "name_example",
-              source: {
-                resourceClaimName: "resourceClaimName_example",
-                resourceClaimTemplateName: "resourceClaimTemplateName_example",
-              },
+              resourceClaimName: "resourceClaimName_example",
+              resourceClaimTemplateName: "resourceClaimTemplateName_example",
             },
           ],
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
@@ -18474,6 +18676,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
             runAsGroup: 1,
             runAsNonRoot: true,
             runAsUser: 1,
+            seLinuxChangePolicy: "seLinuxChangePolicy_example",
             seLinuxOptions: {
               level: "level_example",
               role: "role_example",
@@ -18487,6 +18690,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
             supplementalGroups: [
               1,
             ],
+            supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
             sysctls: [
               {
                 name: "name_example",
@@ -18762,6 +18966,10 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                 path: "path_example",
                 type: "type_example",
               },
+              image: {
+                pullPolicy: "pullPolicy_example",
+                reference: "reference_example",
+              },
               iscsi: {
                 chapAuthDiscovery: true,
                 chapAuthSession: true,
@@ -18996,7 +19204,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -19558,6 +19766,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -19869,6 +20078,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -20183,6 +20393,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -20309,12 +20520,24 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
           resourceClaims: [
             {
               name: "name_example",
-              source: {
-                resourceClaimName: "resourceClaimName_example",
-                resourceClaimTemplateName: "resourceClaimTemplateName_example",
-              },
+              resourceClaimName: "resourceClaimName_example",
+              resourceClaimTemplateName: "resourceClaimTemplateName_example",
             },
           ],
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
@@ -20333,6 +20556,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
             runAsGroup: 1,
             runAsNonRoot: true,
             runAsUser: 1,
+            seLinuxChangePolicy: "seLinuxChangePolicy_example",
             seLinuxOptions: {
               level: "level_example",
               role: "role_example",
@@ -20346,6 +20570,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
             supplementalGroups: [
               1,
             ],
+            supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
             sysctls: [
               {
                 name: "name_example",
@@ -20621,6 +20846,10 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                 path: "path_example",
                 type: "type_example",
               },
+              image: {
+                pullPolicy: "pullPolicy_example",
+                reference: "reference_example",
+              },
               iscsi: {
                 chapAuthDiscovery: true,
                 chapAuthSession: true,
@@ -20852,7 +21081,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -20977,7 +21206,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -21539,6 +21768,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -21850,6 +22080,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -22164,6 +22395,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -22290,12 +22522,24 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
           resourceClaims: [
             {
               name: "name_example",
-              source: {
-                resourceClaimName: "resourceClaimName_example",
-                resourceClaimTemplateName: "resourceClaimTemplateName_example",
-              },
+              resourceClaimName: "resourceClaimName_example",
+              resourceClaimTemplateName: "resourceClaimTemplateName_example",
             },
           ],
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
@@ -22314,6 +22558,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
             runAsGroup: 1,
             runAsNonRoot: true,
             runAsUser: 1,
+            seLinuxChangePolicy: "seLinuxChangePolicy_example",
             seLinuxOptions: {
               level: "level_example",
               role: "role_example",
@@ -22327,6 +22572,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
             supplementalGroups: [
               1,
             ],
+            supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
             sysctls: [
               {
                 name: "name_example",
@@ -22602,6 +22848,10 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                 path: "path_example",
                 type: "type_example",
               },
+              image: {
+                pullPolicy: "pullPolicy_example",
+                reference: "reference_example",
+              },
               iscsi: {
                 chapAuthDiscovery: true,
                 chapAuthSession: true,
@@ -22833,7 +23083,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -23405,6 +23655,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -23716,6 +23967,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -24030,6 +24282,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -24156,12 +24409,24 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
           resourceClaims: [
             {
               name: "name_example",
-              source: {
-                resourceClaimName: "resourceClaimName_example",
-                resourceClaimTemplateName: "resourceClaimTemplateName_example",
-              },
+              resourceClaimName: "resourceClaimName_example",
+              resourceClaimTemplateName: "resourceClaimTemplateName_example",
             },
           ],
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
@@ -24180,6 +24445,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
             runAsGroup: 1,
             runAsNonRoot: true,
             runAsUser: 1,
+            seLinuxChangePolicy: "seLinuxChangePolicy_example",
             seLinuxOptions: {
               level: "level_example",
               role: "role_example",
@@ -24193,6 +24459,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
             supplementalGroups: [
               1,
             ],
+            supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
             sysctls: [
               {
                 name: "name_example",
@@ -24467,6 +24734,10 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
               hostPath: {
                 path: "path_example",
                 type: "type_example",
+              },
+              image: {
+                pullPolicy: "pullPolicy_example",
+                reference: "reference_example",
               },
               iscsi: {
                 chapAuthDiscovery: true,
@@ -24830,7 +25101,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -24955,7 +25226,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -25527,6 +25798,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -25838,6 +26110,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -26152,6 +26425,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -26278,12 +26552,24 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
           resourceClaims: [
             {
               name: "name_example",
-              source: {
-                resourceClaimName: "resourceClaimName_example",
-                resourceClaimTemplateName: "resourceClaimTemplateName_example",
-              },
+              resourceClaimName: "resourceClaimName_example",
+              resourceClaimTemplateName: "resourceClaimTemplateName_example",
             },
           ],
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
@@ -26302,6 +26588,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
             runAsGroup: 1,
             runAsNonRoot: true,
             runAsUser: 1,
+            seLinuxChangePolicy: "seLinuxChangePolicy_example",
             seLinuxOptions: {
               level: "level_example",
               role: "role_example",
@@ -26315,6 +26602,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
             supplementalGroups: [
               1,
             ],
+            supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
             sysctls: [
               {
                 name: "name_example",
@@ -26589,6 +26877,10 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
               hostPath: {
                 path: "path_example",
                 type: "type_example",
+              },
+              image: {
+                pullPolicy: "pullPolicy_example",
+                reference: "reference_example",
               },
               iscsi: {
                 chapAuthDiscovery: true,
@@ -26952,7 +27244,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details

@@ -1,24 +1,24 @@
 // TODO: better import syntax?
-import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi.js';
-import {Configuration} from '../configuration.js';
-import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http.js';
+import {BaseAPIRequestFactory, RequiredError, COLLECTION_FORMATS} from './baseapi';
+import {Configuration} from '../configuration';
+import {RequestContext, HttpMethod, ResponseContext, HttpFile, HttpInfo} from '../http/http';
 import  FormData from "form-data";
 import { URLSearchParams } from 'url';
-import {ObjectSerializer} from '../models/ObjectSerializer.js';
-import {ApiException} from './exception.js';
-import {canConsumeForm, isCodeInRange} from '../util.js';
-import {SecurityAuthentication} from '../auth/auth.js';
+import {ObjectSerializer} from '../models/ObjectSerializer';
+import {ApiException} from './exception';
+import {canConsumeForm, isCodeInRange} from '../util';
+import {SecurityAuthentication} from '../auth/auth';
 
 
-import { V1APIResourceList } from '../models/V1APIResourceList.js';
-import { V1DeleteOptions } from '../models/V1DeleteOptions.js';
-import { V1Ingress } from '../models/V1Ingress.js';
-import { V1IngressClass } from '../models/V1IngressClass.js';
-import { V1IngressClassList } from '../models/V1IngressClassList.js';
-import { V1IngressList } from '../models/V1IngressList.js';
-import { V1NetworkPolicy } from '../models/V1NetworkPolicy.js';
-import { V1NetworkPolicyList } from '../models/V1NetworkPolicyList.js';
-import { V1Status } from '../models/V1Status.js';
+import { V1APIResourceList } from '../models/V1APIResourceList';
+import { V1DeleteOptions } from '../models/V1DeleteOptions';
+import { V1Ingress } from '../models/V1Ingress';
+import { V1IngressClass } from '../models/V1IngressClass';
+import { V1IngressClassList } from '../models/V1IngressClassList';
+import { V1IngressList } from '../models/V1IngressList';
+import { V1NetworkPolicy } from '../models/V1NetworkPolicy';
+import { V1NetworkPolicyList } from '../models/V1NetworkPolicyList';
+import { V1Status } from '../models/V1Status';
 
 /**
  * no description
@@ -267,6 +267,7 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldSelector A selector to restrict the list of returned objects by their fields. Defaults to everything.
      * @param gracePeriodSeconds The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @param ignoreStoreReadErrorWithClusterBreakingPotential if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
      * @param labelSelector A selector to restrict the list of returned objects by their labels. Defaults to everything.
      * @param limit limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
      * @param orphanDependents Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
@@ -277,8 +278,9 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param body 
      */
-    public async deleteCollectionIngressClass(pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
+    public async deleteCollectionIngressClass(pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, ignoreStoreReadErrorWithClusterBreakingPotential?: boolean, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
+
 
 
 
@@ -324,6 +326,11 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (gracePeriodSeconds !== undefined) {
             requestContext.setQueryParam("gracePeriodSeconds", ObjectSerializer.serialize(gracePeriodSeconds, "number", ""));
+        }
+
+        // Query Params
+        if (ignoreStoreReadErrorWithClusterBreakingPotential !== undefined) {
+            requestContext.setQueryParam("ignoreStoreReadErrorWithClusterBreakingPotential", ObjectSerializer.serialize(ignoreStoreReadErrorWithClusterBreakingPotential, "boolean", ""));
         }
 
         // Query Params
@@ -399,6 +406,7 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldSelector A selector to restrict the list of returned objects by their fields. Defaults to everything.
      * @param gracePeriodSeconds The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @param ignoreStoreReadErrorWithClusterBreakingPotential if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
      * @param labelSelector A selector to restrict the list of returned objects by their labels. Defaults to everything.
      * @param limit limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
      * @param orphanDependents Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
@@ -409,13 +417,14 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param body 
      */
-    public async deleteCollectionNamespacedIngress(namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
+    public async deleteCollectionNamespacedIngress(namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, ignoreStoreReadErrorWithClusterBreakingPotential?: boolean, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'namespace' is not null or undefined
         if (namespace === null || namespace === undefined) {
             throw new RequiredError("NetworkingV1Api", "deleteCollectionNamespacedIngress", "namespace");
         }
+
 
 
 
@@ -463,6 +472,11 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (gracePeriodSeconds !== undefined) {
             requestContext.setQueryParam("gracePeriodSeconds", ObjectSerializer.serialize(gracePeriodSeconds, "number", ""));
+        }
+
+        // Query Params
+        if (ignoreStoreReadErrorWithClusterBreakingPotential !== undefined) {
+            requestContext.setQueryParam("ignoreStoreReadErrorWithClusterBreakingPotential", ObjectSerializer.serialize(ignoreStoreReadErrorWithClusterBreakingPotential, "boolean", ""));
         }
 
         // Query Params
@@ -538,6 +552,7 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param fieldSelector A selector to restrict the list of returned objects by their fields. Defaults to everything.
      * @param gracePeriodSeconds The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @param ignoreStoreReadErrorWithClusterBreakingPotential if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
      * @param labelSelector A selector to restrict the list of returned objects by their labels. Defaults to everything.
      * @param limit limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
      * @param orphanDependents Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
@@ -548,13 +563,14 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param body 
      */
-    public async deleteCollectionNamespacedNetworkPolicy(namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
+    public async deleteCollectionNamespacedNetworkPolicy(namespace: string, pretty?: string, _continue?: string, dryRun?: string, fieldSelector?: string, gracePeriodSeconds?: number, ignoreStoreReadErrorWithClusterBreakingPotential?: boolean, labelSelector?: string, limit?: number, orphanDependents?: boolean, propagationPolicy?: string, resourceVersion?: string, resourceVersionMatch?: string, sendInitialEvents?: boolean, timeoutSeconds?: number, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'namespace' is not null or undefined
         if (namespace === null || namespace === undefined) {
             throw new RequiredError("NetworkingV1Api", "deleteCollectionNamespacedNetworkPolicy", "namespace");
         }
+
 
 
 
@@ -602,6 +618,11 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (gracePeriodSeconds !== undefined) {
             requestContext.setQueryParam("gracePeriodSeconds", ObjectSerializer.serialize(gracePeriodSeconds, "number", ""));
+        }
+
+        // Query Params
+        if (ignoreStoreReadErrorWithClusterBreakingPotential !== undefined) {
+            requestContext.setQueryParam("ignoreStoreReadErrorWithClusterBreakingPotential", ObjectSerializer.serialize(ignoreStoreReadErrorWithClusterBreakingPotential, "boolean", ""));
         }
 
         // Query Params
@@ -675,17 +696,19 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param gracePeriodSeconds The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @param ignoreStoreReadErrorWithClusterBreakingPotential if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
      * @param orphanDependents Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param body 
      */
-    public async deleteIngressClass(name: string, pretty?: string, dryRun?: string, gracePeriodSeconds?: number, orphanDependents?: boolean, propagationPolicy?: string, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
+    public async deleteIngressClass(name: string, pretty?: string, dryRun?: string, gracePeriodSeconds?: number, ignoreStoreReadErrorWithClusterBreakingPotential?: boolean, orphanDependents?: boolean, propagationPolicy?: string, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
         if (name === null || name === undefined) {
             throw new RequiredError("NetworkingV1Api", "deleteIngressClass", "name");
         }
+
 
 
 
@@ -715,6 +738,11 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (gracePeriodSeconds !== undefined) {
             requestContext.setQueryParam("gracePeriodSeconds", ObjectSerializer.serialize(gracePeriodSeconds, "number", ""));
+        }
+
+        // Query Params
+        if (ignoreStoreReadErrorWithClusterBreakingPotential !== undefined) {
+            requestContext.setQueryParam("ignoreStoreReadErrorWithClusterBreakingPotential", ObjectSerializer.serialize(ignoreStoreReadErrorWithClusterBreakingPotential, "boolean", ""));
         }
 
         // Query Params
@@ -759,11 +787,12 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param gracePeriodSeconds The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @param ignoreStoreReadErrorWithClusterBreakingPotential if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
      * @param orphanDependents Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param body 
      */
-    public async deleteNamespacedIngress(name: string, namespace: string, pretty?: string, dryRun?: string, gracePeriodSeconds?: number, orphanDependents?: boolean, propagationPolicy?: string, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
+    public async deleteNamespacedIngress(name: string, namespace: string, pretty?: string, dryRun?: string, gracePeriodSeconds?: number, ignoreStoreReadErrorWithClusterBreakingPotential?: boolean, orphanDependents?: boolean, propagationPolicy?: string, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -776,6 +805,7 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (namespace === null || namespace === undefined) {
             throw new RequiredError("NetworkingV1Api", "deleteNamespacedIngress", "namespace");
         }
+
 
 
 
@@ -806,6 +836,11 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (gracePeriodSeconds !== undefined) {
             requestContext.setQueryParam("gracePeriodSeconds", ObjectSerializer.serialize(gracePeriodSeconds, "number", ""));
+        }
+
+        // Query Params
+        if (ignoreStoreReadErrorWithClusterBreakingPotential !== undefined) {
+            requestContext.setQueryParam("ignoreStoreReadErrorWithClusterBreakingPotential", ObjectSerializer.serialize(ignoreStoreReadErrorWithClusterBreakingPotential, "boolean", ""));
         }
 
         // Query Params
@@ -850,11 +885,12 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
      * @param dryRun When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
      * @param gracePeriodSeconds The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * @param ignoreStoreReadErrorWithClusterBreakingPotential if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
      * @param orphanDependents Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
      * @param propagationPolicy Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
      * @param body 
      */
-    public async deleteNamespacedNetworkPolicy(name: string, namespace: string, pretty?: string, dryRun?: string, gracePeriodSeconds?: number, orphanDependents?: boolean, propagationPolicy?: string, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
+    public async deleteNamespacedNetworkPolicy(name: string, namespace: string, pretty?: string, dryRun?: string, gracePeriodSeconds?: number, ignoreStoreReadErrorWithClusterBreakingPotential?: boolean, orphanDependents?: boolean, propagationPolicy?: string, body?: V1DeleteOptions, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'name' is not null or undefined
@@ -867,6 +903,7 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
         if (namespace === null || namespace === undefined) {
             throw new RequiredError("NetworkingV1Api", "deleteNamespacedNetworkPolicy", "namespace");
         }
+
 
 
 
@@ -897,6 +934,11 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
         // Query Params
         if (gracePeriodSeconds !== undefined) {
             requestContext.setQueryParam("gracePeriodSeconds", ObjectSerializer.serialize(gracePeriodSeconds, "number", ""));
+        }
+
+        // Query Params
+        if (ignoreStoreReadErrorWithClusterBreakingPotential !== undefined) {
+            requestContext.setQueryParam("ignoreStoreReadErrorWithClusterBreakingPotential", ObjectSerializer.serialize(ignoreStoreReadErrorWithClusterBreakingPotential, "boolean", ""));
         }
 
         // Query Params
@@ -1581,7 +1623,9 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
         
             "application/strategic-merge-patch+json",
         
-            "application/apply-patch+yaml"
+            "application/apply-patch+yaml",
+        
+            "application/apply-patch+cbor"
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
@@ -1685,7 +1729,9 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
         
             "application/strategic-merge-patch+json",
         
-            "application/apply-patch+yaml"
+            "application/apply-patch+yaml",
+        
+            "application/apply-patch+cbor"
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
@@ -1789,7 +1835,9 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
         
             "application/strategic-merge-patch+json",
         
-            "application/apply-patch+yaml"
+            "application/apply-patch+yaml",
+        
+            "application/apply-patch+cbor"
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
@@ -1893,7 +1941,9 @@ export class NetworkingV1ApiRequestFactory extends BaseAPIRequestFactory {
         
             "application/strategic-merge-patch+json",
         
-            "application/apply-patch+yaml"
+            "application/apply-patch+yaml",
+        
+            "application/apply-patch+cbor"
         ]);
         requestContext.setHeaderParam("Content-Type", contentType);
         const serializedBody = ObjectSerializer.stringify(
