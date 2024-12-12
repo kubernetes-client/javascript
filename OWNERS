@@ -3,10 +3,12 @@ approvers:
 - brendandburns
 - mstruebing
 - davidgamero
+- cjihrig
 reviewers:
 - brendandburns
 - mstruebing
 - davidgamero
+- cjihrig
 emeritus_approvers:
 - mbohlool # 10/22/2020
 - drubin # 11/23/2023
