@@ -139,6 +139,7 @@ Method | HTTP request | Description
 [**patchNamespacedPersistentVolumeClaimStatus**](CoreV1Api.md#patchNamespacedPersistentVolumeClaimStatus) | **PATCH** /api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}/status | 
 [**patchNamespacedPod**](CoreV1Api.md#patchNamespacedPod) | **PATCH** /api/v1/namespaces/{namespace}/pods/{name} | 
 [**patchNamespacedPodEphemeralcontainers**](CoreV1Api.md#patchNamespacedPodEphemeralcontainers) | **PATCH** /api/v1/namespaces/{namespace}/pods/{name}/ephemeralcontainers | 
+[**patchNamespacedPodResize**](CoreV1Api.md#patchNamespacedPodResize) | **PATCH** /api/v1/namespaces/{namespace}/pods/{name}/resize | 
 [**patchNamespacedPodStatus**](CoreV1Api.md#patchNamespacedPodStatus) | **PATCH** /api/v1/namespaces/{namespace}/pods/{name}/status | 
 [**patchNamespacedPodTemplate**](CoreV1Api.md#patchNamespacedPodTemplate) | **PATCH** /api/v1/namespaces/{namespace}/podtemplates/{name} | 
 [**patchNamespacedReplicationController**](CoreV1Api.md#patchNamespacedReplicationController) | **PATCH** /api/v1/namespaces/{namespace}/replicationcontrollers/{name} | 
@@ -166,6 +167,7 @@ Method | HTTP request | Description
 [**readNamespacedPod**](CoreV1Api.md#readNamespacedPod) | **GET** /api/v1/namespaces/{namespace}/pods/{name} | 
 [**readNamespacedPodEphemeralcontainers**](CoreV1Api.md#readNamespacedPodEphemeralcontainers) | **GET** /api/v1/namespaces/{namespace}/pods/{name}/ephemeralcontainers | 
 [**readNamespacedPodLog**](CoreV1Api.md#readNamespacedPodLog) | **GET** /api/v1/namespaces/{namespace}/pods/{name}/log | 
+[**readNamespacedPodResize**](CoreV1Api.md#readNamespacedPodResize) | **GET** /api/v1/namespaces/{namespace}/pods/{name}/resize | 
 [**readNamespacedPodStatus**](CoreV1Api.md#readNamespacedPodStatus) | **GET** /api/v1/namespaces/{namespace}/pods/{name}/status | 
 [**readNamespacedPodTemplate**](CoreV1Api.md#readNamespacedPodTemplate) | **GET** /api/v1/namespaces/{namespace}/podtemplates/{name} | 
 [**readNamespacedReplicationController**](CoreV1Api.md#readNamespacedReplicationController) | **GET** /api/v1/namespaces/{namespace}/replicationcontrollers/{name} | 
@@ -192,6 +194,7 @@ Method | HTTP request | Description
 [**replaceNamespacedPersistentVolumeClaimStatus**](CoreV1Api.md#replaceNamespacedPersistentVolumeClaimStatus) | **PUT** /api/v1/namespaces/{namespace}/persistentvolumeclaims/{name}/status | 
 [**replaceNamespacedPod**](CoreV1Api.md#replaceNamespacedPod) | **PUT** /api/v1/namespaces/{namespace}/pods/{name} | 
 [**replaceNamespacedPodEphemeralcontainers**](CoreV1Api.md#replaceNamespacedPodEphemeralcontainers) | **PUT** /api/v1/namespaces/{namespace}/pods/{name}/ephemeralcontainers | 
+[**replaceNamespacedPodResize**](CoreV1Api.md#replaceNamespacedPodResize) | **PUT** /api/v1/namespaces/{namespace}/pods/{name}/resize | 
 [**replaceNamespacedPodStatus**](CoreV1Api.md#replaceNamespacedPodStatus) | **PUT** /api/v1/namespaces/{namespace}/pods/{name}/status | 
 [**replaceNamespacedPodTemplate**](CoreV1Api.md#replaceNamespacedPodTemplate) | **PUT** /api/v1/namespaces/{namespace}/podtemplates/{name} | 
 [**replaceNamespacedReplicationController**](CoreV1Api.md#replaceNamespacedReplicationController) | **PUT** /api/v1/namespaces/{namespace}/replicationcontrollers/{name} | 
@@ -3281,7 +3284,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -3406,7 +3409,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -3529,7 +3532,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -3689,7 +3692,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -3841,7 +3844,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -3979,7 +3982,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -4167,7 +4170,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -4668,6 +4671,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -4979,6 +4983,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -5293,6 +5298,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -5419,12 +5425,24 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
       resourceClaims: [
         {
           name: "name_example",
-          source: {
-            resourceClaimName: "resourceClaimName_example",
-            resourceClaimTemplateName: "resourceClaimTemplateName_example",
-          },
+          resourceClaimName: "resourceClaimName_example",
+          resourceClaimTemplateName: "resourceClaimTemplateName_example",
         },
       ],
+      resources: {
+        claims: [
+          {
+            name: "name_example",
+            request: "request_example",
+          },
+        ],
+        limits: {
+          "key": "key_example",
+        },
+        requests: {
+          "key": "key_example",
+        },
+      },
       restartPolicy: "restartPolicy_example",
       runtimeClassName: "runtimeClassName_example",
       schedulerName: "schedulerName_example",
@@ -5443,6 +5461,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
         runAsGroup: 1,
         runAsNonRoot: true,
         runAsUser: 1,
+        seLinuxChangePolicy: "seLinuxChangePolicy_example",
         seLinuxOptions: {
           level: "level_example",
           role: "role_example",
@@ -5456,6 +5475,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
         supplementalGroups: [
           1,
         ],
+        supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
         sysctls: [
           {
             name: "name_example",
@@ -5731,6 +5751,10 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             path: "path_example",
             type: "type_example",
           },
+          image: {
+            pullPolicy: "pullPolicy_example",
+            reference: "reference_example",
+          },
           iscsi: {
             chapAuthDiscovery: true,
             chapAuthSession: true,
@@ -5920,6 +5944,17 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
           allocatedResources: {
             "key": "key_example",
           },
+          allocatedResourcesStatus: [
+            {
+              name: "name_example",
+              resources: [
+                {
+                  health: "health_example",
+                  resourceID: "resourceID_example",
+                },
+              ],
+            },
+          ],
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -5947,6 +5982,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -5974,6 +6010,15 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             waiting: {
               message: "message_example",
               reason: "reason_example",
+            },
+          },
+          user: {
+            linux: {
+              gid: 1,
+              supplementalGroups: [
+                1,
+              ],
+              uid: 1,
             },
           },
           volumeMounts: [
@@ -5991,6 +6036,17 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
           allocatedResources: {
             "key": "key_example",
           },
+          allocatedResourcesStatus: [
+            {
+              name: "name_example",
+              resources: [
+                {
+                  health: "health_example",
+                  resourceID: "resourceID_example",
+                },
+              ],
+            },
+          ],
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -6018,6 +6074,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -6045,6 +6102,15 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             waiting: {
               message: "message_example",
               reason: "reason_example",
+            },
+          },
+          user: {
+            linux: {
+              gid: 1,
+              supplementalGroups: [
+                1,
+              ],
+              uid: 1,
             },
           },
           volumeMounts: [
@@ -6068,6 +6134,17 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
           allocatedResources: {
             "key": "key_example",
           },
+          allocatedResourcesStatus: [
+            {
+              name: "name_example",
+              resources: [
+                {
+                  health: "health_example",
+                  resourceID: "resourceID_example",
+                },
+              ],
+            },
+          ],
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -6095,6 +6172,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -6122,6 +6200,15 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             waiting: {
               message: "message_example",
               reason: "reason_example",
+            },
+          },
+          user: {
+            linux: {
+              gid: 1,
+              supplementalGroups: [
+                1,
+              ],
+              uid: 1,
             },
           },
           volumeMounts: [
@@ -6193,7 +6280,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -6321,7 +6408,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -6363,6 +6450,7 @@ const request: CoreV1ApiCreateNamespacedPodEvictionRequest = {
         "dryRun_example",
       ],
       gracePeriodSeconds: 1,
+      ignoreStoreReadErrorWithClusterBreakingPotential: true,
       kind: "kind_example",
       orphanDependents: true,
       preconditions: {
@@ -6454,7 +6542,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -6998,6 +7086,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
               claims: [
                 {
                   name: "name_example",
+                  request: "request_example",
                 },
               ],
               limits: {
@@ -7309,6 +7398,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
               claims: [
                 {
                   name: "name_example",
+                  request: "request_example",
                 },
               ],
               limits: {
@@ -7623,6 +7713,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
               claims: [
                 {
                   name: "name_example",
+                  request: "request_example",
                 },
               ],
               limits: {
@@ -7749,12 +7840,24 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
         resourceClaims: [
           {
             name: "name_example",
-            source: {
-              resourceClaimName: "resourceClaimName_example",
-              resourceClaimTemplateName: "resourceClaimTemplateName_example",
-            },
+            resourceClaimName: "resourceClaimName_example",
+            resourceClaimTemplateName: "resourceClaimTemplateName_example",
           },
         ],
+        resources: {
+          claims: [
+            {
+              name: "name_example",
+              request: "request_example",
+            },
+          ],
+          limits: {
+            "key": "key_example",
+          },
+          requests: {
+            "key": "key_example",
+          },
+        },
         restartPolicy: "restartPolicy_example",
         runtimeClassName: "runtimeClassName_example",
         schedulerName: "schedulerName_example",
@@ -7773,6 +7876,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
           runAsGroup: 1,
           runAsNonRoot: true,
           runAsUser: 1,
+          seLinuxChangePolicy: "seLinuxChangePolicy_example",
           seLinuxOptions: {
             level: "level_example",
             role: "role_example",
@@ -7786,6 +7890,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
           supplementalGroups: [
             1,
           ],
+          supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
           sysctls: [
             {
               name: "name_example",
@@ -8061,6 +8166,10 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
               path: "path_example",
               type: "type_example",
             },
+            image: {
+              pullPolicy: "pullPolicy_example",
+              reference: "reference_example",
+            },
             iscsi: {
               chapAuthDiscovery: true,
               chapAuthSession: true,
@@ -8274,7 +8383,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -8824,6 +8933,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -9135,6 +9245,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -9449,6 +9560,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -9575,12 +9687,24 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
           resourceClaims: [
             {
               name: "name_example",
-              source: {
-                resourceClaimName: "resourceClaimName_example",
-                resourceClaimTemplateName: "resourceClaimTemplateName_example",
-              },
+              resourceClaimName: "resourceClaimName_example",
+              resourceClaimTemplateName: "resourceClaimTemplateName_example",
             },
           ],
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
@@ -9599,6 +9723,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
             runAsGroup: 1,
             runAsNonRoot: true,
             runAsUser: 1,
+            seLinuxChangePolicy: "seLinuxChangePolicy_example",
             seLinuxOptions: {
               level: "level_example",
               role: "role_example",
@@ -9612,6 +9737,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
             supplementalGroups: [
               1,
             ],
+            supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
             sysctls: [
               {
                 name: "name_example",
@@ -9887,6 +10013,10 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                 path: "path_example",
                 type: "type_example",
               },
+              image: {
+                pullPolicy: "pullPolicy_example",
+                reference: "reference_example",
+              },
               iscsi: {
                 chapAuthDiscovery: true,
                 chapAuthSession: true,
@@ -10117,7 +10247,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10260,7 +10390,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10384,7 +10514,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10573,7 +10703,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10706,7 +10836,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -10841,7 +10971,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -11000,6 +11130,9 @@ const request: CoreV1ApiCreateNodeRequest = {
           Port: 1,
         },
       },
+      features: {
+        supplementalGroupsPolicy: true,
+      },
       images: [
         {
           names: [
@@ -11025,6 +11158,7 @@ const request: CoreV1ApiCreateNodeRequest = {
         {
           features: {
             recursiveReadOnlyMounts: true,
+            userNamespaces: true,
           },
           name: "name_example",
         },
@@ -11077,7 +11211,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -11455,7 +11589,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -11496,6 +11630,8 @@ const request: CoreV1ApiDeleteCollectionNamespacedConfigMapRequest = {
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -11519,6 +11655,7 @@ const request: CoreV1ApiDeleteCollectionNamespacedConfigMapRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -11545,6 +11682,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -11566,7 +11704,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -11605,6 +11743,8 @@ const request: CoreV1ApiDeleteCollectionNamespacedEndpointsRequest = {
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -11628,6 +11768,7 @@ const request: CoreV1ApiDeleteCollectionNamespacedEndpointsRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -11654,6 +11795,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -11675,7 +11817,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -11714,6 +11856,8 @@ const request: CoreV1ApiDeleteCollectionNamespacedEventRequest = {
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -11737,6 +11881,7 @@ const request: CoreV1ApiDeleteCollectionNamespacedEventRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -11763,6 +11908,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -11784,7 +11930,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -11823,6 +11969,8 @@ const request: CoreV1ApiDeleteCollectionNamespacedLimitRangeRequest = {
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -11846,6 +11994,7 @@ const request: CoreV1ApiDeleteCollectionNamespacedLimitRangeRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -11872,6 +12021,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -11893,7 +12043,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -11932,6 +12082,8 @@ const request: CoreV1ApiDeleteCollectionNamespacedPersistentVolumeClaimRequest =
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -11955,6 +12107,7 @@ const request: CoreV1ApiDeleteCollectionNamespacedPersistentVolumeClaimRequest =
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -11981,6 +12134,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -12002,7 +12156,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -12041,6 +12195,8 @@ const request: CoreV1ApiDeleteCollectionNamespacedPodRequest = {
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -12064,6 +12220,7 @@ const request: CoreV1ApiDeleteCollectionNamespacedPodRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -12090,6 +12247,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -12111,7 +12269,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -12150,6 +12308,8 @@ const request: CoreV1ApiDeleteCollectionNamespacedPodTemplateRequest = {
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -12173,6 +12333,7 @@ const request: CoreV1ApiDeleteCollectionNamespacedPodTemplateRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -12199,6 +12360,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -12220,7 +12382,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -12259,6 +12421,8 @@ const request: CoreV1ApiDeleteCollectionNamespacedReplicationControllerRequest =
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -12282,6 +12446,7 @@ const request: CoreV1ApiDeleteCollectionNamespacedReplicationControllerRequest =
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -12308,6 +12473,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -12329,7 +12495,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -12368,6 +12534,8 @@ const request: CoreV1ApiDeleteCollectionNamespacedResourceQuotaRequest = {
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -12391,6 +12559,7 @@ const request: CoreV1ApiDeleteCollectionNamespacedResourceQuotaRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -12417,6 +12586,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -12438,7 +12608,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -12477,6 +12647,8 @@ const request: CoreV1ApiDeleteCollectionNamespacedSecretRequest = {
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -12500,6 +12672,7 @@ const request: CoreV1ApiDeleteCollectionNamespacedSecretRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -12526,6 +12699,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -12547,7 +12721,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -12586,6 +12760,8 @@ const request: CoreV1ApiDeleteCollectionNamespacedServiceRequest = {
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -12609,6 +12785,7 @@ const request: CoreV1ApiDeleteCollectionNamespacedServiceRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -12635,6 +12812,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -12656,7 +12834,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -12695,6 +12873,8 @@ const request: CoreV1ApiDeleteCollectionNamespacedServiceAccountRequest = {
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -12718,6 +12898,7 @@ const request: CoreV1ApiDeleteCollectionNamespacedServiceAccountRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -12744,6 +12925,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -12765,7 +12947,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -12802,6 +12984,8 @@ const request: CoreV1ApiDeleteCollectionNodeRequest = {
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -12825,6 +13009,7 @@ const request: CoreV1ApiDeleteCollectionNodeRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -12850,6 +13035,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -12871,7 +13057,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -12908,6 +13094,8 @@ const request: CoreV1ApiDeleteCollectionPersistentVolumeRequest = {
   fieldSelector: "fieldSelector_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // A selector to restrict the list of returned objects by their labels. Defaults to everything. (optional)
   labelSelector: "labelSelector_example",
     // limit is a maximum number of responses to return for a list call. If more items exist, the server will set the `continue` field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. (optional)
@@ -12931,6 +13119,7 @@ const request: CoreV1ApiDeleteCollectionPersistentVolumeRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -12956,6 +13145,7 @@ Name | Type | Description  | Notes
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldSelector** | [**string**] | A selector to restrict the list of returned objects by their fields. Defaults to everything. | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **labelSelector** | [**string**] | A selector to restrict the list of returned objects by their labels. Defaults to everything. | (optional) defaults to undefined
  **limit** | [**number**] | limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned. | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
@@ -12977,7 +13167,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -13012,6 +13202,8 @@ const request: CoreV1ApiDeleteNamespaceRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -13023,6 +13215,7 @@ const request: CoreV1ApiDeleteNamespaceRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -13047,6 +13240,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -13062,7 +13256,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -13100,6 +13294,8 @@ const request: CoreV1ApiDeleteNamespacedConfigMapRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -13111,6 +13307,7 @@ const request: CoreV1ApiDeleteNamespacedConfigMapRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -13136,6 +13333,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -13151,7 +13349,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -13189,6 +13387,8 @@ const request: CoreV1ApiDeleteNamespacedEndpointsRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -13200,6 +13400,7 @@ const request: CoreV1ApiDeleteNamespacedEndpointsRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -13225,6 +13426,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -13240,7 +13442,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -13278,6 +13480,8 @@ const request: CoreV1ApiDeleteNamespacedEventRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -13289,6 +13493,7 @@ const request: CoreV1ApiDeleteNamespacedEventRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -13314,6 +13519,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -13329,7 +13535,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -13367,6 +13573,8 @@ const request: CoreV1ApiDeleteNamespacedLimitRangeRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -13378,6 +13586,7 @@ const request: CoreV1ApiDeleteNamespacedLimitRangeRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -13403,6 +13612,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -13418,7 +13628,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -13456,6 +13666,8 @@ const request: CoreV1ApiDeleteNamespacedPersistentVolumeClaimRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -13467,6 +13679,7 @@ const request: CoreV1ApiDeleteNamespacedPersistentVolumeClaimRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -13492,6 +13705,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -13507,7 +13721,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -13545,6 +13759,8 @@ const request: CoreV1ApiDeleteNamespacedPodRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -13556,6 +13772,7 @@ const request: CoreV1ApiDeleteNamespacedPodRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -13581,6 +13798,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -13596,7 +13814,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -13634,6 +13852,8 @@ const request: CoreV1ApiDeleteNamespacedPodTemplateRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -13645,6 +13865,7 @@ const request: CoreV1ApiDeleteNamespacedPodTemplateRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -13670,6 +13891,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -13685,7 +13907,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -13723,6 +13945,8 @@ const request: CoreV1ApiDeleteNamespacedReplicationControllerRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -13734,6 +13958,7 @@ const request: CoreV1ApiDeleteNamespacedReplicationControllerRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -13759,6 +13984,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -13774,7 +14000,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -13812,6 +14038,8 @@ const request: CoreV1ApiDeleteNamespacedResourceQuotaRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -13823,6 +14051,7 @@ const request: CoreV1ApiDeleteNamespacedResourceQuotaRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -13848,6 +14077,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -13863,7 +14093,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -13901,6 +14131,8 @@ const request: CoreV1ApiDeleteNamespacedSecretRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -13912,6 +14144,7 @@ const request: CoreV1ApiDeleteNamespacedSecretRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -13937,6 +14170,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -13952,7 +14186,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -13990,6 +14224,8 @@ const request: CoreV1ApiDeleteNamespacedServiceRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -14001,6 +14237,7 @@ const request: CoreV1ApiDeleteNamespacedServiceRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -14026,6 +14263,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -14041,7 +14279,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -14079,6 +14317,8 @@ const request: CoreV1ApiDeleteNamespacedServiceAccountRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -14090,6 +14330,7 @@ const request: CoreV1ApiDeleteNamespacedServiceAccountRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -14115,6 +14356,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -14130,7 +14372,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -14166,6 +14408,8 @@ const request: CoreV1ApiDeleteNodeRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -14177,6 +14421,7 @@ const request: CoreV1ApiDeleteNodeRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -14201,6 +14446,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -14216,7 +14462,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -14252,6 +14498,8 @@ const request: CoreV1ApiDeletePersistentVolumeRequest = {
   dryRun: "dryRun_example",
     // The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. (optional)
   gracePeriodSeconds: 1,
+    // if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it (optional)
+  ignoreStoreReadErrorWithClusterBreakingPotential: true,
     // Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \"orphan\" finalizer will be added to/removed from the object\'s finalizers list. Either this field or PropagationPolicy may be set, but not both. (optional)
   orphanDependents: true,
     // Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \'Orphan\' - orphan the dependents; \'Background\' - allow the garbage collector to delete the dependents in the background; \'Foreground\' - a cascading policy that deletes all dependents in the foreground. (optional)
@@ -14263,6 +14511,7 @@ const request: CoreV1ApiDeletePersistentVolumeRequest = {
       "dryRun_example",
     ],
     gracePeriodSeconds: 1,
+    ignoreStoreReadErrorWithClusterBreakingPotential: true,
     kind: "kind_example",
     orphanDependents: true,
     preconditions: {
@@ -14287,6 +14536,7 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
+ **ignoreStoreReadErrorWithClusterBreakingPotential** | [**boolean**] | if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it | (optional) defaults to undefined
  **orphanDependents** | [**boolean**] | Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both. | (optional) defaults to undefined
  **propagationPolicy** | [**string**] | Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground. | (optional) defaults to undefined
 
@@ -14302,7 +14552,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -14350,7 +14600,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -14434,7 +14684,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -14518,7 +14768,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -14602,7 +14852,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -14686,7 +14936,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -14770,7 +15020,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -14854,7 +15104,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -14941,7 +15191,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -15028,7 +15278,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -15115,7 +15365,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -15202,7 +15452,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -15289,7 +15539,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -15376,7 +15626,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -15463,7 +15713,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -15550,7 +15800,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -15637,7 +15887,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -15724,7 +15974,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -15811,7 +16061,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -15898,7 +16148,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -15982,7 +16232,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -16066,7 +16316,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -16150,7 +16400,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -16234,7 +16484,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -16318,7 +16568,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -16402,7 +16652,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -16486,7 +16736,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -16570,7 +16820,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -16654,7 +16904,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -16738,7 +16988,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor, application/json;stream=watch, application/vnd.kubernetes.protobuf;stream=watch, application/cbor-seq
 
 
 ### HTTP response details
@@ -16809,8 +17059,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -16882,8 +17132,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -16958,8 +17208,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -17034,8 +17284,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -17110,8 +17360,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -17186,8 +17436,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -17262,8 +17512,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -17338,8 +17588,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -17414,8 +17664,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -17490,8 +17740,84 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**201** | Created |  -  |
+**401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **patchNamespacedPodResize**
+> V1Pod patchNamespacedPodResize(body)
+
+partially update resize of the specified Pod
+
+### Example
+
+
+```typescript
+import { createConfiguration, CoreV1Api } from '';
+import type { CoreV1ApiPatchNamespacedPodResizeRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new CoreV1Api(configuration);
+
+const request: CoreV1ApiPatchNamespacedPodResizeRequest = {
+    // name of the Pod
+  name: "name_example",
+    // object name and auth scope, such as for teams and projects
+  namespace: "namespace_example",
+  
+  body: {},
+    // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
+  pretty: "pretty_example",
+    // When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+  dryRun: "dryRun_example",
+    // fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+  fieldManager: "fieldManager_example",
+    // fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
+    // Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
+  force: true,
+};
+
+const data = await apiInstance.patchNamespacedPodResize(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **any**|  |
+ **name** | [**string**] | name of the Pod | defaults to undefined
+ **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
+ **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
+ **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
+ **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
+
+
+### Return type
+
+**V1Pod**
+
+### Authorization
+
+[BearerToken](README.md#BearerToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -17566,8 +17892,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -17642,8 +17968,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -17718,8 +18044,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -17794,8 +18120,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -17870,8 +18196,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -17946,8 +18272,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -18022,8 +18348,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -18098,8 +18424,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -18174,8 +18500,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -18250,8 +18576,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -18326,8 +18652,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -18399,8 +18725,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -18472,8 +18798,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -18545,8 +18871,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -18618,8 +18944,8 @@ Name | Type | Description  | Notes
 
 ### HTTP request headers
 
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -18677,7 +19003,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -18734,7 +19060,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -18791,7 +19117,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -18851,7 +19177,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -18911,7 +19237,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -18971,7 +19297,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -19031,7 +19357,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -19091,7 +19417,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -19151,7 +19477,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -19211,7 +19537,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -19271,7 +19597,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -19316,7 +19642,9 @@ const request: CoreV1ApiReadNamespacedPodLogRequest = {
   previous: true,
     // A relative time in seconds before the current time from which to show logs. If this value precedes the time a pod was started, only logs since the pod start will be returned. If this value is in the future, no logs will be returned. Only one of sinceSeconds or sinceTime may be specified. (optional)
   sinceSeconds: 1,
-    // If set, the number of lines from the end of the logs to show. If not specified, logs are shown from the creation of the container or sinceSeconds or sinceTime (optional)
+    // Specify which container log stream to return to the client. Acceptable values are \"All\", \"Stdout\" and \"Stderr\". If not specified, \"All\" is used, and both stdout and stderr are returned interleaved. Note that when \"TailLines\" is specified, \"Stream\" can only be set to nil or \"All\". (optional)
+  stream: "stream_example",
+    // If set, the number of lines from the end of the logs to show. If not specified, logs are shown from the creation of the container or sinceSeconds or sinceTime. Note that when \"TailLines\" is specified, \"Stream\" can only be set to nil or \"All\". (optional)
   tailLines: 1,
     // If true, add an RFC3339 or RFC3339Nano timestamp at the beginning of every line of log output. Defaults to false. (optional)
   timestamps: true,
@@ -19340,7 +19668,8 @@ Name | Type | Description  | Notes
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **previous** | [**boolean**] | Return previous terminated container logs. Defaults to false. | (optional) defaults to undefined
  **sinceSeconds** | [**number**] | A relative time in seconds before the current time from which to show logs. If this value precedes the time a pod was started, only logs since the pod start will be returned. If this value is in the future, no logs will be returned. Only one of sinceSeconds or sinceTime may be specified. | (optional) defaults to undefined
- **tailLines** | [**number**] | If set, the number of lines from the end of the logs to show. If not specified, logs are shown from the creation of the container or sinceSeconds or sinceTime | (optional) defaults to undefined
+ **stream** | [**string**] | Specify which container log stream to return to the client. Acceptable values are \&quot;All\&quot;, \&quot;Stdout\&quot; and \&quot;Stderr\&quot;. If not specified, \&quot;All\&quot; is used, and both stdout and stderr are returned interleaved. Note that when \&quot;TailLines\&quot; is specified, \&quot;Stream\&quot; can only be set to nil or \&quot;All\&quot;. | (optional) defaults to undefined
+ **tailLines** | [**number**] | If set, the number of lines from the end of the logs to show. If not specified, logs are shown from the creation of the container or sinceSeconds or sinceTime. Note that when \&quot;TailLines\&quot; is specified, \&quot;Stream\&quot; can only be set to nil or \&quot;All\&quot;. | (optional) defaults to undefined
  **timestamps** | [**boolean**] | If true, add an RFC3339 or RFC3339Nano timestamp at the beginning of every line of log output. Defaults to false. | (optional) defaults to undefined
 
 
@@ -19355,7 +19684,67 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: text/plain, application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: text/plain, application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **readNamespacedPodResize**
+> V1Pod readNamespacedPodResize()
+
+read resize of the specified Pod
+
+### Example
+
+
+```typescript
+import { createConfiguration, CoreV1Api } from '';
+import type { CoreV1ApiReadNamespacedPodResizeRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new CoreV1Api(configuration);
+
+const request: CoreV1ApiReadNamespacedPodResizeRequest = {
+    // name of the Pod
+  name: "name_example",
+    // object name and auth scope, such as for teams and projects
+  namespace: "namespace_example",
+    // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
+  pretty: "pretty_example",
+};
+
+const data = await apiInstance.readNamespacedPodResize(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | [**string**] | name of the Pod | defaults to undefined
+ **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
+
+
+### Return type
+
+**V1Pod**
+
+### Authorization
+
+[BearerToken](README.md#BearerToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -19415,7 +19804,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -19475,7 +19864,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -19535,7 +19924,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -19595,7 +19984,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -19655,7 +20044,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -19715,7 +20104,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -19775,7 +20164,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -19835,7 +20224,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -19895,7 +20284,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -19955,7 +20344,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -20015,7 +20404,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -20072,7 +20461,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -20129,7 +20518,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -20186,7 +20575,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -20243,7 +20632,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -20374,7 +20763,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -20506,7 +20895,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -20638,7 +21027,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -20763,7 +21152,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -20925,7 +21314,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -21079,7 +21468,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -21219,7 +21608,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -21409,7 +21798,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -21599,7 +21988,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -22101,6 +22490,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -22412,6 +22802,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -22726,6 +23117,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -22852,12 +23244,24 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
       resourceClaims: [
         {
           name: "name_example",
-          source: {
-            resourceClaimName: "resourceClaimName_example",
-            resourceClaimTemplateName: "resourceClaimTemplateName_example",
-          },
+          resourceClaimName: "resourceClaimName_example",
+          resourceClaimTemplateName: "resourceClaimTemplateName_example",
         },
       ],
+      resources: {
+        claims: [
+          {
+            name: "name_example",
+            request: "request_example",
+          },
+        ],
+        limits: {
+          "key": "key_example",
+        },
+        requests: {
+          "key": "key_example",
+        },
+      },
       restartPolicy: "restartPolicy_example",
       runtimeClassName: "runtimeClassName_example",
       schedulerName: "schedulerName_example",
@@ -22876,6 +23280,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
         runAsGroup: 1,
         runAsNonRoot: true,
         runAsUser: 1,
+        seLinuxChangePolicy: "seLinuxChangePolicy_example",
         seLinuxOptions: {
           level: "level_example",
           role: "role_example",
@@ -22889,6 +23294,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
         supplementalGroups: [
           1,
         ],
+        supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
         sysctls: [
           {
             name: "name_example",
@@ -23164,6 +23570,10 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             path: "path_example",
             type: "type_example",
           },
+          image: {
+            pullPolicy: "pullPolicy_example",
+            reference: "reference_example",
+          },
           iscsi: {
             chapAuthDiscovery: true,
             chapAuthSession: true,
@@ -23353,6 +23763,17 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
           allocatedResources: {
             "key": "key_example",
           },
+          allocatedResourcesStatus: [
+            {
+              name: "name_example",
+              resources: [
+                {
+                  health: "health_example",
+                  resourceID: "resourceID_example",
+                },
+              ],
+            },
+          ],
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -23380,6 +23801,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -23407,6 +23829,15 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             waiting: {
               message: "message_example",
               reason: "reason_example",
+            },
+          },
+          user: {
+            linux: {
+              gid: 1,
+              supplementalGroups: [
+                1,
+              ],
+              uid: 1,
             },
           },
           volumeMounts: [
@@ -23424,6 +23855,17 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
           allocatedResources: {
             "key": "key_example",
           },
+          allocatedResourcesStatus: [
+            {
+              name: "name_example",
+              resources: [
+                {
+                  health: "health_example",
+                  resourceID: "resourceID_example",
+                },
+              ],
+            },
+          ],
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -23451,6 +23893,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -23478,6 +23921,15 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             waiting: {
               message: "message_example",
               reason: "reason_example",
+            },
+          },
+          user: {
+            linux: {
+              gid: 1,
+              supplementalGroups: [
+                1,
+              ],
+              uid: 1,
             },
           },
           volumeMounts: [
@@ -23501,6 +23953,17 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
           allocatedResources: {
             "key": "key_example",
           },
+          allocatedResourcesStatus: [
+            {
+              name: "name_example",
+              resources: [
+                {
+                  health: "health_example",
+                  resourceID: "resourceID_example",
+                },
+              ],
+            },
+          ],
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -23528,6 +23991,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -23555,6 +24019,15 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             waiting: {
               message: "message_example",
               reason: "reason_example",
+            },
+          },
+          user: {
+            linux: {
+              gid: 1,
+              supplementalGroups: [
+                1,
+              ],
+              uid: 1,
             },
           },
           volumeMounts: [
@@ -23627,7 +24100,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -24129,6 +24602,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -24440,6 +24914,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -24754,6 +25229,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -24880,12 +25356,24 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
       resourceClaims: [
         {
           name: "name_example",
-          source: {
-            resourceClaimName: "resourceClaimName_example",
-            resourceClaimTemplateName: "resourceClaimTemplateName_example",
-          },
+          resourceClaimName: "resourceClaimName_example",
+          resourceClaimTemplateName: "resourceClaimTemplateName_example",
         },
       ],
+      resources: {
+        claims: [
+          {
+            name: "name_example",
+            request: "request_example",
+          },
+        ],
+        limits: {
+          "key": "key_example",
+        },
+        requests: {
+          "key": "key_example",
+        },
+      },
       restartPolicy: "restartPolicy_example",
       runtimeClassName: "runtimeClassName_example",
       schedulerName: "schedulerName_example",
@@ -24904,6 +25392,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
         runAsGroup: 1,
         runAsNonRoot: true,
         runAsUser: 1,
+        seLinuxChangePolicy: "seLinuxChangePolicy_example",
         seLinuxOptions: {
           level: "level_example",
           role: "role_example",
@@ -24917,6 +25406,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
         supplementalGroups: [
           1,
         ],
+        supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
         sysctls: [
           {
             name: "name_example",
@@ -25192,6 +25682,10 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             path: "path_example",
             type: "type_example",
           },
+          image: {
+            pullPolicy: "pullPolicy_example",
+            reference: "reference_example",
+          },
           iscsi: {
             chapAuthDiscovery: true,
             chapAuthSession: true,
@@ -25381,6 +25875,17 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
           allocatedResources: {
             "key": "key_example",
           },
+          allocatedResourcesStatus: [
+            {
+              name: "name_example",
+              resources: [
+                {
+                  health: "health_example",
+                  resourceID: "resourceID_example",
+                },
+              ],
+            },
+          ],
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -25408,6 +25913,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -25435,6 +25941,15 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             waiting: {
               message: "message_example",
               reason: "reason_example",
+            },
+          },
+          user: {
+            linux: {
+              gid: 1,
+              supplementalGroups: [
+                1,
+              ],
+              uid: 1,
             },
           },
           volumeMounts: [
@@ -25452,6 +25967,17 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
           allocatedResources: {
             "key": "key_example",
           },
+          allocatedResourcesStatus: [
+            {
+              name: "name_example",
+              resources: [
+                {
+                  health: "health_example",
+                  resourceID: "resourceID_example",
+                },
+              ],
+            },
+          ],
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -25479,6 +26005,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -25506,6 +26033,15 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             waiting: {
               message: "message_example",
               reason: "reason_example",
+            },
+          },
+          user: {
+            linux: {
+              gid: 1,
+              supplementalGroups: [
+                1,
+              ],
+              uid: 1,
             },
           },
           volumeMounts: [
@@ -25529,6 +26065,17 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
           allocatedResources: {
             "key": "key_example",
           },
+          allocatedResourcesStatus: [
+            {
+              name: "name_example",
+              resources: [
+                {
+                  health: "health_example",
+                  resourceID: "resourceID_example",
+                },
+              ],
+            },
+          ],
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -25556,6 +26103,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -25583,6 +26131,15 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             waiting: {
               message: "message_example",
               reason: "reason_example",
+            },
+          },
+          user: {
+            linux: {
+              gid: 1,
+              supplementalGroups: [
+                1,
+              ],
+              uid: 1,
             },
           },
           volumeMounts: [
@@ -25655,7 +26212,2119 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**201** | Created |  -  |
+**401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **replaceNamespacedPodResize**
+> V1Pod replaceNamespacedPodResize(body)
+
+replace resize of the specified Pod
+
+### Example
+
+
+```typescript
+import { createConfiguration, CoreV1Api } from '';
+import type { CoreV1ApiReplaceNamespacedPodResizeRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new CoreV1Api(configuration);
+
+const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
+    // name of the Pod
+  name: "name_example",
+    // object name and auth scope, such as for teams and projects
+  namespace: "namespace_example",
+  
+  body: {
+    apiVersion: "apiVersion_example",
+    kind: "kind_example",
+    metadata: {
+      annotations: {
+        "key": "key_example",
+      },
+      creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
+      deletionGracePeriodSeconds: 1,
+      deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
+      finalizers: [
+        "finalizers_example",
+      ],
+      generateName: "generateName_example",
+      generation: 1,
+      labels: {
+        "key": "key_example",
+      },
+      managedFields: [
+        {
+          apiVersion: "apiVersion_example",
+          fieldsType: "fieldsType_example",
+          fieldsV1: {},
+          manager: "manager_example",
+          operation: "operation_example",
+          subresource: "subresource_example",
+          time: new Date('1970-01-01T00:00:00.00Z'),
+        },
+      ],
+      name: "name_example",
+      namespace: "namespace_example",
+      ownerReferences: [
+        {
+          apiVersion: "apiVersion_example",
+          blockOwnerDeletion: true,
+          controller: true,
+          kind: "kind_example",
+          name: "name_example",
+          uid: "uid_example",
+        },
+      ],
+      resourceVersion: "resourceVersion_example",
+      selfLink: "selfLink_example",
+      uid: "uid_example",
+    },
+    spec: {
+      activeDeadlineSeconds: 1,
+      affinity: {
+        nodeAffinity: {
+          preferredDuringSchedulingIgnoredDuringExecution: [
+            {
+              preference: {
+                matchExpressions: [
+                  {
+                    key: "key_example",
+                    operator: "operator_example",
+                    values: [
+                      "values_example",
+                    ],
+                  },
+                ],
+                matchFields: [
+                  {
+                    key: "key_example",
+                    operator: "operator_example",
+                    values: [
+                      "values_example",
+                    ],
+                  },
+                ],
+              },
+              weight: 1,
+            },
+          ],
+          requiredDuringSchedulingIgnoredDuringExecution: {
+            nodeSelectorTerms: [
+              {
+                matchExpressions: [
+                  {
+                    key: "key_example",
+                    operator: "operator_example",
+                    values: [
+                      "values_example",
+                    ],
+                  },
+                ],
+                matchFields: [
+                  {
+                    key: "key_example",
+                    operator: "operator_example",
+                    values: [
+                      "values_example",
+                    ],
+                  },
+                ],
+              },
+            ],
+          },
+        },
+        podAffinity: {
+          preferredDuringSchedulingIgnoredDuringExecution: [
+            {
+              podAffinityTerm: {
+                labelSelector: {
+                  matchExpressions: [
+                    {
+                      key: "key_example",
+                      operator: "operator_example",
+                      values: [
+                        "values_example",
+                      ],
+                    },
+                  ],
+                  matchLabels: {
+                    "key": "key_example",
+                  },
+                },
+                matchLabelKeys: [
+                  "matchLabelKeys_example",
+                ],
+                mismatchLabelKeys: [
+                  "mismatchLabelKeys_example",
+                ],
+                namespaceSelector: {
+                  matchExpressions: [
+                    {
+                      key: "key_example",
+                      operator: "operator_example",
+                      values: [
+                        "values_example",
+                      ],
+                    },
+                  ],
+                  matchLabels: {
+                    "key": "key_example",
+                  },
+                },
+                namespaces: [
+                  "namespaces_example",
+                ],
+                topologyKey: "topologyKey_example",
+              },
+              weight: 1,
+            },
+          ],
+          requiredDuringSchedulingIgnoredDuringExecution: [
+            {
+              labelSelector: {
+                matchExpressions: [
+                  {
+                    key: "key_example",
+                    operator: "operator_example",
+                    values: [
+                      "values_example",
+                    ],
+                  },
+                ],
+                matchLabels: {
+                  "key": "key_example",
+                },
+              },
+              matchLabelKeys: [
+                "matchLabelKeys_example",
+              ],
+              mismatchLabelKeys: [
+                "mismatchLabelKeys_example",
+              ],
+              namespaceSelector: {
+                matchExpressions: [
+                  {
+                    key: "key_example",
+                    operator: "operator_example",
+                    values: [
+                      "values_example",
+                    ],
+                  },
+                ],
+                matchLabels: {
+                  "key": "key_example",
+                },
+              },
+              namespaces: [
+                "namespaces_example",
+              ],
+              topologyKey: "topologyKey_example",
+            },
+          ],
+        },
+        podAntiAffinity: {
+          preferredDuringSchedulingIgnoredDuringExecution: [
+            {
+              podAffinityTerm: {
+                labelSelector: {
+                  matchExpressions: [
+                    {
+                      key: "key_example",
+                      operator: "operator_example",
+                      values: [
+                        "values_example",
+                      ],
+                    },
+                  ],
+                  matchLabels: {
+                    "key": "key_example",
+                  },
+                },
+                matchLabelKeys: [
+                  "matchLabelKeys_example",
+                ],
+                mismatchLabelKeys: [
+                  "mismatchLabelKeys_example",
+                ],
+                namespaceSelector: {
+                  matchExpressions: [
+                    {
+                      key: "key_example",
+                      operator: "operator_example",
+                      values: [
+                        "values_example",
+                      ],
+                    },
+                  ],
+                  matchLabels: {
+                    "key": "key_example",
+                  },
+                },
+                namespaces: [
+                  "namespaces_example",
+                ],
+                topologyKey: "topologyKey_example",
+              },
+              weight: 1,
+            },
+          ],
+          requiredDuringSchedulingIgnoredDuringExecution: [
+            {
+              labelSelector: {
+                matchExpressions: [
+                  {
+                    key: "key_example",
+                    operator: "operator_example",
+                    values: [
+                      "values_example",
+                    ],
+                  },
+                ],
+                matchLabels: {
+                  "key": "key_example",
+                },
+              },
+              matchLabelKeys: [
+                "matchLabelKeys_example",
+              ],
+              mismatchLabelKeys: [
+                "mismatchLabelKeys_example",
+              ],
+              namespaceSelector: {
+                matchExpressions: [
+                  {
+                    key: "key_example",
+                    operator: "operator_example",
+                    values: [
+                      "values_example",
+                    ],
+                  },
+                ],
+                matchLabels: {
+                  "key": "key_example",
+                },
+              },
+              namespaces: [
+                "namespaces_example",
+              ],
+              topologyKey: "topologyKey_example",
+            },
+          ],
+        },
+      },
+      automountServiceAccountToken: true,
+      containers: [
+        {
+          args: [
+            "args_example",
+          ],
+          command: [
+            "command_example",
+          ],
+          env: [
+            {
+              name: "name_example",
+              value: "value_example",
+              valueFrom: {
+                configMapKeyRef: {
+                  key: "key_example",
+                  name: "name_example",
+                  optional: true,
+                },
+                fieldRef: {
+                  apiVersion: "apiVersion_example",
+                  fieldPath: "fieldPath_example",
+                },
+                resourceFieldRef: {
+                  containerName: "containerName_example",
+                  divisor: "divisor_example",
+                  resource: "resource_example",
+                },
+                secretKeyRef: {
+                  key: "key_example",
+                  name: "name_example",
+                  optional: true,
+                },
+              },
+            },
+          ],
+          envFrom: [
+            {
+              configMapRef: {
+                name: "name_example",
+                optional: true,
+              },
+              prefix: "prefix_example",
+              secretRef: {
+                name: "name_example",
+                optional: true,
+              },
+            },
+          ],
+          image: "image_example",
+          imagePullPolicy: "imagePullPolicy_example",
+          lifecycle: {
+            postStart: {
+              exec: {
+                command: [
+                  "command_example",
+                ],
+              },
+              httpGet: {
+                host: "host_example",
+                httpHeaders: [
+                  {
+                    name: "name_example",
+                    value: "value_example",
+                  },
+                ],
+                path: "path_example",
+                port: "port_example",
+                scheme: "scheme_example",
+              },
+              sleep: {
+                seconds: 1,
+              },
+              tcpSocket: {
+                host: "host_example",
+                port: "port_example",
+              },
+            },
+            preStop: {
+              exec: {
+                command: [
+                  "command_example",
+                ],
+              },
+              httpGet: {
+                host: "host_example",
+                httpHeaders: [
+                  {
+                    name: "name_example",
+                    value: "value_example",
+                  },
+                ],
+                path: "path_example",
+                port: "port_example",
+                scheme: "scheme_example",
+              },
+              sleep: {
+                seconds: 1,
+              },
+              tcpSocket: {
+                host: "host_example",
+                port: "port_example",
+              },
+            },
+          },
+          livenessProbe: {
+            exec: {
+              command: [
+                "command_example",
+              ],
+            },
+            failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
+            httpGet: {
+              host: "host_example",
+              httpHeaders: [
+                {
+                  name: "name_example",
+                  value: "value_example",
+                },
+              ],
+              path: "path_example",
+              port: "port_example",
+              scheme: "scheme_example",
+            },
+            initialDelaySeconds: 1,
+            periodSeconds: 1,
+            successThreshold: 1,
+            tcpSocket: {
+              host: "host_example",
+              port: "port_example",
+            },
+            terminationGracePeriodSeconds: 1,
+            timeoutSeconds: 1,
+          },
+          name: "name_example",
+          ports: [
+            {
+              containerPort: 1,
+              hostIP: "hostIP_example",
+              hostPort: 1,
+              name: "name_example",
+              protocol: "protocol_example",
+            },
+          ],
+          readinessProbe: {
+            exec: {
+              command: [
+                "command_example",
+              ],
+            },
+            failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
+            httpGet: {
+              host: "host_example",
+              httpHeaders: [
+                {
+                  name: "name_example",
+                  value: "value_example",
+                },
+              ],
+              path: "path_example",
+              port: "port_example",
+              scheme: "scheme_example",
+            },
+            initialDelaySeconds: 1,
+            periodSeconds: 1,
+            successThreshold: 1,
+            tcpSocket: {
+              host: "host_example",
+              port: "port_example",
+            },
+            terminationGracePeriodSeconds: 1,
+            timeoutSeconds: 1,
+          },
+          resizePolicy: [
+            {
+              resourceName: "resourceName_example",
+              restartPolicy: "restartPolicy_example",
+            },
+          ],
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
+          restartPolicy: "restartPolicy_example",
+          securityContext: {
+            allowPrivilegeEscalation: true,
+            appArmorProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
+            capabilities: {
+              add: [
+                "add_example",
+              ],
+              drop: [
+                "drop_example",
+              ],
+            },
+            privileged: true,
+            procMount: "procMount_example",
+            readOnlyRootFilesystem: true,
+            runAsGroup: 1,
+            runAsNonRoot: true,
+            runAsUser: 1,
+            seLinuxOptions: {
+              level: "level_example",
+              role: "role_example",
+              type: "type_example",
+              user: "user_example",
+            },
+            seccompProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
+            windowsOptions: {
+              gmsaCredentialSpec: "gmsaCredentialSpec_example",
+              gmsaCredentialSpecName: "gmsaCredentialSpecName_example",
+              hostProcess: true,
+              runAsUserName: "runAsUserName_example",
+            },
+          },
+          startupProbe: {
+            exec: {
+              command: [
+                "command_example",
+              ],
+            },
+            failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
+            httpGet: {
+              host: "host_example",
+              httpHeaders: [
+                {
+                  name: "name_example",
+                  value: "value_example",
+                },
+              ],
+              path: "path_example",
+              port: "port_example",
+              scheme: "scheme_example",
+            },
+            initialDelaySeconds: 1,
+            periodSeconds: 1,
+            successThreshold: 1,
+            tcpSocket: {
+              host: "host_example",
+              port: "port_example",
+            },
+            terminationGracePeriodSeconds: 1,
+            timeoutSeconds: 1,
+          },
+          stdin: true,
+          stdinOnce: true,
+          terminationMessagePath: "terminationMessagePath_example",
+          terminationMessagePolicy: "terminationMessagePolicy_example",
+          tty: true,
+          volumeDevices: [
+            {
+              devicePath: "devicePath_example",
+              name: "name_example",
+            },
+          ],
+          volumeMounts: [
+            {
+              mountPath: "mountPath_example",
+              mountPropagation: "mountPropagation_example",
+              name: "name_example",
+              readOnly: true,
+              recursiveReadOnly: "recursiveReadOnly_example",
+              subPath: "subPath_example",
+              subPathExpr: "subPathExpr_example",
+            },
+          ],
+          workingDir: "workingDir_example",
+        },
+      ],
+      dnsConfig: {
+        nameservers: [
+          "nameservers_example",
+        ],
+        options: [
+          {
+            name: "name_example",
+            value: "value_example",
+          },
+        ],
+        searches: [
+          "searches_example",
+        ],
+      },
+      dnsPolicy: "dnsPolicy_example",
+      enableServiceLinks: true,
+      ephemeralContainers: [
+        {
+          args: [
+            "args_example",
+          ],
+          command: [
+            "command_example",
+          ],
+          env: [
+            {
+              name: "name_example",
+              value: "value_example",
+              valueFrom: {
+                configMapKeyRef: {
+                  key: "key_example",
+                  name: "name_example",
+                  optional: true,
+                },
+                fieldRef: {
+                  apiVersion: "apiVersion_example",
+                  fieldPath: "fieldPath_example",
+                },
+                resourceFieldRef: {
+                  containerName: "containerName_example",
+                  divisor: "divisor_example",
+                  resource: "resource_example",
+                },
+                secretKeyRef: {
+                  key: "key_example",
+                  name: "name_example",
+                  optional: true,
+                },
+              },
+            },
+          ],
+          envFrom: [
+            {
+              configMapRef: {
+                name: "name_example",
+                optional: true,
+              },
+              prefix: "prefix_example",
+              secretRef: {
+                name: "name_example",
+                optional: true,
+              },
+            },
+          ],
+          image: "image_example",
+          imagePullPolicy: "imagePullPolicy_example",
+          lifecycle: {
+            postStart: {
+              exec: {
+                command: [
+                  "command_example",
+                ],
+              },
+              httpGet: {
+                host: "host_example",
+                httpHeaders: [
+                  {
+                    name: "name_example",
+                    value: "value_example",
+                  },
+                ],
+                path: "path_example",
+                port: "port_example",
+                scheme: "scheme_example",
+              },
+              sleep: {
+                seconds: 1,
+              },
+              tcpSocket: {
+                host: "host_example",
+                port: "port_example",
+              },
+            },
+            preStop: {
+              exec: {
+                command: [
+                  "command_example",
+                ],
+              },
+              httpGet: {
+                host: "host_example",
+                httpHeaders: [
+                  {
+                    name: "name_example",
+                    value: "value_example",
+                  },
+                ],
+                path: "path_example",
+                port: "port_example",
+                scheme: "scheme_example",
+              },
+              sleep: {
+                seconds: 1,
+              },
+              tcpSocket: {
+                host: "host_example",
+                port: "port_example",
+              },
+            },
+          },
+          livenessProbe: {
+            exec: {
+              command: [
+                "command_example",
+              ],
+            },
+            failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
+            httpGet: {
+              host: "host_example",
+              httpHeaders: [
+                {
+                  name: "name_example",
+                  value: "value_example",
+                },
+              ],
+              path: "path_example",
+              port: "port_example",
+              scheme: "scheme_example",
+            },
+            initialDelaySeconds: 1,
+            periodSeconds: 1,
+            successThreshold: 1,
+            tcpSocket: {
+              host: "host_example",
+              port: "port_example",
+            },
+            terminationGracePeriodSeconds: 1,
+            timeoutSeconds: 1,
+          },
+          name: "name_example",
+          ports: [
+            {
+              containerPort: 1,
+              hostIP: "hostIP_example",
+              hostPort: 1,
+              name: "name_example",
+              protocol: "protocol_example",
+            },
+          ],
+          readinessProbe: {
+            exec: {
+              command: [
+                "command_example",
+              ],
+            },
+            failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
+            httpGet: {
+              host: "host_example",
+              httpHeaders: [
+                {
+                  name: "name_example",
+                  value: "value_example",
+                },
+              ],
+              path: "path_example",
+              port: "port_example",
+              scheme: "scheme_example",
+            },
+            initialDelaySeconds: 1,
+            periodSeconds: 1,
+            successThreshold: 1,
+            tcpSocket: {
+              host: "host_example",
+              port: "port_example",
+            },
+            terminationGracePeriodSeconds: 1,
+            timeoutSeconds: 1,
+          },
+          resizePolicy: [
+            {
+              resourceName: "resourceName_example",
+              restartPolicy: "restartPolicy_example",
+            },
+          ],
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
+          restartPolicy: "restartPolicy_example",
+          securityContext: {
+            allowPrivilegeEscalation: true,
+            appArmorProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
+            capabilities: {
+              add: [
+                "add_example",
+              ],
+              drop: [
+                "drop_example",
+              ],
+            },
+            privileged: true,
+            procMount: "procMount_example",
+            readOnlyRootFilesystem: true,
+            runAsGroup: 1,
+            runAsNonRoot: true,
+            runAsUser: 1,
+            seLinuxOptions: {
+              level: "level_example",
+              role: "role_example",
+              type: "type_example",
+              user: "user_example",
+            },
+            seccompProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
+            windowsOptions: {
+              gmsaCredentialSpec: "gmsaCredentialSpec_example",
+              gmsaCredentialSpecName: "gmsaCredentialSpecName_example",
+              hostProcess: true,
+              runAsUserName: "runAsUserName_example",
+            },
+          },
+          startupProbe: {
+            exec: {
+              command: [
+                "command_example",
+              ],
+            },
+            failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
+            httpGet: {
+              host: "host_example",
+              httpHeaders: [
+                {
+                  name: "name_example",
+                  value: "value_example",
+                },
+              ],
+              path: "path_example",
+              port: "port_example",
+              scheme: "scheme_example",
+            },
+            initialDelaySeconds: 1,
+            periodSeconds: 1,
+            successThreshold: 1,
+            tcpSocket: {
+              host: "host_example",
+              port: "port_example",
+            },
+            terminationGracePeriodSeconds: 1,
+            timeoutSeconds: 1,
+          },
+          stdin: true,
+          stdinOnce: true,
+          targetContainerName: "targetContainerName_example",
+          terminationMessagePath: "terminationMessagePath_example",
+          terminationMessagePolicy: "terminationMessagePolicy_example",
+          tty: true,
+          volumeDevices: [
+            {
+              devicePath: "devicePath_example",
+              name: "name_example",
+            },
+          ],
+          volumeMounts: [
+            {
+              mountPath: "mountPath_example",
+              mountPropagation: "mountPropagation_example",
+              name: "name_example",
+              readOnly: true,
+              recursiveReadOnly: "recursiveReadOnly_example",
+              subPath: "subPath_example",
+              subPathExpr: "subPathExpr_example",
+            },
+          ],
+          workingDir: "workingDir_example",
+        },
+      ],
+      hostAliases: [
+        {
+          hostnames: [
+            "hostnames_example",
+          ],
+          ip: "ip_example",
+        },
+      ],
+      hostIPC: true,
+      hostNetwork: true,
+      hostPID: true,
+      hostUsers: true,
+      hostname: "hostname_example",
+      imagePullSecrets: [
+        {
+          name: "name_example",
+        },
+      ],
+      initContainers: [
+        {
+          args: [
+            "args_example",
+          ],
+          command: [
+            "command_example",
+          ],
+          env: [
+            {
+              name: "name_example",
+              value: "value_example",
+              valueFrom: {
+                configMapKeyRef: {
+                  key: "key_example",
+                  name: "name_example",
+                  optional: true,
+                },
+                fieldRef: {
+                  apiVersion: "apiVersion_example",
+                  fieldPath: "fieldPath_example",
+                },
+                resourceFieldRef: {
+                  containerName: "containerName_example",
+                  divisor: "divisor_example",
+                  resource: "resource_example",
+                },
+                secretKeyRef: {
+                  key: "key_example",
+                  name: "name_example",
+                  optional: true,
+                },
+              },
+            },
+          ],
+          envFrom: [
+            {
+              configMapRef: {
+                name: "name_example",
+                optional: true,
+              },
+              prefix: "prefix_example",
+              secretRef: {
+                name: "name_example",
+                optional: true,
+              },
+            },
+          ],
+          image: "image_example",
+          imagePullPolicy: "imagePullPolicy_example",
+          lifecycle: {
+            postStart: {
+              exec: {
+                command: [
+                  "command_example",
+                ],
+              },
+              httpGet: {
+                host: "host_example",
+                httpHeaders: [
+                  {
+                    name: "name_example",
+                    value: "value_example",
+                  },
+                ],
+                path: "path_example",
+                port: "port_example",
+                scheme: "scheme_example",
+              },
+              sleep: {
+                seconds: 1,
+              },
+              tcpSocket: {
+                host: "host_example",
+                port: "port_example",
+              },
+            },
+            preStop: {
+              exec: {
+                command: [
+                  "command_example",
+                ],
+              },
+              httpGet: {
+                host: "host_example",
+                httpHeaders: [
+                  {
+                    name: "name_example",
+                    value: "value_example",
+                  },
+                ],
+                path: "path_example",
+                port: "port_example",
+                scheme: "scheme_example",
+              },
+              sleep: {
+                seconds: 1,
+              },
+              tcpSocket: {
+                host: "host_example",
+                port: "port_example",
+              },
+            },
+          },
+          livenessProbe: {
+            exec: {
+              command: [
+                "command_example",
+              ],
+            },
+            failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
+            httpGet: {
+              host: "host_example",
+              httpHeaders: [
+                {
+                  name: "name_example",
+                  value: "value_example",
+                },
+              ],
+              path: "path_example",
+              port: "port_example",
+              scheme: "scheme_example",
+            },
+            initialDelaySeconds: 1,
+            periodSeconds: 1,
+            successThreshold: 1,
+            tcpSocket: {
+              host: "host_example",
+              port: "port_example",
+            },
+            terminationGracePeriodSeconds: 1,
+            timeoutSeconds: 1,
+          },
+          name: "name_example",
+          ports: [
+            {
+              containerPort: 1,
+              hostIP: "hostIP_example",
+              hostPort: 1,
+              name: "name_example",
+              protocol: "protocol_example",
+            },
+          ],
+          readinessProbe: {
+            exec: {
+              command: [
+                "command_example",
+              ],
+            },
+            failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
+            httpGet: {
+              host: "host_example",
+              httpHeaders: [
+                {
+                  name: "name_example",
+                  value: "value_example",
+                },
+              ],
+              path: "path_example",
+              port: "port_example",
+              scheme: "scheme_example",
+            },
+            initialDelaySeconds: 1,
+            periodSeconds: 1,
+            successThreshold: 1,
+            tcpSocket: {
+              host: "host_example",
+              port: "port_example",
+            },
+            terminationGracePeriodSeconds: 1,
+            timeoutSeconds: 1,
+          },
+          resizePolicy: [
+            {
+              resourceName: "resourceName_example",
+              restartPolicy: "restartPolicy_example",
+            },
+          ],
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
+          restartPolicy: "restartPolicy_example",
+          securityContext: {
+            allowPrivilegeEscalation: true,
+            appArmorProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
+            capabilities: {
+              add: [
+                "add_example",
+              ],
+              drop: [
+                "drop_example",
+              ],
+            },
+            privileged: true,
+            procMount: "procMount_example",
+            readOnlyRootFilesystem: true,
+            runAsGroup: 1,
+            runAsNonRoot: true,
+            runAsUser: 1,
+            seLinuxOptions: {
+              level: "level_example",
+              role: "role_example",
+              type: "type_example",
+              user: "user_example",
+            },
+            seccompProfile: {
+              localhostProfile: "localhostProfile_example",
+              type: "type_example",
+            },
+            windowsOptions: {
+              gmsaCredentialSpec: "gmsaCredentialSpec_example",
+              gmsaCredentialSpecName: "gmsaCredentialSpecName_example",
+              hostProcess: true,
+              runAsUserName: "runAsUserName_example",
+            },
+          },
+          startupProbe: {
+            exec: {
+              command: [
+                "command_example",
+              ],
+            },
+            failureThreshold: 1,
+            grpc: {
+              port: 1,
+              service: "service_example",
+            },
+            httpGet: {
+              host: "host_example",
+              httpHeaders: [
+                {
+                  name: "name_example",
+                  value: "value_example",
+                },
+              ],
+              path: "path_example",
+              port: "port_example",
+              scheme: "scheme_example",
+            },
+            initialDelaySeconds: 1,
+            periodSeconds: 1,
+            successThreshold: 1,
+            tcpSocket: {
+              host: "host_example",
+              port: "port_example",
+            },
+            terminationGracePeriodSeconds: 1,
+            timeoutSeconds: 1,
+          },
+          stdin: true,
+          stdinOnce: true,
+          terminationMessagePath: "terminationMessagePath_example",
+          terminationMessagePolicy: "terminationMessagePolicy_example",
+          tty: true,
+          volumeDevices: [
+            {
+              devicePath: "devicePath_example",
+              name: "name_example",
+            },
+          ],
+          volumeMounts: [
+            {
+              mountPath: "mountPath_example",
+              mountPropagation: "mountPropagation_example",
+              name: "name_example",
+              readOnly: true,
+              recursiveReadOnly: "recursiveReadOnly_example",
+              subPath: "subPath_example",
+              subPathExpr: "subPathExpr_example",
+            },
+          ],
+          workingDir: "workingDir_example",
+        },
+      ],
+      nodeName: "nodeName_example",
+      nodeSelector: {
+        "key": "key_example",
+      },
+      os: {
+        name: "name_example",
+      },
+      overhead: {
+        "key": "key_example",
+      },
+      preemptionPolicy: "preemptionPolicy_example",
+      priority: 1,
+      priorityClassName: "priorityClassName_example",
+      readinessGates: [
+        {
+          conditionType: "conditionType_example",
+        },
+      ],
+      resourceClaims: [
+        {
+          name: "name_example",
+          resourceClaimName: "resourceClaimName_example",
+          resourceClaimTemplateName: "resourceClaimTemplateName_example",
+        },
+      ],
+      resources: {
+        claims: [
+          {
+            name: "name_example",
+            request: "request_example",
+          },
+        ],
+        limits: {
+          "key": "key_example",
+        },
+        requests: {
+          "key": "key_example",
+        },
+      },
+      restartPolicy: "restartPolicy_example",
+      runtimeClassName: "runtimeClassName_example",
+      schedulerName: "schedulerName_example",
+      schedulingGates: [
+        {
+          name: "name_example",
+        },
+      ],
+      securityContext: {
+        appArmorProfile: {
+          localhostProfile: "localhostProfile_example",
+          type: "type_example",
+        },
+        fsGroup: 1,
+        fsGroupChangePolicy: "fsGroupChangePolicy_example",
+        runAsGroup: 1,
+        runAsNonRoot: true,
+        runAsUser: 1,
+        seLinuxChangePolicy: "seLinuxChangePolicy_example",
+        seLinuxOptions: {
+          level: "level_example",
+          role: "role_example",
+          type: "type_example",
+          user: "user_example",
+        },
+        seccompProfile: {
+          localhostProfile: "localhostProfile_example",
+          type: "type_example",
+        },
+        supplementalGroups: [
+          1,
+        ],
+        supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
+        sysctls: [
+          {
+            name: "name_example",
+            value: "value_example",
+          },
+        ],
+        windowsOptions: {
+          gmsaCredentialSpec: "gmsaCredentialSpec_example",
+          gmsaCredentialSpecName: "gmsaCredentialSpecName_example",
+          hostProcess: true,
+          runAsUserName: "runAsUserName_example",
+        },
+      },
+      serviceAccount: "serviceAccount_example",
+      serviceAccountName: "serviceAccountName_example",
+      setHostnameAsFQDN: true,
+      shareProcessNamespace: true,
+      subdomain: "subdomain_example",
+      terminationGracePeriodSeconds: 1,
+      tolerations: [
+        {
+          effect: "effect_example",
+          key: "key_example",
+          operator: "operator_example",
+          tolerationSeconds: 1,
+          value: "value_example",
+        },
+      ],
+      topologySpreadConstraints: [
+        {
+          labelSelector: {
+            matchExpressions: [
+              {
+                key: "key_example",
+                operator: "operator_example",
+                values: [
+                  "values_example",
+                ],
+              },
+            ],
+            matchLabels: {
+              "key": "key_example",
+            },
+          },
+          matchLabelKeys: [
+            "matchLabelKeys_example",
+          ],
+          maxSkew: 1,
+          minDomains: 1,
+          nodeAffinityPolicy: "nodeAffinityPolicy_example",
+          nodeTaintsPolicy: "nodeTaintsPolicy_example",
+          topologyKey: "topologyKey_example",
+          whenUnsatisfiable: "whenUnsatisfiable_example",
+        },
+      ],
+      volumes: [
+        {
+          awsElasticBlockStore: {
+            fsType: "fsType_example",
+            partition: 1,
+            readOnly: true,
+            volumeID: "volumeID_example",
+          },
+          azureDisk: {
+            cachingMode: "cachingMode_example",
+            diskName: "diskName_example",
+            diskURI: "diskURI_example",
+            fsType: "fsType_example",
+            kind: "kind_example",
+            readOnly: true,
+          },
+          azureFile: {
+            readOnly: true,
+            secretName: "secretName_example",
+            shareName: "shareName_example",
+          },
+          cephfs: {
+            monitors: [
+              "monitors_example",
+            ],
+            path: "path_example",
+            readOnly: true,
+            secretFile: "secretFile_example",
+            secretRef: {
+              name: "name_example",
+            },
+            user: "user_example",
+          },
+          cinder: {
+            fsType: "fsType_example",
+            readOnly: true,
+            secretRef: {
+              name: "name_example",
+            },
+            volumeID: "volumeID_example",
+          },
+          configMap: {
+            defaultMode: 1,
+            items: [
+              {
+                key: "key_example",
+                mode: 1,
+                path: "path_example",
+              },
+            ],
+            name: "name_example",
+            optional: true,
+          },
+          csi: {
+            driver: "driver_example",
+            fsType: "fsType_example",
+            nodePublishSecretRef: {
+              name: "name_example",
+            },
+            readOnly: true,
+            volumeAttributes: {
+              "key": "key_example",
+            },
+          },
+          downwardAPI: {
+            defaultMode: 1,
+            items: [
+              {
+                fieldRef: {
+                  apiVersion: "apiVersion_example",
+                  fieldPath: "fieldPath_example",
+                },
+                mode: 1,
+                path: "path_example",
+                resourceFieldRef: {
+                  containerName: "containerName_example",
+                  divisor: "divisor_example",
+                  resource: "resource_example",
+                },
+              },
+            ],
+          },
+          emptyDir: {
+            medium: "medium_example",
+            sizeLimit: "sizeLimit_example",
+          },
+          ephemeral: {
+            volumeClaimTemplate: {
+              metadata: {
+                annotations: {
+                  "key": "key_example",
+                },
+                creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
+                deletionGracePeriodSeconds: 1,
+                deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
+                finalizers: [
+                  "finalizers_example",
+                ],
+                generateName: "generateName_example",
+                generation: 1,
+                labels: {
+                  "key": "key_example",
+                },
+                managedFields: [
+                  {
+                    apiVersion: "apiVersion_example",
+                    fieldsType: "fieldsType_example",
+                    fieldsV1: {},
+                    manager: "manager_example",
+                    operation: "operation_example",
+                    subresource: "subresource_example",
+                    time: new Date('1970-01-01T00:00:00.00Z'),
+                  },
+                ],
+                name: "name_example",
+                namespace: "namespace_example",
+                ownerReferences: [
+                  {
+                    apiVersion: "apiVersion_example",
+                    blockOwnerDeletion: true,
+                    controller: true,
+                    kind: "kind_example",
+                    name: "name_example",
+                    uid: "uid_example",
+                  },
+                ],
+                resourceVersion: "resourceVersion_example",
+                selfLink: "selfLink_example",
+                uid: "uid_example",
+              },
+              spec: {
+                accessModes: [
+                  "accessModes_example",
+                ],
+                dataSource: {
+                  apiGroup: "apiGroup_example",
+                  kind: "kind_example",
+                  name: "name_example",
+                },
+                dataSourceRef: {
+                  apiGroup: "apiGroup_example",
+                  kind: "kind_example",
+                  name: "name_example",
+                  namespace: "namespace_example",
+                },
+                resources: {
+                  limits: {
+                    "key": "key_example",
+                  },
+                  requests: {
+                    "key": "key_example",
+                  },
+                },
+                selector: {
+                  matchExpressions: [
+                    {
+                      key: "key_example",
+                      operator: "operator_example",
+                      values: [
+                        "values_example",
+                      ],
+                    },
+                  ],
+                  matchLabels: {
+                    "key": "key_example",
+                  },
+                },
+                storageClassName: "storageClassName_example",
+                volumeAttributesClassName: "volumeAttributesClassName_example",
+                volumeMode: "volumeMode_example",
+                volumeName: "volumeName_example",
+              },
+            },
+          },
+          fc: {
+            fsType: "fsType_example",
+            lun: 1,
+            readOnly: true,
+            targetWWNs: [
+              "targetWWNs_example",
+            ],
+            wwids: [
+              "wwids_example",
+            ],
+          },
+          flexVolume: {
+            driver: "driver_example",
+            fsType: "fsType_example",
+            options: {
+              "key": "key_example",
+            },
+            readOnly: true,
+            secretRef: {
+              name: "name_example",
+            },
+          },
+          flocker: {
+            datasetName: "datasetName_example",
+            datasetUUID: "datasetUUID_example",
+          },
+          gcePersistentDisk: {
+            fsType: "fsType_example",
+            partition: 1,
+            pdName: "pdName_example",
+            readOnly: true,
+          },
+          gitRepo: {
+            directory: "directory_example",
+            repository: "repository_example",
+            revision: "revision_example",
+          },
+          glusterfs: {
+            endpoints: "endpoints_example",
+            path: "path_example",
+            readOnly: true,
+          },
+          hostPath: {
+            path: "path_example",
+            type: "type_example",
+          },
+          image: {
+            pullPolicy: "pullPolicy_example",
+            reference: "reference_example",
+          },
+          iscsi: {
+            chapAuthDiscovery: true,
+            chapAuthSession: true,
+            fsType: "fsType_example",
+            initiatorName: "initiatorName_example",
+            iqn: "iqn_example",
+            iscsiInterface: "iscsiInterface_example",
+            lun: 1,
+            portals: [
+              "portals_example",
+            ],
+            readOnly: true,
+            secretRef: {
+              name: "name_example",
+            },
+            targetPortal: "targetPortal_example",
+          },
+          name: "name_example",
+          nfs: {
+            path: "path_example",
+            readOnly: true,
+            server: "server_example",
+          },
+          persistentVolumeClaim: {
+            claimName: "claimName_example",
+            readOnly: true,
+          },
+          photonPersistentDisk: {
+            fsType: "fsType_example",
+            pdID: "pdID_example",
+          },
+          portworxVolume: {
+            fsType: "fsType_example",
+            readOnly: true,
+            volumeID: "volumeID_example",
+          },
+          projected: {
+            defaultMode: 1,
+            sources: [
+              {
+                clusterTrustBundle: {
+                  labelSelector: {
+                    matchExpressions: [
+                      {
+                        key: "key_example",
+                        operator: "operator_example",
+                        values: [
+                          "values_example",
+                        ],
+                      },
+                    ],
+                    matchLabels: {
+                      "key": "key_example",
+                    },
+                  },
+                  name: "name_example",
+                  optional: true,
+                  path: "path_example",
+                  signerName: "signerName_example",
+                },
+                configMap: {
+                  items: [
+                    {
+                      key: "key_example",
+                      mode: 1,
+                      path: "path_example",
+                    },
+                  ],
+                  name: "name_example",
+                  optional: true,
+                },
+                downwardAPI: {
+                  items: [
+                    {
+                      fieldRef: {
+                        apiVersion: "apiVersion_example",
+                        fieldPath: "fieldPath_example",
+                      },
+                      mode: 1,
+                      path: "path_example",
+                      resourceFieldRef: {
+                        containerName: "containerName_example",
+                        divisor: "divisor_example",
+                        resource: "resource_example",
+                      },
+                    },
+                  ],
+                },
+                secret: {
+                  items: [
+                    {
+                      key: "key_example",
+                      mode: 1,
+                      path: "path_example",
+                    },
+                  ],
+                  name: "name_example",
+                  optional: true,
+                },
+                serviceAccountToken: {
+                  audience: "audience_example",
+                  expirationSeconds: 1,
+                  path: "path_example",
+                },
+              },
+            ],
+          },
+          quobyte: {
+            group: "group_example",
+            readOnly: true,
+            registry: "registry_example",
+            tenant: "tenant_example",
+            user: "user_example",
+            volume: "volume_example",
+          },
+          rbd: {
+            fsType: "fsType_example",
+            image: "image_example",
+            keyring: "keyring_example",
+            monitors: [
+              "monitors_example",
+            ],
+            pool: "pool_example",
+            readOnly: true,
+            secretRef: {
+              name: "name_example",
+            },
+            user: "user_example",
+          },
+          scaleIO: {
+            fsType: "fsType_example",
+            gateway: "gateway_example",
+            protectionDomain: "protectionDomain_example",
+            readOnly: true,
+            secretRef: {
+              name: "name_example",
+            },
+            sslEnabled: true,
+            storageMode: "storageMode_example",
+            storagePool: "storagePool_example",
+            system: "system_example",
+            volumeName: "volumeName_example",
+          },
+          secret: {
+            defaultMode: 1,
+            items: [
+              {
+                key: "key_example",
+                mode: 1,
+                path: "path_example",
+              },
+            ],
+            optional: true,
+            secretName: "secretName_example",
+          },
+          storageos: {
+            fsType: "fsType_example",
+            readOnly: true,
+            secretRef: {
+              name: "name_example",
+            },
+            volumeName: "volumeName_example",
+            volumeNamespace: "volumeNamespace_example",
+          },
+          vsphereVolume: {
+            fsType: "fsType_example",
+            storagePolicyID: "storagePolicyID_example",
+            storagePolicyName: "storagePolicyName_example",
+            volumePath: "volumePath_example",
+          },
+        },
+      ],
+    },
+    status: {
+      conditions: [
+        {
+          lastProbeTime: new Date('1970-01-01T00:00:00.00Z'),
+          lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
+          message: "message_example",
+          reason: "reason_example",
+          status: "status_example",
+          type: "type_example",
+        },
+      ],
+      containerStatuses: [
+        {
+          allocatedResources: {
+            "key": "key_example",
+          },
+          allocatedResourcesStatus: [
+            {
+              name: "name_example",
+              resources: [
+                {
+                  health: "health_example",
+                  resourceID: "resourceID_example",
+                },
+              ],
+            },
+          ],
+          containerID: "containerID_example",
+          image: "image_example",
+          imageID: "imageID_example",
+          lastState: {
+            running: {
+              startedAt: new Date('1970-01-01T00:00:00.00Z'),
+            },
+            terminated: {
+              containerID: "containerID_example",
+              exitCode: 1,
+              finishedAt: new Date('1970-01-01T00:00:00.00Z'),
+              message: "message_example",
+              reason: "reason_example",
+              signal: 1,
+              startedAt: new Date('1970-01-01T00:00:00.00Z'),
+            },
+            waiting: {
+              message: "message_example",
+              reason: "reason_example",
+            },
+          },
+          name: "name_example",
+          ready: true,
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
+          restartCount: 1,
+          started: true,
+          state: {
+            running: {
+              startedAt: new Date('1970-01-01T00:00:00.00Z'),
+            },
+            terminated: {
+              containerID: "containerID_example",
+              exitCode: 1,
+              finishedAt: new Date('1970-01-01T00:00:00.00Z'),
+              message: "message_example",
+              reason: "reason_example",
+              signal: 1,
+              startedAt: new Date('1970-01-01T00:00:00.00Z'),
+            },
+            waiting: {
+              message: "message_example",
+              reason: "reason_example",
+            },
+          },
+          user: {
+            linux: {
+              gid: 1,
+              supplementalGroups: [
+                1,
+              ],
+              uid: 1,
+            },
+          },
+          volumeMounts: [
+            {
+              mountPath: "mountPath_example",
+              name: "name_example",
+              readOnly: true,
+              recursiveReadOnly: "recursiveReadOnly_example",
+            },
+          ],
+        },
+      ],
+      ephemeralContainerStatuses: [
+        {
+          allocatedResources: {
+            "key": "key_example",
+          },
+          allocatedResourcesStatus: [
+            {
+              name: "name_example",
+              resources: [
+                {
+                  health: "health_example",
+                  resourceID: "resourceID_example",
+                },
+              ],
+            },
+          ],
+          containerID: "containerID_example",
+          image: "image_example",
+          imageID: "imageID_example",
+          lastState: {
+            running: {
+              startedAt: new Date('1970-01-01T00:00:00.00Z'),
+            },
+            terminated: {
+              containerID: "containerID_example",
+              exitCode: 1,
+              finishedAt: new Date('1970-01-01T00:00:00.00Z'),
+              message: "message_example",
+              reason: "reason_example",
+              signal: 1,
+              startedAt: new Date('1970-01-01T00:00:00.00Z'),
+            },
+            waiting: {
+              message: "message_example",
+              reason: "reason_example",
+            },
+          },
+          name: "name_example",
+          ready: true,
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
+          restartCount: 1,
+          started: true,
+          state: {
+            running: {
+              startedAt: new Date('1970-01-01T00:00:00.00Z'),
+            },
+            terminated: {
+              containerID: "containerID_example",
+              exitCode: 1,
+              finishedAt: new Date('1970-01-01T00:00:00.00Z'),
+              message: "message_example",
+              reason: "reason_example",
+              signal: 1,
+              startedAt: new Date('1970-01-01T00:00:00.00Z'),
+            },
+            waiting: {
+              message: "message_example",
+              reason: "reason_example",
+            },
+          },
+          user: {
+            linux: {
+              gid: 1,
+              supplementalGroups: [
+                1,
+              ],
+              uid: 1,
+            },
+          },
+          volumeMounts: [
+            {
+              mountPath: "mountPath_example",
+              name: "name_example",
+              readOnly: true,
+              recursiveReadOnly: "recursiveReadOnly_example",
+            },
+          ],
+        },
+      ],
+      hostIP: "hostIP_example",
+      hostIPs: [
+        {
+          ip: "ip_example",
+        },
+      ],
+      initContainerStatuses: [
+        {
+          allocatedResources: {
+            "key": "key_example",
+          },
+          allocatedResourcesStatus: [
+            {
+              name: "name_example",
+              resources: [
+                {
+                  health: "health_example",
+                  resourceID: "resourceID_example",
+                },
+              ],
+            },
+          ],
+          containerID: "containerID_example",
+          image: "image_example",
+          imageID: "imageID_example",
+          lastState: {
+            running: {
+              startedAt: new Date('1970-01-01T00:00:00.00Z'),
+            },
+            terminated: {
+              containerID: "containerID_example",
+              exitCode: 1,
+              finishedAt: new Date('1970-01-01T00:00:00.00Z'),
+              message: "message_example",
+              reason: "reason_example",
+              signal: 1,
+              startedAt: new Date('1970-01-01T00:00:00.00Z'),
+            },
+            waiting: {
+              message: "message_example",
+              reason: "reason_example",
+            },
+          },
+          name: "name_example",
+          ready: true,
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
+          restartCount: 1,
+          started: true,
+          state: {
+            running: {
+              startedAt: new Date('1970-01-01T00:00:00.00Z'),
+            },
+            terminated: {
+              containerID: "containerID_example",
+              exitCode: 1,
+              finishedAt: new Date('1970-01-01T00:00:00.00Z'),
+              message: "message_example",
+              reason: "reason_example",
+              signal: 1,
+              startedAt: new Date('1970-01-01T00:00:00.00Z'),
+            },
+            waiting: {
+              message: "message_example",
+              reason: "reason_example",
+            },
+          },
+          user: {
+            linux: {
+              gid: 1,
+              supplementalGroups: [
+                1,
+              ],
+              uid: 1,
+            },
+          },
+          volumeMounts: [
+            {
+              mountPath: "mountPath_example",
+              name: "name_example",
+              readOnly: true,
+              recursiveReadOnly: "recursiveReadOnly_example",
+            },
+          ],
+        },
+      ],
+      message: "message_example",
+      nominatedNodeName: "nominatedNodeName_example",
+      phase: "phase_example",
+      podIP: "podIP_example",
+      podIPs: [
+        {
+          ip: "ip_example",
+        },
+      ],
+      qosClass: "qosClass_example",
+      reason: "reason_example",
+      resize: "resize_example",
+      resourceClaimStatuses: [
+        {
+          name: "name_example",
+          resourceClaimName: "resourceClaimName_example",
+        },
+      ],
+      startTime: new Date('1970-01-01T00:00:00.00Z'),
+    },
+  },
+    // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
+  pretty: "pretty_example",
+    // When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+  dryRun: "dryRun_example",
+    // fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
+  fieldManager: "fieldManager_example",
+    // fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
+};
+
+const data = await apiInstance.replaceNamespacedPodResize(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **V1Pod**|  |
+ **name** | [**string**] | name of the Pod | defaults to undefined
+ **namespace** | [**string**] | object name and auth scope, such as for teams and projects | defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
+ **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
+ **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
+
+
+### Return type
+
+**V1Pod**
+
+### Authorization
+
+[BearerToken](README.md#BearerToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -26157,6 +28826,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -26468,6 +29138,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -26782,6 +29453,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -26908,12 +29580,24 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
       resourceClaims: [
         {
           name: "name_example",
-          source: {
-            resourceClaimName: "resourceClaimName_example",
-            resourceClaimTemplateName: "resourceClaimTemplateName_example",
-          },
+          resourceClaimName: "resourceClaimName_example",
+          resourceClaimTemplateName: "resourceClaimTemplateName_example",
         },
       ],
+      resources: {
+        claims: [
+          {
+            name: "name_example",
+            request: "request_example",
+          },
+        ],
+        limits: {
+          "key": "key_example",
+        },
+        requests: {
+          "key": "key_example",
+        },
+      },
       restartPolicy: "restartPolicy_example",
       runtimeClassName: "runtimeClassName_example",
       schedulerName: "schedulerName_example",
@@ -26932,6 +29616,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
         runAsGroup: 1,
         runAsNonRoot: true,
         runAsUser: 1,
+        seLinuxChangePolicy: "seLinuxChangePolicy_example",
         seLinuxOptions: {
           level: "level_example",
           role: "role_example",
@@ -26945,6 +29630,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
         supplementalGroups: [
           1,
         ],
+        supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
         sysctls: [
           {
             name: "name_example",
@@ -27220,6 +29906,10 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             path: "path_example",
             type: "type_example",
           },
+          image: {
+            pullPolicy: "pullPolicy_example",
+            reference: "reference_example",
+          },
           iscsi: {
             chapAuthDiscovery: true,
             chapAuthSession: true,
@@ -27409,6 +30099,17 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
           allocatedResources: {
             "key": "key_example",
           },
+          allocatedResourcesStatus: [
+            {
+              name: "name_example",
+              resources: [
+                {
+                  health: "health_example",
+                  resourceID: "resourceID_example",
+                },
+              ],
+            },
+          ],
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -27436,6 +30137,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -27463,6 +30165,15 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             waiting: {
               message: "message_example",
               reason: "reason_example",
+            },
+          },
+          user: {
+            linux: {
+              gid: 1,
+              supplementalGroups: [
+                1,
+              ],
+              uid: 1,
             },
           },
           volumeMounts: [
@@ -27480,6 +30191,17 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
           allocatedResources: {
             "key": "key_example",
           },
+          allocatedResourcesStatus: [
+            {
+              name: "name_example",
+              resources: [
+                {
+                  health: "health_example",
+                  resourceID: "resourceID_example",
+                },
+              ],
+            },
+          ],
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -27507,6 +30229,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -27534,6 +30257,15 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             waiting: {
               message: "message_example",
               reason: "reason_example",
+            },
+          },
+          user: {
+            linux: {
+              gid: 1,
+              supplementalGroups: [
+                1,
+              ],
+              uid: 1,
             },
           },
           volumeMounts: [
@@ -27557,6 +30289,17 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
           allocatedResources: {
             "key": "key_example",
           },
+          allocatedResourcesStatus: [
+            {
+              name: "name_example",
+              resources: [
+                {
+                  health: "health_example",
+                  resourceID: "resourceID_example",
+                },
+              ],
+            },
+          ],
           containerID: "containerID_example",
           image: "image_example",
           imageID: "imageID_example",
@@ -27584,6 +30327,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             claims: [
               {
                 name: "name_example",
+                request: "request_example",
               },
             ],
             limits: {
@@ -27611,6 +30355,15 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             waiting: {
               message: "message_example",
               reason: "reason_example",
+            },
+          },
+          user: {
+            linux: {
+              gid: 1,
+              supplementalGroups: [
+                1,
+              ],
+              uid: 1,
             },
           },
           volumeMounts: [
@@ -27683,7 +30436,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -28228,6 +30981,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
               claims: [
                 {
                   name: "name_example",
+                  request: "request_example",
                 },
               ],
               limits: {
@@ -28539,6 +31293,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
               claims: [
                 {
                   name: "name_example",
+                  request: "request_example",
                 },
               ],
               limits: {
@@ -28853,6 +31608,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
               claims: [
                 {
                   name: "name_example",
+                  request: "request_example",
                 },
               ],
               limits: {
@@ -28979,12 +31735,24 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
         resourceClaims: [
           {
             name: "name_example",
-            source: {
-              resourceClaimName: "resourceClaimName_example",
-              resourceClaimTemplateName: "resourceClaimTemplateName_example",
-            },
+            resourceClaimName: "resourceClaimName_example",
+            resourceClaimTemplateName: "resourceClaimTemplateName_example",
           },
         ],
+        resources: {
+          claims: [
+            {
+              name: "name_example",
+              request: "request_example",
+            },
+          ],
+          limits: {
+            "key": "key_example",
+          },
+          requests: {
+            "key": "key_example",
+          },
+        },
         restartPolicy: "restartPolicy_example",
         runtimeClassName: "runtimeClassName_example",
         schedulerName: "schedulerName_example",
@@ -29003,6 +31771,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
           runAsGroup: 1,
           runAsNonRoot: true,
           runAsUser: 1,
+          seLinuxChangePolicy: "seLinuxChangePolicy_example",
           seLinuxOptions: {
             level: "level_example",
             role: "role_example",
@@ -29016,6 +31785,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
           supplementalGroups: [
             1,
           ],
+          supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
           sysctls: [
             {
               name: "name_example",
@@ -29291,6 +32061,10 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
               path: "path_example",
               type: "type_example",
             },
+            image: {
+              pullPolicy: "pullPolicy_example",
+              reference: "reference_example",
+            },
             iscsi: {
               chapAuthDiscovery: true,
               chapAuthSession: true,
@@ -29505,7 +32279,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -30056,6 +32830,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -30367,6 +33142,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -30681,6 +33457,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -30807,12 +33584,24 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
           resourceClaims: [
             {
               name: "name_example",
-              source: {
-                resourceClaimName: "resourceClaimName_example",
-                resourceClaimTemplateName: "resourceClaimTemplateName_example",
-              },
+              resourceClaimName: "resourceClaimName_example",
+              resourceClaimTemplateName: "resourceClaimTemplateName_example",
             },
           ],
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
@@ -30831,6 +33620,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
             runAsGroup: 1,
             runAsNonRoot: true,
             runAsUser: 1,
+            seLinuxChangePolicy: "seLinuxChangePolicy_example",
             seLinuxOptions: {
               level: "level_example",
               role: "role_example",
@@ -30844,6 +33634,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
             supplementalGroups: [
               1,
             ],
+            supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
             sysctls: [
               {
                 name: "name_example",
@@ -31119,6 +33910,10 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                 path: "path_example",
                 type: "type_example",
               },
+              image: {
+                pullPolicy: "pullPolicy_example",
+                reference: "reference_example",
+              },
               iscsi: {
                 chapAuthDiscovery: true,
                 chapAuthSession: true,
@@ -31350,7 +34145,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -31475,7 +34270,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -32026,6 +34821,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -32337,6 +35133,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -32651,6 +35448,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                 claims: [
                   {
                     name: "name_example",
+                    request: "request_example",
                   },
                 ],
                 limits: {
@@ -32777,12 +35575,24 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
           resourceClaims: [
             {
               name: "name_example",
-              source: {
-                resourceClaimName: "resourceClaimName_example",
-                resourceClaimTemplateName: "resourceClaimTemplateName_example",
-              },
+              resourceClaimName: "resourceClaimName_example",
+              resourceClaimTemplateName: "resourceClaimTemplateName_example",
             },
           ],
+          resources: {
+            claims: [
+              {
+                name: "name_example",
+                request: "request_example",
+              },
+            ],
+            limits: {
+              "key": "key_example",
+            },
+            requests: {
+              "key": "key_example",
+            },
+          },
           restartPolicy: "restartPolicy_example",
           runtimeClassName: "runtimeClassName_example",
           schedulerName: "schedulerName_example",
@@ -32801,6 +35611,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
             runAsGroup: 1,
             runAsNonRoot: true,
             runAsUser: 1,
+            seLinuxChangePolicy: "seLinuxChangePolicy_example",
             seLinuxOptions: {
               level: "level_example",
               role: "role_example",
@@ -32814,6 +35625,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
             supplementalGroups: [
               1,
             ],
+            supplementalGroupsPolicy: "supplementalGroupsPolicy_example",
             sysctls: [
               {
                 name: "name_example",
@@ -33089,6 +35901,10 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                 path: "path_example",
                 type: "type_example",
               },
+              image: {
+                pullPolicy: "pullPolicy_example",
+                reference: "reference_example",
+              },
               iscsi: {
                 chapAuthDiscovery: true,
                 chapAuthSession: true,
@@ -33320,7 +36136,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -33465,7 +36281,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -33610,7 +36426,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -33736,7 +36552,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -33927,7 +36743,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -34062,7 +36878,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -34253,7 +37069,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -34413,6 +37229,9 @@ const request: CoreV1ApiReplaceNodeRequest = {
           Port: 1,
         },
       },
+      features: {
+        supplementalGroupsPolicy: true,
+      },
       images: [
         {
           names: [
@@ -34438,6 +37257,7 @@ const request: CoreV1ApiReplaceNodeRequest = {
         {
           features: {
             recursiveReadOnlyMounts: true,
+            userNamespaces: true,
           },
           name: "name_example",
         },
@@ -34491,7 +37311,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -34651,6 +37471,9 @@ const request: CoreV1ApiReplaceNodeStatusRequest = {
           Port: 1,
         },
       },
+      features: {
+        supplementalGroupsPolicy: true,
+      },
       images: [
         {
           names: [
@@ -34676,6 +37499,7 @@ const request: CoreV1ApiReplaceNodeStatusRequest = {
         {
           features: {
             recursiveReadOnlyMounts: true,
+            userNamespaces: true,
           },
           name: "name_example",
         },
@@ -34729,7 +37553,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -35109,7 +37933,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -35489,7 +38313,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details

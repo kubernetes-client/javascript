@@ -89,7 +89,31 @@ const request: AuthorizationV1ApiCreateNamespacedLocalSubjectAccessReviewRequest
         verb: "verb_example",
       },
       resourceAttributes: {
+        fieldSelector: {
+          rawSelector: "rawSelector_example",
+          requirements: [
+            {
+              key: "key_example",
+              operator: "operator_example",
+              values: [
+                "values_example",
+              ],
+            },
+          ],
+        },
         group: "group_example",
+        labelSelector: {
+          rawSelector: "rawSelector_example",
+          requirements: [
+            {
+              key: "key_example",
+              operator: "operator_example",
+              values: [
+                "values_example",
+              ],
+            },
+          ],
+        },
         name: "name_example",
         namespace: "namespace_example",
         resource: "resource_example",
@@ -145,7 +169,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -226,7 +250,31 @@ const request: AuthorizationV1ApiCreateSelfSubjectAccessReviewRequest = {
         verb: "verb_example",
       },
       resourceAttributes: {
+        fieldSelector: {
+          rawSelector: "rawSelector_example",
+          requirements: [
+            {
+              key: "key_example",
+              operator: "operator_example",
+              values: [
+                "values_example",
+              ],
+            },
+          ],
+        },
         group: "group_example",
+        labelSelector: {
+          rawSelector: "rawSelector_example",
+          requirements: [
+            {
+              key: "key_example",
+              operator: "operator_example",
+              values: [
+                "values_example",
+              ],
+            },
+          ],
+        },
         name: "name_example",
         namespace: "namespace_example",
         resource: "resource_example",
@@ -279,7 +327,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -425,7 +473,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -514,7 +562,31 @@ const request: AuthorizationV1ApiCreateSubjectAccessReviewRequest = {
         verb: "verb_example",
       },
       resourceAttributes: {
+        fieldSelector: {
+          rawSelector: "rawSelector_example",
+          requirements: [
+            {
+              key: "key_example",
+              operator: "operator_example",
+              values: [
+                "values_example",
+              ],
+            },
+          ],
+        },
         group: "group_example",
+        labelSelector: {
+          rawSelector: "rawSelector_example",
+          requirements: [
+            {
+              key: "key_example",
+              operator: "operator_example",
+              values: [
+                "values_example",
+              ],
+            },
+          ],
+        },
         name: "name_example",
         namespace: "namespace_example",
         resource: "resource_example",
@@ -569,7 +641,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
@@ -618,7 +690,7 @@ This endpoint does not need any parameter.
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
 
 
 ### HTTP response details
