@@ -57,7 +57,6 @@ export * from '../models/V1CertificateSigningRequestSpec.js';
 export * from '../models/V1CertificateSigningRequestStatus.js';
 export * from '../models/V1CinderPersistentVolumeSource.js';
 export * from '../models/V1CinderVolumeSource.js';
-export * from '../models/V1ClaimSource.js';
 export * from '../models/V1ClientIPConfig.js';
 export * from '../models/V1ClusterRole.js';
 export * from '../models/V1ClusterRoleBinding.js';
@@ -84,6 +83,7 @@ export * from '../models/V1ContainerStateRunning.js';
 export * from '../models/V1ContainerStateTerminated.js';
 export * from '../models/V1ContainerStateWaiting.js';
 export * from '../models/V1ContainerStatus.js';
+export * from '../models/V1ContainerUser.js';
 export * from '../models/V1ControllerRevision.js';
 export * from '../models/V1ControllerRevisionList.js';
 export * from '../models/V1CronJob.js';
@@ -142,6 +142,8 @@ export * from '../models/V1ExemptPriorityLevelConfiguration.js';
 export * from '../models/V1ExpressionWarning.js';
 export * from '../models/V1ExternalDocumentation.js';
 export * from '../models/V1FCVolumeSource.js';
+export * from '../models/V1FieldSelectorAttributes.js';
+export * from '../models/V1FieldSelectorRequirement.js';
 export * from '../models/V1FlexPersistentVolumeSource.js';
 export * from '../models/V1FlexVolumeSource.js';
 export * from '../models/V1FlockerVolumeSource.js';
@@ -173,6 +175,7 @@ export * from '../models/V1HostPathVolumeSource.js';
 export * from '../models/V1IPBlock.js';
 export * from '../models/V1ISCSIPersistentVolumeSource.js';
 export * from '../models/V1ISCSIVolumeSource.js';
+export * from '../models/V1ImageVolumeSource.js';
 export * from '../models/V1Ingress.js';
 export * from '../models/V1IngressBackend.js';
 export * from '../models/V1IngressClass.js';
@@ -197,6 +200,7 @@ export * from '../models/V1JobStatus.js';
 export * from '../models/V1JobTemplateSpec.js';
 export * from '../models/V1KeyToPath.js';
 export * from '../models/V1LabelSelector.js';
+export * from '../models/V1LabelSelectorAttributes.js';
 export * from '../models/V1LabelSelectorRequirement.js';
 export * from '../models/V1Lease.js';
 export * from '../models/V1LeaseList.js';
@@ -209,6 +213,7 @@ export * from '../models/V1LimitRangeList.js';
 export * from '../models/V1LimitRangeSpec.js';
 export * from '../models/V1LimitResponse.js';
 export * from '../models/V1LimitedPriorityLevelConfiguration.js';
+export * from '../models/V1LinuxContainerUser.js';
 export * from '../models/V1ListMeta.js';
 export * from '../models/V1LoadBalancerIngress.js';
 export * from '../models/V1LoadBalancerStatus.js';
@@ -243,6 +248,7 @@ export * from '../models/V1NodeCondition.js';
 export * from '../models/V1NodeConfigSource.js';
 export * from '../models/V1NodeConfigStatus.js';
 export * from '../models/V1NodeDaemonEndpoints.js';
+export * from '../models/V1NodeFeatures.js';
 export * from '../models/V1NodeList.js';
 export * from '../models/V1NodeRuntimeHandler.js';
 export * from '../models/V1NodeRuntimeHandlerFeatures.js';
@@ -335,6 +341,7 @@ export * from '../models/V1ReplicationControllerStatus.js';
 export * from '../models/V1ResourceAttributes.js';
 export * from '../models/V1ResourceClaim.js';
 export * from '../models/V1ResourceFieldSelector.js';
+export * from '../models/V1ResourceHealth.js';
 export * from '../models/V1ResourcePolicyRule.js';
 export * from '../models/V1ResourceQuota.js';
 export * from '../models/V1ResourceQuotaList.js';
@@ -342,6 +349,7 @@ export * from '../models/V1ResourceQuotaSpec.js';
 export * from '../models/V1ResourceQuotaStatus.js';
 export * from '../models/V1ResourceRequirements.js';
 export * from '../models/V1ResourceRule.js';
+export * from '../models/V1ResourceStatus.js';
 export * from '../models/V1Role.js';
 export * from '../models/V1RoleBinding.js';
 export * from '../models/V1RoleBindingList.js';
@@ -462,29 +470,26 @@ export * from '../models/V1WatchEvent.js';
 export * from '../models/V1WebhookConversion.js';
 export * from '../models/V1WeightedPodAffinityTerm.js';
 export * from '../models/V1WindowsSecurityContextOptions.js';
-export * from '../models/V1alpha1AuditAnnotation.js';
+export * from '../models/V1alpha1ApplyConfiguration.js';
 export * from '../models/V1alpha1ClusterTrustBundle.js';
 export * from '../models/V1alpha1ClusterTrustBundleList.js';
 export * from '../models/V1alpha1ClusterTrustBundleSpec.js';
-export * from '../models/V1alpha1ExpressionWarning.js';
 export * from '../models/V1alpha1GroupVersionResource.js';
-export * from '../models/V1alpha1IPAddress.js';
-export * from '../models/V1alpha1IPAddressList.js';
-export * from '../models/V1alpha1IPAddressSpec.js';
+export * from '../models/V1alpha1JSONPatch.js';
 export * from '../models/V1alpha1MatchCondition.js';
 export * from '../models/V1alpha1MatchResources.js';
 export * from '../models/V1alpha1MigrationCondition.js';
+export * from '../models/V1alpha1MutatingAdmissionPolicy.js';
+export * from '../models/V1alpha1MutatingAdmissionPolicyBinding.js';
+export * from '../models/V1alpha1MutatingAdmissionPolicyBindingList.js';
+export * from '../models/V1alpha1MutatingAdmissionPolicyBindingSpec.js';
+export * from '../models/V1alpha1MutatingAdmissionPolicyList.js';
+export * from '../models/V1alpha1MutatingAdmissionPolicySpec.js';
+export * from '../models/V1alpha1Mutation.js';
 export * from '../models/V1alpha1NamedRuleWithOperations.js';
 export * from '../models/V1alpha1ParamKind.js';
 export * from '../models/V1alpha1ParamRef.js';
-export * from '../models/V1alpha1ParentReference.js';
-export * from '../models/V1alpha1SelfSubjectReview.js';
-export * from '../models/V1alpha1SelfSubjectReviewStatus.js';
 export * from '../models/V1alpha1ServerStorageVersion.js';
-export * from '../models/V1alpha1ServiceCIDR.js';
-export * from '../models/V1alpha1ServiceCIDRList.js';
-export * from '../models/V1alpha1ServiceCIDRSpec.js';
-export * from '../models/V1alpha1ServiceCIDRStatus.js';
 export * from '../models/V1alpha1StorageVersion.js';
 export * from '../models/V1alpha1StorageVersionCondition.js';
 export * from '../models/V1alpha1StorageVersionList.js';
@@ -493,66 +498,94 @@ export * from '../models/V1alpha1StorageVersionMigrationList.js';
 export * from '../models/V1alpha1StorageVersionMigrationSpec.js';
 export * from '../models/V1alpha1StorageVersionMigrationStatus.js';
 export * from '../models/V1alpha1StorageVersionStatus.js';
-export * from '../models/V1alpha1TypeChecking.js';
-export * from '../models/V1alpha1ValidatingAdmissionPolicy.js';
-export * from '../models/V1alpha1ValidatingAdmissionPolicyBinding.js';
-export * from '../models/V1alpha1ValidatingAdmissionPolicyBindingList.js';
-export * from '../models/V1alpha1ValidatingAdmissionPolicyBindingSpec.js';
-export * from '../models/V1alpha1ValidatingAdmissionPolicyList.js';
-export * from '../models/V1alpha1ValidatingAdmissionPolicySpec.js';
-export * from '../models/V1alpha1ValidatingAdmissionPolicyStatus.js';
-export * from '../models/V1alpha1Validation.js';
 export * from '../models/V1alpha1Variable.js';
 export * from '../models/V1alpha1VolumeAttributesClass.js';
 export * from '../models/V1alpha1VolumeAttributesClassList.js';
-export * from '../models/V1alpha2AllocationResult.js';
-export * from '../models/V1alpha2DriverAllocationResult.js';
-export * from '../models/V1alpha2DriverRequests.js';
-export * from '../models/V1alpha2NamedResourcesAllocationResult.js';
-export * from '../models/V1alpha2NamedResourcesAttribute.js';
-export * from '../models/V1alpha2NamedResourcesFilter.js';
-export * from '../models/V1alpha2NamedResourcesInstance.js';
-export * from '../models/V1alpha2NamedResourcesIntSlice.js';
-export * from '../models/V1alpha2NamedResourcesRequest.js';
-export * from '../models/V1alpha2NamedResourcesResources.js';
-export * from '../models/V1alpha2NamedResourcesStringSlice.js';
-export * from '../models/V1alpha2PodSchedulingContext.js';
-export * from '../models/V1alpha2PodSchedulingContextList.js';
-export * from '../models/V1alpha2PodSchedulingContextSpec.js';
-export * from '../models/V1alpha2PodSchedulingContextStatus.js';
-export * from '../models/V1alpha2ResourceClaim.js';
-export * from '../models/V1alpha2ResourceClaimConsumerReference.js';
-export * from '../models/V1alpha2ResourceClaimList.js';
-export * from '../models/V1alpha2ResourceClaimParameters.js';
-export * from '../models/V1alpha2ResourceClaimParametersList.js';
-export * from '../models/V1alpha2ResourceClaimParametersReference.js';
-export * from '../models/V1alpha2ResourceClaimSchedulingStatus.js';
-export * from '../models/V1alpha2ResourceClaimSpec.js';
-export * from '../models/V1alpha2ResourceClaimStatus.js';
-export * from '../models/V1alpha2ResourceClaimTemplate.js';
-export * from '../models/V1alpha2ResourceClaimTemplateList.js';
-export * from '../models/V1alpha2ResourceClaimTemplateSpec.js';
-export * from '../models/V1alpha2ResourceClass.js';
-export * from '../models/V1alpha2ResourceClassList.js';
-export * from '../models/V1alpha2ResourceClassParameters.js';
-export * from '../models/V1alpha2ResourceClassParametersList.js';
-export * from '../models/V1alpha2ResourceClassParametersReference.js';
-export * from '../models/V1alpha2ResourceFilter.js';
-export * from '../models/V1alpha2ResourceHandle.js';
-export * from '../models/V1alpha2ResourceRequest.js';
-export * from '../models/V1alpha2ResourceSlice.js';
-export * from '../models/V1alpha2ResourceSliceList.js';
-export * from '../models/V1alpha2StructuredResourceHandle.js';
-export * from '../models/V1alpha2VendorParameters.js';
+export * from '../models/V1alpha2LeaseCandidate.js';
+export * from '../models/V1alpha2LeaseCandidateList.js';
+export * from '../models/V1alpha2LeaseCandidateSpec.js';
+export * from '../models/V1alpha3AllocatedDeviceStatus.js';
+export * from '../models/V1alpha3AllocationResult.js';
+export * from '../models/V1alpha3BasicDevice.js';
+export * from '../models/V1alpha3CELDeviceSelector.js';
+export * from '../models/V1alpha3Device.js';
+export * from '../models/V1alpha3DeviceAllocationConfiguration.js';
+export * from '../models/V1alpha3DeviceAllocationResult.js';
+export * from '../models/V1alpha3DeviceAttribute.js';
+export * from '../models/V1alpha3DeviceClaim.js';
+export * from '../models/V1alpha3DeviceClaimConfiguration.js';
+export * from '../models/V1alpha3DeviceClass.js';
+export * from '../models/V1alpha3DeviceClassConfiguration.js';
+export * from '../models/V1alpha3DeviceClassList.js';
+export * from '../models/V1alpha3DeviceClassSpec.js';
+export * from '../models/V1alpha3DeviceConstraint.js';
+export * from '../models/V1alpha3DeviceRequest.js';
+export * from '../models/V1alpha3DeviceRequestAllocationResult.js';
+export * from '../models/V1alpha3DeviceSelector.js';
+export * from '../models/V1alpha3NetworkDeviceData.js';
+export * from '../models/V1alpha3OpaqueDeviceConfiguration.js';
+export * from '../models/V1alpha3ResourceClaim.js';
+export * from '../models/V1alpha3ResourceClaimConsumerReference.js';
+export * from '../models/V1alpha3ResourceClaimList.js';
+export * from '../models/V1alpha3ResourceClaimSpec.js';
+export * from '../models/V1alpha3ResourceClaimStatus.js';
+export * from '../models/V1alpha3ResourceClaimTemplate.js';
+export * from '../models/V1alpha3ResourceClaimTemplateList.js';
+export * from '../models/V1alpha3ResourceClaimTemplateSpec.js';
+export * from '../models/V1alpha3ResourcePool.js';
+export * from '../models/V1alpha3ResourceSlice.js';
+export * from '../models/V1alpha3ResourceSliceList.js';
+export * from '../models/V1alpha3ResourceSliceSpec.js';
+export * from '../models/V1beta1AllocatedDeviceStatus.js';
+export * from '../models/V1beta1AllocationResult.js';
 export * from '../models/V1beta1AuditAnnotation.js';
+export * from '../models/V1beta1BasicDevice.js';
+export * from '../models/V1beta1CELDeviceSelector.js';
+export * from '../models/V1beta1Device.js';
+export * from '../models/V1beta1DeviceAllocationConfiguration.js';
+export * from '../models/V1beta1DeviceAllocationResult.js';
+export * from '../models/V1beta1DeviceAttribute.js';
+export * from '../models/V1beta1DeviceCapacity.js';
+export * from '../models/V1beta1DeviceClaim.js';
+export * from '../models/V1beta1DeviceClaimConfiguration.js';
+export * from '../models/V1beta1DeviceClass.js';
+export * from '../models/V1beta1DeviceClassConfiguration.js';
+export * from '../models/V1beta1DeviceClassList.js';
+export * from '../models/V1beta1DeviceClassSpec.js';
+export * from '../models/V1beta1DeviceConstraint.js';
+export * from '../models/V1beta1DeviceRequest.js';
+export * from '../models/V1beta1DeviceRequestAllocationResult.js';
+export * from '../models/V1beta1DeviceSelector.js';
 export * from '../models/V1beta1ExpressionWarning.js';
+export * from '../models/V1beta1IPAddress.js';
+export * from '../models/V1beta1IPAddressList.js';
+export * from '../models/V1beta1IPAddressSpec.js';
 export * from '../models/V1beta1MatchCondition.js';
 export * from '../models/V1beta1MatchResources.js';
 export * from '../models/V1beta1NamedRuleWithOperations.js';
+export * from '../models/V1beta1NetworkDeviceData.js';
+export * from '../models/V1beta1OpaqueDeviceConfiguration.js';
 export * from '../models/V1beta1ParamKind.js';
 export * from '../models/V1beta1ParamRef.js';
+export * from '../models/V1beta1ParentReference.js';
+export * from '../models/V1beta1ResourceClaim.js';
+export * from '../models/V1beta1ResourceClaimConsumerReference.js';
+export * from '../models/V1beta1ResourceClaimList.js';
+export * from '../models/V1beta1ResourceClaimSpec.js';
+export * from '../models/V1beta1ResourceClaimStatus.js';
+export * from '../models/V1beta1ResourceClaimTemplate.js';
+export * from '../models/V1beta1ResourceClaimTemplateList.js';
+export * from '../models/V1beta1ResourceClaimTemplateSpec.js';
+export * from '../models/V1beta1ResourcePool.js';
+export * from '../models/V1beta1ResourceSlice.js';
+export * from '../models/V1beta1ResourceSliceList.js';
+export * from '../models/V1beta1ResourceSliceSpec.js';
 export * from '../models/V1beta1SelfSubjectReview.js';
 export * from '../models/V1beta1SelfSubjectReviewStatus.js';
+export * from '../models/V1beta1ServiceCIDR.js';
+export * from '../models/V1beta1ServiceCIDRList.js';
+export * from '../models/V1beta1ServiceCIDRSpec.js';
+export * from '../models/V1beta1ServiceCIDRStatus.js';
 export * from '../models/V1beta1TypeChecking.js';
 export * from '../models/V1beta1ValidatingAdmissionPolicy.js';
 export * from '../models/V1beta1ValidatingAdmissionPolicyBinding.js';
@@ -563,29 +596,8 @@ export * from '../models/V1beta1ValidatingAdmissionPolicySpec.js';
 export * from '../models/V1beta1ValidatingAdmissionPolicyStatus.js';
 export * from '../models/V1beta1Validation.js';
 export * from '../models/V1beta1Variable.js';
-export * from '../models/V1beta3ExemptPriorityLevelConfiguration.js';
-export * from '../models/V1beta3FlowDistinguisherMethod.js';
-export * from '../models/V1beta3FlowSchema.js';
-export * from '../models/V1beta3FlowSchemaCondition.js';
-export * from '../models/V1beta3FlowSchemaList.js';
-export * from '../models/V1beta3FlowSchemaSpec.js';
-export * from '../models/V1beta3FlowSchemaStatus.js';
-export * from '../models/V1beta3GroupSubject.js';
-export * from '../models/V1beta3LimitResponse.js';
-export * from '../models/V1beta3LimitedPriorityLevelConfiguration.js';
-export * from '../models/V1beta3NonResourcePolicyRule.js';
-export * from '../models/V1beta3PolicyRulesWithSubjects.js';
-export * from '../models/V1beta3PriorityLevelConfiguration.js';
-export * from '../models/V1beta3PriorityLevelConfigurationCondition.js';
-export * from '../models/V1beta3PriorityLevelConfigurationList.js';
-export * from '../models/V1beta3PriorityLevelConfigurationReference.js';
-export * from '../models/V1beta3PriorityLevelConfigurationSpec.js';
-export * from '../models/V1beta3PriorityLevelConfigurationStatus.js';
-export * from '../models/V1beta3QueuingConfiguration.js';
-export * from '../models/V1beta3ResourcePolicyRule.js';
-export * from '../models/V1beta3ServiceAccountSubject.js';
-export * from '../models/V1beta3Subject.js';
-export * from '../models/V1beta3UserSubject.js';
+export * from '../models/V1beta1VolumeAttributesClass.js';
+export * from '../models/V1beta1VolumeAttributesClassList.js';
 export * from '../models/V2ContainerResourceMetricSource.js';
 export * from '../models/V2ContainerResourceMetricStatus.js';
 export * from '../models/V2CrossVersionObjectReference.js';
@@ -671,7 +683,6 @@ import { V1CertificateSigningRequestSpec } from '../models/V1CertificateSigningR
 import { V1CertificateSigningRequestStatus } from '../models/V1CertificateSigningRequestStatus.js';
 import { V1CinderPersistentVolumeSource } from '../models/V1CinderPersistentVolumeSource.js';
 import { V1CinderVolumeSource } from '../models/V1CinderVolumeSource.js';
-import { V1ClaimSource } from '../models/V1ClaimSource.js';
 import { V1ClientIPConfig } from '../models/V1ClientIPConfig.js';
 import { V1ClusterRole } from '../models/V1ClusterRole.js';
 import { V1ClusterRoleBinding } from '../models/V1ClusterRoleBinding.js';
@@ -698,6 +709,7 @@ import { V1ContainerStateRunning } from '../models/V1ContainerStateRunning.js';
 import { V1ContainerStateTerminated } from '../models/V1ContainerStateTerminated.js';
 import { V1ContainerStateWaiting } from '../models/V1ContainerStateWaiting.js';
 import { V1ContainerStatus } from '../models/V1ContainerStatus.js';
+import { V1ContainerUser } from '../models/V1ContainerUser.js';
 import { V1ControllerRevision } from '../models/V1ControllerRevision.js';
 import { V1ControllerRevisionList } from '../models/V1ControllerRevisionList.js';
 import { V1CronJob } from '../models/V1CronJob.js';
@@ -756,6 +768,8 @@ import { V1ExemptPriorityLevelConfiguration } from '../models/V1ExemptPriorityLe
 import { V1ExpressionWarning } from '../models/V1ExpressionWarning.js';
 import { V1ExternalDocumentation } from '../models/V1ExternalDocumentation.js';
 import { V1FCVolumeSource } from '../models/V1FCVolumeSource.js';
+import { V1FieldSelectorAttributes } from '../models/V1FieldSelectorAttributes.js';
+import { V1FieldSelectorRequirement } from '../models/V1FieldSelectorRequirement.js';
 import { V1FlexPersistentVolumeSource } from '../models/V1FlexPersistentVolumeSource.js';
 import { V1FlexVolumeSource } from '../models/V1FlexVolumeSource.js';
 import { V1FlockerVolumeSource } from '../models/V1FlockerVolumeSource.js';
@@ -787,6 +801,7 @@ import { V1HostPathVolumeSource } from '../models/V1HostPathVolumeSource.js';
 import { V1IPBlock } from '../models/V1IPBlock.js';
 import { V1ISCSIPersistentVolumeSource } from '../models/V1ISCSIPersistentVolumeSource.js';
 import { V1ISCSIVolumeSource } from '../models/V1ISCSIVolumeSource.js';
+import { V1ImageVolumeSource } from '../models/V1ImageVolumeSource.js';
 import { V1Ingress } from '../models/V1Ingress.js';
 import { V1IngressBackend } from '../models/V1IngressBackend.js';
 import { V1IngressClass } from '../models/V1IngressClass.js';
@@ -811,6 +826,7 @@ import { V1JobStatus } from '../models/V1JobStatus.js';
 import { V1JobTemplateSpec } from '../models/V1JobTemplateSpec.js';
 import { V1KeyToPath } from '../models/V1KeyToPath.js';
 import { V1LabelSelector } from '../models/V1LabelSelector.js';
+import { V1LabelSelectorAttributes } from '../models/V1LabelSelectorAttributes.js';
 import { V1LabelSelectorRequirement } from '../models/V1LabelSelectorRequirement.js';
 import { V1Lease } from '../models/V1Lease.js';
 import { V1LeaseList } from '../models/V1LeaseList.js';
@@ -823,6 +839,7 @@ import { V1LimitRangeList } from '../models/V1LimitRangeList.js';
 import { V1LimitRangeSpec } from '../models/V1LimitRangeSpec.js';
 import { V1LimitResponse } from '../models/V1LimitResponse.js';
 import { V1LimitedPriorityLevelConfiguration } from '../models/V1LimitedPriorityLevelConfiguration.js';
+import { V1LinuxContainerUser } from '../models/V1LinuxContainerUser.js';
 import { V1ListMeta } from '../models/V1ListMeta.js';
 import { V1LoadBalancerIngress } from '../models/V1LoadBalancerIngress.js';
 import { V1LoadBalancerStatus } from '../models/V1LoadBalancerStatus.js';
@@ -857,6 +874,7 @@ import { V1NodeCondition } from '../models/V1NodeCondition.js';
 import { V1NodeConfigSource } from '../models/V1NodeConfigSource.js';
 import { V1NodeConfigStatus } from '../models/V1NodeConfigStatus.js';
 import { V1NodeDaemonEndpoints } from '../models/V1NodeDaemonEndpoints.js';
+import { V1NodeFeatures } from '../models/V1NodeFeatures.js';
 import { V1NodeList } from '../models/V1NodeList.js';
 import { V1NodeRuntimeHandler } from '../models/V1NodeRuntimeHandler.js';
 import { V1NodeRuntimeHandlerFeatures } from '../models/V1NodeRuntimeHandlerFeatures.js';
@@ -949,6 +967,7 @@ import { V1ReplicationControllerStatus } from '../models/V1ReplicationController
 import { V1ResourceAttributes } from '../models/V1ResourceAttributes.js';
 import { V1ResourceClaim } from '../models/V1ResourceClaim.js';
 import { V1ResourceFieldSelector } from '../models/V1ResourceFieldSelector.js';
+import { V1ResourceHealth } from '../models/V1ResourceHealth.js';
 import { V1ResourcePolicyRule } from '../models/V1ResourcePolicyRule.js';
 import { V1ResourceQuota } from '../models/V1ResourceQuota.js';
 import { V1ResourceQuotaList } from '../models/V1ResourceQuotaList.js';
@@ -956,6 +975,7 @@ import { V1ResourceQuotaSpec } from '../models/V1ResourceQuotaSpec.js';
 import { V1ResourceQuotaStatus } from '../models/V1ResourceQuotaStatus.js';
 import { V1ResourceRequirements } from '../models/V1ResourceRequirements.js';
 import { V1ResourceRule } from '../models/V1ResourceRule.js';
+import { V1ResourceStatus } from '../models/V1ResourceStatus.js';
 import { V1Role } from '../models/V1Role.js';
 import { V1RoleBinding } from '../models/V1RoleBinding.js';
 import { V1RoleBindingList } from '../models/V1RoleBindingList.js';
@@ -1076,29 +1096,26 @@ import { V1WatchEvent } from '../models/V1WatchEvent.js';
 import { V1WebhookConversion } from '../models/V1WebhookConversion.js';
 import { V1WeightedPodAffinityTerm } from '../models/V1WeightedPodAffinityTerm.js';
 import { V1WindowsSecurityContextOptions } from '../models/V1WindowsSecurityContextOptions.js';
-import { V1alpha1AuditAnnotation } from '../models/V1alpha1AuditAnnotation.js';
+import { V1alpha1ApplyConfiguration } from '../models/V1alpha1ApplyConfiguration.js';
 import { V1alpha1ClusterTrustBundle } from '../models/V1alpha1ClusterTrustBundle.js';
 import { V1alpha1ClusterTrustBundleList } from '../models/V1alpha1ClusterTrustBundleList.js';
 import { V1alpha1ClusterTrustBundleSpec } from '../models/V1alpha1ClusterTrustBundleSpec.js';
-import { V1alpha1ExpressionWarning } from '../models/V1alpha1ExpressionWarning.js';
 import { V1alpha1GroupVersionResource } from '../models/V1alpha1GroupVersionResource.js';
-import { V1alpha1IPAddress } from '../models/V1alpha1IPAddress.js';
-import { V1alpha1IPAddressList } from '../models/V1alpha1IPAddressList.js';
-import { V1alpha1IPAddressSpec } from '../models/V1alpha1IPAddressSpec.js';
+import { V1alpha1JSONPatch } from '../models/V1alpha1JSONPatch.js';
 import { V1alpha1MatchCondition } from '../models/V1alpha1MatchCondition.js';
 import { V1alpha1MatchResources } from '../models/V1alpha1MatchResources.js';
 import { V1alpha1MigrationCondition } from '../models/V1alpha1MigrationCondition.js';
+import { V1alpha1MutatingAdmissionPolicy } from '../models/V1alpha1MutatingAdmissionPolicy.js';
+import { V1alpha1MutatingAdmissionPolicyBinding } from '../models/V1alpha1MutatingAdmissionPolicyBinding.js';
+import { V1alpha1MutatingAdmissionPolicyBindingList } from '../models/V1alpha1MutatingAdmissionPolicyBindingList.js';
+import { V1alpha1MutatingAdmissionPolicyBindingSpec } from '../models/V1alpha1MutatingAdmissionPolicyBindingSpec.js';
+import { V1alpha1MutatingAdmissionPolicyList } from '../models/V1alpha1MutatingAdmissionPolicyList.js';
+import { V1alpha1MutatingAdmissionPolicySpec } from '../models/V1alpha1MutatingAdmissionPolicySpec.js';
+import { V1alpha1Mutation } from '../models/V1alpha1Mutation.js';
 import { V1alpha1NamedRuleWithOperations } from '../models/V1alpha1NamedRuleWithOperations.js';
 import { V1alpha1ParamKind } from '../models/V1alpha1ParamKind.js';
 import { V1alpha1ParamRef } from '../models/V1alpha1ParamRef.js';
-import { V1alpha1ParentReference } from '../models/V1alpha1ParentReference.js';
-import { V1alpha1SelfSubjectReview } from '../models/V1alpha1SelfSubjectReview.js';
-import { V1alpha1SelfSubjectReviewStatus } from '../models/V1alpha1SelfSubjectReviewStatus.js';
 import { V1alpha1ServerStorageVersion } from '../models/V1alpha1ServerStorageVersion.js';
-import { V1alpha1ServiceCIDR } from '../models/V1alpha1ServiceCIDR.js';
-import { V1alpha1ServiceCIDRList } from '../models/V1alpha1ServiceCIDRList.js';
-import { V1alpha1ServiceCIDRSpec } from '../models/V1alpha1ServiceCIDRSpec.js';
-import { V1alpha1ServiceCIDRStatus } from '../models/V1alpha1ServiceCIDRStatus.js';
 import { V1alpha1StorageVersion } from '../models/V1alpha1StorageVersion.js';
 import { V1alpha1StorageVersionCondition } from '../models/V1alpha1StorageVersionCondition.js';
 import { V1alpha1StorageVersionList } from '../models/V1alpha1StorageVersionList.js';
@@ -1107,66 +1124,94 @@ import { V1alpha1StorageVersionMigrationList } from '../models/V1alpha1StorageVe
 import { V1alpha1StorageVersionMigrationSpec } from '../models/V1alpha1StorageVersionMigrationSpec.js';
 import { V1alpha1StorageVersionMigrationStatus } from '../models/V1alpha1StorageVersionMigrationStatus.js';
 import { V1alpha1StorageVersionStatus } from '../models/V1alpha1StorageVersionStatus.js';
-import { V1alpha1TypeChecking } from '../models/V1alpha1TypeChecking.js';
-import { V1alpha1ValidatingAdmissionPolicy } from '../models/V1alpha1ValidatingAdmissionPolicy.js';
-import { V1alpha1ValidatingAdmissionPolicyBinding } from '../models/V1alpha1ValidatingAdmissionPolicyBinding.js';
-import { V1alpha1ValidatingAdmissionPolicyBindingList } from '../models/V1alpha1ValidatingAdmissionPolicyBindingList.js';
-import { V1alpha1ValidatingAdmissionPolicyBindingSpec } from '../models/V1alpha1ValidatingAdmissionPolicyBindingSpec.js';
-import { V1alpha1ValidatingAdmissionPolicyList } from '../models/V1alpha1ValidatingAdmissionPolicyList.js';
-import { V1alpha1ValidatingAdmissionPolicySpec } from '../models/V1alpha1ValidatingAdmissionPolicySpec.js';
-import { V1alpha1ValidatingAdmissionPolicyStatus } from '../models/V1alpha1ValidatingAdmissionPolicyStatus.js';
-import { V1alpha1Validation } from '../models/V1alpha1Validation.js';
 import { V1alpha1Variable } from '../models/V1alpha1Variable.js';
 import { V1alpha1VolumeAttributesClass } from '../models/V1alpha1VolumeAttributesClass.js';
 import { V1alpha1VolumeAttributesClassList } from '../models/V1alpha1VolumeAttributesClassList.js';
-import { V1alpha2AllocationResult } from '../models/V1alpha2AllocationResult.js';
-import { V1alpha2DriverAllocationResult } from '../models/V1alpha2DriverAllocationResult.js';
-import { V1alpha2DriverRequests } from '../models/V1alpha2DriverRequests.js';
-import { V1alpha2NamedResourcesAllocationResult } from '../models/V1alpha2NamedResourcesAllocationResult.js';
-import { V1alpha2NamedResourcesAttribute } from '../models/V1alpha2NamedResourcesAttribute.js';
-import { V1alpha2NamedResourcesFilter } from '../models/V1alpha2NamedResourcesFilter.js';
-import { V1alpha2NamedResourcesInstance } from '../models/V1alpha2NamedResourcesInstance.js';
-import { V1alpha2NamedResourcesIntSlice } from '../models/V1alpha2NamedResourcesIntSlice.js';
-import { V1alpha2NamedResourcesRequest } from '../models/V1alpha2NamedResourcesRequest.js';
-import { V1alpha2NamedResourcesResources } from '../models/V1alpha2NamedResourcesResources.js';
-import { V1alpha2NamedResourcesStringSlice } from '../models/V1alpha2NamedResourcesStringSlice.js';
-import { V1alpha2PodSchedulingContext } from '../models/V1alpha2PodSchedulingContext.js';
-import { V1alpha2PodSchedulingContextList } from '../models/V1alpha2PodSchedulingContextList.js';
-import { V1alpha2PodSchedulingContextSpec } from '../models/V1alpha2PodSchedulingContextSpec.js';
-import { V1alpha2PodSchedulingContextStatus } from '../models/V1alpha2PodSchedulingContextStatus.js';
-import { V1alpha2ResourceClaim } from '../models/V1alpha2ResourceClaim.js';
-import { V1alpha2ResourceClaimConsumerReference } from '../models/V1alpha2ResourceClaimConsumerReference.js';
-import { V1alpha2ResourceClaimList } from '../models/V1alpha2ResourceClaimList.js';
-import { V1alpha2ResourceClaimParameters } from '../models/V1alpha2ResourceClaimParameters.js';
-import { V1alpha2ResourceClaimParametersList } from '../models/V1alpha2ResourceClaimParametersList.js';
-import { V1alpha2ResourceClaimParametersReference } from '../models/V1alpha2ResourceClaimParametersReference.js';
-import { V1alpha2ResourceClaimSchedulingStatus } from '../models/V1alpha2ResourceClaimSchedulingStatus.js';
-import { V1alpha2ResourceClaimSpec } from '../models/V1alpha2ResourceClaimSpec.js';
-import { V1alpha2ResourceClaimStatus } from '../models/V1alpha2ResourceClaimStatus.js';
-import { V1alpha2ResourceClaimTemplate } from '../models/V1alpha2ResourceClaimTemplate.js';
-import { V1alpha2ResourceClaimTemplateList } from '../models/V1alpha2ResourceClaimTemplateList.js';
-import { V1alpha2ResourceClaimTemplateSpec } from '../models/V1alpha2ResourceClaimTemplateSpec.js';
-import { V1alpha2ResourceClass } from '../models/V1alpha2ResourceClass.js';
-import { V1alpha2ResourceClassList } from '../models/V1alpha2ResourceClassList.js';
-import { V1alpha2ResourceClassParameters } from '../models/V1alpha2ResourceClassParameters.js';
-import { V1alpha2ResourceClassParametersList } from '../models/V1alpha2ResourceClassParametersList.js';
-import { V1alpha2ResourceClassParametersReference } from '../models/V1alpha2ResourceClassParametersReference.js';
-import { V1alpha2ResourceFilter } from '../models/V1alpha2ResourceFilter.js';
-import { V1alpha2ResourceHandle } from '../models/V1alpha2ResourceHandle.js';
-import { V1alpha2ResourceRequest } from '../models/V1alpha2ResourceRequest.js';
-import { V1alpha2ResourceSlice } from '../models/V1alpha2ResourceSlice.js';
-import { V1alpha2ResourceSliceList } from '../models/V1alpha2ResourceSliceList.js';
-import { V1alpha2StructuredResourceHandle } from '../models/V1alpha2StructuredResourceHandle.js';
-import { V1alpha2VendorParameters } from '../models/V1alpha2VendorParameters.js';
+import { V1alpha2LeaseCandidate } from '../models/V1alpha2LeaseCandidate.js';
+import { V1alpha2LeaseCandidateList } from '../models/V1alpha2LeaseCandidateList.js';
+import { V1alpha2LeaseCandidateSpec } from '../models/V1alpha2LeaseCandidateSpec.js';
+import { V1alpha3AllocatedDeviceStatus } from '../models/V1alpha3AllocatedDeviceStatus.js';
+import { V1alpha3AllocationResult } from '../models/V1alpha3AllocationResult.js';
+import { V1alpha3BasicDevice } from '../models/V1alpha3BasicDevice.js';
+import { V1alpha3CELDeviceSelector } from '../models/V1alpha3CELDeviceSelector.js';
+import { V1alpha3Device } from '../models/V1alpha3Device.js';
+import { V1alpha3DeviceAllocationConfiguration } from '../models/V1alpha3DeviceAllocationConfiguration.js';
+import { V1alpha3DeviceAllocationResult } from '../models/V1alpha3DeviceAllocationResult.js';
+import { V1alpha3DeviceAttribute } from '../models/V1alpha3DeviceAttribute.js';
+import { V1alpha3DeviceClaim } from '../models/V1alpha3DeviceClaim.js';
+import { V1alpha3DeviceClaimConfiguration } from '../models/V1alpha3DeviceClaimConfiguration.js';
+import { V1alpha3DeviceClass } from '../models/V1alpha3DeviceClass.js';
+import { V1alpha3DeviceClassConfiguration } from '../models/V1alpha3DeviceClassConfiguration.js';
+import { V1alpha3DeviceClassList } from '../models/V1alpha3DeviceClassList.js';
+import { V1alpha3DeviceClassSpec } from '../models/V1alpha3DeviceClassSpec.js';
+import { V1alpha3DeviceConstraint } from '../models/V1alpha3DeviceConstraint.js';
+import { V1alpha3DeviceRequest } from '../models/V1alpha3DeviceRequest.js';
+import { V1alpha3DeviceRequestAllocationResult } from '../models/V1alpha3DeviceRequestAllocationResult.js';
+import { V1alpha3DeviceSelector } from '../models/V1alpha3DeviceSelector.js';
+import { V1alpha3NetworkDeviceData } from '../models/V1alpha3NetworkDeviceData.js';
+import { V1alpha3OpaqueDeviceConfiguration } from '../models/V1alpha3OpaqueDeviceConfiguration.js';
+import { V1alpha3ResourceClaim } from '../models/V1alpha3ResourceClaim.js';
+import { V1alpha3ResourceClaimConsumerReference } from '../models/V1alpha3ResourceClaimConsumerReference.js';
+import { V1alpha3ResourceClaimList } from '../models/V1alpha3ResourceClaimList.js';
+import { V1alpha3ResourceClaimSpec } from '../models/V1alpha3ResourceClaimSpec.js';
+import { V1alpha3ResourceClaimStatus } from '../models/V1alpha3ResourceClaimStatus.js';
+import { V1alpha3ResourceClaimTemplate } from '../models/V1alpha3ResourceClaimTemplate.js';
+import { V1alpha3ResourceClaimTemplateList } from '../models/V1alpha3ResourceClaimTemplateList.js';
+import { V1alpha3ResourceClaimTemplateSpec } from '../models/V1alpha3ResourceClaimTemplateSpec.js';
+import { V1alpha3ResourcePool } from '../models/V1alpha3ResourcePool.js';
+import { V1alpha3ResourceSlice } from '../models/V1alpha3ResourceSlice.js';
+import { V1alpha3ResourceSliceList } from '../models/V1alpha3ResourceSliceList.js';
+import { V1alpha3ResourceSliceSpec } from '../models/V1alpha3ResourceSliceSpec.js';
+import { V1beta1AllocatedDeviceStatus } from '../models/V1beta1AllocatedDeviceStatus.js';
+import { V1beta1AllocationResult } from '../models/V1beta1AllocationResult.js';
 import { V1beta1AuditAnnotation } from '../models/V1beta1AuditAnnotation.js';
+import { V1beta1BasicDevice } from '../models/V1beta1BasicDevice.js';
+import { V1beta1CELDeviceSelector } from '../models/V1beta1CELDeviceSelector.js';
+import { V1beta1Device } from '../models/V1beta1Device.js';
+import { V1beta1DeviceAllocationConfiguration } from '../models/V1beta1DeviceAllocationConfiguration.js';
+import { V1beta1DeviceAllocationResult } from '../models/V1beta1DeviceAllocationResult.js';
+import { V1beta1DeviceAttribute } from '../models/V1beta1DeviceAttribute.js';
+import { V1beta1DeviceCapacity } from '../models/V1beta1DeviceCapacity.js';
+import { V1beta1DeviceClaim } from '../models/V1beta1DeviceClaim.js';
+import { V1beta1DeviceClaimConfiguration } from '../models/V1beta1DeviceClaimConfiguration.js';
+import { V1beta1DeviceClass } from '../models/V1beta1DeviceClass.js';
+import { V1beta1DeviceClassConfiguration } from '../models/V1beta1DeviceClassConfiguration.js';
+import { V1beta1DeviceClassList } from '../models/V1beta1DeviceClassList.js';
+import { V1beta1DeviceClassSpec } from '../models/V1beta1DeviceClassSpec.js';
+import { V1beta1DeviceConstraint } from '../models/V1beta1DeviceConstraint.js';
+import { V1beta1DeviceRequest } from '../models/V1beta1DeviceRequest.js';
+import { V1beta1DeviceRequestAllocationResult } from '../models/V1beta1DeviceRequestAllocationResult.js';
+import { V1beta1DeviceSelector } from '../models/V1beta1DeviceSelector.js';
 import { V1beta1ExpressionWarning } from '../models/V1beta1ExpressionWarning.js';
+import { V1beta1IPAddress } from '../models/V1beta1IPAddress.js';
+import { V1beta1IPAddressList } from '../models/V1beta1IPAddressList.js';
+import { V1beta1IPAddressSpec } from '../models/V1beta1IPAddressSpec.js';
 import { V1beta1MatchCondition } from '../models/V1beta1MatchCondition.js';
 import { V1beta1MatchResources } from '../models/V1beta1MatchResources.js';
 import { V1beta1NamedRuleWithOperations } from '../models/V1beta1NamedRuleWithOperations.js';
+import { V1beta1NetworkDeviceData } from '../models/V1beta1NetworkDeviceData.js';
+import { V1beta1OpaqueDeviceConfiguration } from '../models/V1beta1OpaqueDeviceConfiguration.js';
 import { V1beta1ParamKind } from '../models/V1beta1ParamKind.js';
 import { V1beta1ParamRef } from '../models/V1beta1ParamRef.js';
+import { V1beta1ParentReference } from '../models/V1beta1ParentReference.js';
+import { V1beta1ResourceClaim } from '../models/V1beta1ResourceClaim.js';
+import { V1beta1ResourceClaimConsumerReference } from '../models/V1beta1ResourceClaimConsumerReference.js';
+import { V1beta1ResourceClaimList } from '../models/V1beta1ResourceClaimList.js';
+import { V1beta1ResourceClaimSpec } from '../models/V1beta1ResourceClaimSpec.js';
+import { V1beta1ResourceClaimStatus } from '../models/V1beta1ResourceClaimStatus.js';
+import { V1beta1ResourceClaimTemplate } from '../models/V1beta1ResourceClaimTemplate.js';
+import { V1beta1ResourceClaimTemplateList } from '../models/V1beta1ResourceClaimTemplateList.js';
+import { V1beta1ResourceClaimTemplateSpec } from '../models/V1beta1ResourceClaimTemplateSpec.js';
+import { V1beta1ResourcePool } from '../models/V1beta1ResourcePool.js';
+import { V1beta1ResourceSlice } from '../models/V1beta1ResourceSlice.js';
+import { V1beta1ResourceSliceList } from '../models/V1beta1ResourceSliceList.js';
+import { V1beta1ResourceSliceSpec } from '../models/V1beta1ResourceSliceSpec.js';
 import { V1beta1SelfSubjectReview } from '../models/V1beta1SelfSubjectReview.js';
 import { V1beta1SelfSubjectReviewStatus } from '../models/V1beta1SelfSubjectReviewStatus.js';
+import { V1beta1ServiceCIDR } from '../models/V1beta1ServiceCIDR.js';
+import { V1beta1ServiceCIDRList } from '../models/V1beta1ServiceCIDRList.js';
+import { V1beta1ServiceCIDRSpec } from '../models/V1beta1ServiceCIDRSpec.js';
+import { V1beta1ServiceCIDRStatus } from '../models/V1beta1ServiceCIDRStatus.js';
 import { V1beta1TypeChecking } from '../models/V1beta1TypeChecking.js';
 import { V1beta1ValidatingAdmissionPolicy } from '../models/V1beta1ValidatingAdmissionPolicy.js';
 import { V1beta1ValidatingAdmissionPolicyBinding } from '../models/V1beta1ValidatingAdmissionPolicyBinding.js';
@@ -1177,29 +1222,8 @@ import { V1beta1ValidatingAdmissionPolicySpec } from '../models/V1beta1Validatin
 import { V1beta1ValidatingAdmissionPolicyStatus } from '../models/V1beta1ValidatingAdmissionPolicyStatus.js';
 import { V1beta1Validation } from '../models/V1beta1Validation.js';
 import { V1beta1Variable } from '../models/V1beta1Variable.js';
-import { V1beta3ExemptPriorityLevelConfiguration } from '../models/V1beta3ExemptPriorityLevelConfiguration.js';
-import { V1beta3FlowDistinguisherMethod } from '../models/V1beta3FlowDistinguisherMethod.js';
-import { V1beta3FlowSchema } from '../models/V1beta3FlowSchema.js';
-import { V1beta3FlowSchemaCondition } from '../models/V1beta3FlowSchemaCondition.js';
-import { V1beta3FlowSchemaList } from '../models/V1beta3FlowSchemaList.js';
-import { V1beta3FlowSchemaSpec } from '../models/V1beta3FlowSchemaSpec.js';
-import { V1beta3FlowSchemaStatus } from '../models/V1beta3FlowSchemaStatus.js';
-import { V1beta3GroupSubject } from '../models/V1beta3GroupSubject.js';
-import { V1beta3LimitResponse } from '../models/V1beta3LimitResponse.js';
-import { V1beta3LimitedPriorityLevelConfiguration } from '../models/V1beta3LimitedPriorityLevelConfiguration.js';
-import { V1beta3NonResourcePolicyRule } from '../models/V1beta3NonResourcePolicyRule.js';
-import { V1beta3PolicyRulesWithSubjects } from '../models/V1beta3PolicyRulesWithSubjects.js';
-import { V1beta3PriorityLevelConfiguration } from '../models/V1beta3PriorityLevelConfiguration.js';
-import { V1beta3PriorityLevelConfigurationCondition } from '../models/V1beta3PriorityLevelConfigurationCondition.js';
-import { V1beta3PriorityLevelConfigurationList } from '../models/V1beta3PriorityLevelConfigurationList.js';
-import { V1beta3PriorityLevelConfigurationReference } from '../models/V1beta3PriorityLevelConfigurationReference.js';
-import { V1beta3PriorityLevelConfigurationSpec } from '../models/V1beta3PriorityLevelConfigurationSpec.js';
-import { V1beta3PriorityLevelConfigurationStatus } from '../models/V1beta3PriorityLevelConfigurationStatus.js';
-import { V1beta3QueuingConfiguration } from '../models/V1beta3QueuingConfiguration.js';
-import { V1beta3ResourcePolicyRule } from '../models/V1beta3ResourcePolicyRule.js';
-import { V1beta3ServiceAccountSubject } from '../models/V1beta3ServiceAccountSubject.js';
-import { V1beta3Subject } from '../models/V1beta3Subject.js';
-import { V1beta3UserSubject } from '../models/V1beta3UserSubject.js';
+import { V1beta1VolumeAttributesClass } from '../models/V1beta1VolumeAttributesClass.js';
+import { V1beta1VolumeAttributesClassList } from '../models/V1beta1VolumeAttributesClassList.js';
 import { V2ContainerResourceMetricSource } from '../models/V2ContainerResourceMetricSource.js';
 import { V2ContainerResourceMetricStatus } from '../models/V2ContainerResourceMetricStatus.js';
 import { V2CrossVersionObjectReference } from '../models/V2CrossVersionObjectReference.js';
@@ -1301,7 +1325,6 @@ let typeMap: {[index: string]: any} = {
     "V1CertificateSigningRequestStatus": V1CertificateSigningRequestStatus,
     "V1CinderPersistentVolumeSource": V1CinderPersistentVolumeSource,
     "V1CinderVolumeSource": V1CinderVolumeSource,
-    "V1ClaimSource": V1ClaimSource,
     "V1ClientIPConfig": V1ClientIPConfig,
     "V1ClusterRole": V1ClusterRole,
     "V1ClusterRoleBinding": V1ClusterRoleBinding,
@@ -1328,6 +1351,7 @@ let typeMap: {[index: string]: any} = {
     "V1ContainerStateTerminated": V1ContainerStateTerminated,
     "V1ContainerStateWaiting": V1ContainerStateWaiting,
     "V1ContainerStatus": V1ContainerStatus,
+    "V1ContainerUser": V1ContainerUser,
     "V1ControllerRevision": V1ControllerRevision,
     "V1ControllerRevisionList": V1ControllerRevisionList,
     "V1CronJob": V1CronJob,
@@ -1386,6 +1410,8 @@ let typeMap: {[index: string]: any} = {
     "V1ExpressionWarning": V1ExpressionWarning,
     "V1ExternalDocumentation": V1ExternalDocumentation,
     "V1FCVolumeSource": V1FCVolumeSource,
+    "V1FieldSelectorAttributes": V1FieldSelectorAttributes,
+    "V1FieldSelectorRequirement": V1FieldSelectorRequirement,
     "V1FlexPersistentVolumeSource": V1FlexPersistentVolumeSource,
     "V1FlexVolumeSource": V1FlexVolumeSource,
     "V1FlockerVolumeSource": V1FlockerVolumeSource,
@@ -1417,6 +1443,7 @@ let typeMap: {[index: string]: any} = {
     "V1IPBlock": V1IPBlock,
     "V1ISCSIPersistentVolumeSource": V1ISCSIPersistentVolumeSource,
     "V1ISCSIVolumeSource": V1ISCSIVolumeSource,
+    "V1ImageVolumeSource": V1ImageVolumeSource,
     "V1Ingress": V1Ingress,
     "V1IngressBackend": V1IngressBackend,
     "V1IngressClass": V1IngressClass,
@@ -1441,6 +1468,7 @@ let typeMap: {[index: string]: any} = {
     "V1JobTemplateSpec": V1JobTemplateSpec,
     "V1KeyToPath": V1KeyToPath,
     "V1LabelSelector": V1LabelSelector,
+    "V1LabelSelectorAttributes": V1LabelSelectorAttributes,
     "V1LabelSelectorRequirement": V1LabelSelectorRequirement,
     "V1Lease": V1Lease,
     "V1LeaseList": V1LeaseList,
@@ -1453,6 +1481,7 @@ let typeMap: {[index: string]: any} = {
     "V1LimitRangeSpec": V1LimitRangeSpec,
     "V1LimitResponse": V1LimitResponse,
     "V1LimitedPriorityLevelConfiguration": V1LimitedPriorityLevelConfiguration,
+    "V1LinuxContainerUser": V1LinuxContainerUser,
     "V1ListMeta": V1ListMeta,
     "V1LoadBalancerIngress": V1LoadBalancerIngress,
     "V1LoadBalancerStatus": V1LoadBalancerStatus,
@@ -1487,6 +1516,7 @@ let typeMap: {[index: string]: any} = {
     "V1NodeConfigSource": V1NodeConfigSource,
     "V1NodeConfigStatus": V1NodeConfigStatus,
     "V1NodeDaemonEndpoints": V1NodeDaemonEndpoints,
+    "V1NodeFeatures": V1NodeFeatures,
     "V1NodeList": V1NodeList,
     "V1NodeRuntimeHandler": V1NodeRuntimeHandler,
     "V1NodeRuntimeHandlerFeatures": V1NodeRuntimeHandlerFeatures,
@@ -1579,6 +1609,7 @@ let typeMap: {[index: string]: any} = {
     "V1ResourceAttributes": V1ResourceAttributes,
     "V1ResourceClaim": V1ResourceClaim,
     "V1ResourceFieldSelector": V1ResourceFieldSelector,
+    "V1ResourceHealth": V1ResourceHealth,
     "V1ResourcePolicyRule": V1ResourcePolicyRule,
     "V1ResourceQuota": V1ResourceQuota,
     "V1ResourceQuotaList": V1ResourceQuotaList,
@@ -1586,6 +1617,7 @@ let typeMap: {[index: string]: any} = {
     "V1ResourceQuotaStatus": V1ResourceQuotaStatus,
     "V1ResourceRequirements": V1ResourceRequirements,
     "V1ResourceRule": V1ResourceRule,
+    "V1ResourceStatus": V1ResourceStatus,
     "V1Role": V1Role,
     "V1RoleBinding": V1RoleBinding,
     "V1RoleBindingList": V1RoleBindingList,
@@ -1706,29 +1738,26 @@ let typeMap: {[index: string]: any} = {
     "V1WebhookConversion": V1WebhookConversion,
     "V1WeightedPodAffinityTerm": V1WeightedPodAffinityTerm,
     "V1WindowsSecurityContextOptions": V1WindowsSecurityContextOptions,
-    "V1alpha1AuditAnnotation": V1alpha1AuditAnnotation,
+    "V1alpha1ApplyConfiguration": V1alpha1ApplyConfiguration,
     "V1alpha1ClusterTrustBundle": V1alpha1ClusterTrustBundle,
     "V1alpha1ClusterTrustBundleList": V1alpha1ClusterTrustBundleList,
     "V1alpha1ClusterTrustBundleSpec": V1alpha1ClusterTrustBundleSpec,
-    "V1alpha1ExpressionWarning": V1alpha1ExpressionWarning,
     "V1alpha1GroupVersionResource": V1alpha1GroupVersionResource,
-    "V1alpha1IPAddress": V1alpha1IPAddress,
-    "V1alpha1IPAddressList": V1alpha1IPAddressList,
-    "V1alpha1IPAddressSpec": V1alpha1IPAddressSpec,
+    "V1alpha1JSONPatch": V1alpha1JSONPatch,
     "V1alpha1MatchCondition": V1alpha1MatchCondition,
     "V1alpha1MatchResources": V1alpha1MatchResources,
     "V1alpha1MigrationCondition": V1alpha1MigrationCondition,
+    "V1alpha1MutatingAdmissionPolicy": V1alpha1MutatingAdmissionPolicy,
+    "V1alpha1MutatingAdmissionPolicyBinding": V1alpha1MutatingAdmissionPolicyBinding,
+    "V1alpha1MutatingAdmissionPolicyBindingList": V1alpha1MutatingAdmissionPolicyBindingList,
+    "V1alpha1MutatingAdmissionPolicyBindingSpec": V1alpha1MutatingAdmissionPolicyBindingSpec,
+    "V1alpha1MutatingAdmissionPolicyList": V1alpha1MutatingAdmissionPolicyList,
+    "V1alpha1MutatingAdmissionPolicySpec": V1alpha1MutatingAdmissionPolicySpec,
+    "V1alpha1Mutation": V1alpha1Mutation,
     "V1alpha1NamedRuleWithOperations": V1alpha1NamedRuleWithOperations,
     "V1alpha1ParamKind": V1alpha1ParamKind,
     "V1alpha1ParamRef": V1alpha1ParamRef,
-    "V1alpha1ParentReference": V1alpha1ParentReference,
-    "V1alpha1SelfSubjectReview": V1alpha1SelfSubjectReview,
-    "V1alpha1SelfSubjectReviewStatus": V1alpha1SelfSubjectReviewStatus,
     "V1alpha1ServerStorageVersion": V1alpha1ServerStorageVersion,
-    "V1alpha1ServiceCIDR": V1alpha1ServiceCIDR,
-    "V1alpha1ServiceCIDRList": V1alpha1ServiceCIDRList,
-    "V1alpha1ServiceCIDRSpec": V1alpha1ServiceCIDRSpec,
-    "V1alpha1ServiceCIDRStatus": V1alpha1ServiceCIDRStatus,
     "V1alpha1StorageVersion": V1alpha1StorageVersion,
     "V1alpha1StorageVersionCondition": V1alpha1StorageVersionCondition,
     "V1alpha1StorageVersionList": V1alpha1StorageVersionList,
@@ -1737,66 +1766,94 @@ let typeMap: {[index: string]: any} = {
     "V1alpha1StorageVersionMigrationSpec": V1alpha1StorageVersionMigrationSpec,
     "V1alpha1StorageVersionMigrationStatus": V1alpha1StorageVersionMigrationStatus,
     "V1alpha1StorageVersionStatus": V1alpha1StorageVersionStatus,
-    "V1alpha1TypeChecking": V1alpha1TypeChecking,
-    "V1alpha1ValidatingAdmissionPolicy": V1alpha1ValidatingAdmissionPolicy,
-    "V1alpha1ValidatingAdmissionPolicyBinding": V1alpha1ValidatingAdmissionPolicyBinding,
-    "V1alpha1ValidatingAdmissionPolicyBindingList": V1alpha1ValidatingAdmissionPolicyBindingList,
-    "V1alpha1ValidatingAdmissionPolicyBindingSpec": V1alpha1ValidatingAdmissionPolicyBindingSpec,
-    "V1alpha1ValidatingAdmissionPolicyList": V1alpha1ValidatingAdmissionPolicyList,
-    "V1alpha1ValidatingAdmissionPolicySpec": V1alpha1ValidatingAdmissionPolicySpec,
-    "V1alpha1ValidatingAdmissionPolicyStatus": V1alpha1ValidatingAdmissionPolicyStatus,
-    "V1alpha1Validation": V1alpha1Validation,
     "V1alpha1Variable": V1alpha1Variable,
     "V1alpha1VolumeAttributesClass": V1alpha1VolumeAttributesClass,
     "V1alpha1VolumeAttributesClassList": V1alpha1VolumeAttributesClassList,
-    "V1alpha2AllocationResult": V1alpha2AllocationResult,
-    "V1alpha2DriverAllocationResult": V1alpha2DriverAllocationResult,
-    "V1alpha2DriverRequests": V1alpha2DriverRequests,
-    "V1alpha2NamedResourcesAllocationResult": V1alpha2NamedResourcesAllocationResult,
-    "V1alpha2NamedResourcesAttribute": V1alpha2NamedResourcesAttribute,
-    "V1alpha2NamedResourcesFilter": V1alpha2NamedResourcesFilter,
-    "V1alpha2NamedResourcesInstance": V1alpha2NamedResourcesInstance,
-    "V1alpha2NamedResourcesIntSlice": V1alpha2NamedResourcesIntSlice,
-    "V1alpha2NamedResourcesRequest": V1alpha2NamedResourcesRequest,
-    "V1alpha2NamedResourcesResources": V1alpha2NamedResourcesResources,
-    "V1alpha2NamedResourcesStringSlice": V1alpha2NamedResourcesStringSlice,
-    "V1alpha2PodSchedulingContext": V1alpha2PodSchedulingContext,
-    "V1alpha2PodSchedulingContextList": V1alpha2PodSchedulingContextList,
-    "V1alpha2PodSchedulingContextSpec": V1alpha2PodSchedulingContextSpec,
-    "V1alpha2PodSchedulingContextStatus": V1alpha2PodSchedulingContextStatus,
-    "V1alpha2ResourceClaim": V1alpha2ResourceClaim,
-    "V1alpha2ResourceClaimConsumerReference": V1alpha2ResourceClaimConsumerReference,
-    "V1alpha2ResourceClaimList": V1alpha2ResourceClaimList,
-    "V1alpha2ResourceClaimParameters": V1alpha2ResourceClaimParameters,
-    "V1alpha2ResourceClaimParametersList": V1alpha2ResourceClaimParametersList,
-    "V1alpha2ResourceClaimParametersReference": V1alpha2ResourceClaimParametersReference,
-    "V1alpha2ResourceClaimSchedulingStatus": V1alpha2ResourceClaimSchedulingStatus,
-    "V1alpha2ResourceClaimSpec": V1alpha2ResourceClaimSpec,
-    "V1alpha2ResourceClaimStatus": V1alpha2ResourceClaimStatus,
-    "V1alpha2ResourceClaimTemplate": V1alpha2ResourceClaimTemplate,
-    "V1alpha2ResourceClaimTemplateList": V1alpha2ResourceClaimTemplateList,
-    "V1alpha2ResourceClaimTemplateSpec": V1alpha2ResourceClaimTemplateSpec,
-    "V1alpha2ResourceClass": V1alpha2ResourceClass,
-    "V1alpha2ResourceClassList": V1alpha2ResourceClassList,
-    "V1alpha2ResourceClassParameters": V1alpha2ResourceClassParameters,
-    "V1alpha2ResourceClassParametersList": V1alpha2ResourceClassParametersList,
-    "V1alpha2ResourceClassParametersReference": V1alpha2ResourceClassParametersReference,
-    "V1alpha2ResourceFilter": V1alpha2ResourceFilter,
-    "V1alpha2ResourceHandle": V1alpha2ResourceHandle,
-    "V1alpha2ResourceRequest": V1alpha2ResourceRequest,
-    "V1alpha2ResourceSlice": V1alpha2ResourceSlice,
-    "V1alpha2ResourceSliceList": V1alpha2ResourceSliceList,
-    "V1alpha2StructuredResourceHandle": V1alpha2StructuredResourceHandle,
-    "V1alpha2VendorParameters": V1alpha2VendorParameters,
+    "V1alpha2LeaseCandidate": V1alpha2LeaseCandidate,
+    "V1alpha2LeaseCandidateList": V1alpha2LeaseCandidateList,
+    "V1alpha2LeaseCandidateSpec": V1alpha2LeaseCandidateSpec,
+    "V1alpha3AllocatedDeviceStatus": V1alpha3AllocatedDeviceStatus,
+    "V1alpha3AllocationResult": V1alpha3AllocationResult,
+    "V1alpha3BasicDevice": V1alpha3BasicDevice,
+    "V1alpha3CELDeviceSelector": V1alpha3CELDeviceSelector,
+    "V1alpha3Device": V1alpha3Device,
+    "V1alpha3DeviceAllocationConfiguration": V1alpha3DeviceAllocationConfiguration,
+    "V1alpha3DeviceAllocationResult": V1alpha3DeviceAllocationResult,
+    "V1alpha3DeviceAttribute": V1alpha3DeviceAttribute,
+    "V1alpha3DeviceClaim": V1alpha3DeviceClaim,
+    "V1alpha3DeviceClaimConfiguration": V1alpha3DeviceClaimConfiguration,
+    "V1alpha3DeviceClass": V1alpha3DeviceClass,
+    "V1alpha3DeviceClassConfiguration": V1alpha3DeviceClassConfiguration,
+    "V1alpha3DeviceClassList": V1alpha3DeviceClassList,
+    "V1alpha3DeviceClassSpec": V1alpha3DeviceClassSpec,
+    "V1alpha3DeviceConstraint": V1alpha3DeviceConstraint,
+    "V1alpha3DeviceRequest": V1alpha3DeviceRequest,
+    "V1alpha3DeviceRequestAllocationResult": V1alpha3DeviceRequestAllocationResult,
+    "V1alpha3DeviceSelector": V1alpha3DeviceSelector,
+    "V1alpha3NetworkDeviceData": V1alpha3NetworkDeviceData,
+    "V1alpha3OpaqueDeviceConfiguration": V1alpha3OpaqueDeviceConfiguration,
+    "V1alpha3ResourceClaim": V1alpha3ResourceClaim,
+    "V1alpha3ResourceClaimConsumerReference": V1alpha3ResourceClaimConsumerReference,
+    "V1alpha3ResourceClaimList": V1alpha3ResourceClaimList,
+    "V1alpha3ResourceClaimSpec": V1alpha3ResourceClaimSpec,
+    "V1alpha3ResourceClaimStatus": V1alpha3ResourceClaimStatus,
+    "V1alpha3ResourceClaimTemplate": V1alpha3ResourceClaimTemplate,
+    "V1alpha3ResourceClaimTemplateList": V1alpha3ResourceClaimTemplateList,
+    "V1alpha3ResourceClaimTemplateSpec": V1alpha3ResourceClaimTemplateSpec,
+    "V1alpha3ResourcePool": V1alpha3ResourcePool,
+    "V1alpha3ResourceSlice": V1alpha3ResourceSlice,
+    "V1alpha3ResourceSliceList": V1alpha3ResourceSliceList,
+    "V1alpha3ResourceSliceSpec": V1alpha3ResourceSliceSpec,
+    "V1beta1AllocatedDeviceStatus": V1beta1AllocatedDeviceStatus,
+    "V1beta1AllocationResult": V1beta1AllocationResult,
     "V1beta1AuditAnnotation": V1beta1AuditAnnotation,
+    "V1beta1BasicDevice": V1beta1BasicDevice,
+    "V1beta1CELDeviceSelector": V1beta1CELDeviceSelector,
+    "V1beta1Device": V1beta1Device,
+    "V1beta1DeviceAllocationConfiguration": V1beta1DeviceAllocationConfiguration,
+    "V1beta1DeviceAllocationResult": V1beta1DeviceAllocationResult,
+    "V1beta1DeviceAttribute": V1beta1DeviceAttribute,
+    "V1beta1DeviceCapacity": V1beta1DeviceCapacity,
+    "V1beta1DeviceClaim": V1beta1DeviceClaim,
+    "V1beta1DeviceClaimConfiguration": V1beta1DeviceClaimConfiguration,
+    "V1beta1DeviceClass": V1beta1DeviceClass,
+    "V1beta1DeviceClassConfiguration": V1beta1DeviceClassConfiguration,
+    "V1beta1DeviceClassList": V1beta1DeviceClassList,
+    "V1beta1DeviceClassSpec": V1beta1DeviceClassSpec,
+    "V1beta1DeviceConstraint": V1beta1DeviceConstraint,
+    "V1beta1DeviceRequest": V1beta1DeviceRequest,
+    "V1beta1DeviceRequestAllocationResult": V1beta1DeviceRequestAllocationResult,
+    "V1beta1DeviceSelector": V1beta1DeviceSelector,
     "V1beta1ExpressionWarning": V1beta1ExpressionWarning,
+    "V1beta1IPAddress": V1beta1IPAddress,
+    "V1beta1IPAddressList": V1beta1IPAddressList,
+    "V1beta1IPAddressSpec": V1beta1IPAddressSpec,
     "V1beta1MatchCondition": V1beta1MatchCondition,
     "V1beta1MatchResources": V1beta1MatchResources,
     "V1beta1NamedRuleWithOperations": V1beta1NamedRuleWithOperations,
+    "V1beta1NetworkDeviceData": V1beta1NetworkDeviceData,
+    "V1beta1OpaqueDeviceConfiguration": V1beta1OpaqueDeviceConfiguration,
     "V1beta1ParamKind": V1beta1ParamKind,
     "V1beta1ParamRef": V1beta1ParamRef,
+    "V1beta1ParentReference": V1beta1ParentReference,
+    "V1beta1ResourceClaim": V1beta1ResourceClaim,
+    "V1beta1ResourceClaimConsumerReference": V1beta1ResourceClaimConsumerReference,
+    "V1beta1ResourceClaimList": V1beta1ResourceClaimList,
+    "V1beta1ResourceClaimSpec": V1beta1ResourceClaimSpec,
+    "V1beta1ResourceClaimStatus": V1beta1ResourceClaimStatus,
+    "V1beta1ResourceClaimTemplate": V1beta1ResourceClaimTemplate,
+    "V1beta1ResourceClaimTemplateList": V1beta1ResourceClaimTemplateList,
+    "V1beta1ResourceClaimTemplateSpec": V1beta1ResourceClaimTemplateSpec,
+    "V1beta1ResourcePool": V1beta1ResourcePool,
+    "V1beta1ResourceSlice": V1beta1ResourceSlice,
+    "V1beta1ResourceSliceList": V1beta1ResourceSliceList,
+    "V1beta1ResourceSliceSpec": V1beta1ResourceSliceSpec,
     "V1beta1SelfSubjectReview": V1beta1SelfSubjectReview,
     "V1beta1SelfSubjectReviewStatus": V1beta1SelfSubjectReviewStatus,
+    "V1beta1ServiceCIDR": V1beta1ServiceCIDR,
+    "V1beta1ServiceCIDRList": V1beta1ServiceCIDRList,
+    "V1beta1ServiceCIDRSpec": V1beta1ServiceCIDRSpec,
+    "V1beta1ServiceCIDRStatus": V1beta1ServiceCIDRStatus,
     "V1beta1TypeChecking": V1beta1TypeChecking,
     "V1beta1ValidatingAdmissionPolicy": V1beta1ValidatingAdmissionPolicy,
     "V1beta1ValidatingAdmissionPolicyBinding": V1beta1ValidatingAdmissionPolicyBinding,
@@ -1807,29 +1864,8 @@ let typeMap: {[index: string]: any} = {
     "V1beta1ValidatingAdmissionPolicyStatus": V1beta1ValidatingAdmissionPolicyStatus,
     "V1beta1Validation": V1beta1Validation,
     "V1beta1Variable": V1beta1Variable,
-    "V1beta3ExemptPriorityLevelConfiguration": V1beta3ExemptPriorityLevelConfiguration,
-    "V1beta3FlowDistinguisherMethod": V1beta3FlowDistinguisherMethod,
-    "V1beta3FlowSchema": V1beta3FlowSchema,
-    "V1beta3FlowSchemaCondition": V1beta3FlowSchemaCondition,
-    "V1beta3FlowSchemaList": V1beta3FlowSchemaList,
-    "V1beta3FlowSchemaSpec": V1beta3FlowSchemaSpec,
-    "V1beta3FlowSchemaStatus": V1beta3FlowSchemaStatus,
-    "V1beta3GroupSubject": V1beta3GroupSubject,
-    "V1beta3LimitResponse": V1beta3LimitResponse,
-    "V1beta3LimitedPriorityLevelConfiguration": V1beta3LimitedPriorityLevelConfiguration,
-    "V1beta3NonResourcePolicyRule": V1beta3NonResourcePolicyRule,
-    "V1beta3PolicyRulesWithSubjects": V1beta3PolicyRulesWithSubjects,
-    "V1beta3PriorityLevelConfiguration": V1beta3PriorityLevelConfiguration,
-    "V1beta3PriorityLevelConfigurationCondition": V1beta3PriorityLevelConfigurationCondition,
-    "V1beta3PriorityLevelConfigurationList": V1beta3PriorityLevelConfigurationList,
-    "V1beta3PriorityLevelConfigurationReference": V1beta3PriorityLevelConfigurationReference,
-    "V1beta3PriorityLevelConfigurationSpec": V1beta3PriorityLevelConfigurationSpec,
-    "V1beta3PriorityLevelConfigurationStatus": V1beta3PriorityLevelConfigurationStatus,
-    "V1beta3QueuingConfiguration": V1beta3QueuingConfiguration,
-    "V1beta3ResourcePolicyRule": V1beta3ResourcePolicyRule,
-    "V1beta3ServiceAccountSubject": V1beta3ServiceAccountSubject,
-    "V1beta3Subject": V1beta3Subject,
-    "V1beta3UserSubject": V1beta3UserSubject,
+    "V1beta1VolumeAttributesClass": V1beta1VolumeAttributesClass,
+    "V1beta1VolumeAttributesClassList": V1beta1VolumeAttributesClassList,
     "V2ContainerResourceMetricSource": V2ContainerResourceMetricSource,
     "V2ContainerResourceMetricStatus": V2ContainerResourceMetricStatus,
     "V2CrossVersionObjectReference": V2CrossVersionObjectReference,
