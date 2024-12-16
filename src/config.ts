@@ -33,6 +33,8 @@ import {
 import { OpenIDConnectAuth } from './oidc_auth.js';
 import WebSocket from 'isomorphic-ws';
 import child_process from 'node:child_process';
+import { SocksProxyAgent } from 'socks-proxy-agent';
+import { HttpProxyAgent, HttpsProxyAgent } from 'hpagent';
 
 const SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
 const SERVICEACCOUNT_CA_PATH: string = SERVICEACCOUNT_ROOT + '/ca.crt';
@@ -248,7 +250,29 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions.passphrase = httpsOptions.passphrase;
         agentOptions.rejectUnauthorized = httpsOptions.rejectUnauthorized;
 
-        context.setAgent(new https.Agent(agentOptions));
+        let agent: https.Agent | SocksProxyAgent | HttpProxyAgent | HttpsProxyAgent;
+
+        if (cluster && cluster.proxyUrl) {
+            if (cluster.proxyUrl.startsWith('socks')) {
+                agent = new SocksProxyAgent(cluster.proxyUrl, agentOptions);
+            } else if (cluster.proxyUrl.startsWith('http')) {
+                agent = new HttpsProxyAgent({
+                    proxy: cluster.proxyUrl,
+                    ...agentOptions,
+                });
+            } else if (cluster.proxyUrl.startsWith('https')) {
+                agent = new HttpProxyAgent({
+                    proxy: cluster.proxyUrl,
+                    ...agentOptions,
+                });
+            } else {
+                throw new Error('Unsupported proxy type');
+            }
+        } else {
+            agent = new https.Agent(agentOptions);
+        }
+
+        context.setAgent(agent);
     }
 
     /**
