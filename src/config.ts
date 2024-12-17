@@ -34,7 +34,7 @@ import { OpenIDConnectAuth } from './oidc_auth.js';
 import WebSocket from 'isomorphic-ws';
 import child_process from 'node:child_process';
 import { SocksProxyAgent } from 'socks-proxy-agent';
-import { HttpProxyAgent, HttpsProxyAgent } from 'hpagent';
+import { HttpProxyAgent, HttpProxyAgentOptions, HttpsProxyAgent, HttpsProxyAgentOptions } from 'hpagent';
 
 const SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
 const SERVICEACCOUNT_CA_PATH: string = SERVICEACCOUNT_ROOT + '/ca.crt';
@@ -254,17 +254,16 @@ export class KubeConfig implements SecurityAuthentication {
 
         if (cluster && cluster.proxyUrl) {
             if (cluster.proxyUrl.startsWith('socks')) {
+                agentOptions.rejectUnauthorized = false;
                 agent = new SocksProxyAgent(cluster.proxyUrl, agentOptions);
-            } else if (cluster.server.startsWith('http')) {
-                agent = new HttpProxyAgent({
-                    proxy: cluster.proxyUrl,
-                    ...agentOptions,
-                });
             } else if (cluster.server.startsWith('https')) {
-                agent = new HttpsProxyAgent({
-                    proxy: cluster.proxyUrl,
-                    ...agentOptions,
-                });
+                const httpsProxyAgentOptions: HttpsProxyAgentOptions = agentOptions as HttpsProxyAgentOptions;
+                httpsProxyAgentOptions.proxy = cluster.proxyUrl;
+                agent = new HttpsProxyAgent(httpsProxyAgentOptions);
+            } else if (cluster.server.startsWith('http')) {
+                const httpProxyAgentOptions: HttpProxyAgentOptions = agentOptions as HttpProxyAgentOptions;
+                httpProxyAgentOptions.proxy = cluster.proxyUrl;
+                agent = new HttpProxyAgent(httpProxyAgentOptions);
             } else {
                 throw new Error('Unsupported proxy type');
             }
