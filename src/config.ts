@@ -255,13 +255,13 @@ export class KubeConfig implements SecurityAuthentication {
         if (cluster && cluster.proxyUrl) {
             if (cluster.proxyUrl.startsWith('socks')) {
                 agent = new SocksProxyAgent(cluster.proxyUrl, agentOptions);
-            } else if (cluster.proxyUrl.startsWith('http')) {
-                agent = new HttpsProxyAgent({
+            } else if (cluster.server.startsWith('http')) {
+                agent = new HttpProxyAgent({
                     proxy: cluster.proxyUrl,
                     ...agentOptions,
                 });
-            } else if (cluster.proxyUrl.startsWith('https')) {
-                agent = new HttpProxyAgent({
+            } else if (cluster.server.startsWith('https')) {
+                agent = new HttpsProxyAgent({
                     proxy: cluster.proxyUrl,
                     ...agentOptions,
                 });
