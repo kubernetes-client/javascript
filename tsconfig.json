@@ -19,6 +19,6 @@
         // enable this when it works with tslint, or we switch to prettier
         // "declarationMap": true
     },
-    "exclude": ["node_modules", "src/*_test.ts", "dist"],
+    "exclude": ["node_modules", "src/*_test.ts", "src/test", "dist"],
     "include": ["*.ts", "src/**/*"]
 }
