@@ -106,8 +106,9 @@ export class WebSocketHandler implements WebSocketInterface {
                 buff.writeUint8(this.CloseStream, 0);
                 buff.writeUint8(this.StdinStream, 1);
                 ws.send(buff);
+            } else {
+                ws.close();
             }
-            ws.close();
         });
         // Keep the stream open
         return true;
