@@ -15,12 +15,15 @@ import { CoreV1Api, RequestContext } from './api.js';
 import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolutePath } from './config.js';
 import { ActionOnInvalid, Cluster, newClusters, newContexts, newUsers, User } from './config_types.js';
 import { ExecAuth } from './exec_auth.js';
+import { HttpProxyAgent, HttpsProxyAgent } from 'hpagent';
+import { SocksProxyAgent } from 'socks-proxy-agent';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
 const kc2FileName = 'testdata/kubeconfig-2.yaml';
 const kcDupeCluster = 'testdata/kubeconfig-dupe-cluster.yaml';
 const kcDupeContext = 'testdata/kubeconfig-dupe-context.yaml';
 const kcDupeUser = 'testdata/kubeconfig-dupe-user.yaml';
+const kcProxyUrl = 'testdata/kubeconfig-proxy-url.yaml';
 
 const kcNoUserFileName = 'testdata/empty-user-kubeconfig.yaml';
 const kcInvalidContextFileName = 'testdata/empty-context-kubeconfig.yaml';
@@ -43,6 +46,7 @@ function validateFileLoad(kc: KubeConfig) {
     expect(cluster1.name).to.equal('cluster1');
     expect(cluster1.caData).to.equal('Q0FEQVRB');
     expect(cluster1.server).to.equal('http://example.com');
+    expect(cluster1.proxyUrl).to.equal('socks5://localhost:1181');
     expect(cluster2.name).to.equal('cluster2');
     expect(cluster2.caData).to.equal('Q0FEQVRBMg==');
     expect(cluster2.server).to.equal('http://example2.com');
@@ -357,6 +361,69 @@ describe('KubeConfig', () => {
             };
 
             assertRequestOptionsEqual(opts, expectedOptions);
+        });
+        it('should apply socks proxy', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcProxyUrl);
+            kc.setCurrentContext('contextA');
+
+            const testServerName = 'https://example.com';
+            const rc = new RequestContext(testServerName, HttpMethod.GET);
+
+            await kc.applySecurityAuthentication(rc);
+            const expectedCA = Buffer.from('CADAT@', 'utf-8');
+            const expectedProxyHost = 'example';
+            const expectedProxyPort = 1187;
+
+            expect(rc.getAgent()).to.be.instanceOf(SocksProxyAgent);
+            const agent = rc.getAgent() as SocksProxyAgent;
+            expect(agent.options.ca?.toString()).to.equal(expectedCA.toString());
+            expect(agent.proxy.host).to.equal(expectedProxyHost);
+            expect(agent.proxy.port).to.equal(expectedProxyPort);
+        });
+        it('should apply https proxy', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcProxyUrl);
+            kc.setCurrentContext('contextB');
+
+            const testServerName = 'https://example.com';
+            const rc = new RequestContext(testServerName, HttpMethod.GET);
+
+            await kc.applySecurityAuthentication(rc);
+            const expectedCA = Buffer.from('CADAT@', 'utf-8');
+            const expectedProxyHref = 'http://example:9443/';
+
+            expect(rc.getAgent()).to.be.instanceOf(HttpsProxyAgent);
+            const agent = rc.getAgent() as HttpsProxyAgent;
+            expect(agent.options.ca?.toString()).to.equal(expectedCA.toString());
+            expect(agent.proxy.href).to.equal(expectedProxyHref);
+        });
+        it('should apply http proxy', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcProxyUrl);
+            kc.setCurrentContext('contextC');
+
+            const testServerName = 'https://example.com';
+            const rc = new RequestContext(testServerName, HttpMethod.GET);
+
+            await kc.applySecurityAuthentication(rc);
+            const expectedCA = Buffer.from('CADAT@', 'utf-8');
+            const expectedProxyHref = 'http://example:8080/';
+
+            expect(rc.getAgent()).to.be.instanceOf(HttpProxyAgent);
+            const agent = rc.getAgent() as HttpProxyAgent;
+            expect(agent.options.ca?.toString()).to.equal(expectedCA.toString());
+            expect(agent.proxy.href).to.equal(expectedProxyHref);
+        });
+        it('should throw an error if proxy-url is provided but the server protocol is not http or https', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcProxyUrl);
+            kc.setCurrentContext('contextD');
+
+            const testServerName = 'https://example.com';
+            const rc = new RequestContext(testServerName, HttpMethod.GET);
+
+            return expect(kc.applySecurityAuthentication(rc)).to.be.rejectedWith('Unsupported proxy type');
         });
     });
 
