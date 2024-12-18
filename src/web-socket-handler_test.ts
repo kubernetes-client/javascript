@@ -389,12 +389,15 @@ describe('V5 protocol support', () => {
     });
     it('should handle closing stdin v5 protocol', () => {
         let sent: Buffer | null = null;
+        let closed = false
         const ws = {
             protocol: 'v5.channel.k8s.io',
             send: (data) => {
                 sent = data;
             },
-            close: () => {},
+            close: () => {
+                closed = true
+            },
         } as WebSocket;
         const stdinStream = new ReadableStreamBuffer();
         WebSocketHandler.handleStandardInput(ws, stdinStream);
@@ -402,6 +405,7 @@ describe('V5 protocol support', () => {
         expect(sent).to.not.be.null;
         expect(sent!.readUint8(0)).to.equal(255); // CLOSE signal
         expect(sent!.readUint8(1)).to.equal(0); // Stdin stream is #0
+        expect(closed).to.equal(false)
     });
 });
 
