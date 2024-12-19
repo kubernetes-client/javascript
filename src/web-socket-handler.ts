@@ -4,14 +4,29 @@ import stream = require('stream');
 import { V1Status } from './api';
 import { KubeConfig } from './config';
 
-const protocols = ['v4.channel.k8s.io', 'v3.channel.k8s.io', 'v2.channel.k8s.io', 'channel.k8s.io'];
+const protocols = [
+    'v5.channel.k8s.io',
+    'v4.channel.k8s.io',
+    'v3.channel.k8s.io',
+    'v2.channel.k8s.io',
+    'channel.k8s.io',
+];
+
+export type TextHandler = (text: string) => boolean;
+export type BinaryHandler = (stream: number, buff: Buffer) => boolean;
 
 export interface WebSocketInterface {
     connect(
         path: string,
-        textHandler: ((text: string) => boolean) | null,
-        binaryHandler: ((stream: number, buff: Buffer) => boolean) | null,
-    ): Promise<WebSocket>;
+        textHandler: TextHandler | null,
+        binaryHandler: BinaryHandler | null,
+    ): Promise<WebSocket.WebSocket>;
+}
+
+export interface StreamInterface {
+    stdin: stream.Readable;
+    stdout: stream.Writable;
+    stderr: stream.Writable;
 }
 
 export class WebSocketHandler implements WebSocketInterface {
@@ -20,6 +35,25 @@ export class WebSocketHandler implements WebSocketInterface {
     public static readonly StderrStream: number = 2;
     public static readonly StatusStream: number = 3;
     public static readonly ResizeStream: number = 4;
+    public static readonly CloseStream: number = 255;
+
+    public static supportsClose(protocol: string): boolean {
+        return protocol === 'v5.channel.k8s.io';
+    }
+
+    public static closeStream(streamNum: number, streams: StreamInterface): void {
+        switch (streamNum) {
+            case WebSocketHandler.StdinStream:
+                streams.stdin.pause();
+                break;
+            case WebSocketHandler.StdoutStream:
+                streams.stdout.end();
+                break;
+            case WebSocketHandler.StderrStream:
+                streams.stderr.end();
+                break;
+        }
+    }
 
     public static handleStandardStreams(
         streamNum: number,
@@ -36,6 +70,7 @@ export class WebSocketHandler implements WebSocketInterface {
             stderr.write(buff);
         } else if (streamNum === WebSocketHandler.StatusStream) {
             // stream closing.
+            // Hacky, change tests to use the stream interface
             if (stdout && stdout !== process.stdout) {
                 stdout.end();
             }
@@ -50,7 +85,7 @@ export class WebSocketHandler implements WebSocketInterface {
     }
 
     public static handleStandardInput(
-        ws: WebSocket,
+        ws: WebSocket.WebSocket,
         stdin: stream.Readable | any,
         streamNum: number = 0,
     ): boolean {
@@ -66,6 +101,12 @@ export class WebSocketHandler implements WebSocketInterface {
         });
 
         stdin.on('end', () => {
+            if (WebSocketHandler.supportsClose(ws.protocol)) {
+                const buff = Buffer.alloc(2);
+                buff.writeUint8(this.CloseStream, 0);
+                buff.writeUint8(this.StdinStream, 1);
+                ws.send(buff);
+            }
             ws.close();
         });
         // Keep the stream open
@@ -74,18 +115,18 @@ export class WebSocketHandler implements WebSocketInterface {
 
     public static async processData(
         data: string | Buffer,
-        ws: WebSocket | null,
-        createWS: () => Promise<WebSocket>,
+        ws: WebSocket.WebSocket | null,
+        createWS: () => Promise<WebSocket.WebSocket>,
         streamNum: number = 0,
         retryCount: number = 3,
-    ): Promise<WebSocket | null> {
+    ): Promise<WebSocket.WebSocket | null> {
         const buff = Buffer.alloc(data.length + 1);
 
         buff.writeInt8(streamNum, 0);
         if (data instanceof Buffer) {
             data.copy(buff, 1);
         } else {
-            buff.write(data, 1);
+            buff.write(data as string, 1);
         }
 
         let i = 0;
@@ -108,17 +149,17 @@ export class WebSocketHandler implements WebSocketInterface {
     }
 
     public static restartableHandleStandardInput(
-        createWS: () => Promise<WebSocket>,
+        createWS: () => Promise<WebSocket.WebSocket>,
         stdin: stream.Readable | any,
         streamNum: number = 0,
         retryCount: number = 3,
-    ): () => WebSocket | null {
+    ): () => WebSocket.WebSocket | null {
         if (retryCount < 0) {
             throw new Error("retryCount can't be lower than 0.");
         }
 
         let queue: Promise<void> = Promise.resolve();
-        let ws: WebSocket | null = null;
+        let ws: WebSocket.WebSocket | null = null;
 
         stdin.on('data', (data) => {
             queue = queue.then(async () => {
@@ -138,7 +179,16 @@ export class WebSocketHandler implements WebSocketInterface {
     // factory is really just for test injection
     public constructor(
         readonly config: KubeConfig,
-        readonly socketFactory?: (uri: string, opts: WebSocket.ClientOptions) => WebSocket,
+        readonly socketFactory?: (
+            uri: string,
+            protocols: string[],
+            opts: WebSocket.ClientOptions,
+        ) => WebSocket.WebSocket,
+        readonly streams: StreamInterface = {
+            stdin: process.stdin,
+            stdout: process.stdout,
+            stderr: process.stderr,
+        },
     ) {}
 
     /**
@@ -153,24 +203,24 @@ export class WebSocketHandler implements WebSocketInterface {
         path: string,
         textHandler: ((text: string) => boolean) | null,
         binaryHandler: ((stream: number, buff: Buffer) => boolean) | null,
-    ): Promise<WebSocket> {
+    ): Promise<WebSocket.WebSocket> {
         const cluster = this.config.getCurrentCluster();
         if (!cluster) {
             throw new Error('No cluster is defined.');
         }
         const server = cluster.server;
         const ssl = server.startsWith('https://');
-        const target = ssl ? server.substr(8) : server.substr(7);
+        const target = ssl ? server.slice(8) : server.slice(7);
         const proto = ssl ? 'wss' : 'ws';
         const uri = `${proto}://${target}${path}`;
 
         const opts: WebSocket.ClientOptions = {};
 
-        await this.config.applytoHTTPSOptions(opts);
+        await this.config.applyToHTTPSOptions(opts);
 
-        return await new Promise<WebSocket>((resolve, reject) => {
+        return await new Promise<WebSocket.WebSocket>((resolve, reject) => {
             const client = this.socketFactory
-                ? this.socketFactory(uri, opts)
+                ? this.socketFactory(uri, protocols, opts)
                 : new WebSocket(uri, protocols, opts);
             let resolved = false;
 
@@ -188,12 +238,18 @@ export class WebSocketHandler implements WebSocketInterface {
             client.onmessage = ({ data }: { data: WebSocket.Data }) => {
                 // TODO: support ArrayBuffer and Buffer[] data types?
                 if (typeof data === 'string') {
+                    if (data.charCodeAt(0) === WebSocketHandler.CloseStream) {
+                        WebSocketHandler.closeStream(data.charCodeAt(1), this.streams);
+                    }
                     if (textHandler && !textHandler(data)) {
                         client.close();
                     }
                 } else if (data instanceof Buffer) {
-                    const streamNum = data.readInt8(0);
-                    if (binaryHandler && !binaryHandler(streamNum, data.slice(1))) {
+                    const streamNum = data.readUint8(0);
+                    if (streamNum === WebSocketHandler.CloseStream) {
+                        WebSocketHandler.closeStream(data.readInt8(1), this.streams);
+                    }
+                    if (binaryHandler && !binaryHandler(streamNum, data.subarray(1))) {
                         client.close();
                     }
                 }

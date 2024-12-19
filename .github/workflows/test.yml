@@ -11,11 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [ '16', '14', '12' ]
+        # Remove specific version from 20 when https://github.com/tschaub/mock-fs/issues/380 is fixed
+        node: [ '22', '20.7.0', '18' ]
     name: Node ${{ matrix.node }} validation
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
       # Pre-check to validate that versions match between package.json

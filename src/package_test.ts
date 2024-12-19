@@ -9,6 +9,12 @@ describe('package', () => {
         expect(v1).to.equal(v2);
     });
 
+    it('package-lock reference version should match', () => {
+        const v1 = require('../package.json').version;
+        const v2 = require('../package-lock.json').packages[''].version;
+        expect(v1).to.equal(v2);
+    });
+
     it('package-lock should only reference npm', () => {
         const validateDependencies = (deps) => {
             if (!deps.dependencies) {

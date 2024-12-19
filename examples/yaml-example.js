@@ -6,25 +6,25 @@ kc.loadFromDefault();
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
 const yamlString = k8s.dumpYaml({
-  metadata: {
-    name: 'test'
-  }
+    metadata: {
+        name: 'test',
+    },
 });
 
 const yamlNamespace = k8s.loadYaml(yamlString);
 
-k8sApi.createNamespace(yamlNamespace).then(
-  (response) => {
-    console.log('Created namespace');
-    console.log(response);
-    k8sApi.readNamespace(yamlNamespace.metadata.name).then(
-      (response) => {
-        console.log(response);
-        k8sApi.deleteNamespace(
-          yamlNamespace.metadata.name, {} /* delete options */);
-      });
-  },
-  (err) => {
-    console.log('Error!: ' + err);
-  }
-);
+const main = async () => {
+    try {
+        const createNamespaceRes = await k8sApi.createNamespace(yamlNamespace);
+        console.log('Created namespace: ', createNamespaceRes.body);
+
+        const namespaceRes = await k8sApi.readNamespace(yamlNamespace.metadata.name);
+        console.log('Namespace: ', namespaceRes.body);
+
+        await k8sApi.deleteNamespace(yamlNamespace.metadata.name, {});
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+main();

@@ -1,8 +1,6 @@
 import * as k8s from '@kubernetes/client-node';
 import * as net from 'net';
 
-const command = process.argv[2];
-
 const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
 

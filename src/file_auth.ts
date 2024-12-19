@@ -30,7 +30,7 @@ export class FileAuth implements Authenticator {
 
     private refreshToken(filePath: string): void {
         // TODO make this async?
-        this.token = fs.readFileSync(filePath).toString('UTF-8');
+        this.token = fs.readFileSync(filePath).toString('utf8');
         this.lastRead = new Date();
     }
 

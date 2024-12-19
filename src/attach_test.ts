@@ -49,7 +49,7 @@ describe('Attach', () => {
         it('should correctly attach to streams', async () => {
             const kc = new KubeConfig();
             const fakeWebSocketInterface: WebSocketInterface = mock(WebSocketHandler);
-            const fakeWebSocket: WebSocket = mock(WebSocket);
+            const fakeWebSocket: WebSocket.WebSocket = mock(WebSocket);
             const callAwaiter: CallAwaiter = new CallAwaiter();
             const attach = new Attach(kc, instance(fakeWebSocketInterface));
             const osStream = new ResizableWriteableStreamBuffer();
@@ -63,7 +63,7 @@ describe('Attach', () => {
             const path = `/api/v1/namespaces/${namespace}/pods/${pod}/attach`;
             const args = `container=${container}&stderr=true&stdin=true&stdout=true&tty=false`;
 
-            const fakeConn: WebSocket = instance(fakeWebSocket);
+            const fakeConn: WebSocket.WebSocket = instance(fakeWebSocket);
             when(fakeWebSocketInterface.connect(`${path}?${args}`, null, anyFunction())).thenResolve(
                 fakeConn,
             );
@@ -102,7 +102,7 @@ describe('Attach', () => {
             await callAwaiter.awaitCall('send');
             verify(
                 fakeWebSocket.send(
-                    matchBuffer(WebSocketHandler.ResizeStream, JSON.stringify(initialTerminalSize)),
+                    matchBuffer(WebSocketHandler.ResizeStream, JSON.stringify(initialTerminalSize)) as any,
                 ),
             ).called();
 
@@ -110,7 +110,7 @@ describe('Attach', () => {
             const inputPromise = callAwaiter.awaitCall('send');
             isStream.put(msg);
             await inputPromise;
-            verify(fakeWebSocket.send(matchBuffer(WebSocketHandler.StdinStream, msg))).called();
+            verify(fakeWebSocket.send(matchBuffer(WebSocketHandler.StdinStream, msg) as any)).called();
 
             const terminalSize: TerminalSize = { height: 80, width: 120 };
             const resizePromise = callAwaiter.awaitCall('send');
@@ -119,7 +119,9 @@ describe('Attach', () => {
             osStream.emit('resize');
             await resizePromise;
             verify(
-                fakeWebSocket.send(matchBuffer(WebSocketHandler.ResizeStream, JSON.stringify(terminalSize))),
+                fakeWebSocket.send(
+                    matchBuffer(WebSocketHandler.ResizeStream, JSON.stringify(terminalSize)) as any,
+                ),
             ).called();
 
             const closePromise = callAwaiter.awaitCall('close');

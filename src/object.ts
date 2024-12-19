@@ -1,16 +1,10 @@
 import * as http from 'http';
 import request = require('request');
-import {
-    ApisApi,
-    HttpError,
-    ObjectSerializer,
-    V1APIResource,
-    V1APIResourceList,
-    V1DeleteOptions,
-    V1Status,
-} from './api';
+import { ApisApi, HttpError, V1APIResource, V1APIResourceList, V1DeleteOptions, V1Status } from './api';
 import { KubeConfig } from './config';
+import ObjectSerializer from './serializer';
 import { KubernetesListObject, KubernetesObject } from './types';
+import { RequestResult, Watch } from './watch';
 
 /** Union type of body types returned by KubernetesObjectApi. */
 type KubernetesObjectResponseBody =
@@ -21,6 +15,21 @@ type KubernetesObjectResponseBody =
 
 /** Kubernetes API verbs. */
 type KubernetesApiAction = 'create' | 'delete' | 'patch' | 'read' | 'list' | 'replace';
+
+type KubernetesObjectHeader<T extends KubernetesObject | KubernetesObject> = Pick<
+    T,
+    'apiVersion' | 'kind'
+> & {
+    metadata: {
+        name: string;
+        namespace?: string;
+    };
+};
+
+interface GroupVersion {
+    group: string;
+    version: string;
+}
 
 /**
  * Valid Content-Type header values for patch operations.  See
@@ -35,6 +44,60 @@ enum KubernetesPatchStrategies {
     /** Merge with different strategies depending on field metadata. */
     StrategicMergePatch = 'application/strategic-merge-patch+json',
 }
+
+/**
+ * Describes the type of an watch event.
+ * Object is:
+ * - If Type is Added or Modified: the new state of the object.
+ * - If Type is Deleted: the state of the object immediately before deletion.
+ * - If Type is Bookmark: the object (instance of a type being watched) where
+ *   only ResourceVersion field is set. On successful restart of watch from a
+ *   bookmark resourceVersion, client is guaranteed to not get repeat event
+ *   nor miss any events.
+ * - If Type is Error: *api.Status is recommended; other types may make sense
+ *   depending on context.
+ */
+export enum KubernetesEventType {
+    ADDED = 'ADDED',
+    MODIFIED = 'MODIFIED',
+    DELETED = 'DELETED',
+    BOOKMARK = 'BOOKMARK',
+    ERROR = 'ERROR',
+}
+
+export type WatchObject<T extends KubernetesObject | KubernetesObject> = {
+    type: KubernetesEventType;
+    object: T;
+};
+
+export type WatchCallback<T extends KubernetesObject | KubernetesObject> = (
+    phase: KubernetesEventType,
+    apiObj: T,
+    watchObj?: WatchObject<T>,
+) => void;
+
+export type WatchOptions = {
+    /**
+     * To mitigate the impact of short history window,
+     * the Kubernetes API provides a watch event named BOOKMARK.
+     * It is a special kind of event to mark that all changes
+     * up to a given resourceVersion the client is requesting
+     * have already been sent.
+     *
+     * See https://kubernetes.io/docs/reference/using-api/api-concepts/#watch-bookmarks
+     */
+    allowWatchBookmarks?: boolean;
+    /**
+     * Start watch at the given resource version.
+     * Starting at a specific resource version means that only events
+     * starting from that versions are included in the watch stream.
+     */
+    resourceVersion?: string;
+};
+
+export type WatchResult = {
+    abort: () => void;
+};
 
 /**
  * Dynamically construct Kubernetes API request URIs so client does not have to know what type of object it is acting
@@ -52,6 +115,7 @@ export class KubernetesObjectApi extends ApisApi {
     public static makeApiClient(kc: KubeConfig): KubernetesObjectApi {
         const client = kc.makeApiClient(KubernetesObjectApi);
         client.setDefaultNamespace(kc);
+        client.watcher = new Watch(kc);
         return client;
     }
 
@@ -60,6 +124,8 @@ export class KubernetesObjectApi extends ApisApi {
 
     /** Cache resource API response. */
     protected apiVersionResourceCache: Record<string, V1APIResourceList> = {};
+
+    protected watcher?: Watch;
 
     /**
      * Create any Kubernetes resource.
@@ -74,13 +140,13 @@ export class KubernetesObjectApi extends ApisApi {
      * @param options Optional headers to use in the request.
      * @return Promise containing the request response and [[KubernetesObject]].
      */
-    public async create(
-        spec: KubernetesObject,
+    public async create<T extends KubernetesObject | KubernetesObject>(
+        spec: T,
         pretty?: string,
         dryRun?: string,
         fieldManager?: string,
         options: { headers: { [name: string]: string } } = { headers: {} },
-    ): Promise<{ body: KubernetesObject; response: http.IncomingMessage }> {
+    ): Promise<{ body: T; response: http.IncomingMessage }> {
         // verify required parameter 'spec' is not null or undefined
         if (spec === null || spec === undefined) {
             throw new Error('Required parameter spec was null or undefined when calling create.');
@@ -218,14 +284,14 @@ export class KubernetesObjectApi extends ApisApi {
      * @param options Optional headers to use in the request.
      * @return Promise containing the request response and [[KubernetesObject]].
      */
-    public async patch(
-        spec: KubernetesObject,
+    public async patch<T extends KubernetesObject | KubernetesObject>(
+        spec: T,
         pretty?: string,
         dryRun?: string,
         fieldManager?: string,
         force?: boolean,
         options: { headers: { [name: string]: string } } = { headers: {} },
-    ): Promise<{ body: KubernetesObject; response: http.IncomingMessage }> {
+    ): Promise<{ body: T; response: http.IncomingMessage }> {
         // verify required parameter 'spec' is not null or undefined
         if (spec === null || spec === undefined) {
             throw new Error('Required parameter spec was null or undefined when calling patch.');
@@ -275,16 +341,23 @@ export class KubernetesObjectApi extends ApisApi {
      * @param options Optional headers to use in the request.
      * @return Promise containing the request response and [[KubernetesObject]].
      */
-    public async read(
-        spec: KubernetesObject,
+    public async read<T extends KubernetesObject | KubernetesObject>(
+        spec: KubernetesObjectHeader<T>,
         pretty?: string,
         exact?: boolean,
         exportt?: boolean,
         options: { headers: { [name: string]: string } } = { headers: {} },
-    ): Promise<{ body: KubernetesObject; response: http.IncomingMessage }> {
+    ): Promise<{ body: T; response: http.IncomingMessage }> {
         // verify required parameter 'spec' is not null or undefined
         if (spec === null || spec === undefined) {
             throw new Error('Required parameter spec was null or undefined when calling read.');
+        }
+        // verify required parameter 'kind' is not null or undefined
+        if (spec.kind === null || spec.kind === undefined) {
+            throw new Error('Required parameter spec.kind was null or undefined when calling read.');
+        }
+        if (!spec.apiVersion) {
+            throw new Error('Required parameter spec.apiVersion was null or undefined when calling read.');
         }
 
         const localVarPath = await this.specUriPath(spec, 'read');
@@ -331,7 +404,7 @@ export class KubernetesObjectApi extends ApisApi {
      * @param options Optional headers to use in the request.
      * @return Promise containing the request response and [[KubernetesListObject<KubernetesObject>]].
      */
-    public async list(
+    public async list<T extends KubernetesObject | KubernetesObject>(
         apiVersion: string,
         kind: string,
         namespace?: string,
@@ -343,7 +416,7 @@ export class KubernetesObjectApi extends ApisApi {
         limit?: number,
         continueToken?: string,
         options: { headers: { [name: string]: string } } = { headers: {} },
-    ): Promise<{ body: KubernetesListObject<KubernetesObject>; response: http.IncomingMessage }> {
+    ): Promise<{ body: KubernetesListObject<T>; response: http.IncomingMessage }> {
         // verify required parameters 'apiVersion', 'kind' is not null or undefined
         if (apiVersion === null || apiVersion === undefined) {
             throw new Error('Required parameter apiVersion was null or undefined when calling list.');
@@ -418,13 +491,13 @@ export class KubernetesObjectApi extends ApisApi {
      * @param options Optional headers to use in the request.
      * @return Promise containing the request response and [[KubernetesObject]].
      */
-    public async replace(
-        spec: KubernetesObject,
+    public async replace<T extends KubernetesObject | KubernetesObject>(
+        spec: T,
         pretty?: string,
         dryRun?: string,
         fieldManager?: string,
         options: { headers: { [name: string]: string } } = { headers: {} },
-    ): Promise<{ body: KubernetesObject; response: http.IncomingMessage }> {
+    ): Promise<{ body: T; response: http.IncomingMessage }> {
         // verify required parameter 'spec' is not null or undefined
         if (spec === null || spec === undefined) {
             throw new Error('Required parameter spec was null or undefined when calling replace.');
@@ -457,6 +530,76 @@ export class KubernetesObjectApi extends ApisApi {
         };
 
         return this.requestPromise(localVarRequestOptions);
+    }
+
+    /**
+     * Watches the given resources and calls provided callback with the parsed json object
+     * upon event received over the watcher connection.
+     *
+     * @param resource defines the resources to watch. Namespace is optional.
+     *                 Undefined namespace means to watch all namespaces.
+     * @param options Optional options that are passed to the watch request.
+     * @param callback callback function that is called with the parsed json object upon event received.
+     * @param done callback is called either when connection is closed or when there
+     *             is an error. In either case, watcher takes care of properly closing the
+     *             underlaying connection so that it doesn't leak any resources.
+     *
+     * @returns WatchResult object that can be used to abort the watch.
+     */
+    public async watch<T extends KubernetesObject | KubernetesObject>({
+        resource,
+        options = {},
+        callback,
+        done,
+    }: {
+        resource: {
+            apiVersion: string;
+            kind: string;
+            namespace?: string;
+        };
+        options?: WatchOptions;
+        callback: WatchCallback<T>;
+        done: (err: unknown) => void;
+    }): Promise<WatchResult> {
+        if (!this.watcher) {
+            throw new Error('Watcher not initialized');
+        }
+        const resourcePath = new URL(
+            await this.specUriPath(
+                {
+                    apiVersion: resource.apiVersion,
+                    kind: resource.kind,
+                    metadata: {
+                        namespace: resource.namespace,
+                    },
+                },
+                'list',
+            ),
+        ).pathname;
+        const type = await this.getSerializationType(resource.apiVersion, resource.kind);
+        const cb: WatchCallback<T> = (phase: KubernetesEventType, apiObj: T, watchObj?: WatchObject<T>) => {
+            const obj = ObjectSerializer.deserialize(apiObj, type);
+            callback(
+                phase,
+                obj,
+                watchObj
+                    ? {
+                          ...watchObj,
+                          object: obj,
+                      }
+                    : undefined,
+            );
+        };
+        const res: RequestResult = await this.watcher.watch(
+            resourcePath,
+            options,
+            // required to convert to less strict type.
+            cb as (phase: string, apiObj: any, watchObj?: any) => void,
+            done,
+        );
+        return {
+            abort: () => res.abort(),
+        };
     }
 
     /** Set default namespace from current context, if available. */
@@ -587,9 +730,35 @@ export class KubernetesObjectApi extends ApisApi {
             this.apiVersionResourceCache[apiVersion] = getApiResponse.body;
             return this.apiVersionResourceCache[apiVersion].resources.find((r) => r.kind === kind);
         } catch (e) {
-            e.message = `Failed to fetch resource metadata for ${apiVersion}/${kind}: ${e.message}`;
+            if (e instanceof Error) {
+                e.message = `Failed to fetch resource metadata for ${apiVersion}/${kind}: ${e.message}`;
+            }
             throw e;
         }
+    }
+
+    protected async getSerializationType(apiVersion?: string, kind?: string): Promise<string> {
+        if (apiVersion === undefined || kind === undefined) {
+            return 'KubernetesObject';
+        }
+        // Types are defined in src/gen/api/models with the format "<Version><Kind>".
+        // Version and Kind are in PascalCase.
+        const gv = this.groupVersion(apiVersion);
+        const version = gv.version.charAt(0).toUpperCase() + gv.version.slice(1);
+        return `${version}${kind}`;
+    }
+
+    protected groupVersion(apiVersion: string): GroupVersion {
+        const v = apiVersion.split('/');
+        return v.length === 1
+            ? {
+                  group: 'core',
+                  version: apiVersion,
+              }
+            : {
+                  group: v[0],
+                  version: v[1],
+              };
     }
 
     /**
@@ -597,7 +766,7 @@ export class KubernetesObjectApi extends ApisApi {
      */
     protected async requestPromise<T extends KubernetesObjectResponseBody = KubernetesObject>(
         requestOptions: request.Options,
-        tipe: string = 'KubernetesObject',
+        type?: string,
     ): Promise<{ body: T; response: http.IncomingMessage }> {
         let authenticationPromise = Promise.resolve();
         if (this.authentications.BearerToken.apiKey) {
@@ -616,11 +785,15 @@ export class KubernetesObjectApi extends ApisApi {
         await interceptorPromise;
 
         return new Promise<{ body: T; response: http.IncomingMessage }>((resolve, reject) => {
-            request(requestOptions, (error, response, body) => {
+            request(requestOptions, async (error, response, body) => {
                 if (error) {
                     reject(error);
                 } else {
-                    body = ObjectSerializer.deserialize(body, tipe);
+                    // TODO(schrodit): support correct deserialization to KubernetesObject.
+                    if (type === undefined) {
+                        type = await this.getSerializationType(body.apiVersion, body.kind);
+                    }
+                    body = ObjectSerializer.deserialize(body, type);
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response, body });
                     } else {

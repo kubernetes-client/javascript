@@ -27,7 +27,7 @@ export class Exec {
      * @param {boolean} tty - Should the command execute in a TTY enabled session.
      * @param {(V1Status) => void} statusCallback -
      *       A callback to received the status (e.g. exit code) from the command, optional.
-     * @return {string} This is the result
+     * @return {Promise<WebSocket>} A promise that will return the web socket created for this command.
      */
     public async exec(
         namespace: string,
@@ -39,7 +39,7 @@ export class Exec {
         stdin: stream.Readable | null,
         tty: boolean,
         statusCallback?: (status: V1Status) => void,
-    ): Promise<WebSocket> {
+    ): Promise<WebSocket.WebSocket> {
         const query = {
             stdout: stdout != null,
             stderr: stderr != null,
@@ -50,27 +50,23 @@ export class Exec {
         };
         const queryStr = querystring.stringify(query);
         const path = `/api/v1/namespaces/${namespace}/pods/${podName}/exec?${queryStr}`;
-        const conn = await this.handler.connect(
-            path,
-            null,
-            (streamNum: number, buff: Buffer): boolean => {
-                const status = WebSocketHandler.handleStandardStreams(streamNum, buff, stdout, stderr);
-                if (status != null) {
-                    if (statusCallback) {
-                        statusCallback(status);
-                    }
-                    return false;
+        const conn = await this.handler.connect(path, null, (streamNum: number, buff: Buffer): boolean => {
+            const status = WebSocketHandler.handleStandardStreams(streamNum, buff, stdout, stderr);
+            if (status != null) {
+                if (statusCallback) {
+                    statusCallback(status);
                 }
-                return true;
-            },
-        );
+                return false;
+            }
+            return true;
+        });
         if (stdin != null) {
             WebSocketHandler.handleStandardInput(conn, stdin, WebSocketHandler.StdinStream);
         }
         if (isResizable(stdout)) {
             this.terminalSizeQueue = new TerminalSizeQueue();
             WebSocketHandler.handleStandardInput(conn, this.terminalSizeQueue, WebSocketHandler.ResizeStream);
-            this.terminalSizeQueue.handleResizes((stdout as any) as ResizableStream);
+            this.terminalSizeQueue.handleResizes(stdout as any as ResizableStream);
         }
         return conn;
     }

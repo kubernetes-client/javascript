@@ -17,8 +17,9 @@ export interface PodMetric {
     metadata: {
         name: string;
         namespace: string;
-        selfLink: string;
+        selfLink?: string;
         creationTimestamp: string;
+        labels?: { [key: string]: string };
     };
     timestamp: string;
     window: string;
@@ -28,8 +29,9 @@ export interface PodMetric {
 export interface NodeMetric {
     metadata: {
         name: string;
-        selfLink: string;
+        selfLink?: string;
         creationTimestamp: string;
+        labels?: { [key: string]: string };
     };
     timestamp: string;
     window: string;
@@ -54,6 +56,23 @@ export interface NodeMetricsList {
     items: NodeMetric[];
 }
 
+export interface SinglePodMetrics extends PodMetric {
+    kind: 'PodMetrics';
+    apiVersion: 'metrics.k8s.io/v1beta1';
+}
+
+export interface SingleNodeMetrics extends NodeMetric {
+    kind: 'NodeMetrics';
+    apiVersion: 'metrics.k8s.io/v1beta1';
+}
+
+export interface MetricsOptions {
+    /**
+     * restrict the list of returned objects by labels
+     */
+    labelSelector?: string;
+}
+
 export class Metrics {
     private config: KubeConfig;
 
@@ -61,23 +80,63 @@ export class Metrics {
         this.config = config;
     }
 
-    public async getNodeMetrics(): Promise<NodeMetricsList> {
-        return this.metricsApiRequest<NodeMetricsList>('/apis/metrics.k8s.io/v1beta1/nodes');
+    public async getNodeMetrics(options?: MetricsOptions): Promise<NodeMetricsList>;
+    public async getNodeMetrics(node: string, options?: MetricsOptions): Promise<SingleNodeMetrics>;
+    public async getNodeMetrics(
+        nodeOrOptions?: string | MetricsOptions,
+        options?: MetricsOptions,
+    ): Promise<NodeMetricsList | SingleNodeMetrics> {
+        if (typeof nodeOrOptions !== 'string' || nodeOrOptions === '') {
+            if (nodeOrOptions !== '') {
+                options = nodeOrOptions;
+            }
+            return this.metricsApiRequest<NodeMetricsList>('/apis/metrics.k8s.io/v1beta1/nodes', options);
+        }
+        return this.metricsApiRequest<SingleNodeMetrics>(
+            `/apis/metrics.k8s.io/v1beta1/nodes/${nodeOrOptions}`,
+            options,
+        );
     }
 
-    public async getPodMetrics(namespace?: string): Promise<PodMetricsList> {
+    public async getPodMetrics(options?: MetricsOptions): Promise<PodMetricsList>;
+    public async getPodMetrics(namespace?: string, options?: MetricsOptions): Promise<PodMetricsList>;
+    public async getPodMetrics(
+        namespace: string,
+        name: string,
+        options?: MetricsOptions,
+    ): Promise<SinglePodMetrics>;
+    public async getPodMetrics(
+        namespaceOrOptions?: string | MetricsOptions,
+        nameOrOptions?: string | MetricsOptions,
+        options?: MetricsOptions,
+    ): Promise<SinglePodMetrics | PodMetricsList> {
         let path: string;
 
-        if (namespace !== undefined && namespace.length > 0) {
-            path = `/apis/metrics.k8s.io/v1beta1/namespaces/${namespace}/pods`;
+        if (typeof namespaceOrOptions === 'string' && namespaceOrOptions !== '') {
+            const namespace = namespaceOrOptions;
+
+            if (typeof nameOrOptions === 'string') {
+                path = `/apis/metrics.k8s.io/v1beta1/namespaces/${namespace}/pods/${nameOrOptions}`;
+            } else {
+                path = `/apis/metrics.k8s.io/v1beta1/namespaces/${namespace}/pods`;
+                options = nameOrOptions;
+            }
         } else {
             path = '/apis/metrics.k8s.io/v1beta1/pods';
+
+            if (typeof namespaceOrOptions !== 'string') {
+                options = namespaceOrOptions;
+            } else if (typeof nameOrOptions !== 'string') {
+                options = nameOrOptions;
+            }
         }
 
-        return this.metricsApiRequest<PodMetricsList>(path);
+        return this.metricsApiRequest<PodMetricsList | SinglePodMetrics>(path, options);
     }
 
-    private async metricsApiRequest<T extends PodMetricsList | NodeMetricsList>(path: string): Promise<T> {
+    private async metricsApiRequest<
+        T extends PodMetricsList | NodeMetricsList | SinglePodMetrics | SingleNodeMetrics,
+    >(path: string, options?: MetricsOptions): Promise<T> {
         const cluster = this.config.getCurrentCluster();
         if (!cluster) {
             throw new Error('No currently active cluster');
@@ -86,6 +145,7 @@ export class Metrics {
         const requestOptions: request.Options = {
             method: 'GET',
             uri: cluster.server + path,
+            qs: options,
         };
 
         await this.config.applyToRequest(requestOptions);

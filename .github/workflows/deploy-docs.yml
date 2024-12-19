@@ -3,16 +3,18 @@ on:
   push:
     branches:
       - master
+permissions:
+  contents: write
 jobs:
   build-and-deploy-docs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2.3.1
+        uses: actions/checkout@v4
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
-          node-version: '14.x'
+          node-version: '20'
       # Pre-check to validate that versions match between package.json
       # and package-lock.json. Needs to run before npm install
       - name: Validate package.json and package-lock.json versions
@@ -23,7 +25,7 @@ jobs:
         run: npm run docs
 
       - name: Deploy docs
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+        uses: JamesIves/github-pages-deploy-action@v4.7.2
         with:
           branch: gh-pages # The branch the action should deploy to.
           folder: docs # The folder the action should deploy.

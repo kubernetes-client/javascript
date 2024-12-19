@@ -1,12 +1,11 @@
 import { expect, use } from 'chai';
-import chaiAsPromised = require('chai-as-promised');
+import chaiAsPromised from 'chai-as-promised';
+use(chaiAsPromised);
 import nock = require('nock');
 
 import { CoreV1Api } from './api';
 import { KubeConfig } from './config';
 import { Cluster, User } from './config_types';
-
-use(chaiAsPromised);
 
 describe('FullRequest', () => {
     describe('getPods', () => {
@@ -44,9 +43,7 @@ describe('FullRequest', () => {
 
             const promise = k8sApi.listNamespacedPod('default');
 
-            return expect(promise)
-                .to.eventually.have.property('body')
-                .that.deep.equals(result);
+            return expect(promise).to.eventually.have.property('body').that.deep.equals(result);
         });
     });
 });

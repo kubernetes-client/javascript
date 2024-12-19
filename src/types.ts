@@ -6,6 +6,10 @@ export interface KubernetesObject {
     metadata?: V1ObjectMeta;
 }
 
+export interface KubernetesObjectWithSpec extends KubernetesObject {
+    spec: object;
+}
+
 export interface KubernetesListObject<T extends KubernetesObject> {
     apiVersion?: string;
     kind?: string;
@@ -14,3 +18,9 @@ export interface KubernetesListObject<T extends KubernetesObject> {
 }
 
 export type IntOrString = number | string;
+
+export class V1MicroTime extends Date {
+    public toISOString(): string {
+        return super.toISOString().slice(0, -1) + '000Z';
+    }
+}

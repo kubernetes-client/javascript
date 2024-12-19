@@ -285,4 +285,27 @@ describe('GoogleCloudPlatformAuth', () => {
             expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
         }
     });
+
+    it('should throw if tried to run JavaScript inside the token key', async () => {
+        const token = 'token';
+        const responseStr = `{"token":{"accessToken":"${token}"}}`;
+
+        const user = {
+            authProvider: {
+                name: 'gcp',
+                config: {
+                    'cmd-path': join(__dirname, '..', 'test', 'echo space.js'),
+                    'cmd-args': `'${responseStr}'`,
+                    'expiry-key': '{.token.token_expiry}',
+
+                    // The problematic token
+                    'token-key': '{..[?(' + '(function a(arr){' + 'a([...arr, ...arr])' + '})([1]);)]}',
+                },
+            },
+        } as User;
+
+        await expect(auth.applyAuthentication(user, {})).to.eventually.be.rejectedWith(
+            'Eval [?(expr)] prevented in JSONPath expression.',
+        );
+    });
 });

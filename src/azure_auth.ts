@@ -1,10 +1,10 @@
 import * as proc from 'child_process';
 import https = require('https');
-import * as jsonpath from 'jsonpath-plus';
 import request = require('request');
 
 import { Authenticator } from './auth';
 import { User } from './config_types';
+import { jsonpath } from './json_path';
 
 /* FIXME: maybe we can extend the User and User.authProvider type to have a proper type.
 Currently user.authProvider has `any` type and so we don't have a type for user.authProvider.config.
@@ -57,7 +57,7 @@ export class AzureAuth implements Authenticator {
             return false;
         }
 
-        const expiresOnDate = expiresOn ? new Date(parseInt(expiresOn, 10) * 1000) : undefined;
+        const expiresOnDate = expiresOn ? new Date(parseInt(expiresOn, 10) * 1000).getTime() : undefined;
         const expiration = expiry ? Date.parse(expiry) : expiresOnDate!;
         if (expiration < Date.now()) {
             return true;
@@ -82,7 +82,7 @@ export class AzureAuth implements Authenticator {
         try {
             output = proc.execSync(cmd);
         } catch (err) {
-            throw new Error('Failed to refresh token: ' + err.message);
+            throw new Error('Failed to refresh token: ' + (err as Error).message);
         }
 
         const resultObj = JSON.parse(output);
@@ -94,7 +94,7 @@ export class AzureAuth implements Authenticator {
         const tokenPathKey = '$' + tokenPathKeyInConfig.slice(1, -1);
         const expiryPathKey = '$' + expiryPathKeyInConfig.slice(1, -1);
 
-        config['access-token'] = jsonpath.JSONPath(tokenPathKey, resultObj);
-        config.expiry = jsonpath.JSONPath(expiryPathKey, resultObj);
+        config['access-token'] = jsonpath(tokenPathKey, resultObj);
+        config.expiry = jsonpath(expiryPathKey, resultObj);
     }
 }

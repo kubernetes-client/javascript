@@ -1,10 +1,9 @@
 import { CoreV1Api, V1Node, V1Pod, V1PodList } from './gen/api';
-import { ContainerMetric, Metrics, PodMetric } from './metrics';
+import { Metrics, PodMetric } from './metrics';
 import {
     add,
     podsForNode,
     quantityToScalar,
-    ResourceStatus,
     totalCPU,
     totalCPUForContainer,
     totalMemory,
@@ -64,7 +63,7 @@ export async function topNodes(api: CoreV1Api): Promise<NodeStatus[]> {
         let totalPodMem: number | bigint = 0;
         let totalPodMemLimit: number | bigint = 0;
         let pods = await podsForNode(api, node.metadata!.name!);
-        pods = pods.filter((pod: V1Pod) => pod.status!.phase === 'Running');
+        pods = pods.filter((pod: V1Pod) => pod.status?.phase === 'Running');
         pods.forEach((pod: V1Pod) => {
             const cpuTotal = totalCPU(pod);
             totalPodCPU = add(totalPodCPU, cpuTotal.request);
@@ -86,10 +85,7 @@ export async function topNodes(api: CoreV1Api): Promise<NodeStatus[]> {
 export async function topPods(api: CoreV1Api, metrics: Metrics, namespace?: string): Promise<PodStatus[]> {
     // Figure out which pod list endpoint to call
     const getPodList = async (): Promise<V1PodList> => {
-        if (namespace) {
-            return (await api.listNamespacedPod(namespace)).body;
-        }
-        return (await api.listPodForAllNamespaces()).body;
+        return (await (namespace ? api.listNamespacedPod(namespace) : api.listPodForAllNamespaces())).body;
     };
 
     const [podMetrics, podList] = await Promise.all([metrics.getPodMetrics(namespace), getPodList()]);
@@ -123,7 +119,7 @@ export async function topPods(api: CoreV1Api, metrics: Metrics, namespace?: stri
             podRequestsCPU = add(podRequestsCPU, containerCpuTotal.request);
             podLimitsCPU = add(podLimitsCPU, containerCpuTotal.limit);
 
-            podRequestsMem = add(podLimitsMem, containerMemTotal.request);
+            podRequestsMem = add(podRequestsMem, containerMemTotal.request);
             podLimitsMem = add(podLimitsMem, containerMemTotal.limit);
 
             // Find the container metrics by container.name

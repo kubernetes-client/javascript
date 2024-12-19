@@ -1,4 +1,4 @@
-import execa = require('execa');
+import child_process = require('child_process');
 import fs = require('fs');
 import https = require('https');
 import yaml = require('js-yaml');
@@ -6,7 +6,8 @@ import net = require('net');
 import path = require('path');
 
 import request = require('request');
-import shelljs = require('shelljs');
+import WebSocket = require('ws');
+import SocksProxyAgent = require('socks-proxy-agent');
 
 import * as api from './api';
 import { Authenticator } from './auth';
@@ -26,7 +27,7 @@ import {
 import { ExecAuth } from './exec_auth';
 import { FileAuth } from './file_auth';
 import { GoogleCloudPlatformAuth } from './gcp_auth';
-import { OpenIDConnectAuth } from './oidc_auth';
+import { DelayedOpenIDConnectAuth } from './oidc_auth_delayed';
 
 // fs.existsSync was removed in node 10
 function fileExists(filepath: string): boolean {
@@ -39,12 +40,12 @@ function fileExists(filepath: string): boolean {
 }
 
 export class KubeConfig {
-    private static authenticators: Authenticator[] = [
+    private authenticators: Authenticator[] = [
         new AzureAuth(),
         new GoogleCloudPlatformAuth(),
         new ExecAuth(),
         new FileAuth(),
-        new OpenIDConnectAuth(),
+        new DelayedOpenIDConnectAuth(),
     ];
 
     /**
@@ -126,17 +127,27 @@ export class KubeConfig {
 
     public loadFromFile(file: string, opts?: Partial<ConfigOptions>): void {
         const rootDirectory = path.dirname(file);
-        this.loadFromString(fs.readFileSync(file, 'utf8'), opts);
+        this.loadFromString(fs.readFileSync(file).toString('utf-8'), opts);
         this.makePathsAbsolute(rootDirectory);
     }
 
-    public async applytoHTTPSOptions(opts: https.RequestOptions): Promise<void> {
-        const user = this.getCurrentUser();
-
+    public async applyToHTTPSOptions(opts: https.RequestOptions | WebSocket.ClientOptions): Promise<void> {
         await this.applyOptions(opts);
 
+        const user = this.getCurrentUser();
         if (user && user.username) {
-            opts.auth = `${user.username}:${user.password}`;
+            // The ws docs say that it accepts anything that https.RequestOptions accepts,
+            // but Typescript doesn't understand that idea (yet) probably could be fixed in
+            // the typings, but for now just cast to any
+            (opts as any).auth = `${user.username}:${user.password}`;
+        }
+
+        const cluster = this.getCurrentCluster();
+        if (cluster && cluster.tlsServerName) {
+            // The ws docs say that it accepts anything that https.RequestOptions accepts,
+            // but Typescript doesn't understand that idea (yet) probably could be fixed in
+            // the typings, but for now just cast to any
+            (opts as any).servername = cluster.tlsServerName;
         }
     }
 
@@ -156,6 +167,18 @@ export class KubeConfig {
                 username: user.username,
             };
         }
+
+        if (cluster && cluster.tlsServerName) {
+            opts.agentOptions = { servername: cluster.tlsServerName } as https.AgentOptions;
+        }
+
+        if (cluster && cluster.proxyUrl) {
+            if (cluster.proxyUrl.startsWith('socks')) {
+                opts.agent = new SocksProxyAgent.SocksProxyAgent(cluster.proxyUrl);
+            } else {
+                opts.proxy = cluster.proxyUrl;
+            }
+        }
     }
 
     public loadFromString(config: string, opts?: Partial<ConfigOptions>): void {
@@ -166,7 +189,12 @@ export class KubeConfig {
         this.currentContext = obj['current-context'];
     }
 
-    public loadFromOptions(options: any): void {
+    public loadFromOptions(options: {
+        clusters: Cluster[];
+        contexts: Context[];
+        currentContext: Context['name'];
+        users: User[];
+    }): void {
         this.clusters = options.clusters;
         this.contexts = options.contexts;
         this.users = options.users;
@@ -192,6 +220,12 @@ export class KubeConfig {
         const clusterName = 'inCluster';
         const userName = 'inClusterUser';
         const contextName = 'inClusterContext';
+        const tokenFile = process.env.TOKEN_FILE_PATH
+            ? process.env.TOKEN_FILE_PATH
+            : `${pathPrefix}${Config.SERVICEACCOUNT_TOKEN_PATH}`;
+        const caFile = process.env.KUBERNETES_CA_FILE_PATH
+            ? process.env.KUBERNETES_CA_FILE_PATH
+            : `${pathPrefix}${Config.SERVICEACCOUNT_CA_PATH}`;
 
         let scheme = 'https';
         if (port === '80' || port === '8080' || port === '8001') {
@@ -207,7 +241,7 @@ export class KubeConfig {
         this.clusters = [
             {
                 name: clusterName,
-                caFile: `${pathPrefix}${Config.SERVICEACCOUNT_CA_PATH}`,
+                caFile,
                 server: `${scheme}://${serverHost}:${port}`,
                 skipTLSVerify: false,
             },
@@ -218,7 +252,7 @@ export class KubeConfig {
                 authProvider: {
                     name: 'tokenFile',
                     config: {
-                        tokenFile: `${pathPrefix}${Config.SERVICEACCOUNT_TOKEN_PATH}`,
+                        tokenFile,
                     },
                 },
             },
@@ -226,7 +260,7 @@ export class KubeConfig {
         const namespaceFile = `${pathPrefix}${Config.SERVICEACCOUNT_NAMESPACE_PATH}`;
         let namespace: string | undefined;
         if (fileExists(namespaceFile)) {
-            namespace = fs.readFileSync(namespaceFile, 'utf8');
+            namespace = fs.readFileSync(namespaceFile).toString('utf-8');
         }
         this.contexts = [
             {
@@ -240,7 +274,7 @@ export class KubeConfig {
     }
 
     public mergeConfig(config: KubeConfig, preserveContext: boolean = false): void {
-        if (!preserveContext) {
+        if (!preserveContext && config.currentContext) {
             this.currentContext = config.currentContext;
         }
         config.clusters.forEach((cluster: Cluster) => {
@@ -258,11 +292,11 @@ export class KubeConfig {
         if (!this.clusters) {
             this.clusters = [];
         }
-        this.clusters.forEach((c: Cluster, ix: number) => {
-            if (c.name === cluster.name) {
-                throw new Error(`Duplicate cluster: ${c.name}`);
-            }
-        });
+
+        if (this.clusters.some((c) => c.name === cluster.name)) {
+            throw new Error(`Duplicate cluster: ${cluster.name}`);
+        }
+
         this.clusters.push(cluster);
     }
 
@@ -270,11 +304,11 @@ export class KubeConfig {
         if (!this.users) {
             this.users = [];
         }
-        this.users.forEach((c: User, ix: number) => {
-            if (c.name === user.name) {
-                throw new Error(`Duplicate user: ${c.name}`);
-            }
-        });
+
+        if (this.users.some((c) => c.name === user.name)) {
+            throw new Error(`Duplicate user: ${user.name}`);
+        }
+
         this.users.push(user);
     }
 
@@ -282,11 +316,11 @@ export class KubeConfig {
         if (!this.contexts) {
             this.contexts = [];
         }
-        this.contexts.forEach((c: Context, ix: number) => {
-            if (c.name === ctx.name) {
-                throw new Error(`Duplicate context: ${c.name}`);
-            }
-        });
+
+        if (this.contexts.some((c) => c.name === ctx.name)) {
+            throw new Error(`Duplicate context: ${ctx.name}`);
+        }
+
         this.contexts.push(ctx);
     }
 
@@ -309,17 +343,20 @@ export class KubeConfig {
                 return;
             }
         }
-        if (process.platform === 'win32' && shelljs.which('wsl.exe')) {
+        if (process.platform === 'win32') {
             try {
-                const envKubeconfigPathResult = execa.sync('wsl.exe', ['bash', '-ic', 'printenv KUBECONFIG']);
-                if (envKubeconfigPathResult.exitCode === 0 && envKubeconfigPathResult.stdout.length > 0) {
-                    const result = execa.sync('wsl.exe', ['cat', envKubeconfigPathResult.stdout]);
-                    if (result.exitCode === 0) {
-                        this.loadFromString(result.stdout, opts);
-                        return;
-                    }
-                    if (result.exitCode === 0) {
-                        this.loadFromString(result.stdout, opts);
+                const envKubeconfigPathResult = child_process.spawnSync('wsl.exe', [
+                    'bash',
+                    '-c',
+                    'printenv KUBECONFIG',
+                ]);
+                if (envKubeconfigPathResult.status === 0 && envKubeconfigPathResult.stdout.length > 0) {
+                    const result = child_process.spawnSync('wsl.exe', [
+                        'cat',
+                        envKubeconfigPathResult.stdout.toString('utf8'),
+                    ]);
+                    if (result.status === 0) {
+                        this.loadFromString(result.stdout.toString('utf8'), opts);
                         return;
                     }
                 }
@@ -327,9 +364,13 @@ export class KubeConfig {
                 // Falling back to default kubeconfig
             }
             try {
-                const result = execa.sync('wsl.exe', ['cat', '~/.kube/config']);
-                if (result.exitCode === 0) {
-                    this.loadFromString(result.stdout, opts);
+                const configResult = child_process.spawnSync('wsl.exe', ['cat', '~/.kube/config']);
+                if (configResult.status === 0) {
+                    this.loadFromString(configResult.stdout.toString('utf8'), opts);
+                    const result = child_process.spawnSync('wsl.exe', ['wslpath', '-w', '~/.kube']);
+                    if (result.status === 0) {
+                        this.makePathsAbsolute(result.stdout.toString('utf8'));
+                    }
                     return;
                 }
             } catch (err) {
@@ -337,7 +378,10 @@ export class KubeConfig {
             }
         }
 
-        if (fileExists(Config.SERVICEACCOUNT_TOKEN_PATH)) {
+        if (
+            fileExists(Config.SERVICEACCOUNT_TOKEN_PATH) ||
+            (process.env.TOKEN_FILE_PATH !== undefined && process.env.TOKEN_FILE_PATH !== '')
+        ) {
             this.loadFromCluster();
             return;
         }
@@ -393,7 +437,7 @@ export class KubeConfig {
         return this.getContextObject(this.currentContext);
     }
 
-    private applyHTTPSOptions(opts: request.Options | https.RequestOptions): void {
+    private applyHTTPSOptions(opts: request.Options | https.RequestOptions | WebSocket.ClientOptions): void {
         const cluster = this.getCurrentCluster();
         const user = this.getCurrentUser();
         if (!user) {
@@ -417,12 +461,14 @@ export class KubeConfig {
         }
     }
 
-    private async applyAuthorizationHeader(opts: request.Options | https.RequestOptions): Promise<void> {
+    private async applyAuthorizationHeader(
+        opts: request.Options | https.RequestOptions | WebSocket.ClientOptions,
+    ): Promise<void> {
         const user = this.getCurrentUser();
         if (!user) {
             return;
         }
-        const authenticator = KubeConfig.authenticators.find((elt: Authenticator) => {
+        const authenticator = this.authenticators.find((elt: Authenticator) => {
             return elt.isAuthProvider(user);
         });
 
@@ -438,7 +484,9 @@ export class KubeConfig {
         }
     }
 
-    private async applyOptions(opts: request.Options | https.RequestOptions): Promise<void> {
+    private async applyOptions(
+        opts: request.Options | https.RequestOptions | WebSocket.ClientOptions,
+    ): Promise<void> {
         this.applyHTTPSOptions(opts);
         await this.applyAuthorizationHeader(opts);
     }
@@ -517,18 +565,15 @@ export function bufferFromFileOrString(file?: string, data?: string): Buffer | n
 }
 
 function dropDuplicatesAndNils(a: string[]): string[] {
-    return a.reduce(
-        (acceptedValues, currentValue) => {
-            // Good-enough algorithm for reducing a small (3 items at this point) array into an ordered list
-            // of unique non-empty strings.
-            if (currentValue && !acceptedValues.includes(currentValue)) {
-                return acceptedValues.concat(currentValue);
-            } else {
-                return acceptedValues;
-            }
-        },
-        [] as string[],
-    );
+    return a.reduce((acceptedValues, currentValue) => {
+        // Good-enough algorithm for reducing a small (3 items at this point) array into an ordered list
+        // of unique non-empty strings.
+        if (currentValue && !acceptedValues.includes(currentValue)) {
+            return acceptedValues.concat(currentValue);
+        } else {
+            return acceptedValues;
+        }
+    }, [] as string[]);
 }
 
 // Only public for testing.
