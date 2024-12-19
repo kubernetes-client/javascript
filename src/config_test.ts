@@ -10,7 +10,7 @@ import mockfs from 'mock-fs';
 
 import { Headers } from 'node-fetch';
 import { HttpMethod } from './index.js';
-import { assertRequestAgentsEqual, assertRequestOptionsEqual } from '../test/match-buffer';
+import { assertRequestAgentsEqual, assertRequestOptionsEqual } from './test/match-buffer';
 import { CoreV1Api, RequestContext } from './api.js';
 import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolutePath } from './config.js';
 import { ActionOnInvalid, Cluster, newClusters, newContexts, newUsers, User } from './config_types.js';
@@ -1134,7 +1134,7 @@ describe('KubeConfig', () => {
                     authProvider: {
                         name: 'azure', // applies to gcp too as they are both handled by CloudAuth class
                         config: {
-                            'cmd-path': path.join(__dirname, '..', 'test', 'echo space.js'),
+                            'cmd-path': path.join(__dirname, 'test', 'echo space.js'),
                             'cmd-args': `'${responseStr}'`,
                             'token-key': '{.token.accessToken}',
                             'expiry-key': '{.token.token_expiry}',

@@ -297,7 +297,7 @@ describe('AzureAuth', () => {
                 authProvider: {
                     name: 'azure',
                     config: {
-                        'cmd-path': join(__dirname, '..', 'test', 'echo space.js'),
+                        'cmd-path': join(__dirname, 'test', 'echo space.js'),
                         'cmd-args': `'${responseStr}'`,
                         'token-key': '{.token.accessToken}',
                         'expiry-key': '{.token.token_expiry}',

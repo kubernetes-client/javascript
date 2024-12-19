@@ -1,6 +1,6 @@
 {
     "name": "@kubernetes/client-node",
-    "version": "1.0.0-rc7",
+    "version": "1.0.0",
     "description": "NodeJS client for kubernetes",
     "type": "module",
     "repository": {
@@ -37,7 +37,8 @@
         "exclude": [
             "src/gen/*/**.ts",
             "src/index.ts",
-            "src/*_test.ts"
+            "src/*_test.ts",
+            "src/test"
         ],
         "extension": [
             ".ts"
@@ -73,7 +74,6 @@
         "stream-buffers": "^3.0.2",
         "tar": "^7.0.0",
         "tmp-promise": "^3.0.2",
-        "tslib": "^2.5.0",
         "ws": "^8.18.0"
     },
     "devDependencies": {
@@ -85,13 +85,11 @@
         "chai": "^5.1.2",
         "chai-as-promised": "^8.0.0",
         "husky": "^9.0.6",
-        "jasmine": "^5.0.0",
         "mocha": "^11.0.1",
         "mock-fs": "^5.2.0",
         "nock": "^13.2.9",
         "prettier": "^3.0.0",
         "pretty-quick": "^4.0.0",
-        "source-map-support": "^0.5.9",
         "ts-mockito": "^2.3.1",
         "tslint": "^6.1.3",
         "tsx": "^4.19.1",
@@ -114,7 +112,6 @@
         "arrowParens": "always"
     },
     "overrides": {
-        "colors": "1.4.0",
         "whatwg-url@<12.0.1": "12.0.1"
     }
 }
