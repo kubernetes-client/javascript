@@ -254,7 +254,6 @@ export class KubeConfig implements SecurityAuthentication {
 
         if (cluster && cluster.proxyUrl) {
             if (cluster.proxyUrl.startsWith('socks')) {
-                agentOptions.rejectUnauthorized = false;
                 agent = new SocksProxyAgent(cluster.proxyUrl, agentOptions);
             } else if (cluster.server.startsWith('https')) {
                 const httpsProxyAgentOptions: HttpsProxyAgentOptions = agentOptions as HttpsProxyAgentOptions;
