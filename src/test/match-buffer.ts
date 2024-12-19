@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { RequestOptions, Agent } from 'node:https';
-import { Matcher } from 'ts-mockito/lib/matcher/type/Matcher';
+import { Matcher } from 'ts-mockito/lib/matcher/type/Matcher.js';
 
 export function matchBuffer(channel: number, contents: string): StringBufferMatcher {
     return new StringBufferMatcher(channel, contents);

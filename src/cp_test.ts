@@ -2,7 +2,7 @@ import { anything, anyFunction, instance, mock, verify, when } from 'ts-mockito'
 import querystring from 'node:querystring';
 import WebSocket from 'isomorphic-ws';
 
-import { CallAwaiter } from './test';
+import { CallAwaiter } from './test/index.js';
 import { KubeConfig } from './config.js';
 import { Exec } from './exec.js';
 import { Cp } from './cp.js';

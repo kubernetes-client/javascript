@@ -3,7 +3,7 @@ import WebSocket from 'isomorphic-ws';
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
 import { anyFunction, anything, capture, instance, mock, verify, when } from 'ts-mockito';
 
-import { CallAwaiter, matchBuffer, ResizableWriteableStreamBuffer } from './test';
+import { CallAwaiter, matchBuffer, ResizableWriteableStreamBuffer } from './test/index.js';
 import { V1Status } from './api.js';
 import { KubeConfig } from './config.js';
 import { Exec } from './exec.js';

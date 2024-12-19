@@ -1,3 +1,3 @@
-export * from './call-awaiter';
-export * from './match-buffer';
-export * from './resizable-writeable-stream-buffer';
+export * from './call-awaiter.js';
+export * from './match-buffer.js';
+export * from './resizable-writeable-stream-buffer.js';
