@@ -173,6 +173,7 @@ export class KubeConfig implements SecurityAuthentication {
 
     public async applyToHTTPSOptions(opts: https.RequestOptions | WebSocket.ClientOptions): Promise<void> {
         const user = this.getCurrentUser();
+        const cluster = this.getCurrentCluster();
 
         await this.applyOptions(opts);
 
@@ -207,7 +208,7 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions.secureProtocol = opts.secureProtocol;
         agentOptions.sessionIdContext = opts.sessionIdContext;
 
-        opts.agent = new https.Agent(agentOptions);
+        opts.agent = this.createAgent(cluster, agentOptions);
     }
 
     /**
@@ -250,27 +251,7 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions.passphrase = httpsOptions.passphrase;
         agentOptions.rejectUnauthorized = httpsOptions.rejectUnauthorized;
 
-        let agent: https.Agent | SocksProxyAgent | HttpProxyAgent | HttpsProxyAgent;
-
-        if (cluster && cluster.proxyUrl) {
-            if (cluster.proxyUrl.startsWith('socks')) {
-                agent = new SocksProxyAgent(cluster.proxyUrl, agentOptions);
-            } else if (cluster.server.startsWith('https')) {
-                const httpsProxyAgentOptions: HttpsProxyAgentOptions = agentOptions as HttpsProxyAgentOptions;
-                httpsProxyAgentOptions.proxy = cluster.proxyUrl;
-                agent = new HttpsProxyAgent(httpsProxyAgentOptions);
-            } else if (cluster.server.startsWith('http')) {
-                const httpProxyAgentOptions: HttpProxyAgentOptions = agentOptions as HttpProxyAgentOptions;
-                httpProxyAgentOptions.proxy = cluster.proxyUrl;
-                agent = new HttpProxyAgent(httpProxyAgentOptions);
-            } else {
-                throw new Error('Unsupported proxy type');
-            }
-        } else {
-            agent = new https.Agent(agentOptions);
-        }
-
-        context.setAgent(agent);
+        context.setAgent(this.createAgent(cluster, agentOptions));
     }
 
     /**
@@ -529,6 +510,32 @@ export class KubeConfig implements SecurityAuthentication {
 
     private getCurrentContextObject(): Context | null {
         return this.getContextObject(this.currentContext);
+    }
+
+    private createAgent(
+        cluster: Cluster | null,
+        agentOptions: https.AgentOptions,
+    ): https.Agent | SocksProxyAgent | HttpProxyAgent | HttpsProxyAgent {
+        let agent: https.Agent | SocksProxyAgent | HttpProxyAgent | HttpsProxyAgent;
+
+        if (cluster && cluster.proxyUrl) {
+            if (cluster.proxyUrl.startsWith('socks')) {
+                agent = new SocksProxyAgent(cluster.proxyUrl, agentOptions);
+            } else if (cluster.server.startsWith('https')) {
+                const httpsProxyAgentOptions: HttpsProxyAgentOptions = agentOptions as HttpsProxyAgentOptions;
+                httpsProxyAgentOptions.proxy = cluster.proxyUrl;
+                agent = new HttpsProxyAgent(httpsProxyAgentOptions);
+            } else if (cluster.server.startsWith('http')) {
+                const httpProxyAgentOptions: HttpProxyAgentOptions = agentOptions as HttpProxyAgentOptions;
+                httpProxyAgentOptions.proxy = cluster.proxyUrl;
+                agent = new HttpProxyAgent(httpProxyAgentOptions);
+            } else {
+                throw new Error('Unsupported proxy type');
+            }
+        } else {
+            agent = new https.Agent(agentOptions);
+        }
+        return agent;
     }
 
     private applyHTTPSOptions(opts: https.RequestOptions | WebSocket.ClientOptions): void {
