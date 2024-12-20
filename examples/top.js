@@ -5,4 +5,13 @@ kc.loadFromDefault();
 
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
-k8s.topNodes(k8sApi).then((obj) => console.log(obj));
+const main = async () => {
+    try {
+        const topNodesRes = await k8s.topNodes(k8sApi);
+        console.log(topNodesRes);
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+main();

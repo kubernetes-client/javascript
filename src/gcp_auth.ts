@@ -1,10 +1,10 @@
 import * as proc from 'child_process';
 import https = require('https');
-import * as jsonpath from 'jsonpath-plus';
 import request = require('request');
 
 import { Authenticator } from './auth';
 import { User } from './config_types';
+import { jsonpath } from './json_path';
 
 /* FIXME: maybe we can extend the User and User.authProvider type to have a proper type.
 Currently user.authProvider has `any` type and so we don't have a type for user.authProvider.config.
@@ -62,23 +62,23 @@ export class GoogleCloudPlatformAuth implements Authenticator {
     }
 
     private updateAccessToken(config: Config): void {
-        let cmd = config['cmd-path'];
+        const cmd = config['cmd-path'];
         if (!cmd) {
             throw new Error('Token is expired!');
         }
-        // Wrap cmd in quotes to make it cope with spaces in path
-        cmd = `"${cmd}"`;
-        const args = config['cmd-args'];
-        if (args) {
-            cmd = cmd + ' ' + args;
-        }
+        const args = (config['cmd-args'] ? config['cmd-args'].split(' ') : []).map((arg: string): string => {
+            if (arg[0] === "'" || arg[0] === '"') {
+                return arg.substring(1, arg.length - 1);
+            }
+            return arg;
+        });
         // TODO: Cache to file?
         // TODO: do this asynchronously
         let output: any;
         try {
-            output = proc.execSync(cmd);
+            output = proc.execFileSync(cmd, args);
         } catch (err) {
-            throw new Error('Failed to refresh token: ' + err.message);
+            throw new Error('Failed to refresh token: ' + (err as Error).message);
         }
 
         const resultObj = JSON.parse(output);
@@ -90,7 +90,7 @@ export class GoogleCloudPlatformAuth implements Authenticator {
         const tokenPathKey = '$' + tokenPathKeyInConfig.slice(1, -1);
         const expiryPathKey = '$' + expiryPathKeyInConfig.slice(1, -1);
 
-        config['access-token'] = jsonpath.JSONPath(tokenPathKey, resultObj);
-        config.expiry = jsonpath.JSONPath(expiryPathKey, resultObj);
+        config['access-token'] = jsonpath(tokenPathKey, resultObj);
+        config.expiry = jsonpath(expiryPathKey, resultObj);
     }
 }

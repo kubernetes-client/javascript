@@ -1,68 +1,17 @@
+import { fail } from 'assert';
 import { expect } from 'chai';
 import nock = require('nock');
-import { V1APIResource, V1APIResourceList } from './api';
+import { PassThrough } from 'stream';
+import { IncomingMessage } from 'http';
+import { V1APIResource, V1APIResourceList, V1Secret } from './api';
 import { KubeConfig } from './config';
+import { Cluster, Context, User } from './config_types';
 import { KubernetesObjectApi } from './object';
 import { KubernetesObject } from './types';
+import { resolvablePromise } from './util';
 
-describe('KubernetesObject', () => {
-    const testConfigOptions = {
-        clusters: [{ name: 'dc', server: 'https://d.i.y' }],
-        users: [{ name: 'ian', password: 'mackaye' }],
-        contexts: [{ name: 'dischord', cluster: 'dc', user: 'ian' }],
-        currentContext: 'dischord',
-    };
-
-    describe('makeApiClient', () => {
-        it('should create the client', () => {
-            const kc = new KubeConfig();
-            kc.loadFromOptions(testConfigOptions);
-            const c = KubernetesObjectApi.makeApiClient(kc);
-            expect(c).to.be.ok;
-            expect((c as any).defaultNamespace).to.equal('default');
-        });
-
-        it('should set the default namespace from context', () => {
-            const kc = new KubeConfig();
-            kc.loadFromOptions({
-                clusters: [{ name: 'dc', server: 'https://d.i.y' }],
-                users: [{ name: 'ian', password: 'mackaye' }],
-                contexts: [{ name: 'dischord', cluster: 'dc', user: 'ian', namespace: 'straight-edge' }],
-                currentContext: 'dischord',
-            });
-            const c = KubernetesObjectApi.makeApiClient(kc);
-            expect(c).to.be.ok;
-            expect((c as any).defaultNamespace).to.equal('straight-edge');
-        });
-    });
-
-    class KubernetesObjectApiTest extends KubernetesObjectApi {
-        public static makeApiClient(kc?: KubeConfig): KubernetesObjectApiTest {
-            if (!kc) {
-                kc = new KubeConfig();
-                kc.loadFromOptions(testConfigOptions);
-            }
-            const client = kc.makeApiClient(KubernetesObjectApiTest);
-            client.setDefaultNamespace(kc);
-            return client;
-        }
-        public apiVersionResourceCache: Record<string, V1APIResourceList> = {};
-        public async specUriPath(spec: KubernetesObject, method: any): Promise<string> {
-            return super.specUriPath(spec, method);
-        }
-        public generateHeaders(
-            optionsHeaders: { [name: string]: string },
-            action: string = 'GET',
-        ): { [name: string]: string } {
-            return super.generateHeaders(optionsHeaders, action);
-        }
-        public async resource(apiVersion: string, kind: string): Promise<V1APIResource | undefined> {
-            return super.resource(apiVersion, kind);
-        }
-    }
-
-    const resourceBodies = {
-        core: `{
+const resourceBodies = {
+    core: `{
   "groupVersion": "v1",
   "kind": "APIResourceList",
   "resources": [
@@ -253,7 +202,7 @@ describe('KubernetesObject', () => {
   ]
 }`,
 
-        apps: `{
+    apps: `{
   "apiVersion": "v1",
   "groupVersion": "apps/v1",
   "kind": "APIResourceList",
@@ -326,7 +275,7 @@ describe('KubernetesObject', () => {
     }
   ]
 }`,
-        extensions: `{
+    extensions: `{
   "groupVersion": "extensions/v1beta1",
   "kind": "APIResourceList",
   "resources": [
@@ -411,7 +360,7 @@ describe('KubernetesObject', () => {
     }
   ]
 }`,
-        networking: `{
+    networking: `{
   "apiVersion": "v1",
   "groupVersion": "networking.k8s.io/v1",
   "kind": "APIResourceList",
@@ -423,7 +372,7 @@ describe('KubernetesObject', () => {
     }
   ]
 }`,
-        rbac: `{
+    rbac: `{
   "apiVersion": "v1",
   "groupVersion": "rbac.authorization.k8s.io/v1",
   "kind": "APIResourceList",
@@ -450,7 +399,7 @@ describe('KubernetesObject', () => {
     }
   ]
 }`,
-        storage: `{
+    storage: `{
   "apiVersion": "v1",
   "groupVersion": "storage.k8s.io/v1",
   "kind": "APIResourceList",
@@ -472,7 +421,63 @@ describe('KubernetesObject', () => {
     }
   ]
 }`,
+};
+
+describe('KubernetesObject', () => {
+    const testConfigOptions = {
+        clusters: [{ name: 'dc', server: 'https://d.i.y' }],
+        users: [{ name: 'ian', password: 'mackaye' }],
+        contexts: [{ name: 'dischord', cluster: 'dc', user: 'ian' }],
+        currentContext: 'dischord',
     };
+
+    describe('makeApiClient', () => {
+        it('should create the client', () => {
+            const kc = new KubeConfig();
+            kc.loadFromOptions(testConfigOptions);
+            const c = KubernetesObjectApi.makeApiClient(kc);
+            expect(c).to.be.ok;
+            expect((c as any).defaultNamespace).to.equal('default');
+        });
+
+        it('should set the default namespace from context', () => {
+            const kc = new KubeConfig();
+            kc.loadFromOptions({
+                clusters: [{ name: 'dc', server: 'https://d.i.y' }],
+                users: [{ name: 'ian', password: 'mackaye' }],
+                contexts: [{ name: 'dischord', cluster: 'dc', user: 'ian', namespace: 'straight-edge' }],
+                currentContext: 'dischord',
+            });
+            const c = KubernetesObjectApi.makeApiClient(kc);
+            expect(c).to.be.ok;
+            expect((c as any).defaultNamespace).to.equal('straight-edge');
+        });
+    });
+
+    class KubernetesObjectApiTest extends KubernetesObjectApi {
+        public static makeApiClient(kc?: KubeConfig): KubernetesObjectApiTest {
+            if (!kc) {
+                kc = new KubeConfig();
+                kc.loadFromOptions(testConfigOptions);
+            }
+            const client = kc.makeApiClient(KubernetesObjectApiTest);
+            client.setDefaultNamespace(kc);
+            return client;
+        }
+        public apiVersionResourceCache: Record<string, V1APIResourceList> = {};
+        public async specUriPath(spec: KubernetesObject, method: any): Promise<string> {
+            return super.specUriPath(spec, method);
+        }
+        public generateHeaders(
+            optionsHeaders: { [name: string]: string },
+            action: string = 'GET',
+        ): { [name: string]: string } {
+            return super.generateHeaders(optionsHeaders, action);
+        }
+        public async resource(apiVersion: string, kind: string): Promise<V1APIResource | undefined> {
+            return super.resource(apiVersion, kind);
+        }
+    }
 
     describe('specUriPath', () => {
         it('should return a namespaced path', async () => {
@@ -485,9 +490,7 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             const r = await c.specUriPath(o, 'patch');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces/fugazi/services/repeater');
             scope.done();
@@ -502,9 +505,7 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             const r = await c.specUriPath(o, 'patch');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces/fugazi/serviceaccounts/repeater');
             scope.done();
@@ -526,9 +527,7 @@ describe('KubernetesObject', () => {
                     name: 'repeater',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             const r = await c.specUriPath(o, 'patch');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces/straight-edge/pods/repeater');
             scope.done();
@@ -550,9 +549,7 @@ describe('KubernetesObject', () => {
                     name: 'repeater',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             const r = await c.specUriPath(o, 'patch');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces/default/pods/repeater');
             scope.done();
@@ -567,9 +564,7 @@ describe('KubernetesObject', () => {
                     name: 'repeater',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             const r = await c.specUriPath(o, 'delete');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces/repeater');
             scope.done();
@@ -584,9 +579,7 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             const r = await c.specUriPath(o, 'create');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces/fugazi/services');
             scope.done();
@@ -601,9 +594,7 @@ describe('KubernetesObject', () => {
                     name: 'repeater',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             const r = await c.specUriPath(o, 'create');
             expect(r).to.equal('https://d.i.y/api/v1/namespaces');
             scope.done();
@@ -619,9 +610,7 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/apis/apps/v1')
-                .reply(200, resourceBodies.apps);
+            const scope = nock('https://d.i.y').get('/apis/apps/v1').reply(200, resourceBodies.apps);
             const r = await c.specUriPath(o, 'read');
             expect(r).to.equal('https://d.i.y/apis/apps/v1/namespaces/fugazi/deployments/repeater');
             scope.done();
@@ -756,9 +745,7 @@ describe('KubernetesObject', () => {
                     o.metadata = o.metadata || {};
                     o.metadata.namespace = 'fugazi';
                 }
-                const scope = nock('https://d.i.y')
-                    .get(k.p)
-                    .reply(200, k.b);
+                const scope = nock('https://d.i.y').get(k.p).reply(200, k.b);
                 const r = await c.specUriPath(o, 'patch');
                 expect(r).to.equal(k.e);
                 scope.done();
@@ -873,9 +860,7 @@ describe('KubernetesObject', () => {
                 if (k.ns) {
                     o.metadata = { namespace: 'fugazi' };
                 }
-                const scope = nock('https://d.i.y')
-                    .get(k.p)
-                    .reply(200, k.b);
+                const scope = nock('https://d.i.y').get(k.p).reply(200, k.b);
                 const r = await c.specUriPath(o, 'create');
                 expect(r).to.equal(k.e);
                 scope.done();
@@ -897,7 +882,11 @@ describe('KubernetesObject', () => {
                 expect.fail('should have thrown error');
             } catch (e) {
                 thrown = true;
-                expect(e.message).to.equal('Required spec property kind is not set');
+                if (e instanceof Error) {
+                    expect(e.message).to.equal('Required spec property kind is not set');
+                } else {
+                    fail(`unknown exception: ${e}`);
+                }
             }
             expect(thrown).to.be.true;
         });
@@ -911,16 +900,18 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             let thrown = false;
             try {
                 await c.specUriPath(o, 'read');
                 expect.fail('should have thrown error');
             } catch (e) {
                 thrown = true;
-                expect(e.message).to.equal('Required spec property name is not set');
+                if (e instanceof Error) {
+                    expect(e.message).to.equal('Required spec property name is not set');
+                } else {
+                    fail(`unknown exception: ${e}`);
+                }
             }
             expect(thrown).to.be.true;
             scope.done();
@@ -936,16 +927,18 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             let thrown = false;
             try {
                 await c.specUriPath(o, 'create');
                 expect.fail('should have thrown error');
             } catch (e) {
                 thrown = true;
-                expect(e.message).to.equal('Unrecognized API version and kind: v1 Ingress');
+                if (e instanceof Error) {
+                    expect(e.message).to.equal('Unrecognized API version and kind: v1 Ingress');
+                } else {
+                    fail(`unknown exception: ${e}`);
+                }
             }
             expect(thrown).to.be.true;
             scope.done();
@@ -954,7 +947,7 @@ describe('KubernetesObject', () => {
 
     describe('generateHeaders', () => {
         let client: KubernetesObjectApiTest;
-        before(function(this: Mocha.Context): void {
+        before(function (this: Mocha.Context): void {
             client = KubernetesObjectApiTest.makeApiClient();
         });
 
@@ -994,7 +987,7 @@ describe('KubernetesObject', () => {
 
     describe('resource', () => {
         let client: KubernetesObjectApiTest;
-        before(function(this: Mocha.Context): void {
+        before(function (this: Mocha.Context): void {
             client = KubernetesObjectApiTest.makeApiClient();
         });
 
@@ -1002,12 +995,16 @@ describe('KubernetesObject', () => {
             for (const a of [null, undefined]) {
                 let thrown = false;
                 try {
-                    await client.resource((a as unknown) as string, 'Service');
+                    await client.resource(a as unknown as string, 'Service');
                 } catch (e) {
                     thrown = true;
-                    expect(e.message).to.equal(
-                        'Required parameter apiVersion was null or undefined when calling resource',
-                    );
+                    if (e instanceof Error) {
+                        expect(e.message).to.equal(
+                            'Required parameter apiVersion was null or undefined when calling resource',
+                        );
+                    } else {
+                        fail(`unknown exception: ${e}`);
+                    }
                 }
                 expect(thrown).to.be.true;
             }
@@ -1017,12 +1014,16 @@ describe('KubernetesObject', () => {
             for (const a of [null, undefined]) {
                 let thrown = false;
                 try {
-                    await client.resource('v1', (a as unknown) as string);
+                    await client.resource('v1', a as unknown as string);
                 } catch (e) {
                     thrown = true;
-                    expect(e.message).to.equal(
-                        'Required parameter kind was null or undefined when calling resource',
-                    );
+                    if (e instanceof Error) {
+                        expect(e.message).to.equal(
+                            'Required parameter kind was null or undefined when calling resource',
+                        );
+                    } else {
+                        fail(`unknown exception: ${e}`);
+                    }
                 }
                 expect(thrown).to.be.true;
             }
@@ -1042,9 +1043,7 @@ describe('KubernetesObject', () => {
                     },
                 ];
             }
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             await c.resource('v1', 'Service');
             expect(intercepted).to.be.true;
             scope.done();
@@ -1052,9 +1051,7 @@ describe('KubernetesObject', () => {
 
         it('should cache API response', async () => {
             const c = KubernetesObjectApiTest.makeApiClient();
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             const s = await c.resource('v1', 'Service');
             expect(s).to.be.ok;
             if (!s) {
@@ -1110,9 +1107,7 @@ describe('KubernetesObject', () => {
                     },
                 ],
             } as any;
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core);
+            const scope = nock('https://d.i.y').get('/api/v1').reply(200, resourceBodies.core);
             const s = await c.resource('v1', 'Service');
             expect(s).to.be.ok;
             if (!s) {
@@ -1657,7 +1652,7 @@ describe('KubernetesObject', () => {
                         selfLink: '/api/v1/namespaces/default/services/k8s-js-client-test',
                         uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
                         resourceVersion: '41183',
-                        creationTimestamp: '2020-05-11T19:35:01Z',
+                        creationTimestamp: '2020-05-11T19:35:01.000Z',
                         annotations: {
                             owner: 'test',
                             test: '1',
@@ -1748,11 +1743,92 @@ describe('KubernetesObject', () => {
             scope.done();
         });
 
+        it('should read a resource', async () => {
+            const scope = nock('https://d.i.y')
+                .get('/api/v1/namespaces/default/secrets/test-secret-1')
+                .reply(200, {
+                    apiVersion: 'v1',
+                    kind: 'Secret',
+                    metadata: {
+                        name: 'test-secret-1',
+                        namespace: 'default',
+                        uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
+                        creationTimestamp: '2022-01-01T00:00:00.000Z',
+                    },
+                    data: {
+                        key: 'value',
+                    },
+                });
+            const res = await client.read<V1Secret>({
+                apiVersion: 'v1',
+                kind: 'Secret',
+                metadata: {
+                    name: 'test-secret-1',
+                    namespace: 'default',
+                },
+            });
+            const secret = res.body;
+            expect(secret).to.be.instanceof(V1Secret);
+            expect(secret.data).to.deep.equal({
+                key: 'value',
+            });
+            expect(secret.metadata).to.be.ok;
+            expect(secret.metadata!.creationTimestamp).to.deep.equal(new Date('2022-01-01T00:00:00.000Z'));
+            scope.done();
+        });
+
+        it('should read a custom resource', async () => {
+            interface CustomTestResource extends KubernetesObject {
+                spec: {
+                    key: string;
+                };
+            }
+            (client as any).apiVersionResourceCache['example.com/v1'] = {
+                groupVersion: 'example.com/v1',
+                kind: 'APIResourceList',
+                resources: [
+                    {
+                        kind: 'CustomTestResource',
+                        name: 'customtestresources',
+                        namespaced: true,
+                    },
+                ],
+            };
+            const scope = nock('https://d.i.y')
+                .get('/apis/example.com/v1/namespaces/default/customtestresources/test-1')
+                .reply(200, {
+                    apiVersion: 'example.com/v1',
+                    kind: 'CustomTestResource',
+                    metadata: {
+                        name: 'test-1',
+                        namespace: 'default',
+                        uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
+                        creationTimestamp: '2022-01-01T00:00:00.000Z',
+                    },
+                    spec: {
+                        key: 'value',
+                    },
+                });
+            const res = await client.read<CustomTestResource>({
+                apiVersion: 'example.com/v1',
+                kind: 'CustomTestResource',
+                metadata: {
+                    name: 'test-1',
+                    namespace: 'default',
+                },
+            });
+            const custom = res.body;
+            expect(custom.spec).to.deep.equal({
+                key: 'value',
+            });
+            expect(custom.metadata).to.be.ok;
+            expect(custom.metadata!.creationTimestamp).to.deep.equal(new Date('2022-01-01T00:00:00.000Z'));
+            scope.done();
+        });
+
         it('should list resources in a namespace', async () => {
             const scope = nock('https://d.i.y')
-                .get(
-                    '/api/v1/namespaces/default/secrets?fieldSelector=metadata.name%3Dtest-secret1&labelSelector=app%3Dmy-app&limit=5&continue=abc',
-                )
+                .get('/api/v1/namespaces/default/secrets')
                 .reply(200, {
                     apiVersion: 'v1',
                     kind: 'SecretList',
@@ -1771,20 +1847,10 @@ describe('KubernetesObject', () => {
                         continue: 'abc',
                     },
                 });
-            const lr = await client.list(
-                'v1',
-                'Secret',
-                'default',
-                undefined,
-                undefined,
-                undefined,
-                'metadata.name=test-secret1',
-                'app=my-app',
-                5,
-                'abc',
-            );
+            const lr = await client.list<V1Secret>('v1', 'Secret', 'default');
             const items = lr.body.items;
             expect(items).to.have.length(1);
+            expect(items[0]).to.be.instanceof(V1Secret);
             scope.done();
         });
 
@@ -1848,9 +1914,13 @@ describe('KubernetesObject', () => {
                         expect.fail('should have thrown an error');
                     } catch (e) {
                         thrown = true;
-                        expect(e.message).to.contain(
-                            'Required parameter spec was null or undefined when calling ',
-                        );
+                        if (e instanceof Error) {
+                            expect(e.message).to.contain(
+                                'Required parameter spec was null or undefined when calling ',
+                            );
+                        } else {
+                            fail(`unknown exception: ${e}`);
+                        }
                     }
                     expect(thrown).to.be.true;
                 }
@@ -1885,7 +1955,11 @@ describe('KubernetesObject', () => {
                 expect.fail('should have thrown error');
             } catch (e) {
                 thrown = true;
-                expect(e.message).to.contain('Nock: No match for request');
+                if (e instanceof Error) {
+                    expect(e.message).to.contain('Nock: No match for request');
+                } else {
+                    fail(`unknown exception: ${e}`);
+                }
             }
             expect(thrown).to.be.true;
         });
@@ -1943,8 +2017,12 @@ describe('KubernetesObject', () => {
                 await client.create(s);
             } catch (e) {
                 thrown = true;
-                expect(e.statusCode).to.equal(422);
-                expect(e.message).to.equal('HTTP request failed');
+                if (e instanceof Error) {
+                    expect((e as any).statusCode).to.equal(422);
+                    expect(e.message).to.equal('HTTP request failed');
+                } else {
+                    fail(`unknown exception: ${e}`);
+                }
             }
             expect(thrown).to.be.true;
             scope.done();
@@ -1984,18 +2062,20 @@ describe('KubernetesObject', () => {
                     },
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/apis/applications/v1')
-                .reply(404, `{}`);
+            const scope = nock('https://d.i.y').get('/apis/applications/v1').reply(404, `{}`);
             let thrown = false;
             try {
                 await client.create(d);
             } catch (e) {
                 thrown = true;
-                expect(e.statusCode).to.equal(404);
-                expect(e.message).to.equal(
-                    'Failed to fetch resource metadata for applications/v1/Deployment: HTTP request failed',
-                );
+                if (e instanceof Error) {
+                    expect((e as any).statusCode).to.equal(404);
+                    expect(e.message).to.equal(
+                        'Failed to fetch resource metadata for applications/v1/Deployment: HTTP request failed',
+                    );
+                } else {
+                    fail(`unknown exception: ${e}`);
+                }
             }
             expect(thrown).to.be.true;
             scope.done();
@@ -2008,9 +2088,13 @@ describe('KubernetesObject', () => {
                 expect.fail('should have thrown an error');
             } catch (e) {
                 thrown = true;
-                expect(e.message).to.contain(
-                    'Required parameter apiVersion was null or undefined when calling ',
-                );
+                if (e instanceof Error) {
+                    expect(e.message).to.contain(
+                        'Required parameter apiVersion was null or undefined when calling ',
+                    );
+                } else {
+                    fail(`unknown exception: ${e}`);
+                }
             }
             expect(thrown).to.be.true;
         });
@@ -2022,9 +2106,241 @@ describe('KubernetesObject', () => {
                 expect.fail('should have thrown an error');
             } catch (e) {
                 thrown = true;
-                expect(e.message).to.contain('Required parameter kind was null or undefined when calling ');
+                if (e instanceof Error) {
+                    expect(e.message).to.contain(
+                        'Required parameter kind was null or undefined when calling ',
+                    );
+                } else {
+                    fail(`unknown exception: ${e}`);
+                }
             }
             expect(thrown).to.be.true;
         });
+    });
+});
+
+describe('watch', () => {
+    const server = 'https://d.i.y';
+    const fakeConfig: {
+        clusters: Cluster[];
+        contexts: Context[];
+        users: User[];
+    } = {
+        clusters: [
+            {
+                name: 'cluster',
+                server,
+            } as Cluster,
+        ],
+        contexts: [
+            {
+                cluster: 'cluster',
+                user: 'user',
+            } as Context,
+        ],
+        users: [
+            {
+                name: 'user',
+            } as User,
+        ],
+    };
+
+    const testObject = {
+        apiVersion: 'v1',
+        kind: 'Secret',
+        metadata: {
+            name: 'k8s-js-client-test',
+            namespace: 'default',
+            creationTimestamp: '2022-01-01T00:00:00.000Z',
+            uid: undefined,
+            annotations: undefined,
+            labels: undefined,
+            finalizers: undefined,
+            generateName: undefined,
+            selfLink: undefined,
+            resourceVersion: undefined,
+            generation: undefined,
+            ownerReferences: undefined,
+            deletionTimestamp: undefined,
+            deletionGracePeriodSeconds: undefined,
+            managedFields: undefined,
+        },
+        data: {
+            key: 'value',
+        },
+        type: undefined,
+        immutable: undefined,
+        stringData: undefined,
+    };
+
+    it('watch with namespace -> receive events', async () => {
+        const kc = new KubeConfig();
+        Object.assign(kc, fakeConfig);
+        const client = KubernetesObjectApi.makeApiClient(kc);
+
+        const stream = new PassThrough();
+        let response: IncomingMessage | undefined;
+
+        const s = nock('https://d.i.y')
+            .get('/api/v1')
+            .reply(200, resourceBodies.core)
+            .get('/api/v1/namespaces/default/secrets')
+            .query({
+                watch: 'true',
+            })
+            .reply(200, function (): PassThrough {
+                this.req.on('response', (r) => {
+                    response = r;
+                });
+                stream.push(
+                    JSON.stringify({
+                        type: 'ADDED',
+                        object: testObject,
+                    }) + '\n',
+                );
+                return stream;
+            });
+
+        const receivedObjects: V1Secret[] = [];
+        const done = resolvablePromise<void>();
+        const { abort } = await client.watch<V1Secret>({
+            resource: {
+                apiVersion: 'v1',
+                kind: 'Secret',
+                namespace: 'default',
+            },
+            callback: (phase, obj) => {
+                receivedObjects.push(obj);
+                if (receivedObjects.length === 1) {
+                    done.resolve();
+                }
+            },
+            done: () => {},
+        });
+
+        await done;
+        abort();
+
+        expect(receivedObjects).to.have.length(1);
+        expect(receivedObjects[0]).to.be.instanceof(V1Secret);
+
+        s.done();
+        stream.destroy();
+    });
+
+    it('watch all namespaces -> receive events', async () => {
+        const kc = new KubeConfig();
+        Object.assign(kc, fakeConfig);
+        const client = KubernetesObjectApi.makeApiClient(kc);
+
+        const stream = new PassThrough();
+        let response: IncomingMessage | undefined;
+
+        const s = nock('https://d.i.y')
+            .get('/api/v1')
+            .reply(200, resourceBodies.core)
+            .get('/api/v1/secrets')
+            .query({
+                watch: 'true',
+            })
+            .reply(200, function (): PassThrough {
+                this.req.on('response', (r) => {
+                    response = r;
+                });
+                stream.push(
+                    JSON.stringify({
+                        type: 'ADDED',
+                        object: testObject,
+                    }) + '\n',
+                );
+                return stream;
+            });
+
+        const receivedObjects: V1Secret[] = [];
+        const done = resolvablePromise<void>();
+        const { abort } = await client.watch<V1Secret>({
+            resource: {
+                apiVersion: 'v1',
+                kind: 'Secret',
+            },
+            callback: (phase, obj) => {
+                receivedObjects.push(obj);
+                if (receivedObjects.length === 1) {
+                    done.resolve();
+                }
+            },
+            done: () => {},
+        });
+
+        await done;
+        abort();
+
+        expect(receivedObjects).to.have.length(1);
+        expect(receivedObjects[0]).to.be.instanceof(V1Secret);
+
+        s.done();
+        stream.destroy();
+    });
+
+    it('receive multiple events', async () => {
+        const kc = new KubeConfig();
+        Object.assign(kc, fakeConfig);
+        const client = KubernetesObjectApi.makeApiClient(kc);
+
+        const stream = new PassThrough();
+        let response: IncomingMessage | undefined;
+
+        const s = nock('https://d.i.y')
+            .get('/api/v1')
+            .reply(200, resourceBodies.core)
+            .get('/api/v1/namespaces/default/secrets')
+            .query({
+                watch: 'true',
+            })
+            .reply(200, function (): PassThrough {
+                this.req.on('response', (r) => {
+                    response = r;
+                });
+                stream.push(
+                    JSON.stringify({
+                        type: 'ADDED',
+                        object: testObject,
+                    }) + '\n',
+                );
+                stream.push(
+                    JSON.stringify({
+                        type: 'MODIFIED',
+                        object: testObject,
+                    }) + '\n',
+                );
+                return stream;
+            });
+
+        const receivedObjects: V1Secret[] = [];
+        const receivedPhases: string[] = [];
+        const done = resolvablePromise<void>();
+        const { abort } = await client.watch<V1Secret>({
+            resource: {
+                apiVersion: 'v1',
+                kind: 'Secret',
+                namespace: 'default',
+            },
+            callback: (phase, obj) => {
+                receivedPhases.push(phase);
+                receivedObjects.push(obj);
+                if (receivedObjects.length === 2) {
+                    done.resolve();
+                }
+            },
+            done: () => {},
+        });
+
+        await done;
+        abort();
+
+        expect(receivedPhases).to.deep.equal(['ADDED', 'MODIFIED']);
+
+        s.done();
+        stream.destroy();
     });
 });

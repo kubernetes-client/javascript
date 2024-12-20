@@ -1,15 +1,17 @@
 import k8s = require('@kubernetes/client-node');
+
 const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
 
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
-k8sApi.listNamespacedPod('default')
-    .then((res) => {
-        // tslint:disable-next-line:no-console
-        console.log(res.body);
-    });
+const main = async () => {
+    try {
+        const podRes = await k8sApi.listNamespacedPod('default');
+        console.log('Pod: ', podRes.body);
+    } catch (err) {
+        console.error(err);
+    }
+};
 
-// Example of instantiating a Pod object.
-const pod = {
-} as k8s.V1Pod;
+main();

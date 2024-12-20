@@ -1,8 +1,8 @@
 # Javascript Kubernetes Client information
 
 [![Build Status](https://github.com/kubernetes-client/javascript/workflows/Kubernetes%20Javascript%20Client%20-%20Validation/badge.svg)](https://github.com/kubernetes-client/javascript/actions)
-[![Client Capabilities](https://img.shields.io/badge/Kubernetes%20client-Gold-blue.svg?style=flat&colorB=FFD700&colorA=306CE8)](http://bit.ly/kubernetes-client-capabilities-badge)
-[![Client Support Level](https://img.shields.io/badge/kubernetes%20client-beta-green.svg?style=flat&colorA=306CE8)](http://bit.ly/kubernetes-client-support-badge)
+[![Client Capabilities](https://img.shields.io/badge/Kubernetes%20client-Gold-blue.svg?style=flat&colorB=FFD700&colorA=306CE8)](https://bit.ly/kubernetes-client-capabilities-badge)
+[![Client Support Level](https://img.shields.io/badge/kubernetes%20client-beta-green.svg?style=flat&colorA=306CE8)](https://bit.ly/kubernetes-client-support-badge)
 [![Build and Deploy Docs](https://github.com/kubernetes-client/javascript/actions/workflows/deploy-docs.yml/badge.svg)](https://github.com/kubernetes-client/javascript/actions/workflows/deploy-docs.yml)
 
 The Javascript clients for Kubernetes is implemented in
@@ -29,9 +29,17 @@ kc.loadFromDefault();
 
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
-k8sApi.listNamespacedPod('default').then((res) => {
-    console.log(res.body);
-});
+const main = async () => {
+    try {
+        const podsRes = await k8sApi.listNamespacedPod('default');
+        console.log(podsRes.body);
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+main();
+
 ```
 
 ## Create a new namespace
@@ -44,25 +52,27 @@ kc.loadFromDefault();
 
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
-var namespace = {
+const namespace = {
     metadata: {
         name: 'test',
     },
 };
 
-k8sApi.createNamespace(namespace).then(
-    (response) => {
-        console.log('Created namespace');
-        console.log(response);
-        k8sApi.readNamespace(namespace.metadata.name).then((response) => {
-            console.log(response);
-            k8sApi.deleteNamespace(namespace.metadata.name, {} /* delete options */);
-        });
-    },
-    (err) => {
-        console.log('Error!: ' + err);
-    },
-);
+const main = async () => {
+    try {
+        const createNamespaceRes = await k8sApi.createNamespace(namespace);
+        console.log('New namespace created: ', createNamespaceRes.body);
+
+        const readNamespaceRes = await k8sApi.readNamespace(namespace.metadata.name);
+        console.log('Namespace: ', readNamespaceRes.body);
+
+        await k8sApi.deleteNamespace(namespace.metadata.name, {});
+    } catch (err) {
+        console.error(err);
+    }
+};
+
+main();
 ```
 
 ## Create a cluster configuration programatically
@@ -113,16 +123,17 @@ release, we will increment the minor version whenever we update the minor Kubern
 
 Generally speaking newer clients will work with older Kubernetes, but compatability isn't 100% guaranteed.
 
-| client version | older versions | 1.18 | 1.19 | 1.20 | 1.21 | 1.22 |
-|----------------|----------------|------|------|------|------|------|
-|  0.12.x        |       -        |  ✓   |  x   |  x   |  x   |  x   |
-|  0.13.x        |       -        |  +   |  ✓   |  x   |  x   |  x   |
-|  0.14.x        |       -        |  +   |  +   |  ✓   |  x   |  x   |
-|  0.15.x        |       -        |  +   |  +   |  +   |  ✓   |  x   |
-|  0.16.x        |       -        |  +   |  +   |  +   |  +   |  ✓   |
+| client version | older versions | 1.22 | 1.23 | 1.24 | 1.25 | 1.26 | 1.27 | 1.28 | 1.29 | 1.30 |
+|----------------|----------------|------|------|------|-------|------|-----|------|------|-----|
+|  0.16.x        |       -        |  ✓   |  x   |  x   |  x  |  x  |  x  |  x  |  x  |  x  |
+|  0.17.x        |       -        |  +   |  +   |  ✓   |  x  |  x  |  x  |  x  |  x  |  x  |
+|  0.18.x        |       -        |  +   |  +   |  +   |  ✓  |  x  |  x  |  x  |  x  |  x  |
+|  0.19.x        |       -        |  -   |  -   |  -   |  +  |  +  |  ✓  |  x  |  x  |  x  |
+|  0.20.x        |       -        |  -   |  -   |  -   |  -  |  +  |  +  |  ✓  |  x  |  x  |
+|  0.21.x        |       -        |  -   |  -   |  -   |  -  |  -  |  +  |  +  |  ✓  |  x  |
+|  0.22.x        |       -        |  -   |  -   |  -   |  -  |  -  |  -  |  +  |  +  |  ✓  |
 
 Key:
-
 * `✓` Exactly the same features / API objects in both javascript-client and the Kubernetes
   version.
 * `+` javascript-client has features or api objects that may not be present in the
@@ -138,6 +149,7 @@ Key:
 * Multiple kubeconfigs are not completely supported.
   Credentials are cached based on the kubeconfig username and these can collide across configs.
   Here is the related [issue](https://github.com/kubernetes-client/javascript/issues/592).
+* The client wasn't generated for Kubernetes 1.23 due to limited time from the maintainer(s)
 
 # Development
 
@@ -175,7 +187,7 @@ Run `npm run lint` or install an editor plugin like https://github.com/Microsoft
 
 # Testing
 
-Tests are written using the [Chai](http://chaijs.com/) library. See
+Tests are written using the [Chai](https://chaijs.com/) library. See
 [`config_test.ts`](./src/config_test.ts) for an example.
 
 To run tests, execute the following:

@@ -149,7 +149,7 @@ describe('Watch', () => {
 
         var stream;
         const fakeRequest = new FakeRequest();
-        fakeRequest.pipe = function(arg) {
+        fakeRequest.pipe = function (arg) {
             stream = arg;
             stream.write(JSON.stringify(obj1) + '\n');
             stream.write(JSON.stringify(obj2) + '\n');
@@ -215,7 +215,7 @@ describe('Watch', () => {
 
         const errIn = { error: 'err' };
         const fakeRequest = new FakeRequest();
-        fakeRequest.pipe = function(stream) {
+        fakeRequest.pipe = function (stream) {
             stream.write(JSON.stringify(obj1) + '\n');
             stream.emit('error', errIn);
             stream.emit('close');
@@ -274,7 +274,7 @@ describe('Watch', () => {
         };
 
         const fakeRequest = new FakeRequest();
-        fakeRequest.pipe = function(stream) {
+        fakeRequest.pipe = function (stream) {
             stream.write(JSON.stringify(obj1) + '\n');
             stream.emit('close');
         };
@@ -331,7 +331,7 @@ describe('Watch', () => {
         };
 
         const fakeRequest = new FakeRequest();
-        fakeRequest.pipe = function(stream) {
+        fakeRequest.pipe = function (stream) {
             stream.write(JSON.stringify(obj) + '\n');
             stream.write('{"truncated json\n');
         };
@@ -364,11 +364,79 @@ describe('Watch', () => {
         expect(receivedObjects).to.deep.equal([obj.object]);
     });
 
+    it('should not ignore handler errors', async () => {
+        const kc = new KubeConfig();
+        Object.assign(kc, fakeConfig);
+        const fakeRequestor = mock(DefaultRequest);
+        const watch = new Watch(kc, instance(fakeRequestor));
+
+        const obj = {
+            type: 'MODIFIED',
+            object: {
+                baz: 'blah',
+            },
+        };
+
+        const fakeRequest = new FakeRequest();
+        fakeRequest.pipe = function (stream) {
+            stream.write(JSON.stringify(obj) + '\n');
+            stream.emit('close');
+        };
+
+        when(fakeRequestor.webRequest(anything())).thenReturn(fakeRequest);
+
+        const path = '/some/path/to/object';
+
+        const receivedTypes: string[] = [];
+        const receivedObjects: string[] = [];
+        let doneCalled = false;
+        let doneErr: any;
+        let catchCalled = false;
+        let catchErr: any;
+
+        const handlerError = new Error('handler error');
+
+        await watch
+            .watch(
+                path,
+                {},
+                (recievedType: string, recievedObject: string) => {
+                    receivedTypes.push(recievedType);
+                    receivedObjects.push(recievedObject);
+                    throw handlerError;
+                },
+                (err: any) => {
+                    doneCalled = true;
+                    doneErr = err;
+                },
+            )
+            .catch((err) => {
+                catchCalled = true;
+                catchErr = err;
+            });
+
+        verify(fakeRequestor.webRequest(anything()));
+
+        expect(receivedTypes).to.deep.equal([obj.type]);
+        expect(receivedObjects).to.deep.equal([obj.object]);
+
+        expect(doneCalled).to.equal(false);
+        expect(doneErr).to.be.undefined;
+
+        expect(catchCalled).to.equal(true);
+        expect(catchErr).to.equal(handlerError);
+    });
+
     it('should throw on empty config', () => {
         const kc = new KubeConfig();
         const watch = new Watch(kc);
 
-        const promise = watch.watch('/some/path', {}, () => {}, () => {});
+        const promise = watch.watch(
+            '/some/path',
+            {},
+            () => {},
+            () => {},
+        );
         expect(promise).to.be.rejected;
     });
 });

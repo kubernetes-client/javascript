@@ -1,7 +1,6 @@
 import WebSocket = require('isomorphic-ws');
 import querystring = require('querystring');
 import stream = require('stream');
-import { isUndefined } from 'util';
 
 import { KubeConfig } from './config';
 import { WebSocketHandler, WebSocketInterface } from './web-socket-handler';
@@ -13,7 +12,7 @@ export class PortForward {
     // handler is a parameter really only for injecting for testing.
     constructor(config: KubeConfig, disconnectOnErr?: boolean, handler?: WebSocketInterface) {
         this.handler = handler || new WebSocketHandler(config);
-        this.disconnectOnErr = isUndefined(disconnectOnErr) ? true : disconnectOnErr;
+        this.disconnectOnErr = disconnectOnErr === undefined ? true : disconnectOnErr;
     }
 
     // TODO: support multiple ports for real...
@@ -25,7 +24,7 @@ export class PortForward {
         err: stream.Writable | null,
         input: stream.Readable,
         retryCount: number = 0,
-    ): Promise<WebSocket | (() => WebSocket | null)> {
+    ): Promise<WebSocket.WebSocket | (() => WebSocket.WebSocket | null)> {
         if (targetPorts.length === 0) {
             throw new Error('You must provide at least one port to forward to.');
         }
@@ -42,29 +41,25 @@ export class PortForward {
             needsToReadPortNumber[index * 2 + 1] = true;
         });
         const path = `/api/v1/namespaces/${namespace}/pods/${podName}/portforward?${queryStr}`;
-        const createWebSocket = (): Promise<WebSocket> => {
-            return this.handler.connect(
-                path,
-                null,
-                (streamNum: number, buff: Buffer | string): boolean => {
-                    if (streamNum >= targetPorts.length * 2) {
-                        return !this.disconnectOnErr;
+        const createWebSocket = (): Promise<WebSocket.WebSocket> => {
+            return this.handler.connect(path, null, (streamNum: number, buff: Buffer | string): boolean => {
+                if (streamNum >= targetPorts.length * 2) {
+                    return !this.disconnectOnErr;
+                }
+                // First two bytes of each stream are the port number
+                if (needsToReadPortNumber[streamNum]) {
+                    buff = buff.slice(2);
+                    needsToReadPortNumber[streamNum] = false;
+                }
+                if (streamNum % 2 === 1) {
+                    if (err) {
+                        err.write(buff);
                     }
-                    // First two bytes of each stream are the port number
-                    if (needsToReadPortNumber[streamNum]) {
-                        buff = buff.slice(2);
-                        needsToReadPortNumber[streamNum] = false;
-                    }
-                    if (streamNum % 2 === 1) {
-                        if (err) {
-                            err.write(buff);
-                        }
-                    } else {
-                        output.write(buff);
-                    }
-                    return true;
-                },
-            );
+                } else {
+                    output.write(buff);
+                }
+                return true;
+            });
         };
 
         if (retryCount < 1) {
