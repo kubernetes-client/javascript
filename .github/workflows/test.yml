@@ -25,3 +25,4 @@ jobs:
             - run: npm test
             - run: npm run lint
             - run: npm audit --audit-level=critical
+            - run: npm run build-with-tests && npm run test-transpiled
