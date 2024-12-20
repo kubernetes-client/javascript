@@ -23,9 +23,11 @@
         "lint": "tslint --project \".\" && prettier --check \"./src/**/*.ts\" && tslint --project \"./examples/typescript\"",
         "clean": "rm -Rf node_modules/ dist/",
         "build": "tsc",
+        "build-with-tests": "tsc --project tsconfig-with-tests.json && cp 'src/test/echo space.js' dist/test",
         "generate": "./generate-client.sh",
         "watch": "tsc --watch",
         "test": "c8 mocha",
+        "test-transpiled": "mocha --no-config dist",
         "prepare": "npm run build && husky",
         "prepack": "npm run build",
         "docs": "typedoc src/gen/api"
