@@ -1,5 +1,6 @@
-import { ObjectSerializer, V1ListMeta } from './api';
+import { ObjectSerializer } from './api';
 import { V1ObjectMeta } from './gen/model/v1ObjectMeta';
+import { V1ListMeta } from './gen/model/v1ListMeta';
 
 type AttributeType = {
     name: string;
