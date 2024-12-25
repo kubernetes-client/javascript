@@ -396,7 +396,7 @@ describe('KubeConfig', () => {
             expect(rc.getAgent()).to.be.instanceOf(HttpsProxyAgent);
             const agent = rc.getAgent() as HttpsProxyAgent;
             expect(agent.options.ca?.toString()).to.equal(expectedCA.toString());
-            expect(agent.proxy.href).to.equal(expectedProxyHref);
+            expect((agent as any).proxy.href).to.equal(expectedProxyHref);
         });
         it('should apply http proxy', async () => {
             const kc = new KubeConfig();
@@ -412,8 +412,8 @@ describe('KubeConfig', () => {
 
             expect(rc.getAgent()).to.be.instanceOf(HttpProxyAgent);
             const agent = rc.getAgent() as HttpProxyAgent;
-            expect(agent.options.ca?.toString()).to.equal(expectedCA.toString());
-            expect(agent.proxy.href).to.equal(expectedProxyHref);
+            expect((agent as any).options.ca?.toString()).to.equal(expectedCA.toString());
+            expect((agent as any).proxy.href).to.equal(expectedProxyHref);
         });
         it('should throw an error if proxy-url is provided but the server protocol is not http or https', async () => {
             const kc = new KubeConfig();
