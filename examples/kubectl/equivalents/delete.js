@@ -4,11 +4,11 @@ const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
 
 const client = k8s.KubernetesObjectApi.makeApiClient(kc);
-
 const namespace = {
+    kind: 'Namespace',
     metadata: {
-        name: 'test'
-    }
-}
+        name: 'test',
+    },
+};
 
-client.delete(namespace)
+client.delete(namespace);
