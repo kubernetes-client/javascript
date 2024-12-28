@@ -4,12 +4,12 @@ const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
 
 const client = k8s.KubernetesObjectApi.makeApiClient(kc);
-
 const namespace = {
+    apiVersion: 'v1',
+    kind: 'Namespace',
     metadata: {
-        name: 'test'
-    }
-}
+        name: 'test',
+    },
+};
 
-const live_namespace = (await client.read(namespace)).body
-console.log(live_namespace)
+console.log(await client.read(namespace));
