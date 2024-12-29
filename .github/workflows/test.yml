@@ -2,9 +2,9 @@ name: Kubernetes Javascript Client - Validation
 
 on:
     push:
-        branches: [master, release-1.x]
+        branches: [master, main]
     pull_request:
-        branches: [master, release-1.x]
+        branches: [master, main]
 
 jobs:
     build:
