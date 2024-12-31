@@ -27,7 +27,7 @@ Code snippet for what you are doing
 **Environment (please complete the following information):**
 
 - OS: [e.g. Windows, Linux]
-- NodeJS Version [eg. 10]
+- Node.js version [eg. 20]
 - Cloud runtime [e.g. Azure Functions, Lambda]
 
 **Additional context**
