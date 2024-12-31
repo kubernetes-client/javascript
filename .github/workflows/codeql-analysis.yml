@@ -10,38 +10,38 @@
 # supported CodeQL languages.
 # ******** NOTE ********
 
-name: "CodeQL"
+name: 'CodeQL'
 
 on:
-  push:
-    branches: [ master,release-1.x ]
-  pull_request:
-    # The branches below must be a subset of the branches above
-    branches: [ master,release-1.x ]
-  schedule:
-    - cron: '35 14 * * 3'
+    push:
+        branches: [master, main]
+    pull_request:
+        # The branches below must be a subset of the branches above
+        branches: [master, main]
+    schedule:
+        - cron: '35 14 * * 3'
 
 jobs:
-  analyze:
-    name: Analyze
-    runs-on: ubuntu-latest
+    analyze:
+        name: Analyze
+        runs-on: ubuntu-latest
 
-    strategy:
-      fail-fast: false
-      matrix:
-        language: [ 'javascript' ]
+        strategy:
+            fail-fast: false
+            matrix:
+                language: ['javascript']
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v3
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v3
 
-    # Initializes the CodeQL tools for scanning.
-    - name: Initialize CodeQL
-      uses: github/codeql-action/init@v2
-      with:
-        languages: ${{ matrix.language }}
-        
-    - name: Autobuild
-      uses: github/codeql-action/autobuild@v2
-    - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@v2
+            # Initializes the CodeQL tools for scanning.
+            - name: Initialize CodeQL
+              uses: github/codeql-action/init@v2
+              with:
+                  languages: ${{ matrix.language }}
+
+            - name: Autobuild
+              uses: github/codeql-action/autobuild@v2
+            - name: Perform CodeQL Analysis
+              uses: github/codeql-action/analyze@v2
