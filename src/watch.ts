@@ -40,6 +40,7 @@ export class Watch {
         const controller = new AbortController();
         requestInit.signal = controller.signal as AbortSignal;
         requestInit.method = 'GET';
+        requestInit.timeout = 30000;
 
         let doneCalled: boolean = false;
         const doneCallOnce = (err: any) => {
@@ -52,6 +53,15 @@ export class Watch {
 
         try {
             const response = await fetch(watchURL, requestInit);
+
+            // Enable socket keep-alive to prevent connection stalls
+            if (requestInit.agent && typeof requestInit.agent === 'object') {
+                for (const socket of Object.values(requestInit.agent.sockets).flat()) {
+                    if (socket) {
+                        socket.setKeepAlive(true, 30000);
+                    }
+                }
+            }
 
             if (response.status === 200) {
                 response.body.on('error', doneCallOnce);
