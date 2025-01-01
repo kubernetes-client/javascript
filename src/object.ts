@@ -19,6 +19,16 @@ import { PatchStrategy } from './patch.js';
 /** Kubernetes API verbs. */
 type KubernetesApiAction = 'create' | 'delete' | 'patch' | 'read' | 'list' | 'replace';
 
+type KubernetesObjectHeader<T extends KubernetesObject | KubernetesObject> = Pick<
+    T,
+    'apiVersion' | 'kind'
+> & {
+    metadata: {
+        name: string;
+        namespace?: string;
+    };
+};
+
 interface GroupVersion {
     group: string;
     version: string;
@@ -278,7 +288,7 @@ export class KubernetesObjectApi {
      * @return Promise containing the request response and [[KubernetesObject]].
      */
     public async read<T extends KubernetesObject | KubernetesObject>(
-        spec: T,
+        spec: KubernetesObjectHeader<T>,
         pretty?: string,
         exact?: boolean,
         exportt?: boolean,

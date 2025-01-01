@@ -1725,7 +1725,7 @@ describe('KubernetesObject', () => {
 
         it('should read a custom resource', async () => {
             interface CustomTestResource extends KubernetesObject {
-                spec?: {
+                spec: {
                     key: string;
                 };
             }
