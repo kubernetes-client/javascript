@@ -36,14 +36,14 @@ export async function apply(specPath: string): Promise<k8s.KubernetesObject[]> {
             //
             // See: https://github.com/kubernetes/kubernetes/issues/97423
             const response = await client.patch(spec);
-            created.push(response.body);
+            created.push(response);
         } catch (err) {
             // if the resource doesnt exist then create it
-            if (err instanceof k8s.HttpError && err.statusCode === 404) {
-              const response = await client.create(spec);
-              created.push(response.body);
+            if (err instanceof k8s.ApiException && err.code === 404) {
+                const response = await client.create(spec);
+                created.push(response);
             } else {
-              throw err
+                throw err;
             }
         }
     }
