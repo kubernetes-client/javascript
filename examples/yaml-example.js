@@ -19,7 +19,7 @@ try {
     console.log(response);
     const res = await k8sApi.readNamespace({ name: yamlNamespace.metadata.name });
     console.log(res);
-    await k8sApi.deleteNamespace({ name: yamlNamespace.metadata.name }, {} /* delete options */);
+    await k8sApi.deleteNamespace({ name: yamlNamespace.metadata.name });
 } catch (err) {
     console.error('Error!: ' + err);
 }

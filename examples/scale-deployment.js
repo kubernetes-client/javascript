@@ -16,9 +16,6 @@ async function scale(namespace, name, replicas) {
         namespace,
     });
 
-    if (!deployment || !deployment.spec) {
-        throw new Error(`Deployment ${name} not found in namespace ${namespace}`);
-    }
     // edit
     const newDeployment = {
         ...deployment,

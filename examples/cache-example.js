@@ -4,14 +4,10 @@ const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
 
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
-
 const namespace = 'default';
-
 const path = '/api/v1/pods';
 const watch = new k8s.Watch(kc);
-
 const listFn = () => k8sApi.listPodForAllNamespaces();
-
 const cache = new k8s.ListWatch(path, watch, listFn);
 
 const looper = () => {

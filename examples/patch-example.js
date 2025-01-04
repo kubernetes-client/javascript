@@ -5,7 +5,6 @@ const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
 
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
-
 const namespace = 'default';
 
 try {
@@ -45,11 +44,10 @@ try {
         },
     });
 
-    await k8sApi
-        .patchNamespacedPod(
-            { name: res?.items?.[0].metadata?.name ?? '', namespace, body: patch },
-            configuration,
-        )
+    await k8sApi.patchNamespacedPod(
+        { name: res?.items?.[0]?.metadata?.name ?? '', namespace, body: patch },
+        configuration,
+    );
     console.log('Patched.');
 } catch (err) {
     console.error('Error: ');

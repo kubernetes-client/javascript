@@ -9,6 +9,8 @@ const currentUser = kc.getCurrentUser();
 const currentCluster = kc.getCurrentCluster();
 
 const agent = new https.Agent({
+    // If caData, certData, and keyData are undefined, read the values from the
+    // files specified in caFile, certFile, and keyFile.
     ca: Buffer.from(currentCluster?.caData ?? '', 'base64').toString('utf8'),
     cert: Buffer.from(currentUser?.certData ?? '', 'base64').toString('utf8'),
     keepAlive: true,
@@ -31,5 +33,5 @@ try {
     console.log(`statusCode: ${response.status}`);
     console.log(`body: ${body}`);
 } catch (err) {
-    console.error(`error: ${error}`);
+    console.error(`error: ${err}`);
 }
