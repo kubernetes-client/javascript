@@ -4,7 +4,7 @@ import {
     ResponseContext,
     KubeConfig,
     createConfiguration,
-    Configuration,
+    type Configuration,
     ServerConfiguration,
 } from '@kubernetes/client-node';
 import { PromiseMiddlewareWrapper } from '@kubernetes/client-node/dist/gen/middleware.js';
@@ -50,7 +50,7 @@ try {
             default: kc,
         },
     });
-    const podName = res.items[0].metadata?.name;
+    const podName = res.items[0]?.metadata?.name;
     if (podName === undefined) {
         throw new Error('Pod name is undefined');
     }
@@ -62,7 +62,7 @@ try {
             body: patch,
         },
         configuration,
-    )
+    );
 
     console.log('Patched.');
 } catch (err) {
