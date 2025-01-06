@@ -5,9 +5,7 @@ const kc = new k8s.KubeConfig();
 kc.loadFromDefault();
 
 const log = new k8s.Log(kc);
-
 const logStream = new stream.PassThrough();
-
 const namespace = 'default';
 const pod = 'pod1';
 const container = 'container1';
