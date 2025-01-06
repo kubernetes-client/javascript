@@ -595,7 +595,7 @@ export class KubeConfig implements SecurityAuthentication {
     }
 }
 
-type ApiConstructor<T extends ApiType> = new (config: Configuration) => T;
+export type ApiConstructor<T extends ApiType> = new (config: Configuration) => T;
 
 export function makeAbsolutePath(root: string, file: string): string {
     if (!root || path.isAbsolute(file)) {
