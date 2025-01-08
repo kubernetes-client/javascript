@@ -404,8 +404,10 @@ describe('V5 protocol support', () => {
             send: (data) => {
                 sent = data;
             },
-            close: () => {},
-        } as WebSocket;
+            close: () => {
+                throw new Error('should not be called');
+            },
+        } as unknown as WebSocket;
         const stdinStream = new ReadableStreamBuffer();
         WebSocketHandler.handleStandardInput(ws, stdinStream);
         stdinStream.emit('end');
