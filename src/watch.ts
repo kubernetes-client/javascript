@@ -1,3 +1,4 @@
+import { STATUS_CODES } from 'node:http';
 import { createInterface } from 'node:readline';
 import fetch from 'node-fetch';
 import { KubeConfig } from './config.js';
@@ -54,11 +55,13 @@ export class Watch {
             const response = await fetch(watchURL, requestInit);
 
             if (response.status === 200) {
-                response.body.on('error', doneCallOnce);
-                response.body.on('close', () => doneCallOnce(null));
-                response.body.on('finish', () => doneCallOnce(null));
+                const body = response.body!;
 
-                const lines = createInterface(response.body);
+                body.on('error', doneCallOnce);
+                body.on('close', () => doneCallOnce(null));
+                body.on('finish', () => doneCallOnce(null));
+
+                const lines = createInterface(body);
                 lines.on('error', doneCallOnce);
                 lines.on('close', () => doneCallOnce(null));
                 lines.on('finish', () => doneCallOnce(null));
@@ -71,7 +74,9 @@ export class Watch {
                     }
                 });
             } else {
-                const error = new Error(response.statusText) as Error & {
+                const statusText =
+                    response.statusText || STATUS_CODES[response.status] || 'Internal Server Error';
+                const error = new Error(statusText) as Error & {
                     statusCode: number | undefined;
                 };
                 error.statusCode = response.status;
