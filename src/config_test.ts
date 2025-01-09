@@ -284,13 +284,14 @@ describe('KubeConfig', () => {
             });
 
             strictEqual(requestInit.method, 'POST');
-            strictEqual(requestInit.timeout, 5);
-            deepEqual((requestInit.headers as Headers).raw(), {
-                Authorization: ['Basic Zm9vOmJhcg=='],
-                list: ['a', 'b'],
-                number: ['5'],
-                string: ['str'],
-            });
+            // timeout has been removed from the spec.
+            strictEqual((requestInit as any).timeout, 5);
+            const headers = requestInit.headers as Headers;
+            strictEqual(Array.from(headers).length, 4);
+            strictEqual(headers.get('Authorization'), 'Basic Zm9vOmJhcg==');
+            strictEqual(headers.get('list'), 'a, b');
+            strictEqual(headers.get('number'), '5');
+            strictEqual(headers.get('string'), 'str');
             assertRequestAgentsEqual(requestInit.agent as Agent, expectedAgent);
         });
     });

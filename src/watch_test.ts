@@ -154,7 +154,7 @@ describe('Watch', () => {
         strictEqual(doneCalled, 0);
 
         const errIn = new Error('err');
-        (response as IncomingMessage).socket.destroy(errIn);
+        (response as IncomingMessage).destroy(errIn);
 
         await donePromise;
 
@@ -232,7 +232,7 @@ describe('Watch', () => {
         strictEqual(doneErr.length, 0);
 
         const errIn = new Error('err');
-        (response as IncomingMessage).socket.destroy(errIn);
+        (response as IncomingMessage).destroy(errIn);
 
         await donePromise;
 
