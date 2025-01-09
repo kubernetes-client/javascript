@@ -1,0 +1,18 @@
+version: 2
+updates:
+    - package-ecosystem: 'npm'
+      directory: '/'
+      schedule:
+          interval: 'daily'
+          time: '02:00'
+    - package-ecosystem: 'npm'
+      directory: '/'
+      target-branch: 'master'
+      schedule:
+          interval: 'daily'
+          time: '01:00'
+    - package-ecosystem: 'github-actions'
+      directory: '/'
+      schedule:
+          interval: 'daily'
+          time: '03:00'
