@@ -10,7 +10,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4.2.2
       - name: Setup Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: '20'
       # Pre-check to validate that versions match between package.json
