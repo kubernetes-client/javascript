@@ -12,7 +12,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 describe('GoogleCloudPlatformAuth', () => {
     const testUrl1 = 'https://test-gcp.com';
-    var auth: GoogleCloudPlatformAuth;
+    let auth: GoogleCloudPlatformAuth;
     beforeEach(() => {
         auth = new GoogleCloudPlatformAuth();
     });
@@ -58,7 +58,7 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
+        const requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
         await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()).to.not.be.undefined;
@@ -85,7 +85,7 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
+        const requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
         await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()).to.not.be.undefined;
@@ -108,11 +108,11 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
+        const requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
         await config.applySecurityAuthentication(requestContext);
 
-        // @ts-ignore
+        // @ts-expect-error
         const agent: Agent = requestContext.getAgent();
         expect(agent.options.rejectUnauthorized).to.equal(false);
     });
@@ -133,7 +133,7 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
+        const requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
         await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()['rejectUnauthorized']).to.equal(undefined);
@@ -152,7 +152,7 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
+        const requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
         return expect(config.applySecurityAuthentication(requestContext)).to.eventually.be.rejectedWith(
             'Token is expired!',
@@ -174,7 +174,7 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
+        const requestContext = new RequestContext(testUrl1, HttpMethod.GET);
         return expect(config.applySecurityAuthentication(requestContext)).to.eventually.be.rejectedWith(
             /Failed to refresh token/,
         );
@@ -203,7 +203,7 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
+        const requestContext = new RequestContext(testUrl1, HttpMethod.GET);
         await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()).to.not.be.undefined;
         if (requestContext.getHeaders()) {
@@ -232,7 +232,7 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
+        const requestContext = new RequestContext(testUrl1, HttpMethod.GET);
         await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()).to.not.be.undefined;
         if (requestContext.getHeaders()) {
@@ -261,7 +261,7 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
+        const requestContext = new RequestContext(testUrl1, HttpMethod.GET);
         await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()).to.not.be.undefined;
         if (requestContext.getHeaders()) {
@@ -290,7 +290,7 @@ describe('GoogleCloudPlatformAuth', () => {
                 },
             } as User,
         );
-        let requestContext = new RequestContext(testUrl1, HttpMethod.GET);
+        const requestContext = new RequestContext(testUrl1, HttpMethod.GET);
         await config.applySecurityAuthentication(requestContext);
         expect(requestContext.getHeaders()).to.not.be.undefined;
         if (requestContext.getHeaders()) {

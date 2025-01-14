@@ -616,9 +616,8 @@ export class KubernetesObjectApi {
     ): Promise<T> {
         const _config = options || this.configuration;
 
-        let authMethod: SecurityAuthentication | undefined;
         // Apply auth methods
-        authMethod = _config.authMethods.BearerToken;
+        const authMethod = _config.authMethods.BearerToken;
         if (authMethod?.applySecurityAuthentication) {
             await authMethod?.applySecurityAuthentication(requestContext);
         }

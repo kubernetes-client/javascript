@@ -40,7 +40,7 @@ const systemUnderTest = (): [nock.Scope] => {
 describe('Watch', () => {
     it('should construct correctly', () => {
         const kc = new KubeConfig();
-        const watch = new Watch(kc);
+        new Watch(kc);
     });
 
     it('should handle error from request stream', async () => {
@@ -59,7 +59,6 @@ describe('Watch', () => {
         await watch.watch(
             path,
             {},
-            // tslint:disable-next-line:no-empty
             (phase: string, obj: string) => {},
             (err: any) => {
                 doneCalled = true;
@@ -263,12 +262,7 @@ describe('Watch', () => {
 
         const path = '/some/path/to/object?watch=true';
 
-        let response: IncomingMessage | undefined;
-
         const s = scope.get(path).reply(200, function (): PassThrough {
-            this.req.on('response', (r) => {
-                response = r;
-            });
             stream.push(JSON.stringify(obj1) + '\n');
             return stream;
         });

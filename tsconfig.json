@@ -16,7 +16,7 @@
         "importHelpers": true,
         "skipLibCheck": true,
         "esModuleInterop": true
-        // enable this when it works with tslint, or we switch to prettier
+        // enable this in the future
         // "declarationMap": true
     },
     "exclude": ["node_modules", "src/*_test.ts", "src/test", "dist"],

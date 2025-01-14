@@ -66,6 +66,7 @@ k8sApi.createNamespace(namespace).then(
 ```
 
 ## Create a cluster configuration programatically
+
 ```javascript
 const k8s = require('@kubernetes/client-node');
 
@@ -114,28 +115,29 @@ release, we will increment the minor version whenever we update the minor Kubern
 Generally speaking newer clients will work with older Kubernetes, but compatability isn't 100% guaranteed.
 
 | client version | older versions | 1.18 | 1.19 | 1.20 | 1.21 | 1.22 |
-|----------------|----------------|------|------|------|------|------|
-|  0.12.x        |       -        |  ✓   |  x   |  x   |  x   |  x   |
-|  0.13.x        |       -        |  +   |  ✓   |  x   |  x   |  x   |
-|  0.14.x        |       -        |  +   |  +   |  ✓   |  x   |  x   |
-|  0.15.x        |       -        |  +   |  +   |  +   |  ✓   |  x   |
-|  0.16.x        |       -        |  +   |  +   |  +   |  +   |  ✓   |
+| -------------- | -------------- | ---- | ---- | ---- | ---- | ---- |
+| 0.12.x         | -              | ✓    | x    | x    | x    | x    |
+| 0.13.x         | -              | +    | ✓    | x    | x    | x    |
+| 0.14.x         | -              | +    | +    | ✓    | x    | x    |
+| 0.15.x         | -              | +    | +    | +    | ✓    | x    |
+| 0.16.x         | -              | +    | +    | +    | +    | ✓    |
 
 Key:
 
-* `✓` Exactly the same features / API objects in both javascript-client and the Kubernetes
+- `✓` Exactly the same features / API objects in both javascript-client and the Kubernetes
   version.
-* `+` javascript-client has features or api objects that may not be present in the
+- `+` javascript-client has features or api objects that may not be present in the
   Kubernetes cluster, but everything they have in common will work.
-* `-` The Kubernetes cluster has features the javascript-client library can't use
+- `-` The Kubernetes cluster has features the javascript-client library can't use
   (additional API objects, etc).
-* `x` The Kubernetes cluster has no guarantees to support the API client of
+- `x` The Kubernetes cluster has no guarantees to support the API client of
   this version, as it only promises _n_-2 version support. It is not tested,
   and operations using API versions that have been deprecated and removed in
   later server versions won't function correctly.
 
 # Known Issues
-* Multiple kubeconfigs are not completely supported.
+
+- Multiple kubeconfigs are not completely supported.
   Credentials are cached based on the kubeconfig username and these can collide across configs.
   Here is the related [issue](https://github.com/kubernetes-client/javascript/issues/592).
 
@@ -171,7 +173,7 @@ Run `npm run format` or install an editor plugin like https://github.com/prettie
 
 ## Linting
 
-Run `npm run lint` or install an editor plugin like https://github.com/Microsoft/vscode-typescript-tslint-plugin
+Run `npm run lint` or install an editor plugin.
 
 # Testing
 

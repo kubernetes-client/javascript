@@ -73,7 +73,6 @@ describe('Attach', () => {
             await attach.attach(namespace, pod, container, osStream, errStream, isStream, false);
             const [, , outputFn] = capture(fakeWebSocketInterface.connect).last();
 
-            /* tslint:disable:no-unused-expression */
             expect(outputFn).to.not.be.null;
 
             // this is redundant but needed for the compiler, sigh...

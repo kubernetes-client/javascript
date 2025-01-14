@@ -66,7 +66,7 @@ export class Watch {
                     try {
                         const data = JSON.parse(line.toString());
                         callback(data.type, data.object, data);
-                    } catch (ignore) {
+                    } catch {
                         // ignore parse errors
                     }
                 });

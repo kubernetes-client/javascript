@@ -8,7 +8,7 @@ export async function podsForNode(api: CoreV1Api, nodeName: string): Promise<V1P
 
 export function findSuffix(quantity: string): string {
     let ix = quantity.length - 1;
-    while (ix >= 0 && !/[\.0-9]/.test(quantity.charAt(ix))) {
+    while (ix >= 0 && !/[.0-9]/.test(quantity.charAt(ix))) {
         ix--;
     }
     return ix === -1 ? '' : quantity.substring(ix + 1);

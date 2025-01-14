@@ -12,17 +12,17 @@ import {
 
 export class ResourceUsage {
     constructor(
-        public readonly Capacity: number | BigInt,
-        public readonly RequestTotal: number | BigInt,
-        public readonly LimitTotal: number | BigInt,
+        public readonly Capacity: number | bigint,
+        public readonly RequestTotal: number | bigint,
+        public readonly LimitTotal: number | bigint,
     ) {}
 }
 
 export class CurrentResourceUsage {
     constructor(
-        public readonly CurrentUsage: number | BigInt,
-        public readonly RequestTotal: number | BigInt,
-        public readonly LimitTotal: number | BigInt,
+        public readonly CurrentUsage: number | bigint,
+        public readonly RequestTotal: number | bigint,
+        public readonly LimitTotal: number | bigint,
     ) {}
 }
 

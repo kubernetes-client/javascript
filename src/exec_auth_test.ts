@@ -161,9 +161,9 @@ describe('ExecAuth', () => {
             return;
         }
         const auth = new ExecAuth();
-        var execCount = 0;
-        var expire = '29 Mar 1995 00:00:00 GMT';
-        var tokenValue = 'foo';
+        let execCount = 0;
+        let expire = '29 Mar 1995 00:00:00 GMT';
+        let tokenValue = 'foo';
         (auth as any).execFn = (
             command: string,
             args?: readonly string[],
