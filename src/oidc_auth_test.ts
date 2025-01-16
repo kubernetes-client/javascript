@@ -15,7 +15,7 @@ function makeJWT(header: string, payload: object, signature: string): string {
 }
 
 describe('OIDCAuth', () => {
-    var auth: OpenIDConnectAuth;
+    let auth: OpenIDConnectAuth;
     beforeEach(() => {
         auth = new OpenIDConnectAuth();
     });

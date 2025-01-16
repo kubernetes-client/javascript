@@ -15,7 +15,6 @@ export class TerminalSizeQueue extends Readable {
     constructor(opts: ReadableOptions = {}) {
         super({
             ...opts,
-            // tslint:disable-next-line:no-empty
             read(): void {},
         });
     }

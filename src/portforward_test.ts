@@ -32,11 +32,10 @@ describe('PortForward', () => {
         const osStream = new WritableStreamBuffer();
         const isStream = new ReadableStreamBuffer();
 
-        const conn = await portForward.portForward('ns', 'p', [8000], osStream, null, isStream);
+        await portForward.portForward('ns', 'p', [8000], osStream, null, isStream);
 
         const [, , outputFn] = capture(fakeWebSocket.connect).last();
 
-        /* tslint:disable:no-unused-expression */
         expect(outputFn).to.not.be.null;
         // this is redundant but needed for the compiler, sigh...
         if (!outputFn) {
@@ -63,7 +62,6 @@ describe('PortForward', () => {
 
         const [, , outputFn] = capture(fakeWebSocket.connect).last();
 
-        /* tslint:disable:no-unused-expression */
         expect(outputFn).to.not.be.null;
         // this is redundant but needed for the compiler, sigh...
         if (!outputFn) {
@@ -89,7 +87,6 @@ describe('PortForward', () => {
 
         const [, , outputFn] = capture(fakeWebSocket.connect).last();
 
-        /* tslint:disable:no-unused-expression */
         expect(outputFn).to.not.be.null;
         // this is redundant but needed for the compiler, sigh...
         if (!outputFn) {

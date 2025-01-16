@@ -4,14 +4,7 @@ import chaiAsPromised from 'chai-as-promised';
 import mock from 'ts-mockito';
 
 import { V1Namespace, V1NamespaceList, V1ObjectMeta, V1Pod, V1PodList, V1ListMeta } from './api.js';
-import {
-    deleteObject,
-    ListWatch,
-    deleteItems,
-    CacheMap,
-    cacheMapFromList,
-    addOrUpdateObject,
-} from './cache.js';
+import { deleteObject, ListWatch, deleteItems, CacheMap, addOrUpdateObject } from './cache.js';
 import { KubeConfig } from './config.js';
 import { Cluster, Context, User } from './config_types.js';
 import { ListPromise } from './informer.js';

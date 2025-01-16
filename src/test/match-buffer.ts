@@ -38,20 +38,20 @@ export function assertRequestAgentsEqual(agent1: Agent, agent2: Agent): void {
     const BUFFER_EQUAL_TRUE = 0;
     const ca1 = agent1.options.ca;
     const ca2 = agent2.options.ca;
-    //@ts-ignore
+    // @ts-expect-error
     if (ca1 !== ca2 && Buffer.compare(ca1, ca2) !== BUFFER_EQUAL_TRUE) {
         throw 'unequal agent ca buffer';
     }
     const cert1 = agent1.options.cert;
     const cert2 = agent2.options.cert;
-    //@ts-ignore
+    // @ts-expect-error
     if (cert1 !== cert2 && Buffer.compare(cert1, cert2) !== BUFFER_EQUAL_TRUE) {
         throw 'unequal agent cert buffer';
     }
 
     const key1 = agent1.options.key;
     const key2 = agent2.options.key;
-    //@ts-ignore
+    // @ts-expect-error
     if (key1 !== key2 && Buffer.compare(key1, key2) !== BUFFER_EQUAL_TRUE) {
         throw 'unequal agent key buffer';
     }
@@ -62,9 +62,9 @@ export function assertRequestAgentsEqual(agent1: Agent, agent2: Agent): void {
 }
 
 export function assertRequestOptionsEqual(options1: RequestOptions, options2: RequestOptions): void {
-    //@ts-ignore agent has type Agent | Boolean which we expect to be populated with Agent here
+    // @ts-expect-error agent has type Agent | Boolean which we expect to be populated with Agent here
     const agent1: Agent = options1.agent;
-    //@ts-ignore
+    // @ts-expect-error
     const agent2: Agent = options2.agent;
     assertRequestAgentsEqual(agent1, agent2);
 

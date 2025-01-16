@@ -41,7 +41,6 @@ describe('WebSocket', () => {
 
         expect(osStream.size()).to.equal(0);
         expect(errStream.size()).to.equal(0);
-        /* tslint:disable:no-unused-expression */
         expect(output).to.not.be.null;
     });
     it('should handle empty buffers', () => {
@@ -113,12 +112,9 @@ describe('WebSocket', () => {
         ];
 
         const mockWs = {} as WebSocket.WebSocket;
-        let uriOut = '';
-
         const handler = new WebSocketHandler(
             kc,
             (uri: string, protocols: string[], opts: WebSocket.ClientOptions): WebSocket.WebSocket => {
-                uriOut = uri;
                 return mockWs as WebSocket.WebSocket;
             },
         );
@@ -370,12 +366,6 @@ describe('V5 protocol support', () => {
             type: 'open',
         };
         mockWs.onopen!(event);
-        const errEvt = {
-            error: {},
-            message: 'some message',
-            type: 'some type',
-            target: mockWs,
-        };
         const closeBuff = Buffer.alloc(2);
         closeBuff.writeUint8(255, 0);
         closeBuff.writeUint8(WebSocketHandler.StdoutStream, 1);

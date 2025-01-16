@@ -11,4 +11,5 @@ const res = await k8sApi.listNamespacedPod({ namespace });
 console.log(res);
 
 // Example of instantiating a Pod object.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const pod = {} as k8s.V1Pod;

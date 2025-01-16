@@ -35,7 +35,6 @@ describe('Cp', () => {
             const queryStr = querystring.stringify(query);
 
             await cp.cpFromPod(namespace, pod, container, srcPath, tgtPath);
-            // tslint:disable-next-line:max-line-length
             verify(fakeWebSocket.connect(`${path}?${queryStr}`, null, anyFunction())).called();
         });
     });

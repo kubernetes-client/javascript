@@ -46,14 +46,14 @@ function fileExists(filepath: string): boolean {
     try {
         fs.accessSync(filepath);
         return true;
-    } catch (ignore) {
+    } catch {
+        // Ignore errors.
         return false;
     }
 }
 
 // TODO: the empty interface breaks the linter, but this type
 // will be needed later to get the object and cache features working again
-// tslint:disable-next-line:no-empty-interface
 export interface ApiType {}
 
 export class KubeConfig implements SecurityAuthentication {
@@ -430,7 +430,7 @@ export class KubeConfig implements SecurityAuthentication {
                         return;
                     }
                 }
-            } catch (err) {
+            } catch {
                 // Falling back to default kubeconfig
             }
             try {
@@ -443,7 +443,7 @@ export class KubeConfig implements SecurityAuthentication {
                     }
                     return;
                 }
-            } catch (err) {
+            } catch {
                 // Falling back to alternative auth
             }
         }
@@ -634,8 +634,9 @@ export function findHomeDir(): string | null {
             try {
                 fs.accessSync(process.env.HOME);
                 return process.env.HOME;
-                // tslint:disable-next-line:no-empty
-            } catch (ignore) {}
+            } catch {
+                // Ignore errors.
+            }
         }
         return null;
     }
@@ -654,24 +655,27 @@ export function findHomeDir(): string | null {
         try {
             fs.accessSync(path.join(dir, '.kube', 'config'));
             return dir;
-            // tslint:disable-next-line:no-empty
-        } catch (ignore) {}
+        } catch {
+            // Ignore errors.
+        }
     }
     // 2. ...the first of %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that exists and is writeable is returned
     for (const dir of favourUserProfileList) {
         try {
             fs.accessSync(dir, fs.constants.W_OK);
             return dir;
-            // tslint:disable-next-line:no-empty
-        } catch (ignore) {}
+        } catch {
+            // Ignore errors.
+        }
     }
     // 3. ...the first of %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that exists is returned.
     for (const dir of favourUserProfileList) {
         try {
             fs.accessSync(dir);
             return dir;
-            // tslint:disable-next-line:no-empty
-        } catch (ignore) {}
+        } catch {
+            // Ignore errors.
+        }
     }
     // 4. if none of those locations exists, the first of
     // %HOME%, %USERPROFILE%, %HOMEDRIVE%%HOMEPATH% that is set is returned.

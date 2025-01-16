@@ -20,7 +20,7 @@
     "types": "dist/index.d.ts",
     "scripts": {
         "format": "prettier --log-level error --write \"./src/**/*.ts\"",
-        "lint": "tslint --project \".\" && prettier --check \"./src/**/*.ts\" && tslint --project \"./examples/typescript\"",
+        "lint": "eslint \".\" && prettier --check \"./src/**/*.ts\"",
         "clean": "rm -Rf node_modules/ dist/",
         "build": "tsc",
         "build-with-tests": "tsc --project tsconfig-with-tests.json && cp 'src/test/echo space.js' dist/test",
@@ -79,6 +79,7 @@
         "ws": "^8.18.0"
     },
     "devDependencies": {
+        "@eslint/js": "^9.18.0",
         "@types/chai": "^5.0.0",
         "@types/chai-as-promised": "^8.0.1",
         "@types/mocha": "^10.0.1",
@@ -86,6 +87,7 @@
         "c8": "^10.0.0",
         "chai": "^5.1.2",
         "chai-as-promised": "^8.0.0",
+        "eslint": "^9.18.0",
         "husky": "^9.0.6",
         "mocha": "^11.0.1",
         "mock-fs": "^5.2.0",
@@ -93,10 +95,10 @@
         "prettier": "^3.0.0",
         "pretty-quick": "^4.0.0",
         "ts-mockito": "^2.3.1",
-        "tslint": "^6.1.3",
         "tsx": "^4.19.1",
         "typedoc": "^0.27.1",
-        "typescript": "~5.7.2"
+        "typescript": "~5.7.2",
+        "typescript-eslint": "^8.20.0"
     },
     "bugs": {
         "url": "https://github.com/kubernetes-client/javascript/issues"

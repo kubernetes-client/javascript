@@ -34,7 +34,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 use(chaiAsPromised);
 
-/* tslint:disable: no-empty */
 describe('Config', () => {});
 
 function validateFileLoad(kc: KubeConfig) {
@@ -832,7 +831,6 @@ describe('KubeConfig', () => {
 
             await config.applyToHTTPSOptions(opts);
 
-            /* tslint:disable no-unused-expression*/
             expect(opts.auth).to.not.be.undefined;
             if (opts.auth) {
                 expect(opts.auth).to.equal(`${user}:${passwd}`);
