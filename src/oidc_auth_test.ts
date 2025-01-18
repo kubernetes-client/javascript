@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { notStrictEqual, strictEqual } from 'node:assert';
 import { OutgoingHttpHeaders } from 'node:http';
 import https from 'node:https';
 import { base64url } from 'rfc4648';
@@ -24,7 +24,7 @@ describe('OIDCAuth', () => {
         const jwt = OpenIDConnectAuth.decodeJWT(
             'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.5mhBHqs5_DTLdINd9p5m7ZJ6XD0Xc55kIaCRY5r6HRA',
         );
-        expect(jwt).to.not.be.null;
+        notStrictEqual(jwt, null);
     });
 
     it('should correctly parse time from token', () => {
@@ -32,7 +32,7 @@ describe('OIDCAuth', () => {
         const token = makeJWT('{}', { exp: time }, 'fake');
         const timeOut = OpenIDConnectAuth.expirationFromToken(token);
 
-        expect(timeOut).to.equal(time);
+        strictEqual(timeOut, time);
     });
 
     it('should be true for oidc user', () => {
@@ -42,7 +42,7 @@ describe('OIDCAuth', () => {
             },
         } as User;
 
-        expect(auth.isAuthProvider(user)).to.equal(true);
+        strictEqual(auth.isAuthProvider(user), true);
     });
 
     it('should be false for other user', () => {
@@ -52,13 +52,13 @@ describe('OIDCAuth', () => {
             },
         } as User;
 
-        expect(auth.isAuthProvider(user)).to.equal(false);
+        strictEqual(auth.isAuthProvider(user), false);
     });
 
     it('should be false for null user.authProvider', () => {
         const user = {} as User;
 
-        expect(auth.isAuthProvider(user)).to.equal(false);
+        strictEqual(auth.isAuthProvider(user), false);
     });
 
     it('authorization should be undefined if token missing', async () => {
@@ -77,7 +77,7 @@ describe('OIDCAuth', () => {
         const opts = {} as https.RequestOptions;
         opts.headers = {} as OutgoingHttpHeaders;
         await auth.applyAuthentication(user, opts);
-        expect(opts.headers.Authorization).to.be.undefined;
+        strictEqual(opts.headers.Authorization, undefined);
     });
 
     it('authorization should be undefined if client-id missing', async () => {
@@ -98,7 +98,7 @@ describe('OIDCAuth', () => {
         const opts = {} as https.RequestOptions;
         opts.headers = {} as OutgoingHttpHeaders;
         await auth.applyAuthentication(user, opts);
-        expect(opts.headers.Authorization).to.be.undefined;
+        strictEqual(opts.headers.Authorization, undefined);
     });
 
     it('authorization should be work if client-secret missing', async () => {
@@ -118,7 +118,7 @@ describe('OIDCAuth', () => {
         opts.headers = {} as OutgoingHttpHeaders;
         (auth as any).currentTokenExpiration = Date.now() / 1000 + 1000;
         await auth.applyAuthentication(user, opts, {});
-        expect(opts.headers.Authorization).to.equal('Bearer fakeToken');
+        strictEqual(opts.headers.Authorization, 'Bearer fakeToken');
     });
 
     it('authorization should be undefined if refresh-token missing', async () => {
@@ -139,7 +139,7 @@ describe('OIDCAuth', () => {
         const opts = {} as https.RequestOptions;
         opts.headers = {} as OutgoingHttpHeaders;
         await auth.applyAuthentication(user, opts);
-        expect(opts.headers.Authorization).to.be.undefined;
+        strictEqual(opts.headers.Authorization, undefined);
     });
 
     it('authorization should work if refresh-token missing but token is unexpired', async () => {
@@ -160,7 +160,7 @@ describe('OIDCAuth', () => {
         const opts = {} as https.RequestOptions;
         opts.headers = {} as OutgoingHttpHeaders;
         await auth.applyAuthentication(user, opts);
-        expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+        strictEqual(opts.headers.Authorization, `Bearer ${token}`);
     });
 
     it('authorization should be undefined if idp-issuer-url missing', async () => {
@@ -181,7 +181,7 @@ describe('OIDCAuth', () => {
         const opts = {} as https.RequestOptions;
         opts.headers = {} as OutgoingHttpHeaders;
         await auth.applyAuthentication(user, opts, {});
-        expect(opts.headers.Authorization).to.be.undefined;
+        strictEqual(opts.headers.Authorization, undefined);
     });
 
     it('return token when it is still active', async () => {
@@ -202,7 +202,7 @@ describe('OIDCAuth', () => {
         opts.headers = {} as OutgoingHttpHeaders;
         (auth as any).currentTokenExpiration = Date.now() / 1000 + 1000;
         await auth.applyAuthentication(user, opts, {});
-        expect(opts.headers.Authorization).to.equal('Bearer fakeToken');
+        strictEqual(opts.headers.Authorization, 'Bearer fakeToken');
     });
 
     it('return new token when the current expired', async () => {
@@ -232,10 +232,10 @@ describe('OIDCAuth', () => {
                 };
             },
         });
-        expect(opts.headers.Authorization).to.equal('Bearer newToken');
-        expect((auth as any).currentTokenExpiration).to.equal(newExpiration);
+        strictEqual(opts.headers.Authorization, 'Bearer newToken');
+        strictEqual((auth as any).currentTokenExpiration, newExpiration);
         // Check also the new refresh token sticks in the user config
-        expect(user.authProvider.config['refresh-token']).to.equal('newRefreshToken');
+        strictEqual(user.authProvider.config['refresh-token'], 'newRefreshToken');
     });
 
     it('return a new token when the its the first time we see this user', async () => {
@@ -264,7 +264,7 @@ describe('OIDCAuth', () => {
                 };
             },
         });
-        expect(opts.headers.Authorization).to.equal('Bearer newToken');
-        expect((auth as any).currentTokenExpiration).to.equal(newExpiration);
+        strictEqual(opts.headers.Authorization, 'Bearer newToken');
+        strictEqual((auth as any).currentTokenExpiration, newExpiration);
     });
 });

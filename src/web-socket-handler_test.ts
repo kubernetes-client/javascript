@@ -1,6 +1,6 @@
+import { deepStrictEqual, notStrictEqual, rejects, strictEqual, throws } from 'node:assert';
 import { Readable, Writable } from 'node:stream';
 import { setImmediate as setImmediatePromise } from 'node:timers/promises';
-import { expect } from 'chai';
 import WebSocket from 'isomorphic-ws';
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
 
@@ -16,9 +16,9 @@ describe('WebSocket', () => {
         const buff = Buffer.alloc(30, 20);
         const badStream = 10;
 
-        expect(() => WebSocketHandler.handleStandardStreams(badStream, buff, osStream, errStream)).to.throw(
-            `Unknown stream: ${badStream}`,
-        );
+        throws(() => WebSocketHandler.handleStandardStreams(badStream, buff, osStream, errStream), {
+            message: `Unknown stream: ${badStream}`,
+        });
     });
     it('should handle a status to end', () => {
         const osStream = new WritableStreamBuffer();
@@ -39,9 +39,9 @@ describe('WebSocket', () => {
             errStream,
         );
 
-        expect(osStream.size()).to.equal(0);
-        expect(errStream.size()).to.equal(0);
-        expect(output).to.not.be.null;
+        strictEqual(osStream.size(), 0);
+        strictEqual(errStream.size(), 0);
+        notStrictEqual(output, null);
     });
     it('should handle empty buffers', () => {
         const osStream = new WritableStreamBuffer();
@@ -50,8 +50,8 @@ describe('WebSocket', () => {
 
         WebSocketHandler.handleStandardStreams(WebSocketHandler.StdoutStream, buff, osStream, errStream);
 
-        expect(osStream.size()).to.equal(0);
-        expect(errStream.size()).to.equal(0);
+        strictEqual(osStream.size(), 0);
+        strictEqual(errStream.size(), 0);
     });
     it('should handle output streams', () => {
         const osStream = new WritableStreamBuffer();
@@ -65,30 +65,28 @@ describe('WebSocket', () => {
 
         WebSocketHandler.handleStandardStreams(WebSocketHandler.StdoutStream, buff1, osStream, errStream);
 
-        expect(osStream.size()).to.equal(1024);
-        expect(errStream.size()).to.equal(0);
+        strictEqual(osStream.size(), 1024);
+        strictEqual(errStream.size(), 0);
 
         WebSocketHandler.handleStandardStreams(WebSocketHandler.StderrStream, buff2, osStream, errStream);
 
-        expect(osStream.size()).to.equal(1024);
-        expect(errStream.size()).to.equal(512);
+        strictEqual(osStream.size(), 1024);
+        strictEqual(errStream.size(), 512);
 
         const outputBuffer1 = osStream.getContents() as Buffer;
         for (let i = 0; i < 1024; i++) {
-            expect(outputBuffer1[i]).to.equal(fill1);
+            strictEqual(outputBuffer1[i], fill1);
         }
 
         const outputBuffer2 = errStream.getContents() as Buffer;
         for (let i = 0; i < 512; i++) {
-            expect(outputBuffer2[i]).to.equal(fill2);
+            strictEqual(outputBuffer2[i], fill2);
         }
     });
-    it('should throw on a config with no cluster', () => {
+    it('should throw on a config with no cluster', async () => {
         const config = new KubeConfig();
         const handler = new WebSocketHandler(config);
-        return expect(handler.connect('/some/path', null, null)).to.eventually.be.rejectedWith(
-            'No cluster is defined.',
-        );
+        await rejects(handler.connect('/some/path', null, null), { message: 'No cluster is defined.' });
     });
     it('should error on bad connection', async () => {
         const kc = new KubeConfig();
@@ -130,7 +128,7 @@ describe('WebSocket', () => {
             target: mockWs,
         });
 
-        await expect(promise).to.be.rejected;
+        await rejects(promise);
     });
     it('should connect properly', async () => {
         const kc = new KubeConfig();
@@ -169,7 +167,7 @@ describe('WebSocket', () => {
         const promise = handler.connect(path, null, null);
         await setImmediatePromise();
 
-        expect(uriOut).to.equal(`wss://${host}${path}`);
+        strictEqual(uriOut, `wss://${host}${path}`);
 
         const event = {
             error: {},
@@ -253,7 +251,7 @@ describe('WebSocket', () => {
         const promise = handler.connect(path, textHandler, binaryHandler);
         await setImmediatePromise();
 
-        expect(uriOut).to.equal(`wss://${host}${path}`);
+        strictEqual(uriOut, `wss://${host}${path}`);
 
         const event = {
             error: {},
@@ -283,13 +281,13 @@ describe('WebSocket', () => {
         mockWs.onerror!(errEvt);
         await promise;
 
-        expect(closeCount).to.equal(2);
-        expect(textReceived).to.equal('string data');
+        strictEqual(closeCount, 2);
+        strictEqual(textReceived, 'string data');
 
-        expect(streamNumber).to.equal(fill);
-        expect(dataReceived.length).to.equal(size - 1);
+        strictEqual(streamNumber, fill);
+        strictEqual(dataReceived.length, size - 1);
         for (const datum of dataReceived) {
-            expect(datum).to.equal(fill);
+            strictEqual(datum, fill);
         }
     });
     it('handles multi-byte characters', () => {
@@ -298,7 +296,7 @@ describe('WebSocket', () => {
             const mockWs = {
                 close() {},
                 send(data) {
-                    expect(data).to.deep.equal(Buffer.from([0x0f, 0xe2, 0x98, 0x83]));
+                    deepStrictEqual(data, Buffer.from([0x0f, 0xe2, 0x98, 0x83]));
                     resolve(undefined);
                 },
             } as WebSocket.WebSocket;
@@ -359,7 +357,7 @@ describe('V5 protocol support', () => {
         const promise = handler.connect(path, null, null);
         await setImmediatePromise();
 
-        expect(uriOut).to.equal(`wss://${host}${path}`);
+        strictEqual(uriOut, `wss://${host}${path}`);
 
         const event = {
             target: mockWs,
@@ -376,7 +374,7 @@ describe('V5 protocol support', () => {
             target: mockWs,
         });
         await promise;
-        expect(endCalled).to.be.true;
+        strictEqual(endCalled, true);
     });
     it('should handle closing stdin < v4 protocol', () => {
         const ws = {
@@ -401,18 +399,20 @@ describe('V5 protocol support', () => {
         const stdinStream = new ReadableStreamBuffer();
         WebSocketHandler.handleStandardInput(ws, stdinStream);
         stdinStream.emit('end');
-        expect(sent).to.not.be.null;
-        expect(sent!.readUint8(0)).to.equal(255); // CLOSE signal
-        expect(sent!.readUInt8(1)).to.equal(0); // Stdin stream is #0
+        notStrictEqual(sent, null);
+        strictEqual(sent!.readUint8(0), 255); // CLOSE signal
+        strictEqual(sent!.readUInt8(1), 0); // Stdin stream is #0
     });
 });
 
 describe('Restartable Handle Standard Input', () => {
     it('should throw on negative retry', () => {
         const p = new Promise<WebSocket.WebSocket>(() => {});
-        expect(() =>
-            WebSocketHandler.restartableHandleStandardInput(() => p, new Readable({ read() {} }), 0, -1),
-        ).to.throw("retryCount can't be lower than 0.");
+        throws(
+            () =>
+                WebSocketHandler.restartableHandleStandardInput(() => p, new Readable({ read() {} }), 0, -1),
+            { message: "retryCount can't be lower than 0." },
+        );
     });
 
     it('should retry n times', () => {
@@ -433,7 +433,7 @@ describe('Restartable Handle Standard Input', () => {
             0,
             retryTimes,
         ).catch(() => {
-            expect(count).to.equal(retryTimes);
+            strictEqual(count, retryTimes);
         });
     });
 });

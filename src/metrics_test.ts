@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { deepStrictEqual, ok, match, rejects, strictEqual } from 'node:assert';
 import nock from 'nock';
 import { KubeConfig } from './config.js';
 import { V1Status, ApiException } from './gen/index.js';
@@ -97,7 +97,7 @@ describe('Metrics', () => {
             const s = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
 
             const response = await metricsClient.getPodMetrics();
-            expect(response).to.deep.equal(emptyPodMetrics);
+            deepStrictEqual(response, emptyPodMetrics);
             s.done();
         });
         it('should return cluster scope empty pods list when namespace is empty string', async () => {
@@ -105,7 +105,7 @@ describe('Metrics', () => {
             const s = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
 
             const response = await metricsClient.getPodMetrics('');
-            expect(response).to.deep.equal(emptyPodMetrics);
+            deepStrictEqual(response, emptyPodMetrics);
             s.done();
         });
         it('should return namespace scope empty pods list', async () => {
@@ -115,7 +115,7 @@ describe('Metrics', () => {
                 .reply(200, emptyPodMetrics);
 
             const response = await metricsClient.getPodMetrics(TEST_NAMESPACE);
-            expect(response).to.deep.equal(emptyPodMetrics);
+            deepStrictEqual(response, emptyPodMetrics);
             s.done();
         });
         it('should return cluster scope pods metrics list', async () => {
@@ -123,7 +123,7 @@ describe('Metrics', () => {
             const s = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, mockedPodMetrics);
 
             const response = await metricsClient.getPodMetrics();
-            expect(response).to.deep.equal(mockedPodMetrics);
+            deepStrictEqual(response, mockedPodMetrics);
 
             s.done();
         });
@@ -134,7 +134,7 @@ describe('Metrics', () => {
                 .reply(200, mockedPodMetrics);
 
             const response = await metricsClient.getPodMetrics(TEST_NAMESPACE);
-            expect(response).to.deep.equal(mockedPodMetrics);
+            deepStrictEqual(response, mockedPodMetrics);
             s.done();
         });
         it('should when connection refused', async () => {
@@ -146,10 +146,11 @@ describe('Metrics', () => {
                 currentContext: 'currentContext',
             });
             const metricsClient = new Metrics(kc);
-            await expect(metricsClient.getPodMetrics()).to.be.rejectedWith(
-                ApiException,
-                'connect ECONNREFUSED 127.0.0.1:51011',
-            );
+            await rejects(metricsClient.getPodMetrics(), (err) => {
+                ok(err instanceof ApiException);
+                match(err.message, /connect ECONNREFUSED 127.0.0.1:51011/);
+                return true;
+            });
         });
         it('should throw when no current cluster', async () => {
             const [metricsClient, scope] = systemUnderTest({
@@ -157,10 +158,10 @@ describe('Metrics', () => {
                 users: [{ name: 'user', password: 'password' }],
                 contexts: [{ name: 'currentContext', cluster: 'cluster', user: 'user' }],
             });
-            await expect(metricsClient.getPodMetrics()).to.be.rejectedWith(
-                Error,
-                'No currently active cluster',
-            );
+            await rejects(metricsClient.getPodMetrics(), {
+                name: 'Error',
+                message: 'No currently active cluster',
+            });
             scope.done();
         });
         it('should resolve to error when 500 - V1 Status', async () => {
@@ -171,10 +172,11 @@ describe('Metrics', () => {
             const [metricsClient, scope] = systemUnderTest();
             const s = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(500, response);
 
-            await expect(metricsClient.getPodMetrics()).to.be.rejected.then((e) => {
-                expect(e).to.be.an.instanceOf(ApiException);
-                expect(e.code).to.equal(response.code);
-                expect(e.body.message).to.equal(response.message);
+            await rejects(metricsClient.getPodMetrics(), (e) => {
+                ok(e instanceof ApiException);
+                strictEqual(e.code, response.code);
+                strictEqual(e.body.message, response.message);
+                return true;
             });
             s.done();
         });
@@ -183,10 +185,11 @@ describe('Metrics', () => {
             const [metricsClient, scope] = systemUnderTest();
             const s = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(500, response);
 
-            await expect(metricsClient.getPodMetrics()).to.be.rejected.then((e) => {
-                expect(e).to.be.an.instanceOf(ApiException);
-                expect(e.code).to.equal(500);
-                expect(e.message).to.include('Error occurred in metrics request');
+            await rejects(metricsClient.getPodMetrics(), (e) => {
+                ok(e instanceof ApiException);
+                strictEqual(e.code, 500);
+                match(e.message, /Error occurred in metrics request/);
+                return true;
             });
             s.done();
         });
@@ -197,7 +200,7 @@ describe('Metrics', () => {
             const s = scope.get('/apis/metrics.k8s.io/v1beta1/nodes').reply(200, emptyNodeMetrics);
 
             const response = await metricsClient.getNodeMetrics();
-            expect(response).to.deep.equal(emptyNodeMetrics);
+            deepStrictEqual(response, emptyNodeMetrics);
             s.done();
         });
         it('should return nodes metrics list', async () => {
@@ -205,7 +208,7 @@ describe('Metrics', () => {
             const s = scope.get('/apis/metrics.k8s.io/v1beta1/nodes').reply(200, mockedNodeMetrics);
 
             const response = await metricsClient.getNodeMetrics();
-            expect(response).to.deep.equal(mockedNodeMetrics);
+            deepStrictEqual(response, mockedNodeMetrics);
 
             s.done();
         });
@@ -217,10 +220,11 @@ describe('Metrics', () => {
             const [metricsClient, scope] = systemUnderTest();
             const s = scope.get('/apis/metrics.k8s.io/v1beta1/nodes').reply(500, response);
 
-            await expect(metricsClient.getNodeMetrics()).to.be.rejected.then((e) => {
-                expect(e).to.be.an.instanceOf(ApiException);
-                expect(e.code).to.equal(response.code);
-                expect(e.body.message).to.equal(response.message);
+            await rejects(metricsClient.getNodeMetrics(), (e) => {
+                ok(e instanceof ApiException);
+                strictEqual(e.code, response.code);
+                strictEqual(e.body.message, response.message);
+                return true;
             });
             s.done();
         });

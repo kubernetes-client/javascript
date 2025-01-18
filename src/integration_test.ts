@@ -1,16 +1,13 @@
-import { expect, use } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
+import { deepEqual } from 'node:assert';
 import nock from 'nock';
 
 import { CoreV1Api } from './api.js';
 import { KubeConfig } from './config.js';
 import { Cluster, User } from './config_types.js';
 
-use(chaiAsPromised);
-
 describe('FullRequest', () => {
     describe('getPods', () => {
-        it('should get pods successfully', () => {
+        it('should get pods successfully', async () => {
             const kc = new KubeConfig();
             const cluster = {
                 name: 'foo',
@@ -41,9 +38,9 @@ describe('FullRequest', () => {
                 .get('/api/v1/namespaces/default/pods')
                 .reply(200, result);
 
-            const promise = k8sApi.listNamespacedPod({ namespace: 'default' });
+            const list = await k8sApi.listNamespacedPod({ namespace: 'default' });
 
-            return expect(promise).to.eventually.deep.equals(result);
+            return deepEqual(list, result);
         });
     });
 });

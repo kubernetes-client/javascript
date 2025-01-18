@@ -1,7 +1,4 @@
-import { expect, use } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
-use(chaiAsPromised);
-
+import { rejects, strictEqual } from 'node:assert';
 import https from 'node:https';
 import { OutgoingHttpHeaders } from 'node:http';
 
@@ -15,22 +12,22 @@ describe('ExecAuth', () => {
         const auth = new ExecAuth();
 
         const unk: unknown = null;
-        expect(auth.isAuthProvider(unk as User)).to.be.false;
+        strictEqual(auth.isAuthProvider(unk as User), false);
 
         const empty = {} as User;
-        expect(auth.isAuthProvider(empty)).to.be.false;
+        strictEqual(auth.isAuthProvider(empty), false);
 
         const exec = {
             exec: {},
         } as User;
-        expect(auth.isAuthProvider(exec)).to.be.true;
+        strictEqual(auth.isAuthProvider(exec), true);
 
         const execName = {
             authProvider: {
                 name: 'exec',
             },
         } as User;
-        expect(auth.isAuthProvider(execName)).to.be.true;
+        strictEqual(auth.isAuthProvider(execName), true);
 
         const execConfig = {
             authProvider: {
@@ -39,7 +36,7 @@ describe('ExecAuth', () => {
                 },
             },
         } as User;
-        expect(auth.isAuthProvider(execConfig)).to.be.true;
+        strictEqual(auth.isAuthProvider(execConfig), true);
 
         const azureConfig = {
             authProvider: {
@@ -49,7 +46,7 @@ describe('ExecAuth', () => {
                 },
             },
         } as User;
-        expect(auth.isAuthProvider(azureConfig)).to.be.false;
+        strictEqual(auth.isAuthProvider(azureConfig), false);
     });
 
     it('should correctly exec', async () => {
@@ -96,7 +93,7 @@ describe('ExecAuth', () => {
             },
             opts,
         );
-        expect(opts.headers.Authorization).to.equal('Bearer foo');
+        strictEqual(opts.headers.Authorization, 'Bearer foo');
     });
 
     it('should correctly exec for certs', async () => {
@@ -150,9 +147,9 @@ describe('ExecAuth', () => {
         opts.headers = {} as OutgoingHttpHeaders;
 
         await auth.applyAuthentication(user, opts);
-        expect(opts.headers.Authorization).to.be.undefined;
-        expect(opts.cert).to.equal('foo');
-        expect(opts.key).to.equal('bar');
+        strictEqual(opts.headers.Authorization, undefined);
+        strictEqual(opts.cert, 'foo');
+        strictEqual(opts.key, 'bar');
     });
 
     it('should correctly exec and cache', async () => {
@@ -210,21 +207,21 @@ describe('ExecAuth', () => {
         opts.headers = {} as OutgoingHttpHeaders;
 
         await auth.applyAuthentication(user, opts);
-        expect(opts.headers.Authorization).to.equal(`Bearer ${tokenValue}`);
-        expect(execCount).to.equal(1);
+        strictEqual(opts.headers.Authorization, `Bearer ${tokenValue}`);
+        strictEqual(execCount, 1);
 
         // old token should be expired, set expiration for the new token for the future.
         expire = '29 Mar 2095 00:00:00 GMT';
         tokenValue = 'bar';
         await auth.applyAuthentication(user, opts);
-        expect(opts.headers.Authorization).to.equal(`Bearer ${tokenValue}`);
-        expect(execCount).to.equal(2);
+        strictEqual(opts.headers.Authorization, `Bearer ${tokenValue}`);
+        strictEqual(execCount, 2);
 
         // Should use cached token, execCount should stay at two, token shouldn't change
         tokenValue = 'baz';
         await auth.applyAuthentication(user, opts);
-        expect(opts.headers.Authorization).to.equal('Bearer bar');
-        expect(execCount).to.equal(2);
+        strictEqual(opts.headers.Authorization, 'Bearer bar');
+        strictEqual(execCount, 2);
     });
 
     it('should return null on no exec info', async () => {
@@ -233,10 +230,10 @@ describe('ExecAuth', () => {
         opts.headers = {} as OutgoingHttpHeaders;
 
         await auth.applyAuthentication({} as User, opts);
-        expect(opts.headers.Authorization).to.be.undefined;
+        strictEqual(opts.headers.Authorization, undefined);
     });
 
-    it('should throw on spawnSync errors', () => {
+    it('should throw on spawnSync errors', async () => {
         // TODO: fix this test for Windows
         if (process.platform === 'win32') {
             return;
@@ -288,7 +285,7 @@ describe('ExecAuth', () => {
         opts.headers = {} as OutgoingHttpHeaders;
 
         const promise = auth.applyAuthentication(user, opts);
-        return expect(promise).to.eventually.be.rejected.and.not.instanceOf(TypeError);
+        await rejects(promise, { name: 'Error' });
     });
 
     it('should throw on exec errors', () => {
@@ -338,7 +335,7 @@ describe('ExecAuth', () => {
         opts.headers = {} as OutgoingHttpHeaders;
 
         const promise = auth.applyAuthentication(user, opts);
-        return expect(promise).to.eventually.be.rejected;
+        return rejects(promise);
     });
 
     it('should exec with env vars', async () => {
@@ -396,9 +393,9 @@ describe('ExecAuth', () => {
             },
             opts,
         );
-        expect(optsOut.env!.foo).to.equal('bar');
-        expect(optsOut.env!.PATH).to.equal(process.env.PATH);
-        expect(optsOut.env!.BLABBLE).to.equal(process.env.BLABBLE);
+        strictEqual(optsOut.env!.foo, 'bar');
+        strictEqual(optsOut.env!.PATH, process.env.PATH);
+        strictEqual(optsOut.env!.BLABBLE, process.env.BLABBLE);
     });
 
     it('should handle empty headers array correctly', async () => {
@@ -445,6 +442,6 @@ describe('ExecAuth', () => {
             },
             opts,
         );
-        expect(opts.headers?.Authorization).to.equal('Bearer foo');
+        strictEqual(opts.headers?.Authorization, 'Bearer foo');
     });
 });

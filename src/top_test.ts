@@ -1,8 +1,8 @@
-import { expect } from 'chai';
+import { deepEqual, deepStrictEqual, strictEqual } from 'assert';
 import nock from 'nock';
 import { KubeConfig } from './config.js';
 import { Metrics, PodMetricsList } from './metrics.js';
-import { topPods } from './top.js';
+import { CurrentResourceUsage, topPods } from './top.js';
 import { CoreV1Api, V1Pod } from './api.js';
 
 const emptyPodMetrics: PodMetricsList = {
@@ -155,7 +155,7 @@ describe('Top', () => {
                 items: [],
             });
             const result = await topPodsFunc();
-            expect(result).to.deep.equal([]);
+            deepStrictEqual(result, []);
             podMetrics.done();
             pods.done();
         });
@@ -166,7 +166,7 @@ describe('Top', () => {
                 items: [],
             });
             const result = await topPodsFunc();
-            expect(result).to.deep.equal([]);
+            deepStrictEqual(result, []);
             podMetrics.done();
             pods.done();
         });
@@ -177,18 +177,13 @@ describe('Top', () => {
                 items: podList,
             });
             const result = await topPodsFunc();
-            expect(result.length).to.equal(2);
-            expect(result[0].CPU).to.deep.equal({
-                CurrentUsage: 0.05,
-                LimitTotal: 0.1,
-                RequestTotal: 0.1,
-            });
-            expect(result[0].Memory).to.deep.equal({
-                CurrentUsage: BigInt('4005888'),
-                RequestTotal: BigInt('104857600'),
-                LimitTotal: BigInt('104857600'),
-            });
-            expect(result[0].Containers).to.deep.equal([
+            strictEqual(result.length, 2);
+            deepStrictEqual(result[0].CPU, new CurrentResourceUsage(0.05, 0.1, 0.1));
+            deepStrictEqual(
+                result[0].Memory,
+                new CurrentResourceUsage(BigInt('4005888'), BigInt('104857600'), BigInt('104857600')),
+            );
+            deepEqual(result[0].Containers, [
                 {
                     CPUUsage: {
                         CurrentUsage: 0.05,
@@ -203,17 +198,12 @@ describe('Top', () => {
                     },
                 },
             ]);
-            expect(result[1].CPU).to.deep.equal({
-                CurrentUsage: 1.4,
-                LimitTotal: 2.1,
-                RequestTotal: 2.1,
-            });
-            expect(result[1].Memory).to.deep.equal({
-                CurrentUsage: BigInt('7192576'),
-                LimitTotal: BigInt('209715200'),
-                RequestTotal: BigInt('157286400'),
-            });
-            expect(result[1].Containers).to.deep.equal([
+            deepStrictEqual(result[1].CPU, new CurrentResourceUsage(1.4, 2.1, 2.1));
+            deepStrictEqual(
+                result[1].Memory,
+                new CurrentResourceUsage(BigInt('7192576'), BigInt('157286400'), BigInt('209715200')),
+            );
+            deepEqual(result[1].Containers, [
                 {
                     CPUUsage: {
                         CurrentUsage: 0,
@@ -251,18 +241,10 @@ describe('Top', () => {
                 items: bestEffortPodList,
             });
             const result = await topPodsFunc();
-            expect(result.length).to.equal(1);
-            expect(result[0].CPU).to.deep.equal({
-                CurrentUsage: 0.05,
-                LimitTotal: 0,
-                RequestTotal: 0,
-            });
-            expect(result[0].Memory).to.deep.equal({
-                CurrentUsage: BigInt('4005888'),
-                RequestTotal: 0,
-                LimitTotal: 0,
-            });
-            expect(result[0].Containers).to.deep.equal([
+            strictEqual(result.length, 1);
+            deepStrictEqual(result[0].CPU, new CurrentResourceUsage(0.05, 0, 0));
+            deepStrictEqual(result[0].Memory, new CurrentResourceUsage(BigInt('4005888'), 0, 0));
+            deepEqual(result[0].Containers, [
                 {
                     CPUUsage: {
                         CurrentUsage: 0.05,
@@ -287,29 +269,19 @@ describe('Top', () => {
                 items: podList,
             });
             const result = await topPodsFunc();
-            expect(result.length).to.equal(2);
-            expect(result[0].CPU).to.deep.equal({
-                CurrentUsage: 0,
-                LimitTotal: 0.1,
-                RequestTotal: 0.1,
-            });
-            expect(result[0].Memory).to.deep.equal({
-                CurrentUsage: 0,
-                RequestTotal: BigInt('104857600'),
-                LimitTotal: BigInt('104857600'),
-            });
-            expect(result[0].Containers).to.deep.equal([]);
-            expect(result[1].CPU).to.deep.equal({
-                CurrentUsage: 0,
-                LimitTotal: 2.1,
-                RequestTotal: 2.1,
-            });
-            expect(result[1].Memory).to.deep.equal({
-                CurrentUsage: 0,
-                LimitTotal: BigInt('209715200'),
-                RequestTotal: BigInt('157286400'),
-            });
-            expect(result[1].Containers).to.deep.equal([]);
+            strictEqual(result.length, 2);
+            deepStrictEqual(result[0].CPU, new CurrentResourceUsage(0, 0.1, 0.1));
+            deepStrictEqual(
+                result[0].Memory,
+                new CurrentResourceUsage(0, BigInt('104857600'), BigInt('104857600')),
+            );
+            deepStrictEqual(result[0].Containers, []);
+            deepStrictEqual(result[1].CPU, new CurrentResourceUsage(0, 2.1, 2.1));
+            deepStrictEqual(
+                result[1].Memory,
+                new CurrentResourceUsage(0, BigInt('157286400'), BigInt('209715200')),
+            );
+            deepStrictEqual(result[1].Containers, []);
             podMetrics.done();
             pods.done();
         });
@@ -320,7 +292,7 @@ describe('Top', () => {
                 items: [],
             });
             const result = await topPodsFunc();
-            expect(result.length).to.equal(0);
+            strictEqual(result.length, 0);
             podMetrics.done();
             pods.done();
         });
@@ -333,18 +305,13 @@ describe('Top', () => {
                 items: podList,
             });
             const result = await topPodsFunc();
-            expect(result.length).to.equal(2);
-            expect(result[0].CPU).to.deep.equal({
-                CurrentUsage: 0.05,
-                LimitTotal: 0.1,
-                RequestTotal: 0.1,
-            });
-            expect(result[0].Memory).to.deep.equal({
-                CurrentUsage: BigInt('4005888'),
-                RequestTotal: BigInt('104857600'),
-                LimitTotal: BigInt('104857600'),
-            });
-            expect(result[0].Containers).to.deep.equal([
+            strictEqual(result.length, 2);
+            deepStrictEqual(result[0].CPU, new CurrentResourceUsage(0.05, 0.1, 0.1));
+            deepStrictEqual(
+                result[0].Memory,
+                new CurrentResourceUsage(BigInt('4005888'), BigInt('104857600'), BigInt('104857600')),
+            );
+            deepEqual(result[0].Containers, [
                 {
                     CPUUsage: {
                         CurrentUsage: 0.05,
@@ -359,17 +326,12 @@ describe('Top', () => {
                     },
                 },
             ]);
-            expect(result[1].CPU).to.deep.equal({
-                CurrentUsage: 1.4,
-                LimitTotal: 2.1,
-                RequestTotal: 2.1,
-            });
-            expect(result[1].Memory).to.deep.equal({
-                CurrentUsage: BigInt('7192576'),
-                LimitTotal: BigInt('209715200'),
-                RequestTotal: BigInt('157286400'),
-            });
-            expect(result[1].Containers).to.deep.equal([
+            deepStrictEqual(result[1].CPU, new CurrentResourceUsage(1.4, 2.1, 2.1));
+            deepStrictEqual(
+                result[1].Memory,
+                new CurrentResourceUsage(BigInt('7192576'), BigInt('157286400'), BigInt('209715200')),
+            );
+            deepEqual(result[1].Containers, [
                 {
                     CPUUsage: {
                         CurrentUsage: 0,

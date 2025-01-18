@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { deepStrictEqual, strictEqual } from 'node:assert';
 import { RequestOptions, Agent } from 'node:https';
 import { Matcher } from 'ts-mockito/lib/matcher/type/Matcher.js';
 
@@ -56,9 +56,9 @@ export function assertRequestAgentsEqual(agent1: Agent, agent2: Agent): void {
         throw 'unequal agent key buffer';
     }
 
-    expect(agent1.options.passphrase).to.equal(agent2.options.passphrase);
-    expect(agent1.options.pfx).to.equal(agent2.options.pfx);
-    expect(agent1.options.rejectUnauthorized).to.equal(agent2.options.rejectUnauthorized);
+    strictEqual(agent1.options.passphrase, agent2.options.passphrase);
+    strictEqual(agent1.options.pfx, agent2.options.pfx);
+    strictEqual(agent1.options.rejectUnauthorized, agent2.options.rejectUnauthorized);
 }
 
 export function assertRequestOptionsEqual(options1: RequestOptions, options2: RequestOptions): void {
@@ -68,8 +68,8 @@ export function assertRequestOptionsEqual(options1: RequestOptions, options2: Re
     const agent2: Agent = options2.agent;
     assertRequestAgentsEqual(agent1, agent2);
 
-    expect(options1.auth).to.equal(options2.auth);
-    expect(options1.headers).to.deep.equal(options2.headers);
-    expect(options1.rejectUnauthorized).to.equal(options2.rejectUnauthorized);
-    expect(options1.servername).to.equal(options2.servername);
+    strictEqual(options1.auth, options2.auth);
+    deepStrictEqual(options1.headers, options2.headers);
+    strictEqual(options1.rejectUnauthorized, options2.rejectUnauthorized);
+    strictEqual(options1.servername, options2.servername);
 }

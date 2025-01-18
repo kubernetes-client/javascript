@@ -1,11 +1,10 @@
+import { deepEqual, deepStrictEqual, notStrictEqual, rejects, strictEqual, throws } from 'node:assert';
 import { readFileSync } from 'node:fs';
 import https from 'node:https';
 import { Agent, RequestOptions } from 'node:https';
 import path, { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { expect, use } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
 import mockfs from 'mock-fs';
 
 import { Headers } from 'node-fetch';
@@ -32,71 +31,69 @@ const kcTlsServerNameFileName = 'testdata/tls-server-name-kubeconfig.yaml';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-use(chaiAsPromised);
-
 describe('Config', () => {});
 
 function validateFileLoad(kc: KubeConfig) {
     // check clusters
     const clusters = kc.getClusters();
-    expect(clusters.length).to.equal(2, 'there are 2 clusters');
+    strictEqual(clusters.length, 2, 'there are 2 clusters');
     const cluster1 = clusters[0];
     const cluster2 = clusters[1];
-    expect(cluster1.name).to.equal('cluster1');
-    expect(cluster1.caData).to.equal('Q0FEQVRB');
-    expect(cluster1.server).to.equal('http://example.com');
-    expect(cluster1.proxyUrl).to.equal('socks5://localhost:1181');
-    expect(cluster2.name).to.equal('cluster2');
-    expect(cluster2.caData).to.equal('Q0FEQVRBMg==');
-    expect(cluster2.server).to.equal('http://example2.com');
-    expect(cluster2.skipTLSVerify).to.equal(true);
+    strictEqual(cluster1.name, 'cluster1');
+    strictEqual(cluster1.caData, 'Q0FEQVRB');
+    strictEqual(cluster1.server, 'http://example.com');
+    strictEqual(cluster1.proxyUrl, 'socks5://localhost:1181');
+    strictEqual(cluster2.name, 'cluster2');
+    strictEqual(cluster2.caData, 'Q0FEQVRBMg==');
+    strictEqual(cluster2.server, 'http://example2.com');
+    strictEqual(cluster2.skipTLSVerify, true);
 
     // check users
     const users = kc.getUsers();
-    expect(users.length).to.equal(3, 'there are 3 users');
+    strictEqual(users.length, 3, 'there are 3 users');
     const user1 = users[0];
     const user2 = users[1];
     const user3 = users[2];
-    expect(user1.name).to.equal('user1');
-    expect(user1.certData).to.equal('VVNFUl9DQURBVEE=');
-    expect(user1.keyData).to.equal('VVNFUl9DS0RBVEE=');
-    expect(user2.name).to.equal('user2');
-    expect(user2.certData).to.equal('VVNFUjJfQ0FEQVRB');
-    expect(user2.keyData).to.equal('VVNFUjJfQ0tEQVRB');
-    expect(user3.name).to.equal('user3');
-    expect(user3.username).to.equal('foo');
-    expect(user3.password).to.equal('bar');
+    strictEqual(user1.name, 'user1');
+    strictEqual(user1.certData, 'VVNFUl9DQURBVEE=');
+    strictEqual(user1.keyData, 'VVNFUl9DS0RBVEE=');
+    strictEqual(user2.name, 'user2');
+    strictEqual(user2.certData, 'VVNFUjJfQ0FEQVRB');
+    strictEqual(user2.keyData, 'VVNFUjJfQ0tEQVRB');
+    strictEqual(user3.name, 'user3');
+    strictEqual(user3.username, 'foo');
+    strictEqual(user3.password, 'bar');
 
     // check contexts
     const contexts = kc.getContexts();
-    expect(contexts.length).to.equal(3, 'there are three contexts');
+    strictEqual(contexts.length, 3, 'there are three contexts');
     const context1 = contexts[0];
     const context2 = contexts[1];
     const context3 = contexts[2];
-    expect(context1.name).to.equal('context1');
-    expect(context1.user).to.equal('user1');
-    expect(context1.namespace).to.equal(undefined);
-    expect(context1.cluster).to.equal('cluster1');
-    expect(context2.name).to.equal('context2');
-    expect(context2.user).to.equal('user2');
-    expect(context2.namespace).to.equal('namespace2');
-    expect(context2.cluster).to.equal('cluster2');
-    expect(context3.name).to.equal('passwd');
-    expect(context3.user).to.equal('user3');
-    expect(context3.cluster).to.equal('cluster2');
+    strictEqual(context1.name, 'context1');
+    strictEqual(context1.user, 'user1');
+    strictEqual(context1.namespace, undefined);
+    strictEqual(context1.cluster, 'cluster1');
+    strictEqual(context2.name, 'context2');
+    strictEqual(context2.user, 'user2');
+    strictEqual(context2.namespace, 'namespace2');
+    strictEqual(context2.cluster, 'cluster2');
+    strictEqual(context3.name, 'passwd');
+    strictEqual(context3.user, 'user3');
+    strictEqual(context3.cluster, 'cluster2');
 
-    expect(kc.getCurrentContext()).to.equal('context2');
+    strictEqual(kc.getCurrentContext(), 'context2');
 }
 
 describe('KubeConfig', () => {
     it('should return null on no contexts', () => {
         const kc = new KubeConfig() as any;
         kc.contexts = undefined;
-        expect(kc.getContextObject('non-existent')).to.be.null;
+        strictEqual(kc.getContextObject('non-existent'), null);
     });
     describe('findObject', () => {
         it('should return null on undefined', () => {
-            expect(findObject(undefined as any, 'foo', 'bar')).to.equal(null);
+            strictEqual(findObject(undefined as any, 'foo', 'bar'), null);
         });
         it('should find objects', () => {
             interface MyNamed {
@@ -123,19 +120,15 @@ describe('KubeConfig', () => {
 
             // Validate that if the named object ('cluster' in this case) is inside we pick it out
             const obj1 = findObject(list, 'foo', 'cluster');
-            expect(obj1).to.not.equal(null);
-            if (obj1) {
-                expect(obj1.some).to.equal('sub-object');
-            }
+            notStrictEqual(obj1, null);
+            strictEqual(obj1!.some, 'sub-object');
             // Validate that if the named object is missing, we just return the full object
             const obj2 = findObject(list, 'bar', 'context');
-            expect(obj2).to.not.equal(null);
-            if (obj2) {
-                expect(obj2.some).to.equal('object');
-            }
+            notStrictEqual(obj2, null);
+            strictEqual(obj2!.some, 'object');
             // validate that we do the right thing if it is missing
             const obj3 = findObject(list, 'nonexistent', 'context');
-            expect(obj3).to.equal(null);
+            strictEqual(obj3, null);
         });
     });
 
@@ -155,10 +148,10 @@ describe('KubeConfig', () => {
             kc.loadFromClusterAndUser(cluster, user);
 
             const clusterOut = kc.getCurrentCluster();
-            expect(clusterOut).to.equal(cluster);
+            strictEqual(clusterOut, cluster);
 
             const userOut = kc.getCurrentUser();
-            expect(userOut).to.equal(user);
+            strictEqual(userOut, user);
         });
     });
 
@@ -189,10 +182,10 @@ describe('KubeConfig', () => {
             });
 
             const clusterOut = kc.getCurrentCluster();
-            expect(clusterOut).to.equal(cluster);
+            strictEqual(clusterOut, cluster);
 
             const userOut = kc.getCurrentUser();
-            expect(userOut).to.equal(user);
+            strictEqual(userOut, user);
         });
     });
 
@@ -204,24 +197,24 @@ describe('KubeConfig', () => {
         });
         it('should fail to load a missing kubeconfig file', () => {
             const kc = new KubeConfig();
-            expect(kc.loadFromFile.bind('missing.yaml')).to.throw();
+            throws(kc.loadFromFile.bind('missing.yaml'));
         });
 
         describe('filter vs throw tests', () => {
             it('works for invalid users', () => {
                 const kc = new KubeConfig();
                 kc.loadFromFile(kcNoUserFileName, { onInvalidEntry: ActionOnInvalid.FILTER });
-                expect(kc.getUsers().length).to.be.eq(2);
+                strictEqual(kc.getUsers().length, 2);
             });
             it('works for invalid contexts', () => {
                 const kc = new KubeConfig();
                 kc.loadFromFile(kcInvalidContextFileName, { onInvalidEntry: ActionOnInvalid.FILTER });
-                expect(kc.getContexts().length).to.be.eq(2);
+                strictEqual(kc.getContexts().length, 2);
             });
             it('works for invalid clusters', () => {
                 const kc = new KubeConfig();
                 kc.loadFromFile(kcInvalidClusterFileName, { onInvalidEntry: ActionOnInvalid.FILTER });
-                expect(kc.getClusters().length).to.be.eq(1);
+                strictEqual(kc.getClusters().length, 1);
             });
         });
     });
@@ -267,9 +260,9 @@ describe('KubeConfig', () => {
                 rejectUnauthorized: false,
             });
 
-            expect(requestInit.method).to.equal('POST');
-            expect(requestInit.timeout).to.equal(5);
-            expect((requestInit.headers as Headers).raw()).to.deep.equal({
+            strictEqual(requestInit.method, 'POST');
+            strictEqual(requestInit.timeout, 5);
+            deepEqual((requestInit.headers as Headers).raw(), {
                 Authorization: ['Basic Zm9vOmJhcg=='],
                 list: ['a', 'b'],
                 number: ['5'],
@@ -374,11 +367,11 @@ describe('KubeConfig', () => {
             const expectedProxyHost = 'example';
             const expectedProxyPort = 1187;
 
-            expect(rc.getAgent()).to.be.instanceOf(SocksProxyAgent);
+            strictEqual(rc.getAgent() instanceof SocksProxyAgent, true);
             const agent = rc.getAgent() as SocksProxyAgent;
-            expect(agent.options.ca?.toString()).to.equal(expectedCA.toString());
-            expect(agent.proxy.host).to.equal(expectedProxyHost);
-            expect(agent.proxy.port).to.equal(expectedProxyPort);
+            strictEqual(agent.options.ca?.toString(), expectedCA.toString());
+            strictEqual(agent.proxy.host, expectedProxyHost);
+            strictEqual(agent.proxy.port, expectedProxyPort);
         });
         it('should apply https proxy', async () => {
             const kc = new KubeConfig();
@@ -392,10 +385,10 @@ describe('KubeConfig', () => {
             const expectedCA = Buffer.from('CADAT@', 'utf-8');
             const expectedProxyHref = 'http://example:9443/';
 
-            expect(rc.getAgent()).to.be.instanceOf(HttpsProxyAgent);
+            strictEqual(rc.getAgent() instanceof HttpsProxyAgent, true);
             const agent = rc.getAgent() as HttpsProxyAgent;
-            expect(agent.options.ca?.toString()).to.equal(expectedCA.toString());
-            expect((agent as any).proxy.href).to.equal(expectedProxyHref);
+            strictEqual(agent.options.ca?.toString(), expectedCA.toString());
+            strictEqual((agent as any).proxy.href, expectedProxyHref);
         });
         it('should apply http proxy', async () => {
             const kc = new KubeConfig();
@@ -409,10 +402,10 @@ describe('KubeConfig', () => {
             const expectedCA = Buffer.from('CADAT@', 'utf-8');
             const expectedProxyHref = 'http://example:8080/';
 
-            expect(rc.getAgent()).to.be.instanceOf(HttpProxyAgent);
+            strictEqual(rc.getAgent() instanceof HttpProxyAgent, true);
             const agent = rc.getAgent() as HttpProxyAgent;
-            expect((agent as any).options.ca?.toString()).to.equal(expectedCA.toString());
-            expect((agent as any).proxy.href).to.equal(expectedProxyHref);
+            strictEqual((agent as any).options.ca?.toString(), expectedCA.toString());
+            strictEqual((agent as any).proxy.href, expectedProxyHref);
         });
         it('should throw an error if proxy-url is provided but the server protocol is not http or https', async () => {
             const kc = new KubeConfig();
@@ -422,72 +415,86 @@ describe('KubeConfig', () => {
             const testServerName = 'https://example.com';
             const rc = new RequestContext(testServerName, HttpMethod.GET);
 
-            return expect(kc.applySecurityAuthentication(rc)).to.be.rejectedWith('Unsupported proxy type');
+            return rejects(kc.applySecurityAuthentication(rc), {
+                message: 'Unsupported proxy type',
+            });
         });
     });
 
     describe('loadClusterConfigObjects', () => {
         it('should fail if name is missing from cluster', () => {
-            expect(() => {
-                newClusters([
-                    {
-                        name: 'some-cluster',
-                        cluster: {
-                            server: 'some.server.com',
+            throws(
+                () => {
+                    newClusters([
+                        {
+                            name: 'some-cluster',
+                            cluster: {
+                                server: 'some.server.com',
+                            },
                         },
-                    },
-                    {
-                        foo: 'bar',
-                    },
-                ]);
-            }).to.throw('clusters[1].name is missing');
+                        {
+                            foo: 'bar',
+                        },
+                    ]);
+                },
+                { message: 'clusters[1].name is missing' },
+            );
         });
         it('should fail if cluster is missing from cluster', () => {
-            expect(() => {
-                newClusters([
-                    {
-                        name: 'some-cluster',
-                        cluster: {
-                            server: 'some.server.com',
+            throws(
+                () => {
+                    newClusters([
+                        {
+                            name: 'some-cluster',
+                            cluster: {
+                                server: 'some.server.com',
+                            },
                         },
-                    },
-                    {
-                        name: 'bar',
-                    },
-                ]);
-            }).to.throw('clusters[1].cluster is missing');
+                        {
+                            name: 'bar',
+                        },
+                    ]);
+                },
+                { message: 'clusters[1].cluster is missing' },
+            );
         });
         it('should fail if cluster.server is missing from cluster', () => {
-            expect(() => {
-                newClusters([
-                    {
-                        name: 'some-cluster',
-                        cluster: {
-                            server: 'some.server.com',
+            throws(
+                () => {
+                    newClusters([
+                        {
+                            name: 'some-cluster',
+                            cluster: {
+                                server: 'some.server.com',
+                            },
                         },
-                    },
-                    {
-                        name: 'bar',
-                        cluster: {},
-                    },
-                ]);
-            }).to.throw('clusters[1].cluster.server is missing');
+                        {
+                            name: 'bar',
+                            cluster: {},
+                        },
+                    ]);
+                },
+                { message: 'clusters[1].cluster.server is missing' },
+            );
         });
     });
 
     describe('loadUserConfigObjects', () => {
         it('should fail if name is missing from user', () => {
-            expect(() => {
-                newUsers([
-                    {
-                        name: 'some-user',
-                        user: {},
-                    },
-                    {
-                        foo: 'bar',
-                    },
-                ]);
-            }).to.throw('users[1].name is missing');
+            throws(
+                () => {
+                    newUsers([
+                        {
+                            name: 'some-user',
+                            user: {},
+                        },
+                        {
+                            foo: 'bar',
+                        },
+                    ]);
+                },
+                { message: 'users[1].name is missing' },
+            );
         });
         it('should load correctly with just name', () => {
             const name = 'some-name';
@@ -496,7 +503,7 @@ describe('KubeConfig', () => {
                     name,
                 },
             ]);
-            expect(name).to.equal(users[0].name);
+            strictEqual(name, users[0].name);
         });
         it('should load token correctly', () => {
             const name = 'some-name';
@@ -509,8 +516,8 @@ describe('KubeConfig', () => {
                     },
                 },
             ]);
-            expect(name).to.equal(users[0].name);
-            expect(token).to.equal(users[0].token);
+            strictEqual(name, users[0].name);
+            strictEqual(token, users[0].token);
         });
         it('should load token file correctly', () => {
             const name = 'some-name';
@@ -529,8 +536,8 @@ describe('KubeConfig', () => {
                 },
             ]);
             mockfs.restore();
-            expect(name).to.equal(users[0].name);
-            expect(token).to.equal(users[0].token);
+            strictEqual(name, users[0].name);
+            strictEqual(token, users[0].token);
         });
         it('should load extra auth stuff correctly', () => {
             const authProvider = 'authProvider';
@@ -555,14 +562,14 @@ describe('KubeConfig', () => {
                     },
                 },
             ]);
-            expect(authProvider).to.equal(users[0].authProvider);
-            expect(certData).to.equal(users[0].certData);
-            expect(certFile).to.equal(users[0].certFile);
-            expect(keyData).to.equal(users[0].keyData);
-            expect(keyFile).to.equal(users[0].keyFile);
-            expect(password).to.equal(users[0].password);
-            expect(username).to.equal(users[0].username);
-            expect(name).to.equal(users[0].name);
+            strictEqual(authProvider, users[0].authProvider);
+            strictEqual(certData, users[0].certData);
+            strictEqual(certFile, users[0].certFile);
+            strictEqual(keyData, users[0].keyData);
+            strictEqual(keyFile, users[0].keyFile);
+            strictEqual(password, users[0].password);
+            strictEqual(username, users[0].username);
+            strictEqual(name, users[0].name);
         });
     });
 
@@ -581,7 +588,7 @@ describe('KubeConfig', () => {
             mockfs.restore();
             process.env.HOME = currentHome;
 
-            expect(home).to.equal(expectedHome);
+            strictEqual(home, expectedHome);
         });
     });
 
@@ -618,7 +625,7 @@ describe('KubeConfig', () => {
 
         it('should return null if no home-ish env vars are set', () => {
             const dir = findHomeDir();
-            expect(dir).to.equal(null);
+            strictEqual(dir, null);
         });
 
         describe('look for an existing .kube/config', () => {
@@ -643,7 +650,7 @@ describe('KubeConfig', () => {
                 const home = findHomeDir();
 
                 mockfs.restore();
-                expect(home).to.equal(dir);
+                strictEqual(home, dir);
             });
             it('should favor HOME when present', () => {
                 const dir = process.env.HOME as string;
@@ -655,7 +662,7 @@ describe('KubeConfig', () => {
                 const home = findHomeDir();
 
                 mockfs.restore();
-                expect(home).to.equal(dir);
+                strictEqual(home, dir);
             });
 
             it('should load from HOMEDRIVE/HOMEPATH if present', () => {
@@ -666,7 +673,7 @@ describe('KubeConfig', () => {
                 const home = findHomeDir();
 
                 mockfs.restore();
-                expect(home).to.equal(dir);
+                strictEqual(home, dir);
             });
 
             it('should favor HOMEDRIVE/HOMEPATH over USERPROFILE', () => {
@@ -678,7 +685,7 @@ describe('KubeConfig', () => {
                 const home = findHomeDir();
 
                 mockfs.restore();
-                expect(home).to.equal(dir);
+                strictEqual(home, dir);
             });
 
             it('should load from USERPROFILE if present', () => {
@@ -689,7 +696,7 @@ describe('KubeConfig', () => {
                 const home = findHomeDir();
 
                 mockfs.restore();
-                expect(home).to.equal(dir);
+                strictEqual(home, dir);
             });
         });
 
@@ -715,7 +722,7 @@ describe('KubeConfig', () => {
                 const home = findHomeDir();
 
                 mockfs.restore();
-                expect(home).to.equal(dir);
+                strictEqual(home, dir);
             });
             it('should load from USERPROFILE if present', () => {
                 allDirs[homeDrive] = 'data';
@@ -725,7 +732,7 @@ describe('KubeConfig', () => {
                 const home = findHomeDir();
 
                 mockfs.restore();
-                expect(home).to.equal(process.env.USERPROFILE);
+                strictEqual(home, process.env.USERPROFILE);
             });
             it('should load from homeDrive if present', () => {
                 allDirs[homeDrive] = 'data';
@@ -734,7 +741,7 @@ describe('KubeConfig', () => {
                 const home = findHomeDir();
 
                 mockfs.restore();
-                expect(home).to.equal(homeDrive);
+                strictEqual(home, homeDrive);
             });
             it('should return HOME when no home-ish directories are present', () => {
                 mockfs({});
@@ -742,62 +749,71 @@ describe('KubeConfig', () => {
                 const home = findHomeDir();
 
                 mockfs.restore();
-                expect(home).to.equal(process.env.HOME);
+                strictEqual(home, process.env.HOME);
             });
         });
     });
 
     describe('loadContextConfigObjects', () => {
         it('should fail if name is missing from context', () => {
-            expect(() => {
-                newContexts([
-                    {
-                        name: 'some-cluster',
-                        context: {
-                            cluster: 'foo',
-                            user: 'bar',
+            throws(
+                () => {
+                    newContexts([
+                        {
+                            name: 'some-cluster',
+                            context: {
+                                cluster: 'foo',
+                                user: 'bar',
+                            },
                         },
-                    },
-                    {
-                        foo: 'bar',
-                    },
-                ]);
-            }).to.throw('contexts[1].name is missing');
+                        {
+                            foo: 'bar',
+                        },
+                    ]);
+                },
+                { message: 'contexts[1].name is missing' },
+            );
         });
         it('should fail if context is missing from context', () => {
-            expect(() => {
-                newContexts([
-                    {
-                        name: 'some-cluster',
-                        context: {
-                            cluster: 'foo',
-                            user: 'bar',
+            throws(
+                () => {
+                    newContexts([
+                        {
+                            name: 'some-cluster',
+                            context: {
+                                cluster: 'foo',
+                                user: 'bar',
+                            },
                         },
-                    },
-                    {
-                        name: 'bar',
-                    },
-                ]);
-            }).to.throw('contexts[1].context is missing');
+                        {
+                            name: 'bar',
+                        },
+                    ]);
+                },
+                { message: 'contexts[1].context is missing' },
+            );
         });
         it('should fail if context is missing from context', () => {
-            expect(() => {
-                newContexts([
-                    {
-                        name: 'some-cluster',
-                        context: {
-                            cluster: 'foo',
-                            user: 'bar',
+            throws(
+                () => {
+                    newContexts([
+                        {
+                            name: 'some-cluster',
+                            context: {
+                                cluster: 'foo',
+                                user: 'bar',
+                            },
                         },
-                    },
-                    {
-                        name: 'bar',
-                        context: {
-                            user: 'user',
+                        {
+                            name: 'bar',
+                            context: {
+                                user: 'user',
+                            },
                         },
-                    },
-                ]);
-            }).to.throw('contexts[1].context.cluster is missing');
+                    ]);
+                },
+                { message: 'contexts[1].context.cluster is missing' },
+            );
         });
     });
 
@@ -811,7 +827,7 @@ describe('KubeConfig', () => {
             const opts = {} as https.RequestOptions;
             await config.applyToHTTPSOptions(opts);
 
-            expect(opts.auth).to.equal(`${user}:${passwd}`);
+            strictEqual(opts.auth, `${user}:${passwd}`);
         });
         it('should populate options for request', async () => {
             const config = new KubeConfig();
@@ -831,11 +847,8 @@ describe('KubeConfig', () => {
 
             await config.applyToHTTPSOptions(opts);
 
-            expect(opts.auth).to.not.be.undefined;
-            if (opts.auth) {
-                expect(opts.auth).to.equal(`${user}:${passwd}`);
-            }
-            expect(opts.rejectUnauthorized).to.equal(false);
+            strictEqual(opts.auth, `${user}:${passwd}`);
+            strictEqual(opts.rejectUnauthorized, false);
         });
         it('should not populate strict ssl', async () => {
             const config = new KubeConfig();
@@ -845,7 +858,7 @@ describe('KubeConfig', () => {
 
             await config.applyToHTTPSOptions(opts);
 
-            expect(opts.rejectUnauthorized).to.equal(undefined);
+            strictEqual(opts.rejectUnauthorized, undefined);
         });
         it('should populate from token', async () => {
             const config = new KubeConfig();
@@ -859,10 +872,7 @@ describe('KubeConfig', () => {
             const opts = {} as RequestOptions;
 
             await config.applyToHTTPSOptions(opts);
-            expect(opts.headers).to.not.be.undefined;
-            if (opts.headers) {
-                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-            }
+            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
         });
         it('should populate from auth provider', async () => {
             const config = new KubeConfig();
@@ -882,14 +892,11 @@ describe('KubeConfig', () => {
             const opts = {} as RequestOptions;
 
             await config.applyToHTTPSOptions(opts);
-            expect(opts.headers).to.not.be.undefined;
-            if (opts.headers) {
-                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-            }
+            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
             opts.headers = {};
             opts.headers.Host = 'foo.com';
             await config.applyToHTTPSOptions(opts);
-            expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+            strictEqual(opts.headers.Authorization, `Bearer ${token}`);
         });
 
         it('should populate from auth provider without expirty', async () => {
@@ -909,10 +916,7 @@ describe('KubeConfig', () => {
             const opts = {} as RequestOptions;
 
             await config.applyToHTTPSOptions(opts);
-            expect(opts.headers).to.not.be.undefined;
-            if (opts.headers) {
-                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-            }
+            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
         });
 
         it('should populate rejectUnauthorized=false when skipTLSVerify is set', async () => {
@@ -932,7 +936,7 @@ describe('KubeConfig', () => {
             const opts = {} as RequestOptions;
 
             await config.applyToHTTPSOptions(opts);
-            expect(opts.rejectUnauthorized).to.equal(false);
+            strictEqual(opts.rejectUnauthorized, false);
         });
 
         it('should not set rejectUnauthorized if skipTLSVerify is not set', async () => {
@@ -954,7 +958,7 @@ describe('KubeConfig', () => {
             const opts = {} as RequestOptions;
 
             await config.applyToHTTPSOptions(opts);
-            expect(opts.rejectUnauthorized).to.equal(undefined);
+            strictEqual(opts.rejectUnauthorized, undefined);
         });
 
         it('should throw with expired token and no cmd', () => {
@@ -972,9 +976,9 @@ describe('KubeConfig', () => {
             );
             const opts = {} as RequestOptions;
 
-            return expect(config.applyToHTTPSOptions(opts)).to.eventually.be.rejectedWith(
-                'Token is expired!',
-            );
+            return rejects(config.applyToHTTPSOptions(opts), {
+                message: 'Token is expired!',
+            });
         });
 
         it('should throw with bad command', () => {
@@ -993,9 +997,7 @@ describe('KubeConfig', () => {
                 } as User,
             );
             const opts = {} as RequestOptions;
-            return expect(config.applyToHTTPSOptions(opts)).to.eventually.be.rejectedWith(
-                /Failed to refresh token/,
-            );
+            return rejects(config.applyToHTTPSOptions(opts), /Failed to refresh token/);
         });
 
         it('should exec with expired token', async () => {
@@ -1023,10 +1025,7 @@ describe('KubeConfig', () => {
             );
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            expect(opts.headers).to.not.be.undefined;
-            if (opts.headers) {
-                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-            }
+            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
         });
 
         it('should exec with expired token', async () => {
@@ -1054,10 +1053,7 @@ describe('KubeConfig', () => {
             );
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            expect(opts.headers).to.not.be.undefined;
-            if (opts.headers) {
-                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-            }
+            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
         });
 
         it('should exec without access-token', async () => {
@@ -1084,10 +1080,7 @@ describe('KubeConfig', () => {
             );
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            expect(opts.headers).to.not.be.undefined;
-            if (opts.headers) {
-                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-            }
+            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
         });
         it('should exec without access-token', async () => {
             // TODO: fix this test for Windows
@@ -1113,10 +1106,7 @@ describe('KubeConfig', () => {
             );
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            expect(opts.headers).to.not.be.undefined;
-            if (opts.headers) {
-                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-            }
+            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
         });
         it('should exec succesfully with spaces in cmd', async () => {
             // TODO: fix this test for Windows
@@ -1142,10 +1132,7 @@ describe('KubeConfig', () => {
             );
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            expect(opts.headers).to.not.be.undefined;
-            if (opts.headers) {
-                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-            }
+            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
         });
         it('should exec with exec auth and env vars', async () => {
             // TODO: fix this test for Windows
@@ -1178,10 +1165,7 @@ describe('KubeConfig', () => {
             // TODO: inject the exec command here and validate env vars?
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            expect(opts.headers).to.not.be.undefined;
-            if (opts.headers) {
-                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-            }
+            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
         });
         it('should exec with exec auth', async () => {
             // TODO: fix this test for Windows
@@ -1214,10 +1198,7 @@ describe('KubeConfig', () => {
             // TODO: inject the exec command here?
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            expect(opts.headers).to.not.be.undefined;
-            if (opts.headers) {
-                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-            }
+            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
         });
         it('should exec with exec auth (other location)', async () => {
             // TODO: fix this test for Windows
@@ -1245,10 +1226,7 @@ describe('KubeConfig', () => {
             // TODO: inject the exec command here?
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            expect(opts.headers).to.not.be.undefined;
-            if (opts.headers) {
-                expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
-            }
+            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
         });
         it('should cache exec with name', async () => {
             // TODO: fix this test for Windows
@@ -1280,7 +1258,7 @@ describe('KubeConfig', () => {
             const execAuthenticator = (KubeConfig as any).authenticators.find(
                 (authenticator) => authenticator instanceof ExecAuth,
             );
-            expect(execAuthenticator.tokenCache.exec).to.deep.equal(JSON.parse(responseStr));
+            deepStrictEqual(execAuthenticator.tokenCache.exec, JSON.parse(responseStr));
         });
 
         it('should throw with no command.', () => {
@@ -1297,9 +1275,9 @@ describe('KubeConfig', () => {
                 } as User,
             );
             const opts = {} as RequestOptions;
-            return expect(config.applyToHTTPSOptions(opts)).to.eventually.be.rejectedWith(
-                'No command was specified for exec authProvider!',
-            );
+            return rejects(config.applyToHTTPSOptions(opts), {
+                message: 'No command was specified for exec authProvider!',
+            });
         });
     });
 
@@ -1311,10 +1289,10 @@ describe('KubeConfig', () => {
             kc.loadFromDefault();
 
             // 2 in the first config, 1 in the second config
-            expect(kc.clusters.length).to.equal(3);
-            expect(kc.users.length).to.equal(6);
-            expect(kc.contexts.length).to.equal(4);
-            expect(kc.getCurrentContext()).to.equal('contextA');
+            strictEqual(kc.clusters.length, 3);
+            strictEqual(kc.users.length, 6);
+            strictEqual(kc.contexts.length, 4);
+            strictEqual(kc.getCurrentContext(), 'contextA');
         });
         it('should preserve starting file context', () => {
             process.env.KUBECONFIG = kcFileName + path.delimiter + kc2FileName;
@@ -1322,27 +1300,27 @@ describe('KubeConfig', () => {
             const kc = new KubeConfig();
             kc.loadFromDefault({}, true);
 
-            expect(kc.getCurrentContext()).to.equal('context2');
+            strictEqual(kc.getCurrentContext(), 'context2');
         });
         it('should throw with duplicate clusters', () => {
             process.env.KUBECONFIG = kcFileName + path.delimiter + kcDupeCluster;
 
             const kc = new KubeConfig();
-            expect(() => kc.loadFromDefault()).to.throw('Duplicate cluster: cluster1');
+            throws(() => kc.loadFromDefault(), { message: 'Duplicate cluster: cluster1' });
         });
 
         it('should throw with duplicate contexts', () => {
             process.env.KUBECONFIG = kcFileName + path.delimiter + kcDupeContext;
 
             const kc = new KubeConfig();
-            expect(() => kc.loadFromDefault()).to.throw('Duplicate context: context1');
+            throws(() => kc.loadFromDefault(), { message: 'Duplicate context: context1' });
         });
 
         it('should throw with duplicate users', () => {
             process.env.KUBECONFIG = kcFileName + path.delimiter + kcDupeUser;
 
             const kc = new KubeConfig();
-            expect(() => kc.loadFromDefault()).to.throw('Duplicate user: user1');
+            throws(() => kc.loadFromDefault(), { message: 'Duplicate user: user1' });
         });
 
         it('should ignore extra path delimiters', () => {
@@ -1351,10 +1329,10 @@ describe('KubeConfig', () => {
             const kc = new KubeConfig();
             kc.loadFromDefault();
 
-            expect(kc.clusters.length).to.equal(2);
-            expect(kc.users.length).to.equal(3);
-            expect(kc.contexts.length).to.equal(3);
-            expect(kc.getCurrentContext()).to.equal('context2');
+            strictEqual(kc.clusters.length, 2);
+            strictEqual(kc.users.length, 3);
+            strictEqual(kc.contexts.length, 3);
+            strictEqual(kc.getCurrentContext(), 'context2');
         });
     });
 
@@ -1382,17 +1360,17 @@ describe('KubeConfig', () => {
                 keyFile: 'user/user.key',
             });
             kc.makePathsAbsolute('/tmp');
-            expect(kc.clusters[0].caFile).to.equal(platformPath('/tmp/foo/bar.crt'));
-            expect(kc.users[0].certFile).to.equal(platformPath('/tmp/user/user.crt'));
-            expect(kc.users[0].keyFile).to.equal(platformPath('/tmp/user/user.key'));
+            strictEqual(kc.clusters[0].caFile, platformPath('/tmp/foo/bar.crt'));
+            strictEqual(kc.users[0].certFile, platformPath('/tmp/user/user.crt'));
+            strictEqual(kc.users[0].keyFile, platformPath('/tmp/user/user.key'));
         });
         it('should correctly make absolute paths', () => {
             const relative = 'foo/bar';
             const absolute = '/tmp/foo/bar';
             const root = '/usr/';
 
-            expect(makeAbsolutePath(root, relative)).to.equal(platformPath('/usr/foo/bar'));
-            expect(makeAbsolutePath(root, absolute)).to.equal(absolute);
+            strictEqual(makeAbsolutePath(root, relative), platformPath('/usr/foo/bar'));
+            strictEqual(makeAbsolutePath(root, absolute), absolute);
         });
     });
 
@@ -1450,25 +1428,17 @@ describe('KubeConfig', () => {
             delete process.env.KUBERNETES_SERVICE_PORT;
 
             const cluster = kc.getCurrentCluster();
-            expect(cluster).to.not.be.null;
-            if (!cluster) {
-                return;
-            }
-            expect(cluster.caFile).to.equal('/var/run/secrets/kubernetes.io/serviceaccount/ca.crt');
-            expect(cluster.server).to.equal('https://kubernetes:443');
+            strictEqual(cluster!.caFile, '/var/run/secrets/kubernetes.io/serviceaccount/ca.crt');
+            strictEqual(cluster!.server, 'https://kubernetes:443');
             const user = kc.getCurrentUser();
-            expect(user).to.not.be.null;
-            if (user) {
-                expect(user.authProvider.config.tokenFile).to.equal(
-                    '/var/run/secrets/kubernetes.io/serviceaccount/token',
-                );
-            }
+            strictEqual(
+                user!.authProvider.config.tokenFile,
+                '/var/run/secrets/kubernetes.io/serviceaccount/token',
+            );
+
             const contextName = kc.getCurrentContext();
             const currentContext = kc.getContextObject(contextName);
-            expect(currentContext).to.not.be.null;
-            if (currentContext) {
-                expect(currentContext.namespace).to.equal('myNamespace');
-            }
+            strictEqual(currentContext!.namespace, 'myNamespace');
         });
 
         it('should load from cluster with http port', () => {
@@ -1494,11 +1464,7 @@ describe('KubeConfig', () => {
             delete process.env.KUBERNETES_SERVICE_PORT;
 
             const cluster = kc.getCurrentCluster();
-            expect(cluster).to.not.be.null;
-            if (!cluster) {
-                return;
-            }
-            expect(cluster.server).to.equal('http://kubernetes:80');
+            strictEqual(cluster!.server, 'http://kubernetes:80');
         });
 
         it('should load from cluster with ipv6', () => {
@@ -1524,11 +1490,7 @@ describe('KubeConfig', () => {
             delete process.env.KUBERNETES_SERVICE_PORT;
 
             const cluster = kc.getCurrentCluster();
-            expect(cluster).to.not.be.null;
-            if (!cluster) {
-                return;
-            }
-            expect(cluster.server).to.equal('http://[::1234:5678]:80');
+            strictEqual(cluster!.server, 'http://[::1234:5678]:80');
         });
 
         it('should default to localhost', () => {
@@ -1543,18 +1505,11 @@ describe('KubeConfig', () => {
             process.env.HOME = currentHome;
 
             const cluster = kc.getCurrentCluster();
-            expect(cluster).to.not.be.null;
-            if (!cluster) {
-                return;
-            }
-            expect(cluster.name).to.equal('cluster');
-            expect(cluster.server).to.equal('http://localhost:8080');
+            strictEqual(cluster!.name, 'cluster');
+            strictEqual(cluster!.server, 'http://localhost:8080');
 
             const user = kc.getCurrentUser();
-            expect(user).to.not.be.null;
-            if (user) {
-                expect(user.name).to.equal('user');
-            }
+            strictEqual(user!.name, 'user');
         });
     });
 
@@ -1568,30 +1523,30 @@ describe('KubeConfig', () => {
             kc.loadFromFile(kcFileName);
 
             const client = kc.makeApiClient(CoreV1Api);
-            expect(client instanceof CoreV1Api).to.equal(true);
+            strictEqual(client instanceof CoreV1Api, true);
         });
     });
 
     describe('EmptyConfig', () => {
         const emptyConfig = new KubeConfig();
         it('should throw if you try to make a client', () => {
-            expect(() => emptyConfig.makeApiClient(CoreV1Api)).to.throw('No active cluster!');
+            throws(() => emptyConfig.makeApiClient(CoreV1Api), { message: 'No active cluster!' });
         });
 
         it('should get a null current cluster', () => {
-            expect(emptyConfig.getCurrentCluster()).to.equal(null);
+            strictEqual(emptyConfig.getCurrentCluster(), null);
         });
 
         it('should get empty user', () => {
-            expect(emptyConfig.getCurrentUser()).to.equal(null);
+            strictEqual(emptyConfig.getCurrentUser(), null);
         });
 
         it('should get empty cluster', () => {
-            expect(emptyConfig.getCurrentCluster()).to.equal(null);
+            strictEqual(emptyConfig.getCurrentCluster(), null);
         });
 
         it('should get empty context', () => {
-            expect(emptyConfig.getCurrentContext()).to.be.undefined;
+            strictEqual(emptyConfig.getCurrentContext(), undefined);
         });
 
         it('should apply to request', async () => {
@@ -1623,8 +1578,8 @@ describe('KubeConfig', () => {
             });
             kc.setCurrentContext('test');
 
-            expect(kc.getCurrentCluster()!.name).to.equal('testCluster');
-            expect(kc.getCurrentUser()!.username).to.equal('username');
+            strictEqual(kc.getCurrentCluster()!.name, 'testCluster');
+            strictEqual(kc.getCurrentUser()!.username, 'username');
         });
     });
 
@@ -1638,10 +1593,7 @@ describe('KubeConfig', () => {
             };
             mockfs(arg);
             const inputData = bufferFromFileOrString('configDir/config');
-            expect(inputData).to.not.equal(null);
-            if (inputData) {
-                expect(inputData.toString()).to.equal(data);
-            }
+            strictEqual(inputData!.toString(), data);
             mockfs.restore();
         });
         it('should load from a file if present', () => {
@@ -1651,10 +1603,7 @@ describe('KubeConfig', () => {
             };
             mockfs(arg);
             const inputData = bufferFromFileOrString('config');
-            expect(inputData).to.not.equal(null);
-            if (inputData) {
-                expect(inputData.toString()).to.equal(data);
-            }
+            strictEqual(inputData!.toString(), data);
             mockfs.restore();
         });
     });

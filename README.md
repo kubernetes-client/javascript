@@ -177,7 +177,8 @@ Run `npm run lint` or install an editor plugin.
 
 # Testing
 
-Tests are written using the [Chai](http://chaijs.com/) library. See
+Tests are written using the [Mocha](https://mochajs.org/) test runner and
+[`node:assert`](https://nodejs.org/api/assert.html) assertion library. See
 [`config_test.ts`](./src/config_test.ts) for an example.
 
 To run tests, execute the following:
