@@ -197,7 +197,7 @@ describe('KubeConfig', () => {
         });
         it('should fail to load a missing kubeconfig file', () => {
             const kc = new KubeConfig();
-            throws(kc.loadFromFile.bind('missing.yaml'));
+            throws(() => kc.loadFromFile('missing.yaml'));
         });
 
         describe('filter vs throw tests', () => {
