@@ -80,13 +80,9 @@
     },
     "devDependencies": {
         "@eslint/js": "^9.18.0",
-        "@types/chai": "^5.0.0",
-        "@types/chai-as-promised": "^8.0.1",
         "@types/mocha": "^10.0.1",
         "@types/mock-fs": "^4.13.1",
         "c8": "^10.0.0",
-        "chai": "^5.1.2",
-        "chai-as-promised": "^8.0.0",
         "eslint": "^9.18.0",
         "husky": "^9.0.6",
         "mocha": "^11.0.1",
