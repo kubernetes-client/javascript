@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { strictEqual } from 'node:assert';
 import WebSocket from 'isomorphic-ws';
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
 import { anyFunction, anything, capture, instance, mock, verify, when } from 'ts-mockito';
@@ -73,7 +73,7 @@ describe('Attach', () => {
             await attach.attach(namespace, pod, container, osStream, errStream, isStream, false);
             const [, , outputFn] = capture(fakeWebSocketInterface.connect).last();
 
-            expect(outputFn).to.not.be.null;
+            strictEqual(typeof outputFn, 'function');
 
             // this is redundant but needed for the compiler, sigh...
             if (!outputFn) {
@@ -83,18 +83,18 @@ describe('Attach', () => {
             let buffer = Buffer.alloc(1024, 10);
 
             outputFn(WebSocketHandler.StdoutStream, buffer);
-            expect(osStream.size()).to.equal(1024);
+            strictEqual(osStream.size(), 1024);
             let buff = osStream.getContents() as Buffer;
             for (let i = 0; i < 1024; i++) {
-                expect(buff[i]).to.equal(10);
+                strictEqual(buff[i], 10);
             }
 
             buffer = Buffer.alloc(1024, 20);
             outputFn(WebSocketHandler.StderrStream, buffer);
-            expect(errStream.size()).to.equal(1024);
+            strictEqual(errStream.size(), 1024);
             buff = errStream.getContents() as Buffer;
             for (let i = 0; i < 1024; i++) {
-                expect(buff[i]).to.equal(20);
+                strictEqual(buff[i], 20);
             }
 
             const initialTerminalSize: TerminalSize = { height: 0, width: 0 };

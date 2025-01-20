@@ -1,5 +1,4 @@
-import { expect } from 'chai';
-
+import { deepStrictEqual, strictEqual } from 'node:assert';
 import { V1Namespace } from './api.js';
 import { dumpYaml, loadAllYaml, loadYaml } from './yaml.js';
 
@@ -8,9 +7,9 @@ describe('yaml', () => {
         const yaml = 'apiVersion: v1\n' + 'kind: Namespace\n' + 'metadata:\n' + '  name: some-namespace\n';
         const ns = loadYaml<V1Namespace>(yaml);
 
-        expect(ns.apiVersion).to.equal('v1');
-        expect(ns.kind).to.equal('Namespace');
-        expect(ns.metadata!.name).to.equal('some-namespace');
+        strictEqual(ns.apiVersion, 'v1');
+        strictEqual(ns.kind, 'Namespace');
+        strictEqual(ns.metadata!.name, 'some-namespace');
     });
     it('should load all safely', () => {
         const yaml =
@@ -26,12 +25,12 @@ describe('yaml', () => {
             '  namespace: some-ns\n';
         const objects = loadAllYaml(yaml);
 
-        expect(objects.length).to.equal(2);
-        expect(objects[0].kind).to.equal('Namespace');
-        expect(objects[1].kind).to.equal('Pod');
-        expect(objects[0].metadata.name).to.equal('some-namespace');
-        expect(objects[1].metadata.name).to.equal('some-pod');
-        expect(objects[1].metadata.namespace).to.equal('some-ns');
+        strictEqual(objects.length, 2);
+        strictEqual(objects[0].kind, 'Namespace');
+        strictEqual(objects[1].kind, 'Pod');
+        strictEqual(objects[0].metadata.name, 'some-namespace');
+        strictEqual(objects[1].metadata.name, 'some-pod');
+        strictEqual(objects[1].metadata.namespace, 'some-ns');
     });
     it('should round trip successfully', () => {
         const expected = {
@@ -41,6 +40,6 @@ describe('yaml', () => {
         };
         const yamlString = dumpYaml(expected);
         const actual = loadYaml(yamlString);
-        expect(actual).to.deep.equal(expected);
+        deepStrictEqual(actual, expected);
     });
 });

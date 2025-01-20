@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { deepStrictEqual, rejects, strictEqual } from 'node:assert';
 import nock from 'nock';
 import { PassThrough } from 'node:stream';
 import { KubeConfig } from './config.js';
@@ -65,8 +65,8 @@ describe('Watch', () => {
                 doneErr = err;
             },
         );
-        expect(doneCalled).to.equal(true);
-        expect(doneErr.toString()).to.equal('Error: Internal Server Error');
+        strictEqual(doneCalled, true);
+        strictEqual(doneErr.toString(), 'Error: Internal Server Error');
         s.done();
     });
 
@@ -148,18 +148,18 @@ describe('Watch', () => {
 
         await handledAllObjectsPromise;
 
-        expect(receivedTypes).to.deep.equal([obj1.type, obj2.type]);
-        expect(receivedObjects).to.deep.equal([obj1.object, obj2.object]);
+        deepStrictEqual(receivedTypes, [obj1.type, obj2.type]);
+        deepStrictEqual(receivedObjects, [obj1.object, obj2.object]);
 
-        expect(doneCalled).to.equal(0);
+        strictEqual(doneCalled, 0);
 
         const errIn = new Error('err');
         (response as IncomingMessage).socket.destroy(errIn);
 
         await donePromise;
 
-        expect(doneCalled).to.equal(1);
-        expect(doneErr).to.deep.equal(errIn);
+        strictEqual(doneCalled, 1);
+        deepStrictEqual(doneErr, errIn);
 
         s.done();
 
@@ -226,18 +226,18 @@ describe('Watch', () => {
 
         await handledAllObjectsPromise;
 
-        expect(receivedTypes).to.deep.equal([obj1.type]);
-        expect(receivedObjects).to.deep.equal([obj1.object]);
+        deepStrictEqual(receivedTypes, [obj1.type]);
+        deepStrictEqual(receivedObjects, [obj1.object]);
 
-        expect(doneErr.length).to.equal(0);
+        strictEqual(doneErr.length, 0);
 
         const errIn = new Error('err');
         (response as IncomingMessage).socket.destroy(errIn);
 
         await donePromise;
 
-        expect(doneErr.length).to.equal(1);
-        expect(doneErr[0]).to.deep.equal(errIn);
+        strictEqual(doneErr.length, 1);
+        deepStrictEqual(doneErr[0], errIn);
 
         s.done();
 
@@ -299,17 +299,16 @@ describe('Watch', () => {
 
         await handledAllObjectsPromise;
 
-        expect(receivedTypes).to.deep.equal([obj1.type]);
-        expect(receivedObjects).to.deep.equal([obj1.object]);
-
-        expect(doneErr.length).to.equal(0);
+        deepStrictEqual(receivedTypes, [obj1.type]);
+        deepStrictEqual(receivedObjects, [obj1.object]);
+        strictEqual(doneErr.length, 0);
 
         stream.end();
 
         await donePromise;
 
-        expect(doneErr.length).to.equal(1);
-        expect(doneErr[0]).to.equal(null);
+        strictEqual(doneErr.length, 1);
+        strictEqual(doneErr[0], null);
 
         s.done();
 
@@ -364,13 +363,13 @@ describe('Watch', () => {
 
         await donePromise;
 
-        expect(receivedTypes).to.deep.equal([obj.type]);
-        expect(receivedObjects).to.deep.equal([obj.object]);
+        deepStrictEqual(receivedTypes, [obj.type]);
+        deepStrictEqual(receivedObjects, [obj.object]);
 
         s.done();
     });
 
-    it('should throw on empty config', () => {
+    it('should throw on empty config', async () => {
         const kc = new KubeConfig();
         const watch = new Watch(kc);
 
@@ -380,6 +379,6 @@ describe('Watch', () => {
             () => {},
             () => {},
         );
-        expect(promise).to.be.rejected;
+        await rejects(promise);
     });
 });

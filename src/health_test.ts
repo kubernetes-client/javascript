@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { rejects, strictEqual } from 'node:assert';
 import nock from 'nock';
 
 import { KubeConfig } from './config.js';
@@ -10,7 +10,7 @@ describe('Health', () => {
         it('should throw an error if no current active cluster', async () => {
             const kc = new KubeConfig();
             const health = new Health(kc);
-            await expect(health.livez({})).to.be.rejectedWith('No currently active cluster');
+            await rejects(health.livez({}), { message: 'No currently active cluster' });
         });
 
         it('should return true if /livez returns with status 200', async () => {
@@ -30,7 +30,7 @@ describe('Health', () => {
             const health = new Health(kc);
 
             const r = await health.livez({});
-            expect(r).to.be.true;
+            strictEqual(r, true);
             scope.done();
         });
 
@@ -51,7 +51,7 @@ describe('Health', () => {
             const health = new Health(kc);
 
             const r = await health.livez({});
-            expect(r).to.be.false;
+            strictEqual(r, false);
             scope.done();
         });
 
@@ -74,7 +74,7 @@ describe('Health', () => {
             const health = new Health(kc);
 
             const r = await health.livez({});
-            expect(r).to.be.true;
+            strictEqual(r, true);
             scope.done();
         });
 
@@ -97,7 +97,7 @@ describe('Health', () => {
             const health = new Health(kc);
 
             const r = await health.livez({});
-            expect(r).to.be.false;
+            strictEqual(r, false);
             scope.done();
         });
 
@@ -120,7 +120,7 @@ describe('Health', () => {
             const health = new Health(kc);
 
             const r = await health.livez({});
-            expect(r).to.be.true;
+            strictEqual(r, true);
             scope.done();
         });
 
@@ -141,7 +141,7 @@ describe('Health', () => {
             scope.get('/livez').replyWithError(new Error('an error'));
             const health = new Health(kc);
 
-            await expect(health.livez({})).to.be.rejectedWith('Error occurred in health request');
+            await rejects(health.livez({}), { message: 'Error occurred in health request' });
             scope.done();
         });
     });

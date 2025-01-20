@@ -1,4 +1,4 @@
-import { expect, assert } from 'chai';
+import { deepStrictEqual, strictEqual, throws } from 'node:assert';
 import { Response } from 'node-fetch';
 import { CoreV1Api, V1Container, V1Pod } from './api.js';
 import {
@@ -24,7 +24,7 @@ describe('Utils', () => {
         };
 
         const pods = await podsForNode(mockApi as CoreV1Api, 'foo');
-        expect(pods.length).to.equal(0);
+        strictEqual(pods.length, 0);
     });
 
     it('should only gets for pods named node', async () => {
@@ -51,42 +51,41 @@ describe('Utils', () => {
         };
 
         const pods = await podsForNode(mockApi as CoreV1Api, 'foo');
-        expect(pods.length).to.equal(1);
-        expect(pods[0].spec!.nodeName).to.equal('foo');
+        strictEqual(pods.length, 1);
+        strictEqual(pods[0].spec!.nodeName, 'foo');
     });
 
     it('should parse quantities', () => {
-        expect(quantityToScalar('')).to.equal(0);
+        strictEqual(quantityToScalar(''), 0);
+        strictEqual(quantityToScalar('2n'), 2 / 1_000_000_000);
+        strictEqual(quantityToScalar('3u'), 3 / 1_000_000);
+        strictEqual(quantityToScalar('100m'), 0.1);
+        strictEqual(quantityToScalar('3k'), BigInt(3000));
+        strictEqual(quantityToScalar('3M'), BigInt(3 * 1000 * 1000));
+        strictEqual(quantityToScalar('3G'), BigInt(3 * 1000 * 1000 * 1000));
+        strictEqual(quantityToScalar('5T'), BigInt(5 * 1000 * 1000 * 1000) * BigInt(1000));
+        strictEqual(quantityToScalar('3P'), BigInt(3 * 1000 * 1000 * 1000) * BigInt(1000 * 1000));
+        strictEqual(quantityToScalar('14E'), BigInt(14 * 1000 * 1000 * 1000) * BigInt(1000 * 1000 * 1000));
 
-        expect(quantityToScalar('2n')).to.equal(2 / 1_000_000_000);
-        expect(quantityToScalar('3u')).to.equal(3 / 1_000_000);
-        expect(quantityToScalar('100m')).to.equal(0.1);
-        expect(quantityToScalar('3k')).to.equal(BigInt(3000));
-        expect(quantityToScalar('3M')).to.equal(BigInt(3 * 1000 * 1000));
-        expect(quantityToScalar('3G')).to.equal(BigInt(3 * 1000 * 1000 * 1000));
-        expect(quantityToScalar('5T')).to.equal(BigInt(5 * 1000 * 1000 * 1000) * BigInt(1000));
-        expect(quantityToScalar('3P')).to.equal(BigInt(3 * 1000 * 1000 * 1000) * BigInt(1000 * 1000));
-        expect(quantityToScalar('14E')).to.equal(
-            BigInt(14 * 1000 * 1000 * 1000) * BigInt(1000 * 1000 * 1000),
-        );
+        strictEqual(quantityToScalar('0.2'), 0.2);
+        strictEqual(quantityToScalar('1976m'), 1.976);
 
-        expect(quantityToScalar('0.2')).to.equal(0.2);
-        expect(quantityToScalar('1976m')).to.equal(1.976);
+        strictEqual(quantityToScalar('1024'), 1024);
+        strictEqual(quantityToScalar('10e3'), 10000);
 
-        expect(quantityToScalar('1024')).to.equal(1024);
-        expect(quantityToScalar('10e3')).to.equal(10000);
+        strictEqual(quantityToScalar('10Ki'), BigInt(10240));
+        strictEqual(quantityToScalar('20Mi'), BigInt(1024 * 1024 * 20));
+        strictEqual(quantityToScalar('30Gi'), BigInt(1024 * 1024 * 1024 * 30));
+        strictEqual(quantityToScalar('40Ti'), BigInt(1024 * 1024 * 1024 * 1024 * 40));
+        strictEqual(quantityToScalar('50Pi'), BigInt(1024 * 1024 * 1024 * 1024 * 1024 * 50));
+        strictEqual(quantityToScalar('60Ei'), BigInt(1024 * 1024 * 1024) * BigInt(1024 * 1024 * 1024 * 60));
 
-        expect(quantityToScalar('10Ki')).to.equal(BigInt(10240));
-        expect(quantityToScalar('20Mi')).to.equal(BigInt(1024 * 1024 * 20));
-        expect(quantityToScalar('30Gi')).to.equal(BigInt(1024 * 1024 * 1024 * 30));
-        expect(quantityToScalar('40Ti')).to.equal(BigInt(1024 * 1024 * 1024 * 1024 * 40));
-        expect(quantityToScalar('50Pi')).to.equal(BigInt(1024 * 1024 * 1024 * 1024 * 1024 * 50));
-        expect(quantityToScalar('60Ei')).to.equal(
-            BigInt(1024 * 1024 * 1024) * BigInt(1024 * 1024 * 1024 * 60),
-        );
-
-        expect(() => quantityToScalar('foobar')).to.throw('Unknown quantity foobar');
-        expect(() => quantityToScalar('100foobar')).to.throw('Unknown suffix: foobar');
+        throws(() => quantityToScalar('foobar'), {
+            message: 'Unknown quantity foobar',
+        });
+        throws(() => quantityToScalar('100foobar'), {
+            message: 'Unknown suffix: foobar',
+        });
     });
 
     it('should get resources for pod', () => {
@@ -121,18 +120,18 @@ describe('Utils', () => {
         } as V1Pod;
 
         const cpuResult = totalCPU(pod);
-        expect(cpuResult.request).to.equal(1.1);
-        expect(cpuResult.limit).to.equal(0.2);
+        strictEqual(cpuResult.request, 1.1);
+        strictEqual(cpuResult.limit, 0.2);
 
         const memResult = totalMemory(pod);
-        expect(memResult.request).to.equal(BigInt(10240));
-        expect(memResult.limit).to.equal(BigInt(20480));
+        strictEqual(memResult.request, BigInt(10240));
+        strictEqual(memResult.limit, BigInt(20480));
     });
 
     it('should find the suffix correctly', () => {
-        expect(findSuffix('1234567')).to.equal('');
-        expect(findSuffix('1234asdf')).to.equal('asdf');
-        expect(findSuffix('1.0')).to.equal('');
+        strictEqual(findSuffix('1234567'), '');
+        strictEqual(findSuffix('1234asdf'), 'asdf');
+        strictEqual(findSuffix('1.0'), '');
     });
 
     it('shoult extract the headers for ApiException correctly', () => {
@@ -140,6 +139,6 @@ describe('Utils', () => {
         response.headers.set('foo', 'bar');
         response.headers.set('baz', 'k8s');
 
-        assert.deepEqual(normalizeResponseHeaders(response), { foo: 'bar', baz: 'k8s' });
+        deepStrictEqual(normalizeResponseHeaders(response), { foo: 'bar', baz: 'k8s' });
     });
 });

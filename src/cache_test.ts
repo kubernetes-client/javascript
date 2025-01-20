@@ -1,6 +1,4 @@
-import { expect, use } from 'chai';
-import chaiAsPromised from 'chai-as-promised';
-
+import { deepStrictEqual, notStrictEqual, strictEqual, throws } from 'node:assert';
 import mock from 'ts-mockito';
 
 import { V1Namespace, V1NamespaceList, V1ObjectMeta, V1Pod, V1PodList, V1ListMeta } from './api.js';
@@ -8,8 +6,6 @@ import { deleteObject, ListWatch, deleteItems, CacheMap, addOrUpdateObject } fro
 import { KubeConfig } from './config.js';
 import { Cluster, Context, User } from './config_types.js';
 import { ListPromise } from './informer.js';
-
-use(chaiAsPromised);
 
 import nock from 'nock';
 import { Watch } from './watch.js';
@@ -57,7 +53,9 @@ describe('ListWatchCache', () => {
         const verb = 'FOOBAR';
         // The 'as any' is a hack to get around Typescript which prevents an unknown verb from being
         // passed. We want to test for Javascript clients also, where this is possible
-        expect(() => (lw as any).on(verb, (obj?: V1Namespace) => {})).to.throw(`Unknown verb: ${verb}`);
+        throws(() => (lw as any).on(verb, (obj?: V1Namespace) => {}), {
+            message: `Unknown verb: ${verb}`,
+        });
     });
 
     it('should perform basic caching', async () => {
@@ -117,11 +115,10 @@ describe('ListWatchCache', () => {
         const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
         await promise;
         const [pathOut, , watchHandler, doneHandler] = mock.capture(fakeWatch.watch).last();
-        expect(pathOut).to.equal('/some/path');
-        expect(cache.list()).to.deep.equal(list);
-
-        expect(cache.list('default')).to.deep.equal(list);
-        expect(cache.list('non-existent')).to.deep.equal([]);
+        strictEqual(pathOut, '/some/path');
+        deepStrictEqual(cache.list(), list);
+        deepStrictEqual(cache.list('default'), list);
+        deepStrictEqual(cache.list('non-existent'), []);
 
         watchHandler('ADDED', {
             metadata: {
@@ -130,12 +127,11 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Pod);
 
-        expect(cache.list().length).to.equal(3);
-        expect(cache.get('name3')).to.not.equal(null);
-
-        expect(cache.list('default').length).to.equal(2);
-        expect(cache.list('other').length).to.equal(1);
-        expect(cache.list('non-existent')).to.deep.equal([]);
+        strictEqual(cache.list().length, 3);
+        notStrictEqual(cache.get('name3'), null);
+        strictEqual(cache.list('default').length, 2);
+        strictEqual(cache.list('other').length, 1);
+        deepStrictEqual(cache.list('non-existent'), []);
 
         watchHandler('MODIFIED', {
             metadata: {
@@ -144,12 +140,12 @@ describe('ListWatchCache', () => {
                 resourceVersion: 'baz',
             } as V1ObjectMeta,
         } as V1Pod);
-        expect(cache.list().length).to.equal(3);
+        strictEqual(cache.list().length, 3);
         const obj3 = cache.get('name3');
-        expect(obj3).to.not.equal(null);
+        notStrictEqual(obj3, null);
         if (obj3) {
-            expect(obj3.metadata!.name).to.equal('name3');
-            expect(obj3.metadata!.resourceVersion).to.equal('baz');
+            strictEqual(obj3.metadata!.name, 'name3');
+            strictEqual(obj3.metadata!.resourceVersion, 'baz');
         }
 
         watchHandler('DELETED', {
@@ -158,11 +154,11 @@ describe('ListWatchCache', () => {
                 namespace: 'default',
             } as V1ObjectMeta,
         } as V1Pod);
-        expect(cache.list().length).to.equal(2);
-        expect(cache.get('name2')).to.equal(undefined);
+        strictEqual(cache.list().length, 2);
+        strictEqual(cache.get('name2'), undefined);
 
-        expect(cache.list('default').length).to.equal(1);
-        expect(cache.list('other').length).to.equal(1);
+        strictEqual(cache.list('default').length, 1);
+        strictEqual(cache.list('other').length, 1);
 
         watchHandler('ADDED', {
             metadata: {
@@ -174,9 +170,9 @@ describe('ListWatchCache', () => {
         const error = new Error('Gone') as Error & { statusCode: number | undefined };
         error.statusCode = 410;
         await doneHandler(error);
-        expect(cache.list().length, 'all pod list').to.equal(1);
-        expect(cache.list('default').length, 'default pod list').to.equal(1);
-        expect(cache.list('other'), 'other pod list').to.deep.equal([]);
+        strictEqual(cache.list().length, 1);
+        strictEqual(cache.list('default').length, 1);
+        deepStrictEqual(cache.list('other'), []);
     });
 
     it('should perform work as an informer', async () => {
@@ -215,7 +211,7 @@ describe('ListWatchCache', () => {
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
         await promise;
         const [pathOut, , watchHandler] = mock.capture(fakeWatch.watch).last();
-        expect(pathOut).to.equal('/some/path');
+        strictEqual(pathOut, '/some/path');
 
         const addPromise = new Promise<V1Namespace>((resolve: (V1Namespace) => void) => {
             informer.on('add', (obj?: V1Namespace) => {
@@ -254,13 +250,14 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Namespace);
 
-        return Promise.all([
-            expect(addPromise).to.eventually.have.property('metadata').that.deep.equals({ name: 'name3' }),
-            expect(updatePromise)
-                .to.eventually.have.property('metadata')
-                .that.deep.equals({ name: 'name3', resourceVersion: 'baz' }),
-            expect(deletePromise).to.eventually.have.property('metadata').that.deep.equals({ name: 'name2' }),
+        const [addResult, updateResult, deleteResult] = await Promise.all([
+            addPromise,
+            updatePromise,
+            deletePromise,
         ]);
+        deepStrictEqual(addResult.metadata, { name: 'name3' });
+        deepStrictEqual(updateResult.metadata, { name: 'name3', resourceVersion: 'baz' });
+        deepStrictEqual(deleteResult.metadata, { name: 'name2' });
     });
 
     it('should handle change events correctly', async () => {
@@ -299,7 +296,7 @@ describe('ListWatchCache', () => {
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
         await promise;
         const [pathOut, , watchHandler] = mock.capture(fakeWatch.watch).last();
-        expect(pathOut).to.equal('/some/path');
+        strictEqual(pathOut, '/some/path');
 
         let count = 0;
         const changePromise = new Promise<boolean>((resolve: (V1Namespace) => void) => {
@@ -330,7 +327,7 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Namespace);
 
-        expect(changePromise).to.eventually.be.true;
+        strictEqual(await changePromise, true);
     });
 
     it('should perform work as an informer with multiple handlers', async () => {
@@ -357,7 +354,7 @@ describe('ListWatchCache', () => {
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
         await promise;
         const [pathOut, , watchHandler] = mock.capture(fakeWatch.watch).last();
-        expect(pathOut).to.equal('/some/path');
+        strictEqual(pathOut, '/some/path');
 
         const addPromise = new Promise<V1Namespace>((resolve: (V1Namespace) => void) => {
             informer.on('add', (obj?: V1Namespace) => {
@@ -377,10 +374,9 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Namespace);
 
-        return Promise.all([
-            expect(addPromise).to.eventually.have.property('metadata').that.deep.equals({ name: 'name3' }),
-            expect(addPromise2).to.eventually.have.property('metadata').that.deep.equals({ name: 'name3' }),
-        ]);
+        const [result1, result2] = await Promise.all([addPromise, addPromise2]);
+        deepStrictEqual(result1.metadata, { name: 'name3' });
+        deepStrictEqual(result2.metadata, { name: 'name3' });
     });
 
     it('should perform work as an informer with initial list', async () => {
@@ -429,9 +425,9 @@ describe('ListWatchCache', () => {
         await promise;
         const [pathOut, , , doneHandler] = mock.capture(fakeWatch.watch).last();
 
-        expect(pathOut).to.equal('/some/path');
-        expect(addObjects).to.deep.equal(list);
-        expect(updateObjects).to.deep.equal([]);
+        strictEqual(pathOut, '/some/path');
+        deepStrictEqual(addObjects, list);
+        deepStrictEqual(updateObjects, []);
 
         promise = new Promise((resolve) => {
             mock.when(
@@ -442,8 +438,8 @@ describe('ListWatchCache', () => {
         });
         doneHandler(null);
         await promise;
-        expect(addObjects).to.deep.equal(list);
-        expect(updateObjects).to.deep.equal([]);
+        deepStrictEqual(addObjects, list);
+        deepStrictEqual(updateObjects, []);
     });
 
     it('should perform work as an informer with initial list and delete after', async () => {
@@ -501,9 +497,9 @@ describe('ListWatchCache', () => {
         await promise;
         const [pathOut, , , doneHandler] = mock.capture(fakeWatch.watch).last();
 
-        expect(pathOut).to.equal('/some/path');
-        expect(addObjects).to.deep.equal(list);
-        expect(updateObjects).to.deep.equal([]);
+        strictEqual(pathOut, '/some/path');
+        deepStrictEqual(addObjects, list);
+        deepStrictEqual(updateObjects, []);
 
         promise = new Promise((resolve) => {
             mock.when(
@@ -517,9 +513,9 @@ describe('ListWatchCache', () => {
         error.statusCode = 410;
         await doneHandler(error);
         await promise;
-        expect(addObjects).to.deep.equal(list);
-        expect(updateObjects).to.deep.equal(list2);
-        expect(deleteObjects).to.deep.equal([
+        deepStrictEqual(addObjects, list);
+        deepStrictEqual(updateObjects, list2);
+        deepStrictEqual(deleteObjects, [
             {
                 metadata: {
                     name: 'name2',
@@ -567,14 +563,14 @@ describe('ListWatchCache', () => {
         const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
         await promise;
         const [pathOut, , watchHandler] = mock.capture(fakeWatch.watch).last();
-        expect(pathOut).to.equal('/some/path');
-        expect(cache.list()).to.deep.equal(list);
+        strictEqual(pathOut, '/some/path');
+        deepStrictEqual(cache.list(), list);
 
-        expect(cache.list('ns1').length).to.equal(1);
-        expect(cache.list('ns1')[0].metadata!.name).to.equal('name1');
+        strictEqual(cache.list('ns1').length, 1);
+        strictEqual(cache.list('ns1')[0].metadata!.name, 'name1');
 
-        expect(cache.list('ns2').length).to.equal(1);
-        expect(cache.list('ns2')[0].metadata!.name).to.equal('name2');
+        strictEqual(cache.list('ns2').length, 1);
+        strictEqual(cache.list('ns2')[0].metadata!.name, 'name2');
 
         watchHandler('ADDED', {
             metadata: {
@@ -583,8 +579,8 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Pod);
 
-        expect(cache.list().length).to.equal(3);
-        expect(cache.get('name3', 'ns3')).to.not.equal(null);
+        strictEqual(cache.list().length, 3);
+        notStrictEqual(cache.get('name3', 'ns3'), null);
 
         watchHandler('MODIFIED', {
             metadata: {
@@ -593,12 +589,12 @@ describe('ListWatchCache', () => {
                 resourceVersion: 'baz',
             } as V1ObjectMeta,
         } as V1Pod);
-        expect(cache.list().length).to.equal(3);
+        strictEqual(cache.list().length, 3);
         const obj3 = cache.get('name3', 'ns3');
-        expect(obj3).to.not.equal(null);
+        notStrictEqual(obj3, null);
         if (obj3) {
-            expect(obj3.metadata!.name).to.equal('name3');
-            expect(obj3.metadata!.resourceVersion).to.equal('baz');
+            strictEqual(obj3.metadata!.name, 'name3');
+            strictEqual(obj3.metadata!.resourceVersion, 'baz');
         }
 
         watchHandler('DELETED', {
@@ -607,8 +603,8 @@ describe('ListWatchCache', () => {
                 namespace: 'other-ns',
             } as V1ObjectMeta,
         } as V1Pod);
-        expect(cache.list().length).to.equal(3);
-        expect(cache.get('name2')).to.not.equal(null);
+        strictEqual(cache.list().length, 3);
+        notStrictEqual(cache.get('name2'), null);
 
         watchHandler('DELETED', {
             metadata: {
@@ -616,9 +612,9 @@ describe('ListWatchCache', () => {
                 namespace: 'ns2',
             } as V1ObjectMeta,
         } as V1Pod);
-        expect(cache.list().length).to.equal(2);
-        expect(cache.list('ns2').length).to.equal(0);
-        expect(cache.get('name2', 'ns2')).to.equal(undefined);
+        strictEqual(cache.list().length, 2);
+        strictEqual(cache.list('ns2').length, 0);
+        strictEqual(cache.get('name2', 'ns2'), undefined);
     });
 
     it('should perform non-namespace caching', async () => {
@@ -657,12 +653,11 @@ describe('ListWatchCache', () => {
         const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
         await promise;
         const [pathOut, , watchHandler] = mock.capture(fakeWatch.watch).last();
-        expect(pathOut).to.equal('/some/path');
-        expect(cache.list()).to.deep.equal(list);
-        expect(cache.get('name1')).to.not.equal(null);
-        expect(cache.get('name2')).to.not.equal(null);
-
-        expect(cache.list('ns1')).to.deep.equal([]);
+        strictEqual(pathOut, '/some/path');
+        deepStrictEqual(cache.list(), list);
+        notStrictEqual(cache.get('name1'), null);
+        notStrictEqual(cache.get('name2'), null);
+        deepStrictEqual(cache.list('ns1'), []);
 
         watchHandler('ADDED', {
             metadata: {
@@ -670,8 +665,8 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Namespace);
 
-        expect(cache.list().length).to.equal(3);
-        expect(cache.get('name3')).to.not.equal(null);
+        strictEqual(cache.list().length, 3);
+        notStrictEqual(cache.get('name3'), null);
 
         watchHandler('MODIFIED', {
             metadata: {
@@ -679,12 +674,12 @@ describe('ListWatchCache', () => {
                 resourceVersion: 'baz',
             } as V1ObjectMeta,
         } as V1Namespace);
-        expect(cache.list().length).to.equal(3);
+        strictEqual(cache.list().length, 3);
         const obj3 = cache.get('name3');
-        expect(obj3).to.not.equal(null);
+        notStrictEqual(obj3, null);
         if (obj3) {
-            expect(obj3.metadata!.name).to.equal('name3');
-            expect(obj3.metadata!.resourceVersion).to.equal('baz');
+            strictEqual(obj3.metadata!.name, 'name3');
+            strictEqual(obj3.metadata!.resourceVersion, 'baz');
         }
 
         watchHandler('DELETED', {
@@ -692,8 +687,8 @@ describe('ListWatchCache', () => {
                 name: 'name2',
             } as V1ObjectMeta,
         } as V1Namespace);
-        expect(cache.list().length).to.equal(2);
-        expect(cache.get('name2', 'ns2')).to.equal(undefined);
+        strictEqual(cache.list().length, 2);
+        strictEqual(cache.get('name2', 'ns2'), undefined);
     });
 
     it('should delete an object correctly', () => {
@@ -721,21 +716,21 @@ describe('ListWatchCache', () => {
                 namespace: 'ns1',
             },
         } as V1Pod);
-        expect(objs.size).to.equal(2);
+        strictEqual(objs.size, 2);
         deleteObject(objs, {
             metadata: {
                 name: 'name1',
                 namespace: 'ns2',
             },
         } as V1Pod);
-        expect(objs.size).to.equal(2);
+        strictEqual(objs.size, 2);
         deleteObject(objs, {
             metadata: {
                 name: 'name1',
                 namespace: 'ns1',
             },
         } as V1Pod);
-        expect(objs.size).to.equal(1);
+        strictEqual(objs.size, 1);
     });
 
     it('should not call handlers which have been unregistered', async () => {
@@ -790,8 +785,8 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Namespace);
 
-        expect(addedList1.length).to.equal(2);
-        expect(addedList2.length).to.equal(1);
+        strictEqual(addedList1.length, 2);
+        strictEqual(addedList2.length, 1);
     });
 
     it('mutating handlers in a callback should not affect those which remain', async () => {
@@ -837,7 +832,7 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Namespace);
 
-        expect(addedList.length).to.equal(1);
+        strictEqual(addedList.length, 1);
     });
 
     it('should resolve start promise after seeding the cache', async () => {
@@ -871,9 +866,9 @@ describe('ListWatchCache', () => {
         };
         const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
         const startPromise: Promise<void> = cache.start();
-        expect(cache.list().length).to.equal(0);
+        strictEqual(cache.list().length, 0);
         await startPromise;
-        expect(cache.list().length).to.equal(2);
+        strictEqual(cache.list().length, 2);
     });
 
     it('should only call update handlers once', async () => {
@@ -932,9 +927,9 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Namespace);
 
-        expect(adds).to.equal(2);
-        expect(addedList1.length).to.equal(2);
-        expect(addedList2.length).to.equal(1);
+        strictEqual(adds, 2);
+        strictEqual(addedList1.length, 2);
+        strictEqual(addedList2.length, 1);
     });
 
     it('should not auto-restart after explicitly stopping until restarted again', async () => {
@@ -1045,7 +1040,7 @@ describe('ListWatchCache', () => {
         mock.verify(
             fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
         ).once();
-        expect(errorEmitted).to.equal(true);
+        strictEqual(errorEmitted, true);
     });
 
     it('should not re-list if the watch can be restarted from the latest resourceVersion', async () => {
@@ -1098,7 +1093,7 @@ describe('ListWatchCache', () => {
         });
         informer.start();
         await promise;
-        expect(listCalls).to.be.equal(1);
+        strictEqual(listCalls, 1);
     });
 
     it('should list if the watch cannot be restarted from the latest resourceVersion', async () => {
@@ -1167,8 +1162,8 @@ describe('ListWatchCache', () => {
         mock.verify(
             fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
         ).thrice();
-        expect(errorEmitted).to.equal(false);
-        expect(listCalls).to.be.equal(2);
+        strictEqual(errorEmitted, false);
+        strictEqual(listCalls, 2);
     });
 
     it('should list if the watch cannot be restarted from the latest resourceVersion with an ERROR event', async () => {
@@ -1236,8 +1231,8 @@ describe('ListWatchCache', () => {
         mock.verify(
             fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
         ).twice();
-        expect(errorEmitted).to.equal(false);
-        expect(listCalls).to.be.equal(2);
+        strictEqual(errorEmitted, false);
+        strictEqual(listCalls, 2);
     });
 
     it('should send label selector', async () => {
@@ -1317,7 +1312,7 @@ describe('ListWatchCache', () => {
 
         const value = await donePromise;
 
-        expect(value).to.deep.equal({
+        deepStrictEqual(value, {
             metadata: {
                 labels: {
                     app: 'foo3',
@@ -1376,7 +1371,7 @@ describe('delete items', () => {
         });
 
         deleteItems(objs, listB, [(obj?: V1Pod) => pods.push(obj!)]);
-        expect(pods).to.deep.equal(expected);
+        deepStrictEqual(pods, expected);
     });
 
     it('should call the connect handler', async () => {
@@ -1401,7 +1396,7 @@ describe('delete items', () => {
         });
         informer.start();
 
-        expect(connectPromise).to.eventually.be.true;
+        strictEqual(await connectPromise, true);
     });
 
     it('does calls connect after a restart after an error', async () => {
@@ -1454,7 +1449,7 @@ describe('delete items', () => {
         mock.verify(
             fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
         ).once();
-        expect(errorEmitted).to.equal(true);
+        strictEqual(errorEmitted, true);
 
         const connectPromise = new Promise<boolean>((resolve: (boolean) => void) => {
             cache.on('connect', (obj?: V1Namespace) => {
@@ -1463,6 +1458,6 @@ describe('delete items', () => {
         });
         cache.start();
 
-        expect(connectPromise).to.eventually.be.true;
+        strictEqual(await connectPromise, true);
     });
 });

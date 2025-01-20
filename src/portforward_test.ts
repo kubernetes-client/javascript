@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { strictEqual, rejects } from 'node:assert';
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
 import { anyFunction, capture, instance, mock, verify } from 'ts-mockito';
 
@@ -36,7 +36,7 @@ describe('PortForward', () => {
 
         const [, , outputFn] = capture(fakeWebSocket.connect).last();
 
-        expect(outputFn).to.not.be.null;
+        strictEqual(typeof outputFn, 'function');
         // this is redundant but needed for the compiler, sigh...
         if (!outputFn) {
             return;
@@ -48,7 +48,7 @@ describe('PortForward', () => {
 
         outputFn(0, buffer);
         // first time, drop two bytes for the port number.
-        expect(osStream.size()).to.equal(1022);
+        strictEqual(osStream.size(), 1022);
     });
 
     it('should correctly port-forward streams if err is null', async () => {
@@ -62,7 +62,7 @@ describe('PortForward', () => {
 
         const [, , outputFn] = capture(fakeWebSocket.connect).last();
 
-        expect(outputFn).to.not.be.null;
+        strictEqual(typeof outputFn, 'function');
         // this is redundant but needed for the compiler, sigh...
         if (!outputFn) {
             return;
@@ -72,7 +72,7 @@ describe('PortForward', () => {
         // error stream, drop two bytes for the port number.
         outputFn(1, buffer);
         // error stream is null, expect output to be dropped and nothing to change.
-        expect(osStream.size()).to.equal(0);
+        strictEqual(osStream.size(), 0);
     });
 
     it('should correctly port-forward streams', async () => {
@@ -87,7 +87,7 @@ describe('PortForward', () => {
 
         const [, , outputFn] = capture(fakeWebSocket.connect).last();
 
-        expect(outputFn).to.not.be.null;
+        strictEqual(typeof outputFn, 'function');
         // this is redundant but needed for the compiler, sigh...
         if (!outputFn) {
             return;
@@ -96,22 +96,22 @@ describe('PortForward', () => {
 
         outputFn(0, buffer);
         // first time, drop two bytes for the port number.
-        expect(osStream.size()).to.equal(1022);
+        strictEqual(osStream.size(), 1022);
 
         outputFn(0, buffer);
-        expect(osStream.size()).to.equal(2046);
+        strictEqual(osStream.size(), 2046);
 
         // error stream, drop two bytes for the port number.
         outputFn(1, buffer);
-        expect(errStream.size()).to.equal(1022);
+        strictEqual(errStream.size(), 1022);
 
         outputFn(1, buffer);
-        expect(errStream.size()).to.equal(2046);
+        strictEqual(errStream.size(), 2046);
 
         // unknown stream, shouldn't change anything.
         outputFn(2, buffer);
-        expect(osStream.size()).to.equal(2046);
-        expect(errStream.size()).to.equal(2046);
+        strictEqual(osStream.size(), 2046);
+        strictEqual(errStream.size(), 2046);
     });
 
     it('should throw with no ports or too many', async () => {
@@ -120,11 +120,13 @@ describe('PortForward', () => {
         const osStream = new WritableStreamBuffer();
         const isStream = new ReadableStreamBuffer();
 
-        await expect(
-            portForward.portForward('ns', 'pod', [], osStream, osStream, isStream),
-        ).to.be.rejectedWith(Error, 'You must provide at least one port to forward to.');
-        await expect(
-            portForward.portForward('ns', 'pod', [1, 2], osStream, osStream, isStream),
-        ).to.be.rejectedWith(Error, 'Only one port is currently supported for port-forward');
+        await rejects(portForward.portForward('ns', 'pod', [], osStream, osStream, isStream), {
+            name: 'Error',
+            message: 'You must provide at least one port to forward to.',
+        });
+        await rejects(portForward.portForward('ns', 'pod', [1, 2], osStream, osStream, isStream), {
+            name: 'Error',
+            message: 'Only one port is currently supported for port-forward',
+        });
     });
 });

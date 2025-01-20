@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { strictEqual } from 'node:assert';
 import { OutgoingHttpHeaders } from 'node:http';
 import https from 'node:https';
 import mockfs from 'mock-fs';
@@ -28,7 +28,7 @@ describe('FileAuth', () => {
         opts.headers = {} as OutgoingHttpHeaders;
 
         await auth.applyAuthentication(user, opts);
-        expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+        strictEqual(opts.headers.Authorization, `Bearer ${token}`);
         mockfs.restore();
     });
     it('should refresh when expired', async () => {
@@ -53,7 +53,7 @@ describe('FileAuth', () => {
         opts.headers = {} as OutgoingHttpHeaders;
 
         await auth.applyAuthentication(user, opts);
-        expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+        strictEqual(opts.headers.Authorization, `Bearer ${token}`);
         mockfs.restore();
     });
     it('should claim correctly', async () => {
@@ -77,13 +77,13 @@ describe('FileAuth', () => {
         opts.headers = {} as OutgoingHttpHeaders;
 
         await auth.applyAuthentication(user, opts);
-        expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+        strictEqual(opts.headers.Authorization, `Bearer ${token}`);
 
         // Set the file to non-existent, but shouldn't matter b/c token is cached.
         user.authProvider.config.tokenFile = '/non/existent/file/token.txt';
 
         await auth.applyAuthentication(user, opts);
-        expect(opts.headers.Authorization).to.equal(`Bearer ${token}`);
+        strictEqual(opts.headers.Authorization, `Bearer ${token}`);
         mockfs.restore();
     });
 });

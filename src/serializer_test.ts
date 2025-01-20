@@ -1,4 +1,4 @@
-import { expect } from 'chai';
+import { deepEqual, deepStrictEqual } from 'node:assert';
 import { ObjectSerializer } from './serializer.js';
 
 describe('ObjectSerializer', () => {
@@ -17,7 +17,7 @@ describe('ObjectSerializer', () => {
                 },
             };
             const res = ObjectSerializer.serialize(s, 'V1Secret');
-            expect(res).to.deep.equal({
+            deepStrictEqual(res, {
                 apiVersion: 'v1',
                 kind: 'Secret',
                 metadata: {
@@ -60,7 +60,7 @@ describe('ObjectSerializer', () => {
                 },
             };
             const res = ObjectSerializer.serialize(s, 'v1alpha1MyCustomResource');
-            expect(res).to.deep.equal({
+            deepStrictEqual(res, {
                 apiVersion: 'v1alpha1',
                 kind: 'MyCustomResource',
                 metadata: {
@@ -91,7 +91,7 @@ describe('ObjectSerializer', () => {
                 key: 'value',
             };
             const res = ObjectSerializer.serialize(s, 'unknown');
-            expect(res).to.deep.equal(s);
+            deepStrictEqual(res, s);
         });
     });
 
@@ -110,7 +110,7 @@ describe('ObjectSerializer', () => {
                 },
             };
             const res = ObjectSerializer.deserialize(s, 'V1Secret');
-            expect(res).to.deep.equal({
+            deepEqual(res, {
                 apiVersion: 'v1',
                 kind: 'Secret',
                 metadata: {
@@ -138,7 +138,7 @@ describe('ObjectSerializer', () => {
                 },
             };
             const res = ObjectSerializer.deserialize(s, 'v1alpha1MyCustomResource');
-            expect(res).to.deep.equal({
+            deepEqual(res, {
                 apiVersion: 'v1alpha1',
                 kind: 'MyCustomResource',
                 metadata: {
@@ -157,7 +157,7 @@ describe('ObjectSerializer', () => {
                 key: 'value',
             };
             const res = ObjectSerializer.serialize(s, 'unknown');
-            expect(res).to.deep.equal(s);
+            deepStrictEqual(res, s);
         });
     });
 });
