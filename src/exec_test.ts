@@ -1,3 +1,4 @@
+import { describe, it } from 'node:test';
 import { deepStrictEqual, strictEqual } from 'node:assert';
 import WebSocket from 'isomorphic-ws';
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';

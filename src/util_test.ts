@@ -1,3 +1,4 @@
+import { describe, it } from 'node:test';
 import { deepStrictEqual, strictEqual, throws } from 'node:assert';
 import { CoreV1Api, V1Container, V1Pod } from './api.js';
 import {

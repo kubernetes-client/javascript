@@ -1,3 +1,4 @@
+import { describe, it } from 'node:test';
 import { deepEqual } from 'node:assert';
 import nock from 'nock';
 

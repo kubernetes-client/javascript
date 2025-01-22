@@ -1,3 +1,4 @@
+import { describe, it } from 'node:test';
 import { anything, anyFunction, instance, mock, verify, when } from 'ts-mockito';
 import querystring from 'node:querystring';
 import WebSocket from 'isomorphic-ws';

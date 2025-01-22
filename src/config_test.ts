@@ -1,3 +1,4 @@
+import { after, before, beforeEach, describe, it, mock } from 'node:test';
 import { deepEqual, deepStrictEqual, notStrictEqual, rejects, strictEqual, throws } from 'node:assert';
 import child_process from 'node:child_process';
 import { readFileSync } from 'node:fs';
@@ -5,7 +6,6 @@ import https from 'node:https';
 import { Agent, RequestOptions } from 'node:https';
 import path, { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { mock } from 'node:test';
 
 import mockfs from 'mock-fs';
 

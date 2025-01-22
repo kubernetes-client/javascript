@@ -1,3 +1,4 @@
+import { describe, it } from 'node:test';
 import { RequestContext, ConfigurationOptions, HttpMethod, ObservableMiddleware } from './gen/index.js';
 import { deepStrictEqual } from 'node:assert';
 import { setHeaderMiddleware, setHeaderOptions } from './middleware.js';

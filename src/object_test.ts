@@ -1,3 +1,4 @@
+import { before, describe, it } from 'node:test';
 import { deepStrictEqual, ok, rejects, strictEqual } from 'node:assert';
 import nock from 'nock';
 import { Configuration, V1APIResource, V1APIResourceList, V1Secret } from './api.js';
@@ -940,7 +941,7 @@ describe('KubernetesObject', () => {
 
     describe('resource', () => {
         let client: KubernetesObjectApiTest;
-        before(function (this: Mocha.Context): void {
+        before(function () {
             client = KubernetesObjectApiTest.makeApiClient();
         });
 

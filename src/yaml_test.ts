@@ -1,3 +1,4 @@
+import { describe, it } from 'node:test';
 import { deepStrictEqual, strictEqual } from 'node:assert';
 import { V1Namespace } from './api.js';
 import { dumpYaml, loadAllYaml, loadYaml } from './yaml.js';

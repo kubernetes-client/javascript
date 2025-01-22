@@ -1,3 +1,4 @@
+import { describe, it } from 'node:test';
 import { deepStrictEqual, notStrictEqual, strictEqual, throws } from 'node:assert';
 import mock from 'ts-mockito';
 

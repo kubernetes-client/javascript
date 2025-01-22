@@ -1,3 +1,4 @@
+import { describe, it } from 'node:test';
 import { deepStrictEqual, rejects, strictEqual } from 'node:assert';
 import nock from 'nock';
 import { PassThrough } from 'node:stream';
