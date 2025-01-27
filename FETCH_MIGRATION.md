@@ -90,4 +90,4 @@ Code will be on the `master` branch.
 -   [ ] Update docs
     -   [ ] Update README examples
 -   [ ] Document breaking changes for users
-        [ ] Release initial version (1.0.0)
+    -   [ ] Release initial version (1.0.0)
