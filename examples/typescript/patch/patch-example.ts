@@ -32,9 +32,8 @@ try {
         },
         post: async (responseContext: ResponseContext) => responseContext,
     });
-    const currentContext = kc.getCurrentContext();
-    const currentCluster = kc.getCluster(currentContext);
-    if (currentCluster === undefined || currentCluster === null) {
+    const currentCluster = kc.getCurrentCluster();
+    if (currentCluster === null) {
         throw new Error('Cluster is undefined');
     }
     const server = currentCluster.server;
