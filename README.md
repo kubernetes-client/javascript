@@ -112,15 +112,17 @@ Prior to the `0.13.0` release, release versions did not track Kubernetes version
 release, we will increment the minor version whenever we update the minor Kubernetes API version
 (e.g. `1.19.x`) that this library is generated from.
 
+We switched from `request` to `fetch` as the HTTP(S) backend for the `1.0.0` release.
+
 Generally speaking newer clients will work with older Kubernetes, but compatability isn't 100% guaranteed.
 
-| client version | older versions | 1.18 | 1.19 | 1.20 | 1.21 | 1.22 |
+| client version | older versions | 1.28 | 1.29 | 1.30 | 1.31 | 1.32 |
 | -------------- | -------------- | ---- | ---- | ---- | ---- | ---- |
-| 0.12.x         | -              | ✓    | x    | x    | x    | x    |
-| 0.13.x         | -              | +    | ✓    | x    | x    | x    |
-| 0.14.x         | -              | +    | +    | ✓    | x    | x    |
-| 0.15.x         | -              | +    | +    | +    | ✓    | x    |
-| 0.16.x         | -              | +    | +    | +    | +    | ✓    |
+| 0.19.x         | -              | ✓    | x    | x    | x    | x    |
+| 0.20.x         | -              | +    | ✓    | x    | x    | x    |
+| 0.21.x         | -              | +    | +    | ✓    | x    | x    |
+| 0.22.x         | -              | +    | +    | +    | ✓    | x    |
+| 1.0.x          | -              | +    | +    | +    | +    | ✓    |
 
 Key:
 
