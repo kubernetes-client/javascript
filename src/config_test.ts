@@ -132,6 +132,29 @@ describe('KubeConfig', () => {
         });
     });
 
+    describe('loadFromCluster', () => {
+        it('should load from cluster', () => {
+            process.env.KUBERNETES_SERVICE_HOST = 'example.com';
+            process.env.KUBERNETES_SERVICE_PORT = '8080';
+
+            const kc = new KubeConfig();
+            kc.loadFromCluster();
+            const expectedCluster = {
+                caFile: '/var/run/secrets/kubernetes.io/serviceaccount/ca.crt',
+                name: 'inCluster',
+                server: 'http://example.com:8080',
+                skipTLSVerify: false,
+            };
+
+            process.env.KUBERNETES_SERVICE_HOST = undefined;
+            process.env.KUBERNETES_SERVICE_PORT = undefined;
+
+            strictEqual(kc.getCurrentContext(), 'inClusterContext');
+            deepEqual(kc.getCurrentCluster(), expectedCluster);
+            deepEqual(kc.getCluster(kc.getContextObject(kc.getCurrentContext())!.cluster), expectedCluster);
+        });
+    });
+
     describe('loadFromClusterAndUser', () => {
         it('should load from cluster and user', () => {
             const kc = new KubeConfig();
