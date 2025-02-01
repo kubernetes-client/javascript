@@ -140,7 +140,7 @@ export class Log {
             const status = response.status;
             if (status === 200) {
                 // TODO: the follow search param still has the stream close prematurely based on my testing
-                response.body.pipe(stream);
+                response.body!.pipe(stream);
             } else if (status === 500) {
                 const v1status = response.body as V1Status;
                 const v1code = v1status.code;

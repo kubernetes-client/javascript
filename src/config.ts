@@ -168,7 +168,7 @@ export class KubeConfig implements SecurityAuthentication {
             headers,
             method: opts.method,
             timeout: opts.timeout,
-        };
+        } as RequestInit;
     }
 
     public async applyToHTTPSOptions(opts: https.RequestOptions | WebSocket.ClientOptions): Promise<void> {
