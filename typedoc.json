@@ -1,3 +1,4 @@
 {
-  "out": "docs"
+    "out": "docs",
+    "entryPointStrategy": "expand"
 }

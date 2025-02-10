@@ -30,7 +30,7 @@
         "test-transpiled": "mocha --no-config dist",
         "prepare": "npm run build && husky",
         "prepack": "npm run build",
-        "docs": "typedoc src/gen/api"
+        "docs": "typedoc src/gen/apis"
     },
     "c8": {
         "include": [
