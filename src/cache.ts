@@ -142,28 +142,33 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
             return;
         }
         this.callbackCache[CONNECT].forEach((elt: ErrorCallback) => elt(undefined));
-        if (!this.resourceVersion) {
-            const promise = this.listFn();
-            const list = await promise;
-            this.objects = deleteItems(this.objects, list.items, this.callbackCache[DELETE].slice());
-            this.addOrUpdateItems(list.items);
-            this.resourceVersion = list.metadata!.resourceVersion || '';
+
+        try {
+            if (!this.resourceVersion) {
+                const promise = this.listFn();
+                const list = await promise;
+                this.objects = deleteItems(this.objects, list.items, this.callbackCache[DELETE].slice());
+                this.addOrUpdateItems(list.items);
+                this.resourceVersion = list.metadata!.resourceVersion || '';
+            }
+            const queryParams = {
+                resourceVersion: this.resourceVersion,
+            } as {
+                resourceVersion: string | undefined;
+                labelSelector: string | undefined;
+            };
+            if (this.labelSelector !== undefined) {
+                queryParams.labelSelector = ObjectSerializer.serialize(this.labelSelector, 'string');
+            }
+            this.request = await this.watch.watch(
+                this.path,
+                queryParams,
+                this.watchHandler.bind(this),
+                this.doneHandler.bind(this),
+            );
+        } catch (err) {
+            this.doneHandler(err);
         }
-        const queryParams = {
-            resourceVersion: this.resourceVersion,
-        } as {
-            resourceVersion: string | undefined;
-            labelSelector: string | undefined;
-        };
-        if (this.labelSelector !== undefined) {
-            queryParams.labelSelector = ObjectSerializer.serialize(this.labelSelector, 'string');
-        }
-        this.request = await this.watch.watch(
-            this.path,
-            queryParams,
-            this.watchHandler.bind(this),
-            this.doneHandler.bind(this),
-        );
     }
 
     private addOrUpdateItems(items: T[]): void {
