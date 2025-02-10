@@ -86,7 +86,7 @@
         "mock-fs": "^5.2.0",
         "nock": "^14.0.0",
         "nyc": "^17.0.0",
-        "prettier": "~3.4.1",
+        "prettier": "~3.5.0",
         "pretty-quick": "^4.0.0",
         "source-map-support": "^0.5.9",
         "ts-mockito": "^2.3.1",
