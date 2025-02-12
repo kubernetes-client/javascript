@@ -1,4 +1,4 @@
-import { deepStrictEqual, notStrictEqual, strictEqual, throws } from 'node:assert';
+import { deepStrictEqual, fail, equal, notStrictEqual, strictEqual, throws } from 'node:assert';
 import mock from 'ts-mockito';
 
 import { V1Namespace, V1NamespaceList, V1ObjectMeta, V1Pod, V1PodList, V1ListMeta } from './api.js';
@@ -1459,5 +1459,30 @@ describe('delete items', () => {
         cache.start();
 
         strictEqual(await connectPromise, true);
+    });
+
+    it('should correctly handle errors in the initial list', async () => {
+        const fake = mock.mock(Watch);
+        const requestErr = Error('request failed');
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve, reject) => {
+                reject(requestErr);
+            });
+        };
+        const lw = new ListWatch('/some/path', fake, listFn);
+        let gotErr: Error | null = null;
+        const errCalled = new Promise<void>((resolve, reject) => {
+            lw.on('error', (err) => {
+                gotErr = err;
+                resolve();
+            });
+        });
+        try {
+            await lw.start();
+            await errCalled;
+            equal(gotErr, requestErr);
+        } catch (err) {
+            fail(`unexpected error: ${err}`);
+        }
     });
 });

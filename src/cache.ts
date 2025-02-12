@@ -10,7 +10,7 @@ import {
     ObjectCallback,
     UPDATE,
 } from './informer.js';
-import { KubernetesObject } from './types.js';
+import { KubernetesObject, KubernetesListObject } from './types.js';
 import { ObjectSerializer } from './serializer.js';
 import { Watch } from './watch.js';
 
@@ -143,8 +143,14 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         }
         this.callbackCache[CONNECT].forEach((elt: ErrorCallback) => elt(undefined));
         if (!this.resourceVersion) {
-            const promise = this.listFn();
-            const list = await promise;
+            let list: KubernetesListObject<T>;
+            try {
+                const promise = this.listFn();
+                list = await promise;
+            } catch (err) {
+                this.callbackCache[ERROR].forEach((elt: ErrorCallback) => elt(err));
+                return;
+            }
             this.objects = deleteItems(this.objects, list.items, this.callbackCache[DELETE].slice());
             this.addOrUpdateItems(list.items);
             this.resourceVersion = list.metadata!.resourceVersion || '';
