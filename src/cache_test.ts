@@ -1,4 +1,4 @@
-import { deepStrictEqual, fail, equal, notStrictEqual, strictEqual, throws } from 'node:assert';
+import { deepStrictEqual, notStrictEqual, strictEqual, throws } from 'node:assert';
 import mock from 'ts-mockito';
 
 import { V1Namespace, V1NamespaceList, V1ObjectMeta, V1Pod, V1PodList, V1ListMeta } from './api.js';
@@ -1477,12 +1477,8 @@ describe('delete items', () => {
                 resolve();
             });
         });
-        try {
-            await lw.start();
-            await errCalled;
-            equal(gotErr, requestErr);
-        } catch (err) {
-            fail(`unexpected error: ${err}`);
-        }
+        await lw.start();
+        await errCalled;
+        strictEqual(gotErr, requestErr);
     });
 });
