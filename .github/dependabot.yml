@@ -5,6 +5,7 @@ updates:
       schedule:
           interval: 'daily'
           time: '02:00'
+      target-branch: 'main'
     - package-ecosystem: 'npm'
       directory: '/'
       target-branch: 'master'
@@ -16,3 +17,9 @@ updates:
       schedule:
           interval: 'daily'
           time: '03:00'
+      target-branch: 'main'
+    - package-ecosystem: 'devcontainers'
+      directory: '/'
+      schedule:
+          interval: 'weekly'
+      target-branch: 'main'
