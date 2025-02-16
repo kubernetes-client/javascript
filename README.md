@@ -50,7 +50,7 @@ var namespace = {
     },
 };
 
-k8sApi.createNamespace(namespace).then(
+k8sApi.createNamespace({ body: namespace }).then(
     (response) => {
         console.log('Created namespace');
         console.log(response);
