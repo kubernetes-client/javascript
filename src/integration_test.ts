@@ -40,7 +40,7 @@ describe('FullRequest', () => {
 
             const list = await k8sApi.listNamespacedPod({ namespace: 'default' });
 
-            return deepEqual(list, result);
+            deepEqual(list, result);
         });
     });
 });
