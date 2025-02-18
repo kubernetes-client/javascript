@@ -8,17 +8,29 @@
         "url": "https://github.com/kubernetes-client/javascript.git"
     },
     "files": [
-        "dist/**/*.ts",
-        "dist/**/*.js",
-        "dist/**/*.map"
+        "dist/{mjs,cjs}/*.js",
+        "dist/{mjs,cjs}/*.map",
+        "dist/{mjs,cjs}/*.ts",
+        "dist/{mjs,cjs}/gen/**/*.js",
+        "dist/{mjs,cjs}/gen/**/*.map",
+        "dist/{mjs,cjs}/gen/**/*.ts",
+        "dist/{mjs,cjs}/gen/*.js",
+        "dist/{mjs,cjs}/gen/*.map",
+        "dist/{mjs,cjs}/gen/*.ts"
     ],
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
+    "main": "dist/mjs/index.js",
+    "types": "dist/mjs/index.d.ts",
+    "exports": {
+        ".": {
+            "require": "./dist/cjs/index.js",
+            "import": "./dist/esm/index.js"
+        }
+    },
     "scripts": {
         "format": "prettier --log-level error --write \"./src/**/*.ts\"",
         "lint": "eslint \".\" && prettier --check \"./src/**/*.ts\"",
         "clean": "rm -Rf node_modules/ dist/",
-        "build": "tsc",
+        "build": "tsc -p tsconfig.esm.json && tsc -p tsconfig.cjs.json",
         "build-with-tests": "tsc --project tsconfig-with-tests.json && cp 'src/test/echo space.js' dist/test",
         "generate": "./generate-client.sh",
         "watch": "tsc --watch",

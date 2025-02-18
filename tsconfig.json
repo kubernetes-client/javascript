@@ -20,5 +20,16 @@
         // "declarationMap": true
     },
     "exclude": ["node_modules", "src/*_test.ts", "src/test", "dist"],
-    "include": ["*.ts", "src/**/*"]
+    "include": ["*.ts", "src/**/*"],
+    "reference": [
+        {
+            "path": "tsconfig.cjs.json"
+        },
+        {
+            "path": "tsconfig.mjs.json"
+        },
+        {
+            "path": "tsconfig-with-tests.json"
+        }
+    ]
 }
