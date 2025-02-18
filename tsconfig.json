@@ -1,21 +1,21 @@
 {
     "compilerOptions": {
-        "module": "nodenext",
-        "noImplicitAny": false,
-        "target": "es2019",
-        "lib": ["es2023"],
-        "moduleResolution": "nodenext",
-        "removeComments": false,
-        "sourceMap": true,
-        "noLib": false,
         "declaration": true,
-        "outDir": "dist",
-        "rootDir": "src",
-        "strict": true,
+        "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "importHelpers": true,
+        "lib": ["es2023"],
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "noImplicitAny": false,
+        "noLib": false,
+        "outDir": "dist",
+        "removeComments": false,
+        "rootDir": "src",
         "skipLibCheck": true,
-        "esModuleInterop": true
+        "sourceMap": true,
+        "strict": true,
+        "target": "es2019"
         // enable this in the future
         // "declarationMap": true
     },
