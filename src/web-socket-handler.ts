@@ -137,11 +137,12 @@ export class WebSocketHandler implements WebSocketInterface {
         stdin: stream.Readable,
         streamNum: number = 0,
         retryCount: number = 3,
+        // kind of hacky, but otherwise we can't wait for the writes to flush before testing.
+        addFlushForTesting: boolean = false,
     ): () => WebSocket.WebSocket | null {
         if (retryCount < 0) {
             throw new Error("retryCount can't be lower than 0.");
         }
-
         let queue: Promise<void> = Promise.resolve();
         let ws: WebSocket.WebSocket | null = null;
 
@@ -158,8 +159,14 @@ export class WebSocketHandler implements WebSocketInterface {
             });
         });
 
+        if (addFlushForTesting) {
+            stdin.on('flush', async () => {
+                await queue;
+            });
+        }
+
         stdin.on('end', () => {
-            if (ws) {
+            if (ws !== null) {
                 ws.close();
             }
         });

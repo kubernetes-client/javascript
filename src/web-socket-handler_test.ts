@@ -1,4 +1,4 @@
-import { deepStrictEqual, notStrictEqual, rejects, strictEqual, throws } from 'node:assert';
+import { deepStrictEqual, equal, notStrictEqual, rejects, strictEqual, throws } from 'node:assert';
 import { Readable, Writable } from 'node:stream';
 import { setImmediate as setImmediatePromise } from 'node:timers/promises';
 import WebSocket from 'isomorphic-ws';
@@ -335,7 +335,9 @@ describe('V5 protocol support', () => {
             protocol: 'v5.channel.k8s.io',
         } as WebSocket.WebSocket;
         let uriOut = '';
-        let endCalled = false;
+        let stderrEndCalled = false;
+        let stdoutEndCalled = false;
+        let stdinPauseCalled = false;
         const handler = new WebSocketHandler(
             kc,
             (uri: string, protocols: string[], opts: WebSocket.ClientOptions): WebSocket.WebSocket => {
@@ -343,11 +345,20 @@ describe('V5 protocol support', () => {
                 return mockWs as WebSocket.WebSocket;
             },
             {
-                stdin: process.stdin,
-                stderr: process.stderr,
+                stdin: {
+                    pause: () => {
+                        stdinPauseCalled = true;
+                        return {} as Readable;
+                    },
+                } as Readable,
+                stderr: {
+                    end: () => {
+                        stderrEndCalled = true;
+                    },
+                } as Writable,
                 stdout: {
                     end: () => {
-                        endCalled = true;
+                        stdoutEndCalled = true;
                     },
                 } as Writable,
             },
@@ -364,17 +375,30 @@ describe('V5 protocol support', () => {
             type: 'open',
         };
         mockWs.onopen!(event);
-        const closeBuff = Buffer.alloc(2);
-        closeBuff.writeUint8(255, 0);
-        closeBuff.writeUint8(WebSocketHandler.StdoutStream, 1);
+        // Close stdin/stdout with Buffers
+        [WebSocketHandler.StdinStream, WebSocketHandler.StdoutStream].forEach((stream) => {
+            const closeBuff = Buffer.alloc(2);
+            closeBuff.writeUint8(255, 0);
+            closeBuff.writeUint8(stream, 1);
 
+            mockWs.onmessage!({
+                data: closeBuff,
+                type: 'type',
+                target: mockWs,
+            });
+        });
+        // Close stderr with a string \xff is 'close' \x02 is the stderr stream number
+        // so that both paths are tested.
+        const closeMsg = '\xFF\x02';
         mockWs.onmessage!({
-            data: closeBuff,
+            data: closeMsg,
             type: 'type',
             target: mockWs,
         });
         await promise;
-        strictEqual(endCalled, true);
+        strictEqual(stdoutEndCalled, true);
+        strictEqual(stderrEndCalled, true);
+        strictEqual(stdinPauseCalled, true);
     });
     it('should handle closing stdin < v4 protocol', () => {
         const ws = {
@@ -435,5 +459,74 @@ describe('Restartable Handle Standard Input', () => {
         ).catch(() => {
             strictEqual(count, retryTimes);
         });
+    });
+
+    it('should work correctly', async () => {
+        let sent: Buffer | null = null;
+        const ws = {
+            protocol: 'v5.channel.k8s.io',
+            send: (data) => {
+                sent = data;
+            },
+            readyState: WebSocket.OPEN,
+            close: () => {
+                throw new Error('should not be called');
+            },
+        } as unknown as WebSocket;
+        const p = new Promise<WebSocket>((resolve, reject) => resolve(ws));
+        let dataCb: any;
+        let endCb: any;
+        let flushCb: any;
+
+        const r = {
+            on: (verb, cb) => {
+                if (verb === 'data') {
+                    dataCb = cb;
+                }
+                if (verb === 'end') {
+                    endCb = cb;
+                }
+                if (verb == 'flush') {
+                    flushCb = cb;
+                }
+            },
+        } as Readable;
+
+        WebSocketHandler.restartableHandleStandardInput(() => p, r, 0, 4, true);
+
+        dataCb('some test data');
+        endCb();
+        await flushCb();
+
+        equal(sent!.toString(), '\x00some test data');
+    });
+
+    it('should work if the web socket exists', () => {
+        let sent: Buffer | null = null;
+        const ws = {
+            protocol: 'v5.channel.k8s.io',
+            send: (data) => {
+                sent = data;
+            },
+            readyState: WebSocket.OPEN,
+            close: () => {
+                throw new Error('should not be called');
+            },
+        } as unknown as WebSocket;
+        let count = 0;
+        WebSocketHandler.processData(
+            'some test data',
+            ws,
+            (): Promise<WebSocket.WebSocket> => {
+                return new Promise<WebSocket.WebSocket>((resolve) => {
+                    count++;
+                    resolve(ws as WebSocket.WebSocket);
+                });
+            },
+            0,
+            5,
+        );
+        equal(sent!.toString(), '\x00some test data');
+        strictEqual(count, 0);
     });
 });
