@@ -1,4 +1,4 @@
-import { deepStrictEqual, deepEqual, fail, notStrictEqual, strictEqual, throws } from 'node:assert';
+import { deepStrictEqual, notStrictEqual, strictEqual, throws } from 'node:assert';
 import mock from 'ts-mockito';
 
 import { V1Namespace, V1NamespaceList, V1ObjectMeta, V1Pod, V1PodList, V1ListMeta } from './api.js';
@@ -887,18 +887,13 @@ describe('ListWatchCache', () => {
             });
         };
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
-        try {
+
+        throws(() => {
             informer.on('random' as any /* trick Typescript to allow this */, (obj) => {});
-            fail('Unexpected lack of exception');
-        } catch (err) {
-            deepEqual(err, Error('Unknown verb: random'));
-        }
-        try {
+        }, Error('Unknown verb: random'));
+        throws(() => {
             informer.off('random' as any /* trick Typescript to allow this */, (obj) => {});
-            fail('Unexpected lack of exception');
-        } catch (err) {
-            deepEqual(err, Error('Unknown verb: random'));
-        }
+        }, Error('Unknown verb: random'));
     });
 
     it('should handle off with callbacks that are not registered', async () => {
