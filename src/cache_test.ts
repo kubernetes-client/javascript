@@ -244,11 +244,20 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Namespace);
 
-        watchHandler('DELETED', {
-            metadata: {
-                name: 'name2',
-            } as V1ObjectMeta,
-        } as V1Namespace);
+        watchHandler(
+            'DELETED',
+            {
+                metadata: {
+                    name: 'name2',
+                    resourceVersion: 'blah',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+            {
+                metadata: {
+                    resourceVersion: '54321',
+                },
+            },
+        );
 
         const [addResult, updateResult, deleteResult] = await Promise.all([
             addPromise,
@@ -257,7 +266,19 @@ describe('ListWatchCache', () => {
         ]);
         deepStrictEqual(addResult.metadata, { name: 'name3' });
         deepStrictEqual(updateResult.metadata, { name: 'name3', resourceVersion: 'baz' });
-        deepStrictEqual(deleteResult.metadata, { name: 'name2' });
+        deepStrictEqual(deleteResult.metadata, { name: 'name2', resourceVersion: 'blah' });
+        strictEqual(informer.latestResourceVersion(), '54321');
+
+        watchHandler(
+            'BOOKMARK',
+            {},
+            {
+                metadata: {
+                    resourceVersion: '5454',
+                },
+            },
+        );
+        strictEqual(informer.latestResourceVersion(), '5454');
     });
 
     it('should handle change events correctly', async () => {
@@ -787,6 +808,111 @@ describe('ListWatchCache', () => {
 
         strictEqual(addedList1.length, 2);
         strictEqual(addedList2.length, 1);
+    });
+
+    it('should unregister three verbs on "change"', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const list: V1Namespace[] = [];
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve) => {
+                resolve(listObj);
+            });
+        };
+        const watchCalled = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(resolve);
+        });
+        const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
+
+        const changeList1: V1Namespace[] = [];
+        const changeToList1Fn = function (obj?: V1Namespace) {
+            changeList1.push(obj!);
+        };
+        const changeList2: V1Namespace[] = [];
+        const changeToList2Fn = function (obj?: V1Namespace) {
+            changeList2.push(obj!);
+        };
+
+        informer.start();
+
+        await watchCalled;
+        const [, , watchHandler] = mock.capture(fakeWatch.watch).last();
+
+        informer.on('change', changeToList1Fn);
+        informer.on('change', changeToList2Fn);
+
+        ['ADDED', 'DELETED', 'MODIFIED'].forEach((verb) => {
+            watchHandler(verb, {
+                metadata: {
+                    name: 'name1',
+                } as V1ObjectMeta,
+            } as V1Namespace);
+        });
+        strictEqual(changeList1.length, 3);
+        strictEqual(changeList2.length, 3);
+
+        informer.off('change', changeToList2Fn);
+
+        ['ADDED', 'DELETED', 'MODIFIED'].forEach((verb) => {
+            watchHandler(verb, {
+                metadata: {
+                    name: 'name2',
+                } as V1ObjectMeta,
+            } as V1Namespace);
+        });
+
+        strictEqual(changeList1.length, 6);
+        strictEqual(changeList2.length, 3);
+    });
+
+    it('should throw on unknown verbs', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const list: V1Namespace[] = [];
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve) => {
+                resolve(listObj);
+            });
+        };
+        const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
+
+        throws(() => {
+            informer.on('random' as any /* trick Typescript to allow this */, (obj) => {});
+        }, Error('Unknown verb: random'));
+        throws(() => {
+            informer.off('random' as any /* trick Typescript to allow this */, (obj) => {});
+        }, Error('Unknown verb: random'));
+    });
+
+    it('should handle off with callbacks that are not registered', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const list: V1Namespace[] = [];
+        const listObj = {
+            metadata: {
+                resourceVersion: '12345',
+            } as V1ListMeta,
+            items: list,
+        } as V1NamespaceList;
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve) => {
+                resolve(listObj);
+            });
+        };
+        const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
+        informer.off('add', (obj) => {});
+        // No assertion because we're just looking to see if it throws.
     });
 
     it('mutating handlers in a callback should not affect those which remain', async () => {
