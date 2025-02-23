@@ -8,13 +8,9 @@
         "url": "https://github.com/kubernetes-client/javascript.git"
     },
     "files": [
-        "dist/*.ts",
-        "dist/*.js",
-        "dist/gen/*.ts",
-        "dist/gen/*.js",
-        "dist/gen/**/*.ts",
-        "dist/gen/**/*.js",
-        "README.md"
+        "dist/**/*.ts",
+        "dist/**/*.js",
+        "dist/**/*.map"
     ],
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
