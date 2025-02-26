@@ -142,7 +142,7 @@ export class Log {
                 // TODO: the follow search param still has the stream close prematurely based on my testing
                 response.body!.pipe(stream);
             } else if (status === 500) {
-                const v1status = response.body as V1Status;
+                const v1status = (await response.json()) as V1Status;
                 const v1code = v1status.code;
                 const v1message = v1status.message;
                 if (v1code !== undefined && v1message !== undefined) {
@@ -150,6 +150,13 @@ export class Log {
                         v1code,
                         v1message,
                         v1status,
+                        normalizeResponseHeaders(response),
+                    );
+                } else {
+                    throw new ApiException<undefined>(
+                        status,
+                        'Error occurred in log request',
+                        undefined,
                         normalizeResponseHeaders(response),
                     );
                 }
