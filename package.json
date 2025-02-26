@@ -33,8 +33,7 @@
             "src/**/*.ts"
         ],
         "exclude": [
-            "src/gen/*/**.ts",
-            "src/gen/**.ts",
+            "src/gen/**/*.ts",
             "src/index.ts",
             "src/*_test.ts",
             "src/test"
