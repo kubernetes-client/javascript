@@ -87,7 +87,7 @@ describe('Log', () => {
                 },
             });
 
-            rejects(async () => {
+            await rejects(async () => {
                 await logWithoutCluster.log(namespace, podName, containerName, stream);
             }, /No currently active cluster/);
         });
@@ -107,7 +107,7 @@ describe('Log', () => {
                 .query({ container: 'mycontainer' })
                 .reply(501, { message: 'Error occurred in log request' });
 
-            rejects(async () => {
+            await rejects(async () => {
                 await log.log(namespace, podName, containerName, stream);
             }, /Error occurred in log request/);
         });
@@ -127,7 +127,7 @@ describe('Log', () => {
                 .query({ container: 'mycontainer' })
                 .reply(500, { message: 'Error occurred in log request' });
 
-            rejects(async () => {
+            await rejects(async () => {
                 await log.log(namespace, podName, containerName, stream);
             }, /Error occurred in log request/);
         });
