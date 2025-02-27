@@ -5,16 +5,12 @@ import { PromiseMiddleware } from './gen/middleware.js';
 export function withHeaderMiddleware(key: string, value: string): Middleware[] {
     return [
         {
-            pre: (c: RequestContext) => {
-                return new Promise<RequestContext>((resolve) => {
-                    c.setHeaderParam(key, value);
-                    resolve(c);
-                });
+            pre: async (c: RequestContext) => {
+                c.setHeaderParam(key, value);
+                return c;
             },
-            post: (c: ResponseContext) => {
-                return new Promise<ResponseContext>((resolve) => {
-                    resolve(c);
-                });
+            post: async (c: ResponseContext) => {
+                return c;
             },
         },
     ];
