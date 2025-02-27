@@ -49,7 +49,6 @@ export class Health {
             }
             return false;
         } catch (err: any) {
-            console.log(err);
             if (err.name === 'AbortError') {
                 throw err;
             }
