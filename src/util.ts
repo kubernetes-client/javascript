@@ -3,6 +3,9 @@ import { CoreV1Api, V1Container, V1Pod } from './gen/index.js';
 
 export async function podsForNode(api: CoreV1Api, nodeName: string): Promise<V1Pod[]> {
     const allPods = await api.listPodForAllNamespaces();
+    if (!allPods.items) {
+        return [];
+    }
     return allPods.items.filter((pod: V1Pod) => pod.spec!.nodeName === nodeName);
 }
 

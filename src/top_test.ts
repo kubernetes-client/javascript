@@ -2,8 +2,8 @@ import { deepEqual, deepStrictEqual, strictEqual } from 'assert';
 import nock from 'nock';
 import { KubeConfig } from './config.js';
 import { Metrics, PodMetricsList } from './metrics.js';
-import { CurrentResourceUsage, topPods } from './top.js';
-import { CoreV1Api, V1Pod } from './api.js';
+import { CurrentResourceUsage, ResourceUsage, topNodes, topPods } from './top.js';
+import { CoreV1Api, V1Node, V1Pod } from './api.js';
 
 const emptyPodMetrics: PodMetricsList = {
     kind: 'PodMetricsList',
@@ -83,6 +83,10 @@ const podList: V1Pod[] = [
                     },
                 },
             ],
+            nodeName: 'node1',
+        },
+        status: {
+            phase: 'Running',
         },
     },
     {
@@ -118,6 +122,43 @@ const podList: V1Pod[] = [
                     },
                 },
             ],
+            nodeName: 'node1',
+        },
+        status: {
+            phase: 'Running',
+        },
+    },
+];
+
+const nodeList: V1Node[] = [
+    {
+        metadata: {
+            name: 'node1',
+        },
+        status: {
+            capacity: {
+                cpu: '4',
+                memory: '16Gi',
+            },
+            allocatable: {
+                cpu: '4',
+                memory: '16Gi',
+            },
+        },
+    },
+    {
+        metadata: {
+            name: 'node2',
+        },
+        status: {
+            capacity: {
+                cpu: '8',
+                memory: '32Gi',
+            },
+            allocatable: {
+                cpu: '8',
+                memory: '32Gi',
+            },
         },
     },
 ];
@@ -134,22 +175,23 @@ const testConfigOptions: any = {
 const systemUnderTest = (
     namespace?: string,
     options: any = testConfigOptions,
-): [() => ReturnType<typeof topPods>, nock.Scope] => {
+): [() => ReturnType<typeof topPods>, () => ReturnType<typeof topNodes>, nock.Scope] => {
     const kc = new KubeConfig();
     kc.loadFromOptions(options);
     const metricsClient = new Metrics(kc);
     const core = kc.makeApiClient(CoreV1Api);
     const topPodsFunc = () => topPods(core, metricsClient, namespace);
+    const topNodesFunc = () => topNodes(core);
 
     const scope = nock(testConfigOptions.clusters[0].server);
 
-    return [topPodsFunc, scope];
+    return [topPodsFunc, topNodesFunc, scope];
 };
 
 describe('Top', () => {
     describe('topPods', () => {
         it('should return empty when no pods', async () => {
-            const [topPodsFunc, scope] = systemUnderTest();
+            const [topPodsFunc, _, scope] = systemUnderTest();
             const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
             const pods = scope.get('/api/v1/pods').reply(200, {
                 items: [],
@@ -160,7 +202,7 @@ describe('Top', () => {
             pods.done();
         });
         it('should return use cluster scope when namespace empty string', async () => {
-            const [topPodsFunc, scope] = systemUnderTest('');
+            const [topPodsFunc, _, scope] = systemUnderTest('');
             const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
             const pods = scope.get('/api/v1/pods').reply(200, {
                 items: [],
@@ -171,7 +213,7 @@ describe('Top', () => {
             pods.done();
         });
         it('should return cluster wide pod metrics', async () => {
-            const [topPodsFunc, scope] = systemUnderTest();
+            const [topPodsFunc, _, scope] = systemUnderTest();
             const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, mockedPodMetrics);
             const pods = scope.get('/api/v1/pods').reply(200, {
                 items: podList,
@@ -235,7 +277,7 @@ describe('Top', () => {
             pods.done();
         });
         it('should return best effort pod metrics', async () => {
-            const [topPodsFunc, scope] = systemUnderTest();
+            const [topPodsFunc, _, scope] = systemUnderTest();
             const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, mockedPodMetrics);
             const pods = scope.get('/api/v1/pods').reply(200, {
                 items: bestEffortPodList,
@@ -263,7 +305,7 @@ describe('Top', () => {
             pods.done();
         });
         it('should return 0 when pod metrics missing', async () => {
-            const [topPodsFunc, scope] = systemUnderTest();
+            const [topPodsFunc, _, scope] = systemUnderTest();
             const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
             const pods = scope.get('/api/v1/pods').reply(200, {
                 items: podList,
@@ -286,7 +328,7 @@ describe('Top', () => {
             pods.done();
         });
         it('should return empty array when pods missing', async () => {
-            const [topPodsFunc, scope] = systemUnderTest();
+            const [topPodsFunc, _, scope] = systemUnderTest();
             const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, mockedPodMetrics);
             const pods = scope.get('/api/v1/pods').reply(200, {
                 items: [],
@@ -297,7 +339,7 @@ describe('Top', () => {
             pods.done();
         });
         it('should return namespace pod metrics', async () => {
-            const [topPodsFunc, scope] = systemUnderTest(TEST_NAMESPACE);
+            const [topPodsFunc, _, scope] = systemUnderTest(TEST_NAMESPACE);
             const podMetrics = scope
                 .get(`/apis/metrics.k8s.io/v1beta1/namespaces/${TEST_NAMESPACE}/pods`)
                 .reply(200, mockedPodMetrics);
@@ -361,6 +403,38 @@ describe('Top', () => {
             ]);
             podMetrics.done();
             pods.done();
+        });
+    });
+    describe('topNodes', () => {
+        it('should return empty when no nodes', async () => {
+            const [_, topNodesFunc, scope] = systemUnderTest();
+            const nodes = scope.get('/api/v1/nodes').reply(200, {
+                items: [],
+            });
+            const result = await topNodesFunc();
+            deepStrictEqual(result, []);
+            nodes.done();
+        });
+
+        it('should return cluster wide node metrics', async () => {
+            const [_, topNodesFunc, scope] = systemUnderTest();
+            const pods = scope.get('/api/v1/pods').times(2).reply(200, {
+                items: podList,
+            });
+            const nodes = scope.get('/api/v1/nodes').reply(200, {
+                items: nodeList,
+            });
+            const result = await topNodesFunc();
+            strictEqual(result.length, 2);
+            deepStrictEqual(result[0].CPU, new ResourceUsage(4, 2.2, 2.2));
+            deepStrictEqual(
+                result[0].Memory,
+                new ResourceUsage(BigInt('17179869184'), BigInt('262144000'), BigInt('314572800')),
+            );
+            deepStrictEqual(result[1].CPU, new ResourceUsage(8, 0, 0));
+            deepStrictEqual(result[1].Memory, new ResourceUsage(BigInt('34359738368'), 0, 0));
+            pods.done();
+            nodes.done();
         });
     });
 });
