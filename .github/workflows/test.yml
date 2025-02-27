@@ -36,4 +36,4 @@ jobs:
               uses: medyagh/setup-minikube@latest
               id: minikube
               with:
-                  minikube-version: env.KUBERNETES_V_STRING
+                  minikube-version: ${{ env.KUBERNETES_V_STRING }}
