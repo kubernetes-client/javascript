@@ -48,8 +48,8 @@ export class Health {
                 return this.healthz(opts);
             }
             return false;
-        } catch (err: unknown) {
-            if (err instanceof Error && err.name === 'AbortError') {
+        } catch (err: any) {
+            if (err.name === 'AbortError') {
                 throw err;
             }
             throw new Error('Error occurred in health request');
