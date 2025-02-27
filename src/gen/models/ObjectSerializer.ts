@@ -1250,6 +1250,7 @@ import { V2ResourceMetricSource } from '../models/V2ResourceMetricSource.js';
 import { V2ResourceMetricStatus } from '../models/V2ResourceMetricStatus.js';
 import { VersionInfo } from '../models/VersionInfo.js';
 
+/* tslint:disable:no-unused-variable */
 let primitives = [
                     "string",
                     "boolean",

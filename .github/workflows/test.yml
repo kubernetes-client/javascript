@@ -8,7 +8,7 @@ on:
 
 jobs:
     build:
-        runs-on: ubuntu-latest
+        runs-on: ubuntu-22.04
         strategy:
             matrix:
                 node: ['23', '22', '20', '18']
@@ -26,3 +26,14 @@ jobs:
             - run: npm run lint
             - run: npm audit --audit-level=critical
             - run: npm run build-with-tests && npm run test-transpiled
+            - name: Extract k8s version
+              id: extract_version
+              run: |
+                  version=$(grep 'export KUBERNETES_BRANCH=' settings | cut -d '"' -f 2)
+                  echo "setting kubernetes version to $KUBERNETES_V_STRING"
+                  echo "KUBERNETES_V_STRING=$version" >> "$GITHUB_ENV"
+            - name: start minikube
+              uses: medyagh/setup-minikube@latest
+              id: minikube
+              with:
+                  minikube-version: env.KUBERNETES_V_STRING
