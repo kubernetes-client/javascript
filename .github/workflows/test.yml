@@ -32,8 +32,9 @@ jobs:
                   version=$(grep 'export KUBERNETES_BRANCH=' settings | cut -d '"' -f 2)
                   echo "setting kubernetes version to $KUBERNETES_V_STRING"
                   echo "KUBERNETES_V_STRING=$version" >> "$GITHUB_ENV"
-            - name: start minikube
+            - name: Start Minikube
               uses: medyagh/setup-minikube@latest
               id: minikube
               with:
                   minikube-version: ${{ env.KUBERNETES_V_STRING }}
+                  driver: none
