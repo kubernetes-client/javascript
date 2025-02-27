@@ -9,8 +9,6 @@ The Javascript clients for Kubernetes is implemented in
 [typescript](https://typescriptlang.org), but can be called from either
 Javascript or Typescript. The client is implemented for server-side use with Node.
 
-The `request` library is currently being swapped to `fetch`. See the [fetch migration docs](./FETCH_MIGRATION.md) for more information and progress.
-
 # Installation
 
 ```console
