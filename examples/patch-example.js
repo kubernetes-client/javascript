@@ -20,7 +20,7 @@ try {
 
     await k8sApi.patchNamespacedPod(
         { name: res?.items?.[0]?.metadata?.name ?? '', namespace, body: patch },
-        k8s.withHeaderOptions('Content-Type', 'application/json-patch+json'),
+        k8s.setHeaderOptions('Content-Type', k8s.JsonPatch),
     );
 
     console.log('Patched.');
