@@ -1,13 +1,4 @@
-import {
-    CoreV1Api,
-    RequestContext,
-    ResponseContext,
-    KubeConfig,
-    createConfiguration,
-    type Configuration,
-    ServerConfiguration,
-} from '@kubernetes/client-node';
-import { PromiseMiddlewareWrapper } from '@kubernetes/client-node/dist/gen/middleware.js';
+import { CoreV1Api, KubeConfig, setHeaderOptions, JsonPatch } from '@kubernetes/client-node';
 
 const kc = new KubeConfig();
 kc.loadFromDefault();
@@ -25,30 +16,7 @@ try {
             },
         },
     ];
-    const headerPatchMiddleware = new PromiseMiddlewareWrapper({
-        pre: async (requestContext: RequestContext) => {
-            requestContext.setHeaderParam('Content-type', 'application/json-patch+json');
-            return requestContext;
-        },
-        post: async (responseContext: ResponseContext) => responseContext,
-    });
-    const currentCluster = kc.getCurrentCluster();
-    if (currentCluster === null) {
-        throw new Error('Cluster is undefined');
-    }
-    const server = currentCluster.server;
-    if (server === undefined) {
-        throw new Error('Server is undefined');
-    }
 
-    const baseServerConfig: ServerConfiguration<{}> = new ServerConfiguration<{}>(server, {});
-    const configuration: Configuration = createConfiguration({
-        middleware: [headerPatchMiddleware],
-        baseServer: baseServerConfig,
-        authMethods: {
-            default: kc,
-        },
-    });
     const podName = res.items[0]?.metadata?.name;
     if (podName === undefined) {
         throw new Error('Pod name is undefined');
@@ -60,7 +28,7 @@ try {
             namespace: 'default',
             body: patch,
         },
-        configuration,
+        setHeaderOptions('Content-Type', JsonPatch),
     );
 
     console.log('Patched.');
