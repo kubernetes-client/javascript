@@ -233,6 +233,49 @@ describe('ExecAuth', () => {
         strictEqual(opts.headers.Authorization, undefined);
     });
 
+    it('should handle returned errors correctly', async () => {
+        const auth = new ExecAuth();
+        (auth as any).execFn = (
+            command: string,
+            args?: readonly string[],
+            options?: child_process.SpawnOptionsWithoutStdio,
+        ): child_process.ChildProcessWithoutNullStreams => {
+            return {
+                stdout: {
+                    setEncoding: () => {},
+                    on: () => {},
+                },
+                stderr: {
+                    setEncoding: () => {},
+                    on: () => {},
+                },
+                on: (op: string, f: any) => {
+                    if (op === 'error') {
+                        f(new Error('Some error!'));
+                    }
+                    if (op === 'close') {
+                        f(1);
+                    }
+                },
+            } as unknown as child_process.ChildProcessWithoutNullStreams;
+        };
+        const user = {
+            name: 'user',
+            authProvider: {
+                config: {
+                    exec: {
+                        command: '/path/to/bin',
+                    },
+                },
+            },
+        };
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
+
+        const promise = auth.applyAuthentication(user, opts);
+        await rejects(promise, { name: 'Error' });
+    });
+
     it('should throw on spawnSync errors', async () => {
         // TODO: fix this test for Windows
         if (process.platform === 'win32') {
@@ -443,5 +486,55 @@ describe('ExecAuth', () => {
             opts,
         );
         strictEqual(opts.headers?.Authorization, 'Bearer foo');
+    });
+    it('should handle null credentials correctly', async () => {
+        const auth = new ExecAuth();
+        // Fake out Typescript
+        const res = (auth as any).getToken(null);
+        strictEqual(res, null);
+    });
+
+    it('should handle parse errors correctly', async () => {
+        const auth = new ExecAuth();
+        (auth as any).execFn = (
+            command: string,
+            args?: readonly string[],
+            options?: child_process.SpawnOptionsWithoutStdio,
+        ): child_process.ChildProcessWithoutNullStreams => {
+            return {
+                stdout: {
+                    setEncoding: () => {},
+                    on: () => {},
+                },
+                stderr: {
+                    setEncoding: () => {},
+                    on: () => {},
+                },
+                on: (op: string, f: any) => {
+                    if (op === 'data') {
+                        // Invalid JSON
+                        f('foo');
+                    }
+                    if (op === 'close') {
+                        f(0);
+                    }
+                },
+            } as unknown as child_process.ChildProcessWithoutNullStreams;
+        };
+        const user = {
+            name: 'user',
+            authProvider: {
+                config: {
+                    exec: {
+                        command: '/path/to/bin',
+                    },
+                },
+            },
+        };
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
+
+        const promise = auth.applyAuthentication(user, opts);
+        await rejects(promise, { name: 'SyntaxError' });
     });
 });
