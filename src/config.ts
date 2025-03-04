@@ -419,13 +419,13 @@ export class KubeConfig implements SecurityAuthentication {
         }
         if (platform === 'win32') {
             try {
-                const envKubeconfigPathResult = this.spawnSync('wsl.exe', [
+                const envKubeconfigPathResult = child_process.spawnSync('wsl.exe', [
                     'bash',
                     '-c',
                     'printenv KUBECONFIG',
                 ]);
                 if (envKubeconfigPathResult.status === 0 && envKubeconfigPathResult.stdout.length > 0) {
-                    const result = this.spawnSync('wsl.exe', [
+                    const result = child_process.spawnSync('wsl.exe', [
                         'cat',
                         envKubeconfigPathResult.stdout.toString('utf8'),
                     ]);
@@ -438,10 +438,10 @@ export class KubeConfig implements SecurityAuthentication {
                 // Falling back to default kubeconfig
             }
             try {
-                const configResult = this.spawnSync('wsl.exe', ['cat', '~/.kube/config']);
+                const configResult = child_process.spawnSync('wsl.exe', ['cat', '~/.kube/config']);
                 if (configResult.status === 0) {
                     this.loadFromString(configResult.stdout.toString('utf8'), opts);
-                    const result = this.spawnSync('wsl.exe', ['wslpath', '-w', '~/.kube']);
+                    const result = child_process.spawnSync('wsl.exe', ['wslpath', '-w', '~/.kube']);
                     if (result.status === 0) {
                         this.makePathsAbsolute(result.stdout.toString('utf8'));
                     }
@@ -596,13 +596,6 @@ export class KubeConfig implements SecurityAuthentication {
     private async applyOptions(opts: https.RequestOptions | WebSocket.ClientOptions): Promise<void> {
         this.applyHTTPSOptions(opts);
         await this.applyAuthorizationHeader(opts);
-    }
-
-    private spawnSync(
-        command: string,
-        args: string[],
-    ): { status: number | null; stdout: Buffer; stderr: Buffer } {
-        return child_process.spawnSync(command, args);
     }
 }
 

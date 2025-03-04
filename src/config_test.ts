@@ -1,9 +1,11 @@
 import { deepEqual, deepStrictEqual, notStrictEqual, rejects, strictEqual, throws } from 'node:assert';
+import child_process from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import https from 'node:https';
 import { Agent, RequestOptions } from 'node:https';
 import path, { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { mock } from 'node:test';
 
 import mockfs from 'mock-fs';
 
@@ -324,7 +326,6 @@ describe('KubeConfig', () => {
             };
 
             assertRequestOptionsEqual(opts, expectedOptions);
-            console.log(requestContext.getAgent());
             strictEqual((requestContext.getAgent()! as any).options.servername, 'kube.example2.com');
         });
         it('should apply cert configs', async () => {
@@ -1637,10 +1638,10 @@ describe('KubeConfig', () => {
         it('should try to load from WSL on Windows with wsl.exe not working', () => {
             const kc = new KubeConfig();
             const commands: { command: string; args: string[] }[] = [];
-            (kc as any).spawnSync = (cmd: string, args: string[]) => {
+            mock.method(child_process, 'spawnSync', (cmd: string, args: string[]) => {
                 commands.push({ command: cmd, args });
                 return { status: 1, stderr: 'some error' };
-            };
+            });
             kc.loadFromDefault(undefined, false, 'win32');
             strictEqual(commands.length, 2);
             for (let i = 0; i < commands.length; i++) {
@@ -1657,10 +1658,10 @@ describe('KubeConfig', () => {
                 { status: 0, stderr: '', stdout: configData.toString() },
             ];
             let ix = 0;
-            (kc as any).spawnSync = (cmd: string, args: string[]) => {
+            mock.method(child_process, 'spawnSync', (cmd: string, args: string[]) => {
                 commands.push({ command: cmd, args });
                 return results[ix++];
-            };
+            });
             kc.loadFromDefault(undefined, false, 'win32');
             strictEqual(commands.length, 2);
             for (let i = 0; i < commands.length; i++) {
@@ -1678,10 +1679,10 @@ describe('KubeConfig', () => {
                 { status: 0, stderr: '', stdout: 'C:\\wsldata\\.kube' },
             ];
             let ix = 0;
-            (kc as any).spawnSync = (cmd: string, args: string[]) => {
+            mock.method(child_process, 'spawnSync', (cmd: string, args: string[]) => {
                 commands.push({ command: cmd, args });
                 return results[ix++];
-            };
+            });
             kc.loadFromDefault(undefined, false, 'win32');
             strictEqual(commands.length, 3);
             for (let i = 0; i < commands.length; i++) {
