@@ -394,7 +394,11 @@ export class KubeConfig implements SecurityAuthentication {
         this.contexts.push(ctx);
     }
 
-    public loadFromDefault(opts?: Partial<ConfigOptions>, contextFromStartingConfig: boolean = false): void {
+    public loadFromDefault(
+        opts?: Partial<ConfigOptions>,
+        contextFromStartingConfig: boolean = false,
+        platform: string = process.platform,
+    ): void {
         if (process.env.KUBECONFIG && process.env.KUBECONFIG.length > 0) {
             const files = process.env.KUBECONFIG.split(path.delimiter).filter((filename: string) => filename);
             this.loadFromFile(files[0], opts);
@@ -405,7 +409,7 @@ export class KubeConfig implements SecurityAuthentication {
             }
             return;
         }
-        const home = findHomeDir();
+        const home = findHomeDir(platform);
         if (home) {
             const config = path.join(home, '.kube', 'config');
             if (fileExists(config)) {
@@ -413,15 +417,15 @@ export class KubeConfig implements SecurityAuthentication {
                 return;
             }
         }
-        if (process.platform === 'win32') {
+        if (platform === 'win32') {
             try {
-                const envKubeconfigPathResult = child_process.spawnSync('wsl.exe', [
+                const envKubeconfigPathResult = this.spawnSync('wsl.exe', [
                     'bash',
                     '-c',
                     'printenv KUBECONFIG',
                 ]);
                 if (envKubeconfigPathResult.status === 0 && envKubeconfigPathResult.stdout.length > 0) {
-                    const result = child_process.spawnSync('wsl.exe', [
+                    const result = this.spawnSync('wsl.exe', [
                         'cat',
                         envKubeconfigPathResult.stdout.toString('utf8'),
                     ]);
@@ -434,10 +438,10 @@ export class KubeConfig implements SecurityAuthentication {
                 // Falling back to default kubeconfig
             }
             try {
-                const configResult = child_process.spawnSync('wsl.exe', ['cat', '~/.kube/config']);
+                const configResult = this.spawnSync('wsl.exe', ['cat', '~/.kube/config']);
                 if (configResult.status === 0) {
                     this.loadFromString(configResult.stdout.toString('utf8'), opts);
-                    const result = child_process.spawnSync('wsl.exe', ['wslpath', '-w', '~/.kube']);
+                    const result = this.spawnSync('wsl.exe', ['wslpath', '-w', '~/.kube']);
                     if (result.status === 0) {
                         this.makePathsAbsolute(result.stdout.toString('utf8'));
                     }
@@ -593,6 +597,13 @@ export class KubeConfig implements SecurityAuthentication {
         this.applyHTTPSOptions(opts);
         await this.applyAuthorizationHeader(opts);
     }
+
+    private spawnSync(
+        command: string,
+        args: string[],
+    ): { status: number | null; stdout: Buffer; stderr: Buffer } {
+        return child_process.spawnSync(command, args);
+    }
 }
 
 export type ApiConstructor<T extends ApiType> = new (config: Configuration) => T;
@@ -628,8 +639,8 @@ function dropDuplicatesAndNils(a: string[]): string[] {
 }
 
 // Only public for testing.
-export function findHomeDir(): string | null {
-    if (process.platform !== 'win32') {
+export function findHomeDir(platform: string = process.platform): string | null {
+    if (platform !== 'win32') {
         if (process.env.HOME) {
             try {
                 fs.accessSync(process.env.HOME);

@@ -301,8 +301,10 @@ describe('KubeConfig', () => {
             const kc = new KubeConfig();
             kc.loadFromFile(kcTlsServerNameFileName);
 
+            const requestContext = new RequestContext('https://kube.example.com', HttpMethod.GET);
             const opts: https.RequestOptions = {};
             await kc.applyToHTTPSOptions(opts);
+            await kc.applySecurityAuthentication(requestContext);
 
             const expectedAgent = new https.Agent({
                 ca: Buffer.from('CADATA2', 'utf-8'),
@@ -322,6 +324,8 @@ describe('KubeConfig', () => {
             };
 
             assertRequestOptionsEqual(opts, expectedOptions);
+            console.log(requestContext.getAgent());
+            strictEqual((requestContext.getAgent()! as any).options.servername, 'kube.example2.com');
         });
         it('should apply cert configs', async () => {
             const kc = new KubeConfig();
@@ -1629,6 +1633,61 @@ describe('KubeConfig', () => {
             const inputData = bufferFromFileOrString('config');
             strictEqual(inputData!.toString(), data);
             mockfs.restore();
+        });
+        it('should try to load from WSL on Windows with wsl.exe not working', () => {
+            const kc = new KubeConfig();
+            const commands: { command: string; args: string[] }[] = [];
+            (kc as any).spawnSync = (cmd: string, args: string[]) => {
+                commands.push({ command: cmd, args });
+                return { status: 1, stderr: 'some error' };
+            };
+            kc.loadFromDefault(undefined, false, 'win32');
+            strictEqual(commands.length, 2);
+            for (let i = 0; i < commands.length; i++) {
+                strictEqual(commands[i].command, 'wsl.exe');
+            }
+        });
+        it('should try to load from WSL on Windows with $KUBECONFIG', () => {
+            const kc = new KubeConfig();
+            const test_path = 'C:\\Users\\user\\.kube\\config';
+            const configData = readFileSync(kcFileName);
+            const commands: { command: string; args: string[] }[] = [];
+            const results: { status: number; stderr: string; stdout: string }[] = [
+                { status: 0, stderr: '', stdout: test_path },
+                { status: 0, stderr: '', stdout: configData.toString() },
+            ];
+            let ix = 0;
+            (kc as any).spawnSync = (cmd: string, args: string[]) => {
+                commands.push({ command: cmd, args });
+                return results[ix++];
+            };
+            kc.loadFromDefault(undefined, false, 'win32');
+            strictEqual(commands.length, 2);
+            for (let i = 0; i < commands.length; i++) {
+                strictEqual(commands[i].command, 'wsl.exe');
+            }
+            validateFileLoad(kc);
+        });
+        it('should try to load from WSL on Windows without $KUBECONFIG', () => {
+            const kc = new KubeConfig();
+            const configData = readFileSync(kcFileName);
+            const commands: { command: string; args: string[] }[] = [];
+            const results: { status: number; stderr: string; stdout: string }[] = [
+                { status: 1, stderr: 'Some Error', stdout: '' },
+                { status: 0, stderr: '', stdout: configData.toString() },
+                { status: 0, stderr: '', stdout: 'C:\\wsldata\\.kube' },
+            ];
+            let ix = 0;
+            (kc as any).spawnSync = (cmd: string, args: string[]) => {
+                commands.push({ command: cmd, args });
+                return results[ix++];
+            };
+            kc.loadFromDefault(undefined, false, 'win32');
+            strictEqual(commands.length, 3);
+            for (let i = 0; i < commands.length; i++) {
+                strictEqual(commands[i].command, 'wsl.exe');
+            }
+            validateFileLoad(kc);
         });
     });
 });
