@@ -1613,6 +1613,19 @@ describe('KubeConfig', () => {
     });
 
     describe('BufferOrFile', () => {
+        let originalEnv;
+
+        before(() => {
+            // The code being tested here references process.env and can fail
+            // if run on a machine with certain environment variable settings.
+            originalEnv = process.env;
+            process.env = {};
+        });
+
+        after(() => {
+            process.env = originalEnv;
+        });
+
         it('should load from root if present', () => {
             const data = 'some data for file';
             const arg: any = {
