@@ -97,7 +97,7 @@ const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
 # Additional Examples and Documentation
 
-There are several more JS and TS examples in the [examples](https://github.com/kubernetes-client/javascript/tree/master/examples) directory.
+There are several more JS and TS examples in the [examples](https://github.com/kubernetes-client/javascript/tree/main/examples) directory.
 
 Documentation for the library is split into two resources:
 
