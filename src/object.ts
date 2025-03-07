@@ -59,7 +59,10 @@ export class KubernetesObjectApi {
     /** Cache resource API response. */
     protected apiVersionResourceCache: Record<string, V1APIResourceList> = {};
 
-    constructor(protected configuration: Configuration) {}
+    protected configuration: Configuration;
+    constructor(configuration: Configuration) {
+        this.configuration = configuration;
+    }
 
     /**
      * Create any Kubernetes resource.

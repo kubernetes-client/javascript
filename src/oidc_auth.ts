@@ -22,7 +22,10 @@ interface Client {
 }
 
 class OidcClient implements Client {
-    public constructor(readonly config: oidc.Configuration) {}
+    readonly config: oidc.Configuration;
+    public constructor(c: oidc.Configuration) {
+        this.config = c;
+    }
 
     public async refresh(token: string): Promise<Token> {
         const newToken = await oidc.refreshTokenGrant(this.config, token);

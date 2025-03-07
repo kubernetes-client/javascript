@@ -86,11 +86,15 @@ export function quantityToScalar(quantity: string): number | bigint {
 }
 
 export class ResourceStatus {
-    constructor(
-        public readonly request: bigint | number,
-        public readonly limit: bigint | number,
-        public readonly resourceType: string,
-    ) {}
+    public readonly request: bigint | number;
+    public readonly limit: bigint | number;
+    public readonly resourceType: string;
+
+    constructor(request: bigint | number, limit: bigint | number, resourceType: string) {
+        this.request = request;
+        this.limit = limit;
+        this.resourceType = resourceType;
+    }
 }
 
 export function totalCPUForContainer(container: V1Container): ResourceStatus {
