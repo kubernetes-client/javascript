@@ -11,44 +11,70 @@ import {
 } from './util.js';
 
 export class ResourceUsage {
-    constructor(
-        public readonly Capacity: number | bigint,
-        public readonly RequestTotal: number | bigint,
-        public readonly LimitTotal: number | bigint,
-    ) {}
+    public readonly Capacity: number | bigint;
+    public readonly RequestTotal: number | bigint;
+    public readonly LimitTotal: number | bigint;
+
+    constructor(Capacity: number | bigint, RequestTotal: number | bigint, LimitTotal: number | bigint) {
+        this.Capacity = Capacity;
+        this.RequestTotal = RequestTotal;
+        this.LimitTotal = LimitTotal;
+    }
 }
 
 export class CurrentResourceUsage {
-    constructor(
-        public readonly CurrentUsage: number | bigint,
-        public readonly RequestTotal: number | bigint,
-        public readonly LimitTotal: number | bigint,
-    ) {}
+    public readonly CurrentUsage: number | bigint;
+    public readonly RequestTotal: number | bigint;
+    public readonly LimitTotal: number | bigint;
+
+    constructor(CurrentUsage: number | bigint, RequestTotal: number | bigint, LimitTotal: number | bigint) {
+        this.CurrentUsage = CurrentUsage;
+        this.RequestTotal = RequestTotal;
+        this.LimitTotal = LimitTotal;
+    }
 }
 
 export class NodeStatus {
-    constructor(
-        public readonly Node: V1Node,
-        public readonly CPU: ResourceUsage,
-        public readonly Memory: ResourceUsage,
-    ) {}
+    public readonly Node: V1Node;
+    public readonly CPU: ResourceUsage;
+    public readonly Memory: ResourceUsage;
+
+    constructor(Node: V1Node, CPU: ResourceUsage, Memory: ResourceUsage) {
+        this.Node = Node;
+        this.CPU = CPU;
+        this.Memory = Memory;
+    }
 }
 
 export class ContainerStatus {
-    constructor(
-        public readonly Container: string,
-        public readonly CPUUsage: CurrentResourceUsage,
-        public readonly MemoryUsage: CurrentResourceUsage,
-    ) {}
+    public readonly Container: string;
+    public readonly CPUUsage: CurrentResourceUsage;
+    public readonly MemoryUsage: CurrentResourceUsage;
+
+    constructor(Container: string, CPUUsage: CurrentResourceUsage, MemoryUsage: CurrentResourceUsage) {
+        this.Container = Container;
+        this.CPUUsage = CPUUsage;
+        this.MemoryUsage = MemoryUsage;
+    }
 }
 
 export class PodStatus {
+    public readonly Pod: V1Pod;
+    public readonly CPU: CurrentResourceUsage;
+    public readonly Memory: CurrentResourceUsage;
+    public readonly Containers: ContainerStatus[];
+
     constructor(
-        public readonly Pod: V1Pod,
-        public readonly CPU: CurrentResourceUsage,
-        public readonly Memory: CurrentResourceUsage,
-        public readonly Containers: ContainerStatus[],
-    ) {}
+        Pod: V1Pod,
+        CPU: CurrentResourceUsage,
+        Memory: CurrentResourceUsage,
+        Containers: ContainerStatus[],
+    ) {
+        this.Pod = Pod;
+        this.CPU = CPU;
+        this.Memory = Memory;
+        this.Containers = Containers;
+    }
 }
 
 export async function topNodes(api: CoreV1Api): Promise<NodeStatus[]> {

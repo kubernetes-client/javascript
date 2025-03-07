@@ -30,14 +30,23 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     private readonly callbackCache: { [key: string]: (ObjectCallback<T> | ErrorCallback)[] } = {};
     private request: AbortController | undefined;
     private stopped: boolean = false;
+    private readonly path: string;
+    private readonly watch: Watch;
+    private readonly listFn: ListPromise<T>;
+    private readonly labelSelector?: string;
 
     public constructor(
-        private readonly path: string,
-        private readonly watch: Watch,
-        private readonly listFn: ListPromise<T>,
+        path: string,
+        watch: Watch,
+        listFn: ListPromise<T>,
         autoStart: boolean = true,
-        private readonly labelSelector?: string,
+        labelSelector?: string,
     ) {
+        this.path = path;
+        this.watch = watch;
+        this.listFn = listFn;
+        this.labelSelector = labelSelector;
+
         this.callbackCache[ADD] = [];
         this.callbackCache[UPDATE] = [];
         this.callbackCache[DELETE] = [];

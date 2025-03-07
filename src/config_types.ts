@@ -1,9 +1,11 @@
 import fs from 'node:fs';
 
-export enum ActionOnInvalid {
-    THROW = 'throw',
-    FILTER = 'filter',
-}
+export const ActionOnInvalid = {
+    THROW: 'throw',
+    FILTER: 'filter',
+} as const;
+
+export type ActionOnInvalid = (typeof ActionOnInvalid)[keyof typeof ActionOnInvalid];
 
 export interface ConfigOptions {
     onInvalidEntry: ActionOnInvalid;

@@ -174,20 +174,32 @@ export class WebSocketHandler implements WebSocketInterface {
         return () => ws;
     }
 
+    readonly config: KubeConfig;
+    readonly socketFactory?: (
+        uri: string,
+        protocols: string[],
+        opts: WebSocket.ClientOptions,
+    ) => WebSocket.WebSocket;
+    readonly streams: StreamInterface;
+
     // factory is really just for test injection
     public constructor(
-        readonly config: KubeConfig,
-        readonly socketFactory?: (
+        kc: KubeConfig,
+        socketFactoryFn?: (
             uri: string,
             protocols: string[],
             opts: WebSocket.ClientOptions,
         ) => WebSocket.WebSocket,
-        readonly streams: StreamInterface = {
+        streamsInterface: StreamInterface = {
             stdin: process.stdin,
             stdout: process.stdout,
             stderr: process.stderr,
         },
-    ) {}
+    ) {
+        this.config = kc;
+        this.socketFactory = socketFactoryFn;
+        this.streams = streamsInterface;
+    }
 
     /**
      * Connect to a web socket endpoint.
