@@ -36,8 +36,10 @@ describe('KubernetesObject', () => {
     });
 
     class KubernetesObjectApiTest extends KubernetesObjectApi {
-        constructor(public configuration: Configuration) {
+        public configuration: Configuration;
+        public constructor(configuration: Configuration) {
             super(configuration);
+            this.configuration = configuration;
         }
 
         public static makeApiClient(kc?: KubeConfig): KubernetesObjectApiTest {

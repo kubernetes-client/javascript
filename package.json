@@ -80,6 +80,7 @@
         "@types/mock-fs": "^4.13.1",
         "c8": "^10.0.0",
         "eslint": "^9.18.0",
+        "eslint-plugin-erasable-syntax-only": "^0.3.0",
         "husky": "^9.0.6",
         "mocha": "^11.0.1",
         "mock-fs": "^5.2.0",
