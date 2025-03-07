@@ -1,2 +1,2 @@
 
-npm test && npm run lint
+npm test && npm run lint && npm run build-with-tests && npm run test-transpiled
