@@ -7,11 +7,12 @@ export function matchBuffer(channel: number, contents: string): StringBufferMatc
 }
 
 class StringBufferMatcher extends Matcher {
-    constructor(
-        private channel: number,
-        private contents: string,
-    ) {
+    private channel: number;
+    private contents: string;
+    constructor(channel: number, contents: string) {
         super();
+        this.channel = channel;
+        this.contents = contents;
     }
 
     public valueOf(): string {

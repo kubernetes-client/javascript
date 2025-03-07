@@ -1,4 +1,5 @@
 import eslint from '@eslint/js';
+import erasableSyntaxOnly from 'eslint-plugin-erasable-syntax-only';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
@@ -6,6 +7,7 @@ export default tseslint.config(
         ignores: ['dist/', 'docs/', 'node_modules/', 'src/gen/'],
     },
     eslint.configs.recommended,
+    erasableSyntaxOnly.configs.recommended,
     tseslint.configs.strict,
     {
         languageOptions: {
