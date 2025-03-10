@@ -65,6 +65,12 @@ export class KubeConfig implements SecurityAuthentication {
         new OpenIDConnectAuth(),
     ];
 
+    // Optionally add additional external authenticators, you must do this
+    // before you load a kubeconfig file that references them.
+    public static addAuthenticator(authenticator: Authenticator): void {
+        this.authenticators.push(authenticator);
+    }
+
     /**
      * The list of all known clusters
      */
