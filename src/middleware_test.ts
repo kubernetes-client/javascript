@@ -1,7 +1,6 @@
-import { RequestContext, ConfigurationOptions, HttpMethod } from './gen/index.js';
+import { RequestContext, ConfigurationOptions, HttpMethod, ObservableMiddleware } from './gen/index.js';
 import { deepStrictEqual } from 'node:assert';
 import { setHeaderMiddleware, setHeaderOptions } from './middleware.js';
-import { PromiseMiddleware } from './gen/middleware.js';
 
 describe('Middleware', async () => {
     describe('setHeaderMiddleware', async () => {
@@ -9,8 +8,10 @@ describe('Middleware', async () => {
             const reqContext = new RequestContext('http://nowhere.com', HttpMethod.GET);
             deepStrictEqual(reqContext.getHeaders(), {});
             const headerMiddleware = setHeaderMiddleware('test-key', 'test-value');
-            const postMiddlewareRequest = await headerMiddleware[0].pre(reqContext);
-            deepStrictEqual(postMiddlewareRequest.getHeaders(), { 'test-key': 'test-value' });
+            const postMiddlewareRequest = await headerMiddleware.pre(reqContext);
+            await postMiddlewareRequest.toPromise().then((request) => {
+                deepStrictEqual(request.getHeaders(), { 'test-key': 'test-value' });
+            });
         });
 
         it('should replace a header if it is already specified', async () => {
@@ -18,8 +19,10 @@ describe('Middleware', async () => {
             reqContext.setHeaderParam('test-key', 'wrong-value');
             deepStrictEqual(reqContext.getHeaders(), { 'test-key': 'wrong-value' });
             const headerMiddleware = setHeaderMiddleware('test-key', 'test-value');
-            const postMiddlewareRequest = await headerMiddleware[0].pre(reqContext);
-            deepStrictEqual(postMiddlewareRequest.getHeaders(), { 'test-key': 'test-value' });
+            const postMiddlewareRequest = await headerMiddleware.pre(reqContext);
+            await postMiddlewareRequest.toPromise().then((request) => {
+                deepStrictEqual(request.getHeaders(), { 'test-key': 'test-value' });
+            });
         });
     });
 
@@ -27,7 +30,7 @@ describe('Middleware', async () => {
         it('should add middleware to set header with no input options arg', async () => {
             const reqContext = new RequestContext('http://nowhere.com', HttpMethod.GET);
             deepStrictEqual(reqContext.getHeaders(), {});
-            const testConfigurationOptions: ConfigurationOptions<PromiseMiddleware> = {};
+            const testConfigurationOptions: ConfigurationOptions<ObservableMiddleware> = {};
             const headerConfigurationOptions = setHeaderOptions(
                 'test-key',
                 'test-value',
@@ -40,7 +43,10 @@ describe('Middleware', async () => {
                 throw new Error('missing middleware in ConfigurationOptions');
             }
             const postMiddlewareRequest = await headerConfigurationOptions.middleware[0].pre(reqContext);
-            deepStrictEqual(postMiddlewareRequest.getHeaders(), { 'test-key': 'test-value' });
+
+            await postMiddlewareRequest.toPromise().then((request) => {
+                deepStrictEqual(request.getHeaders(), { 'test-key': 'test-value' });
+            });
         });
     });
 });

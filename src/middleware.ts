@@ -6,7 +6,7 @@ import type {
 } from './gen/index.js';
 import { of } from './gen/rxjsStub.js';
 
-function setHeaderMiddleware(key: string, value: string): ObservableMiddleware {
+export function setHeaderMiddleware(key: string, value: string): ObservableMiddleware {
     return {
         pre: (request: RequestContext) => {
             request.setHeaderParam(key, value);
