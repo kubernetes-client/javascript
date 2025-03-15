@@ -1,5 +1,5 @@
 import assert, { deepEqual } from 'node:assert';
-import { PatchStrategy, CoreV1Api, KubeConfig, setHeaderOptions, V1Namespace } from '../../index';
+import { PatchStrategy, CoreV1Api, KubeConfig, setHeaderOptions, V1Namespace } from '../../index.js';
 
 export default async function patchNamespace() {
     const kc = new KubeConfig();
