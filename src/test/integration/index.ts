@@ -1,4 +1,4 @@
-import patchNamespace from './patchNamespace';
+import patchNamespace from './patchNamespace.js';
 
 console.log('Integration testing');
 
