@@ -1,27 +1,29 @@
-import type { RequestContext, ResponseContext, ConfigurationOptions, Middleware } from './gen/index.js';
-import { PromiseMiddleware } from './gen/middleware.js';
+import type {
+    RequestContext,
+    ResponseContext,
+    ConfigurationOptions,
+    ObservableMiddleware,
+} from './gen/index.js';
+import { of } from './gen/rxjsStub.js';
 
-// setHeaderMiddleware returns Middleware[] that sets a header value
-export function setHeaderMiddleware(key: string, value: string): Middleware[] {
-    return [
-        {
-            pre: async (c: RequestContext) => {
-                c.setHeaderParam(key, value);
-                return c;
-            },
-            post: async (c: ResponseContext) => {
-                return c;
-            },
+function setHeaderMiddleware(key: string, value: string): ObservableMiddleware {
+    return {
+        pre: (request: RequestContext) => {
+            request.setHeaderParam(key, value);
+            return of(request);
         },
-    ];
+        post: (response: ResponseContext) => {
+            return of(response);
+        },
+    };
 }
 
 // Returns ConfigurationOptions that set a header
 export function setHeaderOptions(
     key: string,
     value: string,
-    opt?: ConfigurationOptions<PromiseMiddleware>,
-): ConfigurationOptions<PromiseMiddleware> {
+    opt?: ConfigurationOptions<ObservableMiddleware>,
+): ConfigurationOptions<ObservableMiddleware> {
     const newMiddlware = setHeaderMiddleware(key, value);
     const existingMiddlware = opt?.middleware || [];
     return {
