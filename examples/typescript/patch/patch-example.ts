@@ -1,5 +1,4 @@
-import { CoreV1Api, KubeConfig, setHeaderOptions } from '@kubernetes/client-node';
-import { PatchStrategy } from '@kubernetes/client-node/patch';
+import { CoreV1Api, KubeConfig, setHeaderOptions, PatchStrategy } from '@kubernetes/client-node';
 
 const kc = new KubeConfig();
 kc.loadFromDefault();

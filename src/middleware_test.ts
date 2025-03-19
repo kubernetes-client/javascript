@@ -8,10 +8,9 @@ describe('Middleware', async () => {
             const reqContext = new RequestContext('http://nowhere.com', HttpMethod.GET);
             deepStrictEqual(reqContext.getHeaders(), {});
             const headerMiddleware = setHeaderMiddleware('test-key', 'test-value');
-            const postMiddlewareRequest = await headerMiddleware.pre(reqContext);
-            await postMiddlewareRequest.toPromise().then((request) => {
-                deepStrictEqual(request.getHeaders(), { 'test-key': 'test-value' });
-            });
+            const postMiddlewareRequestObservable = await headerMiddleware.pre(reqContext);
+            const postMiddlewareRequest = await postMiddlewareRequestObservable.toPromise();
+            deepStrictEqual(postMiddlewareRequest.getHeaders(), { 'test-key': 'test-value' });
         });
 
         it('should replace a header if it is already specified', async () => {
