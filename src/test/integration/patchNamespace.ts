@@ -1,4 +1,4 @@
-import assert, { deepEqual } from 'node:assert';
+import assert from 'node:assert';
 import { PatchStrategy, CoreV1Api, KubeConfig, setHeaderOptions, V1Namespace } from '../../index.js';
 import { generateName } from './name.js';
 
