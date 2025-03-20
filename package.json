@@ -24,6 +24,7 @@
         "watch": "tsc --watch",
         "test": "c8 mocha",
         "test-transpiled": "mocha --no-config dist",
+        "integration-test": "tsx src/test/integration/index.ts",
         "prepare": "npm run build && husky",
         "prepack": "npm run build",
         "docs": "typedoc src/gen"
