@@ -9,6 +9,7 @@ import { mock } from 'node:test';
 
 import mockfs from 'mock-fs';
 
+import { Authenticator } from './auth.js';
 import { Headers } from 'node-fetch';
 import { HttpMethod } from './index.js';
 import { assertRequestAgentsEqual, assertRequestOptionsEqual } from './test/match-buffer.js';
@@ -1702,6 +1703,46 @@ describe('KubeConfig', () => {
                 strictEqual(commands[i].command, 'wsl.exe');
             }
             validateFileLoad(kc);
+        });
+
+        it('should inject a custom Authenticator', async () => {
+            class CustomAuthenticator implements Authenticator {
+                public isAuthProvider(user: User): boolean {
+                    return user.authProvider === 'custom';
+                }
+
+                public async applyAuthentication(user: User, opts: RequestOptions): Promise<void> {
+                    if (user.authProvider === 'custom') {
+                        // Simulate token retrieval
+                        const token = 'test-token';
+                        opts.headers = opts.headers || {};
+                        opts.headers.Authorization = `Bearer ${token}`;
+                    } else {
+                        throw new Error('No custom configuration found');
+                    }
+                }
+            }
+
+            const customAuthenticator = new CustomAuthenticator();
+            const kc = new KubeConfig();
+            kc.addAuthenticator(customAuthenticator);
+
+            const cluster: Cluster = {
+                name: 'test-cluster',
+                server: 'https://localhost:6443',
+                skipTLSVerify: false,
+            };
+            const user: User = {
+                name: 'test-user',
+                authProvider: 'custom',
+            };
+
+            kc.loadFromClusterAndUser(cluster, user);
+
+            const opts: RequestOptions = {};
+            await kc.applyToHTTPSOptions(opts);
+
+            strictEqual(opts.headers!.Authorization, 'Bearer test-token');
         });
     });
 });
