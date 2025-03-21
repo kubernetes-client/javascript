@@ -1724,8 +1724,8 @@ describe('KubeConfig', () => {
             }
 
             const customAuthenticator = new CustomAuthenticator();
-            KubeConfig.addAuthenticator(customAuthenticator);
             const kc = new KubeConfig();
+            kc.addAuthenticator(customAuthenticator);
 
             const cluster: Cluster = {
                 name: 'test-cluster',

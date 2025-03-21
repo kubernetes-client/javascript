@@ -65,10 +65,13 @@ export class KubeConfig implements SecurityAuthentication {
         new OpenIDConnectAuth(),
     ];
 
+    // List of custom authenticators that can be added by the user
+    private custom_authenticators: Authenticator[] = [];
+
     // Optionally add additional external authenticators, you must do this
     // before you load a kubeconfig file that references them.
-    public static addAuthenticator(authenticator: Authenticator): void {
-        this.authenticators.push(authenticator);
+    public addAuthenticator(authenticator: Authenticator): void {
+        this.custom_authenticators.push(authenticator);
     }
 
     /**
@@ -583,9 +586,15 @@ export class KubeConfig implements SecurityAuthentication {
         if (!user) {
             return;
         }
-        const authenticator = KubeConfig.authenticators.find((elt: Authenticator) => {
+        let authenticator = KubeConfig.authenticators.find((elt: Authenticator) => {
             return elt.isAuthProvider(user);
         });
+
+        if (!authenticator) {
+            authenticator = this.custom_authenticators.find((elt: Authenticator) => {
+                return elt.isAuthProvider(user);
+            });
+        }
 
         if (!opts.headers) {
             opts.headers = {};
