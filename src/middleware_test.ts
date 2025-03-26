@@ -18,10 +18,8 @@ describe('Middleware', async () => {
             reqContext.setHeaderParam('test-key', 'wrong-value');
             deepStrictEqual(reqContext.getHeaders(), { 'test-key': 'wrong-value' });
             const headerMiddleware = setHeaderMiddleware('test-key', 'test-value');
-            const postMiddlewareRequest = await headerMiddleware.pre(reqContext);
-            await postMiddlewareRequest.toPromise().then((request) => {
-                deepStrictEqual(request.getHeaders(), { 'test-key': 'test-value' });
-            });
+            const postMiddlewareRequest = await headerMiddleware.pre(reqContext).toPromise();
+            deepStrictEqual(postMiddlewareRequest.getHeaders(), { 'test-key': 'test-value' });
         });
     });
 
@@ -41,11 +39,11 @@ describe('Middleware', async () => {
             ) {
                 throw new Error('missing middleware in ConfigurationOptions');
             }
-            const postMiddlewareRequest = await headerConfigurationOptions.middleware[0].pre(reqContext);
+            const postMiddlewareRequest = await headerConfigurationOptions.middleware[0]
+                .pre(reqContext)
+                .toPromise();
 
-            await postMiddlewareRequest.toPromise().then((request) => {
-                deepStrictEqual(request.getHeaders(), { 'test-key': 'test-value' });
-            });
+            deepStrictEqual(postMiddlewareRequest.getHeaders(), { 'test-key': 'test-value' });
         });
     });
 });
