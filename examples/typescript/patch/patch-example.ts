@@ -1,4 +1,4 @@
-import { CoreV1Api, KubeConfig, setHeaderOptions, JsonPatch } from '@kubernetes/client-node';
+import { CoreV1Api, KubeConfig, setHeaderOptions, PatchStrategy } from '@kubernetes/client-node';
 
 const kc = new KubeConfig();
 kc.loadFromDefault();
@@ -28,7 +28,7 @@ try {
             namespace: 'default',
             body: patch,
         },
-        setHeaderOptions('Content-Type', JsonPatch),
+        setHeaderOptions('Content-Type', PatchStrategy.JsonPatch),
     );
 
     console.log('Patched.');
