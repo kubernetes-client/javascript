@@ -1,6 +1,6 @@
 import { STATUS_CODES } from 'node:http';
 import { createInterface } from 'node:readline';
-import fetch from 'node-fetch';
+import { Readable } from 'node:stream';
 import { KubeConfig } from './config.js';
 
 export class Watch {
@@ -55,7 +55,7 @@ export class Watch {
             const response = await fetch(watchURL, requestInit);
 
             if (response.status === 200) {
-                const body = response.body!;
+                const body = Readable.fromWeb(response.body!);
 
                 body.on('error', doneCallOnce);
                 body.on('close', () => doneCallOnce(null));
