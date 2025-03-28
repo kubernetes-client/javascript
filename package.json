@@ -85,7 +85,7 @@
         "husky": "^9.0.6",
         "mocha": "^11.0.1",
         "mock-fs": "^5.2.0",
-        "nock": "^13.2.9",
+        "nock": "^14.0.2",
         "prettier": "^3.0.0",
         "pretty-quick": "^4.0.0",
         "ts-mockito": "^2.3.1",
