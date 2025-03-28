@@ -1,5 +1,4 @@
 import { deepStrictEqual, strictEqual, throws } from 'node:assert';
-import { Response } from 'node-fetch';
 import { CoreV1Api, V1Container, V1Pod } from './api.js';
 import {
     normalizeResponseHeaders,
