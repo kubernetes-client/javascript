@@ -1,4 +1,3 @@
-import fetch from 'node-fetch';
 import { KubeConfig } from './config.js';
 import { ApiException, V1Status } from './gen/index.js';
 import { normalizeResponseHeaders } from './util.js';
