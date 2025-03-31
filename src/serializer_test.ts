@@ -1,3 +1,4 @@
+import { describe, it } from 'node:test';
 import { deepEqual, deepStrictEqual } from 'node:assert';
 import { ObjectSerializer } from './serializer.js';
 

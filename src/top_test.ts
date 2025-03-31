@@ -1,3 +1,4 @@
+import { describe, it } from 'node:test';
 import { deepEqual, deepStrictEqual, strictEqual } from 'assert';
 import nock from 'nock';
 import { KubeConfig } from './config.js';

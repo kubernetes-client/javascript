@@ -1,3 +1,4 @@
+import { describe, it } from 'node:test';
 import { deepStrictEqual, equal, notStrictEqual, rejects, strictEqual, throws } from 'node:assert';
 import { Readable, Writable } from 'node:stream';
 import { setImmediate as setImmediatePromise } from 'node:timers/promises';
@@ -291,7 +292,7 @@ describe('WebSocket', () => {
         }
     });
     it('handles multi-byte characters', () => {
-        return new Promise((resolve) => {
+        return new Promise<void>((resolve) => {
             const stream = new Readable({ read() {} });
             const mockWs = {
                 close() {},

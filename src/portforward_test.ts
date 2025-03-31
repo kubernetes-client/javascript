@@ -1,3 +1,4 @@
+import { describe, it } from 'node:test';
 import { strictEqual, rejects } from 'node:assert';
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
 import { anyFunction, capture, instance, mock, verify } from 'ts-mockito';

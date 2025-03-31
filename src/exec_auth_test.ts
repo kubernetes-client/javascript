@@ -1,3 +1,4 @@
+import { describe, it } from 'node:test';
 import { rejects, strictEqual } from 'node:assert';
 import https from 'node:https';
 import { OutgoingHttpHeaders } from 'node:http';

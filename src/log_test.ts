@@ -1,3 +1,4 @@
+import { afterEach, describe, it } from 'node:test';
 import { strictEqual, rejects, throws } from 'node:assert';
 import nock from 'nock';
 import { AddOptionsToSearchParams, Log, LogOptions } from './log.js';
