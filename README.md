@@ -121,6 +121,7 @@ Generally speaking newer clients will work with older Kubernetes, but compatabil
 | 0.21.x         | -              | +    | +    | ✓    | x    | x    |
 | 0.22.x         | -              | +    | +    | +    | ✓    | x    |
 | 1.0.x          | -              | +    | +    | +    | +    | ✓    |
+| 1.1.x          | -              | +    | +    | +    | +    | ✓    |
 
 Key:
 
