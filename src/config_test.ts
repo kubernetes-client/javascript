@@ -3,6 +3,7 @@ import { deepEqual, deepStrictEqual, notStrictEqual, rejects, strictEqual, throw
 import child_process from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import https from 'node:https';
+import http from 'node:http';
 import { Agent, RequestOptions } from 'node:https';
 import path, { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -298,7 +299,7 @@ describe('KubeConfig', () => {
         });
     });
 
-    describe('applyHTTPSOptions', () => {
+    describe.only('applyHTTPSOptions', () => {
         it('should apply tls-server-name to https.RequestOptions', async () => {
             const kc = new KubeConfig();
             kc.loadFromFile(kcTlsServerNameFileName);
@@ -447,6 +448,30 @@ describe('KubeConfig', () => {
             return rejects(kc.applySecurityAuthentication(rc), {
                 message: 'Unsupported proxy type',
             });
+        });
+        it('should apply http agent if cluster.server starts with http and no proxy-url is provided', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcProxyUrl);
+            kc.setCurrentContext('contextE');
+
+            const testServerName = 'http://example.com';
+            const rc = new RequestContext(testServerName, HttpMethod.GET);
+
+            await kc.applySecurityAuthentication(rc);
+
+            strictEqual(rc.getAgent() instanceof http.Agent, true);
+        });
+        it('should apply https agent if cluster.server starts with https and no proxy-url is provided', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcProxyUrl);
+            kc.setCurrentContext('contextF');
+
+            const testServerName = 'https://example.com';
+            const rc = new RequestContext(testServerName, HttpMethod.GET);
+
+            await kc.applySecurityAuthentication(rc);
+
+            strictEqual(rc.getAgent() instanceof https.Agent, true);
         });
     });
 

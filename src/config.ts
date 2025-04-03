@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import https from 'node:https';
+import http from 'node:http';
 import yaml from 'js-yaml';
 import net from 'node:net';
 import path from 'node:path';
@@ -544,6 +545,8 @@ export class KubeConfig implements SecurityAuthentication {
             } else {
                 throw new Error('Unsupported proxy type');
             }
+        } else if (cluster && cluster.server && cluster.server.startsWith('http:')) {
+            agent = new http.Agent(agentOptions);
         } else {
             agent = new https.Agent(agentOptions);
         }
