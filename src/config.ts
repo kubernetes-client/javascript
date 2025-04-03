@@ -545,7 +545,7 @@ export class KubeConfig implements SecurityAuthentication {
             } else {
                 throw new Error('Unsupported proxy type');
             }
-        } else if (cluster && cluster.server && cluster.server.startsWith('http:')) {
+        } else if (cluster?.server?.startsWith('http:')) {
             agent = new http.Agent(agentOptions);
         } else {
             agent = new https.Agent(agentOptions);

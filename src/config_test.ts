@@ -299,7 +299,7 @@ describe('KubeConfig', () => {
         });
     });
 
-    describe.only('applyHTTPSOptions', () => {
+    describe('applyHTTPSOptions', () => {
         it('should apply tls-server-name to https.RequestOptions', async () => {
             const kc = new KubeConfig();
             kc.loadFromFile(kcTlsServerNameFileName);
