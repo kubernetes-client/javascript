@@ -7,7 +7,7 @@ import { Cluster, Context, User } from './config_types.js';
 import { Watch } from './watch.js';
 import { IncomingMessage } from 'node:http';
 
-const server = 'http://foo.company.com';
+const server = 'https://foo.company.com';
 
 const fakeConfig: {
     clusters: Cluster[];
