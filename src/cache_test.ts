@@ -11,7 +11,7 @@ import { ListPromise } from './informer.js';
 import nock from 'nock';
 import { Watch } from './watch.js';
 
-const server = 'http://foo.company.com';
+const server = 'https://foo.company.com';
 
 const fakeConfig: {
     clusters: Cluster[];

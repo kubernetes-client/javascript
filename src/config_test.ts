@@ -1,5 +1,12 @@
 import { after, before, beforeEach, describe, it, mock } from 'node:test';
-import { deepEqual, deepStrictEqual, notStrictEqual, rejects, strictEqual, throws } from 'node:assert';
+import assert, {
+    deepEqual,
+    deepStrictEqual,
+    notStrictEqual,
+    rejects,
+    strictEqual,
+    throws,
+} from 'node:assert';
 import child_process from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import https from 'node:https';
@@ -461,10 +468,20 @@ describe('KubeConfig', () => {
 
             strictEqual(rc.getAgent() instanceof http.Agent, true);
         });
-        it('should apply https agent if cluster.server starts with https and no proxy-url is provided', async () => {
+        it('should throw an error if cluster.server starts with http, no proxy-url is provided and insecure-skip-tls-verify is not set', async () => {
             const kc = new KubeConfig();
             kc.loadFromFile(kcProxyUrl);
             kc.setCurrentContext('contextF');
+
+            const testServerName = 'http://example.com';
+            const rc = new RequestContext(testServerName, HttpMethod.GET);
+
+            await assert.rejects(kc.applySecurityAuthentication(rc), Error);
+        });
+        it('should apply https agent if cluster.server starts with https and no proxy-url is provided', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcProxyUrl);
+            kc.setCurrentContext('contextG');
 
             const testServerName = 'https://example.com';
             const rc = new RequestContext(testServerName, HttpMethod.GET);
