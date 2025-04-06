@@ -1,3 +1,4 @@
+import fetch from 'node-fetch';
 import { KubeConfig } from './config.js';
 import { RequestOptions } from 'node:https';
 

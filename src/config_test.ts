@@ -10,6 +10,7 @@ import { fileURLToPath } from 'node:url';
 import mockfs from 'mock-fs';
 
 import { Authenticator } from './auth.js';
+import { Headers } from 'node-fetch';
 import { HttpMethod } from './index.js';
 import { assertRequestAgentsEqual, assertRequestOptionsEqual } from './test/match-buffer.js';
 import { CoreV1Api, RequestContext } from './api.js';
@@ -294,7 +295,7 @@ describe('KubeConfig', () => {
             strictEqual(headers.get('list'), 'a, b');
             strictEqual(headers.get('number'), '5');
             strictEqual(headers.get('string'), 'str');
-            assertRequestAgentsEqual((requestInit as any).agent as Agent, expectedAgent);
+            assertRequestAgentsEqual(requestInit.agent as Agent, expectedAgent);
         });
     });
 

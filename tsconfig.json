@@ -15,7 +15,8 @@
         "forceConsistentCasingInFileNames": true,
         "importHelpers": true,
         "skipLibCheck": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "useDefineForClassFields": false
         // enable this in the future
         // "declarationMap": true
     },

@@ -149,7 +149,7 @@ describe('Metrics', () => {
             const metricsClient = new Metrics(kc);
             await rejects(metricsClient.getPodMetrics(), (err) => {
                 ok(err instanceof ApiException);
-                match(err.message, /Error occurred in metrics request: fetch failed/);
+                match(err.message, /connect ECONNREFUSED 127.0.0.1:51011/);
                 return true;
             });
         });
