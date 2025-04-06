@@ -1,3 +1,4 @@
+import { Response } from 'node-fetch';
 import { CoreV1Api, V1Container, V1Pod } from './gen/index.js';
 
 export async function podsForNode(api: CoreV1Api, nodeName: string): Promise<V1Pod[]> {
