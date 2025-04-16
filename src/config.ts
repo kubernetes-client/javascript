@@ -582,6 +582,11 @@ export class KubeConfig implements SecurityAuthentication {
         if (key) {
             opts.key = key;
         }
+
+        if (user.impersonateUser != null) {
+            opts.headers ??= {};
+            opts.headers['Impersonate-User'] = user.impersonateUser;
+        }
     }
 
     private async applyAuthorizationHeader(
