@@ -5,7 +5,8 @@ import { PassThrough } from 'node:stream';
 import { KubeConfig } from './config.js';
 import { Cluster, Context, User } from './config_types.js';
 import { Watch } from './watch.js';
-import { IncomingMessage } from 'node:http';
+import { IncomingMessage, createServer } from 'node:http';
+import { AddressInfo } from 'node:net';
 
 const server = 'https://foo.company.com';
 
@@ -165,6 +166,69 @@ describe('Watch', () => {
         s.done();
 
         stream.destroy();
+    });
+
+    it('should not call the done callback more than once on unexpected connection loss', async () => {
+        // Create a server that accepts the connection and flushes headers, then
+        // immediately destroys the connection (causing a "Premature close"
+        // error).
+        //
+        // This reproduces a bug where AbortController.abort() inside
+        // doneCallOnce could cause done() to be invoked twice.
+
+        const mockServer = createServer((req, res) => {
+            res.writeHead(200, {
+                'Content-Type': 'application/json',
+                'Transfer-Encoding': 'chunked',
+            });
+
+            res.flushHeaders();
+            res.destroy(); // Prematurely close the connection
+        });
+
+        const mockServerPort = await new Promise<number>((resolve) => {
+            mockServer.listen(0, () => {
+                resolve((mockServer.address() as AddressInfo).port);
+            });
+        });
+
+        const kc = new KubeConfig();
+
+        kc.loadFromClusterAndUser(
+            {
+                name: 'cluster',
+                server: `http://localhost:${mockServerPort}`,
+                skipTLSVerify: true,
+            },
+            {
+                name: 'user',
+            },
+        );
+
+        const watch = new Watch(kc);
+
+        let doneCalled = 0;
+        let doneResolve: () => void;
+
+        const donePromise = new Promise<void>((resolve) => {
+            doneResolve = resolve;
+        });
+
+        await watch.watch(
+            '/some/path/to/object',
+            {},
+            () => {},
+            () => {
+                doneCalled += 1;
+                doneResolve();
+            },
+        );
+
+        await donePromise;
+
+        mockServer.close();
+
+        strictEqual(doneCalled, 1);
     });
 
     it('should call setKeepAlive on the socket to extend the default of 5 mins', async () => {

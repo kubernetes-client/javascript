@@ -46,8 +46,8 @@ export class Watch {
         let doneCalled: boolean = false;
         const doneCallOnce = (err: any) => {
             if (!doneCalled) {
-                controller.abort();
                 doneCalled = true;
+                controller.abort();
                 done(err);
             }
         };
