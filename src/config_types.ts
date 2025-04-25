@@ -97,6 +97,7 @@ export interface User {
     readonly token?: string;
     readonly username?: string;
     readonly password?: string;
+    readonly impersonateUser?: string;
 }
 
 export function newUsers(a: any, opts?: Partial<ConfigOptions>): User[] {
@@ -113,6 +114,7 @@ export function exportUser(user: User): any {
     return {
         name: user.name,
         user: {
+            as: user.impersonateUser,
             'auth-provider': user.authProvider,
             'client-certificate-data': user.certData,
             'client-certificate': user.certFile,
@@ -143,6 +145,7 @@ function userIterator(onInvalidEntry: ActionOnInvalid): (elt: any, i: number, li
                 token: findToken(elt.user),
                 password: elt.user ? elt.user.password : null,
                 username: elt.user ? elt.user.username : null,
+                impersonateUser: elt.user ? elt.user.as : null,
             };
         } catch (err) {
             switch (onInvalidEntry) {

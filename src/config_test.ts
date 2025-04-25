@@ -643,6 +643,24 @@ describe('KubeConfig', () => {
             strictEqual(username, users[0].username);
             strictEqual(name, users[0].name);
         });
+        it('should load impersonation information', () => {
+            const users = newUsers([
+                {
+                    name: 'some-name-1',
+                    user: {
+                        as: 'impersonated-user',
+                    },
+                },
+                {
+                    name: 'some-name-2',
+                    user: {},
+                },
+            ]);
+            strictEqual('some-name-1', users[0].name);
+            strictEqual('impersonated-user', users[0].impersonateUser);
+            strictEqual('some-name-2', users[1].name);
+            strictEqual(undefined, users[1].impersonateUser);
+        });
     });
 
     describe('findHome', () => {
@@ -1785,6 +1803,27 @@ describe('KubeConfig', () => {
             await kc.applyToHTTPSOptions(opts);
 
             strictEqual(opts.headers!.Authorization, 'Bearer test-token');
+        });
+    });
+
+    describe('Impersonation', () => {
+        it('injects Impersonate-User header', async () => {
+            const kc = new KubeConfig();
+            const cluster: Cluster = {
+                name: 'test-cluster',
+                server: 'https://localhost:6443',
+                skipTLSVerify: false,
+            };
+            const user: User = {
+                name: 'test-user',
+                authProvider: 'custom',
+                impersonateUser: 'impersonate-user',
+            };
+
+            kc.loadFromClusterAndUser(cluster, user);
+            const opts: RequestOptions = {};
+            await kc.applyToHTTPSOptions(opts);
+            strictEqual(opts.headers!['Impersonate-User'], 'impersonate-user');
         });
     });
 });
