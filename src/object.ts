@@ -107,12 +107,13 @@ export class KubernetesObjectApi {
         if (fieldManager !== undefined) {
             requestContext.setQueryParam('fieldManager', ObjectSerializer.serialize(fieldManager, 'string'));
         }
+        const type = await this.getSerializationType(spec.apiVersion, spec.kind);
 
         // Body Params
         const contentType = ObjectSerializer.getPreferredMediaType([]);
         requestContext.setHeaderParam('Content-Type', contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(spec, 'any'),
+            ObjectSerializer.serialize(spec, type),
             contentType,
         );
         requestContext.setBody(serializedBody);
@@ -268,9 +269,11 @@ export class KubernetesObjectApi {
             requestContext.setQueryParam('force', ObjectSerializer.serialize(force, 'boolean'));
         }
 
+        const type = await this.getSerializationType(spec.apiVersion, spec.kind);
+
         // Body Params
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(spec, 'any'),
+            ObjectSerializer.serialize(spec, type),
             // TODO: use the patch content type once ObjectSerializer supports it.
             'application/json',
         );
@@ -465,11 +468,13 @@ export class KubernetesObjectApi {
             requestContext.setQueryParam('fieldManager', ObjectSerializer.serialize(fieldManager, 'string'));
         }
 
+        const type = await this.getSerializationType(spec.apiVersion, spec.kind);
+
         // Body Params
         const contentType = ObjectSerializer.getPreferredMediaType([]);
         requestContext.setHeaderParam('Content-Type', contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(spec, 'any'),
+            ObjectSerializer.serialize(spec, type),
             contentType,
         );
         requestContext.setBody(serializedBody);
