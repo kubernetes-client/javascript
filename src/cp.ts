@@ -1,12 +1,8 @@
-import fs, { rmSync } from 'node:fs';
 import { WritableStreamBuffer } from 'stream-buffers';
 import tar from 'tar-fs';
-import tmp from 'tmp-promise';
-import path from 'node:path';
 
 import { KubeConfig } from './config.js';
 import { Exec } from './exec.js';
-import { getServers } from 'node:dns';
 
 export class Cp {
     public execInstance: Exec;
@@ -28,8 +24,6 @@ export class Cp {
         srcPath: string,
         tgtPath: string,
     ): Promise<void> {
-        const tmpFile = tmp.fileSync();
-        const tmpFileName = tmpFile.name;
         const command = ['tar', 'zcf', '-', srcPath];
         const writerStream = tar.extract(tgtPath);
         const errStream = new WritableStreamBuffer();
