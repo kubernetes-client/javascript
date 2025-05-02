@@ -1071,6 +1071,9 @@ describe('KubernetesObject', () => {
             kc.loadFromOptions(testConfigOptions);
             client = KubernetesObjectApi.makeApiClient(kc);
             (client as any).apiVersionResourceCache.v1 = JSON.parse(resourceBodies.core);
+            (client as any).apiVersionResourceCache['networking.k8s.io/v1'] = JSON.parse(
+                resourceBodies.networking,
+            );
         });
 
         it('should modify resources with defaults', async () => {
@@ -1516,6 +1519,125 @@ describe('KubernetesObject', () => {
                 // TODO: Figure out why Typescript barfs if we do m.call
                 const hack_m = m.m as any;
                 await hack_m.call(client, s, undefined, 'All');
+                scope.done();
+            }
+        });
+
+        it('should properly serialize resources on modify', async () => {
+            const netPol = {
+                apiVersion: 'networking.k8s.io/v1',
+                kind: 'NetworkPolicy',
+                metadata: {
+                    name: 'k8s-js-client-test',
+                    namespace: 'default',
+                },
+                spec: {
+                    podSelector: {
+                        matchLabels: {
+                            app: 'my-app',
+                        },
+                    },
+                    policyTypes: ['Ingress'],
+                    ingress: [
+                        {
+                            _from: [
+                                {
+                                    podSelector: { matchLabels: { app: 'foo' } },
+                                },
+                            ],
+                            ports: [{ port: 123 }],
+                        },
+                    ],
+                },
+            };
+            const serializedNetPol = {
+                apiVersion: 'networking.k8s.io/v1',
+                kind: 'NetworkPolicy',
+                metadata: {
+                    name: 'k8s-js-client-test',
+                    namespace: 'default',
+                },
+                spec: {
+                    podSelector: {
+                        matchLabels: {
+                            app: 'my-app',
+                        },
+                    },
+                    policyTypes: ['Ingress'],
+                    ingress: [
+                        {
+                            from: [
+                                {
+                                    podSelector: { matchLabels: { app: 'foo' } },
+                                },
+                            ],
+                            ports: [{ port: 123 }],
+                        },
+                    ],
+                },
+            };
+            const returnBody = `{
+  "kind": "NetworkPolicy",
+  "apiVersion": "networking.k8s.io/v1",
+  "metadata": {
+    "name": "k8s-js-client-test",
+    "namespace": "default",
+    "selfLink": "/api/v1/namespaces/default/services/k8s-js-client-test",
+    "uid": "6a43eddc-26bf-424e-ab30-cde3041a706a",
+    "resourceVersion": "32373",
+    "creationTimestamp": "2020-05-11T17:34:25Z"
+  },
+  "spec": {
+    "policyTypes": ["Ingress"],
+    "podSelector": {
+      "matchLabels": {
+        "app": "my-app"
+      }
+    },
+    "ingress": [
+      {
+        "from": [{
+          "podSelector": {
+            "matchLabels": {
+                "app": "foo"
+            }
+          }
+        }],
+        "ports": [{"port": 123}]
+      }
+    ]
+  }
+}`;
+            const methods = [
+                {
+                    m: client.create,
+                    v: 'POST',
+                    p: '/apis/networking.k8s.io/v1/namespaces/default/networkpolicies',
+                    c: 201,
+                    b: returnBody,
+                },
+                {
+                    m: client.replace,
+                    v: 'PUT',
+                    p: '/apis/networking.k8s.io/v1/namespaces/default/networkpolicies/k8s-js-client-test',
+                    c: 200,
+                    b: returnBody,
+                },
+                {
+                    m: client.patch,
+                    v: 'PATCH',
+                    p: '/apis/networking.k8s.io/v1/namespaces/default/networkpolicies/k8s-js-client-test',
+                    c: 200,
+                    b: returnBody,
+                },
+            ];
+            for (const m of methods) {
+                const scope = nock('https://d.i.y')
+                    .intercept(m.p, m.v, serializedNetPol)
+                    .reply(m.c, m.b, contentTypeJsonHeader);
+                // TODO: Figure out why Typescript barfs if we do m.call
+                const hack_m = m.m as any;
+                await hack_m.call(client, netPol);
                 scope.done();
             }
         });
