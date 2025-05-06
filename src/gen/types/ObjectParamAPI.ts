@@ -157,6 +157,7 @@ import { V1FlowSchemaCondition } from '../models/V1FlowSchemaCondition.js';
 import { V1FlowSchemaList } from '../models/V1FlowSchemaList.js';
 import { V1FlowSchemaSpec } from '../models/V1FlowSchemaSpec.js';
 import { V1FlowSchemaStatus } from '../models/V1FlowSchemaStatus.js';
+import { V1ForNode } from '../models/V1ForNode.js';
 import { V1ForZone } from '../models/V1ForZone.js';
 import { V1GCEPersistentDiskVolumeSource } from '../models/V1GCEPersistentDiskVolumeSource.js';
 import { V1GRPCAction } from '../models/V1GRPCAction.js';
@@ -176,6 +177,9 @@ import { V1HorizontalPodAutoscalerStatus } from '../models/V1HorizontalPodAutosc
 import { V1HostAlias } from '../models/V1HostAlias.js';
 import { V1HostIP } from '../models/V1HostIP.js';
 import { V1HostPathVolumeSource } from '../models/V1HostPathVolumeSource.js';
+import { V1IPAddress } from '../models/V1IPAddress.js';
+import { V1IPAddressList } from '../models/V1IPAddressList.js';
+import { V1IPAddressSpec } from '../models/V1IPAddressSpec.js';
 import { V1IPBlock } from '../models/V1IPBlock.js';
 import { V1ISCSIPersistentVolumeSource } from '../models/V1ISCSIPersistentVolumeSource.js';
 import { V1ISCSIVolumeSource } from '../models/V1ISCSIVolumeSource.js';
@@ -261,6 +265,7 @@ import { V1NodeSelectorRequirement } from '../models/V1NodeSelectorRequirement.j
 import { V1NodeSelectorTerm } from '../models/V1NodeSelectorTerm.js';
 import { V1NodeSpec } from '../models/V1NodeSpec.js';
 import { V1NodeStatus } from '../models/V1NodeStatus.js';
+import { V1NodeSwapStatus } from '../models/V1NodeSwapStatus.js';
 import { V1NodeSystemInfo } from '../models/V1NodeSystemInfo.js';
 import { V1NonResourceAttributes } from '../models/V1NonResourceAttributes.js';
 import { V1NonResourcePolicyRule } from '../models/V1NonResourcePolicyRule.js';
@@ -272,6 +277,7 @@ import { V1Overhead } from '../models/V1Overhead.js';
 import { V1OwnerReference } from '../models/V1OwnerReference.js';
 import { V1ParamKind } from '../models/V1ParamKind.js';
 import { V1ParamRef } from '../models/V1ParamRef.js';
+import { V1ParentReference } from '../models/V1ParentReference.js';
 import { V1PersistentVolume } from '../models/V1PersistentVolume.js';
 import { V1PersistentVolumeClaim } from '../models/V1PersistentVolumeClaim.js';
 import { V1PersistentVolumeClaimCondition } from '../models/V1PersistentVolumeClaimCondition.js';
@@ -397,6 +403,10 @@ import { V1ServiceAccountList } from '../models/V1ServiceAccountList.js';
 import { V1ServiceAccountSubject } from '../models/V1ServiceAccountSubject.js';
 import { V1ServiceAccountTokenProjection } from '../models/V1ServiceAccountTokenProjection.js';
 import { V1ServiceBackendPort } from '../models/V1ServiceBackendPort.js';
+import { V1ServiceCIDR } from '../models/V1ServiceCIDR.js';
+import { V1ServiceCIDRList } from '../models/V1ServiceCIDRList.js';
+import { V1ServiceCIDRSpec } from '../models/V1ServiceCIDRSpec.js';
+import { V1ServiceCIDRStatus } from '../models/V1ServiceCIDRStatus.js';
 import { V1ServiceList } from '../models/V1ServiceList.js';
 import { V1ServicePort } from '../models/V1ServicePort.js';
 import { V1ServiceSpec } from '../models/V1ServiceSpec.js';
@@ -512,6 +522,8 @@ import { V1alpha3AllocatedDeviceStatus } from '../models/V1alpha3AllocatedDevice
 import { V1alpha3AllocationResult } from '../models/V1alpha3AllocationResult.js';
 import { V1alpha3BasicDevice } from '../models/V1alpha3BasicDevice.js';
 import { V1alpha3CELDeviceSelector } from '../models/V1alpha3CELDeviceSelector.js';
+import { V1alpha3Counter } from '../models/V1alpha3Counter.js';
+import { V1alpha3CounterSet } from '../models/V1alpha3CounterSet.js';
 import { V1alpha3Device } from '../models/V1alpha3Device.js';
 import { V1alpha3DeviceAllocationConfiguration } from '../models/V1alpha3DeviceAllocationConfiguration.js';
 import { V1alpha3DeviceAllocationResult } from '../models/V1alpha3DeviceAllocationResult.js';
@@ -523,9 +535,17 @@ import { V1alpha3DeviceClassConfiguration } from '../models/V1alpha3DeviceClassC
 import { V1alpha3DeviceClassList } from '../models/V1alpha3DeviceClassList.js';
 import { V1alpha3DeviceClassSpec } from '../models/V1alpha3DeviceClassSpec.js';
 import { V1alpha3DeviceConstraint } from '../models/V1alpha3DeviceConstraint.js';
+import { V1alpha3DeviceCounterConsumption } from '../models/V1alpha3DeviceCounterConsumption.js';
 import { V1alpha3DeviceRequest } from '../models/V1alpha3DeviceRequest.js';
 import { V1alpha3DeviceRequestAllocationResult } from '../models/V1alpha3DeviceRequestAllocationResult.js';
 import { V1alpha3DeviceSelector } from '../models/V1alpha3DeviceSelector.js';
+import { V1alpha3DeviceSubRequest } from '../models/V1alpha3DeviceSubRequest.js';
+import { V1alpha3DeviceTaint } from '../models/V1alpha3DeviceTaint.js';
+import { V1alpha3DeviceTaintRule } from '../models/V1alpha3DeviceTaintRule.js';
+import { V1alpha3DeviceTaintRuleList } from '../models/V1alpha3DeviceTaintRuleList.js';
+import { V1alpha3DeviceTaintRuleSpec } from '../models/V1alpha3DeviceTaintRuleSpec.js';
+import { V1alpha3DeviceTaintSelector } from '../models/V1alpha3DeviceTaintSelector.js';
+import { V1alpha3DeviceToleration } from '../models/V1alpha3DeviceToleration.js';
 import { V1alpha3NetworkDeviceData } from '../models/V1alpha3NetworkDeviceData.js';
 import { V1alpha3OpaqueDeviceConfiguration } from '../models/V1alpha3OpaqueDeviceConfiguration.js';
 import { V1alpha3ResourceClaim } from '../models/V1alpha3ResourceClaim.js';
@@ -545,6 +565,11 @@ import { V1beta1AllocationResult } from '../models/V1beta1AllocationResult.js';
 import { V1beta1AuditAnnotation } from '../models/V1beta1AuditAnnotation.js';
 import { V1beta1BasicDevice } from '../models/V1beta1BasicDevice.js';
 import { V1beta1CELDeviceSelector } from '../models/V1beta1CELDeviceSelector.js';
+import { V1beta1ClusterTrustBundle } from '../models/V1beta1ClusterTrustBundle.js';
+import { V1beta1ClusterTrustBundleList } from '../models/V1beta1ClusterTrustBundleList.js';
+import { V1beta1ClusterTrustBundleSpec } from '../models/V1beta1ClusterTrustBundleSpec.js';
+import { V1beta1Counter } from '../models/V1beta1Counter.js';
+import { V1beta1CounterSet } from '../models/V1beta1CounterSet.js';
 import { V1beta1Device } from '../models/V1beta1Device.js';
 import { V1beta1DeviceAllocationConfiguration } from '../models/V1beta1DeviceAllocationConfiguration.js';
 import { V1beta1DeviceAllocationResult } from '../models/V1beta1DeviceAllocationResult.js';
@@ -557,13 +582,20 @@ import { V1beta1DeviceClassConfiguration } from '../models/V1beta1DeviceClassCon
 import { V1beta1DeviceClassList } from '../models/V1beta1DeviceClassList.js';
 import { V1beta1DeviceClassSpec } from '../models/V1beta1DeviceClassSpec.js';
 import { V1beta1DeviceConstraint } from '../models/V1beta1DeviceConstraint.js';
+import { V1beta1DeviceCounterConsumption } from '../models/V1beta1DeviceCounterConsumption.js';
 import { V1beta1DeviceRequest } from '../models/V1beta1DeviceRequest.js';
 import { V1beta1DeviceRequestAllocationResult } from '../models/V1beta1DeviceRequestAllocationResult.js';
 import { V1beta1DeviceSelector } from '../models/V1beta1DeviceSelector.js';
+import { V1beta1DeviceSubRequest } from '../models/V1beta1DeviceSubRequest.js';
+import { V1beta1DeviceTaint } from '../models/V1beta1DeviceTaint.js';
+import { V1beta1DeviceToleration } from '../models/V1beta1DeviceToleration.js';
 import { V1beta1ExpressionWarning } from '../models/V1beta1ExpressionWarning.js';
 import { V1beta1IPAddress } from '../models/V1beta1IPAddress.js';
 import { V1beta1IPAddressList } from '../models/V1beta1IPAddressList.js';
 import { V1beta1IPAddressSpec } from '../models/V1beta1IPAddressSpec.js';
+import { V1beta1LeaseCandidate } from '../models/V1beta1LeaseCandidate.js';
+import { V1beta1LeaseCandidateList } from '../models/V1beta1LeaseCandidateList.js';
+import { V1beta1LeaseCandidateSpec } from '../models/V1beta1LeaseCandidateSpec.js';
 import { V1beta1MatchCondition } from '../models/V1beta1MatchCondition.js';
 import { V1beta1MatchResources } from '../models/V1beta1MatchResources.js';
 import { V1beta1NamedRuleWithOperations } from '../models/V1beta1NamedRuleWithOperations.js';
@@ -584,8 +616,6 @@ import { V1beta1ResourcePool } from '../models/V1beta1ResourcePool.js';
 import { V1beta1ResourceSlice } from '../models/V1beta1ResourceSlice.js';
 import { V1beta1ResourceSliceList } from '../models/V1beta1ResourceSliceList.js';
 import { V1beta1ResourceSliceSpec } from '../models/V1beta1ResourceSliceSpec.js';
-import { V1beta1SelfSubjectReview } from '../models/V1beta1SelfSubjectReview.js';
-import { V1beta1SelfSubjectReviewStatus } from '../models/V1beta1SelfSubjectReviewStatus.js';
 import { V1beta1ServiceCIDR } from '../models/V1beta1ServiceCIDR.js';
 import { V1beta1ServiceCIDRList } from '../models/V1beta1ServiceCIDRList.js';
 import { V1beta1ServiceCIDRSpec } from '../models/V1beta1ServiceCIDRSpec.js';
@@ -602,6 +632,45 @@ import { V1beta1Validation } from '../models/V1beta1Validation.js';
 import { V1beta1Variable } from '../models/V1beta1Variable.js';
 import { V1beta1VolumeAttributesClass } from '../models/V1beta1VolumeAttributesClass.js';
 import { V1beta1VolumeAttributesClassList } from '../models/V1beta1VolumeAttributesClassList.js';
+import { V1beta2AllocatedDeviceStatus } from '../models/V1beta2AllocatedDeviceStatus.js';
+import { V1beta2AllocationResult } from '../models/V1beta2AllocationResult.js';
+import { V1beta2CELDeviceSelector } from '../models/V1beta2CELDeviceSelector.js';
+import { V1beta2Counter } from '../models/V1beta2Counter.js';
+import { V1beta2CounterSet } from '../models/V1beta2CounterSet.js';
+import { V1beta2Device } from '../models/V1beta2Device.js';
+import { V1beta2DeviceAllocationConfiguration } from '../models/V1beta2DeviceAllocationConfiguration.js';
+import { V1beta2DeviceAllocationResult } from '../models/V1beta2DeviceAllocationResult.js';
+import { V1beta2DeviceAttribute } from '../models/V1beta2DeviceAttribute.js';
+import { V1beta2DeviceCapacity } from '../models/V1beta2DeviceCapacity.js';
+import { V1beta2DeviceClaim } from '../models/V1beta2DeviceClaim.js';
+import { V1beta2DeviceClaimConfiguration } from '../models/V1beta2DeviceClaimConfiguration.js';
+import { V1beta2DeviceClass } from '../models/V1beta2DeviceClass.js';
+import { V1beta2DeviceClassConfiguration } from '../models/V1beta2DeviceClassConfiguration.js';
+import { V1beta2DeviceClassList } from '../models/V1beta2DeviceClassList.js';
+import { V1beta2DeviceClassSpec } from '../models/V1beta2DeviceClassSpec.js';
+import { V1beta2DeviceConstraint } from '../models/V1beta2DeviceConstraint.js';
+import { V1beta2DeviceCounterConsumption } from '../models/V1beta2DeviceCounterConsumption.js';
+import { V1beta2DeviceRequest } from '../models/V1beta2DeviceRequest.js';
+import { V1beta2DeviceRequestAllocationResult } from '../models/V1beta2DeviceRequestAllocationResult.js';
+import { V1beta2DeviceSelector } from '../models/V1beta2DeviceSelector.js';
+import { V1beta2DeviceSubRequest } from '../models/V1beta2DeviceSubRequest.js';
+import { V1beta2DeviceTaint } from '../models/V1beta2DeviceTaint.js';
+import { V1beta2DeviceToleration } from '../models/V1beta2DeviceToleration.js';
+import { V1beta2ExactDeviceRequest } from '../models/V1beta2ExactDeviceRequest.js';
+import { V1beta2NetworkDeviceData } from '../models/V1beta2NetworkDeviceData.js';
+import { V1beta2OpaqueDeviceConfiguration } from '../models/V1beta2OpaqueDeviceConfiguration.js';
+import { V1beta2ResourceClaim } from '../models/V1beta2ResourceClaim.js';
+import { V1beta2ResourceClaimConsumerReference } from '../models/V1beta2ResourceClaimConsumerReference.js';
+import { V1beta2ResourceClaimList } from '../models/V1beta2ResourceClaimList.js';
+import { V1beta2ResourceClaimSpec } from '../models/V1beta2ResourceClaimSpec.js';
+import { V1beta2ResourceClaimStatus } from '../models/V1beta2ResourceClaimStatus.js';
+import { V1beta2ResourceClaimTemplate } from '../models/V1beta2ResourceClaimTemplate.js';
+import { V1beta2ResourceClaimTemplateList } from '../models/V1beta2ResourceClaimTemplateList.js';
+import { V1beta2ResourceClaimTemplateSpec } from '../models/V1beta2ResourceClaimTemplateSpec.js';
+import { V1beta2ResourcePool } from '../models/V1beta2ResourcePool.js';
+import { V1beta2ResourceSlice } from '../models/V1beta2ResourceSlice.js';
+import { V1beta2ResourceSliceList } from '../models/V1beta2ResourceSliceList.js';
+import { V1beta2ResourceSliceSpec } from '../models/V1beta2ResourceSliceSpec.js';
 import { V2ContainerResourceMetricSource } from '../models/V2ContainerResourceMetricSource.js';
 import { V2ContainerResourceMetricStatus } from '../models/V2ContainerResourceMetricStatus.js';
 import { V2CrossVersionObjectReference } from '../models/V2CrossVersionObjectReference.js';
@@ -11359,90 +11428,6 @@ export class ObjectAuthenticationV1Api {
 
 }
 
-import { ObservableAuthenticationV1beta1Api } from "./ObservableAPI.js";
-import { AuthenticationV1beta1ApiRequestFactory, AuthenticationV1beta1ApiResponseProcessor} from "../apis/AuthenticationV1beta1Api.js";
-
-export interface AuthenticationV1beta1ApiCreateSelfSubjectReviewRequest {
-    /**
-     * 
-     * @type V1beta1SelfSubjectReview
-     * @memberof AuthenticationV1beta1ApicreateSelfSubjectReview
-     */
-    body: V1beta1SelfSubjectReview
-    /**
-     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
-     * Defaults to: undefined
-     * @type string
-     * @memberof AuthenticationV1beta1ApicreateSelfSubjectReview
-     */
-    dryRun?: string
-    /**
-     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
-     * Defaults to: undefined
-     * @type string
-     * @memberof AuthenticationV1beta1ApicreateSelfSubjectReview
-     */
-    fieldManager?: string
-    /**
-     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
-     * Defaults to: undefined
-     * @type string
-     * @memberof AuthenticationV1beta1ApicreateSelfSubjectReview
-     */
-    fieldValidation?: string
-    /**
-     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
-     * Defaults to: undefined
-     * @type string
-     * @memberof AuthenticationV1beta1ApicreateSelfSubjectReview
-     */
-    pretty?: string
-}
-
-export interface AuthenticationV1beta1ApiGetAPIResourcesRequest {
-}
-
-export class ObjectAuthenticationV1beta1Api {
-    private api: ObservableAuthenticationV1beta1Api
-
-    public constructor(configuration: Configuration, requestFactory?: AuthenticationV1beta1ApiRequestFactory, responseProcessor?: AuthenticationV1beta1ApiResponseProcessor) {
-        this.api = new ObservableAuthenticationV1beta1Api(configuration, requestFactory, responseProcessor);
-    }
-
-    /**
-     * create a SelfSubjectReview
-     * @param param the request object
-     */
-    public createSelfSubjectReviewWithHttpInfo(param: AuthenticationV1beta1ApiCreateSelfSubjectReviewRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta1SelfSubjectReview>> {
-        return this.api.createSelfSubjectReviewWithHttpInfo(param.body, param.dryRun, param.fieldManager, param.fieldValidation, param.pretty,  options).toPromise();
-    }
-
-    /**
-     * create a SelfSubjectReview
-     * @param param the request object
-     */
-    public createSelfSubjectReview(param: AuthenticationV1beta1ApiCreateSelfSubjectReviewRequest, options?: ConfigurationOptions): Promise<V1beta1SelfSubjectReview> {
-        return this.api.createSelfSubjectReview(param.body, param.dryRun, param.fieldManager, param.fieldValidation, param.pretty,  options).toPromise();
-    }
-
-    /**
-     * get available resources
-     * @param param the request object
-     */
-    public getAPIResourcesWithHttpInfo(param: AuthenticationV1beta1ApiGetAPIResourcesRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1APIResourceList>> {
-        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
-    }
-
-    /**
-     * get available resources
-     * @param param the request object
-     */
-    public getAPIResources(param: AuthenticationV1beta1ApiGetAPIResourcesRequest = {}, options?: ConfigurationOptions): Promise<V1APIResourceList> {
-        return this.api.getAPIResources( options).toPromise();
-    }
-
-}
-
 import { ObservableAuthorizationApi } from "./ObservableAPI.js";
 import { AuthorizationApiRequestFactory, AuthorizationApiResponseProcessor} from "../apis/AuthorizationApi.js";
 
@@ -16632,6 +16617,543 @@ export class ObjectCertificatesV1alpha1Api {
 
 }
 
+import { ObservableCertificatesV1beta1Api } from "./ObservableAPI.js";
+import { CertificatesV1beta1ApiRequestFactory, CertificatesV1beta1ApiResponseProcessor} from "../apis/CertificatesV1beta1Api.js";
+
+export interface CertificatesV1beta1ApiCreateClusterTrustBundleRequest {
+    /**
+     * 
+     * @type V1beta1ClusterTrustBundle
+     * @memberof CertificatesV1beta1ApicreateClusterTrustBundle
+     */
+    body: V1beta1ClusterTrustBundle
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApicreateClusterTrustBundle
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApicreateClusterTrustBundle
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApicreateClusterTrustBundle
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApicreateClusterTrustBundle
+     */
+    fieldValidation?: string
+}
+
+export interface CertificatesV1beta1ApiDeleteClusterTrustBundleRequest {
+    /**
+     * name of the ClusterTrustBundle
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApideleteClusterTrustBundle
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApideleteClusterTrustBundle
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApideleteClusterTrustBundle
+     */
+    dryRun?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * Defaults to: undefined
+     * @type number
+     * @memberof CertificatesV1beta1ApideleteClusterTrustBundle
+     */
+    gracePeriodSeconds?: number
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CertificatesV1beta1ApideleteClusterTrustBundle
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CertificatesV1beta1ApideleteClusterTrustBundle
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApideleteClusterTrustBundle
+     */
+    propagationPolicy?: string
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof CertificatesV1beta1ApideleteClusterTrustBundle
+     */
+    body?: V1DeleteOptions
+}
+
+export interface CertificatesV1beta1ApiDeleteCollectionClusterTrustBundleRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApideleteCollectionClusterTrustBundle
+     */
+    pretty?: string
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApideleteCollectionClusterTrustBundle
+     */
+    _continue?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApideleteCollectionClusterTrustBundle
+     */
+    dryRun?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApideleteCollectionClusterTrustBundle
+     */
+    fieldSelector?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * Defaults to: undefined
+     * @type number
+     * @memberof CertificatesV1beta1ApideleteCollectionClusterTrustBundle
+     */
+    gracePeriodSeconds?: number
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CertificatesV1beta1ApideleteCollectionClusterTrustBundle
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApideleteCollectionClusterTrustBundle
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof CertificatesV1beta1ApideleteCollectionClusterTrustBundle
+     */
+    limit?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CertificatesV1beta1ApideleteCollectionClusterTrustBundle
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApideleteCollectionClusterTrustBundle
+     */
+    propagationPolicy?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApideleteCollectionClusterTrustBundle
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApideleteCollectionClusterTrustBundle
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CertificatesV1beta1ApideleteCollectionClusterTrustBundle
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof CertificatesV1beta1ApideleteCollectionClusterTrustBundle
+     */
+    timeoutSeconds?: number
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof CertificatesV1beta1ApideleteCollectionClusterTrustBundle
+     */
+    body?: V1DeleteOptions
+}
+
+export interface CertificatesV1beta1ApiGetAPIResourcesRequest {
+}
+
+export interface CertificatesV1beta1ApiListClusterTrustBundleRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApilistClusterTrustBundle
+     */
+    pretty?: string
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CertificatesV1beta1ApilistClusterTrustBundle
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApilistClusterTrustBundle
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApilistClusterTrustBundle
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApilistClusterTrustBundle
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof CertificatesV1beta1ApilistClusterTrustBundle
+     */
+    limit?: number
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApilistClusterTrustBundle
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApilistClusterTrustBundle
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CertificatesV1beta1ApilistClusterTrustBundle
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof CertificatesV1beta1ApilistClusterTrustBundle
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CertificatesV1beta1ApilistClusterTrustBundle
+     */
+    watch?: boolean
+}
+
+export interface CertificatesV1beta1ApiPatchClusterTrustBundleRequest {
+    /**
+     * name of the ClusterTrustBundle
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApipatchClusterTrustBundle
+     */
+    name: string
+    /**
+     * 
+     * @type any
+     * @memberof CertificatesV1beta1ApipatchClusterTrustBundle
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApipatchClusterTrustBundle
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApipatchClusterTrustBundle
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApipatchClusterTrustBundle
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApipatchClusterTrustBundle
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CertificatesV1beta1ApipatchClusterTrustBundle
+     */
+    force?: boolean
+}
+
+export interface CertificatesV1beta1ApiReadClusterTrustBundleRequest {
+    /**
+     * name of the ClusterTrustBundle
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApireadClusterTrustBundle
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApireadClusterTrustBundle
+     */
+    pretty?: string
+}
+
+export interface CertificatesV1beta1ApiReplaceClusterTrustBundleRequest {
+    /**
+     * name of the ClusterTrustBundle
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApireplaceClusterTrustBundle
+     */
+    name: string
+    /**
+     * 
+     * @type V1beta1ClusterTrustBundle
+     * @memberof CertificatesV1beta1ApireplaceClusterTrustBundle
+     */
+    body: V1beta1ClusterTrustBundle
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApireplaceClusterTrustBundle
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApireplaceClusterTrustBundle
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApireplaceClusterTrustBundle
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CertificatesV1beta1ApireplaceClusterTrustBundle
+     */
+    fieldValidation?: string
+}
+
+export class ObjectCertificatesV1beta1Api {
+    private api: ObservableCertificatesV1beta1Api
+
+    public constructor(configuration: Configuration, requestFactory?: CertificatesV1beta1ApiRequestFactory, responseProcessor?: CertificatesV1beta1ApiResponseProcessor) {
+        this.api = new ObservableCertificatesV1beta1Api(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * create a ClusterTrustBundle
+     * @param param the request object
+     */
+    public createClusterTrustBundleWithHttpInfo(param: CertificatesV1beta1ApiCreateClusterTrustBundleRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta1ClusterTrustBundle>> {
+        return this.api.createClusterTrustBundleWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create a ClusterTrustBundle
+     * @param param the request object
+     */
+    public createClusterTrustBundle(param: CertificatesV1beta1ApiCreateClusterTrustBundleRequest, options?: ConfigurationOptions): Promise<V1beta1ClusterTrustBundle> {
+        return this.api.createClusterTrustBundle(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * delete a ClusterTrustBundle
+     * @param param the request object
+     */
+    public deleteClusterTrustBundleWithHttpInfo(param: CertificatesV1beta1ApiDeleteClusterTrustBundleRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteClusterTrustBundleWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ClusterTrustBundle
+     * @param param the request object
+     */
+    public deleteClusterTrustBundle(param: CertificatesV1beta1ApiDeleteClusterTrustBundleRequest, options?: ConfigurationOptions): Promise<V1Status> {
+        return this.api.deleteClusterTrustBundle(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ClusterTrustBundle
+     * @param param the request object
+     */
+    public deleteCollectionClusterTrustBundleWithHttpInfo(param: CertificatesV1beta1ApiDeleteCollectionClusterTrustBundleRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionClusterTrustBundleWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ClusterTrustBundle
+     * @param param the request object
+     */
+    public deleteCollectionClusterTrustBundle(param: CertificatesV1beta1ApiDeleteCollectionClusterTrustBundleRequest = {}, options?: ConfigurationOptions): Promise<V1Status> {
+        return this.api.deleteCollectionClusterTrustBundle(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: CertificatesV1beta1ApiGetAPIResourcesRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResources(param: CertificatesV1beta1ApiGetAPIResourcesRequest = {}, options?: ConfigurationOptions): Promise<V1APIResourceList> {
+        return this.api.getAPIResources( options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ClusterTrustBundle
+     * @param param the request object
+     */
+    public listClusterTrustBundleWithHttpInfo(param: CertificatesV1beta1ApiListClusterTrustBundleRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1beta1ClusterTrustBundleList>> {
+        return this.api.listClusterTrustBundleWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ClusterTrustBundle
+     * @param param the request object
+     */
+    public listClusterTrustBundle(param: CertificatesV1beta1ApiListClusterTrustBundleRequest = {}, options?: ConfigurationOptions): Promise<V1beta1ClusterTrustBundleList> {
+        return this.api.listClusterTrustBundle(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ClusterTrustBundle
+     * @param param the request object
+     */
+    public patchClusterTrustBundleWithHttpInfo(param: CertificatesV1beta1ApiPatchClusterTrustBundleRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta1ClusterTrustBundle>> {
+        return this.api.patchClusterTrustBundleWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ClusterTrustBundle
+     * @param param the request object
+     */
+    public patchClusterTrustBundle(param: CertificatesV1beta1ApiPatchClusterTrustBundleRequest, options?: ConfigurationOptions): Promise<V1beta1ClusterTrustBundle> {
+        return this.api.patchClusterTrustBundle(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * read the specified ClusterTrustBundle
+     * @param param the request object
+     */
+    public readClusterTrustBundleWithHttpInfo(param: CertificatesV1beta1ApiReadClusterTrustBundleRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta1ClusterTrustBundle>> {
+        return this.api.readClusterTrustBundleWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ClusterTrustBundle
+     * @param param the request object
+     */
+    public readClusterTrustBundle(param: CertificatesV1beta1ApiReadClusterTrustBundleRequest, options?: ConfigurationOptions): Promise<V1beta1ClusterTrustBundle> {
+        return this.api.readClusterTrustBundle(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ClusterTrustBundle
+     * @param param the request object
+     */
+    public replaceClusterTrustBundleWithHttpInfo(param: CertificatesV1beta1ApiReplaceClusterTrustBundleRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta1ClusterTrustBundle>> {
+        return this.api.replaceClusterTrustBundleWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ClusterTrustBundle
+     * @param param the request object
+     */
+    public replaceClusterTrustBundle(param: CertificatesV1beta1ApiReplaceClusterTrustBundleRequest, options?: ConfigurationOptions): Promise<V1beta1ClusterTrustBundle> {
+        return this.api.replaceClusterTrustBundle(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+}
+
 import { ObservableCoordinationApi } from "./ObservableAPI.js";
 import { CoordinationApiRequestFactory, CoordinationApiResponseProcessor} from "../apis/CoordinationApi.js";
 
@@ -18022,6 +18544,688 @@ export class ObjectCoordinationV1alpha2Api {
      * @param param the request object
      */
     public replaceNamespacedLeaseCandidate(param: CoordinationV1alpha2ApiReplaceNamespacedLeaseCandidateRequest, options?: ConfigurationOptions): Promise<V1alpha2LeaseCandidate> {
+        return this.api.replaceNamespacedLeaseCandidate(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+}
+
+import { ObservableCoordinationV1beta1Api } from "./ObservableAPI.js";
+import { CoordinationV1beta1ApiRequestFactory, CoordinationV1beta1ApiResponseProcessor} from "../apis/CoordinationV1beta1Api.js";
+
+export interface CoordinationV1beta1ApiCreateNamespacedLeaseCandidateRequest {
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApicreateNamespacedLeaseCandidate
+     */
+    namespace: string
+    /**
+     * 
+     * @type V1beta1LeaseCandidate
+     * @memberof CoordinationV1beta1ApicreateNamespacedLeaseCandidate
+     */
+    body: V1beta1LeaseCandidate
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApicreateNamespacedLeaseCandidate
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApicreateNamespacedLeaseCandidate
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApicreateNamespacedLeaseCandidate
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApicreateNamespacedLeaseCandidate
+     */
+    fieldValidation?: string
+}
+
+export interface CoordinationV1beta1ApiDeleteCollectionNamespacedLeaseCandidateRequest {
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApideleteCollectionNamespacedLeaseCandidate
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApideleteCollectionNamespacedLeaseCandidate
+     */
+    pretty?: string
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApideleteCollectionNamespacedLeaseCandidate
+     */
+    _continue?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApideleteCollectionNamespacedLeaseCandidate
+     */
+    dryRun?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApideleteCollectionNamespacedLeaseCandidate
+     */
+    fieldSelector?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * Defaults to: undefined
+     * @type number
+     * @memberof CoordinationV1beta1ApideleteCollectionNamespacedLeaseCandidate
+     */
+    gracePeriodSeconds?: number
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CoordinationV1beta1ApideleteCollectionNamespacedLeaseCandidate
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApideleteCollectionNamespacedLeaseCandidate
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof CoordinationV1beta1ApideleteCollectionNamespacedLeaseCandidate
+     */
+    limit?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CoordinationV1beta1ApideleteCollectionNamespacedLeaseCandidate
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApideleteCollectionNamespacedLeaseCandidate
+     */
+    propagationPolicy?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApideleteCollectionNamespacedLeaseCandidate
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApideleteCollectionNamespacedLeaseCandidate
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CoordinationV1beta1ApideleteCollectionNamespacedLeaseCandidate
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof CoordinationV1beta1ApideleteCollectionNamespacedLeaseCandidate
+     */
+    timeoutSeconds?: number
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof CoordinationV1beta1ApideleteCollectionNamespacedLeaseCandidate
+     */
+    body?: V1DeleteOptions
+}
+
+export interface CoordinationV1beta1ApiDeleteNamespacedLeaseCandidateRequest {
+    /**
+     * name of the LeaseCandidate
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApideleteNamespacedLeaseCandidate
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApideleteNamespacedLeaseCandidate
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApideleteNamespacedLeaseCandidate
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApideleteNamespacedLeaseCandidate
+     */
+    dryRun?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * Defaults to: undefined
+     * @type number
+     * @memberof CoordinationV1beta1ApideleteNamespacedLeaseCandidate
+     */
+    gracePeriodSeconds?: number
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CoordinationV1beta1ApideleteNamespacedLeaseCandidate
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CoordinationV1beta1ApideleteNamespacedLeaseCandidate
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApideleteNamespacedLeaseCandidate
+     */
+    propagationPolicy?: string
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof CoordinationV1beta1ApideleteNamespacedLeaseCandidate
+     */
+    body?: V1DeleteOptions
+}
+
+export interface CoordinationV1beta1ApiGetAPIResourcesRequest {
+}
+
+export interface CoordinationV1beta1ApiListLeaseCandidateForAllNamespacesRequest {
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CoordinationV1beta1ApilistLeaseCandidateForAllNamespaces
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApilistLeaseCandidateForAllNamespaces
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApilistLeaseCandidateForAllNamespaces
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApilistLeaseCandidateForAllNamespaces
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof CoordinationV1beta1ApilistLeaseCandidateForAllNamespaces
+     */
+    limit?: number
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApilistLeaseCandidateForAllNamespaces
+     */
+    pretty?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApilistLeaseCandidateForAllNamespaces
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApilistLeaseCandidateForAllNamespaces
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CoordinationV1beta1ApilistLeaseCandidateForAllNamespaces
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof CoordinationV1beta1ApilistLeaseCandidateForAllNamespaces
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CoordinationV1beta1ApilistLeaseCandidateForAllNamespaces
+     */
+    watch?: boolean
+}
+
+export interface CoordinationV1beta1ApiListNamespacedLeaseCandidateRequest {
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApilistNamespacedLeaseCandidate
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApilistNamespacedLeaseCandidate
+     */
+    pretty?: string
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CoordinationV1beta1ApilistNamespacedLeaseCandidate
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApilistNamespacedLeaseCandidate
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApilistNamespacedLeaseCandidate
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApilistNamespacedLeaseCandidate
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof CoordinationV1beta1ApilistNamespacedLeaseCandidate
+     */
+    limit?: number
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApilistNamespacedLeaseCandidate
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApilistNamespacedLeaseCandidate
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CoordinationV1beta1ApilistNamespacedLeaseCandidate
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof CoordinationV1beta1ApilistNamespacedLeaseCandidate
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CoordinationV1beta1ApilistNamespacedLeaseCandidate
+     */
+    watch?: boolean
+}
+
+export interface CoordinationV1beta1ApiPatchNamespacedLeaseCandidateRequest {
+    /**
+     * name of the LeaseCandidate
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApipatchNamespacedLeaseCandidate
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApipatchNamespacedLeaseCandidate
+     */
+    namespace: string
+    /**
+     * 
+     * @type any
+     * @memberof CoordinationV1beta1ApipatchNamespacedLeaseCandidate
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApipatchNamespacedLeaseCandidate
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApipatchNamespacedLeaseCandidate
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApipatchNamespacedLeaseCandidate
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApipatchNamespacedLeaseCandidate
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof CoordinationV1beta1ApipatchNamespacedLeaseCandidate
+     */
+    force?: boolean
+}
+
+export interface CoordinationV1beta1ApiReadNamespacedLeaseCandidateRequest {
+    /**
+     * name of the LeaseCandidate
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApireadNamespacedLeaseCandidate
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApireadNamespacedLeaseCandidate
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApireadNamespacedLeaseCandidate
+     */
+    pretty?: string
+}
+
+export interface CoordinationV1beta1ApiReplaceNamespacedLeaseCandidateRequest {
+    /**
+     * name of the LeaseCandidate
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApireplaceNamespacedLeaseCandidate
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApireplaceNamespacedLeaseCandidate
+     */
+    namespace: string
+    /**
+     * 
+     * @type V1beta1LeaseCandidate
+     * @memberof CoordinationV1beta1ApireplaceNamespacedLeaseCandidate
+     */
+    body: V1beta1LeaseCandidate
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApireplaceNamespacedLeaseCandidate
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApireplaceNamespacedLeaseCandidate
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApireplaceNamespacedLeaseCandidate
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof CoordinationV1beta1ApireplaceNamespacedLeaseCandidate
+     */
+    fieldValidation?: string
+}
+
+export class ObjectCoordinationV1beta1Api {
+    private api: ObservableCoordinationV1beta1Api
+
+    public constructor(configuration: Configuration, requestFactory?: CoordinationV1beta1ApiRequestFactory, responseProcessor?: CoordinationV1beta1ApiResponseProcessor) {
+        this.api = new ObservableCoordinationV1beta1Api(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * create a LeaseCandidate
+     * @param param the request object
+     */
+    public createNamespacedLeaseCandidateWithHttpInfo(param: CoordinationV1beta1ApiCreateNamespacedLeaseCandidateRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta1LeaseCandidate>> {
+        return this.api.createNamespacedLeaseCandidateWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create a LeaseCandidate
+     * @param param the request object
+     */
+    public createNamespacedLeaseCandidate(param: CoordinationV1beta1ApiCreateNamespacedLeaseCandidateRequest, options?: ConfigurationOptions): Promise<V1beta1LeaseCandidate> {
+        return this.api.createNamespacedLeaseCandidate(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * delete collection of LeaseCandidate
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedLeaseCandidateWithHttpInfo(param: CoordinationV1beta1ApiDeleteCollectionNamespacedLeaseCandidateRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedLeaseCandidateWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of LeaseCandidate
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedLeaseCandidate(param: CoordinationV1beta1ApiDeleteCollectionNamespacedLeaseCandidateRequest, options?: ConfigurationOptions): Promise<V1Status> {
+        return this.api.deleteCollectionNamespacedLeaseCandidate(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a LeaseCandidate
+     * @param param the request object
+     */
+    public deleteNamespacedLeaseCandidateWithHttpInfo(param: CoordinationV1beta1ApiDeleteNamespacedLeaseCandidateRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteNamespacedLeaseCandidateWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a LeaseCandidate
+     * @param param the request object
+     */
+    public deleteNamespacedLeaseCandidate(param: CoordinationV1beta1ApiDeleteNamespacedLeaseCandidateRequest, options?: ConfigurationOptions): Promise<V1Status> {
+        return this.api.deleteNamespacedLeaseCandidate(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: CoordinationV1beta1ApiGetAPIResourcesRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResources(param: CoordinationV1beta1ApiGetAPIResourcesRequest = {}, options?: ConfigurationOptions): Promise<V1APIResourceList> {
+        return this.api.getAPIResources( options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind LeaseCandidate
+     * @param param the request object
+     */
+    public listLeaseCandidateForAllNamespacesWithHttpInfo(param: CoordinationV1beta1ApiListLeaseCandidateForAllNamespacesRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1beta1LeaseCandidateList>> {
+        return this.api.listLeaseCandidateForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind LeaseCandidate
+     * @param param the request object
+     */
+    public listLeaseCandidateForAllNamespaces(param: CoordinationV1beta1ApiListLeaseCandidateForAllNamespacesRequest = {}, options?: ConfigurationOptions): Promise<V1beta1LeaseCandidateList> {
+        return this.api.listLeaseCandidateForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind LeaseCandidate
+     * @param param the request object
+     */
+    public listNamespacedLeaseCandidateWithHttpInfo(param: CoordinationV1beta1ApiListNamespacedLeaseCandidateRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta1LeaseCandidateList>> {
+        return this.api.listNamespacedLeaseCandidateWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind LeaseCandidate
+     * @param param the request object
+     */
+    public listNamespacedLeaseCandidate(param: CoordinationV1beta1ApiListNamespacedLeaseCandidateRequest, options?: ConfigurationOptions): Promise<V1beta1LeaseCandidateList> {
+        return this.api.listNamespacedLeaseCandidate(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified LeaseCandidate
+     * @param param the request object
+     */
+    public patchNamespacedLeaseCandidateWithHttpInfo(param: CoordinationV1beta1ApiPatchNamespacedLeaseCandidateRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta1LeaseCandidate>> {
+        return this.api.patchNamespacedLeaseCandidateWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified LeaseCandidate
+     * @param param the request object
+     */
+    public patchNamespacedLeaseCandidate(param: CoordinationV1beta1ApiPatchNamespacedLeaseCandidateRequest, options?: ConfigurationOptions): Promise<V1beta1LeaseCandidate> {
+        return this.api.patchNamespacedLeaseCandidate(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * read the specified LeaseCandidate
+     * @param param the request object
+     */
+    public readNamespacedLeaseCandidateWithHttpInfo(param: CoordinationV1beta1ApiReadNamespacedLeaseCandidateRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta1LeaseCandidate>> {
+        return this.api.readNamespacedLeaseCandidateWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified LeaseCandidate
+     * @param param the request object
+     */
+    public readNamespacedLeaseCandidate(param: CoordinationV1beta1ApiReadNamespacedLeaseCandidateRequest, options?: ConfigurationOptions): Promise<V1beta1LeaseCandidate> {
+        return this.api.readNamespacedLeaseCandidate(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified LeaseCandidate
+     * @param param the request object
+     */
+    public replaceNamespacedLeaseCandidateWithHttpInfo(param: CoordinationV1beta1ApiReplaceNamespacedLeaseCandidateRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta1LeaseCandidate>> {
+        return this.api.replaceNamespacedLeaseCandidateWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified LeaseCandidate
+     * @param param the request object
+     */
+    public replaceNamespacedLeaseCandidate(param: CoordinationV1beta1ApiReplaceNamespacedLeaseCandidateRequest, options?: ConfigurationOptions): Promise<V1beta1LeaseCandidate> {
         return this.api.replaceNamespacedLeaseCandidate(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
@@ -37678,6 +38882,43 @@ export class ObjectNetworkingApi {
 import { ObservableNetworkingV1Api } from "./ObservableAPI.js";
 import { NetworkingV1ApiRequestFactory, NetworkingV1ApiResponseProcessor} from "../apis/NetworkingV1Api.js";
 
+export interface NetworkingV1ApiCreateIPAddressRequest {
+    /**
+     * 
+     * @type V1IPAddress
+     * @memberof NetworkingV1ApicreateIPAddress
+     */
+    body: V1IPAddress
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApicreateIPAddress
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApicreateIPAddress
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApicreateIPAddress
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApicreateIPAddress
+     */
+    fieldValidation?: string
+}
+
 export interface NetworkingV1ApiCreateIngressClassRequest {
     /**
      * 
@@ -37801,6 +39042,150 @@ export interface NetworkingV1ApiCreateNamespacedNetworkPolicyRequest {
      * @memberof NetworkingV1ApicreateNamespacedNetworkPolicy
      */
     fieldValidation?: string
+}
+
+export interface NetworkingV1ApiCreateServiceCIDRRequest {
+    /**
+     * 
+     * @type V1ServiceCIDR
+     * @memberof NetworkingV1ApicreateServiceCIDR
+     */
+    body: V1ServiceCIDR
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApicreateServiceCIDR
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApicreateServiceCIDR
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApicreateServiceCIDR
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApicreateServiceCIDR
+     */
+    fieldValidation?: string
+}
+
+export interface NetworkingV1ApiDeleteCollectionIPAddressRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteCollectionIPAddress
+     */
+    pretty?: string
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteCollectionIPAddress
+     */
+    _continue?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteCollectionIPAddress
+     */
+    dryRun?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteCollectionIPAddress
+     */
+    fieldSelector?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * Defaults to: undefined
+     * @type number
+     * @memberof NetworkingV1ApideleteCollectionIPAddress
+     */
+    gracePeriodSeconds?: number
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApideleteCollectionIPAddress
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteCollectionIPAddress
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof NetworkingV1ApideleteCollectionIPAddress
+     */
+    limit?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApideleteCollectionIPAddress
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteCollectionIPAddress
+     */
+    propagationPolicy?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteCollectionIPAddress
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteCollectionIPAddress
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApideleteCollectionIPAddress
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof NetworkingV1ApideleteCollectionIPAddress
+     */
+    timeoutSeconds?: number
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof NetworkingV1ApideleteCollectionIPAddress
+     */
+    body?: V1DeleteOptions
 }
 
 export interface NetworkingV1ApiDeleteCollectionIngressClassRequest {
@@ -38138,6 +39523,171 @@ export interface NetworkingV1ApiDeleteCollectionNamespacedNetworkPolicyRequest {
     body?: V1DeleteOptions
 }
 
+export interface NetworkingV1ApiDeleteCollectionServiceCIDRRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteCollectionServiceCIDR
+     */
+    pretty?: string
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteCollectionServiceCIDR
+     */
+    _continue?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteCollectionServiceCIDR
+     */
+    dryRun?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteCollectionServiceCIDR
+     */
+    fieldSelector?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * Defaults to: undefined
+     * @type number
+     * @memberof NetworkingV1ApideleteCollectionServiceCIDR
+     */
+    gracePeriodSeconds?: number
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApideleteCollectionServiceCIDR
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteCollectionServiceCIDR
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof NetworkingV1ApideleteCollectionServiceCIDR
+     */
+    limit?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApideleteCollectionServiceCIDR
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteCollectionServiceCIDR
+     */
+    propagationPolicy?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteCollectionServiceCIDR
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteCollectionServiceCIDR
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApideleteCollectionServiceCIDR
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof NetworkingV1ApideleteCollectionServiceCIDR
+     */
+    timeoutSeconds?: number
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof NetworkingV1ApideleteCollectionServiceCIDR
+     */
+    body?: V1DeleteOptions
+}
+
+export interface NetworkingV1ApiDeleteIPAddressRequest {
+    /**
+     * name of the IPAddress
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteIPAddress
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteIPAddress
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteIPAddress
+     */
+    dryRun?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * Defaults to: undefined
+     * @type number
+     * @memberof NetworkingV1ApideleteIPAddress
+     */
+    gracePeriodSeconds?: number
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApideleteIPAddress
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApideleteIPAddress
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteIPAddress
+     */
+    propagationPolicy?: string
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof NetworkingV1ApideleteIPAddress
+     */
+    body?: V1DeleteOptions
+}
+
 export interface NetworkingV1ApiDeleteIngressClassRequest {
     /**
      * name of the IngressClass
@@ -38326,7 +39876,145 @@ export interface NetworkingV1ApiDeleteNamespacedNetworkPolicyRequest {
     body?: V1DeleteOptions
 }
 
+export interface NetworkingV1ApiDeleteServiceCIDRRequest {
+    /**
+     * name of the ServiceCIDR
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteServiceCIDR
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteServiceCIDR
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteServiceCIDR
+     */
+    dryRun?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * Defaults to: undefined
+     * @type number
+     * @memberof NetworkingV1ApideleteServiceCIDR
+     */
+    gracePeriodSeconds?: number
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApideleteServiceCIDR
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApideleteServiceCIDR
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApideleteServiceCIDR
+     */
+    propagationPolicy?: string
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof NetworkingV1ApideleteServiceCIDR
+     */
+    body?: V1DeleteOptions
+}
+
 export interface NetworkingV1ApiGetAPIResourcesRequest {
+}
+
+export interface NetworkingV1ApiListIPAddressRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApilistIPAddress
+     */
+    pretty?: string
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApilistIPAddress
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApilistIPAddress
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApilistIPAddress
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApilistIPAddress
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof NetworkingV1ApilistIPAddress
+     */
+    limit?: number
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApilistIPAddress
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApilistIPAddress
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApilistIPAddress
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof NetworkingV1ApilistIPAddress
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApilistIPAddress
+     */
+    watch?: boolean
 }
 
 export interface NetworkingV1ApiListIngressClassRequest {
@@ -38743,6 +40431,137 @@ export interface NetworkingV1ApiListNetworkPolicyForAllNamespacesRequest {
     watch?: boolean
 }
 
+export interface NetworkingV1ApiListServiceCIDRRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApilistServiceCIDR
+     */
+    pretty?: string
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApilistServiceCIDR
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApilistServiceCIDR
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApilistServiceCIDR
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApilistServiceCIDR
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof NetworkingV1ApilistServiceCIDR
+     */
+    limit?: number
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApilistServiceCIDR
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApilistServiceCIDR
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApilistServiceCIDR
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof NetworkingV1ApilistServiceCIDR
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApilistServiceCIDR
+     */
+    watch?: boolean
+}
+
+export interface NetworkingV1ApiPatchIPAddressRequest {
+    /**
+     * name of the IPAddress
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApipatchIPAddress
+     */
+    name: string
+    /**
+     * 
+     * @type any
+     * @memberof NetworkingV1ApipatchIPAddress
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApipatchIPAddress
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApipatchIPAddress
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApipatchIPAddress
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApipatchIPAddress
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApipatchIPAddress
+     */
+    force?: boolean
+}
+
 export interface NetworkingV1ApiPatchIngressClassRequest {
     /**
      * name of the IngressClass
@@ -38968,6 +40787,125 @@ export interface NetworkingV1ApiPatchNamespacedNetworkPolicyRequest {
     force?: boolean
 }
 
+export interface NetworkingV1ApiPatchServiceCIDRRequest {
+    /**
+     * name of the ServiceCIDR
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApipatchServiceCIDR
+     */
+    name: string
+    /**
+     * 
+     * @type any
+     * @memberof NetworkingV1ApipatchServiceCIDR
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApipatchServiceCIDR
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApipatchServiceCIDR
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApipatchServiceCIDR
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApipatchServiceCIDR
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApipatchServiceCIDR
+     */
+    force?: boolean
+}
+
+export interface NetworkingV1ApiPatchServiceCIDRStatusRequest {
+    /**
+     * name of the ServiceCIDR
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApipatchServiceCIDRStatus
+     */
+    name: string
+    /**
+     * 
+     * @type any
+     * @memberof NetworkingV1ApipatchServiceCIDRStatus
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApipatchServiceCIDRStatus
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApipatchServiceCIDRStatus
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApipatchServiceCIDRStatus
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApipatchServiceCIDRStatus
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof NetworkingV1ApipatchServiceCIDRStatus
+     */
+    force?: boolean
+}
+
+export interface NetworkingV1ApiReadIPAddressRequest {
+    /**
+     * name of the IPAddress
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireadIPAddress
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireadIPAddress
+     */
+    pretty?: string
+}
+
 export interface NetworkingV1ApiReadIngressClassRequest {
     /**
      * name of the IngressClass
@@ -39055,6 +40993,84 @@ export interface NetworkingV1ApiReadNamespacedNetworkPolicyRequest {
      * @memberof NetworkingV1ApireadNamespacedNetworkPolicy
      */
     pretty?: string
+}
+
+export interface NetworkingV1ApiReadServiceCIDRRequest {
+    /**
+     * name of the ServiceCIDR
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireadServiceCIDR
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireadServiceCIDR
+     */
+    pretty?: string
+}
+
+export interface NetworkingV1ApiReadServiceCIDRStatusRequest {
+    /**
+     * name of the ServiceCIDR
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireadServiceCIDRStatus
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireadServiceCIDRStatus
+     */
+    pretty?: string
+}
+
+export interface NetworkingV1ApiReplaceIPAddressRequest {
+    /**
+     * name of the IPAddress
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireplaceIPAddress
+     */
+    name: string
+    /**
+     * 
+     * @type V1IPAddress
+     * @memberof NetworkingV1ApireplaceIPAddress
+     */
+    body: V1IPAddress
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireplaceIPAddress
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireplaceIPAddress
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireplaceIPAddress
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireplaceIPAddress
+     */
+    fieldValidation?: string
 }
 
 export interface NetworkingV1ApiReplaceIngressClassRequest {
@@ -39254,11 +41270,115 @@ export interface NetworkingV1ApiReplaceNamespacedNetworkPolicyRequest {
     fieldValidation?: string
 }
 
+export interface NetworkingV1ApiReplaceServiceCIDRRequest {
+    /**
+     * name of the ServiceCIDR
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireplaceServiceCIDR
+     */
+    name: string
+    /**
+     * 
+     * @type V1ServiceCIDR
+     * @memberof NetworkingV1ApireplaceServiceCIDR
+     */
+    body: V1ServiceCIDR
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireplaceServiceCIDR
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireplaceServiceCIDR
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireplaceServiceCIDR
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireplaceServiceCIDR
+     */
+    fieldValidation?: string
+}
+
+export interface NetworkingV1ApiReplaceServiceCIDRStatusRequest {
+    /**
+     * name of the ServiceCIDR
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireplaceServiceCIDRStatus
+     */
+    name: string
+    /**
+     * 
+     * @type V1ServiceCIDR
+     * @memberof NetworkingV1ApireplaceServiceCIDRStatus
+     */
+    body: V1ServiceCIDR
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireplaceServiceCIDRStatus
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireplaceServiceCIDRStatus
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireplaceServiceCIDRStatus
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof NetworkingV1ApireplaceServiceCIDRStatus
+     */
+    fieldValidation?: string
+}
+
 export class ObjectNetworkingV1Api {
     private api: ObservableNetworkingV1Api
 
     public constructor(configuration: Configuration, requestFactory?: NetworkingV1ApiRequestFactory, responseProcessor?: NetworkingV1ApiResponseProcessor) {
         this.api = new ObservableNetworkingV1Api(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * create an IPAddress
+     * @param param the request object
+     */
+    public createIPAddressWithHttpInfo(param: NetworkingV1ApiCreateIPAddressRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1IPAddress>> {
+        return this.api.createIPAddressWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create an IPAddress
+     * @param param the request object
+     */
+    public createIPAddress(param: NetworkingV1ApiCreateIPAddressRequest, options?: ConfigurationOptions): Promise<V1IPAddress> {
+        return this.api.createIPAddress(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
     /**
@@ -39310,6 +41430,38 @@ export class ObjectNetworkingV1Api {
     }
 
     /**
+     * create a ServiceCIDR
+     * @param param the request object
+     */
+    public createServiceCIDRWithHttpInfo(param: NetworkingV1ApiCreateServiceCIDRRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1ServiceCIDR>> {
+        return this.api.createServiceCIDRWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create a ServiceCIDR
+     * @param param the request object
+     */
+    public createServiceCIDR(param: NetworkingV1ApiCreateServiceCIDRRequest, options?: ConfigurationOptions): Promise<V1ServiceCIDR> {
+        return this.api.createServiceCIDR(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * delete collection of IPAddress
+     * @param param the request object
+     */
+    public deleteCollectionIPAddressWithHttpInfo(param: NetworkingV1ApiDeleteCollectionIPAddressRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionIPAddressWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of IPAddress
+     * @param param the request object
+     */
+    public deleteCollectionIPAddress(param: NetworkingV1ApiDeleteCollectionIPAddressRequest = {}, options?: ConfigurationOptions): Promise<V1Status> {
+        return this.api.deleteCollectionIPAddress(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
      * delete collection of IngressClass
      * @param param the request object
      */
@@ -39355,6 +41507,38 @@ export class ObjectNetworkingV1Api {
      */
     public deleteCollectionNamespacedNetworkPolicy(param: NetworkingV1ApiDeleteCollectionNamespacedNetworkPolicyRequest, options?: ConfigurationOptions): Promise<V1Status> {
         return this.api.deleteCollectionNamespacedNetworkPolicy(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ServiceCIDR
+     * @param param the request object
+     */
+    public deleteCollectionServiceCIDRWithHttpInfo(param: NetworkingV1ApiDeleteCollectionServiceCIDRRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionServiceCIDRWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ServiceCIDR
+     * @param param the request object
+     */
+    public deleteCollectionServiceCIDR(param: NetworkingV1ApiDeleteCollectionServiceCIDRRequest = {}, options?: ConfigurationOptions): Promise<V1Status> {
+        return this.api.deleteCollectionServiceCIDR(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete an IPAddress
+     * @param param the request object
+     */
+    public deleteIPAddressWithHttpInfo(param: NetworkingV1ApiDeleteIPAddressRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteIPAddressWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete an IPAddress
+     * @param param the request object
+     */
+    public deleteIPAddress(param: NetworkingV1ApiDeleteIPAddressRequest, options?: ConfigurationOptions): Promise<V1Status> {
+        return this.api.deleteIPAddress(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -39406,6 +41590,22 @@ export class ObjectNetworkingV1Api {
     }
 
     /**
+     * delete a ServiceCIDR
+     * @param param the request object
+     */
+    public deleteServiceCIDRWithHttpInfo(param: NetworkingV1ApiDeleteServiceCIDRRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteServiceCIDRWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ServiceCIDR
+     * @param param the request object
+     */
+    public deleteServiceCIDR(param: NetworkingV1ApiDeleteServiceCIDRRequest, options?: ConfigurationOptions): Promise<V1Status> {
+        return this.api.deleteServiceCIDR(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
      * get available resources
      * @param param the request object
      */
@@ -39419,6 +41619,22 @@ export class ObjectNetworkingV1Api {
      */
     public getAPIResources(param: NetworkingV1ApiGetAPIResourcesRequest = {}, options?: ConfigurationOptions): Promise<V1APIResourceList> {
         return this.api.getAPIResources( options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind IPAddress
+     * @param param the request object
+     */
+    public listIPAddressWithHttpInfo(param: NetworkingV1ApiListIPAddressRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1IPAddressList>> {
+        return this.api.listIPAddressWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind IPAddress
+     * @param param the request object
+     */
+    public listIPAddress(param: NetworkingV1ApiListIPAddressRequest = {}, options?: ConfigurationOptions): Promise<V1IPAddressList> {
+        return this.api.listIPAddress(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -39502,6 +41718,38 @@ export class ObjectNetworkingV1Api {
     }
 
     /**
+     * list or watch objects of kind ServiceCIDR
+     * @param param the request object
+     */
+    public listServiceCIDRWithHttpInfo(param: NetworkingV1ApiListServiceCIDRRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1ServiceCIDRList>> {
+        return this.api.listServiceCIDRWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ServiceCIDR
+     * @param param the request object
+     */
+    public listServiceCIDR(param: NetworkingV1ApiListServiceCIDRRequest = {}, options?: ConfigurationOptions): Promise<V1ServiceCIDRList> {
+        return this.api.listServiceCIDR(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified IPAddress
+     * @param param the request object
+     */
+    public patchIPAddressWithHttpInfo(param: NetworkingV1ApiPatchIPAddressRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1IPAddress>> {
+        return this.api.patchIPAddressWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified IPAddress
+     * @param param the request object
+     */
+    public patchIPAddress(param: NetworkingV1ApiPatchIPAddressRequest, options?: ConfigurationOptions): Promise<V1IPAddress> {
+        return this.api.patchIPAddress(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
      * partially update the specified IngressClass
      * @param param the request object
      */
@@ -39563,6 +41811,54 @@ export class ObjectNetworkingV1Api {
      */
     public patchNamespacedNetworkPolicy(param: NetworkingV1ApiPatchNamespacedNetworkPolicyRequest, options?: ConfigurationOptions): Promise<V1NetworkPolicy> {
         return this.api.patchNamespacedNetworkPolicy(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ServiceCIDR
+     * @param param the request object
+     */
+    public patchServiceCIDRWithHttpInfo(param: NetworkingV1ApiPatchServiceCIDRRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1ServiceCIDR>> {
+        return this.api.patchServiceCIDRWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ServiceCIDR
+     * @param param the request object
+     */
+    public patchServiceCIDR(param: NetworkingV1ApiPatchServiceCIDRRequest, options?: ConfigurationOptions): Promise<V1ServiceCIDR> {
+        return this.api.patchServiceCIDR(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified ServiceCIDR
+     * @param param the request object
+     */
+    public patchServiceCIDRStatusWithHttpInfo(param: NetworkingV1ApiPatchServiceCIDRStatusRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1ServiceCIDR>> {
+        return this.api.patchServiceCIDRStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified ServiceCIDR
+     * @param param the request object
+     */
+    public patchServiceCIDRStatus(param: NetworkingV1ApiPatchServiceCIDRStatusRequest, options?: ConfigurationOptions): Promise<V1ServiceCIDR> {
+        return this.api.patchServiceCIDRStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * read the specified IPAddress
+     * @param param the request object
+     */
+    public readIPAddressWithHttpInfo(param: NetworkingV1ApiReadIPAddressRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1IPAddress>> {
+        return this.api.readIPAddressWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified IPAddress
+     * @param param the request object
+     */
+    public readIPAddress(param: NetworkingV1ApiReadIPAddressRequest, options?: ConfigurationOptions): Promise<V1IPAddress> {
+        return this.api.readIPAddress(param.name, param.pretty,  options).toPromise();
     }
 
     /**
@@ -39630,6 +41926,54 @@ export class ObjectNetworkingV1Api {
     }
 
     /**
+     * read the specified ServiceCIDR
+     * @param param the request object
+     */
+    public readServiceCIDRWithHttpInfo(param: NetworkingV1ApiReadServiceCIDRRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1ServiceCIDR>> {
+        return this.api.readServiceCIDRWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ServiceCIDR
+     * @param param the request object
+     */
+    public readServiceCIDR(param: NetworkingV1ApiReadServiceCIDRRequest, options?: ConfigurationOptions): Promise<V1ServiceCIDR> {
+        return this.api.readServiceCIDR(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified ServiceCIDR
+     * @param param the request object
+     */
+    public readServiceCIDRStatusWithHttpInfo(param: NetworkingV1ApiReadServiceCIDRStatusRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1ServiceCIDR>> {
+        return this.api.readServiceCIDRStatusWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified ServiceCIDR
+     * @param param the request object
+     */
+    public readServiceCIDRStatus(param: NetworkingV1ApiReadServiceCIDRStatusRequest, options?: ConfigurationOptions): Promise<V1ServiceCIDR> {
+        return this.api.readServiceCIDRStatus(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified IPAddress
+     * @param param the request object
+     */
+    public replaceIPAddressWithHttpInfo(param: NetworkingV1ApiReplaceIPAddressRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1IPAddress>> {
+        return this.api.replaceIPAddressWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified IPAddress
+     * @param param the request object
+     */
+    public replaceIPAddress(param: NetworkingV1ApiReplaceIPAddressRequest, options?: ConfigurationOptions): Promise<V1IPAddress> {
+        return this.api.replaceIPAddress(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
      * replace the specified IngressClass
      * @param param the request object
      */
@@ -39691,6 +42035,38 @@ export class ObjectNetworkingV1Api {
      */
     public replaceNamespacedNetworkPolicy(param: NetworkingV1ApiReplaceNamespacedNetworkPolicyRequest, options?: ConfigurationOptions): Promise<V1NetworkPolicy> {
         return this.api.replaceNamespacedNetworkPolicy(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ServiceCIDR
+     * @param param the request object
+     */
+    public replaceServiceCIDRWithHttpInfo(param: NetworkingV1ApiReplaceServiceCIDRRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1ServiceCIDR>> {
+        return this.api.replaceServiceCIDRWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ServiceCIDR
+     * @param param the request object
+     */
+    public replaceServiceCIDR(param: NetworkingV1ApiReplaceServiceCIDRRequest, options?: ConfigurationOptions): Promise<V1ServiceCIDR> {
+        return this.api.replaceServiceCIDR(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified ServiceCIDR
+     * @param param the request object
+     */
+    public replaceServiceCIDRStatusWithHttpInfo(param: NetworkingV1ApiReplaceServiceCIDRStatusRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1ServiceCIDR>> {
+        return this.api.replaceServiceCIDRStatusWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified ServiceCIDR
+     * @param param the request object
+     */
+    public replaceServiceCIDRStatus(param: NetworkingV1ApiReplaceServiceCIDRStatusRequest, options?: ConfigurationOptions): Promise<V1ServiceCIDR> {
+        return this.api.replaceServiceCIDRStatus(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
 }
@@ -44838,6 +47214,43 @@ export interface ResourceV1alpha3ApiCreateDeviceClassRequest {
     fieldValidation?: string
 }
 
+export interface ResourceV1alpha3ApiCreateDeviceTaintRuleRequest {
+    /**
+     * 
+     * @type V1alpha3DeviceTaintRule
+     * @memberof ResourceV1alpha3ApicreateDeviceTaintRule
+     */
+    body: V1alpha3DeviceTaintRule
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApicreateDeviceTaintRule
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApicreateDeviceTaintRule
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApicreateDeviceTaintRule
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApicreateDeviceTaintRule
+     */
+    fieldValidation?: string
+}
+
 export interface ResourceV1alpha3ApiCreateNamespacedResourceClaimRequest {
     /**
      * object name and auth scope, such as for teams and projects
@@ -45066,6 +47479,113 @@ export interface ResourceV1alpha3ApiDeleteCollectionDeviceClassRequest {
      * 
      * @type V1DeleteOptions
      * @memberof ResourceV1alpha3ApideleteCollectionDeviceClass
+     */
+    body?: V1DeleteOptions
+}
+
+export interface ResourceV1alpha3ApiDeleteCollectionDeviceTaintRuleRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApideleteCollectionDeviceTaintRule
+     */
+    pretty?: string
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApideleteCollectionDeviceTaintRule
+     */
+    _continue?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApideleteCollectionDeviceTaintRule
+     */
+    dryRun?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApideleteCollectionDeviceTaintRule
+     */
+    fieldSelector?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1alpha3ApideleteCollectionDeviceTaintRule
+     */
+    gracePeriodSeconds?: number
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1alpha3ApideleteCollectionDeviceTaintRule
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApideleteCollectionDeviceTaintRule
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1alpha3ApideleteCollectionDeviceTaintRule
+     */
+    limit?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1alpha3ApideleteCollectionDeviceTaintRule
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApideleteCollectionDeviceTaintRule
+     */
+    propagationPolicy?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApideleteCollectionDeviceTaintRule
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApideleteCollectionDeviceTaintRule
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1alpha3ApideleteCollectionDeviceTaintRule
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1alpha3ApideleteCollectionDeviceTaintRule
+     */
+    timeoutSeconds?: number
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof ResourceV1alpha3ApideleteCollectionDeviceTaintRule
      */
     body?: V1DeleteOptions
 }
@@ -45463,6 +47983,64 @@ export interface ResourceV1alpha3ApiDeleteDeviceClassRequest {
     body?: V1DeleteOptions
 }
 
+export interface ResourceV1alpha3ApiDeleteDeviceTaintRuleRequest {
+    /**
+     * name of the DeviceTaintRule
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApideleteDeviceTaintRule
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApideleteDeviceTaintRule
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApideleteDeviceTaintRule
+     */
+    dryRun?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1alpha3ApideleteDeviceTaintRule
+     */
+    gracePeriodSeconds?: number
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1alpha3ApideleteDeviceTaintRule
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1alpha3ApideleteDeviceTaintRule
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApideleteDeviceTaintRule
+     */
+    propagationPolicy?: string
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof ResourceV1alpha3ApideleteDeviceTaintRule
+     */
+    body?: V1DeleteOptions
+}
+
 export interface ResourceV1alpha3ApiDeleteNamespacedResourceClaimRequest {
     /**
      * name of the ResourceClaim
@@ -45730,6 +48308,86 @@ export interface ResourceV1alpha3ApiListDeviceClassRequest {
      * Defaults to: undefined
      * @type boolean
      * @memberof ResourceV1alpha3ApilistDeviceClass
+     */
+    watch?: boolean
+}
+
+export interface ResourceV1alpha3ApiListDeviceTaintRuleRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApilistDeviceTaintRule
+     */
+    pretty?: string
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1alpha3ApilistDeviceTaintRule
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApilistDeviceTaintRule
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApilistDeviceTaintRule
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApilistDeviceTaintRule
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1alpha3ApilistDeviceTaintRule
+     */
+    limit?: number
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApilistDeviceTaintRule
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApilistDeviceTaintRule
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1alpha3ApilistDeviceTaintRule
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1alpha3ApilistDeviceTaintRule
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1alpha3ApilistDeviceTaintRule
      */
     watch?: boolean
 }
@@ -46199,6 +48857,57 @@ export interface ResourceV1alpha3ApiPatchDeviceClassRequest {
     force?: boolean
 }
 
+export interface ResourceV1alpha3ApiPatchDeviceTaintRuleRequest {
+    /**
+     * name of the DeviceTaintRule
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApipatchDeviceTaintRule
+     */
+    name: string
+    /**
+     * 
+     * @type any
+     * @memberof ResourceV1alpha3ApipatchDeviceTaintRule
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApipatchDeviceTaintRule
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApipatchDeviceTaintRule
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApipatchDeviceTaintRule
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApipatchDeviceTaintRule
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1alpha3ApipatchDeviceTaintRule
+     */
+    force?: boolean
+}
+
 export interface ResourceV1alpha3ApiPatchNamespacedResourceClaimRequest {
     /**
      * name of the ResourceClaim
@@ -46441,6 +49150,23 @@ export interface ResourceV1alpha3ApiReadDeviceClassRequest {
     pretty?: string
 }
 
+export interface ResourceV1alpha3ApiReadDeviceTaintRuleRequest {
+    /**
+     * name of the DeviceTaintRule
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApireadDeviceTaintRule
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApireadDeviceTaintRule
+     */
+    pretty?: string
+}
+
 export interface ResourceV1alpha3ApiReadNamespacedResourceClaimRequest {
     /**
      * name of the ResourceClaim
@@ -46570,6 +49296,50 @@ export interface ResourceV1alpha3ApiReplaceDeviceClassRequest {
      * Defaults to: undefined
      * @type string
      * @memberof ResourceV1alpha3ApireplaceDeviceClass
+     */
+    fieldValidation?: string
+}
+
+export interface ResourceV1alpha3ApiReplaceDeviceTaintRuleRequest {
+    /**
+     * name of the DeviceTaintRule
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApireplaceDeviceTaintRule
+     */
+    name: string
+    /**
+     * 
+     * @type V1alpha3DeviceTaintRule
+     * @memberof ResourceV1alpha3ApireplaceDeviceTaintRule
+     */
+    body: V1alpha3DeviceTaintRule
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApireplaceDeviceTaintRule
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApireplaceDeviceTaintRule
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApireplaceDeviceTaintRule
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1alpha3ApireplaceDeviceTaintRule
      */
     fieldValidation?: string
 }
@@ -46795,6 +49565,22 @@ export class ObjectResourceV1alpha3Api {
     }
 
     /**
+     * create a DeviceTaintRule
+     * @param param the request object
+     */
+    public createDeviceTaintRuleWithHttpInfo(param: ResourceV1alpha3ApiCreateDeviceTaintRuleRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1alpha3DeviceTaintRule>> {
+        return this.api.createDeviceTaintRuleWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create a DeviceTaintRule
+     * @param param the request object
+     */
+    public createDeviceTaintRule(param: ResourceV1alpha3ApiCreateDeviceTaintRuleRequest, options?: ConfigurationOptions): Promise<V1alpha3DeviceTaintRule> {
+        return this.api.createDeviceTaintRule(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
      * create a ResourceClaim
      * @param param the request object
      */
@@ -46859,6 +49645,22 @@ export class ObjectResourceV1alpha3Api {
     }
 
     /**
+     * delete collection of DeviceTaintRule
+     * @param param the request object
+     */
+    public deleteCollectionDeviceTaintRuleWithHttpInfo(param: ResourceV1alpha3ApiDeleteCollectionDeviceTaintRuleRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionDeviceTaintRuleWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of DeviceTaintRule
+     * @param param the request object
+     */
+    public deleteCollectionDeviceTaintRule(param: ResourceV1alpha3ApiDeleteCollectionDeviceTaintRuleRequest = {}, options?: ConfigurationOptions): Promise<V1Status> {
+        return this.api.deleteCollectionDeviceTaintRule(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
      * delete collection of ResourceClaim
      * @param param the request object
      */
@@ -46920,6 +49722,22 @@ export class ObjectResourceV1alpha3Api {
      */
     public deleteDeviceClass(param: ResourceV1alpha3ApiDeleteDeviceClassRequest, options?: ConfigurationOptions): Promise<V1alpha3DeviceClass> {
         return this.api.deleteDeviceClass(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a DeviceTaintRule
+     * @param param the request object
+     */
+    public deleteDeviceTaintRuleWithHttpInfo(param: ResourceV1alpha3ApiDeleteDeviceTaintRuleRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1alpha3DeviceTaintRule>> {
+        return this.api.deleteDeviceTaintRuleWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a DeviceTaintRule
+     * @param param the request object
+     */
+    public deleteDeviceTaintRule(param: ResourceV1alpha3ApiDeleteDeviceTaintRuleRequest, options?: ConfigurationOptions): Promise<V1alpha3DeviceTaintRule> {
+        return this.api.deleteDeviceTaintRule(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
     }
 
     /**
@@ -47000,6 +49818,22 @@ export class ObjectResourceV1alpha3Api {
      */
     public listDeviceClass(param: ResourceV1alpha3ApiListDeviceClassRequest = {}, options?: ConfigurationOptions): Promise<V1alpha3DeviceClassList> {
         return this.api.listDeviceClass(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind DeviceTaintRule
+     * @param param the request object
+     */
+    public listDeviceTaintRuleWithHttpInfo(param: ResourceV1alpha3ApiListDeviceTaintRuleRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1alpha3DeviceTaintRuleList>> {
+        return this.api.listDeviceTaintRuleWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind DeviceTaintRule
+     * @param param the request object
+     */
+    public listDeviceTaintRule(param: ResourceV1alpha3ApiListDeviceTaintRuleRequest = {}, options?: ConfigurationOptions): Promise<V1alpha3DeviceTaintRuleList> {
+        return this.api.listDeviceTaintRule(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
     }
 
     /**
@@ -47099,6 +49933,22 @@ export class ObjectResourceV1alpha3Api {
     }
 
     /**
+     * partially update the specified DeviceTaintRule
+     * @param param the request object
+     */
+    public patchDeviceTaintRuleWithHttpInfo(param: ResourceV1alpha3ApiPatchDeviceTaintRuleRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1alpha3DeviceTaintRule>> {
+        return this.api.patchDeviceTaintRuleWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified DeviceTaintRule
+     * @param param the request object
+     */
+    public patchDeviceTaintRule(param: ResourceV1alpha3ApiPatchDeviceTaintRuleRequest, options?: ConfigurationOptions): Promise<V1alpha3DeviceTaintRule> {
+        return this.api.patchDeviceTaintRule(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
      * partially update the specified ResourceClaim
      * @param param the request object
      */
@@ -47179,6 +50029,22 @@ export class ObjectResourceV1alpha3Api {
     }
 
     /**
+     * read the specified DeviceTaintRule
+     * @param param the request object
+     */
+    public readDeviceTaintRuleWithHttpInfo(param: ResourceV1alpha3ApiReadDeviceTaintRuleRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1alpha3DeviceTaintRule>> {
+        return this.api.readDeviceTaintRuleWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified DeviceTaintRule
+     * @param param the request object
+     */
+    public readDeviceTaintRule(param: ResourceV1alpha3ApiReadDeviceTaintRuleRequest, options?: ConfigurationOptions): Promise<V1alpha3DeviceTaintRule> {
+        return this.api.readDeviceTaintRule(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
      * read the specified ResourceClaim
      * @param param the request object
      */
@@ -47256,6 +50122,22 @@ export class ObjectResourceV1alpha3Api {
      */
     public replaceDeviceClass(param: ResourceV1alpha3ApiReplaceDeviceClassRequest, options?: ConfigurationOptions): Promise<V1alpha3DeviceClass> {
         return this.api.replaceDeviceClass(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified DeviceTaintRule
+     * @param param the request object
+     */
+    public replaceDeviceTaintRuleWithHttpInfo(param: ResourceV1alpha3ApiReplaceDeviceTaintRuleRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1alpha3DeviceTaintRule>> {
+        return this.api.replaceDeviceTaintRuleWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified DeviceTaintRule
+     * @param param the request object
+     */
+    public replaceDeviceTaintRule(param: ResourceV1alpha3ApiReplaceDeviceTaintRuleRequest, options?: ConfigurationOptions): Promise<V1alpha3DeviceTaintRule> {
+        return this.api.replaceDeviceTaintRule(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
     /**
@@ -49845,6 +52727,2532 @@ export class ObjectResourceV1beta1Api {
      * @param param the request object
      */
     public replaceResourceSlice(param: ResourceV1beta1ApiReplaceResourceSliceRequest, options?: ConfigurationOptions): Promise<V1beta1ResourceSlice> {
+        return this.api.replaceResourceSlice(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+}
+
+import { ObservableResourceV1beta2Api } from "./ObservableAPI.js";
+import { ResourceV1beta2ApiRequestFactory, ResourceV1beta2ApiResponseProcessor} from "../apis/ResourceV1beta2Api.js";
+
+export interface ResourceV1beta2ApiCreateDeviceClassRequest {
+    /**
+     * 
+     * @type V1beta2DeviceClass
+     * @memberof ResourceV1beta2ApicreateDeviceClass
+     */
+    body: V1beta2DeviceClass
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApicreateDeviceClass
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApicreateDeviceClass
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApicreateDeviceClass
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApicreateDeviceClass
+     */
+    fieldValidation?: string
+}
+
+export interface ResourceV1beta2ApiCreateNamespacedResourceClaimRequest {
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApicreateNamespacedResourceClaim
+     */
+    namespace: string
+    /**
+     * 
+     * @type V1beta2ResourceClaim
+     * @memberof ResourceV1beta2ApicreateNamespacedResourceClaim
+     */
+    body: V1beta2ResourceClaim
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApicreateNamespacedResourceClaim
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApicreateNamespacedResourceClaim
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApicreateNamespacedResourceClaim
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApicreateNamespacedResourceClaim
+     */
+    fieldValidation?: string
+}
+
+export interface ResourceV1beta2ApiCreateNamespacedResourceClaimTemplateRequest {
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApicreateNamespacedResourceClaimTemplate
+     */
+    namespace: string
+    /**
+     * 
+     * @type V1beta2ResourceClaimTemplate
+     * @memberof ResourceV1beta2ApicreateNamespacedResourceClaimTemplate
+     */
+    body: V1beta2ResourceClaimTemplate
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApicreateNamespacedResourceClaimTemplate
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApicreateNamespacedResourceClaimTemplate
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApicreateNamespacedResourceClaimTemplate
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApicreateNamespacedResourceClaimTemplate
+     */
+    fieldValidation?: string
+}
+
+export interface ResourceV1beta2ApiCreateResourceSliceRequest {
+    /**
+     * 
+     * @type V1beta2ResourceSlice
+     * @memberof ResourceV1beta2ApicreateResourceSlice
+     */
+    body: V1beta2ResourceSlice
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApicreateResourceSlice
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApicreateResourceSlice
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApicreateResourceSlice
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApicreateResourceSlice
+     */
+    fieldValidation?: string
+}
+
+export interface ResourceV1beta2ApiDeleteCollectionDeviceClassRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionDeviceClass
+     */
+    pretty?: string
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionDeviceClass
+     */
+    _continue?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionDeviceClass
+     */
+    dryRun?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionDeviceClass
+     */
+    fieldSelector?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApideleteCollectionDeviceClass
+     */
+    gracePeriodSeconds?: number
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteCollectionDeviceClass
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionDeviceClass
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApideleteCollectionDeviceClass
+     */
+    limit?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteCollectionDeviceClass
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionDeviceClass
+     */
+    propagationPolicy?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionDeviceClass
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionDeviceClass
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteCollectionDeviceClass
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApideleteCollectionDeviceClass
+     */
+    timeoutSeconds?: number
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof ResourceV1beta2ApideleteCollectionDeviceClass
+     */
+    body?: V1DeleteOptions
+}
+
+export interface ResourceV1beta2ApiDeleteCollectionNamespacedResourceClaimRequest {
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaim
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaim
+     */
+    pretty?: string
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaim
+     */
+    _continue?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaim
+     */
+    dryRun?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaim
+     */
+    fieldSelector?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaim
+     */
+    gracePeriodSeconds?: number
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaim
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaim
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaim
+     */
+    limit?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaim
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaim
+     */
+    propagationPolicy?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaim
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaim
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaim
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaim
+     */
+    timeoutSeconds?: number
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaim
+     */
+    body?: V1DeleteOptions
+}
+
+export interface ResourceV1beta2ApiDeleteCollectionNamespacedResourceClaimTemplateRequest {
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaimTemplate
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaimTemplate
+     */
+    pretty?: string
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaimTemplate
+     */
+    _continue?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaimTemplate
+     */
+    dryRun?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaimTemplate
+     */
+    fieldSelector?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaimTemplate
+     */
+    gracePeriodSeconds?: number
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaimTemplate
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaimTemplate
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaimTemplate
+     */
+    limit?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaimTemplate
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaimTemplate
+     */
+    propagationPolicy?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaimTemplate
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaimTemplate
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaimTemplate
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaimTemplate
+     */
+    timeoutSeconds?: number
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof ResourceV1beta2ApideleteCollectionNamespacedResourceClaimTemplate
+     */
+    body?: V1DeleteOptions
+}
+
+export interface ResourceV1beta2ApiDeleteCollectionResourceSliceRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionResourceSlice
+     */
+    pretty?: string
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionResourceSlice
+     */
+    _continue?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionResourceSlice
+     */
+    dryRun?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionResourceSlice
+     */
+    fieldSelector?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApideleteCollectionResourceSlice
+     */
+    gracePeriodSeconds?: number
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteCollectionResourceSlice
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionResourceSlice
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApideleteCollectionResourceSlice
+     */
+    limit?: number
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteCollectionResourceSlice
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionResourceSlice
+     */
+    propagationPolicy?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionResourceSlice
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteCollectionResourceSlice
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteCollectionResourceSlice
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApideleteCollectionResourceSlice
+     */
+    timeoutSeconds?: number
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof ResourceV1beta2ApideleteCollectionResourceSlice
+     */
+    body?: V1DeleteOptions
+}
+
+export interface ResourceV1beta2ApiDeleteDeviceClassRequest {
+    /**
+     * name of the DeviceClass
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteDeviceClass
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteDeviceClass
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteDeviceClass
+     */
+    dryRun?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApideleteDeviceClass
+     */
+    gracePeriodSeconds?: number
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteDeviceClass
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteDeviceClass
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteDeviceClass
+     */
+    propagationPolicy?: string
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof ResourceV1beta2ApideleteDeviceClass
+     */
+    body?: V1DeleteOptions
+}
+
+export interface ResourceV1beta2ApiDeleteNamespacedResourceClaimRequest {
+    /**
+     * name of the ResourceClaim
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteNamespacedResourceClaim
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteNamespacedResourceClaim
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteNamespacedResourceClaim
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteNamespacedResourceClaim
+     */
+    dryRun?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApideleteNamespacedResourceClaim
+     */
+    gracePeriodSeconds?: number
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteNamespacedResourceClaim
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteNamespacedResourceClaim
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteNamespacedResourceClaim
+     */
+    propagationPolicy?: string
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof ResourceV1beta2ApideleteNamespacedResourceClaim
+     */
+    body?: V1DeleteOptions
+}
+
+export interface ResourceV1beta2ApiDeleteNamespacedResourceClaimTemplateRequest {
+    /**
+     * name of the ResourceClaimTemplate
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteNamespacedResourceClaimTemplate
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteNamespacedResourceClaimTemplate
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteNamespacedResourceClaimTemplate
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteNamespacedResourceClaimTemplate
+     */
+    dryRun?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApideleteNamespacedResourceClaimTemplate
+     */
+    gracePeriodSeconds?: number
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteNamespacedResourceClaimTemplate
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteNamespacedResourceClaimTemplate
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteNamespacedResourceClaimTemplate
+     */
+    propagationPolicy?: string
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof ResourceV1beta2ApideleteNamespacedResourceClaimTemplate
+     */
+    body?: V1DeleteOptions
+}
+
+export interface ResourceV1beta2ApiDeleteResourceSliceRequest {
+    /**
+     * name of the ResourceSlice
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteResourceSlice
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteResourceSlice
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteResourceSlice
+     */
+    dryRun?: string
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApideleteResourceSlice
+     */
+    gracePeriodSeconds?: number
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in case the normal deletion flow fails with a corrupt object error. A resource is considered corrupt if it can not be retrieved from the underlying storage successfully because of a) its data can not be transformed e.g. decryption failure, or b) it fails to decode into an object. NOTE: unsafe deletion ignores finalizer constraints, skips precondition checks, and removes the object from the storage. WARNING: This may potentially break the cluster if the workload associated with the resource being unsafe-deleted relies on normal deletion flow. Use only if you REALLY know what you are doing. The default value is false, and the user must opt in to enable it
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteResourceSlice
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7. Should the dependent objects be orphaned. If true/false, the \&quot;orphan\&quot; finalizer will be added to/removed from the object\&#39;s finalizers list. Either this field or PropagationPolicy may be set, but not both.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApideleteResourceSlice
+     */
+    orphanDependents?: boolean
+    /**
+     * Whether and how garbage collection will be performed. Either this field or OrphanDependents may be set, but not both. The default policy is decided by the existing finalizer set in the metadata.finalizers and the resource-specific default policy. Acceptable values are: \&#39;Orphan\&#39; - orphan the dependents; \&#39;Background\&#39; - allow the garbage collector to delete the dependents in the background; \&#39;Foreground\&#39; - a cascading policy that deletes all dependents in the foreground.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApideleteResourceSlice
+     */
+    propagationPolicy?: string
+    /**
+     * 
+     * @type V1DeleteOptions
+     * @memberof ResourceV1beta2ApideleteResourceSlice
+     */
+    body?: V1DeleteOptions
+}
+
+export interface ResourceV1beta2ApiGetAPIResourcesRequest {
+}
+
+export interface ResourceV1beta2ApiListDeviceClassRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistDeviceClass
+     */
+    pretty?: string
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApilistDeviceClass
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistDeviceClass
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistDeviceClass
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistDeviceClass
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApilistDeviceClass
+     */
+    limit?: number
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistDeviceClass
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistDeviceClass
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApilistDeviceClass
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApilistDeviceClass
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApilistDeviceClass
+     */
+    watch?: boolean
+}
+
+export interface ResourceV1beta2ApiListNamespacedResourceClaimRequest {
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaim
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaim
+     */
+    pretty?: string
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaim
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaim
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaim
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaim
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaim
+     */
+    limit?: number
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaim
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaim
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaim
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaim
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaim
+     */
+    watch?: boolean
+}
+
+export interface ResourceV1beta2ApiListNamespacedResourceClaimTemplateRequest {
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaimTemplate
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaimTemplate
+     */
+    pretty?: string
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaimTemplate
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaimTemplate
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaimTemplate
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaimTemplate
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaimTemplate
+     */
+    limit?: number
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaimTemplate
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaimTemplate
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaimTemplate
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaimTemplate
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApilistNamespacedResourceClaimTemplate
+     */
+    watch?: boolean
+}
+
+export interface ResourceV1beta2ApiListResourceClaimForAllNamespacesRequest {
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApilistResourceClaimForAllNamespaces
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistResourceClaimForAllNamespaces
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistResourceClaimForAllNamespaces
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistResourceClaimForAllNamespaces
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApilistResourceClaimForAllNamespaces
+     */
+    limit?: number
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistResourceClaimForAllNamespaces
+     */
+    pretty?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistResourceClaimForAllNamespaces
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistResourceClaimForAllNamespaces
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApilistResourceClaimForAllNamespaces
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApilistResourceClaimForAllNamespaces
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApilistResourceClaimForAllNamespaces
+     */
+    watch?: boolean
+}
+
+export interface ResourceV1beta2ApiListResourceClaimTemplateForAllNamespacesRequest {
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApilistResourceClaimTemplateForAllNamespaces
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistResourceClaimTemplateForAllNamespaces
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistResourceClaimTemplateForAllNamespaces
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistResourceClaimTemplateForAllNamespaces
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApilistResourceClaimTemplateForAllNamespaces
+     */
+    limit?: number
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistResourceClaimTemplateForAllNamespaces
+     */
+    pretty?: string
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistResourceClaimTemplateForAllNamespaces
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistResourceClaimTemplateForAllNamespaces
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApilistResourceClaimTemplateForAllNamespaces
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApilistResourceClaimTemplateForAllNamespaces
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApilistResourceClaimTemplateForAllNamespaces
+     */
+    watch?: boolean
+}
+
+export interface ResourceV1beta2ApiListResourceSliceRequest {
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistResourceSlice
+     */
+    pretty?: string
+    /**
+     * allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApilistResourceSlice
+     */
+    allowWatchBookmarks?: boolean
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistResourceSlice
+     */
+    _continue?: string
+    /**
+     * A selector to restrict the list of returned objects by their fields. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistResourceSlice
+     */
+    fieldSelector?: string
+    /**
+     * A selector to restrict the list of returned objects by their labels. Defaults to everything.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistResourceSlice
+     */
+    labelSelector?: string
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the server will set the &#x60;continue&#x60; field on the list metadata to a value that can be used with the same initial query to retrieve the next set of results. Setting a limit may return fewer than the requested amount of items (up to zero items) in the event all requested objects are filtered out and clients should only use the presence of the continue field to determine whether more results are available. Servers may choose not to support the limit argument and will return all of the available results. If limit is specified and the continue field is empty, clients may assume that no more results are available. This field is not supported if watch is true.  The server guarantees that the objects returned when using continue will be identical to issuing a single list call without a limit - that is, no objects created, modified, or deleted after the first request is issued will be included in any subsequent continued requests. This is sometimes referred to as a consistent snapshot, and ensures that a client that is using limit to receive smaller chunks of a very large result can ensure they see all possible objects. If objects are updated during a chunked list the version of the object that was present at the time the first list result was calculated is returned.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApilistResourceSlice
+     */
+    limit?: number
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from. See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistResourceSlice
+     */
+    resourceVersion?: string
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls. It is highly recommended that resourceVersionMatch be set for list calls where resourceVersion is set See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for details.  Defaults to unset
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApilistResourceSlice
+     */
+    resourceVersionMatch?: string
+    /**
+     * &#x60;sendInitialEvents&#x3D;true&#x60; may be set together with &#x60;watch&#x3D;true&#x60;. In that case, the watch stream will begin with synthetic events to produce the current state of objects in the collection. Once all such events have been sent, a synthetic \&quot;Bookmark\&quot; event  will be sent. The bookmark will report the ResourceVersion (RV) corresponding to the set of objects, and be marked with &#x60;\&quot;k8s.io/initial-events-end\&quot;: \&quot;true\&quot;&#x60; annotation. Afterwards, the watch stream will proceed as usual, sending watch events corresponding to changes (subsequent to the RV) to objects watched.  When &#x60;sendInitialEvents&#x60; option is set, we require &#x60;resourceVersionMatch&#x60; option to also be set. The semantic of the watch request is as following: - &#x60;resourceVersionMatch&#x60; &#x3D; NotOlderThan   is interpreted as \&quot;data at least as new as the provided &#x60;resourceVersion&#x60;\&quot;   and the bookmark event is send when the state is synced   to a &#x60;resourceVersion&#x60; at least as fresh as the one provided by the ListOptions.   If &#x60;resourceVersion&#x60; is unset, this is interpreted as \&quot;consistent read\&quot; and the   bookmark event is send when the state is synced at least to the moment   when request started being processed. - &#x60;resourceVersionMatch&#x60; set to any other value or unset   Invalid error is returned.  Defaults to true if &#x60;resourceVersion&#x3D;\&quot;\&quot;&#x60; or &#x60;resourceVersion&#x3D;\&quot;0\&quot;&#x60; (for backward compatibility reasons) and to false otherwise.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApilistResourceSlice
+     */
+    sendInitialEvents?: boolean
+    /**
+     * Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
+     * Defaults to: undefined
+     * @type number
+     * @memberof ResourceV1beta2ApilistResourceSlice
+     */
+    timeoutSeconds?: number
+    /**
+     * Watch for changes to the described resources and return them as a stream of add, update, and remove notifications. Specify resourceVersion.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApilistResourceSlice
+     */
+    watch?: boolean
+}
+
+export interface ResourceV1beta2ApiPatchDeviceClassRequest {
+    /**
+     * name of the DeviceClass
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchDeviceClass
+     */
+    name: string
+    /**
+     * 
+     * @type any
+     * @memberof ResourceV1beta2ApipatchDeviceClass
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchDeviceClass
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchDeviceClass
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchDeviceClass
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchDeviceClass
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApipatchDeviceClass
+     */
+    force?: boolean
+}
+
+export interface ResourceV1beta2ApiPatchNamespacedResourceClaimRequest {
+    /**
+     * name of the ResourceClaim
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaim
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaim
+     */
+    namespace: string
+    /**
+     * 
+     * @type any
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaim
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaim
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaim
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaim
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaim
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaim
+     */
+    force?: boolean
+}
+
+export interface ResourceV1beta2ApiPatchNamespacedResourceClaimStatusRequest {
+    /**
+     * name of the ResourceClaim
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaimStatus
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaimStatus
+     */
+    namespace: string
+    /**
+     * 
+     * @type any
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaimStatus
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaimStatus
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaimStatus
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaimStatus
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaimStatus
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaimStatus
+     */
+    force?: boolean
+}
+
+export interface ResourceV1beta2ApiPatchNamespacedResourceClaimTemplateRequest {
+    /**
+     * name of the ResourceClaimTemplate
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaimTemplate
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaimTemplate
+     */
+    namespace: string
+    /**
+     * 
+     * @type any
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaimTemplate
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaimTemplate
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaimTemplate
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaimTemplate
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaimTemplate
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApipatchNamespacedResourceClaimTemplate
+     */
+    force?: boolean
+}
+
+export interface ResourceV1beta2ApiPatchResourceSliceRequest {
+    /**
+     * name of the ResourceSlice
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchResourceSlice
+     */
+    name: string
+    /**
+     * 
+     * @type any
+     * @memberof ResourceV1beta2ApipatchResourceSlice
+     */
+    body: any
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchResourceSlice
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchResourceSlice
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchResourceSlice
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApipatchResourceSlice
+     */
+    fieldValidation?: string
+    /**
+     * Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests.
+     * Defaults to: undefined
+     * @type boolean
+     * @memberof ResourceV1beta2ApipatchResourceSlice
+     */
+    force?: boolean
+}
+
+export interface ResourceV1beta2ApiReadDeviceClassRequest {
+    /**
+     * name of the DeviceClass
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireadDeviceClass
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireadDeviceClass
+     */
+    pretty?: string
+}
+
+export interface ResourceV1beta2ApiReadNamespacedResourceClaimRequest {
+    /**
+     * name of the ResourceClaim
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireadNamespacedResourceClaim
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireadNamespacedResourceClaim
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireadNamespacedResourceClaim
+     */
+    pretty?: string
+}
+
+export interface ResourceV1beta2ApiReadNamespacedResourceClaimStatusRequest {
+    /**
+     * name of the ResourceClaim
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireadNamespacedResourceClaimStatus
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireadNamespacedResourceClaimStatus
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireadNamespacedResourceClaimStatus
+     */
+    pretty?: string
+}
+
+export interface ResourceV1beta2ApiReadNamespacedResourceClaimTemplateRequest {
+    /**
+     * name of the ResourceClaimTemplate
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireadNamespacedResourceClaimTemplate
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireadNamespacedResourceClaimTemplate
+     */
+    namespace: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireadNamespacedResourceClaimTemplate
+     */
+    pretty?: string
+}
+
+export interface ResourceV1beta2ApiReadResourceSliceRequest {
+    /**
+     * name of the ResourceSlice
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireadResourceSlice
+     */
+    name: string
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireadResourceSlice
+     */
+    pretty?: string
+}
+
+export interface ResourceV1beta2ApiReplaceDeviceClassRequest {
+    /**
+     * name of the DeviceClass
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceDeviceClass
+     */
+    name: string
+    /**
+     * 
+     * @type V1beta2DeviceClass
+     * @memberof ResourceV1beta2ApireplaceDeviceClass
+     */
+    body: V1beta2DeviceClass
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceDeviceClass
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceDeviceClass
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceDeviceClass
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceDeviceClass
+     */
+    fieldValidation?: string
+}
+
+export interface ResourceV1beta2ApiReplaceNamespacedResourceClaimRequest {
+    /**
+     * name of the ResourceClaim
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaim
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaim
+     */
+    namespace: string
+    /**
+     * 
+     * @type V1beta2ResourceClaim
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaim
+     */
+    body: V1beta2ResourceClaim
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaim
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaim
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaim
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaim
+     */
+    fieldValidation?: string
+}
+
+export interface ResourceV1beta2ApiReplaceNamespacedResourceClaimStatusRequest {
+    /**
+     * name of the ResourceClaim
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaimStatus
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaimStatus
+     */
+    namespace: string
+    /**
+     * 
+     * @type V1beta2ResourceClaim
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaimStatus
+     */
+    body: V1beta2ResourceClaim
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaimStatus
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaimStatus
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaimStatus
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaimStatus
+     */
+    fieldValidation?: string
+}
+
+export interface ResourceV1beta2ApiReplaceNamespacedResourceClaimTemplateRequest {
+    /**
+     * name of the ResourceClaimTemplate
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaimTemplate
+     */
+    name: string
+    /**
+     * object name and auth scope, such as for teams and projects
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaimTemplate
+     */
+    namespace: string
+    /**
+     * 
+     * @type V1beta2ResourceClaimTemplate
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaimTemplate
+     */
+    body: V1beta2ResourceClaimTemplate
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaimTemplate
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaimTemplate
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaimTemplate
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceNamespacedResourceClaimTemplate
+     */
+    fieldValidation?: string
+}
+
+export interface ResourceV1beta2ApiReplaceResourceSliceRequest {
+    /**
+     * name of the ResourceSlice
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceResourceSlice
+     */
+    name: string
+    /**
+     * 
+     * @type V1beta2ResourceSlice
+     * @memberof ResourceV1beta2ApireplaceResourceSlice
+     */
+    body: V1beta2ResourceSlice
+    /**
+     * If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget).
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceResourceSlice
+     */
+    pretty?: string
+    /**
+     * When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceResourceSlice
+     */
+    dryRun?: string
+    /**
+     * fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceResourceSlice
+     */
+    fieldManager?: string
+    /**
+     * fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered.
+     * Defaults to: undefined
+     * @type string
+     * @memberof ResourceV1beta2ApireplaceResourceSlice
+     */
+    fieldValidation?: string
+}
+
+export class ObjectResourceV1beta2Api {
+    private api: ObservableResourceV1beta2Api
+
+    public constructor(configuration: Configuration, requestFactory?: ResourceV1beta2ApiRequestFactory, responseProcessor?: ResourceV1beta2ApiResponseProcessor) {
+        this.api = new ObservableResourceV1beta2Api(configuration, requestFactory, responseProcessor);
+    }
+
+    /**
+     * create a DeviceClass
+     * @param param the request object
+     */
+    public createDeviceClassWithHttpInfo(param: ResourceV1beta2ApiCreateDeviceClassRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2DeviceClass>> {
+        return this.api.createDeviceClassWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create a DeviceClass
+     * @param param the request object
+     */
+    public createDeviceClass(param: ResourceV1beta2ApiCreateDeviceClassRequest, options?: ConfigurationOptions): Promise<V1beta2DeviceClass> {
+        return this.api.createDeviceClass(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create a ResourceClaim
+     * @param param the request object
+     */
+    public createNamespacedResourceClaimWithHttpInfo(param: ResourceV1beta2ApiCreateNamespacedResourceClaimRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceClaim>> {
+        return this.api.createNamespacedResourceClaimWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create a ResourceClaim
+     * @param param the request object
+     */
+    public createNamespacedResourceClaim(param: ResourceV1beta2ApiCreateNamespacedResourceClaimRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceClaim> {
+        return this.api.createNamespacedResourceClaim(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create a ResourceClaimTemplate
+     * @param param the request object
+     */
+    public createNamespacedResourceClaimTemplateWithHttpInfo(param: ResourceV1beta2ApiCreateNamespacedResourceClaimTemplateRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceClaimTemplate>> {
+        return this.api.createNamespacedResourceClaimTemplateWithHttpInfo(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create a ResourceClaimTemplate
+     * @param param the request object
+     */
+    public createNamespacedResourceClaimTemplate(param: ResourceV1beta2ApiCreateNamespacedResourceClaimTemplateRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceClaimTemplate> {
+        return this.api.createNamespacedResourceClaimTemplate(param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create a ResourceSlice
+     * @param param the request object
+     */
+    public createResourceSliceWithHttpInfo(param: ResourceV1beta2ApiCreateResourceSliceRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceSlice>> {
+        return this.api.createResourceSliceWithHttpInfo(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * create a ResourceSlice
+     * @param param the request object
+     */
+    public createResourceSlice(param: ResourceV1beta2ApiCreateResourceSliceRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceSlice> {
+        return this.api.createResourceSlice(param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * delete collection of DeviceClass
+     * @param param the request object
+     */
+    public deleteCollectionDeviceClassWithHttpInfo(param: ResourceV1beta2ApiDeleteCollectionDeviceClassRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionDeviceClassWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of DeviceClass
+     * @param param the request object
+     */
+    public deleteCollectionDeviceClass(param: ResourceV1beta2ApiDeleteCollectionDeviceClassRequest = {}, options?: ConfigurationOptions): Promise<V1Status> {
+        return this.api.deleteCollectionDeviceClass(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ResourceClaim
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedResourceClaimWithHttpInfo(param: ResourceV1beta2ApiDeleteCollectionNamespacedResourceClaimRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedResourceClaimWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ResourceClaim
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedResourceClaim(param: ResourceV1beta2ApiDeleteCollectionNamespacedResourceClaimRequest, options?: ConfigurationOptions): Promise<V1Status> {
+        return this.api.deleteCollectionNamespacedResourceClaim(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ResourceClaimTemplate
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedResourceClaimTemplateWithHttpInfo(param: ResourceV1beta2ApiDeleteCollectionNamespacedResourceClaimTemplateRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionNamespacedResourceClaimTemplateWithHttpInfo(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ResourceClaimTemplate
+     * @param param the request object
+     */
+    public deleteCollectionNamespacedResourceClaimTemplate(param: ResourceV1beta2ApiDeleteCollectionNamespacedResourceClaimTemplateRequest, options?: ConfigurationOptions): Promise<V1Status> {
+        return this.api.deleteCollectionNamespacedResourceClaimTemplate(param.namespace, param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ResourceSlice
+     * @param param the request object
+     */
+    public deleteCollectionResourceSliceWithHttpInfo(param: ResourceV1beta2ApiDeleteCollectionResourceSliceRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1Status>> {
+        return this.api.deleteCollectionResourceSliceWithHttpInfo(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete collection of ResourceSlice
+     * @param param the request object
+     */
+    public deleteCollectionResourceSlice(param: ResourceV1beta2ApiDeleteCollectionResourceSliceRequest = {}, options?: ConfigurationOptions): Promise<V1Status> {
+        return this.api.deleteCollectionResourceSlice(param.pretty, param._continue, param.dryRun, param.fieldSelector, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.labelSelector, param.limit, param.orphanDependents, param.propagationPolicy, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a DeviceClass
+     * @param param the request object
+     */
+    public deleteDeviceClassWithHttpInfo(param: ResourceV1beta2ApiDeleteDeviceClassRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2DeviceClass>> {
+        return this.api.deleteDeviceClassWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a DeviceClass
+     * @param param the request object
+     */
+    public deleteDeviceClass(param: ResourceV1beta2ApiDeleteDeviceClassRequest, options?: ConfigurationOptions): Promise<V1beta2DeviceClass> {
+        return this.api.deleteDeviceClass(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ResourceClaim
+     * @param param the request object
+     */
+    public deleteNamespacedResourceClaimWithHttpInfo(param: ResourceV1beta2ApiDeleteNamespacedResourceClaimRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceClaim>> {
+        return this.api.deleteNamespacedResourceClaimWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ResourceClaim
+     * @param param the request object
+     */
+    public deleteNamespacedResourceClaim(param: ResourceV1beta2ApiDeleteNamespacedResourceClaimRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceClaim> {
+        return this.api.deleteNamespacedResourceClaim(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ResourceClaimTemplate
+     * @param param the request object
+     */
+    public deleteNamespacedResourceClaimTemplateWithHttpInfo(param: ResourceV1beta2ApiDeleteNamespacedResourceClaimTemplateRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceClaimTemplate>> {
+        return this.api.deleteNamespacedResourceClaimTemplateWithHttpInfo(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ResourceClaimTemplate
+     * @param param the request object
+     */
+    public deleteNamespacedResourceClaimTemplate(param: ResourceV1beta2ApiDeleteNamespacedResourceClaimTemplateRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceClaimTemplate> {
+        return this.api.deleteNamespacedResourceClaimTemplate(param.name, param.namespace, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ResourceSlice
+     * @param param the request object
+     */
+    public deleteResourceSliceWithHttpInfo(param: ResourceV1beta2ApiDeleteResourceSliceRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceSlice>> {
+        return this.api.deleteResourceSliceWithHttpInfo(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * delete a ResourceSlice
+     * @param param the request object
+     */
+    public deleteResourceSlice(param: ResourceV1beta2ApiDeleteResourceSliceRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceSlice> {
+        return this.api.deleteResourceSlice(param.name, param.pretty, param.dryRun, param.gracePeriodSeconds, param.ignoreStoreReadErrorWithClusterBreakingPotential, param.orphanDependents, param.propagationPolicy, param.body,  options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResourcesWithHttpInfo(param: ResourceV1beta2ApiGetAPIResourcesRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1APIResourceList>> {
+        return this.api.getAPIResourcesWithHttpInfo( options).toPromise();
+    }
+
+    /**
+     * get available resources
+     * @param param the request object
+     */
+    public getAPIResources(param: ResourceV1beta2ApiGetAPIResourcesRequest = {}, options?: ConfigurationOptions): Promise<V1APIResourceList> {
+        return this.api.getAPIResources( options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind DeviceClass
+     * @param param the request object
+     */
+    public listDeviceClassWithHttpInfo(param: ResourceV1beta2ApiListDeviceClassRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2DeviceClassList>> {
+        return this.api.listDeviceClassWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind DeviceClass
+     * @param param the request object
+     */
+    public listDeviceClass(param: ResourceV1beta2ApiListDeviceClassRequest = {}, options?: ConfigurationOptions): Promise<V1beta2DeviceClassList> {
+        return this.api.listDeviceClass(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceClaim
+     * @param param the request object
+     */
+    public listNamespacedResourceClaimWithHttpInfo(param: ResourceV1beta2ApiListNamespacedResourceClaimRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceClaimList>> {
+        return this.api.listNamespacedResourceClaimWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceClaim
+     * @param param the request object
+     */
+    public listNamespacedResourceClaim(param: ResourceV1beta2ApiListNamespacedResourceClaimRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceClaimList> {
+        return this.api.listNamespacedResourceClaim(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceClaimTemplate
+     * @param param the request object
+     */
+    public listNamespacedResourceClaimTemplateWithHttpInfo(param: ResourceV1beta2ApiListNamespacedResourceClaimTemplateRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceClaimTemplateList>> {
+        return this.api.listNamespacedResourceClaimTemplateWithHttpInfo(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceClaimTemplate
+     * @param param the request object
+     */
+    public listNamespacedResourceClaimTemplate(param: ResourceV1beta2ApiListNamespacedResourceClaimTemplateRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceClaimTemplateList> {
+        return this.api.listNamespacedResourceClaimTemplate(param.namespace, param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceClaim
+     * @param param the request object
+     */
+    public listResourceClaimForAllNamespacesWithHttpInfo(param: ResourceV1beta2ApiListResourceClaimForAllNamespacesRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceClaimList>> {
+        return this.api.listResourceClaimForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceClaim
+     * @param param the request object
+     */
+    public listResourceClaimForAllNamespaces(param: ResourceV1beta2ApiListResourceClaimForAllNamespacesRequest = {}, options?: ConfigurationOptions): Promise<V1beta2ResourceClaimList> {
+        return this.api.listResourceClaimForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceClaimTemplate
+     * @param param the request object
+     */
+    public listResourceClaimTemplateForAllNamespacesWithHttpInfo(param: ResourceV1beta2ApiListResourceClaimTemplateForAllNamespacesRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceClaimTemplateList>> {
+        return this.api.listResourceClaimTemplateForAllNamespacesWithHttpInfo(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceClaimTemplate
+     * @param param the request object
+     */
+    public listResourceClaimTemplateForAllNamespaces(param: ResourceV1beta2ApiListResourceClaimTemplateForAllNamespacesRequest = {}, options?: ConfigurationOptions): Promise<V1beta2ResourceClaimTemplateList> {
+        return this.api.listResourceClaimTemplateForAllNamespaces(param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.pretty, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceSlice
+     * @param param the request object
+     */
+    public listResourceSliceWithHttpInfo(param: ResourceV1beta2ApiListResourceSliceRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceSliceList>> {
+        return this.api.listResourceSliceWithHttpInfo(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * list or watch objects of kind ResourceSlice
+     * @param param the request object
+     */
+    public listResourceSlice(param: ResourceV1beta2ApiListResourceSliceRequest = {}, options?: ConfigurationOptions): Promise<V1beta2ResourceSliceList> {
+        return this.api.listResourceSlice(param.pretty, param.allowWatchBookmarks, param._continue, param.fieldSelector, param.labelSelector, param.limit, param.resourceVersion, param.resourceVersionMatch, param.sendInitialEvents, param.timeoutSeconds, param.watch,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified DeviceClass
+     * @param param the request object
+     */
+    public patchDeviceClassWithHttpInfo(param: ResourceV1beta2ApiPatchDeviceClassRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2DeviceClass>> {
+        return this.api.patchDeviceClassWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified DeviceClass
+     * @param param the request object
+     */
+    public patchDeviceClass(param: ResourceV1beta2ApiPatchDeviceClassRequest, options?: ConfigurationOptions): Promise<V1beta2DeviceClass> {
+        return this.api.patchDeviceClass(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ResourceClaim
+     * @param param the request object
+     */
+    public patchNamespacedResourceClaimWithHttpInfo(param: ResourceV1beta2ApiPatchNamespacedResourceClaimRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceClaim>> {
+        return this.api.patchNamespacedResourceClaimWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ResourceClaim
+     * @param param the request object
+     */
+    public patchNamespacedResourceClaim(param: ResourceV1beta2ApiPatchNamespacedResourceClaimRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceClaim> {
+        return this.api.patchNamespacedResourceClaim(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified ResourceClaim
+     * @param param the request object
+     */
+    public patchNamespacedResourceClaimStatusWithHttpInfo(param: ResourceV1beta2ApiPatchNamespacedResourceClaimStatusRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceClaim>> {
+        return this.api.patchNamespacedResourceClaimStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update status of the specified ResourceClaim
+     * @param param the request object
+     */
+    public patchNamespacedResourceClaimStatus(param: ResourceV1beta2ApiPatchNamespacedResourceClaimStatusRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceClaim> {
+        return this.api.patchNamespacedResourceClaimStatus(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ResourceClaimTemplate
+     * @param param the request object
+     */
+    public patchNamespacedResourceClaimTemplateWithHttpInfo(param: ResourceV1beta2ApiPatchNamespacedResourceClaimTemplateRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceClaimTemplate>> {
+        return this.api.patchNamespacedResourceClaimTemplateWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ResourceClaimTemplate
+     * @param param the request object
+     */
+    public patchNamespacedResourceClaimTemplate(param: ResourceV1beta2ApiPatchNamespacedResourceClaimTemplateRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceClaimTemplate> {
+        return this.api.patchNamespacedResourceClaimTemplate(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ResourceSlice
+     * @param param the request object
+     */
+    public patchResourceSliceWithHttpInfo(param: ResourceV1beta2ApiPatchResourceSliceRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceSlice>> {
+        return this.api.patchResourceSliceWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * partially update the specified ResourceSlice
+     * @param param the request object
+     */
+    public patchResourceSlice(param: ResourceV1beta2ApiPatchResourceSliceRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceSlice> {
+        return this.api.patchResourceSlice(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation, param.force,  options).toPromise();
+    }
+
+    /**
+     * read the specified DeviceClass
+     * @param param the request object
+     */
+    public readDeviceClassWithHttpInfo(param: ResourceV1beta2ApiReadDeviceClassRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2DeviceClass>> {
+        return this.api.readDeviceClassWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified DeviceClass
+     * @param param the request object
+     */
+    public readDeviceClass(param: ResourceV1beta2ApiReadDeviceClassRequest, options?: ConfigurationOptions): Promise<V1beta2DeviceClass> {
+        return this.api.readDeviceClass(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ResourceClaim
+     * @param param the request object
+     */
+    public readNamespacedResourceClaimWithHttpInfo(param: ResourceV1beta2ApiReadNamespacedResourceClaimRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceClaim>> {
+        return this.api.readNamespacedResourceClaimWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ResourceClaim
+     * @param param the request object
+     */
+    public readNamespacedResourceClaim(param: ResourceV1beta2ApiReadNamespacedResourceClaimRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceClaim> {
+        return this.api.readNamespacedResourceClaim(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified ResourceClaim
+     * @param param the request object
+     */
+    public readNamespacedResourceClaimStatusWithHttpInfo(param: ResourceV1beta2ApiReadNamespacedResourceClaimStatusRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceClaim>> {
+        return this.api.readNamespacedResourceClaimStatusWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read status of the specified ResourceClaim
+     * @param param the request object
+     */
+    public readNamespacedResourceClaimStatus(param: ResourceV1beta2ApiReadNamespacedResourceClaimStatusRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceClaim> {
+        return this.api.readNamespacedResourceClaimStatus(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ResourceClaimTemplate
+     * @param param the request object
+     */
+    public readNamespacedResourceClaimTemplateWithHttpInfo(param: ResourceV1beta2ApiReadNamespacedResourceClaimTemplateRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceClaimTemplate>> {
+        return this.api.readNamespacedResourceClaimTemplateWithHttpInfo(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ResourceClaimTemplate
+     * @param param the request object
+     */
+    public readNamespacedResourceClaimTemplate(param: ResourceV1beta2ApiReadNamespacedResourceClaimTemplateRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceClaimTemplate> {
+        return this.api.readNamespacedResourceClaimTemplate(param.name, param.namespace, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ResourceSlice
+     * @param param the request object
+     */
+    public readResourceSliceWithHttpInfo(param: ResourceV1beta2ApiReadResourceSliceRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceSlice>> {
+        return this.api.readResourceSliceWithHttpInfo(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * read the specified ResourceSlice
+     * @param param the request object
+     */
+    public readResourceSlice(param: ResourceV1beta2ApiReadResourceSliceRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceSlice> {
+        return this.api.readResourceSlice(param.name, param.pretty,  options).toPromise();
+    }
+
+    /**
+     * replace the specified DeviceClass
+     * @param param the request object
+     */
+    public replaceDeviceClassWithHttpInfo(param: ResourceV1beta2ApiReplaceDeviceClassRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2DeviceClass>> {
+        return this.api.replaceDeviceClassWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified DeviceClass
+     * @param param the request object
+     */
+    public replaceDeviceClass(param: ResourceV1beta2ApiReplaceDeviceClassRequest, options?: ConfigurationOptions): Promise<V1beta2DeviceClass> {
+        return this.api.replaceDeviceClass(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ResourceClaim
+     * @param param the request object
+     */
+    public replaceNamespacedResourceClaimWithHttpInfo(param: ResourceV1beta2ApiReplaceNamespacedResourceClaimRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceClaim>> {
+        return this.api.replaceNamespacedResourceClaimWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ResourceClaim
+     * @param param the request object
+     */
+    public replaceNamespacedResourceClaim(param: ResourceV1beta2ApiReplaceNamespacedResourceClaimRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceClaim> {
+        return this.api.replaceNamespacedResourceClaim(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified ResourceClaim
+     * @param param the request object
+     */
+    public replaceNamespacedResourceClaimStatusWithHttpInfo(param: ResourceV1beta2ApiReplaceNamespacedResourceClaimStatusRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceClaim>> {
+        return this.api.replaceNamespacedResourceClaimStatusWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace status of the specified ResourceClaim
+     * @param param the request object
+     */
+    public replaceNamespacedResourceClaimStatus(param: ResourceV1beta2ApiReplaceNamespacedResourceClaimStatusRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceClaim> {
+        return this.api.replaceNamespacedResourceClaimStatus(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ResourceClaimTemplate
+     * @param param the request object
+     */
+    public replaceNamespacedResourceClaimTemplateWithHttpInfo(param: ResourceV1beta2ApiReplaceNamespacedResourceClaimTemplateRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceClaimTemplate>> {
+        return this.api.replaceNamespacedResourceClaimTemplateWithHttpInfo(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ResourceClaimTemplate
+     * @param param the request object
+     */
+    public replaceNamespacedResourceClaimTemplate(param: ResourceV1beta2ApiReplaceNamespacedResourceClaimTemplateRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceClaimTemplate> {
+        return this.api.replaceNamespacedResourceClaimTemplate(param.name, param.namespace, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ResourceSlice
+     * @param param the request object
+     */
+    public replaceResourceSliceWithHttpInfo(param: ResourceV1beta2ApiReplaceResourceSliceRequest, options?: ConfigurationOptions): Promise<HttpInfo<V1beta2ResourceSlice>> {
+        return this.api.replaceResourceSliceWithHttpInfo(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
+    }
+
+    /**
+     * replace the specified ResourceSlice
+     * @param param the request object
+     */
+    public replaceResourceSlice(param: ResourceV1beta2ApiReplaceResourceSliceRequest, options?: ConfigurationOptions): Promise<V1beta2ResourceSlice> {
         return this.api.replaceResourceSlice(param.name, param.body, param.pretty, param.dryRun, param.fieldManager, param.fieldValidation,  options).toPromise();
     }
 
@@ -55131,7 +60539,7 @@ export class ObjectVersionApi {
     }
 
     /**
-     * get the code version
+     * get the version information for this server
      * @param param the request object
      */
     public getCodeWithHttpInfo(param: VersionApiGetCodeRequest = {}, options?: ConfigurationOptions): Promise<HttpInfo<VersionInfo>> {
@@ -55139,7 +60547,7 @@ export class ObjectVersionApi {
     }
 
     /**
-     * get the code version
+     * get the version information for this server
      * @param param the request object
      */
     public getCode(param: VersionApiGetCodeRequest = {}, options?: ConfigurationOptions): Promise<VersionInfo> {

@@ -51,6 +51,11 @@ const request: DiscoveryV1ApiCreateNamespacedEndpointSliceRequest = {
           "key": "key_example",
         },
         hints: {
+          forNodes: [
+            {
+              name: "name_example",
+            },
+          ],
           forZones: [
             {
               name: "name_example",
@@ -772,6 +777,11 @@ const request: DiscoveryV1ApiReplaceNamespacedEndpointSliceRequest = {
           "key": "key_example",
         },
         hints: {
+          forNodes: [
+            {
+              name: "name_example",
+            },
+          ],
           forZones: [
             {
               name: "name_example",
