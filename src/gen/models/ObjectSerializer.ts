@@ -153,6 +153,7 @@ export * from '../models/V1FlowSchemaCondition.js';
 export * from '../models/V1FlowSchemaList.js';
 export * from '../models/V1FlowSchemaSpec.js';
 export * from '../models/V1FlowSchemaStatus.js';
+export * from '../models/V1ForNode.js';
 export * from '../models/V1ForZone.js';
 export * from '../models/V1GCEPersistentDiskVolumeSource.js';
 export * from '../models/V1GRPCAction.js';
@@ -172,6 +173,9 @@ export * from '../models/V1HorizontalPodAutoscalerStatus.js';
 export * from '../models/V1HostAlias.js';
 export * from '../models/V1HostIP.js';
 export * from '../models/V1HostPathVolumeSource.js';
+export * from '../models/V1IPAddress.js';
+export * from '../models/V1IPAddressList.js';
+export * from '../models/V1IPAddressSpec.js';
 export * from '../models/V1IPBlock.js';
 export * from '../models/V1ISCSIPersistentVolumeSource.js';
 export * from '../models/V1ISCSIVolumeSource.js';
@@ -257,6 +261,7 @@ export * from '../models/V1NodeSelectorRequirement.js';
 export * from '../models/V1NodeSelectorTerm.js';
 export * from '../models/V1NodeSpec.js';
 export * from '../models/V1NodeStatus.js';
+export * from '../models/V1NodeSwapStatus.js';
 export * from '../models/V1NodeSystemInfo.js';
 export * from '../models/V1NonResourceAttributes.js';
 export * from '../models/V1NonResourcePolicyRule.js';
@@ -268,6 +273,7 @@ export * from '../models/V1Overhead.js';
 export * from '../models/V1OwnerReference.js';
 export * from '../models/V1ParamKind.js';
 export * from '../models/V1ParamRef.js';
+export * from '../models/V1ParentReference.js';
 export * from '../models/V1PersistentVolume.js';
 export * from '../models/V1PersistentVolumeClaim.js';
 export * from '../models/V1PersistentVolumeClaimCondition.js';
@@ -393,6 +399,10 @@ export * from '../models/V1ServiceAccountList.js';
 export * from '../models/V1ServiceAccountSubject.js';
 export * from '../models/V1ServiceAccountTokenProjection.js';
 export * from '../models/V1ServiceBackendPort.js';
+export * from '../models/V1ServiceCIDR.js';
+export * from '../models/V1ServiceCIDRList.js';
+export * from '../models/V1ServiceCIDRSpec.js';
+export * from '../models/V1ServiceCIDRStatus.js';
 export * from '../models/V1ServiceList.js';
 export * from '../models/V1ServicePort.js';
 export * from '../models/V1ServiceSpec.js';
@@ -508,6 +518,8 @@ export * from '../models/V1alpha3AllocatedDeviceStatus.js';
 export * from '../models/V1alpha3AllocationResult.js';
 export * from '../models/V1alpha3BasicDevice.js';
 export * from '../models/V1alpha3CELDeviceSelector.js';
+export * from '../models/V1alpha3Counter.js';
+export * from '../models/V1alpha3CounterSet.js';
 export * from '../models/V1alpha3Device.js';
 export * from '../models/V1alpha3DeviceAllocationConfiguration.js';
 export * from '../models/V1alpha3DeviceAllocationResult.js';
@@ -519,9 +531,17 @@ export * from '../models/V1alpha3DeviceClassConfiguration.js';
 export * from '../models/V1alpha3DeviceClassList.js';
 export * from '../models/V1alpha3DeviceClassSpec.js';
 export * from '../models/V1alpha3DeviceConstraint.js';
+export * from '../models/V1alpha3DeviceCounterConsumption.js';
 export * from '../models/V1alpha3DeviceRequest.js';
 export * from '../models/V1alpha3DeviceRequestAllocationResult.js';
 export * from '../models/V1alpha3DeviceSelector.js';
+export * from '../models/V1alpha3DeviceSubRequest.js';
+export * from '../models/V1alpha3DeviceTaint.js';
+export * from '../models/V1alpha3DeviceTaintRule.js';
+export * from '../models/V1alpha3DeviceTaintRuleList.js';
+export * from '../models/V1alpha3DeviceTaintRuleSpec.js';
+export * from '../models/V1alpha3DeviceTaintSelector.js';
+export * from '../models/V1alpha3DeviceToleration.js';
 export * from '../models/V1alpha3NetworkDeviceData.js';
 export * from '../models/V1alpha3OpaqueDeviceConfiguration.js';
 export * from '../models/V1alpha3ResourceClaim.js';
@@ -541,6 +561,11 @@ export * from '../models/V1beta1AllocationResult.js';
 export * from '../models/V1beta1AuditAnnotation.js';
 export * from '../models/V1beta1BasicDevice.js';
 export * from '../models/V1beta1CELDeviceSelector.js';
+export * from '../models/V1beta1ClusterTrustBundle.js';
+export * from '../models/V1beta1ClusterTrustBundleList.js';
+export * from '../models/V1beta1ClusterTrustBundleSpec.js';
+export * from '../models/V1beta1Counter.js';
+export * from '../models/V1beta1CounterSet.js';
 export * from '../models/V1beta1Device.js';
 export * from '../models/V1beta1DeviceAllocationConfiguration.js';
 export * from '../models/V1beta1DeviceAllocationResult.js';
@@ -553,13 +578,20 @@ export * from '../models/V1beta1DeviceClassConfiguration.js';
 export * from '../models/V1beta1DeviceClassList.js';
 export * from '../models/V1beta1DeviceClassSpec.js';
 export * from '../models/V1beta1DeviceConstraint.js';
+export * from '../models/V1beta1DeviceCounterConsumption.js';
 export * from '../models/V1beta1DeviceRequest.js';
 export * from '../models/V1beta1DeviceRequestAllocationResult.js';
 export * from '../models/V1beta1DeviceSelector.js';
+export * from '../models/V1beta1DeviceSubRequest.js';
+export * from '../models/V1beta1DeviceTaint.js';
+export * from '../models/V1beta1DeviceToleration.js';
 export * from '../models/V1beta1ExpressionWarning.js';
 export * from '../models/V1beta1IPAddress.js';
 export * from '../models/V1beta1IPAddressList.js';
 export * from '../models/V1beta1IPAddressSpec.js';
+export * from '../models/V1beta1LeaseCandidate.js';
+export * from '../models/V1beta1LeaseCandidateList.js';
+export * from '../models/V1beta1LeaseCandidateSpec.js';
 export * from '../models/V1beta1MatchCondition.js';
 export * from '../models/V1beta1MatchResources.js';
 export * from '../models/V1beta1NamedRuleWithOperations.js';
@@ -580,8 +612,6 @@ export * from '../models/V1beta1ResourcePool.js';
 export * from '../models/V1beta1ResourceSlice.js';
 export * from '../models/V1beta1ResourceSliceList.js';
 export * from '../models/V1beta1ResourceSliceSpec.js';
-export * from '../models/V1beta1SelfSubjectReview.js';
-export * from '../models/V1beta1SelfSubjectReviewStatus.js';
 export * from '../models/V1beta1ServiceCIDR.js';
 export * from '../models/V1beta1ServiceCIDRList.js';
 export * from '../models/V1beta1ServiceCIDRSpec.js';
@@ -598,6 +628,45 @@ export * from '../models/V1beta1Validation.js';
 export * from '../models/V1beta1Variable.js';
 export * from '../models/V1beta1VolumeAttributesClass.js';
 export * from '../models/V1beta1VolumeAttributesClassList.js';
+export * from '../models/V1beta2AllocatedDeviceStatus.js';
+export * from '../models/V1beta2AllocationResult.js';
+export * from '../models/V1beta2CELDeviceSelector.js';
+export * from '../models/V1beta2Counter.js';
+export * from '../models/V1beta2CounterSet.js';
+export * from '../models/V1beta2Device.js';
+export * from '../models/V1beta2DeviceAllocationConfiguration.js';
+export * from '../models/V1beta2DeviceAllocationResult.js';
+export * from '../models/V1beta2DeviceAttribute.js';
+export * from '../models/V1beta2DeviceCapacity.js';
+export * from '../models/V1beta2DeviceClaim.js';
+export * from '../models/V1beta2DeviceClaimConfiguration.js';
+export * from '../models/V1beta2DeviceClass.js';
+export * from '../models/V1beta2DeviceClassConfiguration.js';
+export * from '../models/V1beta2DeviceClassList.js';
+export * from '../models/V1beta2DeviceClassSpec.js';
+export * from '../models/V1beta2DeviceConstraint.js';
+export * from '../models/V1beta2DeviceCounterConsumption.js';
+export * from '../models/V1beta2DeviceRequest.js';
+export * from '../models/V1beta2DeviceRequestAllocationResult.js';
+export * from '../models/V1beta2DeviceSelector.js';
+export * from '../models/V1beta2DeviceSubRequest.js';
+export * from '../models/V1beta2DeviceTaint.js';
+export * from '../models/V1beta2DeviceToleration.js';
+export * from '../models/V1beta2ExactDeviceRequest.js';
+export * from '../models/V1beta2NetworkDeviceData.js';
+export * from '../models/V1beta2OpaqueDeviceConfiguration.js';
+export * from '../models/V1beta2ResourceClaim.js';
+export * from '../models/V1beta2ResourceClaimConsumerReference.js';
+export * from '../models/V1beta2ResourceClaimList.js';
+export * from '../models/V1beta2ResourceClaimSpec.js';
+export * from '../models/V1beta2ResourceClaimStatus.js';
+export * from '../models/V1beta2ResourceClaimTemplate.js';
+export * from '../models/V1beta2ResourceClaimTemplateList.js';
+export * from '../models/V1beta2ResourceClaimTemplateSpec.js';
+export * from '../models/V1beta2ResourcePool.js';
+export * from '../models/V1beta2ResourceSlice.js';
+export * from '../models/V1beta2ResourceSliceList.js';
+export * from '../models/V1beta2ResourceSliceSpec.js';
 export * from '../models/V2ContainerResourceMetricSource.js';
 export * from '../models/V2ContainerResourceMetricStatus.js';
 export * from '../models/V2CrossVersionObjectReference.js';
@@ -779,6 +848,7 @@ import { V1FlowSchemaCondition } from '../models/V1FlowSchemaCondition.js';
 import { V1FlowSchemaList } from '../models/V1FlowSchemaList.js';
 import { V1FlowSchemaSpec } from '../models/V1FlowSchemaSpec.js';
 import { V1FlowSchemaStatus } from '../models/V1FlowSchemaStatus.js';
+import { V1ForNode } from '../models/V1ForNode.js';
 import { V1ForZone } from '../models/V1ForZone.js';
 import { V1GCEPersistentDiskVolumeSource } from '../models/V1GCEPersistentDiskVolumeSource.js';
 import { V1GRPCAction } from '../models/V1GRPCAction.js';
@@ -798,6 +868,9 @@ import { V1HorizontalPodAutoscalerStatus } from '../models/V1HorizontalPodAutosc
 import { V1HostAlias } from '../models/V1HostAlias.js';
 import { V1HostIP } from '../models/V1HostIP.js';
 import { V1HostPathVolumeSource } from '../models/V1HostPathVolumeSource.js';
+import { V1IPAddress } from '../models/V1IPAddress.js';
+import { V1IPAddressList } from '../models/V1IPAddressList.js';
+import { V1IPAddressSpec } from '../models/V1IPAddressSpec.js';
 import { V1IPBlock } from '../models/V1IPBlock.js';
 import { V1ISCSIPersistentVolumeSource } from '../models/V1ISCSIPersistentVolumeSource.js';
 import { V1ISCSIVolumeSource } from '../models/V1ISCSIVolumeSource.js';
@@ -883,6 +956,7 @@ import { V1NodeSelectorRequirement } from '../models/V1NodeSelectorRequirement.j
 import { V1NodeSelectorTerm } from '../models/V1NodeSelectorTerm.js';
 import { V1NodeSpec } from '../models/V1NodeSpec.js';
 import { V1NodeStatus } from '../models/V1NodeStatus.js';
+import { V1NodeSwapStatus } from '../models/V1NodeSwapStatus.js';
 import { V1NodeSystemInfo } from '../models/V1NodeSystemInfo.js';
 import { V1NonResourceAttributes } from '../models/V1NonResourceAttributes.js';
 import { V1NonResourcePolicyRule } from '../models/V1NonResourcePolicyRule.js';
@@ -894,6 +968,7 @@ import { V1Overhead } from '../models/V1Overhead.js';
 import { V1OwnerReference } from '../models/V1OwnerReference.js';
 import { V1ParamKind } from '../models/V1ParamKind.js';
 import { V1ParamRef } from '../models/V1ParamRef.js';
+import { V1ParentReference } from '../models/V1ParentReference.js';
 import { V1PersistentVolume } from '../models/V1PersistentVolume.js';
 import { V1PersistentVolumeClaim } from '../models/V1PersistentVolumeClaim.js';
 import { V1PersistentVolumeClaimCondition } from '../models/V1PersistentVolumeClaimCondition.js';
@@ -1019,6 +1094,10 @@ import { V1ServiceAccountList } from '../models/V1ServiceAccountList.js';
 import { V1ServiceAccountSubject } from '../models/V1ServiceAccountSubject.js';
 import { V1ServiceAccountTokenProjection } from '../models/V1ServiceAccountTokenProjection.js';
 import { V1ServiceBackendPort } from '../models/V1ServiceBackendPort.js';
+import { V1ServiceCIDR } from '../models/V1ServiceCIDR.js';
+import { V1ServiceCIDRList } from '../models/V1ServiceCIDRList.js';
+import { V1ServiceCIDRSpec } from '../models/V1ServiceCIDRSpec.js';
+import { V1ServiceCIDRStatus } from '../models/V1ServiceCIDRStatus.js';
 import { V1ServiceList } from '../models/V1ServiceList.js';
 import { V1ServicePort } from '../models/V1ServicePort.js';
 import { V1ServiceSpec } from '../models/V1ServiceSpec.js';
@@ -1134,6 +1213,8 @@ import { V1alpha3AllocatedDeviceStatus } from '../models/V1alpha3AllocatedDevice
 import { V1alpha3AllocationResult } from '../models/V1alpha3AllocationResult.js';
 import { V1alpha3BasicDevice } from '../models/V1alpha3BasicDevice.js';
 import { V1alpha3CELDeviceSelector } from '../models/V1alpha3CELDeviceSelector.js';
+import { V1alpha3Counter } from '../models/V1alpha3Counter.js';
+import { V1alpha3CounterSet } from '../models/V1alpha3CounterSet.js';
 import { V1alpha3Device } from '../models/V1alpha3Device.js';
 import { V1alpha3DeviceAllocationConfiguration } from '../models/V1alpha3DeviceAllocationConfiguration.js';
 import { V1alpha3DeviceAllocationResult } from '../models/V1alpha3DeviceAllocationResult.js';
@@ -1145,9 +1226,17 @@ import { V1alpha3DeviceClassConfiguration } from '../models/V1alpha3DeviceClassC
 import { V1alpha3DeviceClassList } from '../models/V1alpha3DeviceClassList.js';
 import { V1alpha3DeviceClassSpec } from '../models/V1alpha3DeviceClassSpec.js';
 import { V1alpha3DeviceConstraint } from '../models/V1alpha3DeviceConstraint.js';
+import { V1alpha3DeviceCounterConsumption } from '../models/V1alpha3DeviceCounterConsumption.js';
 import { V1alpha3DeviceRequest } from '../models/V1alpha3DeviceRequest.js';
 import { V1alpha3DeviceRequestAllocationResult } from '../models/V1alpha3DeviceRequestAllocationResult.js';
 import { V1alpha3DeviceSelector } from '../models/V1alpha3DeviceSelector.js';
+import { V1alpha3DeviceSubRequest } from '../models/V1alpha3DeviceSubRequest.js';
+import { V1alpha3DeviceTaint } from '../models/V1alpha3DeviceTaint.js';
+import { V1alpha3DeviceTaintRule } from '../models/V1alpha3DeviceTaintRule.js';
+import { V1alpha3DeviceTaintRuleList } from '../models/V1alpha3DeviceTaintRuleList.js';
+import { V1alpha3DeviceTaintRuleSpec } from '../models/V1alpha3DeviceTaintRuleSpec.js';
+import { V1alpha3DeviceTaintSelector } from '../models/V1alpha3DeviceTaintSelector.js';
+import { V1alpha3DeviceToleration } from '../models/V1alpha3DeviceToleration.js';
 import { V1alpha3NetworkDeviceData } from '../models/V1alpha3NetworkDeviceData.js';
 import { V1alpha3OpaqueDeviceConfiguration } from '../models/V1alpha3OpaqueDeviceConfiguration.js';
 import { V1alpha3ResourceClaim } from '../models/V1alpha3ResourceClaim.js';
@@ -1167,6 +1256,11 @@ import { V1beta1AllocationResult } from '../models/V1beta1AllocationResult.js';
 import { V1beta1AuditAnnotation } from '../models/V1beta1AuditAnnotation.js';
 import { V1beta1BasicDevice } from '../models/V1beta1BasicDevice.js';
 import { V1beta1CELDeviceSelector } from '../models/V1beta1CELDeviceSelector.js';
+import { V1beta1ClusterTrustBundle } from '../models/V1beta1ClusterTrustBundle.js';
+import { V1beta1ClusterTrustBundleList } from '../models/V1beta1ClusterTrustBundleList.js';
+import { V1beta1ClusterTrustBundleSpec } from '../models/V1beta1ClusterTrustBundleSpec.js';
+import { V1beta1Counter } from '../models/V1beta1Counter.js';
+import { V1beta1CounterSet } from '../models/V1beta1CounterSet.js';
 import { V1beta1Device } from '../models/V1beta1Device.js';
 import { V1beta1DeviceAllocationConfiguration } from '../models/V1beta1DeviceAllocationConfiguration.js';
 import { V1beta1DeviceAllocationResult } from '../models/V1beta1DeviceAllocationResult.js';
@@ -1179,13 +1273,20 @@ import { V1beta1DeviceClassConfiguration } from '../models/V1beta1DeviceClassCon
 import { V1beta1DeviceClassList } from '../models/V1beta1DeviceClassList.js';
 import { V1beta1DeviceClassSpec } from '../models/V1beta1DeviceClassSpec.js';
 import { V1beta1DeviceConstraint } from '../models/V1beta1DeviceConstraint.js';
+import { V1beta1DeviceCounterConsumption } from '../models/V1beta1DeviceCounterConsumption.js';
 import { V1beta1DeviceRequest } from '../models/V1beta1DeviceRequest.js';
 import { V1beta1DeviceRequestAllocationResult } from '../models/V1beta1DeviceRequestAllocationResult.js';
 import { V1beta1DeviceSelector } from '../models/V1beta1DeviceSelector.js';
+import { V1beta1DeviceSubRequest } from '../models/V1beta1DeviceSubRequest.js';
+import { V1beta1DeviceTaint } from '../models/V1beta1DeviceTaint.js';
+import { V1beta1DeviceToleration } from '../models/V1beta1DeviceToleration.js';
 import { V1beta1ExpressionWarning } from '../models/V1beta1ExpressionWarning.js';
 import { V1beta1IPAddress } from '../models/V1beta1IPAddress.js';
 import { V1beta1IPAddressList } from '../models/V1beta1IPAddressList.js';
 import { V1beta1IPAddressSpec } from '../models/V1beta1IPAddressSpec.js';
+import { V1beta1LeaseCandidate } from '../models/V1beta1LeaseCandidate.js';
+import { V1beta1LeaseCandidateList } from '../models/V1beta1LeaseCandidateList.js';
+import { V1beta1LeaseCandidateSpec } from '../models/V1beta1LeaseCandidateSpec.js';
 import { V1beta1MatchCondition } from '../models/V1beta1MatchCondition.js';
 import { V1beta1MatchResources } from '../models/V1beta1MatchResources.js';
 import { V1beta1NamedRuleWithOperations } from '../models/V1beta1NamedRuleWithOperations.js';
@@ -1206,8 +1307,6 @@ import { V1beta1ResourcePool } from '../models/V1beta1ResourcePool.js';
 import { V1beta1ResourceSlice } from '../models/V1beta1ResourceSlice.js';
 import { V1beta1ResourceSliceList } from '../models/V1beta1ResourceSliceList.js';
 import { V1beta1ResourceSliceSpec } from '../models/V1beta1ResourceSliceSpec.js';
-import { V1beta1SelfSubjectReview } from '../models/V1beta1SelfSubjectReview.js';
-import { V1beta1SelfSubjectReviewStatus } from '../models/V1beta1SelfSubjectReviewStatus.js';
 import { V1beta1ServiceCIDR } from '../models/V1beta1ServiceCIDR.js';
 import { V1beta1ServiceCIDRList } from '../models/V1beta1ServiceCIDRList.js';
 import { V1beta1ServiceCIDRSpec } from '../models/V1beta1ServiceCIDRSpec.js';
@@ -1224,6 +1323,45 @@ import { V1beta1Validation } from '../models/V1beta1Validation.js';
 import { V1beta1Variable } from '../models/V1beta1Variable.js';
 import { V1beta1VolumeAttributesClass } from '../models/V1beta1VolumeAttributesClass.js';
 import { V1beta1VolumeAttributesClassList } from '../models/V1beta1VolumeAttributesClassList.js';
+import { V1beta2AllocatedDeviceStatus } from '../models/V1beta2AllocatedDeviceStatus.js';
+import { V1beta2AllocationResult } from '../models/V1beta2AllocationResult.js';
+import { V1beta2CELDeviceSelector } from '../models/V1beta2CELDeviceSelector.js';
+import { V1beta2Counter } from '../models/V1beta2Counter.js';
+import { V1beta2CounterSet } from '../models/V1beta2CounterSet.js';
+import { V1beta2Device } from '../models/V1beta2Device.js';
+import { V1beta2DeviceAllocationConfiguration } from '../models/V1beta2DeviceAllocationConfiguration.js';
+import { V1beta2DeviceAllocationResult } from '../models/V1beta2DeviceAllocationResult.js';
+import { V1beta2DeviceAttribute } from '../models/V1beta2DeviceAttribute.js';
+import { V1beta2DeviceCapacity } from '../models/V1beta2DeviceCapacity.js';
+import { V1beta2DeviceClaim } from '../models/V1beta2DeviceClaim.js';
+import { V1beta2DeviceClaimConfiguration } from '../models/V1beta2DeviceClaimConfiguration.js';
+import { V1beta2DeviceClass } from '../models/V1beta2DeviceClass.js';
+import { V1beta2DeviceClassConfiguration } from '../models/V1beta2DeviceClassConfiguration.js';
+import { V1beta2DeviceClassList } from '../models/V1beta2DeviceClassList.js';
+import { V1beta2DeviceClassSpec } from '../models/V1beta2DeviceClassSpec.js';
+import { V1beta2DeviceConstraint } from '../models/V1beta2DeviceConstraint.js';
+import { V1beta2DeviceCounterConsumption } from '../models/V1beta2DeviceCounterConsumption.js';
+import { V1beta2DeviceRequest } from '../models/V1beta2DeviceRequest.js';
+import { V1beta2DeviceRequestAllocationResult } from '../models/V1beta2DeviceRequestAllocationResult.js';
+import { V1beta2DeviceSelector } from '../models/V1beta2DeviceSelector.js';
+import { V1beta2DeviceSubRequest } from '../models/V1beta2DeviceSubRequest.js';
+import { V1beta2DeviceTaint } from '../models/V1beta2DeviceTaint.js';
+import { V1beta2DeviceToleration } from '../models/V1beta2DeviceToleration.js';
+import { V1beta2ExactDeviceRequest } from '../models/V1beta2ExactDeviceRequest.js';
+import { V1beta2NetworkDeviceData } from '../models/V1beta2NetworkDeviceData.js';
+import { V1beta2OpaqueDeviceConfiguration } from '../models/V1beta2OpaqueDeviceConfiguration.js';
+import { V1beta2ResourceClaim } from '../models/V1beta2ResourceClaim.js';
+import { V1beta2ResourceClaimConsumerReference } from '../models/V1beta2ResourceClaimConsumerReference.js';
+import { V1beta2ResourceClaimList } from '../models/V1beta2ResourceClaimList.js';
+import { V1beta2ResourceClaimSpec } from '../models/V1beta2ResourceClaimSpec.js';
+import { V1beta2ResourceClaimStatus } from '../models/V1beta2ResourceClaimStatus.js';
+import { V1beta2ResourceClaimTemplate } from '../models/V1beta2ResourceClaimTemplate.js';
+import { V1beta2ResourceClaimTemplateList } from '../models/V1beta2ResourceClaimTemplateList.js';
+import { V1beta2ResourceClaimTemplateSpec } from '../models/V1beta2ResourceClaimTemplateSpec.js';
+import { V1beta2ResourcePool } from '../models/V1beta2ResourcePool.js';
+import { V1beta2ResourceSlice } from '../models/V1beta2ResourceSlice.js';
+import { V1beta2ResourceSliceList } from '../models/V1beta2ResourceSliceList.js';
+import { V1beta2ResourceSliceSpec } from '../models/V1beta2ResourceSliceSpec.js';
 import { V2ContainerResourceMetricSource } from '../models/V2ContainerResourceMetricSource.js';
 import { V2ContainerResourceMetricStatus } from '../models/V2ContainerResourceMetricStatus.js';
 import { V2CrossVersionObjectReference } from '../models/V2CrossVersionObjectReference.js';
@@ -1421,6 +1559,7 @@ let typeMap: {[index: string]: any} = {
     "V1FlowSchemaList": V1FlowSchemaList,
     "V1FlowSchemaSpec": V1FlowSchemaSpec,
     "V1FlowSchemaStatus": V1FlowSchemaStatus,
+    "V1ForNode": V1ForNode,
     "V1ForZone": V1ForZone,
     "V1GCEPersistentDiskVolumeSource": V1GCEPersistentDiskVolumeSource,
     "V1GRPCAction": V1GRPCAction,
@@ -1440,6 +1579,9 @@ let typeMap: {[index: string]: any} = {
     "V1HostAlias": V1HostAlias,
     "V1HostIP": V1HostIP,
     "V1HostPathVolumeSource": V1HostPathVolumeSource,
+    "V1IPAddress": V1IPAddress,
+    "V1IPAddressList": V1IPAddressList,
+    "V1IPAddressSpec": V1IPAddressSpec,
     "V1IPBlock": V1IPBlock,
     "V1ISCSIPersistentVolumeSource": V1ISCSIPersistentVolumeSource,
     "V1ISCSIVolumeSource": V1ISCSIVolumeSource,
@@ -1525,6 +1667,7 @@ let typeMap: {[index: string]: any} = {
     "V1NodeSelectorTerm": V1NodeSelectorTerm,
     "V1NodeSpec": V1NodeSpec,
     "V1NodeStatus": V1NodeStatus,
+    "V1NodeSwapStatus": V1NodeSwapStatus,
     "V1NodeSystemInfo": V1NodeSystemInfo,
     "V1NonResourceAttributes": V1NonResourceAttributes,
     "V1NonResourcePolicyRule": V1NonResourcePolicyRule,
@@ -1536,6 +1679,7 @@ let typeMap: {[index: string]: any} = {
     "V1OwnerReference": V1OwnerReference,
     "V1ParamKind": V1ParamKind,
     "V1ParamRef": V1ParamRef,
+    "V1ParentReference": V1ParentReference,
     "V1PersistentVolume": V1PersistentVolume,
     "V1PersistentVolumeClaim": V1PersistentVolumeClaim,
     "V1PersistentVolumeClaimCondition": V1PersistentVolumeClaimCondition,
@@ -1661,6 +1805,10 @@ let typeMap: {[index: string]: any} = {
     "V1ServiceAccountSubject": V1ServiceAccountSubject,
     "V1ServiceAccountTokenProjection": V1ServiceAccountTokenProjection,
     "V1ServiceBackendPort": V1ServiceBackendPort,
+    "V1ServiceCIDR": V1ServiceCIDR,
+    "V1ServiceCIDRList": V1ServiceCIDRList,
+    "V1ServiceCIDRSpec": V1ServiceCIDRSpec,
+    "V1ServiceCIDRStatus": V1ServiceCIDRStatus,
     "V1ServiceList": V1ServiceList,
     "V1ServicePort": V1ServicePort,
     "V1ServiceSpec": V1ServiceSpec,
@@ -1776,6 +1924,8 @@ let typeMap: {[index: string]: any} = {
     "V1alpha3AllocationResult": V1alpha3AllocationResult,
     "V1alpha3BasicDevice": V1alpha3BasicDevice,
     "V1alpha3CELDeviceSelector": V1alpha3CELDeviceSelector,
+    "V1alpha3Counter": V1alpha3Counter,
+    "V1alpha3CounterSet": V1alpha3CounterSet,
     "V1alpha3Device": V1alpha3Device,
     "V1alpha3DeviceAllocationConfiguration": V1alpha3DeviceAllocationConfiguration,
     "V1alpha3DeviceAllocationResult": V1alpha3DeviceAllocationResult,
@@ -1787,9 +1937,17 @@ let typeMap: {[index: string]: any} = {
     "V1alpha3DeviceClassList": V1alpha3DeviceClassList,
     "V1alpha3DeviceClassSpec": V1alpha3DeviceClassSpec,
     "V1alpha3DeviceConstraint": V1alpha3DeviceConstraint,
+    "V1alpha3DeviceCounterConsumption": V1alpha3DeviceCounterConsumption,
     "V1alpha3DeviceRequest": V1alpha3DeviceRequest,
     "V1alpha3DeviceRequestAllocationResult": V1alpha3DeviceRequestAllocationResult,
     "V1alpha3DeviceSelector": V1alpha3DeviceSelector,
+    "V1alpha3DeviceSubRequest": V1alpha3DeviceSubRequest,
+    "V1alpha3DeviceTaint": V1alpha3DeviceTaint,
+    "V1alpha3DeviceTaintRule": V1alpha3DeviceTaintRule,
+    "V1alpha3DeviceTaintRuleList": V1alpha3DeviceTaintRuleList,
+    "V1alpha3DeviceTaintRuleSpec": V1alpha3DeviceTaintRuleSpec,
+    "V1alpha3DeviceTaintSelector": V1alpha3DeviceTaintSelector,
+    "V1alpha3DeviceToleration": V1alpha3DeviceToleration,
     "V1alpha3NetworkDeviceData": V1alpha3NetworkDeviceData,
     "V1alpha3OpaqueDeviceConfiguration": V1alpha3OpaqueDeviceConfiguration,
     "V1alpha3ResourceClaim": V1alpha3ResourceClaim,
@@ -1809,6 +1967,11 @@ let typeMap: {[index: string]: any} = {
     "V1beta1AuditAnnotation": V1beta1AuditAnnotation,
     "V1beta1BasicDevice": V1beta1BasicDevice,
     "V1beta1CELDeviceSelector": V1beta1CELDeviceSelector,
+    "V1beta1ClusterTrustBundle": V1beta1ClusterTrustBundle,
+    "V1beta1ClusterTrustBundleList": V1beta1ClusterTrustBundleList,
+    "V1beta1ClusterTrustBundleSpec": V1beta1ClusterTrustBundleSpec,
+    "V1beta1Counter": V1beta1Counter,
+    "V1beta1CounterSet": V1beta1CounterSet,
     "V1beta1Device": V1beta1Device,
     "V1beta1DeviceAllocationConfiguration": V1beta1DeviceAllocationConfiguration,
     "V1beta1DeviceAllocationResult": V1beta1DeviceAllocationResult,
@@ -1821,13 +1984,20 @@ let typeMap: {[index: string]: any} = {
     "V1beta1DeviceClassList": V1beta1DeviceClassList,
     "V1beta1DeviceClassSpec": V1beta1DeviceClassSpec,
     "V1beta1DeviceConstraint": V1beta1DeviceConstraint,
+    "V1beta1DeviceCounterConsumption": V1beta1DeviceCounterConsumption,
     "V1beta1DeviceRequest": V1beta1DeviceRequest,
     "V1beta1DeviceRequestAllocationResult": V1beta1DeviceRequestAllocationResult,
     "V1beta1DeviceSelector": V1beta1DeviceSelector,
+    "V1beta1DeviceSubRequest": V1beta1DeviceSubRequest,
+    "V1beta1DeviceTaint": V1beta1DeviceTaint,
+    "V1beta1DeviceToleration": V1beta1DeviceToleration,
     "V1beta1ExpressionWarning": V1beta1ExpressionWarning,
     "V1beta1IPAddress": V1beta1IPAddress,
     "V1beta1IPAddressList": V1beta1IPAddressList,
     "V1beta1IPAddressSpec": V1beta1IPAddressSpec,
+    "V1beta1LeaseCandidate": V1beta1LeaseCandidate,
+    "V1beta1LeaseCandidateList": V1beta1LeaseCandidateList,
+    "V1beta1LeaseCandidateSpec": V1beta1LeaseCandidateSpec,
     "V1beta1MatchCondition": V1beta1MatchCondition,
     "V1beta1MatchResources": V1beta1MatchResources,
     "V1beta1NamedRuleWithOperations": V1beta1NamedRuleWithOperations,
@@ -1848,8 +2018,6 @@ let typeMap: {[index: string]: any} = {
     "V1beta1ResourceSlice": V1beta1ResourceSlice,
     "V1beta1ResourceSliceList": V1beta1ResourceSliceList,
     "V1beta1ResourceSliceSpec": V1beta1ResourceSliceSpec,
-    "V1beta1SelfSubjectReview": V1beta1SelfSubjectReview,
-    "V1beta1SelfSubjectReviewStatus": V1beta1SelfSubjectReviewStatus,
     "V1beta1ServiceCIDR": V1beta1ServiceCIDR,
     "V1beta1ServiceCIDRList": V1beta1ServiceCIDRList,
     "V1beta1ServiceCIDRSpec": V1beta1ServiceCIDRSpec,
@@ -1866,6 +2034,45 @@ let typeMap: {[index: string]: any} = {
     "V1beta1Variable": V1beta1Variable,
     "V1beta1VolumeAttributesClass": V1beta1VolumeAttributesClass,
     "V1beta1VolumeAttributesClassList": V1beta1VolumeAttributesClassList,
+    "V1beta2AllocatedDeviceStatus": V1beta2AllocatedDeviceStatus,
+    "V1beta2AllocationResult": V1beta2AllocationResult,
+    "V1beta2CELDeviceSelector": V1beta2CELDeviceSelector,
+    "V1beta2Counter": V1beta2Counter,
+    "V1beta2CounterSet": V1beta2CounterSet,
+    "V1beta2Device": V1beta2Device,
+    "V1beta2DeviceAllocationConfiguration": V1beta2DeviceAllocationConfiguration,
+    "V1beta2DeviceAllocationResult": V1beta2DeviceAllocationResult,
+    "V1beta2DeviceAttribute": V1beta2DeviceAttribute,
+    "V1beta2DeviceCapacity": V1beta2DeviceCapacity,
+    "V1beta2DeviceClaim": V1beta2DeviceClaim,
+    "V1beta2DeviceClaimConfiguration": V1beta2DeviceClaimConfiguration,
+    "V1beta2DeviceClass": V1beta2DeviceClass,
+    "V1beta2DeviceClassConfiguration": V1beta2DeviceClassConfiguration,
+    "V1beta2DeviceClassList": V1beta2DeviceClassList,
+    "V1beta2DeviceClassSpec": V1beta2DeviceClassSpec,
+    "V1beta2DeviceConstraint": V1beta2DeviceConstraint,
+    "V1beta2DeviceCounterConsumption": V1beta2DeviceCounterConsumption,
+    "V1beta2DeviceRequest": V1beta2DeviceRequest,
+    "V1beta2DeviceRequestAllocationResult": V1beta2DeviceRequestAllocationResult,
+    "V1beta2DeviceSelector": V1beta2DeviceSelector,
+    "V1beta2DeviceSubRequest": V1beta2DeviceSubRequest,
+    "V1beta2DeviceTaint": V1beta2DeviceTaint,
+    "V1beta2DeviceToleration": V1beta2DeviceToleration,
+    "V1beta2ExactDeviceRequest": V1beta2ExactDeviceRequest,
+    "V1beta2NetworkDeviceData": V1beta2NetworkDeviceData,
+    "V1beta2OpaqueDeviceConfiguration": V1beta2OpaqueDeviceConfiguration,
+    "V1beta2ResourceClaim": V1beta2ResourceClaim,
+    "V1beta2ResourceClaimConsumerReference": V1beta2ResourceClaimConsumerReference,
+    "V1beta2ResourceClaimList": V1beta2ResourceClaimList,
+    "V1beta2ResourceClaimSpec": V1beta2ResourceClaimSpec,
+    "V1beta2ResourceClaimStatus": V1beta2ResourceClaimStatus,
+    "V1beta2ResourceClaimTemplate": V1beta2ResourceClaimTemplate,
+    "V1beta2ResourceClaimTemplateList": V1beta2ResourceClaimTemplateList,
+    "V1beta2ResourceClaimTemplateSpec": V1beta2ResourceClaimTemplateSpec,
+    "V1beta2ResourcePool": V1beta2ResourcePool,
+    "V1beta2ResourceSlice": V1beta2ResourceSlice,
+    "V1beta2ResourceSliceList": V1beta2ResourceSliceList,
+    "V1beta2ResourceSliceSpec": V1beta2ResourceSliceSpec,
     "V2ContainerResourceMetricSource": V2ContainerResourceMetricSource,
     "V2ContainerResourceMetricStatus": V2ContainerResourceMetricStatus,
     "V2CrossVersionObjectReference": V2CrossVersionObjectReference,

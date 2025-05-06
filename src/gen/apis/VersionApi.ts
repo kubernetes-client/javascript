@@ -18,7 +18,7 @@ import { VersionInfo } from '../models/VersionInfo.js';
 export class VersionApiRequestFactory extends BaseAPIRequestFactory {
 
     /**
-     * get the code version
+     * get the version information for this server
      */
     public async getCode(_options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;

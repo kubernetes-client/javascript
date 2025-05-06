@@ -4584,6 +4584,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
                 port: "port_example",
               },
             },
+            stopSignal: "stopSignal_example",
           },
           livenessProbe: {
             exec: {
@@ -4896,6 +4897,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
                 port: "port_example",
               },
             },
+            stopSignal: "stopSignal_example",
           },
           livenessProbe: {
             exec: {
@@ -5211,6 +5213,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
                 port: "port_example",
               },
             },
+            stopSignal: "stopSignal_example",
           },
           livenessProbe: {
             exec: {
@@ -5934,6 +5937,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
           lastProbeTime: new Date('1970-01-01T00:00:00.00Z'),
           lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
           message: "message_example",
+          observedGeneration: 1,
           reason: "reason_example",
           status: "status_example",
           type: "type_example",
@@ -6012,6 +6016,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
               reason: "reason_example",
             },
           },
+          stopSignal: "stopSignal_example",
           user: {
             linux: {
               gid: 1,
@@ -6104,6 +6109,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
               reason: "reason_example",
             },
           },
+          stopSignal: "stopSignal_example",
           user: {
             linux: {
               gid: 1,
@@ -6202,6 +6208,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
               reason: "reason_example",
             },
           },
+          stopSignal: "stopSignal_example",
           user: {
             linux: {
               gid: 1,
@@ -6223,6 +6230,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
       ],
       message: "message_example",
       nominatedNodeName: "nominatedNodeName_example",
+      observedGeneration: 1,
       phase: "phase_example",
       podIP: "podIP_example",
       podIPs: [
@@ -6999,6 +7007,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                   port: "port_example",
                 },
               },
+              stopSignal: "stopSignal_example",
             },
             livenessProbe: {
               exec: {
@@ -7311,6 +7320,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                   port: "port_example",
                 },
               },
+              stopSignal: "stopSignal_example",
             },
             livenessProbe: {
               exec: {
@@ -7626,6 +7636,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                   port: "port_example",
                 },
               },
+              stopSignal: "stopSignal_example",
             },
             livenessProbe: {
               exec: {
@@ -8846,6 +8857,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -9158,6 +9170,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -9473,6 +9486,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -11151,6 +11165,9 @@ const request: CoreV1ApiCreateNodeRequest = {
         machineID: "machineID_example",
         operatingSystem: "operatingSystem_example",
         osImage: "osImage_example",
+        swap: {
+          capacity: 1,
+        },
         systemUUID: "systemUUID_example",
       },
       phase: "phase_example",
@@ -22403,6 +22420,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
                 port: "port_example",
               },
             },
+            stopSignal: "stopSignal_example",
           },
           livenessProbe: {
             exec: {
@@ -22715,6 +22733,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
                 port: "port_example",
               },
             },
+            stopSignal: "stopSignal_example",
           },
           livenessProbe: {
             exec: {
@@ -23030,6 +23049,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
                 port: "port_example",
               },
             },
+            stopSignal: "stopSignal_example",
           },
           livenessProbe: {
             exec: {
@@ -23753,6 +23773,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
           lastProbeTime: new Date('1970-01-01T00:00:00.00Z'),
           lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
           message: "message_example",
+          observedGeneration: 1,
           reason: "reason_example",
           status: "status_example",
           type: "type_example",
@@ -23831,6 +23852,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
               reason: "reason_example",
             },
           },
+          stopSignal: "stopSignal_example",
           user: {
             linux: {
               gid: 1,
@@ -23923,6 +23945,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
               reason: "reason_example",
             },
           },
+          stopSignal: "stopSignal_example",
           user: {
             linux: {
               gid: 1,
@@ -24021,6 +24044,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
               reason: "reason_example",
             },
           },
+          stopSignal: "stopSignal_example",
           user: {
             linux: {
               gid: 1,
@@ -24042,6 +24066,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
       ],
       message: "message_example",
       nominatedNodeName: "nominatedNodeName_example",
+      observedGeneration: 1,
       phase: "phase_example",
       podIP: "podIP_example",
       podIPs: [
@@ -24515,6 +24540,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                 port: "port_example",
               },
             },
+            stopSignal: "stopSignal_example",
           },
           livenessProbe: {
             exec: {
@@ -24827,6 +24853,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                 port: "port_example",
               },
             },
+            stopSignal: "stopSignal_example",
           },
           livenessProbe: {
             exec: {
@@ -25142,6 +25169,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                 port: "port_example",
               },
             },
+            stopSignal: "stopSignal_example",
           },
           livenessProbe: {
             exec: {
@@ -25865,6 +25893,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
           lastProbeTime: new Date('1970-01-01T00:00:00.00Z'),
           lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
           message: "message_example",
+          observedGeneration: 1,
           reason: "reason_example",
           status: "status_example",
           type: "type_example",
@@ -25943,6 +25972,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               reason: "reason_example",
             },
           },
+          stopSignal: "stopSignal_example",
           user: {
             linux: {
               gid: 1,
@@ -26035,6 +26065,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               reason: "reason_example",
             },
           },
+          stopSignal: "stopSignal_example",
           user: {
             linux: {
               gid: 1,
@@ -26133,6 +26164,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               reason: "reason_example",
             },
           },
+          stopSignal: "stopSignal_example",
           user: {
             linux: {
               gid: 1,
@@ -26154,6 +26186,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
       ],
       message: "message_example",
       nominatedNodeName: "nominatedNodeName_example",
+      observedGeneration: 1,
       phase: "phase_example",
       podIP: "podIP_example",
       podIPs: [
@@ -26627,6 +26660,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
                 port: "port_example",
               },
             },
+            stopSignal: "stopSignal_example",
           },
           livenessProbe: {
             exec: {
@@ -26939,6 +26973,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
                 port: "port_example",
               },
             },
+            stopSignal: "stopSignal_example",
           },
           livenessProbe: {
             exec: {
@@ -27254,6 +27289,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
                 port: "port_example",
               },
             },
+            stopSignal: "stopSignal_example",
           },
           livenessProbe: {
             exec: {
@@ -27977,6 +28013,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
           lastProbeTime: new Date('1970-01-01T00:00:00.00Z'),
           lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
           message: "message_example",
+          observedGeneration: 1,
           reason: "reason_example",
           status: "status_example",
           type: "type_example",
@@ -28055,6 +28092,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
               reason: "reason_example",
             },
           },
+          stopSignal: "stopSignal_example",
           user: {
             linux: {
               gid: 1,
@@ -28147,6 +28185,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
               reason: "reason_example",
             },
           },
+          stopSignal: "stopSignal_example",
           user: {
             linux: {
               gid: 1,
@@ -28245,6 +28284,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
               reason: "reason_example",
             },
           },
+          stopSignal: "stopSignal_example",
           user: {
             linux: {
               gid: 1,
@@ -28266,6 +28306,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
       ],
       message: "message_example",
       nominatedNodeName: "nominatedNodeName_example",
+      observedGeneration: 1,
       phase: "phase_example",
       podIP: "podIP_example",
       podIPs: [
@@ -28739,6 +28780,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
                 port: "port_example",
               },
             },
+            stopSignal: "stopSignal_example",
           },
           livenessProbe: {
             exec: {
@@ -29051,6 +29093,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
                 port: "port_example",
               },
             },
+            stopSignal: "stopSignal_example",
           },
           livenessProbe: {
             exec: {
@@ -29366,6 +29409,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
                 port: "port_example",
               },
             },
+            stopSignal: "stopSignal_example",
           },
           livenessProbe: {
             exec: {
@@ -30089,6 +30133,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
           lastProbeTime: new Date('1970-01-01T00:00:00.00Z'),
           lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
           message: "message_example",
+          observedGeneration: 1,
           reason: "reason_example",
           status: "status_example",
           type: "type_example",
@@ -30167,6 +30212,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
               reason: "reason_example",
             },
           },
+          stopSignal: "stopSignal_example",
           user: {
             linux: {
               gid: 1,
@@ -30259,6 +30305,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
               reason: "reason_example",
             },
           },
+          stopSignal: "stopSignal_example",
           user: {
             linux: {
               gid: 1,
@@ -30357,6 +30404,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
               reason: "reason_example",
             },
           },
+          stopSignal: "stopSignal_example",
           user: {
             linux: {
               gid: 1,
@@ -30378,6 +30426,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
       ],
       message: "message_example",
       nominatedNodeName: "nominatedNodeName_example",
+      observedGeneration: 1,
       phase: "phase_example",
       podIP: "podIP_example",
       podIPs: [
@@ -30894,6 +30943,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                   port: "port_example",
                 },
               },
+              stopSignal: "stopSignal_example",
             },
             livenessProbe: {
               exec: {
@@ -31206,6 +31256,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                   port: "port_example",
                 },
               },
+              stopSignal: "stopSignal_example",
             },
             livenessProbe: {
               exec: {
@@ -31521,6 +31572,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                   port: "port_example",
                 },
               },
+              stopSignal: "stopSignal_example",
             },
             livenessProbe: {
               exec: {
@@ -32743,6 +32795,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -33055,6 +33108,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -33370,6 +33424,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -34734,6 +34789,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -35046,6 +35102,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -35361,6 +35418,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -37250,6 +37308,9 @@ const request: CoreV1ApiReplaceNodeRequest = {
         machineID: "machineID_example",
         operatingSystem: "operatingSystem_example",
         osImage: "osImage_example",
+        swap: {
+          capacity: 1,
+        },
         systemUUID: "systemUUID_example",
       },
       phase: "phase_example",
@@ -37492,6 +37553,9 @@ const request: CoreV1ApiReplaceNodeStatusRequest = {
         machineID: "machineID_example",
         operatingSystem: "operatingSystem_example",
         osImage: "osImage_example",
+        swap: {
+          capacity: 1,
+        },
         systemUUID: "systemUUID_example",
       },
       phase: "phase_example",

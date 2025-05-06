@@ -111,6 +111,7 @@ const request: StorageV1ApiCreateCSIDriverRequest = {
     spec: {
       attachRequired: true,
       fsGroupPolicy: "fsGroupPolicy_example",
+      nodeAllocatableUpdatePeriodSeconds: 1,
       podInfoOnMount: true,
       requiresRepublish: true,
       seLinuxMount: true,
@@ -901,6 +902,7 @@ const request: StorageV1ApiCreateVolumeAttachmentRequest = {
     },
     status: {
       attachError: {
+        errorCode: 1,
         message: "message_example",
         time: new Date('1970-01-01T00:00:00.00Z'),
       },
@@ -909,6 +911,7 @@ const request: StorageV1ApiCreateVolumeAttachmentRequest = {
         "key": "key_example",
       },
       detachError: {
+        errorCode: 1,
         message: "message_example",
         time: new Date('1970-01-01T00:00:00.00Z'),
       },
@@ -3377,6 +3380,7 @@ const request: StorageV1ApiReplaceCSIDriverRequest = {
     spec: {
       attachRequired: true,
       fsGroupPolicy: "fsGroupPolicy_example",
+      nodeAllocatableUpdatePeriodSeconds: 1,
       podInfoOnMount: true,
       requiresRepublish: true,
       seLinuxMount: true,
@@ -4175,6 +4179,7 @@ const request: StorageV1ApiReplaceVolumeAttachmentRequest = {
     },
     status: {
       attachError: {
+        errorCode: 1,
         message: "message_example",
         time: new Date('1970-01-01T00:00:00.00Z'),
       },
@@ -4183,6 +4188,7 @@ const request: StorageV1ApiReplaceVolumeAttachmentRequest = {
         "key": "key_example",
       },
       detachError: {
+        errorCode: 1,
         message: "message_example",
         time: new Date('1970-01-01T00:00:00.00Z'),
       },
@@ -4570,6 +4576,7 @@ const request: StorageV1ApiReplaceVolumeAttachmentStatusRequest = {
     },
     status: {
       attachError: {
+        errorCode: 1,
         message: "message_example",
         time: new Date('1970-01-01T00:00:00.00Z'),
       },
@@ -4578,6 +4585,7 @@ const request: StorageV1ApiReplaceVolumeAttachmentStatusRequest = {
         "key": "key_example",
       },
       detachError: {
+        errorCode: 1,
         message: "message_example",
         time: new Date('1970-01-01T00:00:00.00Z'),
       },
