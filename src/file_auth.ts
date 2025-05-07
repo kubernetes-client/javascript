@@ -20,7 +20,7 @@ export class FileAuth implements Authenticator {
             this.refreshToken(user.authProvider.config.tokenFile);
         }
         if (this.token) {
-            opts.headers!.Authorization = `Bearer ${this.token}`;
+            opts.headers!['Authorization'] = `Bearer ${this.token}`;
         }
     }
 

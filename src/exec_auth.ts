@@ -56,7 +56,7 @@ export class ExecAuth implements Authenticator {
             if (!opts.headers) {
                 opts.headers = {} as OutgoingHttpHeaders;
             }
-            opts.headers!.Authorization = `Bearer ${token}`;
+            opts.headers!['Authorization'] = `Bearer ${token}`;
         }
     }
 
