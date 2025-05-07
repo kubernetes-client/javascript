@@ -85,7 +85,7 @@ export class OpenIDConnectAuth implements Authenticator {
     ): Promise<void> {
         const token = await this.getToken(user, overrideClient);
         if (token) {
-            opts.headers!.Authorization = `Bearer ${token}`;
+            opts.headers!['Authorization'] = `Bearer ${token}`;
         }
     }
 

@@ -29,7 +29,7 @@ export class AzureAuth implements Authenticator {
     public async applyAuthentication(user: User, opts: https.RequestOptions): Promise<void> {
         const token = this.getToken(user);
         if (token) {
-            opts.headers!.Authorization = `Bearer ${token}`;
+            opts.headers!['Authorization'] = `Bearer ${token}`;
         }
     }
 
