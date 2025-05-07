@@ -486,7 +486,7 @@ describe('ExecAuth', () => {
             },
             opts,
         );
-        strictEqual(opts.headers?.Authorization, 'Bearer foo');
+        strictEqual(opts.headers!['Authorization'], 'Bearer foo');
     });
     it('should handle null credentials correctly', async () => {
         const auth = new ExecAuth();

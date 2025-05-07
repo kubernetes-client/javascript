@@ -962,7 +962,7 @@ describe('KubeConfig', () => {
             const opts = {} as RequestOptions;
 
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
         it('should populate from auth provider', async () => {
             const config = new KubeConfig();
@@ -982,11 +982,11 @@ describe('KubeConfig', () => {
             const opts = {} as RequestOptions;
 
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
             opts.headers = {};
             opts.headers.Host = 'foo.com';
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
 
         it('should populate from auth provider without expirty', async () => {
@@ -1006,7 +1006,7 @@ describe('KubeConfig', () => {
             const opts = {} as RequestOptions;
 
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
 
         it('should populate rejectUnauthorized=false when skipTLSVerify is set', async () => {
@@ -1115,7 +1115,7 @@ describe('KubeConfig', () => {
             );
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
 
         it('should exec with expired token', async () => {
@@ -1143,7 +1143,7 @@ describe('KubeConfig', () => {
             );
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
 
         it('should exec without access-token', async () => {
@@ -1170,7 +1170,7 @@ describe('KubeConfig', () => {
             );
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
         it('should exec without access-token', async () => {
             // TODO: fix this test for Windows
@@ -1196,7 +1196,7 @@ describe('KubeConfig', () => {
             );
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
         it('should exec succesfully with spaces in cmd', async () => {
             // TODO: fix this test for Windows
@@ -1222,7 +1222,7 @@ describe('KubeConfig', () => {
             );
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
         it('should exec with exec auth and env vars', async () => {
             // TODO: fix this test for Windows
@@ -1255,7 +1255,7 @@ describe('KubeConfig', () => {
             // TODO: inject the exec command here and validate env vars?
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
         it('should exec with exec auth', async () => {
             // TODO: fix this test for Windows
@@ -1288,7 +1288,7 @@ describe('KubeConfig', () => {
             // TODO: inject the exec command here?
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
         it('should exec with exec auth (other location)', async () => {
             // TODO: fix this test for Windows
@@ -1316,7 +1316,7 @@ describe('KubeConfig', () => {
             // TODO: inject the exec command here?
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
         it('should cache exec with name', async () => {
             // TODO: fix this test for Windows
@@ -1776,7 +1776,7 @@ describe('KubeConfig', () => {
                         // Simulate token retrieval
                         const token = 'test-token';
                         opts.headers = opts.headers || {};
-                        opts.headers.Authorization = `Bearer ${token}`;
+                        opts.headers['Authorization'] = `Bearer ${token}`;
                     } else {
                         throw new Error('No custom configuration found');
                     }
@@ -1802,7 +1802,7 @@ describe('KubeConfig', () => {
             const opts: RequestOptions = {};
             await kc.applyToHTTPSOptions(opts);
 
-            strictEqual(opts.headers!.Authorization, 'Bearer test-token');
+            strictEqual(opts.headers!['Authorization'], 'Bearer test-token');
         });
     });
 
