@@ -235,6 +235,7 @@ describe('ListWatchCache', () => {
         watchHandler('ADDED', {
             metadata: {
                 name: 'name3',
+                resourceVersion: 'blah',
             } as V1ObjectMeta,
         } as V1Namespace);
 
@@ -245,40 +246,28 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Namespace);
 
-        watchHandler(
-            'DELETED',
-            {
-                metadata: {
-                    name: 'name2',
-                    resourceVersion: 'blah',
-                } as V1ObjectMeta,
-            } as V1Namespace,
-            {
-                metadata: {
-                    resourceVersion: '54321',
-                },
-            },
-        );
+        watchHandler('DELETED', {
+            metadata: {
+                name: 'name2',
+                resourceVersion: '54321',
+            } as V1ObjectMeta,
+        } as V1Namespace);
 
         const [addResult, updateResult, deleteResult] = await Promise.all([
             addPromise,
             updatePromise,
             deletePromise,
         ]);
-        deepStrictEqual(addResult.metadata, { name: 'name3' });
+        deepStrictEqual(addResult.metadata, { name: 'name3', resourceVersion: 'blah' });
         deepStrictEqual(updateResult.metadata, { name: 'name3', resourceVersion: 'baz' });
-        deepStrictEqual(deleteResult.metadata, { name: 'name2', resourceVersion: 'blah' });
+        deepStrictEqual(deleteResult.metadata, { name: 'name2', resourceVersion: '54321' });
         strictEqual(informer.latestResourceVersion(), '54321');
 
-        watchHandler(
-            'BOOKMARK',
-            {},
-            {
-                metadata: {
-                    resourceVersion: '5454',
-                },
+        watchHandler('BOOKMARK', {
+            metadata: {
+                resourceVersion: '5454',
             },
-        );
+        });
         strictEqual(informer.latestResourceVersion(), '5454');
     });
 
@@ -1205,9 +1194,10 @@ describe('ListWatchCache', () => {
             {
                 metadata: {
                     name: 'name3',
+                    resourceVersion: '23456',
                 } as V1ObjectMeta,
             } as V1Namespace,
-            { metadata: { resourceVersion: '23456' } },
+            { type: 'ADDED', metadata: { resourceVersion: '23456' } },
         );
 
         await informer.stop();
@@ -1259,9 +1249,87 @@ describe('ListWatchCache', () => {
             {
                 metadata: {
                     name: 'name3',
+                    resourceVersion: '23456',
                 } as V1ObjectMeta,
             } as V1Namespace,
-            { metadata: { resourceVersion: '23456' } },
+            { type: 'ADDED', metadata: { resourceVersion: '23456' } },
+        );
+
+        await informer.stop();
+
+        let errorEmitted = false;
+        informer.on('error', () => (errorEmitted = true));
+
+        promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve({});
+            });
+        });
+
+        informer.start();
+        await promise;
+
+        const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
+
+        const object = {
+            kind: 'Status',
+            apiVersion: 'v1',
+            metadata: {},
+            status: 'Failure',
+            message: 'too old resource version: 12345 (1234)',
+            reason: 'Expired',
+            code: 410,
+        };
+        await watchHandler('ERROR', object, { type: 'ERROR', object });
+        await doneHandler(null);
+
+        mock.verify(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).thrice();
+        strictEqual(errorEmitted, false);
+        strictEqual(listCalls, 2);
+    });
+
+    it('should list if the watch errors from the last version', async () => {
+        const fakeWatch = mock.mock(Watch);
+
+        let listCalls = 0;
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve, reject) => {
+                listCalls++;
+                resolve({
+                    metadata: {
+                        resourceVersion: '12345',
+                    } as V1ListMeta,
+                    items: [],
+                } as V1NamespaceList);
+            });
+        };
+        let promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve({});
+            });
+        });
+
+        const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
+
+        informer.start();
+        await promise;
+
+        const [, , watchHandler] = mock.capture(fakeWatch.watch).last();
+        watchHandler(
+            'ADDED',
+            {
+                metadata: {
+                    name: 'name3',
+                    resourceVersion: '23456',
+                } as V1ObjectMeta,
+            } as V1Namespace,
+            { type: 'ADDED', metadata: { resourceVersion: '23456' } },
         );
 
         await informer.stop();
@@ -1335,6 +1403,8 @@ describe('ListWatchCache', () => {
         );
 
         await informer.stop();
+        strictEqual(listCalls, 1);
+        listCalls = 0;
 
         let errorEmitted = false;
         informer.on('error', () => (errorEmitted = true));
