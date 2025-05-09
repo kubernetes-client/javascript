@@ -235,6 +235,7 @@ describe('ListWatchCache', () => {
         watchHandler('ADDED', {
             metadata: {
                 name: 'name3',
+                resourceVersion: 'blah',
             } as V1ObjectMeta,
         } as V1Namespace);
 
@@ -245,40 +246,28 @@ describe('ListWatchCache', () => {
             } as V1ObjectMeta,
         } as V1Namespace);
 
-        watchHandler(
-            'DELETED',
-            {
-                metadata: {
-                    name: 'name2',
-                    resourceVersion: 'blah',
-                } as V1ObjectMeta,
-            } as V1Namespace,
-            {
-                metadata: {
-                    resourceVersion: '54321',
-                },
-            },
-        );
+        watchHandler('DELETED', {
+            metadata: {
+                name: 'name2',
+                resourceVersion: '54321',
+            } as V1ObjectMeta,
+        } as V1Namespace);
 
         const [addResult, updateResult, deleteResult] = await Promise.all([
             addPromise,
             updatePromise,
             deletePromise,
         ]);
-        deepStrictEqual(addResult.metadata, { name: 'name3' });
+        deepStrictEqual(addResult.metadata, { name: 'name3', resourceVersion: 'blah' });
         deepStrictEqual(updateResult.metadata, { name: 'name3', resourceVersion: 'baz' });
-        deepStrictEqual(deleteResult.metadata, { name: 'name2', resourceVersion: 'blah' });
+        deepStrictEqual(deleteResult.metadata, { name: 'name2', resourceVersion: '54321' });
         strictEqual(informer.latestResourceVersion(), '54321');
 
-        watchHandler(
-            'BOOKMARK',
-            {},
-            {
-                metadata: {
-                    resourceVersion: '5454',
-                },
+        watchHandler('BOOKMARK', {
+            metadata: {
+                resourceVersion: '5454',
             },
-        );
+        });
         strictEqual(informer.latestResourceVersion(), '5454');
     });
 
@@ -1275,7 +1264,7 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new FakeRequest());
+                resolve({});
             });
         });
 
@@ -1294,39 +1283,35 @@ describe('ListWatchCache', () => {
             code: 410,
         };
         await watchHandler('ERROR', object, { type: 'ERROR', object });
+        await doneHandler(null);
 
         mock.verify(
             fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
         ).thrice();
-        expect(errorEmitted).to.equal(false);
-        expect(listCalls).to.be.equal(2);
+        strictEqual(errorEmitted, false);
+        strictEqual(listCalls, 2);
     });
 
     it('should list if the watch errors from the last version', async () => {
         const fakeWatch = mock.mock(Watch);
-        const list: V1Pod[] = [];
-        const listObj = {
-            metadata: {
-                resourceVersion: '12345',
-            } as V1ListMeta,
-            items: list,
-        } as V1NamespaceList;
 
         let listCalls = 0;
-        const listFn: ListPromise<V1Namespace> = function(): Promise<{
-            response: http.IncomingMessage;
-            body: V1NamespaceList;
-        }> {
-            return new Promise<{ response: http.IncomingMessage; body: V1NamespaceList }>((resolve) => {
+        const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
+            return new Promise<V1NamespaceList>((resolve, reject) => {
                 listCalls++;
-                resolve({ response: {} as http.IncomingMessage, body: listObj });
+                resolve({
+                    metadata: {
+                        resourceVersion: '12345',
+                    } as V1ListMeta,
+                    items: [],
+                } as V1NamespaceList);
             });
         };
         let promise = new Promise((resolve) => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new FakeRequest());
+                resolve({});
             });
         });
 
@@ -1418,6 +1403,8 @@ describe('ListWatchCache', () => {
         );
 
         await informer.stop();
+        strictEqual(listCalls, 1);
+        listCalls = 0;
 
         let errorEmitted = false;
         informer.on('error', () => (errorEmitted = true));

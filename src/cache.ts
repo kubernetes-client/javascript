@@ -168,7 +168,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
             }
             this.objects = deleteItems(this.objects, list.items, this.callbackCache[DELETE].slice());
             this.addOrUpdateItems(list.items);
-            this.resourceVersion = list.metadata!.resourceVersion || '';
+            this.resourceVersion = list.metadata ? list.metadata!.resourceVersion || '' : '';
         }
         const queryParams = {
             resourceVersion: this.resourceVersion,
@@ -192,6 +192,9 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     }
 
     private addOrUpdateItems(items: T[]): void {
+        if (items === undefined || items === null) {
+            return;
+        }
         items.forEach((obj: T) => {
             addOrUpdateObject(
                 this.objects,
@@ -212,7 +215,8 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
                 if ((obj as { code?: number }).code === 410) {
                     this.resourceVersion = '';
                 }
-                break;
+                // We don't restart here, because it should be handled by the watch exiting if necessary
+                return;
             case 'ADDED':
             case 'MODIFIED':
                 addOrUpdateObject(
@@ -228,17 +232,17 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
             case 'BOOKMARK':
                 // nothing to do, here for documentation, mostly.
                 break;
-            case 'ERROR':
-                await this.doneHandler(obj);
-                return;
         }
-        this.resourceVersion = obj.metadata!.resourceVersion || '';
+        this.resourceVersion = obj.metadata ? obj.metadata!.resourceVersion || '' : '';
     }
 }
 
 // exported for testing
 export function cacheMapFromList<T extends KubernetesObject>(newObjects: T[]): CacheMap<T> {
     const objects: CacheMap<T> = new Map();
+    if (newObjects === undefined || newObjects === null) {
+        return objects;
+    }
     // build up the new list
     for (const obj of newObjects) {
         let namespaceObjects = objects.get(obj.metadata!.namespace || '');
