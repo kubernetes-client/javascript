@@ -35,6 +35,7 @@ export class Cp {
         command.push(srcPath);
         const writerStream = fs.createWriteStream(tmpFileName);
         const errStream = new WritableStreamBuffer();
+        let resolved = false;
         return new Promise<void>((resolve, reject) => {
             this.execInstance
                 .exec(
@@ -60,12 +61,23 @@ export class Cp {
                                 file: tmpFileName,
                                 cwd: tgtPath,
                             });
-                            resolve();
+                            if (!resolved) {
+                                resolved = true;
+                                resolve();
+                            }
                         } catch (e) {
                             reject(e);
                         }
                     },
                 )
+                .then((conn) => {
+                    conn.on('close', () => {
+                        if (!resolved) {
+                            resolved = true;
+                            resolve();
+                        }
+                    });
+                })
                 .catch(reject);
         });
     }
@@ -91,6 +103,7 @@ export class Cp {
         await tar.c({ file: tmpFileName, cwd }, [srcPath]);
         const readStream = fs.createReadStream(tmpFileName);
         const errStream = new WritableStreamBuffer();
+        let resolved = false;
         return new Promise<void>((resolve, reject) => {
             this.execInstance
                 .exec(
@@ -111,10 +124,21 @@ export class Cp {
                                 ),
                             );
                         } else {
-                            resolve();
+                            if (!resolved) {
+                                resolved = true;
+                                resolve();
+                            }
                         }
                     },
                 )
+                .then((conn) => {
+                    conn.on('close', () => {
+                        if (!resolved) {
+                            resolved = true;
+                            resolve();
+                        }
+                    });
+                })
                 .catch(reject);
         });
     }
