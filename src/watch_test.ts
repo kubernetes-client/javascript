@@ -5,7 +5,7 @@ import { PassThrough } from 'node:stream';
 import { KubeConfig } from './config.js';
 import { Cluster, Context, User } from './config_types.js';
 import { Watch } from './watch.js';
-import { IncomingMessage, createServer } from 'node:http';
+import { ServerResponse, createServer } from 'node:http';
 import { AddressInfo } from 'node:net';
 
 const server = 'https://foo.company.com';
@@ -72,11 +72,7 @@ describe('Watch', () => {
         s.done();
     });
 
-    it('should not call watch done callback more than once', async () => {
-        const kc = new KubeConfig();
-        Object.assign(kc, fakeConfig);
-        const watch = new Watch(kc);
-
+    it('should not call watch done callback more than once', async (t) => {
         const obj1 = {
             type: 'ADDED',
             object: {
@@ -93,26 +89,13 @@ describe('Watch', () => {
 
         const path = '/some/path/to/object';
 
-        const stream = new PassThrough();
-
-        const [scope] = systemUnderTest();
-
-        let response: IncomingMessage | undefined;
-
-        const s = scope
-            .get(path)
-            .query({
-                watch: 'true',
-                a: 'b',
-            })
-            .reply(200, function (): PassThrough {
-                this.req.on('response', (r) => {
-                    response = r;
-                });
-                stream.push(JSON.stringify(obj1) + '\n');
-                stream.push(JSON.stringify(obj2) + '\n');
-                return stream;
-            });
+        let response: ServerResponse | undefined;
+        const kc = await setupMockSystem(t, (req, res) => {
+            response = res;
+            res.write(JSON.stringify(obj1) + '\n');
+            res.write(JSON.stringify(obj2) + '\n');
+        });
+        const watch = new Watch(kc);
 
         const receivedTypes: string[] = [];
         const receivedObjects: string[] = [];
@@ -154,57 +137,27 @@ describe('Watch', () => {
         deepStrictEqual(receivedObjects, [obj1.object, obj2.object]);
 
         strictEqual(doneCalled, 0);
-
-        const errIn = new Error('err');
-        (response as IncomingMessage).destroy(errIn);
-
+        response!.destroy();
         await donePromise;
-
         strictEqual(doneCalled, 1);
-        deepStrictEqual(doneErr, errIn);
-
-        s.done();
-
-        stream.destroy();
+        strictEqual(doneErr.code, 'ERR_STREAM_PREMATURE_CLOSE');
     });
 
-    it('should not call the done callback more than once on unexpected connection loss', async () => {
+    it('should not call the done callback more than once on unexpected connection loss', async (t) => {
         // Create a server that accepts the connection and flushes headers, then
         // immediately destroys the connection (causing a "Premature close"
         // error).
         //
         // This reproduces a bug where AbortController.abort() inside
         // doneCallOnce could cause done() to be invoked twice.
-
-        const mockServer = createServer((req, res) => {
+        const kc = await setupMockSystem(t, (req, res) => {
             res.writeHead(200, {
                 'Content-Type': 'application/json',
                 'Transfer-Encoding': 'chunked',
             });
-
             res.flushHeaders();
             res.destroy(); // Prematurely close the connection
         });
-
-        const mockServerPort = await new Promise<number>((resolve) => {
-            mockServer.listen(0, () => {
-                resolve((mockServer.address() as AddressInfo).port);
-            });
-        });
-
-        const kc = new KubeConfig();
-
-        kc.loadFromClusterAndUser(
-            {
-                name: 'cluster',
-                server: `http://localhost:${mockServerPort}`,
-                skipTLSVerify: true,
-            },
-            {
-                name: 'user',
-            },
-        );
-
         const watch = new Watch(kc);
 
         let doneCalled = 0;
@@ -225,15 +178,15 @@ describe('Watch', () => {
         );
 
         await donePromise;
-
-        mockServer.close();
-
         strictEqual(doneCalled, 1);
     });
 
-    it('should call setKeepAlive on the socket to extend the default of 5 mins', async () => {
-        const kc = new KubeConfig();
-
+    it('should call setKeepAlive on the socket to extend the default of 5 mins', async (t) => {
+        let response: ServerResponse | undefined;
+        const kc = await setupMockSystem(t, (req, res) => {
+            response = res;
+            res.write(JSON.stringify(obj1) + '\n');
+        });
         const mockSocket = {
             setKeepAlive: function (enable: boolean, timeout: number) {
                 this.keepAliveEnabled = enable;
@@ -242,16 +195,16 @@ describe('Watch', () => {
             keepAliveEnabled: false,
             keepAliveTimeout: 0,
         };
-        Object.assign(kc, {
-            ...fakeConfig,
-            applyToFetchOptions: async () => ({
+
+        (kc as any).applyToFetchOptions = async () => {
+            return {
                 agent: {
                     sockets: {
                         'mock-url': [mockSocket],
                     },
                 },
-            }),
-        });
+            };
+        };
         const watch = new Watch(kc);
 
         const obj1 = {
@@ -262,27 +215,6 @@ describe('Watch', () => {
         };
 
         const path = '/some/path/to/object';
-
-        const stream = new PassThrough();
-
-        const [scope] = systemUnderTest();
-
-        let response: IncomingMessage | undefined;
-
-        const s = scope
-            .get(path)
-            .query({
-                watch: 'true',
-                a: 'b',
-            })
-            .reply(200, function (): PassThrough {
-                this.req.on('response', (r) => {
-                    response = r;
-                });
-                stream.push(JSON.stringify(obj1) + '\n');
-                return stream;
-            });
-
         const receivedTypes: string[] = [];
         const receivedObjects: string[] = [];
         let doneCalled = 0;
@@ -326,46 +258,28 @@ describe('Watch', () => {
         strictEqual(mockSocket.keepAliveEnabled, true);
         strictEqual(mockSocket.keepAliveTimeout, 30000);
 
-        const errIn = new Error('err');
-        (response as IncomingMessage).destroy(errIn);
+        response!.destroy();
 
         await donePromise;
 
         strictEqual(doneCalled, 1);
-        deepStrictEqual(doneErr, errIn);
-
-        s.done();
-
-        stream.destroy();
+        strictEqual(doneErr.code, 'ERR_STREAM_PREMATURE_CLOSE');
     });
 
-    it('should handle server errors correctly', async () => {
-        const kc = new KubeConfig();
-        Object.assign(kc, fakeConfig);
-        const watch = new Watch(kc);
-
+    it('should handle server errors correctly', async (t) => {
         const obj1 = {
             type: 'ADDED',
             object: {
                 foo: 'bar',
             },
         };
-
-        const stream = new PassThrough();
-
-        const [scope] = systemUnderTest();
-
         const path = '/some/path/to/object?watch=true';
-
-        let response: IncomingMessage | undefined;
-
-        const s = scope.get(path).reply(200, function (): PassThrough {
-            this.req.on('response', (r) => {
-                response = r;
-            });
-            stream.push(JSON.stringify(obj1) + '\n');
-            return stream;
+        let response: ServerResponse | undefined;
+        const kc = await setupMockSystem(t, (req, res) => {
+            response = res;
+            res.write(JSON.stringify(obj1) + '\n');
         });
+        const watch = new Watch(kc);
 
         const receivedTypes: string[] = [];
         const receivedObjects: string[] = [];
@@ -405,16 +319,12 @@ describe('Watch', () => {
         strictEqual(doneErr.length, 0);
 
         const errIn = new Error('err');
-        (response as IncomingMessage).destroy(errIn);
+        response!.destroy(errIn);
 
         await donePromise;
 
         strictEqual(doneErr.length, 1);
-        deepStrictEqual(doneErr[0], errIn);
-
-        s.done();
-
-        stream.destroy();
+        strictEqual(doneErr[0].code, 'ERR_STREAM_PREMATURE_CLOSE');
     });
 
     it('should handle server side close correctly', async () => {
@@ -555,3 +465,31 @@ describe('Watch', () => {
         await rejects(promise);
     });
 });
+
+async function setupMockSystem(ctx, handler) {
+    const server = createServer(handler);
+    ctx.after(() => {
+        try {
+            server.close();
+        } catch {
+            // Ignore errors during server close.
+        }
+    });
+    const port = await new Promise<number>((resolve) => {
+        server.listen(0, () => {
+            resolve((server.address() as AddressInfo).port);
+        });
+    });
+    const kc = new KubeConfig();
+    kc.loadFromClusterAndUser(
+        {
+            name: 'cluster',
+            server: `http://localhost:${port}`,
+            skipTLSVerify: true,
+        },
+        {
+            name: 'user',
+        },
+    );
+    return kc;
+}

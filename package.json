@@ -80,7 +80,7 @@
         "eslint-plugin-erasable-syntax-only": "^0.3.0",
         "husky": "^9.0.6",
         "mock-fs": "^5.2.0",
-        "nock": "^13.2.9",
+        "nock": "^14.0.5",
         "prettier": "^3.0.0",
         "pretty-quick": "^4.0.0",
         "ts-mockito": "^2.3.1",
