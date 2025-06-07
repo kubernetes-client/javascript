@@ -143,6 +143,8 @@ Key:
   Credentials are cached based on the kubeconfig username and these can collide across configs.
   Here is the related [issue](https://github.com/kubernetes-client/javascript/issues/592).
 
+- In scenarios where multiple headers with the same key are required in a request, such as `Impersonate-Group`, avoid using `fetch`. Fetch will merge the values into a single header key, with the values as a single string vs a list of strings, `Impersonate-Group: "group1,group2"`. The workaround is to use a low-level library such as `https` to make the request. Refer to issue [#2474](https://github.com/kubernetes-client/javascript/issues/2474) for more details.
+
 # Development
 
 All dependencies of this project are expressed in its
