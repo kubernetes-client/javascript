@@ -73,7 +73,7 @@
         "@types/js-yaml": "^4.0.9",
         "@types/mocha": "^10.0.1",
         "@types/mock-fs": "^4.13.1",
-        "@types/node": "^22.7.8",
+        "@types/node": "^24.0.0",
         "@types/request": "^2.48.12",
         "@types/stream-buffers": "^3.0.3",
         "@types/tar": "^6.1.3",
