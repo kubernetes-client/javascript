@@ -8,9 +8,9 @@ kc.loadFromDefault();
 const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 
 const main = async () => {
-    const res = await k8sApi.listNamespacedPod(namespace);
+    const res = await k8sApi.listNamespacedPod({namespace});
 
-    console.log(`${namespace} namespace pods: `, res.body);
+    console.log(`${namespace} namespace pods: `, res.items);
 };
 
 main();
