@@ -58,7 +58,7 @@ function fileExists(filepath: string): boolean {
 export interface ApiType {}
 
 export class KubeConfig implements SecurityAuthentication {
-    private static authenticators: Authenticator[] = [
+    private authenticators: Authenticator[] = [
         new AzureAuth(),
         new GoogleCloudPlatformAuth(),
         new ExecAuth(),
@@ -596,7 +596,7 @@ export class KubeConfig implements SecurityAuthentication {
         if (!user) {
             return;
         }
-        let authenticator = KubeConfig.authenticators.find((elt: Authenticator) => {
+        let authenticator = this.authenticators.find((elt: Authenticator) => {
             return elt.isAuthProvider(user);
         });
 
