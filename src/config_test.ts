@@ -1345,7 +1345,7 @@ describe('KubeConfig', () => {
             // TODO: inject the exec command here?
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            const execAuthenticator = (KubeConfig as any).authenticators.find(
+            const execAuthenticator = (config as any).authenticators.find(
                 (authenticator) => authenticator instanceof ExecAuth,
             );
             deepStrictEqual(execAuthenticator.tokenCache.exec, JSON.parse(responseStr));
