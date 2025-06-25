@@ -9,6 +9,7 @@ import {
     quantityToScalar,
     totalCPU,
     totalMemory,
+    getSerializationType,
 } from './util.js';
 
 describe('Utils', () => {
@@ -141,5 +142,11 @@ describe('Utils', () => {
         response.headers.set('baz', 'k8s');
 
         deepStrictEqual(normalizeResponseHeaders(response), { foo: 'bar', baz: 'k8s' });
+    });
+
+    it('should get the serialization type correctly', () => {
+        strictEqual(getSerializationType('v1', 'Pod'), 'V1Pod');
+        strictEqual(getSerializationType('apps/v1', 'Deployment'), 'V1Deployment');
+        strictEqual(getSerializationType(undefined, undefined), 'KubernetesObject');
     });
 });

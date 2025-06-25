@@ -164,3 +164,32 @@ export function normalizeResponseHeaders(response: Response): { [key: string]: s
 
     return normalizedHeaders;
 }
+
+export function getSerializationType(apiVersion?: string, kind?: string): string {
+    if (apiVersion === undefined || kind === undefined) {
+        return 'KubernetesObject';
+    }
+    // Types are defined in src/gen/api/models with the format "<Version><Kind>".
+    // Version and Kind are in PascalCase.
+    const gv = groupVersion(apiVersion);
+    const version = gv.version.charAt(0).toUpperCase() + gv.version.slice(1);
+    return `${version}${kind}`;
+}
+
+interface GroupVersion {
+    group: string;
+    version: string;
+}
+
+function groupVersion(apiVersion: string): GroupVersion {
+    const v = apiVersion.split('/');
+    return v.length === 1
+        ? {
+              group: 'core',
+              version: apiVersion,
+          }
+        : {
+              group: v[0],
+              version: v[1],
+          };
+}
