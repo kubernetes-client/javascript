@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import { deepEqual, deepStrictEqual, strictEqual } from 'node:assert';
-import { V1CustomResourceDefinition, V1Namespace } from './api.js';
+import { V1CustomResourceDefinition, V1Namespace, V1Pod } from './api.js';
 import { dumpYaml, loadAllYaml, loadYaml } from './yaml.js';
 
 describe('yaml', () => {
@@ -84,22 +84,27 @@ spec:
         const objects = loadAllYaml(yaml);
 
         strictEqual(objects.length, 3);
-        strictEqual(objects[0].kind, 'Namespace');
-        strictEqual(objects[1].kind, 'Pod');
-        strictEqual(objects[0].metadata.name, 'some-namespace');
-        strictEqual(objects[1].metadata.name, 'some-pod');
-        strictEqual(objects[1].metadata.namespace, 'some-ns');
-        strictEqual(objects[2].apiVersion, 'apiextensions.k8s.io/v1');
-        strictEqual(objects[2].kind, 'CustomResourceDefinition');
-        strictEqual(objects[2].metadata!.name, 'my-crd.example.com');
+        // Assert specific types for each object
+        const ns = objects[0] as V1Namespace;
+        const pod = objects[1] as V1Pod;
+        const crd = objects[2] as V1CustomResourceDefinition;
+
+        strictEqual(ns.kind, 'Namespace');
+        strictEqual(pod.kind, 'Pod');
+        strictEqual(ns.metadata!.name, 'some-namespace');
+        strictEqual(pod.metadata!.name, 'some-pod');
+        strictEqual(pod.metadata!.namespace, 'some-ns');
+
+        strictEqual(crd.apiVersion, 'apiextensions.k8s.io/v1');
+        strictEqual(crd.kind, 'CustomResourceDefinition');
+        strictEqual(crd.metadata!.name, 'my-crd.example.com');
         strictEqual(
-            objects[2].spec.versions[0]!.schema!.openAPIV3Schema!.properties!['foobar']
-                .x_kubernetes_int_or_string,
+            crd.spec.versions[0]!.schema!.openAPIV3Schema!.properties!['foobar'].x_kubernetes_int_or_string,
             true,
         );
         strictEqual(
-            objects[2].spec.versions[0]!.schema!.openAPIV3Schema!.properties!['foobar'][
-                'x-kubernetes-int-or-string'
+            crd.spec.versions[0]!.schema!.openAPIV3Schema!.properties!['foobar'][
+                'x-kubernetes-int-or-string' // This access is still on the parsed object before type mapping, hence `undefined` is correct
             ],
             undefined,
         );
