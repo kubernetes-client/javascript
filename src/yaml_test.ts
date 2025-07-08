@@ -154,4 +154,39 @@ spec:
         // not using strict equality as types are not matching
         deepEqual(actual, expected);
     });
+
+    it('should parse octal-like strings as numbers (YAML 1.1 style)', () => {
+        const yaml = `
+    defaultMode: 0644
+    fileMode: 0755
+    `;
+        const result = loadYaml<{
+            defaultMode: number;
+            fileMode: number;
+        }>(yaml);
+
+        // 0644 (octal) = 420 decimal, 0755 = 493
+        strictEqual(result.defaultMode, 420);
+        strictEqual(result.fileMode, 493);
+    });
+
+    it('should parse boolean-like strings as booleans (YAML 1.1 style)', () => {
+        const yaml = `
+    enableFeature: yes
+    debugMode: ON
+    maintenance: no
+    safeMode: off
+    `;
+        const result = loadYaml<{
+            enableFeature: boolean;
+            debugMode: boolean;
+            maintenance: boolean;
+            safeMode: boolean;
+        }>(yaml);
+
+        strictEqual(result.enableFeature, true);
+        strictEqual(result.debugMode, true);
+        strictEqual(result.maintenance, false);
+        strictEqual(result.safeMode, false);
+    });
 });
