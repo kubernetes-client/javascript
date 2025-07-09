@@ -9,7 +9,7 @@ import { ObjectSerializer } from './serializer.js';
  * @param opts - Optional YAML parse options.
  * @returns The deserialized Kubernetes object.
  */
-export function loadYaml<T>(data: string, opts?: yaml.ParseOptions): T {
+export function loadYaml<T>(data: string, opts?: yaml.ParseOptions & yaml.DocumentOptions): T {
     const yml = yaml.parse(data, { version: '1.1', ...opts }) as any as KubernetesObject;
     if (!yml) {
         throw new Error('Failed to load yaml');
@@ -24,7 +24,10 @@ export function loadYaml<T>(data: string, opts?: yaml.ParseOptions): T {
  * @param opts - Optional YAML parse options.
  * @returns An array of deserialized Kubernetes objects.
  */
-export function loadAllYaml(data: string, opts?: yaml.ParseOptions): KubernetesObject[] {
+export function loadAllYaml(
+    data: string,
+    opts?: yaml.ParseOptions & yaml.DocumentOptions & yaml.SchemaOptions,
+): any[] {
     const ymls = yaml.parseAllDocuments(data, { version: '1.1', ...opts });
     return ymls.map((doc) => {
         const obj = doc.toJSON() as KubernetesObject;
