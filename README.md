@@ -63,7 +63,7 @@ k8sApi.createNamespace({ body: namespace }).then(
 );
 ```
 
-## Create a cluster configuration programatically
+## Create a cluster configuration programmatically
 
 ```javascript
 const k8s = require('@kubernetes/client-node');
@@ -112,7 +112,7 @@ release, we will increment the minor version whenever we update the minor Kubern
 
 We switched from `request` to `fetch` as the HTTP(S) backend for the `1.0.0` release.
 
-Generally speaking newer clients will work with older Kubernetes, but compatability isn't 100% guaranteed.
+Generally speaking newer clients will work with older Kubernetes, but compatibility isn't 100% guaranteed.
 
 | client version | older versions | 1.28 | 1.29 | 1.30 | 1.31 | 1.32 | 1.33|
 | -------------- | -------------- | ---- | ---- | ---- | ---- | ---- |----|
