@@ -28,14 +28,18 @@ import {
     AuthMethodsConfiguration,
     Configuration,
     createConfiguration,
+    Observable,
     SecurityAuthentication,
     ServerConfiguration,
 } from './gen/index.js';
+import { ResponseContext } from './gen/http/http.js';
 import { OpenIDConnectAuth } from './oidc_auth.js';
 import WebSocket from 'isomorphic-ws';
 import child_process from 'node:child_process';
 import { SocksProxyAgent } from 'socks-proxy-agent';
 import { HttpProxyAgent, HttpProxyAgentOptions, HttpsProxyAgent, HttpsProxyAgentOptions } from 'hpagent';
+import fetch from 'node-fetch';
+import { from } from './gen/rxjsStub.js';
 
 const SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
 const SERVICEACCOUNT_CA_PATH: string = SERVICEACCOUNT_ROOT + '/ca.crt';
@@ -473,7 +477,12 @@ export class KubeConfig implements SecurityAuthentication {
         );
     }
 
-    public makeApiClient<T extends ApiType>(apiClientType: ApiConstructor<T>): T {
+    public makeApiClient<T extends ApiType>(
+        apiClientType: ApiConstructor<T>,
+        options?: {
+            timeoutMs?: number;
+        },
+    ): T {
         const cluster = this.getCurrentCluster();
         if (!cluster) {
             throw new Error('No active cluster!');
@@ -485,6 +494,35 @@ export class KubeConfig implements SecurityAuthentication {
         const config: Configuration = createConfiguration({
             baseServer: baseServerConfig,
             authMethods: authConfig,
+            // This HTTP API implementation is a copy of ./gen/http/isomorphic-fetch.ts,
+            // extended with the timeout pass-through code.
+            httpApi: {
+                send(request: RequestContext): Observable<ResponseContext> {
+                    const method = request.getHttpMethod().toString();
+                    const body = request.getBody();
+
+                    const resultPromise = fetch(request.getUrl(), {
+                        method: method,
+                        body: body as any,
+                        headers: request.getHeaders(),
+                        agent: request.getAgent(),
+                        timeout: options?.timeoutMs,
+                    }).then((resp: any) => {
+                        const headers: { [name: string]: string } = {};
+                        resp.headers.forEach((value: string, name: string) => {
+                            headers[name] = value;
+                        });
+
+                        const body = {
+                            text: () => resp.text(),
+                            binary: () => resp.buffer(),
+                        };
+                        return new ResponseContext(resp.status, headers, body);
+                    });
+
+                    return from<Promise<ResponseContext>>(resultPromise);
+                },
+            },
         });
 
         const apiClient = new apiClientType(config);
