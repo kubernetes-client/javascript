@@ -8,7 +8,7 @@ if [[ "${branch}" != "main" ]]; then
 fi
 
 if ! git diff --quiet; then
-  echo "This script must only run on a clean master branch."
+  echo "This script must only run on a clean main branch."
   echo
   git status
   exit 1
