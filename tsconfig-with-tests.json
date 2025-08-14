@@ -1,4 +1,9 @@
 {
     "extends": "./tsconfig.json",
-    "exclude": []
+    "exclude": [],
+    "compilerOptions": {
+        "paths": {
+            "node-fetch/externals": ["./node_modules/@types/node-fetch/externals.d.ts"]
+        }
+    }
 }
