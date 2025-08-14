@@ -16,7 +16,10 @@
         "importHelpers": true,
         "skipLibCheck": true,
         "esModuleInterop": true,
-        "useDefineForClassFields": false
+        "useDefineForClassFields": false,
+        "paths": {
+            "node-fetch/externals": ["./node_modules/@types/node-fetch/externals.d.ts"]
+        }
         // enable this in the future
         // "declarationMap": true
     },
