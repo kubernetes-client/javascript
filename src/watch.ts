@@ -39,9 +39,10 @@ export class Watch {
         const requestInit = await this.config.applyToFetchOptions({});
 
         const controller = new AbortController();
+        const timeoutSignal = AbortSignal.timeout(30000);
+        requestInit.signal = AbortSignal.any([controller.signal, timeoutSignal]);
         requestInit.signal = controller.signal as AbortSignal;
         requestInit.method = 'GET';
-        requestInit.timeout = 30000;
 
         let doneCalled: boolean = false;
         const doneCallOnce = (err: any) => {
