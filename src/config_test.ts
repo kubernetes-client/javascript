@@ -495,7 +495,29 @@ describe('KubeConfig', () => {
         });
 
         it('should apply NODE_TLS_REJECT_UNAUTHORIZED from environment to agent', async () => {
-            const { server, host, port } = await createTestHttpsServer();
+            const { server, host, port } = await createTestHttpsServer((req, res) => {
+                res.setHeader('Content-Type', 'application/json');
+                if (req.url?.includes('/api/v1/namespaces')) {
+                    res.writeHead(200);
+                    res.end(
+                        JSON.stringify({
+                            apiVersion: 'v1',
+                            kind: 'NamespaceList',
+                            items: [
+                                {
+                                    apiVersion: 'v1',
+                                    kind: 'Namespace',
+                                    metadata: { name: 'default' },
+                                },
+                            ],
+                        }),
+                    );
+                } else {
+                    res.writeHead(200);
+                    res.end('ok');
+                }
+            });
+
             const originalValue = process.env.NODE_TLS_REJECT_UNAUTHORIZED;
             process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
             after(() => {
@@ -504,15 +526,28 @@ describe('KubeConfig', () => {
             });
 
             const kc = new KubeConfig();
-            const rc = new RequestContext(`https://${host}:${port}`, HttpMethod.GET);
-            await kc.applySecurityAuthentication(rc);
-            const res = await fetch(`https://${host}:${port}`, { agent: rc.getAgent() });
-            strictEqual(res.status, 200);
-            strictEqual(await res.text(), 'OK');
+            kc.loadFromClusterAndUser(
+                {
+                    name: 'test-cluster',
+                    server: `https://${host}:${port}`,
+                    // ignore skipTLSVerify specified from environment variables
+                } as Cluster,
+                {
+                    name: 'test-user',
+                    token: 'test-token',
+                },
+            );
+            const coreV1Api = kc.makeApiClient(CoreV1Api);
+            const namespaceList = await coreV1Api.listNamespace();
+
+            strictEqual(namespaceList.kind, 'NamespaceList');
+            strictEqual(namespaceList.items.length, 1);
+            strictEqual(namespaceList.items[0].metadata?.name, 'default');
 
             const res2 = await fetch(`https://${host}:${port}`, await kc.applyToFetchOptions({}));
             strictEqual(res2.status, 200);
-            strictEqual(await res2.text(), 'OK');
+            strictEqual(await res2.text(), 'ok');
+
             delete process.env.NODE_TLS_REJECT_UNAUTHORIZED;
         });
     });
@@ -1853,7 +1888,9 @@ describe('KubeConfig', () => {
 });
 
 // create a self-signed HTTPS test server
-async function createTestHttpsServer(): Promise<{
+async function createTestHttpsServer(
+    requestHandler?: (req: http.IncomingMessage, res: http.ServerResponse) => void,
+): Promise<{
     server: https.Server;
     host: string;
     port: number;
@@ -1862,10 +1899,12 @@ async function createTestHttpsServer(): Promise<{
     const host = 'localhost';
     const { private: key, cert } = selfsigned.generate([{ name: 'commonName', value: host }]);
 
-    const server = https.createServer({ key, cert }, (_req, res) => {
+    const defaultHandler = (req: http.IncomingMessage, res: http.ServerResponse) => {
         res.writeHead(200);
-        res.end('OK');
-    });
+        res.end('ok');
+    };
+
+    const server = https.createServer({ key, cert }, requestHandler ?? defaultHandler);
 
     const port = await new Promise<number>((resolve) => {
         server.listen(0, () => {
