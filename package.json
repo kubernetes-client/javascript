@@ -19,7 +19,7 @@
         "lint": "eslint \".\" && prettier --check \"./src/**/*.ts\"",
         "clean": "rm -Rf node_modules/ dist/",
         "build": "tsc",
-        "build-with-tests": "tsc --project tsconfig-with-tests.json && cp 'src/test/echo space.js' dist/test",
+        "build-with-tests": "tsc && cp 'src/test/echo space.js' dist/test",
         "generate": "./generate-client.sh",
         "watch": "tsc --watch",
         "test": "c8 node --test --test-reporter=spec --import tsx src/*_test.ts",
