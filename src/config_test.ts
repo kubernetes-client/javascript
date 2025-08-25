@@ -18,7 +18,7 @@ import { fileURLToPath } from 'node:url';
 import mockfs from 'mock-fs';
 
 import { Authenticator } from './auth.js';
-import { Headers } from 'node-fetch';
+import fetch, { Headers } from 'node-fetch';
 import { HttpMethod } from './index.js';
 import { assertRequestAgentsEqual, assertRequestOptionsEqual } from './test/match-buffer.js';
 import { CoreV1Api, RequestContext } from './api.js';
@@ -27,6 +27,8 @@ import { ActionOnInvalid, Cluster, newClusters, newContexts, newUsers, User } fr
 import { ExecAuth } from './exec_auth.js';
 import { HttpProxyAgent, HttpsProxyAgent } from 'hpagent';
 import { SocksProxyAgent } from 'socks-proxy-agent';
+import { AddressInfo } from 'node:net';
+import selfsigned from 'selfsigned';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
 const kc2FileName = 'testdata/kubeconfig-2.yaml';
@@ -490,6 +492,63 @@ describe('KubeConfig', () => {
             await kc.applySecurityAuthentication(rc);
 
             strictEqual(rc.getAgent() instanceof https.Agent, true);
+        });
+
+        it('should apply NODE_TLS_REJECT_UNAUTHORIZED from environment to agent', async () => {
+            const { server, host, port } = await createTestHttpsServer((req, res) => {
+                res.setHeader('Content-Type', 'application/json');
+                if (req.url?.includes('/api/v1/namespaces')) {
+                    res.writeHead(200);
+                    res.end(
+                        JSON.stringify({
+                            apiVersion: 'v1',
+                            kind: 'NamespaceList',
+                            items: [
+                                {
+                                    apiVersion: 'v1',
+                                    kind: 'Namespace',
+                                    metadata: { name: 'default' },
+                                },
+                            ],
+                        }),
+                    );
+                } else {
+                    res.writeHead(200);
+                    res.end('ok');
+                }
+            });
+
+            const originalValue = process.env.NODE_TLS_REJECT_UNAUTHORIZED;
+            process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+            after(() => {
+                server.close();
+                process.env.NODE_TLS_REJECT_UNAUTHORIZED = originalValue;
+            });
+
+            const kc = new KubeConfig();
+            kc.loadFromClusterAndUser(
+                {
+                    name: 'test-cluster',
+                    server: `https://${host}:${port}`,
+                    // ignore skipTLSVerify specified from environment variables
+                } as Cluster,
+                {
+                    name: 'test-user',
+                    token: 'test-token',
+                },
+            );
+            const coreV1Api = kc.makeApiClient(CoreV1Api);
+            const namespaceList = await coreV1Api.listNamespace();
+
+            strictEqual(namespaceList.kind, 'NamespaceList');
+            strictEqual(namespaceList.items.length, 1);
+            strictEqual(namespaceList.items[0].metadata?.name, 'default');
+
+            const res2 = await fetch(`https://${host}:${port}`, await kc.applyToFetchOptions({}));
+            strictEqual(res2.status, 200);
+            strictEqual(await res2.text(), 'ok');
+
+            delete process.env.NODE_TLS_REJECT_UNAUTHORIZED;
         });
     });
 
@@ -1827,3 +1886,36 @@ describe('KubeConfig', () => {
         });
     });
 });
+
+// create a self-signed HTTPS test server
+async function createTestHttpsServer(
+    requestHandler?: (req: http.IncomingMessage, res: http.ServerResponse) => void,
+): Promise<{
+    server: https.Server;
+    host: string;
+    port: number;
+    ca: string;
+}> {
+    const host = 'localhost';
+    const { private: key, cert } = selfsigned.generate([{ name: 'commonName', value: host }]);
+
+    const defaultHandler = (req: http.IncomingMessage, res: http.ServerResponse) => {
+        res.writeHead(200);
+        res.end('ok');
+    };
+
+    const server = https.createServer({ key, cert }, requestHandler ?? defaultHandler);
+
+    const port = await new Promise<number>((resolve) => {
+        server.listen(0, () => {
+            resolve((server.address() as AddressInfo).port);
+        });
+    });
+
+    return {
+        server,
+        host,
+        port,
+        ca: cert, // ca is the same as cert here
+    };
+}

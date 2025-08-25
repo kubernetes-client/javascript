@@ -83,6 +83,7 @@
         "nock": "^14.0.5",
         "prettier": "^3.0.0",
         "pretty-quick": "^4.0.0",
+        "selfsigned": "^3.0.1",
         "ts-mockito": "^2.3.1",
         "tsx": "^4.19.1",
         "typedoc": "^0.28.0",

@@ -202,7 +202,9 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions.key = opts.key;
         agentOptions.pfx = opts.pfx;
         agentOptions.passphrase = opts.passphrase;
-        agentOptions.rejectUnauthorized = opts.rejectUnauthorized;
+        if (opts.rejectUnauthorized !== undefined) {
+            agentOptions.rejectUnauthorized = opts.rejectUnauthorized;
+        }
         // The ws docs say that it accepts anything that https.RequestOptions accepts,
         // but Typescript doesn't understand that idea (yet) probably could be fixed in
         // the typings, but for now just cast to any
@@ -259,7 +261,9 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions.key = httpsOptions.key;
         agentOptions.pfx = httpsOptions.pfx;
         agentOptions.passphrase = httpsOptions.passphrase;
-        agentOptions.rejectUnauthorized = httpsOptions.rejectUnauthorized;
+        if (httpsOptions.rejectUnauthorized !== undefined) {
+            agentOptions.rejectUnauthorized = httpsOptions.rejectUnauthorized;
+        }
 
         context.setAgent(this.createAgent(cluster, agentOptions));
     }
