@@ -202,6 +202,7 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions.key = opts.key;
         agentOptions.pfx = opts.pfx;
         agentOptions.passphrase = opts.passphrase;
+        // Only set rejectUnauthorized if explicitly configured. When not set, fetch will use NODE_TLS_REJECT_UNAUTHORIZED env var
         if (opts.rejectUnauthorized !== undefined) {
             agentOptions.rejectUnauthorized = opts.rejectUnauthorized;
         }
@@ -261,6 +262,7 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions.key = httpsOptions.key;
         agentOptions.pfx = httpsOptions.pfx;
         agentOptions.passphrase = httpsOptions.passphrase;
+        // Only set rejectUnauthorized if explicitly configured. When not set, fetch will use NODE_TLS_REJECT_UNAUTHORIZED env var
         if (httpsOptions.rejectUnauthorized !== undefined) {
             agentOptions.rejectUnauthorized = httpsOptions.rejectUnauthorized;
         }

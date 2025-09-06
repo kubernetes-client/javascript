@@ -28,7 +28,6 @@ import { ExecAuth } from './exec_auth.js';
 import { HttpProxyAgent, HttpsProxyAgent } from 'hpagent';
 import { SocksProxyAgent } from 'socks-proxy-agent';
 import { AddressInfo } from 'node:net';
-import selfsigned from 'selfsigned';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
 const kc2FileName = 'testdata/kubeconfig-2.yaml';
@@ -41,6 +40,9 @@ const kcNoUserFileName = 'testdata/empty-user-kubeconfig.yaml';
 const kcInvalidContextFileName = 'testdata/empty-context-kubeconfig.yaml';
 const kcInvalidClusterFileName = 'testdata/empty-cluster-kubeconfig.yaml';
 const kcTlsServerNameFileName = 'testdata/tls-server-name-kubeconfig.yaml';
+
+const testCertFileName = 'testdata/certs/test-cert.pem';
+const testKeyFileName = 'testdata/certs/test-key.pem';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -521,8 +523,8 @@ describe('KubeConfig', () => {
             const originalValue = process.env.NODE_TLS_REJECT_UNAUTHORIZED;
             process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
             after(() => {
-                server.close();
                 process.env.NODE_TLS_REJECT_UNAUTHORIZED = originalValue;
+                server.close();
             });
 
             const kc = new KubeConfig();
@@ -547,8 +549,6 @@ describe('KubeConfig', () => {
             const res2 = await fetch(`https://${host}:${port}`, await kc.applyToFetchOptions({}));
             strictEqual(res2.status, 200);
             strictEqual(await res2.text(), 'ok');
-
-            delete process.env.NODE_TLS_REJECT_UNAUTHORIZED;
         });
     });
 
@@ -1897,7 +1897,9 @@ async function createTestHttpsServer(
     ca: string;
 }> {
     const host = 'localhost';
-    const { private: key, cert } = selfsigned.generate([{ name: 'commonName', value: host }]);
+
+    const cert = readFileSync(testCertFileName, 'utf8');
+    const key = readFileSync(testKeyFileName, 'utf8');
 
     const defaultHandler = (req: http.IncomingMessage, res: http.ServerResponse) => {
         res.writeHead(200);
