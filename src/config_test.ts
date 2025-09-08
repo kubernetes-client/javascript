@@ -521,7 +521,7 @@ describe('KubeConfig', () => {
             });
 
             const originalValue = process.env.NODE_TLS_REJECT_UNAUTHORIZED;
-            process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+            process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; // lgtm[js/disabling-certificate-validation]
             after(() => {
                 process.env.NODE_TLS_REJECT_UNAUTHORIZED = originalValue;
                 server.close();
