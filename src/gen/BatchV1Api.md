@@ -492,6 +492,12 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                           apiVersion: "apiVersion_example",
                           fieldPath: "fieldPath_example",
                         },
+                        fileKeyRef: {
+                          key: "key_example",
+                          optional: true,
+                          path: "path_example",
+                          volumeName: "volumeName_example",
+                        },
                         resourceFieldRef: {
                           containerName: "containerName_example",
                           divisor: "divisor_example",
@@ -672,6 +678,17 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                     },
                   },
                   restartPolicy: "restartPolicy_example",
+                  restartPolicyRules: [
+                    {
+                      action: "action_example",
+                      exitCodes: {
+                        operator: "operator_example",
+                        values: [
+                          1,
+                        ],
+                      },
+                    },
+                  ],
                   securityContext: {
                     allowPrivilegeEscalation: true,
                     appArmorProfile: {
@@ -805,6 +822,12 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                           apiVersion: "apiVersion_example",
                           fieldPath: "fieldPath_example",
                         },
+                        fileKeyRef: {
+                          key: "key_example",
+                          optional: true,
+                          path: "path_example",
+                          volumeName: "volumeName_example",
+                        },
                         resourceFieldRef: {
                           containerName: "containerName_example",
                           divisor: "divisor_example",
@@ -985,6 +1008,17 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                     },
                   },
                   restartPolicy: "restartPolicy_example",
+                  restartPolicyRules: [
+                    {
+                      action: "action_example",
+                      exitCodes: {
+                        operator: "operator_example",
+                        values: [
+                          1,
+                        ],
+                      },
+                    },
+                  ],
                   securityContext: {
                     allowPrivilegeEscalation: true,
                     appArmorProfile: {
@@ -1094,6 +1128,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
               hostPID: true,
               hostUsers: true,
               hostname: "hostname_example",
+              hostnameOverride: "hostnameOverride_example",
               imagePullSecrets: [
                 {
                   name: "name_example",
@@ -1120,6 +1155,12 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                         fieldRef: {
                           apiVersion: "apiVersion_example",
                           fieldPath: "fieldPath_example",
+                        },
+                        fileKeyRef: {
+                          key: "key_example",
+                          optional: true,
+                          path: "path_example",
+                          volumeName: "volumeName_example",
                         },
                         resourceFieldRef: {
                           containerName: "containerName_example",
@@ -1301,6 +1342,17 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                     },
                   },
                   restartPolicy: "restartPolicy_example",
+                  restartPolicyRules: [
+                    {
+                      action: "action_example",
+                      exitCodes: {
+                        operator: "operator_example",
+                        values: [
+                          1,
+                        ],
+                      },
+                    },
+                  ],
                   securityContext: {
                     allowPrivilegeEscalation: true,
                     appArmorProfile: {
@@ -1834,6 +1886,14 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                               },
                             },
                           ],
+                        },
+                        podCertificate: {
+                          certificateChainPath: "certificateChainPath_example",
+                          credentialBundlePath: "credentialBundlePath_example",
+                          keyPath: "keyPath_example",
+                          keyType: "keyType_example",
+                          maxExpirationSeconds: 1,
+                          signerName: "signerName_example",
                         },
                         secret: {
                           items: [
@@ -2414,6 +2474,12 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -2594,6 +2660,17 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -2727,6 +2804,12 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -2907,6 +2990,17 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -3016,6 +3110,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
           hostPID: true,
           hostUsers: true,
           hostname: "hostname_example",
+          hostnameOverride: "hostnameOverride_example",
           imagePullSecrets: [
             {
               name: "name_example",
@@ -3042,6 +3137,12 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                     fieldRef: {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
+                    },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
                     },
                     resourceFieldRef: {
                       containerName: "containerName_example",
@@ -3223,6 +3324,17 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -3756,6 +3868,14 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                           },
                         },
                       ],
+                    },
+                    podCertificate: {
+                      certificateChainPath: "certificateChainPath_example",
+                      credentialBundlePath: "credentialBundlePath_example",
+                      keyPath: "keyPath_example",
+                      keyType: "keyType_example",
+                      maxExpirationSeconds: 1,
+                      signerName: "signerName_example",
                     },
                     secret: {
                       items: [
@@ -5736,6 +5856,12 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                           apiVersion: "apiVersion_example",
                           fieldPath: "fieldPath_example",
                         },
+                        fileKeyRef: {
+                          key: "key_example",
+                          optional: true,
+                          path: "path_example",
+                          volumeName: "volumeName_example",
+                        },
                         resourceFieldRef: {
                           containerName: "containerName_example",
                           divisor: "divisor_example",
@@ -5916,6 +6042,17 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                     },
                   },
                   restartPolicy: "restartPolicy_example",
+                  restartPolicyRules: [
+                    {
+                      action: "action_example",
+                      exitCodes: {
+                        operator: "operator_example",
+                        values: [
+                          1,
+                        ],
+                      },
+                    },
+                  ],
                   securityContext: {
                     allowPrivilegeEscalation: true,
                     appArmorProfile: {
@@ -6049,6 +6186,12 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                           apiVersion: "apiVersion_example",
                           fieldPath: "fieldPath_example",
                         },
+                        fileKeyRef: {
+                          key: "key_example",
+                          optional: true,
+                          path: "path_example",
+                          volumeName: "volumeName_example",
+                        },
                         resourceFieldRef: {
                           containerName: "containerName_example",
                           divisor: "divisor_example",
@@ -6229,6 +6372,17 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                     },
                   },
                   restartPolicy: "restartPolicy_example",
+                  restartPolicyRules: [
+                    {
+                      action: "action_example",
+                      exitCodes: {
+                        operator: "operator_example",
+                        values: [
+                          1,
+                        ],
+                      },
+                    },
+                  ],
                   securityContext: {
                     allowPrivilegeEscalation: true,
                     appArmorProfile: {
@@ -6338,6 +6492,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
               hostPID: true,
               hostUsers: true,
               hostname: "hostname_example",
+              hostnameOverride: "hostnameOverride_example",
               imagePullSecrets: [
                 {
                   name: "name_example",
@@ -6364,6 +6519,12 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                         fieldRef: {
                           apiVersion: "apiVersion_example",
                           fieldPath: "fieldPath_example",
+                        },
+                        fileKeyRef: {
+                          key: "key_example",
+                          optional: true,
+                          path: "path_example",
+                          volumeName: "volumeName_example",
                         },
                         resourceFieldRef: {
                           containerName: "containerName_example",
@@ -6545,6 +6706,17 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                     },
                   },
                   restartPolicy: "restartPolicy_example",
+                  restartPolicyRules: [
+                    {
+                      action: "action_example",
+                      exitCodes: {
+                        operator: "operator_example",
+                        values: [
+                          1,
+                        ],
+                      },
+                    },
+                  ],
                   securityContext: {
                     allowPrivilegeEscalation: true,
                     appArmorProfile: {
@@ -7078,6 +7250,14 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                               },
                             },
                           ],
+                        },
+                        podCertificate: {
+                          certificateChainPath: "certificateChainPath_example",
+                          credentialBundlePath: "credentialBundlePath_example",
+                          keyPath: "keyPath_example",
+                          keyType: "keyType_example",
+                          maxExpirationSeconds: 1,
+                          signerName: "signerName_example",
                         },
                         secret: {
                           items: [
@@ -7706,6 +7886,12 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                           apiVersion: "apiVersion_example",
                           fieldPath: "fieldPath_example",
                         },
+                        fileKeyRef: {
+                          key: "key_example",
+                          optional: true,
+                          path: "path_example",
+                          volumeName: "volumeName_example",
+                        },
                         resourceFieldRef: {
                           containerName: "containerName_example",
                           divisor: "divisor_example",
@@ -7886,6 +8072,17 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                     },
                   },
                   restartPolicy: "restartPolicy_example",
+                  restartPolicyRules: [
+                    {
+                      action: "action_example",
+                      exitCodes: {
+                        operator: "operator_example",
+                        values: [
+                          1,
+                        ],
+                      },
+                    },
+                  ],
                   securityContext: {
                     allowPrivilegeEscalation: true,
                     appArmorProfile: {
@@ -8019,6 +8216,12 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                           apiVersion: "apiVersion_example",
                           fieldPath: "fieldPath_example",
                         },
+                        fileKeyRef: {
+                          key: "key_example",
+                          optional: true,
+                          path: "path_example",
+                          volumeName: "volumeName_example",
+                        },
                         resourceFieldRef: {
                           containerName: "containerName_example",
                           divisor: "divisor_example",
@@ -8199,6 +8402,17 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                     },
                   },
                   restartPolicy: "restartPolicy_example",
+                  restartPolicyRules: [
+                    {
+                      action: "action_example",
+                      exitCodes: {
+                        operator: "operator_example",
+                        values: [
+                          1,
+                        ],
+                      },
+                    },
+                  ],
                   securityContext: {
                     allowPrivilegeEscalation: true,
                     appArmorProfile: {
@@ -8308,6 +8522,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
               hostPID: true,
               hostUsers: true,
               hostname: "hostname_example",
+              hostnameOverride: "hostnameOverride_example",
               imagePullSecrets: [
                 {
                   name: "name_example",
@@ -8334,6 +8549,12 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                         fieldRef: {
                           apiVersion: "apiVersion_example",
                           fieldPath: "fieldPath_example",
+                        },
+                        fileKeyRef: {
+                          key: "key_example",
+                          optional: true,
+                          path: "path_example",
+                          volumeName: "volumeName_example",
                         },
                         resourceFieldRef: {
                           containerName: "containerName_example",
@@ -8515,6 +8736,17 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                     },
                   },
                   restartPolicy: "restartPolicy_example",
+                  restartPolicyRules: [
+                    {
+                      action: "action_example",
+                      exitCodes: {
+                        operator: "operator_example",
+                        values: [
+                          1,
+                        ],
+                      },
+                    },
+                  ],
                   securityContext: {
                     allowPrivilegeEscalation: true,
                     appArmorProfile: {
@@ -9048,6 +9280,14 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                               },
                             },
                           ],
+                        },
+                        podCertificate: {
+                          certificateChainPath: "certificateChainPath_example",
+                          credentialBundlePath: "credentialBundlePath_example",
+                          keyPath: "keyPath_example",
+                          keyType: "keyType_example",
+                          maxExpirationSeconds: 1,
+                          signerName: "signerName_example",
                         },
                         secret: {
                           items: [
@@ -9630,6 +9870,12 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -9810,6 +10056,17 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -9943,6 +10200,12 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -10123,6 +10386,17 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -10232,6 +10506,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
           hostPID: true,
           hostUsers: true,
           hostname: "hostname_example",
+          hostnameOverride: "hostnameOverride_example",
           imagePullSecrets: [
             {
               name: "name_example",
@@ -10258,6 +10533,12 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                     fieldRef: {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
+                    },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
                     },
                     resourceFieldRef: {
                       containerName: "containerName_example",
@@ -10439,6 +10720,17 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -10972,6 +11264,14 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                           },
                         },
                       ],
+                    },
+                    podCertificate: {
+                      certificateChainPath: "certificateChainPath_example",
+                      credentialBundlePath: "credentialBundlePath_example",
+                      keyPath: "keyPath_example",
+                      keyType: "keyType_example",
+                      maxExpirationSeconds: 1,
+                      signerName: "signerName_example",
                     },
                     secret: {
                       items: [
@@ -11561,6 +11861,12 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -11741,6 +12047,17 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -11874,6 +12191,12 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -12054,6 +12377,17 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -12163,6 +12497,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
           hostPID: true,
           hostUsers: true,
           hostname: "hostname_example",
+          hostnameOverride: "hostnameOverride_example",
           imagePullSecrets: [
             {
               name: "name_example",
@@ -12189,6 +12524,12 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                     fieldRef: {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
+                    },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
                     },
                     resourceFieldRef: {
                       containerName: "containerName_example",
@@ -12370,6 +12711,17 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -12903,6 +13255,14 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                           },
                         },
                       ],
+                    },
+                    podCertificate: {
+                      certificateChainPath: "certificateChainPath_example",
+                      credentialBundlePath: "credentialBundlePath_example",
+                      keyPath: "keyPath_example",
+                      keyType: "keyType_example",
+                      maxExpirationSeconds: 1,
+                      signerName: "signerName_example",
                     },
                     secret: {
                       items: [
