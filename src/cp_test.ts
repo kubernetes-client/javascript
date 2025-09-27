@@ -38,6 +38,35 @@ describe('Cp', () => {
             await cp.cpFromPod(namespace, pod, container, srcPath, tgtPath);
             verify(fakeWebSocket.connect(`${path}?${queryStr}`, null, anyFunction())).called();
         });
+
+        it('should run create tar command to a url with cwd', async () => {
+            const kc = new KubeConfig();
+            const fakeWebSocket: WebSocketInterface = mock(WebSocketHandler);
+            const exec = new Exec(kc, instance(fakeWebSocket));
+            const cp = new Cp(kc, exec);
+
+            const namespace = 'somenamespace';
+            const pod = 'somepod';
+            const container = 'container';
+            const srcPath = '/';
+            const tgtPath = '/';
+            const cwd = '/abc';
+            const cmdArray = ['tar', 'zcf', '-', '-C', cwd, srcPath];
+            const path = `/api/v1/namespaces/${namespace}/pods/${pod}/exec`;
+
+            const query = {
+                stdout: true,
+                stderr: true,
+                stdin: false,
+                tty: false,
+                command: cmdArray,
+                container,
+            };
+            const queryStr = querystring.stringify(query);
+
+            await cp.cpFromPod(namespace, pod, container, srcPath, tgtPath, cwd);
+            verify(fakeWebSocket.connect(`${path}?${queryStr}`, null, anyFunction())).called();
+        });
     });
 
     describe('cpToPod', () => {
