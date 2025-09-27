@@ -26,8 +26,8 @@ jobs:
           node-version: '20'
       - name: Generate Openapi
         run: |
-          echo "export KUBERNETES_BRANCH=${{ github.event.inputs.kubernetesBranch }} >> ./settings"
-          echo "export GEN_COMMIT="${{ github.event.inputs.genCommit }}" >> ./settings"
+          echo "export KUBERNETES_BRANCH="${{ github.event.inputs.kubernetesBranch }}"" >> ./settings
+          echo "export GEN_COMMIT="${{ github.event.inputs.genCommit }}"" >> ./settings
           ./generate-client.sh
       - name: Generate Branch Name
         run: |
