@@ -486,7 +486,7 @@ describe('ExecAuth', () => {
             },
             opts,
         );
-        strictEqual(opts.headers?.Authorization, 'Bearer foo');
+        strictEqual(opts.headers!['Authorization'], 'Bearer foo');
     });
     it('should handle null credentials correctly', async () => {
         const auth = new ExecAuth();
@@ -537,5 +537,64 @@ describe('ExecAuth', () => {
 
         const promise = auth.applyAuthentication(user, opts);
         await rejects(promise, { name: 'SyntaxError' });
+    });
+
+    it('should not overwrite environment variables in process.env', async () => {
+        // TODO: fix this test for Windows
+        if (process.platform === 'win32') {
+            return;
+        }
+        const auth = new ExecAuth();
+        let optsOut: child_process.SpawnOptions | undefined = {};
+        (auth as any).execFn = (
+            command: string,
+            args?: readonly string[],
+            options?: child_process.SpawnOptionsWithoutStdio,
+        ): child_process.ChildProcessWithoutNullStreams => {
+            optsOut = options;
+            return {
+                stdout: {
+                    setEncoding: () => {},
+                    on: (_data: string, f: (data: Buffer | string) => void) => {
+                        f(Buffer.from(JSON.stringify({ status: { token: 'foo' } })));
+                    },
+                },
+                stderr: {
+                    setEncoding: () => {},
+                    on: () => {},
+                },
+                on: (op: string, f: any) => {
+                    if (op === 'close') {
+                        f(0);
+                    }
+                },
+            } as unknown as child_process.ChildProcessWithoutNullStreams;
+        };
+
+        process.env.DO_NO_OVERWRITE_ME = 'important';
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
+
+        await auth.applyAuthentication(
+            {
+                name: 'user',
+                authProvider: {
+                    config: {
+                        exec: {
+                            command: 'echo',
+                            env: [
+                                {
+                                    name: 'DO_NO_OVERWRITE_ME',
+                                    value: 'in exec',
+                                },
+                            ],
+                        },
+                    },
+                },
+            },
+            opts,
+        );
+        strictEqual(optsOut.env!.DO_NO_OVERWRITE_ME, 'in exec');
+        strictEqual(process.env.DO_NO_OVERWRITE_ME, 'important');
     });
 });

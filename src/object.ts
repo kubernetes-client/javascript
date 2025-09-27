@@ -15,6 +15,7 @@ import { ObjectSerializer } from './serializer.js';
 import { KubernetesListObject, KubernetesObject } from './types.js';
 import { from, mergeMap, of } from './gen/rxjsStub.js';
 import { PatchStrategy } from './patch.js';
+import { getSerializationType } from './util.js';
 
 /** Kubernetes API verbs. */
 type KubernetesApiAction = 'create' | 'delete' | 'patch' | 'read' | 'list' | 'replace';
@@ -28,11 +29,6 @@ type KubernetesObjectHeader<T extends KubernetesObject | KubernetesObject> = Pic
         namespace?: string;
     };
 };
-
-interface GroupVersion {
-    group: string;
-    version: string;
-}
 
 /**
  * Dynamically construct Kubernetes API request URIs so client does not have to know what type of object it is acting
@@ -107,12 +103,13 @@ export class KubernetesObjectApi {
         if (fieldManager !== undefined) {
             requestContext.setQueryParam('fieldManager', ObjectSerializer.serialize(fieldManager, 'string'));
         }
+        const type = getSerializationType(spec.apiVersion, spec.kind);
 
         // Body Params
         const contentType = ObjectSerializer.getPreferredMediaType([]);
         requestContext.setHeaderParam('Content-Type', contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(spec, 'any'),
+            ObjectSerializer.serialize(spec, type),
             contentType,
         );
         requestContext.setBody(serializedBody);
@@ -268,9 +265,11 @@ export class KubernetesObjectApi {
             requestContext.setQueryParam('force', ObjectSerializer.serialize(force, 'boolean'));
         }
 
+        const type = getSerializationType(spec.apiVersion, spec.kind);
+
         // Body Params
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(spec, 'any'),
+            ObjectSerializer.serialize(spec, type),
             // TODO: use the patch content type once ObjectSerializer supports it.
             'application/json',
         );
@@ -465,11 +464,13 @@ export class KubernetesObjectApi {
             requestContext.setQueryParam('fieldManager', ObjectSerializer.serialize(fieldManager, 'string'));
         }
 
+        const type = getSerializationType(spec.apiVersion, spec.kind);
+
         // Body Params
         const contentType = ObjectSerializer.getPreferredMediaType([]);
         requestContext.setHeaderParam('Content-Type', contentType);
         const serializedBody = ObjectSerializer.stringify(
-            ObjectSerializer.serialize(spec, 'any'),
+            ObjectSerializer.serialize(spec, type),
             contentType,
         );
         requestContext.setBody(serializedBody);
@@ -588,30 +589,6 @@ export class KubernetesObjectApi {
         }
     }
 
-    protected async getSerializationType(apiVersion?: string, kind?: string): Promise<string> {
-        if (apiVersion === undefined || kind === undefined) {
-            return 'KubernetesObject';
-        }
-        // Types are defined in src/gen/api/models with the format "<Version><Kind>".
-        // Version and Kind are in PascalCase.
-        const gv = this.groupVersion(apiVersion);
-        const version = gv.version.charAt(0).toUpperCase() + gv.version.slice(1);
-        return `${version}${kind}`;
-    }
-
-    protected groupVersion(apiVersion: string): GroupVersion {
-        const v = apiVersion.split('/');
-        return v.length === 1
-            ? {
-                  group: 'core',
-                  version: apiVersion,
-              }
-            : {
-                  group: v[0],
-                  version: v[1],
-              };
-    }
-
     protected async requestPromise<T extends KubernetesObject | KubernetesObject>(
         requestContext: RequestContext,
         type?: string,
@@ -665,7 +642,7 @@ export class KubernetesObjectApi {
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
             const data = ObjectSerializer.parse(await response.body.text(), contentType);
             if (type === undefined) {
-                type = await this.getSerializationType(data.apiVersion, data.kind);
+                type = getSerializationType(data.apiVersion, data.kind);
             }
 
             if (!type) {

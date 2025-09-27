@@ -647,6 +647,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -959,6 +960,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -1274,6 +1276,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -2543,6 +2546,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -2855,6 +2859,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -3170,6 +3175,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -3905,6 +3911,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
       observedGeneration: 1,
       readyReplicas: 1,
       replicas: 1,
+      terminatingReplicas: 1,
       unavailableReplicas: 1,
       updatedReplicas: 1,
     },
@@ -4421,6 +4428,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -4733,6 +4741,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -5048,6 +5057,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -5782,6 +5792,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
       observedGeneration: 1,
       readyReplicas: 1,
       replicas: 1,
+      terminatingReplicas: 1,
     },
   },
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
@@ -6306,6 +6317,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -6618,6 +6630,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -6933,6 +6946,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -11998,6 +12012,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -12310,6 +12325,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -12625,6 +12641,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -13886,6 +13903,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -14198,6 +14216,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -14513,6 +14532,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -15784,6 +15804,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -16096,6 +16117,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -16411,6 +16433,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -17146,6 +17169,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
       observedGeneration: 1,
       readyReplicas: 1,
       replicas: 1,
+      terminatingReplicas: 1,
       unavailableReplicas: 1,
       updatedReplicas: 1,
     },
@@ -17799,6 +17823,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -18111,6 +18136,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -18426,6 +18452,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -19161,6 +19188,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
       observedGeneration: 1,
       readyReplicas: 1,
       replicas: 1,
+      terminatingReplicas: 1,
       unavailableReplicas: 1,
       updatedReplicas: 1,
     },
@@ -19679,6 +19707,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -19991,6 +20020,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -20306,6 +20336,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -21040,6 +21071,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
       observedGeneration: 1,
       readyReplicas: 1,
       replicas: 1,
+      terminatingReplicas: 1,
     },
   },
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
@@ -21681,6 +21713,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -21993,6 +22026,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -22308,6 +22342,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -23042,6 +23077,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
       observedGeneration: 1,
       readyReplicas: 1,
       replicas: 1,
+      terminatingReplicas: 1,
     },
   },
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
@@ -23568,6 +23604,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -23880,6 +23917,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -24195,6 +24233,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -25711,6 +25750,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -26023,6 +26063,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -26338,6 +26379,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {

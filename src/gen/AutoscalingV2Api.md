@@ -94,6 +94,7 @@ const request: AutoscalingV2ApiCreateNamespacedHorizontalPodAutoscalerRequest = 
           ],
           selectPolicy: "selectPolicy_example",
           stabilizationWindowSeconds: 1,
+          tolerance: "tolerance_example",
         },
         scaleUp: {
           policies: [
@@ -105,6 +106,7 @@ const request: AutoscalingV2ApiCreateNamespacedHorizontalPodAutoscalerRequest = 
           ],
           selectPolicy: "selectPolicy_example",
           stabilizationWindowSeconds: 1,
+          tolerance: "tolerance_example",
         },
       },
       maxReplicas: 1,
@@ -1159,6 +1161,7 @@ const request: AutoscalingV2ApiReplaceNamespacedHorizontalPodAutoscalerRequest =
           ],
           selectPolicy: "selectPolicy_example",
           stabilizationWindowSeconds: 1,
+          tolerance: "tolerance_example",
         },
         scaleUp: {
           policies: [
@@ -1170,6 +1173,7 @@ const request: AutoscalingV2ApiReplaceNamespacedHorizontalPodAutoscalerRequest =
           ],
           selectPolicy: "selectPolicy_example",
           stabilizationWindowSeconds: 1,
+          tolerance: "tolerance_example",
         },
       },
       maxReplicas: 1,
@@ -1528,6 +1532,7 @@ const request: AutoscalingV2ApiReplaceNamespacedHorizontalPodAutoscalerStatusReq
           ],
           selectPolicy: "selectPolicy_example",
           stabilizationWindowSeconds: 1,
+          tolerance: "tolerance_example",
         },
         scaleUp: {
           policies: [
@@ -1539,6 +1544,7 @@ const request: AutoscalingV2ApiReplaceNamespacedHorizontalPodAutoscalerStatusReq
           ],
           selectPolicy: "selectPolicy_example",
           stabilizationWindowSeconds: 1,
+          tolerance: "tolerance_example",
         },
       },
       maxReplicas: 1,

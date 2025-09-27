@@ -63,7 +63,7 @@ k8sApi.createNamespace({ body: namespace }).then(
 );
 ```
 
-## Create a cluster configuration programatically
+## Create a cluster configuration programmatically
 
 ```javascript
 const k8s = require('@kubernetes/client-node');
@@ -112,16 +112,17 @@ release, we will increment the minor version whenever we update the minor Kubern
 
 We switched from `request` to `fetch` as the HTTP(S) backend for the `1.0.0` release.
 
-Generally speaking newer clients will work with older Kubernetes, but compatability isn't 100% guaranteed.
+Generally speaking newer clients will work with older Kubernetes, but compatibility isn't 100% guaranteed.
 
-| client version | older versions | 1.28 | 1.29 | 1.30 | 1.31 | 1.32 |
-| -------------- | -------------- | ---- | ---- | ---- | ---- | ---- |
-| 0.19.x         | -              | ✓    | x    | x    | x    | x    |
-| 0.20.x         | -              | +    | ✓    | x    | x    | x    |
-| 0.21.x         | -              | +    | +    | ✓    | x    | x    |
-| 0.22.x         | -              | +    | +    | +    | ✓    | x    |
-| 1.0.x          | -              | +    | +    | +    | +    | ✓    |
-| 1.1.x          | -              | +    | +    | +    | +    | ✓    |
+| client version | older versions | 1.28 | 1.29 | 1.30 | 1.31 | 1.32 | 1.33 |
+| -------------- | -------------- | ---- | ---- | ---- | ---- | ---- | ---- |
+| 0.19.x         | -              | ✓    | x    | x    | x    | x    | x    |
+| 0.20.x         | -              | +    | ✓    | x    | x    | x    | x    |
+| 0.21.x         | -              | +    | +    | ✓    | x    | x    | x    |
+| 0.22.x         | -              | +    | +    | +    | ✓    | x    | x    |
+| 1.0.x          | -              | +    | +    | +    | +    | ✓    | x    |
+| 1.1.x          | -              | +    | +    | +    | +    | ✓    | x    |
+| 1.2.x          | -              | +    | +    | +    | +    | +    | ✓    |
 
 Key:
 
@@ -141,6 +142,8 @@ Key:
 - Multiple kubeconfigs are not completely supported.
   Credentials are cached based on the kubeconfig username and these can collide across configs.
   Here is the related [issue](https://github.com/kubernetes-client/javascript/issues/592).
+
+- In scenarios where multiple headers with the same key are required in a request, such as `Impersonate-Group`, avoid using `fetch`. Fetch will merge the values into a single header key, with the values as a single string vs a list of strings, `Impersonate-Group: "group1,group2"`. The workaround is to use a low-level library such as `https` to make the request. Refer to issue [#2474](https://github.com/kubernetes-client/javascript/issues/2474) for more details.
 
 # Development
 

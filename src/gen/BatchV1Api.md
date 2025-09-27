@@ -573,6 +573,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                         port: "port_example",
                       },
                     },
+                    stopSignal: "stopSignal_example",
                   },
                   livenessProbe: {
                     exec: {
@@ -885,6 +886,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                         port: "port_example",
                       },
                     },
+                    stopSignal: "stopSignal_example",
                   },
                   livenessProbe: {
                     exec: {
@@ -1200,6 +1202,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                         port: "port_example",
                       },
                     },
+                    stopSignal: "stopSignal_example",
                   },
                   livenessProbe: {
                     exec: {
@@ -2492,6 +2495,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -2804,6 +2808,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -3119,6 +3124,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -5811,6 +5817,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                         port: "port_example",
                       },
                     },
+                    stopSignal: "stopSignal_example",
                   },
                   livenessProbe: {
                     exec: {
@@ -6123,6 +6130,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                         port: "port_example",
                       },
                     },
+                    stopSignal: "stopSignal_example",
                   },
                   livenessProbe: {
                     exec: {
@@ -6438,6 +6446,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                         port: "port_example",
                       },
                     },
+                    stopSignal: "stopSignal_example",
                   },
                   livenessProbe: {
                     exec: {
@@ -7778,6 +7787,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                         port: "port_example",
                       },
                     },
+                    stopSignal: "stopSignal_example",
                   },
                   livenessProbe: {
                     exec: {
@@ -8090,6 +8100,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                         port: "port_example",
                       },
                     },
+                    stopSignal: "stopSignal_example",
                   },
                   livenessProbe: {
                     exec: {
@@ -8405,6 +8416,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                         port: "port_example",
                       },
                     },
+                    stopSignal: "stopSignal_example",
                   },
                   livenessProbe: {
                     exec: {
@@ -9699,6 +9711,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -10011,6 +10024,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -10326,6 +10340,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -11627,6 +11642,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -11939,6 +11955,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {
@@ -12254,6 +12271,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                     port: "port_example",
                   },
                 },
+                stopSignal: "stopSignal_example",
               },
               livenessProbe: {
                 exec: {

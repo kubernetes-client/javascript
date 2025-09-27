@@ -58,7 +58,7 @@ function fileExists(filepath: string): boolean {
 export interface ApiType {}
 
 export class KubeConfig implements SecurityAuthentication {
-    private static authenticators: Authenticator[] = [
+    private authenticators: Authenticator[] = [
         new AzureAuth(),
         new GoogleCloudPlatformAuth(),
         new ExecAuth(),
@@ -202,7 +202,10 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions.key = opts.key;
         agentOptions.pfx = opts.pfx;
         agentOptions.passphrase = opts.passphrase;
-        agentOptions.rejectUnauthorized = opts.rejectUnauthorized;
+        // Only set rejectUnauthorized if explicitly configured. When not set, fetch will use NODE_TLS_REJECT_UNAUTHORIZED env var
+        if (opts.rejectUnauthorized !== undefined) {
+            agentOptions.rejectUnauthorized = opts.rejectUnauthorized;
+        }
         // The ws docs say that it accepts anything that https.RequestOptions accepts,
         // but Typescript doesn't understand that idea (yet) probably could be fixed in
         // the typings, but for now just cast to any
@@ -259,7 +262,10 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions.key = httpsOptions.key;
         agentOptions.pfx = httpsOptions.pfx;
         agentOptions.passphrase = httpsOptions.passphrase;
-        agentOptions.rejectUnauthorized = httpsOptions.rejectUnauthorized;
+        // Only set rejectUnauthorized if explicitly configured. When not set, fetch will use NODE_TLS_REJECT_UNAUTHORIZED env var
+        if (httpsOptions.rejectUnauthorized !== undefined) {
+            agentOptions.rejectUnauthorized = httpsOptions.rejectUnauthorized;
+        }
 
         context.setAgent(this.createAgent(cluster, agentOptions));
     }
@@ -582,6 +588,11 @@ export class KubeConfig implements SecurityAuthentication {
         if (key) {
             opts.key = key;
         }
+
+        if (user.impersonateUser != null) {
+            opts.headers ??= {};
+            opts.headers['Impersonate-User'] = user.impersonateUser;
+        }
     }
 
     private async applyAuthorizationHeader(
@@ -591,7 +602,7 @@ export class KubeConfig implements SecurityAuthentication {
         if (!user) {
             return;
         }
-        let authenticator = KubeConfig.authenticators.find((elt: Authenticator) => {
+        let authenticator = this.authenticators.find((elt: Authenticator) => {
             return elt.isAuthProvider(user);
         });
 

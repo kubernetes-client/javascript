@@ -34,6 +34,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     private readonly watch: Watch;
     private readonly listFn: ListPromise<T>;
     private readonly labelSelector?: string;
+    private readonly fieldSelector?: string;
 
     public constructor(
         path: string,
@@ -41,11 +42,13 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         listFn: ListPromise<T>,
         autoStart: boolean = true,
         labelSelector?: string,
+        fieldSelector?: string,
     ) {
         this.path = path;
         this.watch = watch;
         this.listFn = listFn;
         this.labelSelector = labelSelector;
+        this.fieldSelector = fieldSelector;
 
         this.callbackCache[ADD] = [];
         this.callbackCache[UPDATE] = [];
@@ -140,7 +143,10 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
 
     private async doneHandler(err: any): Promise<void> {
         this._stop();
-        if (err && err.statusCode === 410) {
+        if (
+            err &&
+            ((err as { statusCode?: number }).statusCode === 410 || (err as { code?: number }).code === 410)
+        ) {
             this.resourceVersion = '';
         } else if (err) {
             this.callbackCache[ERROR].forEach((elt: ErrorCallback) => elt(err));
@@ -162,16 +168,20 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
             }
             this.objects = deleteItems(this.objects, list.items, this.callbackCache[DELETE].slice());
             this.addOrUpdateItems(list.items);
-            this.resourceVersion = list.metadata!.resourceVersion || '';
+            this.resourceVersion = list.metadata ? list.metadata!.resourceVersion || '' : '';
         }
         const queryParams = {
             resourceVersion: this.resourceVersion,
         } as {
             resourceVersion: string | undefined;
             labelSelector: string | undefined;
+            fieldSelector: string | undefined;
         };
         if (this.labelSelector !== undefined) {
             queryParams.labelSelector = ObjectSerializer.serialize(this.labelSelector, 'string');
+        }
+        if (this.fieldSelector !== undefined) {
+            queryParams.fieldSelector = ObjectSerializer.serialize(this.fieldSelector, 'string');
         }
         this.request = await this.watch.watch(
             this.path,
@@ -182,6 +192,9 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     }
 
     private addOrUpdateItems(items: T[]): void {
+        if (items === undefined || items === null) {
+            return;
+        }
         items.forEach((obj: T) => {
             addOrUpdateObject(
                 this.objects,
@@ -192,13 +205,18 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         });
     }
 
-    private watchHandler(phase: string, obj: T, watchObj?: any): void {
+    private async watchHandler(
+        phase: string,
+        obj: T,
+        watchObj?: { type: string; object: KubernetesObject },
+    ): Promise<void> {
         switch (phase) {
             case 'ERROR':
                 if ((obj as { code?: number }).code === 410) {
                     this.resourceVersion = '';
                 }
-                break;
+                // We don't restart here, because it should be handled by the watch exiting if necessary
+                return;
             case 'ADDED':
             case 'MODIFIED':
                 addOrUpdateObject(
@@ -215,15 +233,16 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
                 // nothing to do, here for documentation, mostly.
                 break;
         }
-        if (watchObj && watchObj.metadata) {
-            this.resourceVersion = watchObj.metadata.resourceVersion;
-        }
+        this.resourceVersion = obj.metadata ? obj.metadata!.resourceVersion || '' : '';
     }
 }
 
 // exported for testing
 export function cacheMapFromList<T extends KubernetesObject>(newObjects: T[]): CacheMap<T> {
     const objects: CacheMap<T> = new Map();
+    if (newObjects === undefined || newObjects === null) {
+        return objects;
+    }
     // build up the new list
     for (const obj of newObjects) {
         let namespaceObjects = objects.get(obj.metadata!.namespace || '');

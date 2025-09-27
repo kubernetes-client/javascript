@@ -11,11 +11,11 @@ jobs:
         runs-on: ubuntu-latest
         strategy:
             matrix:
-                node: ['23', '22', '20', '18']
+                node: ['24', '23', '22', '20', '18']
         name: Node ${{ matrix.node }} validation
         steps:
-            - uses: actions/checkout@v4.2.2
-            - uses: actions/setup-node@v4
+            - uses: actions/checkout@v5.0.0
+            - uses: actions/setup-node@v5
               with:
                   node-version: ${{ matrix.node }}
             # Pre-check to validate that versions match between package.json

@@ -261,12 +261,45 @@ const request: ResourceV1beta1ApiCreateNamespacedResourceClaimRequest = {
             allocationMode: "allocationMode_example",
             count: 1,
             deviceClassName: "deviceClassName_example",
+            firstAvailable: [
+              {
+                allocationMode: "allocationMode_example",
+                count: 1,
+                deviceClassName: "deviceClassName_example",
+                name: "name_example",
+                selectors: [
+                  {
+                    cel: {
+                      expression: "expression_example",
+                    },
+                  },
+                ],
+                tolerations: [
+                  {
+                    effect: "effect_example",
+                    key: "key_example",
+                    operator: "operator_example",
+                    tolerationSeconds: 1,
+                    value: "value_example",
+                  },
+                ],
+              },
+            ],
             name: "name_example",
             selectors: [
               {
                 cel: {
                   expression: "expression_example",
                 },
+              },
+            ],
+            tolerations: [
+              {
+                effect: "effect_example",
+                key: "key_example",
+                operator: "operator_example",
+                tolerationSeconds: 1,
+                value: "value_example",
               },
             ],
           },
@@ -295,6 +328,15 @@ const request: ResourceV1beta1ApiCreateNamespacedResourceClaimRequest = {
               driver: "driver_example",
               pool: "pool_example",
               request: "request_example",
+              tolerations: [
+                {
+                  effect: "effect_example",
+                  key: "key_example",
+                  operator: "operator_example",
+                  tolerationSeconds: 1,
+                  value: "value_example",
+                },
+              ],
             },
           ],
         },
@@ -543,12 +585,45 @@ const request: ResourceV1beta1ApiCreateNamespacedResourceClaimTemplateRequest = 
               allocationMode: "allocationMode_example",
               count: 1,
               deviceClassName: "deviceClassName_example",
+              firstAvailable: [
+                {
+                  allocationMode: "allocationMode_example",
+                  count: 1,
+                  deviceClassName: "deviceClassName_example",
+                  name: "name_example",
+                  selectors: [
+                    {
+                      cel: {
+                        expression: "expression_example",
+                      },
+                    },
+                  ],
+                  tolerations: [
+                    {
+                      effect: "effect_example",
+                      key: "key_example",
+                      operator: "operator_example",
+                      tolerationSeconds: 1,
+                      value: "value_example",
+                    },
+                  ],
+                },
+              ],
               name: "name_example",
               selectors: [
                 {
                   cel: {
                     expression: "expression_example",
                   },
+                },
+              ],
+              tolerations: [
+                {
+                  effect: "effect_example",
+                  key: "key_example",
+                  operator: "operator_example",
+                  tolerationSeconds: 1,
+                  value: "value_example",
                 },
               ],
             },
@@ -675,6 +750,7 @@ const request: ResourceV1beta1ApiCreateResourceSliceRequest = {
       devices: [
         {
           basic: {
+            allNodes: true,
             attributes: {
               "key": {
                 bool: true,
@@ -688,6 +764,49 @@ const request: ResourceV1beta1ApiCreateResourceSliceRequest = {
                 value: "value_example",
               },
             },
+            consumesCounters: [
+              {
+                counterSet: "counterSet_example",
+                counters: {
+                  "key": {
+                    value: "value_example",
+                  },
+                },
+              },
+            ],
+            nodeName: "nodeName_example",
+            nodeSelector: {
+              nodeSelectorTerms: [
+                {
+                  matchExpressions: [
+                    {
+                      key: "key_example",
+                      operator: "operator_example",
+                      values: [
+                        "values_example",
+                      ],
+                    },
+                  ],
+                  matchFields: [
+                    {
+                      key: "key_example",
+                      operator: "operator_example",
+                      values: [
+                        "values_example",
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            taints: [
+              {
+                effect: "effect_example",
+                key: "key_example",
+                timeAdded: new Date('1970-01-01T00:00:00.00Z'),
+                value: "value_example",
+              },
+            ],
           },
           name: "name_example",
         },
@@ -718,11 +837,22 @@ const request: ResourceV1beta1ApiCreateResourceSliceRequest = {
           },
         ],
       },
+      perDeviceNodeSelection: true,
       pool: {
         generation: 1,
         name: "name_example",
         resourceSliceCount: 1,
       },
+      sharedCounters: [
+        {
+          counters: {
+            "key": {
+              value: "value_example",
+            },
+          },
+          name: "name_example",
+        },
+      ],
     },
   },
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
@@ -3037,12 +3167,45 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimRequest = {
             allocationMode: "allocationMode_example",
             count: 1,
             deviceClassName: "deviceClassName_example",
+            firstAvailable: [
+              {
+                allocationMode: "allocationMode_example",
+                count: 1,
+                deviceClassName: "deviceClassName_example",
+                name: "name_example",
+                selectors: [
+                  {
+                    cel: {
+                      expression: "expression_example",
+                    },
+                  },
+                ],
+                tolerations: [
+                  {
+                    effect: "effect_example",
+                    key: "key_example",
+                    operator: "operator_example",
+                    tolerationSeconds: 1,
+                    value: "value_example",
+                  },
+                ],
+              },
+            ],
             name: "name_example",
             selectors: [
               {
                 cel: {
                   expression: "expression_example",
                 },
+              },
+            ],
+            tolerations: [
+              {
+                effect: "effect_example",
+                key: "key_example",
+                operator: "operator_example",
+                tolerationSeconds: 1,
+                value: "value_example",
               },
             ],
           },
@@ -3071,6 +3234,15 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimRequest = {
               driver: "driver_example",
               pool: "pool_example",
               request: "request_example",
+              tolerations: [
+                {
+                  effect: "effect_example",
+                  key: "key_example",
+                  operator: "operator_example",
+                  tolerationSeconds: 1,
+                  value: "value_example",
+                },
+              ],
             },
           ],
         },
@@ -3278,12 +3450,45 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimStatusRequest = {
             allocationMode: "allocationMode_example",
             count: 1,
             deviceClassName: "deviceClassName_example",
+            firstAvailable: [
+              {
+                allocationMode: "allocationMode_example",
+                count: 1,
+                deviceClassName: "deviceClassName_example",
+                name: "name_example",
+                selectors: [
+                  {
+                    cel: {
+                      expression: "expression_example",
+                    },
+                  },
+                ],
+                tolerations: [
+                  {
+                    effect: "effect_example",
+                    key: "key_example",
+                    operator: "operator_example",
+                    tolerationSeconds: 1,
+                    value: "value_example",
+                  },
+                ],
+              },
+            ],
             name: "name_example",
             selectors: [
               {
                 cel: {
                   expression: "expression_example",
                 },
+              },
+            ],
+            tolerations: [
+              {
+                effect: "effect_example",
+                key: "key_example",
+                operator: "operator_example",
+                tolerationSeconds: 1,
+                value: "value_example",
               },
             ],
           },
@@ -3312,6 +3517,15 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimStatusRequest = {
               driver: "driver_example",
               pool: "pool_example",
               request: "request_example",
+              tolerations: [
+                {
+                  effect: "effect_example",
+                  key: "key_example",
+                  operator: "operator_example",
+                  tolerationSeconds: 1,
+                  value: "value_example",
+                },
+              ],
             },
           ],
         },
@@ -3562,12 +3776,45 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimTemplateRequest =
               allocationMode: "allocationMode_example",
               count: 1,
               deviceClassName: "deviceClassName_example",
+              firstAvailable: [
+                {
+                  allocationMode: "allocationMode_example",
+                  count: 1,
+                  deviceClassName: "deviceClassName_example",
+                  name: "name_example",
+                  selectors: [
+                    {
+                      cel: {
+                        expression: "expression_example",
+                      },
+                    },
+                  ],
+                  tolerations: [
+                    {
+                      effect: "effect_example",
+                      key: "key_example",
+                      operator: "operator_example",
+                      tolerationSeconds: 1,
+                      value: "value_example",
+                    },
+                  ],
+                },
+              ],
               name: "name_example",
               selectors: [
                 {
                   cel: {
                     expression: "expression_example",
                   },
+                },
+              ],
+              tolerations: [
+                {
+                  effect: "effect_example",
+                  key: "key_example",
+                  operator: "operator_example",
+                  tolerationSeconds: 1,
+                  value: "value_example",
                 },
               ],
             },
@@ -3696,6 +3943,7 @@ const request: ResourceV1beta1ApiReplaceResourceSliceRequest = {
       devices: [
         {
           basic: {
+            allNodes: true,
             attributes: {
               "key": {
                 bool: true,
@@ -3709,6 +3957,49 @@ const request: ResourceV1beta1ApiReplaceResourceSliceRequest = {
                 value: "value_example",
               },
             },
+            consumesCounters: [
+              {
+                counterSet: "counterSet_example",
+                counters: {
+                  "key": {
+                    value: "value_example",
+                  },
+                },
+              },
+            ],
+            nodeName: "nodeName_example",
+            nodeSelector: {
+              nodeSelectorTerms: [
+                {
+                  matchExpressions: [
+                    {
+                      key: "key_example",
+                      operator: "operator_example",
+                      values: [
+                        "values_example",
+                      ],
+                    },
+                  ],
+                  matchFields: [
+                    {
+                      key: "key_example",
+                      operator: "operator_example",
+                      values: [
+                        "values_example",
+                      ],
+                    },
+                  ],
+                },
+              ],
+            },
+            taints: [
+              {
+                effect: "effect_example",
+                key: "key_example",
+                timeAdded: new Date('1970-01-01T00:00:00.00Z'),
+                value: "value_example",
+              },
+            ],
           },
           name: "name_example",
         },
@@ -3739,11 +4030,22 @@ const request: ResourceV1beta1ApiReplaceResourceSliceRequest = {
           },
         ],
       },
+      perDeviceNodeSelection: true,
       pool: {
         generation: 1,
         name: "name_example",
         resourceSliceCount: 1,
       },
+      sharedCounters: [
+        {
+          counters: {
+            "key": {
+              value: "value_example",
+            },
+          },
+          name: "name_example",
+        },
+      ],
     },
   },
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)

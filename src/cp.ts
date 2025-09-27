@@ -1,7 +1,5 @@
-import fs from 'node:fs';
 import { WritableStreamBuffer } from 'stream-buffers';
-import * as tar from 'tar';
-import tmp from 'tmp-promise';
+import tar from 'tar-fs';
 
 import { KubeConfig } from './config.js';
 import { Exec } from './exec.js';
@@ -28,14 +26,12 @@ export class Cp {
         tgtPath: string,
         cwd?: string,
     ): Promise<void> {
-        const tmpFile = tmp.fileSync();
-        const tmpFileName = tmpFile.name;
         const command = ['tar', 'zcf', '-'];
         if (cwd) {
             command.push('-C', cwd);
         }
         command.push(srcPath);
-        const writerStream = fs.createWriteStream(tmpFileName);
+        const writerStream = tar.extract(tgtPath);
         const errStream = new WritableStreamBuffer();
         this.execInstance.exec(
             namespace,
@@ -50,10 +46,6 @@ export class Cp {
                 if (errStream.size()) {
                     throw new Error(`Error from cpFromPod - details: \n ${errStream.getContentsAsString()}`);
                 }
-                await tar.x({
-                    file: tmpFileName,
-                    cwd: tgtPath,
-                });
             },
         );
     }
@@ -72,16 +64,8 @@ export class Cp {
         srcPath: string,
         tgtPath: string,
     ): Promise<void> {
-        const tmpFile = tmp.fileSync();
-        const tmpFileName = tmpFile.name;
         const command = ['tar', 'xf', '-', '-C', tgtPath];
-        await tar.c(
-            {
-                file: tmpFile.name,
-            },
-            [srcPath],
-        );
-        const readStream = fs.createReadStream(tmpFileName);
+        const readStream = tar.pack(srcPath);
         const errStream = new WritableStreamBuffer();
         this.execInstance.exec(
             namespace,

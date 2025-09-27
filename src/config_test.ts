@@ -18,7 +18,7 @@ import { fileURLToPath } from 'node:url';
 import mockfs from 'mock-fs';
 
 import { Authenticator } from './auth.js';
-import { Headers } from 'node-fetch';
+import fetch, { Headers } from 'node-fetch';
 import { HttpMethod } from './index.js';
 import { assertRequestAgentsEqual, assertRequestOptionsEqual } from './test/match-buffer.js';
 import { CoreV1Api, RequestContext } from './api.js';
@@ -27,6 +27,7 @@ import { ActionOnInvalid, Cluster, newClusters, newContexts, newUsers, User } fr
 import { ExecAuth } from './exec_auth.js';
 import { HttpProxyAgent, HttpsProxyAgent } from 'hpagent';
 import { SocksProxyAgent } from 'socks-proxy-agent';
+import { AddressInfo } from 'node:net';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
 const kc2FileName = 'testdata/kubeconfig-2.yaml';
@@ -39,6 +40,9 @@ const kcNoUserFileName = 'testdata/empty-user-kubeconfig.yaml';
 const kcInvalidContextFileName = 'testdata/empty-context-kubeconfig.yaml';
 const kcInvalidClusterFileName = 'testdata/empty-cluster-kubeconfig.yaml';
 const kcTlsServerNameFileName = 'testdata/tls-server-name-kubeconfig.yaml';
+
+const testCertFileName = 'testdata/certs/test-cert.pem';
+const testKeyFileName = 'testdata/certs/test-key.pem';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -491,6 +495,61 @@ describe('KubeConfig', () => {
 
             strictEqual(rc.getAgent() instanceof https.Agent, true);
         });
+
+        it('should apply NODE_TLS_REJECT_UNAUTHORIZED from environment to agent', async () => {
+            const { server, host, port } = await createTestHttpsServer((req, res) => {
+                res.setHeader('Content-Type', 'application/json');
+                if (req.url?.includes('/api/v1/namespaces')) {
+                    res.writeHead(200);
+                    res.end(
+                        JSON.stringify({
+                            apiVersion: 'v1',
+                            kind: 'NamespaceList',
+                            items: [
+                                {
+                                    apiVersion: 'v1',
+                                    kind: 'Namespace',
+                                    metadata: { name: 'default' },
+                                },
+                            ],
+                        }),
+                    );
+                } else {
+                    res.writeHead(200);
+                    res.end('ok');
+                }
+            });
+
+            const originalValue = process.env.NODE_TLS_REJECT_UNAUTHORIZED;
+            process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'; // lgtm[js/disabling-certificate-validation]
+            after(() => {
+                process.env.NODE_TLS_REJECT_UNAUTHORIZED = originalValue;
+                server.close();
+            });
+
+            const kc = new KubeConfig();
+            kc.loadFromClusterAndUser(
+                {
+                    name: 'test-cluster',
+                    server: `https://${host}:${port}`,
+                    // ignore skipTLSVerify specified from environment variables
+                } as Cluster,
+                {
+                    name: 'test-user',
+                    token: 'test-token',
+                },
+            );
+            const coreV1Api = kc.makeApiClient(CoreV1Api);
+            const namespaceList = await coreV1Api.listNamespace();
+
+            strictEqual(namespaceList.kind, 'NamespaceList');
+            strictEqual(namespaceList.items.length, 1);
+            strictEqual(namespaceList.items[0].metadata?.name, 'default');
+
+            const res2 = await fetch(`https://${host}:${port}`, await kc.applyToFetchOptions({}));
+            strictEqual(res2.status, 200);
+            strictEqual(await res2.text(), 'ok');
+        });
     });
 
     describe('loadClusterConfigObjects', () => {
@@ -642,6 +701,24 @@ describe('KubeConfig', () => {
             strictEqual(password, users[0].password);
             strictEqual(username, users[0].username);
             strictEqual(name, users[0].name);
+        });
+        it('should load impersonation information', () => {
+            const users = newUsers([
+                {
+                    name: 'some-name-1',
+                    user: {
+                        as: 'impersonated-user',
+                    },
+                },
+                {
+                    name: 'some-name-2',
+                    user: {},
+                },
+            ]);
+            strictEqual('some-name-1', users[0].name);
+            strictEqual('impersonated-user', users[0].impersonateUser);
+            strictEqual('some-name-2', users[1].name);
+            strictEqual(undefined, users[1].impersonateUser);
         });
     });
 
@@ -944,7 +1021,7 @@ describe('KubeConfig', () => {
             const opts = {} as RequestOptions;
 
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
         it('should populate from auth provider', async () => {
             const config = new KubeConfig();
@@ -964,11 +1041,11 @@ describe('KubeConfig', () => {
             const opts = {} as RequestOptions;
 
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
             opts.headers = {};
             opts.headers.Host = 'foo.com';
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
 
         it('should populate from auth provider without expirty', async () => {
@@ -988,7 +1065,7 @@ describe('KubeConfig', () => {
             const opts = {} as RequestOptions;
 
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
 
         it('should populate rejectUnauthorized=false when skipTLSVerify is set', async () => {
@@ -1097,7 +1174,7 @@ describe('KubeConfig', () => {
             );
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
 
         it('should exec with expired token', async () => {
@@ -1125,7 +1202,7 @@ describe('KubeConfig', () => {
             );
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
 
         it('should exec without access-token', async () => {
@@ -1152,7 +1229,7 @@ describe('KubeConfig', () => {
             );
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
         it('should exec without access-token', async () => {
             // TODO: fix this test for Windows
@@ -1178,7 +1255,7 @@ describe('KubeConfig', () => {
             );
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
         it('should exec succesfully with spaces in cmd', async () => {
             // TODO: fix this test for Windows
@@ -1204,7 +1281,7 @@ describe('KubeConfig', () => {
             );
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
         it('should exec with exec auth and env vars', async () => {
             // TODO: fix this test for Windows
@@ -1237,7 +1314,7 @@ describe('KubeConfig', () => {
             // TODO: inject the exec command here and validate env vars?
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
         it('should exec with exec auth', async () => {
             // TODO: fix this test for Windows
@@ -1270,7 +1347,7 @@ describe('KubeConfig', () => {
             // TODO: inject the exec command here?
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
         it('should exec with exec auth (other location)', async () => {
             // TODO: fix this test for Windows
@@ -1298,7 +1375,7 @@ describe('KubeConfig', () => {
             // TODO: inject the exec command here?
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            strictEqual(opts.headers!.Authorization, `Bearer ${token}`);
+            strictEqual(opts.headers!['Authorization'], `Bearer ${token}`);
         });
         it('should cache exec with name', async () => {
             // TODO: fix this test for Windows
@@ -1327,7 +1404,7 @@ describe('KubeConfig', () => {
             // TODO: inject the exec command here?
             const opts = {} as RequestOptions;
             await config.applyToHTTPSOptions(opts);
-            const execAuthenticator = (KubeConfig as any).authenticators.find(
+            const execAuthenticator = (config as any).authenticators.find(
                 (authenticator) => authenticator instanceof ExecAuth,
             );
             deepStrictEqual(execAuthenticator.tokenCache.exec, JSON.parse(responseStr));
@@ -1758,7 +1835,7 @@ describe('KubeConfig', () => {
                         // Simulate token retrieval
                         const token = 'test-token';
                         opts.headers = opts.headers || {};
-                        opts.headers.Authorization = `Bearer ${token}`;
+                        opts.headers['Authorization'] = `Bearer ${token}`;
                     } else {
                         throw new Error('No custom configuration found');
                     }
@@ -1784,7 +1861,63 @@ describe('KubeConfig', () => {
             const opts: RequestOptions = {};
             await kc.applyToHTTPSOptions(opts);
 
-            strictEqual(opts.headers!.Authorization, 'Bearer test-token');
+            strictEqual(opts.headers!['Authorization'], 'Bearer test-token');
+        });
+    });
+
+    describe('Impersonation', () => {
+        it('injects Impersonate-User header', async () => {
+            const kc = new KubeConfig();
+            const cluster: Cluster = {
+                name: 'test-cluster',
+                server: 'https://localhost:6443',
+                skipTLSVerify: false,
+            };
+            const user: User = {
+                name: 'test-user',
+                authProvider: 'custom',
+                impersonateUser: 'impersonate-user',
+            };
+
+            kc.loadFromClusterAndUser(cluster, user);
+            const opts: RequestOptions = {};
+            await kc.applyToHTTPSOptions(opts);
+            strictEqual(opts.headers!['Impersonate-User'], 'impersonate-user');
         });
     });
 });
+
+// create a self-signed HTTPS test server
+async function createTestHttpsServer(
+    requestHandler?: (req: http.IncomingMessage, res: http.ServerResponse) => void,
+): Promise<{
+    server: https.Server;
+    host: string;
+    port: number;
+    ca: string;
+}> {
+    const host = 'localhost';
+
+    const cert = readFileSync(testCertFileName, 'utf8');
+    const key = readFileSync(testKeyFileName, 'utf8');
+
+    const defaultHandler = (req: http.IncomingMessage, res: http.ServerResponse) => {
+        res.writeHead(200);
+        res.end('ok');
+    };
+
+    const server = https.createServer({ key, cert }, requestHandler ?? defaultHandler);
+
+    const port = await new Promise<number>((resolve) => {
+        server.listen(0, () => {
+            resolve((server.address() as AddressInfo).port);
+        });
+    });
+
+    return {
+        server,
+        host,
+        port,
+        ca: cert, // ca is the same as cert here
+    };
+}

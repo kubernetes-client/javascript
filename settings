@@ -21,7 +21,7 @@ export GEN_COMMIT=b461333bb57fa2dc2152f939ed70bac3cef2c1f6
 export USERNAME=kubernetes
 
 # Kubernetes branch/tag to get the OpenAPI spec from.
-export KUBERNETES_BRANCH="v1.32.0"
+export KUBERNETES_BRANCH="v1.33.0"
 
 # client version for packaging and releasing. It can
 # be different than SPEC_VERSION.
@@ -30,4 +30,4 @@ export CLIENT_VERSION="0.8-SNAPSHOT"
 # Name of the release package
 export PACKAGE_NAME="@kubernetes/node-client"
 
-export OPENAPI_GENERATOR_COMMIT=fc00a663e1688c99d6e8917b6fb222cf83141d4c
+export OPENAPI_GENERATOR_COMMIT=d06ed32df0a30fe12a1c7ba98722c12e867b6060
