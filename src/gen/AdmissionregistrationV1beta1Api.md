@@ -4,42 +4,39 @@ All URIs are relative to *http://localhost*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**createValidatingAdmissionPolicy**](AdmissionregistrationV1beta1Api.md#createValidatingAdmissionPolicy) | **POST** /apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicies | 
-[**createValidatingAdmissionPolicyBinding**](AdmissionregistrationV1beta1Api.md#createValidatingAdmissionPolicyBinding) | **POST** /apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicybindings | 
-[**deleteCollectionValidatingAdmissionPolicy**](AdmissionregistrationV1beta1Api.md#deleteCollectionValidatingAdmissionPolicy) | **DELETE** /apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicies | 
-[**deleteCollectionValidatingAdmissionPolicyBinding**](AdmissionregistrationV1beta1Api.md#deleteCollectionValidatingAdmissionPolicyBinding) | **DELETE** /apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicybindings | 
-[**deleteValidatingAdmissionPolicy**](AdmissionregistrationV1beta1Api.md#deleteValidatingAdmissionPolicy) | **DELETE** /apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicies/{name} | 
-[**deleteValidatingAdmissionPolicyBinding**](AdmissionregistrationV1beta1Api.md#deleteValidatingAdmissionPolicyBinding) | **DELETE** /apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicybindings/{name} | 
+[**createMutatingAdmissionPolicy**](AdmissionregistrationV1beta1Api.md#createMutatingAdmissionPolicy) | **POST** /apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicies | 
+[**createMutatingAdmissionPolicyBinding**](AdmissionregistrationV1beta1Api.md#createMutatingAdmissionPolicyBinding) | **POST** /apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicybindings | 
+[**deleteCollectionMutatingAdmissionPolicy**](AdmissionregistrationV1beta1Api.md#deleteCollectionMutatingAdmissionPolicy) | **DELETE** /apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicies | 
+[**deleteCollectionMutatingAdmissionPolicyBinding**](AdmissionregistrationV1beta1Api.md#deleteCollectionMutatingAdmissionPolicyBinding) | **DELETE** /apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicybindings | 
+[**deleteMutatingAdmissionPolicy**](AdmissionregistrationV1beta1Api.md#deleteMutatingAdmissionPolicy) | **DELETE** /apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicies/{name} | 
+[**deleteMutatingAdmissionPolicyBinding**](AdmissionregistrationV1beta1Api.md#deleteMutatingAdmissionPolicyBinding) | **DELETE** /apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicybindings/{name} | 
 [**getAPIResources**](AdmissionregistrationV1beta1Api.md#getAPIResources) | **GET** /apis/admissionregistration.k8s.io/v1beta1/ | 
-[**listValidatingAdmissionPolicy**](AdmissionregistrationV1beta1Api.md#listValidatingAdmissionPolicy) | **GET** /apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicies | 
-[**listValidatingAdmissionPolicyBinding**](AdmissionregistrationV1beta1Api.md#listValidatingAdmissionPolicyBinding) | **GET** /apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicybindings | 
-[**patchValidatingAdmissionPolicy**](AdmissionregistrationV1beta1Api.md#patchValidatingAdmissionPolicy) | **PATCH** /apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicies/{name} | 
-[**patchValidatingAdmissionPolicyBinding**](AdmissionregistrationV1beta1Api.md#patchValidatingAdmissionPolicyBinding) | **PATCH** /apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicybindings/{name} | 
-[**patchValidatingAdmissionPolicyStatus**](AdmissionregistrationV1beta1Api.md#patchValidatingAdmissionPolicyStatus) | **PATCH** /apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicies/{name}/status | 
-[**readValidatingAdmissionPolicy**](AdmissionregistrationV1beta1Api.md#readValidatingAdmissionPolicy) | **GET** /apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicies/{name} | 
-[**readValidatingAdmissionPolicyBinding**](AdmissionregistrationV1beta1Api.md#readValidatingAdmissionPolicyBinding) | **GET** /apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicybindings/{name} | 
-[**readValidatingAdmissionPolicyStatus**](AdmissionregistrationV1beta1Api.md#readValidatingAdmissionPolicyStatus) | **GET** /apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicies/{name}/status | 
-[**replaceValidatingAdmissionPolicy**](AdmissionregistrationV1beta1Api.md#replaceValidatingAdmissionPolicy) | **PUT** /apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicies/{name} | 
-[**replaceValidatingAdmissionPolicyBinding**](AdmissionregistrationV1beta1Api.md#replaceValidatingAdmissionPolicyBinding) | **PUT** /apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicybindings/{name} | 
-[**replaceValidatingAdmissionPolicyStatus**](AdmissionregistrationV1beta1Api.md#replaceValidatingAdmissionPolicyStatus) | **PUT** /apis/admissionregistration.k8s.io/v1beta1/validatingadmissionpolicies/{name}/status | 
+[**listMutatingAdmissionPolicy**](AdmissionregistrationV1beta1Api.md#listMutatingAdmissionPolicy) | **GET** /apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicies | 
+[**listMutatingAdmissionPolicyBinding**](AdmissionregistrationV1beta1Api.md#listMutatingAdmissionPolicyBinding) | **GET** /apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicybindings | 
+[**patchMutatingAdmissionPolicy**](AdmissionregistrationV1beta1Api.md#patchMutatingAdmissionPolicy) | **PATCH** /apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicies/{name} | 
+[**patchMutatingAdmissionPolicyBinding**](AdmissionregistrationV1beta1Api.md#patchMutatingAdmissionPolicyBinding) | **PATCH** /apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicybindings/{name} | 
+[**readMutatingAdmissionPolicy**](AdmissionregistrationV1beta1Api.md#readMutatingAdmissionPolicy) | **GET** /apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicies/{name} | 
+[**readMutatingAdmissionPolicyBinding**](AdmissionregistrationV1beta1Api.md#readMutatingAdmissionPolicyBinding) | **GET** /apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicybindings/{name} | 
+[**replaceMutatingAdmissionPolicy**](AdmissionregistrationV1beta1Api.md#replaceMutatingAdmissionPolicy) | **PUT** /apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicies/{name} | 
+[**replaceMutatingAdmissionPolicyBinding**](AdmissionregistrationV1beta1Api.md#replaceMutatingAdmissionPolicyBinding) | **PUT** /apis/admissionregistration.k8s.io/v1beta1/mutatingadmissionpolicybindings/{name} | 
 
 
-# **createValidatingAdmissionPolicy**
-> V1beta1ValidatingAdmissionPolicy createValidatingAdmissionPolicy(body)
+# **createMutatingAdmissionPolicy**
+> V1beta1MutatingAdmissionPolicy createMutatingAdmissionPolicy(body)
 
-create a ValidatingAdmissionPolicy
+create a MutatingAdmissionPolicy
 
 ### Example
 
 
 ```typescript
 import { createConfiguration, AdmissionregistrationV1beta1Api } from '';
-import type { AdmissionregistrationV1beta1ApiCreateValidatingAdmissionPolicyRequest } from '';
+import type { AdmissionregistrationV1beta1ApiCreateMutatingAdmissionPolicyRequest } from '';
 
 const configuration = createConfiguration();
 const apiInstance = new AdmissionregistrationV1beta1Api(configuration);
 
-const request: AdmissionregistrationV1beta1ApiCreateValidatingAdmissionPolicyRequest = {
+const request: AdmissionregistrationV1beta1ApiCreateMutatingAdmissionPolicyRequest = {
   
   body: {
     apiVersion: "apiVersion_example",
@@ -87,12 +84,6 @@ const request: AdmissionregistrationV1beta1ApiCreateValidatingAdmissionPolicyReq
       uid: "uid_example",
     },
     spec: {
-      auditAnnotations: [
-        {
-          key: "key_example",
-          valueExpression: "valueExpression_example",
-        },
-      ],
       failurePolicy: "failurePolicy_example",
       matchConditions: [
         {
@@ -171,45 +162,28 @@ const request: AdmissionregistrationV1beta1ApiCreateValidatingAdmissionPolicyReq
           },
         ],
       },
+      mutations: [
+        {
+          applyConfiguration: {
+            expression: "expression_example",
+          },
+          jsonPatch: {
+            expression: "expression_example",
+          },
+          patchType: "patchType_example",
+        },
+      ],
       paramKind: {
         apiVersion: "apiVersion_example",
         kind: "kind_example",
       },
-      validations: [
-        {
-          expression: "expression_example",
-          message: "message_example",
-          messageExpression: "messageExpression_example",
-          reason: "reason_example",
-        },
-      ],
+      reinvocationPolicy: "reinvocationPolicy_example",
       variables: [
         {
           expression: "expression_example",
           name: "name_example",
         },
       ],
-    },
-    status: {
-      conditions: [
-        {
-          lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
-          message: "message_example",
-          observedGeneration: 1,
-          reason: "reason_example",
-          status: "status_example",
-          type: "type_example",
-        },
-      ],
-      observedGeneration: 1,
-      typeChecking: {
-        expressionWarnings: [
-          {
-            fieldRef: "fieldRef_example",
-            warning: "warning_example",
-          },
-        ],
-      },
     },
   },
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
@@ -222,7 +196,7 @@ const request: AdmissionregistrationV1beta1ApiCreateValidatingAdmissionPolicyReq
   fieldValidation: "fieldValidation_example",
 };
 
-const data = await apiInstance.createValidatingAdmissionPolicy(request);
+const data = await apiInstance.createMutatingAdmissionPolicy(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -231,7 +205,7 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **V1beta1ValidatingAdmissionPolicy**|  |
+ **body** | **V1beta1MutatingAdmissionPolicy**|  |
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
@@ -240,7 +214,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**V1beta1ValidatingAdmissionPolicy**
+**V1beta1MutatingAdmissionPolicy**
 
 ### Authorization
 
@@ -262,22 +236,22 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **createValidatingAdmissionPolicyBinding**
-> V1beta1ValidatingAdmissionPolicyBinding createValidatingAdmissionPolicyBinding(body)
+# **createMutatingAdmissionPolicyBinding**
+> V1beta1MutatingAdmissionPolicyBinding createMutatingAdmissionPolicyBinding(body)
 
-create a ValidatingAdmissionPolicyBinding
+create a MutatingAdmissionPolicyBinding
 
 ### Example
 
 
 ```typescript
 import { createConfiguration, AdmissionregistrationV1beta1Api } from '';
-import type { AdmissionregistrationV1beta1ApiCreateValidatingAdmissionPolicyBindingRequest } from '';
+import type { AdmissionregistrationV1beta1ApiCreateMutatingAdmissionPolicyBindingRequest } from '';
 
 const configuration = createConfiguration();
 const apiInstance = new AdmissionregistrationV1beta1Api(configuration);
 
-const request: AdmissionregistrationV1beta1ApiCreateValidatingAdmissionPolicyBindingRequest = {
+const request: AdmissionregistrationV1beta1ApiCreateMutatingAdmissionPolicyBindingRequest = {
   
   body: {
     apiVersion: "apiVersion_example",
@@ -416,9 +390,6 @@ const request: AdmissionregistrationV1beta1ApiCreateValidatingAdmissionPolicyBin
         },
       },
       policyName: "policyName_example",
-      validationActions: [
-        "validationActions_example",
-      ],
     },
   },
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
@@ -431,7 +402,7 @@ const request: AdmissionregistrationV1beta1ApiCreateValidatingAdmissionPolicyBin
   fieldValidation: "fieldValidation_example",
 };
 
-const data = await apiInstance.createValidatingAdmissionPolicyBinding(request);
+const data = await apiInstance.createMutatingAdmissionPolicyBinding(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -440,7 +411,7 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **V1beta1ValidatingAdmissionPolicyBinding**|  |
+ **body** | **V1beta1MutatingAdmissionPolicyBinding**|  |
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
@@ -449,7 +420,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**V1beta1ValidatingAdmissionPolicyBinding**
+**V1beta1MutatingAdmissionPolicyBinding**
 
 ### Authorization
 
@@ -471,22 +442,22 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **deleteCollectionValidatingAdmissionPolicy**
-> V1Status deleteCollectionValidatingAdmissionPolicy()
+# **deleteCollectionMutatingAdmissionPolicy**
+> V1Status deleteCollectionMutatingAdmissionPolicy()
 
-delete collection of ValidatingAdmissionPolicy
+delete collection of MutatingAdmissionPolicy
 
 ### Example
 
 
 ```typescript
 import { createConfiguration, AdmissionregistrationV1beta1Api } from '';
-import type { AdmissionregistrationV1beta1ApiDeleteCollectionValidatingAdmissionPolicyRequest } from '';
+import type { AdmissionregistrationV1beta1ApiDeleteCollectionMutatingAdmissionPolicyRequest } from '';
 
 const configuration = createConfiguration();
 const apiInstance = new AdmissionregistrationV1beta1Api(configuration);
 
-const request: AdmissionregistrationV1beta1ApiDeleteCollectionValidatingAdmissionPolicyRequest = {
+const request: AdmissionregistrationV1beta1ApiDeleteCollectionMutatingAdmissionPolicyRequest = {
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
     // The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
@@ -533,7 +504,7 @@ const request: AdmissionregistrationV1beta1ApiDeleteCollectionValidatingAdmissio
   },
 };
 
-const data = await apiInstance.deleteCollectionValidatingAdmissionPolicy(request);
+const data = await apiInstance.deleteCollectionMutatingAdmissionPolicy(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -581,22 +552,22 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **deleteCollectionValidatingAdmissionPolicyBinding**
-> V1Status deleteCollectionValidatingAdmissionPolicyBinding()
+# **deleteCollectionMutatingAdmissionPolicyBinding**
+> V1Status deleteCollectionMutatingAdmissionPolicyBinding()
 
-delete collection of ValidatingAdmissionPolicyBinding
+delete collection of MutatingAdmissionPolicyBinding
 
 ### Example
 
 
 ```typescript
 import { createConfiguration, AdmissionregistrationV1beta1Api } from '';
-import type { AdmissionregistrationV1beta1ApiDeleteCollectionValidatingAdmissionPolicyBindingRequest } from '';
+import type { AdmissionregistrationV1beta1ApiDeleteCollectionMutatingAdmissionPolicyBindingRequest } from '';
 
 const configuration = createConfiguration();
 const apiInstance = new AdmissionregistrationV1beta1Api(configuration);
 
-const request: AdmissionregistrationV1beta1ApiDeleteCollectionValidatingAdmissionPolicyBindingRequest = {
+const request: AdmissionregistrationV1beta1ApiDeleteCollectionMutatingAdmissionPolicyBindingRequest = {
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
     // The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \"next key\".  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. (optional)
@@ -643,7 +614,7 @@ const request: AdmissionregistrationV1beta1ApiDeleteCollectionValidatingAdmissio
   },
 };
 
-const data = await apiInstance.deleteCollectionValidatingAdmissionPolicyBinding(request);
+const data = await apiInstance.deleteCollectionMutatingAdmissionPolicyBinding(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -691,23 +662,23 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **deleteValidatingAdmissionPolicy**
-> V1Status deleteValidatingAdmissionPolicy()
+# **deleteMutatingAdmissionPolicy**
+> V1Status deleteMutatingAdmissionPolicy()
 
-delete a ValidatingAdmissionPolicy
+delete a MutatingAdmissionPolicy
 
 ### Example
 
 
 ```typescript
 import { createConfiguration, AdmissionregistrationV1beta1Api } from '';
-import type { AdmissionregistrationV1beta1ApiDeleteValidatingAdmissionPolicyRequest } from '';
+import type { AdmissionregistrationV1beta1ApiDeleteMutatingAdmissionPolicyRequest } from '';
 
 const configuration = createConfiguration();
 const apiInstance = new AdmissionregistrationV1beta1Api(configuration);
 
-const request: AdmissionregistrationV1beta1ApiDeleteValidatingAdmissionPolicyRequest = {
-    // name of the ValidatingAdmissionPolicy
+const request: AdmissionregistrationV1beta1ApiDeleteMutatingAdmissionPolicyRequest = {
+    // name of the MutatingAdmissionPolicy
   name: "name_example",
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
@@ -739,7 +710,7 @@ const request: AdmissionregistrationV1beta1ApiDeleteValidatingAdmissionPolicyReq
   },
 };
 
-const data = await apiInstance.deleteValidatingAdmissionPolicy(request);
+const data = await apiInstance.deleteMutatingAdmissionPolicy(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -749,7 +720,7 @@ console.log('API called successfully. Returned data:', data);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **V1DeleteOptions**|  |
- **name** | [**string**] | name of the ValidatingAdmissionPolicy | defaults to undefined
+ **name** | [**string**] | name of the MutatingAdmissionPolicy | defaults to undefined
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
@@ -781,23 +752,23 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **deleteValidatingAdmissionPolicyBinding**
-> V1Status deleteValidatingAdmissionPolicyBinding()
+# **deleteMutatingAdmissionPolicyBinding**
+> V1Status deleteMutatingAdmissionPolicyBinding()
 
-delete a ValidatingAdmissionPolicyBinding
+delete a MutatingAdmissionPolicyBinding
 
 ### Example
 
 
 ```typescript
 import { createConfiguration, AdmissionregistrationV1beta1Api } from '';
-import type { AdmissionregistrationV1beta1ApiDeleteValidatingAdmissionPolicyBindingRequest } from '';
+import type { AdmissionregistrationV1beta1ApiDeleteMutatingAdmissionPolicyBindingRequest } from '';
 
 const configuration = createConfiguration();
 const apiInstance = new AdmissionregistrationV1beta1Api(configuration);
 
-const request: AdmissionregistrationV1beta1ApiDeleteValidatingAdmissionPolicyBindingRequest = {
-    // name of the ValidatingAdmissionPolicyBinding
+const request: AdmissionregistrationV1beta1ApiDeleteMutatingAdmissionPolicyBindingRequest = {
+    // name of the MutatingAdmissionPolicyBinding
   name: "name_example",
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
@@ -829,7 +800,7 @@ const request: AdmissionregistrationV1beta1ApiDeleteValidatingAdmissionPolicyBin
   },
 };
 
-const data = await apiInstance.deleteValidatingAdmissionPolicyBinding(request);
+const data = await apiInstance.deleteMutatingAdmissionPolicyBinding(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -839,7 +810,7 @@ console.log('API called successfully. Returned data:', data);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **V1DeleteOptions**|  |
- **name** | [**string**] | name of the ValidatingAdmissionPolicyBinding | defaults to undefined
+ **name** | [**string**] | name of the MutatingAdmissionPolicyBinding | defaults to undefined
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **gracePeriodSeconds** | [**number**] | The duration in seconds before the object should be deleted. Value must be non-negative integer. The value zero indicates delete immediately. If this value is nil, the default grace period for the specified type will be used. Defaults to a per object value if not specified. zero means delete immediately. | (optional) defaults to undefined
@@ -918,22 +889,22 @@ This endpoint does not need any parameter.
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **listValidatingAdmissionPolicy**
-> V1beta1ValidatingAdmissionPolicyList listValidatingAdmissionPolicy()
+# **listMutatingAdmissionPolicy**
+> V1beta1MutatingAdmissionPolicyList listMutatingAdmissionPolicy()
 
-list or watch objects of kind ValidatingAdmissionPolicy
+list or watch objects of kind MutatingAdmissionPolicy
 
 ### Example
 
 
 ```typescript
 import { createConfiguration, AdmissionregistrationV1beta1Api } from '';
-import type { AdmissionregistrationV1beta1ApiListValidatingAdmissionPolicyRequest } from '';
+import type { AdmissionregistrationV1beta1ApiListMutatingAdmissionPolicyRequest } from '';
 
 const configuration = createConfiguration();
 const apiInstance = new AdmissionregistrationV1beta1Api(configuration);
 
-const request: AdmissionregistrationV1beta1ApiListValidatingAdmissionPolicyRequest = {
+const request: AdmissionregistrationV1beta1ApiListMutatingAdmissionPolicyRequest = {
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
     // allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\'s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. (optional)
@@ -958,7 +929,7 @@ const request: AdmissionregistrationV1beta1ApiListValidatingAdmissionPolicyReque
   watch: true,
 };
 
-const data = await apiInstance.listValidatingAdmissionPolicy(request);
+const data = await apiInstance.listMutatingAdmissionPolicy(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -982,7 +953,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**V1beta1ValidatingAdmissionPolicyList**
+**V1beta1MutatingAdmissionPolicyList**
 
 ### Authorization
 
@@ -1002,22 +973,22 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **listValidatingAdmissionPolicyBinding**
-> V1beta1ValidatingAdmissionPolicyBindingList listValidatingAdmissionPolicyBinding()
+# **listMutatingAdmissionPolicyBinding**
+> V1beta1MutatingAdmissionPolicyBindingList listMutatingAdmissionPolicyBinding()
 
-list or watch objects of kind ValidatingAdmissionPolicyBinding
+list or watch objects of kind MutatingAdmissionPolicyBinding
 
 ### Example
 
 
 ```typescript
 import { createConfiguration, AdmissionregistrationV1beta1Api } from '';
-import type { AdmissionregistrationV1beta1ApiListValidatingAdmissionPolicyBindingRequest } from '';
+import type { AdmissionregistrationV1beta1ApiListMutatingAdmissionPolicyBindingRequest } from '';
 
 const configuration = createConfiguration();
 const apiInstance = new AdmissionregistrationV1beta1Api(configuration);
 
-const request: AdmissionregistrationV1beta1ApiListValidatingAdmissionPolicyBindingRequest = {
+const request: AdmissionregistrationV1beta1ApiListMutatingAdmissionPolicyBindingRequest = {
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
     // allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\'s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. (optional)
@@ -1042,7 +1013,7 @@ const request: AdmissionregistrationV1beta1ApiListValidatingAdmissionPolicyBindi
   watch: true,
 };
 
-const data = await apiInstance.listValidatingAdmissionPolicyBinding(request);
+const data = await apiInstance.listMutatingAdmissionPolicyBinding(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -1066,7 +1037,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**V1beta1ValidatingAdmissionPolicyBindingList**
+**V1beta1MutatingAdmissionPolicyBindingList**
 
 ### Authorization
 
@@ -1086,23 +1057,23 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **patchValidatingAdmissionPolicy**
-> V1beta1ValidatingAdmissionPolicy patchValidatingAdmissionPolicy(body)
+# **patchMutatingAdmissionPolicy**
+> V1beta1MutatingAdmissionPolicy patchMutatingAdmissionPolicy(body)
 
-partially update the specified ValidatingAdmissionPolicy
+partially update the specified MutatingAdmissionPolicy
 
 ### Example
 
 
 ```typescript
 import { createConfiguration, AdmissionregistrationV1beta1Api } from '';
-import type { AdmissionregistrationV1beta1ApiPatchValidatingAdmissionPolicyRequest } from '';
+import type { AdmissionregistrationV1beta1ApiPatchMutatingAdmissionPolicyRequest } from '';
 
 const configuration = createConfiguration();
 const apiInstance = new AdmissionregistrationV1beta1Api(configuration);
 
-const request: AdmissionregistrationV1beta1ApiPatchValidatingAdmissionPolicyRequest = {
-    // name of the ValidatingAdmissionPolicy
+const request: AdmissionregistrationV1beta1ApiPatchMutatingAdmissionPolicyRequest = {
+    // name of the MutatingAdmissionPolicy
   name: "name_example",
   
   body: {},
@@ -1118,7 +1089,7 @@ const request: AdmissionregistrationV1beta1ApiPatchValidatingAdmissionPolicyRequ
   force: true,
 };
 
-const data = await apiInstance.patchValidatingAdmissionPolicy(request);
+const data = await apiInstance.patchMutatingAdmissionPolicy(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -1128,7 +1099,7 @@ console.log('API called successfully. Returned data:', data);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **any**|  |
- **name** | [**string**] | name of the ValidatingAdmissionPolicy | defaults to undefined
+ **name** | [**string**] | name of the MutatingAdmissionPolicy | defaults to undefined
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
@@ -1138,7 +1109,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**V1beta1ValidatingAdmissionPolicy**
+**V1beta1MutatingAdmissionPolicy**
 
 ### Authorization
 
@@ -1159,23 +1130,23 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **patchValidatingAdmissionPolicyBinding**
-> V1beta1ValidatingAdmissionPolicyBinding patchValidatingAdmissionPolicyBinding(body)
+# **patchMutatingAdmissionPolicyBinding**
+> V1beta1MutatingAdmissionPolicyBinding patchMutatingAdmissionPolicyBinding(body)
 
-partially update the specified ValidatingAdmissionPolicyBinding
+partially update the specified MutatingAdmissionPolicyBinding
 
 ### Example
 
 
 ```typescript
 import { createConfiguration, AdmissionregistrationV1beta1Api } from '';
-import type { AdmissionregistrationV1beta1ApiPatchValidatingAdmissionPolicyBindingRequest } from '';
+import type { AdmissionregistrationV1beta1ApiPatchMutatingAdmissionPolicyBindingRequest } from '';
 
 const configuration = createConfiguration();
 const apiInstance = new AdmissionregistrationV1beta1Api(configuration);
 
-const request: AdmissionregistrationV1beta1ApiPatchValidatingAdmissionPolicyBindingRequest = {
-    // name of the ValidatingAdmissionPolicyBinding
+const request: AdmissionregistrationV1beta1ApiPatchMutatingAdmissionPolicyBindingRequest = {
+    // name of the MutatingAdmissionPolicyBinding
   name: "name_example",
   
   body: {},
@@ -1191,7 +1162,7 @@ const request: AdmissionregistrationV1beta1ApiPatchValidatingAdmissionPolicyBind
   force: true,
 };
 
-const data = await apiInstance.patchValidatingAdmissionPolicyBinding(request);
+const data = await apiInstance.patchMutatingAdmissionPolicyBinding(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -1201,7 +1172,7 @@ console.log('API called successfully. Returned data:', data);
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **body** | **any**|  |
- **name** | [**string**] | name of the ValidatingAdmissionPolicyBinding | defaults to undefined
+ **name** | [**string**] | name of the MutatingAdmissionPolicyBinding | defaults to undefined
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
@@ -1211,7 +1182,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**V1beta1ValidatingAdmissionPolicyBinding**
+**V1beta1MutatingAdmissionPolicyBinding**
 
 ### Authorization
 
@@ -1232,39 +1203,29 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **patchValidatingAdmissionPolicyStatus**
-> V1beta1ValidatingAdmissionPolicy patchValidatingAdmissionPolicyStatus(body)
+# **readMutatingAdmissionPolicy**
+> V1beta1MutatingAdmissionPolicy readMutatingAdmissionPolicy()
 
-partially update status of the specified ValidatingAdmissionPolicy
+read the specified MutatingAdmissionPolicy
 
 ### Example
 
 
 ```typescript
 import { createConfiguration, AdmissionregistrationV1beta1Api } from '';
-import type { AdmissionregistrationV1beta1ApiPatchValidatingAdmissionPolicyStatusRequest } from '';
+import type { AdmissionregistrationV1beta1ApiReadMutatingAdmissionPolicyRequest } from '';
 
 const configuration = createConfiguration();
 const apiInstance = new AdmissionregistrationV1beta1Api(configuration);
 
-const request: AdmissionregistrationV1beta1ApiPatchValidatingAdmissionPolicyStatusRequest = {
-    // name of the ValidatingAdmissionPolicy
+const request: AdmissionregistrationV1beta1ApiReadMutatingAdmissionPolicyRequest = {
+    // name of the MutatingAdmissionPolicy
   name: "name_example",
-  
-  body: {},
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
-    // When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
-  dryRun: "dryRun_example",
-    // fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
-  fieldManager: "fieldManager_example",
-    // fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
-  fieldValidation: "fieldValidation_example",
-    // Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
-  force: true,
 };
 
-const data = await apiInstance.patchValidatingAdmissionPolicyStatus(request);
+const data = await apiInstance.readMutatingAdmissionPolicy(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -1273,76 +1234,13 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **any**|  |
- **name** | [**string**] | name of the ValidatingAdmissionPolicy | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
- **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
- **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
- **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
- **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
-
-
-### Return type
-
-**V1beta1ValidatingAdmissionPolicy**
-
-### Authorization
-
-[BearerToken](README.md#BearerToken)
-
-### HTTP request headers
-
- - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**201** | Created |  -  |
-**401** | Unauthorized |  -  |
-
-[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
-
-# **readValidatingAdmissionPolicy**
-> V1beta1ValidatingAdmissionPolicy readValidatingAdmissionPolicy()
-
-read the specified ValidatingAdmissionPolicy
-
-### Example
-
-
-```typescript
-import { createConfiguration, AdmissionregistrationV1beta1Api } from '';
-import type { AdmissionregistrationV1beta1ApiReadValidatingAdmissionPolicyRequest } from '';
-
-const configuration = createConfiguration();
-const apiInstance = new AdmissionregistrationV1beta1Api(configuration);
-
-const request: AdmissionregistrationV1beta1ApiReadValidatingAdmissionPolicyRequest = {
-    // name of the ValidatingAdmissionPolicy
-  name: "name_example",
-    // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
-  pretty: "pretty_example",
-};
-
-const data = await apiInstance.readValidatingAdmissionPolicy(request);
-console.log('API called successfully. Returned data:', data);
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | [**string**] | name of the ValidatingAdmissionPolicy | defaults to undefined
+ **name** | [**string**] | name of the MutatingAdmissionPolicy | defaults to undefined
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
 
 
 ### Return type
 
-**V1beta1ValidatingAdmissionPolicy**
+**V1beta1MutatingAdmissionPolicy**
 
 ### Authorization
 
@@ -1362,29 +1260,29 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **readValidatingAdmissionPolicyBinding**
-> V1beta1ValidatingAdmissionPolicyBinding readValidatingAdmissionPolicyBinding()
+# **readMutatingAdmissionPolicyBinding**
+> V1beta1MutatingAdmissionPolicyBinding readMutatingAdmissionPolicyBinding()
 
-read the specified ValidatingAdmissionPolicyBinding
+read the specified MutatingAdmissionPolicyBinding
 
 ### Example
 
 
 ```typescript
 import { createConfiguration, AdmissionregistrationV1beta1Api } from '';
-import type { AdmissionregistrationV1beta1ApiReadValidatingAdmissionPolicyBindingRequest } from '';
+import type { AdmissionregistrationV1beta1ApiReadMutatingAdmissionPolicyBindingRequest } from '';
 
 const configuration = createConfiguration();
 const apiInstance = new AdmissionregistrationV1beta1Api(configuration);
 
-const request: AdmissionregistrationV1beta1ApiReadValidatingAdmissionPolicyBindingRequest = {
-    // name of the ValidatingAdmissionPolicyBinding
+const request: AdmissionregistrationV1beta1ApiReadMutatingAdmissionPolicyBindingRequest = {
+    // name of the MutatingAdmissionPolicyBinding
   name: "name_example",
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
 };
 
-const data = await apiInstance.readValidatingAdmissionPolicyBinding(request);
+const data = await apiInstance.readMutatingAdmissionPolicyBinding(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -1393,13 +1291,13 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | [**string**] | name of the ValidatingAdmissionPolicyBinding | defaults to undefined
+ **name** | [**string**] | name of the MutatingAdmissionPolicyBinding | defaults to undefined
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
 
 
 ### Return type
 
-**V1beta1ValidatingAdmissionPolicyBinding**
+**V1beta1MutatingAdmissionPolicyBinding**
 
 ### Authorization
 
@@ -1419,80 +1317,23 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **readValidatingAdmissionPolicyStatus**
-> V1beta1ValidatingAdmissionPolicy readValidatingAdmissionPolicyStatus()
+# **replaceMutatingAdmissionPolicy**
+> V1beta1MutatingAdmissionPolicy replaceMutatingAdmissionPolicy(body)
 
-read status of the specified ValidatingAdmissionPolicy
-
-### Example
-
-
-```typescript
-import { createConfiguration, AdmissionregistrationV1beta1Api } from '';
-import type { AdmissionregistrationV1beta1ApiReadValidatingAdmissionPolicyStatusRequest } from '';
-
-const configuration = createConfiguration();
-const apiInstance = new AdmissionregistrationV1beta1Api(configuration);
-
-const request: AdmissionregistrationV1beta1ApiReadValidatingAdmissionPolicyStatusRequest = {
-    // name of the ValidatingAdmissionPolicy
-  name: "name_example",
-    // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
-  pretty: "pretty_example",
-};
-
-const data = await apiInstance.readValidatingAdmissionPolicyStatus(request);
-console.log('API called successfully. Returned data:', data);
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **name** | [**string**] | name of the ValidatingAdmissionPolicy | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
-
-
-### Return type
-
-**V1beta1ValidatingAdmissionPolicy**
-
-### Authorization
-
-[BearerToken](README.md#BearerToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**401** | Unauthorized |  -  |
-
-[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
-
-# **replaceValidatingAdmissionPolicy**
-> V1beta1ValidatingAdmissionPolicy replaceValidatingAdmissionPolicy(body)
-
-replace the specified ValidatingAdmissionPolicy
+replace the specified MutatingAdmissionPolicy
 
 ### Example
 
 
 ```typescript
 import { createConfiguration, AdmissionregistrationV1beta1Api } from '';
-import type { AdmissionregistrationV1beta1ApiReplaceValidatingAdmissionPolicyRequest } from '';
+import type { AdmissionregistrationV1beta1ApiReplaceMutatingAdmissionPolicyRequest } from '';
 
 const configuration = createConfiguration();
 const apiInstance = new AdmissionregistrationV1beta1Api(configuration);
 
-const request: AdmissionregistrationV1beta1ApiReplaceValidatingAdmissionPolicyRequest = {
-    // name of the ValidatingAdmissionPolicy
+const request: AdmissionregistrationV1beta1ApiReplaceMutatingAdmissionPolicyRequest = {
+    // name of the MutatingAdmissionPolicy
   name: "name_example",
   
   body: {
@@ -1541,12 +1382,6 @@ const request: AdmissionregistrationV1beta1ApiReplaceValidatingAdmissionPolicyRe
       uid: "uid_example",
     },
     spec: {
-      auditAnnotations: [
-        {
-          key: "key_example",
-          valueExpression: "valueExpression_example",
-        },
-      ],
       failurePolicy: "failurePolicy_example",
       matchConditions: [
         {
@@ -1625,45 +1460,28 @@ const request: AdmissionregistrationV1beta1ApiReplaceValidatingAdmissionPolicyRe
           },
         ],
       },
+      mutations: [
+        {
+          applyConfiguration: {
+            expression: "expression_example",
+          },
+          jsonPatch: {
+            expression: "expression_example",
+          },
+          patchType: "patchType_example",
+        },
+      ],
       paramKind: {
         apiVersion: "apiVersion_example",
         kind: "kind_example",
       },
-      validations: [
-        {
-          expression: "expression_example",
-          message: "message_example",
-          messageExpression: "messageExpression_example",
-          reason: "reason_example",
-        },
-      ],
+      reinvocationPolicy: "reinvocationPolicy_example",
       variables: [
         {
           expression: "expression_example",
           name: "name_example",
         },
       ],
-    },
-    status: {
-      conditions: [
-        {
-          lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
-          message: "message_example",
-          observedGeneration: 1,
-          reason: "reason_example",
-          status: "status_example",
-          type: "type_example",
-        },
-      ],
-      observedGeneration: 1,
-      typeChecking: {
-        expressionWarnings: [
-          {
-            fieldRef: "fieldRef_example",
-            warning: "warning_example",
-          },
-        ],
-      },
     },
   },
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
@@ -1676,7 +1494,7 @@ const request: AdmissionregistrationV1beta1ApiReplaceValidatingAdmissionPolicyRe
   fieldValidation: "fieldValidation_example",
 };
 
-const data = await apiInstance.replaceValidatingAdmissionPolicy(request);
+const data = await apiInstance.replaceMutatingAdmissionPolicy(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -1685,8 +1503,8 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **V1beta1ValidatingAdmissionPolicy**|  |
- **name** | [**string**] | name of the ValidatingAdmissionPolicy | defaults to undefined
+ **body** | **V1beta1MutatingAdmissionPolicy**|  |
+ **name** | [**string**] | name of the MutatingAdmissionPolicy | defaults to undefined
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
@@ -1695,7 +1513,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**V1beta1ValidatingAdmissionPolicy**
+**V1beta1MutatingAdmissionPolicy**
 
 ### Authorization
 
@@ -1716,23 +1534,23 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
-# **replaceValidatingAdmissionPolicyBinding**
-> V1beta1ValidatingAdmissionPolicyBinding replaceValidatingAdmissionPolicyBinding(body)
+# **replaceMutatingAdmissionPolicyBinding**
+> V1beta1MutatingAdmissionPolicyBinding replaceMutatingAdmissionPolicyBinding(body)
 
-replace the specified ValidatingAdmissionPolicyBinding
+replace the specified MutatingAdmissionPolicyBinding
 
 ### Example
 
 
 ```typescript
 import { createConfiguration, AdmissionregistrationV1beta1Api } from '';
-import type { AdmissionregistrationV1beta1ApiReplaceValidatingAdmissionPolicyBindingRequest } from '';
+import type { AdmissionregistrationV1beta1ApiReplaceMutatingAdmissionPolicyBindingRequest } from '';
 
 const configuration = createConfiguration();
 const apiInstance = new AdmissionregistrationV1beta1Api(configuration);
 
-const request: AdmissionregistrationV1beta1ApiReplaceValidatingAdmissionPolicyBindingRequest = {
-    // name of the ValidatingAdmissionPolicyBinding
+const request: AdmissionregistrationV1beta1ApiReplaceMutatingAdmissionPolicyBindingRequest = {
+    // name of the MutatingAdmissionPolicyBinding
   name: "name_example",
   
   body: {
@@ -1872,9 +1690,6 @@ const request: AdmissionregistrationV1beta1ApiReplaceValidatingAdmissionPolicyBi
         },
       },
       policyName: "policyName_example",
-      validationActions: [
-        "validationActions_example",
-      ],
     },
   },
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
@@ -1887,7 +1702,7 @@ const request: AdmissionregistrationV1beta1ApiReplaceValidatingAdmissionPolicyBi
   fieldValidation: "fieldValidation_example",
 };
 
-const data = await apiInstance.replaceValidatingAdmissionPolicyBinding(request);
+const data = await apiInstance.replaceMutatingAdmissionPolicyBinding(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -1896,8 +1711,8 @@ console.log('API called successfully. Returned data:', data);
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **body** | **V1beta1ValidatingAdmissionPolicyBinding**|  |
- **name** | [**string**] | name of the ValidatingAdmissionPolicyBinding | defaults to undefined
+ **body** | **V1beta1MutatingAdmissionPolicyBinding**|  |
+ **name** | [**string**] | name of the MutatingAdmissionPolicyBinding | defaults to undefined
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
  **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
  **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
@@ -1906,247 +1721,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**V1beta1ValidatingAdmissionPolicyBinding**
-
-### Authorization
-
-[BearerToken](README.md#BearerToken)
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
-
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | OK |  -  |
-**201** | Created |  -  |
-**401** | Unauthorized |  -  |
-
-[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
-
-# **replaceValidatingAdmissionPolicyStatus**
-> V1beta1ValidatingAdmissionPolicy replaceValidatingAdmissionPolicyStatus(body)
-
-replace status of the specified ValidatingAdmissionPolicy
-
-### Example
-
-
-```typescript
-import { createConfiguration, AdmissionregistrationV1beta1Api } from '';
-import type { AdmissionregistrationV1beta1ApiReplaceValidatingAdmissionPolicyStatusRequest } from '';
-
-const configuration = createConfiguration();
-const apiInstance = new AdmissionregistrationV1beta1Api(configuration);
-
-const request: AdmissionregistrationV1beta1ApiReplaceValidatingAdmissionPolicyStatusRequest = {
-    // name of the ValidatingAdmissionPolicy
-  name: "name_example",
-  
-  body: {
-    apiVersion: "apiVersion_example",
-    kind: "kind_example",
-    metadata: {
-      annotations: {
-        "key": "key_example",
-      },
-      creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
-      deletionGracePeriodSeconds: 1,
-      deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
-      finalizers: [
-        "finalizers_example",
-      ],
-      generateName: "generateName_example",
-      generation: 1,
-      labels: {
-        "key": "key_example",
-      },
-      managedFields: [
-        {
-          apiVersion: "apiVersion_example",
-          fieldsType: "fieldsType_example",
-          fieldsV1: {},
-          manager: "manager_example",
-          operation: "operation_example",
-          subresource: "subresource_example",
-          time: new Date('1970-01-01T00:00:00.00Z'),
-        },
-      ],
-      name: "name_example",
-      namespace: "namespace_example",
-      ownerReferences: [
-        {
-          apiVersion: "apiVersion_example",
-          blockOwnerDeletion: true,
-          controller: true,
-          kind: "kind_example",
-          name: "name_example",
-          uid: "uid_example",
-        },
-      ],
-      resourceVersion: "resourceVersion_example",
-      selfLink: "selfLink_example",
-      uid: "uid_example",
-    },
-    spec: {
-      auditAnnotations: [
-        {
-          key: "key_example",
-          valueExpression: "valueExpression_example",
-        },
-      ],
-      failurePolicy: "failurePolicy_example",
-      matchConditions: [
-        {
-          expression: "expression_example",
-          name: "name_example",
-        },
-      ],
-      matchConstraints: {
-        excludeResourceRules: [
-          {
-            apiGroups: [
-              "apiGroups_example",
-            ],
-            apiVersions: [
-              "apiVersions_example",
-            ],
-            operations: [
-              "operations_example",
-            ],
-            resourceNames: [
-              "resourceNames_example",
-            ],
-            resources: [
-              "resources_example",
-            ],
-            scope: "scope_example",
-          },
-        ],
-        matchPolicy: "matchPolicy_example",
-        namespaceSelector: {
-          matchExpressions: [
-            {
-              key: "key_example",
-              operator: "operator_example",
-              values: [
-                "values_example",
-              ],
-            },
-          ],
-          matchLabels: {
-            "key": "key_example",
-          },
-        },
-        objectSelector: {
-          matchExpressions: [
-            {
-              key: "key_example",
-              operator: "operator_example",
-              values: [
-                "values_example",
-              ],
-            },
-          ],
-          matchLabels: {
-            "key": "key_example",
-          },
-        },
-        resourceRules: [
-          {
-            apiGroups: [
-              "apiGroups_example",
-            ],
-            apiVersions: [
-              "apiVersions_example",
-            ],
-            operations: [
-              "operations_example",
-            ],
-            resourceNames: [
-              "resourceNames_example",
-            ],
-            resources: [
-              "resources_example",
-            ],
-            scope: "scope_example",
-          },
-        ],
-      },
-      paramKind: {
-        apiVersion: "apiVersion_example",
-        kind: "kind_example",
-      },
-      validations: [
-        {
-          expression: "expression_example",
-          message: "message_example",
-          messageExpression: "messageExpression_example",
-          reason: "reason_example",
-        },
-      ],
-      variables: [
-        {
-          expression: "expression_example",
-          name: "name_example",
-        },
-      ],
-    },
-    status: {
-      conditions: [
-        {
-          lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
-          message: "message_example",
-          observedGeneration: 1,
-          reason: "reason_example",
-          status: "status_example",
-          type: "type_example",
-        },
-      ],
-      observedGeneration: 1,
-      typeChecking: {
-        expressionWarnings: [
-          {
-            fieldRef: "fieldRef_example",
-            warning: "warning_example",
-          },
-        ],
-      },
-    },
-  },
-    // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
-  pretty: "pretty_example",
-    // When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
-  dryRun: "dryRun_example",
-    // fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
-  fieldManager: "fieldManager_example",
-    // fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
-  fieldValidation: "fieldValidation_example",
-};
-
-const data = await apiInstance.replaceValidatingAdmissionPolicyStatus(request);
-console.log('API called successfully. Returned data:', data);
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **body** | **V1beta1ValidatingAdmissionPolicy**|  |
- **name** | [**string**] | name of the ValidatingAdmissionPolicy | defaults to undefined
- **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
- **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
- **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
- **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
-
-
-### Return type
-
-**V1beta1ValidatingAdmissionPolicy**
+**V1beta1MutatingAdmissionPolicyBinding**
 
 ### Authorization
 

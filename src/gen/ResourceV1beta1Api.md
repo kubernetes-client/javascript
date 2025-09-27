@@ -111,6 +111,7 @@ const request: ResourceV1beta1ApiCreateDeviceClassRequest = {
           },
         },
       ],
+      extendedResourceName: "extendedResourceName_example",
       selectors: [
         {
           cel: {
@@ -249,6 +250,7 @@ const request: ResourceV1beta1ApiCreateNamespacedResourceClaimRequest = {
         ],
         constraints: [
           {
+            distinctAttribute: "distinctAttribute_example",
             matchAttribute: "matchAttribute_example",
             requests: [
               "requests_example",
@@ -259,11 +261,21 @@ const request: ResourceV1beta1ApiCreateNamespacedResourceClaimRequest = {
           {
             adminAccess: true,
             allocationMode: "allocationMode_example",
+            capacity: {
+              requests: {
+                "key": "key_example",
+              },
+            },
             count: 1,
             deviceClassName: "deviceClassName_example",
             firstAvailable: [
               {
                 allocationMode: "allocationMode_example",
+                capacity: {
+                  requests: {
+                    "key": "key_example",
+                  },
+                },
                 count: 1,
                 deviceClassName: "deviceClassName_example",
                 name: "name_example",
@@ -308,6 +320,7 @@ const request: ResourceV1beta1ApiCreateNamespacedResourceClaimRequest = {
     },
     status: {
       allocation: {
+        allocationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
         devices: {
           config: [
             {
@@ -324,10 +337,20 @@ const request: ResourceV1beta1ApiCreateNamespacedResourceClaimRequest = {
           results: [
             {
               adminAccess: true,
+              bindingConditions: [
+                "bindingConditions_example",
+              ],
+              bindingFailureConditions: [
+                "bindingFailureConditions_example",
+              ],
+              consumedCapacity: {
+                "key": "key_example",
+              },
               device: "device_example",
               driver: "driver_example",
               pool: "pool_example",
               request: "request_example",
+              shareID: "shareID_example",
               tolerations: [
                 {
                   effect: "effect_example",
@@ -388,6 +411,7 @@ const request: ResourceV1beta1ApiCreateNamespacedResourceClaimRequest = {
             ],
           },
           pool: "pool_example",
+          shareID: "shareID_example",
         },
       ],
       reservedFor: [
@@ -573,6 +597,7 @@ const request: ResourceV1beta1ApiCreateNamespacedResourceClaimTemplateRequest = 
           ],
           constraints: [
             {
+              distinctAttribute: "distinctAttribute_example",
               matchAttribute: "matchAttribute_example",
               requests: [
                 "requests_example",
@@ -583,11 +608,21 @@ const request: ResourceV1beta1ApiCreateNamespacedResourceClaimTemplateRequest = 
             {
               adminAccess: true,
               allocationMode: "allocationMode_example",
+              capacity: {
+                requests: {
+                  "key": "key_example",
+                },
+              },
               count: 1,
               deviceClassName: "deviceClassName_example",
               firstAvailable: [
                 {
                   allocationMode: "allocationMode_example",
+                  capacity: {
+                    requests: {
+                      "key": "key_example",
+                    },
+                  },
                   count: 1,
                   deviceClassName: "deviceClassName_example",
                   name: "name_example",
@@ -751,6 +786,7 @@ const request: ResourceV1beta1ApiCreateResourceSliceRequest = {
         {
           basic: {
             allNodes: true,
+            allowMultipleAllocations: true,
             attributes: {
               "key": {
                 bool: true,
@@ -759,8 +795,26 @@ const request: ResourceV1beta1ApiCreateResourceSliceRequest = {
                 version: "version_example",
               },
             },
+            bindingConditions: [
+              "bindingConditions_example",
+            ],
+            bindingFailureConditions: [
+              "bindingFailureConditions_example",
+            ],
+            bindsToNode: true,
             capacity: {
               "key": {
+                requestPolicy: {
+                  _default: "_default_example",
+                  validRange: {
+                    max: "max_example",
+                    min: "min_example",
+                    step: "step_example",
+                  },
+                  validValues: [
+                    "validValues_example",
+                  ],
+                },
                 value: "value_example",
               },
             },
@@ -3015,6 +3069,7 @@ const request: ResourceV1beta1ApiReplaceDeviceClassRequest = {
           },
         },
       ],
+      extendedResourceName: "extendedResourceName_example",
       selectors: [
         {
           cel: {
@@ -3155,6 +3210,7 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimRequest = {
         ],
         constraints: [
           {
+            distinctAttribute: "distinctAttribute_example",
             matchAttribute: "matchAttribute_example",
             requests: [
               "requests_example",
@@ -3165,11 +3221,21 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimRequest = {
           {
             adminAccess: true,
             allocationMode: "allocationMode_example",
+            capacity: {
+              requests: {
+                "key": "key_example",
+              },
+            },
             count: 1,
             deviceClassName: "deviceClassName_example",
             firstAvailable: [
               {
                 allocationMode: "allocationMode_example",
+                capacity: {
+                  requests: {
+                    "key": "key_example",
+                  },
+                },
                 count: 1,
                 deviceClassName: "deviceClassName_example",
                 name: "name_example",
@@ -3214,6 +3280,7 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimRequest = {
     },
     status: {
       allocation: {
+        allocationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
         devices: {
           config: [
             {
@@ -3230,10 +3297,20 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimRequest = {
           results: [
             {
               adminAccess: true,
+              bindingConditions: [
+                "bindingConditions_example",
+              ],
+              bindingFailureConditions: [
+                "bindingFailureConditions_example",
+              ],
+              consumedCapacity: {
+                "key": "key_example",
+              },
               device: "device_example",
               driver: "driver_example",
               pool: "pool_example",
               request: "request_example",
+              shareID: "shareID_example",
               tolerations: [
                 {
                   effect: "effect_example",
@@ -3294,6 +3371,7 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimRequest = {
             ],
           },
           pool: "pool_example",
+          shareID: "shareID_example",
         },
       ],
       reservedFor: [
@@ -3438,6 +3516,7 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimStatusRequest = {
         ],
         constraints: [
           {
+            distinctAttribute: "distinctAttribute_example",
             matchAttribute: "matchAttribute_example",
             requests: [
               "requests_example",
@@ -3448,11 +3527,21 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimStatusRequest = {
           {
             adminAccess: true,
             allocationMode: "allocationMode_example",
+            capacity: {
+              requests: {
+                "key": "key_example",
+              },
+            },
             count: 1,
             deviceClassName: "deviceClassName_example",
             firstAvailable: [
               {
                 allocationMode: "allocationMode_example",
+                capacity: {
+                  requests: {
+                    "key": "key_example",
+                  },
+                },
                 count: 1,
                 deviceClassName: "deviceClassName_example",
                 name: "name_example",
@@ -3497,6 +3586,7 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimStatusRequest = {
     },
     status: {
       allocation: {
+        allocationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
         devices: {
           config: [
             {
@@ -3513,10 +3603,20 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimStatusRequest = {
           results: [
             {
               adminAccess: true,
+              bindingConditions: [
+                "bindingConditions_example",
+              ],
+              bindingFailureConditions: [
+                "bindingFailureConditions_example",
+              ],
+              consumedCapacity: {
+                "key": "key_example",
+              },
               device: "device_example",
               driver: "driver_example",
               pool: "pool_example",
               request: "request_example",
+              shareID: "shareID_example",
               tolerations: [
                 {
                   effect: "effect_example",
@@ -3577,6 +3677,7 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimStatusRequest = {
             ],
           },
           pool: "pool_example",
+          shareID: "shareID_example",
         },
       ],
       reservedFor: [
@@ -3764,6 +3865,7 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimTemplateRequest =
           ],
           constraints: [
             {
+              distinctAttribute: "distinctAttribute_example",
               matchAttribute: "matchAttribute_example",
               requests: [
                 "requests_example",
@@ -3774,11 +3876,21 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimTemplateRequest =
             {
               adminAccess: true,
               allocationMode: "allocationMode_example",
+              capacity: {
+                requests: {
+                  "key": "key_example",
+                },
+              },
               count: 1,
               deviceClassName: "deviceClassName_example",
               firstAvailable: [
                 {
                   allocationMode: "allocationMode_example",
+                  capacity: {
+                    requests: {
+                      "key": "key_example",
+                    },
+                  },
                   count: 1,
                   deviceClassName: "deviceClassName_example",
                   name: "name_example",
@@ -3944,6 +4056,7 @@ const request: ResourceV1beta1ApiReplaceResourceSliceRequest = {
         {
           basic: {
             allNodes: true,
+            allowMultipleAllocations: true,
             attributes: {
               "key": {
                 bool: true,
@@ -3952,8 +4065,26 @@ const request: ResourceV1beta1ApiReplaceResourceSliceRequest = {
                 version: "version_example",
               },
             },
+            bindingConditions: [
+              "bindingConditions_example",
+            ],
+            bindingFailureConditions: [
+              "bindingFailureConditions_example",
+            ],
+            bindsToNode: true,
             capacity: {
               "key": {
+                requestPolicy: {
+                  _default: "_default_example",
+                  validRange: {
+                    max: "max_example",
+                    min: "min_example",
+                    step: "step_example",
+                  },
+                  validValues: [
+                    "validValues_example",
+                  ],
+                },
                 value: "value_example",
               },
             },

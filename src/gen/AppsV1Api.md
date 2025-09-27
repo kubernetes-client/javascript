@@ -566,6 +566,12 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -746,6 +752,17 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -879,6 +896,12 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -1059,6 +1082,17 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -1168,6 +1202,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
           hostPID: true,
           hostUsers: true,
           hostname: "hostname_example",
+          hostnameOverride: "hostnameOverride_example",
           imagePullSecrets: [
             {
               name: "name_example",
@@ -1194,6 +1229,12 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                     fieldRef: {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
+                    },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
                     },
                     resourceFieldRef: {
                       containerName: "containerName_example",
@@ -1375,6 +1416,17 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -1908,6 +1960,14 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                           },
                         },
                       ],
+                    },
+                    podCertificate: {
+                      certificateChainPath: "certificateChainPath_example",
+                      credentialBundlePath: "credentialBundlePath_example",
+                      keyPath: "keyPath_example",
+                      keyType: "keyType_example",
+                      maxExpirationSeconds: 1,
+                      signerName: "signerName_example",
                     },
                     secret: {
                       items: [
@@ -2465,6 +2525,12 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -2645,6 +2711,17 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -2778,6 +2855,12 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -2958,6 +3041,17 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -3067,6 +3161,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
           hostPID: true,
           hostUsers: true,
           hostname: "hostname_example",
+          hostnameOverride: "hostnameOverride_example",
           imagePullSecrets: [
             {
               name: "name_example",
@@ -3093,6 +3188,12 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                     fieldRef: {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
+                    },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
                     },
                     resourceFieldRef: {
                       containerName: "containerName_example",
@@ -3274,6 +3375,17 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -3807,6 +3919,14 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                           },
                         },
                       ],
+                    },
+                    podCertificate: {
+                      certificateChainPath: "certificateChainPath_example",
+                      credentialBundlePath: "credentialBundlePath_example",
+                      keyPath: "keyPath_example",
+                      keyType: "keyType_example",
+                      maxExpirationSeconds: 1,
+                      signerName: "signerName_example",
                     },
                     secret: {
                       items: [
@@ -4347,6 +4467,12 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -4527,6 +4653,17 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -4660,6 +4797,12 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -4840,6 +4983,17 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -4949,6 +5103,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
           hostPID: true,
           hostUsers: true,
           hostname: "hostname_example",
+          hostnameOverride: "hostnameOverride_example",
           imagePullSecrets: [
             {
               name: "name_example",
@@ -4975,6 +5130,12 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                     fieldRef: {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
+                    },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
                     },
                     resourceFieldRef: {
                       containerName: "containerName_example",
@@ -5156,6 +5317,17 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -5689,6 +5861,14 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                           },
                         },
                       ],
+                    },
+                    podCertificate: {
+                      certificateChainPath: "certificateChainPath_example",
+                      credentialBundlePath: "credentialBundlePath_example",
+                      keyPath: "keyPath_example",
+                      keyType: "keyType_example",
+                      maxExpirationSeconds: 1,
+                      signerName: "signerName_example",
                     },
                     secret: {
                       items: [
@@ -6236,6 +6416,12 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -6416,6 +6602,17 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -6549,6 +6746,12 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -6729,6 +6932,17 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -6838,6 +7052,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
           hostPID: true,
           hostUsers: true,
           hostname: "hostname_example",
+          hostnameOverride: "hostnameOverride_example",
           imagePullSecrets: [
             {
               name: "name_example",
@@ -6864,6 +7079,12 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                     fieldRef: {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
+                    },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
                     },
                     resourceFieldRef: {
                       containerName: "containerName_example",
@@ -7045,6 +7266,17 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -7578,6 +7810,14 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                           },
                         },
                       ],
+                    },
+                    podCertificate: {
+                      certificateChainPath: "certificateChainPath_example",
+                      credentialBundlePath: "credentialBundlePath_example",
+                      keyPath: "keyPath_example",
+                      keyType: "keyType_example",
+                      maxExpirationSeconds: 1,
+                      signerName: "signerName_example",
                     },
                     secret: {
                       items: [
@@ -11931,6 +12171,12 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -12111,6 +12357,17 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -12244,6 +12501,12 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -12424,6 +12687,17 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -12533,6 +12807,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
           hostPID: true,
           hostUsers: true,
           hostname: "hostname_example",
+          hostnameOverride: "hostnameOverride_example",
           imagePullSecrets: [
             {
               name: "name_example",
@@ -12559,6 +12834,12 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                     fieldRef: {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
+                    },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
                     },
                     resourceFieldRef: {
                       containerName: "containerName_example",
@@ -12740,6 +13021,17 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -13273,6 +13565,14 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                           },
                         },
                       ],
+                    },
+                    podCertificate: {
+                      certificateChainPath: "certificateChainPath_example",
+                      credentialBundlePath: "credentialBundlePath_example",
+                      keyPath: "keyPath_example",
+                      keyType: "keyType_example",
+                      maxExpirationSeconds: 1,
+                      signerName: "signerName_example",
                     },
                     secret: {
                       items: [
@@ -13822,6 +14122,12 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -14002,6 +14308,17 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -14135,6 +14452,12 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -14315,6 +14638,17 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -14424,6 +14758,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
           hostPID: true,
           hostUsers: true,
           hostname: "hostname_example",
+          hostnameOverride: "hostnameOverride_example",
           imagePullSecrets: [
             {
               name: "name_example",
@@ -14450,6 +14785,12 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                     fieldRef: {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
+                    },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
                     },
                     resourceFieldRef: {
                       containerName: "containerName_example",
@@ -14631,6 +14972,17 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -15164,6 +15516,14 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                           },
                         },
                       ],
+                    },
+                    podCertificate: {
+                      certificateChainPath: "certificateChainPath_example",
+                      credentialBundlePath: "credentialBundlePath_example",
+                      keyPath: "keyPath_example",
+                      keyType: "keyType_example",
+                      maxExpirationSeconds: 1,
+                      signerName: "signerName_example",
                     },
                     secret: {
                       items: [
@@ -15723,6 +16083,12 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -15903,6 +16269,17 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -16036,6 +16413,12 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -16216,6 +16599,17 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -16325,6 +16719,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
           hostPID: true,
           hostUsers: true,
           hostname: "hostname_example",
+          hostnameOverride: "hostnameOverride_example",
           imagePullSecrets: [
             {
               name: "name_example",
@@ -16351,6 +16746,12 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                     fieldRef: {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
+                    },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
                     },
                     resourceFieldRef: {
                       containerName: "containerName_example",
@@ -16532,6 +16933,17 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -17065,6 +17477,14 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                           },
                         },
                       ],
+                    },
+                    podCertificate: {
+                      certificateChainPath: "certificateChainPath_example",
+                      credentialBundlePath: "credentialBundlePath_example",
+                      keyPath: "keyPath_example",
+                      keyType: "keyType_example",
+                      maxExpirationSeconds: 1,
+                      signerName: "signerName_example",
                     },
                     secret: {
                       items: [
@@ -17742,6 +18162,12 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -17922,6 +18348,17 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -18055,6 +18492,12 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -18235,6 +18678,17 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -18344,6 +18798,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
           hostPID: true,
           hostUsers: true,
           hostname: "hostname_example",
+          hostnameOverride: "hostnameOverride_example",
           imagePullSecrets: [
             {
               name: "name_example",
@@ -18370,6 +18825,12 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                     fieldRef: {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
+                    },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
                     },
                     resourceFieldRef: {
                       containerName: "containerName_example",
@@ -18551,6 +19012,17 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -19084,6 +19556,14 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                           },
                         },
                       ],
+                    },
+                    podCertificate: {
+                      certificateChainPath: "certificateChainPath_example",
+                      credentialBundlePath: "credentialBundlePath_example",
+                      keyPath: "keyPath_example",
+                      keyType: "keyType_example",
+                      maxExpirationSeconds: 1,
+                      signerName: "signerName_example",
                     },
                     secret: {
                       items: [
@@ -19626,6 +20106,12 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -19806,6 +20292,17 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -19939,6 +20436,12 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -20119,6 +20622,17 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -20228,6 +20742,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
           hostPID: true,
           hostUsers: true,
           hostname: "hostname_example",
+          hostnameOverride: "hostnameOverride_example",
           imagePullSecrets: [
             {
               name: "name_example",
@@ -20254,6 +20769,12 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                     fieldRef: {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
+                    },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
                     },
                     resourceFieldRef: {
                       containerName: "containerName_example",
@@ -20435,6 +20956,17 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -20968,6 +21500,14 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                           },
                         },
                       ],
+                    },
+                    podCertificate: {
+                      certificateChainPath: "certificateChainPath_example",
+                      credentialBundlePath: "credentialBundlePath_example",
+                      keyPath: "keyPath_example",
+                      keyType: "keyType_example",
+                      maxExpirationSeconds: 1,
+                      signerName: "signerName_example",
                     },
                     secret: {
                       items: [
@@ -21632,6 +22172,12 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -21812,6 +22358,17 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -21945,6 +22502,12 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -22125,6 +22688,17 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -22234,6 +22808,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
           hostPID: true,
           hostUsers: true,
           hostname: "hostname_example",
+          hostnameOverride: "hostnameOverride_example",
           imagePullSecrets: [
             {
               name: "name_example",
@@ -22260,6 +22835,12 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                     fieldRef: {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
+                    },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
                     },
                     resourceFieldRef: {
                       containerName: "containerName_example",
@@ -22441,6 +23022,17 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -22974,6 +23566,14 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                           },
                         },
                       ],
+                    },
+                    podCertificate: {
+                      certificateChainPath: "certificateChainPath_example",
+                      credentialBundlePath: "credentialBundlePath_example",
+                      keyPath: "keyPath_example",
+                      keyType: "keyType_example",
+                      maxExpirationSeconds: 1,
+                      signerName: "signerName_example",
                     },
                     secret: {
                       items: [
@@ -23523,6 +24123,12 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -23703,6 +24309,17 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -23836,6 +24453,12 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -24016,6 +24639,17 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -24125,6 +24759,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
           hostPID: true,
           hostUsers: true,
           hostname: "hostname_example",
+          hostnameOverride: "hostnameOverride_example",
           imagePullSecrets: [
             {
               name: "name_example",
@@ -24151,6 +24786,12 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                     fieldRef: {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
+                    },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
                     },
                     resourceFieldRef: {
                       containerName: "containerName_example",
@@ -24332,6 +24973,17 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -24865,6 +25517,14 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                           },
                         },
                       ],
+                    },
+                    podCertificate: {
+                      certificateChainPath: "certificateChainPath_example",
+                      credentialBundlePath: "credentialBundlePath_example",
+                      keyPath: "keyPath_example",
+                      keyType: "keyType_example",
+                      maxExpirationSeconds: 1,
+                      signerName: "signerName_example",
                     },
                     secret: {
                       items: [
@@ -25669,6 +26329,12 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -25849,6 +26515,17 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -25982,6 +26659,12 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
                     },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
+                    },
                     resourceFieldRef: {
                       containerName: "containerName_example",
                       divisor: "divisor_example",
@@ -26162,6 +26845,17 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -26271,6 +26965,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
           hostPID: true,
           hostUsers: true,
           hostname: "hostname_example",
+          hostnameOverride: "hostnameOverride_example",
           imagePullSecrets: [
             {
               name: "name_example",
@@ -26297,6 +26992,12 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                     fieldRef: {
                       apiVersion: "apiVersion_example",
                       fieldPath: "fieldPath_example",
+                    },
+                    fileKeyRef: {
+                      key: "key_example",
+                      optional: true,
+                      path: "path_example",
+                      volumeName: "volumeName_example",
                     },
                     resourceFieldRef: {
                       containerName: "containerName_example",
@@ -26478,6 +27179,17 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                 },
               },
               restartPolicy: "restartPolicy_example",
+              restartPolicyRules: [
+                {
+                  action: "action_example",
+                  exitCodes: {
+                    operator: "operator_example",
+                    values: [
+                      1,
+                    ],
+                  },
+                },
+              ],
               securityContext: {
                 allowPrivilegeEscalation: true,
                 appArmorProfile: {
@@ -27011,6 +27723,14 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                           },
                         },
                       ],
+                    },
+                    podCertificate: {
+                      certificateChainPath: "certificateChainPath_example",
+                      credentialBundlePath: "credentialBundlePath_example",
+                      keyPath: "keyPath_example",
+                      keyType: "keyType_example",
+                      maxExpirationSeconds: 1,
+                      signerName: "signerName_example",
                     },
                     secret: {
                       items: [
