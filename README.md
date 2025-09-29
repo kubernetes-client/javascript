@@ -114,15 +114,15 @@ We switched from `request` to `fetch` as the HTTP(S) backend for the `1.0.0` rel
 
 Generally speaking newer clients will work with older Kubernetes, but compatibility isn't 100% guaranteed.
 
-| client version | older versions | 1.28 | 1.29 | 1.30 | 1.31 | 1.32 | 1.33 |
-| -------------- | -------------- | ---- | ---- | ---- | ---- | ---- | ---- |
-| 0.19.x         | -              | ✓    | x    | x    | x    | x    | x    |
-| 0.20.x         | -              | +    | ✓    | x    | x    | x    | x    |
-| 0.21.x         | -              | +    | +    | ✓    | x    | x    | x    |
-| 0.22.x         | -              | +    | +    | +    | ✓    | x    | x    |
-| 1.0.x          | -              | +    | +    | +    | +    | ✓    | x    |
-| 1.1.x          | -              | +    | +    | +    | +    | ✓    | x    |
-| 1.2.x          | -              | +    | +    | +    | +    | +    | ✓    |
+| client version | older versions | 1.28 | 1.29 | 1.30 | 1.31 | 1.32 | 1.33|
+| -------------- | -------------- | ---- | ---- | ---- | ---- | ---- |----|
+| 0.19.x         | -              | ✓    | x    | x    | x    | x    | x  |
+| 0.20.x         | -              | +    | ✓    | x    | x    | x    | x  |
+| 0.21.x         | -              | +    | +    | ✓    | x    | x    | x  |
+| 0.22.x         | -              | +    | +    | +    | ✓    | x    | x  |
+| 1.0.x          | -              | +    | +    | +    | +    | ✓    | x  |
+| 1.1.x          | -              | +    | +    | +    | +    | ✓    | x  |
+| 1.2.x          | -              | +    | +    | +    | +    | +    | ✓  |
 
 Key:
 
