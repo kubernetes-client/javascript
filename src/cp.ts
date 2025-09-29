@@ -16,6 +16,7 @@ export class Cp {
      * @param {string} containerName - The name of the container in the pod to exec the command inside.
      * @param {string} srcPath - The source path in the pod
      * @param {string} tgtPath - The target path in local
+     * @param {string} [cwd] - The directory that is used as the parent in the pod when downloading
      */
     public async cpFromPod(
         namespace: string,
@@ -23,8 +24,13 @@ export class Cp {
         containerName: string,
         srcPath: string,
         tgtPath: string,
+        cwd?: string,
     ): Promise<void> {
-        const command = ['tar', 'zcf', '-', srcPath];
+        const command = ['tar', 'zcf', '-'];
+        if (cwd) {
+            command.push('-C', cwd);
+        }
+        command.push(srcPath);
         const writerStream = tar.extract(tgtPath);
         const errStream = new WritableStreamBuffer();
         this.execInstance.exec(
