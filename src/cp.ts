@@ -16,7 +16,7 @@ export class Cp {
      * @param {string} containerName - The name of the container in the pod to exec the command inside.
      * @param {string} srcPath - The source path in the pod
      * @param {string} tgtPath - The target path in local
-     * @param {string} cwd - The directory that is used as the parent in the pod when downloading
+     * @param {string} [cwd] - The directory that is used as the parent in the pod when downloading
      */
     public async cpFromPod(
         namespace: string,
