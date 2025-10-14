@@ -21,7 +21,7 @@ jobs:
       - name: Checkout Javascript
         uses: actions/checkout@v5.0.0
       - name: Setup Node
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v6
         with:
           node-version: '20'
       - name: Generate Openapi
