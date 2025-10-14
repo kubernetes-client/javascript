@@ -1,5 +1,4 @@
 import { V1ListMeta, V1ObjectMeta } from './api.js';
-import { Schema } from 'yaml';
 
 export interface KubernetesObject {
     apiVersion?: string;
