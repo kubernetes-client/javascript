@@ -459,9 +459,8 @@ describe('Watch', () => {
         const watch = new Watch(kc);
 
         // NOTE: Hack around the type system to make the timeout shorter
-        (watch as any).requestTimeoutMs = 100;
+        (watch as any).requestTimeoutMs = 1;
 
-        let doneCalled = false;
         let doneErr: any;
 
         let doneResolve: () => void;
@@ -476,7 +475,6 @@ describe('Watch', () => {
                 throw new Error('Unexpected data received - timeout should have occurred before any data');
             },
             (err: any) => {
-                doneCalled = true;
                 doneErr = err;
                 doneResolve();
             },
@@ -484,7 +482,6 @@ describe('Watch', () => {
 
         await donePromise;
 
-        strictEqual(doneCalled, true);
         strictEqual(doneErr.name, 'AbortError');
     });
 
