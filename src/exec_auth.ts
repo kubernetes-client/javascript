@@ -10,7 +10,7 @@ export interface CredentialStatus {
     readonly token: string;
     readonly clientCertificateData: string;
     readonly clientKeyData: string;
-    readonly expirationTimestamp: string;
+    readonly expirationTimestamp?: string;
 }
 
 export interface Credential {
@@ -74,6 +74,9 @@ export class ExecAuth implements Authenticator {
         // TODO: Add a unit test for token caching.
         const cachedToken = this.tokenCache[user.name];
         if (cachedToken) {
+            if (!cachedToken.status.expirationTimestamp) {
+                return cachedToken;
+            }
             const date = Date.parse(cachedToken.status.expirationTimestamp);
             if (date > Date.now()) {
                 return cachedToken;
