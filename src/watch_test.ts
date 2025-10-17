@@ -459,7 +459,7 @@ describe('Watch', () => {
         const watch = new Watch(kc);
 
         // NOTE: Hack around the type system to make the timeout shorter
-        (watch as any).requestTimeoutMs = 1;
+        (watch as any).requestTimeoutMs = 10;
 
         let doneErr: any;
 
