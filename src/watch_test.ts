@@ -457,8 +457,9 @@ describe('Watch', () => {
             // Don't respond - simulate a hanging server
         });
         const watch = new Watch(kc);
-        // Hack around type system to make the default timeout shorter.
-        (watch as any).timeoutMs = 100;
+
+        // NOTE: Hack around the type system to make the timeout shorter
+        (watch as any).requestTimeoutMs = 100;
 
         let doneCalled = false;
         let doneErr: any;
