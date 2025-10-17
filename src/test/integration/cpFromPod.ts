@@ -2,6 +2,7 @@ import assert from 'node:assert';
 import fs from 'node:fs';
 import path from 'node:path';
 import os from 'node:os';
+import { setTimeout } from 'node:timers/promises';
 import { CoreV1Api, KubeConfig, V1Pod } from '../../index.js';
 import { Cp } from '../../cp.js';
 import { generateName } from './name.js';
@@ -40,7 +41,7 @@ export default async function cpFromPod() {
             podReady = true;
             break;
         }
-        await new Promise((resolve) => setTimeout(resolve, 1000));
+        await setTimeout(1000);
     }
 
     assert.strictEqual(podReady, true, 'Pod did not become ready in time');
@@ -61,7 +62,7 @@ export default async function cpFromPod() {
                 fileExists = true;
                 break;
             }
-            await new Promise((resolve) => setTimeout(resolve, 500));
+            await setTimeout(500);
         }
 
         assert.strictEqual(fileExists, true, 'File was not copied');
