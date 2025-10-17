@@ -6,6 +6,7 @@ import { KubeConfig } from './config.js';
 export class Watch {
     public static SERVER_SIDE_CLOSE: object = { error: 'Connection closed on server' };
     public config: KubeConfig;
+    private defaultRequestTimeoutMs: number = 30000;
 
     public constructor(config: KubeConfig) {
         this.config = config;
@@ -39,7 +40,7 @@ export class Watch {
         const requestInit = await this.config.applyToFetchOptions({});
 
         const controller = new AbortController();
-        const timeoutSignal = AbortSignal.timeout(30000);
+        const timeoutSignal = AbortSignal.timeout(this.defaultRequestTimeoutMs);
         requestInit.signal = AbortSignal.any([controller.signal, timeoutSignal]);
         requestInit.method = 'GET';
 
