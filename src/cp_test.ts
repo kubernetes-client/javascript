@@ -22,7 +22,7 @@ describe('Cp', () => {
             const container = 'container';
             const srcPath = '/';
             const tgtPath = '/';
-            const cmdArray = ['tar', 'zcf', '-', srcPath];
+            const cmdArray = ['tar', 'cf', '-', srcPath];
             const path = `/api/v1/namespaces/${namespace}/pods/${pod}/exec`;
 
             const query = {
@@ -51,7 +51,7 @@ describe('Cp', () => {
             const srcPath = '/';
             const tgtPath = '/';
             const cwd = '/abc';
-            const cmdArray = ['tar', 'zcf', '-', '-C', cwd, srcPath];
+            const cmdArray = ['tar', 'cf', '-', '-C', cwd, srcPath];
             const path = `/api/v1/namespaces/${namespace}/pods/${pod}/exec`;
 
             const query = {

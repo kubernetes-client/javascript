@@ -26,7 +26,7 @@ export class Cp {
         tgtPath: string,
         cwd?: string,
     ): Promise<void> {
-        const command = ['tar', 'zcf', '-'];
+        const command = ['tar', 'cf', '-'];
         if (cwd) {
             command.push('-C', cwd);
         }
