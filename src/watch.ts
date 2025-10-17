@@ -41,7 +41,6 @@ export class Watch {
         const controller = new AbortController();
         const timeoutSignal = AbortSignal.timeout(30000);
         requestInit.signal = AbortSignal.any([controller.signal, timeoutSignal]);
-        requestInit.signal = controller.signal as AbortSignal;
         requestInit.method = 'GET';
 
         let doneCalled: boolean = false;
