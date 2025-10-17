@@ -225,6 +225,77 @@ describe('ExecAuth', () => {
         strictEqual(execCount, 2);
     });
 
+    it('should cache tokens without expirationTimestamp (non-expiring tokens)', async () => {
+        // TODO: fix this test for Windows
+        if (process.platform === 'win32') {
+            return;
+        }
+        const auth = new ExecAuth();
+        let execCount = 0;
+        const tokenValue = 'non-expiring-token';
+
+        (auth as any).execFn = (
+            command: string,
+            args?: readonly string[],
+            options?: child_process.SpawnOptionsWithoutStdio,
+        ): child_process.ChildProcessWithoutNullStreams => {
+            execCount++;
+            return {
+                stdout: {
+                    setEncoding: () => {},
+                    on: (_data: string, f: (data: Buffer | string) => void) => {
+                        // Note: No expirationTimestamp field - token should never expire
+                        f(
+                            Buffer.from(
+                                JSON.stringify({
+                                    status: { token: tokenValue },
+                                }),
+                            ),
+                        );
+                    },
+                },
+                stderr: {
+                    setEncoding: () => {},
+                    on: () => {},
+                },
+                on: (op: string, f: any) => {
+                    if (op === 'close') {
+                        f(0);
+                    }
+                },
+            } as unknown as child_process.ChildProcessWithoutNullStreams;
+        };
+
+        const user = {
+            name: 'user',
+            authProvider: {
+                config: {
+                    exec: {
+                        command: 'echo',
+                    },
+                },
+            },
+        };
+
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
+
+        // First call - should execute the command
+        await auth.applyAuthentication(user, opts);
+        strictEqual(opts.headers.Authorization, `Bearer ${tokenValue}`);
+        strictEqual(execCount, 1);
+
+        // Second call - should use cached token (no expiration means never expires)
+        await auth.applyAuthentication(user, opts);
+        strictEqual(opts.headers.Authorization, `Bearer ${tokenValue}`);
+        strictEqual(execCount, 1, 'exec should not be called again for non-expiring token');
+
+        // Third call - still should use cached token
+        await auth.applyAuthentication(user, opts);
+        strictEqual(opts.headers.Authorization, `Bearer ${tokenValue}`);
+        strictEqual(execCount, 1, 'exec should still not be called again');
+    });
+
     it('should return null on no exec info', async () => {
         const auth = new ExecAuth();
         const opts = {} as https.RequestOptions;
