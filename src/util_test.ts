@@ -147,6 +147,18 @@ describe('Utils', () => {
     it('should get the serialization type correctly', () => {
         strictEqual(getSerializationType('v1', 'Pod'), 'V1Pod');
         strictEqual(getSerializationType('apps/v1', 'Deployment'), 'V1Deployment');
+        // Built-in Kubernetes resources should return a type
+        strictEqual(getSerializationType('v1', 'Pod'), 'V1Pod');
+        strictEqual(getSerializationType('apps/v1', 'Deployment'), 'V1Deployment');
+        strictEqual(getSerializationType('v1', 'Service'), 'V1Service');
+        strictEqual(getSerializationType('batch/v1', 'Job'), 'V1Job');
+
+        // Non-built-in resources should return 'KubernetesObject'
+        strictEqual(getSerializationType('serving.knative.dev/v1', 'Service'), 'KubernetesObject');
+        strictEqual(getSerializationType('example.com/v1', 'MyCustomResource'), 'KubernetesObject');
+        strictEqual(getSerializationType('custom.io/v1alpha1', 'CustomThing'), 'KubernetesObject');
+
+        // Undefined inputs should return 'KubernetesObject'
         strictEqual(getSerializationType(undefined, undefined), 'KubernetesObject');
     });
 });

@@ -2,6 +2,7 @@ import { describe, it } from 'node:test';
 import { deepEqual, deepStrictEqual, strictEqual } from 'node:assert';
 import { V1CustomResourceDefinition, V1Namespace } from './api.js';
 import { dumpYaml, loadAllYaml, loadYaml } from './yaml.js';
+import { KubernetesObject } from './types.js';
 
 describe('yaml', () => {
     it('should load safely', () => {
@@ -153,5 +154,55 @@ spec:
         const actual = loadYaml(yamlString);
         // not using strict equality as types are not matching
         deepEqual(actual, expected);
+    });
+
+    it('should load Knative Service correctly preserving spec', () => {
+        const yaml = `apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: hello-world
+spec:
+  template:
+    spec:
+      containers:
+        - image: ghcr.io/knative/helloworld-go:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: TARGET
+              value: "World"`;
+        const knativeService = loadYaml(yaml) as KubernetesObject;
+
+        strictEqual(knativeService.apiVersion, 'serving.knative.dev/v1');
+        strictEqual(knativeService.kind, 'Service');
+        strictEqual((knativeService as any).metadata.name, 'hello-world');
+        // Verify that the spec is preserved
+        strictEqual(
+            (knativeService as any).spec.template.spec.containers[0].image,
+            'ghcr.io/knative/helloworld-go:latest',
+        );
+        strictEqual((knativeService as any).spec.template.spec.containers[0].ports[0].containerPort, 8080);
+        strictEqual((knativeService as any).spec.template.spec.containers[0].env[0].name, 'TARGET');
+        strictEqual((knativeService as any).spec.template.spec.containers[0].env[0].value, 'World');
+    });
+
+    it('should load custom resources correctly', () => {
+        const yaml = `apiVersion: example.com/v1
+kind: MyCustomResource
+metadata:
+  name: my-resource
+spec:
+  customField: customValue
+  nestedObject:
+    key1: value1
+    key2: value2`;
+        const customResource = loadYaml(yaml) as KubernetesObject;
+
+        strictEqual((customResource as any).apiVersion, 'example.com/v1');
+        strictEqual((customResource as any).kind, 'MyCustomResource');
+        strictEqual((customResource as any).metadata.name, 'my-resource');
+        strictEqual((customResource as any).spec.customField, 'customValue');
+        strictEqual((customResource as any).spec.nestedObject.key1, 'value1');
+        strictEqual((customResource as any).spec.nestedObject.key2, 'value2');
     });
 });
