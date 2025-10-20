@@ -103,7 +103,7 @@ export class KubernetesObjectApi {
         if (fieldManager !== undefined) {
             requestContext.setQueryParam('fieldManager', ObjectSerializer.serialize(fieldManager, 'string'));
         }
-        const type = getSerializationType(spec.apiVersion, spec.kind);
+        const type = getSerializationType(spec.apiVersion, spec.kind) ?? 'KubernetesObject';
 
         // Body Params
         const contentType = ObjectSerializer.getPreferredMediaType([]);
@@ -265,7 +265,7 @@ export class KubernetesObjectApi {
             requestContext.setQueryParam('force', ObjectSerializer.serialize(force, 'boolean'));
         }
 
-        const type = getSerializationType(spec.apiVersion, spec.kind);
+        const type = getSerializationType(spec.apiVersion, spec.kind) ?? 'KubernetesObject';
 
         // Body Params
         const serializedBody = ObjectSerializer.stringify(
@@ -464,7 +464,7 @@ export class KubernetesObjectApi {
             requestContext.setQueryParam('fieldManager', ObjectSerializer.serialize(fieldManager, 'string'));
         }
 
-        const type = getSerializationType(spec.apiVersion, spec.kind);
+        const type = getSerializationType(spec.apiVersion, spec.kind) ?? 'KubernetesObject';
 
         // Body Params
         const contentType = ObjectSerializer.getPreferredMediaType([]);
@@ -642,7 +642,7 @@ export class KubernetesObjectApi {
         if (response.httpStatusCode >= 200 && response.httpStatusCode <= 299) {
             const data = ObjectSerializer.parse(await response.body.text(), contentType);
             if (type === undefined) {
-                type = getSerializationType(data.apiVersion, data.kind);
+                type = getSerializationType(data.apiVersion, data.kind) ?? 'KubernetesObject';
             }
 
             if (!type) {

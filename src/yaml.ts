@@ -14,7 +14,7 @@ export function loadYaml<T>(data: string, opts?: yaml.LoadOptions): T {
     if (!yml) {
         throw new Error('Failed to load YAML');
     }
-    const type = getSerializationType(yml.apiVersion, yml.kind);
+    const type = getSerializationType(yml.apiVersion, yml.kind) ?? 'KubernetesObject';
 
     return ObjectSerializer.deserialize(yml, type) as T;
 }
@@ -29,7 +29,7 @@ export function loadAllYaml(data: string, opts?: yaml.LoadOptions): any[] {
     const ymls = yaml.loadAll(data, undefined, opts);
     return ymls.map((yml) => {
         const obj = yml as KubernetesObject;
-        const type = getSerializationType(obj.apiVersion, obj.kind);
+        const type = getSerializationType(obj.apiVersion, obj.kind) ?? 'KubernetesObject';
         return ObjectSerializer.deserialize(yml, type);
     });
 }
@@ -42,7 +42,7 @@ export function loadAllYaml(data: string, opts?: yaml.LoadOptions): any[] {
  */
 export function dumpYaml(object: any, opts?: yaml.DumpOptions): string {
     const kubeObject = object as KubernetesObject;
-    const type = getSerializationType(kubeObject.apiVersion, kubeObject.kind);
+    const type = getSerializationType(kubeObject.apiVersion, kubeObject.kind) ?? 'KubernetesObject';
     const serialized = ObjectSerializer.serialize(kubeObject, type);
     return yaml.dump(serialized, opts);
 }
