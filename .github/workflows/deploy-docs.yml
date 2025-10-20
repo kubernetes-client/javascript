@@ -23,7 +23,11 @@ jobs:
               run: npm run docs
 
             - name: Deploy docs
+<<<<<<< HEAD
               uses: JamesIves/github-pages-deploy-action@v4.7.4
+=======
+              uses: JamesIves/github-pages-deploy-action@v4.7.3
+>>>>>>> 8c293c32 (Fix Knative Service YAML parsing by checking API groups)
               with:
                   branch: gh-pages # The branch the action should deploy to.
                   folder: docs # The folder the action should deploy.

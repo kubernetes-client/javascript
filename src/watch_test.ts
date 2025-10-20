@@ -452,6 +452,7 @@ describe('Watch', () => {
         s.done();
     });
 
+<<<<<<< HEAD
     it('should timeout when server takes too long to respond', async (t) => {
         const kc = await setupMockSystem(t, (_req: any, _res: any) => {
             // Don't respond - simulate a hanging server
@@ -485,6 +486,8 @@ describe('Watch', () => {
         strictEqual(doneErr.name, 'AbortError');
     });
 
+=======
+>>>>>>> 8c293c32 (Fix Knative Service YAML parsing by checking API groups)
     it('should throw on empty config', async () => {
         const kc = new KubeConfig();
         const watch = new Watch(kc);
