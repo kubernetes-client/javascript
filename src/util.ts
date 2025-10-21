@@ -165,13 +165,58 @@ export function normalizeResponseHeaders(response: Response): { [key: string]: s
     return normalizedHeaders;
 }
 
-export function getSerializationType(apiVersion?: string, kind?: string): string {
+/**
+ * Built-in Kubernetes API groups that have generated TypeScript models.
+ * Custom resources and third-party API groups (like Knative) are not included.
+ */
+const BUILT_IN_API_GROUPS = new Set([
+    'core', // maps to "" (empty string) for core resources like Pod, Service, etc.
+    'admissionregistration.k8s.io',
+    'apiextensions.k8s.io',
+    'apiregistration.k8s.io',
+    'apps',
+    'authentication.k8s.io',
+    'authorization.k8s.io',
+    'autoscaling',
+    'batch',
+    'certificates.k8s.io',
+    'coordination.k8s.io',
+    'discovery.k8s.io',
+    'events.k8s.io',
+    'flowcontrol.apiserver.k8s.io',
+    'internal.apiserver.k8s.io',
+    'networking.k8s.io',
+    'node.k8s.io',
+    'policy',
+    'rbac.authorization.k8s.io',
+    'resource.k8s.io',
+    'scheduling.k8s.io',
+    'storage.k8s.io',
+    'storagemigration.k8s.io',
+]);
+
+/**
+ * Check if the given API group is a built-in Kubernetes API group.
+ * @param group - The API group to check (e.g., "apps", "serving.knative.dev", "core")
+ * @returns true if the group is a built-in Kubernetes API group, false otherwise
+ */
+function isBuiltInApiGroup(group: string): boolean {
+    return BUILT_IN_API_GROUPS.has(group);
+}
+
+export function getSerializationType(apiVersion?: string, kind?: string): string | undefined {
     if (apiVersion === undefined || kind === undefined) {
         return 'KubernetesObject';
     }
     // Types are defined in src/gen/api/models with the format "<Version><Kind>".
     // Version and Kind are in PascalCase.
     const gv = groupVersion(apiVersion);
+
+    // Only return a type name if this is a built-in Kubernetes API group
+    if (!isBuiltInApiGroup(gv.group)) {
+        return undefined;
+    }
+
     const version = gv.version.charAt(0).toUpperCase() + gv.version.slice(1);
     return `${version}${kind}`;
 }
