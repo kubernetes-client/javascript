@@ -13,6 +13,15 @@ export interface KubernetesListObject<T extends KubernetesObject> {
     items: T[];
 }
 
+export type YamlParseOptions = {
+    version?: '1.1' | '1.2';
+    maxAliasCount?: number;
+    prettyErrors?: boolean;
+    keepCstNodes?: boolean;
+    keepNodeTypes?: boolean;
+    logLevel?: 'silent' | 'error' | 'warn';
+};
+
 export type IntOrString = number | string;
 
 export class V1MicroTime extends Date {
