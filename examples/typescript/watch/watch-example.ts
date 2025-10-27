@@ -26,9 +26,13 @@ const req = await watch
             }
             console.log(apiObj);
         },
-        // done callback is called if the watch terminates normally
+        // done callback is called if the watch terminates either normally or with an error
         (err) => {
-            console.log(err);
+            if (err) {
+                console.error(err);
+            } else {
+                console.log('watch finished normally')
+            }
         },
     )
 // watch returns a request object which you can use to abort the watch.
