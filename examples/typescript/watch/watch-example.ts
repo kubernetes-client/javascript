@@ -29,9 +29,9 @@ const req = await watch
         // done callback is called if the watch terminates either normally or with an error
         (err) => {
             if (err) {
-                console.log(err);
+                console.error(err);
             } else {
-                console.log('watch done')
+                console.log('watch finished normally')
             }
         },
     )
