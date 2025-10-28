@@ -452,6 +452,39 @@ describe('Watch', () => {
         s.done();
     });
 
+    it('should timeout when server takes too long to respond', async (t) => {
+        const kc = await setupMockSystem(t, (_req: any, _res: any) => {
+            // Don't respond - simulate a hanging server
+        });
+        const watch = new Watch(kc);
+
+        // NOTE: Hack around the type system to make the timeout shorter
+        (watch as any).requestTimeoutMs = 10;
+
+        let doneErr: any;
+
+        let doneResolve: () => void;
+        const donePromise = new Promise<void>((resolve) => {
+            doneResolve = resolve;
+        });
+
+        await watch.watch(
+            '/some/path/to/object',
+            {},
+            () => {
+                throw new Error('Unexpected data received - timeout should have occurred before any data');
+            },
+            (err: any) => {
+                doneErr = err;
+                doneResolve();
+            },
+        );
+
+        await donePromise;
+
+        strictEqual(doneErr.name, 'AbortError');
+    });
+
     it('should throw on empty config', async () => {
         const kc = new KubeConfig();
         const watch = new Watch(kc);
