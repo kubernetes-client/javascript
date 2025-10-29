@@ -154,4 +154,54 @@ spec:
         // not using strict equality as types are not matching
         deepEqual(actual, expected);
     });
+
+    it('should load Knative Service correctly preserving spec', () => {
+        const yaml = `apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: hello-world
+spec:
+  template:
+    spec:
+      containers:
+        - image: ghcr.io/knative/helloworld-go:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: TARGET
+              value: "World"`;
+        const knativeService = loadYaml(yaml);
+
+        strictEqual(knativeService.apiVersion, 'serving.knative.dev/v1');
+        strictEqual(knativeService.kind, 'Service');
+        strictEqual(knativeService.metadata.name, 'hello-world');
+        // Verify that the spec is preserved
+        strictEqual(
+            knativeService.spec.template.spec.containers[0].image,
+            'ghcr.io/knative/helloworld-go:latest',
+        );
+        strictEqual(knativeService.spec.template.spec.containers[0].ports[0].containerPort, 8080);
+        strictEqual(knativeService.spec.template.spec.containers[0].env[0].name, 'TARGET');
+        strictEqual(knativeService.spec.template.spec.containers[0].env[0].value, 'World');
+    });
+
+    it('should load custom resources correctly', () => {
+        const yaml = `apiVersion: example.com/v1
+kind: MyCustomResource
+metadata:
+  name: my-resource
+spec:
+  customField: customValue
+  nestedObject:
+    key1: value1
+    key2: value2`;
+        const customResource = loadYaml(yaml);
+
+        strictEqual(customResource.apiVersion, 'example.com/v1');
+        strictEqual(customResource.kind, 'MyCustomResource');
+        strictEqual(customResource.metadata.name, 'my-resource');
+        strictEqual(customResource.spec.customField, 'customValue');
+        strictEqual(customResource.spec.nestedObject.key1, 'value1');
+        strictEqual(customResource.spec.nestedObject.key2, 'value2');
+    });
 });
