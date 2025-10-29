@@ -154,4 +154,55 @@ spec:
         // not using strict equality as types are not matching
         deepEqual(actual, expected);
     });
+
+    it('should parse octal values correctly using default YAML 1.1', () => {
+        const yamlStr = `
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test
+data:
+  mode: 0644
+`;
+        const obj = loadYaml<{
+            data: { mode: number };
+            metadata: { name: string };
+            apiVersion: string;
+            kind: string;
+        }>(yamlStr);
+        strictEqual(obj.data.mode, 420);
+    });
+
+    it('should treat octal as string if version 1.2 is provided', () => {
+        const yamlStr = `
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test
+data:
+  mode: '0644'
+`;
+
+        const objs = loadAllYaml(yamlStr, { version: '1.2', maxAliasCount: 100, prettyErrors: true });
+
+        strictEqual(objs[0].data.mode, '0644');
+    });
+
+    it('should load multiple documents with default YAML 1.1', () => {
+        const yamlStr = `
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm1
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cm2
+`;
+        const objs = loadAllYaml(yamlStr) as Array<{ metadata: { name: string } }>;
+        strictEqual(objs.length, 2);
+        strictEqual(objs[0].metadata.name, 'cm1');
+        strictEqual(objs[1].metadata.name, 'cm2');
+    });
 });
