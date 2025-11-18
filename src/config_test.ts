@@ -306,7 +306,7 @@ describe('KubeConfig', () => {
             strictEqual(headers.get('list'), 'a, b');
             strictEqual(headers.get('number'), '5');
             strictEqual(headers.get('string'), 'str');
-            assertRequestAgentsEqual(requestInit.agent as Agent, expectedAgent);
+            assertRequestAgentsEqual((requestInit as any).agent as Agent, expectedAgent);
         });
     });
 
