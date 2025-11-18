@@ -149,7 +149,12 @@ describe('Metrics', () => {
             const metricsClient = new Metrics(kc);
             await rejects(metricsClient.getPodMetrics(), (err) => {
                 ok(err instanceof ApiException);
-                match(err.message, /connect ECONNREFUSED 127.0.0.1:51011/);
+                // Native fetch formats connection errors differently than node-fetch
+                // Both "fetch failed" and "ECONNREFUSED" indicate connection failure
+                ok(
+                    err.message.includes('fetch failed') || err.message.includes('ECONNREFUSED'),
+                    `Error message: ${err.message}`,
+                );
                 return true;
             });
         });

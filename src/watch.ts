@@ -1,6 +1,6 @@
 import { STATUS_CODES } from 'node:http';
 import { createInterface } from 'node:readline';
-import fetch from 'node-fetch';
+import { Readable } from 'node:stream';
 import { KubeConfig } from './config.js';
 
 export class Watch {
@@ -56,14 +56,15 @@ export class Watch {
         try {
             const response = await fetch(watchURL, requestInit);
 
-            if (requestInit.agent && typeof requestInit.agent === 'object') {
-                for (const socket of Object.values(requestInit.agent.sockets).flat()) {
-                    socket?.setKeepAlive(true, 30000);
+            if ((requestInit as any).agent && typeof (requestInit as any).agent === 'object') {
+                for (const socket of Object.values((requestInit as any).agent.sockets).flat()) {
+                    (socket as any)?.setKeepAlive(true, 30000);
                 }
             }
 
             if (response.status === 200) {
-                const body = response.body!;
+                // Convert Web ReadableStream to Node.js Readable stream
+                const body = Readable.fromWeb(response.body as any);
 
                 body.on('error', doneCallOnce);
                 body.on('close', () => doneCallOnce(null));

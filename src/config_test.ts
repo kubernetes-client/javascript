@@ -18,7 +18,6 @@ import { fileURLToPath } from 'node:url';
 import mockfs from 'mock-fs';
 
 import { Authenticator } from './auth.js';
-import fetch, { Headers } from 'node-fetch';
 import { HttpMethod } from './index.js';
 import { assertRequestAgentsEqual, assertRequestOptionsEqual } from './test/match-buffer.js';
 import { CoreV1Api, RequestContext } from './api.js';

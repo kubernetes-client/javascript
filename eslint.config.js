@@ -14,6 +14,7 @@ export default tseslint.config(
             globals: {
                 Buffer: true,
                 console: true,
+                fetch: true,
                 process: true,
                 setTimeout: true,
             },

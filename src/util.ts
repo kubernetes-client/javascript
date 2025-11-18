@@ -1,4 +1,3 @@
-import { Response } from 'node-fetch';
 import { CoreV1Api, V1Container, V1Pod } from './gen/index.js';
 
 export async function podsForNode(api: CoreV1Api, nodeName: string): Promise<V1Pod[]> {
@@ -151,11 +150,10 @@ export function totalForResource(pod: V1Pod, resource: string): ResourceStatus {
     return new ResourceStatus(reqTotal, limitTotal, resource);
 }
 
-// There is a disconnect between the ApiException headers and the response headers from node-fetch
-// ApiException expects { [key: string]: string } whereas node-fetch provides: { [key: string]: string[] }
-// https://github.com/node-fetch/node-fetch/issues/783
-// https://github.com/node-fetch/node-fetch/pull/1757
-export function normalizeResponseHeaders(response: Response): { [key: string]: string } {
+// There was a disconnect between the ApiException headers and the response headers from node-fetch
+// ApiException expects { [key: string]: string } whereas node-fetch provided: { [key: string]: string[] }
+// Native fetch Response.headers returns single values via entries() which is what we need.
+export function normalizeResponseHeaders(response: globalThis.Response): { [key: string]: string } {
     const normalizedHeaders = {};
 
     for (const [key, value] of response.headers.entries()) {
