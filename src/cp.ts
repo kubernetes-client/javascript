@@ -30,7 +30,7 @@ export class Cp {
     ): Promise<void> {
         const tmpFile = tmp.fileSync();
         const tmpFileName = tmpFile.name;
-        const command = ['tar', 'zcf', '-'];
+        const command = ['tar', 'cf', '-'];
         if (cwd) {
             command.push('-C', cwd);
         }
