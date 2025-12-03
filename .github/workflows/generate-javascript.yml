@@ -19,7 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Javascript
-        uses: actions/checkout@v6.0.0
+        uses: actions/checkout@v6.0.1
       - name: Setup Node
         uses: actions/setup-node@v6
         with:
