@@ -16,7 +16,9 @@
         "importHelpers": true,
         "skipLibCheck": true,
         "esModuleInterop": true,
-        "useDefineForClassFields": false
+        "useDefineForClassFields": false,
+        "noEmit": true,
+        "allowImportingTsExtensions": true
         // enable this in the future
         // "declarationMap": true
     },
