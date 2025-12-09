@@ -152,20 +152,6 @@ export class RequestContext {
     public getAgent(): http.Agent | https.Agent | undefined {
         return this.agent;
     }
-
-    // Optional timeout (in ms). When set, the request will be aborted if it exceeds this duration.
-    private timeout: number | undefined = undefined;
-
-    //Allows the caller to specify a timeout (in milliseconds) for this request.
-    public setTimeout(timeout : number){
-        this.timeout = timeout;
-    }
-
-    //Returns the timeout value configured for this request if any.
-    public getTimeout(): number | undefined {
-        return this.timeout;
-    }
-
 }
 
 export interface ResponseBody {

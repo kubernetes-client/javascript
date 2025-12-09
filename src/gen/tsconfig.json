@@ -29,5 +29,8 @@
   "exclude": [
     "dist",
     "node_modules"
+  ],
+  "filesGlob": [
+    "./**/*.ts",
   ]
 }
