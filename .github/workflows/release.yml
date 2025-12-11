@@ -3,6 +3,7 @@ name: Release
 permissions:
     contents: write
     actions: write
+    id-token: write
 
 on:
     workflow_dispatch:
