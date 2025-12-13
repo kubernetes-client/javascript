@@ -48,7 +48,8 @@ jobs:
               run: npm install -g npm@11.5.1
             - name: Upload release
               if: ${{ github.event.inputs.dry_run != 'true' && github.event.inputs.pre_release != 'true' }}
-              run: npm publish
+              run: npm publish --tag patch-${{ github.event.inputs.releaseVersion }}
+
             - name: Upload pre-release
               if: ${{ github.event.inputs.dry_run != 'true' && github.event.inputs.pre_release == 'true' }}
               run: npm publish --tag next
