@@ -3,6 +3,7 @@ name: Release
 permissions:
     contents: write
     actions: write
+    id-token: write
 
 on:
     workflow_dispatch:
@@ -37,7 +38,7 @@ jobs:
             - name: Setup Node
               uses: actions/setup-node@v6
               with:
-                  node-version: '20'
+                  node-version: '25'
                   registry-url: 'https://registry.npmjs.org'
             - name: Install dependencies
               run: npm install
@@ -45,14 +46,10 @@ jobs:
               run: ./build-package.sh
             - name: Upload release
               if: ${{ github.event.inputs.dry_run != 'true' && github.event.inputs.pre_release != 'true' }}
-              run: npm publish
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
+              run: npm publish --tag latest
             - name: Upload pre-release
               if: ${{ github.event.inputs.dry_run != 'true' && github.event.inputs.pre_release == 'true' }}
               run: npm publish --tag next
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
             - name: Tag release
               if: ${{ github.event.inputs.skip_tag != 'true' }}
               run: |
