@@ -13,6 +13,9 @@ on:
         default: 'b461333bb57fa2dc2152f939ed70bac3cef2c1f6'
         description: 'The commit to use for the kubernetes-client/gen repo'
 
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   generate:
