@@ -122,6 +122,7 @@ const request: StorageV1ApiCreateCSIDriverRequest = {
       podInfoOnMount: true,
       requiresRepublish: true,
       seLinuxMount: true,
+      serviceAccountTokenInSecrets: true,
       storageCapacity: true,
       tokenRequests: [
         {
@@ -3922,6 +3923,7 @@ const request: StorageV1ApiReplaceCSIDriverRequest = {
       podInfoOnMount: true,
       requiresRepublish: true,
       seLinuxMount: true,
+      serviceAccountTokenInSecrets: true,
       storageCapacity: true,
       tokenRequests: [
         {

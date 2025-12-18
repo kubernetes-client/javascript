@@ -1217,7 +1217,7 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
      * list or watch namespace scoped custom objects
      * @param group The custom resource\&#39;s group name
      * @param version The custom resource\&#39;s version
-     * @param plural The custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
+     * @param resourcePlural The custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind.
      * @param pretty If \&#39;true\&#39;, then the output is pretty printed.
      * @param allowWatchBookmarks allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored.
      * @param _continue The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications.
@@ -1229,7 +1229,7 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
      * @param timeoutSeconds Timeout for the list/watch call. This limits the duration of the call, regardless of any activity or inactivity.
      * @param watch Watch for changes to the described resources and return them as a stream of add, update, and remove notifications.
      */
-    public async listCustomObjectForAllNamespaces(group: string, version: string, plural: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, resourceVersion?: string, resourceVersionMatch?: string, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
+    public async listCustomObjectForAllNamespaces(group: string, version: string, resourcePlural: string, pretty?: string, allowWatchBookmarks?: boolean, _continue?: string, fieldSelector?: string, labelSelector?: string, limit?: number, resourceVersion?: string, resourceVersionMatch?: string, timeoutSeconds?: number, watch?: boolean, _options?: Configuration): Promise<RequestContext> {
         let _config = _options || this.configuration;
 
         // verify required parameter 'group' is not null or undefined
@@ -1244,9 +1244,9 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
         }
 
 
-        // verify required parameter 'plural' is not null or undefined
-        if (plural === null || plural === undefined) {
-            throw new RequiredError("CustomObjectsApi", "listCustomObjectForAllNamespaces", "plural");
+        // verify required parameter 'resourcePlural' is not null or undefined
+        if (resourcePlural === null || resourcePlural === undefined) {
+            throw new RequiredError("CustomObjectsApi", "listCustomObjectForAllNamespaces", "resourcePlural");
         }
 
 
@@ -1261,10 +1261,10 @@ export class CustomObjectsApiRequestFactory extends BaseAPIRequestFactory {
 
 
         // Path Params
-        const localVarPath = '/apis/{group}/{version}/{plural}#‎'
+        const localVarPath = '/apis/{group}/{version}/{resource_plural}'
             .replace('{' + 'group' + '}', encodeURIComponent(String(group)))
             .replace('{' + 'version' + '}', encodeURIComponent(String(version)))
-            .replace('{' + 'plural' + '}', encodeURIComponent(String(plural)));
+            .replace('{' + 'resource_plural' + '}', encodeURIComponent(String(resourcePlural)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
