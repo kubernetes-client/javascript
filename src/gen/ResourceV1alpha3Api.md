@@ -10,8 +10,11 @@ Method | HTTP request | Description
 [**getAPIResources**](ResourceV1alpha3Api.md#getAPIResources) | **GET** /apis/resource.k8s.io/v1alpha3/ | 
 [**listDeviceTaintRule**](ResourceV1alpha3Api.md#listDeviceTaintRule) | **GET** /apis/resource.k8s.io/v1alpha3/devicetaintrules | 
 [**patchDeviceTaintRule**](ResourceV1alpha3Api.md#patchDeviceTaintRule) | **PATCH** /apis/resource.k8s.io/v1alpha3/devicetaintrules/{name} | 
+[**patchDeviceTaintRuleStatus**](ResourceV1alpha3Api.md#patchDeviceTaintRuleStatus) | **PATCH** /apis/resource.k8s.io/v1alpha3/devicetaintrules/{name}/status | 
 [**readDeviceTaintRule**](ResourceV1alpha3Api.md#readDeviceTaintRule) | **GET** /apis/resource.k8s.io/v1alpha3/devicetaintrules/{name} | 
+[**readDeviceTaintRuleStatus**](ResourceV1alpha3Api.md#readDeviceTaintRuleStatus) | **GET** /apis/resource.k8s.io/v1alpha3/devicetaintrules/{name}/status | 
 [**replaceDeviceTaintRule**](ResourceV1alpha3Api.md#replaceDeviceTaintRule) | **PUT** /apis/resource.k8s.io/v1alpha3/devicetaintrules/{name} | 
+[**replaceDeviceTaintRuleStatus**](ResourceV1alpha3Api.md#replaceDeviceTaintRuleStatus) | **PUT** /apis/resource.k8s.io/v1alpha3/devicetaintrules/{name}/status | 
 
 
 # **createDeviceTaintRule**
@@ -79,16 +82,8 @@ const request: ResourceV1alpha3ApiCreateDeviceTaintRuleRequest = {
     spec: {
       deviceSelector: {
         device: "device_example",
-        deviceClassName: "deviceClassName_example",
         driver: "driver_example",
         pool: "pool_example",
-        selectors: [
-          {
-            cel: {
-              expression: "expression_example",
-            },
-          },
-        ],
       },
       taint: {
         effect: "effect_example",
@@ -96,6 +91,18 @@ const request: ResourceV1alpha3ApiCreateDeviceTaintRuleRequest = {
         timeAdded: new Date('1970-01-01T00:00:00.00Z'),
         value: "value_example",
       },
+    },
+    status: {
+      conditions: [
+        {
+          lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
+          message: "message_example",
+          observedGeneration: 1,
+          reason: "reason_example",
+          status: "status_example",
+          type: "type_example",
+        },
+      ],
     },
   },
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
@@ -552,6 +559,79 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
+# **patchDeviceTaintRuleStatus**
+> V1alpha3DeviceTaintRule patchDeviceTaintRuleStatus(body)
+
+partially update status of the specified DeviceTaintRule
+
+### Example
+
+
+```typescript
+import { createConfiguration, ResourceV1alpha3Api } from '';
+import type { ResourceV1alpha3ApiPatchDeviceTaintRuleStatusRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new ResourceV1alpha3Api(configuration);
+
+const request: ResourceV1alpha3ApiPatchDeviceTaintRuleStatusRequest = {
+    // name of the DeviceTaintRule
+  name: "name_example",
+  
+  body: {},
+    // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
+  pretty: "pretty_example",
+    // When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+  dryRun: "dryRun_example",
+    // fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+  fieldManager: "fieldManager_example",
+    // fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
+    // Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
+  force: true,
+};
+
+const data = await apiInstance.patchDeviceTaintRuleStatus(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **any**|  |
+ **name** | [**string**] | name of the DeviceTaintRule | defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
+ **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
+ **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
+ **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
+
+
+### Return type
+
+**V1alpha3DeviceTaintRule**
+
+### Authorization
+
+[BearerToken](README.md#BearerToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**201** | Created |  -  |
+**401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 # **readDeviceTaintRule**
 > V1alpha3DeviceTaintRule readDeviceTaintRule()
 
@@ -575,6 +655,63 @@ const request: ResourceV1alpha3ApiReadDeviceTaintRuleRequest = {
 };
 
 const data = await apiInstance.readDeviceTaintRule(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | [**string**] | name of the DeviceTaintRule | defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
+
+
+### Return type
+
+**V1alpha3DeviceTaintRule**
+
+### Authorization
+
+[BearerToken](README.md#BearerToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **readDeviceTaintRuleStatus**
+> V1alpha3DeviceTaintRule readDeviceTaintRuleStatus()
+
+read status of the specified DeviceTaintRule
+
+### Example
+
+
+```typescript
+import { createConfiguration, ResourceV1alpha3Api } from '';
+import type { ResourceV1alpha3ApiReadDeviceTaintRuleStatusRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new ResourceV1alpha3Api(configuration);
+
+const request: ResourceV1alpha3ApiReadDeviceTaintRuleStatusRequest = {
+    // name of the DeviceTaintRule
+  name: "name_example",
+    // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
+  pretty: "pretty_example",
+};
+
+const data = await apiInstance.readDeviceTaintRuleStatus(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -676,16 +813,8 @@ const request: ResourceV1alpha3ApiReplaceDeviceTaintRuleRequest = {
     spec: {
       deviceSelector: {
         device: "device_example",
-        deviceClassName: "deviceClassName_example",
         driver: "driver_example",
         pool: "pool_example",
-        selectors: [
-          {
-            cel: {
-              expression: "expression_example",
-            },
-          },
-        ],
       },
       taint: {
         effect: "effect_example",
@@ -693,6 +822,18 @@ const request: ResourceV1alpha3ApiReplaceDeviceTaintRuleRequest = {
         timeAdded: new Date('1970-01-01T00:00:00.00Z'),
         value: "value_example",
       },
+    },
+    status: {
+      conditions: [
+        {
+          lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
+          message: "message_example",
+          observedGeneration: 1,
+          reason: "reason_example",
+          status: "status_example",
+          type: "type_example",
+        },
+      ],
     },
   },
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
@@ -706,6 +847,146 @@ const request: ResourceV1alpha3ApiReplaceDeviceTaintRuleRequest = {
 };
 
 const data = await apiInstance.replaceDeviceTaintRule(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **V1alpha3DeviceTaintRule**|  |
+ **name** | [**string**] | name of the DeviceTaintRule | defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
+ **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
+ **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
+
+
+### Return type
+
+**V1alpha3DeviceTaintRule**
+
+### Authorization
+
+[BearerToken](README.md#BearerToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**201** | Created |  -  |
+**401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **replaceDeviceTaintRuleStatus**
+> V1alpha3DeviceTaintRule replaceDeviceTaintRuleStatus(body)
+
+replace status of the specified DeviceTaintRule
+
+### Example
+
+
+```typescript
+import { createConfiguration, ResourceV1alpha3Api } from '';
+import type { ResourceV1alpha3ApiReplaceDeviceTaintRuleStatusRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new ResourceV1alpha3Api(configuration);
+
+const request: ResourceV1alpha3ApiReplaceDeviceTaintRuleStatusRequest = {
+    // name of the DeviceTaintRule
+  name: "name_example",
+  
+  body: {
+    apiVersion: "apiVersion_example",
+    kind: "kind_example",
+    metadata: {
+      annotations: {
+        "key": "key_example",
+      },
+      creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
+      deletionGracePeriodSeconds: 1,
+      deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
+      finalizers: [
+        "finalizers_example",
+      ],
+      generateName: "generateName_example",
+      generation: 1,
+      labels: {
+        "key": "key_example",
+      },
+      managedFields: [
+        {
+          apiVersion: "apiVersion_example",
+          fieldsType: "fieldsType_example",
+          fieldsV1: {},
+          manager: "manager_example",
+          operation: "operation_example",
+          subresource: "subresource_example",
+          time: new Date('1970-01-01T00:00:00.00Z'),
+        },
+      ],
+      name: "name_example",
+      namespace: "namespace_example",
+      ownerReferences: [
+        {
+          apiVersion: "apiVersion_example",
+          blockOwnerDeletion: true,
+          controller: true,
+          kind: "kind_example",
+          name: "name_example",
+          uid: "uid_example",
+        },
+      ],
+      resourceVersion: "resourceVersion_example",
+      selfLink: "selfLink_example",
+      uid: "uid_example",
+    },
+    spec: {
+      deviceSelector: {
+        device: "device_example",
+        driver: "driver_example",
+        pool: "pool_example",
+      },
+      taint: {
+        effect: "effect_example",
+        key: "key_example",
+        timeAdded: new Date('1970-01-01T00:00:00.00Z'),
+        value: "value_example",
+      },
+    },
+    status: {
+      conditions: [
+        {
+          lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
+          message: "message_example",
+          observedGeneration: 1,
+          reason: "reason_example",
+          status: "status_example",
+          type: "type_example",
+        },
+      ],
+    },
+  },
+    // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
+  pretty: "pretty_example",
+    // When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+  dryRun: "dryRun_example",
+    // fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
+  fieldManager: "fieldManager_example",
+    // fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
+};
+
+const data = await apiInstance.replaceDeviceTaintRuleStatus(request);
 console.log('API called successfully. Returned data:', data);
 ```
 

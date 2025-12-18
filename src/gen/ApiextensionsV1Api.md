@@ -243,11 +243,13 @@ const request: ApiextensionsV1ApiCreateCustomResourceDefinitionRequest = {
         {
           lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
           message: "message_example",
+          observedGeneration: 1,
           reason: "reason_example",
           status: "status_example",
           type: "type_example",
         },
       ],
+      observedGeneration: 1,
       storedVersions: [
         "storedVersions_example",
       ],
@@ -1122,11 +1124,13 @@ const request: ApiextensionsV1ApiReplaceCustomResourceDefinitionRequest = {
         {
           lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
           message: "message_example",
+          observedGeneration: 1,
           reason: "reason_example",
           status: "status_example",
           type: "type_example",
         },
       ],
+      observedGeneration: 1,
       storedVersions: [
         "storedVersions_example",
       ],
@@ -1410,11 +1414,13 @@ const request: ApiextensionsV1ApiReplaceCustomResourceDefinitionStatusRequest = 
         {
           lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
           message: "message_example",
+          observedGeneration: 1,
           reason: "reason_example",
           status: "status_example",
           type: "type_example",
         },
       ],
+      observedGeneration: 1,
       storedVersions: [
         "storedVersions_example",
       ],

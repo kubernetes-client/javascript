@@ -10,17 +10,19 @@ export * from './isomorphic-fetch.js';
 /**
  * Represents an HTTP method.
  */
-export enum HttpMethod {
-    GET = "GET",
-    HEAD = "HEAD",
-    POST = "POST",
-    PUT = "PUT",
-    DELETE = "DELETE",
-    CONNECT = "CONNECT",
-    OPTIONS = "OPTIONS",
-    TRACE = "TRACE",
-    PATCH = "PATCH"
-}
+export const HttpMethod = {
+    GET: "GET",
+    HEAD: "HEAD",
+    POST: "POST",
+    PUT: "PUT",
+    DELETE: "DELETE",
+    CONNECT: "CONNECT",
+    OPTIONS: "OPTIONS",
+    TRACE: "TRACE",
+    PATCH: "PATCH"
+} as const;
+
+export type HttpMethod = typeof HttpMethod[keyof typeof HttpMethod];
 
 /**
  * Represents an HTTP file which will be transferred from or to a server.
