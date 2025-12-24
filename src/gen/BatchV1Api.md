@@ -1894,6 +1894,9 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                           keyType: "keyType_example",
                           maxExpirationSeconds: 1,
                           signerName: "signerName_example",
+                          userAnnotations: {
+                            "key": "key_example",
+                          },
                         },
                         secret: {
                           items: [
@@ -1979,6 +1982,11 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                   },
                 },
               ],
+              workloadRef: {
+                name: "name_example",
+                podGroup: "podGroup_example",
+                podGroupReplicaKey: "podGroupReplicaKey_example",
+              },
             },
           },
           ttlSecondsAfterFinished: 1,
@@ -3876,6 +3884,9 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      userAnnotations: {
+                        "key": "key_example",
+                      },
                     },
                     secret: {
                       items: [
@@ -3961,6 +3972,11 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
               },
             },
           ],
+          workloadRef: {
+            name: "name_example",
+            podGroup: "podGroup_example",
+            podGroupReplicaKey: "podGroupReplicaKey_example",
+          },
         },
       },
       ttlSecondsAfterFinished: 1,
@@ -7258,6 +7274,9 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                           keyType: "keyType_example",
                           maxExpirationSeconds: 1,
                           signerName: "signerName_example",
+                          userAnnotations: {
+                            "key": "key_example",
+                          },
                         },
                         secret: {
                           items: [
@@ -7343,6 +7362,11 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                   },
                 },
               ],
+              workloadRef: {
+                name: "name_example",
+                podGroup: "podGroup_example",
+                podGroupReplicaKey: "podGroupReplicaKey_example",
+              },
             },
           },
           ttlSecondsAfterFinished: 1,
@@ -9288,6 +9312,9 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                           keyType: "keyType_example",
                           maxExpirationSeconds: 1,
                           signerName: "signerName_example",
+                          userAnnotations: {
+                            "key": "key_example",
+                          },
                         },
                         secret: {
                           items: [
@@ -9373,6 +9400,11 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                   },
                 },
               ],
+              workloadRef: {
+                name: "name_example",
+                podGroup: "podGroup_example",
+                podGroupReplicaKey: "podGroupReplicaKey_example",
+              },
             },
           },
           ttlSecondsAfterFinished: 1,
@@ -11272,6 +11304,9 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      userAnnotations: {
+                        "key": "key_example",
+                      },
                     },
                     secret: {
                       items: [
@@ -11357,6 +11392,11 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
               },
             },
           ],
+          workloadRef: {
+            name: "name_example",
+            podGroup: "podGroup_example",
+            podGroupReplicaKey: "podGroupReplicaKey_example",
+          },
         },
       },
       ttlSecondsAfterFinished: 1,
@@ -13263,6 +13303,9 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      userAnnotations: {
+                        "key": "key_example",
+                      },
                     },
                     secret: {
                       items: [
@@ -13348,6 +13391,11 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
               },
             },
           ],
+          workloadRef: {
+            name: "name_example",
+            podGroup: "podGroup_example",
+            podGroupReplicaKey: "podGroupReplicaKey_example",
+          },
         },
       },
       ttlSecondsAfterFinished: 1,

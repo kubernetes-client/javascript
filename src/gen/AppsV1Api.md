@@ -1968,6 +1968,9 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      userAnnotations: {
+                        "key": "key_example",
+                      },
                     },
                     secret: {
                       items: [
@@ -2053,6 +2056,11 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
               },
             },
           ],
+          workloadRef: {
+            name: "name_example",
+            podGroup: "podGroup_example",
+            podGroupReplicaKey: "podGroupReplicaKey_example",
+          },
         },
       },
       updateStrategy: {
@@ -3927,6 +3935,9 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      userAnnotations: {
+                        "key": "key_example",
+                      },
                     },
                     secret: {
                       items: [
@@ -4012,6 +4023,11 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
               },
             },
           ],
+          workloadRef: {
+            name: "name_example",
+            podGroup: "podGroup_example",
+            podGroupReplicaKey: "podGroupReplicaKey_example",
+          },
         },
       },
     },
@@ -5869,6 +5885,9 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      userAnnotations: {
+                        "key": "key_example",
+                      },
                     },
                     secret: {
                       items: [
@@ -5954,6 +5973,11 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
               },
             },
           ],
+          workloadRef: {
+            name: "name_example",
+            podGroup: "podGroup_example",
+            podGroupReplicaKey: "podGroupReplicaKey_example",
+          },
         },
       },
     },
@@ -7818,6 +7842,9 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      userAnnotations: {
+                        "key": "key_example",
+                      },
                     },
                     secret: {
                       items: [
@@ -7903,6 +7930,11 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
               },
             },
           ],
+          workloadRef: {
+            name: "name_example",
+            podGroup: "podGroup_example",
+            podGroupReplicaKey: "podGroupReplicaKey_example",
+          },
         },
       },
       updateStrategy: {
@@ -13573,6 +13605,9 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      userAnnotations: {
+                        "key": "key_example",
+                      },
                     },
                     secret: {
                       items: [
@@ -13658,6 +13693,11 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
               },
             },
           ],
+          workloadRef: {
+            name: "name_example",
+            podGroup: "podGroup_example",
+            podGroupReplicaKey: "podGroupReplicaKey_example",
+          },
         },
       },
       updateStrategy: {
@@ -15524,6 +15564,9 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      userAnnotations: {
+                        "key": "key_example",
+                      },
                     },
                     secret: {
                       items: [
@@ -15609,6 +15652,11 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
               },
             },
           ],
+          workloadRef: {
+            name: "name_example",
+            podGroup: "podGroup_example",
+            podGroupReplicaKey: "podGroupReplicaKey_example",
+          },
         },
       },
       updateStrategy: {
@@ -17485,6 +17533,9 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      userAnnotations: {
+                        "key": "key_example",
+                      },
                     },
                     secret: {
                       items: [
@@ -17570,6 +17621,11 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
               },
             },
           ],
+          workloadRef: {
+            name: "name_example",
+            podGroup: "podGroup_example",
+            podGroupReplicaKey: "podGroupReplicaKey_example",
+          },
         },
       },
     },
@@ -19564,6 +19620,9 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      userAnnotations: {
+                        "key": "key_example",
+                      },
                     },
                     secret: {
                       items: [
@@ -19649,6 +19708,11 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
               },
             },
           ],
+          workloadRef: {
+            name: "name_example",
+            podGroup: "podGroup_example",
+            podGroupReplicaKey: "podGroupReplicaKey_example",
+          },
         },
       },
     },
@@ -21508,6 +21572,9 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      userAnnotations: {
+                        "key": "key_example",
+                      },
                     },
                     secret: {
                       items: [
@@ -21593,6 +21660,11 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
               },
             },
           ],
+          workloadRef: {
+            name: "name_example",
+            podGroup: "podGroup_example",
+            podGroupReplicaKey: "podGroupReplicaKey_example",
+          },
         },
       },
     },
@@ -23574,6 +23646,9 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      userAnnotations: {
+                        "key": "key_example",
+                      },
                     },
                     secret: {
                       items: [
@@ -23659,6 +23734,11 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
               },
             },
           ],
+          workloadRef: {
+            name: "name_example",
+            podGroup: "podGroup_example",
+            podGroupReplicaKey: "podGroupReplicaKey_example",
+          },
         },
       },
     },
@@ -25525,6 +25605,9 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      userAnnotations: {
+                        "key": "key_example",
+                      },
                     },
                     secret: {
                       items: [
@@ -25610,6 +25693,11 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
               },
             },
           ],
+          workloadRef: {
+            name: "name_example",
+            podGroup: "podGroup_example",
+            podGroupReplicaKey: "podGroupReplicaKey_example",
+          },
         },
       },
       updateStrategy: {
@@ -27731,6 +27819,9 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      userAnnotations: {
+                        "key": "key_example",
+                      },
                     },
                     secret: {
                       items: [
@@ -27816,6 +27907,11 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
               },
             },
           ],
+          workloadRef: {
+            name: "name_example",
+            podGroup: "podGroup_example",
+            podGroupReplicaKey: "podGroupReplicaKey_example",
+          },
         },
       },
       updateStrategy: {

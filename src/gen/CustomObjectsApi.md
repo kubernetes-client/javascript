@@ -18,7 +18,7 @@ Method | HTTP request | Description
 [**getNamespacedCustomObjectScale**](CustomObjectsApi.md#getNamespacedCustomObjectScale) | **GET** /apis/{group}/{version}/namespaces/{namespace}/{plural}/{name}/scale | 
 [**getNamespacedCustomObjectStatus**](CustomObjectsApi.md#getNamespacedCustomObjectStatus) | **GET** /apis/{group}/{version}/namespaces/{namespace}/{plural}/{name}/status | 
 [**listClusterCustomObject**](CustomObjectsApi.md#listClusterCustomObject) | **GET** /apis/{group}/{version}/{plural} | 
-[**listCustomObjectForAllNamespaces**](CustomObjectsApi.md#listCustomObjectForAllNamespaces) | **GET** /apis/{group}/{version}/{plural}#‎ | 
+[**listCustomObjectForAllNamespaces**](CustomObjectsApi.md#listCustomObjectForAllNamespaces) | **GET** /apis/{group}/{version}/{resource_plural} | 
 [**listNamespacedCustomObject**](CustomObjectsApi.md#listNamespacedCustomObject) | **GET** /apis/{group}/{version}/namespaces/{namespace}/{plural} | 
 [**patchClusterCustomObject**](CustomObjectsApi.md#patchClusterCustomObject) | **PATCH** /apis/{group}/{version}/{plural}/{name} | 
 [**patchClusterCustomObjectScale**](CustomObjectsApi.md#patchClusterCustomObjectScale) | **PATCH** /apis/{group}/{version}/{plural}/{name}/scale | 
@@ -1125,7 +1125,7 @@ const request: CustomObjectsApiListCustomObjectForAllNamespacesRequest = {
     // The custom resource\'s version
   version: "version_example",
     // The custom resource\'s plural name. For TPRs this would be lowercase plural kind.
-  plural: "plural_example",
+  resourcePlural: "resource_plural_example",
     // If \'true\', then the output is pretty printed. (optional)
   pretty: "pretty_example",
     // allowWatchBookmarks requests watch events with type \"BOOKMARK\". Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\'s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored. (optional)
@@ -1159,7 +1159,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **group** | [**string**] | The custom resource\&#39;s group name | defaults to undefined
  **version** | [**string**] | The custom resource\&#39;s version | defaults to undefined
- **plural** | [**string**] | The custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind. | defaults to undefined
+ **resourcePlural** | [**string**] | The custom resource\&#39;s plural name. For TPRs this would be lowercase plural kind. | defaults to undefined
  **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. | (optional) defaults to undefined
  **allowWatchBookmarks** | [**boolean**] | allowWatchBookmarks requests watch events with type \&quot;BOOKMARK\&quot;. Servers that do not implement bookmarks may ignore this flag and bookmarks are sent at the server\&#39;s discretion. Clients should not assume bookmarks are returned at any specific interval, nor may they assume the server will send any BOOKMARK event during a session. If this is not a watch, this field is ignored. If the feature gate WatchBookmarks is not enabled in apiserver, this field is ignored. | (optional) defaults to undefined
  **_continue** | [**string**] | The continue option should be set when retrieving more results from the server. Since this value is server defined, clients may only use the continue value from a previous query result with identical query parameters (except for the value of continue) and the server may reject a continue value it does not recognize. If the specified continue value is no longer valid whether due to expiration (generally five to fifteen minutes) or a configuration change on the server, the server will respond with a 410 ResourceExpired error together with a continue token. If the client needs a consistent list, it must restart their list without the continue field. Otherwise, the client may send another list request with the token received with the 410 error, the server will respond with a list starting from the next key, but from the latest snapshot, which is inconsistent from the previous list results - objects that are created, modified, or deleted after the first list request will be included in the response, as long as their keys are after the \&quot;next key\&quot;.  This field is not supported when watch is true. Clients may start a watch from the last resourceVersion value returned by the server and not miss any modifications. | (optional) defaults to undefined

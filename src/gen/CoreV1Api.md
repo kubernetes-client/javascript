@@ -5905,6 +5905,9 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
                   keyType: "keyType_example",
                   maxExpirationSeconds: 1,
                   signerName: "signerName_example",
+                  userAnnotations: {
+                    "key": "key_example",
+                  },
                 },
                 secret: {
                   items: [
@@ -5990,8 +5993,16 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
           },
         },
       ],
+      workloadRef: {
+        name: "name_example",
+        podGroup: "podGroup_example",
+        podGroupReplicaKey: "podGroupReplicaKey_example",
+      },
     },
     status: {
+      allocatedResources: {
+        "key": "key_example",
+      },
       conditions: [
         {
           lastProbeTime: new Date('1970-01-01T00:00:00.00Z'),
@@ -6317,6 +6328,20 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
           resourceClaimName: "resourceClaimName_example",
         },
       ],
+      resources: {
+        claims: [
+          {
+            name: "name_example",
+            request: "request_example",
+          },
+        ],
+        limits: {
+          "key": "key_example",
+        },
+        requests: {
+          "key": "key_example",
+        },
+      },
       startTime: new Date('1970-01-01T00:00:00.00Z'),
     },
   },
@@ -8398,6 +8423,9 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                     keyType: "keyType_example",
                     maxExpirationSeconds: 1,
                     signerName: "signerName_example",
+                    userAnnotations: {
+                      "key": "key_example",
+                    },
                   },
                   secret: {
                     items: [
@@ -8483,6 +8511,11 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
             },
           },
         ],
+        workloadRef: {
+          name: "name_example",
+          podGroup: "podGroup_example",
+          podGroupReplicaKey: "podGroupReplicaKey_example",
+        },
       },
     },
   },
@@ -10308,6 +10341,9 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      userAnnotations: {
+                        "key": "key_example",
+                      },
                     },
                     secret: {
                       items: [
@@ -10393,6 +10429,11 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
               },
             },
           ],
+          workloadRef: {
+            name: "name_example",
+            podGroup: "podGroup_example",
+            podGroupReplicaKey: "podGroupReplicaKey_example",
+          },
         },
       },
     },
@@ -11334,6 +11375,9 @@ const request: CoreV1ApiCreateNodeRequest = {
           Port: 1,
         },
       },
+      declaredFeatures: [
+        "declaredFeatures_example",
+      ],
       features: {
         supplementalGroupsPolicy: true,
       },
@@ -23931,6 +23975,9 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
                   keyType: "keyType_example",
                   maxExpirationSeconds: 1,
                   signerName: "signerName_example",
+                  userAnnotations: {
+                    "key": "key_example",
+                  },
                 },
                 secret: {
                   items: [
@@ -24016,8 +24063,16 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
           },
         },
       ],
+      workloadRef: {
+        name: "name_example",
+        podGroup: "podGroup_example",
+        podGroupReplicaKey: "podGroupReplicaKey_example",
+      },
     },
     status: {
+      allocatedResources: {
+        "key": "key_example",
+      },
       conditions: [
         {
           lastProbeTime: new Date('1970-01-01T00:00:00.00Z'),
@@ -24343,6 +24398,20 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
           resourceClaimName: "resourceClaimName_example",
         },
       ],
+      resources: {
+        claims: [
+          {
+            name: "name_example",
+            request: "request_example",
+          },
+        ],
+        limits: {
+          "key": "key_example",
+        },
+        requests: {
+          "key": "key_example",
+        },
+      },
       startTime: new Date('1970-01-01T00:00:00.00Z'),
     },
   },
@@ -26121,6 +26190,9 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                   keyType: "keyType_example",
                   maxExpirationSeconds: 1,
                   signerName: "signerName_example",
+                  userAnnotations: {
+                    "key": "key_example",
+                  },
                 },
                 secret: {
                   items: [
@@ -26206,8 +26278,16 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
           },
         },
       ],
+      workloadRef: {
+        name: "name_example",
+        podGroup: "podGroup_example",
+        podGroupReplicaKey: "podGroupReplicaKey_example",
+      },
     },
     status: {
+      allocatedResources: {
+        "key": "key_example",
+      },
       conditions: [
         {
           lastProbeTime: new Date('1970-01-01T00:00:00.00Z'),
@@ -26533,6 +26613,20 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
           resourceClaimName: "resourceClaimName_example",
         },
       ],
+      resources: {
+        claims: [
+          {
+            name: "name_example",
+            request: "request_example",
+          },
+        ],
+        limits: {
+          "key": "key_example",
+        },
+        requests: {
+          "key": "key_example",
+        },
+      },
       startTime: new Date('1970-01-01T00:00:00.00Z'),
     },
   },
@@ -28311,6 +28405,9 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
                   keyType: "keyType_example",
                   maxExpirationSeconds: 1,
                   signerName: "signerName_example",
+                  userAnnotations: {
+                    "key": "key_example",
+                  },
                 },
                 secret: {
                   items: [
@@ -28396,8 +28493,16 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
           },
         },
       ],
+      workloadRef: {
+        name: "name_example",
+        podGroup: "podGroup_example",
+        podGroupReplicaKey: "podGroupReplicaKey_example",
+      },
     },
     status: {
+      allocatedResources: {
+        "key": "key_example",
+      },
       conditions: [
         {
           lastProbeTime: new Date('1970-01-01T00:00:00.00Z'),
@@ -28723,6 +28828,20 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
           resourceClaimName: "resourceClaimName_example",
         },
       ],
+      resources: {
+        claims: [
+          {
+            name: "name_example",
+            request: "request_example",
+          },
+        ],
+        limits: {
+          "key": "key_example",
+        },
+        requests: {
+          "key": "key_example",
+        },
+      },
       startTime: new Date('1970-01-01T00:00:00.00Z'),
     },
   },
@@ -30501,6 +30620,9 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
                   keyType: "keyType_example",
                   maxExpirationSeconds: 1,
                   signerName: "signerName_example",
+                  userAnnotations: {
+                    "key": "key_example",
+                  },
                 },
                 secret: {
                   items: [
@@ -30586,8 +30708,16 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
           },
         },
       ],
+      workloadRef: {
+        name: "name_example",
+        podGroup: "podGroup_example",
+        podGroupReplicaKey: "podGroupReplicaKey_example",
+      },
     },
     status: {
+      allocatedResources: {
+        "key": "key_example",
+      },
       conditions: [
         {
           lastProbeTime: new Date('1970-01-01T00:00:00.00Z'),
@@ -30913,6 +31043,20 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
           resourceClaimName: "resourceClaimName_example",
         },
       ],
+      resources: {
+        claims: [
+          {
+            name: "name_example",
+            request: "request_example",
+          },
+        ],
+        limits: {
+          "key": "key_example",
+        },
+        requests: {
+          "key": "key_example",
+        },
+      },
       startTime: new Date('1970-01-01T00:00:00.00Z'),
     },
   },
@@ -32734,6 +32878,9 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                     keyType: "keyType_example",
                     maxExpirationSeconds: 1,
                     signerName: "signerName_example",
+                    userAnnotations: {
+                      "key": "key_example",
+                    },
                   },
                   secret: {
                     items: [
@@ -32819,6 +32966,11 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
             },
           },
         ],
+        workloadRef: {
+          name: "name_example",
+          podGroup: "podGroup_example",
+          podGroupReplicaKey: "podGroupReplicaKey_example",
+        },
       },
     },
   },
@@ -34646,6 +34798,9 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      userAnnotations: {
+                        "key": "key_example",
+                      },
                     },
                     secret: {
                       items: [
@@ -34731,6 +34886,11 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
               },
             },
           ],
+          workloadRef: {
+            name: "name_example",
+            podGroup: "podGroup_example",
+            podGroupReplicaKey: "podGroupReplicaKey_example",
+          },
         },
       },
     },
@@ -36700,6 +36860,9 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      userAnnotations: {
+                        "key": "key_example",
+                      },
                     },
                     secret: {
                       items: [
@@ -36785,6 +36948,11 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
               },
             },
           ],
+          workloadRef: {
+            name: "name_example",
+            podGroup: "podGroup_example",
+            podGroupReplicaKey: "podGroupReplicaKey_example",
+          },
         },
       },
     },
@@ -37937,6 +38105,9 @@ const request: CoreV1ApiReplaceNodeRequest = {
           Port: 1,
         },
       },
+      declaredFeatures: [
+        "declaredFeatures_example",
+      ],
       features: {
         supplementalGroupsPolicy: true,
       },
@@ -38182,6 +38353,9 @@ const request: CoreV1ApiReplaceNodeStatusRequest = {
           Port: 1,
         },
       },
+      declaredFeatures: [
+        "declaredFeatures_example",
+      ],
       features: {
         supplementalGroupsPolicy: true,
       },

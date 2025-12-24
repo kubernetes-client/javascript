@@ -19,7 +19,9 @@ export const COLLECTION_FORMATS = {
  */
 export class BaseAPIRequestFactory {
 
-    constructor(protected configuration: Configuration) {
+    protected configuration: Configuration;
+    constructor( config: Configuration) {
+        this.configuration = config;
     }
 };
 
@@ -31,7 +33,13 @@ export class BaseAPIRequestFactory {
  */
 export class RequiredError extends Error {
     override name: "RequiredError" = "RequiredError";
-    constructor(public api: string, public method: string, public field: string) {
+    public api: string;
+    public method: string;
+    public field: string;
+    constructor(api: string, method: string, field: string) {
         super("Required parameter " + field + " was null or undefined when calling " + api + "." + method + ".");
+        this.api = api;
+        this.method = method;
+        this.field = field;
     }
 }
