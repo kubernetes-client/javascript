@@ -36,11 +36,19 @@ import WebSocket from 'isomorphic-ws';
 import child_process from 'node:child_process';
 import { SocksProxyAgent } from 'socks-proxy-agent';
 import { HttpProxyAgent, HttpProxyAgentOptions, HttpsProxyAgent, HttpsProxyAgentOptions } from 'hpagent';
+import packagejson from '../package.json' with { type: 'json' };
+import { setHeaderMiddleware } from './middleware.js';
 
 const SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
 const SERVICEACCOUNT_CA_PATH: string = SERVICEACCOUNT_ROOT + '/ca.crt';
 const SERVICEACCOUNT_TOKEN_PATH: string = SERVICEACCOUNT_ROOT + '/token';
 const SERVICEACCOUNT_NAMESPACE_PATH: string = SERVICEACCOUNT_ROOT + '/namespace';
+const USER_AGENT_KEY = 'User-Agent';
+
+function getUserAgent(): string {
+    const version = packagejson.version || '';
+    return `kubernetes-javascript-client/${version}`;
+}
 
 // fs.existsSync was removed in node 10
 function fileExists(filepath: string): boolean {
@@ -491,6 +499,7 @@ export class KubeConfig implements SecurityAuthentication {
         const config: Configuration = createConfiguration({
             baseServer: baseServerConfig,
             authMethods: authConfig,
+            middleware: [setHeaderMiddleware(USER_AGENT_KEY, getUserAgent())],
         });
 
         const apiClient = new apiClientType(config);

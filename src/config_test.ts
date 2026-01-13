@@ -1674,6 +1674,68 @@ describe('KubeConfig', () => {
             const client = kc.makeApiClient(CoreV1Api);
             strictEqual(client instanceof CoreV1Api, true);
         });
+
+        it('should include User-Agent header with version', async () => {
+            let capturedUserAgent: string | undefined;
+
+            const { server, host, port } = await createTestHttpsServer((req, res) => {
+                capturedUserAgent = req.headers['user-agent'];
+
+                res.setHeader('Content-Type', 'application/json');
+                res.writeHead(200);
+                res.end(
+                    JSON.stringify({
+                        apiVersion: 'v1',
+                        kind: 'NamespaceList',
+                        items: [],
+                    }),
+                );
+            });
+
+            try {
+                const kc = new KubeConfig();
+                kc.loadFromClusterAndUser(
+                    {
+                        name: 'test-cluster',
+                        server: `https://${host}:${port}`,
+                        skipTLSVerify: true,
+                    } as Cluster,
+                    {
+                        name: 'test-user',
+                        token: 'test-token',
+                    } as User,
+                );
+
+                const coreV1Api = kc.makeApiClient(CoreV1Api);
+                await coreV1Api.listNamespace();
+
+                // Read version from package.json
+                const packageJsonPath = join(__dirname, '..', 'package.json');
+                const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
+                const expectedVersion = packageJson.version;
+
+                // Verify version is not blank
+                strictEqual(typeof expectedVersion, 'string');
+                strictEqual(expectedVersion.length > 0, true, 'package.json version should not be blank');
+
+                // Verify User-Agent header contains client name and version
+                strictEqual(typeof capturedUserAgent, 'string');
+                strictEqual(
+                    capturedUserAgent?.startsWith('kubernetes-javascript-client/'),
+                    true,
+                    'capturedUserAgent should start with "kubernetes-javascript-client/"',
+                );
+                strictEqual(
+                    capturedUserAgent?.includes(expectedVersion),
+                    true,
+                    `User-Agent should include version ${expectedVersion}`,
+                );
+            } finally {
+                await new Promise<void>((resolve) => {
+                    server.close(() => resolve());
+                });
+            }
+        });
     });
 
     describe('EmptyConfig', () => {
