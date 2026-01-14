@@ -1730,8 +1730,8 @@ describe('KubeConfig', () => {
                 `User-Agent should include version ${expectedVersion}`,
             );
             t.after(async () => {
-                await new Promise<void>((resolve) => {
-                    server.close(() => resolve());
+                await new Promise<Error | undefined>((resolve) => {
+                    server.close(resolve);
                 });
             });
         });
