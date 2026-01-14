@@ -47,7 +47,7 @@ const USER_AGENT_KEY = 'User-Agent';
 
 function getUserAgent(): string {
     const version = packagejson.version ?? '';
-    return `kubernetes-javascript-client/${version}`;
+    return `kubernetes-client-javascript/${version}`;
 }
 
 // fs.existsSync was removed in node 10

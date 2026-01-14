@@ -1691,6 +1691,11 @@ describe('KubeConfig', () => {
                     }),
                 );
             });
+            t.after(async () => {
+                await new Promise<Error | undefined>((resolve) => {
+                    server.close(resolve);
+                });
+            });
 
             const kc = new KubeConfig();
             kc.loadFromClusterAndUser(
@@ -1720,7 +1725,7 @@ describe('KubeConfig', () => {
             // Verify User-Agent header contains client name and version
             strictEqual(typeof capturedUserAgent, 'string');
             strictEqual(
-                capturedUserAgent!.startsWith('kubernetes-javascript-client/'),
+                capturedUserAgent!.startsWith('kubernetes-client-javascript/'),
                 true,
                 'capturedUserAgent should start with "kubernetes-javascript-client/"',
             );
@@ -1729,11 +1734,6 @@ describe('KubeConfig', () => {
                 true,
                 `User-Agent should include version ${expectedVersion}`,
             );
-            t.after(async () => {
-                await new Promise<Error | undefined>((resolve) => {
-                    server.close(resolve);
-                });
-            });
         });
     });
 
