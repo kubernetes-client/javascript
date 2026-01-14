@@ -46,7 +46,7 @@ const SERVICEACCOUNT_NAMESPACE_PATH: string = SERVICEACCOUNT_ROOT + '/namespace'
 const USER_AGENT_KEY = 'User-Agent';
 
 function getUserAgent(): string {
-    const version = packagejson.version || '';
+    const version = packagejson.version ?? '';
     return `kubernetes-javascript-client/${version}`;
 }
 

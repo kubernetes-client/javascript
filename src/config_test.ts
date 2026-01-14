@@ -1,4 +1,4 @@
-import { after, before, beforeEach, describe, it, mock } from 'node:test';
+import { after, before, beforeEach, describe, it, mock, TestContext } from 'node:test';
 import assert, {
     deepEqual,
     deepStrictEqual,
@@ -1675,7 +1675,7 @@ describe('KubeConfig', () => {
             strictEqual(client instanceof CoreV1Api, true);
         });
 
-        it('should include User-Agent header with version', async () => {
+        it('should include User-Agent header with version', async (t: TestContext) => {
             let capturedUserAgent: string | undefined;
 
             const { server, host, port } = await createTestHttpsServer((req, res) => {
@@ -1692,49 +1692,48 @@ describe('KubeConfig', () => {
                 );
             });
 
-            try {
-                const kc = new KubeConfig();
-                kc.loadFromClusterAndUser(
-                    {
-                        name: 'test-cluster',
-                        server: `https://${host}:${port}`,
-                        skipTLSVerify: true,
-                    } as Cluster,
-                    {
-                        name: 'test-user',
-                        token: 'test-token',
-                    } as User,
-                );
+            const kc = new KubeConfig();
+            kc.loadFromClusterAndUser(
+                {
+                    name: 'test-cluster',
+                    server: `https://${host}:${port}`,
+                    skipTLSVerify: true,
+                } as Cluster,
+                {
+                    name: 'test-user',
+                    token: 'test-token',
+                } as User,
+            );
 
-                const coreV1Api = kc.makeApiClient(CoreV1Api);
-                await coreV1Api.listNamespace();
+            const coreV1Api = kc.makeApiClient(CoreV1Api);
+            await coreV1Api.listNamespace();
 
-                // Read version from package.json
-                const packageJsonPath = join(__dirname, '..', 'package.json');
-                const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
-                const expectedVersion = packageJson.version;
+            // Read version from package.json
+            const packageJsonPath = join(__dirname, '..', 'package.json');
+            const packageJson = JSON.parse(readFileSync(packageJsonPath, 'utf-8'));
+            const expectedVersion = packageJson.version;
 
-                // Verify version is not blank
-                strictEqual(typeof expectedVersion, 'string');
-                strictEqual(expectedVersion.length > 0, true, 'package.json version should not be blank');
+            // Verify version is not blank
+            strictEqual(typeof expectedVersion, 'string');
+            strictEqual(expectedVersion.length > 0, true, 'package.json version should not be blank');
 
-                // Verify User-Agent header contains client name and version
-                strictEqual(typeof capturedUserAgent, 'string');
-                strictEqual(
-                    capturedUserAgent?.startsWith('kubernetes-javascript-client/'),
-                    true,
-                    'capturedUserAgent should start with "kubernetes-javascript-client/"',
-                );
-                strictEqual(
-                    capturedUserAgent?.includes(expectedVersion),
-                    true,
-                    `User-Agent should include version ${expectedVersion}`,
-                );
-            } finally {
+            // Verify User-Agent header contains client name and version
+            strictEqual(typeof capturedUserAgent, 'string');
+            strictEqual(
+                capturedUserAgent!.startsWith('kubernetes-javascript-client/'),
+                true,
+                'capturedUserAgent should start with "kubernetes-javascript-client/"',
+            );
+            strictEqual(
+                capturedUserAgent!.endsWith(expectedVersion),
+                true,
+                `User-Agent should include version ${expectedVersion}`,
+            );
+            t.after(async () => {
                 await new Promise<void>((resolve) => {
                     server.close(() => resolve());
                 });
-            }
+            });
         });
     });
 
