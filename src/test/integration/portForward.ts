@@ -97,7 +97,7 @@ export default async function portForwardIntegration() {
                     socket,
                 );
             } catch (error) {
-                console.error('Deployment port forward error:', error.message);
+                console.error('Deployment port forward error:', error);
                 socket.destroy();
             }
         });
@@ -128,7 +128,7 @@ export default async function portForwardIntegration() {
                     socket,
                 );
             } catch (error) {
-                console.error('Service port forward error:', error.message);
+                console.error('Service port forward error:', error);
                 socket.destroy();
             }
         });
