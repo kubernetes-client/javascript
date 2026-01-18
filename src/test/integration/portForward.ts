@@ -102,55 +102,7 @@ export default async function portForwardIntegration() {
             });
         });
 
-        // Test connection to deployment via port-forward
-        for (let i = 0; i < 5; i++) {
-            try {
-                const response = await new Promise<string>((resolve, reject) => {
-                    const socket = net.createConnection({ port: testPort, host: '127.0.0.1' });
-                    let data = '';
-
-                    const timeout = globalThis.setTimeout(() => {
-                        socket.destroy();
-                        reject(new Error('Connection timeout'));
-                    }, 5000);
-
-                    socket.on('data', (chunk) => {
-                        data += chunk.toString();
-                        // Close socket when we receive data to avoid hanging
-                        if (data.includes('Hello World')) {
-                            clearTimeout(timeout);
-                            socket.end();
-                        }
-                    });
-
-                    socket.on('end', () => {
-                        clearTimeout(timeout);
-                        resolve(data);
-                    });
-
-                    socket.on('error', (error) => {
-                        clearTimeout(timeout);
-                        reject(error);
-                    });
-
-                    // Send a simple HTTP request
-                    socket.write('GET / HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\n\r\n');
-                });
-
-                if (response.includes('Hello World')) {
-                    deploymentTestPassed = true;
-                    console.log('✓ Successfully connected to deployment via port-forward');
-                    break;
-                }
-            } catch (error) {
-                console.log('error:', error);
-                if (i < 4) {
-                    console.log(`Attempt ${i + 1} failed, retrying...`);
-                    await setTimeout(1000);
-                }
-            }
-        }
-
+        deploymentTestPassed = await testPortForwardConnection(testPort, 'deployment');
         deploymentServer.close();
         assert.strictEqual(deploymentTestPassed, true, 'Failed to connect to deployment via port-forward');
 
@@ -174,55 +126,7 @@ export default async function portForwardIntegration() {
             });
         });
 
-        // Test connection to service via port-forward
-        for (let i = 0; i < 5; i++) {
-            try {
-                const response = await new Promise<string>((resolve, reject) => {
-                    const socket = net.createConnection({ port: testPort, host: '127.0.0.1' });
-                    let data = '';
-
-                    const timeout = globalThis.setTimeout(() => {
-                        socket.destroy();
-                        reject(new Error('Connection timeout'));
-                    }, 5000);
-
-                    socket.on('data', (chunk) => {
-                        data += chunk.toString();
-                        // Close socket when we receive data to avoid hanging
-                        if (data.includes('Hello World')) {
-                            clearTimeout(timeout);
-                            socket.end();
-                        }
-                    });
-
-                    socket.on('end', () => {
-                        clearTimeout(timeout);
-                        resolve(data);
-                    });
-
-                    socket.on('error', (error) => {
-                        clearTimeout(timeout);
-                        reject(error);
-                    });
-
-                    // Send a simple HTTP request
-                    socket.write('GET / HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\n\r\n');
-                });
-
-                if (response.includes('Hello World')) {
-                    serviceTestPassed = true;
-                    console.log('✓ Successfully connected to service via port-forward');
-                    break;
-                }
-            } catch (error) {
-                console.log('error:', error);
-                if (i < 4) {
-                    console.log(`Attempt ${i + 1} failed, retrying...`);
-                    await setTimeout(1000);
-                }
-            }
-        }
-
+        serviceTestPassed = await testPortForwardConnection(testPort, 'service');
         serviceServer.close();
         assert.strictEqual(serviceTestPassed, true, 'Failed to connect to service via port-forward');
 
@@ -271,4 +175,52 @@ export default async function portForwardIntegration() {
             console.warn('Cleanup warning:', (error as Error).message);
         }
     }
+}
+
+async function testPortForwardConnection(testPort: number, label: string): Promise<boolean> {
+    for (let i = 0; i < 5; i++) {
+        try {
+            const response = await new Promise<string>((resolve, reject) => {
+                const socket = net.createConnection({ port: testPort, host: '127.0.0.1' });
+                let data = '';
+
+                const timeout = globalThis.setTimeout(() => {
+                    socket.destroy();
+                    reject(new Error('Connection timeout'));
+                }, 5000);
+
+                socket.on('data', (chunk) => {
+                    data += chunk.toString();
+                    if (data.includes('Hello World')) {
+                        clearTimeout(timeout);
+                        socket.end();
+                    }
+                });
+
+                socket.on('end', () => {
+                    clearTimeout(timeout);
+                    resolve(data);
+                });
+
+                socket.on('error', (error) => {
+                    clearTimeout(timeout);
+                    reject(error);
+                });
+
+                socket.write('GET / HTTP/1.1\r\nHost: localhost\r\nConnection: close\r\n\r\n');
+            });
+
+            if (response.includes('Hello World')) {
+                console.log(`✓ Successfully connected to ${label} via port-forward`);
+                return true;
+            }
+        } catch (error) {
+            console.log('error:', error);
+            if (i < 4) {
+                console.log(`Attempt ${i + 1} failed, retrying...`);
+                await setTimeout(1000);
+            }
+        }
+    }
+    return false;
 }
