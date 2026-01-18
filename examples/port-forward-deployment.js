@@ -6,10 +6,10 @@ kc.loadFromDefault();
 
 const forward = new k8s.PortForward(kc);
 
-const namespace = process.argv[2] || 'default';
-const deploymentName = process.argv[3] || 'demo-deployment';
-const localPort = parseInt(process.argv[4] || '8080', 10);
-const remotePort = parseInt(process.argv[5] || '8080', 10);
+const namespace = process.argv[2] ?? 'default';
+const deploymentName = process.argv[3] ?? 'demo-deployment';
+const localPort = parseInt(process.argv[4] ?? '8080', 10);
+const remotePort = parseInt(process.argv[5] ?? '8080', 10);
 
 // This creates a local server that forwards traffic to a deployment in Kubernetes
 // by resolving the deployment to its first ready pod and port-forwarding to that pod.
