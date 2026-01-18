@@ -6,15 +6,15 @@ kc.loadFromDefault();
 
 const forward = new k8s.PortForward(kc);
 
-const namespace = process.argv[2] || 'default';
-const deploymentName = process.argv[3] || 'demo-deployment';
-const localPort = parseInt(process.argv[4] || '8080', 10);
-const remotePort = parseInt(process.argv[5] || '8080', 10);
+const namespace = process.argv[2] ?? 'default';
+const deploymentName = process.argv[3] ?? 'demo-deployment';
+const localPort = parseInt(process.argv[4] ?? '8080', 10);
+const remotePort = parseInt(process.argv[5] ?? '8080', 10);
 
 // This creates a local server that forwards traffic to a deployment in Kubernetes
 // by resolving the deployment to its first ready pod and port-forwarding to that pod.
-// Usage: npx ts-node port-forward-deployment.ts [namespace] [deploymentName] [localPort] [remotePort]
-// Example: npx ts-node port-forward-deployment.ts default my-app 8080 3000
+// Usage: node port-forward-deployment.ts [namespace] [deploymentName] [localPort] [remotePort]
+// Example: node port-forward-deployment.ts default my-app 8080 3000
 // This is equivalent to: kubectl port-forward deployment/my-app 8080:3000 -n default
 
 const server = net.createServer(async (socket) => {
