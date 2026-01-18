@@ -102,9 +102,6 @@ export default async function portForwardIntegration() {
             });
         });
 
-        // Give the server a moment to start
-        await setTimeout(500);
-
         // Test connection to deployment via port-forward
         for (let i = 0; i < 5; i++) {
             try {
@@ -176,9 +173,6 @@ export default async function portForwardIntegration() {
                 resolve();
             });
         });
-
-        // Give the server a moment to start
-        await setTimeout(500);
 
         // Test connection to service via port-forward
         for (let i = 0; i < 5; i++) {
