@@ -86,13 +86,20 @@ export default async function portForwardIntegration() {
         console.log(`\nTest 1: Port forwarding to deployment ${deploymentName}...`);
         let deploymentTestPassed = false;
 
-        const deploymentServer = net.createServer((socket) => {
-            portForward
-                .portForwardDeployment(namespace, deploymentName, [containerPort], socket, null, socket)
-                .catch((error) => {
-                    console.error('Deployment port forward error:', error.message);
-                    socket.destroy();
-                });
+        const deploymentServer = net.createServer(async (socket) => {
+            try {
+                await portForward.portForwardDeployment(
+                    namespace,
+                    deploymentName,
+                    [containerPort],
+                    socket,
+                    null,
+                    socket,
+                );
+            } catch (error) {
+                console.error('Deployment port forward error:', error.message);
+                socket.destroy();
+            }
         });
 
         await new Promise<void>((resolve) => {
@@ -110,13 +117,20 @@ export default async function portForwardIntegration() {
         console.log(`\nTest 2: Port forwarding to service ${serviceName}...`);
         let serviceTestPassed = false;
 
-        const serviceServer = net.createServer((socket) => {
-            portForward
-                .portForwardService(namespace, serviceName, [containerPort], socket, null, socket)
-                .catch((error) => {
-                    console.error('Service port forward error:', error.message);
-                    socket.destroy();
-                });
+        const serviceServer = net.createServer(async (socket) => {
+            try {
+                await portForward.portForwardService(
+                    namespace,
+                    serviceName,
+                    [containerPort],
+                    socket,
+                    null,
+                    socket,
+                );
+            } catch (error) {
+                console.error('Service port forward error:', error.message);
+                socket.destroy();
+            }
         });
 
         await new Promise<void>((resolve) => {
