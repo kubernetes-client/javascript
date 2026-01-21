@@ -5,6 +5,10 @@ import { CoreV1Api, AppsV1Api, KubeConfig, V1Service, V1Deployment } from '../..
 import { PortForward } from '../../portforward.js';
 import { generateName } from './name.js';
 
+const MAX_PORT_FORWARD_RETRIES = 5;
+const MAX_POD_READY_CHECKS = 60;
+const POD_READY_CHECK_POLL_DELAY_MS = 1000;
+
 export default async function portForwardIntegration() {
     const kc = new KubeConfig();
     kc.loadFromDefault();
@@ -66,7 +70,7 @@ export default async function portForwardIntegration() {
     // Wait for pods to be ready
     console.log('Waiting for deployment pods to be ready...');
     let podsReady = false;
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < MAX_POD_READY_CHECKS; i++) {
         const deployment = await appsV1Client.readNamespacedDeployment({ name: deploymentName, namespace });
         if (
             deployment.status?.readyReplicas === deployment.spec?.replicas &&
@@ -76,7 +80,7 @@ export default async function portForwardIntegration() {
             console.log(`Deployment is ready with ${deployment.status?.readyReplicas} replicas`);
             break;
         }
-        await setTimeout(1000);
+        await setTimeout(POD_READY_CHECK_POLL_DELAY_MS);
     }
 
     assert.strictEqual(podsReady, true, 'Deployment pods did not become ready in time');
@@ -192,7 +196,7 @@ export default async function portForwardIntegration() {
 }
 
 async function testPortForwardConnection(testPort: number, label: string): Promise<boolean> {
-    for (let i = 0; i < 5; i++) {
+    for (let i = 0; i < MAX_PORT_FORWARD_RETRIES; i++) {
         try {
             const response = await new Promise<string>((resolve, reject) => {
                 const socket = net.createConnection({ port: testPort, host: '127.0.0.1' });
