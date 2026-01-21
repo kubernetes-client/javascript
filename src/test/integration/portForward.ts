@@ -13,185 +13,142 @@ export default async function portForwardIntegration() {
     const kc = new KubeConfig();
     kc.loadFromDefault();
 
-    const coreV1Client = kc.makeApiClient(CoreV1Api);
-    const appsV1Client = kc.makeApiClient(AppsV1Api);
-    const portForward = new PortForward(kc);
+    console.log(`\n=== Port Forward Integration Test ===`);
+
+    await deploymentSuccessTest(kc);
+    await serviceSuccessTest(kc);
+    await serviceNoSelectorTest(kc);
+
+    console.log('\nAll Port Forward integration tests passed!');
+}
+
+async function deploymentSuccessTest(kc: KubeConfig): Promise<void> {
+    console.log('Deployment Port Forward Success Test...');
+    let deploymentTestPassed = false;
 
     const namespace = 'default';
-    const appName = generateName('pf-test');
+    const appName = generateName('pf-dp-test');
+    const deploymentName = `${appName}-deployment`;
+    const containerPort = 8080;
+    const localPort = 18080;
+
+    const portForward = new PortForward(kc);
+
+    await createDeployment(appName, deploymentName, namespace, containerPort, kc);
+
+    const deploymentServer = net.createServer(async (socket) => {
+        try {
+            await portForward.portForwardDeployment(
+                namespace,
+                deploymentName,
+                [containerPort],
+                socket,
+                null,
+                socket,
+            );
+        } catch (error) {
+            console.error('Deployment port forward error:', error);
+            socket.destroy();
+        }
+    });
+
+    await new Promise<void>((resolve) => {
+        deploymentServer.listen(localPort, '127.0.0.1', () => {
+            console.log(`Local server listening on port ${localPort} for deployment test`);
+            resolve();
+        });
+    });
+
+    deploymentTestPassed = await testPortForwardConnection(localPort, 'deployment');
+    deploymentServer.close();
+    assert.strictEqual(deploymentTestPassed, true, 'Failed to connect to deployment via port-forward');
+
+    console.log('Cleaning up deployment...');
+    const appsV1Client = kc.makeApiClient(AppsV1Api);
+    await appsV1Client.deleteNamespacedDeployment({ name: deploymentName, namespace });
+}
+
+async function serviceSuccessTest(kc: KubeConfig): Promise<void> {
+    console.log('Service Port Forward Success Test...');
+    let serviceTestPassed = false;
+
+    const namespace = 'default';
+    const appName = generateName('pf-svc-test');
     const serviceName = `${appName}-service`;
     const deploymentName = `${appName}-deployment`;
     const containerPort = 8080;
-    const testPort = 18080; // Local port for testing
+    const localPort = 18081;
 
-    console.log(`\n=== Port Forward Integration Test ===`);
-    console.log(`Creating test resources in namespace: ${namespace}`);
+    const portForward = new PortForward(kc);
 
-    // Create a deployment with a simple HTTP server
-    const deployment = new V1Deployment();
-    deployment.metadata = { name: deploymentName, namespace };
-    deployment.spec = {
-        replicas: 2,
-        selector: { matchLabels: { app: appName } },
-        template: {
-            metadata: { labels: { app: appName } },
-            spec: {
-                containers: [
-                    {
-                        name: 'test-server',
-                        image: 'busybox',
-                        command: [
-                            'sh',
-                            '-c',
-                            `while true; do echo -e "HTTP/1.1 200 OK\\r\\nContent-Length: 13\\r\\n\\r\\nHello World\\n" | nc -l -p ${containerPort} || true; done`,
-                        ],
-                        ports: [{ containerPort }],
-                    },
-                ],
-            },
-        },
-    };
+    await createDeployment(appName, deploymentName, namespace, containerPort, kc);
+    await createService(appName, serviceName, namespace, containerPort, kc);
 
-    console.log(`Creating deployment ${deploymentName}...`);
-    await appsV1Client.createNamespacedDeployment({ namespace, body: deployment });
-
-    // Create a service for the deployment
-    const service = new V1Service();
-    service.metadata = { name: serviceName, namespace };
-    service.spec = {
-        selector: { app: appName },
-        ports: [{ port: containerPort, targetPort: containerPort, protocol: 'TCP' }],
-        type: 'ClusterIP',
-    };
-
-    console.log(`Creating service ${serviceName}...`);
-    await coreV1Client.createNamespacedService({ namespace, body: service });
-
-    // Wait for pods to be ready
-    console.log('Waiting for deployment pods to be ready...');
-    let podsReady = false;
-    for (let i = 0; i < MAX_POD_READY_CHECKS; i++) {
-        const deployment = await appsV1Client.readNamespacedDeployment({ name: deploymentName, namespace });
-        if (
-            deployment.status?.readyReplicas === deployment.spec?.replicas &&
-            (deployment.status?.readyReplicas ?? 0) > 0
-        ) {
-            podsReady = true;
-            console.log(`Deployment is ready with ${deployment.status?.readyReplicas} replicas`);
-            break;
+    const serviceServer = net.createServer(async (socket) => {
+        try {
+            await portForward.portForwardService(
+                namespace,
+                serviceName,
+                [containerPort],
+                socket,
+                null,
+                socket,
+            );
+        } catch (error) {
+            console.error('Service port forward error:', error);
+            socket.destroy();
         }
-        await setTimeout(POD_READY_CHECK_POLL_DELAY_MS);
-    }
+    });
 
-    assert.strictEqual(podsReady, true, 'Deployment pods did not become ready in time');
+    await new Promise<void>((resolve) => {
+        serviceServer.listen(localPort, '127.0.0.1', () => {
+            console.log(`Local server listening on port ${localPort} for service test`);
+            resolve();
+        });
+    });
+
+    serviceTestPassed = await testPortForwardConnection(localPort, 'service');
+    serviceServer.close();
+    assert.strictEqual(serviceTestPassed, true, 'Failed to connect to service via port-forward');
+
+    console.log('Cleaning up service and deployment...');
+    const coreV1Client = kc.makeApiClient(CoreV1Api);
+    const appsV1Client = kc.makeApiClient(AppsV1Api);
+    await coreV1Client.deleteNamespacedService({ name: serviceName, namespace });
+    await appsV1Client.deleteNamespacedDeployment({ name: deploymentName, namespace });
+}
+
+async function serviceNoSelectorTest(kc: KubeConfig) {
+    console.log('Service Port Forward No Selector Test...');
+    let errorThrown = false;
+
+    const namespace = 'default';
+    const appName = generateName('pf-test');
+    const containerPort = 8080;
+    const badServiceName = `${appName}-bad-service`;
+
+    await createService('non-existent-app', badServiceName, namespace, containerPort, kc);
 
     try {
-        // Test 1: Port forward to deployment
-        console.log(`\nTest 1: Port forwarding to deployment ${deploymentName}...`);
-        let deploymentTestPassed = false;
-
-        const deploymentServer = net.createServer(async (socket) => {
-            try {
-                await portForward.portForwardDeployment(
-                    namespace,
-                    deploymentName,
-                    [containerPort],
-                    socket,
-                    null,
-                    socket,
-                );
-            } catch (error) {
-                console.error('Deployment port forward error:', error);
-                socket.destroy();
-            }
-        });
-
-        await new Promise<void>((resolve) => {
-            deploymentServer.listen(testPort, '127.0.0.1', () => {
-                console.log(`Local server listening on port ${testPort} for deployment test`);
-                resolve();
-            });
-        });
-
-        deploymentTestPassed = await testPortForwardConnection(testPort, 'deployment');
-        deploymentServer.close();
-        assert.strictEqual(deploymentTestPassed, true, 'Failed to connect to deployment via port-forward');
-
-        // Test 2: Port forward to service
-        console.log(`\nTest 2: Port forwarding to service ${serviceName}...`);
-        let serviceTestPassed = false;
-
-        const serviceServer = net.createServer(async (socket) => {
-            try {
-                await portForward.portForwardService(
-                    namespace,
-                    serviceName,
-                    [containerPort],
-                    socket,
-                    null,
-                    socket,
-                );
-            } catch (error) {
-                console.error('Service port forward error:', error);
-                socket.destroy();
-            }
-        });
-
-        await new Promise<void>((resolve) => {
-            serviceServer.listen(testPort, '127.0.0.1', () => {
-                console.log(`Local server listening on port ${testPort} for service test`);
-                resolve();
-            });
-        });
-
-        serviceTestPassed = await testPortForwardConnection(testPort, 'service');
-        serviceServer.close();
-        assert.strictEqual(serviceTestPassed, true, 'Failed to connect to service via port-forward');
-
-        // Test 3: Error handling - service with no selector
-        console.log(`\nTest 3: Error handling - service with no matching pods...`);
-        const badServiceName = `${appName}-bad-service`;
-        const badService = new V1Service();
-        badService.metadata = { name: badServiceName, namespace };
-        badService.spec = {
-            selector: { app: 'nonexistent-app' }, // No pods match this selector
-            ports: [{ port: containerPort, targetPort: containerPort, protocol: 'TCP' }],
-            type: 'ClusterIP',
-        };
-
-        await coreV1Client.createNamespacedService({ namespace, body: badService });
-
         try {
-            // Try to port forward to service with no ready pods
-            let errorThrown = false;
-            try {
-                const dummySocket = new net.Socket();
-                await portForward.portForwardService(
-                    namespace,
-                    badServiceName,
-                    [containerPort],
-                    dummySocket,
-                    null,
-                    dummySocket,
-                );
-            } catch (error) {
-                errorThrown = true;
-                console.log(`✓ Correctly threw error: ${(error as Error).message}`);
-            }
-            assert.strictEqual(errorThrown, true, 'Should have thrown error for service with no ready pods');
-        } finally {
-            await coreV1Client.deleteNamespacedService({ name: badServiceName, namespace });
-        }
-
-        console.log('\n✓ Port forward integration tests passed!');
-    } finally {
-        console.log('\nCleaning up test resources...');
-        try {
-            await appsV1Client.deleteNamespacedDeployment({ name: deploymentName, namespace });
-            await coreV1Client.deleteNamespacedService({ name: serviceName, namespace });
+            const portForward = new PortForward(kc);
+            const dummySocket = new net.Socket();
+            await portForward.portForwardService(
+                namespace,
+                badServiceName,
+                [containerPort],
+                dummySocket,
+                null,
+                dummySocket,
+            );
         } catch (error) {
-            console.warn('Cleanup warning:', (error as Error).message);
+            errorThrown = true;
+            console.log(`✓ Correctly threw error: ${(error as Error).message}`);
         }
+        assert.strictEqual(errorThrown, true, 'Should have thrown error for service with no ready pods');
+    } finally {
+        const coreV1Client = kc.makeApiClient(CoreV1Api);
+        await coreV1Client.deleteNamespacedService({ name: badServiceName, namespace });
     }
 }
 
@@ -241,4 +198,83 @@ async function testPortForwardConnection(testPort: number, label: string): Promi
         }
     }
     return false;
+}
+
+async function createDeployment(
+    appName: string,
+    deploymentName: string,
+    namespace: string,
+    containerPort: number,
+    kc: KubeConfig,
+) {
+    console.log(`Creating test deployment ${deploymentName} in namespace: ${namespace}`);
+
+    const appsV1Client = kc.makeApiClient(AppsV1Api);
+
+    // Create a deployment with a simple HTTP server
+    const deployment = new V1Deployment();
+    deployment.metadata = { name: deploymentName, namespace };
+    deployment.spec = {
+        replicas: 2,
+        selector: { matchLabels: { app: appName } },
+        template: {
+            metadata: { labels: { app: appName } },
+            spec: {
+                containers: [
+                    {
+                        name: 'test-server',
+                        image: 'busybox',
+                        command: [
+                            'sh',
+                            '-c',
+                            `while true; do echo -e "HTTP/1.1 200 OK\\r\\nContent-Length: 13\\r\\n\\r\\nHello World\\n" | nc -l -p ${containerPort} || true; done`,
+                        ],
+                        ports: [{ containerPort }],
+                    },
+                ],
+            },
+        },
+    };
+
+    await appsV1Client.createNamespacedDeployment({ namespace, body: deployment });
+
+    console.log('Waiting for deployment pods to be ready...');
+    let podsReady = false;
+
+    for (let i = 0; i < MAX_POD_READY_CHECKS; i++) {
+        const deployment = await appsV1Client.readNamespacedDeployment({ name: deploymentName, namespace });
+        if (
+            deployment.status?.readyReplicas === deployment.spec?.replicas &&
+            (deployment.status?.readyReplicas ?? 0) > 0
+        ) {
+            podsReady = true;
+            console.log(`Deployment is ready with ${deployment.status?.readyReplicas} replicas`);
+            break;
+        }
+        await setTimeout(POD_READY_CHECK_POLL_DELAY_MS);
+    }
+
+    assert.strictEqual(podsReady, true, 'Deployment pods did not become ready in time');
+}
+
+async function createService(
+    appName: string,
+    serviceName: string,
+    namespace: string,
+    containerPort: number,
+    kc: KubeConfig,
+) {
+    console.log(`Creating service ${serviceName} in namespace: ${namespace}`);
+
+    const coreV1Client = kc.makeApiClient(CoreV1Api);
+
+    const service = new V1Service();
+    service.metadata = { name: serviceName, namespace };
+    service.spec = {
+        selector: { app: appName },
+        ports: [{ port: containerPort, targetPort: containerPort, protocol: 'TCP' }],
+        type: 'ClusterIP',
+    };
+
+    await coreV1Client.createNamespacedService({ namespace, body: service });
 }
