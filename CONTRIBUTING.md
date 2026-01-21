@@ -44,15 +44,9 @@ For more detailed guidance, see the [Kubernetes contributor guide](https://githu
 
 ### Project Structure
 
-This repo has a 2-tiered structure:
+This repo is built around a core of generated code that lives in the `/src/gen` directory
 
-```
-/+
- + src/
-    + gen/ <<< Automatically generated with OpenAPIGenerator, don't edit manually in Pull Requests
-```
-
-The `/src/gen` folder contains code that is generated using the [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator). This code should **not be modified manually** as changes will be overwritten by the generator.
+The `/src/gen` folder's contents is generated using the [OpenAPI Generator](https://github.com/OpenAPITools/openapi-generator). This code should **not be modified manually** as changes will be overwritten by the generator.
 
 ### Generated Code
 
