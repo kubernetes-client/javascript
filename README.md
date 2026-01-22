@@ -114,17 +114,17 @@ We switched from `request` to `fetch` as the HTTP(S) backend for the `1.0.0` rel
 
 Generally speaking newer clients will work with older Kubernetes, but compatibility isn't 100% guaranteed.
 
-| client version | older versions | 1.28 | 1.29 | 1.30 | 1.31 | 1.32 | 1.33|1.34|
-| -------------- | -------------- | ---- | ---- | ---- | ---- | ---- |----|----|
-| 0.19.x         | -              | ✓    | x    | x    | x    | x    | x  | x |
-| 0.20.x         | -              | +    | ✓    | x    | x    | x    | x  | x |
-| 0.21.x         | -              | +    | +    | ✓    | x    | x    | x  | x |
-| 0.22.x         | -              | +    | +    | +    | ✓    | x    | x  | x |
-| 1.0.x          | -              | +    | +    | +    | +    | ✓    | x  | x |
-| 1.1.x          | -              | +    | +    | +    | +    | ✓    | x  | x |
-| 1.2.x          | -              | +    | +    | +    | +    | +    | ✓  | x |
-| 1.3.x          | -              | +    | +    | +    | +    | +    | ✓  | x |
-| 1.4.x          | -              | +    | +    | +    | +    | +    | +   | ✓|
+| client version | older versions | 1.28 | 1.29 | 1.30 | 1.31 | 1.32 | 1.33 | 1.34 |
+| -------------- | -------------- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| 0.19.x         | -              | ✓    | x    | x    | x    | x    | x    | x    |
+| 0.20.x         | -              | +    | ✓    | x    | x    | x    | x    | x    |
+| 0.21.x         | -              | +    | +    | ✓    | x    | x    | x    | x    |
+| 0.22.x         | -              | +    | +    | +    | ✓    | x    | x    | x    |
+| 1.0.x          | -              | +    | +    | +    | +    | ✓    | x    | x    |
+| 1.1.x          | -              | +    | +    | +    | +    | ✓    | x    | x    |
+| 1.2.x          | -              | +    | +    | +    | +    | +    | ✓    | x    |
+| 1.3.x          | -              | +    | +    | +    | +    | +    | ✓    | x    |
+| 1.4.x          | -              | +    | +    | +    | +    | +    | +    | ✓    |
 
 Key:
 
@@ -147,52 +147,6 @@ Key:
 
 - In scenarios where multiple headers with the same key are required in a request, such as `Impersonate-Group`, avoid using `fetch`. Fetch will merge the values into a single header key, with the values as a single string vs a list of strings, `Impersonate-Group: "group1,group2"`. The workaround is to use a low-level library such as `https` to make the request. Refer to issue [#2474](https://github.com/kubernetes-client/javascript/issues/2474) for more details.
 
-# Development
+# Contributing
 
-All dependencies of this project are expressed in its
-[`package.json` file](package.json). Before you start developing, ensure
-that you have [NPM](https://www.npmjs.com/) installed, then run:
-
-```console
-npm install
-```
-
-## (re) Generating code
-
-```console
-npm run generate
-```
-
-## Documentation
-
-Documentation is generated via typedoc:
-
-```
-npm run docs
-```
-
-To view the generated documentation, open `docs/index.html`
-
-## Formatting
-
-Run `npm run format` or install an editor plugin like https://github.com/prettier/prettier-vscode and https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig
-
-## Linting
-
-Run `npm run lint` or install an editor plugin.
-
-# Testing
-
-Tests are written using the [`node:test`](https://nodejs.org/api/test.html) test runner and
-[`node:assert`](https://nodejs.org/api/assert.html) assertion library. See
-[`config_test.ts`](./src/config_test.ts) for an example.
-
-To run tests, execute the following:
-
-```console
-npm test
-```
-
-## Contributing
-
-Please see [CONTRIBUTING.md](CONTRIBUTING.md) for instructions on how to contribute.
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) for development setup, testing, and contribution guidelines.
