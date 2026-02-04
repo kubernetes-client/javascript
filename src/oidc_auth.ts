@@ -140,11 +140,68 @@ export class OpenIDConnectAuth implements Authenticator {
             const agent = new https.Agent({ ca });
 
             // Create custom fetch function that uses the agent
+            // We need to implement a proper fetch-compatible function using Node.js https module
             const customFetchFn = async (url: string, options: any): Promise<Response> => {
-                // Use native fetch with the agent by creating an https request manually
-                // and converting it to a Response-like object
-                // For Node.js 18+, we can use the native fetch API
-                return globalThis.fetch(url, { ...options, dispatcher: agent });
+                // Parse the URL
+                const urlObj = new URL(url);
+
+                // Create request options with the custom agent
+                const requestOptions: https.RequestOptions = {
+                    hostname: urlObj.hostname,
+                    port: urlObj.port,
+                    path: urlObj.pathname + urlObj.search,
+                    method: options?.method || 'GET',
+                    headers: options?.headers || {},
+                    agent: agent,
+                };
+
+                return new Promise((resolve, reject) => {
+                    const req = https.request(requestOptions, (res) => {
+                        const chunks: Buffer[] = [];
+
+                        res.on('data', (chunk) => {
+                            chunks.push(chunk);
+                        });
+
+                        res.on('end', () => {
+                            const body = Buffer.concat(chunks);
+                            // Create a Response-like object that satisfies the Response interface
+                            const response = {
+                                ok: res.statusCode! >= 200 && res.statusCode! < 300,
+                                status: res.statusCode!,
+                                statusText: res.statusMessage || '',
+                                headers: new Headers(res.headers as Record<string, string>),
+                                url: url,
+                                type: 'basic' as const,
+                                redirected: false,
+                                body: null,
+                                bodyUsed: false,
+                                json: async () => JSON.parse(body.toString()),
+                                text: async () => body.toString(),
+                                arrayBuffer: async () => body.buffer,
+                                blob: async () => {
+                                    throw new Error('blob() not implemented');
+                                },
+                                formData: async () => {
+                                    throw new Error('formData() not implemented');
+                                },
+                                bytes: async () => new Uint8Array(body),
+                                clone: () => {
+                                    throw new Error('clone() not implemented');
+                                },
+                            } as unknown as Response;
+                            resolve(response);
+                        });
+                    });
+
+                    req.on('error', reject);
+
+                    if (options?.body) {
+                        req.write(options.body);
+                    }
+
+                    req.end();
+                });
             };
 
             // Use customFetch for discovery and subsequent requests
