@@ -178,7 +178,8 @@ export class OpenIDConnectAuth implements Authenticator {
                                 bodyUsed: false,
                                 json: async () => JSON.parse(body.toString()),
                                 text: async () => body.toString(),
-                                arrayBuffer: async () => body.buffer,
+                                arrayBuffer: async () =>
+                                    body.buffer.slice(body.byteOffset, body.byteOffset + body.byteLength),
                                 blob: async () => {
                                     throw new Error('blob() not implemented');
                                 },
