@@ -4,6 +4,7 @@ import { base64url } from 'rfc4648';
 
 import { Authenticator } from './auth.js';
 import { User } from './config_types.js';
+import { bufferFromFileOrString } from './config.js';
 
 interface JwtObj {
     header: any;
@@ -127,10 +128,40 @@ export class OpenIDConnectAuth implements Authenticator {
     }
 
     private async getClient(user: User): Promise<Client> {
-        const configuration = await oidc.discovery(
-            user.authProvider.config['idp-issuer-url'],
-            user.authProvider.config['client-id'],
-        );
+        // Check if custom IDP CA is provided
+        const idpCaFile = user.authProvider.config['idp-certificate-authority'];
+        const idpCaData = user.authProvider.config['idp-certificate-authority-data'];
+        const ca = bufferFromFileOrString(idpCaFile, idpCaData);
+
+        let configuration: oidc.Configuration;
+
+        if (ca) {
+            // Create a custom https agent with the IDP CA certificate
+            const agent = new https.Agent({ ca });
+
+            // Create custom fetch function that uses the agent
+            const customFetchFn = async (url: string, options: any): Promise<Response> => {
+                // Use native fetch with the agent by creating an https request manually
+                // and converting it to a Response-like object
+                // For Node.js 18+, we can use the native fetch API
+                return globalThis.fetch(url, { ...options, dispatcher: agent });
+            };
+
+            // Use customFetch for discovery and subsequent requests
+            configuration = await oidc.discovery(
+                user.authProvider.config['idp-issuer-url'],
+                user.authProvider.config['client-id'],
+                undefined,
+                undefined,
+                { [oidc.customFetch]: customFetchFn },
+            );
+        } else {
+            configuration = await oidc.discovery(
+                user.authProvider.config['idp-issuer-url'],
+                user.authProvider.config['client-id'],
+            );
+        }
+
         return new OidcClient(configuration);
     }
 }
