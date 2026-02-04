@@ -1,4 +1,4 @@
-import { Readable, Transform } from 'stream';
+import { PassThrough, Readable } from 'stream';
 import { WritableStreamBuffer } from 'stream-buffers';
 import tar from 'tar-fs';
 
@@ -44,10 +44,11 @@ class TarPipe extends Readable {
         let command: string[];
         if (this.maxTries !== 0 && offset > 0) {
             // Use shell command with tail to resume from specific byte position
+            // tail -c+N is 1-indexed, so we add 1 to the 0-indexed offset
             const tarCmd = this.src.cwd
                 ? `tar cf - -C ${this.src.cwd} ${this.src.srcPath}`
                 : `tar cf - ${this.src.srcPath}`;
-            command = ['sh', '-c', `${tarCmd} | tail -c+${offset}`];
+            command = ['sh', '-c', `${tarCmd} | tail -c+${offset + 1}`];
         } else {
             command = ['tar', 'cf', '-'];
             if (this.src.cwd) {
@@ -56,11 +57,7 @@ class TarPipe extends Readable {
             command.push(this.src.srcPath);
         }
 
-        const writerStream = new Transform({
-            transform: (chunk, encoding, callback) => {
-                callback(null, chunk);
-            },
-        });
+        const writerStream = new PassThrough();
 
         this.errStream = new WritableStreamBuffer();
         this.currentReader = writerStream;
@@ -110,8 +107,8 @@ class TarPipe extends Readable {
             console.error(
                 `Resuming copy at ${this.bytesRead} bytes, retry ${this.retries}/${this.maxTries < 0 ? '∞' : this.maxTries}`,
             );
-            // Resume from the next byte position
-            this.initReadFrom(this.bytesRead + 1);
+            // Resume from the current byte position (bytesRead is the next byte to read)
+            this.initReadFrom(this.bytesRead);
         } else {
             console.error(`Dropping out copy after ${this.retries} retries`);
             this.destroy(err);
