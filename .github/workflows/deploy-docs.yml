@@ -8,7 +8,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
-              uses: actions/checkout@v6.0.1
+              uses: actions/checkout@v6.0.2
             - name: Setup Node.js
               uses: actions/setup-node@v6
               with:
@@ -23,7 +23,7 @@ jobs:
               run: npm run docs
 
             - name: Deploy docs
-              uses: JamesIves/github-pages-deploy-action@v4.7.6
+              uses: JamesIves/github-pages-deploy-action@v4.8.0
               with:
                   branch: gh-pages # The branch the action should deploy to.
                   folder: docs # The folder the action should deploy.
