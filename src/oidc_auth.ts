@@ -4,6 +4,7 @@ import { base64url } from 'rfc4648';
 
 import { Authenticator } from './auth.js';
 import { User } from './config_types.js';
+import { bufferFromFileOrString } from './config.js';
 
 interface JwtObj {
     header: any;
@@ -127,10 +128,98 @@ export class OpenIDConnectAuth implements Authenticator {
     }
 
     private async getClient(user: User): Promise<Client> {
-        const configuration = await oidc.discovery(
-            user.authProvider.config['idp-issuer-url'],
-            user.authProvider.config['client-id'],
-        );
+        // Check if custom IDP CA is provided
+        const idpCaFile = user.authProvider.config['idp-certificate-authority'];
+        const idpCaData = user.authProvider.config['idp-certificate-authority-data'];
+        const ca = bufferFromFileOrString(idpCaFile, idpCaData);
+
+        let configuration: oidc.Configuration;
+
+        if (ca) {
+            // Create a custom https agent with the IDP CA certificate
+            const agent = new https.Agent({ ca });
+
+            // Create custom fetch function that uses the agent
+            // We need to implement a proper fetch-compatible function using Node.js https module
+            const customFetchFn = async (url: string, options: any): Promise<Response> => {
+                // Parse the URL
+                const urlObj = new URL(url);
+
+                // Create request options with the custom agent
+                const requestOptions: https.RequestOptions = {
+                    hostname: urlObj.hostname,
+                    port: urlObj.port,
+                    path: urlObj.pathname + urlObj.search,
+                    method: options?.method || 'GET',
+                    headers: options?.headers || {},
+                    agent: agent,
+                };
+
+                return new Promise((resolve, reject) => {
+                    const req = https.request(requestOptions, (res) => {
+                        const chunks: Buffer[] = [];
+
+                        res.on('data', (chunk) => {
+                            chunks.push(chunk);
+                        });
+
+                        res.on('end', () => {
+                            const body = Buffer.concat(chunks);
+                            // Create a Response-like object that satisfies the Response interface
+                            const response = {
+                                ok: res.statusCode! >= 200 && res.statusCode! < 300,
+                                status: res.statusCode!,
+                                statusText: res.statusMessage || '',
+                                headers: new Headers(res.headers as Record<string, string>),
+                                url: url,
+                                type: 'basic' as const,
+                                redirected: false,
+                                body: null,
+                                bodyUsed: false,
+                                json: async () => JSON.parse(body.toString()),
+                                text: async () => body.toString(),
+                                arrayBuffer: async () =>
+                                    body.buffer.slice(body.byteOffset, body.byteOffset + body.byteLength),
+                                blob: async () => {
+                                    throw new Error('blob() not implemented');
+                                },
+                                formData: async () => {
+                                    throw new Error('formData() not implemented');
+                                },
+                                bytes: async () => new Uint8Array(body),
+                                clone: () => {
+                                    throw new Error('clone() not implemented');
+                                },
+                            } as unknown as Response;
+                            resolve(response);
+                        });
+                    });
+
+                    req.on('error', reject);
+
+                    if (options?.body) {
+                        req.write(options.body);
+                    }
+
+                    req.end();
+                });
+            };
+
+            // Use customFetch for discovery and subsequent requests
+            configuration = await oidc.discovery(
+                user.authProvider.config['idp-issuer-url'],
+                user.authProvider.config['client-id'],
+                undefined,
+                undefined,
+                { [oidc.customFetch]: customFetchFn },
+            );
+        } else {
+            configuration = await oidc.discovery(
+                user.authProvider.config['idp-issuer-url'],
+                user.authProvider.config['client-id'],
+            );
+        }
+
         return new OidcClient(configuration);
     }
 }

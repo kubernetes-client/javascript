@@ -268,4 +268,50 @@ describe('OIDCAuth', () => {
         strictEqual(opts.headers.Authorization, 'Bearer newToken');
         strictEqual((auth as any).currentTokenExpiration, newExpiration);
     });
+
+    it('should work with idp-certificate-authority-data', async () => {
+        const future = Date.now() / 1000 + 1000000;
+        const token = makeJWT('{}', { exp: future }, 'fake');
+        const user = {
+            authProvider: {
+                name: 'oidc',
+                config: {
+                    'id-token': token,
+                    'client-id': 'id',
+                    'client-secret': 'clientsecret',
+                    'idp-issuer-url': 'https://idp.example.com/',
+                    'idp-certificate-authority-data': 'LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0t',
+                },
+            },
+        } as User;
+
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
+        await auth.applyAuthentication(user, opts);
+        // Should succeed with custom CA (token not expired)
+        strictEqual(opts.headers.Authorization, `Bearer ${token}`);
+    });
+
+    it('should work with idp-certificate-authority file', async () => {
+        const future = Date.now() / 1000 + 1000000;
+        const token = makeJWT('{}', { exp: future }, 'fake');
+        const user = {
+            authProvider: {
+                name: 'oidc',
+                config: {
+                    'id-token': token,
+                    'client-id': 'id',
+                    'client-secret': 'clientsecret',
+                    'idp-issuer-url': 'https://idp.example.com/',
+                    'idp-certificate-authority': '/path/to/ca.crt',
+                },
+            },
+        } as User;
+
+        const opts = {} as https.RequestOptions;
+        opts.headers = {} as OutgoingHttpHeaders;
+        await auth.applyAuthentication(user, opts);
+        // Should succeed with custom CA (token not expired)
+        strictEqual(opts.headers.Authorization, `Bearer ${token}`);
+    });
 });
