@@ -24,7 +24,6 @@ export default async function portForwardIntegration() {
 
 async function deploymentSuccessTest(kc: KubeConfig): Promise<void> {
     console.log('Deployment Port Forward Success Test...');
-    let deploymentTestPassed = false;
 
     const namespace = 'default';
     const appName = generateName('pf-dp-test');
@@ -59,7 +58,7 @@ async function deploymentSuccessTest(kc: KubeConfig): Promise<void> {
         });
     });
 
-    deploymentTestPassed = await testPortForwardConnection(localPort, 'deployment');
+    const deploymentTestPassed = await testPortForwardConnection(localPort, 'deployment');
     deploymentServer.close();
     assert.strictEqual(deploymentTestPassed, true, 'Failed to connect to deployment via port-forward');
 
@@ -70,7 +69,6 @@ async function deploymentSuccessTest(kc: KubeConfig): Promise<void> {
 
 async function serviceSuccessTest(kc: KubeConfig): Promise<void> {
     console.log('Service Port Forward Success Test...');
-    let serviceTestPassed = false;
 
     const namespace = 'default';
     const appName = generateName('pf-svc-test');
@@ -107,7 +105,7 @@ async function serviceSuccessTest(kc: KubeConfig): Promise<void> {
         });
     });
 
-    serviceTestPassed = await testPortForwardConnection(localPort, 'service');
+    const serviceTestPassed = await testPortForwardConnection(localPort, 'service');
     serviceServer.close();
     assert.strictEqual(serviceTestPassed, true, 'Failed to connect to service via port-forward');
 

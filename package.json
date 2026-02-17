@@ -73,7 +73,7 @@
         "ws": "^8.18.2"
     },
     "devDependencies": {
-        "@eslint/js": "^9.18.0",
+        "@eslint/js": "^10.0.1",
         "@types/mock-fs": "^4.13.1",
         "c8": "^10.0.0",
         "eslint": "^10.0.0",
