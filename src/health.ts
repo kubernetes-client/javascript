@@ -52,7 +52,7 @@ export class Health {
             if (err.name === 'AbortError') {
                 throw err;
             }
-            throw new Error('Error occurred in health request');
+            throw new Error('Error occurred in health request', { cause: err });
         }
     }
 }
