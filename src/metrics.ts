@@ -19,6 +19,7 @@ export interface PodMetric {
         namespace: string;
         selfLink: string;
         creationTimestamp: string;
+        labels?: { [key: string]: string };
     };
     timestamp: string;
     window: string;
@@ -30,6 +31,7 @@ export interface NodeMetric {
         name: string;
         selfLink: string;
         creationTimestamp: string;
+        labels?: { [key: string]: string };
     };
     timestamp: string;
     window: string;
