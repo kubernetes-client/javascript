@@ -166,6 +166,7 @@ export class RequestContext {
 export interface ResponseBody {
     text(): Promise<string>;
     binary(): Promise<Buffer>;
+    stream?(): import('node:stream').Readable;
 }
 
 /**
