@@ -9,7 +9,13 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
+        # Node 25 is odd/non-LTS and has a known incompatibility with c8 via yargs:
+        # extension-less files in "type: module" packages are treated as ESM in Node 25,
+        # causing c8's require('yargs/yargs') to fail with "require is not defined in ES module scope".
+        # Allow Node 25 to fail until upstream (c8/yargs) fixes this.
+        continue-on-error: ${{ matrix.node == '25' }}
         strategy:
+            fail-fast: false
             matrix:
                 node: ['25', '24', '23', '22', '20', '18']
         name: Node ${{ matrix.node }} validation
