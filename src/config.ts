@@ -36,8 +36,113 @@ import WebSocket from 'isomorphic-ws';
 import child_process from 'node:child_process';
 import { SocksProxyAgent } from 'socks-proxy-agent';
 import { HttpProxyAgent, HttpProxyAgentOptions, HttpsProxyAgent, HttpsProxyAgentOptions } from 'hpagent';
+import {
+    Agent as UndiciAgent,
+    buildConnector,
+    ProxyAgent as UndiciProxyAgent,
+    type Dispatcher,
+} from 'undici';
+import { SocksClient } from 'socks';
+import tls from 'node:tls';
 import packagejson from '../package.json' with { type: 'json' };
 import { setHeaderMiddleware } from './middleware.js';
+
+export interface KubeTlsOptions {
+    ca?: Buffer | null;
+    cert?: Buffer | null;
+    key?: Buffer | null;
+    passphrase?: string;
+    pfx?: Buffer | null;
+    rejectUnauthorized?: boolean;
+    servername?: string;
+}
+
+export class KubeDispatcher extends UndiciAgent {
+    public readonly tlsOptions: KubeTlsOptions;
+
+    constructor(tlsOptions: KubeTlsOptions) {
+        const connectOptions: Record<string, any> = {};
+        if (tlsOptions.ca) connectOptions.ca = tlsOptions.ca;
+        if (tlsOptions.cert) connectOptions.cert = tlsOptions.cert;
+        if (tlsOptions.key) connectOptions.key = tlsOptions.key;
+        if (tlsOptions.passphrase) connectOptions.passphrase = tlsOptions.passphrase;
+        if (tlsOptions.servername) connectOptions.servername = tlsOptions.servername;
+        if (tlsOptions.rejectUnauthorized !== undefined) {
+            connectOptions.rejectUnauthorized = tlsOptions.rejectUnauthorized;
+        }
+        super({ connect: connectOptions });
+        this.tlsOptions = tlsOptions;
+    }
+}
+
+export class KubeProxyDispatcher extends UndiciProxyAgent {
+    public readonly proxyUri: string;
+    public readonly tlsOptions: KubeTlsOptions;
+
+    constructor(proxyUri: string, tlsOptions: KubeTlsOptions) {
+        const requestTls: Record<string, any> = {};
+        if (tlsOptions.ca) requestTls.ca = tlsOptions.ca;
+        if (tlsOptions.cert) requestTls.cert = tlsOptions.cert;
+        if (tlsOptions.key) requestTls.key = tlsOptions.key;
+        if (tlsOptions.passphrase) requestTls.passphrase = tlsOptions.passphrase;
+        if (tlsOptions.servername) requestTls.servername = tlsOptions.servername;
+        if (tlsOptions.rejectUnauthorized !== undefined) {
+            requestTls.rejectUnauthorized = tlsOptions.rejectUnauthorized;
+        }
+        super({ uri: proxyUri, requestTls });
+        this.proxyUri = proxyUri;
+        this.tlsOptions = tlsOptions;
+    }
+}
+
+export class KubeSocksDispatcher extends UndiciAgent {
+    public readonly socksHost: string;
+    public readonly socksPort: number;
+    public readonly socksType: 4 | 5;
+    public readonly tlsOptions: KubeTlsOptions;
+
+    constructor(proxyUrl: string, tlsOptions: KubeTlsOptions, isTargetHttps: boolean) {
+        const parsedProxy = new URL(proxyUrl);
+        const socksType: 4 | 5 = parsedProxy.protocol.startsWith('socks4') ? 4 : 5;
+        const socksHost = parsedProxy.hostname;
+        const socksPort = parseInt(parsedProxy.port, 10) || 1080;
+
+        super({
+            connect: (opts: buildConnector.Options, cb: buildConnector.Callback) => {
+                const targetHost = opts.hostname || opts.host || 'localhost';
+                const targetPort = Number(opts.port);
+                SocksClient.createConnection({
+                    command: 'connect',
+                    proxy: { host: socksHost, port: socksPort, type: socksType },
+                    destination: { host: targetHost, port: targetPort },
+                })
+                    .then(({ socket }) => {
+                        if (isTargetHttps) {
+                            const tlsSocket = tls.connect({
+                                socket,
+                                host: targetHost,
+                                servername: tlsOptions.servername || targetHost,
+                                ca: tlsOptions.ca ?? undefined,
+                                cert: tlsOptions.cert ?? undefined,
+                                key: tlsOptions.key ?? undefined,
+                                passphrase: tlsOptions.passphrase,
+                                rejectUnauthorized: tlsOptions.rejectUnauthorized,
+                            });
+                            tlsSocket.once('secureConnect', () => cb(null, tlsSocket));
+                            tlsSocket.once('error', (err) => cb(err, null));
+                        } else {
+                            cb(null, socket);
+                        }
+                    })
+                    .catch((err) => cb(err, null));
+            },
+        });
+        this.socksHost = socksHost;
+        this.socksPort = socksPort;
+        this.socksType = socksType;
+        this.tlsOptions = tlsOptions;
+    }
+}
 
 const SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
 const SERVICEACCOUNT_CA_PATH: string = SERVICEACCOUNT_ROOT + '/ca.crt';
@@ -275,7 +380,7 @@ export class KubeConfig implements SecurityAuthentication {
             agentOptions.rejectUnauthorized = httpsOptions.rejectUnauthorized;
         }
 
-        context.setAgent(this.createAgent(cluster, agentOptions));
+        context.setDispatcher(this.createDispatcher(cluster, agentOptions));
     }
 
     /**
@@ -569,6 +674,37 @@ export class KubeConfig implements SecurityAuthentication {
             agent = new https.Agent(agentOptions);
         }
         return agent;
+    }
+
+    private createDispatcher(cluster: Cluster | null, agentOptions: https.AgentOptions): Dispatcher {
+        const tlsOptions: KubeTlsOptions = {
+            ca: agentOptions.ca as Buffer | undefined,
+            cert: agentOptions.cert as Buffer | undefined,
+            key: agentOptions.key as Buffer | undefined,
+            passphrase: agentOptions.passphrase,
+            rejectUnauthorized: agentOptions.rejectUnauthorized,
+            servername: agentOptions.servername as string | undefined,
+        };
+
+        if (cluster && cluster.proxyUrl) {
+            if (cluster.proxyUrl.startsWith('socks')) {
+                return new KubeSocksDispatcher(
+                    cluster.proxyUrl,
+                    tlsOptions,
+                    cluster.server.startsWith('https'),
+                );
+            } else if (cluster.server.startsWith('https') || cluster.server.startsWith('http')) {
+                return new KubeProxyDispatcher(cluster.proxyUrl, tlsOptions);
+            } else {
+                throw new Error('Unsupported proxy type');
+            }
+        } else if (cluster?.server?.startsWith('http:') && cluster.skipTLSVerify) {
+            return new KubeDispatcher(tlsOptions);
+        } else if (cluster?.server?.startsWith('http:') && !cluster.skipTLSVerify) {
+            throw new Error('HTTP protocol is not allowed when skipTLSVerify is not set or false');
+        } else {
+            return new KubeDispatcher(tlsOptions);
+        }
     }
 
     private applyHTTPSOptions(opts: https.RequestOptions | WebSocket.ClientOptions): void {

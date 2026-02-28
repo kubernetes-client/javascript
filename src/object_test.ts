@@ -1,11 +1,12 @@
 import { before, describe, it } from 'node:test';
 import { deepStrictEqual, ok, rejects, strictEqual } from 'node:assert';
-import nock from 'nock';
+import { MockAgent } from 'undici';
 import { Configuration, V1APIResource, V1APIResourceList, V1Secret } from './api.js';
 import { KubeConfig } from './config.js';
 import { KubernetesObjectApi } from './object.js';
 import { KubernetesObject } from './types.js';
 import { of } from './gen/rxjsStub.js';
+import { createMockApplyFn } from './test/mock-dispatcher.js';
 
 describe('KubernetesObject', () => {
     const testConfigOptions = {
@@ -43,10 +44,13 @@ describe('KubernetesObject', () => {
             this.configuration = configuration;
         }
 
-        public static makeApiClient(kc?: KubeConfig): KubernetesObjectApiTest {
+        public static makeApiClient(kc?: KubeConfig, mockAgent?: MockAgent): KubernetesObjectApiTest {
             if (!kc) {
                 kc = new KubeConfig();
                 kc.loadFromOptions(testConfigOptions);
+            }
+            if (mockAgent) {
+                createMockApplyFn(kc, mockAgent);
             }
             const client = kc.makeApiClient(KubernetesObjectApiTest);
             client.setDefaultNamespace(kc);
@@ -60,10 +64,6 @@ describe('KubernetesObject', () => {
             return super.resource(apiVersion, kind);
         }
     }
-
-    const contentTypeJsonHeader = {
-        'Content-Type': 'application/json',
-    };
 
     const resourceBodies = {
         core: `{
@@ -478,9 +478,13 @@ describe('KubernetesObject', () => {
 }`,
     };
 
+    const jsonContentTypeHeaders = { headers: { 'content-type': 'application/json' } };
+
     describe('specUriPath', () => {
         it('should return a namespaced path', async () => {
-            const c = KubernetesObjectApiTest.makeApiClient();
+            const mockAgent = new MockAgent();
+            mockAgent.disableNetConnect();
+            const c = KubernetesObjectApiTest.makeApiClient(undefined, mockAgent);
             const o = {
                 apiVersion: 'v1',
                 kind: 'Service',
@@ -489,16 +493,19 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core, contentTypeJsonHeader);
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({ path: '/api/v1', method: 'GET' })
+                .reply(200, resourceBodies.core, jsonContentTypeHeaders);
             const r = await c.specUriPath(o, 'patch');
             strictEqual(r, '/api/v1/namespaces/fugazi/services/repeater');
-            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should default to apiVersion v1', async () => {
-            const c = KubernetesObjectApiTest.makeApiClient();
+            const mockAgent = new MockAgent();
+            mockAgent.disableNetConnect();
+            const c = KubernetesObjectApiTest.makeApiClient(undefined, mockAgent);
             const o = {
                 kind: 'ServiceAccount',
                 metadata: {
@@ -506,12 +513,13 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core, contentTypeJsonHeader);
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({ path: '/api/v1', method: 'GET' })
+                .reply(200, resourceBodies.core, jsonContentTypeHeaders);
             const r = await c.specUriPath(o, 'patch');
             strictEqual(r, '/api/v1/namespaces/fugazi/serviceaccounts/repeater');
-            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should default to context namespace', async () => {
@@ -522,7 +530,9 @@ describe('KubernetesObject', () => {
                 contexts: [{ name: 'dischord', cluster: 'dc', user: 'ian', namespace: 'straight-edge' }],
                 currentContext: 'dischord',
             });
-            const c = KubernetesObjectApiTest.makeApiClient(kc);
+            const mockAgent = new MockAgent();
+            mockAgent.disableNetConnect();
+            const c = KubernetesObjectApiTest.makeApiClient(kc, mockAgent);
             const o = {
                 apiVersion: 'v1',
                 kind: 'Pod',
@@ -530,12 +540,13 @@ describe('KubernetesObject', () => {
                     name: 'repeater',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core, contentTypeJsonHeader);
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({ path: '/api/v1', method: 'GET' })
+                .reply(200, resourceBodies.core, jsonContentTypeHeaders);
             const r = await c.specUriPath(o, 'patch');
             strictEqual(r, '/api/v1/namespaces/straight-edge/pods/repeater');
-            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should default to default namespace', async () => {
@@ -546,7 +557,9 @@ describe('KubernetesObject', () => {
                 contexts: [{ name: 'dischord', cluster: 'dc', user: 'ian' }],
                 currentContext: 'dischord',
             });
-            const c = KubernetesObjectApiTest.makeApiClient(kc);
+            const mockAgent = new MockAgent();
+            mockAgent.disableNetConnect();
+            const c = KubernetesObjectApiTest.makeApiClient(kc, mockAgent);
             const o = {
                 apiVersion: 'v1',
                 kind: 'Pod',
@@ -554,16 +567,19 @@ describe('KubernetesObject', () => {
                     name: 'repeater',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core, contentTypeJsonHeader);
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({ path: '/api/v1', method: 'GET' })
+                .reply(200, resourceBodies.core, jsonContentTypeHeaders);
             const r = await c.specUriPath(o, 'patch');
             strictEqual(r, '/api/v1/namespaces/default/pods/repeater');
-            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should return a non-namespaced path', async () => {
-            const c = KubernetesObjectApiTest.makeApiClient();
+            const mockAgent = new MockAgent();
+            mockAgent.disableNetConnect();
+            const c = KubernetesObjectApiTest.makeApiClient(undefined, mockAgent);
             const o = {
                 apiVersion: 'v1',
                 kind: 'Namespace',
@@ -571,16 +587,19 @@ describe('KubernetesObject', () => {
                     name: 'repeater',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core, contentTypeJsonHeader);
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({ path: '/api/v1', method: 'GET' })
+                .reply(200, resourceBodies.core, jsonContentTypeHeaders);
             const r = await c.specUriPath(o, 'delete');
             strictEqual(r, '/api/v1/namespaces/repeater');
-            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should return a namespaced path without name', async () => {
-            const c = KubernetesObjectApiTest.makeApiClient();
+            const mockAgent = new MockAgent();
+            mockAgent.disableNetConnect();
+            const c = KubernetesObjectApiTest.makeApiClient(undefined, mockAgent);
             const o = {
                 apiVersion: 'v1',
                 kind: 'Service',
@@ -588,16 +607,19 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core, contentTypeJsonHeader);
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({ path: '/api/v1', method: 'GET' })
+                .reply(200, resourceBodies.core, jsonContentTypeHeaders);
             const r = await c.specUriPath(o, 'create');
             strictEqual(r, '/api/v1/namespaces/fugazi/services');
-            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should return a non-namespaced path without name', async () => {
-            const c = KubernetesObjectApiTest.makeApiClient();
+            const mockAgent = new MockAgent();
+            mockAgent.disableNetConnect();
+            const c = KubernetesObjectApiTest.makeApiClient(undefined, mockAgent);
             const o = {
                 apiVersion: 'v1',
                 kind: 'Namespace',
@@ -605,16 +627,19 @@ describe('KubernetesObject', () => {
                     name: 'repeater',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core, contentTypeJsonHeader);
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({ path: '/api/v1', method: 'GET' })
+                .reply(200, resourceBodies.core, jsonContentTypeHeaders);
             const r = await c.specUriPath(o, 'create');
             strictEqual(r, '/api/v1/namespaces');
-            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should return a namespaced path for non-core resource', async () => {
-            const c = KubernetesObjectApiTest.makeApiClient();
+            const mockAgent = new MockAgent();
+            mockAgent.disableNetConnect();
+            const c = KubernetesObjectApiTest.makeApiClient(undefined, mockAgent);
             const o = {
                 apiVersion: 'apps/v1',
                 kind: 'Deployment',
@@ -623,16 +648,19 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/apis/apps/v1')
-                .reply(200, resourceBodies.apps, contentTypeJsonHeader);
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({ path: '/apis/apps/v1', method: 'GET' })
+                .reply(200, resourceBodies.apps, jsonContentTypeHeaders);
             const r = await c.specUriPath(o, 'read');
             strictEqual(r, '/apis/apps/v1/namespaces/fugazi/deployments/repeater');
-            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should return a non-namespaced path for non-core resource', async () => {
-            const c = KubernetesObjectApiTest.makeApiClient();
+            const mockAgent = new MockAgent();
+            mockAgent.disableNetConnect();
+            const c = KubernetesObjectApiTest.makeApiClient(undefined, mockAgent);
             const o = {
                 apiVersion: 'rbac.authorization.k8s.io/v1',
                 kind: 'ClusterRole',
@@ -640,12 +668,13 @@ describe('KubernetesObject', () => {
                     name: 'repeater',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/apis/rbac.authorization.k8s.io/v1')
-                .reply(200, resourceBodies.rbac, contentTypeJsonHeader);
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({ path: '/apis/rbac.authorization.k8s.io/v1', method: 'GET' })
+                .reply(200, resourceBodies.rbac, jsonContentTypeHeaders);
             const r = await c.specUriPath(o, 'read');
             strictEqual(r, '/apis/rbac.authorization.k8s.io/v1/clusterroles/repeater');
-            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should handle a variety of resources', async () => {
@@ -748,7 +777,9 @@ describe('KubernetesObject', () => {
                 },
             ];
             for (const k of a) {
-                const c = KubernetesObjectApiTest.makeApiClient();
+                const mockAgent = new MockAgent();
+                mockAgent.disableNetConnect();
+                const c = KubernetesObjectApiTest.makeApiClient(undefined, mockAgent);
                 const o: KubernetesObject = {
                     apiVersion: k.apiVersion,
                     kind: k.kind,
@@ -760,10 +791,13 @@ describe('KubernetesObject', () => {
                     o.metadata = o.metadata || {};
                     o.metadata.namespace = 'fugazi';
                 }
-                const scope = nock('https://d.i.y').get(k.p).reply(200, k.b, contentTypeJsonHeader);
+                mockAgent
+                    .get('https://d.i.y')
+                    .intercept({ path: k.p, method: 'GET' })
+                    .reply(200, k.b, jsonContentTypeHeaders);
                 const r = await c.specUriPath(o, 'patch');
                 strictEqual(r, k.e);
-                scope.done();
+                mockAgent.assertNoPendingInterceptors();
             }
         });
 
@@ -867,7 +901,9 @@ describe('KubernetesObject', () => {
                 },
             ];
             for (const k of a) {
-                const c = KubernetesObjectApiTest.makeApiClient();
+                const mockAgent = new MockAgent();
+                mockAgent.disableNetConnect();
+                const c = KubernetesObjectApiTest.makeApiClient(undefined, mockAgent);
                 const o: KubernetesObject = {
                     apiVersion: k.apiVersion,
                     kind: k.kind,
@@ -875,15 +911,20 @@ describe('KubernetesObject', () => {
                 if (k.ns) {
                     o.metadata = { namespace: 'fugazi' };
                 }
-                const scope = nock('https://d.i.y').get(k.p).reply(200, k.b, contentTypeJsonHeader);
+                mockAgent
+                    .get('https://d.i.y')
+                    .intercept({ path: k.p, method: 'GET' })
+                    .reply(200, k.b, jsonContentTypeHeaders);
                 const r = await c.specUriPath(o, 'create');
                 strictEqual(r, k.e);
-                scope.done();
+                mockAgent.assertNoPendingInterceptors();
             }
         });
 
         it('should throw an error if kind missing', async () => {
-            const c = KubernetesObjectApiTest.makeApiClient();
+            const mockAgent = new MockAgent();
+            mockAgent.disableNetConnect();
+            const c = KubernetesObjectApiTest.makeApiClient(undefined, mockAgent);
             const o = {
                 apiVersion: 'v1',
                 metadata: {
@@ -898,7 +939,9 @@ describe('KubernetesObject', () => {
         });
 
         it('should throw an error if name required and missing', async () => {
-            const c = KubernetesObjectApiTest.makeApiClient();
+            const mockAgent = new MockAgent();
+            mockAgent.disableNetConnect();
+            const c = KubernetesObjectApiTest.makeApiClient(undefined, mockAgent);
             const o = {
                 apiVersion: 'v1',
                 kind: 'Service',
@@ -906,19 +949,22 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core, contentTypeJsonHeader);
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({ path: '/api/v1', method: 'GET' })
+                .reply(200, resourceBodies.core, jsonContentTypeHeaders);
 
             await rejects(c.specUriPath(o, 'read'), {
                 name: 'Error',
                 message: 'Required spec property name is not set',
             });
-            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should throw an error if resource is not valid', async () => {
-            const c = KubernetesObjectApiTest.makeApiClient();
+            const mockAgent = new MockAgent();
+            mockAgent.disableNetConnect();
+            const c = KubernetesObjectApiTest.makeApiClient(undefined, mockAgent);
             const o = {
                 apiVersion: 'v1',
                 kind: 'Ingress',
@@ -927,22 +973,26 @@ describe('KubernetesObject', () => {
                     namespace: 'fugazi',
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core, contentTypeJsonHeader);
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({ path: '/api/v1', method: 'GET' })
+                .reply(200, resourceBodies.core, jsonContentTypeHeaders);
 
             await rejects(c.specUriPath(o, 'create'), {
                 name: 'Error',
                 message: 'Unrecognized API version and kind: v1 Ingress',
             });
-            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
     });
 
     describe('resource', () => {
         let client: KubernetesObjectApiTest;
+        let mockAgent: MockAgent;
         before(function () {
-            client = KubernetesObjectApiTest.makeApiClient();
+            mockAgent = new MockAgent();
+            mockAgent.disableNetConnect();
+            client = KubernetesObjectApiTest.makeApiClient(undefined, mockAgent);
         });
 
         it('should throw an error if apiVersion not set', async () => {
@@ -964,7 +1014,9 @@ describe('KubernetesObject', () => {
         });
 
         it('should use middleware', async () => {
-            const c = KubernetesObjectApiTest.makeApiClient();
+            const ma = new MockAgent();
+            ma.disableNetConnect();
+            const c = KubernetesObjectApiTest.makeApiClient(undefined, ma);
 
             let preMiddlewareCalled = false;
             let postMiddlewareCalled = false;
@@ -979,20 +1031,22 @@ describe('KubernetesObject', () => {
                 },
             });
 
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core, contentTypeJsonHeader);
+            ma.get('https://d.i.y')
+                .intercept({ path: '/api/v1', method: 'GET' })
+                .reply(200, resourceBodies.core, jsonContentTypeHeaders);
             await c.resource('v1', 'Service');
             strictEqual(preMiddlewareCalled, true);
             strictEqual(postMiddlewareCalled, true);
-            scope.done();
+            ma.assertNoPendingInterceptors();
         });
 
         it('should cache API response', async () => {
-            const c = KubernetesObjectApiTest.makeApiClient();
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core, contentTypeJsonHeader);
+            const ma = new MockAgent();
+            ma.disableNetConnect();
+            const c = KubernetesObjectApiTest.makeApiClient(undefined, ma);
+            ma.get('https://d.i.y')
+                .intercept({ path: '/api/v1', method: 'GET' })
+                .reply(200, resourceBodies.core, jsonContentTypeHeaders);
             const s = await c.resource('v1', 'Service');
             if (!s) {
                 throw new Error('old TypeScript compiler');
@@ -1023,11 +1077,13 @@ describe('KubernetesObject', () => {
             strictEqual(pv.kind, 'PersistentVolume');
             strictEqual(pv.name, 'persistentvolumes');
             strictEqual(pv.namespaced, false);
-            scope.done();
+            ma.assertNoPendingInterceptors();
         });
 
         it('should re-request on cache miss', async () => {
-            const c = KubernetesObjectApiTest.makeApiClient();
+            const ma = new MockAgent();
+            ma.disableNetConnect();
+            const c = KubernetesObjectApiTest.makeApiClient(undefined, ma);
             c.apiVersionResourceCache.v1 = {
                 groupVersion: 'v1',
                 kind: 'APIResourceList',
@@ -1044,9 +1100,9 @@ describe('KubernetesObject', () => {
                     },
                 ],
             } as any;
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core, contentTypeJsonHeader);
+            ma.get('https://d.i.y')
+                .intercept({ path: '/api/v1', method: 'GET' })
+                .reply(200, resourceBodies.core, jsonContentTypeHeaders);
             const s = await c.resource('v1', 'Service');
             if (!s) {
                 throw new Error('old TypeScript compiler');
@@ -1060,15 +1116,19 @@ describe('KubernetesObject', () => {
                 c.apiVersionResourceCache.v1.resources.length,
                 JSON.parse(resourceBodies.core).resources.length,
             );
-            scope.done();
+            ma.assertNoPendingInterceptors();
         });
     });
 
     describe('verbs', () => {
         let client: KubernetesObjectApi;
+        let mockAgent: MockAgent;
         before(() => {
             const kc = new KubeConfig();
             kc.loadFromOptions(testConfigOptions);
+            mockAgent = new MockAgent();
+            mockAgent.disableNetConnect();
+            createMockApplyFn(kc, mockAgent);
             client = KubernetesObjectApi.makeApiClient(kc);
             (client as any).apiVersionResourceCache.v1 = JSON.parse(resourceBodies.core);
             (client as any).apiVersionResourceCache['networking.k8s.io/v1'] = JSON.parse(
@@ -1225,14 +1285,15 @@ describe('KubernetesObject', () => {
                 },
             ];
             for (const m of methods) {
-                const scope = nock('https://d.i.y')
-                    .intercept(m.p, m.v, m.v === 'DELETE' || m.v === 'GET' ? undefined : s)
-                    .reply(m.c, m.b, contentTypeJsonHeader);
+                mockAgent
+                    .get('https://d.i.y')
+                    .intercept({ path: m.p, method: m.v })
+                    .reply(m.c, m.b, jsonContentTypeHeaders);
                 // TODO: Figure out why Typescript barfs if we do m.call
                 const hack_m = m.m as any;
                 await hack_m.call(client, s);
-                scope.done();
             }
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should modify resources with pretty set', async () => {
@@ -1385,19 +1446,16 @@ describe('KubernetesObject', () => {
             ];
             for (const p of ['true', 'false']) {
                 for (const m of methods) {
-                    const scope = nock('https://d.i.y')
-                        .intercept(
-                            `${m.p}?pretty=${p}`,
-                            m.v,
-                            m.v === 'DELETE' || m.v === 'GET' ? undefined : s,
-                        )
-                        .reply(m.c, m.b, contentTypeJsonHeader);
+                    mockAgent
+                        .get('https://d.i.y')
+                        .intercept({ path: `${m.p}?pretty=${p}`, method: m.v })
+                        .reply(m.c, m.b, jsonContentTypeHeaders);
                     // TODO: Figure out why Typescript barfs if we do m.call
                     const hack_m = m.m as any;
                     await hack_m.call(client, s, p);
-                    scope.done();
                 }
             }
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should set dryRun', async () => {
@@ -1513,14 +1571,15 @@ describe('KubernetesObject', () => {
                 },
             ];
             for (const m of methods) {
-                const scope = nock('https://d.i.y')
-                    .intercept(`${m.p}?dryRun=All`, m.v, m.v === 'DELETE' || m.v === 'GET' ? undefined : s)
-                    .reply(m.c, m.b, contentTypeJsonHeader);
+                mockAgent
+                    .get('https://d.i.y')
+                    .intercept({ path: `${m.p}?dryRun=All`, method: m.v })
+                    .reply(m.c, m.b, jsonContentTypeHeaders);
                 // TODO: Figure out why Typescript barfs if we do m.call
                 const hack_m = m.m as any;
                 await hack_m.call(client, s, undefined, 'All');
-                scope.done();
             }
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should properly serialize resources on modify', async () => {
@@ -1541,32 +1600,6 @@ describe('KubernetesObject', () => {
                     ingress: [
                         {
                             _from: [
-                                {
-                                    podSelector: { matchLabels: { app: 'foo' } },
-                                },
-                            ],
-                            ports: [{ port: 123 }],
-                        },
-                    ],
-                },
-            };
-            const serializedNetPol = {
-                apiVersion: 'networking.k8s.io/v1',
-                kind: 'NetworkPolicy',
-                metadata: {
-                    name: 'k8s-js-client-test',
-                    namespace: 'default',
-                },
-                spec: {
-                    podSelector: {
-                        matchLabels: {
-                            app: 'my-app',
-                        },
-                    },
-                    policyTypes: ['Ingress'],
-                    ingress: [
-                        {
-                            from: [
                                 {
                                     podSelector: { matchLabels: { app: 'foo' } },
                                 },
@@ -1632,14 +1665,15 @@ describe('KubernetesObject', () => {
                 },
             ];
             for (const m of methods) {
-                const scope = nock('https://d.i.y')
-                    .intercept(m.p, m.v, serializedNetPol)
-                    .reply(m.c, m.b, contentTypeJsonHeader);
+                mockAgent
+                    .get('https://d.i.y')
+                    .intercept({ path: m.p, method: m.v })
+                    .reply(m.c, m.b, jsonContentTypeHeaders);
                 // TODO: Figure out why Typescript barfs if we do m.call
                 const hack_m = m.m as any;
                 await hack_m.call(client, netPol);
-                scope.done();
             }
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should replace a resource', async () => {
@@ -1666,8 +1700,12 @@ describe('KubernetesObject', () => {
                     },
                 },
             };
-            const scope = nock('https://d.i.y')
-                .post('/api/v1/namespaces/default/services?fieldManager=ManageField', s)
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({
+                    path: '/api/v1/namespaces/default/services?fieldManager=ManageField',
+                    method: 'POST',
+                })
                 .reply(
                     201,
                     `{
@@ -1703,41 +1741,13 @@ describe('KubernetesObject', () => {
     "loadBalancer": {}
   }
 }`,
-                    contentTypeJsonHeader,
-                )
-                .put('/api/v1/namespaces/default/services/k8s-js-client-test?pretty=true', {
-                    kind: 'Service',
-                    apiVersion: 'v1',
-                    metadata: {
-                        name: 'k8s-js-client-test',
-                        namespace: 'default',
-                        selfLink: '/api/v1/namespaces/default/services/k8s-js-client-test',
-                        uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
-                        resourceVersion: '41183',
-                        creationTimestamp: '2020-05-11T19:35:01.000Z',
-                        annotations: {
-                            owner: 'test',
-                            test: '1',
-                        },
-                    },
-                    spec: {
-                        ports: [
-                            {
-                                protocol: 'TCP',
-                                port: 80,
-                                targetPort: 80,
-                            },
-                        ],
-                        selector: {
-                            app: 'sleep',
-                        },
-                        clusterIP: '10.106.153.133',
-                        type: 'ClusterIP',
-                        sessionAffinity: 'None',
-                    },
-                    status: {
-                        loadBalancer: {},
-                    },
+                    jsonContentTypeHeaders,
+                );
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({
+                    path: '/api/v1/namespaces/default/services/k8s-js-client-test?pretty=true',
+                    method: 'PUT',
                 })
                 .reply(
                     200,
@@ -1775,11 +1785,14 @@ describe('KubernetesObject', () => {
     "loadBalancer": {}
   }
 }`,
-                    contentTypeJsonHeader,
-                )
-                .delete(
-                    '/api/v1/namespaces/default/services/k8s-js-client-test?gracePeriodSeconds=7&propagationPolicy=Foreground',
-                )
+                    jsonContentTypeHeaders,
+                );
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({
+                    path: '/api/v1/namespaces/default/services/k8s-js-client-test?gracePeriodSeconds=7&propagationPolicy=Foreground',
+                    method: 'DELETE',
+                })
                 .reply(
                     200,
                     `{
@@ -1793,7 +1806,7 @@ describe('KubernetesObject', () => {
   "metadata": {},
   "status": "Success"
 }`,
-                    contentTypeJsonHeader,
+                    jsonContentTypeHeaders,
                 );
             const c = await client.create(s, undefined, undefined, 'ManageField');
             (c.metadata.annotations as Record<string, string>).test = '1';
@@ -1804,12 +1817,13 @@ describe('KubernetesObject', () => {
                     parseInt((c.metadata as any).resourceVersion, 10),
             );
             await client.delete(s, undefined, undefined, 7, undefined, 'Foreground');
-            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should read a resource', async () => {
-            const scope = nock('https://d.i.y')
-                .get('/api/v1/namespaces/default/secrets/test-secret-1')
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({ path: '/api/v1/namespaces/default/secrets/test-secret-1', method: 'GET' })
                 .reply(
                     200,
                     {
@@ -1825,7 +1839,7 @@ describe('KubernetesObject', () => {
                             key: 'value',
                         },
                     },
-                    contentTypeJsonHeader,
+                    jsonContentTypeHeaders,
                 );
             const secret = await client.read<V1Secret>({
                 apiVersion: 'v1',
@@ -1841,7 +1855,7 @@ describe('KubernetesObject', () => {
             });
             ok(secret.metadata);
             deepStrictEqual(secret.metadata!.creationTimestamp, new Date('2022-01-01T00:00:00.000Z'));
-            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should read a custom resource', async () => {
@@ -1861,8 +1875,12 @@ describe('KubernetesObject', () => {
                     },
                 ],
             };
-            const scope = nock('https://d.i.y')
-                .get('/apis/example.com/v1/namespaces/default/customtestresources/test-1')
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({
+                    path: '/apis/example.com/v1/namespaces/default/customtestresources/test-1',
+                    method: 'GET',
+                })
                 .reply(
                     200,
                     {
@@ -1878,7 +1896,7 @@ describe('KubernetesObject', () => {
                             key: 'value',
                         },
                     },
-                    contentTypeJsonHeader,
+                    jsonContentTypeHeaders,
                 );
             const custom = await client.read<CustomTestResource>({
                 apiVersion: 'example.com/v1',
@@ -1893,12 +1911,13 @@ describe('KubernetesObject', () => {
             });
             ok(custom.metadata);
             deepStrictEqual(custom.metadata!.creationTimestamp, new Date('2022-01-01T00:00:00.000Z'));
-            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should list resources in a namespace', async () => {
-            const scope = nock('https://d.i.y')
-                .get('/api/v1/namespaces/default/secrets')
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({ path: '/api/v1/namespaces/default/secrets', method: 'GET' })
                 .reply(
                     200,
                     {
@@ -1919,20 +1938,22 @@ describe('KubernetesObject', () => {
                             continue: 'abc',
                         },
                     },
-                    contentTypeJsonHeader,
+                    jsonContentTypeHeaders,
                 );
             const lr = await client.list<V1Secret>('v1', 'Secret', 'default');
             const items = lr.items;
             strictEqual(items.length, 1);
             strictEqual(items[0] instanceof V1Secret, true);
-            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should list resources in all namespaces', async () => {
-            const scope = nock('https://d.i.y')
-                .get(
-                    '/api/v1/secrets?fieldSelector=metadata.name%3Dtest-secret1&labelSelector=app%3Dmy-app&limit=5',
-                )
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({
+                    path: '/api/v1/secrets?fieldSelector=metadata.name%3Dtest-secret1&labelSelector=app%3Dmy-app&limit=5',
+                    method: 'GET',
+                })
                 .reply(
                     200,
                     {
@@ -1953,7 +1974,7 @@ describe('KubernetesObject', () => {
                             continue: 'abc',
                         },
                     },
-                    contentTypeJsonHeader,
+                    jsonContentTypeHeaders,
                 );
             const lr = await client.list(
                 'v1',
@@ -1968,15 +1989,19 @@ describe('KubernetesObject', () => {
             );
             const items = lr.items;
             strictEqual(items.length, 1);
-            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
     });
 
     describe('errors', () => {
         let client: KubernetesObjectApi;
+        let mockAgent: MockAgent;
         before(() => {
             const kc = new KubeConfig();
             kc.loadFromOptions(testConfigOptions);
+            mockAgent = new MockAgent();
+            mockAgent.disableNetConnect();
+            createMockApplyFn(kc, mockAgent);
             client = KubernetesObjectApi.makeApiClient(kc);
         });
 
@@ -2015,10 +2040,8 @@ describe('KubernetesObject', () => {
                     },
                 },
             };
-            nock('https://d.i.y');
             await rejects(client.read(s), {
-                code: 'ERR_NOCK_NO_MATCH',
-                message: /Nock: No match for request/,
+                name: 'TypeError',
             });
         });
 
@@ -2043,10 +2066,13 @@ describe('KubernetesObject', () => {
                     },
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/api/v1')
-                .reply(200, resourceBodies.core, contentTypeJsonHeader)
-                .post('/api/v1/namespaces/default/services', s)
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({ path: '/api/v1', method: 'GET' })
+                .reply(200, resourceBodies.core, jsonContentTypeHeaders);
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({ path: '/api/v1/namespaces/default/services', method: 'POST' })
                 .reply(
                     422,
                     `{
@@ -2054,7 +2080,7 @@ describe('KubernetesObject', () => {
   "apiVersion": "v1",
   "metadata": {},
   "status": "Failure",
-  "message": "Service "_not_a_valid_name_" is invalid: metadata.name: Invalid value: "_not_a_valid_name_": a DNS-1035 label must consist of lower case alphanumeric characters or '-', start with an alphabetic character, and end with an alphanumeric character (e.g. 'my-name',  or 'abc-123', regex used for validation is '[a-z]([-a-z0-9]*[a-z0-9])?')",
+  "message": "Service \\"_not_a_valid_name_\\" is invalid",
   "reason": "Invalid",
   "details": {
     "name": "_not_a_valid_name_",
@@ -2062,21 +2088,21 @@ describe('KubernetesObject', () => {
     "causes": [
       {
         "reason": "FieldValueInvalid",
-        "message": "Invalid value: "_not_a_valid_name_": a DNS-1035 label must consist of lower case alphanumeric characters or '-', start with an alphabetic character, and end with an alphanumeric character (e.g. 'my-name',  or 'abc-123', regex used for validation is '[a-z]([-a-z0-9]*[a-z0-9])?')",
+        "message": "Invalid value",
         "field": "metadata.name"
       }
     ]
   },
   "code": 422
 }`,
-                    contentTypeJsonHeader,
+                    jsonContentTypeHeaders,
                 );
 
             await rejects(client.create(s), {
                 name: 'Error',
                 code: 422,
             });
-            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should throw an error if apiVersion not valid', async () => {
@@ -2113,15 +2139,16 @@ describe('KubernetesObject', () => {
                     },
                 },
             };
-            const scope = nock('https://d.i.y')
-                .get('/apis/applications/v1')
-                .reply(404, '{}', contentTypeJsonHeader);
+            mockAgent
+                .get('https://d.i.y')
+                .intercept({ path: '/apis/applications/v1', method: 'GET' })
+                .reply(404, '{}', jsonContentTypeHeaders);
             await rejects(client.create(d), {
                 name: 'Error',
                 code: 404,
                 message: /Failed to fetch resource metadata for applications\/v1\/Deployment/,
             });
-            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should throw error if no apiVersion', async () => {

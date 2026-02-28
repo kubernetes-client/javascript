@@ -22,11 +22,18 @@ import fetch, { Headers } from 'node-fetch';
 import { HttpMethod } from './index.js';
 import { assertRequestAgentsEqual, assertRequestOptionsEqual } from './test/match-buffer.js';
 import { CoreV1Api, RequestContext } from './api.js';
-import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolutePath } from './config.js';
+import {
+    bufferFromFileOrString,
+    findHomeDir,
+    findObject,
+    KubeConfig,
+    KubeDispatcher,
+    KubeProxyDispatcher,
+    KubeSocksDispatcher,
+    makeAbsolutePath,
+} from './config.js';
 import { ActionOnInvalid, Cluster, newClusters, newContexts, newUsers, User } from './config_types.js';
 import { ExecAuth } from './exec_auth.js';
-import { HttpProxyAgent, HttpsProxyAgent } from 'hpagent';
-import { SocksProxyAgent } from 'socks-proxy-agent';
 import { AddressInfo } from 'node:net';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
@@ -339,7 +346,10 @@ describe('KubeConfig', () => {
             };
 
             assertRequestOptionsEqual(opts, expectedOptions);
-            strictEqual((requestContext.getAgent()! as any).options.servername, 'kube.example2.com');
+            strictEqual(
+                (requestContext.getDispatcher() as KubeDispatcher).tlsOptions.servername,
+                'kube.example2.com',
+            );
         });
         it('should apply cert configs', async () => {
             const kc = new KubeConfig();
@@ -409,11 +419,11 @@ describe('KubeConfig', () => {
             const expectedProxyHost = 'example';
             const expectedProxyPort = 1187;
 
-            strictEqual(rc.getAgent() instanceof SocksProxyAgent, true);
-            const agent = rc.getAgent() as SocksProxyAgent;
-            strictEqual(agent.options.ca?.toString(), expectedCA.toString());
-            strictEqual(agent.proxy.host, expectedProxyHost);
-            strictEqual(agent.proxy.port, expectedProxyPort);
+            strictEqual(rc.getDispatcher() instanceof KubeSocksDispatcher, true);
+            const dispatcher = rc.getDispatcher() as KubeSocksDispatcher;
+            strictEqual(dispatcher.tlsOptions.ca?.toString(), expectedCA.toString());
+            strictEqual(dispatcher.socksHost, expectedProxyHost);
+            strictEqual(dispatcher.socksPort, expectedProxyPort);
         });
         it('should apply https proxy', async () => {
             const kc = new KubeConfig();
@@ -425,12 +435,11 @@ describe('KubeConfig', () => {
 
             await kc.applySecurityAuthentication(rc);
             const expectedCA = Buffer.from('CADAT@', 'utf-8');
-            const expectedProxyHref = 'http://example:9443/';
 
-            strictEqual(rc.getAgent() instanceof HttpsProxyAgent, true);
-            const agent = rc.getAgent() as HttpsProxyAgent;
-            strictEqual(agent.options.ca?.toString(), expectedCA.toString());
-            strictEqual((agent as any).proxy.href, expectedProxyHref);
+            strictEqual(rc.getDispatcher() instanceof KubeProxyDispatcher, true);
+            const dispatcher = rc.getDispatcher() as KubeProxyDispatcher;
+            strictEqual(dispatcher.tlsOptions.ca?.toString(), expectedCA.toString());
+            strictEqual(dispatcher.proxyUri, 'http://example:9443');
         });
         it('should apply http proxy', async () => {
             const kc = new KubeConfig();
@@ -442,12 +451,11 @@ describe('KubeConfig', () => {
 
             await kc.applySecurityAuthentication(rc);
             const expectedCA = Buffer.from('CADAT@', 'utf-8');
-            const expectedProxyHref = 'http://example:8080/';
 
-            strictEqual(rc.getAgent() instanceof HttpProxyAgent, true);
-            const agent = rc.getAgent() as HttpProxyAgent;
-            strictEqual((agent as any).options.ca?.toString(), expectedCA.toString());
-            strictEqual((agent as any).proxy.href, expectedProxyHref);
+            strictEqual(rc.getDispatcher() instanceof KubeProxyDispatcher, true);
+            const dispatcher = rc.getDispatcher() as KubeProxyDispatcher;
+            strictEqual(dispatcher.tlsOptions.ca?.toString(), expectedCA.toString());
+            strictEqual(dispatcher.proxyUri, 'http://example:8080');
         });
         it('should throw an error if proxy-url is provided but the server protocol is not http or https', async () => {
             const kc = new KubeConfig();
@@ -471,7 +479,7 @@ describe('KubeConfig', () => {
 
             await kc.applySecurityAuthentication(rc);
 
-            strictEqual(rc.getAgent() instanceof http.Agent, true);
+            strictEqual(rc.getDispatcher() instanceof KubeDispatcher, true);
         });
         it('should throw an error if cluster.server starts with http, no proxy-url is provided and insecure-skip-tls-verify is not set', async () => {
             const kc = new KubeConfig();
@@ -493,7 +501,7 @@ describe('KubeConfig', () => {
 
             await kc.applySecurityAuthentication(rc);
 
-            strictEqual(rc.getAgent() instanceof https.Agent, true);
+            strictEqual(rc.getDispatcher() instanceof KubeDispatcher, true);
         });
 
         it('should apply NODE_TLS_REJECT_UNAUTHORIZED from environment to agent', async () => {

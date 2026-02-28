@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 
 import { User, Cluster } from './config_types.js';
 import { AzureAuth } from './azure_auth.js';
-import { KubeConfig } from './config.js';
+import { KubeConfig, KubeDispatcher } from './config.js';
 import { HttpMethod, RequestContext } from './index.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -105,8 +105,7 @@ describe('AzureAuth', () => {
         const requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
         await config.applySecurityAuthentication(requestContext);
-        // @ts-expect-error
-        strictEqual(requestContext.getAgent().options.rejectUnauthorized, false);
+        strictEqual((requestContext.getDispatcher() as KubeDispatcher).tlsOptions.rejectUnauthorized, false);
     });
 
     it('should not set rejectUnauthorized if skipTLSVerify is not set', async () => {
@@ -128,8 +127,10 @@ describe('AzureAuth', () => {
         const requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
         await config.applySecurityAuthentication(requestContext);
-        // @ts-expect-error
-        strictEqual(requestContext.getAgent().options.rejectUnauthorized, undefined);
+        strictEqual(
+            (requestContext.getDispatcher() as KubeDispatcher).tlsOptions.rejectUnauthorized,
+            undefined,
+        );
     });
 
     it('should throw with expired token and no cmd', async () => {

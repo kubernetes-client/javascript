@@ -1,10 +1,12 @@
 import { describe, it } from 'node:test';
 import { deepEqual, deepStrictEqual, strictEqual } from 'assert';
 import nock from 'nock';
+import { MockAgent } from 'undici';
 import { KubeConfig } from './config.js';
 import { Metrics, PodMetricsList } from './metrics.js';
 import { CurrentResourceUsage, ResourceUsage, topNodes, topPods } from './top.js';
 import { CoreV1Api, V1Node, V1Pod } from './api.js';
+import { createMockApplyFn } from './test/mock-dispatcher.js';
 
 const emptyPodMetrics: PodMetricsList = {
     kind: 'PodMetricsList',
@@ -173,12 +175,19 @@ const testConfigOptions: any = {
     currentContext: 'currentContext',
 };
 
+const jsonContentTypeHeaders = { headers: { 'content-type': 'application/json' } };
+
 const systemUnderTest = (
     namespace?: string,
     options: any = testConfigOptions,
-): [() => ReturnType<typeof topPods>, () => ReturnType<typeof topNodes>, nock.Scope] => {
+): [() => ReturnType<typeof topPods>, () => ReturnType<typeof topNodes>, nock.Scope, MockAgent] => {
     const kc = new KubeConfig();
     kc.loadFromOptions(options);
+
+    const mockAgent = new MockAgent();
+    mockAgent.disableNetConnect();
+    createMockApplyFn(kc, mockAgent);
+
     const metricsClient = new Metrics(kc);
     const core = kc.makeApiClient(CoreV1Api);
     const topPodsFunc = () => topPods(core, metricsClient, namespace);
@@ -186,39 +195,42 @@ const systemUnderTest = (
 
     const scope = nock(testConfigOptions.clusters[0].server);
 
-    return [topPodsFunc, topNodesFunc, scope];
+    return [topPodsFunc, topNodesFunc, scope, mockAgent];
 };
 
 describe('Top', () => {
     describe('topPods', () => {
         it('should return empty when no pods', async () => {
-            const [topPodsFunc, _, scope] = systemUnderTest();
-            const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
-            const pods = scope.get('/api/v1/pods').reply(200, {
-                items: [],
-            });
+            const [topPodsFunc, _, scope, mockAgent] = systemUnderTest();
+            scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
+            mockAgent
+                .get('https://127.0.0.1:51010')
+                .intercept({ path: '/api/v1/pods', method: 'GET' })
+                .reply(200, { items: [] }, jsonContentTypeHeaders);
             const result = await topPodsFunc();
             deepStrictEqual(result, []);
-            podMetrics.done();
-            pods.done();
+            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
         it('should return use cluster scope when namespace empty string', async () => {
-            const [topPodsFunc, _, scope] = systemUnderTest('');
-            const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
-            const pods = scope.get('/api/v1/pods').reply(200, {
-                items: [],
-            });
+            const [topPodsFunc, _, scope, mockAgent] = systemUnderTest('');
+            scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
+            mockAgent
+                .get('https://127.0.0.1:51010')
+                .intercept({ path: '/api/v1/pods', method: 'GET' })
+                .reply(200, { items: [] }, jsonContentTypeHeaders);
             const result = await topPodsFunc();
             deepStrictEqual(result, []);
-            podMetrics.done();
-            pods.done();
+            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
         it('should return cluster wide pod metrics', async () => {
-            const [topPodsFunc, _, scope] = systemUnderTest();
-            const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, mockedPodMetrics);
-            const pods = scope.get('/api/v1/pods').reply(200, {
-                items: podList,
-            });
+            const [topPodsFunc, _, scope, mockAgent] = systemUnderTest();
+            scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, mockedPodMetrics);
+            mockAgent
+                .get('https://127.0.0.1:51010')
+                .intercept({ path: '/api/v1/pods', method: 'GET' })
+                .reply(200, { items: podList }, jsonContentTypeHeaders);
             const result = await topPodsFunc();
             strictEqual(result.length, 2);
             deepStrictEqual(result[0].CPU, new CurrentResourceUsage(0.05, 0.1, 0.1));
@@ -274,15 +286,16 @@ describe('Top', () => {
                     },
                 },
             ]);
-            podMetrics.done();
-            pods.done();
+            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
         it('should return best effort pod metrics', async () => {
-            const [topPodsFunc, _, scope] = systemUnderTest();
-            const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, mockedPodMetrics);
-            const pods = scope.get('/api/v1/pods').reply(200, {
-                items: bestEffortPodList,
-            });
+            const [topPodsFunc, _, scope, mockAgent] = systemUnderTest();
+            scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, mockedPodMetrics);
+            mockAgent
+                .get('https://127.0.0.1:51010')
+                .intercept({ path: '/api/v1/pods', method: 'GET' })
+                .reply(200, { items: bestEffortPodList }, jsonContentTypeHeaders);
             const result = await topPodsFunc();
             strictEqual(result.length, 1);
             deepStrictEqual(result[0].CPU, new CurrentResourceUsage(0.05, 0, 0));
@@ -302,15 +315,16 @@ describe('Top', () => {
                     },
                 },
             ]);
-            podMetrics.done();
-            pods.done();
+            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
         it('should return 0 when pod metrics missing', async () => {
-            const [topPodsFunc, _, scope] = systemUnderTest();
-            const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
-            const pods = scope.get('/api/v1/pods').reply(200, {
-                items: podList,
-            });
+            const [topPodsFunc, _, scope, mockAgent] = systemUnderTest();
+            scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
+            mockAgent
+                .get('https://127.0.0.1:51010')
+                .intercept({ path: '/api/v1/pods', method: 'GET' })
+                .reply(200, { items: podList }, jsonContentTypeHeaders);
             const result = await topPodsFunc();
             strictEqual(result.length, 2);
             deepStrictEqual(result[0].CPU, new CurrentResourceUsage(0, 0.1, 0.1));
@@ -325,28 +339,33 @@ describe('Top', () => {
                 new CurrentResourceUsage(0, BigInt('157286400'), BigInt('209715200')),
             );
             deepStrictEqual(result[1].Containers, []);
-            podMetrics.done();
-            pods.done();
+            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
         it('should return empty array when pods missing', async () => {
-            const [topPodsFunc, _, scope] = systemUnderTest();
-            const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, mockedPodMetrics);
-            const pods = scope.get('/api/v1/pods').reply(200, {
-                items: [],
-            });
+            const [topPodsFunc, _, scope, mockAgent] = systemUnderTest();
+            scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, mockedPodMetrics);
+            mockAgent
+                .get('https://127.0.0.1:51010')
+                .intercept({ path: '/api/v1/pods', method: 'GET' })
+                .reply(200, { items: [] }, jsonContentTypeHeaders);
             const result = await topPodsFunc();
             strictEqual(result.length, 0);
-            podMetrics.done();
-            pods.done();
+            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
         it('should return namespace pod metrics', async () => {
-            const [topPodsFunc, _, scope] = systemUnderTest(TEST_NAMESPACE);
-            const podMetrics = scope
+            const [topPodsFunc, _, scope, mockAgent] = systemUnderTest(TEST_NAMESPACE);
+            scope
                 .get(`/apis/metrics.k8s.io/v1beta1/namespaces/${TEST_NAMESPACE}/pods`)
                 .reply(200, mockedPodMetrics);
-            const pods = scope.get(`/api/v1/namespaces/${TEST_NAMESPACE}/pods`).reply(200, {
-                items: podList,
-            });
+            mockAgent
+                .get('https://127.0.0.1:51010')
+                .intercept({
+                    path: `/api/v1/namespaces/${TEST_NAMESPACE}/pods`,
+                    method: 'GET',
+                })
+                .reply(200, { items: podList }, jsonContentTypeHeaders);
             const result = await topPodsFunc();
             strictEqual(result.length, 2);
             deepStrictEqual(result[0].CPU, new CurrentResourceUsage(0.05, 0.1, 0.1));
@@ -402,29 +421,33 @@ describe('Top', () => {
                     },
                 },
             ]);
-            podMetrics.done();
-            pods.done();
+            scope.done();
+            mockAgent.assertNoPendingInterceptors();
         });
     });
     describe('topNodes', () => {
         it('should return empty when no nodes', async () => {
-            const [_, topNodesFunc, scope] = systemUnderTest();
-            const nodes = scope.get('/api/v1/nodes').reply(200, {
-                items: [],
-            });
+            const [_, topNodesFunc, _scope, mockAgent] = systemUnderTest();
+            mockAgent
+                .get('https://127.0.0.1:51010')
+                .intercept({ path: '/api/v1/nodes', method: 'GET' })
+                .reply(200, { items: [] }, jsonContentTypeHeaders);
             const result = await topNodesFunc();
             deepStrictEqual(result, []);
-            nodes.done();
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should return cluster wide node metrics', async () => {
-            const [_, topNodesFunc, scope] = systemUnderTest();
-            const pods = scope.get('/api/v1/pods').times(2).reply(200, {
-                items: podList,
-            });
-            const nodes = scope.get('/api/v1/nodes').reply(200, {
-                items: nodeList,
-            });
+            const [_, topNodesFunc, _scope, mockAgent] = systemUnderTest();
+            mockAgent
+                .get('https://127.0.0.1:51010')
+                .intercept({ path: '/api/v1/nodes', method: 'GET' })
+                .reply(200, { items: nodeList }, jsonContentTypeHeaders);
+            mockAgent
+                .get('https://127.0.0.1:51010')
+                .intercept({ path: '/api/v1/pods', method: 'GET' })
+                .reply(200, { items: podList }, jsonContentTypeHeaders)
+                .times(2);
             const result = await topNodesFunc();
             strictEqual(result.length, 2);
             deepStrictEqual(result[0].CPU, new ResourceUsage(4, 2.2, 2.2));
@@ -434,8 +457,7 @@ describe('Top', () => {
             );
             deepStrictEqual(result[1].CPU, new ResourceUsage(8, 0, 0));
             deepStrictEqual(result[1].Memory, new ResourceUsage(BigInt('34359738368'), 0, 0));
-            pods.done();
-            nodes.done();
+            mockAgent.assertNoPendingInterceptors();
         });
     });
 });

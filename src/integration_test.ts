@@ -1,10 +1,11 @@
 import { describe, it } from 'node:test';
 import { deepEqual } from 'node:assert';
-import nock from 'nock';
+import { MockAgent } from 'undici';
 
 import { CoreV1Api } from './api.js';
 import { KubeConfig } from './config.js';
 import { Cluster, User } from './config_types.js';
+import { createMockApplyFn } from './test/mock-dispatcher.js';
 
 describe('FullRequest', () => {
     describe('getPods', () => {
@@ -24,24 +25,25 @@ describe('FullRequest', () => {
 
             kc.loadFromClusterAndUser(cluster, user);
 
+            const mockAgent = new MockAgent();
+            mockAgent.disableNetConnect();
+            createMockApplyFn(kc, mockAgent);
+
             const k8sApi = kc.makeApiClient(CoreV1Api);
             const result = {
                 kind: 'PodList',
                 apiVersion: 'v1',
                 items: [],
             };
-            const auth = Buffer.from(`${username}:${password}`).toString('base64');
-            nock('https://nowhere.foo', {
-                reqheaders: {
-                    authorization: `Basic ${auth}`,
-                },
-            })
-                .get('/api/v1/namespaces/default/pods')
-                .reply(200, result);
+            mockAgent
+                .get('https://nowhere.foo')
+                .intercept({ path: '/api/v1/namespaces/default/pods', method: 'GET' })
+                .reply(200, result, { headers: { 'content-type': 'application/json' } });
 
             const list = await k8sApi.listNamespacedPod({ namespace: 'default' });
 
-            return deepEqual(list, result);
+            deepEqual(list, result);
+            mockAgent.assertNoPendingInterceptors();
         });
     });
 });
