@@ -23,6 +23,7 @@
         "generate": "./generate-client.sh",
         "watch": "tsc --watch",
         "test": "c8 node --test --test-reporter=spec --import tsx src/*_test.ts",
+        "test-no-coverage": "node --test --test-reporter=spec --import tsx src/*_test.ts",
         "test-transpiled": "node --test --test-reporter=spec dist/*_test.js",
         "integration-test": "tsx src/test/integration/index.ts",
         "prepare": "npm run build && husky",

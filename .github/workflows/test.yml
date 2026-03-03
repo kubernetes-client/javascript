@@ -9,11 +9,6 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
-        # Node 25 is odd/non-LTS and has a known incompatibility with c8 via yargs:
-        # extension-less files in "type: module" packages are treated as ESM in Node 25,
-        # causing c8's require('yargs/yargs') to fail with "require is not defined in ES module scope".
-        # Allow Node 25 to fail until upstream (c8/yargs) fixes this.
-        continue-on-error: ${{ matrix.node == '25' }}
         strategy:
             fail-fast: false
             matrix:
@@ -28,7 +23,13 @@ jobs:
             # and package-lock.json. Needs to run before npm install
             - run: node version-check.js
             - run: npm ci
-            - run: npm test
+            # Node 25 has a known incompatibility: extension-less files in "type: module"
+            # packages are treated as ESM, causing c8's require('yargs/yargs') to fail.
+            # Fall back to plain unit tests without coverage on Node 25 until upstream fixes this.
+            - if: matrix.node != '25'
+              run: npm test
+            - if: matrix.node == '25'
+              run: npm run test-no-coverage
             - run: npm run lint
             - run: npm audit --audit-level=critical
             - run: npm run build-with-tests && npm run test-transpiled
