@@ -23,6 +23,10 @@ jobs:
             - run: node version-check.js
             - run: npm ci
             - run: npm test
+              if: matrix.node != '25'
+            - name: Run tests without coverage (Node 25 - c8/yargs workaround)
+              run: node --test --test-reporter=spec --import tsx src/*_test.ts
+              if: matrix.node == '25'
             - run: npm run lint
             - run: npm audit --audit-level=critical
             - run: npm run build-with-tests && npm run test-transpiled
