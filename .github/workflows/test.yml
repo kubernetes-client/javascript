@@ -10,7 +10,6 @@ jobs:
     build:
         runs-on: ubuntu-latest
         strategy:
-            fail-fast: false
             matrix:
                 node: ['25', '24', '23', '22', '20', '18']
         name: Node ${{ matrix.node }} validation
