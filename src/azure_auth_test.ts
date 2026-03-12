@@ -7,6 +7,7 @@ import { User, Cluster } from './config_types.js';
 import { AzureAuth } from './azure_auth.js';
 import { KubeConfig } from './config.js';
 import { HttpMethod, RequestContext } from './index.js';
+import { Agent as UndiciAgent } from 'undici';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -105,8 +106,9 @@ describe('AzureAuth', () => {
         const requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
         await config.applySecurityAuthentication(requestContext);
-        // @ts-expect-error
-        strictEqual(requestContext.getAgent().options.rejectUnauthorized, false);
+        const dispatcher = requestContext.getDispatcher() as UndiciAgent;
+        strictEqual(dispatcher instanceof UndiciAgent, true);
+        strictEqual(dispatcher[Object.getOwnPropertySymbols(dispatcher).find(s => s.toString() === 'Symbol(options)')!].connect.rejectUnauthorized, false);
     });
 
     it('should not set rejectUnauthorized if skipTLSVerify is not set', async () => {
@@ -128,8 +130,8 @@ describe('AzureAuth', () => {
         const requestContext = new RequestContext(testUrl1, HttpMethod.GET);
 
         await config.applySecurityAuthentication(requestContext);
-        // @ts-expect-error
-        strictEqual(requestContext.getAgent().options.rejectUnauthorized, undefined);
+        // When skipTLSVerify is not set, no custom dispatcher is needed - undici validates certs by default
+        strictEqual(requestContext.getDispatcher(), undefined);
     });
 
     it('should throw with expired token and no cmd', async () => {
