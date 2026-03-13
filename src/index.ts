@@ -3,6 +3,7 @@ export * from './cache.js';
 export * from './api.js';
 export * from './attach.js';
 export * from './watch.js';
+export * from './watch_api.js';
 export * from './exec.js';
 export * from './portforward.js';
 export * from './types.js';
