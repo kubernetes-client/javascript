@@ -108,7 +108,12 @@ describe('AzureAuth', () => {
         await config.applySecurityAuthentication(requestContext);
         const dispatcher = requestContext.getDispatcher() as UndiciAgent;
         strictEqual(dispatcher instanceof UndiciAgent, true);
-        strictEqual(dispatcher[Object.getOwnPropertySymbols(dispatcher).find(s => s.toString() === 'Symbol(options)')!].connect.rejectUnauthorized, false);
+        strictEqual(
+            dispatcher[
+                Object.getOwnPropertySymbols(dispatcher).find((s) => s.toString() === 'Symbol(options)')!
+            ].connect.rejectUnauthorized,
+            false,
+        );
     });
 
     it('should not set rejectUnauthorized if skipTLSVerify is not set', async () => {

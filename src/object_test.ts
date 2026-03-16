@@ -61,10 +61,6 @@ describe('KubernetesObject', () => {
         }
     }
 
-    const contentTypeJsonHeader = {
-        'Content-Type': 'application/json',
-    };
-
     const resourceBodies = {
         core: `{
   "groupVersion": "v1",
@@ -1752,32 +1748,6 @@ describe('KubernetesObject', () => {
                     ],
                 },
             };
-            const serializedNetPol = {
-                apiVersion: 'networking.k8s.io/v1',
-                kind: 'NetworkPolicy',
-                metadata: {
-                    name: 'k8s-js-client-test',
-                    namespace: 'default',
-                },
-                spec: {
-                    podSelector: {
-                        matchLabels: {
-                            app: 'my-app',
-                        },
-                    },
-                    policyTypes: ['Ingress'],
-                    ingress: [
-                        {
-                            from: [
-                                {
-                                    podSelector: { matchLabels: { app: 'foo' } },
-                                },
-                            ],
-                            ports: [{ port: 123 }],
-                        },
-                    ],
-                },
-            };
             const returnBody = `{
   "kind": "NetworkPolicy",
   "apiVersion": "networking.k8s.io/v1",
@@ -1840,7 +1810,8 @@ describe('KubernetesObject', () => {
             const pool = mockAgent.get('https://d.i.y');
             try {
                 for (const m of methods) {
-                    pool.intercept({ path: m.p, method: m.v }).reply(m.c, m.b, {
+                    // Use regex to verify the body contains 'from' (not '_from' - testing TypeScript→JSON serialization)
+                    pool.intercept({ path: m.p, method: m.v, body: /"from":/ }).reply(m.c, m.b, {
                         headers: { 'content-type': 'application/json' },
                     });
                 }
@@ -2278,7 +2249,7 @@ describe('KubernetesObject', () => {
   "apiVersion": "v1",
   "metadata": {},
   "status": "Failure",
-  "message": "Service \"_not_a_valid_name_\" is invalid: metadata.name: Invalid value: \"_not_a_valid_name_\": a DNS-1035 label must consist of lower case alphanumeric characters or '\x2d', start with an alphabetic character, and end with an alphanumeric character (e.g. 'my-name', or 'abc-123', regex used for validation is '[a-z]([-a-z0-9]*[a-z0-9])?')",
+  "message": "Service "_not_a_valid_name_" is invalid: metadata.name: Invalid value: "_not_a_valid_name_": a DNS-1035 label must consist of lower case alphanumeric characters or '\x2d', start with an alphabetic character, and end with an alphanumeric character (e.g. 'my-name', or 'abc-123', regex used for validation is '[a-z]([-a-z0-9]*[a-z0-9])?')",
   "reason": "Invalid",
   "details": {
     "name": "_not_a_valid_name_",
@@ -2286,7 +2257,7 @@ describe('KubernetesObject', () => {
     "causes": [
       {
         "reason": "FieldValueInvalid",
-        "message": "Invalid value: \"_not_a_valid_name_\": a DNS-1035 label must consist of lower case alphanumeric characters or '\x2d', start with an alphabetic character, and end with an alphanumeric character (e.g. 'my-name', or 'abc-123', regex used for validation is '[a-z]([-a-z0-9]*[a-z0-9])?')",
+        "message": "Invalid value: "_not_a_valid_name_": a DNS-1035 label must consist of lower case alphanumeric characters or '\x2d', start with an alphabetic character, and end with an alphanumeric character (e.g. 'my-name', or 'abc-123', regex used for validation is '[a-z]([-a-z0-9]*[a-z0-9])?')",
         "field": "metadata.name"
       }
     ]

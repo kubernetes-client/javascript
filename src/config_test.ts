@@ -340,10 +340,9 @@ describe('KubeConfig', () => {
             assertRequestOptionsEqual(opts, expectedOptions);
             const dispatcher = requestContext.getDispatcher();
             strictEqual(dispatcher instanceof UndiciAgent, true);
-            // @ts-expect-error - accessing undici internal options
             strictEqual(
-                dispatcher[
-                    Object.getOwnPropertySymbols(dispatcher).find((s) => s.toString() === 'Symbol(options)')!
+                (dispatcher as any)[
+                    Object.getOwnPropertySymbols(dispatcher!).find((s) => s.toString() === 'Symbol(options)')!
                 ].connect.servername,
                 'kube.example2.com',
             );
