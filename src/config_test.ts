@@ -341,7 +341,12 @@ describe('KubeConfig', () => {
             const dispatcher = requestContext.getDispatcher();
             strictEqual(dispatcher instanceof UndiciAgent, true);
             // @ts-expect-error - accessing undici internal options
-            strictEqual(dispatcher[Object.getOwnPropertySymbols(dispatcher).find(s => s.toString() === 'Symbol(options)')!].connect.servername, 'kube.example2.com');
+            strictEqual(
+                dispatcher[
+                    Object.getOwnPropertySymbols(dispatcher).find((s) => s.toString() === 'Symbol(options)')!
+                ].connect.servername,
+                'kube.example2.com',
+            );
         });
         it('should apply cert configs', async () => {
             const kc = new KubeConfig();
@@ -419,8 +424,19 @@ describe('KubeConfig', () => {
             const rc = new RequestContext(testServerName, HttpMethod.GET);
 
             await kc.applySecurityAuthentication(rc);
+            const expectedCA = Buffer.from('CADAT@', 'utf-8');
+            const expectedProxyHref = 'http://example:9443/';
 
-            strictEqual(rc.getDispatcher() instanceof UndiciProxyAgent, true);
+            const dispatcher = rc.getDispatcher() as UndiciProxyAgent;
+            strictEqual(dispatcher instanceof UndiciProxyAgent, true);
+            const kProxyOpts = Object.getOwnPropertySymbols(dispatcher).find(
+                (s) => s.toString() === 'Symbol(proxy agent options)',
+            )!;
+            const kRequestTls = Object.getOwnPropertySymbols(dispatcher).find(
+                (s) => s.toString() === 'Symbol(request tls settings)',
+            )!;
+            strictEqual((dispatcher as any)[kProxyOpts].uri, expectedProxyHref);
+            strictEqual(Buffer.from((dispatcher as any)[kRequestTls].ca).toString(), expectedCA.toString());
         });
         it('should apply http proxy', async () => {
             const kc = new KubeConfig();
@@ -431,8 +447,19 @@ describe('KubeConfig', () => {
             const rc = new RequestContext(testServerName, HttpMethod.GET);
 
             await kc.applySecurityAuthentication(rc);
+            const expectedCA = Buffer.from('CADAT@', 'utf-8');
+            const expectedProxyHref = 'http://example:8080/';
 
-            strictEqual(rc.getDispatcher() instanceof UndiciProxyAgent, true);
+            const dispatcher = rc.getDispatcher() as UndiciProxyAgent;
+            strictEqual(dispatcher instanceof UndiciProxyAgent, true);
+            const kProxyOpts = Object.getOwnPropertySymbols(dispatcher).find(
+                (s) => s.toString() === 'Symbol(proxy agent options)',
+            )!;
+            const kRequestTls = Object.getOwnPropertySymbols(dispatcher).find(
+                (s) => s.toString() === 'Symbol(request tls settings)',
+            )!;
+            strictEqual((dispatcher as any)[kProxyOpts].uri, expectedProxyHref);
+            strictEqual(Buffer.from((dispatcher as any)[kRequestTls].ca).toString(), expectedCA.toString());
         });
         it('should throw an error if proxy-url is provided but the server protocol is not http or https', async () => {
             const kc = new KubeConfig();
@@ -478,8 +505,7 @@ describe('KubeConfig', () => {
 
             await kc.applySecurityAuthentication(rc);
 
-            // contextG doesn't exist in the kubeconfig, so no TLS config → no custom dispatcher needed
-            strictEqual(rc.getDispatcher(), undefined);
+            strictEqual(rc.getDispatcher() instanceof UndiciAgent, true);
         });
 
         it('should apply NODE_TLS_REJECT_UNAUTHORIZED from environment to agent', async () => {

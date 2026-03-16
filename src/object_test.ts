@@ -495,11 +495,13 @@ describe('KubernetesObject', () => {
             mockAgent.disableNetConnect();
             const pool = mockAgent.get('https://d.i.y');
             try {
-                pool.intercept({ path: '/api/v1', method: 'GET' })
-                    .reply(200, resourceBodies.core, { headers: { 'content-type': 'application/json' } });
+                pool.intercept({ path: '/api/v1', method: 'GET' }).reply(200, resourceBodies.core, {
+                    headers: { 'content-type': 'application/json' },
+                });
                 const r = await c.specUriPath(o, 'patch');
                 strictEqual(r, '/api/v1/namespaces/fugazi/services/repeater');
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -520,11 +522,13 @@ describe('KubernetesObject', () => {
             mockAgent.disableNetConnect();
             const pool = mockAgent.get('https://d.i.y');
             try {
-                pool.intercept({ path: '/api/v1', method: 'GET' })
-                    .reply(200, resourceBodies.core, { headers: { 'content-type': 'application/json' } });
+                pool.intercept({ path: '/api/v1', method: 'GET' }).reply(200, resourceBodies.core, {
+                    headers: { 'content-type': 'application/json' },
+                });
                 const r = await c.specUriPath(o, 'patch');
                 strictEqual(r, '/api/v1/namespaces/fugazi/serviceaccounts/repeater');
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -552,11 +556,13 @@ describe('KubernetesObject', () => {
             mockAgent.disableNetConnect();
             const pool = mockAgent.get('https://d.i.y');
             try {
-                pool.intercept({ path: '/api/v1', method: 'GET' })
-                    .reply(200, resourceBodies.core, { headers: { 'content-type': 'application/json' } });
+                pool.intercept({ path: '/api/v1', method: 'GET' }).reply(200, resourceBodies.core, {
+                    headers: { 'content-type': 'application/json' },
+                });
                 const r = await c.specUriPath(o, 'patch');
                 strictEqual(r, '/api/v1/namespaces/straight-edge/pods/repeater');
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -584,11 +590,13 @@ describe('KubernetesObject', () => {
             mockAgent.disableNetConnect();
             const pool = mockAgent.get('https://d.i.y');
             try {
-                pool.intercept({ path: '/api/v1', method: 'GET' })
-                    .reply(200, resourceBodies.core, { headers: { 'content-type': 'application/json' } });
+                pool.intercept({ path: '/api/v1', method: 'GET' }).reply(200, resourceBodies.core, {
+                    headers: { 'content-type': 'application/json' },
+                });
                 const r = await c.specUriPath(o, 'patch');
                 strictEqual(r, '/api/v1/namespaces/default/pods/repeater');
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -609,11 +617,13 @@ describe('KubernetesObject', () => {
             mockAgent.disableNetConnect();
             const pool = mockAgent.get('https://d.i.y');
             try {
-                pool.intercept({ path: '/api/v1', method: 'GET' })
-                    .reply(200, resourceBodies.core, { headers: { 'content-type': 'application/json' } });
+                pool.intercept({ path: '/api/v1', method: 'GET' }).reply(200, resourceBodies.core, {
+                    headers: { 'content-type': 'application/json' },
+                });
                 const r = await c.specUriPath(o, 'delete');
                 strictEqual(r, '/api/v1/namespaces/repeater');
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -634,11 +644,13 @@ describe('KubernetesObject', () => {
             mockAgent.disableNetConnect();
             const pool = mockAgent.get('https://d.i.y');
             try {
-                pool.intercept({ path: '/api/v1', method: 'GET' })
-                    .reply(200, resourceBodies.core, { headers: { 'content-type': 'application/json' } });
+                pool.intercept({ path: '/api/v1', method: 'GET' }).reply(200, resourceBodies.core, {
+                    headers: { 'content-type': 'application/json' },
+                });
                 const r = await c.specUriPath(o, 'create');
                 strictEqual(r, '/api/v1/namespaces/fugazi/services');
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -659,11 +671,13 @@ describe('KubernetesObject', () => {
             mockAgent.disableNetConnect();
             const pool = mockAgent.get('https://d.i.y');
             try {
-                pool.intercept({ path: '/api/v1', method: 'GET' })
-                    .reply(200, resourceBodies.core, { headers: { 'content-type': 'application/json' } });
+                pool.intercept({ path: '/api/v1', method: 'GET' }).reply(200, resourceBodies.core, {
+                    headers: { 'content-type': 'application/json' },
+                });
                 const r = await c.specUriPath(o, 'create');
                 strictEqual(r, '/api/v1/namespaces');
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -685,11 +699,13 @@ describe('KubernetesObject', () => {
             mockAgent.disableNetConnect();
             const pool = mockAgent.get('https://d.i.y');
             try {
-                pool.intercept({ path: '/apis/apps/v1', method: 'GET' })
-                    .reply(200, resourceBodies.apps, { headers: { 'content-type': 'application/json' } });
+                pool.intercept({ path: '/apis/apps/v1', method: 'GET' }).reply(200, resourceBodies.apps, {
+                    headers: { 'content-type': 'application/json' },
+                });
                 const r = await c.specUriPath(o, 'read');
                 strictEqual(r, '/apis/apps/v1/namespaces/fugazi/deployments/repeater');
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -710,11 +726,15 @@ describe('KubernetesObject', () => {
             mockAgent.disableNetConnect();
             const pool = mockAgent.get('https://d.i.y');
             try {
-                pool.intercept({ path: '/apis/rbac.authorization.k8s.io/v1', method: 'GET' })
-                    .reply(200, resourceBodies.rbac, { headers: { 'content-type': 'application/json' } });
+                pool.intercept({ path: '/apis/rbac.authorization.k8s.io/v1', method: 'GET' }).reply(
+                    200,
+                    resourceBodies.rbac,
+                    { headers: { 'content-type': 'application/json' } },
+                );
                 const r = await c.specUriPath(o, 'read');
                 strictEqual(r, '/apis/rbac.authorization.k8s.io/v1/clusterroles/repeater');
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -826,8 +846,9 @@ describe('KubernetesObject', () => {
             const pool = mockAgent.get('https://d.i.y');
             try {
                 for (const k of a) {
-                    pool.intercept({ path: k.p, method: 'GET' })
-                        .reply(200, k.b, { headers: { 'content-type': 'application/json' } });
+                    pool.intercept({ path: k.p, method: 'GET' }).reply(200, k.b, {
+                        headers: { 'content-type': 'application/json' },
+                    });
                 }
                 for (const k of a) {
                     const c = KubernetesObjectApiTest.makeApiClient();
@@ -846,6 +867,7 @@ describe('KubernetesObject', () => {
                     strictEqual(r, k.e);
                 }
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -957,8 +979,9 @@ describe('KubernetesObject', () => {
             const pool = mockAgent.get('https://d.i.y');
             try {
                 for (const k of a) {
-                    pool.intercept({ path: k.p, method: 'GET' })
-                        .reply(200, k.b, { headers: { 'content-type': 'application/json' } });
+                    pool.intercept({ path: k.p, method: 'GET' }).reply(200, k.b, {
+                        headers: { 'content-type': 'application/json' },
+                    });
                 }
                 for (const k of a) {
                     const c = KubernetesObjectApiTest.makeApiClient();
@@ -973,6 +996,7 @@ describe('KubernetesObject', () => {
                     strictEqual(r, k.e);
                 }
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -1008,13 +1032,15 @@ describe('KubernetesObject', () => {
             mockAgent.disableNetConnect();
             const pool = mockAgent.get('https://d.i.y');
             try {
-                pool.intercept({ path: '/api/v1', method: 'GET' })
-                    .reply(200, resourceBodies.core, { headers: { 'content-type': 'application/json' } });
+                pool.intercept({ path: '/api/v1', method: 'GET' }).reply(200, resourceBodies.core, {
+                    headers: { 'content-type': 'application/json' },
+                });
                 await rejects(c.specUriPath(o, 'read'), {
                     name: 'Error',
                     message: 'Required spec property name is not set',
                 });
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -1036,13 +1062,15 @@ describe('KubernetesObject', () => {
             mockAgent.disableNetConnect();
             const pool = mockAgent.get('https://d.i.y');
             try {
-                pool.intercept({ path: '/api/v1', method: 'GET' })
-                    .reply(200, resourceBodies.core, { headers: { 'content-type': 'application/json' } });
+                pool.intercept({ path: '/api/v1', method: 'GET' }).reply(200, resourceBodies.core, {
+                    headers: { 'content-type': 'application/json' },
+                });
                 await rejects(c.specUriPath(o, 'create'), {
                     name: 'Error',
                     message: 'Unrecognized API version and kind: v1 Ingress',
                 });
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -1095,12 +1123,14 @@ describe('KubernetesObject', () => {
             mockAgent.disableNetConnect();
             const pool = mockAgent.get('https://d.i.y');
             try {
-                pool.intercept({ path: '/api/v1', method: 'GET' })
-                    .reply(200, resourceBodies.core, { headers: { 'content-type': 'application/json' } });
+                pool.intercept({ path: '/api/v1', method: 'GET' }).reply(200, resourceBodies.core, {
+                    headers: { 'content-type': 'application/json' },
+                });
                 await c.resource('v1', 'Service');
                 strictEqual(preMiddlewareCalled, true);
                 strictEqual(postMiddlewareCalled, true);
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -1114,8 +1144,9 @@ describe('KubernetesObject', () => {
             mockAgent.disableNetConnect();
             const pool = mockAgent.get('https://d.i.y');
             try {
-                pool.intercept({ path: '/api/v1', method: 'GET' })
-                    .reply(200, resourceBodies.core, { headers: { 'content-type': 'application/json' } });
+                pool.intercept({ path: '/api/v1', method: 'GET' }).reply(200, resourceBodies.core, {
+                    headers: { 'content-type': 'application/json' },
+                });
                 const s = await c.resource('v1', 'Service');
                 if (!s) {
                     throw new Error('old TypeScript compiler');
@@ -1147,6 +1178,7 @@ describe('KubernetesObject', () => {
                 strictEqual(pv.name, 'persistentvolumes');
                 strictEqual(pv.namespaced, false);
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -1176,8 +1208,9 @@ describe('KubernetesObject', () => {
             mockAgent.disableNetConnect();
             const pool = mockAgent.get('https://d.i.y');
             try {
-                pool.intercept({ path: '/api/v1', method: 'GET' })
-                    .reply(200, resourceBodies.core, { headers: { 'content-type': 'application/json' } });
+                pool.intercept({ path: '/api/v1', method: 'GET' }).reply(200, resourceBodies.core, {
+                    headers: { 'content-type': 'application/json' },
+                });
                 const s = await c.resource('v1', 'Service');
                 if (!s) {
                     throw new Error('old TypeScript compiler');
@@ -1192,6 +1225,7 @@ describe('KubernetesObject', () => {
                     JSON.parse(resourceBodies.core).resources.length,
                 );
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -1365,8 +1399,9 @@ describe('KubernetesObject', () => {
             const pool = mockAgent.get('https://d.i.y');
             try {
                 for (const m of methods) {
-                    pool.intercept({ path: m.p, method: m.v })
-                        .reply(m.c, m.b, { headers: { 'content-type': 'application/json' } });
+                    pool.intercept({ path: m.p, method: m.v }).reply(m.c, m.b, {
+                        headers: { 'content-type': 'application/json' },
+                    });
                 }
                 for (const m of methods) {
                     // TODO: Figure out why Typescript barfs if we do m.call
@@ -1374,6 +1409,7 @@ describe('KubernetesObject', () => {
                     await hack_m.call(client, s);
                 }
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -1535,8 +1571,9 @@ describe('KubernetesObject', () => {
             try {
                 for (const p of ['true', 'false']) {
                     for (const m of methods) {
-                        pool.intercept({ path: `${m.p}?pretty=${p}`, method: m.v })
-                            .reply(m.c, m.b, { headers: { 'content-type': 'application/json' } });
+                        pool.intercept({ path: `${m.p}?pretty=${p}`, method: m.v }).reply(m.c, m.b, {
+                            headers: { 'content-type': 'application/json' },
+                        });
                     }
                 }
                 for (const p of ['true', 'false']) {
@@ -1547,6 +1584,7 @@ describe('KubernetesObject', () => {
                     }
                 }
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -1671,8 +1709,9 @@ describe('KubernetesObject', () => {
             const pool = mockAgent.get('https://d.i.y');
             try {
                 for (const m of methods) {
-                    pool.intercept({ path: `${m.p}?dryRun=All`, method: m.v })
-                        .reply(m.c, m.b, { headers: { 'content-type': 'application/json' } });
+                    pool.intercept({ path: `${m.p}?dryRun=All`, method: m.v }).reply(m.c, m.b, {
+                        headers: { 'content-type': 'application/json' },
+                    });
                 }
                 for (const m of methods) {
                     // TODO: Figure out why Typescript barfs if we do m.call
@@ -1680,6 +1719,7 @@ describe('KubernetesObject', () => {
                     await hack_m.call(client, s, undefined, 'All');
                 }
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -1800,8 +1840,9 @@ describe('KubernetesObject', () => {
             const pool = mockAgent.get('https://d.i.y');
             try {
                 for (const m of methods) {
-                    pool.intercept({ path: m.p, method: m.v })
-                        .reply(m.c, m.b, { headers: { 'content-type': 'application/json' } });
+                    pool.intercept({ path: m.p, method: m.v }).reply(m.c, m.b, {
+                        headers: { 'content-type': 'application/json' },
+                    });
                 }
                 for (const m of methods) {
                     // TODO: Figure out why Typescript barfs if we do m.call
@@ -1809,6 +1850,7 @@ describe('KubernetesObject', () => {
                     await hack_m.call(client, netPol);
                 }
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(originalDispatcher);
             }
@@ -1838,14 +1880,18 @@ describe('KubernetesObject', () => {
                     },
                 },
             };
-                        const origDispatcher = getGlobalDispatcher();
+            const origDispatcher = getGlobalDispatcher();
             const mockAgent = new MockAgent();
             setGlobalDispatcher(mockAgent);
             mockAgent.disableNetConnect();
             const pool = mockAgent.get('https://d.i.y');
             try {
-                pool.intercept({ path: '/api/v1/namespaces/default/services?fieldManager=ManageField', method: 'POST' })
-                    .reply(201, `{
+                pool.intercept({
+                    path: '/api/v1/namespaces/default/services?fieldManager=ManageField',
+                    method: 'POST',
+                }).reply(
+                    201,
+                    `{
   "kind": "Service",
   "apiVersion": "v1",
   "metadata": {
@@ -1877,9 +1923,15 @@ describe('KubernetesObject', () => {
   "status": {
     "loadBalancer": {}
   }
-}`, { headers: { 'content-type': 'application/json' } });
-                pool.intercept({ path: '/api/v1/namespaces/default/services/k8s-js-client-test?pretty=true', method: 'PUT' })
-                    .reply(200, `{
+}`,
+                    { headers: { 'content-type': 'application/json' } },
+                );
+                pool.intercept({
+                    path: '/api/v1/namespaces/default/services/k8s-js-client-test?pretty=true',
+                    method: 'PUT',
+                }).reply(
+                    200,
+                    `{
   "kind": "Service",
   "apiVersion": "v1",
   "metadata": {
@@ -1912,9 +1964,15 @@ describe('KubernetesObject', () => {
   "status": {
     "loadBalancer": {}
   }
-}`, { headers: { 'content-type': 'application/json' } });
-                pool.intercept({ path: '/api/v1/namespaces/default/services/k8s-js-client-test?gracePeriodSeconds=7&propagationPolicy=Foreground', method: 'DELETE' })
-                    .reply(200, `{
+}`,
+                    { headers: { 'content-type': 'application/json' } },
+                );
+                pool.intercept({
+                    path: '/api/v1/namespaces/default/services/k8s-js-client-test?gracePeriodSeconds=7&propagationPolicy=Foreground',
+                    method: 'DELETE',
+                }).reply(
+                    200,
+                    `{
   "apiVersion": "v1",
   "details": {
     "kind": "services",
@@ -1924,7 +1982,9 @@ describe('KubernetesObject', () => {
   "kind": "Status",
   "metadata": {},
   "status": "Success"
-}`, { headers: { 'content-type': 'application/json' } });
+}`,
+                    { headers: { 'content-type': 'application/json' } },
+                );
 
                 const c = await client.create(s, undefined, undefined, 'ManageField');
                 (c.metadata.annotations as Record<string, string>).test = '1';
@@ -1936,6 +1996,7 @@ describe('KubernetesObject', () => {
                 );
                 await client.delete(s, undefined, undefined, 7, undefined, 'Foreground');
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(origDispatcher);
             }
@@ -1948,8 +2009,12 @@ describe('KubernetesObject', () => {
             mockAgent.disableNetConnect();
             const pool = mockAgent.get('https://d.i.y');
             try {
-                pool.intercept({ path: '/api/v1/namespaces/default/secrets/test-secret-1', method: 'GET' })
-                    .reply(200, JSON.stringify({
+                pool.intercept({
+                    path: '/api/v1/namespaces/default/secrets/test-secret-1',
+                    method: 'GET',
+                }).reply(
+                    200,
+                    JSON.stringify({
                         apiVersion: 'v1',
                         kind: 'Secret',
                         metadata: {
@@ -1959,7 +2024,9 @@ describe('KubernetesObject', () => {
                             creationTimestamp: '2022-01-01T00:00:00.000Z',
                         },
                         data: { key: 'value' },
-                    }), { headers: { 'content-type': 'application/json' } });
+                    }),
+                    { headers: { 'content-type': 'application/json' } },
+                );
                 const secret = await client.read<V1Secret>({
                     apiVersion: 'v1',
                     kind: 'Secret',
@@ -1970,203 +2037,243 @@ describe('KubernetesObject', () => {
                 ok(secret.metadata);
                 deepStrictEqual(secret.metadata!.creationTimestamp, new Date('2022-01-01T00:00:00.000Z'));
             } finally {
+                mockAgent.assertNoPendingInterceptors();
                 await mockAgent.close();
                 setGlobalDispatcher(origDispatcher);
             }
 
-        it('should read a custom resource', async () => {
-            interface CustomTestResource extends KubernetesObject {
-                spec: {
-                    key: string;
+            it('should read a custom resource', async () => {
+                interface CustomTestResource extends KubernetesObject {
+                    spec: {
+                        key: string;
+                    };
+                }
+                (client as any).apiVersionResourceCache['example.com/v1'] = {
+                    groupVersion: 'example.com/v1',
+                    kind: 'APIResourceList',
+                    resources: [
+                        {
+                            kind: 'CustomTestResource',
+                            name: 'customtestresources',
+                            namespaced: true,
+                        },
+                    ],
                 };
-            }
-            (client as any).apiVersionResourceCache['example.com/v1'] = {
-                groupVersion: 'example.com/v1',
-                kind: 'APIResourceList',
-                resources: [
-                    {
-                        kind: 'CustomTestResource',
-                        name: 'customtestresources',
-                        namespaced: true,
-                    },
-                ],
-            };
-            const origDispatcher = getGlobalDispatcher();
-            const mockAgent = new MockAgent();
-            setGlobalDispatcher(mockAgent);
-            mockAgent.disableNetConnect();
-            const pool = mockAgent.get('https://d.i.y');
-            try {
-                pool.intercept({ path: '/apis/example.com/v1/namespaces/default/customtestresources/test-1', method: 'GET' })
-                    .reply(200, JSON.stringify({
+                const origDispatcher = getGlobalDispatcher();
+                const mockAgent = new MockAgent();
+                setGlobalDispatcher(mockAgent);
+                mockAgent.disableNetConnect();
+                const pool = mockAgent.get('https://d.i.y');
+                try {
+                    pool.intercept({
+                        path: '/apis/example.com/v1/namespaces/default/customtestresources/test-1',
+                        method: 'GET',
+                    }).reply(
+                        200,
+                        JSON.stringify({
+                            apiVersion: 'example.com/v1',
+                            kind: 'CustomTestResource',
+                            metadata: {
+                                name: 'test-1',
+                                namespace: 'default',
+                                uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
+                                creationTimestamp: '2022-01-01T00:00:00.000Z',
+                            },
+                            spec: { key: 'value' },
+                        }),
+                        { headers: { 'content-type': 'application/json' } },
+                    );
+                    const custom = await client.read<CustomTestResource>({
                         apiVersion: 'example.com/v1',
                         kind: 'CustomTestResource',
-                        metadata: {
-                            name: 'test-1',
-                            namespace: 'default',
-                            uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
-                            creationTimestamp: '2022-01-01T00:00:00.000Z',
-                        },
-                        spec: { key: 'value' },
-                    }), { headers: { 'content-type': 'application/json' } });
-                const custom = await client.read<CustomTestResource>({
-                    apiVersion: 'example.com/v1',
-                    kind: 'CustomTestResource',
-                    metadata: { name: 'test-1', namespace: 'default' },
-                });
-                deepStrictEqual(custom.spec, { key: 'value' });
-                ok(custom.metadata);
-                deepStrictEqual(custom.metadata!.creationTimestamp, new Date('2022-01-01T00:00:00.000Z'));
-            } finally {
-                await mockAgent.close();
-                setGlobalDispatcher(origDispatcher);
-            }
-        });
-
-        it('should list resources in a namespace', async () => {
-            const origDispatcher = getGlobalDispatcher();
-            const mockAgent = new MockAgent();
-            setGlobalDispatcher(mockAgent);
-            mockAgent.disableNetConnect();
-            const pool = mockAgent.get('https://d.i.y');
-            try {
-                pool.intercept({ path: '/api/v1/namespaces/default/secrets', method: 'GET' })
-                    .reply(200, JSON.stringify({
-                        apiVersion: 'v1',
-                        kind: 'SecretList',
-                        items: [{ apiVersion: 'v1', kind: 'Secret', metadata: { name: 'test-secret-1', uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821' } }],
-                        metadata: { resourceVersion: '216532459', continue: 'abc' },
-                    }), { headers: { 'content-type': 'application/json' } });
-                const lr = await client.list<V1Secret>('v1', 'Secret', 'default');
-                const items = lr.items;
-                strictEqual(items.length, 1);
-                strictEqual(items[0] instanceof V1Secret, true);
-            } finally {
-                await mockAgent.close();
-                setGlobalDispatcher(origDispatcher);
-            }
-        });
-
-        it('should list resources in all namespaces', async () => {
-            const origDispatcher = getGlobalDispatcher();
-            const mockAgent = new MockAgent();
-            setGlobalDispatcher(mockAgent);
-            mockAgent.disableNetConnect();
-            const pool = mockAgent.get('https://d.i.y');
-            try {
-                pool.intercept({ path: '/api/v1/secrets?fieldSelector=metadata.name%3Dtest-secret1&labelSelector=app%3Dmy-app&limit=5', method: 'GET' })
-                    .reply(200, JSON.stringify({
-                        apiVersion: 'v1',
-                        kind: 'SecretList',
-                        items: [{ apiVersion: 'v1', kind: 'Secret', metadata: { name: 'test-secret-1', uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821' } }],
-                        metadata: { resourceVersion: '216532459', continue: 'abc' },
-                    }), { headers: { 'content-type': 'application/json' } });
-                const lr = await client.list(
-                    'v1',
-                    'Secret',
-                    undefined,
-                    undefined,
-                    undefined,
-                    undefined,
-                    'metadata.name=test-secret1',
-                    'app=my-app',
-                    5,
-                );
-                const items = lr.items;
-                strictEqual(items.length, 1);
-            } finally {
-                await mockAgent.close();
-                setGlobalDispatcher(origDispatcher);
-            }
-        });
-    });
-
-    describe('errors', () => {
-        let client: KubernetesObjectApi;
-        before(() => {
-            const kc = new KubeConfig();
-            kc.loadFromOptions(testConfigOptions);
-            client = KubernetesObjectApi.makeApiClient(kc);
-        });
-
-        it('should throw error if no spec', async () => {
-            const methods = [client.create, client.patch, client.read, client.replace, client.delete];
-            for (const s of [null, undefined]) {
-                for (const m of methods) {
-                    // TODO: Figure out why Typescript barfs if we do m.call
-                    const hack_m = m as any;
-                    await rejects(hack_m.call(client, s), {
-                        name: 'Error',
-                        message: /Required parameter spec was null or undefined when calling /,
+                        metadata: { name: 'test-1', namespace: 'default' },
                     });
+                    deepStrictEqual(custom.spec, { key: 'value' });
+                    ok(custom.metadata);
+                    deepStrictEqual(custom.metadata!.creationTimestamp, new Date('2022-01-01T00:00:00.000Z'));
+                } finally {
+                    mockAgent.assertNoPendingInterceptors();
+                    await mockAgent.close();
+                    setGlobalDispatcher(origDispatcher);
                 }
-            }
+            });
+
+            it('should list resources in a namespace', async () => {
+                const origDispatcher = getGlobalDispatcher();
+                const mockAgent = new MockAgent();
+                setGlobalDispatcher(mockAgent);
+                mockAgent.disableNetConnect();
+                const pool = mockAgent.get('https://d.i.y');
+                try {
+                    pool.intercept({ path: '/api/v1/namespaces/default/secrets', method: 'GET' }).reply(
+                        200,
+                        JSON.stringify({
+                            apiVersion: 'v1',
+                            kind: 'SecretList',
+                            items: [
+                                {
+                                    apiVersion: 'v1',
+                                    kind: 'Secret',
+                                    metadata: {
+                                        name: 'test-secret-1',
+                                        uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
+                                    },
+                                },
+                            ],
+                            metadata: { resourceVersion: '216532459', continue: 'abc' },
+                        }),
+                        { headers: { 'content-type': 'application/json' } },
+                    );
+                    const lr = await client.list<V1Secret>('v1', 'Secret', 'default');
+                    const items = lr.items;
+                    strictEqual(items.length, 1);
+                    strictEqual(items[0] instanceof V1Secret, true);
+                } finally {
+                    mockAgent.assertNoPendingInterceptors();
+                    await mockAgent.close();
+                    setGlobalDispatcher(origDispatcher);
+                }
+            });
+
+            it('should list resources in all namespaces', async () => {
+                const origDispatcher = getGlobalDispatcher();
+                const mockAgent = new MockAgent();
+                setGlobalDispatcher(mockAgent);
+                mockAgent.disableNetConnect();
+                const pool = mockAgent.get('https://d.i.y');
+                try {
+                    pool.intercept({
+                        path: '/api/v1/secrets?fieldSelector=metadata.name%3Dtest-secret1&labelSelector=app%3Dmy-app&limit=5',
+                        method: 'GET',
+                    }).reply(
+                        200,
+                        JSON.stringify({
+                            apiVersion: 'v1',
+                            kind: 'SecretList',
+                            items: [
+                                {
+                                    apiVersion: 'v1',
+                                    kind: 'Secret',
+                                    metadata: {
+                                        name: 'test-secret-1',
+                                        uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
+                                    },
+                                },
+                            ],
+                            metadata: { resourceVersion: '216532459', continue: 'abc' },
+                        }),
+                        { headers: { 'content-type': 'application/json' } },
+                    );
+                    const lr = await client.list(
+                        'v1',
+                        'Secret',
+                        undefined,
+                        undefined,
+                        undefined,
+                        undefined,
+                        'metadata.name=test-secret1',
+                        'app=my-app',
+                        5,
+                    );
+                    const items = lr.items;
+                    strictEqual(items.length, 1);
+                } finally {
+                    mockAgent.assertNoPendingInterceptors();
+                    await mockAgent.close();
+                    setGlobalDispatcher(origDispatcher);
+                }
+            });
         });
 
-        it('should throw an error if request throws an error', async () => {
-            const s = {
-                apiVersion: 'v1',
-                kind: 'Service',
-                metadata: {
-                    name: 'valid-name',
-                    namespace: 'default',
-                },
-                spec: {
-                    ports: [
-                        {
-                            port: 80,
-                            protocol: 'TCP',
-                            targetPort: 80,
-                        },
-                    ],
-                    selector: {
-                        app: 'sleep',
-                    },
-                },
-            };
-            const origDispatcher = getGlobalDispatcher();
-            const mockAgent = new MockAgent();
-            setGlobalDispatcher(mockAgent);
-            mockAgent.disableNetConnect();
-            try {
-                await rejects(client.read(s));
-            } finally {
-                await mockAgent.close();
-                setGlobalDispatcher(origDispatcher);
-            }
-        });
+        describe('errors', () => {
+            let client: KubernetesObjectApi;
+            before(() => {
+                const kc = new KubeConfig();
+                kc.loadFromOptions(testConfigOptions);
+                client = KubernetesObjectApi.makeApiClient(kc);
+            });
 
-        it('should throw an error if name not valid', async () => {
-            const s = {
-                apiVersion: 'v1',
-                kind: 'Service',
-                metadata: {
-                    name: '_not_a_valid_name_',
-                    namespace: 'default',
-                },
-                spec: {
-                    ports: [
-                        {
-                            port: 80,
-                            protocol: 'TCP',
-                            targetPort: 80,
-                        },
-                    ],
-                    selector: {
-                        app: 'sleep',
+            it('should throw error if no spec', async () => {
+                const methods = [client.create, client.patch, client.read, client.replace, client.delete];
+                for (const s of [null, undefined]) {
+                    for (const m of methods) {
+                        // TODO: Figure out why Typescript barfs if we do m.call
+                        const hack_m = m as any;
+                        await rejects(hack_m.call(client, s), {
+                            name: 'Error',
+                            message: /Required parameter spec was null or undefined when calling /,
+                        });
+                    }
+                }
+            });
+
+            it('should throw an error if request throws an error', async () => {
+                const s = {
+                    apiVersion: 'v1',
+                    kind: 'Service',
+                    metadata: {
+                        name: 'valid-name',
+                        namespace: 'default',
                     },
-                },
-            };
-            const origDispatcher = getGlobalDispatcher();
-            const mockAgent = new MockAgent();
-            setGlobalDispatcher(mockAgent);
-            mockAgent.disableNetConnect();
-            const pool = mockAgent.get('https://d.i.y');
-            try {
-                pool.intercept({ path: '/api/v1', method: 'GET' })
-                    .reply(200, resourceBodies.core, { headers: { 'content-type': 'application/json' } });
-                pool.intercept({ path: '/api/v1/namespaces/default/services', method: 'POST' })
-                    .reply(422, `{
+                    spec: {
+                        ports: [
+                            {
+                                port: 80,
+                                protocol: 'TCP',
+                                targetPort: 80,
+                            },
+                        ],
+                        selector: {
+                            app: 'sleep',
+                        },
+                    },
+                };
+                const origDispatcher = getGlobalDispatcher();
+                const mockAgent = new MockAgent();
+                setGlobalDispatcher(mockAgent);
+                mockAgent.disableNetConnect();
+                try {
+                    await rejects(client.read(s));
+                } finally {
+                    mockAgent.assertNoPendingInterceptors();
+                    await mockAgent.close();
+                    setGlobalDispatcher(origDispatcher);
+                }
+            });
+
+            it('should throw an error if name not valid', async () => {
+                const s = {
+                    apiVersion: 'v1',
+                    kind: 'Service',
+                    metadata: {
+                        name: '_not_a_valid_name_',
+                        namespace: 'default',
+                    },
+                    spec: {
+                        ports: [
+                            {
+                                port: 80,
+                                protocol: 'TCP',
+                                targetPort: 80,
+                            },
+                        ],
+                        selector: {
+                            app: 'sleep',
+                        },
+                    },
+                };
+                const origDispatcher = getGlobalDispatcher();
+                const mockAgent = new MockAgent();
+                setGlobalDispatcher(mockAgent);
+                mockAgent.disableNetConnect();
+                const pool = mockAgent.get('https://d.i.y');
+                try {
+                    pool.intercept({ path: '/api/v1', method: 'GET' }).reply(200, resourceBodies.core, {
+                        headers: { 'content-type': 'application/json' },
+                    });
+                    pool.intercept({ path: '/api/v1/namespaces/default/services', method: 'POST' }).reply(
+                        422,
+                        `{
   "kind": "Status",
   "apiVersion": "v1",
   "metadata": {},
@@ -2185,85 +2292,89 @@ describe('KubernetesObject', () => {
     ]
   },
   "code": 422
-}`, { headers: { 'content-type': 'application/json' } });
+}`,
+                        { headers: { 'content-type': 'application/json' } },
+                    );
 
-                await rejects(client.create(s), {
-                    name: 'Error',
-                    code: 422,
-                });
-            } finally {
-                await mockAgent.close();
-                setGlobalDispatcher(origDispatcher);
-            }
-        });
+                    await rejects(client.create(s), {
+                        name: 'Error',
+                        code: 422,
+                    });
+                } finally {
+                    mockAgent.assertNoPendingInterceptors();
+                    await mockAgent.close();
+                    setGlobalDispatcher(origDispatcher);
+                }
+            });
 
-        it('should throw an error if apiVersion not valid', async () => {
-            const d = {
-                apiVersion: 'applications/v1',
-                kind: 'Deployment',
-                metadata: {
-                    name: 'should-not-be-created',
-                    namespace: 'default',
-                },
-                spec: {
-                    selector: {
-                        matchLabels: {
-                            app: 'sleep',
-                        },
+            it('should throw an error if apiVersion not valid', async () => {
+                const d = {
+                    apiVersion: 'applications/v1',
+                    kind: 'Deployment',
+                    metadata: {
+                        name: 'should-not-be-created',
+                        namespace: 'default',
                     },
-                    template: {
-                        metadata: {
-                            labels: {
+                    spec: {
+                        selector: {
+                            matchLabels: {
                                 app: 'sleep',
                             },
                         },
-                        spec: {
-                            containers: [
-                                {
-                                    args: ['60'],
-                                    command: ['sleep'],
-                                    image: 'alpine',
-                                    name: 'sleep',
-                                    ports: [{ containerPort: 80 }],
+                        template: {
+                            metadata: {
+                                labels: {
+                                    app: 'sleep',
                                 },
-                            ],
+                            },
+                            spec: {
+                                containers: [
+                                    {
+                                        args: ['60'],
+                                        command: ['sleep'],
+                                        image: 'alpine',
+                                        name: 'sleep',
+                                        ports: [{ containerPort: 80 }],
+                                    },
+                                ],
+                            },
                         },
                     },
-                },
-            };
-            const origDispatcher = getGlobalDispatcher();
-            const mockAgent = new MockAgent();
-            setGlobalDispatcher(mockAgent);
-            mockAgent.disableNetConnect();
-            const pool = mockAgent.get('https://d.i.y');
-            try {
-                pool.intercept({ path: '/apis/applications/v1', method: 'GET' })
-                    .reply(404, '{}', { headers: { 'content-type': 'application/json' } });
-                await rejects(client.create(d), {
-                    name: 'Error',
-                    code: 404,
-                    message: /Failed to fetch resource metadata for applications\/v1\/Deployment/,
-                });
-            } finally {
-                await mockAgent.close();
-                setGlobalDispatcher(origDispatcher);
-            }
-        });
-
-        it('should throw error if no apiVersion', async () => {
-            await rejects((client.list as any)(undefined, undefined), {
-                name: 'Error',
-                message: 'Required parameter apiVersion was null or undefined when calling list.',
+                };
+                const origDispatcher = getGlobalDispatcher();
+                const mockAgent = new MockAgent();
+                setGlobalDispatcher(mockAgent);
+                mockAgent.disableNetConnect();
+                const pool = mockAgent.get('https://d.i.y');
+                try {
+                    pool.intercept({ path: '/apis/applications/v1', method: 'GET' }).reply(404, '{}', {
+                        headers: { 'content-type': 'application/json' },
+                    });
+                    await rejects(client.create(d), {
+                        name: 'Error',
+                        code: 404,
+                        message: /Failed to fetch resource metadata for applications\/v1\/Deployment/,
+                    });
+                } finally {
+                    mockAgent.assertNoPendingInterceptors();
+                    await mockAgent.close();
+                    setGlobalDispatcher(origDispatcher);
+                }
             });
-        });
 
-        it('should throw error if no kind', async () => {
-            await rejects((client.list as any)('', undefined), {
-                name: 'Error',
-                message: 'Required parameter kind was null or undefined when calling list.',
+            it('should throw error if no apiVersion', async () => {
+                await rejects((client.list as any)(undefined, undefined), {
+                    name: 'Error',
+                    message: 'Required parameter apiVersion was null or undefined when calling list.',
+                });
+            });
+
+            it('should throw error if no kind', async () => {
+                await rejects((client.list as any)('', undefined), {
+                    name: 'Error',
+                    message: 'Required parameter kind was null or undefined when calling list.',
+                });
             });
         });
     });
-});
-
 });

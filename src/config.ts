@@ -575,7 +575,10 @@ export class KubeConfig implements SecurityAuthentication {
         return agent;
     }
 
-    private createDispatcher(cluster: Cluster | null, agentOptions: https.AgentOptions): Dispatcher | undefined {
+    private createDispatcher(
+        cluster: Cluster | null,
+        agentOptions: https.AgentOptions,
+    ): Dispatcher | undefined {
         const connectOptions: Record<string, unknown> = {};
         if (agentOptions.ca !== undefined) connectOptions.ca = agentOptions.ca;
         if (agentOptions.cert !== undefined) connectOptions.cert = agentOptions.cert;
@@ -597,7 +600,7 @@ export class KubeConfig implements SecurityAuthentication {
             if (!cluster.server.startsWith('https') && !cluster.server.startsWith('http')) {
                 throw new Error('Unsupported proxy type');
             }
-            return new UndiciProxyAgent({ uri: cluster.proxyUrl, connect: connectOptions });
+            return new UndiciProxyAgent({ uri: cluster.proxyUrl, requestTls: connectOptions });
         } else if (cluster?.server?.startsWith('http:') && !cluster.skipTLSVerify) {
             throw new Error('HTTP protocol is not allowed when skipTLSVerify is not set or false');
         }

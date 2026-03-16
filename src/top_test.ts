@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import { deepEqual, deepStrictEqual, strictEqual } from 'assert';
-import nock from 'nock';
+import { MockAgent, setGlobalDispatcher, getGlobalDispatcher } from 'undici';
 import { KubeConfig } from './config.js';
 import { Metrics, PodMetricsList } from './metrics.js';
 import { CurrentResourceUsage, ResourceUsage, topNodes, topPods } from './top.js';
@@ -176,7 +176,7 @@ const testConfigOptions: any = {
 const systemUnderTest = (
     namespace?: string,
     options: any = testConfigOptions,
-): [() => ReturnType<typeof topPods>, () => ReturnType<typeof topNodes>, nock.Scope] => {
+): [() => ReturnType<typeof topPods>, () => ReturnType<typeof topNodes>, MockAgent] => {
     const kc = new KubeConfig();
     kc.loadFromOptions(options);
     const metricsClient = new Metrics(kc);
@@ -184,258 +184,362 @@ const systemUnderTest = (
     const topPodsFunc = () => topPods(core, metricsClient, namespace);
     const topNodesFunc = () => topNodes(core);
 
-    const scope = nock(testConfigOptions.clusters[0].server);
+    const mockAgent = new MockAgent();
+    setGlobalDispatcher(mockAgent);
+    mockAgent.disableNetConnect();
 
-    return [topPodsFunc, topNodesFunc, scope];
+    return [topPodsFunc, topNodesFunc, mockAgent];
 };
 
 describe('Top', () => {
     describe('topPods', () => {
         it('should return empty when no pods', async () => {
-            const [topPodsFunc, _, scope] = systemUnderTest();
-            const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
-            const pods = scope.get('/api/v1/pods').reply(200, {
-                items: [],
-            });
-            const result = await topPodsFunc();
-            deepStrictEqual(result, []);
-            podMetrics.done();
-            pods.done();
+            const originalDispatcher = getGlobalDispatcher();
+            const [topPodsFunc, _, mockAgent] = systemUnderTest();
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
+                200,
+                JSON.stringify(emptyPodMetrics),
+                { headers: { 'content-type': 'application/json' } },
+            );
+            pool.intercept({ path: '/api/v1/pods', method: 'GET' }).reply(
+                200,
+                JSON.stringify({ items: [] }),
+                { headers: { 'content-type': 'application/json' } },
+            );
+            try {
+                const result = await topPodsFunc();
+                deepStrictEqual(result, []);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
         it('should return use cluster scope when namespace empty string', async () => {
-            const [topPodsFunc, _, scope] = systemUnderTest('');
-            const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
-            const pods = scope.get('/api/v1/pods').reply(200, {
-                items: [],
-            });
-            const result = await topPodsFunc();
-            deepStrictEqual(result, []);
-            podMetrics.done();
-            pods.done();
+            const originalDispatcher = getGlobalDispatcher();
+            const [topPodsFunc, _, mockAgent] = systemUnderTest('');
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
+                200,
+                JSON.stringify(emptyPodMetrics),
+                { headers: { 'content-type': 'application/json' } },
+            );
+            pool.intercept({ path: '/api/v1/pods', method: 'GET' }).reply(
+                200,
+                JSON.stringify({ items: [] }),
+                { headers: { 'content-type': 'application/json' } },
+            );
+            try {
+                const result = await topPodsFunc();
+                deepStrictEqual(result, []);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
         it('should return cluster wide pod metrics', async () => {
-            const [topPodsFunc, _, scope] = systemUnderTest();
-            const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, mockedPodMetrics);
-            const pods = scope.get('/api/v1/pods').reply(200, {
-                items: podList,
-            });
-            const result = await topPodsFunc();
-            strictEqual(result.length, 2);
-            deepStrictEqual(result[0].CPU, new CurrentResourceUsage(0.05, 0.1, 0.1));
-            deepStrictEqual(
-                result[0].Memory,
-                new CurrentResourceUsage(BigInt('4005888'), BigInt('104857600'), BigInt('104857600')),
+            const originalDispatcher = getGlobalDispatcher();
+            const [topPodsFunc, _, mockAgent] = systemUnderTest();
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
+                200,
+                JSON.stringify(mockedPodMetrics),
+                { headers: { 'content-type': 'application/json' } },
             );
-            deepEqual(result[0].Containers, [
-                {
-                    CPUUsage: {
-                        CurrentUsage: 0.05,
-                        LimitTotal: 0.1,
-                        RequestTotal: 0.1,
-                    },
-                    Container: 'nginx',
-                    MemoryUsage: {
-                        CurrentUsage: BigInt('4005888'),
-                        LimitTotal: BigInt('104857600'),
-                        RequestTotal: BigInt('104857600'),
-                    },
-                },
-            ]);
-            deepStrictEqual(result[1].CPU, new CurrentResourceUsage(1.4, 2.1, 2.1));
-            deepStrictEqual(
-                result[1].Memory,
-                new CurrentResourceUsage(BigInt('7192576'), BigInt('157286400'), BigInt('209715200')),
+            pool.intercept({ path: '/api/v1/pods', method: 'GET' }).reply(
+                200,
+                JSON.stringify({ items: podList }),
+                { headers: { 'content-type': 'application/json' } },
             );
-            deepEqual(result[1].Containers, [
-                {
-                    CPUUsage: {
-                        CurrentUsage: 0,
-                        LimitTotal: 0.1,
-                        RequestTotal: 0.1,
+            try {
+                const result = await topPodsFunc();
+                strictEqual(result.length, 2);
+                deepStrictEqual(result[0].CPU, new CurrentResourceUsage(0.05, 0.1, 0.1));
+                deepStrictEqual(
+                    result[0].Memory,
+                    new CurrentResourceUsage(BigInt('4005888'), BigInt('104857600'), BigInt('104857600')),
+                );
+                deepEqual(result[0].Containers, [
+                    {
+                        CPUUsage: {
+                            CurrentUsage: 0.05,
+                            LimitTotal: 0.1,
+                            RequestTotal: 0.1,
+                        },
+                        Container: 'nginx',
+                        MemoryUsage: {
+                            CurrentUsage: BigInt('4005888'),
+                            LimitTotal: BigInt('104857600'),
+                            RequestTotal: BigInt('104857600'),
+                        },
                     },
-                    Container: 'nginx',
-                    MemoryUsage: {
-                        CurrentUsage: BigInt('4108288'),
-                        LimitTotal: BigInt('104857600'),
-                        RequestTotal: BigInt('104857600'),
+                ]);
+                deepStrictEqual(result[1].CPU, new CurrentResourceUsage(1.4, 2.1, 2.1));
+                deepStrictEqual(
+                    result[1].Memory,
+                    new CurrentResourceUsage(BigInt('7192576'), BigInt('157286400'), BigInt('209715200')),
+                );
+                deepEqual(result[1].Containers, [
+                    {
+                        CPUUsage: {
+                            CurrentUsage: 0,
+                            LimitTotal: 0.1,
+                            RequestTotal: 0.1,
+                        },
+                        Container: 'nginx',
+                        MemoryUsage: {
+                            CurrentUsage: BigInt('4108288'),
+                            LimitTotal: BigInt('104857600'),
+                            RequestTotal: BigInt('104857600'),
+                        },
                     },
-                },
-                {
-                    CPUUsage: {
-                        CurrentUsage: 1.4,
-                        LimitTotal: 2,
-                        RequestTotal: 2,
+                    {
+                        CPUUsage: {
+                            CurrentUsage: 1.4,
+                            LimitTotal: 2,
+                            RequestTotal: 2,
+                        },
+                        Container: 'sidecar',
+                        MemoryUsage: {
+                            CurrentUsage: BigInt('3084288'),
+                            LimitTotal: BigInt('104857600'),
+                            RequestTotal: BigInt('52428800'),
+                        },
                     },
-                    Container: 'sidecar',
-                    MemoryUsage: {
-                        CurrentUsage: BigInt('3084288'),
-                        LimitTotal: BigInt('104857600'),
-                        RequestTotal: BigInt('52428800'),
-                    },
-                },
-            ]);
-            podMetrics.done();
-            pods.done();
+                ]);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
         it('should return best effort pod metrics', async () => {
-            const [topPodsFunc, _, scope] = systemUnderTest();
-            const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, mockedPodMetrics);
-            const pods = scope.get('/api/v1/pods').reply(200, {
-                items: bestEffortPodList,
-            });
-            const result = await topPodsFunc();
-            strictEqual(result.length, 1);
-            deepStrictEqual(result[0].CPU, new CurrentResourceUsage(0.05, 0, 0));
-            deepStrictEqual(result[0].Memory, new CurrentResourceUsage(BigInt('4005888'), 0, 0));
-            deepEqual(result[0].Containers, [
-                {
-                    CPUUsage: {
-                        CurrentUsage: 0.05,
-                        LimitTotal: 0,
-                        RequestTotal: 0,
+            const originalDispatcher = getGlobalDispatcher();
+            const [topPodsFunc, _, mockAgent] = systemUnderTest();
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
+                200,
+                JSON.stringify(mockedPodMetrics),
+                { headers: { 'content-type': 'application/json' } },
+            );
+            pool.intercept({ path: '/api/v1/pods', method: 'GET' }).reply(
+                200,
+                JSON.stringify({ items: bestEffortPodList }),
+                { headers: { 'content-type': 'application/json' } },
+            );
+            try {
+                const result = await topPodsFunc();
+                strictEqual(result.length, 1);
+                deepStrictEqual(result[0].CPU, new CurrentResourceUsage(0.05, 0, 0));
+                deepStrictEqual(result[0].Memory, new CurrentResourceUsage(BigInt('4005888'), 0, 0));
+                deepEqual(result[0].Containers, [
+                    {
+                        CPUUsage: {
+                            CurrentUsage: 0.05,
+                            LimitTotal: 0,
+                            RequestTotal: 0,
+                        },
+                        Container: 'nginx',
+                        MemoryUsage: {
+                            CurrentUsage: BigInt('4005888'),
+                            LimitTotal: 0,
+                            RequestTotal: 0,
+                        },
                     },
-                    Container: 'nginx',
-                    MemoryUsage: {
-                        CurrentUsage: BigInt('4005888'),
-                        LimitTotal: 0,
-                        RequestTotal: 0,
-                    },
-                },
-            ]);
-            podMetrics.done();
-            pods.done();
+                ]);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
         it('should return 0 when pod metrics missing', async () => {
-            const [topPodsFunc, _, scope] = systemUnderTest();
-            const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
-            const pods = scope.get('/api/v1/pods').reply(200, {
-                items: podList,
-            });
-            const result = await topPodsFunc();
-            strictEqual(result.length, 2);
-            deepStrictEqual(result[0].CPU, new CurrentResourceUsage(0, 0.1, 0.1));
-            deepStrictEqual(
-                result[0].Memory,
-                new CurrentResourceUsage(0, BigInt('104857600'), BigInt('104857600')),
+            const originalDispatcher = getGlobalDispatcher();
+            const [topPodsFunc, _, mockAgent] = systemUnderTest();
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
+                200,
+                JSON.stringify(emptyPodMetrics),
+                { headers: { 'content-type': 'application/json' } },
             );
-            deepStrictEqual(result[0].Containers, []);
-            deepStrictEqual(result[1].CPU, new CurrentResourceUsage(0, 2.1, 2.1));
-            deepStrictEqual(
-                result[1].Memory,
-                new CurrentResourceUsage(0, BigInt('157286400'), BigInt('209715200')),
+            pool.intercept({ path: '/api/v1/pods', method: 'GET' }).reply(
+                200,
+                JSON.stringify({ items: podList }),
+                { headers: { 'content-type': 'application/json' } },
             );
-            deepStrictEqual(result[1].Containers, []);
-            podMetrics.done();
-            pods.done();
+            try {
+                const result = await topPodsFunc();
+                strictEqual(result.length, 2);
+                deepStrictEqual(result[0].CPU, new CurrentResourceUsage(0, 0.1, 0.1));
+                deepStrictEqual(
+                    result[0].Memory,
+                    new CurrentResourceUsage(0, BigInt('104857600'), BigInt('104857600')),
+                );
+                deepStrictEqual(result[0].Containers, []);
+                deepStrictEqual(result[1].CPU, new CurrentResourceUsage(0, 2.1, 2.1));
+                deepStrictEqual(
+                    result[1].Memory,
+                    new CurrentResourceUsage(0, BigInt('157286400'), BigInt('209715200')),
+                );
+                deepStrictEqual(result[1].Containers, []);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
         it('should return empty array when pods missing', async () => {
-            const [topPodsFunc, _, scope] = systemUnderTest();
-            const podMetrics = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, mockedPodMetrics);
-            const pods = scope.get('/api/v1/pods').reply(200, {
-                items: [],
-            });
-            const result = await topPodsFunc();
-            strictEqual(result.length, 0);
-            podMetrics.done();
-            pods.done();
+            const originalDispatcher = getGlobalDispatcher();
+            const [topPodsFunc, _, mockAgent] = systemUnderTest();
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
+                200,
+                JSON.stringify(mockedPodMetrics),
+                { headers: { 'content-type': 'application/json' } },
+            );
+            pool.intercept({ path: '/api/v1/pods', method: 'GET' }).reply(
+                200,
+                JSON.stringify({ items: [] }),
+                { headers: { 'content-type': 'application/json' } },
+            );
+            try {
+                const result = await topPodsFunc();
+                strictEqual(result.length, 0);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
         it('should return namespace pod metrics', async () => {
-            const [topPodsFunc, _, scope] = systemUnderTest(TEST_NAMESPACE);
-            const podMetrics = scope
-                .get(`/apis/metrics.k8s.io/v1beta1/namespaces/${TEST_NAMESPACE}/pods`)
-                .reply(200, mockedPodMetrics);
-            const pods = scope.get(`/api/v1/namespaces/${TEST_NAMESPACE}/pods`).reply(200, {
-                items: podList,
+            const originalDispatcher = getGlobalDispatcher();
+            const [topPodsFunc, _, mockAgent] = systemUnderTest(TEST_NAMESPACE);
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({
+                path: `/apis/metrics.k8s.io/v1beta1/namespaces/${TEST_NAMESPACE}/pods`,
+                method: 'GET',
+            }).reply(200, JSON.stringify(mockedPodMetrics), {
+                headers: { 'content-type': 'application/json' },
             });
-            const result = await topPodsFunc();
-            strictEqual(result.length, 2);
-            deepStrictEqual(result[0].CPU, new CurrentResourceUsage(0.05, 0.1, 0.1));
-            deepStrictEqual(
-                result[0].Memory,
-                new CurrentResourceUsage(BigInt('4005888'), BigInt('104857600'), BigInt('104857600')),
+            pool.intercept({ path: `/api/v1/namespaces/${TEST_NAMESPACE}/pods`, method: 'GET' }).reply(
+                200,
+                JSON.stringify({ items: podList }),
+                { headers: { 'content-type': 'application/json' } },
             );
-            deepEqual(result[0].Containers, [
-                {
-                    CPUUsage: {
-                        CurrentUsage: 0.05,
-                        LimitTotal: 0.1,
-                        RequestTotal: 0.1,
+            try {
+                const result = await topPodsFunc();
+                strictEqual(result.length, 2);
+                deepStrictEqual(result[0].CPU, new CurrentResourceUsage(0.05, 0.1, 0.1));
+                deepStrictEqual(
+                    result[0].Memory,
+                    new CurrentResourceUsage(BigInt('4005888'), BigInt('104857600'), BigInt('104857600')),
+                );
+                deepEqual(result[0].Containers, [
+                    {
+                        CPUUsage: {
+                            CurrentUsage: 0.05,
+                            LimitTotal: 0.1,
+                            RequestTotal: 0.1,
+                        },
+                        Container: 'nginx',
+                        MemoryUsage: {
+                            CurrentUsage: BigInt('4005888'),
+                            LimitTotal: BigInt('104857600'),
+                            RequestTotal: BigInt('104857600'),
+                        },
                     },
-                    Container: 'nginx',
-                    MemoryUsage: {
-                        CurrentUsage: BigInt('4005888'),
-                        LimitTotal: BigInt('104857600'),
-                        RequestTotal: BigInt('104857600'),
+                ]);
+                deepStrictEqual(result[1].CPU, new CurrentResourceUsage(1.4, 2.1, 2.1));
+                deepStrictEqual(
+                    result[1].Memory,
+                    new CurrentResourceUsage(BigInt('7192576'), BigInt('157286400'), BigInt('209715200')),
+                );
+                deepEqual(result[1].Containers, [
+                    {
+                        CPUUsage: {
+                            CurrentUsage: 0,
+                            LimitTotal: 0.1,
+                            RequestTotal: 0.1,
+                        },
+                        Container: 'nginx',
+                        MemoryUsage: {
+                            CurrentUsage: BigInt('4108288'),
+                            LimitTotal: BigInt('104857600'),
+                            RequestTotal: BigInt('104857600'),
+                        },
                     },
-                },
-            ]);
-            deepStrictEqual(result[1].CPU, new CurrentResourceUsage(1.4, 2.1, 2.1));
-            deepStrictEqual(
-                result[1].Memory,
-                new CurrentResourceUsage(BigInt('7192576'), BigInt('157286400'), BigInt('209715200')),
-            );
-            deepEqual(result[1].Containers, [
-                {
-                    CPUUsage: {
-                        CurrentUsage: 0,
-                        LimitTotal: 0.1,
-                        RequestTotal: 0.1,
+                    {
+                        CPUUsage: {
+                            CurrentUsage: 1.4,
+                            LimitTotal: 2,
+                            RequestTotal: 2,
+                        },
+                        Container: 'sidecar',
+                        MemoryUsage: {
+                            CurrentUsage: BigInt('3084288'),
+                            LimitTotal: BigInt('104857600'),
+                            RequestTotal: BigInt('52428800'),
+                        },
                     },
-                    Container: 'nginx',
-                    MemoryUsage: {
-                        CurrentUsage: BigInt('4108288'),
-                        LimitTotal: BigInt('104857600'),
-                        RequestTotal: BigInt('104857600'),
-                    },
-                },
-                {
-                    CPUUsage: {
-                        CurrentUsage: 1.4,
-                        LimitTotal: 2,
-                        RequestTotal: 2,
-                    },
-                    Container: 'sidecar',
-                    MemoryUsage: {
-                        CurrentUsage: BigInt('3084288'),
-                        LimitTotal: BigInt('104857600'),
-                        RequestTotal: BigInt('52428800'),
-                    },
-                },
-            ]);
-            podMetrics.done();
-            pods.done();
+                ]);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
     });
     describe('topNodes', () => {
         it('should return empty when no nodes', async () => {
-            const [_, topNodesFunc, scope] = systemUnderTest();
-            const nodes = scope.get('/api/v1/nodes').reply(200, {
-                items: [],
-            });
-            const result = await topNodesFunc();
-            deepStrictEqual(result, []);
-            nodes.done();
+            const originalDispatcher = getGlobalDispatcher();
+            const [_, topNodesFunc, mockAgent] = systemUnderTest();
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({ path: '/api/v1/nodes', method: 'GET' }).reply(
+                200,
+                JSON.stringify({ items: [] }),
+                { headers: { 'content-type': 'application/json' } },
+            );
+            try {
+                const result = await topNodesFunc();
+                deepStrictEqual(result, []);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
 
         it('should return cluster wide node metrics', async () => {
-            const [_, topNodesFunc, scope] = systemUnderTest();
-            const pods = scope.get('/api/v1/pods').times(2).reply(200, {
-                items: podList,
-            });
-            const nodes = scope.get('/api/v1/nodes').reply(200, {
-                items: nodeList,
-            });
-            const result = await topNodesFunc();
-            strictEqual(result.length, 2);
-            deepStrictEqual(result[0].CPU, new ResourceUsage(4, 2.2, 2.2));
-            deepStrictEqual(
-                result[0].Memory,
-                new ResourceUsage(BigInt('17179869184'), BigInt('262144000'), BigInt('314572800')),
+            const originalDispatcher = getGlobalDispatcher();
+            const [_, topNodesFunc, mockAgent] = systemUnderTest();
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({ path: '/api/v1/pods', method: 'GET' })
+                .reply(200, JSON.stringify({ items: podList }), {
+                    headers: { 'content-type': 'application/json' },
+                })
+                .times(2);
+            pool.intercept({ path: '/api/v1/nodes', method: 'GET' }).reply(
+                200,
+                JSON.stringify({ items: nodeList }),
+                { headers: { 'content-type': 'application/json' } },
             );
-            deepStrictEqual(result[1].CPU, new ResourceUsage(8, 0, 0));
-            deepStrictEqual(result[1].Memory, new ResourceUsage(BigInt('34359738368'), 0, 0));
-            pods.done();
-            nodes.done();
+            try {
+                const result = await topNodesFunc();
+                strictEqual(result.length, 2);
+                deepStrictEqual(result[0].CPU, new ResourceUsage(4, 2.2, 2.2));
+                deepStrictEqual(
+                    result[0].Memory,
+                    new ResourceUsage(BigInt('17179869184'), BigInt('262144000'), BigInt('314572800')),
+                );
+                deepStrictEqual(result[1].CPU, new ResourceUsage(8, 0, 0));
+                deepStrictEqual(result[1].Memory, new ResourceUsage(BigInt('34359738368'), 0, 0));
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
     });
 });
