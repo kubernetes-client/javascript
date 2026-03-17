@@ -1,4 +1,5 @@
-import fetch from 'node-fetch';
+import { fetch } from 'undici';
+import { HttpMethod, RequestContext } from './gen/index.js';
 import { KubeConfig } from './config.js';
 import { ApiException, V1Status } from './gen/index.js';
 import { normalizeResponseHeaders } from './util.js';
@@ -85,11 +86,15 @@ export class Metrics {
 
         const requestURL = cluster.server + path;
 
-        const requestInit = await this.config.applyToFetchOptions({});
-        requestInit.method = 'GET';
+        const ctx = new RequestContext(requestURL, HttpMethod.GET);
+        await this.config.applySecurityAuthentication(ctx);
 
         try {
-            const response = await fetch(requestURL, requestInit);
+            const response = await fetch(requestURL, {
+                method: 'GET',
+                headers: ctx.getHeaders(),
+                dispatcher: ctx.getDispatcher(),
+            });
             const json = await response.json();
             const { status } = response;
 
@@ -123,7 +128,7 @@ export class Metrics {
             }
             throw new ApiException<undefined | V1Status>(
                 500,
-                `Error occurred in metrics request: ${e.message}`,
+                `Error occurred in metrics request: ${e.message}${e.cause ? ': ' + e.cause.message : ''}`,
                 {},
                 {},
             );

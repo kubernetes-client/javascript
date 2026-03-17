@@ -6,6 +6,7 @@ import net from 'node:net';
 import path from 'node:path';
 
 import { Headers, RequestInit } from 'node-fetch';
+import { Agent as UndiciAgent, ProxyAgent as UndiciProxyAgent, type Dispatcher } from 'undici';
 import { RequestContext } from './api.js';
 import { Authenticator } from './auth.js';
 import { AzureAuth } from './azure_auth.js';
@@ -275,7 +276,10 @@ export class KubeConfig implements SecurityAuthentication {
             agentOptions.rejectUnauthorized = httpsOptions.rejectUnauthorized;
         }
 
-        context.setAgent(this.createAgent(cluster, agentOptions));
+        const dispatcher = this.createDispatcher(cluster, agentOptions);
+        if (dispatcher !== undefined) {
+            context.setDispatcher(dispatcher);
+        }
     }
 
     /**
@@ -569,6 +573,43 @@ export class KubeConfig implements SecurityAuthentication {
             agent = new https.Agent(agentOptions);
         }
         return agent;
+    }
+
+    private createDispatcher(
+        cluster: Cluster | null,
+        agentOptions: https.AgentOptions,
+    ): Dispatcher | undefined {
+        const connectOptions: Record<string, unknown> = {};
+        if (agentOptions.ca !== undefined) connectOptions.ca = agentOptions.ca;
+        if (agentOptions.cert !== undefined) connectOptions.cert = agentOptions.cert;
+        if (agentOptions.key !== undefined) connectOptions.key = agentOptions.key;
+        if (agentOptions.pfx !== undefined) connectOptions.pfx = agentOptions.pfx;
+        if (agentOptions.passphrase !== undefined) connectOptions.passphrase = agentOptions.passphrase;
+        if (agentOptions.rejectUnauthorized !== undefined)
+            connectOptions.rejectUnauthorized = agentOptions.rejectUnauthorized;
+        if ((agentOptions as any).servername !== undefined)
+            connectOptions.servername = (agentOptions as any).servername;
+
+        if (cluster && cluster.proxyUrl) {
+            if (cluster.proxyUrl.startsWith('socks')) {
+                throw new Error(
+                    'SOCKS proxy is not supported with the undici HTTP client. ' +
+                        'Use an HTTP/HTTPS proxy or configure a custom dispatcher.',
+                );
+            }
+            if (!cluster.server.startsWith('https') && !cluster.server.startsWith('http')) {
+                throw new Error('Unsupported proxy type');
+            }
+            return new UndiciProxyAgent({ uri: cluster.proxyUrl, requestTls: connectOptions });
+        } else if (cluster?.server?.startsWith('http:') && !cluster.skipTLSVerify) {
+            throw new Error('HTTP protocol is not allowed when skipTLSVerify is not set or false');
+        }
+        // Only create a custom agent when there are TLS options to configure.
+        // Otherwise, let undici use its default/global dispatcher (important for testing with MockAgent).
+        if (Object.keys(connectOptions).length === 0) {
+            return undefined;
+        }
+        return new UndiciAgent({ connect: connectOptions });
     }
 
     private applyHTTPSOptions(opts: https.RequestOptions | WebSocket.ClientOptions): void {
