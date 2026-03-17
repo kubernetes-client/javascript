@@ -2012,148 +2012,148 @@ describe('KubernetesObject', () => {
                 await mockAgent.close();
                 setGlobalDispatcher(origDispatcher);
             }
+        });
 
-            it('should read a custom resource', async () => {
-                interface CustomTestResource extends KubernetesObject {
-                    spec: {
-                        key: string;
-                    };
-                }
-                (client as any).apiVersionResourceCache['example.com/v1'] = {
-                    groupVersion: 'example.com/v1',
-                    kind: 'APIResourceList',
-                    resources: [
-                        {
-                            kind: 'CustomTestResource',
-                            name: 'customtestresources',
-                            namespaced: true,
-                        },
-                    ],
+        it('should read a custom resource', async () => {
+            interface CustomTestResource extends KubernetesObject {
+                spec: {
+                    key: string;
                 };
-                const origDispatcher = getGlobalDispatcher();
-                const mockAgent = new MockAgent();
-                setGlobalDispatcher(mockAgent);
-                mockAgent.disableNetConnect();
-                const pool = mockAgent.get('https://d.i.y');
-                try {
-                    pool.intercept({
-                        path: '/apis/example.com/v1/namespaces/default/customtestresources/test-1',
-                        method: 'GET',
-                    }).reply(
-                        200,
-                        JSON.stringify({
-                            apiVersion: 'example.com/v1',
-                            kind: 'CustomTestResource',
-                            metadata: {
-                                name: 'test-1',
-                                namespace: 'default',
-                                uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
-                                creationTimestamp: '2022-01-01T00:00:00.000Z',
-                            },
-                            spec: { key: 'value' },
-                        }),
-                        { headers: { 'content-type': 'application/json' } },
-                    );
-                    const custom = await client.read<CustomTestResource>({
+            }
+            (client as any).apiVersionResourceCache['example.com/v1'] = {
+                groupVersion: 'example.com/v1',
+                kind: 'APIResourceList',
+                resources: [
+                    {
+                        kind: 'CustomTestResource',
+                        name: 'customtestresources',
+                        namespaced: true,
+                    },
+                ],
+            };
+            const origDispatcher = getGlobalDispatcher();
+            const mockAgent = new MockAgent();
+            setGlobalDispatcher(mockAgent);
+            mockAgent.disableNetConnect();
+            const pool = mockAgent.get('https://d.i.y');
+            try {
+                pool.intercept({
+                    path: '/apis/example.com/v1/namespaces/default/customtestresources/test-1',
+                    method: 'GET',
+                }).reply(
+                    200,
+                    JSON.stringify({
                         apiVersion: 'example.com/v1',
                         kind: 'CustomTestResource',
-                        metadata: { name: 'test-1', namespace: 'default' },
-                    });
-                    deepStrictEqual(custom.spec, { key: 'value' });
-                    ok(custom.metadata);
-                    deepStrictEqual(custom.metadata!.creationTimestamp, new Date('2022-01-01T00:00:00.000Z'));
-                } finally {
-                    mockAgent.assertNoPendingInterceptors();
-                    await mockAgent.close();
-                    setGlobalDispatcher(origDispatcher);
-                }
-            });
+                        metadata: {
+                            name: 'test-1',
+                            namespace: 'default',
+                            uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
+                            creationTimestamp: '2022-01-01T00:00:00.000Z',
+                        },
+                        spec: { key: 'value' },
+                    }),
+                    { headers: { 'content-type': 'application/json' } },
+                );
+                const custom = await client.read<CustomTestResource>({
+                    apiVersion: 'example.com/v1',
+                    kind: 'CustomTestResource',
+                    metadata: { name: 'test-1', namespace: 'default' },
+                });
+                deepStrictEqual(custom.spec, { key: 'value' });
+                ok(custom.metadata);
+                deepStrictEqual(custom.metadata!.creationTimestamp, new Date('2022-01-01T00:00:00.000Z'));
+            } finally {
+                mockAgent.assertNoPendingInterceptors();
+                await mockAgent.close();
+                setGlobalDispatcher(origDispatcher);
+            }
+        });
 
-            it('should list resources in a namespace', async () => {
-                const origDispatcher = getGlobalDispatcher();
-                const mockAgent = new MockAgent();
-                setGlobalDispatcher(mockAgent);
-                mockAgent.disableNetConnect();
-                const pool = mockAgent.get('https://d.i.y');
-                try {
-                    pool.intercept({ path: '/api/v1/namespaces/default/secrets', method: 'GET' }).reply(
-                        200,
-                        JSON.stringify({
-                            apiVersion: 'v1',
-                            kind: 'SecretList',
-                            items: [
-                                {
-                                    apiVersion: 'v1',
-                                    kind: 'Secret',
-                                    metadata: {
-                                        name: 'test-secret-1',
-                                        uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
-                                    },
+        it('should list resources in a namespace', async () => {
+            const origDispatcher = getGlobalDispatcher();
+            const mockAgent = new MockAgent();
+            setGlobalDispatcher(mockAgent);
+            mockAgent.disableNetConnect();
+            const pool = mockAgent.get('https://d.i.y');
+            try {
+                pool.intercept({ path: '/api/v1/namespaces/default/secrets', method: 'GET' }).reply(
+                    200,
+                    JSON.stringify({
+                        apiVersion: 'v1',
+                        kind: 'SecretList',
+                        items: [
+                            {
+                                apiVersion: 'v1',
+                                kind: 'Secret',
+                                metadata: {
+                                    name: 'test-secret-1',
+                                    uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
                                 },
-                            ],
-                            metadata: { resourceVersion: '216532459', continue: 'abc' },
-                        }),
-                        { headers: { 'content-type': 'application/json' } },
-                    );
-                    const lr = await client.list<V1Secret>('v1', 'Secret', 'default');
-                    const items = lr.items;
-                    strictEqual(items.length, 1);
-                    strictEqual(items[0] instanceof V1Secret, true);
-                } finally {
-                    mockAgent.assertNoPendingInterceptors();
-                    await mockAgent.close();
-                    setGlobalDispatcher(origDispatcher);
-                }
-            });
+                            },
+                        ],
+                        metadata: { resourceVersion: '216532459', continue: 'abc' },
+                    }),
+                    { headers: { 'content-type': 'application/json' } },
+                );
+                const lr = await client.list<V1Secret>('v1', 'Secret', 'default');
+                const items = lr.items;
+                strictEqual(items.length, 1);
+                strictEqual(items[0] instanceof V1Secret, true);
+            } finally {
+                mockAgent.assertNoPendingInterceptors();
+                await mockAgent.close();
+                setGlobalDispatcher(origDispatcher);
+            }
+        });
 
-            it('should list resources in all namespaces', async () => {
-                const origDispatcher = getGlobalDispatcher();
-                const mockAgent = new MockAgent();
-                setGlobalDispatcher(mockAgent);
-                mockAgent.disableNetConnect();
-                const pool = mockAgent.get('https://d.i.y');
-                try {
-                    pool.intercept({
-                        path: '/api/v1/secrets?fieldSelector=metadata.name%3Dtest-secret1&labelSelector=app%3Dmy-app&limit=5',
-                        method: 'GET',
-                    }).reply(
-                        200,
-                        JSON.stringify({
-                            apiVersion: 'v1',
-                            kind: 'SecretList',
-                            items: [
-                                {
-                                    apiVersion: 'v1',
-                                    kind: 'Secret',
-                                    metadata: {
-                                        name: 'test-secret-1',
-                                        uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
-                                    },
+        it('should list resources in all namespaces', async () => {
+            const origDispatcher = getGlobalDispatcher();
+            const mockAgent = new MockAgent();
+            setGlobalDispatcher(mockAgent);
+            mockAgent.disableNetConnect();
+            const pool = mockAgent.get('https://d.i.y');
+            try {
+                pool.intercept({
+                    path: '/api/v1/secrets?fieldSelector=metadata.name%3Dtest-secret1&labelSelector=app%3Dmy-app&limit=5',
+                    method: 'GET',
+                }).reply(
+                    200,
+                    JSON.stringify({
+                        apiVersion: 'v1',
+                        kind: 'SecretList',
+                        items: [
+                            {
+                                apiVersion: 'v1',
+                                kind: 'Secret',
+                                metadata: {
+                                    name: 'test-secret-1',
+                                    uid: 'a4fd7a65-2af5-4ef1-a0bc-cb34a308b821',
                                 },
-                            ],
-                            metadata: { resourceVersion: '216532459', continue: 'abc' },
-                        }),
-                        { headers: { 'content-type': 'application/json' } },
-                    );
-                    const lr = await client.list(
-                        'v1',
-                        'Secret',
-                        undefined,
-                        undefined,
-                        undefined,
-                        undefined,
-                        'metadata.name=test-secret1',
-                        'app=my-app',
-                        5,
-                    );
-                    const items = lr.items;
-                    strictEqual(items.length, 1);
-                } finally {
-                    mockAgent.assertNoPendingInterceptors();
-                    await mockAgent.close();
-                    setGlobalDispatcher(origDispatcher);
-                }
-            });
+                            },
+                        ],
+                        metadata: { resourceVersion: '216532459', continue: 'abc' },
+                    }),
+                    { headers: { 'content-type': 'application/json' } },
+                );
+                const lr = await client.list(
+                    'v1',
+                    'Secret',
+                    undefined,
+                    undefined,
+                    undefined,
+                    undefined,
+                    'metadata.name=test-secret1',
+                    'app=my-app',
+                    5,
+                );
+                const items = lr.items;
+                strictEqual(items.length, 1);
+            } finally {
+                mockAgent.assertNoPendingInterceptors();
+                await mockAgent.close();
+                setGlobalDispatcher(origDispatcher);
+            }
         });
 
         describe('errors', () => {
