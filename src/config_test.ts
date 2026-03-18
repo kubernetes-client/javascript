@@ -26,6 +26,8 @@ import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolu
 import { ActionOnInvalid, Cluster, newClusters, newContexts, newUsers, User } from './config_types.js';
 import { ExecAuth } from './exec_auth.js';
 import { Agent as UndiciAgent, ProxyAgent as UndiciProxyAgent } from 'undici';
+import { SocksProxyAgent } from 'socks-proxy-agent';
+import { HttpProxyAgent, HttpsProxyAgent } from 'hpagent';
 import { AddressInfo } from 'node:net';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
@@ -505,6 +507,56 @@ describe('KubeConfig', () => {
             await kc.applySecurityAuthentication(rc);
 
             strictEqual(rc.getDispatcher() instanceof UndiciAgent, true);
+        });
+        it('should apply socks proxy agent via applyToHTTPSOptions', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcProxyUrl);
+            kc.setCurrentContext('contextA');
+
+            const opts: https.RequestOptions = {};
+            await kc.applyToHTTPSOptions(opts);
+
+            strictEqual(opts.agent instanceof SocksProxyAgent, true);
+        });
+        it('should apply https proxy agent via applyToHTTPSOptions', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcProxyUrl);
+            kc.setCurrentContext('contextB');
+
+            const opts: https.RequestOptions = {};
+            await kc.applyToHTTPSOptions(opts);
+
+            strictEqual(opts.agent instanceof HttpsProxyAgent, true);
+        });
+        it('should apply http proxy agent via applyToHTTPSOptions', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcProxyUrl);
+            kc.setCurrentContext('contextC');
+
+            const opts: https.RequestOptions = {};
+            await kc.applyToHTTPSOptions(opts);
+
+            strictEqual(opts.agent instanceof HttpProxyAgent, true);
+        });
+        it('should throw unsupported proxy type via applyToHTTPSOptions', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcProxyUrl);
+            kc.setCurrentContext('contextD');
+
+            const opts: https.RequestOptions = {};
+            await rejects(kc.applyToHTTPSOptions(opts), {
+                message: 'Unsupported proxy type',
+            });
+        });
+        it('should throw if cluster.server starts with http and skipTLSVerify is not set via applyToHTTPSOptions', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcProxyUrl);
+            kc.setCurrentContext('contextF');
+
+            const opts: https.RequestOptions = {};
+            await rejects(kc.applyToHTTPSOptions(opts), {
+                message: 'HTTP protocol is not allowed when skipTLSVerify is not set or false',
+            });
         });
 
         it('should apply NODE_TLS_REJECT_UNAUTHORIZED from environment to agent', async () => {
