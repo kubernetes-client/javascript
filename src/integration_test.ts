@@ -8,7 +8,7 @@ import { Cluster, User } from './config_types.js';
 
 describe('FullRequest', () => {
     describe('getPods', () => {
-        it('should get pods successfully', async () => {
+        it('should get pods successfully', async (t) => {
             const kc = new KubeConfig();
             const cluster = {
                 name: 'foo',
@@ -37,6 +37,11 @@ describe('FullRequest', () => {
             setGlobalDispatcher(mockAgent);
             mockAgent.disableNetConnect();
 
+            t.after(async () => {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            });
+
             const pool = mockAgent.get('https://nowhere.foo');
             pool.intercept({
                 path: '/api/v1/namespaces/default/pods',
@@ -46,13 +51,8 @@ describe('FullRequest', () => {
                 headers: { 'content-type': 'application/json' },
             });
 
-            try {
-                const list = await k8sApi.listNamespacedPod({ namespace: 'default' });
-                deepEqual(list, result);
-            } finally {
-                await mockAgent.close();
-                setGlobalDispatcher(originalDispatcher);
-            }
+            const list = await k8sApi.listNamespacedPod({ namespace: 'default' });
+            deepEqual(list, result);
         });
     });
 });
