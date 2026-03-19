@@ -352,9 +352,7 @@ describe('KubeConfig', () => {
                 servername: 'kube.example2.com',
             });
             strictEqual(dispatcherOpts.type, 'agent');
-            if (dispatcherOpts.type === 'agent') {
-                strictEqual(dispatcherOpts.connect.servername, 'kube.example2.com');
-            }
+            strictEqual(dispatcherOpts.connect.servername, 'kube.example2.com');
         });
         it('should apply cert configs', async () => {
             const kc = new KubeConfig();
@@ -429,9 +427,7 @@ describe('KubeConfig', () => {
                 key: Buffer.from('USER_CKDATA', 'utf-8'),
             });
             strictEqual(dispatcherOpts.type, 'proxy');
-            if (dispatcherOpts.type === 'proxy') {
-                strictEqual(dispatcherOpts.uri, 'socks5://example:1187');
-            }
+            strictEqual(dispatcherOpts.uri, 'socks5://example:1187');
         });
         it('should apply https proxy', async () => {
             const kc = new KubeConfig();
@@ -452,13 +448,11 @@ describe('KubeConfig', () => {
                 key: Buffer.from('USER_CKDATA', 'utf-8'),
             });
             strictEqual(dispatcherOpts.type, 'proxy');
-            if (dispatcherOpts.type === 'proxy') {
-                strictEqual(dispatcherOpts.uri, 'http://example:9443');
-                strictEqual(
-                    Buffer.from(dispatcherOpts.requestTls.ca as Buffer).toString(),
-                    expectedCA.toString(),
-                );
-            }
+            strictEqual(dispatcherOpts.uri, 'http://example:9443');
+            strictEqual(
+                Buffer.from(dispatcherOpts.requestTls.ca as Buffer).toString(),
+                expectedCA.toString(),
+            );
         });
         it('should apply http proxy', async () => {
             const kc = new KubeConfig();
@@ -479,13 +473,11 @@ describe('KubeConfig', () => {
                 key: Buffer.from('USER_CKDATA', 'utf-8'),
             });
             strictEqual(dispatcherOpts.type, 'proxy');
-            if (dispatcherOpts.type === 'proxy') {
-                strictEqual(dispatcherOpts.uri, 'http://example:8080');
-                strictEqual(
-                    Buffer.from(dispatcherOpts.requestTls.ca as Buffer).toString(),
-                    expectedCA.toString(),
-                );
-            }
+            strictEqual(dispatcherOpts.uri, 'http://example:8080');
+            strictEqual(
+                Buffer.from(dispatcherOpts.requestTls.ca as Buffer).toString(),
+                expectedCA.toString(),
+            );
         });
         it('should throw an error if proxy-url is provided but the server protocol is not http or https', async () => {
             const kc = new KubeConfig();

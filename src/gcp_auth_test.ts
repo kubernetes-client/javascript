@@ -113,9 +113,7 @@ describe('GoogleCloudPlatformAuth', () => {
             rejectUnauthorized: false,
         });
         strictEqual(dispatcherOpts.type, 'agent');
-        if (dispatcherOpts.type === 'agent') {
-            strictEqual(dispatcherOpts.connect.rejectUnauthorized, false);
-        }
+        strictEqual(dispatcherOpts.connect.rejectUnauthorized, false);
     });
 
     it('should not set rejectUnauthorized if skipTLSVerify is not set', async () => {
