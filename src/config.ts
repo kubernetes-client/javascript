@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import https from 'node:https';
 import http from 'node:http';
+import tls from 'node:tls';
 import yaml from 'js-yaml';
 import net from 'node:net';
 import path from 'node:path';
@@ -39,6 +40,15 @@ import { SocksProxyAgent } from 'socks-proxy-agent';
 import { HttpProxyAgent, HttpProxyAgentOptions, HttpsProxyAgent, HttpsProxyAgentOptions } from 'hpagent';
 import packagejson from '../package.json' with { type: 'json' };
 import { setHeaderMiddleware } from './middleware.js';
+
+// Uses tls.ConnectionOptions for the TLS connect fields we populate (ca, cert, key, etc.).
+// For the full set of constructor options available when creating dispatchers, see:
+//   - Agent:      Agent.Options      (extends Pool.Options -> Client.Options)
+//   - ProxyAgent: ProxyAgent.Options (extends Agent.Options, adds uri, requestTls, proxyTls, etc.)
+export type DispatcherOptions =
+    | { type: 'proxy'; uri: string; requestTls: tls.ConnectionOptions }
+    | { type: 'agent'; connect: tls.ConnectionOptions }
+    | { type: 'none' };
 
 const SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
 const SERVICEACCOUNT_CA_PATH: string = SERVICEACCOUNT_ROOT + '/ca.crt';
@@ -575,35 +585,54 @@ export class KubeConfig implements SecurityAuthentication {
         return agent;
     }
 
-    private createDispatcher(
+    /**
+     * Build the dispatcher configuration (options + type) without constructing
+     * the actual Dispatcher instance.  Exposed as a separate method so that
+     * tests can validate the option-mapping logic directly instead of reaching
+     * into undici's Symbol-keyed private state.
+     */
+    public createDispatcherOptions(
         cluster: Cluster | null,
         agentOptions: https.AgentOptions,
-    ): Dispatcher | undefined {
-        const connectOptions: Record<string, unknown> = {};
-        if (agentOptions.ca !== undefined) connectOptions.ca = agentOptions.ca;
-        if (agentOptions.cert !== undefined) connectOptions.cert = agentOptions.cert;
-        if (agentOptions.key !== undefined) connectOptions.key = agentOptions.key;
-        if (agentOptions.pfx !== undefined) connectOptions.pfx = agentOptions.pfx;
-        if (agentOptions.passphrase !== undefined) connectOptions.passphrase = agentOptions.passphrase;
+    ): DispatcherOptions {
+        const tlsOptions: tls.ConnectionOptions = {};
+        if (agentOptions.ca !== undefined) tlsOptions.ca = agentOptions.ca;
+        if (agentOptions.cert !== undefined) tlsOptions.cert = agentOptions.cert;
+        if (agentOptions.key !== undefined) tlsOptions.key = agentOptions.key;
+        if (agentOptions.pfx !== undefined) tlsOptions.pfx = agentOptions.pfx;
+        if (agentOptions.passphrase !== undefined) tlsOptions.passphrase = agentOptions.passphrase;
         if (agentOptions.rejectUnauthorized !== undefined)
-            connectOptions.rejectUnauthorized = agentOptions.rejectUnauthorized;
+            tlsOptions.rejectUnauthorized = agentOptions.rejectUnauthorized;
         if ((agentOptions as any).servername !== undefined)
-            connectOptions.servername = (agentOptions as any).servername;
+            tlsOptions.servername = (agentOptions as any).servername;
 
         if (cluster && cluster.proxyUrl) {
             if (!cluster.server.startsWith('https') && !cluster.server.startsWith('http')) {
                 throw new Error('Unsupported proxy type');
             }
-            return new UndiciProxyAgent({ uri: cluster.proxyUrl, requestTls: connectOptions });
+            return { type: 'proxy', uri: cluster.proxyUrl, requestTls: tlsOptions };
         } else if (cluster?.server?.startsWith('http:') && !cluster.skipTLSVerify) {
             throw new Error('HTTP protocol is not allowed when skipTLSVerify is not set or false');
         }
-        // Only create a custom agent when there are TLS options to configure.
-        // Otherwise, let undici use its default/global dispatcher (important for testing with MockAgent).
-        if (Object.keys(connectOptions).length === 0) {
-            return undefined;
+        if (Object.keys(tlsOptions).length === 0) {
+            return { type: 'none' };
         }
-        return new UndiciAgent({ connect: connectOptions });
+        return { type: 'agent', connect: tlsOptions };
+    }
+
+    private createDispatcher(
+        cluster: Cluster | null,
+        agentOptions: https.AgentOptions,
+    ): Dispatcher | undefined {
+        const opts = this.createDispatcherOptions(cluster, agentOptions);
+        switch (opts.type) {
+            case 'proxy':
+                return new UndiciProxyAgent({ uri: opts.uri, requestTls: opts.requestTls });
+            case 'agent':
+                return new UndiciAgent({ connect: opts.connect });
+            case 'none':
+                return undefined;
+        }
     }
 
     private applyHTTPSOptions(opts: https.RequestOptions | WebSocket.ClientOptions): void {
