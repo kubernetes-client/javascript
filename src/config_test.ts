@@ -412,9 +412,15 @@ describe('KubeConfig', () => {
             const testServerName = 'https://example.com';
             const rc = new RequestContext(testServerName, HttpMethod.GET);
 
-            await rejects(kc.applySecurityAuthentication(rc), {
-                message: /SOCKS proxy is not supported/,
-            });
+            await kc.applySecurityAuthentication(rc);
+            const expectedProxyHref = 'socks5://example:1187';
+
+            const dispatcher = rc.getDispatcher() as UndiciProxyAgent;
+            strictEqual(dispatcher instanceof UndiciProxyAgent, true);
+            const kProxyOpts = Object.getOwnPropertySymbols(dispatcher).find(
+                (s) => s.toString() === 'Symbol(proxy agent options)',
+            )!;
+            strictEqual((dispatcher as any)[kProxyOpts].uri, expectedProxyHref);
         });
         it('should apply https proxy', async () => {
             const kc = new KubeConfig();
