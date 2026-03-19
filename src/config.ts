@@ -40,6 +40,11 @@ import { HttpProxyAgent, HttpProxyAgentOptions, HttpsProxyAgent, HttpsProxyAgent
 import packagejson from '../package.json' with { type: 'json' };
 import { setHeaderMiddleware } from './middleware.js';
 
+export type DispatcherOptions =
+    | { type: 'proxy'; uri: string; requestTls: Record<string, unknown> }
+    | { type: 'agent'; connect: Record<string, unknown> }
+    | { type: 'none' };
+
 const SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
 const SERVICEACCOUNT_CA_PATH: string = SERVICEACCOUNT_ROOT + '/ca.crt';
 const SERVICEACCOUNT_TOKEN_PATH: string = SERVICEACCOUNT_ROOT + '/token';
@@ -575,10 +580,16 @@ export class KubeConfig implements SecurityAuthentication {
         return agent;
     }
 
-    private createDispatcher(
+    /**
+     * Build the dispatcher configuration (options + type) without constructing
+     * the actual Dispatcher instance.  Exposed as a separate method so that
+     * tests can validate the option-mapping logic directly instead of reaching
+     * into undici's Symbol-keyed private state.
+     */
+    public createDispatcherOptions(
         cluster: Cluster | null,
         agentOptions: https.AgentOptions,
-    ): Dispatcher | undefined {
+    ): DispatcherOptions {
         const connectOptions: Record<string, unknown> = {};
         if (agentOptions.ca !== undefined) connectOptions.ca = agentOptions.ca;
         if (agentOptions.cert !== undefined) connectOptions.cert = agentOptions.cert;
@@ -594,16 +605,31 @@ export class KubeConfig implements SecurityAuthentication {
             if (!cluster.server.startsWith('https') && !cluster.server.startsWith('http')) {
                 throw new Error('Unsupported proxy type');
             }
-            return new UndiciProxyAgent({ uri: cluster.proxyUrl, requestTls: connectOptions });
+            return { type: 'proxy', uri: cluster.proxyUrl, requestTls: connectOptions };
         } else if (cluster?.server?.startsWith('http:') && !cluster.skipTLSVerify) {
             throw new Error('HTTP protocol is not allowed when skipTLSVerify is not set or false');
         }
         // Only create a custom agent when there are TLS options to configure.
         // Otherwise, let undici use its default/global dispatcher (important for testing with MockAgent).
         if (Object.keys(connectOptions).length === 0) {
-            return undefined;
+            return { type: 'none' };
         }
-        return new UndiciAgent({ connect: connectOptions });
+        return { type: 'agent', connect: connectOptions };
+    }
+
+    private createDispatcher(
+        cluster: Cluster | null,
+        agentOptions: https.AgentOptions,
+    ): Dispatcher | undefined {
+        const opts = this.createDispatcherOptions(cluster, agentOptions);
+        switch (opts.type) {
+            case 'proxy':
+                return new UndiciProxyAgent({ uri: opts.uri, requestTls: opts.requestTls });
+            case 'agent':
+                return new UndiciAgent({ connect: opts.connect });
+            case 'none':
+                return undefined;
+        }
     }
 
     private applyHTTPSOptions(opts: https.RequestOptions | WebSocket.ClientOptions): void {
