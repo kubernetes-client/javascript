@@ -607,6 +607,12 @@ export class KubeConfig implements SecurityAuthentication {
             tlsOptions.servername = (agentOptions as any).servername;
 
         if (cluster && cluster.proxyUrl) {
+            if (cluster.proxyUrl.startsWith('socks')) {
+                throw new Error(
+                    'SOCKS proxy is not supported with the undici HTTP client. ' +
+                        'Use an HTTP/HTTPS proxy or configure a custom dispatcher.',
+                );
+            }
             if (!cluster.server.startsWith('https') && !cluster.server.startsWith('http')) {
                 throw new Error('Unsupported proxy type');
             }
