@@ -417,9 +417,17 @@ describe('KubeConfig', () => {
             const testServerName = 'https://example.com';
             const rc = new RequestContext(testServerName, HttpMethod.GET);
 
-            await rejects(kc.applySecurityAuthentication(rc), {
-                message: /SOCKS proxy is not supported/,
+            await kc.applySecurityAuthentication(rc);
+
+            const dispatcher = rc.getDispatcher() as UndiciAgent;
+            strictEqual(dispatcher instanceof UndiciAgent, true);
+            const dispatcherOpts = kc.createDispatcherOptions(kc.getCurrentCluster(), {
+                ca: Buffer.from('CADAT@', 'utf-8'),
+                cert: Buffer.from('USER_CADATA', 'utf-8'),
+                key: Buffer.from('USER_CKDATA', 'utf-8'),
             });
+            strictEqual(dispatcherOpts.type, 'socks');
+            strictEqual(dispatcherOpts.uri, 'socks5://example:1187');
         });
         it('should apply https proxy', async () => {
             const kc = new KubeConfig();
