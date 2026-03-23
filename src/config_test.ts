@@ -419,14 +419,14 @@ describe('KubeConfig', () => {
 
             await kc.applySecurityAuthentication(rc);
 
-            const dispatcher = rc.getDispatcher() as UndiciProxyAgent;
-            strictEqual(dispatcher instanceof UndiciProxyAgent, true);
+            const dispatcher = rc.getDispatcher() as UndiciAgent;
+            strictEqual(dispatcher instanceof UndiciAgent, true);
             const dispatcherOpts = kc.createDispatcherOptions(kc.getCurrentCluster(), {
                 ca: Buffer.from('CADAT@', 'utf-8'),
                 cert: Buffer.from('USER_CADATA', 'utf-8'),
                 key: Buffer.from('USER_CKDATA', 'utf-8'),
             });
-            strictEqual(dispatcherOpts.type, 'proxy');
+            strictEqual(dispatcherOpts.type, 'socks');
             strictEqual(dispatcherOpts.uri, 'socks5://example:1187');
         });
         it('should apply https proxy', async () => {

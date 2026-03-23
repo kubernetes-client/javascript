@@ -7,7 +7,7 @@ import net from 'node:net';
 import path from 'node:path';
 
 import { Headers, RequestInit } from 'node-fetch';
-import { Agent as UndiciAgent, ProxyAgent as UndiciProxyAgent, type Dispatcher } from 'undici';
+import { Agent as UndiciAgent, ProxyAgent as UndiciProxyAgent, buildConnector, type Dispatcher } from 'undici';
 import { RequestContext } from './api.js';
 import { Authenticator } from './auth.js';
 import { AzureAuth } from './azure_auth.js';
@@ -37,6 +37,7 @@ import { OpenIDConnectAuth } from './oidc_auth.js';
 import WebSocket from 'isomorphic-ws';
 import child_process from 'node:child_process';
 import { SocksProxyAgent } from 'socks-proxy-agent';
+import { SocksClient } from 'socks';
 import { HttpProxyAgent, HttpProxyAgentOptions, HttpsProxyAgent, HttpsProxyAgentOptions } from 'hpagent';
 import packagejson from '../package.json' with { type: 'json' };
 import { setHeaderMiddleware } from './middleware.js';
@@ -47,6 +48,7 @@ import { setHeaderMiddleware } from './middleware.js';
 //   - ProxyAgent: ProxyAgent.Options (extends Agent.Options, adds uri, requestTls, proxyTls, etc.)
 export type DispatcherOptions =
     | { type: 'proxy'; uri: string; requestTls: tls.ConnectionOptions }
+    | { type: 'socks'; uri: string; requestTls: tls.ConnectionOptions }
     | { type: 'agent'; connect: tls.ConnectionOptions }
     | { type: 'none' };
 
@@ -70,6 +72,51 @@ function fileExists(filepath: string): boolean {
         // Ignore errors.
         return false;
     }
+}
+
+/**
+ * Creates an undici-compatible connector function that tunnels connections
+ * through a SOCKS proxy (v4/v4a/v5/v5h).
+ */
+function createSocksConnector(proxyUrl: string, tlsOptions: tls.ConnectionOptions): buildConnector.connector {
+    const parsedProxy = new URL(proxyUrl);
+    const proxyHost = parsedProxy.hostname;
+    const proxyPort = parseInt(parsedProxy.port, 10) || 1080;
+    let socksType: 4 | 5 = 5;
+    const proto = parsedProxy.protocol.replace(':', '');
+    if (proto === 'socks4' || proto === 'socks4a') {
+        socksType = 4;
+    }
+
+    return (options, callback) => {
+        const { hostname, port, protocol, servername } = options;
+        SocksClient.createConnection(
+            {
+                proxy: { host: proxyHost, port: proxyPort, type: socksType },
+                command: 'connect',
+                destination: { host: hostname, port: parseInt(port, 10) },
+            },
+            (err, info) => {
+                if (err) {
+                    callback(err, null);
+                    return;
+                }
+                const socket = info!.socket;
+                if (protocol === 'https:') {
+                    callback(
+                        null,
+                        tls.connect({
+                            ...tlsOptions,
+                            socket,
+                            servername: servername || hostname,
+                        }),
+                    );
+                } else {
+                    callback(null, socket);
+                }
+            },
+        );
+    };
 }
 
 // TODO: the empty interface breaks the linter, but this type
@@ -607,6 +654,9 @@ export class KubeConfig implements SecurityAuthentication {
             tlsOptions.servername = (agentOptions as any).servername;
 
         if (cluster && cluster.proxyUrl) {
+            if (cluster.proxyUrl.startsWith('socks')) {
+                return { type: 'socks', uri: cluster.proxyUrl, requestTls: tlsOptions };
+            }
             if (!cluster.server.startsWith('https') && !cluster.server.startsWith('http')) {
                 throw new Error('Unsupported proxy type');
             }
@@ -628,6 +678,8 @@ export class KubeConfig implements SecurityAuthentication {
         switch (opts.type) {
             case 'proxy':
                 return new UndiciProxyAgent({ uri: opts.uri, requestTls: opts.requestTls });
+            case 'socks':
+                return new UndiciAgent({ connect: createSocksConnector(opts.uri, opts.requestTls) });
             case 'agent':
                 return new UndiciAgent({ connect: opts.connect });
             case 'none':
