@@ -7,7 +7,12 @@ import net from 'node:net';
 import path from 'node:path';
 
 import { Headers, RequestInit } from 'node-fetch';
-import { Agent as UndiciAgent, ProxyAgent as UndiciProxyAgent, buildConnector, type Dispatcher } from 'undici';
+import {
+    Agent as UndiciAgent,
+    ProxyAgent as UndiciProxyAgent,
+    buildConnector,
+    type Dispatcher,
+} from 'undici';
 import { RequestContext } from './api.js';
 import { Authenticator } from './auth.js';
 import { AzureAuth } from './azure_auth.js';
