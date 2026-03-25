@@ -1,11 +1,18 @@
 import fs from 'node:fs';
 import https from 'node:https';
 import http from 'node:http';
+import tls from 'node:tls';
 import yaml from 'js-yaml';
 import net from 'node:net';
 import path from 'node:path';
 
 import { Headers, RequestInit } from 'node-fetch';
+import {
+    Agent as UndiciAgent,
+    ProxyAgent as UndiciProxyAgent,
+    buildConnector,
+    type Dispatcher,
+} from 'undici';
 import { RequestContext } from './api.js';
 import { Authenticator } from './auth.js';
 import { AzureAuth } from './azure_auth.js';
@@ -35,9 +42,20 @@ import { OpenIDConnectAuth } from './oidc_auth.js';
 import WebSocket from 'isomorphic-ws';
 import child_process from 'node:child_process';
 import { SocksProxyAgent } from 'socks-proxy-agent';
+import { SocksClient } from 'socks';
 import { HttpProxyAgent, HttpProxyAgentOptions, HttpsProxyAgent, HttpsProxyAgentOptions } from 'hpagent';
 import packagejson from '../package.json' with { type: 'json' };
 import { setHeaderMiddleware } from './middleware.js';
+
+// Uses tls.ConnectionOptions for the TLS connect fields we populate (ca, cert, key, etc.).
+// For the full set of constructor options available when creating dispatchers, see:
+//   - Agent:      Agent.Options      (extends Pool.Options -> Client.Options)
+//   - ProxyAgent: ProxyAgent.Options (extends Agent.Options, adds uri, requestTls, proxyTls, etc.)
+export type DispatcherOptions =
+    | { type: 'proxy'; uri: string; requestTls: tls.ConnectionOptions }
+    | { type: 'socks'; uri: string; requestTls: tls.ConnectionOptions }
+    | { type: 'agent'; connect: tls.ConnectionOptions }
+    | { type: 'none' };
 
 const SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
 const SERVICEACCOUNT_CA_PATH: string = SERVICEACCOUNT_ROOT + '/ca.crt';
@@ -59,6 +77,51 @@ function fileExists(filepath: string): boolean {
         // Ignore errors.
         return false;
     }
+}
+
+/**
+ * Creates an undici-compatible connector function that tunnels connections
+ * through a SOCKS proxy (v4/v4a/v5/v5h).
+ */
+function createSocksConnector(proxyUrl: string, tlsOptions: tls.ConnectionOptions): buildConnector.connector {
+    const parsedProxy = new URL(proxyUrl);
+    const proxyHost = parsedProxy.hostname;
+    const proxyPort = parseInt(parsedProxy.port, 10) || 1080;
+    let socksType: 4 | 5 = 5;
+    const proto = parsedProxy.protocol.replace(':', '');
+    if (proto === 'socks4' || proto === 'socks4a') {
+        socksType = 4;
+    }
+
+    return (options, callback) => {
+        const { hostname, port, protocol, servername } = options;
+        SocksClient.createConnection(
+            {
+                proxy: { host: proxyHost, port: proxyPort, type: socksType },
+                command: 'connect',
+                destination: { host: hostname, port: parseInt(port, 10) },
+            },
+            (err, info) => {
+                if (err) {
+                    callback(err, null);
+                    return;
+                }
+                const socket = info!.socket;
+                if (protocol === 'https:') {
+                    callback(
+                        null,
+                        tls.connect({
+                            ...tlsOptions,
+                            socket,
+                            servername: servername || hostname,
+                        }),
+                    );
+                } else {
+                    callback(null, socket);
+                }
+            },
+        );
+    };
 }
 
 // TODO: the empty interface breaks the linter, but this type
@@ -275,7 +338,10 @@ export class KubeConfig implements SecurityAuthentication {
             agentOptions.rejectUnauthorized = httpsOptions.rejectUnauthorized;
         }
 
-        context.setAgent(this.createAgent(cluster, agentOptions));
+        const dispatcher = this.createDispatcher(cluster, agentOptions);
+        if (dispatcher !== undefined) {
+            context.setDispatcher(dispatcher);
+        }
     }
 
     /**
@@ -569,6 +635,61 @@ export class KubeConfig implements SecurityAuthentication {
             agent = new https.Agent(agentOptions);
         }
         return agent;
+    }
+
+    /**
+     * Build the dispatcher configuration (options + type) without constructing
+     * the actual Dispatcher instance.  Exposed as a separate method so that
+     * tests can validate the option-mapping logic directly instead of reaching
+     * into undici's Symbol-keyed private state.
+     */
+    public createDispatcherOptions(
+        cluster: Cluster | null,
+        agentOptions: https.AgentOptions,
+    ): DispatcherOptions {
+        const tlsOptions: tls.ConnectionOptions = {};
+        if (agentOptions.ca !== undefined) tlsOptions.ca = agentOptions.ca;
+        if (agentOptions.cert !== undefined) tlsOptions.cert = agentOptions.cert;
+        if (agentOptions.key !== undefined) tlsOptions.key = agentOptions.key;
+        if (agentOptions.pfx !== undefined) tlsOptions.pfx = agentOptions.pfx;
+        if (agentOptions.passphrase !== undefined) tlsOptions.passphrase = agentOptions.passphrase;
+        if (agentOptions.rejectUnauthorized !== undefined)
+            tlsOptions.rejectUnauthorized = agentOptions.rejectUnauthorized;
+        if ((agentOptions as any).servername !== undefined)
+            tlsOptions.servername = (agentOptions as any).servername;
+
+        if (cluster && cluster.proxyUrl) {
+            if (cluster.proxyUrl.startsWith('socks')) {
+                return { type: 'socks', uri: cluster.proxyUrl, requestTls: tlsOptions };
+            }
+            if (!cluster.server.startsWith('https') && !cluster.server.startsWith('http')) {
+                throw new Error('Unsupported proxy type');
+            }
+            return { type: 'proxy', uri: cluster.proxyUrl, requestTls: tlsOptions };
+        } else if (cluster?.server?.startsWith('http:') && !cluster.skipTLSVerify) {
+            throw new Error('HTTP protocol is not allowed when skipTLSVerify is not set or false');
+        }
+        if (Object.keys(tlsOptions).length === 0) {
+            return { type: 'none' };
+        }
+        return { type: 'agent', connect: tlsOptions };
+    }
+
+    private createDispatcher(
+        cluster: Cluster | null,
+        agentOptions: https.AgentOptions,
+    ): Dispatcher | undefined {
+        const opts = this.createDispatcherOptions(cluster, agentOptions);
+        switch (opts.type) {
+            case 'proxy':
+                return new UndiciProxyAgent({ uri: opts.uri, requestTls: opts.requestTls });
+            case 'socks':
+                return new UndiciAgent({ connect: createSocksConnector(opts.uri, opts.requestTls) });
+            case 'agent':
+                return new UndiciAgent({ connect: opts.connect });
+            case 'none':
+                return undefined;
+        }
     }
 
     private applyHTTPSOptions(opts: https.RequestOptions | WebSocket.ClientOptions): void {

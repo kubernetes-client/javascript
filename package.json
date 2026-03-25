@@ -68,9 +68,11 @@
         "node-fetch": "^2.7.0",
         "openid-client": "^6.1.3",
         "rfc4648": "^1.3.0",
+        "socks": "^2.8.4",
         "socks-proxy-agent": "^9.0.0",
         "stream-buffers": "^3.0.2",
         "tar-fs": "^3.0.9",
+        "undici": "^6.24.1",
         "ws": "^8.18.2"
     },
     "devDependencies": {
@@ -85,7 +87,7 @@
         "prettier": "^3.0.0",
         "pretty-quick": "^4.0.0",
         "ts-mockito": "^2.3.1",
-        "tsx": "^4.19.1",
+        "tsx": "^4.21.0",
         "typedoc": "^0.28.0",
         "typescript": "~5.9.2",
         "typescript-eslint": "^8.26.0"

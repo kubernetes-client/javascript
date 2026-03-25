@@ -7,7 +7,7 @@ import { User, Cluster } from './config_types.js';
 import { GoogleCloudPlatformAuth } from './gcp_auth.js';
 import { KubeConfig } from './config.js';
 import { HttpMethod, RequestContext } from './gen/index.js';
-import { Agent } from 'node:https';
+import { Agent as UndiciAgent } from 'undici';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -107,9 +107,13 @@ describe('GoogleCloudPlatformAuth', () => {
 
         await config.applySecurityAuthentication(requestContext);
 
-        // @ts-expect-error
-        const agent: Agent = requestContext.getAgent();
-        strictEqual(agent.options.rejectUnauthorized, false);
+        const dispatcher = requestContext.getDispatcher() as UndiciAgent;
+        strictEqual(dispatcher instanceof UndiciAgent, true);
+        const dispatcherOpts = config.createDispatcherOptions({ skipTLSVerify: true } as Cluster, {
+            rejectUnauthorized: false,
+        });
+        strictEqual(dispatcherOpts.type, 'agent');
+        strictEqual(dispatcherOpts.connect.rejectUnauthorized, false);
     });
 
     it('should not set rejectUnauthorized if skipTLSVerify is not set', async () => {

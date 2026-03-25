@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import { deepStrictEqual, ok, match, rejects, strictEqual } from 'node:assert';
-import nock from 'nock';
+import { MockAgent, setGlobalDispatcher, getGlobalDispatcher } from 'undici';
 import { KubeConfig } from './config.js';
 import { V1Status, ApiException } from './gen/index.js';
 import { Metrics, NodeMetricsList, PodMetricsList } from './metrics.js';
@@ -81,62 +81,111 @@ const testConfigOptions: any = {
     currentContext: 'currentContext',
 };
 
-const systemUnderTest = (options: any = testConfigOptions): [Metrics, nock.Scope] => {
+const systemUnderTest = (options: any = testConfigOptions): [Metrics, MockAgent] => {
     const kc = new KubeConfig();
     kc.loadFromOptions(options);
     const metricsClient = new Metrics(kc);
 
-    const scope = nock(testConfigOptions.clusters[0].server);
+    const mockAgent = new MockAgent();
+    setGlobalDispatcher(mockAgent);
+    mockAgent.disableNetConnect();
 
-    return [metricsClient, scope];
+    return [metricsClient, mockAgent];
 };
 
 describe('Metrics', () => {
     describe('getPodMetrics', () => {
         it('should return cluster scope empty pods list', async () => {
-            const [metricsClient, scope] = systemUnderTest();
-            const s = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
-
-            const response = await metricsClient.getPodMetrics();
-            deepStrictEqual(response, emptyPodMetrics);
-            s.done();
+            const originalDispatcher = getGlobalDispatcher();
+            const [metricsClient, mockAgent] = systemUnderTest();
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
+                200,
+                JSON.stringify(emptyPodMetrics),
+                { headers: { 'content-type': 'application/json' } },
+            );
+            try {
+                const response = await metricsClient.getPodMetrics();
+                deepStrictEqual(response, emptyPodMetrics);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
         it('should return cluster scope empty pods list when namespace is empty string', async () => {
-            const [metricsClient, scope] = systemUnderTest();
-            const s = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, emptyPodMetrics);
-
-            const response = await metricsClient.getPodMetrics('');
-            deepStrictEqual(response, emptyPodMetrics);
-            s.done();
+            const originalDispatcher = getGlobalDispatcher();
+            const [metricsClient, mockAgent] = systemUnderTest();
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
+                200,
+                JSON.stringify(emptyPodMetrics),
+                { headers: { 'content-type': 'application/json' } },
+            );
+            try {
+                const response = await metricsClient.getPodMetrics('');
+                deepStrictEqual(response, emptyPodMetrics);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
         it('should return namespace scope empty pods list', async () => {
-            const [metricsClient, scope] = systemUnderTest();
-            const s = scope
-                .get(`/apis/metrics.k8s.io/v1beta1/namespaces/${TEST_NAMESPACE}/pods`)
-                .reply(200, emptyPodMetrics);
-
-            const response = await metricsClient.getPodMetrics(TEST_NAMESPACE);
-            deepStrictEqual(response, emptyPodMetrics);
-            s.done();
+            const originalDispatcher = getGlobalDispatcher();
+            const [metricsClient, mockAgent] = systemUnderTest();
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({
+                path: `/apis/metrics.k8s.io/v1beta1/namespaces/${TEST_NAMESPACE}/pods`,
+                method: 'GET',
+            }).reply(200, JSON.stringify(emptyPodMetrics), {
+                headers: { 'content-type': 'application/json' },
+            });
+            try {
+                const response = await metricsClient.getPodMetrics(TEST_NAMESPACE);
+                deepStrictEqual(response, emptyPodMetrics);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
         it('should return cluster scope pods metrics list', async () => {
-            const [metricsClient, scope] = systemUnderTest();
-            const s = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(200, mockedPodMetrics);
-
-            const response = await metricsClient.getPodMetrics();
-            deepStrictEqual(response, mockedPodMetrics);
-
-            s.done();
+            const originalDispatcher = getGlobalDispatcher();
+            const [metricsClient, mockAgent] = systemUnderTest();
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
+                200,
+                JSON.stringify(mockedPodMetrics),
+                { headers: { 'content-type': 'application/json' } },
+            );
+            try {
+                const response = await metricsClient.getPodMetrics();
+                deepStrictEqual(response, mockedPodMetrics);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
         it('should return namespace scope pods metric list', async () => {
-            const [metricsClient, scope] = systemUnderTest();
-            const s = scope
-                .get(`/apis/metrics.k8s.io/v1beta1/namespaces/${TEST_NAMESPACE}/pods`)
-                .reply(200, mockedPodMetrics);
-
-            const response = await metricsClient.getPodMetrics(TEST_NAMESPACE);
-            deepStrictEqual(response, mockedPodMetrics);
-            s.done();
+            const originalDispatcher = getGlobalDispatcher();
+            const [metricsClient, mockAgent] = systemUnderTest();
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({
+                path: `/apis/metrics.k8s.io/v1beta1/namespaces/${TEST_NAMESPACE}/pods`,
+                method: 'GET',
+            }).reply(200, JSON.stringify(mockedPodMetrics), {
+                headers: { 'content-type': 'application/json' },
+            });
+            try {
+                const response = await metricsClient.getPodMetrics(TEST_NAMESPACE);
+                deepStrictEqual(response, mockedPodMetrics);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
         it('should when connection refused', async () => {
             const kc = new KubeConfig();
@@ -154,80 +203,135 @@ describe('Metrics', () => {
             });
         });
         it('should throw when no current cluster', async () => {
-            const [metricsClient, scope] = systemUnderTest({
+            const originalDispatcher = getGlobalDispatcher();
+            const [metricsClient, mockAgent] = systemUnderTest({
                 clusters: [{ name: 'cluster', server: 'https://127.0.0.1:51010' }],
                 users: [{ name: 'user', password: 'password' }],
                 contexts: [{ name: 'currentContext', cluster: 'cluster', user: 'user' }],
             });
-            await rejects(metricsClient.getPodMetrics(), {
-                name: 'Error',
-                message: 'No currently active cluster',
-            });
-            scope.done();
+            try {
+                await rejects(metricsClient.getPodMetrics(), {
+                    name: 'Error',
+                    message: 'No currently active cluster',
+                });
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
         it('should resolve to error when 500 - V1 Status', async () => {
             const response: V1Status = {
                 code: 12345,
                 message: 'some message',
             };
-            const [metricsClient, scope] = systemUnderTest();
-            const s = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(500, response);
-
-            await rejects(metricsClient.getPodMetrics(), (e) => {
-                ok(e instanceof ApiException);
-                strictEqual(e.code, response.code);
-                strictEqual(e.body.message, response.message);
-                return true;
-            });
-            s.done();
+            const originalDispatcher = getGlobalDispatcher();
+            const [metricsClient, mockAgent] = systemUnderTest();
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
+                500,
+                JSON.stringify(response),
+                { headers: { 'content-type': 'application/json' } },
+            );
+            try {
+                await rejects(metricsClient.getPodMetrics(), (e) => {
+                    ok(e instanceof ApiException);
+                    strictEqual(e.code, response.code);
+                    strictEqual(e.body.message, response.message);
+                    return true;
+                });
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
         it('should resolve to error when 500 - non-V1Status', async () => {
             const response = 'some other response';
-            const [metricsClient, scope] = systemUnderTest();
-            const s = scope.get('/apis/metrics.k8s.io/v1beta1/pods').reply(500, response);
-
-            await rejects(metricsClient.getPodMetrics(), (e) => {
-                ok(e instanceof ApiException);
-                strictEqual(e.code, 500);
-                match(e.message, /Error occurred in metrics request/);
-                return true;
-            });
-            s.done();
+            const originalDispatcher = getGlobalDispatcher();
+            const [metricsClient, mockAgent] = systemUnderTest();
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
+                500,
+                JSON.stringify(response),
+                { headers: { 'content-type': 'application/json' } },
+            );
+            try {
+                await rejects(metricsClient.getPodMetrics(), (e) => {
+                    ok(e instanceof ApiException);
+                    strictEqual(e.code, 500);
+                    match(e.message, /Error occurred in metrics request/);
+                    return true;
+                });
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
     });
     describe('getNodeMetrics', () => {
         it('should return empty nodes list', async () => {
-            const [metricsClient, scope] = systemUnderTest();
-            const s = scope.get('/apis/metrics.k8s.io/v1beta1/nodes').reply(200, emptyNodeMetrics);
-
-            const response = await metricsClient.getNodeMetrics();
-            deepStrictEqual(response, emptyNodeMetrics);
-            s.done();
+            const originalDispatcher = getGlobalDispatcher();
+            const [metricsClient, mockAgent] = systemUnderTest();
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/nodes', method: 'GET' }).reply(
+                200,
+                JSON.stringify(emptyNodeMetrics),
+                { headers: { 'content-type': 'application/json' } },
+            );
+            try {
+                const response = await metricsClient.getNodeMetrics();
+                deepStrictEqual(response, emptyNodeMetrics);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
         it('should return nodes metrics list', async () => {
-            const [metricsClient, scope] = systemUnderTest();
-            const s = scope.get('/apis/metrics.k8s.io/v1beta1/nodes').reply(200, mockedNodeMetrics);
-
-            const response = await metricsClient.getNodeMetrics();
-            deepStrictEqual(response, mockedNodeMetrics);
-
-            s.done();
+            const originalDispatcher = getGlobalDispatcher();
+            const [metricsClient, mockAgent] = systemUnderTest();
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/nodes', method: 'GET' }).reply(
+                200,
+                JSON.stringify(mockedNodeMetrics),
+                { headers: { 'content-type': 'application/json' } },
+            );
+            try {
+                const response = await metricsClient.getNodeMetrics();
+                deepStrictEqual(response, mockedNodeMetrics);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
         it('should resolve to error when 500', async () => {
             const response: V1Status = {
                 code: 12345,
                 message: 'some message',
             };
-            const [metricsClient, scope] = systemUnderTest();
-            const s = scope.get('/apis/metrics.k8s.io/v1beta1/nodes').reply(500, response);
-
-            await rejects(metricsClient.getNodeMetrics(), (e) => {
-                ok(e instanceof ApiException);
-                strictEqual(e.code, response.code);
-                strictEqual(e.body.message, response.message);
-                return true;
-            });
-            s.done();
+            const originalDispatcher = getGlobalDispatcher();
+            const [metricsClient, mockAgent] = systemUnderTest();
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/nodes', method: 'GET' }).reply(
+                500,
+                JSON.stringify(response),
+                { headers: { 'content-type': 'application/json' } },
+            );
+            try {
+                await rejects(metricsClient.getNodeMetrics(), (e) => {
+                    ok(e instanceof ApiException);
+                    strictEqual(e.code, response.code);
+                    strictEqual(e.body.message, response.message);
+                    return true;
+                });
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
     });
 });

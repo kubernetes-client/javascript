@@ -25,8 +25,9 @@ import { CoreV1Api, RequestContext } from './api.js';
 import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolutePath } from './config.js';
 import { ActionOnInvalid, Cluster, newClusters, newContexts, newUsers, User } from './config_types.js';
 import { ExecAuth } from './exec_auth.js';
-import { HttpProxyAgent, HttpsProxyAgent } from 'hpagent';
+import { Agent as UndiciAgent, ProxyAgent as UndiciProxyAgent } from 'undici';
 import { SocksProxyAgent } from 'socks-proxy-agent';
+import { HttpProxyAgent, HttpsProxyAgent } from 'hpagent';
 import { AddressInfo } from 'node:net';
 
 const kcFileName = 'testdata/kubeconfig.yaml';
@@ -339,7 +340,19 @@ describe('KubeConfig', () => {
             };
 
             assertRequestOptionsEqual(opts, expectedOptions);
-            strictEqual((requestContext.getAgent()! as any).options.servername, 'kube.example2.com');
+            const dispatcher = requestContext.getDispatcher();
+            strictEqual(dispatcher instanceof UndiciAgent, true);
+            const dispatcherOpts = kc.createDispatcherOptions(kc.getCurrentCluster(), {
+                ca: Buffer.from('CADATA2', 'utf-8'),
+                cert: Buffer.from('USER_CADATA', 'utf-8'),
+                key: Buffer.from('USER_CKDATA', 'utf-8'),
+                passphrase: undefined,
+                pfx: undefined,
+                rejectUnauthorized: false,
+                servername: 'kube.example2.com',
+            });
+            strictEqual(dispatcherOpts.type, 'agent');
+            strictEqual(dispatcherOpts.connect.servername, 'kube.example2.com');
         });
         it('should apply cert configs', async () => {
             const kc = new KubeConfig();
@@ -405,15 +418,16 @@ describe('KubeConfig', () => {
             const rc = new RequestContext(testServerName, HttpMethod.GET);
 
             await kc.applySecurityAuthentication(rc);
-            const expectedCA = Buffer.from('CADAT@', 'utf-8');
-            const expectedProxyHost = 'example';
-            const expectedProxyPort = 1187;
 
-            strictEqual(rc.getAgent() instanceof SocksProxyAgent, true);
-            const agent = rc.getAgent() as SocksProxyAgent;
-            strictEqual(agent.options.ca?.toString(), expectedCA.toString());
-            strictEqual(agent.proxy.host, expectedProxyHost);
-            strictEqual(agent.proxy.port, expectedProxyPort);
+            const dispatcher = rc.getDispatcher() as UndiciAgent;
+            strictEqual(dispatcher instanceof UndiciAgent, true);
+            const dispatcherOpts = kc.createDispatcherOptions(kc.getCurrentCluster(), {
+                ca: Buffer.from('CADAT@', 'utf-8'),
+                cert: Buffer.from('USER_CADATA', 'utf-8'),
+                key: Buffer.from('USER_CKDATA', 'utf-8'),
+            });
+            strictEqual(dispatcherOpts.type, 'socks');
+            strictEqual(dispatcherOpts.uri, 'socks5://example:1187');
         });
         it('should apply https proxy', async () => {
             const kc = new KubeConfig();
@@ -425,12 +439,20 @@ describe('KubeConfig', () => {
 
             await kc.applySecurityAuthentication(rc);
             const expectedCA = Buffer.from('CADAT@', 'utf-8');
-            const expectedProxyHref = 'http://example:9443/';
 
-            strictEqual(rc.getAgent() instanceof HttpsProxyAgent, true);
-            const agent = rc.getAgent() as HttpsProxyAgent;
-            strictEqual(agent.options.ca?.toString(), expectedCA.toString());
-            strictEqual((agent as any).proxy.href, expectedProxyHref);
+            const dispatcher = rc.getDispatcher() as UndiciProxyAgent;
+            strictEqual(dispatcher instanceof UndiciProxyAgent, true);
+            const dispatcherOpts = kc.createDispatcherOptions(kc.getCurrentCluster(), {
+                ca: expectedCA,
+                cert: Buffer.from('USER_CADATA', 'utf-8'),
+                key: Buffer.from('USER_CKDATA', 'utf-8'),
+            });
+            strictEqual(dispatcherOpts.type, 'proxy');
+            strictEqual(dispatcherOpts.uri, 'http://example:9443');
+            strictEqual(
+                Buffer.from(dispatcherOpts.requestTls.ca as Buffer).toString(),
+                expectedCA.toString(),
+            );
         });
         it('should apply http proxy', async () => {
             const kc = new KubeConfig();
@@ -442,12 +464,20 @@ describe('KubeConfig', () => {
 
             await kc.applySecurityAuthentication(rc);
             const expectedCA = Buffer.from('CADAT@', 'utf-8');
-            const expectedProxyHref = 'http://example:8080/';
 
-            strictEqual(rc.getAgent() instanceof HttpProxyAgent, true);
-            const agent = rc.getAgent() as HttpProxyAgent;
-            strictEqual((agent as any).options.ca?.toString(), expectedCA.toString());
-            strictEqual((agent as any).proxy.href, expectedProxyHref);
+            const dispatcher = rc.getDispatcher() as UndiciProxyAgent;
+            strictEqual(dispatcher instanceof UndiciProxyAgent, true);
+            const dispatcherOpts = kc.createDispatcherOptions(kc.getCurrentCluster(), {
+                ca: expectedCA,
+                cert: Buffer.from('USER_CADATA', 'utf-8'),
+                key: Buffer.from('USER_CKDATA', 'utf-8'),
+            });
+            strictEqual(dispatcherOpts.type, 'proxy');
+            strictEqual(dispatcherOpts.uri, 'http://example:8080');
+            strictEqual(
+                Buffer.from(dispatcherOpts.requestTls.ca as Buffer).toString(),
+                expectedCA.toString(),
+            );
         });
         it('should throw an error if proxy-url is provided but the server protocol is not http or https', async () => {
             const kc = new KubeConfig();
@@ -471,7 +501,7 @@ describe('KubeConfig', () => {
 
             await kc.applySecurityAuthentication(rc);
 
-            strictEqual(rc.getAgent() instanceof http.Agent, true);
+            strictEqual(rc.getDispatcher() instanceof UndiciAgent, true);
         });
         it('should throw an error if cluster.server starts with http, no proxy-url is provided and insecure-skip-tls-verify is not set', async () => {
             const kc = new KubeConfig();
@@ -493,7 +523,57 @@ describe('KubeConfig', () => {
 
             await kc.applySecurityAuthentication(rc);
 
-            strictEqual(rc.getAgent() instanceof https.Agent, true);
+            strictEqual(rc.getDispatcher() instanceof UndiciAgent, true);
+        });
+        it('should apply socks proxy agent via applyToHTTPSOptions', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcProxyUrl);
+            kc.setCurrentContext('contextA');
+
+            const opts: https.RequestOptions = {};
+            await kc.applyToHTTPSOptions(opts);
+
+            strictEqual(opts.agent instanceof SocksProxyAgent, true);
+        });
+        it('should apply https proxy agent via applyToHTTPSOptions', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcProxyUrl);
+            kc.setCurrentContext('contextB');
+
+            const opts: https.RequestOptions = {};
+            await kc.applyToHTTPSOptions(opts);
+
+            strictEqual(opts.agent instanceof HttpsProxyAgent, true);
+        });
+        it('should apply http proxy agent via applyToHTTPSOptions', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcProxyUrl);
+            kc.setCurrentContext('contextC');
+
+            const opts: https.RequestOptions = {};
+            await kc.applyToHTTPSOptions(opts);
+
+            strictEqual(opts.agent instanceof HttpProxyAgent, true);
+        });
+        it('should throw unsupported proxy type via applyToHTTPSOptions', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcProxyUrl);
+            kc.setCurrentContext('contextD');
+
+            const opts: https.RequestOptions = {};
+            await rejects(kc.applyToHTTPSOptions(opts), {
+                message: 'Unsupported proxy type',
+            });
+        });
+        it('should throw if cluster.server starts with http and skipTLSVerify is not set via applyToHTTPSOptions', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcProxyUrl);
+            kc.setCurrentContext('contextF');
+
+            const opts: https.RequestOptions = {};
+            await rejects(kc.applyToHTTPSOptions(opts), {
+                message: 'HTTP protocol is not allowed when skipTLSVerify is not set or false',
+            });
         });
 
         it('should apply NODE_TLS_REJECT_UNAUTHORIZED from environment to agent', async () => {

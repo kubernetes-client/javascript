@@ -1,6 +1,6 @@
 import { describe, it } from 'node:test';
 import { deepEqual } from 'node:assert';
-import nock from 'nock';
+import { MockAgent, setGlobalDispatcher, getGlobalDispatcher } from 'undici';
 
 import { CoreV1Api } from './api.js';
 import { KubeConfig } from './config.js';
@@ -8,7 +8,7 @@ import { Cluster, User } from './config_types.js';
 
 describe('FullRequest', () => {
     describe('getPods', () => {
-        it('should get pods successfully', async () => {
+        it('should get pods successfully', async (t) => {
             const kc = new KubeConfig();
             const cluster = {
                 name: 'foo',
@@ -31,17 +31,28 @@ describe('FullRequest', () => {
                 items: [],
             };
             const auth = Buffer.from(`${username}:${password}`).toString('base64');
-            nock('https://nowhere.foo', {
-                reqheaders: {
-                    authorization: `Basic ${auth}`,
-                },
-            })
-                .get('/api/v1/namespaces/default/pods')
-                .reply(200, result);
+
+            const originalDispatcher = getGlobalDispatcher();
+            const mockAgent = new MockAgent();
+            setGlobalDispatcher(mockAgent);
+            mockAgent.disableNetConnect();
+
+            t.after(async () => {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            });
+
+            const pool = mockAgent.get('https://nowhere.foo');
+            pool.intercept({
+                path: '/api/v1/namespaces/default/pods',
+                method: 'GET',
+                headers: { authorization: `Basic ${auth}` },
+            }).reply(200, JSON.stringify(result), {
+                headers: { 'content-type': 'application/json' },
+            });
 
             const list = await k8sApi.listNamespacedPod({ namespace: 'default' });
-
-            return deepEqual(list, result);
+            deepEqual(list, result);
         });
     });
 });
