@@ -284,14 +284,6 @@ export class KubeConfig implements SecurityAuthentication {
 
         await this.applyOptions(httpsOptions);
 
-        if (cluster && cluster.skipTLSVerify) {
-            agentOptions.rejectUnauthorized = false;
-        }
-
-        if (cluster && cluster.tlsServerName) {
-            agentOptions.servername = cluster.tlsServerName;
-        }
-
         if (user && user.username) {
             const auth = Buffer.from(`${user.username}:${user.password}`).toString('base64');
             context.setHeaderParam('Authorization', `Basic ${auth}`);

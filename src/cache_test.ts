@@ -8,7 +8,7 @@ import { KubeConfig } from './config.js';
 import { Cluster, Context, User } from './config_types.js';
 import { ListPromise } from './informer.js';
 
-import nock from 'nock';
+import { MockAgent, setGlobalDispatcher, getGlobalDispatcher } from 'undici';
 import { Watch } from './watch.js';
 
 const server = 'https://foo.company.com';
@@ -1474,51 +1474,56 @@ describe('ListWatchCache', () => {
 
         const informer = new ListWatch(path, watch, listFn, false, APP_LABEL_SELECTOR);
 
-        const scope = nock(fakeConfig.clusters[0].server);
-        const s = scope
-            .get(path)
-            .query({
-                watch: true,
-                resourceVersion: '12345',
-                labelSelector: APP_LABEL_SELECTOR,
-            })
-            .reply(
+        const originalDispatcher = getGlobalDispatcher();
+        const mockAgent = new MockAgent();
+        setGlobalDispatcher(mockAgent);
+        mockAgent.disableNetConnect();
+
+        try {
+            const pool = mockAgent.get(fakeConfig.clusters[0].server);
+            pool.intercept({
+                path: `${path}?watch=true&resourceVersion=12345&labelSelector=app%3Dfoo`,
+                method: 'GET',
+            }).reply(
                 200,
-                () =>
-                    JSON.stringify({
-                        type: 'ADDED',
-                        object: {
-                            metadata: {
-                                name: 'name3',
-                                labels: {
-                                    app: 'foo3',
-                                },
-                            } as V1ObjectMeta,
-                        },
-                    }) + '\n',
+                JSON.stringify({
+                    type: 'ADDED',
+                    object: {
+                        metadata: {
+                            name: 'name3',
+                            labels: {
+                                app: 'foo3',
+                            },
+                        } as V1ObjectMeta,
+                    },
+                }) + '\n',
             );
 
-        await informer.start();
+            await informer.start();
 
-        let doneResolve: any;
-        const donePromise = new Promise((resolve) => {
-            doneResolve = resolve;
-        });
+            let doneResolve: any;
+            const donePromise = new Promise((resolve) => {
+                doneResolve = resolve;
+            });
 
-        informer.on('add', doneResolve);
+            informer.on('add', doneResolve);
 
-        const value = await donePromise;
+            const value = await donePromise;
 
-        deepStrictEqual(value, {
-            metadata: {
-                labels: {
-                    app: 'foo3',
+            deepStrictEqual(value, {
+                metadata: {
+                    labels: {
+                        app: 'foo3',
+                    },
+                    name: 'name3',
                 },
-                name: 'name3',
-            },
-        });
+            });
 
-        s.done();
+            mockAgent.assertNoPendingInterceptors();
+        } finally {
+            await mockAgent.close();
+            setGlobalDispatcher(originalDispatcher);
+        }
     });
 });
 
