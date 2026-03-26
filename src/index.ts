@@ -18,6 +18,3 @@ export * from './health.js';
 export * from './middleware.js';
 export * from './patch.js';
 export { type ConfigOptions, type User, type Cluster, type Context } from './config_types.js';
-
-// Export AbortError and FetchError so that instanceof checks in user code will definitely use the same instances
-export { AbortError, FetchError } from 'node-fetch';

@@ -1,6 +1,6 @@
-import { afterEach, describe, it } from 'node:test';
+import { describe, it } from 'node:test';
 import { strictEqual, rejects, throws } from 'node:assert';
-import nock from 'nock';
+import { MockAgent, getGlobalDispatcher, setGlobalDispatcher } from 'undici';
 import { AddOptionsToSearchParams, Log, LogOptions } from './log.js';
 import { KubeConfig } from './config.js';
 import { Writable } from 'node:stream';
@@ -35,9 +35,14 @@ describe('Log', () => {
         config.setCurrentContext('foo');
         const log = new Log(config);
 
-        afterEach(() => {
-            nock.cleanAll();
-        });
+        const setupMockAgent = () => {
+            const originalDispatcher = getGlobalDispatcher();
+            const mockAgent = new MockAgent();
+            setGlobalDispatcher(mockAgent);
+            mockAgent.disableNetConnect();
+            const pool = mockAgent.get('https://example.com');
+            return { originalDispatcher, mockAgent, pool };
+        };
 
         it('should make a request with correct parameters', async () => {
             const namespace = 'default';
@@ -58,22 +63,20 @@ describe('Log', () => {
                 timestamps: true,
             };
 
-            nock('https://example.com')
-                .get('/api/v1/namespaces/default/pods/mypod/log')
-                .query({
-                    container: 'mycontainer',
-                    follow: 'true',
-                    limitBytes: '100',
-                    pretty: 'true',
-                    previous: 'true',
-                    sinceSeconds: '1',
-                    tailLines: '1',
-                    timestamps: 'true',
-                })
-                .reply(200, 'log data');
+            const { originalDispatcher, mockAgent, pool } = setupMockAgent();
+            pool.intercept({
+                method: 'GET',
+                path: '/api/v1/namespaces/default/pods/mypod/log?container=mycontainer&follow=true&limitBytes=100&pretty=true&previous=true&sinceSeconds=1&tailLines=1&timestamps=true',
+            }).reply(200, 'log data');
 
-            const controller = await log.log(namespace, podName, containerName, stream, options);
-            strictEqual(controller instanceof AbortController, true);
+            try {
+                const controller = await log.log(namespace, podName, containerName, stream, options);
+                strictEqual(controller instanceof AbortController, true);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
 
         it('should throw an error if no active cluster', async () => {
@@ -103,14 +106,23 @@ describe('Log', () => {
                 },
             });
 
-            nock('https://example.com')
-                .get('/api/v1/namespaces/default/pods/mypod/log')
-                .query({ container: 'mycontainer' })
-                .reply(501, { message: 'Error occurred in log request' });
+            const { originalDispatcher, mockAgent, pool } = setupMockAgent();
+            pool.intercept({
+                method: 'GET',
+                path: '/api/v1/namespaces/default/pods/mypod/log?container=mycontainer',
+            }).reply(501, JSON.stringify({ message: 'Error occurred in log request' }), {
+                headers: { 'content-type': 'application/json' },
+            });
 
-            await rejects(async () => {
-                await log.log(namespace, podName, containerName, stream);
-            }, /Error occurred in log request/);
+            try {
+                await rejects(async () => {
+                    await log.log(namespace, podName, containerName, stream);
+                }, /Error occurred in log request/);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
 
         it('should handle API exceptions on 500', async () => {
@@ -123,14 +135,23 @@ describe('Log', () => {
                 },
             });
 
-            nock('https://example.com')
-                .get('/api/v1/namespaces/default/pods/mypod/log')
-                .query({ container: 'mycontainer' })
-                .reply(500, { message: 'Error occurred in log request' });
+            const { originalDispatcher, mockAgent, pool } = setupMockAgent();
+            pool.intercept({
+                method: 'GET',
+                path: '/api/v1/namespaces/default/pods/mypod/log?container=mycontainer',
+            }).reply(500, JSON.stringify({ message: 'Error occurred in log request' }), {
+                headers: { 'content-type': 'application/json' },
+            });
 
-            await rejects(async () => {
-                await log.log(namespace, podName, containerName, stream);
-            }, /Error occurred in log request/);
+            try {
+                await rejects(async () => {
+                    await log.log(namespace, podName, containerName, stream);
+                }, /Error occurred in log request/);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
 
         it('should handle V1Status with code and message', async () => {
@@ -157,14 +178,21 @@ describe('Log', () => {
                 code: 404,
             };
 
-            nock('https://example.com')
-                .get('/api/v1/namespaces/default/pods/mypod/log')
-                .query({ container: 'mycontainer' })
-                .reply(500, v1Status);
+            const { originalDispatcher, mockAgent, pool } = setupMockAgent();
+            pool.intercept({
+                method: 'GET',
+                path: '/api/v1/namespaces/default/pods/mypod/log?container=mycontainer',
+            }).reply(500, JSON.stringify(v1Status), { headers: { 'content-type': 'application/json' } });
 
-            await rejects(async () => {
-                await log.log(namespace, podName, containerName, stream);
-            }, /Pod not found/);
+            try {
+                await rejects(async () => {
+                    await log.log(namespace, podName, containerName, stream);
+                }, /Pod not found/);
+                mockAgent.assertNoPendingInterceptors();
+            } finally {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            }
         });
     });
     describe('AddOptionsToSearchParams', () => {

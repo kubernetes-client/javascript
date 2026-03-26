@@ -6,7 +6,6 @@ import yaml from 'js-yaml';
 import net from 'node:net';
 import path from 'node:path';
 
-import { Headers, RequestInit } from 'node-fetch';
 import {
     Agent as UndiciAgent,
     ProxyAgent as UndiciProxyAgent,
@@ -227,29 +226,6 @@ export class KubeConfig implements SecurityAuthentication {
         const rootDirectory = path.dirname(file);
         this.loadFromString(fs.readFileSync(file).toString('utf-8'), opts);
         this.makePathsAbsolute(rootDirectory);
-    }
-
-    public async applyToFetchOptions(opts: https.RequestOptions): Promise<RequestInit> {
-        await this.applyToHTTPSOptions(opts);
-        const headers = new Headers();
-        for (const [key, val] of Object.entries(opts.headers || {})) {
-            if (Array.isArray(val)) {
-                val.forEach((innerVal) => {
-                    headers.append(key, innerVal);
-                });
-            } else if (typeof val === 'number' || typeof val === 'string') {
-                headers.set(key, val.toString());
-            }
-        }
-        if (opts.auth) {
-            headers.set('Authorization', 'Basic ' + Buffer.from(opts.auth).toString('base64'));
-        }
-        return {
-            agent: opts.agent,
-            headers,
-            method: opts.method,
-            timeout: opts.timeout,
-        } as RequestInit;
     }
 
     public async applyToHTTPSOptions(opts: https.RequestOptions | WebSocket.ClientOptions): Promise<void> {

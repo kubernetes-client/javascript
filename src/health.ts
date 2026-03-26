@@ -1,6 +1,7 @@
-import fetch from 'node-fetch';
+import { fetch } from 'undici';
 import { KubeConfig } from './config.js';
 import { RequestOptions } from 'node:https';
+import { HttpMethod, RequestContext } from './gen/http/http.js';
 
 export class Health {
     public config: KubeConfig;
@@ -27,15 +28,17 @@ export class Health {
             throw new Error('No currently active cluster');
         }
 
-        const requestURL = new URL(cluster.server + path);
-        const requestInit = await this.config.applyToFetchOptions(opts);
-        if (opts.signal) {
-            requestInit.signal = opts.signal;
-        }
-        requestInit.method = 'GET';
+        const requestURL = cluster.server + path;
+        const ctx = new RequestContext(requestURL, HttpMethod.GET);
+        await this.config.applySecurityAuthentication(ctx);
 
         try {
-            const response = await fetch(requestURL.toString(), requestInit);
+            const response = await fetch(requestURL, {
+                method: 'GET',
+                headers: ctx.getHeaders(),
+                dispatcher: ctx.getDispatcher(),
+                signal: opts?.signal,
+            });
             const status = response.status;
             if (status === 200) {
                 return true;

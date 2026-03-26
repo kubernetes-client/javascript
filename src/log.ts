@@ -1,7 +1,8 @@
-import fetch from 'node-fetch';
-import { Writable } from 'node:stream';
+import { fetch } from 'undici';
+import { Readable, Writable } from 'node:stream';
 import { ApiException } from './api.js';
 import { KubeConfig } from './config.js';
+import { HttpMethod, RequestContext } from './gen/http/http.js';
 import { V1Status } from './gen/index.js';
 import { normalizeResponseHeaders } from './util.js';
 
@@ -129,18 +130,31 @@ export class Log {
         searchParams.set('container', containerName);
         AddOptionsToSearchParams(options, searchParams);
 
-        const requestInit = await this.config.applyToFetchOptions({});
+        const ctx = new RequestContext(requestURL.toString(), HttpMethod.GET);
+        await this.config.applySecurityAuthentication(ctx);
 
         const controller = new AbortController();
-        requestInit.signal = controller.signal as AbortSignal;
-        requestInit.method = 'GET';
 
         try {
-            const response = await fetch(requestURL.toString(), requestInit);
+            const response = await fetch(requestURL.toString(), {
+                method: 'GET',
+                headers: ctx.getHeaders(),
+                dispatcher: ctx.getDispatcher(),
+                signal: controller.signal,
+            });
             const status = response.status;
             if (status === 200) {
                 // TODO: the follow search param still has the stream close prematurely based on my testing
-                response.body!.pipe(stream);
+                if (!response.body) {
+                    throw new ApiException<undefined>(
+                        status,
+                        'Error occurred in log request',
+                        undefined,
+                        normalizeResponseHeaders(response),
+                    );
+                }
+                const nodeStream = Readable.fromWeb(response.body as any);
+                nodeStream.pipe(stream);
             } else if (status === 500) {
                 const v1status = (await response.json()) as V1Status;
                 const v1code = v1status.code;

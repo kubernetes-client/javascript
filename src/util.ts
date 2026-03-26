@@ -150,10 +150,8 @@ export function totalForResource(pod: V1Pod, resource: string): ResourceStatus {
     return new ResourceStatus(reqTotal, limitTotal, resource);
 }
 
-// There is a disconnect between the ApiException headers and the response headers from fetch
+// There is a disconnect between the ApiException headers and the response headers from fetch.
 // ApiException expects { [key: string]: string } whereas some fetch implementations provide: { [key: string]: string[] }
-// https://github.com/node-fetch/node-fetch/issues/783
-// https://github.com/node-fetch/node-fetch/pull/1757
 export function normalizeResponseHeaders(response: { headers: { entries(): Iterable<[string, string]> } }): {
     [key: string]: string;
 } {
