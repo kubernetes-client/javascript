@@ -2,46 +2,80 @@
 sidebar_position: 1
 ---
 
-# Tutorial Intro
+# Introduction
 
-Let's discover **Docusaurus in less than 5 minutes**.
+The Kubernetes JavaScript Client is the official Node.js client for interacting with Kubernetes clusters. It's written in TypeScript and provides a powerful, type-safe way to manage Kubernetes resources from your Node.js applications.
 
-## Getting Started
+## Installation
 
-Get started by **creating a new site**.
-
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
-
-### What you'll need
-
-- [Node.js](https://nodejs.org/en/download/) version 20.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
-
-## Generate a new site
-
-Generate a new Docusaurus site using the **classic template**.
-
-The classic template will automatically be added to your project after you run the command:
+Install the client using npm:
 
 ```bash
-npm init docusaurus@latest my-website classic
+npm install @kubernetes/client-node
 ```
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+## Quick Start
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+The following example shows how to load your default KubeConfig and list all pods in the `default` namespace.
 
-## Start your site
+```typescript
+import * as k8s from '@kubernetes/client-node';
 
-Run the development server:
+const kc = new k8s.KubeConfig();
+kc.loadFromDefault();
 
-```bash
-cd my-website
-npm run start
+const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
+
+async function listPods() {
+    try {
+        const res = await k8sApi.listNamespacedPod({ namespace: 'default' });
+        console.log(
+            'Pods:',
+            res.items.map((pod) => pod.metadata?.name),
+        );
+    } catch (err) {
+        console.error('Error:', err);
+    }
+}
+
+listPods();
 ```
 
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
+## KubeConfig Methods
 
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
+The `KubeConfig` class provides several ways to load your configuration:
 
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+- `loadFromDefault()`: Loads from the default location (`~/.kube/config` or service account)
+- `loadFromFile(path)`: Loads from a specific file
+- `loadFromString(content)`: Loads from a YAML string
+- `loadFromOptions(options)`: Loads from a programmatic object
+- `loadFromCluster()`: Specifically for running inside a cluster (Service Account)
+
+## Compatibility
+
+Starting with release `0.13.0`, the minor version of this library tracks the minor Kubernetes API version it was generated from.
+
+| client version | older versions | 1.28 | 1.29 | 1.30 | 1.31 | 1.32 | 1.33 | 1.34 |
+| -------------- | -------------- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| 0.19.x         | -              | ✓    | x    | x    | x    | x    | x    | x    |
+| 0.20.x         | -              | +    | ✓    | x    | x    | x    | x    | x    |
+| 0.21.x         | -              | +    | +    | ✓    | x    | x    | x    | x    |
+| 0.22.x         | -              | +    | +    | +    | ✓    | x    | x    | x    |
+| 1.0.x          | -              | +    | +    | +    | +    | ✓    | x    | x    |
+| 1.1.x          | -              | +    | +    | +    | +    | ✓    | x    | x    |
+| 1.2.x          | -              | +    | +    | +    | +    | +    | ✓    | x    |
+| 1.3.x          | -              | +    | +    | +    | +    | +    | ✓    | x    |
+| 1.4.x          | -              | +    | +    | +    | +    | +    | +    | ✓    |
+
+**Key:**
+
+- `✓` Exactly the same features / API objects.
+- `+` Client has more features than the cluster, common features work.
+- `-` Cluster has features client can't use yet.
+- `x` No guarantee of support (outside the n-2 version support window).
+
+## Links
+
+- [SDK Reference](/docs/sdk)
+- [Kubernetes API Reference](https://kubernetes.io/docs/reference/)
+- [GitHub Repository](https://github.com/kubernetes-client/javascript)
