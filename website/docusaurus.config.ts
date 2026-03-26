@@ -36,6 +36,17 @@ const config: Config = {
                 docs: {
                     sidebarPath: './sidebars.ts',
                     editUrl: 'https://github.com/kubernetes-client/javascript/tree/main/website/',
+                    lastVersion: 'current',
+                    versions: {
+                        current: {
+                            label: '2.0.0 (Next)',
+                            banner: 'none',
+                        },
+                        '2.0.0': {
+                            label: '2.0.0',
+                            banner: 'none',
+                        },
+                    },
                 },
                 blog: false,
                 theme: {
