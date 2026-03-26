@@ -1432,7 +1432,7 @@ describe('ListWatchCache', () => {
         strictEqual(listCalls, 2);
     });
 
-    it('should send label selector', async () => {
+    it('should send label selector', async (t) => {
         const APP_LABEL_SELECTOR = 'app=foo';
 
         const list: V1Namespace[] = [
@@ -1479,51 +1479,51 @@ describe('ListWatchCache', () => {
         setGlobalDispatcher(mockAgent);
         mockAgent.disableNetConnect();
 
-        try {
-            const pool = mockAgent.get(fakeConfig.clusters[0].server);
-            pool.intercept({
-                path: `${path}?watch=true&resourceVersion=12345&labelSelector=app%3Dfoo`,
-                method: 'GET',
-            }).reply(
-                200,
-                JSON.stringify({
-                    type: 'ADDED',
-                    object: {
-                        metadata: {
-                            name: 'name3',
-                            labels: {
-                                app: 'foo3',
-                            },
-                        } as V1ObjectMeta,
-                    },
-                }) + '\n',
-            );
-
-            await informer.start();
-
-            let doneResolve: any;
-            const donePromise = new Promise((resolve) => {
-                doneResolve = resolve;
-            });
-
-            informer.on('add', doneResolve);
-
-            const value = await donePromise;
-
-            deepStrictEqual(value, {
-                metadata: {
-                    labels: {
-                        app: 'foo3',
-                    },
-                    name: 'name3',
-                },
-            });
-
-            mockAgent.assertNoPendingInterceptors();
-        } finally {
+        t.after(async () => {
             await mockAgent.close();
             setGlobalDispatcher(originalDispatcher);
-        }
+        });
+
+        const pool = mockAgent.get(fakeConfig.clusters[0].server);
+        pool.intercept({
+            path: `${path}?watch=true&resourceVersion=12345&labelSelector=app%3Dfoo`,
+            method: 'GET',
+        }).reply(
+            200,
+            JSON.stringify({
+                type: 'ADDED',
+                object: {
+                    metadata: {
+                        name: 'name3',
+                        labels: {
+                            app: 'foo3',
+                        },
+                    } as V1ObjectMeta,
+                },
+            }) + '\n',
+        );
+
+        await informer.start();
+
+        let doneResolve: any;
+        const donePromise = new Promise((resolve) => {
+            doneResolve = resolve;
+        });
+
+        informer.on('add', doneResolve);
+
+        const value = await donePromise;
+
+        deepStrictEqual(value, {
+            metadata: {
+                labels: {
+                    app: 'foo3',
+                },
+                name: 'name3',
+            },
+        });
+
+        mockAgent.assertNoPendingInterceptors();
     });
 });
 

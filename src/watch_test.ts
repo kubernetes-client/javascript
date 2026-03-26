@@ -1,6 +1,6 @@
-import { describe, it } from 'node:test';
+import { afterEach, beforeEach, describe, it } from 'node:test';
 import { deepStrictEqual, rejects, strictEqual } from 'node:assert';
-import { MockAgent, setGlobalDispatcher, getGlobalDispatcher } from 'undici';
+import { MockAgent, setGlobalDispatcher, getGlobalDispatcher, type Dispatcher } from 'undici';
 import { KubeConfig } from './config.js';
 import { Cluster, Context, User } from './config_types.js';
 import { Watch } from './watch.js';
@@ -33,22 +33,28 @@ const fakeConfig: {
     ],
 };
 
-const systemUnderTest = (): [MockAgent] => {
-    const mockAgent = new MockAgent();
-    setGlobalDispatcher(mockAgent);
-    mockAgent.disableNetConnect();
-    return [mockAgent];
-};
-
 describe('Watch', () => {
+    let mockAgent: MockAgent;
+    let originalDispatcher: Dispatcher;
+
+    beforeEach(() => {
+        originalDispatcher = getGlobalDispatcher();
+        mockAgent = new MockAgent();
+        setGlobalDispatcher(mockAgent);
+        mockAgent.disableNetConnect();
+    });
+
+    afterEach(async () => {
+        await mockAgent.close();
+        setGlobalDispatcher(originalDispatcher);
+    });
+
     it('should construct correctly', () => {
         const kc = new KubeConfig();
         new Watch(kc);
     });
 
     it('should handle error from request stream', async () => {
-        const originalDispatcher = getGlobalDispatcher();
-        const [mockAgent] = systemUnderTest();
         const kc = new KubeConfig();
         const path = '/some/path/to/object?watch=true';
         const pool = mockAgent.get(fakeConfig.clusters[0].server);
@@ -60,23 +66,18 @@ describe('Watch', () => {
         let doneCalled = false;
         let doneErr: any;
 
-        try {
-            await watch.watch(
-                path,
-                {},
-                (_phase: string, _obj: string) => {},
-                (err: any) => {
-                    doneCalled = true;
-                    doneErr = err;
-                },
-            );
-            strictEqual(doneCalled, true);
-            strictEqual(doneErr.toString(), 'Error: Internal Server Error');
-            mockAgent.assertNoPendingInterceptors();
-        } finally {
-            await mockAgent.close();
-            setGlobalDispatcher(originalDispatcher);
-        }
+        await watch.watch(
+            path,
+            {},
+            (_phase: string, _obj: string) => {},
+            (err: any) => {
+                doneCalled = true;
+                doneErr = err;
+            },
+        );
+        strictEqual(doneCalled, true);
+        strictEqual(doneErr.toString(), 'Error: Internal Server Error');
+        mockAgent.assertNoPendingInterceptors();
     });
 
     it('should not call watch done callback more than once', async (t) => {

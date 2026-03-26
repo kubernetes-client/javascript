@@ -1,6 +1,6 @@
-import { describe, it } from 'node:test';
+import { afterEach, beforeEach, describe, it } from 'node:test';
 import { strictEqual, rejects, throws } from 'node:assert';
-import { MockAgent, getGlobalDispatcher, setGlobalDispatcher } from 'undici';
+import { MockAgent, getGlobalDispatcher, setGlobalDispatcher, type Dispatcher } from 'undici';
 import { AddOptionsToSearchParams, Log, LogOptions } from './log.js';
 import { KubeConfig } from './config.js';
 import { Writable } from 'node:stream';
@@ -35,14 +35,22 @@ describe('Log', () => {
         config.setCurrentContext('foo');
         const log = new Log(config);
 
-        const setupMockAgent = () => {
-            const originalDispatcher = getGlobalDispatcher();
-            const mockAgent = new MockAgent();
+        let mockAgent: MockAgent;
+        let originalDispatcher: Dispatcher;
+        let pool: ReturnType<MockAgent['get']>;
+
+        beforeEach(() => {
+            originalDispatcher = getGlobalDispatcher();
+            mockAgent = new MockAgent();
             setGlobalDispatcher(mockAgent);
             mockAgent.disableNetConnect();
-            const pool = mockAgent.get('https://example.com');
-            return { originalDispatcher, mockAgent, pool };
-        };
+            pool = mockAgent.get('https://example.com');
+        });
+
+        afterEach(async () => {
+            await mockAgent.close();
+            setGlobalDispatcher(originalDispatcher);
+        });
 
         it('should make a request with correct parameters', async () => {
             const namespace = 'default';
@@ -63,20 +71,14 @@ describe('Log', () => {
                 timestamps: true,
             };
 
-            const { originalDispatcher, mockAgent, pool } = setupMockAgent();
             pool.intercept({
                 method: 'GET',
                 path: '/api/v1/namespaces/default/pods/mypod/log?container=mycontainer&follow=true&limitBytes=100&pretty=true&previous=true&sinceSeconds=1&tailLines=1&timestamps=true',
             }).reply(200, 'log data');
 
-            try {
-                const controller = await log.log(namespace, podName, containerName, stream, options);
-                strictEqual(controller instanceof AbortController, true);
-                mockAgent.assertNoPendingInterceptors();
-            } finally {
-                await mockAgent.close();
-                setGlobalDispatcher(originalDispatcher);
-            }
+            const controller = await log.log(namespace, podName, containerName, stream, options);
+            strictEqual(controller instanceof AbortController, true);
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should throw an error if no active cluster', async () => {
@@ -106,7 +108,6 @@ describe('Log', () => {
                 },
             });
 
-            const { originalDispatcher, mockAgent, pool } = setupMockAgent();
             pool.intercept({
                 method: 'GET',
                 path: '/api/v1/namespaces/default/pods/mypod/log?container=mycontainer',
@@ -114,15 +115,10 @@ describe('Log', () => {
                 headers: { 'content-type': 'application/json' },
             });
 
-            try {
-                await rejects(async () => {
-                    await log.log(namespace, podName, containerName, stream);
-                }, /Error occurred in log request/);
-                mockAgent.assertNoPendingInterceptors();
-            } finally {
-                await mockAgent.close();
-                setGlobalDispatcher(originalDispatcher);
-            }
+            await rejects(async () => {
+                await log.log(namespace, podName, containerName, stream);
+            }, /Error occurred in log request/);
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should handle API exceptions on 500', async () => {
@@ -135,7 +131,6 @@ describe('Log', () => {
                 },
             });
 
-            const { originalDispatcher, mockAgent, pool } = setupMockAgent();
             pool.intercept({
                 method: 'GET',
                 path: '/api/v1/namespaces/default/pods/mypod/log?container=mycontainer',
@@ -143,15 +138,10 @@ describe('Log', () => {
                 headers: { 'content-type': 'application/json' },
             });
 
-            try {
-                await rejects(async () => {
-                    await log.log(namespace, podName, containerName, stream);
-                }, /Error occurred in log request/);
-                mockAgent.assertNoPendingInterceptors();
-            } finally {
-                await mockAgent.close();
-                setGlobalDispatcher(originalDispatcher);
-            }
+            await rejects(async () => {
+                await log.log(namespace, podName, containerName, stream);
+            }, /Error occurred in log request/);
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should handle V1Status with code and message', async () => {
@@ -178,21 +168,15 @@ describe('Log', () => {
                 code: 404,
             };
 
-            const { originalDispatcher, mockAgent, pool } = setupMockAgent();
             pool.intercept({
                 method: 'GET',
                 path: '/api/v1/namespaces/default/pods/mypod/log?container=mycontainer',
             }).reply(500, JSON.stringify(v1Status), { headers: { 'content-type': 'application/json' } });
 
-            try {
-                await rejects(async () => {
-                    await log.log(namespace, podName, containerName, stream);
-                }, /Pod not found/);
-                mockAgent.assertNoPendingInterceptors();
-            } finally {
-                await mockAgent.close();
-                setGlobalDispatcher(originalDispatcher);
-            }
+            await rejects(async () => {
+                await log.log(namespace, podName, containerName, stream);
+            }, /Pod not found/);
+            mockAgent.assertNoPendingInterceptors();
         });
     });
     describe('AddOptionsToSearchParams', () => {

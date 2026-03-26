@@ -1,6 +1,6 @@
-import { describe, it } from 'node:test';
+import { afterEach, beforeEach, describe, it } from 'node:test';
 import { deepEqual } from 'node:assert';
-import { MockAgent, setGlobalDispatcher, getGlobalDispatcher } from 'undici';
+import { MockAgent, setGlobalDispatcher, getGlobalDispatcher, type Dispatcher } from 'undici';
 
 import { CoreV1Api } from './api.js';
 import { KubeConfig } from './config.js';
@@ -8,7 +8,22 @@ import { Cluster, User } from './config_types.js';
 
 describe('FullRequest', () => {
     describe('getPods', () => {
-        it('should get pods successfully', async (t) => {
+        let mockAgent: MockAgent;
+        let originalDispatcher: Dispatcher;
+
+        beforeEach(() => {
+            originalDispatcher = getGlobalDispatcher();
+            mockAgent = new MockAgent();
+            setGlobalDispatcher(mockAgent);
+            mockAgent.disableNetConnect();
+        });
+
+        afterEach(async () => {
+            await mockAgent.close();
+            setGlobalDispatcher(originalDispatcher);
+        });
+
+        it('should get pods successfully', async () => {
             const kc = new KubeConfig();
             const cluster = {
                 name: 'foo',
@@ -31,16 +46,6 @@ describe('FullRequest', () => {
                 items: [],
             };
             const auth = Buffer.from(`${username}:${password}`).toString('base64');
-
-            const originalDispatcher = getGlobalDispatcher();
-            const mockAgent = new MockAgent();
-            setGlobalDispatcher(mockAgent);
-            mockAgent.disableNetConnect();
-
-            t.after(async () => {
-                await mockAgent.close();
-                setGlobalDispatcher(originalDispatcher);
-            });
 
             const pool = mockAgent.get('https://nowhere.foo');
             pool.intercept({

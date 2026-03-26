@@ -1,6 +1,6 @@
-import { describe, it } from 'node:test';
+import { afterEach, beforeEach, describe, it } from 'node:test';
 import { rejects, strictEqual } from 'node:assert';
-import { MockAgent, getGlobalDispatcher, setGlobalDispatcher } from 'undici';
+import { MockAgent, getGlobalDispatcher, setGlobalDispatcher, type Dispatcher } from 'undici';
 
 import { KubeConfig } from './config.js';
 import { Health } from './health.js';
@@ -19,27 +19,28 @@ describe('Health', () => {
         },
     ].forEach((test) => {
         describe(test.path, () => {
-            it('should throw an error if no current active cluster', async () => {
-                const originalDispatcher = getGlobalDispatcher();
-                const mockAgent = new MockAgent();
+            let mockAgent: MockAgent;
+            let originalDispatcher: Dispatcher;
+
+            beforeEach(() => {
+                originalDispatcher = getGlobalDispatcher();
+                mockAgent = new MockAgent();
                 setGlobalDispatcher(mockAgent);
                 mockAgent.disableNetConnect();
+            });
+
+            afterEach(async () => {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            });
+
+            it('should throw an error if no current active cluster', async () => {
                 const kc = new KubeConfig();
                 const health = new Health(kc);
-
-                try {
-                    await rejects(test.method(health, {}), { message: 'No currently active cluster' });
-                } finally {
-                    await mockAgent.close();
-                    setGlobalDispatcher(originalDispatcher);
-                }
+                await rejects(test.method(health, {}), { message: 'No currently active cluster' });
             });
 
             it(`should return true if ${test.path} returns with status 200`, async () => {
-                const originalDispatcher = getGlobalDispatcher();
-                const mockAgent = new MockAgent();
-                setGlobalDispatcher(mockAgent);
-                mockAgent.disableNetConnect();
                 const kc = new KubeConfig();
                 const cluster = {
                     name: 'foo',
@@ -56,21 +57,12 @@ describe('Health', () => {
                 pool.intercept({ path: test.path, method: 'GET' }).reply(200);
                 const health = new Health(kc);
 
-                try {
-                    const r = await test.method(health, {});
-                    strictEqual(r, true);
-                    mockAgent.assertNoPendingInterceptors();
-                } finally {
-                    await mockAgent.close();
-                    setGlobalDispatcher(originalDispatcher);
-                }
+                const r = await test.method(health, {});
+                strictEqual(r, true);
+                mockAgent.assertNoPendingInterceptors();
             });
 
             it(`should return false if ${test.path} returns with status 500`, async () => {
-                const originalDispatcher = getGlobalDispatcher();
-                const mockAgent = new MockAgent();
-                setGlobalDispatcher(mockAgent);
-                mockAgent.disableNetConnect();
                 const kc = new KubeConfig();
                 const cluster = {
                     name: 'foo',
@@ -87,21 +79,12 @@ describe('Health', () => {
                 pool.intercept({ path: test.path, method: 'GET' }).reply(500);
                 const health = new Health(kc);
 
-                try {
-                    const r = await test.method(health, {});
-                    strictEqual(r, false);
-                    mockAgent.assertNoPendingInterceptors();
-                } finally {
-                    await mockAgent.close();
-                    setGlobalDispatcher(originalDispatcher);
-                }
+                const r = await test.method(health, {});
+                strictEqual(r, false);
+                mockAgent.assertNoPendingInterceptors();
             });
 
             it(`should return true if ${test.path} returns status 404 and /healthz returns status 200`, async () => {
-                const originalDispatcher = getGlobalDispatcher();
-                const mockAgent = new MockAgent();
-                setGlobalDispatcher(mockAgent);
-                mockAgent.disableNetConnect();
                 const kc = new KubeConfig();
                 const cluster = {
                     name: 'foo',
@@ -119,21 +102,12 @@ describe('Health', () => {
                 pool.intercept({ path: '/healthz', method: 'GET' }).reply(200);
                 const health = new Health(kc);
 
-                try {
-                    const r = await test.method(health, {});
-                    strictEqual(r, true);
-                    mockAgent.assertNoPendingInterceptors();
-                } finally {
-                    await mockAgent.close();
-                    setGlobalDispatcher(originalDispatcher);
-                }
+                const r = await test.method(health, {});
+                strictEqual(r, true);
+                mockAgent.assertNoPendingInterceptors();
             });
 
             it(`should return false if ${test.path} returns status 404 and /healthz returns status 500`, async () => {
-                const originalDispatcher = getGlobalDispatcher();
-                const mockAgent = new MockAgent();
-                setGlobalDispatcher(mockAgent);
-                mockAgent.disableNetConnect();
                 const kc = new KubeConfig();
                 const cluster = {
                     name: 'foo',
@@ -151,21 +125,12 @@ describe('Health', () => {
                 pool.intercept({ path: '/healthz', method: 'GET' }).reply(500);
                 const health = new Health(kc);
 
-                try {
-                    const r = await test.method(health, {});
-                    strictEqual(r, false);
-                    mockAgent.assertNoPendingInterceptors();
-                } finally {
-                    await mockAgent.close();
-                    setGlobalDispatcher(originalDispatcher);
-                }
+                const r = await test.method(health, {});
+                strictEqual(r, false);
+                mockAgent.assertNoPendingInterceptors();
             });
 
             it(`should return true if both ${test.path} and /healthz return status 404`, async () => {
-                const originalDispatcher = getGlobalDispatcher();
-                const mockAgent = new MockAgent();
-                setGlobalDispatcher(mockAgent);
-                mockAgent.disableNetConnect();
                 const kc = new KubeConfig();
                 const cluster = {
                     name: 'foo',
@@ -183,21 +148,12 @@ describe('Health', () => {
                 pool.intercept({ path: '/healthz', method: 'GET' }).reply(404);
                 const health = new Health(kc);
 
-                try {
-                    const r = await test.method(health, {});
-                    strictEqual(r, true);
-                    mockAgent.assertNoPendingInterceptors();
-                } finally {
-                    await mockAgent.close();
-                    setGlobalDispatcher(originalDispatcher);
-                }
+                const r = await test.method(health, {});
+                strictEqual(r, true);
+                mockAgent.assertNoPendingInterceptors();
             });
 
             it('should throw an error when fetch throws an error', async () => {
-                const originalDispatcher = getGlobalDispatcher();
-                const mockAgent = new MockAgent();
-                setGlobalDispatcher(mockAgent);
-                mockAgent.disableNetConnect();
                 const kc = new KubeConfig();
                 const cluster = {
                     name: 'foo',
@@ -214,13 +170,8 @@ describe('Health', () => {
                 pool.intercept({ path: test.path, method: 'GET' }).replyWithError(new Error('an error'));
                 const health = new Health(kc);
 
-                try {
-                    await rejects(test.method(health, {}), { message: 'Error occurred in health request' });
-                    mockAgent.assertNoPendingInterceptors();
-                } finally {
-                    await mockAgent.close();
-                    setGlobalDispatcher(originalDispatcher);
-                }
+                await rejects(test.method(health, {}), { message: 'Error occurred in health request' });
+                mockAgent.assertNoPendingInterceptors();
             });
         });
     });

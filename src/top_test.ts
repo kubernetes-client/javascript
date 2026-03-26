@@ -1,6 +1,6 @@
-import { describe, it } from 'node:test';
+import { afterEach, beforeEach, describe, it } from 'node:test';
 import { deepEqual, deepStrictEqual, strictEqual } from 'assert';
-import { MockAgent, setGlobalDispatcher, getGlobalDispatcher } from 'undici';
+import { MockAgent, setGlobalDispatcher, getGlobalDispatcher, type Dispatcher } from 'undici';
 import { KubeConfig } from './config.js';
 import { Metrics, PodMetricsList } from './metrics.js';
 import { CurrentResourceUsage, ResourceUsage, topNodes, topPods } from './top.js';
@@ -173,33 +173,31 @@ const testConfigOptions: any = {
     currentContext: 'currentContext',
 };
 
-const systemUnderTest = (
-    namespace?: string,
-    options: any = testConfigOptions,
-): [() => ReturnType<typeof topPods>, () => ReturnType<typeof topNodes>, MockAgent] => {
-    const kc = new KubeConfig();
-    kc.loadFromOptions(options);
-    const metricsClient = new Metrics(kc);
-    const core = kc.makeApiClient(CoreV1Api);
-    const topPodsFunc = () => topPods(core, metricsClient, namespace);
-    const topNodesFunc = () => topNodes(core);
-
-    const mockAgent = new MockAgent();
-    setGlobalDispatcher(mockAgent);
-    mockAgent.disableNetConnect();
-
-    return [topPodsFunc, topNodesFunc, mockAgent];
-};
-
 describe('Top', () => {
     describe('topPods', () => {
-        it('should return empty when no pods', async (t) => {
-            const originalDispatcher = getGlobalDispatcher();
-            const [topPodsFunc, _, mockAgent] = systemUnderTest();
-            t.after(async () => {
-                await mockAgent.close();
-                setGlobalDispatcher(originalDispatcher);
-            });
+        let mockAgent: MockAgent;
+        let originalDispatcher: Dispatcher;
+        let topPodsFunc: () => ReturnType<typeof topPods>;
+
+        beforeEach(() => {
+            originalDispatcher = getGlobalDispatcher();
+            mockAgent = new MockAgent();
+            setGlobalDispatcher(mockAgent);
+            mockAgent.disableNetConnect();
+
+            const kc = new KubeConfig();
+            kc.loadFromOptions(testConfigOptions);
+            const metricsClient = new Metrics(kc);
+            const core = kc.makeApiClient(CoreV1Api);
+            topPodsFunc = () => topPods(core, metricsClient);
+        });
+
+        afterEach(async () => {
+            await mockAgent.close();
+            setGlobalDispatcher(originalDispatcher);
+        });
+
+        it('should return empty when no pods', async () => {
             const pool = mockAgent.get(testConfigOptions.clusters[0].server);
             pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
                 200,
@@ -215,13 +213,12 @@ describe('Top', () => {
             deepStrictEqual(result, []);
             mockAgent.assertNoPendingInterceptors();
         });
-        it('should return use cluster scope when namespace empty string', async (t) => {
-            const originalDispatcher = getGlobalDispatcher();
-            const [topPodsFunc, _, mockAgent] = systemUnderTest('');
-            t.after(async () => {
-                await mockAgent.close();
-                setGlobalDispatcher(originalDispatcher);
-            });
+        it('should return use cluster scope when namespace empty string', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromOptions(testConfigOptions);
+            const metricsClient = new Metrics(kc);
+            const core = kc.makeApiClient(CoreV1Api);
+            const topPodsFuncEmpty = () => topPods(core, metricsClient, '');
             const pool = mockAgent.get(testConfigOptions.clusters[0].server);
             pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
                 200,
@@ -233,17 +230,11 @@ describe('Top', () => {
                 JSON.stringify({ items: [] }),
                 { headers: { 'content-type': 'application/json' } },
             );
-            const result = await topPodsFunc();
+            const result = await topPodsFuncEmpty();
             deepStrictEqual(result, []);
             mockAgent.assertNoPendingInterceptors();
         });
-        it('should return cluster wide pod metrics', async (t) => {
-            const originalDispatcher = getGlobalDispatcher();
-            const [topPodsFunc, _, mockAgent] = systemUnderTest();
-            t.after(async () => {
-                await mockAgent.close();
-                setGlobalDispatcher(originalDispatcher);
-            });
+        it('should return cluster wide pod metrics', async () => {
             const pool = mockAgent.get(testConfigOptions.clusters[0].server);
             pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
                 200,
@@ -312,13 +303,7 @@ describe('Top', () => {
             ]);
             mockAgent.assertNoPendingInterceptors();
         });
-        it('should return best effort pod metrics', async (t) => {
-            const originalDispatcher = getGlobalDispatcher();
-            const [topPodsFunc, _, mockAgent] = systemUnderTest();
-            t.after(async () => {
-                await mockAgent.close();
-                setGlobalDispatcher(originalDispatcher);
-            });
+        it('should return best effort pod metrics', async () => {
             const pool = mockAgent.get(testConfigOptions.clusters[0].server);
             pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
                 200,
@@ -351,13 +336,7 @@ describe('Top', () => {
             ]);
             mockAgent.assertNoPendingInterceptors();
         });
-        it('should return 0 when pod metrics missing', async (t) => {
-            const originalDispatcher = getGlobalDispatcher();
-            const [topPodsFunc, _, mockAgent] = systemUnderTest();
-            t.after(async () => {
-                await mockAgent.close();
-                setGlobalDispatcher(originalDispatcher);
-            });
+        it('should return 0 when pod metrics missing', async () => {
             const pool = mockAgent.get(testConfigOptions.clusters[0].server);
             pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
                 200,
@@ -385,13 +364,7 @@ describe('Top', () => {
             deepStrictEqual(result[1].Containers, []);
             mockAgent.assertNoPendingInterceptors();
         });
-        it('should return empty array when pods missing', async (t) => {
-            const originalDispatcher = getGlobalDispatcher();
-            const [topPodsFunc, _, mockAgent] = systemUnderTest();
-            t.after(async () => {
-                await mockAgent.close();
-                setGlobalDispatcher(originalDispatcher);
-            });
+        it('should return empty array when pods missing', async () => {
             const pool = mockAgent.get(testConfigOptions.clusters[0].server);
             pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
                 200,
@@ -407,13 +380,12 @@ describe('Top', () => {
             strictEqual(result.length, 0);
             mockAgent.assertNoPendingInterceptors();
         });
-        it('should return namespace pod metrics', async (t) => {
-            const originalDispatcher = getGlobalDispatcher();
-            const [topPodsFunc, _, mockAgent] = systemUnderTest(TEST_NAMESPACE);
-            t.after(async () => {
-                await mockAgent.close();
-                setGlobalDispatcher(originalDispatcher);
-            });
+        it('should return namespace pod metrics', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromOptions(testConfigOptions);
+            const metricsClient = new Metrics(kc);
+            const core = kc.makeApiClient(CoreV1Api);
+            const topPodsFuncNamespace = () => topPods(core, metricsClient, TEST_NAMESPACE);
             const pool = mockAgent.get(testConfigOptions.clusters[0].server);
             pool.intercept({
                 path: `/apis/metrics.k8s.io/v1beta1/namespaces/${TEST_NAMESPACE}/pods`,
@@ -426,7 +398,7 @@ describe('Top', () => {
                 JSON.stringify({ items: podList }),
                 { headers: { 'content-type': 'application/json' } },
             );
-            const result = await topPodsFunc();
+            const result = await topPodsFuncNamespace();
             strictEqual(result.length, 2);
             deepStrictEqual(result[0].CPU, new CurrentResourceUsage(0.05, 0.1, 0.1));
             deepStrictEqual(
@@ -485,13 +457,28 @@ describe('Top', () => {
         });
     });
     describe('topNodes', () => {
-        it('should return empty when no nodes', async (t) => {
-            const originalDispatcher = getGlobalDispatcher();
-            const [_, topNodesFunc, mockAgent] = systemUnderTest();
-            t.after(async () => {
-                await mockAgent.close();
-                setGlobalDispatcher(originalDispatcher);
-            });
+        let mockAgent: MockAgent;
+        let originalDispatcher: Dispatcher;
+        let topNodesFunc: () => ReturnType<typeof topNodes>;
+
+        beforeEach(() => {
+            originalDispatcher = getGlobalDispatcher();
+            mockAgent = new MockAgent();
+            setGlobalDispatcher(mockAgent);
+            mockAgent.disableNetConnect();
+
+            const kc = new KubeConfig();
+            kc.loadFromOptions(testConfigOptions);
+            const core = kc.makeApiClient(CoreV1Api);
+            topNodesFunc = () => topNodes(core);
+        });
+
+        afterEach(async () => {
+            await mockAgent.close();
+            setGlobalDispatcher(originalDispatcher);
+        });
+
+        it('should return empty when no nodes', async () => {
             const pool = mockAgent.get(testConfigOptions.clusters[0].server);
             pool.intercept({ path: '/api/v1/nodes', method: 'GET' }).reply(
                 200,
@@ -503,13 +490,7 @@ describe('Top', () => {
             mockAgent.assertNoPendingInterceptors();
         });
 
-        it('should return cluster wide node metrics', async (t) => {
-            const originalDispatcher = getGlobalDispatcher();
-            const [_, topNodesFunc, mockAgent] = systemUnderTest();
-            t.after(async () => {
-                await mockAgent.close();
-                setGlobalDispatcher(originalDispatcher);
-            });
+        it('should return cluster wide node metrics', async () => {
             const pool = mockAgent.get(testConfigOptions.clusters[0].server);
             pool.intercept({ path: '/api/v1/pods', method: 'GET' })
                 .reply(200, JSON.stringify({ items: podList }), {
