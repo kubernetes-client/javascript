@@ -69,3 +69,17 @@ jobs:
               env:
                   RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
                   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: Install website dependencies
+              run: cd website && npm ci
+            - name: Run prebuild
+              run: cd website && npm run prebuild
+            - name: Create version snapshot
+              run: cd website && npx docusaurus docs:version ${{ github.ref_name }}
+            - name: Commit versioned docs
+              if: ${{ github.event.inputs.dry_run != 'true' }}
+              run: |
+                  git config user.name "github-actions[bot]"
+                  git config user.email "github-actions[bot]@users.noreply.github.com"
+                  git add website/versions.json website/versioned_docs/ website/versioned_sidebars/
+                  git commit -m "docs: snapshot version ${{ github.ref_name }}" || echo "No changes to commit"
+                  git push

@@ -1,0 +1,31 @@
+name: Build and Deploy Docs v2
+on:
+    push:
+        branches:
+            - main
+    pull_request:
+        branches:
+            - main
+jobs:
+    build-and-deploy-docs:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v6.0.1
+            - name: Setup Node.js
+              uses: actions/setup-node@v6
+              with:
+                  node-version: '20'
+            - name: Install root dependencies
+              run: npm ci
+            - name: Install website dependencies
+              run: npm ci
+              working-directory: website
+            - name: Build website
+              run: npm run build
+              working-directory: website
+            - name: Deploy to gh-pages
+              uses: JamesIves/github-pages-deploy-action@v4
+              with:
+                  branch: gh-pages
+                  folder: website/build
