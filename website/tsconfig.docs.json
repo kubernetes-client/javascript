@@ -1,0 +1,15 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+        "rootDir": "../src",
+        "outDir": "./typedoc-out"
+    },
+    "include": ["../src/**/*.ts"],
+    "exclude": [
+        "../src/gen/**",
+        "../src/api.ts",
+        "../src/**/*_test.ts",
+        "../src/test/**",
+        "../node_modules/**"
+    ]
+}
