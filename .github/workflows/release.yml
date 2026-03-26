@@ -73,8 +73,8 @@ jobs:
               run: cd website && npm ci
             - name: Run prebuild
               run: cd website && npm run prebuild
-            - name: Create version snapshot
-              run: cd website && npx docusaurus docs:version ${{ github.ref_name }}
+             - name: Create version snapshot
+               run: cd website && npx docusaurus docs:version ${{ github.event.inputs.releaseVersion }}
             - name: Commit versioned docs
               if: ${{ github.event.inputs.dry_run != 'true' }}
               run: |

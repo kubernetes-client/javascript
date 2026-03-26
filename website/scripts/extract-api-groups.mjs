@@ -109,20 +109,6 @@ for (const docFile of docFiles) {
         continue;
     }
 
-    if (
-        className === 'CustomObjectsApi' ||
-        className === 'WatchApi' ||
-        className === 'VersionApi' ||
-        className === 'LogsApi'
-    ) {
-        apiGroupMap[className] = {
-            group: className.replace('Api', ''),
-            version: 'v1',
-            category: 'Other',
-        };
-        continue;
-    }
-
     // Parse standard class names like "AppsV1Api", "AdmissionregistrationV1alpha1Api"
     // Pattern: {GroupName}{VersionName}Api
     let group = null;

@@ -14,7 +14,8 @@
         "serve": "docusaurus serve",
         "write-translations": "docusaurus write-translations",
         "write-heading-ids": "docusaurus write-heading-ids",
-        "typecheck": "tsc"
+        "typecheck": "tsc",
+        "test": "node --experimental-vm-modules node_modules/.bin/jest scripts/__tests__/transform.test.mjs"
     },
     "dependencies": {
         "@docusaurus/core": "3.9.2",
