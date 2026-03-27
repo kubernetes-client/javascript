@@ -1525,6 +1525,133 @@ describe('ListWatchCache', () => {
 
         mockAgent.assertNoPendingInterceptors();
     });
+
+    it('should apply exponential backoff on repeated reconnects', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const listObj = {
+            metadata: { resourceVersion: '12345' } as V1ListMeta,
+            items: [] as V1Namespace[],
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = () => Promise.resolve(listObj);
+
+        let watchCalls = 0;
+        const delayValues: number[] = [];
+        const promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                watchCalls++;
+                resolve(new AbortController());
+                return Promise.resolve(new AbortController());
+            });
+        });
+
+        const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
+        (cache as any).delayFn = (ms: number) => {
+            delayValues.push(ms);
+            return Promise.resolve();
+        };
+        await promise;
+        strictEqual(watchCalls, 1);
+
+        const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
+
+        await doneHandler(null);
+        strictEqual(watchCalls, 2);
+        deepStrictEqual(delayValues, []);
+
+        await doneHandler(null);
+        strictEqual(watchCalls, 3);
+        deepStrictEqual(delayValues, [1000]);
+
+        await doneHandler(null);
+        strictEqual(watchCalls, 4);
+        deepStrictEqual(delayValues, [1000, 2000]);
+
+        await doneHandler(null);
+        strictEqual(watchCalls, 5);
+        deepStrictEqual(delayValues, [1000, 2000, 4000]);
+    });
+
+    it('should reset backoff after receiving a watch event', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const listObj = {
+            metadata: { resourceVersion: '12345' } as V1ListMeta,
+            items: [] as V1Namespace[],
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = () => Promise.resolve(listObj);
+
+        const delayValues: number[] = [];
+        const promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve(new AbortController());
+                return Promise.resolve(new AbortController());
+            });
+        });
+
+        const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
+        (cache as any).delayFn = (ms: number) => {
+            delayValues.push(ms);
+            return Promise.resolve();
+        };
+        await promise;
+
+        const [, , watchHandler, doneHandler] = mock.capture(fakeWatch.watch).last();
+
+        await doneHandler(null);
+        await doneHandler(null);
+        deepStrictEqual(delayValues, [1000]);
+
+        watchHandler('ADDED', {
+            metadata: { name: 'reset', namespace: 'default', resourceVersion: '99' } as V1ObjectMeta,
+        } as V1Namespace);
+
+        delayValues.length = 0;
+        await doneHandler(null);
+        deepStrictEqual(delayValues, []);
+
+        await doneHandler(null);
+        deepStrictEqual(delayValues, [1000]);
+    });
+
+    it('should reconnect with backoff on TimeoutError', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const listObj = {
+            metadata: { resourceVersion: '12345' } as V1ListMeta,
+            items: [] as V1Namespace[],
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = () => Promise.resolve(listObj);
+
+        let watchCalls = 0;
+        let errorEmitted = false;
+        const promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                watchCalls++;
+                resolve(new AbortController());
+                return Promise.resolve(new AbortController());
+            });
+        });
+
+        const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
+        (cache as any).delayFn = () => Promise.resolve();
+        await promise;
+        cache.on('error', () => (errorEmitted = true));
+        strictEqual(watchCalls, 1);
+
+        const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
+
+        const timeoutError = new DOMException('The operation was aborted due to timeout', 'TimeoutError');
+        await doneHandler(timeoutError);
+        strictEqual(watchCalls, 2);
+        strictEqual(errorEmitted, false);
+    });
 });
 
 describe('delete items', () => {

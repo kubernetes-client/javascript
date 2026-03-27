@@ -51,7 +51,11 @@ export class Watch {
             if (!doneCalled) {
                 doneCalled = true;
                 controller.abort();
-                done(err);
+                if (err && timeoutSignal.aborted) {
+                    done(new DOMException('The operation was aborted due to timeout', 'TimeoutError'));
+                } else {
+                    done(err);
+                }
             }
         };
 

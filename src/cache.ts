@@ -24,12 +24,19 @@ export interface ObjectCache<T> {
 export type CacheMap<T extends KubernetesObject> = Map<string, Map<string, T>>;
 
 export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, Informer<T> {
+    private static readonly BASE_RECONNECT_DELAY_MS = 1000;
+    private static readonly MAX_RECONNECT_DELAY_MS = 30000;
+
     private objects: CacheMap<T> = new Map();
     private resourceVersion: string;
     private readonly indexCache: { [key: string]: T[] } = {};
     private readonly callbackCache: { [key: string]: (ObjectCallback<T> | ErrorCallback)[] } = {};
     private request: AbortController | undefined;
     private stopped: boolean = false;
+    private reconnectDelayMs: number = 0;
+    private hasConnected: boolean = false;
+    private delayFn: (ms: number) => Promise<void> = (ms) =>
+        new Promise((resolve) => setTimeout(resolve, ms));
     private readonly path: string;
     private readonly watch: Watch;
     private readonly listFn: ListPromise<T>;
@@ -63,6 +70,8 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
 
     public async start(): Promise<void> {
         this.stopped = false;
+        this.reconnectDelayMs = 0;
+        this.hasConnected = false;
         await this.doneHandler(null);
     }
 
@@ -151,6 +160,8 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
             ((err as { statusCode?: number }).statusCode === 410 || (err as { code?: number }).code === 410)
         ) {
             this.resourceVersion = '';
+        } else if (err && (err as { name?: string }).name === 'TimeoutError') {
+            // Watch client-side timeout — reconnect from last known resourceVersion
         } else if (err) {
             this.callbackCache[ERROR].forEach((elt: ErrorCallback) => elt(err));
             return;
@@ -186,6 +197,16 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         if (this.fieldSelector !== undefined) {
             queryParams.fieldSelector = ObjectSerializer.serialize(this.fieldSelector, 'string');
         }
+        if (this.reconnectDelayMs > 0 && this.hasConnected) {
+            await this.delayFn(this.reconnectDelayMs);
+        }
+        if (this.hasConnected) {
+            this.reconnectDelayMs = Math.min(
+                this.reconnectDelayMs > 0 ? this.reconnectDelayMs * 2 : ListWatch.BASE_RECONNECT_DELAY_MS,
+                ListWatch.MAX_RECONNECT_DELAY_MS,
+            );
+        }
+        this.hasConnected = true;
         this.request = await this.watch.watch(
             this.path,
             queryParams,
@@ -236,6 +257,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
                 // nothing to do, here for documentation, mostly.
                 break;
         }
+        this.reconnectDelayMs = 0;
         this.resourceVersion = obj.metadata ? obj.metadata!.resourceVersion || '' : '';
     }
 }
