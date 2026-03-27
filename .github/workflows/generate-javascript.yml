@@ -20,10 +20,12 @@ jobs:
         runs-on: ubuntu-latest
         permissions:
             contents: write # Push generated branch
-            pull-requests: write # Create PR via repo-sync/pull-request
+            pull-requests: write # Create PR via gh CLI
         steps:
             - name: Checkout Javascript
               uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+              with:
+                  persist-credentials: false
             - name: Setup Node
               uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
               with:
@@ -50,13 +52,19 @@ jobs:
                   # we modify the settings file in "Generate Openapi" but do not want to commit this
                   git reset settings
                   git commit -s -m "Automated openapi generation from ${KUBERNETES_BRANCH}"
+                  git remote set-url origin "https://x-access-token:${GH_TOKEN}@github.com/${{ github.repository }}.git"
                   git push origin "$BRANCH"
               env:
                   KUBERNETES_BRANCH: ${{ github.event.inputs.kubernetesBranch }}
-            - name: Pull Request
-              uses: repo-sync/pull-request@7e79a9f5dc3ad0ce53138f01df2fad14a04831c5 # v2.12.1
-              with:
-                  source_branch: ${{ env.BRANCH }}
-                  destination_branch: ${{ github.ref_name }}
-                  github_token: ${{ secrets.GITHUB_TOKEN }}
-                  pr_title: 'Automated Generate from openapi ${{ github.event.inputs.kubernetesBranch }}'
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            - name: Create Pull Request
+              run: |
+                  gh pr create \
+                    --base "${BASE_BRANCH}" \
+                    --head "$BRANCH" \
+                    --title "Automated Generate from openapi ${KUBERNETES_BRANCH}" \
+                    --body "Automated openapi generation from ${KUBERNETES_BRANCH}"
+              env:
+                  KUBERNETES_BRANCH: ${{ github.event.inputs.kubernetesBranch }}
+                  BASE_BRANCH: ${{ github.ref_name }}
+                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

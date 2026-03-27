@@ -6,15 +6,21 @@ on:
     pull_request:
         branches: [master, main]
 
+permissions: {}
+
 jobs:
     build:
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         strategy:
             matrix:
                 node: ['25', '24', '23', '22', '20', '18']
         name: Node ${{ matrix.node }} validation
         steps:
             - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+              with:
+                  persist-credentials: false
             - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
               with:
                   node-version: ${{ matrix.node }}
@@ -48,3 +54,4 @@ jobs:
               with:
                   advanced-security: false
                   persona: pedantic
+                  min-severity: medium
