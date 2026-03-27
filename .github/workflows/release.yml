@@ -1,9 +1,6 @@
 name: Release
 
-permissions:
-    contents: write
-    actions: write
-    id-token: write
+permissions: {}
 
 on:
     workflow_dispatch:
@@ -32,6 +29,10 @@ jobs:
     release:
         runs-on: ubuntu-latest
         environment: production
+        permissions:
+            contents: write # Push tags to the repository
+            actions: write # Trigger downstream workflows
+            id-token: write # npm provenance via OIDC
         steps:
             - name: Checkout Javascript
               uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -55,8 +56,12 @@ jobs:
               run: |
                   git config --global user.name 'Github Bot'
                   git config --global user.email '<>'
-                  git tag ${{ github.event.inputs.releaseVersion }}
+                  git tag "${RELEASE_VERSION}"
+              env:
+                  RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
             - name: Push tag
               if: ${{ github.event.inputs.dry_run != 'true' }}
               run: |
-                  git push origin ${{ github.event.inputs.releaseVersion }}
+                  git push origin "${RELEASE_VERSION}"
+              env:
+                  RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
