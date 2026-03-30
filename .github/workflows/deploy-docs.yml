@@ -3,14 +3,21 @@ on:
     push:
         branches:
             - main
+
+permissions: {}
+
 jobs:
     build-and-deploy-docs:
         runs-on: ubuntu-latest
+        permissions:
+            contents: write
         steps:
             - name: Checkout
-              uses: actions/checkout@v6.0.2
+              uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+              with:
+                  persist-credentials: false
             - name: Setup Node.js
-              uses: actions/setup-node@v6
+              uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
               with:
                   node-version: '20'
             # Pre-check to validate that versions match between package.json
@@ -23,7 +30,7 @@ jobs:
               run: npm run docs
 
             - name: Deploy docs
-              uses: JamesIves/github-pages-deploy-action@v4.8.0
+              uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f # v4.8.0
               with:
                   branch: gh-pages # The branch the action should deploy to.
                   folder: docs # The folder the action should deploy.
