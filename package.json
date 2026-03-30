@@ -72,7 +72,7 @@
         "socks-proxy-agent": "^9.0.0",
         "stream-buffers": "^3.0.2",
         "tar-fs": "^3.0.9",
-        "undici": "^6.24.1",
+        "undici": "^7.24.5",
         "ws": "^8.18.2"
     },
     "devDependencies": {
