@@ -2,6 +2,7 @@ import assert from 'node:assert';
 import { CoreV1Api, KubeConfig, V1Pod } from '../../index.js';
 import { Watch } from '../../watch.js';
 import { generateName } from './name.js';
+import { withTimeout } from './helpers.js';
 
 export default async function watchPods() {
     const kc = new KubeConfig();
@@ -55,12 +56,7 @@ export default async function watchPods() {
         };
         await coreV1Client.createNamespacedPod({ namespace, body: pod });
 
-        await Promise.race([
-            addPromise,
-            new Promise((_, reject) =>
-                setTimeout(() => reject(new Error('Timed out waiting for ADDED event')), 15000),
-            ),
-        ]);
+        await withTimeout(addPromise, 15000, 'Timed out waiting for ADDED event');
 
         const addEvent = receivedEvents.find((e) => e.type === 'ADDED' && e.name === podName);
         assert.ok(addEvent, 'Should have received ADDED event for pod');
@@ -69,12 +65,7 @@ export default async function watchPods() {
         console.log(`Deleting pod ${podName}`);
         await coreV1Client.deleteNamespacedPod({ name: podName, namespace });
 
-        await Promise.race([
-            deletePromise,
-            new Promise((_, reject) =>
-                setTimeout(() => reject(new Error('Timed out waiting for DELETED event')), 15000),
-            ),
-        ]);
+        await withTimeout(deletePromise, 15000, 'Timed out waiting for DELETED event');
 
         const deleteEvent = receivedEvents.find((e) => e.type === 'DELETED' && e.name === podName);
         assert.ok(deleteEvent, 'Should have received DELETED event for pod');

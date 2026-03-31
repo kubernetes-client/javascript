@@ -23,6 +23,10 @@ export interface ObjectCache<T> {
 // exported for testing
 export type CacheMap<T extends KubernetesObject> = Map<string, Map<string, T>>;
 
+export interface ListWatchOptions {
+    delayFn?: (ms: number) => Promise<void>;
+}
+
 export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, Informer<T> {
     private static readonly BASE_RECONNECT_DELAY_MS = 1000;
     private static readonly MAX_RECONNECT_DELAY_MS = 30000;
@@ -35,14 +39,14 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     private stopped: boolean = false;
     private reconnectDelayMs: number = 0;
     private hasConnected: boolean = false;
-    private delayFn: (ms: number) => Promise<void> = (ms) =>
-        new Promise((resolve) => setTimeout(resolve, ms));
+    private readonly delayFn: (ms: number) => Promise<void>;
     private readonly path: string;
     private readonly watch: Watch;
     private readonly listFn: ListPromise<T>;
     private readonly labelSelector?: string;
     private readonly fieldSelector?: string;
 
+    // TODO: collapse autoStart, labelSelector, fieldSelector into ListWatchOptions
     public constructor(
         path: string,
         watch: Watch,
@@ -50,12 +54,14 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         autoStart: boolean = true,
         labelSelector?: string,
         fieldSelector?: string,
+        options?: ListWatchOptions,
     ) {
         this.path = path;
         this.watch = watch;
         this.listFn = listFn;
         this.labelSelector = labelSelector;
         this.fieldSelector = fieldSelector;
+        this.delayFn = options?.delayFn ?? ((ms) => new Promise((resolve) => setTimeout(resolve, ms)));
 
         this.callbackCache[ADD] = [];
         this.callbackCache[UPDATE] = [];

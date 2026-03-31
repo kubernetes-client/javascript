@@ -1,9 +1,9 @@
 import assert from 'node:assert';
-import { setTimeout } from 'node:timers/promises';
 import { CoreV1Api, KubeConfig, V1ConfigMap, V1ConfigMapList } from '../../index.js';
 import { Watch } from '../../watch.js';
 import { ListWatch } from '../../cache.js';
 import { generateName } from './name.js';
+import { withTimeout } from './helpers.js';
 
 export default async function informerReconnect() {
     const kc = new KubeConfig();
@@ -37,15 +37,35 @@ export default async function informerReconnect() {
     let connectCount = 0;
     let errorCount = 0;
 
+    let cm1AddResolve: () => void;
+    const cm1AddPromise = new Promise<void>((resolve) => {
+        cm1AddResolve = resolve;
+    });
+
+    let cm2AddResolve: () => void;
+    const cm2AddPromise = new Promise<void>((resolve) => {
+        cm2AddResolve = resolve;
+    });
+
+    const initialConnects = 0;
+    let reconnectResolve: () => void;
+    const reconnectPromise = new Promise<void>((resolve) => {
+        reconnectResolve = resolve;
+    });
+
     informer.on('add', (obj: V1ConfigMap) => {
         const name = obj.metadata?.name ?? 'unknown';
         console.log(`Informer event: add ${name}`);
         addedNames.push(name);
+
+        if (name === cm1Name) cm1AddResolve();
+        if (name === cm2Name) cm2AddResolve();
     });
 
     informer.on('connect', () => {
         connectCount++;
         console.log(`Informer event: connect (#${connectCount})`);
+        if (connectCount > initialConnects + 1) reconnectResolve();
     });
 
     informer.on('error', (err: any) => {
@@ -69,20 +89,13 @@ export default async function informerReconnect() {
             },
         });
 
-        for (let i = 0; i < 30; i++) {
-            if (addedNames.includes(cm1Name)) break;
-            await setTimeout(500);
-        }
+        await withTimeout(cm1AddPromise, 15000, 'Timed out waiting for cm1 add event');
         assert.ok(addedNames.includes(cm1Name), 'Should have received add event for cm1');
         console.log('✓ Received add event for cm1');
 
-        const initialConnects = connectCount;
         console.log(`Waiting for watch reconnection (up to 45s)...`);
-        for (let i = 0; i < 90; i++) {
-            if (connectCount > initialConnects) break;
-            await setTimeout(500);
-        }
-        assert.ok(connectCount > initialConnects, 'Informer should have reconnected');
+        await withTimeout(reconnectPromise, 45000, 'Timed out waiting for informer reconnect');
+        assert.ok(connectCount > initialConnects + 1, 'Informer should have reconnected');
         console.log(`✓ Informer reconnected (connect count: ${connectCount})`);
 
         console.log(`Creating configmap ${cm2Name}`);
@@ -94,10 +107,7 @@ export default async function informerReconnect() {
             },
         });
 
-        for (let i = 0; i < 30; i++) {
-            if (addedNames.includes(cm2Name)) break;
-            await setTimeout(500);
-        }
+        await withTimeout(cm2AddPromise, 15000, 'Timed out waiting for cm2 add event');
         assert.ok(addedNames.includes(cm2Name), 'Should have received add event for cm2 after reconnect');
         console.log('✓ Received add event for cm2 after reconnection');
 

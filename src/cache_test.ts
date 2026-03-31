@@ -1547,11 +1547,22 @@ describe('ListWatchCache', () => {
             });
         });
 
-        const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
-        (cache as any).delayFn = (ms: number) => {
-            delayValues.push(ms);
-            return Promise.resolve();
-        };
+        // ListWatch is constructed for its side effects (starts watching)
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const cache = new ListWatch(
+            '/some/path',
+            mock.instance(fakeWatch),
+            listFn,
+            true,
+            undefined,
+            undefined,
+            {
+                delayFn: (ms: number) => {
+                    delayValues.push(ms);
+                    return Promise.resolve();
+                },
+            },
+        );
         await promise;
         strictEqual(watchCalls, 1);
 
@@ -1593,11 +1604,21 @@ describe('ListWatchCache', () => {
             });
         });
 
-        const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
-        (cache as any).delayFn = (ms: number) => {
-            delayValues.push(ms);
-            return Promise.resolve();
-        };
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const cache = new ListWatch(
+            '/some/path',
+            mock.instance(fakeWatch),
+            listFn,
+            true,
+            undefined,
+            undefined,
+            {
+                delayFn: (ms: number) => {
+                    delayValues.push(ms);
+                    return Promise.resolve();
+                },
+            },
+        );
         await promise;
 
         const [, , watchHandler, doneHandler] = mock.capture(fakeWatch.watch).last();
@@ -1639,8 +1660,17 @@ describe('ListWatchCache', () => {
             });
         });
 
-        const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
-        (cache as any).delayFn = () => Promise.resolve();
+        const cache = new ListWatch(
+            '/some/path',
+            mock.instance(fakeWatch),
+            listFn,
+            true,
+            undefined,
+            undefined,
+            {
+                delayFn: () => Promise.resolve(),
+            },
+        );
         await promise;
         cache.on('error', () => (errorEmitted = true));
         strictEqual(watchCalls, 1);
