@@ -1,3 +1,4 @@
+import './polyfill.js';
 export * from './config.js';
 export * from './cache.js';
 export * from './api.js';
