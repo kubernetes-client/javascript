@@ -15,7 +15,7 @@ jobs:
             contents: read
         strategy:
             matrix:
-                node: ['25', '24', '23', '22', '20', '18']
+                node: ['25', '24', '23', '22', '20']
         name: Node ${{ matrix.node }} validation
         steps:
             - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
