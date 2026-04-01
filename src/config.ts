@@ -50,10 +50,15 @@ import { setHeaderMiddleware } from './middleware.js';
 // For the full set of constructor options available when creating dispatchers, see:
 //   - Agent:      Agent.Options      (extends Pool.Options -> Client.Options)
 //   - ProxyAgent: ProxyAgent.Options (extends Agent.Options, adds uri, requestTls, proxyTls, etc.)
+export type ConnectOptions = tls.ConnectionOptions & {
+    keepAlive?: boolean;
+    keepAliveInitialDelay?: number;
+};
+
 export type DispatcherOptions =
-    | { type: 'proxy'; uri: string; requestTls: tls.ConnectionOptions }
+    | { type: 'proxy'; uri: string; requestTls: tls.ConnectionOptions; connect: ConnectOptions }
     | { type: 'socks'; uri: string; requestTls: tls.ConnectionOptions }
-    | { type: 'agent'; connect: tls.ConnectionOptions }
+    | { type: 'agent'; connect: ConnectOptions }
     | { type: 'none' };
 
 const SERVICEACCOUNT_ROOT: string = '/var/run/secrets/kubernetes.io/serviceaccount';
@@ -106,6 +111,8 @@ function createSocksConnector(proxyUrl: string, tlsOptions: tls.ConnectionOption
                     return;
                 }
                 const socket = info!.socket;
+                // See createDispatcher 'agent' case for why 30s.
+                socket.setKeepAlive(true, 30_000);
                 if (protocol === 'https:') {
                     callback(
                         null,
@@ -304,6 +311,9 @@ export class KubeConfig implements SecurityAuthentication {
         // Only set rejectUnauthorized if explicitly configured. When not set, fetch will use NODE_TLS_REJECT_UNAUTHORIZED env var
         if (httpsOptions.rejectUnauthorized !== undefined) {
             agentOptions.rejectUnauthorized = httpsOptions.rejectUnauthorized;
+        }
+        if ((httpsOptions as any).servername !== undefined) {
+            (agentOptions as any).servername = (httpsOptions as any).servername;
         }
 
         const dispatcher = this.createDispatcher(cluster, agentOptions);
@@ -633,14 +643,22 @@ export class KubeConfig implements SecurityAuthentication {
             if (!cluster.server.startsWith('https') && !cluster.server.startsWith('http')) {
                 throw new Error('Unsupported proxy type');
             }
-            return { type: 'proxy', uri: cluster.proxyUrl, requestTls: tlsOptions };
+            return {
+                type: 'proxy',
+                uri: cluster.proxyUrl,
+                requestTls: tlsOptions,
+                connect: { keepAlive: true, keepAliveInitialDelay: 30_000 },
+            };
         } else if (cluster?.server?.startsWith('http:') && !cluster.skipTLSVerify) {
             throw new Error('HTTP protocol is not allowed when skipTLSVerify is not set or false');
         }
         if (Object.keys(tlsOptions).length === 0) {
             return { type: 'none' };
         }
-        return { type: 'agent', connect: tlsOptions };
+        // undici defaults to keepAliveInitialDelay: 60s which can race
+        // with cloud load-balancer idle timeouts (e.g. AWS ELB 60s).
+        // Use 30s to match client-go and the pre-undici node-fetch behavior.
+        return { type: 'agent', connect: { ...tlsOptions, keepAlive: true, keepAliveInitialDelay: 30_000 } };
     }
 
     private createDispatcher(
@@ -650,7 +668,11 @@ export class KubeConfig implements SecurityAuthentication {
         const opts = this.createDispatcherOptions(cluster, agentOptions);
         switch (opts.type) {
             case 'proxy':
-                return new UndiciProxyAgent({ uri: opts.uri, requestTls: opts.requestTls });
+                return new UndiciProxyAgent({
+                    uri: opts.uri,
+                    requestTls: opts.requestTls,
+                    connect: opts.connect,
+                });
             case 'socks':
                 return new UndiciAgent({ connect: createSocksConnector(opts.uri, opts.requestTls) });
             case 'agent':
