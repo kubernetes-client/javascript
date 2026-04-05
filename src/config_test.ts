@@ -565,6 +565,64 @@ describe('KubeConfig', () => {
                 message: 'Unsupported proxy type',
             });
         });
+        it('should merge global agent CA with cluster CA', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcFileName);
+
+            // Set a global CA
+            const globalCA = Buffer.from('GLOBAL_CA_DATA');
+            const originalGlobalCA = (https.globalAgent as https.Agent).options?.ca;
+            (https.globalAgent as https.Agent).options.ca = globalCA;
+
+            try {
+                const clusterCA = Buffer.from('CADATA2', 'utf-8');
+                const dispatcherOpts = kc.createDispatcherOptions(kc.getCurrentCluster(), {
+                    ca: clusterCA,
+                    cert: undefined,
+                    key: undefined,
+                });
+
+                strictEqual(dispatcherOpts.type, 'agent');
+                // The CA should be a Buffer containing both global and cluster CA data
+                const combinedCA = dispatcherOpts.connect.ca as Buffer;
+                strictEqual(combinedCA.includes('GLOBAL_CA_DATA'), true);
+                strictEqual(combinedCA.includes('CADATA2'), true);
+            } finally {
+                // Restore original global CA
+                if (originalGlobalCA !== undefined) {
+                    (https.globalAgent as https.Agent).options.ca = originalGlobalCA;
+                } else {
+                    delete (https.globalAgent as https.Agent).options.ca;
+                }
+            }
+        });
+        it('should use global CA when no cluster CA is provided', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcFileName);
+
+            // Set a global CA
+            const globalCA = Buffer.from('GLOBAL_CA_DATA_ONLY');
+            const originalGlobalCA = (https.globalAgent as https.Agent).options?.ca;
+            (https.globalAgent as https.Agent).options.ca = globalCA;
+
+            try {
+                const dispatcherOpts = kc.createDispatcherOptions(kc.getCurrentCluster(), {
+                    cert: undefined,
+                    key: undefined,
+                });
+
+                strictEqual(dispatcherOpts.type, 'agent');
+                // The CA should be the global CA only
+                strictEqual(dispatcherOpts.connect.ca?.toString(), 'GLOBAL_CA_DATA_ONLY');
+            } finally {
+                // Restore original global CA
+                if (originalGlobalCA !== undefined) {
+                    (https.globalAgent as https.Agent).options.ca = originalGlobalCA;
+                } else {
+                    delete (https.globalAgent as https.Agent).options.ca;
+                }
+            }
+        });
         it('should throw if cluster.server starts with http and skipTLSVerify is not set via applyToHTTPSOptions', async () => {
             const kc = new KubeConfig();
             kc.loadFromFile(kcProxyUrl);
