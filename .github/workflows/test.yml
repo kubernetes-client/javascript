@@ -6,16 +6,22 @@ on:
     pull_request:
         branches: [master, main]
 
+permissions: {}
+
 jobs:
     build:
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         strategy:
             matrix:
-                node: ['25', '24', '23', '22', '20', '18']
+                node: ['25', '24', '23', '22', '20']
         name: Node ${{ matrix.node }} validation
         steps:
-            - uses: actions/checkout@v6.0.2
-            - uses: actions/setup-node@v6
+            - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+              with:
+                  persist-credentials: false
+            - uses: actions/setup-node@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
               with:
                   node-version: ${{ matrix.node }}
             # Pre-check to validate that versions match between package.json
@@ -33,5 +39,19 @@ jobs:
             - run: npm audit --audit-level=critical
             - run: npm run build-with-tests && npm run test-transpiled
             - name: Create k8s Kind Cluster
-              uses: helm/kind-action@v1
+              uses: helm/kind-action@ef37e7f390d99f746eb8b610417061a60e82a6cc # v1.14.0
             - run: npm run integration-test
+    zizmor:
+        runs-on: ubuntu-latest
+        name: GitHub Actions security lint
+        permissions:
+            contents: read
+        steps:
+            - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+              with:
+                  persist-credentials: false
+            - uses: zizmorcore/zizmor-action@71321a20a9ded102f6e9ce5718a2fcec2c4f70d8 # v0.5.2
+              with:
+                  advanced-security: false
+                  persona: pedantic
+                  min-severity: medium
