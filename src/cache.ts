@@ -12,6 +12,7 @@ import {
 } from './informer.js';
 import { KubernetesObject, KubernetesListObject } from './types.js';
 import { ObjectSerializer } from './serializer.js';
+import { setTimeout } from 'node:timers/promises';
 import { Watch } from './watch.js';
 
 export interface ObjectCache<T> {
@@ -61,7 +62,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         this.listFn = listFn;
         this.labelSelector = labelSelector;
         this.fieldSelector = fieldSelector;
-        this.delayFn = options?.delayFn ?? ((ms) => new Promise((resolve) => setTimeout(resolve, ms)));
+        this.delayFn = options?.delayFn ?? setTimeout;
 
         this.callbackCache[ADD] = [];
         this.callbackCache[UPDATE] = [];

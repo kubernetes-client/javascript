@@ -150,8 +150,8 @@ export function totalForResource(pod: V1Pod, resource: string): ResourceStatus {
     return new ResourceStatus(reqTotal, limitTotal, resource);
 }
 
-// There is a disconnect between the ApiException headers and the response headers from fetch.
-// ApiException expects { [key: string]: string } whereas some fetch implementations provide: { [key: string]: string[] }
+// ApiException expects headers as { [key: string]: string }, but undici's fetch returns a Headers class instance.
+// This converts the Headers iterable into a plain object.
 export function normalizeResponseHeaders(response: { headers: { entries(): Iterable<[string, string]> } }): {
     [key: string]: string;
 } {
