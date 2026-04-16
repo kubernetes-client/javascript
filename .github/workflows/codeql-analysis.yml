@@ -15,9 +15,19 @@ name: 'CodeQL'
 on:
     push:
         branches: [master, main]
+        paths:
+            - 'src/**'
+            - 'package.json'
+            - 'package-lock.json'
+            - '.github/workflows/codeql-analysis.yml'
     pull_request:
         # The branches below must be a subset of the branches above
         branches: [master, main]
+        paths:
+            - 'src/**'
+            - 'package.json'
+            - 'package-lock.json'
+            - '.github/workflows/codeql-analysis.yml'
     schedule:
         - cron: '35 14 * * 3'
 

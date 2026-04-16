@@ -3,6 +3,12 @@ on:
     push:
         branches:
             - main
+        paths:
+            - 'src/**'
+            - 'typedoc.json'
+            - 'package.json'
+            - 'package-lock.json'
+            - '.github/workflows/deploy-docs.yml'
 
 permissions: {}
 

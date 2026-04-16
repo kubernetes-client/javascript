@@ -3,8 +3,26 @@ name: Kubernetes Javascript Client - Validation
 on:
     push:
         branches: [master, main]
+        paths:
+            - 'src/**'
+            - 'testdata/**'
+            - 'package.json'
+            - 'package-lock.json'
+            - 'tsconfig*.json'
+            - 'eslint.config.js'
+            - 'version-check.js'
+            - '.github/workflows/test.yml'
     pull_request:
         branches: [master, main]
+        paths:
+            - 'src/**'
+            - 'testdata/**'
+            - 'package.json'
+            - 'package-lock.json'
+            - 'tsconfig*.json'
+            - 'eslint.config.js'
+            - 'version-check.js'
+            - '.github/workflows/test.yml'
 
 permissions: {}
 
