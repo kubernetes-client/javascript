@@ -1,6 +1,6 @@
-import { describe, it } from 'node:test';
+import { afterEach, beforeEach, describe, it } from 'node:test';
 import { rejects, strictEqual } from 'node:assert';
-import nock from 'nock';
+import { MockAgent, getGlobalDispatcher, setGlobalDispatcher, type Dispatcher } from 'undici';
 
 import { KubeConfig } from './config.js';
 import { Health } from './health.js';
@@ -19,6 +19,21 @@ describe('Health', () => {
         },
     ].forEach((test) => {
         describe(test.path, () => {
+            let mockAgent: MockAgent;
+            let originalDispatcher: Dispatcher;
+
+            beforeEach(() => {
+                originalDispatcher = getGlobalDispatcher();
+                mockAgent = new MockAgent();
+                setGlobalDispatcher(mockAgent);
+                mockAgent.disableNetConnect();
+            });
+
+            afterEach(async () => {
+                await mockAgent.close();
+                setGlobalDispatcher(originalDispatcher);
+            });
+
             it('should throw an error if no current active cluster', async () => {
                 const kc = new KubeConfig();
                 const health = new Health(kc);
@@ -38,12 +53,13 @@ describe('Health', () => {
                 } as User;
                 kc.loadFromClusterAndUser(cluster, user);
 
-                const scope = nock('https://server.com').get(test.path).reply(200);
+                const pool = mockAgent.get('https://server.com');
+                pool.intercept({ path: test.path, method: 'GET' }).reply(200);
                 const health = new Health(kc);
 
                 const r = await test.method(health, {});
                 strictEqual(r, true);
-                scope.done();
+                mockAgent.assertNoPendingInterceptors();
             });
 
             it(`should return false if ${test.path} returns with status 500`, async () => {
@@ -59,12 +75,13 @@ describe('Health', () => {
                 } as User;
                 kc.loadFromClusterAndUser(cluster, user);
 
-                const scope = nock('https://server.com').get(test.path).reply(500);
+                const pool = mockAgent.get('https://server.com');
+                pool.intercept({ path: test.path, method: 'GET' }).reply(500);
                 const health = new Health(kc);
 
                 const r = await test.method(health, {});
                 strictEqual(r, false);
-                scope.done();
+                mockAgent.assertNoPendingInterceptors();
             });
 
             it(`should return true if ${test.path} returns status 404 and /healthz returns status 200`, async () => {
@@ -80,14 +97,14 @@ describe('Health', () => {
                 } as User;
                 kc.loadFromClusterAndUser(cluster, user);
 
-                const scope = nock('https://server.com');
-                scope.get(test.path).reply(404);
-                scope.get('/healthz').reply(200);
+                const pool = mockAgent.get('https://server.com');
+                pool.intercept({ path: test.path, method: 'GET' }).reply(404);
+                pool.intercept({ path: '/healthz', method: 'GET' }).reply(200);
                 const health = new Health(kc);
 
                 const r = await test.method(health, {});
                 strictEqual(r, true);
-                scope.done();
+                mockAgent.assertNoPendingInterceptors();
             });
 
             it(`should return false if ${test.path} returns status 404 and /healthz returns status 500`, async () => {
@@ -103,14 +120,14 @@ describe('Health', () => {
                 } as User;
                 kc.loadFromClusterAndUser(cluster, user);
 
-                const scope = nock('https://server.com');
-                scope.get(test.path).reply(404);
-                scope.get('/healthz').reply(500);
+                const pool = mockAgent.get('https://server.com');
+                pool.intercept({ path: test.path, method: 'GET' }).reply(404);
+                pool.intercept({ path: '/healthz', method: 'GET' }).reply(500);
                 const health = new Health(kc);
 
                 const r = await test.method(health, {});
                 strictEqual(r, false);
-                scope.done();
+                mockAgent.assertNoPendingInterceptors();
             });
 
             it(`should return true if both ${test.path} and /healthz return status 404`, async () => {
@@ -126,14 +143,14 @@ describe('Health', () => {
                 } as User;
                 kc.loadFromClusterAndUser(cluster, user);
 
-                const scope = nock('https://server.com');
-                scope.get(test.path).reply(404);
-                scope.get('/healthz').reply(404);
+                const pool = mockAgent.get('https://server.com');
+                pool.intercept({ path: test.path, method: 'GET' }).reply(404);
+                pool.intercept({ path: '/healthz', method: 'GET' }).reply(404);
                 const health = new Health(kc);
 
                 const r = await test.method(health, {});
                 strictEqual(r, true);
-                scope.done();
+                mockAgent.assertNoPendingInterceptors();
             });
 
             it('should throw an error when fetch throws an error', async () => {
@@ -149,12 +166,12 @@ describe('Health', () => {
                 } as User;
                 kc.loadFromClusterAndUser(cluster, user);
 
-                const scope = nock('https://server.com');
-                scope.get(test.path).replyWithError(new Error('an error'));
+                const pool = mockAgent.get('https://server.com');
+                pool.intercept({ path: test.path, method: 'GET' }).replyWithError(new Error('an error'));
                 const health = new Health(kc);
 
                 await rejects(test.method(health, {}), { message: 'Error occurred in health request' });
-                scope.done();
+                mockAgent.assertNoPendingInterceptors();
             });
         });
     });

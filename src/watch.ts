@@ -1,7 +1,9 @@
 import { STATUS_CODES } from 'node:http';
 import { createInterface } from 'node:readline';
-import fetch from 'node-fetch';
+import { Readable } from 'node:stream';
+import { fetch } from 'undici';
 import { KubeConfig } from './config.js';
+import { HttpMethod, RequestContext } from './gen/http/http.js';
 
 export class Watch {
     public static SERVER_SIDE_CLOSE: object = { error: 'Connection closed on server' };
@@ -37,33 +39,36 @@ export class Watch {
             }
         }
 
-        const requestInit = await this.config.applyToFetchOptions({});
-
         const controller = new AbortController();
         const timeoutSignal = AbortSignal.timeout(this.requestTimeoutMs);
-        requestInit.signal = AbortSignal.any([controller.signal, timeoutSignal]);
-        requestInit.method = 'GET';
+        const signal = AbortSignal.any([controller.signal, timeoutSignal]);
+
+        const ctx = new RequestContext(watchURL.toString(), HttpMethod.GET);
+        await this.config.applySecurityAuthentication(ctx);
 
         let doneCalled: boolean = false;
         const doneCallOnce = (err: any) => {
             if (!doneCalled) {
                 doneCalled = true;
                 controller.abort();
-                done(err);
+                if (err && timeoutSignal.aborted) {
+                    done(new DOMException('The operation was aborted due to timeout', 'TimeoutError'));
+                } else {
+                    done(err);
+                }
             }
         };
 
         try {
-            const response = await fetch(watchURL, requestInit);
-
-            if (requestInit.agent && typeof requestInit.agent === 'object') {
-                for (const socket of Object.values(requestInit.agent.sockets).flat()) {
-                    socket?.setKeepAlive(true, 30000);
-                }
-            }
+            const response = await fetch(watchURL, {
+                method: 'GET',
+                headers: ctx.getHeaders(),
+                dispatcher: ctx.getDispatcher(),
+                signal,
+            });
 
             if (response.status === 200) {
-                const body = response.body!;
+                const body = Readable.fromWeb(response.body! as any);
 
                 body.on('error', doneCallOnce);
                 body.on('close', () => doneCallOnce(null));

@@ -1,5 +1,5 @@
 import * as k8s from '@kubernetes/client-node';
-import fetch from 'node-fetch';
+import { fetch } from 'undici';
 import https from 'node:https';
 
 const kc = new k8s.KubeConfig();

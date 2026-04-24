@@ -8,7 +8,7 @@ import { KubeConfig } from './config.js';
 import { Cluster, Context, User } from './config_types.js';
 import { ListPromise } from './informer.js';
 
-import nock from 'nock';
+import { MockAgent, setGlobalDispatcher, getGlobalDispatcher } from 'undici';
 import { Watch } from './watch.js';
 
 const server = 'https://foo.company.com';
@@ -1432,7 +1432,7 @@ describe('ListWatchCache', () => {
         strictEqual(listCalls, 2);
     });
 
-    it('should send label selector', async () => {
+    it('should send label selector', async (t) => {
         const APP_LABEL_SELECTOR = 'app=foo';
 
         const list: V1Namespace[] = [
@@ -1474,29 +1474,34 @@ describe('ListWatchCache', () => {
 
         const informer = new ListWatch(path, watch, listFn, false, APP_LABEL_SELECTOR);
 
-        const scope = nock(fakeConfig.clusters[0].server);
-        const s = scope
-            .get(path)
-            .query({
-                watch: true,
-                resourceVersion: '12345',
-                labelSelector: APP_LABEL_SELECTOR,
-            })
-            .reply(
-                200,
-                () =>
-                    JSON.stringify({
-                        type: 'ADDED',
-                        object: {
-                            metadata: {
-                                name: 'name3',
-                                labels: {
-                                    app: 'foo3',
-                                },
-                            } as V1ObjectMeta,
+        const originalDispatcher = getGlobalDispatcher();
+        const mockAgent = new MockAgent();
+        setGlobalDispatcher(mockAgent);
+        mockAgent.disableNetConnect();
+
+        t.after(async () => {
+            await mockAgent.close();
+            setGlobalDispatcher(originalDispatcher);
+        });
+
+        const pool = mockAgent.get(fakeConfig.clusters[0].server);
+        pool.intercept({
+            path: `${path}?watch=true&resourceVersion=12345&labelSelector=app%3Dfoo`,
+            method: 'GET',
+        }).reply(
+            200,
+            JSON.stringify({
+                type: 'ADDED',
+                object: {
+                    metadata: {
+                        name: 'name3',
+                        labels: {
+                            app: 'foo3',
                         },
-                    }) + '\n',
-            );
+                    } as V1ObjectMeta,
+                },
+            }) + '\n',
+        );
 
         await informer.start();
 
@@ -1518,7 +1523,164 @@ describe('ListWatchCache', () => {
             },
         });
 
-        s.done();
+        mockAgent.assertNoPendingInterceptors();
+    });
+
+    it('should apply exponential backoff on repeated reconnects', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const listObj = {
+            metadata: { resourceVersion: '12345' } as V1ListMeta,
+            items: [] as V1Namespace[],
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = () => Promise.resolve(listObj);
+
+        let watchCalls = 0;
+        const delayValues: number[] = [];
+        const promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                watchCalls++;
+                resolve(new AbortController());
+                return Promise.resolve(new AbortController());
+            });
+        });
+
+        // ListWatch is constructed for its side effects (starts watching)
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const cache = new ListWatch(
+            '/some/path',
+            mock.instance(fakeWatch),
+            listFn,
+            true,
+            undefined,
+            undefined,
+            {
+                delayFn: (ms: number) => {
+                    delayValues.push(ms);
+                    return Promise.resolve();
+                },
+            },
+        );
+        await promise;
+        strictEqual(watchCalls, 1);
+
+        const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
+
+        await doneHandler(null);
+        strictEqual(watchCalls, 2);
+        deepStrictEqual(delayValues, []);
+
+        await doneHandler(null);
+        strictEqual(watchCalls, 3);
+        deepStrictEqual(delayValues, [1000]);
+
+        await doneHandler(null);
+        strictEqual(watchCalls, 4);
+        deepStrictEqual(delayValues, [1000, 2000]);
+
+        await doneHandler(null);
+        strictEqual(watchCalls, 5);
+        deepStrictEqual(delayValues, [1000, 2000, 4000]);
+    });
+
+    it('should reset backoff after receiving a watch event', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const listObj = {
+            metadata: { resourceVersion: '12345' } as V1ListMeta,
+            items: [] as V1Namespace[],
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = () => Promise.resolve(listObj);
+
+        const delayValues: number[] = [];
+        const promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve(new AbortController());
+                return Promise.resolve(new AbortController());
+            });
+        });
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const cache = new ListWatch(
+            '/some/path',
+            mock.instance(fakeWatch),
+            listFn,
+            true,
+            undefined,
+            undefined,
+            {
+                delayFn: (ms: number) => {
+                    delayValues.push(ms);
+                    return Promise.resolve();
+                },
+            },
+        );
+        await promise;
+
+        const [, , watchHandler, doneHandler] = mock.capture(fakeWatch.watch).last();
+
+        await doneHandler(null);
+        await doneHandler(null);
+        deepStrictEqual(delayValues, [1000]);
+
+        watchHandler('ADDED', {
+            metadata: { name: 'reset', namespace: 'default', resourceVersion: '99' } as V1ObjectMeta,
+        } as V1Namespace);
+
+        delayValues.length = 0;
+        await doneHandler(null);
+        deepStrictEqual(delayValues, []);
+
+        await doneHandler(null);
+        deepStrictEqual(delayValues, [1000]);
+    });
+
+    it('should reconnect with backoff on TimeoutError', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const listObj = {
+            metadata: { resourceVersion: '12345' } as V1ListMeta,
+            items: [] as V1Namespace[],
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = () => Promise.resolve(listObj);
+
+        let watchCalls = 0;
+        let errorEmitted = false;
+        const promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                watchCalls++;
+                resolve(new AbortController());
+                return Promise.resolve(new AbortController());
+            });
+        });
+
+        const cache = new ListWatch(
+            '/some/path',
+            mock.instance(fakeWatch),
+            listFn,
+            true,
+            undefined,
+            undefined,
+            {
+                delayFn: () => Promise.resolve(),
+            },
+        );
+        await promise;
+        cache.on('error', () => (errorEmitted = true));
+        strictEqual(watchCalls, 1);
+
+        const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
+
+        const timeoutError = new DOMException('The operation was aborted due to timeout', 'TimeoutError');
+        await doneHandler(timeoutError);
+        strictEqual(watchCalls, 2);
+        strictEqual(errorEmitted, false);
     });
 });
 

@@ -1,6 +1,6 @@
-import { afterEach, describe, it } from 'node:test';
+import { afterEach, beforeEach, describe, it } from 'node:test';
 import { strictEqual, rejects, throws } from 'node:assert';
-import nock from 'nock';
+import { MockAgent, getGlobalDispatcher, setGlobalDispatcher, type Dispatcher } from 'undici';
 import { AddOptionsToSearchParams, Log, LogOptions } from './log.js';
 import { KubeConfig } from './config.js';
 import { Writable } from 'node:stream';
@@ -35,8 +35,21 @@ describe('Log', () => {
         config.setCurrentContext('foo');
         const log = new Log(config);
 
-        afterEach(() => {
-            nock.cleanAll();
+        let mockAgent: MockAgent;
+        let originalDispatcher: Dispatcher;
+        let pool: ReturnType<MockAgent['get']>;
+
+        beforeEach(() => {
+            originalDispatcher = getGlobalDispatcher();
+            mockAgent = new MockAgent();
+            setGlobalDispatcher(mockAgent);
+            mockAgent.disableNetConnect();
+            pool = mockAgent.get('https://example.com');
+        });
+
+        afterEach(async () => {
+            await mockAgent.close();
+            setGlobalDispatcher(originalDispatcher);
         });
 
         it('should make a request with correct parameters', async () => {
@@ -58,22 +71,14 @@ describe('Log', () => {
                 timestamps: true,
             };
 
-            nock('https://example.com')
-                .get('/api/v1/namespaces/default/pods/mypod/log')
-                .query({
-                    container: 'mycontainer',
-                    follow: 'true',
-                    limitBytes: '100',
-                    pretty: 'true',
-                    previous: 'true',
-                    sinceSeconds: '1',
-                    tailLines: '1',
-                    timestamps: 'true',
-                })
-                .reply(200, 'log data');
+            pool.intercept({
+                method: 'GET',
+                path: '/api/v1/namespaces/default/pods/mypod/log?container=mycontainer&follow=true&limitBytes=100&pretty=true&previous=true&sinceSeconds=1&tailLines=1&timestamps=true',
+            }).reply(200, 'log data');
 
             const controller = await log.log(namespace, podName, containerName, stream, options);
             strictEqual(controller instanceof AbortController, true);
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should throw an error if no active cluster', async () => {
@@ -103,14 +108,17 @@ describe('Log', () => {
                 },
             });
 
-            nock('https://example.com')
-                .get('/api/v1/namespaces/default/pods/mypod/log')
-                .query({ container: 'mycontainer' })
-                .reply(501, { message: 'Error occurred in log request' });
+            pool.intercept({
+                method: 'GET',
+                path: '/api/v1/namespaces/default/pods/mypod/log?container=mycontainer',
+            }).reply(501, JSON.stringify({ message: 'Error occurred in log request' }), {
+                headers: { 'content-type': 'application/json' },
+            });
 
             await rejects(async () => {
                 await log.log(namespace, podName, containerName, stream);
             }, /Error occurred in log request/);
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should handle API exceptions on 500', async () => {
@@ -123,14 +131,17 @@ describe('Log', () => {
                 },
             });
 
-            nock('https://example.com')
-                .get('/api/v1/namespaces/default/pods/mypod/log')
-                .query({ container: 'mycontainer' })
-                .reply(500, { message: 'Error occurred in log request' });
+            pool.intercept({
+                method: 'GET',
+                path: '/api/v1/namespaces/default/pods/mypod/log?container=mycontainer',
+            }).reply(500, JSON.stringify({ message: 'Error occurred in log request' }), {
+                headers: { 'content-type': 'application/json' },
+            });
 
             await rejects(async () => {
                 await log.log(namespace, podName, containerName, stream);
             }, /Error occurred in log request/);
+            mockAgent.assertNoPendingInterceptors();
         });
 
         it('should handle V1Status with code and message', async () => {
@@ -157,14 +168,15 @@ describe('Log', () => {
                 code: 404,
             };
 
-            nock('https://example.com')
-                .get('/api/v1/namespaces/default/pods/mypod/log')
-                .query({ container: 'mycontainer' })
-                .reply(500, v1Status);
+            pool.intercept({
+                method: 'GET',
+                path: '/api/v1/namespaces/default/pods/mypod/log?container=mycontainer',
+            }).reply(500, JSON.stringify(v1Status), { headers: { 'content-type': 'application/json' } });
 
             await rejects(async () => {
                 await log.log(namespace, podName, containerName, stream);
             }, /Pod not found/);
+            mockAgent.assertNoPendingInterceptors();
         });
     });
     describe('AddOptionsToSearchParams', () => {

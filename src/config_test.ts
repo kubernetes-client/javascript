@@ -11,16 +11,16 @@ import child_process from 'node:child_process';
 import { readFileSync } from 'node:fs';
 import https from 'node:https';
 import http from 'node:http';
-import { Agent, RequestOptions } from 'node:https';
+import tls from 'node:tls';
+import { RequestOptions } from 'node:https';
 import path, { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import mockfs from 'mock-fs';
 
 import { Authenticator } from './auth.js';
-import fetch, { Headers } from 'node-fetch';
 import { HttpMethod } from './index.js';
-import { assertRequestAgentsEqual, assertRequestOptionsEqual } from './test/match-buffer.js';
+import { assertRequestOptionsEqual } from './test/match-buffer.js';
 import { CoreV1Api, RequestContext } from './api.js';
 import { bufferFromFileOrString, findHomeDir, findObject, KubeConfig, makeAbsolutePath } from './config.js';
 import { ActionOnInvalid, Cluster, newClusters, newContexts, newUsers, User } from './config_types.js';
@@ -276,42 +276,6 @@ describe('KubeConfig', () => {
         });
     });
 
-    describe('applytoFetchOptions', () => {
-        it('should apply cert configs', async () => {
-            const kc = new KubeConfig();
-            kc.loadFromFile(kcFileName);
-            kc.setCurrentContext('passwd');
-
-            const opts: https.RequestOptions = {
-                method: 'POST',
-                timeout: 5,
-                headers: {
-                    number: 5,
-                    string: 'str',
-                    empty: undefined,
-                    list: ['a', 'b'],
-                },
-            };
-            const requestInit = await kc.applyToFetchOptions(opts);
-            const expectedCA = Buffer.from('CADATA2', 'utf-8');
-            const expectedAgent = new https.Agent({
-                ca: expectedCA,
-                rejectUnauthorized: false,
-            });
-
-            strictEqual(requestInit.method, 'POST');
-            // timeout has been removed from the spec.
-            strictEqual((requestInit as any).timeout, 5);
-            const headers = requestInit.headers as Headers;
-            strictEqual(Array.from(headers).length, 4);
-            strictEqual(headers.get('Authorization'), 'Basic Zm9vOmJhcg==');
-            strictEqual(headers.get('list'), 'a, b');
-            strictEqual(headers.get('number'), '5');
-            strictEqual(headers.get('string'), 'str');
-            assertRequestAgentsEqual(requestInit.agent as Agent, expectedAgent);
-        });
-    });
-
     describe('applyHTTPSOptions', () => {
         it('should apply tls-server-name to https.RequestOptions', async () => {
             const kc = new KubeConfig();
@@ -479,6 +443,56 @@ describe('KubeConfig', () => {
                 expectedCA.toString(),
             );
         });
+        it('should override default 60s keep-alive with 30s for cloud LB compatibility', () => {
+            const kc = new KubeConfig();
+            kc.loadFromClusterAndUser(
+                { name: 'cluster', server: 'https://example.com' } as Cluster,
+                { name: 'user' } as User,
+            );
+            const agentOpts = kc.createDispatcherOptions(kc.getCurrentCluster(), {
+                ca: Buffer.from('CA', 'utf-8'),
+            });
+            strictEqual(agentOpts.type, 'agent');
+            strictEqual(agentOpts.connect.keepAlive, true);
+            strictEqual(agentOpts.connect.keepAliveInitialDelay, 30_000);
+
+            const proxyOpts = kc.createDispatcherOptions(
+                { name: 'cluster', server: 'https://example.com', proxyUrl: 'http://proxy:8080' } as Cluster,
+                { ca: Buffer.from('CA', 'utf-8') },
+            );
+            strictEqual(proxyOpts.type, 'proxy');
+            strictEqual(proxyOpts.connect.keepAlive, true);
+            strictEqual(proxyOpts.connect.keepAliveInitialDelay, 30_000);
+        });
+        it('should propagate tls-server-name as TLS SNI through the full dispatcher chain', async () => {
+            const expectedSni = 'custom-sni-name';
+            let observedSni: string | false | null | undefined;
+
+            const { server, host, port } = await createTestHttpsServer((req, res) => {
+                observedSni = (req.socket as tls.TLSSocket).servername;
+                res.setHeader('Content-Type', 'application/json');
+                res.writeHead(200);
+                res.end(JSON.stringify({ kind: 'NamespaceList', apiVersion: 'v1', items: [] }));
+            });
+
+            after(() => server.close());
+
+            const kc = new KubeConfig();
+            kc.loadFromClusterAndUser(
+                {
+                    name: 'test-cluster',
+                    server: `https://${host}:${port}`,
+                    skipTLSVerify: true,
+                    tlsServerName: expectedSni,
+                } as Cluster,
+                { name: 'test-user' },
+            );
+
+            const coreV1Api = kc.makeApiClient(CoreV1Api);
+            await coreV1Api.listNamespace();
+
+            strictEqual(observedSni, expectedSni);
+        });
         it('should throw an error if proxy-url is provided but the server protocol is not http or https', async () => {
             const kc = new KubeConfig();
             kc.loadFromFile(kcProxyUrl);
@@ -625,10 +639,6 @@ describe('KubeConfig', () => {
             strictEqual(namespaceList.kind, 'NamespaceList');
             strictEqual(namespaceList.items.length, 1);
             strictEqual(namespaceList.items[0].metadata?.name, 'default');
-
-            const res2 = await fetch(`https://${host}:${port}`, await kc.applyToFetchOptions({}));
-            strictEqual(res2.status, 200);
-            strictEqual(await res2.text(), 'ok');
         });
     });
 
