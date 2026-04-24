@@ -110,7 +110,9 @@ Prior to the `0.13.0` release, release versions did not track Kubernetes version
 release, we will increment the minor version whenever we update the minor Kubernetes API version
 (e.g. `1.19.x`) that this library is generated from.
 
-We switched from `request` to `fetch` as the HTTP(S) backend for the `1.0.0` release.
+`request` was migrated to `node-fetch` as the HTTP(S) backend for release `1.0.0` tracked in #754
+
+`node-fetch` was migrated to `undici` which is the native node.js fetch package for release `2.0.0` tracked in #2306
 
 Generally speaking newer clients will work with older Kubernetes, but compatibility isn't 100% guaranteed.
 
