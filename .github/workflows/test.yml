@@ -33,7 +33,7 @@ jobs:
             contents: read
         strategy:
             matrix:
-                node: ['25', '24', '22']
+                node: ['26', '25', '24', '22']
         name: Node ${{ matrix.node }} validation
         steps:
             - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
@@ -46,12 +46,12 @@ jobs:
             # and package-lock.json. Needs to run before npm install
             - run: node version-check.js
             - run: npm ci
-            # Node 25 has a known incompatibility: extension-less files in "type: module"
+            # Node 26 has a known incompatibility: extension-less files in "type: module"
             # packages are treated as ESM, causing c8's require('yargs/yargs') to fail.
-            # Fall back to plain unit tests without coverage on Node 25 until upstream fixes this.
-            - if: matrix.node != '25'
+            # Fall back to plain unit tests without coverage on Node 26 until upstream fixes this.
+            - if: matrix.node != '26'
               run: npm test
-            - if: matrix.node == '25'
+            - if: matrix.node == '26'
               run: npm run test-no-coverage
             - run: npm run lint
             - run: npm audit --audit-level=critical
