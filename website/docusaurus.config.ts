@@ -1,6 +1,8 @@
 import { themes as prismThemes } from 'prism-react-renderer';
 import type { Config } from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import remarkExampleLinks from './scripts/remark-example-links.mjs';
+import pluginFlattenSdk from './scripts/plugin-flatten-sdk.mjs';
 
 const config: Config = {
     title: 'Kubernetes JavaScript Client',
@@ -34,19 +36,10 @@ const config: Config = {
             'classic',
             {
                 docs: {
+                    routeBasePath: '/',
                     sidebarPath: './sidebars.ts',
                     editUrl: 'https://github.com/kubernetes-client/javascript/tree/main/website/',
-                    lastVersion: 'current',
-                    versions: {
-                        current: {
-                            label: '2.0.0 (Next)',
-                            banner: 'none',
-                        },
-                        '2.0.0': {
-                            label: '2.0.0',
-                            banner: 'none',
-                        },
-                    },
+                    remarkPlugins: [remarkExampleLinks],
                 },
                 blog: false,
                 theme: {
@@ -92,6 +85,7 @@ const config: Config = {
                 skipErrorChecking: true,
             },
         ],
+        pluginFlattenSdk,
     ],
 
     themes: [
@@ -131,11 +125,7 @@ const config: Config = {
                 {
                     label: 'API Reference',
                     position: 'left',
-                    href: 'https://kubernetes-client.github.io/javascript/api/',
-                },
-                {
-                    type: 'docsVersionDropdown',
-                    position: 'right',
+                    to: '/api-reference/core-resources/CoreV1Api',
                 },
                 {
                     href: 'https://github.com/kubernetes-client/javascript',

@@ -106,10 +106,30 @@ Documentation is built with [Docusaurus](https://docusaurus.io/) and includes:
 - Version selector for historical releases
 - [Kubernetes API Reference](https://kubernetes.io/docs/reference/) — source-of-truth for all Kubernetes client libraries
 
-To build docs locally:
+## Preview docs locally
 
 ```bash
-cd website && npm install && npm run build
+# From the repo root — install the client library (needed by typedoc)
+npm install
+
+# Install website dependencies and start the dev server
+cd website
+npm install
+npm start          # opens http://localhost:3000 with hot-reload
+```
+
+`npm start` automatically runs the `prestart` hook which generates the API
+reference, SDK docs, and model pages from source before launching the dev
+server.  Changes to hand-written docs (e.g. `website/docs/examples/`) are
+reflected instantly; changes to the generated sources require restarting the
+server.
+
+To do a full production build (which also validates all links):
+
+```bash
+cd website
+npm run build      # generates + builds static site into website/build/
+npm run serve      # preview the production build at http://localhost:3000
 ```
 
 There are several more JS and TS examples in the [examples](https://github.com/kubernetes-client/javascript/tree/main/examples) directory.

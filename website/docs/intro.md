@@ -1,4 +1,5 @@
 ---
+slug: /
 sidebar_position: 1
 ---
 
@@ -76,6 +77,6 @@ Starting with release `0.13.0`, the minor version of this library tracks the min
 
 ## Links
 
-- [SDK Reference](/docs/sdk)
+- [SDK Reference](/sdk)
 - [Kubernetes API Reference](https://kubernetes.io/docs/reference/)
 - [GitHub Repository](https://github.com/kubernetes-client/javascript)
