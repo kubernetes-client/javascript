@@ -26,10 +26,7 @@ export interface Middleware {
 }
 
 export class PromiseMiddlewareWrapper implements Middleware {
-    private middleware: PromiseMiddleware;
-    public constructor(middleware: PromiseMiddleware) {
-        this.middleware = middleware;
-    }
+    public constructor(private middleware: PromiseMiddleware) {}
 
     pre(context: RequestContext): Observable<RequestContext> {
         return from(this.middleware.pre(context));

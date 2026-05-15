@@ -25,15 +25,12 @@ export interface TokenProvider {
  * Applies apiKey authentication to the request context.
  */
 export class BearerTokenAuthentication implements SecurityAuthentication {
-    private apiKey: string;
     /**
      * Configures this api key authentication with the necessary properties
      *
      * @param apiKey: The api key to be used for every request
      */
-    public constructor(apiKey: string) {
-        this.apiKey = apiKey;
-    }
+    public constructor(private apiKey: string) {}
 
     public getName(): string {
         return "BearerToken";
