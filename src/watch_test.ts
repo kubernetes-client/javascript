@@ -65,6 +65,10 @@ describe('Watch', () => {
 
         let doneCalled = false;
         let doneErr: any;
+        let doneResolve: () => void;
+        const donePromise = new Promise<void>((resolve) => {
+            doneResolve = resolve;
+        });
 
         await watch.watch(
             path,
@@ -73,8 +77,10 @@ describe('Watch', () => {
             (err: any) => {
                 doneCalled = true;
                 doneErr = err;
+                doneResolve();
             },
         );
+        await donePromise;
         strictEqual(doneCalled, true);
         strictEqual(doneErr.toString(), 'Error: Internal Server Error');
         mockAgent.assertNoPendingInterceptors();
@@ -384,6 +390,53 @@ describe('Watch', () => {
         await donePromise;
 
         strictEqual(doneErr.name, 'TimeoutError');
+    });
+
+    it('should return abort controller before receiving response data', async (t) => {
+        const kc = await setupMockSystem(t, (_req: any, _res: any) => {
+            // Keep connection open without responding immediately.
+        });
+        const watch = new Watch(kc);
+
+        let doneErr: any;
+
+        let doneResolve: () => void;
+        const donePromise = new Promise<void>((resolve) => {
+            doneResolve = resolve;
+        });
+
+        const controllerPromise = watch.watch(
+            '/some/path/to/object',
+            {},
+            () => {
+                throw new Error('Unexpected data received');
+            },
+            (err: any) => {
+                doneErr = err;
+                doneResolve();
+            },
+        );
+
+        const controller = await new Promise<AbortController>((resolve, reject) => {
+            const timeout = setTimeout(() => {
+                reject(new Error('watch() did not return AbortController in time'));
+            }, 100);
+
+            controllerPromise.then(
+                (value) => {
+                    clearTimeout(timeout);
+                    resolve(value);
+                },
+                (err) => {
+                    clearTimeout(timeout);
+                    reject(err);
+                },
+            );
+        });
+
+        controller.abort();
+        await donePromise;
+        strictEqual(doneErr?.name, 'AbortError');
     });
 
     it('should throw on empty config', async () => {
