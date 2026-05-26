@@ -58,7 +58,7 @@ export class Watch {
             }
         };
 
-        (async () => {
+        const startWatch = async (): Promise<void> => {
             try {
                 await this.config.applySecurityAuthentication(ctx);
 
@@ -100,7 +100,8 @@ export class Watch {
             } catch (err) {
                 doneCallOnce(err);
             }
-        })();
+        };
+        startWatch().catch(doneCallOnce);
 
         return controller;
     }

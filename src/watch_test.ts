@@ -65,7 +65,7 @@ describe('Watch', () => {
 
         let doneCalled = false;
         let doneErr: any;
-        let doneResolve: () => void;
+        let doneResolve!: () => void;
         const donePromise = new Promise<void>((resolve) => {
             doneResolve = resolve;
         });
@@ -176,7 +176,7 @@ describe('Watch', () => {
         const watch = new Watch(kc);
 
         let doneCalled = 0;
-        let doneResolve: () => void;
+        let doneResolve!: () => void;
 
         const donePromise = new Promise<void>((resolve) => {
             doneResolve = resolve;
@@ -370,7 +370,7 @@ describe('Watch', () => {
 
         let doneErr: any;
 
-        let doneResolve: () => void;
+        let doneResolve!: () => void;
         const donePromise = new Promise<void>((resolve) => {
             doneResolve = resolve;
         });
@@ -394,13 +394,13 @@ describe('Watch', () => {
 
     it('should return abort controller before receiving response data', async (t) => {
         const kc = await setupMockSystem(t, (_req: any, _res: any) => {
-            // Keep connection open without responding immediately.
+            // Intentionally do not write headers/body so fetch stays pending.
         });
         const watch = new Watch(kc);
 
         let doneErr: any;
 
-        let doneResolve: () => void;
+        let doneResolve!: () => void;
         const donePromise = new Promise<void>((resolve) => {
             doneResolve = resolve;
         });
@@ -417,22 +417,14 @@ describe('Watch', () => {
             },
         );
 
-        const controller = await new Promise<AbortController>((resolve, reject) => {
-            const timeout = setTimeout(() => {
-                reject(new Error('watch() did not return AbortController in time'));
-            }, 100);
-
-            controllerPromise.then(
-                (value) => {
-                    clearTimeout(timeout);
-                    resolve(value);
-                },
-                (err) => {
-                    clearTimeout(timeout);
-                    reject(err);
-                },
-            );
-        });
+        const controller = await Promise.race([
+            controllerPromise,
+            new Promise<AbortController>((_, reject) => {
+                setTimeout(() => {
+                    reject(new Error('watch() did not return AbortController in time'));
+                }, 100);
+            }),
+        ]);
 
         controller.abort();
         await donePromise;
