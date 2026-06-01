@@ -431,6 +431,49 @@ describe('Watch', () => {
         strictEqual(doneErr?.name, 'AbortError');
     });
 
+    it('should abort before fetch starts when controller is aborted early', async (t) => {
+        let requestReceived = false;
+        const kc = await setupMockSystem(t, (_req: any, _res: any) => {
+            requestReceived = true;
+        });
+        const watch = new Watch(kc);
+        const originalApplySecurityAuthentication = watch.config.applySecurityAuthentication.bind(
+            watch.config,
+        );
+        watch.config.applySecurityAuthentication = async (ctx: any) => {
+            await new Promise((resolve) => {
+                setTimeout(resolve, 50);
+            });
+            await originalApplySecurityAuthentication(ctx);
+        };
+
+        let doneErr: any;
+        let doneResolve!: () => void;
+        const donePromise = new Promise<void>((resolve) => {
+            doneResolve = resolve;
+        });
+
+        const controller = await watch.watch(
+            '/some/path/to/object',
+            {},
+            () => {
+                throw new Error('Unexpected data received');
+            },
+            (err: any) => {
+                doneErr = err;
+                doneResolve();
+            },
+        );
+
+        controller.abort();
+        await donePromise;
+        await new Promise((resolve) => {
+            setTimeout(resolve, 75);
+        });
+        strictEqual(doneErr?.name, 'AbortError');
+        strictEqual(requestReceived, false);
+    });
+
     it('should throw on empty config', async () => {
         const kc = new KubeConfig();
         const watch = new Watch(kc);

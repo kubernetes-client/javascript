@@ -59,8 +59,20 @@ export class Watch {
         };
 
         const startWatch = async (): Promise<void> => {
+            const onAbort = () => {
+                doneCallOnce(new DOMException('This operation was aborted', 'AbortError'));
+            };
             try {
+                signal.addEventListener('abort', onAbort);
+                if (signal.aborted) {
+                    onAbort();
+                    return;
+                }
+
                 await this.config.applySecurityAuthentication(ctx);
+                if (signal.aborted) {
+                    return;
+                }
 
                 const response = await fetch(watchURL, {
                     method: 'GET',
@@ -99,6 +111,8 @@ export class Watch {
                 }
             } catch (err) {
                 doneCallOnce(err);
+            } finally {
+                signal.removeEventListener('abort', onAbort);
             }
         };
         startWatch().catch(doneCallOnce);
