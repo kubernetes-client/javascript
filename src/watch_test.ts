@@ -432,8 +432,10 @@ describe('Watch', () => {
     });
 
     it('should abort before fetch starts when controller is aborted early', async (t) => {
+        const AUTH_DELAY_MS = 50;
+        const ASSERT_NO_REQUEST_DELAY_MS = 75;
         let requestReceived = false;
-        const kc = await setupMockSystem(t, (_req: any, _res: any) => {
+        const kc = await setupMockSystem(t, () => {
             requestReceived = true;
         });
         const watch = new Watch(kc);
@@ -442,7 +444,7 @@ describe('Watch', () => {
         );
         watch.config.applySecurityAuthentication = async (ctx: any) => {
             await new Promise((resolve) => {
-                setTimeout(resolve, 50);
+                setTimeout(resolve, AUTH_DELAY_MS);
             });
             await originalApplySecurityAuthentication(ctx);
         };
@@ -468,7 +470,8 @@ describe('Watch', () => {
         controller.abort();
         await donePromise;
         await new Promise((resolve) => {
-            setTimeout(resolve, 75);
+            // Wait longer than AUTH_DELAY_MS to ensure any incorrect fetch startup would have occurred.
+            setTimeout(resolve, ASSERT_NO_REQUEST_DELAY_MS);
         });
         strictEqual(doneErr?.name, 'AbortError');
         strictEqual(requestReceived, false);

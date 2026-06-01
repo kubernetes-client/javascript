@@ -59,18 +59,22 @@ export class Watch {
         };
 
         const startWatch = async (): Promise<void> => {
+            const abortError = new DOMException('This operation was aborted', 'AbortError');
             const onAbort = () => {
-                doneCallOnce(new DOMException('This operation was aborted', 'AbortError'));
+                doneCallOnce(abortError);
             };
+            let abortListenerAdded = false;
+            if (signal.aborted) {
+                onAbort();
+                return;
+            }
             try {
                 signal.addEventListener('abort', onAbort);
-                if (signal.aborted) {
-                    onAbort();
-                    return;
-                }
+                abortListenerAdded = true;
 
                 await this.config.applySecurityAuthentication(ctx);
                 if (signal.aborted) {
+                    // If aborted during authentication, onAbort already dispatched done callback.
                     return;
                 }
 
@@ -112,7 +116,9 @@ export class Watch {
             } catch (err) {
                 doneCallOnce(err);
             } finally {
-                signal.removeEventListener('abort', onAbort);
+                if (abortListenerAdded) {
+                    signal.removeEventListener('abort', onAbort);
+                }
             }
         };
         startWatch().catch(doneCallOnce);
