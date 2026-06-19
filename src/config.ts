@@ -701,7 +701,16 @@ export class KubeConfig implements SecurityAuthentication {
         }
 
         const opts = this.createDispatcherOptions(cluster, agentOptions);
-        let dispatcher: Dispatcher | undefined;
+
+        // Explicitly handle the no-dispatcher case so it is clear that caching
+        // undefined is intentional (avoids re-running createDispatcherOptions on
+        // every call when no TLS / proxy config is needed).
+        if (opts.type === 'none') {
+            this.dispatcherCache.set(cacheKey, undefined);
+            return undefined;
+        }
+
+        let dispatcher: Dispatcher;
         switch (opts.type) {
             case 'proxy':
                 dispatcher = new UndiciProxyAgent({
@@ -715,9 +724,6 @@ export class KubeConfig implements SecurityAuthentication {
                 break;
             case 'agent':
                 dispatcher = new UndiciAgent({ connect: opts.connect });
-                break;
-            case 'none':
-                dispatcher = undefined;
                 break;
         }
 
