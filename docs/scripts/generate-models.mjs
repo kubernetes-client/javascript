@@ -41,6 +41,29 @@ function collectReferencedTypes() {
     }
 
     walkDir(API_DOCS_DIR);
+
+    // Expand with transitive references: types referenced by model properties
+    let frontier = [...types];
+    while (frontier.length > 0) {
+        const next = [];
+        for (const typeName of frontier) {
+            const tsFile = join(MODELS_DIR, `${typeName}.ts`);
+            if (!existsSync(tsFile)) continue;
+            const content = readFileSync(tsFile, 'utf8');
+            for (const match of content.matchAll(pattern)) {
+                const name = match[0];
+                if (!name.endsWith('Api') && !types.has(name)) {
+                    const file = join(MODELS_DIR, `${name}.ts`);
+                    if (existsSync(file)) {
+                        types.add(name);
+                        next.push(name);
+                    }
+                }
+            }
+        }
+        frontier = next;
+    }
+
     return [...types].sort();
 }
 
@@ -101,13 +124,28 @@ function formatType(typeStr) {
         .replace(/\{ \[key: string\]: string; \}/g, 'Record<string, string>');
 }
 
-function typeLink(typeStr) {
+/**
+ * Build a lookup from type name -> page slug for cross-page linking.
+ * Set externally by generateModels() after grouping is computed.
+ */
+let _typePage = new Map();
+function setTypePageMap(map) { _typePage = map; }
+
+function typeLink(typeStr, currentSlug) {
     return typeStr.replace(
         /\b(V\d(?:alpha\d|beta\d)?[A-Z]\w+)\b/g,
         (m) => {
             const tsFile = join(MODELS_DIR, `${m}.ts`);
-            if (existsSync(tsFile)) return `[${m}](#${m.toLowerCase()})`;
-            return m;
+            if (!existsSync(tsFile)) return m;
+            const targetSlug = _typePage.get(m);
+            if (!targetSlug) {
+                // Type exists but isn't included in generated pages — link to source
+                return `[${m}](${GITHUB_BASE}/${m}.ts)`;
+            }
+            if (targetSlug === currentSlug) {
+                return `[${m}](#${m.toLowerCase()})`;
+            }
+            return `[${m}](/models/${targetSlug}#${m.toLowerCase()})`;
         }
     );
 }
@@ -130,7 +168,7 @@ function groupType(typeName) {
 
 /**
  * Scan API reference docs to find which methods use each model type
- * (as body param or return type). Returns a Map of typeName -> [{ method, page }].
+ * (as body param or return type). Returns a Map of typeName -> [{ method, page, apiClass, isBody }].
  */
 function collectModelUsage() {
     const usage = new Map();
@@ -143,11 +181,12 @@ function collectModelUsage() {
                 walkDir(full);
             } else if (entry.name.endsWith('.md')) {
                 const content = readFileSync(full, 'utf8');
-                // Find method headings and their associated types
                 const lines = content.split('\n');
                 let currentMethod = null;
-                // Derive the page path from the file path
                 const relPath = full.replace(/.*\/docs\//, '/').replace(/\.md$/, '').replace(/\/index$/, '');
+                // Derive API class name: if file is in a subdirectory named like an API class, use that
+                const parentDir = full.split('/').slice(-2, -1)[0];
+                const apiClass = /Api$/.test(parentDir) ? parentDir : entry.name.replace(/\.md$/, '');
                 for (const line of lines) {
                     const methodMatch = line.match(/^#{2,3}\s+([a-z]\w+)\s*$/);
                     if (methodMatch) {
@@ -155,21 +194,19 @@ function collectModelUsage() {
                         continue;
                     }
                     if (!currentMethod) continue;
-                    // Look for model types in signature, param table, and return type lines
                     if (line.includes('V1') || line.includes('V2')) {
+                        const isBody = /\*\*body\*\*/.test(line) || /^\s*>\s.*\(body\)/.test(line);
                         for (const m of line.matchAll(pattern)) {
                             const typeName = m[0];
                             if (typeName.endsWith('Api') || typeName.endsWith('Request')) continue;
                             if (!usage.has(typeName)) usage.set(typeName, []);
                             const refs = usage.get(typeName);
-                            const ref = { method: currentMethod, page: relPath };
-                            // Deduplicate
+                            const ref = { method: currentMethod, page: relPath, apiClass, isBody };
                             if (!refs.some(r => r.method === ref.method && r.page === ref.page)) {
                                 refs.push(ref);
                             }
                         }
                     }
-                    // Reset on next heading
                     if (line.match(/^#{2,3}\s/)) currentMethod = null;
                 }
             }
@@ -178,6 +215,102 @@ function collectModelUsage() {
 
     walkDir(API_DOCS_DIR);
     return usage;
+}
+
+/**
+ * Generate a TypeScript example snippet for a model type.
+ * - For models used as body params (create/patch): show constructing and passing to API
+ * - For list models: show iterating over items
+ * - For other models: show accessing properties from a response
+ */
+function generateExample(model, modelUsage) {
+    const refs = modelUsage?.get(model.typeName);
+    const typeName = model.typeName;
+    const props = model.properties;
+
+    // Skip models with no properties or very internal types
+    if (props.length === 0) return null;
+    if (/^V\d+(Status|Condition|StatusDetails|StatusCause)$/.test(typeName)) return null;
+
+    // Find a create/replace/patch method that uses this type (likely as body)
+    const bodyRef = refs?.find(r => /^(create|replace|patch)/.test(r.method));
+
+    // List types — show iteration
+    if (typeName.endsWith('List') && props.some(p => p.name === 'items')) {
+        const itemType = typeName.replace(/List$/, '');
+        const readRef = refs?.find(r => /^list/.test(r.method));
+        const apiClass = readRef?.apiClass || 'CoreV1Api';
+        const method = readRef?.method || 'listNamespacedPod';
+        return [
+            `import * as k8s from '@kubernetes/client-node';`,
+            ``,
+            `const kc = new k8s.KubeConfig();`,
+            `kc.loadFromDefault();`,
+            `const api = kc.makeApiClient(k8s.${apiClass});`,
+            ``,
+            `const res: k8s.${typeName} = await api.${method}({ namespace: 'default' });`,
+            `for (const item of res.items) {`,
+            `    console.log(item.metadata?.name);`,
+            `}`,
+        ].join('\n');
+    }
+
+    // Body param types — show constructing and sending
+    if (bodyRef) {
+        const apiClass = bodyRef.apiClass;
+        const method = bodyRef.method;
+        const exampleProps = [];
+
+        // Always include metadata with name if the model has it
+        if (props.some(p => p.name === 'metadata')) {
+            exampleProps.push(`    metadata: { name: 'example' },`);
+        }
+        // Include 'spec' stub if present
+        if (props.some(p => p.name === 'spec')) {
+            exampleProps.push(`    spec: { /* ... */ },`);
+        }
+
+        const needsNamespace = method.includes('Namespaced');
+        const callArgs = needsNamespace
+            ? `{ namespace: 'default', body }`
+            : `{ body }`;
+
+        return [
+            `import * as k8s from '@kubernetes/client-node';`,
+            ``,
+            `const kc = new k8s.KubeConfig();`,
+            `kc.loadFromDefault();`,
+            `const api = kc.makeApiClient(k8s.${apiClass});`,
+            ``,
+            `const body: k8s.${typeName} = {`,
+            ...exampleProps,
+            `};`,
+            `const res = await api.${method}(${callArgs});`,
+            `console.log(res.metadata?.name);`,
+        ].join('\n');
+    }
+
+    // Read-only / response types — show accessing from a response
+    const readRef = refs?.find(r => /^(read|get|list)/.test(r.method));
+    if (readRef) {
+        const apiClass = readRef.apiClass;
+        const method = readRef.method;
+        const sampleProp = props.find(p => !['apiVersion', 'kind', 'metadata'].includes(p.name))
+            || props[0];
+
+        return [
+            `import * as k8s from '@kubernetes/client-node';`,
+            ``,
+            `const kc = new k8s.KubeConfig();`,
+            `kc.loadFromDefault();`,
+            `const api = kc.makeApiClient(k8s.${apiClass});`,
+            ``,
+            `const res: k8s.${typeName} = await api.${method}(/* ... */);`,
+            `console.log(res.${sampleProp.name});`,
+        ].join('\n');
+    }
+
+    return null;
 }
 
 function generateModelPage(group, models, modelUsage) {
@@ -208,12 +341,24 @@ function generateModelPage(group, models, modelUsage) {
             lines.push('| Property | Type | Description |');
             lines.push('|----------|------|-------------|');
             for (const prop of model.properties) {
-                const type = typeLink(formatType(prop.type));
+                const type = typeLink(formatType(prop.type), slug);
                 const doc = prop.doc.length > 200
                     ? prop.doc.slice(0, 200).replace(/\s\S*$/, '') + '...'
                     : prop.doc;
-                lines.push(`| \`${prop.name}\` | \`${type}\` | ${doc} |`);
+                const typeCell = type.includes('](') ? type : `\`${type}\``;
+                lines.push(`| \`${prop.name}\` | ${typeCell} | ${doc} |`);
             }
+            lines.push('');
+        }
+
+        // Add example code snippet
+        const example = generateExample(model, modelUsage);
+        if (example) {
+            lines.push('**Example**');
+            lines.push('');
+            lines.push('```typescript');
+            lines.push(example);
+            lines.push('```');
             lines.push('');
         }
 
@@ -228,17 +373,24 @@ function generateModelPage(group, models, modelUsage) {
             }
             const links = [];
             for (const [page, methods] of byPage) {
-                const label = page.split('/').pop();
-                const methodAnchors = methods.slice(0, 3).map(m => `[\`${m}\`](${page}#${m})`);
+                // Extract API class: find the segment ending in 'Api' in the path
+                const segments = page.split('/');
+                const apiName = segments.find(s => /Api$/.test(s)) || segments.pop();
+                const methodAnchors = methods.slice(0, 3).map(m => ({
+                    label: `${apiName}.${m}`,
+                    md: `[\`${apiName}.${m}\`](${page}#${m})`,
+                }));
                 links.push(...methodAnchors);
             }
-            if (links.length > 0) {
+            links.sort((a, b) => a.label.localeCompare(b.label));
+            const linksMd = links.map(l => l.md);
+            if (linksMd.length > 0) {
                 const INLINE_LIMIT = 20;
-                if (links.length <= INLINE_LIMIT) {
-                    lines.push(`**Used by:** ${links.join(' · ')}`);
+                if (linksMd.length <= INLINE_LIMIT) {
+                    lines.push(`**Used by:** ${linksMd.join(' · ')}`);
                 } else {
-                    const shown = links.slice(0, INLINE_LIMIT);
-                    const rest = links.slice(INLINE_LIMIT);
+                    const shown = linksMd.slice(0, INLINE_LIMIT);
+                    const rest = linksMd.slice(INLINE_LIMIT);
                     lines.push(`**Used by:** ${shown.join(' · ')}`);
                     lines.push('');
                     lines.push(`<details><summary>and ${rest.length} more…</summary>`);
@@ -268,6 +420,15 @@ export function generateModels() {
         if (!groups.has(group)) groups.set(group, []);
         groups.get(group).push(model);
     }
+
+    // Build type -> page slug map before generating pages
+    const pageMap = new Map();
+    for (const model of models) {
+        const group = groupType(model.typeName);
+        const slug = group.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+        pageMap.set(model.typeName, slug);
+    }
+    setTypePageMap(pageMap);
 
     mkdirSync(OUTPUT_DIR, { recursive: true });
 

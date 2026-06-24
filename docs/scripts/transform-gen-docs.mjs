@@ -895,11 +895,6 @@ function cleanupContent(content) {
             return `**[${typeName}](/models/${page}#${typeName.toLowerCase()})**`;
         },
     );
-    // Also link types in parameter table body column: **body** | **V1Pod** | ...
-    result = result.replace(
-        /\*\*(V\d(?:alpha\d|beta\d)?[A-Z]\w+)\*\*/g,
-        (full, typeName) => `**[${typeName}](${K8S_SOURCE_BASE}/${typeName}.ts)**`,
-    );
 
     // Unbold model names in return signatures and return type sections
     result = result.replace(/^>\s+\*\*([^*]+)\*\*(\s+.+)$/gm, '> $1$2');

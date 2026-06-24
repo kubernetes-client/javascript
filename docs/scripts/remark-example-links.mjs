@@ -160,8 +160,8 @@ function detectLinks(source) {
      * Large modules (config, config_types, informer, cache, metrics, top) keep
      * their original structure.
      */
-    const MERGED_MODULES = new Set(['attach', 'cp', 'exec', 'health', 'log', 'object', 'portforward', 'watch']);
-    const FLATTENED_MODULES = new Set(['middleware', 'patch', 'types', 'yaml']);
+    const MERGED_MODULES = new Set(['attach', 'cp', 'exec', 'health', 'object', 'portforward', 'watch']);
+    const FLATTENED_MODULES = new Set(['log', 'middleware', 'patch', 'types', 'yaml']);
 
     function resolveDocPath(docPath) {
         const parts = docPath.split('/');
@@ -177,7 +177,13 @@ function detectLinks(source) {
         }
         if (FLATTENED_MODULES.has(moduleName)) {
             // Small module: sub-dirs removed, files at module root
-            return `${parts.slice(0, 3).join('/')}/${fileName}`;
+            // If filename matches module name (case-insensitive), it gets a -class slug
+            // to avoid route collision with index.md
+            let resolved = `${parts.slice(0, 3).join('/')}/${fileName}`;
+            if (fileName.toLowerCase() === moduleName.toLowerCase()) {
+                resolved += '-class';
+            }
+            return resolved;
         }
         // Large module: keep original path
         return docPath;

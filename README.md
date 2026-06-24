@@ -112,23 +112,23 @@ Documentation is built with [Docusaurus](https://docusaurus.io/) and includes:
 # From the repo root — install the client library (needed by typedoc)
 npm install
 
-# Install website dependencies and start the dev server
-cd website
+# Install docs dependencies and start the dev server
+cd docs
 npm install
 npm start          # opens http://localhost:3000 with hot-reload
 ```
 
 `npm start` automatically runs the `prestart` hook which generates the API
 reference, SDK docs, and model pages from source before launching the dev
-server.  Changes to hand-written docs (e.g. `website/docs/examples/`) are
+server.  Changes to hand-written docs (e.g. `docs/docs/examples/`) are
 reflected instantly; changes to the generated sources require restarting the
 server.
 
 To do a full production build (which also validates all links):
 
 ```bash
-cd website
-npm run build      # generates + builds static site into website/build/
+cd docs
+npm run build      # generates + builds static site into docs/build/
 npm run serve      # preview the production build at http://localhost:3000
 ```
 

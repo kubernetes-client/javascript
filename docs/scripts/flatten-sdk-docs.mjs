@@ -142,6 +142,17 @@ function flattenSmallModule(moduleDir, moduleName, contentFiles) {
                 return match.slice(3);
             });
 
+            // If the doc basename matches the module name (case-insensitive),
+            // Docusaurus will generate a route that collides with index.md.
+            // Add explicit slug frontmatter to disambiguate.
+            const docBaseName = destName.replace(/\.md$/, '');
+            if (docBaseName.toLowerCase() === moduleName.toLowerCase()) {
+                const slugLine = `---\nslug: ${docBaseName}-class\n---\n\n`;
+                if (!content.startsWith('---')) {
+                    content = slugLine + content;
+                }
+            }
+
             writeFileSync(dest, content, 'utf8');
             movedFiles.push({ fileName: destName, fromSub: sub, original: file });
         }

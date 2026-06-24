@@ -38,7 +38,7 @@ const config: Config = {
                 docs: {
                     routeBasePath: '/',
                     sidebarPath: './sidebars.ts',
-                    editUrl: 'https://github.com/kubernetes-client/javascript/tree/main/website/',
+                    editUrl: 'https://github.com/kubernetes-client/javascript/tree/main/docs/',
                     remarkPlugins: [remarkExampleLinks],
                 },
                 blog: false,
@@ -77,7 +77,7 @@ const config: Config = {
                 entryPointStrategy: 'expand',
                 tsconfig: './tsconfig.docs.json',
                 out: 'docs/sdk',
-                sidebar: { autoConfiguration: true },
+                sidebar: { autoConfiguration: false },
                 readme: 'none',
                 excludeExternals: true,
                 excludePrivate: true,

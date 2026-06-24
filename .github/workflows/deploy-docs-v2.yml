@@ -20,17 +20,17 @@ jobs:
                   node-version: '20'
             - name: Install root dependencies
               run: npm ci
-            - name: Install website dependencies
+            - name: Install docs dependencies
               run: npm ci
-              working-directory: website
-            - name: Build website
+              working-directory: docs
+            - name: Build docs
               run: npm run build
-              working-directory: website
+              working-directory: docs
             - name: Validate links and anchors
-              run: npx @untitaker/hyperlink website/build --check-anchors --sources website/docs
+              run: npx @untitaker/hyperlink docs/build --check-anchors --sources docs/docs
             - name: Deploy to gh-pages
               if: github.event_name == 'push'
               uses: JamesIves/github-pages-deploy-action@v4
               with:
                   branch: gh-pages
-                  folder: website/build
+                  folder: docs/build
