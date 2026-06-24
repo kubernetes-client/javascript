@@ -95,6 +95,11 @@ const config: Config = {
                 hashed: true,
                 language: ['en'],
                 indexDocs: true,
+                // Docs are served at the site root (docs.routeBasePath: '/'),
+                // so the search indexer must scan from '/' too. The plugin
+                // defaults to '/docs', which would index zero documents and
+                // leave the search box spinning forever.
+                docsRouteBasePath: '/',
                 indexBlog: false,
                 indexPages: false,
                 highlightSearchTermsOnTargetPage: true,
