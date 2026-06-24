@@ -11,7 +11,7 @@ npm install
 
 # pre-requisites
 npm run lint
-npm test
+npm test-no-coverage #TODO revert to npm test when c8 is fixed
 
 # clean any old files
 npm run clean
