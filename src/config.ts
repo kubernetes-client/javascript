@@ -604,7 +604,7 @@ export class KubeConfig implements SecurityAuthentication {
     private getAgentCacheKey(cluster: Cluster | null): string {
         const clusterName = cluster?.name ?? '';
         const userName = this.getCurrentUser()?.name ?? '';
-        return `${clusterName}::${userName}`;
+        return JSON.stringify([clusterName, userName]);
     }
 
     private createAgent(
