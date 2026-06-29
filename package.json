@@ -57,7 +57,7 @@
     "license": "Apache-2.0",
     "dependencies": {
         "@types/js-yaml": "^4.0.1",
-        "@types/node": "^25.0.0",
+        "@types/node": "^26.0.0",
         "@types/stream-buffers": "^3.0.3",
         "form-data": "^4.0.0",
         "hpagent": "^1.2.0",
