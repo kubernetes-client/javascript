@@ -146,6 +146,16 @@ export class KubeConfig implements SecurityAuthentication {
     // List of custom authenticators that can be added by the user
     private custom_authenticators: Authenticator[] = [];
 
+    // Cache for https.Agent / proxy agent instances, keyed by "clusterName::userName"
+    private agentCache: Map<string, https.Agent | SocksProxyAgent | HttpProxyAgent | HttpsProxyAgent> =
+        new Map();
+
+    // Cache for undici Dispatcher instances, keyed by "clusterName::userName".
+    // The map value is `Dispatcher | undefined` because createDispatcher() may
+    // legitimately return undefined (when no TLS / proxy config is needed), and
+    // we still want to cache that fact to avoid redundant work on every call.
+    private dispatcherCache: Map<string, Dispatcher | undefined> = new Map();
+
     // Optionally add additional external authenticators, you must do this
     // before you load a kubeconfig file that references them.
     public addAuthenticator(authenticator: Authenticator): void {
@@ -585,10 +595,28 @@ export class KubeConfig implements SecurityAuthentication {
         return this.getContextObject(this.currentContext);
     }
 
+    /**
+     * Returns a stable cache key for the current cluster/user pair.
+     * Agents and dispatchers are associated with a specific cluster (TLS endpoint)
+     * and user (client certificate / auth), so keying on the tuple avoids creating
+     * a new socket pool on every Watch reconnection or API call.
+     */
+    private getAgentCacheKey(cluster: Cluster | null): string {
+        const clusterName = cluster?.name ?? '';
+        const userName = this.getCurrentUser()?.name ?? '';
+        return JSON.stringify([clusterName, userName]);
+    }
+
     private createAgent(
         cluster: Cluster | null,
         agentOptions: https.AgentOptions,
     ): https.Agent | SocksProxyAgent | HttpProxyAgent | HttpsProxyAgent {
+        const cacheKey = this.getAgentCacheKey(cluster);
+        const cached = this.agentCache.get(cacheKey);
+        if (cached !== undefined) {
+            return cached;
+        }
+
         let agent: https.Agent | SocksProxyAgent | HttpProxyAgent | HttpsProxyAgent;
 
         if (cluster && cluster.proxyUrl) {
@@ -612,6 +640,8 @@ export class KubeConfig implements SecurityAuthentication {
         } else {
             agent = new https.Agent(agentOptions);
         }
+
+        this.agentCache.set(cacheKey, agent);
         return agent;
     }
 
@@ -665,21 +695,40 @@ export class KubeConfig implements SecurityAuthentication {
         cluster: Cluster | null,
         agentOptions: https.AgentOptions,
     ): Dispatcher | undefined {
+        const cacheKey = this.getAgentCacheKey(cluster);
+        if (this.dispatcherCache.has(cacheKey)) {
+            return this.dispatcherCache.get(cacheKey);
+        }
+
         const opts = this.createDispatcherOptions(cluster, agentOptions);
+
+        // Explicitly handle the no-dispatcher case so it is clear that caching
+        // undefined is intentional (avoids re-running createDispatcherOptions on
+        // every call when no TLS / proxy config is needed).
+        if (opts.type === 'none') {
+            this.dispatcherCache.set(cacheKey, undefined);
+            return undefined;
+        }
+
+        let dispatcher: Dispatcher;
         switch (opts.type) {
             case 'proxy':
-                return new UndiciProxyAgent({
+                dispatcher = new UndiciProxyAgent({
                     uri: opts.uri,
                     requestTls: opts.requestTls,
                     connect: opts.connect,
                 });
+                break;
             case 'socks':
-                return new UndiciAgent({ connect: createSocksConnector(opts.uri, opts.requestTls) });
+                dispatcher = new UndiciAgent({ connect: createSocksConnector(opts.uri, opts.requestTls) });
+                break;
             case 'agent':
-                return new UndiciAgent({ connect: opts.connect });
-            case 'none':
-                return undefined;
+                dispatcher = new UndiciAgent({ connect: opts.connect });
+                break;
         }
+
+        this.dispatcherCache.set(cacheKey, dispatcher);
+        return dispatcher;
     }
 
     private applyHTTPSOptions(opts: https.RequestOptions | WebSocket.ClientOptions): void {
