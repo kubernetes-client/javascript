@@ -44,7 +44,6 @@ export class Watch {
         const signal = AbortSignal.any([controller.signal, timeoutSignal]);
 
         const ctx = new RequestContext(watchURL.toString(), HttpMethod.GET);
-        await this.config.applySecurityAuthentication(ctx);
 
         let doneCalled: boolean = false;
         const doneCallOnce = (err: any) => {
@@ -59,45 +58,70 @@ export class Watch {
             }
         };
 
-        try {
-            const response = await fetch(watchURL, {
-                method: 'GET',
-                headers: ctx.getHeaders(),
-                dispatcher: ctx.getDispatcher(),
-                signal,
-            });
-
-            if (response.status === 200) {
-                const body = Readable.fromWeb(response.body! as any);
-
-                body.on('error', doneCallOnce);
-                body.on('close', () => doneCallOnce(null));
-                body.on('finish', () => doneCallOnce(null));
-
-                const lines = createInterface(body);
-                lines.on('error', doneCallOnce);
-                lines.on('close', () => doneCallOnce(null));
-                lines.on('finish', () => doneCallOnce(null));
-                lines.on('line', (line) => {
-                    try {
-                        const data = JSON.parse(line.toString());
-                        callback(data.type, data.object, data);
-                    } catch {
-                        // ignore parse errors
-                    }
-                });
-            } else {
-                const statusText =
-                    response.statusText || STATUS_CODES[response.status] || 'Internal Server Error';
-                const error = new Error(statusText) as Error & {
-                    statusCode: number | undefined;
-                };
-                error.statusCode = response.status;
-                throw error;
+        const startWatch = async (): Promise<void> => {
+            const abortError = new DOMException('This operation was aborted', 'AbortError');
+            const onAbort = () => {
+                doneCallOnce(abortError);
+            };
+            let abortListenerAdded = false;
+            if (signal.aborted) {
+                onAbort();
+                return;
             }
-        } catch (err) {
-            doneCallOnce(err);
-        }
+            try {
+                signal.addEventListener('abort', onAbort);
+                abortListenerAdded = true;
+
+                await this.config.applySecurityAuthentication(ctx);
+                if (signal.aborted) {
+                    // If aborted during authentication, onAbort already dispatched done callback.
+                    return;
+                }
+
+                const response = await fetch(watchURL, {
+                    method: 'GET',
+                    headers: ctx.getHeaders(),
+                    dispatcher: ctx.getDispatcher(),
+                    signal,
+                });
+
+                if (response.status === 200) {
+                    const body = Readable.fromWeb(response.body! as any);
+
+                    body.on('error', doneCallOnce);
+                    body.on('close', () => doneCallOnce(null));
+                    body.on('finish', () => doneCallOnce(null));
+
+                    const lines = createInterface(body);
+                    lines.on('error', doneCallOnce);
+                    lines.on('close', () => doneCallOnce(null));
+                    lines.on('finish', () => doneCallOnce(null));
+                    lines.on('line', (line) => {
+                        try {
+                            const data = JSON.parse(line.toString());
+                            callback(data.type, data.object, data);
+                        } catch {
+                            // ignore parse errors
+                        }
+                    });
+                } else {
+                    const statusText =
+                        response.statusText || STATUS_CODES[response.status] || 'Internal Server Error';
+                    const error = new Error(statusText) as Error & {
+                        statusCode: number | undefined;
+                    };
+                    error.statusCode = response.status;
+                    throw error;
+                }
+            } catch (err) {
+                doneCallOnce(err);
+            } finally {
+                if (abortListenerAdded) {
+                    signal.removeEventListener('abort', onAbort);
+                }
+            }
+        };
+        startWatch().catch(doneCallOnce);
 
         return controller;
     }

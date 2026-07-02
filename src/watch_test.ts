@@ -65,6 +65,10 @@ describe('Watch', () => {
 
         let doneCalled = false;
         let doneErr: any;
+        let doneResolve!: () => void;
+        const donePromise = new Promise<void>((resolve) => {
+            doneResolve = resolve;
+        });
 
         await watch.watch(
             path,
@@ -73,8 +77,10 @@ describe('Watch', () => {
             (err: any) => {
                 doneCalled = true;
                 doneErr = err;
+                doneResolve();
             },
         );
+        await donePromise;
         strictEqual(doneCalled, true);
         strictEqual(doneErr.toString(), 'Error: Internal Server Error');
         mockAgent.assertNoPendingInterceptors();
@@ -170,7 +176,7 @@ describe('Watch', () => {
         const watch = new Watch(kc);
 
         let doneCalled = 0;
-        let doneResolve: () => void;
+        let doneResolve!: () => void;
 
         const donePromise = new Promise<void>((resolve) => {
             doneResolve = resolve;
@@ -364,7 +370,7 @@ describe('Watch', () => {
 
         let doneErr: any;
 
-        let doneResolve: () => void;
+        let doneResolve!: () => void;
         const donePromise = new Promise<void>((resolve) => {
             doneResolve = resolve;
         });
@@ -384,6 +390,91 @@ describe('Watch', () => {
         await donePromise;
 
         strictEqual(doneErr.name, 'TimeoutError');
+    });
+
+    it('should return abort controller before receiving response data', async (t) => {
+        const kc = await setupMockSystem(t, (_req: any, _res: any) => {
+            // Intentionally do not write headers/body so fetch stays pending.
+        });
+        const watch = new Watch(kc);
+
+        let doneErr: any;
+
+        let doneResolve!: () => void;
+        const donePromise = new Promise<void>((resolve) => {
+            doneResolve = resolve;
+        });
+
+        const controllerPromise = watch.watch(
+            '/some/path/to/object',
+            {},
+            () => {
+                throw new Error('Unexpected data received');
+            },
+            (err: any) => {
+                doneErr = err;
+                doneResolve();
+            },
+        );
+
+        const controller = await Promise.race([
+            controllerPromise,
+            new Promise<AbortController>((_, reject) => {
+                setTimeout(() => {
+                    reject(new Error('watch() did not return AbortController in time'));
+                }, 100);
+            }),
+        ]);
+
+        controller.abort();
+        await donePromise;
+        strictEqual(doneErr?.name, 'AbortError');
+    });
+
+    it('should abort before fetch starts when controller is aborted early', async (t) => {
+        const AUTH_DELAY_MS = 50;
+        const ASSERT_NO_REQUEST_DELAY_MS = 75;
+        let requestReceived = false;
+        const kc = await setupMockSystem(t, () => {
+            requestReceived = true;
+        });
+        const watch = new Watch(kc);
+        const originalApplySecurityAuthentication = watch.config.applySecurityAuthentication.bind(
+            watch.config,
+        );
+        watch.config.applySecurityAuthentication = async (ctx: any) => {
+            await new Promise((resolve) => {
+                setTimeout(resolve, AUTH_DELAY_MS);
+            });
+            await originalApplySecurityAuthentication(ctx);
+        };
+
+        let doneErr: any;
+        let doneResolve!: () => void;
+        const donePromise = new Promise<void>((resolve) => {
+            doneResolve = resolve;
+        });
+
+        const controller = await watch.watch(
+            '/some/path/to/object',
+            {},
+            () => {
+                throw new Error('Unexpected data received');
+            },
+            (err: any) => {
+                doneErr = err;
+                doneResolve();
+            },
+        );
+
+        controller.abort();
+        await donePromise;
+        await new Promise((resolve) => {
+            // Wait longer than AUTH_DELAY_MS to ensure any incorrect fetch startup would have occurred.
+            setTimeout(resolve, ASSERT_NO_REQUEST_DELAY_MS);
+        });
+        strictEqual(doneErr?.name, 'AbortError');
+        strictEqual(requestReceived, false);
     });
 
     it('should throw on empty config', async () => {
