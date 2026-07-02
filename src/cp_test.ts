@@ -106,5 +106,43 @@ describe('Cp', () => {
             await cp.cpToPod(namespace, pod, container, srcPath, tgtPath);
             verify(fakeWebSocketInterface.connect(`${path}?${queryStr}`, null, anyFunction())).called();
         });
+
+        it('should run extract tar command with retries parameter', async () => {
+            const kc = new KubeConfig();
+            const fakeWebSocketInterface: WebSocketInterface = mock(WebSocketHandler);
+            const fakeWebSocket: WebSocket.WebSocket = mock(WebSocket) as WebSocket.WebSocket;
+            const callAwaiter: CallAwaiter = new CallAwaiter();
+            const exec = new Exec(kc, instance(fakeWebSocketInterface));
+            const cp = new Cp(kc, exec);
+
+            const namespace = 'somenamespace';
+            const pod = 'somepod';
+            const container = 'container';
+            const srcPath = 'testdata/archive.txt';
+            const tgtPath = '/';
+            const maxTries = 3;
+            const cmdArray = ['tar', 'xf', '-', '-C', tgtPath];
+            const path = `/api/v1/namespaces/${namespace}/pods/${pod}/exec`;
+
+            const query = {
+                stdout: false,
+                stderr: true,
+                stdin: true,
+                tty: false,
+                command: cmdArray,
+                container,
+            };
+            const queryStr = querystring.stringify(query);
+
+            const fakeConn: WebSocket.WebSocket = instance(fakeWebSocket);
+            when(fakeWebSocketInterface.connect(`${path}?${queryStr}`, null, anyFunction())).thenResolve(
+                fakeConn,
+            );
+            when(fakeWebSocket.send(anything())).thenCall(callAwaiter.resolveCall('send'));
+            when(fakeWebSocket.close()).thenCall(callAwaiter.resolveCall('close'));
+
+            await cp.cpToPod(namespace, pod, container, srcPath, tgtPath, maxTries);
+            verify(fakeWebSocketInterface.connect(`${path}?${queryStr}`, null, anyFunction())).called();
+        });
     });
 });
