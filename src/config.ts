@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import https from 'node:https';
 import http from 'node:http';
 import tls from 'node:tls';
-import yaml from 'js-yaml';
+import * as yaml from 'js-yaml';
 import net from 'node:net';
 import path from 'node:path';
 

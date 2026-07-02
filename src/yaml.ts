@@ -1,4 +1,4 @@
-import yaml from 'js-yaml';
+import * as yaml from 'js-yaml';
 import { getSerializationType } from './util.js';
 import { KubernetesObject } from './types.js';
 import { ObjectSerializer } from './serializer.js';
@@ -26,7 +26,7 @@ export function loadYaml<T>(data: string, opts?: yaml.LoadOptions): T {
  * @returns An array of deserialized Kubernetes objects.
  */
 export function loadAllYaml(data: string, opts?: yaml.LoadOptions): any[] {
-    const ymls = yaml.loadAll(data, undefined, opts);
+    const ymls = yaml.loadAll(data, null, opts);
     return ymls.map((yml) => {
         const obj = yml as KubernetesObject;
         const type = getSerializationType(obj.apiVersion, obj.kind);
