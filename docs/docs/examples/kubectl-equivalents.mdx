@@ -1,0 +1,69 @@
+---
+sidebar_position: 5
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# kubectl Equivalents
+
+If you're familiar with `kubectl`, these examples show how to do the same things programmatically.
+
+:::info Prerequisites
+Install the client: `npm install @kubernetes/client-node`. These examples require a valid kubeconfig (default: `~/.kube/config`) or in-cluster service account. Run with Node.js 18+.
+:::
+
+## kubectl get pods
+
+import GetPods from '!!raw-loader!../../../examples/kubectl/equivalents/get.js';
+
+<CodeBlock language="js" title="examples/kubectl/equivalents/get.js">{GetPods}</CodeBlock>
+## kubectl create
+
+import Create from '!!raw-loader!../../../examples/kubectl/equivalents/create.js';
+
+<CodeBlock language="js" title="examples/kubectl/equivalents/create.js">{Create}</CodeBlock>
+## kubectl apply
+
+import Apply from '!!raw-loader!../../../examples/kubectl/equivalents/apply.js';
+
+<CodeBlock language="js" title="examples/kubectl/equivalents/apply.js">{Apply}</CodeBlock>
+## kubectl delete
+
+import Delete from '!!raw-loader!../../../examples/kubectl/equivalents/delete.js';
+
+<CodeBlock language="js" title="examples/kubectl/equivalents/delete.js">{Delete}</CodeBlock>
+## kubectl create namespace
+
+import NsCreate from '!!raw-loader!../../../examples/kubectl/equivalents/namespace-create.js';
+
+<CodeBlock language="js" title="examples/kubectl/equivalents/namespace-create.js">{NsCreate}</CodeBlock>
+## kubectl create namespace (from YAML)
+
+import NsCreateYaml from '!!raw-loader!../../../examples/kubectl/equivalents/namespace-create-yaml.js';
+
+<CodeBlock language="js" title="examples/kubectl/equivalents/namespace-create-yaml.js">{NsCreateYaml}</CodeBlock>
+## kubectl get namespaces
+
+import NsList from '!!raw-loader!../../../examples/kubectl/equivalents/namespace-list.js';
+
+<CodeBlock language="js" title="examples/kubectl/equivalents/namespace-list.js">{NsList}</CodeBlock>
+## kubectl run (create pod)
+
+import PodCreate from '!!raw-loader!../../../examples/kubectl/equivalents/pod-create.js';
+
+<CodeBlock language="js" title="examples/kubectl/equivalents/pod-create.js">{PodCreate}</CodeBlock>
+## kubectl get pods --namespace
+
+import PodFilter from '!!raw-loader!../../../examples/kubectl/equivalents/pod-filter-by-namespace.js';
+
+<CodeBlock language="js" title="examples/kubectl/equivalents/pod-filter-by-namespace.js">{PodFilter}</CodeBlock>
+## kubectl create resourcequota
+
+import RqCreate from '!!raw-loader!../../../examples/kubectl/equivalents/resourceQuota-create.js';
+
+<CodeBlock language="js" title="examples/kubectl/equivalents/resourceQuota-create.js">{RqCreate}</CodeBlock>
+## kubectl get resourcequotas
+
+import RqList from '!!raw-loader!../../../examples/kubectl/equivalents/resourceQuota-list.js';
+
+<CodeBlock language="js" title="examples/kubectl/equivalents/resourceQuota-list.js">{RqList}</CodeBlock>

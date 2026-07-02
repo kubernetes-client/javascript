@@ -14,3 +14,8 @@ kubernetes-client-node-*.tgz
 .idea/
 docs/*
 .DS_Store
+
+# Docusaurus
+website/.docusaurus
+website/build
+website/node_modules
