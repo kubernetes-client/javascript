@@ -19,3 +19,6 @@ docs/*
 website/.docusaurus
 website/build
 website/node_modules
+
+# Link-check scratch dir (created by docs CI to stage build under baseUrl)
+_linkcheck/

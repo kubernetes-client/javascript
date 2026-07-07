@@ -27,7 +27,15 @@ jobs:
               run: npm run build
               working-directory: docs
             - name: Validate links and anchors
-              run: npx @untitaker/hyperlink docs/build --check-anchors --sources docs/docs
+              # Docusaurus baseUrl is /javascript/, so all internal links are emitted
+              # as /javascript/... . hyperlink treats the given dir as server root "/",
+              # so the build must be staged under a matching javascript/ subdirectory
+              # for site-absolute links to resolve.
+              run: |
+                  rm -rf _linkcheck
+                  mkdir -p _linkcheck/javascript
+                  cp -R docs/build/. _linkcheck/javascript/
+                  npx @untitaker/hyperlink _linkcheck --check-anchors
             - name: Deploy to gh-pages
               if: github.event_name == 'push'
               uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f # v4.8.0
