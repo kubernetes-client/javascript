@@ -69,15 +69,15 @@ export class Watch {
 
             if (response.status === 200) {
                 const body = Readable.fromWeb(response.body! as any);
-
-                body.on('error', doneCallOnce);
-                body.on('close', () => doneCallOnce(null));
-                body.on('finish', () => doneCallOnce(null));
-
                 const lines = createInterface(body);
+
+                // Only listen for completion/error on `lines`, not on `body`.
+                // Listening on `body` can trigger premature close before `lines`
+                // has finished processing buffered data, which causes
+                // controller.abort() to fire too early. With undici >= 8.6.0
+                // this leads to remaining response chunks being dropped.
                 lines.on('error', doneCallOnce);
                 lines.on('close', () => doneCallOnce(null));
-                lines.on('finish', () => doneCallOnce(null));
                 lines.on('line', (line) => {
                     try {
                         const data = JSON.parse(line.toString());
@@ -86,6 +86,8 @@ export class Watch {
                         // ignore parse errors
                     }
                 });
+
+                body.on('error', doneCallOnce);
             } else {
                 const statusText =
                     response.statusText || STATUS_CODES[response.status] || 'Internal Server Error';

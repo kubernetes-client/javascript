@@ -53,6 +53,7 @@ export default async function watchPods() {
         pod.spec = {
             containers: [{ name: 'test', image: 'busybox', command: ['sleep', '3600'] }],
             restartPolicy: 'Never',
+            terminationGracePeriodSeconds: 0,
         };
         await coreV1Client.createNamespacedPod({ namespace, body: pod });
 
