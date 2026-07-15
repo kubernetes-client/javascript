@@ -67,4 +67,9 @@ jobs:
               env:
                   KUBERNETES_BRANCH: ${{ github.event.inputs.kubernetesBranch }}
                   BASE_BRANCH: ${{ github.ref_name }}
-                  GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  # GH_TOKEN must be a PAT (not GITHUB_TOKEN) because the repository setting
+                  # "Allow GitHub Actions to create and approve pull requests" is disabled.
+                  # Create a classic PAT with "repo" scope (or a fine-grained PAT with
+                  # "pull_requests: write" and "contents: write" permissions) and store it
+                  # as a repository secret named GH_TOKEN.
+                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
