@@ -16,6 +16,10 @@ updates:
       cooldown:
           default-days: 7
       target-branch: 'main'
+      groups:
+          codeql-action:
+              patterns:
+                  - 'github/codeql-action*'
     - package-ecosystem: 'devcontainers'
       directory: '/'
       schedule:
