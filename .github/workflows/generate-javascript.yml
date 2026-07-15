@@ -69,7 +69,10 @@ jobs:
                   BASE_BRANCH: ${{ github.ref_name }}
                   # GH_TOKEN must be a PAT (not GITHUB_TOKEN) because the repository setting
                   # "Allow GitHub Actions to create and approve pull requests" is disabled.
-                  # Create a classic PAT with "repo" scope (or a fine-grained PAT with
-                  # "pull_requests: write" and "contents: write" permissions) and store it
-                  # as a repository secret named GH_TOKEN.
+                  # A repository administrator must create a PAT and store it as a repository
+                  # secret named GH_TOKEN before this step can succeed:
+                  #   - Classic PAT: enable the "repo" scope
+                  #   - Fine-grained PAT: enable "Pull requests: write" and "Contents: write"
+                  # WARNING: this step will fail with an authentication error if the secret
+                  # is not configured.
                   GH_TOKEN: ${{ secrets.GH_TOKEN }}
