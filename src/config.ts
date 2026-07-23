@@ -626,7 +626,23 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions: https.AgentOptions,
     ): DispatcherOptions {
         const tlsOptions: tls.ConnectionOptions = {};
-        if (agentOptions.ca !== undefined) tlsOptions.ca = agentOptions.ca;
+        // Merge global agent CA certificates with cluster-specific ones
+        const globalCA = (https.globalAgent as https.Agent).options?.ca;
+        if (globalCA !== undefined) {
+            tlsOptions.ca = globalCA;
+        }
+        if (agentOptions.ca !== undefined) {
+            // If both global and cluster CA exist, concatenate them
+            if (tlsOptions.ca !== undefined) {
+                const globalCAs = Array.isArray(tlsOptions.ca) ? tlsOptions.ca : [tlsOptions.ca];
+                const clusterCAs = Array.isArray(agentOptions.ca) ? agentOptions.ca : [agentOptions.ca];
+                tlsOptions.ca = Buffer.concat(
+                    [...globalCAs, ...clusterCAs].map((ca) => (Buffer.isBuffer(ca) ? ca : Buffer.from(ca))),
+                );
+            } else {
+                tlsOptions.ca = agentOptions.ca;
+            }
+        }
         if (agentOptions.cert !== undefined) tlsOptions.cert = agentOptions.cert;
         if (agentOptions.key !== undefined) tlsOptions.key = agentOptions.key;
         if (agentOptions.pfx !== undefined) tlsOptions.pfx = agentOptions.pfx;
