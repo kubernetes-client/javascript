@@ -1,0 +1,327 @@
+{
+  "AdmissionregistrationApi": {
+    "group": "Admissionregistration",
+    "version": "",
+    "category": "Cluster"
+  },
+  "AdmissionregistrationV1Api": {
+    "group": "Admissionregistration",
+    "version": "v1",
+    "category": "Cluster"
+  },
+  "AdmissionregistrationV1alpha1Api": {
+    "group": "Admissionregistration",
+    "version": "v1alpha1",
+    "category": "Cluster"
+  },
+  "AdmissionregistrationV1beta1Api": {
+    "group": "Admissionregistration",
+    "version": "v1beta1",
+    "category": "Cluster"
+  },
+  "ApiextensionsApi": {
+    "group": "Apiextensions",
+    "version": "",
+    "category": "Cluster"
+  },
+  "ApiextensionsV1Api": {
+    "group": "Apiextensions",
+    "version": "v1",
+    "category": "Cluster"
+  },
+  "ApiregistrationApi": {
+    "group": "Apiregistration",
+    "version": "",
+    "category": "Cluster"
+  },
+  "ApiregistrationV1Api": {
+    "group": "Apiregistration",
+    "version": "v1",
+    "category": "Cluster"
+  },
+  "ApisApi": {
+    "group": "Apis",
+    "version": "",
+    "category": "Other"
+  },
+  "AppsApi": {
+    "group": "Apps",
+    "version": "",
+    "category": "Workloads"
+  },
+  "AppsV1Api": {
+    "group": "Apps",
+    "version": "v1",
+    "category": "Workloads"
+  },
+  "AuthenticationApi": {
+    "group": "Authentication",
+    "version": "",
+    "category": "Security"
+  },
+  "AuthenticationV1Api": {
+    "group": "Authentication",
+    "version": "v1",
+    "category": "Security"
+  },
+  "AuthorizationApi": {
+    "group": "Authorization",
+    "version": "",
+    "category": "Security"
+  },
+  "AuthorizationV1Api": {
+    "group": "Authorization",
+    "version": "v1",
+    "category": "Security"
+  },
+  "AutoscalingApi": {
+    "group": "Autoscaling",
+    "version": "",
+    "category": "Other"
+  },
+  "AutoscalingV1Api": {
+    "group": "Autoscaling",
+    "version": "v1",
+    "category": "Other"
+  },
+  "AutoscalingV2Api": {
+    "group": "Autoscaling",
+    "version": "v2",
+    "category": "Other"
+  },
+  "BatchApi": {
+    "group": "Batch",
+    "version": "",
+    "category": "Workloads"
+  },
+  "BatchV1Api": {
+    "group": "Batch",
+    "version": "v1",
+    "category": "Workloads"
+  },
+  "CertificatesApi": {
+    "group": "Certificates",
+    "version": "",
+    "category": "Security"
+  },
+  "CertificatesV1Api": {
+    "group": "Certificates",
+    "version": "v1",
+    "category": "Security"
+  },
+  "CertificatesV1alpha1Api": {
+    "group": "Certificates",
+    "version": "v1alpha1",
+    "category": "Security"
+  },
+  "CertificatesV1beta1Api": {
+    "group": "Certificates",
+    "version": "v1beta1",
+    "category": "Security"
+  },
+  "CoordinationApi": {
+    "group": "Coordination",
+    "version": "",
+    "category": "Configuration & Storage"
+  },
+  "CoordinationV1Api": {
+    "group": "Coordination",
+    "version": "v1",
+    "category": "Configuration & Storage"
+  },
+  "CoordinationV1alpha2Api": {
+    "group": "Coordination",
+    "version": "v1alpha2",
+    "category": "Configuration & Storage"
+  },
+  "CoordinationV1beta1Api": {
+    "group": "Coordination",
+    "version": "v1beta1",
+    "category": "Configuration & Storage"
+  },
+  "CoreApi": {
+    "group": "Core",
+    "version": "v1",
+    "category": "Core Resources"
+  },
+  "CoreV1Api": {
+    "group": "Core",
+    "version": "v1",
+    "category": "Core Resources"
+  },
+  "CustomObjectsApi": {
+    "group": "CustomObjects",
+    "version": "v1",
+    "category": "Other"
+  },
+  "DiscoveryApi": {
+    "group": "Discovery",
+    "version": "",
+    "category": "Networking"
+  },
+  "DiscoveryV1Api": {
+    "group": "Discovery",
+    "version": "v1",
+    "category": "Networking"
+  },
+  "EventsApi": {
+    "group": "Events",
+    "version": "",
+    "category": "Core Resources"
+  },
+  "EventsV1Api": {
+    "group": "Events",
+    "version": "v1",
+    "category": "Core Resources"
+  },
+  "FlowcontrolApiserverApi": {
+    "group": "FlowcontrolApiserver",
+    "version": "",
+    "category": "Other"
+  },
+  "FlowcontrolApiserverV1Api": {
+    "group": "FlowcontrolApiserver",
+    "version": "v1",
+    "category": "Other"
+  },
+  "InternalApiserverApi": {
+    "group": "InternalApiserver",
+    "version": "",
+    "category": "Other"
+  },
+  "InternalApiserverV1alpha1Api": {
+    "group": "InternalApiserver",
+    "version": "v1alpha1",
+    "category": "Other"
+  },
+  "LogsApi": {
+    "group": "Logs",
+    "version": "v1",
+    "category": "Other"
+  },
+  "NetworkingApi": {
+    "group": "Networking",
+    "version": "",
+    "category": "Networking"
+  },
+  "NetworkingV1Api": {
+    "group": "Networking",
+    "version": "v1",
+    "category": "Networking"
+  },
+  "NetworkingV1beta1Api": {
+    "group": "Networking",
+    "version": "v1beta1",
+    "category": "Networking"
+  },
+  "NodeApi": {
+    "group": "Node",
+    "version": "",
+    "category": "Core Resources"
+  },
+  "NodeV1Api": {
+    "group": "Node",
+    "version": "v1",
+    "category": "Core Resources"
+  },
+  "OpenidApi": {
+    "group": "Openid",
+    "version": "",
+    "category": "Other"
+  },
+  "PolicyApi": {
+    "group": "Policy",
+    "version": "",
+    "category": "Configuration & Storage"
+  },
+  "PolicyV1Api": {
+    "group": "Policy",
+    "version": "v1",
+    "category": "Configuration & Storage"
+  },
+  "RbacAuthorizationApi": {
+    "group": "RbacAuthorization",
+    "version": "",
+    "category": "Security"
+  },
+  "RbacAuthorizationV1Api": {
+    "group": "RbacAuthorization",
+    "version": "v1",
+    "category": "Security"
+  },
+  "ResourceApi": {
+    "group": "Resource",
+    "version": "",
+    "category": "Other"
+  },
+  "ResourceV1Api": {
+    "group": "Resource",
+    "version": "v1",
+    "category": "Other"
+  },
+  "ResourceV1alpha3Api": {
+    "group": "Resource",
+    "version": "v1alpha3",
+    "category": "Other"
+  },
+  "ResourceV1beta1Api": {
+    "group": "Resource",
+    "version": "v1beta1",
+    "category": "Other"
+  },
+  "ResourceV1beta2Api": {
+    "group": "Resource",
+    "version": "v1beta2",
+    "category": "Other"
+  },
+  "SchedulingApi": {
+    "group": "Scheduling",
+    "version": "",
+    "category": "Cluster"
+  },
+  "SchedulingV1Api": {
+    "group": "Scheduling",
+    "version": "v1",
+    "category": "Cluster"
+  },
+  "SchedulingV1alpha1Api": {
+    "group": "Scheduling",
+    "version": "v1alpha1",
+    "category": "Cluster"
+  },
+  "StorageApi": {
+    "group": "Storage",
+    "version": "",
+    "category": "Configuration & Storage"
+  },
+  "StorageV1Api": {
+    "group": "Storage",
+    "version": "v1",
+    "category": "Configuration & Storage"
+  },
+  "StorageV1beta1Api": {
+    "group": "Storage",
+    "version": "v1beta1",
+    "category": "Configuration & Storage"
+  },
+  "StoragemigrationApi": {
+    "group": "Storagemigration",
+    "version": "",
+    "category": "Configuration & Storage"
+  },
+  "StoragemigrationV1beta1Api": {
+    "group": "Storagemigration",
+    "version": "v1beta1",
+    "category": "Configuration & Storage"
+  },
+  "VersionApi": {
+    "group": "Version",
+    "version": "v1",
+    "category": "Other"
+  },
+  "WellKnownApi": {
+    "group": "WellKnown",
+    "version": "",
+    "category": "Other"
+  }
+}
