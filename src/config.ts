@@ -146,6 +146,12 @@ export class KubeConfig implements SecurityAuthentication {
     // List of custom authenticators that can be added by the user
     private custom_authenticators: Authenticator[] = [];
 
+    // Cache for https.Agent / proxy agent instances, keyed by JSON.stringify([clusterName, userName]).
+    // Reusing the same agent across WebSocket reconnections avoids opening a new TLS connection
+    // (and its associated file descriptor) on every reconnect for the same cluster/user pair.
+    private agentCache: Map<string, https.Agent | SocksProxyAgent | HttpProxyAgent | HttpsProxyAgent> =
+        new Map();
+
     // Optionally add additional external authenticators, you must do this
     // before you load a kubeconfig file that references them.
     public addAuthenticator(authenticator: Authenticator): void {
@@ -585,10 +591,29 @@ export class KubeConfig implements SecurityAuthentication {
         return this.getContextObject(this.currentContext);
     }
 
+    /**
+     * Returns a stable cache key for the current cluster/user pair.
+     * Agents are associated with a specific cluster (TLS endpoint) and user
+     * (client certificate / auth), so keying on the tuple avoids opening a new
+     * TLS connection on every Watch reconnection or WebSocket re-attach for the
+     * same endpoint.
+     */
+    private getAgentCacheKey(cluster: Cluster | null): string {
+        const clusterName = cluster?.name ?? '';
+        const userName = this.getCurrentUser()?.name ?? '';
+        return JSON.stringify([clusterName, userName]);
+    }
+
     private createAgent(
         cluster: Cluster | null,
         agentOptions: https.AgentOptions,
     ): https.Agent | SocksProxyAgent | HttpProxyAgent | HttpsProxyAgent {
+        const cacheKey = this.getAgentCacheKey(cluster);
+        const cached = this.agentCache.get(cacheKey);
+        if (cached !== undefined) {
+            return cached;
+        }
+
         let agent: https.Agent | SocksProxyAgent | HttpProxyAgent | HttpsProxyAgent;
 
         if (cluster && cluster.proxyUrl) {
@@ -612,6 +637,8 @@ export class KubeConfig implements SecurityAuthentication {
         } else {
             agent = new https.Agent(agentOptions);
         }
+
+        this.agentCache.set(cacheKey, agent);
         return agent;
     }
 
