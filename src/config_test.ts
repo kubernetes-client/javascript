@@ -642,6 +642,40 @@ describe('KubeConfig', () => {
         });
     });
 
+    describe('agent and dispatcher caching', () => {
+        it('should return the same https.Agent instance on repeated applyToHTTPSOptions calls', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcFileName);
+
+            const opts1: https.RequestOptions = {};
+            const opts2: https.RequestOptions = {};
+            await kc.applyToHTTPSOptions(opts1);
+            await kc.applyToHTTPSOptions(opts2);
+
+            strictEqual(opts1.agent, opts2.agent, 'Expected the same agent instance to be reused');
+        });
+
+        it('should return different https.Agent instances for different cluster/user combinations', async () => {
+            const kc = new KubeConfig();
+            kc.loadFromFile(kcFileName);
+
+            // Default context uses one user
+            const opts1: https.RequestOptions = {};
+            await kc.applyToHTTPSOptions(opts1);
+
+            // Switch to a context with a different user
+            kc.setCurrentContext('passwd');
+            const opts2: https.RequestOptions = {};
+            await kc.applyToHTTPSOptions(opts2);
+
+            notStrictEqual(
+                opts1.agent,
+                opts2.agent,
+                'Expected distinct agent instances for different cluster/user pairs',
+            );
+        });
+    });
+
     describe('loadClusterConfigObjects', () => {
         it('should fail if name is missing from cluster', () => {
             throws(
