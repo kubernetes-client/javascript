@@ -1,0 +1,16 @@
+{
+    "name": "@kubernetes/client-node-lint",
+    "private": true,
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "lint": "eslint ../../eslint.config.js ../../version-check.js $(find ../../src -path ../../src/gen -prune -o -name '*.ts' -print)"
+    },
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "eslint": "^10.1.0",
+        "eslint-plugin-erasable-syntax-only": "^0.4.0",
+        "typescript": "npm:@typescript/typescript6@6.0.2",
+        "typescript-eslint": "^8.58.0"
+    }
+}
