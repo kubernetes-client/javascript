@@ -1,0 +1,13 @@
+{
+    "name": "@kubernetes/client-node-docs",
+    "private": true,
+    "version": "1.0.0",
+    "type": "module",
+    "scripts": {
+        "docs": "typedoc ../../src/gen --out ../../docs"
+    },
+    "devDependencies": {
+        "typedoc": "^0.28.0",
+        "typescript": "npm:@typescript/typescript6@6.0.2"
+    }
+}

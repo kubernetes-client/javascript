@@ -16,8 +16,8 @@
     "types": "dist/index.d.ts",
     "scripts": {
         "format": "prettier --log-level error --write \"./src/**/*.ts\"",
-        "lint": "eslint \".\" && prettier --check \"./src/**/*.ts\"",
-        "clean": "rm -Rf node_modules/ dist/",
+        "lint": "npm --prefix ./tools/lint ci && npm --prefix ./tools/lint run lint && prettier --check \"./src/**/*.ts\"",
+        "clean": "rm -Rf node_modules/ dist/ tools/lint/node_modules/ tools/docs/node_modules/",
         "build": "tsc",
         "build-with-tests": "tsc --project tsconfig-with-tests.json && cp 'src/test/echo space.js' dist/test",
         "generate": "./generate-client.sh",
@@ -28,7 +28,7 @@
         "integration-test": "tsx src/test/integration/index.ts",
         "prepare": "npm run build && husky",
         "prepack": "npm run build",
-        "docs": "typedoc src/gen"
+        "docs": "npm --prefix ./tools/docs ci && npm --prefix ./tools/docs run docs"
     },
     "c8": {
         "include": [
@@ -74,20 +74,15 @@
         "ws": "^8.18.2"
     },
     "devDependencies": {
-        "@eslint/js": "^10.0.1",
         "@types/mock-fs": "^4.13.1",
         "c8": "^12.0.0",
-        "eslint": "^10.1.0",
-        "eslint-plugin-erasable-syntax-only": "^0.4.0",
         "husky": "^9.0.6",
         "mock-fs": "^5.2.0",
         "prettier": "^3.0.0",
         "pretty-quick": "^4.0.0",
         "ts-mockito": "^2.3.1",
         "tsx": "^4.21.0",
-        "typedoc": "^0.28.0",
-        "typescript": "~6.0.2",
-        "typescript-eslint": "^8.58.0"
+        "typescript": "~7.0.2"
     },
     "bugs": {
         "url": "https://github.com/kubernetes-client/javascript/issues"
