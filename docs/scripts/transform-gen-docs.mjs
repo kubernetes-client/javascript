@@ -3,37 +3,40 @@
 import { readFileSync, readdirSync, mkdirSync, writeFileSync, rmSync, statSync, existsSync } from 'node:fs';
 import { dirname, extname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { CATEGORY_ORDER, CATEGORY_SLUG_BY_NAME } from './extract-api-groups.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const CATEGORY_SLUG_BY_NAME = {
-    'Core Resources': 'core-resources',
-    Workloads: 'workloads',
-    Networking: 'networking',
-    Security: 'security',
-    'Configuration & Storage': 'configuration-storage',
-    Cluster: 'cluster',
-    Other: 'other',
-};
-
-const CATEGORY_ORDER = [
-    'Core Resources',
-    'Workloads',
-    'Networking',
-    'Security',
-    'Configuration & Storage',
-    'Cluster',
-    'Other',
-];
-
 const SKIP_CLASSES = new Set([
-    'AdmissionregistrationApi', 'ApiextensionsApi', 'ApiregistrationApi', 'ApisApi',
-    'AppsApi', 'AuthenticationApi', 'AuthorizationApi', 'AutoscalingApi', 'BatchApi',
-    'CertificatesApi', 'CoordinationApi', 'CoreApi', 'DiscoveryApi', 'EventsApi',
-    'FlowcontrolApiserverApi', 'InternalApiserverApi', 'LogsApi', 'NetworkingApi',
-    'NodeApi', 'OpenidApi', 'PolicyApi', 'RbacAuthorizationApi', 'ResourceApi',
-    'SchedulingApi', 'StorageApi', 'StoragemigrationApi', 'VersionApi', 'WellKnownApi',
+    'AdmissionregistrationApi',
+    'ApiextensionsApi',
+    'ApiregistrationApi',
+    'ApisApi',
+    'AppsApi',
+    'AuthenticationApi',
+    'AuthorizationApi',
+    'AutoscalingApi',
+    'BatchApi',
+    'CertificatesApi',
+    'CoordinationApi',
+    'CoreApi',
+    'DiscoveryApi',
+    'EventsApi',
+    'FlowcontrolApiserverApi',
+    'InternalApiserverApi',
+    'LogsApi',
+    'NetworkingApi',
+    'NodeApi',
+    'OpenidApi',
+    'PolicyApi',
+    'RbacAuthorizationApi',
+    'ResourceApi',
+    'SchedulingApi',
+    'StorageApi',
+    'StoragemigrationApi',
+    'VersionApi',
+    'WellKnownApi',
 ]);
 
 function toPosixPath(p) {
@@ -188,11 +191,11 @@ function extractResource(method) {
         ['PodResize', 'Pod'],
         ['PodStatus', 'Pod'],
         ['PodLog', 'Pod'],
-        ['PodTemplate', 'PodTemplate'],  // PodTemplate is its own resource, not a Pod sub-resource
+        ['PodTemplate', 'PodTemplate'], // PodTemplate is its own resource, not a Pod sub-resource
         ['ServiceAccountToken', 'ServiceAccount'],
-        ['ServiceAccount', 'ServiceAccount'],  // before Service
+        ['ServiceAccount', 'ServiceAccount'], // before Service
         ['NamespaceFinalize', 'Namespace'],
-        ['ComponentStatus', 'ComponentStatus'],  // not a sub-resource of Component
+        ['ComponentStatus', 'ComponentStatus'], // not a sub-resource of Component
     ];
 
     for (const [suffix, resource] of subResourceMap) {
@@ -210,14 +213,15 @@ function extractResource(method) {
 
 /** Verb priority for ordering methods within a resource group. */
 function methodSortKey(method) {
-    const order = [
-        'create', 'read', 'list', 'patch', 'replace', 'delete', 'deleteCollection', 'connect',
-    ];
+    const order = ['create', 'read', 'list', 'patch', 'replace', 'delete', 'deleteCollection', 'connect'];
 
     for (let i = 0; i < order.length; i++) {
         if (method.startsWith(order[i])) {
             // Sub-sort: plain resource first, then sub-resources (Status, Scale, Log, etc.)
-            const isSubResource = /(?:Status|Scale|Log|Binding|Eviction|Ephemeralcontainers|Resize|Token|Finalize|Proxy|Attach|Exec|Portforward)/.test(method);
+            const isSubResource =
+                /(?:Status|Scale|Log|Binding|Eviction|Ephemeralcontainers|Resize|Token|Finalize|Proxy|Attach|Exec|Portforward)/.test(
+                    method,
+                );
             const isForAllNamespaces = method.includes('ForAllNamespaces');
             const subPriority = isSubResource ? 1 : isForAllNamespaces ? 0.5 : 0;
             return i + subPriority;
@@ -409,8 +413,7 @@ function groupByResource(content) {
                 // Demote #### sub-section -> ##### sub-section
                 else if (/^#### /.test(line)) {
                     outputLines.push(line.replace(/^#### /, '##### '));
-                }
-                else {
+                } else {
                     outputLines.push(line);
                 }
             }
@@ -427,12 +430,16 @@ function fixImports(content) {
 }
 
 const MODEL_GROUP_MAP = {
-    'core': /^V1(Pod|Service|Node|Namespace|ConfigMap|Secret|Endpoint|Event|Binding|Component|LimitRange|PersistentVolume|ReplicationController|ResourceQuota|PodTemplate|ServiceAccount|API)/,
-    'workloads': /^V1(Deployment|StatefulSet|DaemonSet|ReplicaSet|ControllerRevision|Job|CronJob|HorizontalPodAutoscaler|Scale)/,
-    'networking': /^V1(Ingress|NetworkPolicy|EndpointSlice|IPAddress|ServiceCIDR)/,
-    'security': /^V1(ClusterRole|Role|CertificateSigningRequest|TokenReview|SubjectAccessReview|SelfSubjectAccessReview|SelfSubjectRulesReview|LocalSubjectAccessReview|TokenRequest)/,
-    'configuration-storage': /^V1(StorageClass|VolumeAttachment|CSI|Lease|FlowSchema|PriorityLevelConfiguration|PodDisruptionBudget)/,
-    'cluster': /^V1(CustomResourceDefinition|MutatingWebhookConfiguration|ValidatingWebhookConfiguration|ValidatingAdmissionPolicy|PriorityClass|Scheduling|Admission)/,
+    core: /^V1(Pod|Service|Node|Namespace|ConfigMap|Secret|Endpoint|Event|Binding|Component|LimitRange|PersistentVolume|ReplicationController|ResourceQuota|PodTemplate|ServiceAccount|API)/,
+    workloads:
+        /^V1(Deployment|StatefulSet|DaemonSet|ReplicaSet|ControllerRevision|Job|CronJob|HorizontalPodAutoscaler|Scale)/,
+    networking: /^V1(Ingress|NetworkPolicy|EndpointSlice|IPAddress|ServiceCIDR)/,
+    security:
+        /^V1(ClusterRole|Role|CertificateSigningRequest|TokenReview|SubjectAccessReview|SelfSubjectAccessReview|SelfSubjectRulesReview|LocalSubjectAccessReview|TokenRequest)/,
+    'configuration-storage':
+        /^V1(StorageClass|VolumeAttachment|CSI|Lease|FlowSchema|PriorityLevelConfiguration|PodDisruptionBudget)/,
+    cluster:
+        /^V1(CustomResourceDefinition|MutatingWebhookConfiguration|ValidatingWebhookConfiguration|ValidatingAdmissionPolicy|PriorityClass|Scheduling|Admission)/,
 };
 
 function resolveModelPage(typeName) {
@@ -477,13 +484,11 @@ function truncateExamples(content) {
     }
     if (current.length > 0) sections.push(current.join('\n'));
 
-    const processed = sections.map(section => {
+    const processed = sections.map((section) => {
         if (!section.startsWith('## ')) return section;
 
         // Find the body param type from the parameter table.
-        const bodyTypeMatch = section.match(
-            /\*\*body\*\*\s*\|\s*(?:\*\*)?\[?\*?\*?(V\d\w+)\b/,
-        );
+        const bodyTypeMatch = section.match(/\*\*body\*\*\s*\|\s*(?:\*\*)?\[?\*?\*?(V\d\w+)\b/);
         const bodyType = bodyTypeMatch?.[1] ?? null;
         const bodyModelPage = bodyType ? resolveModelPage(bodyType) : null;
         const bodyLink = bodyModelPage
@@ -493,27 +498,24 @@ function truncateExamples(content) {
               : 'See type definition in parameter table';
 
         // Process code blocks inside this section.
-        return section.replace(
-            /```typescript\n([\s\S]*?)```/g,
-            (codeBlock, code) => {
-                let codeLines = code.split('\n');
+        return section.replace(/```typescript\n([\s\S]*?)```/g, (codeBlock, code) => {
+            let codeLines = code.split('\n');
 
-                // --- Step 1: Truncate body: { ... } ---
-                codeLines = truncateBodyLiteral(codeLines, bodyLink);
+            // --- Step 1: Truncate body: { ... } ---
+            codeLines = truncateBodyLiteral(codeLines, bodyLink);
 
-                // --- Step 2: Trim optional params ---
-                codeLines = trimOptionalParams(codeLines);
+            // --- Step 2: Trim optional params ---
+            codeLines = trimOptionalParams(codeLines);
 
-                const trimmedCode = codeLines.join('\n');
-                const lineCount = codeLines.length;
+            const trimmedCode = codeLines.join('\n');
+            const lineCount = codeLines.length;
 
-                // --- Step 3: Collapse if still long ---
-                if (lineCount > COLLAPSE_THRESHOLD) {
-                    return `<details>\n<summary>Example</summary>\n\n\`\`\`typescript\n${trimmedCode}\`\`\`\n\n</details>`;
-                }
-                return `\`\`\`typescript\n${trimmedCode}\`\`\``;
-            },
-        );
+            // --- Step 3: Collapse if still long ---
+            if (lineCount > COLLAPSE_THRESHOLD) {
+                return `<details>\n<summary>Example</summary>\n\n\`\`\`typescript\n${trimmedCode}\`\`\`\n\n</details>`;
+            }
+            return `\`\`\`typescript\n${trimmedCode}\`\`\``;
+        });
     });
 
     return processed.join('\n');
@@ -559,7 +561,7 @@ function truncateBodyLiteral(lines, bodyLink) {
  */
 function trimOptionalParams(lines) {
     // Find the request object region: `const request: ...Request = {` ... `};`
-    const reqStart = lines.findIndex(l => /^\s*const request:.*=\s*\{/.test(l));
+    const reqStart = lines.findIndex((l) => /^\s*const request:.*=\s*\{/.test(l));
     if (reqStart === -1) return lines;
 
     // Find matching `};`
@@ -570,7 +572,10 @@ function trimOptionalParams(lines) {
             if (ch === '{') depth++;
             if (ch === '}') depth--;
         }
-        if (depth <= 0) { reqEnd = i; break; }
+        if (depth <= 0) {
+            reqEnd = i;
+            break;
+        }
     }
     if (reqEnd === -1) return lines;
 
@@ -581,7 +586,7 @@ function trimOptionalParams(lines) {
     const inner = lines.slice(reqStart + 1, reqEnd);
     const after = lines.slice(reqEnd);
 
-    const fields = [];      // { commentLines, fieldLines, isOptional }
+    const fields = []; // { commentLines, fieldLines, isOptional }
     let currentComment = [];
     let currentField = [];
     let isOpt = false;
@@ -665,7 +670,6 @@ function trimOptionalParams(lines) {
     return [...before, ...newInner, ...after];
 }
 
-
 /**
  * Strip per-method boilerplate sections that are identical across all methods.
  * Removes: Authorization, HTTP request headers, HTTP response details.
@@ -673,10 +677,7 @@ function trimOptionalParams(lines) {
  */
 function stripBoilerplate(content) {
     // Remove #### Authorization ... #### next-section
-    let result = content.replace(
-        /^#{3,5} Authorization\n+\[BearerToken\]\(#authorization\)\n+/gm,
-        '',
-    );
+    let result = content.replace(/^#{3,5} Authorization\n+\[BearerToken\]\(#authorization\)\n+/gm, '');
 
     // Remove #### HTTP request headers ... #### next-section
     result = result.replace(
@@ -696,12 +697,25 @@ function stripBoilerplate(content) {
 // Parameters that appear across many API methods and should link to a central reference page.
 // Threshold: appears in 100+ methods. 'name' and 'namespace' excluded (context-specific descriptions).
 const COMMON_PARAM_NAMES = new Set([
-    'pretty', 'dryRun', 'fieldManager', 'fieldValidation',
-    'labelSelector', 'fieldSelector', '_continue', 'limit',
-    'resourceVersion', 'resourceVersionMatch', 'timeoutSeconds',
-    'sendInitialEvents', 'gracePeriodSeconds', 'orphanDependents',
-    'propagationPolicy', 'ignoreStoreReadErrorWithClusterBreakingPotential',
-    'force', 'allowWatchBookmarks', 'watch',
+    'pretty',
+    'dryRun',
+    'fieldManager',
+    'fieldValidation',
+    'labelSelector',
+    'fieldSelector',
+    '_continue',
+    'limit',
+    'resourceVersion',
+    'resourceVersionMatch',
+    'timeoutSeconds',
+    'sendInitialEvents',
+    'gracePeriodSeconds',
+    'orphanDependents',
+    'propagationPolicy',
+    'ignoreStoreReadErrorWithClusterBreakingPotential',
+    'force',
+    'allowWatchBookmarks',
+    'watch',
 ]);
 
 /**
@@ -710,7 +724,7 @@ const COMMON_PARAM_NAMES = new Set([
  */
 function collectCommonParams(docsDir) {
     const params = new Map();
-    for (const file of readdirSync(docsDir).filter(f => extname(f) === '.md')) {
+    for (const file of readdirSync(docsDir).filter((f) => extname(f) === '.md')) {
         const content = readFileSync(join(docsDir, file), 'utf8');
         for (const m of content.matchAll(/^ \*\*(\w+)\*\* \| \[\*\*(\w+)\*\*\] \| (.+?) \| (.+)$/gm)) {
             const [, name, type, desc] = m;
@@ -748,13 +762,26 @@ function generateCommonParamsPage(outputDir, commonParams) {
     // Order params by logical grouping
     const order = [
         // Read / list
-        'pretty', 'labelSelector', 'fieldSelector', 'limit', '_continue',
-        'resourceVersion', 'resourceVersionMatch', 'timeoutSeconds',
-        'watch', 'allowWatchBookmarks', 'sendInitialEvents',
+        'pretty',
+        'labelSelector',
+        'fieldSelector',
+        'limit',
+        '_continue',
+        'resourceVersion',
+        'resourceVersionMatch',
+        'timeoutSeconds',
+        'watch',
+        'allowWatchBookmarks',
+        'sendInitialEvents',
         // Write
-        'dryRun', 'fieldManager', 'fieldValidation', 'force',
+        'dryRun',
+        'fieldManager',
+        'fieldValidation',
+        'force',
         // Delete
-        'gracePeriodSeconds', 'orphanDependents', 'propagationPolicy',
+        'gracePeriodSeconds',
+        'orphanDependents',
+        'propagationPolicy',
         'ignoreStoreReadErrorWithClusterBreakingPotential',
     ];
 
@@ -846,18 +873,14 @@ const MINIMAL_BODIES = {
  * for well-known Kubernetes resource types.
  */
 function inlineMinimalBodies(content) {
-    return content.replace(
-        /body: \{ \/\* See (V\d\w+): ([^\*]+) \*\/ \}/g,
-        (full, typeName, modelLink) => {
-            const minimal = MINIMAL_BODIES[typeName];
-            if (minimal) {
-                return `body: ${minimal}, // See full type: ${modelLink.trim()}`;
-            }
-            return full;
-        },
-    );
+    return content.replace(/body: \{ \/\* See (V\d\w+): ([^\*]+) \*\/ \}/g, (full, typeName, modelLink) => {
+        const minimal = MINIMAL_BODIES[typeName];
+        if (minimal) {
+            return `body: ${minimal}, // See full type: ${modelLink.trim()}`;
+        }
+        return full;
+    });
 }
-
 
 function cleanupContent(content) {
     let result = content;
@@ -887,14 +910,11 @@ function cleanupContent(content) {
             return `${prefix}[${typeName}](${link})`;
         },
     );
-    result = result.replace(
-        /\*\*(V\d(?:alpha\d|beta\d)?[A-Z]\w+)\*\*/g,
-        (full, typeName) => {
-            const page = resolveModelPage(typeName);
-            if (!page) return full;
-            return `**[${typeName}](/models/${page}#${typeName.toLowerCase()})**`;
-        },
-    );
+    result = result.replace(/\*\*(V\d(?:alpha\d|beta\d)?[A-Z]\w+)\*\*/g, (full, typeName) => {
+        const page = resolveModelPage(typeName);
+        if (!page) return full;
+        return `**[${typeName}](/models/${page}#${typeName.toLowerCase()})**`;
+    });
 
     // Unbold model names in return signatures and return type sections
     result = result.replace(/^>\s+\*\*([^*]+)\*\*(\s+.+)$/gm, '> $1$2');
@@ -1129,14 +1149,11 @@ function splitSingleFile(content, className, categoryDir, categorySlug, warnings
 
     const rewrittenPreamble = preambleContent.map((line) => {
         // Rewrite method links in summary table: #method -> ./slug#method
-        return line.replace(
-            new RegExp(`(${className}#)(\\w+)`, 'g'),
-            (full, prefix, method) => {
-                const slug = methodToSlug.get(method);
-                if (slug) return `${className}/${slug}#${method}`;
-                return full;
-            },
-        );
+        return line.replace(new RegExp(`(${className}#)(\\w+)`, 'g'), (full, prefix, method) => {
+            const slug = methodToSlug.get(method);
+            if (slug) return `${className}/${slug}#${method}`;
+            return full;
+        });
     });
 
     const indexFrontmatter = [
@@ -1149,11 +1166,7 @@ function splitSingleFile(content, className, categoryDir, categorySlug, warnings
         '',
     ].join('\n');
 
-    writeFileSync(
-        join(subDir, 'index.md'),
-        indexFrontmatter + rewrittenPreamble.join('\n') + '\n',
-        'utf8',
-    );
+    writeFileSync(join(subDir, 'index.md'), indexFrontmatter + rewrittenPreamble.join('\n') + '\n', 'utf8');
 
     // Write individual resource pages.
     for (let si = 0; si < sections.length; si++) {
@@ -1217,10 +1230,7 @@ function rewriteSplitReferences(outputRoot, splitResults) {
 
                 for (const [className, { categorySlug, methods }] of lookup) {
                     // Match links like /api-reference/slug/ClassName#method
-                    const pattern = new RegExp(
-                        `(/api-reference/${categorySlug}/${className})#(\\w+)`,
-                        'g',
-                    );
+                    const pattern = new RegExp(`(/api-reference/${categorySlug}/${className})#(\\w+)`, 'g');
 
                     content = content.replace(pattern, (full, base, method) => {
                         const resSlug = methods.get(method);
@@ -1370,5 +1380,7 @@ export function runTransform({
 
 if (process.argv[1] && resolve(process.argv[1]) === __filename) {
     const result = runTransform();
-    console.log(`Transformed ${result.fileCount} files (${result.splitCount} split) with ${result.warningCount} warnings`);
+    console.log(
+        `Transformed ${result.fileCount} files (${result.splitCount} split) with ${result.warningCount} warnings`,
+    );
 }
