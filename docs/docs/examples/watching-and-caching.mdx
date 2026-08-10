@@ -1,0 +1,36 @@
+---
+sidebar_position: 2
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Watching & Caching
+
+Watch for real-time changes to Kubernetes resources, or use informers for higher-level caching.
+
+:::info Prerequisites
+Install the client: `npm install @kubernetes/client-node`. These examples require a valid kubeconfig (default: `~/.kube/config`) or in-cluster service account. Run with Node.js 18+.
+:::
+
+## Watch Resources
+
+import WatchExample from '!!raw-loader!../../../examples/typescript/watch/watch-example.ts';
+
+<CodeBlock language="ts" title="examples/typescript/watch/watch-example.ts">{WatchExample}</CodeBlock>
+## Informer
+
+Informers provide a higher-level abstraction over watches with automatic reconnection and a local cache.
+
+import InformerExample from '!!raw-loader!../../../examples/typescript/informer/informer.ts';
+
+<CodeBlock language="ts" title="examples/typescript/informer/informer.ts">{InformerExample}</CodeBlock>
+## Informer with Label Selector
+
+import InformerLabel from '!!raw-loader!../../../examples/typescript/informer/informer-with-label-selector.ts';
+
+<CodeBlock language="ts" title="examples/typescript/informer/informer-with-label-selector.ts">{InformerLabel}</CodeBlock>
+## Cache
+
+import CacheExample from '!!raw-loader!../../../examples/cache-example.js';
+
+<CodeBlock language="js" title="examples/cache-example.js">{CacheExample}</CodeBlock>

@@ -1,0 +1,45 @@
+---
+sidebar_position: 1
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Basic Operations
+
+Common patterns for listing, creating, and managing Kubernetes resources.
+
+:::info Prerequisites
+Install the client: `npm install @kubernetes/client-node`. These examples require a valid kubeconfig (default: `~/.kube/config`) or in-cluster service account. Run with Node.js 18+.
+:::
+
+## List Pods
+
+import ListPods from '!!raw-loader!../../../examples/example.js';
+
+<CodeBlock language="js" title="examples/example.js">{ListPods}</CodeBlock>
+
+## Create a Namespace
+
+import CreateNamespace from '!!raw-loader!../../../examples/namespace.js';
+
+<CodeBlock language="js" title="examples/namespace.js">{CreateNamespace}</CodeBlock>
+
+## In-Cluster Configuration
+
+When running inside a Kubernetes cluster (e.g. in a Pod), use `loadFromCluster()` to authenticate via the service account.
+
+import InCluster from '!!raw-loader!../../../examples/in-cluster.js';
+
+<CodeBlock language="js" title="examples/in-cluster.js">{InCluster}</CodeBlock>
+
+## Create a Job from a CronJob (In-Cluster)
+
+import JobFromCron from '!!raw-loader!../../../examples/in-cluster-create-job-from-cronjob.js';
+
+<CodeBlock language="js" title="examples/in-cluster-create-job-from-cronjob.js">{JobFromCron}</CodeBlock>
+
+## TypeScript — Basic Example
+
+import TSExample from '!!raw-loader!../../../examples/typescript/simple/example.ts';
+
+<CodeBlock language="ts" title="examples/typescript/simple/example.ts">{TSExample}</CodeBlock>

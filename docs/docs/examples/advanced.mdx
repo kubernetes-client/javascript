@@ -1,0 +1,59 @@
+---
+sidebar_position: 4
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Advanced
+
+Patching, applying manifests, scaling deployments, YAML handling, raw API access, and resource metrics.
+
+:::info Prerequisites
+Install the client: `npm install @kubernetes/client-node`. These examples require a valid kubeconfig (default: `~/.kube/config`) or in-cluster service account. Run with Node.js 18+.
+:::
+
+## Patch Resources
+
+import PatchExample from '!!raw-loader!../../../examples/typescript/patch/patch-example.ts';
+
+<CodeBlock language="ts" title="examples/typescript/patch/patch-example.ts">{PatchExample}</CodeBlock>
+## Apply a Manifest
+
+import ApplyExample from '!!raw-loader!../../../examples/typescript/apply/apply-example.ts';
+
+<CodeBlock language="ts" title="examples/typescript/apply/apply-example.ts">{ApplyExample}</CodeBlock>
+## Apply from File
+
+import ApplyFromFile from '!!raw-loader!../../../examples/typescript/apply/apply-from-file-example.ts';
+
+<CodeBlock language="ts" title="examples/typescript/apply/apply-from-file-example.ts">{ApplyFromFile}</CodeBlock>
+## Scale a Deployment
+
+import ScaleDeployment from '!!raw-loader!../../../examples/scale-deployment.js';
+
+<CodeBlock language="js" title="examples/scale-deployment.js">{ScaleDeployment}</CodeBlock>
+## Load and Apply YAML
+
+import YamlExample from '!!raw-loader!../../../examples/yaml-example.js';
+
+<CodeBlock language="js" title="examples/yaml-example.js">{YamlExample}</CodeBlock>
+## Create an Ingress
+
+import IngressExample from '!!raw-loader!../../../examples/ingress.js';
+
+<CodeBlock language="js" title="examples/ingress.js">{IngressExample}</CodeBlock>
+## Raw API Request
+
+import RawExample from '!!raw-loader!../../../examples/raw-example.js';
+
+<CodeBlock language="js" title="examples/raw-example.js">{RawExample}</CodeBlock>
+## Top Nodes
+
+import TopNodes from '!!raw-loader!../../../examples/top.js';
+
+<CodeBlock language="js" title="examples/top.js">{TopNodes}</CodeBlock>
+## Top Pods
+
+import TopPods from '!!raw-loader!../../../examples/top_pods.js';
+
+<CodeBlock language="js" title="examples/top_pods.js">{TopPods}</CodeBlock>

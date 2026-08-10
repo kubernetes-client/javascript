@@ -1,0 +1,49 @@
+---
+sidebar_position: 3
+---
+
+import CodeBlock from '@theme/CodeBlock';
+
+# Pod Operations
+
+Execute commands, attach to containers, forward ports, copy files, and stream logs.
+
+:::info Prerequisites
+Install the client: `npm install @kubernetes/client-node`. These examples require a valid kubeconfig (default: `~/.kube/config`) or in-cluster service account. Run with Node.js 18+.
+:::
+
+## Exec into a Pod
+
+import ExecExample from '!!raw-loader!../../../examples/typescript/exec/exec-example.ts';
+
+<CodeBlock language="ts" title="examples/typescript/exec/exec-example.ts">{ExecExample}</CodeBlock>
+## Attach to a Container
+
+import AttachExample from '!!raw-loader!../../../examples/typescript/attach/attach-example.ts';
+
+<CodeBlock language="ts" title="examples/typescript/attach/attach-example.ts">{AttachExample}</CodeBlock>
+## Port Forward (Pod)
+
+import PortForward from '!!raw-loader!../../../examples/typescript/port-forward/port-forward.ts';
+
+<CodeBlock language="ts" title="examples/typescript/port-forward/port-forward.ts">{PortForward}</CodeBlock>
+## Port Forward (Deployment)
+
+import PFDeployment from '!!raw-loader!../../../examples/typescript/port-forward/port-forward-deployment.ts';
+
+<CodeBlock language="ts" title="examples/typescript/port-forward/port-forward-deployment.ts">{PFDeployment}</CodeBlock>
+## Port Forward (Service)
+
+import PFService from '!!raw-loader!../../../examples/typescript/port-forward/port-forward-service.ts';
+
+<CodeBlock language="ts" title="examples/typescript/port-forward/port-forward-service.ts">{PFService}</CodeBlock>
+## Copy Files
+
+import CpExample from '!!raw-loader!../../../examples/typescript/cp/cp-example.ts';
+
+<CodeBlock language="ts" title="examples/typescript/cp/cp-example.ts">{CpExample}</CodeBlock>
+## Follow Logs
+
+import FollowLogs from '!!raw-loader!../../../examples/follow-logs.js';
+
+<CodeBlock language="js" title="examples/follow-logs.js">{FollowLogs}</CodeBlock>
