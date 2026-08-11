@@ -3,20 +3,23 @@ on:
     push:
         branches:
             - main
-        paths:
-            - 'src/**'
-            - 'typedoc.json'
-            - 'package.json'
-            - 'package-lock.json'
-            - '.github/workflows/deploy-docs.yml'
+    pull_request:
+        branches:
+            - main
 
 permissions: {}
 
+# Allow one concurrent deployment; queue rather than cancel so an in-flight
+# Pages deployment is never left half-applied.
+concurrency:
+    group: pages
+    cancel-in-progress: false
+
 jobs:
-    build-and-deploy-docs:
+    build:
         runs-on: ubuntu-latest
         permissions:
-            contents: write
+            contents: read
         steps:
             - name: Checkout
               uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -30,13 +33,43 @@ jobs:
             # and package-lock.json. Needs to run before npm install
             - name: Validate package.json and package-lock.json versions
               run: node version-check.js
-            - name: Install dependencies
+            # Root deps are required: docusaurus-plugin-typedoc reads ../src/*.ts
+            # and needs the root dependency types to resolve.
+            - name: Install root dependencies
               run: npm ci
+            - name: Install docs dependencies
+              run: npm ci
+              working-directory: docs
             - name: Build docs
-              run: npm run docs
-
-            - name: Deploy docs
-              uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f # v4.8.0
+              run: npm run build
+              working-directory: docs
+            - name: Validate links and anchors
+              # Docusaurus baseUrl is /javascript/, so all internal links are emitted
+              # as /javascript/... . hyperlink treats the given dir as server root "/",
+              # so the build must be staged under a matching javascript/ subdirectory
+              # for site-absolute links to resolve.
+              run: |
+                  rm -rf _linkcheck
+                  mkdir -p _linkcheck/javascript
+                  cp -R docs/build/. _linkcheck/javascript/
+                  npx @untitaker/hyperlink _linkcheck --check-anchors
+            - name: Upload Pages artifact
+              if: github.event_name == 'push'
+              uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
               with:
-                  branch: gh-pages # The branch the action should deploy to.
-                  folder: docs # The folder the action should deploy.
+                  path: docs/build
+
+    deploy:
+        if: github.event_name == 'push'
+        needs: build
+        runs-on: ubuntu-latest
+        permissions:
+            pages: write
+            id-token: write
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0
