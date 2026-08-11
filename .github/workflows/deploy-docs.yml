@@ -17,6 +17,11 @@ concurrency:
 
 jobs:
     build:
+        # workflow_dispatch can be triggered from any ref, and the ref chosen is
+        # what would get published. Only ever publish main. The push trigger is
+        # already main-only, so this guard applies solely to manual runs.
+        # `deploy` needs `build`, so skipping here skips the whole workflow.
+        if: github.ref == 'refs/heads/main'
         runs-on: ubuntu-latest
         permissions:
             contents: read
