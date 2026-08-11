@@ -1,22 +1,30 @@
-name: Build and Deploy Docs
+name: Deploy Docs
 on:
     push:
         branches:
             - main
-        paths:
-            - 'src/**'
-            - 'typedoc.json'
-            - 'package.json'
-            - 'package-lock.json'
-            - '.github/workflows/deploy-docs.yml'
+    # Allow re-publishing on demand, e.g. after a failed deploy or a Pages
+    # settings change, without pushing an empty commit to main.
+    workflow_dispatch:
 
 permissions: {}
 
+# Allow one concurrent deployment; queue rather than cancel so an in-flight
+# Pages deployment is never left half-applied.
+concurrency:
+    group: pages
+    cancel-in-progress: false
+
 jobs:
-    build-and-deploy-docs:
+    build:
+        # workflow_dispatch can be triggered from any ref, and the ref chosen is
+        # what would get published. Only ever publish main. The push trigger is
+        # already main-only, so this guard applies solely to manual runs.
+        # `deploy` needs `build`, so skipping here skips the whole workflow.
+        if: github.ref == 'refs/heads/main'
         runs-on: ubuntu-latest
         permissions:
-            contents: write
+            contents: read
         steps:
             - name: Checkout
               uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -26,17 +34,31 @@ jobs:
               uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
               with:
                   node-version: '22'
-            # Pre-check to validate that versions match between package.json
-            # and package-lock.json. Needs to run before npm install
-            - name: Validate package.json and package-lock.json versions
-              run: node version-check.js
-            - name: Install dependencies
+            # Root deps are required: docusaurus-plugin-typedoc reads ../src/*.ts
+            # and needs the root dependency types to resolve.
+            - name: Install root dependencies
               run: npm ci
+            - name: Install docs dependencies
+              run: npm ci
+              working-directory: docs
             - name: Build docs
-              run: npm run docs
-
-            - name: Deploy docs
-              uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f # v4.8.0
+              run: npm run build
+              working-directory: docs
+            - name: Upload Pages artifact
+              uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
               with:
-                  branch: gh-pages # The branch the action should deploy to.
-                  folder: docs # The folder the action should deploy.
+                  path: docs/build
+
+    deploy:
+        needs: build
+        runs-on: ubuntu-latest
+        permissions:
+            pages: write
+            id-token: write
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        steps:
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@cd2ce8fcbc39b97be8ca5fce6e763baed58fa128 # v5.0.0

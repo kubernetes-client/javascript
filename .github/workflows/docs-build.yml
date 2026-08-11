@@ -1,23 +1,32 @@
-name: Build and Deploy Docs v2
+name: Docs Build and Test
 on:
-    push:
-        branches:
-            - main
     pull_request:
         branches:
             - main
-permissions:
-    contents: write
+
+permissions: {}
+
+# Stale runs for a PR are worthless once a new commit lands.
+concurrency:
+    group: docs-build-${{ github.ref }}
+    cancel-in-progress: true
+
 jobs:
-    build-and-deploy-docs:
+    build:
         runs-on: ubuntu-latest
+        permissions:
+            contents: read
         steps:
             - name: Checkout
               uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+              with:
+                  persist-credentials: false
             - name: Setup Node.js
               uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
               with:
-                  node-version: '20'
+                  node-version: '22'
+            # Root deps are required: docusaurus-plugin-typedoc reads ../src/*.ts
+            # and needs the root dependency types to resolve.
             - name: Install root dependencies
               run: npm ci
             - name: Install docs dependencies
@@ -36,9 +45,3 @@ jobs:
                   mkdir -p _linkcheck/javascript
                   cp -R docs/build/. _linkcheck/javascript/
                   npx @untitaker/hyperlink _linkcheck --check-anchors
-            - name: Deploy to gh-pages
-              if: github.event_name == 'push'
-              uses: JamesIves/github-pages-deploy-action@d92aa235d04922e8f08b40ce78cc5442fcfbfa2f # v4.8.0
-              with:
-                  branch: gh-pages
-                  folder: docs/build
