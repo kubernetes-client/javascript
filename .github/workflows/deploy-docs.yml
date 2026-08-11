@@ -3,6 +3,9 @@ on:
     push:
         branches:
             - main
+    # Allow re-publishing on demand, e.g. after a failed deploy or a Pages
+    # settings change, without pushing an empty commit to main.
+    workflow_dispatch:
 
 permissions: {}
 
