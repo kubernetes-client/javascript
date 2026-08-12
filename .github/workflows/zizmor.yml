@@ -1,0 +1,29 @@
+name: Zizmor
+
+# Deliberately unfiltered by `paths`. This job audits everything under
+# .github/, so gating it on a path list means a change to a workflow can
+# skip the lint that guards that very workflow -- which is how two
+# high-severity template-injection findings reached main unnoticed.
+on:
+    push:
+        branches: [master, main]
+    pull_request:
+        branches: [master, main]
+
+permissions: {}
+
+jobs:
+    zizmor:
+        runs-on: ubuntu-latest
+        name: GitHub Actions security lint
+        permissions:
+            contents: read
+        steps:
+            - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+              with:
+                  persist-credentials: false
+            - uses: zizmorcore/zizmor-action@3dc1ecc9bcb9e94e9b2c709687979e1298497054 # v0.6.2
+              with:
+                  advanced-security: false
+                  persona: pedantic
+                  min-severity: medium
