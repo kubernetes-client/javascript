@@ -66,7 +66,10 @@ export class Exec {
             return true;
         });
         const pingIntervalMs = options?.pingIntervalMs;
-        if (pingIntervalMs !== undefined && Number.isInteger(pingIntervalMs) && pingIntervalMs > 0) {
+        if (pingIntervalMs !== undefined) {
+            if (!Number.isInteger(pingIntervalMs) || pingIntervalMs <= 0) {
+                throw new Error('pingIntervalMs must be a positive integer');
+            }
             this.setupPing(conn, pingIntervalMs);
         }
         if (stdin != null) {
