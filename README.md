@@ -103,7 +103,6 @@ Documentation is built with [Docusaurus](https://docusaurus.io/) and includes:
 
 - SDK Reference (KubeConfig, Watch, Informer, Exec, etc.)
 - Kubernetes API Reference (all API groups)
-- Version selector for historical releases
 - [Kubernetes API Reference](https://kubernetes.io/docs/reference/) — source-of-truth for all Kubernetes client libraries
 
 ## Preview docs locally
@@ -120,7 +119,7 @@ npm start          # opens http://localhost:3000 with hot-reload
 
 `npm start` automatically runs the `prestart` hook which generates the API
 reference, SDK docs, and model pages from source before launching the dev
-server.  Changes to hand-written docs (e.g. `docs/docs/examples/`) are
+server. Changes to hand-written docs (e.g. `docs/docs/examples/`) are
 reflected instantly; changes to the generated sources require restarting the
 server.
 
@@ -133,6 +132,12 @@ npm run serve      # preview the production build at http://localhost:3000
 ```
 
 There are several more JS and TS examples in the [examples](https://github.com/kubernetes-client/javascript/tree/main/examples) directory.
+
+> **TODO (versioned docs):** In the future the docs site will keep a snapshot of
+> the reference for each stable release, selectable via a version dropdown. This
+> isn't wired up yet — the site currently serves the latest (`main`) docs only.
+> When added, snapshots will be committed in the version-bump PR rather than
+> pushed from the release workflow.
 
 # Compatibility
 

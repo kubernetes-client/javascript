@@ -12,13 +12,12 @@ examples/package-lock.json
 kubernetes-client-node-*.tgz
 **/*.swp
 .idea/
-docs/*
 .DS_Store
 
-# Docusaurus
-website/.docusaurus
-website/build
-website/node_modules
+# Docs: generated output is ignored via docs/.gitignore (build/, node_modules,
+# .docusaurus, docs/api-reference, docs/sdk, docs/models). Future versioned
+# snapshots (docs/versioned_docs, docs/versioned_sidebars, docs/versions.json)
+# are intentionally NOT ignored so they can be committed. See README.md.
 
 # Link-check scratch dir (created by docs CI to stage build under baseUrl)
 _linkcheck/
