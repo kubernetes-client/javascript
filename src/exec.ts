@@ -109,8 +109,10 @@ export class Exec {
             clearInterval(timer);
             socket.removeListener?.('pong', onPong);
         };
-        socket.on?.('pong', onPong);
-        socket.on?.('close', clearKeepAlive);
-        socket.on?.('error', clearKeepAlive);
+        if (typeof socket.on === 'function') {
+            socket.on('pong', onPong);
+            socket.on('close', clearKeepAlive);
+            socket.on('error', clearKeepAlive);
+        }
     }
 }
