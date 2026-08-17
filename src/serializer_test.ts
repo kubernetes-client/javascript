@@ -70,6 +70,50 @@ describe('ObjectSerializer', () => {
             });
         });
 
+        it('should serialize known objects with Kubernetes baseName fields', () => {
+            const s = {
+                apiVersion: 'apiextensions.k8s.io/v1',
+                kind: 'CustomResourceDefinition',
+                metadata: {
+                    name: 'foos.example.com',
+                },
+                spec: {
+                    group: 'example.com',
+                    scope: 'Namespaced',
+                    names: {
+                        plural: 'foos',
+                        singular: 'foo',
+                        kind: 'Foo',
+                    },
+                    versions: [
+                        {
+                            name: 'v1',
+                            served: true,
+                            storage: true,
+                            schema: {
+                                openAPIV3Schema: {
+                                    type: 'object',
+                                    properties: {
+                                        podTemplate: {
+                                            type: 'object',
+                                            'x-kubernetes-preserve-unknown-fields': true,
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    ],
+                },
+            };
+            const res = ObjectSerializer.serialize(s, 'V1CustomResourceDefinition');
+            deepStrictEqual(
+                res.spec.versions[0].schema.openAPIV3Schema.properties.podTemplate[
+                    'x-kubernetes-preserve-unknown-fields'
+                ],
+                true,
+            );
+        });
+
         [
             {
                 name: 'should serialize a registered custom object',
