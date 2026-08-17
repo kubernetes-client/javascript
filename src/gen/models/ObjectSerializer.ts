@@ -2445,7 +2445,9 @@ export class ObjectSerializer {
             let attributeTypes = typeMap[type].getAttributeTypeMap();
             let instance: {[index: string]: any} = {};
             for (let attributeType of attributeTypes) {
-                const value = data[attributeType.name] ?? data[attributeType.baseName];
+                const value = Object.prototype.hasOwnProperty.call(data, attributeType.name)
+                    ? data[attributeType.name]
+                    : data[attributeType.baseName];
                 instance[attributeType.baseName] = ObjectSerializer.serialize(value, attributeType.type, attributeType.format);
             }
             return instance;
