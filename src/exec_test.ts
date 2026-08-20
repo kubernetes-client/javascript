@@ -1,5 +1,6 @@
 import { describe, it } from 'node:test';
-import { deepStrictEqual, strictEqual } from 'node:assert';
+import { deepStrictEqual, ok, strictEqual } from 'node:assert';
+import { setTimeout as setTimeoutPromise } from 'node:timers/promises';
 import WebSocket from 'isomorphic-ws';
 import { ReadableStreamBuffer, WritableStreamBuffer } from 'stream-buffers';
 import { anyFunction, anything, capture, instance, mock, verify, when } from 'ts-mockito';
@@ -155,6 +156,45 @@ describe('Exec', () => {
             isStream.stop();
             await closePromise;
             verify(fakeWebSocket.close()).called();
+        });
+
+        it('should optionally send websocket pings', async () => {
+            const pingIntervalMs = 5;
+            const waitForPingsMs = 20;
+            const kc = new KubeConfig();
+            const pingHandlers: Record<string, () => void> = {};
+            let pingCount = 0;
+            const fakeConn = {
+                readyState: WebSocket.OPEN,
+                ping: () => {
+                    pingCount++;
+                },
+                on: (event: string, listener: () => void) => {
+                    pingHandlers[event] = listener;
+                },
+            } as unknown as WebSocket.WebSocket;
+            const ws: WebSocketInterface = {
+                connect: async () => fakeConn,
+            };
+            const exec = new Exec(kc, ws);
+
+            await exec.exec('ns', 'pod', 'container', 'command', null, null, null, false, undefined, {
+                pingIntervalMs,
+            });
+            await setTimeoutPromise(waitForPingsMs);
+
+            strictEqual(pingCount, 1);
+            strictEqual(typeof pingHandlers.pong, 'function');
+            pingHandlers.pong();
+            await setTimeoutPromise(waitForPingsMs);
+            ok(pingCount > 1);
+
+            strictEqual(typeof pingHandlers.close, 'function');
+            pingHandlers.close();
+            const pingCountAtClose = pingCount;
+            await setTimeoutPromise(waitForPingsMs);
+
+            strictEqual(pingCount, pingCountAtClose);
         });
     });
 });
