@@ -69,21 +69,7 @@ jobs:
               env:
                   RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
                   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-            - name: Install docs dependencies
-              run: cd docs && npm ci
-            - name: Run prebuild
-              run: cd docs && npm run prebuild
-            - name: Create version snapshot
-              run: cd docs && npx docusaurus docs:version "${RELEASE_VERSION}"
-              env:
-                  RELEASE_VERSION: ${{ github.event.inputs.releaseVersion }}
-            - name: Commit versioned docs
-              if: ${{ github.event.inputs.dry_run != 'true' }}
-              run: |
-                  git config user.name "github-actions[bot]"
-                  git config user.email "github-actions[bot]@users.noreply.github.com"
-                  git add docs/versions.json docs/versioned_docs/ docs/versioned_sidebars/
-                  git commit -m "docs: snapshot version ${REF_NAME}" || echo "No changes to commit"
-                  git push
-              env:
-                  REF_NAME: ${{ github.ref_name }}
+            # TODO(versioned-docs): capture a per-release docs snapshot here in
+            # the future. It should be committed via the version-bump PR (so it
+            # goes through CLA and branch protection) rather than pushed to main
+            # from this workflow.
