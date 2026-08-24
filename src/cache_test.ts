@@ -1639,7 +1639,7 @@ describe('ListWatchCache', () => {
         deepStrictEqual(delayValues, [1000]);
     });
 
-    it('should reconnect with backoff on TimeoutError', async () => {
+    it('should reconnect on TimeoutError', async () => {
         const fakeWatch = mock.mock(Watch);
         const listObj = {
             metadata: { resourceVersion: '12345' } as V1ListMeta,
@@ -1681,6 +1681,63 @@ describe('ListWatchCache', () => {
         await doneHandler(timeoutError);
         strictEqual(watchCalls, 2);
         strictEqual(errorEmitted, false);
+    });
+
+    it('should not back off between repeated TimeoutErrors', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const listObj = {
+            metadata: { resourceVersion: '12345' } as V1ListMeta,
+            items: [] as V1Namespace[],
+        } as V1NamespaceList;
+
+        const listFn: ListPromise<V1Namespace> = () => Promise.resolve(listObj);
+
+        let watchCalls = 0;
+        const delayValues: number[] = [];
+        const promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                watchCalls++;
+                resolve(new AbortController());
+                return Promise.resolve(new AbortController());
+            });
+        });
+
+        // ListWatch is constructed for its side effects (starts watching)
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const cache = new ListWatch(
+            '/some/path',
+            mock.instance(fakeWatch),
+            listFn,
+            true,
+            undefined,
+            undefined,
+            {
+                delayFn: (ms: number) => {
+                    delayValues.push(ms);
+                    return Promise.resolve();
+                },
+            },
+        );
+        await promise;
+        strictEqual(watchCalls, 1);
+
+        const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
+
+        const timeoutError = () =>
+            new DOMException('The operation was aborted due to timeout', 'TimeoutError');
+
+        await doneHandler(timeoutError());
+        await doneHandler(timeoutError());
+        await doneHandler(timeoutError());
+
+        strictEqual(watchCalls, 4);
+        deepStrictEqual(delayValues, []);
+
+        // Backoff is still applied to non-timeout reconnects.
+        await doneHandler(null);
+        deepStrictEqual(delayValues, [1000]);
     });
 });
 
