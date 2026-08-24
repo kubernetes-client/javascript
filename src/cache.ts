@@ -168,7 +168,11 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         ) {
             this.resourceVersion = '';
         } else if (err && (err as { name?: string }).name === 'TimeoutError') {
-            // Watch client-side timeout — reconnect from last known resourceVersion
+            // Watch client-side timeout — reconnect from last known resourceVersion.
+            // The timeout itself already throttled us for the full request timeout, so
+            // reconnecting immediately cannot tight-loop and backing off would leave
+            // quiet resources unwatched for up to MAX_RECONNECT_DELAY_MS.
+            this.reconnectDelayMs = 0;
         } else if (err) {
             this.callbackCache[ERROR].forEach((elt: ErrorCallback) => elt(err));
             return;

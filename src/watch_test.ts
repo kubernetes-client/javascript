@@ -386,6 +386,90 @@ describe('Watch', () => {
         strictEqual(doneErr.name, 'TimeoutError');
     });
 
+    it('should not timeout while the server keeps sending events', async (t) => {
+        const eventCount = 12;
+        const eventIntervalMs = 30;
+        const requestTimeoutMs = 150;
+
+        const kc = await setupMockSystem(t, (_req, res) => {
+            let sent = 0;
+            const interval = setInterval(() => {
+                res.write(JSON.stringify({ type: 'ADDED', object: { name: `obj${sent}` } }) + '\n');
+                sent += 1;
+                if (sent === eventCount) {
+                    clearInterval(interval);
+                    res.end();
+                }
+            }, eventIntervalMs);
+        });
+        const watch = new Watch(kc);
+
+        // NOTE: Hack around the type system to make the timeout shorter
+        (watch as any).requestTimeoutMs = requestTimeoutMs;
+
+        const receivedObjects: any[] = [];
+        let doneErr: any;
+
+        let doneResolve: () => void;
+        const donePromise = new Promise<void>((resolve) => {
+            doneResolve = resolve;
+        });
+
+        await watch.watch(
+            '/some/path/to/object',
+            {},
+            (_phase: string, obj: any) => {
+                receivedObjects.push(obj);
+            },
+            (err: any) => {
+                doneErr = err;
+                doneResolve();
+            },
+        );
+
+        await donePromise;
+
+        // The stream lived well past requestTimeoutMs because every event reset the timeout.
+        strictEqual(receivedObjects.length, eventCount);
+        strictEqual(doneErr, null);
+    });
+
+    it('should timeout when the server goes silent after connecting', async (t) => {
+        const kc = await setupMockSystem(t, (_req, res) => {
+            res.write(JSON.stringify({ type: 'ADDED', object: { name: 'obj' } }) + '\n');
+            // Then stay silent forever.
+        });
+        const watch = new Watch(kc);
+
+        // NOTE: Hack around the type system to make the timeout shorter
+        (watch as any).requestTimeoutMs = 100;
+
+        const receivedObjects: any[] = [];
+        let doneErr: any;
+
+        let doneResolve: () => void;
+        const donePromise = new Promise<void>((resolve) => {
+            doneResolve = resolve;
+        });
+
+        await watch.watch(
+            '/some/path/to/object',
+            {},
+            (_phase: string, obj: any) => {
+                receivedObjects.push(obj);
+            },
+            (err: any) => {
+                doneErr = err;
+                doneResolve();
+            },
+        );
+
+        await donePromise;
+
+        deepStrictEqual(receivedObjects, [{ name: 'obj' }]);
+        strictEqual(doneErr.name, 'TimeoutError');
+    });
+
     it('should throw on empty config', async () => {
         const kc = new KubeConfig();
         const watch = new Watch(kc);
