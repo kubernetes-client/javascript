@@ -40,8 +40,25 @@ export class Watch {
         }
 
         const controller = new AbortController();
-        const timeoutSignal = AbortSignal.timeout(this.requestTimeoutMs);
-        const signal = AbortSignal.any([controller.signal, timeoutSignal]);
+
+        let timedOut: boolean = false;
+        let timer: NodeJS.Timeout | undefined;
+        const clearTimer = () => {
+            if (timer !== undefined) {
+                clearTimeout(timer);
+                timer = undefined;
+            }
+        };
+        const resetTimer = () => {
+            clearTimer();
+            timer = setTimeout(() => {
+                timedOut = true;
+                controller.abort(
+                    new DOMException('The operation was aborted due to timeout', 'TimeoutError'),
+                );
+            }, this.requestTimeoutMs);
+            timer.unref();
+        };
 
         const ctx = new RequestContext(watchURL.toString(), HttpMethod.GET);
         await this.config.applySecurityAuthentication(ctx);
@@ -50,8 +67,9 @@ export class Watch {
         const doneCallOnce = (err: any) => {
             if (!doneCalled) {
                 doneCalled = true;
+                clearTimer();
                 controller.abort();
-                if (err && timeoutSignal.aborted) {
+                if (err && timedOut) {
                     done(new DOMException('The operation was aborted due to timeout', 'TimeoutError'));
                 } else {
                     done(err);
@@ -60,14 +78,17 @@ export class Watch {
         };
 
         try {
+            resetTimer();
             const response = await fetch(watchURL, {
                 method: 'GET',
                 headers: ctx.getHeaders(),
                 dispatcher: ctx.getDispatcher(),
-                signal,
+                signal: controller.signal,
             });
 
             if (response.status === 200) {
+                // The connect timeout is over; from here on it becomes an inactivity timeout.
+                resetTimer();
                 const body = Readable.fromWeb(response.body! as any);
 
                 body.on('error', doneCallOnce);
@@ -86,6 +107,7 @@ export class Watch {
                         // ignore parse errors
                     }
                 });
+                body.on('data', resetTimer);
             } else {
                 const statusText =
                     response.statusText || STATUS_CODES[response.status] || 'Internal Server Error';
