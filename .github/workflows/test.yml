@@ -33,7 +33,10 @@ jobs:
             contents: read
         strategy:
             matrix:
-                node: ['26', '25', '24', '22']
+                # Pinned to 26.7: Node 26.8.0 rewrote fs.readFile
+                # (nodejs/node#65327) so that binding.open is no longer called
+                # from JS, which breaks mock-fs at require time
+                node: ['26.7', '25', '24', '22']
         name: Node ${{ matrix.node }} validation
         steps:
             - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
