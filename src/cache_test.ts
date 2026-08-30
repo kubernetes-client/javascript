@@ -1,5 +1,5 @@
 import { describe, it } from 'node:test';
-import { deepStrictEqual, notStrictEqual, strictEqual, throws } from 'node:assert';
+import { deepStrictEqual, notStrictEqual, ok, strictEqual, throws } from 'node:assert';
 import mock from 'ts-mockito';
 
 import { V1Namespace, V1NamespaceList, V1ObjectMeta, V1Pod, V1PodList, V1ListMeta } from './api.js';
@@ -1561,6 +1561,8 @@ describe('ListWatchCache', () => {
                     delayValues.push(ms);
                     return Promise.resolve();
                 },
+                // Pin the jitter off so the growth itself can be asserted.
+                randFn: () => 0,
             },
         );
         await promise;
@@ -1574,15 +1576,15 @@ describe('ListWatchCache', () => {
 
         await doneHandler(null);
         strictEqual(watchCalls, 3);
-        deepStrictEqual(delayValues, [1000]);
+        deepStrictEqual(delayValues, [800]);
 
         await doneHandler(null);
         strictEqual(watchCalls, 4);
-        deepStrictEqual(delayValues, [1000, 2000]);
+        deepStrictEqual(delayValues, [800, 1600]);
 
         await doneHandler(null);
         strictEqual(watchCalls, 5);
-        deepStrictEqual(delayValues, [1000, 2000, 4000]);
+        deepStrictEqual(delayValues, [800, 1600, 3200]);
     });
 
     it('should reset backoff after receiving a watch event', async () => {
@@ -1617,6 +1619,7 @@ describe('ListWatchCache', () => {
                     delayValues.push(ms);
                     return Promise.resolve();
                 },
+                randFn: () => 0,
             },
         );
         await promise;
@@ -1625,7 +1628,7 @@ describe('ListWatchCache', () => {
 
         await doneHandler(null);
         await doneHandler(null);
-        deepStrictEqual(delayValues, [1000]);
+        deepStrictEqual(delayValues, [800]);
 
         watchHandler('ADDED', {
             metadata: { name: 'reset', namespace: 'default', resourceVersion: '99' } as V1ObjectMeta,
@@ -1636,7 +1639,7 @@ describe('ListWatchCache', () => {
         deepStrictEqual(delayValues, []);
 
         await doneHandler(null);
-        deepStrictEqual(delayValues, [1000]);
+        deepStrictEqual(delayValues, [800]);
     });
 
     it('should reconnect on TimeoutError', async () => {
@@ -1718,6 +1721,7 @@ describe('ListWatchCache', () => {
                     delayValues.push(ms);
                     return Promise.resolve();
                 },
+                randFn: () => 0,
             },
         );
         await promise;
@@ -1737,7 +1741,84 @@ describe('ListWatchCache', () => {
 
         // Backoff is still applied to non-timeout reconnects.
         await doneHandler(null);
-        deepStrictEqual(delayValues, [1000]);
+        deepStrictEqual(delayValues, [800]);
+    });
+
+    // Builds a cache whose delay, clock and randomness are all observable, so
+    // the backoff can be driven deterministically.
+    async function setupBackoffCache(opts: { delays: number[]; now?: () => number; rand?: () => number }) {
+        const fakeWatch = mock.mock(Watch);
+        const listObj = {
+            metadata: { resourceVersion: '12345' } as V1ListMeta,
+            items: [] as V1Namespace[],
+        } as V1NamespaceList;
+        const listFn: ListPromise<V1Namespace> = () => Promise.resolve(listObj);
+
+        const promise = new Promise((resolve) => {
+            mock.when(
+                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+            ).thenCall(() => {
+                resolve(new AbortController());
+                return Promise.resolve(new AbortController());
+            });
+        });
+
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const cache = new ListWatch(
+            '/some/path',
+            mock.instance(fakeWatch),
+            listFn,
+            true,
+            undefined,
+            undefined,
+            {
+                delayFn: (ms: number) => {
+                    opts.delays.push(ms);
+                    return Promise.resolve();
+                },
+                nowFn: opts.now,
+                randFn: opts.rand,
+            },
+        );
+        await promise;
+        const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
+        return { done: doneHandler };
+    }
+
+    it('should spread the backoff over a jittered range', async () => {
+        // Full jitter: each delay lands in [level, 2*level). Two clients that
+        // failed together therefore do not retry together.
+        const low: number[] = [];
+        const high: number[] = [];
+        const lowCache = await setupBackoffCache({ delays: low, rand: () => 0 });
+        const highCache = await setupBackoffCache({ delays: high, rand: () => 0.999 });
+
+        for (let i = 0; i < 3; i++) {
+            await lowCache.done(null);
+            await highCache.done(null);
+        }
+
+        deepStrictEqual(low, [800, 1600]);
+        ok(high[0] > 800 && high[0] < 1600, `expected [800, 1600), got ${high[0]}`);
+        ok(high[1] > 1600 && high[1] < 3200, `expected [1600, 3200), got ${high[1]}`);
+    });
+
+    it('should cap the backoff and reset it once idle', async () => {
+        const delays: number[] = [];
+        let now = 0;
+        const h = await setupBackoffCache({ delays, now: () => now, rand: () => 0 });
+
+        for (let i = 0; i < 12; i++) {
+            await h.done(null);
+        }
+        strictEqual(delays[delays.length - 1], 30000, 'expected the delay to cap at 30s');
+
+        // Two idle minutes means the previous failures no longer count.
+        now += 120000;
+        await h.done(null);
+        strictEqual(delays[delays.length - 1], 30000, 'the pending delay is still the capped one');
+        await h.done(null);
+        strictEqual(delays[delays.length - 1], 800, 'expected the backoff to start over');
     });
 });
 
