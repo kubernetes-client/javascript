@@ -364,6 +364,50 @@ describe('Top', () => {
             deepStrictEqual(result[1].Containers, []);
             mockAgent.assertNoPendingInterceptors();
         });
+        it('should sum pod memory requests independently from limits', async () => {
+            const pod: V1Pod = {
+                metadata: {
+                    name: 'pod-with-distinct-memory-requests-and-limits',
+                },
+                spec: {
+                    containers: [
+                        {
+                            name: 'first',
+                            resources: {
+                                requests: { memory: '100Mi' },
+                                limits: { memory: '200Mi' },
+                            },
+                        },
+                        {
+                            name: 'second',
+                            resources: {
+                                requests: { memory: '50Mi' },
+                                limits: { memory: '300Mi' },
+                            },
+                        },
+                    ],
+                },
+            };
+            const pool = mockAgent.get(testConfigOptions.clusters[0].server);
+            pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
+                200,
+                JSON.stringify(emptyPodMetrics),
+                { headers: { 'content-type': 'application/json' } },
+            );
+            pool.intercept({ path: '/api/v1/pods', method: 'GET' }).reply(
+                200,
+                JSON.stringify({ items: [pod] }),
+                { headers: { 'content-type': 'application/json' } },
+            );
+
+            const result = await topPodsFunc();
+
+            deepStrictEqual(
+                result[0].Memory,
+                new CurrentResourceUsage(0, BigInt('157286400'), BigInt('524288000')),
+            );
+            mockAgent.assertNoPendingInterceptors();
+        });
         it('should return empty array when pods missing', async () => {
             const pool = mockAgent.get(testConfigOptions.clusters[0].server);
             pool.intercept({ path: '/apis/metrics.k8s.io/v1beta1/pods', method: 'GET' }).reply(
