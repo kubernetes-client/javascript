@@ -26,11 +26,22 @@ export type CacheMap<T extends KubernetesObject> = Map<string, Map<string, T>>;
 
 export interface ListWatchOptions {
     delayFn?: (ms: number) => Promise<void>;
+    // Clock source, injectable for testing.
+    nowFn?: () => number;
+    // Randomness source in [0, 1), injectable for testing.
+    randFn?: () => number;
 }
 
 export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, Informer<T> {
-    private static readonly BASE_RECONNECT_DELAY_MS = 1000;
-    private static readonly MAX_RECONNECT_DELAY_MS = 30000;
+    // Mirrors k8s.io/client-go's defaultBackoff{Init,Max,Factor,Jitter,Reset},
+    // used by the reflector via NewExponentialBackoffManager. Jitter spreads a
+    // fleet out so that everyone does not retry in lockstep, and the delay
+    // resets once it has gone unused for BACKOFF_RESET_MS.
+    private static readonly BACKOFF_INIT_MS = 800;
+    private static readonly BACKOFF_MAX_MS = 30000;
+    private static readonly BACKOFF_FACTOR = 2;
+    private static readonly BACKOFF_JITTER = 1.0;
+    private static readonly BACKOFF_RESET_MS = 120000;
 
     private objects: CacheMap<T> = new Map();
     private resourceVersion: string;
@@ -39,8 +50,11 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     private request: AbortController | undefined;
     private stopped: boolean = false;
     private reconnectDelayMs: number = 0;
+    private lastBackoffAt: number | undefined;
     private hasConnected: boolean = false;
     private readonly delayFn: (ms: number) => Promise<void>;
+    private readonly nowFn: () => number;
+    private readonly randFn: () => number;
     private readonly path: string;
     private readonly watch: Watch;
     private readonly listFn: ListPromise<T>;
@@ -63,6 +77,8 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         this.labelSelector = labelSelector;
         this.fieldSelector = fieldSelector;
         this.delayFn = options?.delayFn ?? setTimeout;
+        this.nowFn = options?.nowFn ?? Date.now;
+        this.randFn = options?.randFn ?? Math.random;
 
         this.callbackCache[ADD] = [];
         this.callbackCache[UPDATE] = [];
@@ -78,6 +94,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     public async start(): Promise<void> {
         this.stopped = false;
         this.reconnectDelayMs = 0;
+        this.lastBackoffAt = undefined;
         this.hasConnected = false;
         await this.doneHandler(null);
     }
@@ -160,6 +177,26 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         }
     }
 
+    // The next backoff level, before jitter. Grows exponentially up to a cap,
+    // and starts over once the backoff has gone unused for BACKOFF_RESET_MS,
+    // which is how a connection that recovered stops paying for old failures.
+    private nextBackoffLevelMs(): number {
+        const now = this.nowFn();
+        const idle =
+            this.lastBackoffAt !== undefined && now - this.lastBackoffAt >= ListWatch.BACKOFF_RESET_MS;
+        this.lastBackoffAt = now;
+        if (this.reconnectDelayMs === 0 || idle) {
+            return ListWatch.BACKOFF_INIT_MS;
+        }
+        return Math.min(this.reconnectDelayMs * ListWatch.BACKOFF_FACTOR, ListWatch.BACKOFF_MAX_MS);
+    }
+
+    // Spreads the delay over [ms, ms * (1 + BACKOFF_JITTER)) so that many
+    // clients disconnected by the same event do not all retry together.
+    private withJitter(ms: number): number {
+        return ms + this.randFn() * ListWatch.BACKOFF_JITTER * ms;
+    }
+
     private async doneHandler(err: any): Promise<void> {
         this._stop();
         if (
@@ -208,14 +245,11 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         if (this.fieldSelector !== undefined) {
             queryParams.fieldSelector = ObjectSerializer.serialize(this.fieldSelector, 'string');
         }
-        if (this.reconnectDelayMs > 0 && this.hasConnected) {
-            await this.delayFn(this.reconnectDelayMs);
-        }
         if (this.hasConnected) {
-            this.reconnectDelayMs = Math.min(
-                this.reconnectDelayMs > 0 ? this.reconnectDelayMs * 2 : ListWatch.BASE_RECONNECT_DELAY_MS,
-                ListWatch.MAX_RECONNECT_DELAY_MS,
-            );
+            if (this.reconnectDelayMs > 0) {
+                await this.delayFn(this.withJitter(this.reconnectDelayMs));
+            }
+            this.reconnectDelayMs = this.nextBackoffLevelMs();
         }
         this.hasConnected = true;
         this.request = await this.watch.watch(
