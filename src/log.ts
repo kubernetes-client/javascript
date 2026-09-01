@@ -64,7 +64,7 @@ export function AddOptionsToSearchParams(
     if (options?.limitBytes) {
         searchParams.set('limitBytes', options.limitBytes.toString());
     }
-    searchParams.set('pretty', options?.follow?.toString() || 'false');
+    searchParams.set('pretty', options?.pretty?.toString() || 'false');
     searchParams.set('previous', options?.previous?.toString() || 'false');
     if (options?.sinceSeconds) {
         searchParams.set('sinceSeconds', options?.sinceSeconds?.toString() || 'false');
