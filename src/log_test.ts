@@ -62,7 +62,7 @@ describe('Log', () => {
                 },
             });
             const options: LogOptions = {
-                follow: true,
+                follow: false,
                 limitBytes: 100,
                 pretty: true,
                 previous: true,
@@ -73,7 +73,7 @@ describe('Log', () => {
 
             pool.intercept({
                 method: 'GET',
-                path: '/api/v1/namespaces/default/pods/mypod/log?container=mycontainer&follow=true&limitBytes=100&pretty=true&previous=true&sinceSeconds=1&tailLines=1&timestamps=true',
+                path: '/api/v1/namespaces/default/pods/mypod/log?container=mycontainer&follow=false&limitBytes=100&pretty=true&previous=true&sinceSeconds=1&tailLines=1&timestamps=true',
             }).reply(200, 'log data');
 
             const controller = await log.log(namespace, podName, containerName, stream, options);
