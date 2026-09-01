@@ -148,7 +148,7 @@ export async function topPods(api: CoreV1Api, metrics: Metrics, namespace?: stri
             podRequestsCPU = add(podRequestsCPU, containerCpuTotal.request);
             podLimitsCPU = add(podLimitsCPU, containerCpuTotal.limit);
 
-            podRequestsMem = add(podLimitsMem, containerMemTotal.request);
+            podRequestsMem = add(podRequestsMem, containerMemTotal.request);
             podLimitsMem = add(podLimitsMem, containerMemTotal.limit);
 
             // Find the container metrics by container.name
