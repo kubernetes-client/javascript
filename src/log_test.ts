@@ -188,7 +188,7 @@ describe('Log', () => {
         it('should add options to search params', () => {
             let searchParams = new URLSearchParams();
             let options: LogOptions = {
-                follow: true,
+                follow: false,
                 limitBytes: 100,
                 pretty: true,
                 previous: true,
@@ -197,7 +197,7 @@ describe('Log', () => {
                 timestamps: true,
             };
             AddOptionsToSearchParams(options, searchParams);
-            strictEqual(searchParams.get('follow'), 'true');
+            strictEqual(searchParams.get('follow'), 'false');
             strictEqual(searchParams.get('limitBytes'), '100');
             strictEqual(searchParams.get('pretty'), 'true');
             strictEqual(searchParams.get('previous'), 'true');
