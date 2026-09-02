@@ -27,6 +27,8 @@ export class Exec {
      * @param {boolean} tty - Should the command execute in a TTY enabled session.
      * @param {(V1Status) => void} statusCallback -
      *       A callback to received the status (e.g. exit code) from the command, optional.
+     * @param {(err: any) => void} done -
+     *       A callback called once when the command completes, is closed, or errors, optional.
      * @return {Promise<WebSocket>} A promise that will return the web socket created for this command.
      */
     public async exec(
@@ -39,6 +41,7 @@ export class Exec {
         stdin: stream.Readable | null,
         tty: boolean,
         statusCallback?: (status: V1Status) => void,
+        done?: (err: any) => void,
     ): Promise<WebSocket.WebSocket> {
         const query = {
             stdout: stdout != null,
@@ -50,24 +53,21 @@ export class Exec {
         };
         const queryStr = querystring.stringify(query);
         const path = `/api/v1/namespaces/${namespace}/pods/${podName}/exec?${queryStr}`;
-        const conn = await this.handler.connect(path, null, (streamNum: number, buff: Buffer): boolean => {
-            const status = WebSocketHandler.handleStandardStreams(streamNum, buff, stdout, stderr);
-            if (status != null) {
-                if (statusCallback) {
-                    statusCallback(status);
-                }
-                return false;
-            }
-            return true;
-        });
-        if (stdin != null) {
-            WebSocketHandler.handleStandardInput(conn, stdin, WebSocketHandler.StdinStream);
-        }
+        let resizeStream: stream.Readable | null = null;
         if (isResizable(stdout)) {
             this.terminalSizeQueue = new TerminalSizeQueue();
-            WebSocketHandler.handleStandardInput(conn, this.terminalSizeQueue, WebSocketHandler.ResizeStream);
+            resizeStream = this.terminalSizeQueue;
             this.terminalSizeQueue.handleResizes(stdout as any as ResizableStream);
         }
-        return conn;
+        return WebSocketHandler.connectStandardStreams(
+            this.handler,
+            path,
+            stdout,
+            stderr,
+            stdin,
+            resizeStream,
+            statusCallback,
+            done,
+        );
     }
 }

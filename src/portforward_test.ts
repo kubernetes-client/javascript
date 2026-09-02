@@ -53,6 +53,28 @@ describe('PortForward', () => {
         strictEqual(osStream.size(), 1022);
     });
 
+    it('should call done for unexpected error streams when disconnectOnErr is true', async () => {
+        const kc = new KubeConfig();
+        const fakeWebSocket: WebSocketInterface = mock(WebSocketHandler);
+        const portForward = new PortForward(kc, true, instance(fakeWebSocket));
+        const osStream = new WritableStreamBuffer();
+        const isStream = new ReadableStreamBuffer();
+
+        let doneErr: any;
+        await portForward.portForward('ns', 'p', [8000], osStream, null, isStream, 0, (err) => {
+            doneErr = err;
+        });
+
+        const [, , outputFn] = capture(fakeWebSocket.connect).last();
+
+        strictEqual(typeof outputFn, 'function');
+        if (!outputFn) {
+            return;
+        }
+        strictEqual(outputFn(2, Buffer.alloc(1024, 10)), false);
+        strictEqual(doneErr.message, 'Unknown port-forward stream: 2');
+    });
+
     it('should correctly port-forward streams if err is null', async () => {
         const kc = new KubeConfig();
         const fakeWebSocket: WebSocketInterface = mock(WebSocketHandler);

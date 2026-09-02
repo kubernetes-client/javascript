@@ -81,6 +81,30 @@ describe('Log', () => {
             mockAgent.assertNoPendingInterceptors();
         });
 
+        it('should call done when log stream completes', async () => {
+            const stream = new Writable({
+                write(_chunk, _encoding, callback) {
+                    callback();
+                },
+            });
+            pool.intercept({
+                method: 'GET',
+                path: '/api/v1/namespaces/default/pods/mypod/log?container=mycontainer',
+            }).reply(200, 'log data');
+
+            let doneErr: any = undefined;
+            const donePromise = new Promise<void>((resolve) => {
+                log.log('default', 'mypod', 'mycontainer', stream, (err: any) => {
+                    doneErr = err;
+                    resolve();
+                });
+            });
+
+            await donePromise;
+            strictEqual(doneErr, null);
+            mockAgent.assertNoPendingInterceptors();
+        });
+
         it('should throw an error if no active cluster', async () => {
             const configWithoutCluster = new KubeConfig();
             const logWithoutCluster = new Log(configWithoutCluster);
@@ -204,6 +228,12 @@ describe('Log', () => {
             strictEqual(searchParams.get('sinceSeconds'), '1');
             strictEqual(searchParams.get('tailLines'), '1');
             strictEqual(searchParams.get('timestamps'), 'true');
+
+            searchParams = new URLSearchParams();
+            options = { follow: true, pretty: false };
+            AddOptionsToSearchParams(options, searchParams);
+            strictEqual(searchParams.get('follow'), 'true');
+            strictEqual(searchParams.get('pretty'), 'false');
 
             const sinceTime = new Date().toISOString();
             searchParams = new URLSearchParams();
