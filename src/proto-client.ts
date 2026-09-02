@@ -117,28 +117,30 @@ export class ProtoClient {
 
         await this.config.applyToHTTPSOptions(options);
 
-        const data = await new Promise<{ body: Buffer; contentType: string | undefined }>((resolve, reject) => {
-            const requestFn = url.protocol === 'https:' ? https.request : http.request;
-            const req = requestFn(options, (res) => {
-                const chunks: Buffer[] = [];
-                res.on('data', (chunk: Buffer | string) => {
-                    chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
-                });
-                res.on('end', () => {
-                    resolve({
-                        body: Buffer.concat(chunks),
-                        contentType: asStringHeader(res.headers['content-type']),
+        const data = await new Promise<{ body: Buffer; contentType: string | undefined }>(
+            (resolve, reject) => {
+                const requestFn = url.protocol === 'https:' ? https.request : http.request;
+                const req = requestFn(options, (res) => {
+                    const chunks: Buffer[] = [];
+                    res.on('data', (chunk: Buffer | string) => {
+                        chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
                     });
+                    res.on('end', () => {
+                        resolve({
+                            body: Buffer.concat(chunks),
+                            contentType: asStringHeader(res.headers['content-type']),
+                        });
+                    });
+                    res.on('error', reject);
                 });
-                res.on('error', reject);
-            });
 
-            req.on('error', reject);
-            if (encodedBody !== undefined) {
-                req.write(encodedBody);
-            }
-            req.end();
-        });
+                req.on('error', reject);
+                if (encodedBody !== undefined) {
+                    req.write(encodedBody);
+                }
+                req.end();
+            },
+        );
 
         if (!data.contentType?.includes(PROTO_MEDIA_TYPE)) {
             const bodyAsText = data.body.toString('utf8').trim();

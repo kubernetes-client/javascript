@@ -5,7 +5,7 @@
 // source: k8s.io/apimachinery/pkg/runtime/generated.proto
 
 /* eslint-disable */
-import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
+import { BinaryReader, BinaryWriter } from '@bufbuild/protobuf/wire';
 
 /**
  * RawExtension is used to hold extensions in external versions.
@@ -60,12 +60,12 @@ import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
  * +k8s:openapi-gen=true
  */
 export interface RawExtension {
-  /**
-   * Raw is the underlying serialization of this object.
-   *
-   * TODO: Determine how to detect ContentType and ContentEncoding of 'Raw' data.
-   */
-  raw?: Uint8Array | undefined;
+    /**
+     * Raw is the underlying serialization of this object.
+     *
+     * TODO: Determine how to detect ContentType and ContentEncoding of 'Raw' data.
+     */
+    raw?: Uint8Array | undefined;
 }
 
 /**
@@ -87,12 +87,10 @@ export interface RawExtension {
  * +k8s:openapi-gen=true
  */
 export interface TypeMeta {
-  /** +optional */
-  apiVersion?:
-    | string
-    | undefined;
-  /** +optional */
-  kind?: string | undefined;
+    /** +optional */
+    apiVersion?: string | undefined;
+    /** +optional */
+    kind?: string | undefined;
 }
 
 /**
@@ -108,348 +106,348 @@ export interface TypeMeta {
  * +k8s:openapi-gen=true
  */
 export interface Unknown {
-  typeMeta?:
-    | TypeMeta
-    | undefined;
-  /**
-   * Raw will hold the complete serialized object which couldn't be matched
-   * with a registered type. Most likely, nothing should be done with this
-   * except for passing it through the system.
-   */
-  raw?:
-    | Uint8Array
-    | undefined;
-  /**
-   * ContentEncoding is encoding used to encode 'Raw' data.
-   * Unspecified means no encoding.
-   */
-  contentEncoding?:
-    | string
-    | undefined;
-  /**
-   * ContentType  is serialization method used to serialize 'Raw'.
-   * Unspecified means ContentTypeJSON.
-   */
-  contentType?: string | undefined;
+    typeMeta?: TypeMeta | undefined;
+    /**
+     * Raw will hold the complete serialized object which couldn't be matched
+     * with a registered type. Most likely, nothing should be done with this
+     * except for passing it through the system.
+     */
+    raw?: Uint8Array | undefined;
+    /**
+     * ContentEncoding is encoding used to encode 'Raw' data.
+     * Unspecified means no encoding.
+     */
+    contentEncoding?: string | undefined;
+    /**
+     * ContentType  is serialization method used to serialize 'Raw'.
+     * Unspecified means ContentTypeJSON.
+     */
+    contentType?: string | undefined;
 }
 
 function createBaseRawExtension(): RawExtension {
-  return { raw: new Uint8Array(0) };
+    return { raw: new Uint8Array(0) };
 }
 
 export const RawExtension: MessageFns<RawExtension> = {
-  encode(message: RawExtension, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.raw !== undefined && message.raw.length !== 0) {
-      writer.uint32(10).bytes(message.raw);
-    }
-    return writer;
-  },
+    encode(message: RawExtension, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.raw !== undefined && message.raw.length !== 0) {
+            writer.uint32(10).bytes(message.raw);
+        }
+        return writer;
+    },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): RawExtension {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseRawExtension();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
+    decode(input: BinaryReader | Uint8Array, length?: number): RawExtension {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseRawExtension();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
+
+                        message.raw = reader.bytes();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
             }
-
-            message.raw = reader.bytes();
-            continue;
-          }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+    },
+
+    fromJSON(object: any): RawExtension {
+        return { raw: isSet(object.raw) ? bytesFromBase64(object.raw) : new Uint8Array(0) };
+    },
+
+    toJSON(message: RawExtension): unknown {
+        const obj: any = {};
+        if (message.raw !== undefined && message.raw.length !== 0) {
+            obj.raw = base64FromBytes(message.raw);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return obj;
+    },
 
-  fromJSON(object: any): RawExtension {
-    return { raw: isSet(object.raw) ? bytesFromBase64(object.raw) : new Uint8Array(0) };
-  },
-
-  toJSON(message: RawExtension): unknown {
-    const obj: any = {};
-    if (message.raw !== undefined && message.raw.length !== 0) {
-      obj.raw = base64FromBytes(message.raw);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<RawExtension>, I>>(base?: I): RawExtension {
-    return RawExtension.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<RawExtension>, I>>(object: I): RawExtension {
-    const message = createBaseRawExtension();
-    message.raw = object.raw ?? new Uint8Array(0);
-    return message;
-  },
+    create<I extends Exact<DeepPartial<RawExtension>, I>>(base?: I): RawExtension {
+        return RawExtension.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<RawExtension>, I>>(object: I): RawExtension {
+        const message = createBaseRawExtension();
+        message.raw = object.raw ?? new Uint8Array(0);
+        return message;
+    },
 };
 
 function createBaseTypeMeta(): TypeMeta {
-  return { apiVersion: "", kind: "" };
+    return { apiVersion: '', kind: '' };
 }
 
 export const TypeMeta: MessageFns<TypeMeta> = {
-  encode(message: TypeMeta, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.apiVersion !== undefined && message.apiVersion !== "") {
-      writer.uint32(10).string(message.apiVersion);
-    }
-    if (message.kind !== undefined && message.kind !== "") {
-      writer.uint32(18).string(message.kind);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): TypeMeta {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseTypeMeta();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.apiVersion = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.kind = reader.string();
-            continue;
-          }
+    encode(message: TypeMeta, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.apiVersion !== undefined && message.apiVersion !== '') {
+            writer.uint32(10).string(message.apiVersion);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.kind !== undefined && message.kind !== '') {
+            writer.uint32(18).string(message.kind);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): TypeMeta {
-    return {
-      apiVersion: isSet(object.apiVersion) ? globalThis.String(object.apiVersion) : "",
-      kind: isSet(object.kind) ? globalThis.String(object.kind) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): TypeMeta {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseTypeMeta();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: TypeMeta): unknown {
-    const obj: any = {};
-    if (message.apiVersion !== undefined && message.apiVersion !== "") {
-      obj.apiVersion = message.apiVersion;
-    }
-    if (message.kind !== undefined && message.kind !== "") {
-      obj.kind = message.kind;
-    }
-    return obj;
-  },
+                        message.apiVersion = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<TypeMeta>, I>>(base?: I): TypeMeta {
-    return TypeMeta.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<TypeMeta>, I>>(object: I): TypeMeta {
-    const message = createBaseTypeMeta();
-    message.apiVersion = object.apiVersion ?? "";
-    message.kind = object.kind ?? "";
-    return message;
-  },
+                        message.kind = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): TypeMeta {
+        return {
+            apiVersion: isSet(object.apiVersion) ? globalThis.String(object.apiVersion) : '',
+            kind: isSet(object.kind) ? globalThis.String(object.kind) : '',
+        };
+    },
+
+    toJSON(message: TypeMeta): unknown {
+        const obj: any = {};
+        if (message.apiVersion !== undefined && message.apiVersion !== '') {
+            obj.apiVersion = message.apiVersion;
+        }
+        if (message.kind !== undefined && message.kind !== '') {
+            obj.kind = message.kind;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<TypeMeta>, I>>(base?: I): TypeMeta {
+        return TypeMeta.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<TypeMeta>, I>>(object: I): TypeMeta {
+        const message = createBaseTypeMeta();
+        message.apiVersion = object.apiVersion ?? '';
+        message.kind = object.kind ?? '';
+        return message;
+    },
 };
 
 function createBaseUnknown(): Unknown {
-  return { typeMeta: undefined, raw: new Uint8Array(0), contentEncoding: "", contentType: "" };
+    return { typeMeta: undefined, raw: new Uint8Array(0), contentEncoding: '', contentType: '' };
 }
 
 export const Unknown: MessageFns<Unknown> = {
-  encode(message: Unknown, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.typeMeta !== undefined) {
-      TypeMeta.encode(message.typeMeta, writer.uint32(10).fork()).join();
-    }
-    if (message.raw !== undefined && message.raw.length !== 0) {
-      writer.uint32(18).bytes(message.raw);
-    }
-    if (message.contentEncoding !== undefined && message.contentEncoding !== "") {
-      writer.uint32(26).string(message.contentEncoding);
-    }
-    if (message.contentType !== undefined && message.contentType !== "") {
-      writer.uint32(34).string(message.contentType);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): Unknown {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseUnknown();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.typeMeta = TypeMeta.decode(reader, reader.uint32());
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.raw = reader.bytes();
-            continue;
-          }
-          case 3: {
-            if (tag !== 26) {
-              break;
-            }
-
-            message.contentEncoding = reader.string();
-            continue;
-          }
-          case 4: {
-            if (tag !== 34) {
-              break;
-            }
-
-            message.contentType = reader.string();
-            continue;
-          }
+    encode(message: Unknown, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.typeMeta !== undefined) {
+            TypeMeta.encode(message.typeMeta, writer.uint32(10).fork()).join();
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.raw !== undefined && message.raw.length !== 0) {
+            writer.uint32(18).bytes(message.raw);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        if (message.contentEncoding !== undefined && message.contentEncoding !== '') {
+            writer.uint32(26).string(message.contentEncoding);
+        }
+        if (message.contentType !== undefined && message.contentType !== '') {
+            writer.uint32(34).string(message.contentType);
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): Unknown {
-    return {
-      typeMeta: isSet(object.typeMeta) ? TypeMeta.fromJSON(object.typeMeta) : undefined,
-      raw: isSet(object.raw) ? bytesFromBase64(object.raw) : new Uint8Array(0),
-      contentEncoding: isSet(object.contentEncoding) ? globalThis.String(object.contentEncoding) : "",
-      contentType: isSet(object.contentType) ? globalThis.String(object.contentType) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): Unknown {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseUnknown();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: Unknown): unknown {
-    const obj: any = {};
-    if (message.typeMeta !== undefined) {
-      obj.typeMeta = TypeMeta.toJSON(message.typeMeta);
-    }
-    if (message.raw !== undefined && message.raw.length !== 0) {
-      obj.raw = base64FromBytes(message.raw);
-    }
-    if (message.contentEncoding !== undefined && message.contentEncoding !== "") {
-      obj.contentEncoding = message.contentEncoding;
-    }
-    if (message.contentType !== undefined && message.contentType !== "") {
-      obj.contentType = message.contentType;
-    }
-    return obj;
-  },
+                        message.typeMeta = TypeMeta.decode(reader, reader.uint32());
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<Unknown>, I>>(base?: I): Unknown {
-    return Unknown.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Unknown>, I>>(object: I): Unknown {
-    const message = createBaseUnknown();
-    message.typeMeta = (object.typeMeta !== undefined && object.typeMeta !== null)
-      ? TypeMeta.fromPartial(object.typeMeta)
-      : undefined;
-    message.raw = object.raw ?? new Uint8Array(0);
-    message.contentEncoding = object.contentEncoding ?? "";
-    message.contentType = object.contentType ?? "";
-    return message;
-  },
+                        message.raw = reader.bytes();
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 26) {
+                            break;
+                        }
+
+                        message.contentEncoding = reader.string();
+                        continue;
+                    }
+                    case 4: {
+                        if (tag !== 34) {
+                            break;
+                        }
+
+                        message.contentType = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): Unknown {
+        return {
+            typeMeta: isSet(object.typeMeta) ? TypeMeta.fromJSON(object.typeMeta) : undefined,
+            raw: isSet(object.raw) ? bytesFromBase64(object.raw) : new Uint8Array(0),
+            contentEncoding: isSet(object.contentEncoding) ? globalThis.String(object.contentEncoding) : '',
+            contentType: isSet(object.contentType) ? globalThis.String(object.contentType) : '',
+        };
+    },
+
+    toJSON(message: Unknown): unknown {
+        const obj: any = {};
+        if (message.typeMeta !== undefined) {
+            obj.typeMeta = TypeMeta.toJSON(message.typeMeta);
+        }
+        if (message.raw !== undefined && message.raw.length !== 0) {
+            obj.raw = base64FromBytes(message.raw);
+        }
+        if (message.contentEncoding !== undefined && message.contentEncoding !== '') {
+            obj.contentEncoding = message.contentEncoding;
+        }
+        if (message.contentType !== undefined && message.contentType !== '') {
+            obj.contentType = message.contentType;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<Unknown>, I>>(base?: I): Unknown {
+        return Unknown.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<Unknown>, I>>(object: I): Unknown {
+        const message = createBaseUnknown();
+        message.typeMeta =
+            object.typeMeta !== undefined && object.typeMeta !== null
+                ? TypeMeta.fromPartial(object.typeMeta)
+                : undefined;
+        message.raw = object.raw ?? new Uint8Array(0);
+        message.contentEncoding = object.contentEncoding ?? '';
+        message.contentType = object.contentType ?? '';
+        return message;
+    },
 };
 
 function bytesFromBase64(b64: string): Uint8Array {
-  if ((globalThis as any).Buffer) {
-    return Uint8Array.from((globalThis as any).Buffer.from(b64, "base64"));
-  } else {
-    const bin = globalThis.atob(b64);
-    const arr = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; ++i) {
-      arr[i] = bin.charCodeAt(i);
+    if ((globalThis as any).Buffer) {
+        return Uint8Array.from((globalThis as any).Buffer.from(b64, 'base64'));
+    } else {
+        const bin = globalThis.atob(b64);
+        const arr = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; ++i) {
+            arr[i] = bin.charCodeAt(i);
+        }
+        return arr;
     }
-    return arr;
-  }
 }
 
 function base64FromBytes(arr: Uint8Array): string {
-  if ((globalThis as any).Buffer) {
-    return (globalThis as any).Buffer.from(arr).toString("base64");
-  } else {
-    const bin: string[] = [];
-    arr.forEach((byte) => {
-      bin.push(globalThis.String.fromCharCode(byte));
-    });
-    return globalThis.btoa(bin.join(""));
-  }
+    if ((globalThis as any).Buffer) {
+        return (globalThis as any).Buffer.from(arr).toString('base64');
+    } else {
+        const bin: string[] = [];
+        arr.forEach((byte) => {
+            bin.push(globalThis.String.fromCharCode(byte));
+        });
+        return globalThis.btoa(bin.join(''));
+    }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+type DeepPartial<T> = T extends Builtin
+    ? T
+    : T extends globalThis.Array<infer U>
+      ? globalThis.Array<DeepPartial<U>>
+      : T extends ReadonlyArray<infer U>
+        ? ReadonlyArray<DeepPartial<U>>
+        : T extends {}
+          ? { [K in keyof T]?: DeepPartial<T[K]> }
+          : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+type Exact<P, I extends P> = P extends Builtin
+    ? P
+    : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
+    return value !== null && value !== undefined;
 }
 
 interface MessageFns<T> {
-  encode(message: T, writer?: BinaryWriter): BinaryWriter;
-  decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
+    encode(message: T, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): T;
+    fromJSON(object: any): T;
+    toJSON(message: T): unknown;
+    create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
+    fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }
