@@ -5,43 +5,39 @@
 // source: k8s.io/apimachinery/pkg/apis/meta/v1/generated.proto
 
 /* eslint-disable */
-import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { RawExtension } from "../../../runtime/generated.js";
+import { BinaryReader, BinaryWriter } from '@bufbuild/protobuf/wire';
+import { RawExtension } from '../../../runtime/generated.js';
 
 /**
  * APIGroup contains the name, the supported versions, and the preferred version
  * of a group.
  */
 export interface APIGroup {
-  /** name is the name of the group. */
-  name?:
-    | string
-    | undefined;
-  /**
-   * versions are the versions supported in this group.
-   * +listType=atomic
-   */
-  versions: GroupVersionForDiscovery[];
-  /**
-   * preferredVersion is the version preferred by the API server, which
-   * probably is the storage version.
-   * +optional
-   */
-  preferredVersion?:
-    | GroupVersionForDiscovery
-    | undefined;
-  /**
-   * a map of client CIDR to server address that is serving this group.
-   * This is to help clients reach servers in the most network-efficient way possible.
-   * Clients can use the appropriate server address as per the CIDR that they match.
-   * In case of multiple matches, clients should use the longest matching CIDR.
-   * The server returns only those CIDRs that it thinks that the client can match.
-   * For example: the master will return an internal IP CIDR only, if the client reaches the server using an internal IP.
-   * Server looks at X-Forwarded-For header or X-Real-Ip header or request.RemoteAddr (in that order) to get the client IP.
-   * +optional
-   * +listType=atomic
-   */
-  serverAddressByClientCIDRs: ServerAddressByClientCIDR[];
+    /** name is the name of the group. */
+    name?: string | undefined;
+    /**
+     * versions are the versions supported in this group.
+     * +listType=atomic
+     */
+    versions: GroupVersionForDiscovery[];
+    /**
+     * preferredVersion is the version preferred by the API server, which
+     * probably is the storage version.
+     * +optional
+     */
+    preferredVersion?: GroupVersionForDiscovery | undefined;
+    /**
+     * a map of client CIDR to server address that is serving this group.
+     * This is to help clients reach servers in the most network-efficient way possible.
+     * Clients can use the appropriate server address as per the CIDR that they match.
+     * In case of multiple matches, clients should use the longest matching CIDR.
+     * The server returns only those CIDRs that it thinks that the client can match.
+     * For example: the master will return an internal IP CIDR only, if the client reaches the server using an internal IP.
+     * Server looks at X-Forwarded-For header or X-Real-Ip header or request.RemoteAddr (in that order) to get the client IP.
+     * +optional
+     * +listType=atomic
+     */
+    serverAddressByClientCIDRs: ServerAddressByClientCIDR[];
 }
 
 /**
@@ -49,77 +45,63 @@ export interface APIGroup {
  * /apis.
  */
 export interface APIGroupList {
-  /**
-   * groups is a list of APIGroup.
-   * +listType=atomic
-   */
-  groups: APIGroup[];
+    /**
+     * groups is a list of APIGroup.
+     * +listType=atomic
+     */
+    groups: APIGroup[];
 }
 
 /** APIResource specifies the name of a resource and whether it is namespaced. */
 export interface APIResource {
-  /** name is the plural name of the resource. */
-  name?:
-    | string
-    | undefined;
-  /**
-   * singularName is the singular name of the resource.  This allows clients to handle plural and singular opaquely.
-   * The singularName is more correct for reporting status on a single item and both singular and plural are allowed
-   * from the kubectl CLI interface.
-   */
-  singularName?:
-    | string
-    | undefined;
-  /** namespaced indicates if a resource is namespaced or not. */
-  namespaced?:
-    | boolean
-    | undefined;
-  /**
-   * group is the preferred group of the resource.  Empty implies the group of the containing resource list.
-   * For subresources, this may have a different value, for example: Scale".
-   */
-  group?:
-    | string
-    | undefined;
-  /**
-   * version is the preferred version of the resource.  Empty implies the version of the containing resource list
-   * For subresources, this may have a different value, for example: v1 (while inside a v1beta1 version of the core resource's group)".
-   */
-  version?:
-    | string
-    | undefined;
-  /** kind is the kind for the resource (e.g. 'Foo' is the kind for a resource 'foo') */
-  kind?:
-    | string
-    | undefined;
-  /**
-   * verbs is a list of supported kube verbs (this includes get, list, watch, create,
-   * update, patch, delete, deletecollection, and proxy)
-   */
-  verbs?:
-    | Verbs
-    | undefined;
-  /**
-   * shortNames is a list of suggested short names of the resource.
-   * +listType=atomic
-   */
-  shortNames: string[];
-  /**
-   * categories is a list of the grouped resources this resource belongs to (e.g. 'all')
-   * +listType=atomic
-   */
-  categories: string[];
-  /**
-   * The hash value of the storage version, the version this resource is
-   * converted to when written to the data store. Value must be treated
-   * as opaque by clients. Only equality comparison on the value is valid.
-   * This is an alpha feature and may change or be removed in the future.
-   * The field is populated by the apiserver only if the
-   * StorageVersionHash feature gate is enabled.
-   * This field will remain optional even if it graduates.
-   * +optional
-   */
-  storageVersionHash?: string | undefined;
+    /** name is the plural name of the resource. */
+    name?: string | undefined;
+    /**
+     * singularName is the singular name of the resource.  This allows clients to handle plural and singular opaquely.
+     * The singularName is more correct for reporting status on a single item and both singular and plural are allowed
+     * from the kubectl CLI interface.
+     */
+    singularName?: string | undefined;
+    /** namespaced indicates if a resource is namespaced or not. */
+    namespaced?: boolean | undefined;
+    /**
+     * group is the preferred group of the resource.  Empty implies the group of the containing resource list.
+     * For subresources, this may have a different value, for example: Scale".
+     */
+    group?: string | undefined;
+    /**
+     * version is the preferred version of the resource.  Empty implies the version of the containing resource list
+     * For subresources, this may have a different value, for example: v1 (while inside a v1beta1 version of the core resource's group)".
+     */
+    version?: string | undefined;
+    /** kind is the kind for the resource (e.g. 'Foo' is the kind for a resource 'foo') */
+    kind?: string | undefined;
+    /**
+     * verbs is a list of supported kube verbs (this includes get, list, watch, create,
+     * update, patch, delete, deletecollection, and proxy)
+     */
+    verbs?: Verbs | undefined;
+    /**
+     * shortNames is a list of suggested short names of the resource.
+     * +listType=atomic
+     */
+    shortNames: string[];
+    /**
+     * categories is a list of the grouped resources this resource belongs to (e.g. 'all')
+     * +listType=atomic
+     */
+    categories: string[];
+    /**
+     * The hash value of the storage version, the version this resource is
+     * converted to when written to the data store. Value must be treated
+     * as opaque by clients. Only equality comparison on the value is valid.
+     * This is an alpha feature and may change or be removed in the future.
+     * The field is populated by the apiserver only if the
+     * StorageVersionHash feature gate is enabled.
+     * This field will remain optional even if it graduates.
+     * +optional
+     */
+    storageVersionHash?: string | undefined;
 }
 
 /**
@@ -128,15 +110,13 @@ export interface APIResource {
  * is namespaced.
  */
 export interface APIResourceList {
-  /** groupVersion is the group and version this APIResourceList is for. */
-  groupVersion?:
-    | string
-    | undefined;
-  /**
-   * resources contains the name of the resources and if they are namespaced.
-   * +listType=atomic
-   */
-  resources: APIResource[];
+    /** groupVersion is the group and version this APIResourceList is for. */
+    groupVersion?: string | undefined;
+    /**
+     * resources contains the name of the resources and if they are namespaced.
+     * +listType=atomic
+     */
+    resources: APIResource[];
 }
 
 /**
@@ -147,22 +127,22 @@ export interface APIResourceList {
  * +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
  */
 export interface APIVersions {
-  /**
-   * versions are the api versions that are available.
-   * +listType=atomic
-   */
-  versions: string[];
-  /**
-   * a map of client CIDR to server address that is serving this group.
-   * This is to help clients reach servers in the most network-efficient way possible.
-   * Clients can use the appropriate server address as per the CIDR that they match.
-   * In case of multiple matches, clients should use the longest matching CIDR.
-   * The server returns only those CIDRs that it thinks that the client can match.
-   * For example: the master will return an internal IP CIDR only, if the client reaches the server using an internal IP.
-   * Server looks at X-Forwarded-For header or X-Real-Ip header or request.RemoteAddr (in that order) to get the client IP.
-   * +listType=atomic
-   */
-  serverAddressByClientCIDRs: ServerAddressByClientCIDR[];
+    /**
+     * versions are the api versions that are available.
+     * +listType=atomic
+     */
+    versions: string[];
+    /**
+     * a map of client CIDR to server address that is serving this group.
+     * This is to help clients reach servers in the most network-efficient way possible.
+     * Clients can use the appropriate server address as per the CIDR that they match.
+     * In case of multiple matches, clients should use the longest matching CIDR.
+     * The server returns only those CIDRs that it thinks that the client can match.
+     * For example: the master will return an internal IP CIDR only, if the client reaches the server using an internal IP.
+     * Server looks at X-Forwarded-For header or X-Real-Ip header or request.RemoteAddr (in that order) to get the client IP.
+     * +listType=atomic
+     */
+    serverAddressByClientCIDRs: ServerAddressByClientCIDR[];
 }
 
 /**
@@ -172,31 +152,29 @@ export interface APIVersions {
  * that speaks specifically to how the options fields relate to apply.
  */
 export interface ApplyOptions {
-  /**
-   * When present, indicates that modifications should not be
-   * persisted. An invalid or unrecognized dryRun directive will
-   * result in an error response and no further processing of the
-   * request. Valid values are:
-   * - All: all dry run stages will be processed
-   * +optional
-   * +listType=atomic
-   */
-  dryRun: string[];
-  /**
-   * Force is going to "force" Apply requests. It means user will
-   * re-acquire conflicting fields owned by other people.
-   */
-  force?:
-    | boolean
-    | undefined;
-  /**
-   * fieldManager is a name associated with the actor or entity
-   * that is making these changes. The value must be less than or
-   * 128 characters long, and only contain printable characters,
-   * as defined by https://golang.org/pkg/unicode/#IsPrint. This
-   * field is required.
-   */
-  fieldManager?: string | undefined;
+    /**
+     * When present, indicates that modifications should not be
+     * persisted. An invalid or unrecognized dryRun directive will
+     * result in an error response and no further processing of the
+     * request. Valid values are:
+     * - All: all dry run stages will be processed
+     * +optional
+     * +listType=atomic
+     */
+    dryRun: string[];
+    /**
+     * Force is going to "force" Apply requests. It means user will
+     * re-acquire conflicting fields owned by other people.
+     */
+    force?: boolean | undefined;
+    /**
+     * fieldManager is a name associated with the actor or entity
+     * that is making these changes. The value must be less than or
+     * 128 characters long, and only contain printable characters,
+     * as defined by https://golang.org/pkg/unicode/#IsPrint. This
+     * field is required.
+     */
+    fieldManager?: string | undefined;
 }
 
 /**
@@ -220,198 +198,178 @@ export interface ApplyOptions {
  * 	}
  */
 export interface Condition {
-  /**
-   * type of condition in CamelCase or in foo.example.com/CamelCase.
-   * ---
-   * Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be
-   * useful (see .node.status.conditions), the ability to deconflict is important.
-   * The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
-   * +required
-   * +kubebuilder:validation:Required
-   * +kubebuilder:validation:Pattern=`^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)* /)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$`
-   * +kubebuilder:validation:MaxLength=316
-   * +k8s:alpha(since: "1.37")=+k8s:required
-   * +k8s:alpha(since: "1.37")=+k8s:format=k8s-label-key
-   */
-  type?:
-    | string
-    | undefined;
-  /**
-   * status of the condition, one of True, False, Unknown.
-   * +required
-   * +kubebuilder:validation:Required
-   * +kubebuilder:validation:Enum=True;False;Unknown
-   * +k8s:alpha(since: "1.37")=+k8s:required
-   */
-  status?:
-    | string
-    | undefined;
-  /**
-   * observedGeneration represents the .metadata.generation that the condition was set based upon.
-   * For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
-   * with respect to the current state of the instance.
-   * +optional
-   * +kubebuilder:validation:Minimum=0
-   * +k8s:alpha(since: "1.37")=+k8s:optional
-   * +k8s:alpha(since: "1.37")=+k8s:minimum=0
-   */
-  observedGeneration?:
-    | number
-    | undefined;
-  /**
-   * lastTransitionTime is the last time the condition transitioned from one status to another.
-   * This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
-   * +required
-   * +kubebuilder:validation:Required
-   * +kubebuilder:validation:Type=string
-   * +kubebuilder:validation:Format=date-time
-   * +k8s:alpha(since: "1.37")=+k8s:customValidation
-   */
-  lastTransitionTime?:
-    | Time
-    | undefined;
-  /**
-   * reason contains a programmatic identifier indicating the reason for the condition's last transition.
-   * Producers of specific condition types may define expected values and meanings for this field,
-   * and whether the values are considered a guaranteed API.
-   * The value should be a CamelCase string.
-   * This field may not be empty.
-   * +required
-   * +kubebuilder:validation:Required
-   * +kubebuilder:validation:MaxLength=1024
-   * +kubebuilder:validation:MinLength=1
-   * +kubebuilder:validation:Pattern=`^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$`
-   * +k8s:alpha(since: "1.37")=+k8s:required
-   * +k8s:alpha(since: "1.38")=+k8s:maxBytes=1024
-   */
-  reason?:
-    | string
-    | undefined;
-  /**
-   * message is a human readable message indicating details about the transition.
-   * This may be an empty string.
-   * +required
-   * +kubebuilder:validation:Required
-   * +kubebuilder:validation:MaxLength=32768
-   */
-  message?: string | undefined;
+    /**
+     * type of condition in CamelCase or in foo.example.com/CamelCase.
+     * ---
+     * Many .condition.type values are consistent across resources like Available, but because arbitrary conditions can be
+     * useful (see .node.status.conditions), the ability to deconflict is important.
+     * The regex it matches is (dns1123SubdomainFmt/)?(qualifiedNameFmt)
+     * +required
+     * +kubebuilder:validation:Required
+     * +kubebuilder:validation:Pattern=`^([a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)* /)?(([A-Za-z0-9][-A-Za-z0-9_.]*)?[A-Za-z0-9])$`
+     * +kubebuilder:validation:MaxLength=316
+     * +k8s:alpha(since: "1.37")=+k8s:required
+     * +k8s:alpha(since: "1.37")=+k8s:format=k8s-label-key
+     */
+    type?: string | undefined;
+    /**
+     * status of the condition, one of True, False, Unknown.
+     * +required
+     * +kubebuilder:validation:Required
+     * +kubebuilder:validation:Enum=True;False;Unknown
+     * +k8s:alpha(since: "1.37")=+k8s:required
+     */
+    status?: string | undefined;
+    /**
+     * observedGeneration represents the .metadata.generation that the condition was set based upon.
+     * For instance, if .metadata.generation is currently 12, but the .status.conditions[x].observedGeneration is 9, the condition is out of date
+     * with respect to the current state of the instance.
+     * +optional
+     * +kubebuilder:validation:Minimum=0
+     * +k8s:alpha(since: "1.37")=+k8s:optional
+     * +k8s:alpha(since: "1.37")=+k8s:minimum=0
+     */
+    observedGeneration?: number | undefined;
+    /**
+     * lastTransitionTime is the last time the condition transitioned from one status to another.
+     * This should be when the underlying condition changed.  If that is not known, then using the time when the API field changed is acceptable.
+     * +required
+     * +kubebuilder:validation:Required
+     * +kubebuilder:validation:Type=string
+     * +kubebuilder:validation:Format=date-time
+     * +k8s:alpha(since: "1.37")=+k8s:customValidation
+     */
+    lastTransitionTime?: Time | undefined;
+    /**
+     * reason contains a programmatic identifier indicating the reason for the condition's last transition.
+     * Producers of specific condition types may define expected values and meanings for this field,
+     * and whether the values are considered a guaranteed API.
+     * The value should be a CamelCase string.
+     * This field may not be empty.
+     * +required
+     * +kubebuilder:validation:Required
+     * +kubebuilder:validation:MaxLength=1024
+     * +kubebuilder:validation:MinLength=1
+     * +kubebuilder:validation:Pattern=`^[A-Za-z]([A-Za-z0-9_,:]*[A-Za-z0-9_])?$`
+     * +k8s:alpha(since: "1.37")=+k8s:required
+     * +k8s:alpha(since: "1.38")=+k8s:maxBytes=1024
+     */
+    reason?: string | undefined;
+    /**
+     * message is a human readable message indicating details about the transition.
+     * This may be an empty string.
+     * +required
+     * +kubebuilder:validation:Required
+     * +kubebuilder:validation:MaxLength=32768
+     */
+    message?: string | undefined;
 }
 
 /** CreateOptions may be provided when creating an API object. */
 export interface CreateOptions {
-  /**
-   * When present, indicates that modifications should not be
-   * persisted. An invalid or unrecognized dryRun directive will
-   * result in an error response and no further processing of the
-   * request. Valid values are:
-   * - All: all dry run stages will be processed
-   * +optional
-   * +listType=atomic
-   */
-  dryRun: string[];
-  /**
-   * fieldManager is a name associated with the actor or entity
-   * that is making these changes. The value must be less than or
-   * 128 characters long, and only contain printable characters,
-   * as defined by https://golang.org/pkg/unicode/#IsPrint.
-   * +optional
-   */
-  fieldManager?:
-    | string
-    | undefined;
-  /**
-   * fieldValidation instructs the server on how to handle
-   * objects in the request (POST/PUT/PATCH) containing unknown
-   * or duplicate fields. Valid values are:
-   * - Ignore: This will ignore any unknown fields that are silently
-   * dropped from the object, and will ignore all but the last duplicate
-   * field that the decoder encounters. This is the default behavior
-   * prior to v1.23.
-   * - Warn: This will send a warning via the standard warning response
-   * header for each unknown field that is dropped from the object, and
-   * for each duplicate field that is encountered. The request will
-   * still succeed if there are no other errors, and will only persist
-   * the last of any duplicate fields. This is the default in v1.23+
-   * - Strict: This will fail the request with a BadRequest error if
-   * any unknown fields would be dropped from the object, or if any
-   * duplicate fields are present. The error returned from the server
-   * will contain all unknown and duplicate fields encountered.
-   * +optional
-   */
-  fieldValidation?: string | undefined;
+    /**
+     * When present, indicates that modifications should not be
+     * persisted. An invalid or unrecognized dryRun directive will
+     * result in an error response and no further processing of the
+     * request. Valid values are:
+     * - All: all dry run stages will be processed
+     * +optional
+     * +listType=atomic
+     */
+    dryRun: string[];
+    /**
+     * fieldManager is a name associated with the actor or entity
+     * that is making these changes. The value must be less than or
+     * 128 characters long, and only contain printable characters,
+     * as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * +optional
+     */
+    fieldManager?: string | undefined;
+    /**
+     * fieldValidation instructs the server on how to handle
+     * objects in the request (POST/PUT/PATCH) containing unknown
+     * or duplicate fields. Valid values are:
+     * - Ignore: This will ignore any unknown fields that are silently
+     * dropped from the object, and will ignore all but the last duplicate
+     * field that the decoder encounters. This is the default behavior
+     * prior to v1.23.
+     * - Warn: This will send a warning via the standard warning response
+     * header for each unknown field that is dropped from the object, and
+     * for each duplicate field that is encountered. The request will
+     * still succeed if there are no other errors, and will only persist
+     * the last of any duplicate fields. This is the default in v1.23+
+     * - Strict: This will fail the request with a BadRequest error if
+     * any unknown fields would be dropped from the object, or if any
+     * duplicate fields are present. The error returned from the server
+     * will contain all unknown and duplicate fields encountered.
+     * +optional
+     */
+    fieldValidation?: string | undefined;
 }
 
 /** DeleteOptions may be provided when deleting an API object. */
 export interface DeleteOptions {
-  /**
-   * The duration in seconds before the object should be deleted. Value must be non-negative integer.
-   * The value zero indicates delete immediately. If this value is nil, the default grace period for the
-   * specified type will be used.
-   * Defaults to a per object value if not specified. zero means delete immediately.
-   * +optional
-   */
-  gracePeriodSeconds?:
-    | number
-    | undefined;
-  /**
-   * Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be
-   * returned.
-   * +k8s:conversion-gen=false
-   * +optional
-   */
-  preconditions?:
-    | Preconditions
-    | undefined;
-  /**
-   * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7.
-   * Should the dependent objects be orphaned. If true/false, the "orphan"
-   * finalizer will be added to/removed from the object's finalizers list.
-   * Either this field or PropagationPolicy may be set, but not both.
-   * +optional
-   */
-  orphanDependents?:
-    | boolean
-    | undefined;
-  /**
-   * Whether and how garbage collection will be performed.
-   * Either this field or OrphanDependents may be set, but not both.
-   * The default policy is decided by the existing finalizer set in the
-   * metadata.finalizers and the resource-specific default policy.
-   * Acceptable values are: 'Orphan' - orphan the dependents; 'Background' -
-   * allow the garbage collector to delete the dependents in the background;
-   * 'Foreground' - a cascading policy that deletes all dependents in the
-   * foreground.
-   * +optional
-   */
-  propagationPolicy?:
-    | string
-    | undefined;
-  /**
-   * When present, indicates that modifications should not be
-   * persisted. An invalid or unrecognized dryRun directive will
-   * result in an error response and no further processing of the
-   * request. Valid values are:
-   * - All: all dry run stages will be processed
-   * +optional
-   * +listType=atomic
-   */
-  dryRun: string[];
-  /**
-   * if set to true, it will trigger an unsafe deletion of the resource in
-   * case the normal deletion flow fails with a corrupt object error.
-   * A resource is considered corrupt if it can not be retrieved from
-   * the underlying storage successfully because of a) its data can
-   * not be transformed e.g. decryption failure, or b) it fails
-   * to decode into an object.
-   * NOTE: unsafe deletion ignores finalizer constraints, skips
-   * precondition checks, and removes the object from the storage.
-   * WARNING: This may potentially break the cluster if the workload
-   * associated with the resource being unsafe-deleted relies on normal
-   * deletion flow. Use only if you REALLY know what you are doing.
-   * The default value is false, and the user must opt in to enable it
-   * +optional
-   */
-  ignoreStoreReadErrorWithClusterBreakingPotential?: boolean | undefined;
+    /**
+     * The duration in seconds before the object should be deleted. Value must be non-negative integer.
+     * The value zero indicates delete immediately. If this value is nil, the default grace period for the
+     * specified type will be used.
+     * Defaults to a per object value if not specified. zero means delete immediately.
+     * +optional
+     */
+    gracePeriodSeconds?: number | undefined;
+    /**
+     * Must be fulfilled before a deletion is carried out. If not possible, a 409 Conflict status will be
+     * returned.
+     * +k8s:conversion-gen=false
+     * +optional
+     */
+    preconditions?: Preconditions | undefined;
+    /**
+     * Deprecated: please use the PropagationPolicy, this field will be deprecated in 1.7.
+     * Should the dependent objects be orphaned. If true/false, the "orphan"
+     * finalizer will be added to/removed from the object's finalizers list.
+     * Either this field or PropagationPolicy may be set, but not both.
+     * +optional
+     */
+    orphanDependents?: boolean | undefined;
+    /**
+     * Whether and how garbage collection will be performed.
+     * Either this field or OrphanDependents may be set, but not both.
+     * The default policy is decided by the existing finalizer set in the
+     * metadata.finalizers and the resource-specific default policy.
+     * Acceptable values are: 'Orphan' - orphan the dependents; 'Background' -
+     * allow the garbage collector to delete the dependents in the background;
+     * 'Foreground' - a cascading policy that deletes all dependents in the
+     * foreground.
+     * +optional
+     */
+    propagationPolicy?: string | undefined;
+    /**
+     * When present, indicates that modifications should not be
+     * persisted. An invalid or unrecognized dryRun directive will
+     * result in an error response and no further processing of the
+     * request. Valid values are:
+     * - All: all dry run stages will be processed
+     * +optional
+     * +listType=atomic
+     */
+    dryRun: string[];
+    /**
+     * if set to true, it will trigger an unsafe deletion of the resource in
+     * case the normal deletion flow fails with a corrupt object error.
+     * A resource is considered corrupt if it can not be retrieved from
+     * the underlying storage successfully because of a) its data can
+     * not be transformed e.g. decryption failure, or b) it fails
+     * to decode into an object.
+     * NOTE: unsafe deletion ignores finalizer constraints, skips
+     * precondition checks, and removes the object from the storage.
+     * WARNING: This may potentially break the cluster if the workload
+     * associated with the resource being unsafe-deleted relies on normal
+     * deletion flow. Use only if you REALLY know what you are doing.
+     * The default value is false, and the user must opt in to enable it
+     * +optional
+     */
+    ignoreStoreReadErrorWithClusterBreakingPotential?: boolean | undefined;
 }
 
 /**
@@ -420,7 +378,7 @@ export interface DeleteOptions {
  * can be used as map keys in json.
  */
 export interface Duration {
-  duration?: number | undefined;
+    duration?: number | undefined;
 }
 
 /**
@@ -428,26 +386,22 @@ export interface Duration {
  * relates the key and values.
  */
 export interface FieldSelectorRequirement {
-  /** key is the field selector key that the requirement applies to. */
-  key?:
-    | string
-    | undefined;
-  /**
-   * operator represents a key's relationship to a set of values.
-   * Valid operators are In, NotIn, Exists, DoesNotExist.
-   * The list of operators may grow in the future.
-   */
-  operator?:
-    | string
-    | undefined;
-  /**
-   * values is an array of string values.
-   * If the operator is In or NotIn, the values array must be non-empty.
-   * If the operator is Exists or DoesNotExist, the values array must be empty.
-   * +optional
-   * +listType=atomic
-   */
-  values: string[];
+    /** key is the field selector key that the requirement applies to. */
+    key?: string | undefined;
+    /**
+     * operator represents a key's relationship to a set of values.
+     * Valid operators are In, NotIn, Exists, DoesNotExist.
+     * The list of operators may grow in the future.
+     */
+    operator?: string | undefined;
+    /**
+     * values is an array of string values.
+     * If the operator is In or NotIn, the values array must be non-empty.
+     * If the operator is Exists or DoesNotExist, the values array must be empty.
+     * +optional
+     * +listType=atomic
+     */
+    values: string[];
 }
 
 /**
@@ -467,25 +421,25 @@ export interface FieldSelectorRequirement {
  * +protobuf.options.(gogoproto.goproto_stringer)=false
  */
 export interface FieldsV1 {
-  /**
-   * Raw is the underlying serialization of this object.
-   *
-   * Deprecated: Direct access to this field is deprecated. Use GetRawBytes, GetRawString, SetRawBytes, SetRawString, GetRawReader, NewFieldsV1 instead.
-   */
-  Raw?: Uint8Array | undefined;
+    /**
+     * Raw is the underlying serialization of this object.
+     *
+     * Deprecated: Direct access to this field is deprecated. Use GetRawBytes, GetRawString, SetRawBytes, SetRawString, GetRawReader, NewFieldsV1 instead.
+     */
+    Raw?: Uint8Array | undefined;
 }
 
 /** GetOptions is the standard query options to the standard REST get call. */
 export interface GetOptions {
-  /**
-   * resourceVersion sets a constraint on what resource versions a request may be served from.
-   * See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for
-   * details.
-   *
-   * Defaults to unset
-   * +optional
-   */
-  resourceVersion?: string | undefined;
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from.
+     * See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for
+     * details.
+     *
+     * Defaults to unset
+     * +optional
+     */
+    resourceVersion?: string | undefined;
 }
 
 /**
@@ -495,8 +449,8 @@ export interface GetOptions {
  * +protobuf.options.(gogoproto.goproto_stringer)=false
  */
 export interface GroupKind {
-  group?: string | undefined;
-  kind?: string | undefined;
+    group?: string | undefined;
+    kind?: string | undefined;
 }
 
 /**
@@ -506,8 +460,8 @@ export interface GroupKind {
  * +protobuf.options.(gogoproto.goproto_stringer)=false
  */
 export interface GroupResource {
-  group?: string | undefined;
-  resource?: string | undefined;
+    group?: string | undefined;
+    resource?: string | undefined;
 }
 
 /**
@@ -516,8 +470,8 @@ export interface GroupResource {
  * +protobuf.options.(gogoproto.goproto_stringer)=false
  */
 export interface GroupVersion {
-  group?: string | undefined;
-  version?: string | undefined;
+    group?: string | undefined;
+    version?: string | undefined;
 }
 
 /**
@@ -525,15 +479,13 @@ export interface GroupVersion {
  * It is made a struct to keep extensibility.
  */
 export interface GroupVersionForDiscovery {
-  /** groupVersion specifies the API group and version in the form "group/version" */
-  groupVersion?:
-    | string
-    | undefined;
-  /**
-   * version specifies the version in the form of "version". This is to save
-   * the clients the trouble of splitting the GroupVersion.
-   */
-  version?: string | undefined;
+    /** groupVersion specifies the API group and version in the form "group/version" */
+    groupVersion?: string | undefined;
+    /**
+     * version specifies the version in the form of "version". This is to save
+     * the clients the trouble of splitting the GroupVersion.
+     */
+    version?: string | undefined;
 }
 
 /**
@@ -543,9 +495,9 @@ export interface GroupVersionForDiscovery {
  * +protobuf.options.(gogoproto.goproto_stringer)=false
  */
 export interface GroupVersionKind {
-  group?: string | undefined;
-  version?: string | undefined;
-  kind?: string | undefined;
+    group?: string | undefined;
+    version?: string | undefined;
+    kind?: string | undefined;
 }
 
 /**
@@ -555,9 +507,9 @@ export interface GroupVersionKind {
  * +protobuf.options.(gogoproto.goproto_stringer)=false
  */
 export interface GroupVersionResource {
-  group?: string | undefined;
-  version?: string | undefined;
-  resource?: string | undefined;
+    group?: string | undefined;
+    version?: string | undefined;
+    resource?: string | undefined;
 }
 
 /**
@@ -567,24 +519,24 @@ export interface GroupVersionResource {
  * +structType=atomic
  */
 export interface LabelSelector {
-  /**
-   * matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels
-   * map is equivalent to an element of matchExpressions, whose key field is "key", the
-   * operator is "In", and the values array contains only "value". The requirements are ANDed.
-   * +optional
-   */
-  matchLabels: { [key: string]: string };
-  /**
-   * matchExpressions is a list of label selector requirements. The requirements are ANDed.
-   * +optional
-   * +listType=atomic
-   */
-  matchExpressions: LabelSelectorRequirement[];
+    /**
+     * matchLabels is a map of {key,value} pairs. A single {key,value} in the matchLabels
+     * map is equivalent to an element of matchExpressions, whose key field is "key", the
+     * operator is "In", and the values array contains only "value". The requirements are ANDed.
+     * +optional
+     */
+    matchLabels: { [key: string]: string };
+    /**
+     * matchExpressions is a list of label selector requirements. The requirements are ANDed.
+     * +optional
+     * +listType=atomic
+     */
+    matchExpressions: LabelSelectorRequirement[];
 }
 
 export interface LabelSelector_MatchLabelsEntry {
-  key: string;
-  value: string;
+    key: string;
+    value: string;
 }
 
 /**
@@ -592,40 +544,34 @@ export interface LabelSelector_MatchLabelsEntry {
  * relates the key and values.
  */
 export interface LabelSelectorRequirement {
-  /** key is the label key that the selector applies to. */
-  key?:
-    | string
-    | undefined;
-  /**
-   * operator represents a key's relationship to a set of values.
-   * Valid operators are In, NotIn, Exists and DoesNotExist.
-   */
-  operator?:
-    | string
-    | undefined;
-  /**
-   * values is an array of string values. If the operator is In or NotIn,
-   * the values array must be non-empty. If the operator is Exists or DoesNotExist,
-   * the values array must be empty. This array is replaced during a strategic
-   * merge patch.
-   * +optional
-   * +listType=atomic
-   */
-  values: string[];
+    /** key is the label key that the selector applies to. */
+    key?: string | undefined;
+    /**
+     * operator represents a key's relationship to a set of values.
+     * Valid operators are In, NotIn, Exists and DoesNotExist.
+     */
+    operator?: string | undefined;
+    /**
+     * values is an array of string values. If the operator is In or NotIn,
+     * the values array must be non-empty. If the operator is Exists or DoesNotExist,
+     * the values array must be empty. This array is replaced during a strategic
+     * merge patch.
+     * +optional
+     * +listType=atomic
+     */
+    values: string[];
 }
 
 /** List holds a list of objects, which may not be known by the server. */
 export interface List {
-  /**
-   * Standard list metadata.
-   * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-   * +optional
-   */
-  metadata?:
-    | ListMeta
-    | undefined;
-  /** List of objects */
-  items: RawExtension[];
+    /**
+     * Standard list metadata.
+     * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+     * +optional
+     */
+    metadata?: ListMeta | undefined;
+    /** List of objects */
+    items: RawExtension[];
 }
 
 /**
@@ -633,238 +579,210 @@ export interface List {
  * various status objects. A resource may have only one of {ObjectMeta, ListMeta}.
  */
 export interface ListMeta {
-  /**
-   * Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.
-   * +optional
-   */
-  selfLink?:
-    | string
-    | undefined;
-  /**
-   * String that identifies the server's internal version of this object that
-   * can be used by clients to determine when objects have changed.
-   * Value must be treated as opaque by clients and passed unmodified back to the server.
-   * Populated by the system.
-   * Read-only.
-   * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-   * +optional
-   */
-  resourceVersion?:
-    | string
-    | undefined;
-  /**
-   * continue may be set if the user set a limit on the number of items returned, and indicates that
-   * the server has more data available. The value is opaque and may be used to issue another request
-   * to the endpoint that served this list to retrieve the next set of available objects. Continuing a
-   * consistent list may not be possible if the server configuration has changed or more than a few
-   * minutes have passed. The resourceVersion field returned when using this continue value will be
-   * identical to the value in the first response, unless you have received this token from an error
-   * message.
-   */
-  continue?:
-    | string
-    | undefined;
-  /**
-   * remainingItemCount is the number of subsequent items in the list which are not included in this
-   * list response. If the list request contained label or field selectors, then the number of
-   * remaining items is unknown and the field will be left unset and omitted during serialization.
-   * If the list is complete (either because it is not chunking or because this is the last chunk),
-   * then there are no more remaining items and this field will be left unset and omitted during
-   * serialization.
-   * Servers older than v1.15 do not set this field.
-   * The intended use of the remainingItemCount is *estimating* the size of a collection. Clients
-   * should not rely on the remainingItemCount to be set or to be exact.
-   * +optional
-   */
-  remainingItemCount?:
-    | number
-    | undefined;
-  /**
-   * shardInfo is set when the list is a filtered subset of the full collection,
-   * as selected by a shard selector on the request. It echoes back the selector
-   * so clients can verify which shard they received and merge sharded responses.
-   * Clients should not cache sharded list responses as a full representation
-   * of the collection.
-   *
-   * This is an alpha field and requires enabling the ShardedListAndWatch feature gate.
-   * +featureGate=ShardedListAndWatch
-   * +optional
-   */
-  shardInfo?: ShardInfo | undefined;
+    /**
+     * Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.
+     * +optional
+     */
+    selfLink?: string | undefined;
+    /**
+     * String that identifies the server's internal version of this object that
+     * can be used by clients to determine when objects have changed.
+     * Value must be treated as opaque by clients and passed unmodified back to the server.
+     * Populated by the system.
+     * Read-only.
+     * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+     * +optional
+     */
+    resourceVersion?: string | undefined;
+    /**
+     * continue may be set if the user set a limit on the number of items returned, and indicates that
+     * the server has more data available. The value is opaque and may be used to issue another request
+     * to the endpoint that served this list to retrieve the next set of available objects. Continuing a
+     * consistent list may not be possible if the server configuration has changed or more than a few
+     * minutes have passed. The resourceVersion field returned when using this continue value will be
+     * identical to the value in the first response, unless you have received this token from an error
+     * message.
+     */
+    continue?: string | undefined;
+    /**
+     * remainingItemCount is the number of subsequent items in the list which are not included in this
+     * list response. If the list request contained label or field selectors, then the number of
+     * remaining items is unknown and the field will be left unset and omitted during serialization.
+     * If the list is complete (either because it is not chunking or because this is the last chunk),
+     * then there are no more remaining items and this field will be left unset and omitted during
+     * serialization.
+     * Servers older than v1.15 do not set this field.
+     * The intended use of the remainingItemCount is *estimating* the size of a collection. Clients
+     * should not rely on the remainingItemCount to be set or to be exact.
+     * +optional
+     */
+    remainingItemCount?: number | undefined;
+    /**
+     * shardInfo is set when the list is a filtered subset of the full collection,
+     * as selected by a shard selector on the request. It echoes back the selector
+     * so clients can verify which shard they received and merge sharded responses.
+     * Clients should not cache sharded list responses as a full representation
+     * of the collection.
+     *
+     * This is an alpha field and requires enabling the ShardedListAndWatch feature gate.
+     * +featureGate=ShardedListAndWatch
+     * +optional
+     */
+    shardInfo?: ShardInfo | undefined;
 }
 
 /** ListOptions is the query options to a standard REST list call. */
 export interface ListOptions {
-  /**
-   * A selector to restrict the list of returned objects by their labels.
-   * Defaults to everything.
-   * +optional
-   */
-  labelSelector?:
-    | string
-    | undefined;
-  /**
-   * A selector to restrict the list of returned objects by their fields.
-   * Defaults to everything.
-   * +optional
-   */
-  fieldSelector?:
-    | string
-    | undefined;
-  /**
-   * Watch for changes to the described resources and return them as a stream of
-   * add, update, and remove notifications. Specify resourceVersion.
-   * +optional
-   */
-  watch?:
-    | boolean
-    | undefined;
-  /**
-   * allowWatchBookmarks requests watch events with type "BOOKMARK".
-   * Servers that do not implement bookmarks may ignore this flag and
-   * bookmarks are sent at the server's discretion. Clients should not
-   * assume bookmarks are returned at any specific interval, nor may they
-   * assume the server will send any BOOKMARK event during a session.
-   * If this is not a watch, this field is ignored.
-   * +optional
-   */
-  allowWatchBookmarks?:
-    | boolean
-    | undefined;
-  /**
-   * resourceVersion sets a constraint on what resource versions a request may be served from.
-   * See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for
-   * details.
-   *
-   * Defaults to unset
-   * +optional
-   */
-  resourceVersion?:
-    | string
-    | undefined;
-  /**
-   * resourceVersionMatch determines how resourceVersion is applied to list calls.
-   * It is highly recommended that resourceVersionMatch be set for list calls where
-   * resourceVersion is set
-   * See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for
-   * details.
-   *
-   * Defaults to unset
-   * +optional
-   */
-  resourceVersionMatch?:
-    | string
-    | undefined;
-  /**
-   * Timeout for the list/watch call.
-   * This limits the duration of the call, regardless of any activity or inactivity.
-   * +optional
-   */
-  timeoutSeconds?:
-    | number
-    | undefined;
-  /**
-   * limit is a maximum number of responses to return for a list call. If more items exist, the
-   * server will set the `continue` field on the list metadata to a value that can be used with the
-   * same initial query to retrieve the next set of results. Setting a limit may return fewer than
-   * the requested amount of items (up to zero items) in the event all requested objects are
-   * filtered out and clients should only use the presence of the continue field to determine whether
-   * more results are available. Servers may choose not to support the limit argument and will return
-   * all of the available results. If limit is specified and the continue field is empty, clients may
-   * assume that no more results are available. This field is not supported if watch is true.
-   *
-   * The server guarantees that the objects returned when using continue will be identical to issuing
-   * a single list call without a limit - that is, no objects created, modified, or deleted after the
-   * first request is issued will be included in any subsequent continued requests. This is sometimes
-   * referred to as a consistent snapshot, and ensures that a client that is using limit to receive
-   * smaller chunks of a very large result can ensure they see all possible objects. If objects are
-   * updated during a chunked list the version of the object that was present at the time the first list
-   * result was calculated is returned.
-   */
-  limit?:
-    | number
-    | undefined;
-  /**
-   * The continue option should be set when retrieving more results from the server. Since this value is
-   * server defined, clients may only use the continue value from a previous query result with identical
-   * query parameters (except for the value of continue) and the server may reject a continue value it
-   * does not recognize. If the specified continue value is no longer valid whether due to expiration
-   * (generally five to fifteen minutes) or a configuration change on the server, the server will
-   * respond with a 410 ResourceExpired error together with a continue token. If the client needs a
-   * consistent list, it must restart their list without the continue field. Otherwise, the client may
-   * send another list request with the token received with the 410 error, the server will respond with
-   * a list starting from the next key, but from the latest snapshot, which is inconsistent from the
-   * previous list results - objects that are created, modified, or deleted after the first list request
-   * will be included in the response, as long as their keys are after the "next key".
-   *
-   * This field is not supported when watch is true. Clients may start a watch from the last
-   * resourceVersion value returned by the server and not miss any modifications.
-   */
-  continue?:
-    | string
-    | undefined;
-  /**
-   * `sendInitialEvents=true` may be set together with `watch=true`.
-   * In that case, the watch stream will begin with synthetic events to
-   * produce the current state of objects in the collection. Once all such
-   * events have been sent, a synthetic "Bookmark" event  will be sent.
-   * The bookmark will report the ResourceVersion (RV) corresponding to the
-   * set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation.
-   * Afterwards, the watch stream will proceed as usual, sending watch events
-   * corresponding to changes (subsequent to the RV) to objects watched.
-   *
-   * When `sendInitialEvents` option is set, we require `resourceVersionMatch`
-   * option to also be set. The semantic of the watch request is as following:
-   * - `resourceVersionMatch` = NotOlderThan
-   *   is interpreted as "data at least as new as the provided `resourceVersion`"
-   *   and the bookmark event is send when the state is synced
-   *   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.
-   *   If `resourceVersion` is unset, this is interpreted as "consistent read" and the
-   *   bookmark event is send when the state is synced at least to the moment
-   *   when request started being processed.
-   * - `resourceVersionMatch` set to any other value or unset
-   *   Invalid error is returned.
-   *
-   * Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward
-   * compatibility reasons) and to false otherwise.
-   * +optional
-   */
-  sendInitialEvents?:
-    | boolean
-    | undefined;
-  /**
-   * shardSelector restricts the list of returned objects using a CEL-based
-   * shard selector expression. The format uses the shardRange() function
-   * combined with || (logical OR) to specify one or more hash ranges:
-   *
-   *   shardRange(object.metadata.uid, '0x0', '0x8000000000000000')
-   *   shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000')
-   *
-   * Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"),
-   * NOT the fieldSelector format ("metadata.uid"). Currently supported paths:
-   *   - object.metadata.uid
-   *   - object.metadata.namespace
-   *
-   * hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix,
-   * defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a
-   * hash space. The full range is [0x0, 0x10000000000000000), where the exclusive
-   * upper bound equals 2^64.
-   *
-   * Examples:
-   *   2-shard split:
-   *     shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000')
-   *     shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000')
-   *   4-shard split:
-   *     shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000')
-   *     shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000')
-   *     shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000')
-   *     shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000')
-   *
-   * This is an alpha field and requires enabling the ShardedListAndWatch feature gate.
-   * +featureGate=ShardedListAndWatch
-   * +optional
-   */
-  shardSelector?: string | undefined;
+    /**
+     * A selector to restrict the list of returned objects by their labels.
+     * Defaults to everything.
+     * +optional
+     */
+    labelSelector?: string | undefined;
+    /**
+     * A selector to restrict the list of returned objects by their fields.
+     * Defaults to everything.
+     * +optional
+     */
+    fieldSelector?: string | undefined;
+    /**
+     * Watch for changes to the described resources and return them as a stream of
+     * add, update, and remove notifications. Specify resourceVersion.
+     * +optional
+     */
+    watch?: boolean | undefined;
+    /**
+     * allowWatchBookmarks requests watch events with type "BOOKMARK".
+     * Servers that do not implement bookmarks may ignore this flag and
+     * bookmarks are sent at the server's discretion. Clients should not
+     * assume bookmarks are returned at any specific interval, nor may they
+     * assume the server will send any BOOKMARK event during a session.
+     * If this is not a watch, this field is ignored.
+     * +optional
+     */
+    allowWatchBookmarks?: boolean | undefined;
+    /**
+     * resourceVersion sets a constraint on what resource versions a request may be served from.
+     * See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for
+     * details.
+     *
+     * Defaults to unset
+     * +optional
+     */
+    resourceVersion?: string | undefined;
+    /**
+     * resourceVersionMatch determines how resourceVersion is applied to list calls.
+     * It is highly recommended that resourceVersionMatch be set for list calls where
+     * resourceVersion is set
+     * See https://kubernetes.io/docs/reference/using-api/api-concepts/#resource-versions for
+     * details.
+     *
+     * Defaults to unset
+     * +optional
+     */
+    resourceVersionMatch?: string | undefined;
+    /**
+     * Timeout for the list/watch call.
+     * This limits the duration of the call, regardless of any activity or inactivity.
+     * +optional
+     */
+    timeoutSeconds?: number | undefined;
+    /**
+     * limit is a maximum number of responses to return for a list call. If more items exist, the
+     * server will set the `continue` field on the list metadata to a value that can be used with the
+     * same initial query to retrieve the next set of results. Setting a limit may return fewer than
+     * the requested amount of items (up to zero items) in the event all requested objects are
+     * filtered out and clients should only use the presence of the continue field to determine whether
+     * more results are available. Servers may choose not to support the limit argument and will return
+     * all of the available results. If limit is specified and the continue field is empty, clients may
+     * assume that no more results are available. This field is not supported if watch is true.
+     *
+     * The server guarantees that the objects returned when using continue will be identical to issuing
+     * a single list call without a limit - that is, no objects created, modified, or deleted after the
+     * first request is issued will be included in any subsequent continued requests. This is sometimes
+     * referred to as a consistent snapshot, and ensures that a client that is using limit to receive
+     * smaller chunks of a very large result can ensure they see all possible objects. If objects are
+     * updated during a chunked list the version of the object that was present at the time the first list
+     * result was calculated is returned.
+     */
+    limit?: number | undefined;
+    /**
+     * The continue option should be set when retrieving more results from the server. Since this value is
+     * server defined, clients may only use the continue value from a previous query result with identical
+     * query parameters (except for the value of continue) and the server may reject a continue value it
+     * does not recognize. If the specified continue value is no longer valid whether due to expiration
+     * (generally five to fifteen minutes) or a configuration change on the server, the server will
+     * respond with a 410 ResourceExpired error together with a continue token. If the client needs a
+     * consistent list, it must restart their list without the continue field. Otherwise, the client may
+     * send another list request with the token received with the 410 error, the server will respond with
+     * a list starting from the next key, but from the latest snapshot, which is inconsistent from the
+     * previous list results - objects that are created, modified, or deleted after the first list request
+     * will be included in the response, as long as their keys are after the "next key".
+     *
+     * This field is not supported when watch is true. Clients may start a watch from the last
+     * resourceVersion value returned by the server and not miss any modifications.
+     */
+    continue?: string | undefined;
+    /**
+     * `sendInitialEvents=true` may be set together with `watch=true`.
+     * In that case, the watch stream will begin with synthetic events to
+     * produce the current state of objects in the collection. Once all such
+     * events have been sent, a synthetic "Bookmark" event  will be sent.
+     * The bookmark will report the ResourceVersion (RV) corresponding to the
+     * set of objects, and be marked with `"k8s.io/initial-events-end": "true"` annotation.
+     * Afterwards, the watch stream will proceed as usual, sending watch events
+     * corresponding to changes (subsequent to the RV) to objects watched.
+     *
+     * When `sendInitialEvents` option is set, we require `resourceVersionMatch`
+     * option to also be set. The semantic of the watch request is as following:
+     * - `resourceVersionMatch` = NotOlderThan
+     *   is interpreted as "data at least as new as the provided `resourceVersion`"
+     *   and the bookmark event is send when the state is synced
+     *   to a `resourceVersion` at least as fresh as the one provided by the ListOptions.
+     *   If `resourceVersion` is unset, this is interpreted as "consistent read" and the
+     *   bookmark event is send when the state is synced at least to the moment
+     *   when request started being processed.
+     * - `resourceVersionMatch` set to any other value or unset
+     *   Invalid error is returned.
+     *
+     * Defaults to true if `resourceVersion=""` or `resourceVersion="0"` (for backward
+     * compatibility reasons) and to false otherwise.
+     * +optional
+     */
+    sendInitialEvents?: boolean | undefined;
+    /**
+     * shardSelector restricts the list of returned objects using a CEL-based
+     * shard selector expression. The format uses the shardRange() function
+     * combined with || (logical OR) to specify one or more hash ranges:
+     *
+     *   shardRange(object.metadata.uid, '0x0', '0x8000000000000000')
+     *   shardRange(object.metadata.uid, '0x0', '0x8000000000000000') || shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000')
+     *
+     * Field paths use CEL-style object-rooted syntax (e.g. "object.metadata.uid"),
+     * NOT the fieldSelector format ("metadata.uid"). Currently supported paths:
+     *   - object.metadata.uid
+     *   - object.metadata.namespace
+     *
+     * hexStart and hexEnd are single-quoted CEL string literals with a '0x' prefix,
+     * defining the inclusive lower and exclusive upper bounds over the 64-bit FNV-1a
+     * hash space. The full range is [0x0, 0x10000000000000000), where the exclusive
+     * upper bound equals 2^64.
+     *
+     * Examples:
+     *   2-shard split:
+     *     shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x8000000000000000')
+     *     shard 1: shardRange(object.metadata.uid, '0x8000000000000000', '0x10000000000000000')
+     *   4-shard split:
+     *     shard 0: shardRange(object.metadata.uid, '0x0000000000000000', '0x4000000000000000')
+     *     shard 1: shardRange(object.metadata.uid, '0x4000000000000000', '0x8000000000000000')
+     *     shard 2: shardRange(object.metadata.uid, '0x8000000000000000', '0xc000000000000000')
+     *     shard 3: shardRange(object.metadata.uid, '0xc000000000000000', '0x10000000000000000')
+     *
+     * This is an alpha field and requires enabling the ShardedListAndWatch feature gate.
+     * +featureGate=ShardedListAndWatch
+     * +optional
+     */
+    shardSelector?: string | undefined;
 }
 
 /**
@@ -872,62 +790,50 @@ export interface ListOptions {
  * that the fieldset applies to.
  */
 export interface ManagedFieldsEntry {
-  /** Manager is an identifier of the workflow managing these fields. */
-  manager?:
-    | string
-    | undefined;
-  /**
-   * Operation is the type of operation which lead to this ManagedFieldsEntry being created.
-   * The only valid values for this field are 'Apply' and 'Update'.
-   * +k8s:alpha(since: "1.37")=+k8s:required
-   */
-  operation?:
-    | string
-    | undefined;
-  /**
-   * APIVersion defines the version of this resource that this field set
-   * applies to. The format is "group/version" just like the top-level
-   * APIVersion field. It is necessary to track the version of a field
-   * set because it cannot be automatically converted.
-   */
-  apiVersion?:
-    | string
-    | undefined;
-  /**
-   * Time is the timestamp of when the ManagedFields entry was added. The
-   * timestamp will also be updated if a field is added, the manager
-   * changes any of the owned fields value or removes a field. The
-   * timestamp does not update when a field is removed from the entry
-   * because another manager took it over.
-   * +optional
-   */
-  time?:
-    | Time
-    | undefined;
-  /**
-   * FieldsType is the discriminator for the different fields format and version.
-   * There is currently only one possible value: "FieldsV1"
-   */
-  fieldsType?:
-    | string
-    | undefined;
-  /**
-   * FieldsV1 holds the first JSON version format as described in the "FieldsV1" type.
-   * +optional
-   */
-  fieldsV1?:
-    | FieldsV1
-    | undefined;
-  /**
-   * Subresource is the name of the subresource used to update that object, or
-   * empty string if the object was updated through the main resource. The
-   * value of this field is used to distinguish between managers, even if they
-   * share the same name. For example, a status update will be distinct from a
-   * regular update using the same manager name.
-   * Note that the APIVersion field is not related to the Subresource field and
-   * it always corresponds to the version of the main resource.
-   */
-  subresource?: string | undefined;
+    /** Manager is an identifier of the workflow managing these fields. */
+    manager?: string | undefined;
+    /**
+     * Operation is the type of operation which lead to this ManagedFieldsEntry being created.
+     * The only valid values for this field are 'Apply' and 'Update'.
+     * +k8s:alpha(since: "1.37")=+k8s:required
+     */
+    operation?: string | undefined;
+    /**
+     * APIVersion defines the version of this resource that this field set
+     * applies to. The format is "group/version" just like the top-level
+     * APIVersion field. It is necessary to track the version of a field
+     * set because it cannot be automatically converted.
+     */
+    apiVersion?: string | undefined;
+    /**
+     * Time is the timestamp of when the ManagedFields entry was added. The
+     * timestamp will also be updated if a field is added, the manager
+     * changes any of the owned fields value or removes a field. The
+     * timestamp does not update when a field is removed from the entry
+     * because another manager took it over.
+     * +optional
+     */
+    time?: Time | undefined;
+    /**
+     * FieldsType is the discriminator for the different fields format and version.
+     * There is currently only one possible value: "FieldsV1"
+     */
+    fieldsType?: string | undefined;
+    /**
+     * FieldsV1 holds the first JSON version format as described in the "FieldsV1" type.
+     * +optional
+     */
+    fieldsV1?: FieldsV1 | undefined;
+    /**
+     * Subresource is the name of the subresource used to update that object, or
+     * empty string if the object was updated through the main resource. The
+     * value of this field is used to distinguish between managers, even if they
+     * share the same name. For example, a status update will be distinct from a
+     * regular update using the same manager name.
+     * Note that the APIVersion field is not related to the Subresource field and
+     * it always corresponds to the version of the main resource.
+     */
+    subresource?: string | undefined;
 }
 
 /**
@@ -938,21 +844,19 @@ export interface ManagedFieldsEntry {
  * +protobuf.options.(gogoproto.goproto_stringer)=false
  */
 export interface MicroTime {
-  /**
-   * Represents seconds of UTC time since Unix epoch
-   * 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
-   * 9999-12-31T23:59:59Z inclusive.
-   */
-  seconds?:
-    | number
-    | undefined;
-  /**
-   * Non-negative fractions of a second at nanosecond resolution. Negative
-   * second values with fractions must still have non-negative nanos values
-   * that count forward in time. Must be from 0 to 999,999,999
-   * inclusive. This field may be limited in precision depending on context.
-   */
-  nanos?: number | undefined;
+    /**
+     * Represents seconds of UTC time since Unix epoch
+     * 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+     * 9999-12-31T23:59:59Z inclusive.
+     */
+    seconds?: number | undefined;
+    /**
+     * Non-negative fractions of a second at nanosecond resolution. Negative
+     * second values with fractions must still have non-negative nanos values
+     * that count forward in time. Must be from 0 to 999,999,999
+     * inclusive. This field may be limited in precision depending on context.
+     */
+    nanos?: number | undefined;
 }
 
 /**
@@ -960,223 +864,203 @@ export interface MicroTime {
  * users must create.
  */
 export interface ObjectMeta {
-  /**
-   * Name must be unique within a namespace. Is required when creating resources, although
-   * some resources may allow a client to request the generation of an appropriate name
-   * automatically. Name is primarily intended for creation idempotence and configuration
-   * definition.
-   * Cannot be updated.
-   * More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
-   * +optional
-   */
-  name?:
-    | string
-    | undefined;
-  /**
-   * GenerateName is an optional prefix, used by the server, to generate a unique
-   * name ONLY IF the Name field has not been provided.
-   * If this field is used, the name returned to the client will be different
-   * than the name passed. This value will also be combined with a unique suffix.
-   * The provided value has the same validation rules as the Name field,
-   * and may be truncated by the length of the suffix required to make the value
-   * unique on the server.
-   *
-   * If this field is specified and the generated name exists, the server will return a 409.
-   *
-   * Applied only if Name is not specified.
-   * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency
-   * +optional
-   */
-  generateName?:
-    | string
-    | undefined;
-  /**
-   * Namespace defines the space within which each name must be unique. An empty namespace is
-   * equivalent to the "default" namespace, but "default" is the canonical representation.
-   * Not all objects are required to be scoped to a namespace - the value of this field for
-   * those objects will be empty.
-   *
-   * Must be a DNS_LABEL.
-   * Cannot be updated.
-   * More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces
-   * +optional
-   */
-  namespace?:
-    | string
-    | undefined;
-  /**
-   * Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.
-   * +optional
-   */
-  selfLink?:
-    | string
-    | undefined;
-  /**
-   * UID is the unique in time and space value for this object. It is typically generated by
-   * the server on successful creation of a resource and is not allowed to change on PUT
-   * operations.
-   *
-   * Populated by the system.
-   * Read-only.
-   * More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids
-   * +optional
-   * +k8s:alpha(since: "1.37")=+k8s:optional
-   * +k8s:alpha(since: "1.37")=+k8s:immutable
-   */
-  uid?:
-    | string
-    | undefined;
-  /**
-   * An opaque value that represents the internal version of this object that can
-   * be used by clients to determine when objects have changed. May be used for optimistic
-   * concurrency, change detection, and the watch operation on a resource or set of resources.
-   * Clients must treat these values as opaque and passed unmodified back to the server.
-   * They may only be valid for a particular resource or set of resources.
-   *
-   * Populated by the system.
-   * Read-only.
-   * Value must be treated as opaque by clients and .
-   * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
-   * +optional
-   */
-  resourceVersion?:
-    | string
-    | undefined;
-  /**
-   * A sequence number representing a specific generation of the desired state.
-   * Populated by the system. Read-only.
-   * +optional
-   * +k8s:alpha(since: "1.37")=+k8s:optional
-   * +k8s:alpha(since: "1.37")=+k8s:minimum=0
-   */
-  generation?:
-    | number
-    | undefined;
-  /**
-   * CreationTimestamp is a timestamp representing the server time when this object was
-   * created. It is not guaranteed to be set in happens-before order across separate operations.
-   * Clients may not set this value. It is represented in RFC3339 form and is in UTC.
-   *
-   * Populated by the system.
-   * Read-only.
-   * Null for lists.
-   * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-   * +optional
-   * +k8s:alpha(since: "1.37")=+k8s:immutable
-   */
-  creationTimestamp?:
-    | Time
-    | undefined;
-  /**
-   * DeletionTimestamp is RFC 3339 date and time at which this resource will be deleted. This
-   * field is set by the server when a graceful deletion is requested by the user, and is not
-   * directly settable by a client. The resource is expected to be deleted (no longer visible
-   * from resource lists, and not reachable by name) after the time in this field, once the
-   * finalizers list is empty. As long as the finalizers list contains items, deletion is blocked.
-   * Once the deletionTimestamp is set, this value may not be unset or be set further into the
-   * future, although it may be shortened or the resource may be deleted prior to this time.
-   * For example, a user may request that a pod is deleted in 30 seconds. The Kubelet will react
-   * by sending a graceful termination signal to the containers in the pod. After that 30 seconds,
-   * the Kubelet will send a hard termination signal (SIGKILL) to the container and after cleanup,
-   * remove the pod from the API. In the presence of network partitions, this object may still
-   * exist after this timestamp, until an administrator or automated process can determine the
-   * resource is fully terminated.
-   * If not set, graceful deletion of the object has not been requested.
-   *
-   * Populated by the system when a graceful deletion is requested.
-   * Read-only.
-   * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-   * +optional
-   * +k8s:alpha(since: "1.37")=+k8s:optional
-   * +k8s:alpha(since: "1.37")=+k8s:immutable
-   */
-  deletionTimestamp?:
-    | Time
-    | undefined;
-  /**
-   * Number of seconds allowed for this object to gracefully terminate before
-   * it will be removed from the system. Only set when deletionTimestamp is also set.
-   * May only be shortened.
-   * Read-only.
-   * +optional
-   * +k8s:alpha(since: "1.37")=+k8s:optional
-   * +k8s:alpha(since: "1.37")=+k8s:immutable
-   */
-  deletionGracePeriodSeconds?:
-    | number
-    | undefined;
-  /**
-   * Map of string keys and values that can be used to organize and categorize
-   * (scope and select) objects. May match selectors of replication controllers
-   * and services.
-   * More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
-   * +optional
-   */
-  labels: { [key: string]: string };
-  /**
-   * Annotations is an unstructured key value map stored with a resource that may be
-   * set by external tools to store and retrieve arbitrary metadata. They are not
-   * queryable and should be preserved when modifying objects.
-   * More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
-   * +optional
-   */
-  annotations: { [key: string]: string };
-  /**
-   * List of objects depended by this object. If ALL objects in the list have
-   * been deleted, this object will be garbage collected. If this object is managed by a controller,
-   * then an entry in this list will point to this controller, with the controller field set to true.
-   * There cannot be more than one managing controller.
-   * +optional
-   * +patchMergeKey=uid
-   * +patchStrategy=merge
-   * +listType=map
-   * +listMapKey=uid
-   * +k8s:alpha(since:"1.37")=+k8s:optional
-   */
-  ownerReferences: OwnerReference[];
-  /**
-   * Must be empty before the object is deleted from the registry. Each entry
-   * is an identifier for the responsible component that will remove the entry
-   * from the list. If the deletionTimestamp of the object is non-nil, entries
-   * in this list can only be removed.
-   * Finalizers may be processed and removed in any order.  Order is NOT enforced
-   * because it introduces significant risk of stuck finalizers.
-   * finalizers is a shared field, any actor with permission can reorder it.
-   * If the finalizer list is processed in order, then this can lead to a situation
-   * in which the component responsible for the first finalizer in the list is
-   * waiting for a signal (field value, external system, or other) produced by a
-   * component responsible for a finalizer later in the list, resulting in a deadlock.
-   * Without enforced ordering finalizers are free to order amongst themselves and
-   * are not vulnerable to ordering changes in the list.
-   * +optional
-   * +patchStrategy=merge
-   * +listType=set
-   */
-  finalizers: string[];
-  /**
-   * ManagedFields maps workflow-id and version to the set of fields
-   * that are managed by that workflow. This is mostly for internal
-   * housekeeping, and users typically shouldn't need to set or
-   * understand this field. A workflow can be the user's name, a
-   * controller's name, or the name of a specific apply path like
-   * "ci-cd". The set of fields is always in the version that the
-   * workflow used when modifying the object.
-   *
-   * +optional
-   * +listType=atomic
-   * +k8s:alpha(since: "1.37")=+k8s:optional
-   */
-  managedFields: ManagedFieldsEntry[];
+    /**
+     * Name must be unique within a namespace. Is required when creating resources, although
+     * some resources may allow a client to request the generation of an appropriate name
+     * automatically. Name is primarily intended for creation idempotence and configuration
+     * definition.
+     * Cannot be updated.
+     * More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
+     * +optional
+     */
+    name?: string | undefined;
+    /**
+     * GenerateName is an optional prefix, used by the server, to generate a unique
+     * name ONLY IF the Name field has not been provided.
+     * If this field is used, the name returned to the client will be different
+     * than the name passed. This value will also be combined with a unique suffix.
+     * The provided value has the same validation rules as the Name field,
+     * and may be truncated by the length of the suffix required to make the value
+     * unique on the server.
+     *
+     * If this field is specified and the generated name exists, the server will return a 409.
+     *
+     * Applied only if Name is not specified.
+     * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#idempotency
+     * +optional
+     */
+    generateName?: string | undefined;
+    /**
+     * Namespace defines the space within which each name must be unique. An empty namespace is
+     * equivalent to the "default" namespace, but "default" is the canonical representation.
+     * Not all objects are required to be scoped to a namespace - the value of this field for
+     * those objects will be empty.
+     *
+     * Must be a DNS_LABEL.
+     * Cannot be updated.
+     * More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces
+     * +optional
+     */
+    namespace?: string | undefined;
+    /**
+     * Deprecated: selfLink is a legacy read-only field that is no longer populated by the system.
+     * +optional
+     */
+    selfLink?: string | undefined;
+    /**
+     * UID is the unique in time and space value for this object. It is typically generated by
+     * the server on successful creation of a resource and is not allowed to change on PUT
+     * operations.
+     *
+     * Populated by the system.
+     * Read-only.
+     * More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids
+     * +optional
+     * +k8s:alpha(since: "1.37")=+k8s:optional
+     * +k8s:alpha(since: "1.37")=+k8s:immutable
+     */
+    uid?: string | undefined;
+    /**
+     * An opaque value that represents the internal version of this object that can
+     * be used by clients to determine when objects have changed. May be used for optimistic
+     * concurrency, change detection, and the watch operation on a resource or set of resources.
+     * Clients must treat these values as opaque and passed unmodified back to the server.
+     * They may only be valid for a particular resource or set of resources.
+     *
+     * Populated by the system.
+     * Read-only.
+     * Value must be treated as opaque by clients and .
+     * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency
+     * +optional
+     */
+    resourceVersion?: string | undefined;
+    /**
+     * A sequence number representing a specific generation of the desired state.
+     * Populated by the system. Read-only.
+     * +optional
+     * +k8s:alpha(since: "1.37")=+k8s:optional
+     * +k8s:alpha(since: "1.37")=+k8s:minimum=0
+     */
+    generation?: number | undefined;
+    /**
+     * CreationTimestamp is a timestamp representing the server time when this object was
+     * created. It is not guaranteed to be set in happens-before order across separate operations.
+     * Clients may not set this value. It is represented in RFC3339 form and is in UTC.
+     *
+     * Populated by the system.
+     * Read-only.
+     * Null for lists.
+     * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+     * +optional
+     * +k8s:alpha(since: "1.37")=+k8s:immutable
+     */
+    creationTimestamp?: Time | undefined;
+    /**
+     * DeletionTimestamp is RFC 3339 date and time at which this resource will be deleted. This
+     * field is set by the server when a graceful deletion is requested by the user, and is not
+     * directly settable by a client. The resource is expected to be deleted (no longer visible
+     * from resource lists, and not reachable by name) after the time in this field, once the
+     * finalizers list is empty. As long as the finalizers list contains items, deletion is blocked.
+     * Once the deletionTimestamp is set, this value may not be unset or be set further into the
+     * future, although it may be shortened or the resource may be deleted prior to this time.
+     * For example, a user may request that a pod is deleted in 30 seconds. The Kubelet will react
+     * by sending a graceful termination signal to the containers in the pod. After that 30 seconds,
+     * the Kubelet will send a hard termination signal (SIGKILL) to the container and after cleanup,
+     * remove the pod from the API. In the presence of network partitions, this object may still
+     * exist after this timestamp, until an administrator or automated process can determine the
+     * resource is fully terminated.
+     * If not set, graceful deletion of the object has not been requested.
+     *
+     * Populated by the system when a graceful deletion is requested.
+     * Read-only.
+     * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+     * +optional
+     * +k8s:alpha(since: "1.37")=+k8s:optional
+     * +k8s:alpha(since: "1.37")=+k8s:immutable
+     */
+    deletionTimestamp?: Time | undefined;
+    /**
+     * Number of seconds allowed for this object to gracefully terminate before
+     * it will be removed from the system. Only set when deletionTimestamp is also set.
+     * May only be shortened.
+     * Read-only.
+     * +optional
+     * +k8s:alpha(since: "1.37")=+k8s:optional
+     * +k8s:alpha(since: "1.37")=+k8s:immutable
+     */
+    deletionGracePeriodSeconds?: number | undefined;
+    /**
+     * Map of string keys and values that can be used to organize and categorize
+     * (scope and select) objects. May match selectors of replication controllers
+     * and services.
+     * More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels
+     * +optional
+     */
+    labels: { [key: string]: string };
+    /**
+     * Annotations is an unstructured key value map stored with a resource that may be
+     * set by external tools to store and retrieve arbitrary metadata. They are not
+     * queryable and should be preserved when modifying objects.
+     * More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations
+     * +optional
+     */
+    annotations: { [key: string]: string };
+    /**
+     * List of objects depended by this object. If ALL objects in the list have
+     * been deleted, this object will be garbage collected. If this object is managed by a controller,
+     * then an entry in this list will point to this controller, with the controller field set to true.
+     * There cannot be more than one managing controller.
+     * +optional
+     * +patchMergeKey=uid
+     * +patchStrategy=merge
+     * +listType=map
+     * +listMapKey=uid
+     * +k8s:alpha(since:"1.37")=+k8s:optional
+     */
+    ownerReferences: OwnerReference[];
+    /**
+     * Must be empty before the object is deleted from the registry. Each entry
+     * is an identifier for the responsible component that will remove the entry
+     * from the list. If the deletionTimestamp of the object is non-nil, entries
+     * in this list can only be removed.
+     * Finalizers may be processed and removed in any order.  Order is NOT enforced
+     * because it introduces significant risk of stuck finalizers.
+     * finalizers is a shared field, any actor with permission can reorder it.
+     * If the finalizer list is processed in order, then this can lead to a situation
+     * in which the component responsible for the first finalizer in the list is
+     * waiting for a signal (field value, external system, or other) produced by a
+     * component responsible for a finalizer later in the list, resulting in a deadlock.
+     * Without enforced ordering finalizers are free to order amongst themselves and
+     * are not vulnerable to ordering changes in the list.
+     * +optional
+     * +patchStrategy=merge
+     * +listType=set
+     */
+    finalizers: string[];
+    /**
+     * ManagedFields maps workflow-id and version to the set of fields
+     * that are managed by that workflow. This is mostly for internal
+     * housekeeping, and users typically shouldn't need to set or
+     * understand this field. A workflow can be the user's name, a
+     * controller's name, or the name of a specific apply path like
+     * "ci-cd". The set of fields is always in the version that the
+     * workflow used when modifying the object.
+     *
+     * +optional
+     * +listType=atomic
+     * +k8s:alpha(since: "1.37")=+k8s:optional
+     */
+    managedFields: ManagedFieldsEntry[];
 }
 
 export interface ObjectMeta_LabelsEntry {
-  key: string;
-  value: string;
+    key: string;
+    value: string;
 }
 
 export interface ObjectMeta_AnnotationsEntry {
-  key: string;
-  value: string;
+    key: string;
+    value: string;
 }
 
 /**
@@ -1186,56 +1070,46 @@ export interface ObjectMeta_AnnotationsEntry {
  * +structType=atomic
  */
 export interface OwnerReference {
-  /**
-   * API version of the referent.
-   * +k8s:alpha(since:"1.37")=+k8s:required
-   */
-  apiVersion?:
-    | string
-    | undefined;
-  /**
-   * Kind of the referent.
-   * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-   * +k8s:alpha(since:"1.37")=+k8s:required
-   */
-  kind?:
-    | string
-    | undefined;
-  /**
-   * Name of the referent.
-   * More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
-   * +k8s:alpha(since:"1.37")=+k8s:required
-   */
-  name?:
-    | string
-    | undefined;
-  /**
-   * UID of the referent.
-   * More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids
-   * +k8s:alpha(since:"1.37")=+k8s:required
-   */
-  uid?:
-    | string
-    | undefined;
-  /**
-   * If true, this reference points to the managing controller.
-   * +optional
-   */
-  controller?:
-    | boolean
-    | undefined;
-  /**
-   * If true, AND if the owner has the "foregroundDeletion" finalizer, then
-   * the owner cannot be deleted from the key-value store until this
-   * reference is removed.
-   * See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion
-   * for how the garbage collector interacts with this field and enforces the foreground deletion.
-   * Defaults to false.
-   * To set this field, a user needs "delete" permission of the owner,
-   * otherwise 422 (Unprocessable Entity) will be returned.
-   * +optional
-   */
-  blockOwnerDeletion?: boolean | undefined;
+    /**
+     * API version of the referent.
+     * +k8s:alpha(since:"1.37")=+k8s:required
+     */
+    apiVersion?: string | undefined;
+    /**
+     * Kind of the referent.
+     * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+     * +k8s:alpha(since:"1.37")=+k8s:required
+     */
+    kind?: string | undefined;
+    /**
+     * Name of the referent.
+     * More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#names
+     * +k8s:alpha(since:"1.37")=+k8s:required
+     */
+    name?: string | undefined;
+    /**
+     * UID of the referent.
+     * More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids
+     * +k8s:alpha(since:"1.37")=+k8s:required
+     */
+    uid?: string | undefined;
+    /**
+     * If true, this reference points to the managing controller.
+     * +optional
+     */
+    controller?: boolean | undefined;
+    /**
+     * If true, AND if the owner has the "foregroundDeletion" finalizer, then
+     * the owner cannot be deleted from the key-value store until this
+     * reference is removed.
+     * See https://kubernetes.io/docs/concepts/architecture/garbage-collection/#foreground-deletion
+     * for how the garbage collector interacts with this field and enforces the foreground deletion.
+     * Defaults to false.
+     * To set this field, a user needs "delete" permission of the owner,
+     * otherwise 422 (Unprocessable Entity) will be returned.
+     * +optional
+     */
+    blockOwnerDeletion?: boolean | undefined;
 }
 
 /**
@@ -1244,13 +1118,13 @@ export interface OwnerReference {
  * +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
  */
 export interface PartialObjectMetadata {
-  /**
-   * Standard object's metadata.
-   * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
-   * +optional
-   * +k8s:opaqueType
-   */
-  metadata?: ObjectMeta | undefined;
+    /**
+     * Standard object's metadata.
+     * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#metadata
+     * +optional
+     * +k8s:opaqueType
+     */
+    metadata?: ObjectMeta | undefined;
 }
 
 /**
@@ -1258,95 +1132,86 @@ export interface PartialObjectMetadata {
  * +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
  */
 export interface PartialObjectMetadataList {
-  /**
-   * Standard list metadata.
-   * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-   * +optional
-   */
-  metadata?:
-    | ListMeta
-    | undefined;
-  /** items contains each of the included items. */
-  items: PartialObjectMetadata[];
+    /**
+     * Standard list metadata.
+     * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+     * +optional
+     */
+    metadata?: ListMeta | undefined;
+    /** items contains each of the included items. */
+    items: PartialObjectMetadata[];
 }
 
 /** Patch is provided to give a concrete name and type to the Kubernetes PATCH request body. */
-export interface Patch {
-}
+export interface Patch {}
 
 /**
  * PatchOptions may be provided when patching an API object.
  * PatchOptions is meant to be a superset of UpdateOptions.
  */
 export interface PatchOptions {
-  /**
-   * When present, indicates that modifications should not be
-   * persisted. An invalid or unrecognized dryRun directive will
-   * result in an error response and no further processing of the
-   * request. Valid values are:
-   * - All: all dry run stages will be processed
-   * +optional
-   * +listType=atomic
-   */
-  dryRun: string[];
-  /**
-   * Force is going to "force" Apply requests. It means user will
-   * re-acquire conflicting fields owned by other people. Force
-   * flag must be unset for non-apply patch requests.
-   * +optional
-   */
-  force?:
-    | boolean
-    | undefined;
-  /**
-   * fieldManager is a name associated with the actor or entity
-   * that is making these changes. The value must be less than or
-   * 128 characters long, and only contain printable characters,
-   * as defined by https://golang.org/pkg/unicode/#IsPrint. This
-   * field is required for apply requests
-   * (application/apply-patch) but optional for non-apply patch
-   * types (JsonPatch, MergePatch, StrategicMergePatch).
-   * +optional
-   */
-  fieldManager?:
-    | string
-    | undefined;
-  /**
-   * fieldValidation instructs the server on how to handle
-   * objects in the request (POST/PUT/PATCH) containing unknown
-   * or duplicate fields. Valid values are:
-   * - Ignore: This will ignore any unknown fields that are silently
-   * dropped from the object, and will ignore all but the last duplicate
-   * field that the decoder encounters. This is the default behavior
-   * prior to v1.23.
-   * - Warn: This will send a warning via the standard warning response
-   * header for each unknown field that is dropped from the object, and
-   * for each duplicate field that is encountered. The request will
-   * still succeed if there are no other errors, and will only persist
-   * the last of any duplicate fields. This is the default in v1.23+
-   * - Strict: This will fail the request with a BadRequest error if
-   * any unknown fields would be dropped from the object, or if any
-   * duplicate fields are present. The error returned from the server
-   * will contain all unknown and duplicate fields encountered.
-   * +optional
-   */
-  fieldValidation?: string | undefined;
+    /**
+     * When present, indicates that modifications should not be
+     * persisted. An invalid or unrecognized dryRun directive will
+     * result in an error response and no further processing of the
+     * request. Valid values are:
+     * - All: all dry run stages will be processed
+     * +optional
+     * +listType=atomic
+     */
+    dryRun: string[];
+    /**
+     * Force is going to "force" Apply requests. It means user will
+     * re-acquire conflicting fields owned by other people. Force
+     * flag must be unset for non-apply patch requests.
+     * +optional
+     */
+    force?: boolean | undefined;
+    /**
+     * fieldManager is a name associated with the actor or entity
+     * that is making these changes. The value must be less than or
+     * 128 characters long, and only contain printable characters,
+     * as defined by https://golang.org/pkg/unicode/#IsPrint. This
+     * field is required for apply requests
+     * (application/apply-patch) but optional for non-apply patch
+     * types (JsonPatch, MergePatch, StrategicMergePatch).
+     * +optional
+     */
+    fieldManager?: string | undefined;
+    /**
+     * fieldValidation instructs the server on how to handle
+     * objects in the request (POST/PUT/PATCH) containing unknown
+     * or duplicate fields. Valid values are:
+     * - Ignore: This will ignore any unknown fields that are silently
+     * dropped from the object, and will ignore all but the last duplicate
+     * field that the decoder encounters. This is the default behavior
+     * prior to v1.23.
+     * - Warn: This will send a warning via the standard warning response
+     * header for each unknown field that is dropped from the object, and
+     * for each duplicate field that is encountered. The request will
+     * still succeed if there are no other errors, and will only persist
+     * the last of any duplicate fields. This is the default in v1.23+
+     * - Strict: This will fail the request with a BadRequest error if
+     * any unknown fields would be dropped from the object, or if any
+     * duplicate fields are present. The error returned from the server
+     * will contain all unknown and duplicate fields encountered.
+     * +optional
+     */
+    fieldValidation?: string | undefined;
 }
 
 /** Preconditions must be fulfilled before an operation (update, delete, etc.) is carried out. */
 export interface Preconditions {
-  /**
-   * Specifies the target UID.
-   * +optional
-   */
-  uid?:
-    | string
-    | undefined;
-  /**
-   * Specifies the target ResourceVersion
-   * +optional
-   */
-  resourceVersion?: string | undefined;
+    /**
+     * Specifies the target UID.
+     * +optional
+     */
+    uid?: string | undefined;
+    /**
+     * Specifies the target ResourceVersion
+     * +optional
+     */
+    resourceVersion?: string | undefined;
 }
 
 /**
@@ -1354,24 +1219,22 @@ export interface Preconditions {
  * For example: "/healthz", "/apis".
  */
 export interface RootPaths {
-  /**
-   * paths are the paths available at root.
-   * +listType=atomic
-   */
-  paths: string[];
+    /**
+     * paths are the paths available at root.
+     * +listType=atomic
+     */
+    paths: string[];
 }
 
 /** ServerAddressByClientCIDR helps the client to determine the server address that they should use, depending on the clientCIDR that they match. */
 export interface ServerAddressByClientCIDR {
-  /** The CIDR with which clients can match their IP to figure out the server address that they should use. */
-  clientCIDR?:
-    | string
-    | undefined;
-  /**
-   * Address of this server, suitable for a client that matches the above CIDR.
-   * This can be a hostname, hostname:port, IP or IP:port.
-   */
-  serverAddress?: string | undefined;
+    /** The CIDR with which clients can match their IP to figure out the server address that they should use. */
+    clientCIDR?: string | undefined;
+    /**
+     * Address of this server, suitable for a client that matches the above CIDR.
+     * This can be a hostname, hostname:port, IP or IP:port.
+     */
+    serverAddress?: string | undefined;
 }
 
 /**
@@ -1379,65 +1242,55 @@ export interface ServerAddressByClientCIDR {
  * Its presence on a list response indicates the list is a filtered subset.
  */
 export interface ShardInfo {
-  /**
-   * selector is the shard selector string from the request, echoed back so clients
-   * can verify which shard they received and merge responses from multiple shards.
-   * +required
-   */
-  selector?: string | undefined;
+    /**
+     * selector is the shard selector string from the request, echoed back so clients
+     * can verify which shard they received and merge responses from multiple shards.
+     * +required
+     */
+    selector?: string | undefined;
 }
 
 /** Status is a return value for calls that don't return other objects. */
 export interface Status {
-  /**
-   * Standard list metadata.
-   * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-   * +optional
-   */
-  metadata?:
-    | ListMeta
-    | undefined;
-  /**
-   * Status of the operation.
-   * One of: "Success" or "Failure".
-   * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
-   * +optional
-   */
-  status?:
-    | string
-    | undefined;
-  /**
-   * A human-readable description of the status of this operation.
-   * +optional
-   */
-  message?:
-    | string
-    | undefined;
-  /**
-   * A machine-readable description of why this operation is in the
-   * "Failure" status. If this value is empty there
-   * is no information available. A Reason clarifies an HTTP status
-   * code but does not override it.
-   * +optional
-   */
-  reason?:
-    | string
-    | undefined;
-  /**
-   * Extended data associated with the reason.  Each reason may define its
-   * own extended details. This field is optional and the data returned
-   * is not guaranteed to conform to any schema except that defined by
-   * the reason type.
-   * +optional
-   */
-  details?:
-    | StatusDetails
-    | undefined;
-  /**
-   * Suggested HTTP return code for this status, 0 if not set.
-   * +optional
-   */
-  code?: number | undefined;
+    /**
+     * Standard list metadata.
+     * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+     * +optional
+     */
+    metadata?: ListMeta | undefined;
+    /**
+     * Status of the operation.
+     * One of: "Success" or "Failure".
+     * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#spec-and-status
+     * +optional
+     */
+    status?: string | undefined;
+    /**
+     * A human-readable description of the status of this operation.
+     * +optional
+     */
+    message?: string | undefined;
+    /**
+     * A machine-readable description of why this operation is in the
+     * "Failure" status. If this value is empty there
+     * is no information available. A Reason clarifies an HTTP status
+     * code but does not override it.
+     * +optional
+     */
+    reason?: string | undefined;
+    /**
+     * Extended data associated with the reason.  Each reason may define its
+     * own extended details. This field is optional and the data returned
+     * is not guaranteed to conform to any schema except that defined by
+     * the reason type.
+     * +optional
+     */
+    details?: StatusDetails | undefined;
+    /**
+     * Suggested HTTP return code for this status, 0 if not set.
+     * +optional
+     */
+    code?: number | undefined;
 }
 
 /**
@@ -1445,35 +1298,31 @@ export interface Status {
  * cases when multiple errors are encountered.
  */
 export interface StatusCause {
-  /**
-   * A machine-readable description of the cause of the error. If this value is
-   * empty there is no information available.
-   * +optional
-   */
-  reason?:
-    | string
-    | undefined;
-  /**
-   * A human-readable description of the cause of the error.  This field may be
-   * presented as-is to a reader.
-   * +optional
-   */
-  message?:
-    | string
-    | undefined;
-  /**
-   * The field of the resource that has caused this error, as named by its JSON
-   * serialization. May include dot and postfix notation for nested attributes.
-   * Arrays are zero-indexed.  Fields may appear more than once in an array of
-   * causes due to fields having multiple errors.
-   * Optional.
-   *
-   * Examples:
-   *   "name" - the field "name" on the current resource
-   *   "items[0].name" - the field "name" on the first array entry in "items"
-   * +optional
-   */
-  field?: string | undefined;
+    /**
+     * A machine-readable description of the cause of the error. If this value is
+     * empty there is no information available.
+     * +optional
+     */
+    reason?: string | undefined;
+    /**
+     * A human-readable description of the cause of the error.  This field may be
+     * presented as-is to a reader.
+     * +optional
+     */
+    message?: string | undefined;
+    /**
+     * The field of the resource that has caused this error, as named by its JSON
+     * serialization. May include dot and postfix notation for nested attributes.
+     * Arrays are zero-indexed.  Fields may appear more than once in an array of
+     * causes due to fields having multiple errors.
+     * Optional.
+     *
+     * Examples:
+     *   "name" - the field "name" on the current resource
+     *   "items[0].name" - the field "name" on the first array entry in "items"
+     * +optional
+     */
+    field?: string | undefined;
 }
 
 /**
@@ -1485,53 +1334,45 @@ export interface StatusCause {
  * defined.
  */
 export interface StatusDetails {
-  /**
-   * The name attribute of the resource associated with the status StatusReason
-   * (when there is a single name which can be described).
-   * +optional
-   */
-  name?:
-    | string
-    | undefined;
-  /**
-   * The group attribute of the resource associated with the status StatusReason.
-   * +optional
-   */
-  group?:
-    | string
-    | undefined;
-  /**
-   * The kind attribute of the resource associated with the status StatusReason.
-   * On some operations may differ from the requested resource Kind.
-   * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-   * +optional
-   */
-  kind?:
-    | string
-    | undefined;
-  /**
-   * UID of the resource.
-   * (when there is a single resource which can be described).
-   * More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids
-   * +optional
-   */
-  uid?:
-    | string
-    | undefined;
-  /**
-   * The Causes array includes more details associated with the StatusReason
-   * failure. Not all StatusReasons may provide detailed causes.
-   * +optional
-   * +listType=atomic
-   */
-  causes: StatusCause[];
-  /**
-   * If specified, the time in seconds before the operation should be retried. Some errors may indicate
-   * the client must take an alternate action - for those errors this field may indicate how long to wait
-   * before taking the alternate action.
-   * +optional
-   */
-  retryAfterSeconds?: number | undefined;
+    /**
+     * The name attribute of the resource associated with the status StatusReason
+     * (when there is a single name which can be described).
+     * +optional
+     */
+    name?: string | undefined;
+    /**
+     * The group attribute of the resource associated with the status StatusReason.
+     * +optional
+     */
+    group?: string | undefined;
+    /**
+     * The kind attribute of the resource associated with the status StatusReason.
+     * On some operations may differ from the requested resource Kind.
+     * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+     * +optional
+     */
+    kind?: string | undefined;
+    /**
+     * UID of the resource.
+     * (when there is a single resource which can be described).
+     * More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names#uids
+     * +optional
+     */
+    uid?: string | undefined;
+    /**
+     * The Causes array includes more details associated with the StatusReason
+     * failure. Not all StatusReasons may provide detailed causes.
+     * +optional
+     * +listType=atomic
+     */
+    causes: StatusCause[];
+    /**
+     * If specified, the time in seconds before the operation should be retried. Some errors may indicate
+     * the client must take an alternate action - for those errors this field may indicate how long to wait
+     * before taking the alternate action.
+     * +optional
+     */
+    retryAfterSeconds?: number | undefined;
 }
 
 /**
@@ -1540,13 +1381,13 @@ export interface StatusDetails {
  * +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
  */
 export interface TableOptions {
-  /**
-   * includeObject decides whether to include each object along with its columnar information.
-   * Specifying "None" will return no object, specifying "Object" will return the full object contents, and
-   * specifying "Metadata" (the default) will return the object's metadata in the PartialObjectMetadata kind
-   * in version v1beta1 of the meta.k8s.io API group.
-   */
-  includeObject?: string | undefined;
+    /**
+     * includeObject decides whether to include each object along with its columnar information.
+     * Specifying "None" will return no object, specifying "Object" will return the full object contents, and
+     * specifying "Metadata" (the default) will return the object's metadata in the PartialObjectMetadata kind
+     * in version v1beta1 of the meta.k8s.io API group.
+     */
+    includeObject?: string | undefined;
 }
 
 /**
@@ -1559,21 +1400,19 @@ export interface TableOptions {
  * +protobuf.options.(gogoproto.goproto_stringer)=false
  */
 export interface Time {
-  /**
-   * Represents seconds of UTC time since Unix epoch
-   * 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
-   * 9999-12-31T23:59:59Z inclusive.
-   */
-  seconds?:
-    | number
-    | undefined;
-  /**
-   * Non-negative fractions of a second at nanosecond resolution. Negative
-   * second values with fractions must still have non-negative nanos values
-   * that count forward in time. Must be from 0 to 999,999,999
-   * inclusive. This field may be limited in precision depending on context.
-   */
-  nanos?: number | undefined;
+    /**
+     * Represents seconds of UTC time since Unix epoch
+     * 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+     * 9999-12-31T23:59:59Z inclusive.
+     */
+    seconds?: number | undefined;
+    /**
+     * Non-negative fractions of a second at nanosecond resolution. Negative
+     * second values with fractions must still have non-negative nanos values
+     * that count forward in time. Must be from 0 to 999,999,999
+     * inclusive. This field may be limited in precision depending on context.
+     */
+    nanos?: number | undefined;
 }
 
 /**
@@ -1582,21 +1421,19 @@ export interface Time {
  * that matches Time. Do not use in Go structs.
  */
 export interface Timestamp {
-  /**
-   * Represents seconds of UTC time since Unix epoch
-   * 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
-   * 9999-12-31T23:59:59Z inclusive.
-   */
-  seconds?:
-    | number
-    | undefined;
-  /**
-   * Non-negative fractions of a second at nanosecond resolution. Negative
-   * second values with fractions must still have non-negative nanos values
-   * that count forward in time. Must be from 0 to 999,999,999
-   * inclusive. This field may be limited in precision depending on context.
-   */
-  nanos?: number | undefined;
+    /**
+     * Represents seconds of UTC time since Unix epoch
+     * 1970-01-01T00:00:00Z. Must be from 0001-01-01T00:00:00Z to
+     * 9999-12-31T23:59:59Z inclusive.
+     */
+    seconds?: number | undefined;
+    /**
+     * Non-negative fractions of a second at nanosecond resolution. Negative
+     * second values with fractions must still have non-negative nanos values
+     * that count forward in time. Must be from 0 to 999,999,999
+     * inclusive. This field may be limited in precision depending on context.
+     */
+    nanos?: number | undefined;
 }
 
 /**
@@ -1607,25 +1444,23 @@ export interface Timestamp {
  * +k8s:deepcopy-gen=false
  */
 export interface TypeMeta {
-  /**
-   * Kind is a string value representing the REST resource this object represents.
-   * Servers may infer this from the endpoint the client submits requests to.
-   * Cannot be updated.
-   * In CamelCase.
-   * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
-   * +optional
-   */
-  kind?:
-    | string
-    | undefined;
-  /**
-   * APIVersion defines the versioned schema of this representation of an object.
-   * Servers should convert recognized schemas to the latest internal value, and
-   * may reject unrecognized values.
-   * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
-   * +optional
-   */
-  apiVersion?: string | undefined;
+    /**
+     * Kind is a string value representing the REST resource this object represents.
+     * Servers may infer this from the endpoint the client submits requests to.
+     * Cannot be updated.
+     * In CamelCase.
+     * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds
+     * +optional
+     */
+    kind?: string | undefined;
+    /**
+     * APIVersion defines the versioned schema of this representation of an object.
+     * Servers should convert recognized schemas to the latest internal value, and
+     * may reject unrecognized values.
+     * More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources
+     * +optional
+     */
+    apiVersion?: string | undefined;
 }
 
 /**
@@ -1633,46 +1468,44 @@ export interface TypeMeta {
  * All fields in UpdateOptions should also be present in PatchOptions.
  */
 export interface UpdateOptions {
-  /**
-   * When present, indicates that modifications should not be
-   * persisted. An invalid or unrecognized dryRun directive will
-   * result in an error response and no further processing of the
-   * request. Valid values are:
-   * - All: all dry run stages will be processed
-   * +optional
-   * +listType=atomic
-   */
-  dryRun: string[];
-  /**
-   * fieldManager is a name associated with the actor or entity
-   * that is making these changes. The value must be less than or
-   * 128 characters long, and only contain printable characters,
-   * as defined by https://golang.org/pkg/unicode/#IsPrint.
-   * +optional
-   */
-  fieldManager?:
-    | string
-    | undefined;
-  /**
-   * fieldValidation instructs the server on how to handle
-   * objects in the request (POST/PUT/PATCH) containing unknown
-   * or duplicate fields. Valid values are:
-   * - Ignore: This will ignore any unknown fields that are silently
-   * dropped from the object, and will ignore all but the last duplicate
-   * field that the decoder encounters. This is the default behavior
-   * prior to v1.23.
-   * - Warn: This will send a warning via the standard warning response
-   * header for each unknown field that is dropped from the object, and
-   * for each duplicate field that is encountered. The request will
-   * still succeed if there are no other errors, and will only persist
-   * the last of any duplicate fields. This is the default in v1.23+
-   * - Strict: This will fail the request with a BadRequest error if
-   * any unknown fields would be dropped from the object, or if any
-   * duplicate fields are present. The error returned from the server
-   * will contain all unknown and duplicate fields encountered.
-   * +optional
-   */
-  fieldValidation?: string | undefined;
+    /**
+     * When present, indicates that modifications should not be
+     * persisted. An invalid or unrecognized dryRun directive will
+     * result in an error response and no further processing of the
+     * request. Valid values are:
+     * - All: all dry run stages will be processed
+     * +optional
+     * +listType=atomic
+     */
+    dryRun: string[];
+    /**
+     * fieldManager is a name associated with the actor or entity
+     * that is making these changes. The value must be less than or
+     * 128 characters long, and only contain printable characters,
+     * as defined by https://golang.org/pkg/unicode/#IsPrint.
+     * +optional
+     */
+    fieldManager?: string | undefined;
+    /**
+     * fieldValidation instructs the server on how to handle
+     * objects in the request (POST/PUT/PATCH) containing unknown
+     * or duplicate fields. Valid values are:
+     * - Ignore: This will ignore any unknown fields that are silently
+     * dropped from the object, and will ignore all but the last duplicate
+     * field that the decoder encounters. This is the default behavior
+     * prior to v1.23.
+     * - Warn: This will send a warning via the standard warning response
+     * header for each unknown field that is dropped from the object, and
+     * for each duplicate field that is encountered. The request will
+     * still succeed if there are no other errors, and will only persist
+     * the last of any duplicate fields. This is the default in v1.23+
+     * - Strict: This will fail the request with a BadRequest error if
+     * any unknown fields would be dropped from the object, or if any
+     * duplicate fields are present. The error returned from the server
+     * will contain all unknown and duplicate fields encountered.
+     * +optional
+     */
+    fieldValidation?: string | undefined;
 }
 
 /**
@@ -1682,7 +1515,7 @@ export interface UpdateOptions {
  * +protobuf.options.(gogoproto.goproto_stringer)=false
  */
 export interface Verbs {
-  items: string[];
+    items: string[];
 }
 
 /**
@@ -1693,5385 +1526,5499 @@ export interface Verbs {
  * +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
  */
 export interface WatchEvent {
-  type?:
-    | string
-    | undefined;
-  /**
-   * Object is:
-   *  * If Type is Added or Modified: the new state of the object.
-   *  * If Type is Deleted: the state of the object immediately before deletion.
-   *  * If Type is Error: *Status is recommended; other types may make sense
-   *    depending on context.
-   */
-  object?: RawExtension | undefined;
+    type?: string | undefined;
+    /**
+     * Object is:
+     *  * If Type is Added or Modified: the new state of the object.
+     *  * If Type is Deleted: the state of the object immediately before deletion.
+     *  * If Type is Error: *Status is recommended; other types may make sense
+     *    depending on context.
+     */
+    object?: RawExtension | undefined;
 }
 
 function createBaseAPIGroup(): APIGroup {
-  return { name: "", versions: [], preferredVersion: undefined, serverAddressByClientCIDRs: [] };
+    return { name: '', versions: [], preferredVersion: undefined, serverAddressByClientCIDRs: [] };
 }
 
 export const APIGroup: MessageFns<APIGroup> = {
-  encode(message: APIGroup, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.name !== undefined && message.name !== "") {
-      writer.uint32(10).string(message.name);
-    }
-    for (const v of message.versions) {
-      GroupVersionForDiscovery.encode(v!, writer.uint32(18).fork()).join();
-    }
-    if (message.preferredVersion !== undefined) {
-      GroupVersionForDiscovery.encode(message.preferredVersion, writer.uint32(26).fork()).join();
-    }
-    for (const v of message.serverAddressByClientCIDRs) {
-      ServerAddressByClientCIDR.encode(v!, writer.uint32(34).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): APIGroup {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseAPIGroup();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.name = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.versions.push(GroupVersionForDiscovery.decode(reader, reader.uint32()));
-            continue;
-          }
-          case 3: {
-            if (tag !== 26) {
-              break;
-            }
-
-            message.preferredVersion = GroupVersionForDiscovery.decode(reader, reader.uint32());
-            continue;
-          }
-          case 4: {
-            if (tag !== 34) {
-              break;
-            }
-
-            message.serverAddressByClientCIDRs.push(ServerAddressByClientCIDR.decode(reader, reader.uint32()));
-            continue;
-          }
+    encode(message: APIGroup, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.name !== undefined && message.name !== '') {
+            writer.uint32(10).string(message.name);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        for (const v of message.versions) {
+            GroupVersionForDiscovery.encode(v!, writer.uint32(18).fork()).join();
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        if (message.preferredVersion !== undefined) {
+            GroupVersionForDiscovery.encode(message.preferredVersion, writer.uint32(26).fork()).join();
+        }
+        for (const v of message.serverAddressByClientCIDRs) {
+            ServerAddressByClientCIDR.encode(v!, writer.uint32(34).fork()).join();
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): APIGroup {
-    return {
-      name: isSet(object.name) ? globalThis.String(object.name) : "",
-      versions: globalThis.Array.isArray(object?.versions)
-        ? object.versions.map((e: any) => GroupVersionForDiscovery.fromJSON(e))
-        : [],
-      preferredVersion: isSet(object.preferredVersion)
-        ? GroupVersionForDiscovery.fromJSON(object.preferredVersion)
-        : undefined,
-      serverAddressByClientCIDRs: globalThis.Array.isArray(object?.serverAddressByClientCIDRs)
-        ? object.serverAddressByClientCIDRs.map((e: any) => ServerAddressByClientCIDR.fromJSON(e))
-        : [],
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): APIGroup {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseAPIGroup();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: APIGroup): unknown {
-    const obj: any = {};
-    if (message.name !== undefined && message.name !== "") {
-      obj.name = message.name;
-    }
-    if (message.versions?.length) {
-      obj.versions = message.versions.map((e) => GroupVersionForDiscovery.toJSON(e));
-    }
-    if (message.preferredVersion !== undefined) {
-      obj.preferredVersion = GroupVersionForDiscovery.toJSON(message.preferredVersion);
-    }
-    if (message.serverAddressByClientCIDRs?.length) {
-      obj.serverAddressByClientCIDRs = message.serverAddressByClientCIDRs.map((e) =>
-        ServerAddressByClientCIDR.toJSON(e)
-      );
-    }
-    return obj;
-  },
+                        message.name = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<APIGroup>, I>>(base?: I): APIGroup {
-    return APIGroup.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<APIGroup>, I>>(object: I): APIGroup {
-    const message = createBaseAPIGroup();
-    message.name = object.name ?? "";
-    message.versions = object.versions?.map((e) => GroupVersionForDiscovery.fromPartial(e)) || [];
-    message.preferredVersion = (object.preferredVersion !== undefined && object.preferredVersion !== null)
-      ? GroupVersionForDiscovery.fromPartial(object.preferredVersion)
-      : undefined;
-    message.serverAddressByClientCIDRs =
-      object.serverAddressByClientCIDRs?.map((e) => ServerAddressByClientCIDR.fromPartial(e)) || [];
-    return message;
-  },
+                        message.versions.push(GroupVersionForDiscovery.decode(reader, reader.uint32()));
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 26) {
+                            break;
+                        }
+
+                        message.preferredVersion = GroupVersionForDiscovery.decode(reader, reader.uint32());
+                        continue;
+                    }
+                    case 4: {
+                        if (tag !== 34) {
+                            break;
+                        }
+
+                        message.serverAddressByClientCIDRs.push(
+                            ServerAddressByClientCIDR.decode(reader, reader.uint32()),
+                        );
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): APIGroup {
+        return {
+            name: isSet(object.name) ? globalThis.String(object.name) : '',
+            versions: globalThis.Array.isArray(object?.versions)
+                ? object.versions.map((e: any) => GroupVersionForDiscovery.fromJSON(e))
+                : [],
+            preferredVersion: isSet(object.preferredVersion)
+                ? GroupVersionForDiscovery.fromJSON(object.preferredVersion)
+                : undefined,
+            serverAddressByClientCIDRs: globalThis.Array.isArray(object?.serverAddressByClientCIDRs)
+                ? object.serverAddressByClientCIDRs.map((e: any) => ServerAddressByClientCIDR.fromJSON(e))
+                : [],
+        };
+    },
+
+    toJSON(message: APIGroup): unknown {
+        const obj: any = {};
+        if (message.name !== undefined && message.name !== '') {
+            obj.name = message.name;
+        }
+        if (message.versions?.length) {
+            obj.versions = message.versions.map((e) => GroupVersionForDiscovery.toJSON(e));
+        }
+        if (message.preferredVersion !== undefined) {
+            obj.preferredVersion = GroupVersionForDiscovery.toJSON(message.preferredVersion);
+        }
+        if (message.serverAddressByClientCIDRs?.length) {
+            obj.serverAddressByClientCIDRs = message.serverAddressByClientCIDRs.map((e) =>
+                ServerAddressByClientCIDR.toJSON(e),
+            );
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<APIGroup>, I>>(base?: I): APIGroup {
+        return APIGroup.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<APIGroup>, I>>(object: I): APIGroup {
+        const message = createBaseAPIGroup();
+        message.name = object.name ?? '';
+        message.versions = object.versions?.map((e) => GroupVersionForDiscovery.fromPartial(e)) || [];
+        message.preferredVersion =
+            object.preferredVersion !== undefined && object.preferredVersion !== null
+                ? GroupVersionForDiscovery.fromPartial(object.preferredVersion)
+                : undefined;
+        message.serverAddressByClientCIDRs =
+            object.serverAddressByClientCIDRs?.map((e) => ServerAddressByClientCIDR.fromPartial(e)) || [];
+        return message;
+    },
 };
 
 function createBaseAPIGroupList(): APIGroupList {
-  return { groups: [] };
+    return { groups: [] };
 }
 
 export const APIGroupList: MessageFns<APIGroupList> = {
-  encode(message: APIGroupList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.groups) {
-      APIGroup.encode(v!, writer.uint32(10).fork()).join();
-    }
-    return writer;
-  },
+    encode(message: APIGroupList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        for (const v of message.groups) {
+            APIGroup.encode(v!, writer.uint32(10).fork()).join();
+        }
+        return writer;
+    },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): APIGroupList {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseAPIGroupList();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
+    decode(input: BinaryReader | Uint8Array, length?: number): APIGroupList {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseAPIGroupList();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
+
+                        message.groups.push(APIGroup.decode(reader, reader.uint32()));
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
             }
-
-            message.groups.push(APIGroup.decode(reader, reader.uint32()));
-            continue;
-          }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+    },
+
+    fromJSON(object: any): APIGroupList {
+        return {
+            groups: globalThis.Array.isArray(object?.groups)
+                ? object.groups.map((e: any) => APIGroup.fromJSON(e))
+                : [],
+        };
+    },
+
+    toJSON(message: APIGroupList): unknown {
+        const obj: any = {};
+        if (message.groups?.length) {
+            obj.groups = message.groups.map((e) => APIGroup.toJSON(e));
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return obj;
+    },
 
-  fromJSON(object: any): APIGroupList {
-    return {
-      groups: globalThis.Array.isArray(object?.groups) ? object.groups.map((e: any) => APIGroup.fromJSON(e)) : [],
-    };
-  },
-
-  toJSON(message: APIGroupList): unknown {
-    const obj: any = {};
-    if (message.groups?.length) {
-      obj.groups = message.groups.map((e) => APIGroup.toJSON(e));
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<APIGroupList>, I>>(base?: I): APIGroupList {
-    return APIGroupList.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<APIGroupList>, I>>(object: I): APIGroupList {
-    const message = createBaseAPIGroupList();
-    message.groups = object.groups?.map((e) => APIGroup.fromPartial(e)) || [];
-    return message;
-  },
+    create<I extends Exact<DeepPartial<APIGroupList>, I>>(base?: I): APIGroupList {
+        return APIGroupList.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<APIGroupList>, I>>(object: I): APIGroupList {
+        const message = createBaseAPIGroupList();
+        message.groups = object.groups?.map((e) => APIGroup.fromPartial(e)) || [];
+        return message;
+    },
 };
 
 function createBaseAPIResource(): APIResource {
-  return {
-    name: "",
-    singularName: "",
-    namespaced: false,
-    group: "",
-    version: "",
-    kind: "",
-    verbs: undefined,
-    shortNames: [],
-    categories: [],
-    storageVersionHash: "",
-  };
+    return {
+        name: '',
+        singularName: '',
+        namespaced: false,
+        group: '',
+        version: '',
+        kind: '',
+        verbs: undefined,
+        shortNames: [],
+        categories: [],
+        storageVersionHash: '',
+    };
 }
 
 export const APIResource: MessageFns<APIResource> = {
-  encode(message: APIResource, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.name !== undefined && message.name !== "") {
-      writer.uint32(10).string(message.name);
-    }
-    if (message.singularName !== undefined && message.singularName !== "") {
-      writer.uint32(50).string(message.singularName);
-    }
-    if (message.namespaced !== undefined && message.namespaced !== false) {
-      writer.uint32(16).bool(message.namespaced);
-    }
-    if (message.group !== undefined && message.group !== "") {
-      writer.uint32(66).string(message.group);
-    }
-    if (message.version !== undefined && message.version !== "") {
-      writer.uint32(74).string(message.version);
-    }
-    if (message.kind !== undefined && message.kind !== "") {
-      writer.uint32(26).string(message.kind);
-    }
-    if (message.verbs !== undefined) {
-      Verbs.encode(message.verbs, writer.uint32(34).fork()).join();
-    }
-    for (const v of message.shortNames) {
-      writer.uint32(42).string(v!);
-    }
-    for (const v of message.categories) {
-      writer.uint32(58).string(v!);
-    }
-    if (message.storageVersionHash !== undefined && message.storageVersionHash !== "") {
-      writer.uint32(82).string(message.storageVersionHash);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): APIResource {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseAPIResource();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.name = reader.string();
-            continue;
-          }
-          case 6: {
-            if (tag !== 50) {
-              break;
-            }
-
-            message.singularName = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 16) {
-              break;
-            }
-
-            message.namespaced = reader.bool();
-            continue;
-          }
-          case 8: {
-            if (tag !== 66) {
-              break;
-            }
-
-            message.group = reader.string();
-            continue;
-          }
-          case 9: {
-            if (tag !== 74) {
-              break;
-            }
-
-            message.version = reader.string();
-            continue;
-          }
-          case 3: {
-            if (tag !== 26) {
-              break;
-            }
-
-            message.kind = reader.string();
-            continue;
-          }
-          case 4: {
-            if (tag !== 34) {
-              break;
-            }
-
-            message.verbs = Verbs.decode(reader, reader.uint32());
-            continue;
-          }
-          case 5: {
-            if (tag !== 42) {
-              break;
-            }
-
-            message.shortNames.push(reader.string());
-            continue;
-          }
-          case 7: {
-            if (tag !== 58) {
-              break;
-            }
-
-            message.categories.push(reader.string());
-            continue;
-          }
-          case 10: {
-            if (tag !== 82) {
-              break;
-            }
-
-            message.storageVersionHash = reader.string();
-            continue;
-          }
+    encode(message: APIResource, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.name !== undefined && message.name !== '') {
+            writer.uint32(10).string(message.name);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.singularName !== undefined && message.singularName !== '') {
+            writer.uint32(50).string(message.singularName);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        if (message.namespaced !== undefined && message.namespaced !== false) {
+            writer.uint32(16).bool(message.namespaced);
+        }
+        if (message.group !== undefined && message.group !== '') {
+            writer.uint32(66).string(message.group);
+        }
+        if (message.version !== undefined && message.version !== '') {
+            writer.uint32(74).string(message.version);
+        }
+        if (message.kind !== undefined && message.kind !== '') {
+            writer.uint32(26).string(message.kind);
+        }
+        if (message.verbs !== undefined) {
+            Verbs.encode(message.verbs, writer.uint32(34).fork()).join();
+        }
+        for (const v of message.shortNames) {
+            writer.uint32(42).string(v!);
+        }
+        for (const v of message.categories) {
+            writer.uint32(58).string(v!);
+        }
+        if (message.storageVersionHash !== undefined && message.storageVersionHash !== '') {
+            writer.uint32(82).string(message.storageVersionHash);
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): APIResource {
-    return {
-      name: isSet(object.name) ? globalThis.String(object.name) : "",
-      singularName: isSet(object.singularName) ? globalThis.String(object.singularName) : "",
-      namespaced: isSet(object.namespaced) ? globalThis.Boolean(object.namespaced) : false,
-      group: isSet(object.group) ? globalThis.String(object.group) : "",
-      version: isSet(object.version) ? globalThis.String(object.version) : "",
-      kind: isSet(object.kind) ? globalThis.String(object.kind) : "",
-      verbs: isSet(object.verbs) ? Verbs.fromJSON(object.verbs) : undefined,
-      shortNames: globalThis.Array.isArray(object?.shortNames)
-        ? object.shortNames.map((e: any) => globalThis.String(e))
-        : [],
-      categories: globalThis.Array.isArray(object?.categories)
-        ? object.categories.map((e: any) => globalThis.String(e))
-        : [],
-      storageVersionHash: isSet(object.storageVersionHash) ? globalThis.String(object.storageVersionHash) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): APIResource {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseAPIResource();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: APIResource): unknown {
-    const obj: any = {};
-    if (message.name !== undefined && message.name !== "") {
-      obj.name = message.name;
-    }
-    if (message.singularName !== undefined && message.singularName !== "") {
-      obj.singularName = message.singularName;
-    }
-    if (message.namespaced !== undefined && message.namespaced !== false) {
-      obj.namespaced = message.namespaced;
-    }
-    if (message.group !== undefined && message.group !== "") {
-      obj.group = message.group;
-    }
-    if (message.version !== undefined && message.version !== "") {
-      obj.version = message.version;
-    }
-    if (message.kind !== undefined && message.kind !== "") {
-      obj.kind = message.kind;
-    }
-    if (message.verbs !== undefined) {
-      obj.verbs = Verbs.toJSON(message.verbs);
-    }
-    if (message.shortNames?.length) {
-      obj.shortNames = message.shortNames;
-    }
-    if (message.categories?.length) {
-      obj.categories = message.categories;
-    }
-    if (message.storageVersionHash !== undefined && message.storageVersionHash !== "") {
-      obj.storageVersionHash = message.storageVersionHash;
-    }
-    return obj;
-  },
+                        message.name = reader.string();
+                        continue;
+                    }
+                    case 6: {
+                        if (tag !== 50) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<APIResource>, I>>(base?: I): APIResource {
-    return APIResource.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<APIResource>, I>>(object: I): APIResource {
-    const message = createBaseAPIResource();
-    message.name = object.name ?? "";
-    message.singularName = object.singularName ?? "";
-    message.namespaced = object.namespaced ?? false;
-    message.group = object.group ?? "";
-    message.version = object.version ?? "";
-    message.kind = object.kind ?? "";
-    message.verbs = (object.verbs !== undefined && object.verbs !== null) ? Verbs.fromPartial(object.verbs) : undefined;
-    message.shortNames = object.shortNames?.map((e) => e) || [];
-    message.categories = object.categories?.map((e) => e) || [];
-    message.storageVersionHash = object.storageVersionHash ?? "";
-    return message;
-  },
+                        message.singularName = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 16) {
+                            break;
+                        }
+
+                        message.namespaced = reader.bool();
+                        continue;
+                    }
+                    case 8: {
+                        if (tag !== 66) {
+                            break;
+                        }
+
+                        message.group = reader.string();
+                        continue;
+                    }
+                    case 9: {
+                        if (tag !== 74) {
+                            break;
+                        }
+
+                        message.version = reader.string();
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 26) {
+                            break;
+                        }
+
+                        message.kind = reader.string();
+                        continue;
+                    }
+                    case 4: {
+                        if (tag !== 34) {
+                            break;
+                        }
+
+                        message.verbs = Verbs.decode(reader, reader.uint32());
+                        continue;
+                    }
+                    case 5: {
+                        if (tag !== 42) {
+                            break;
+                        }
+
+                        message.shortNames.push(reader.string());
+                        continue;
+                    }
+                    case 7: {
+                        if (tag !== 58) {
+                            break;
+                        }
+
+                        message.categories.push(reader.string());
+                        continue;
+                    }
+                    case 10: {
+                        if (tag !== 82) {
+                            break;
+                        }
+
+                        message.storageVersionHash = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): APIResource {
+        return {
+            name: isSet(object.name) ? globalThis.String(object.name) : '',
+            singularName: isSet(object.singularName) ? globalThis.String(object.singularName) : '',
+            namespaced: isSet(object.namespaced) ? globalThis.Boolean(object.namespaced) : false,
+            group: isSet(object.group) ? globalThis.String(object.group) : '',
+            version: isSet(object.version) ? globalThis.String(object.version) : '',
+            kind: isSet(object.kind) ? globalThis.String(object.kind) : '',
+            verbs: isSet(object.verbs) ? Verbs.fromJSON(object.verbs) : undefined,
+            shortNames: globalThis.Array.isArray(object?.shortNames)
+                ? object.shortNames.map((e: any) => globalThis.String(e))
+                : [],
+            categories: globalThis.Array.isArray(object?.categories)
+                ? object.categories.map((e: any) => globalThis.String(e))
+                : [],
+            storageVersionHash: isSet(object.storageVersionHash)
+                ? globalThis.String(object.storageVersionHash)
+                : '',
+        };
+    },
+
+    toJSON(message: APIResource): unknown {
+        const obj: any = {};
+        if (message.name !== undefined && message.name !== '') {
+            obj.name = message.name;
+        }
+        if (message.singularName !== undefined && message.singularName !== '') {
+            obj.singularName = message.singularName;
+        }
+        if (message.namespaced !== undefined && message.namespaced !== false) {
+            obj.namespaced = message.namespaced;
+        }
+        if (message.group !== undefined && message.group !== '') {
+            obj.group = message.group;
+        }
+        if (message.version !== undefined && message.version !== '') {
+            obj.version = message.version;
+        }
+        if (message.kind !== undefined && message.kind !== '') {
+            obj.kind = message.kind;
+        }
+        if (message.verbs !== undefined) {
+            obj.verbs = Verbs.toJSON(message.verbs);
+        }
+        if (message.shortNames?.length) {
+            obj.shortNames = message.shortNames;
+        }
+        if (message.categories?.length) {
+            obj.categories = message.categories;
+        }
+        if (message.storageVersionHash !== undefined && message.storageVersionHash !== '') {
+            obj.storageVersionHash = message.storageVersionHash;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<APIResource>, I>>(base?: I): APIResource {
+        return APIResource.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<APIResource>, I>>(object: I): APIResource {
+        const message = createBaseAPIResource();
+        message.name = object.name ?? '';
+        message.singularName = object.singularName ?? '';
+        message.namespaced = object.namespaced ?? false;
+        message.group = object.group ?? '';
+        message.version = object.version ?? '';
+        message.kind = object.kind ?? '';
+        message.verbs =
+            object.verbs !== undefined && object.verbs !== null ? Verbs.fromPartial(object.verbs) : undefined;
+        message.shortNames = object.shortNames?.map((e) => e) || [];
+        message.categories = object.categories?.map((e) => e) || [];
+        message.storageVersionHash = object.storageVersionHash ?? '';
+        return message;
+    },
 };
 
 function createBaseAPIResourceList(): APIResourceList {
-  return { groupVersion: "", resources: [] };
+    return { groupVersion: '', resources: [] };
 }
 
 export const APIResourceList: MessageFns<APIResourceList> = {
-  encode(message: APIResourceList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.groupVersion !== undefined && message.groupVersion !== "") {
-      writer.uint32(10).string(message.groupVersion);
-    }
-    for (const v of message.resources) {
-      APIResource.encode(v!, writer.uint32(18).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): APIResourceList {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseAPIResourceList();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.groupVersion = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.resources.push(APIResource.decode(reader, reader.uint32()));
-            continue;
-          }
+    encode(message: APIResourceList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.groupVersion !== undefined && message.groupVersion !== '') {
+            writer.uint32(10).string(message.groupVersion);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        for (const v of message.resources) {
+            APIResource.encode(v!, writer.uint32(18).fork()).join();
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): APIResourceList {
-    return {
-      groupVersion: isSet(object.groupVersion) ? globalThis.String(object.groupVersion) : "",
-      resources: globalThis.Array.isArray(object?.resources)
-        ? object.resources.map((e: any) => APIResource.fromJSON(e))
-        : [],
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): APIResourceList {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseAPIResourceList();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: APIResourceList): unknown {
-    const obj: any = {};
-    if (message.groupVersion !== undefined && message.groupVersion !== "") {
-      obj.groupVersion = message.groupVersion;
-    }
-    if (message.resources?.length) {
-      obj.resources = message.resources.map((e) => APIResource.toJSON(e));
-    }
-    return obj;
-  },
+                        message.groupVersion = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<APIResourceList>, I>>(base?: I): APIResourceList {
-    return APIResourceList.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<APIResourceList>, I>>(object: I): APIResourceList {
-    const message = createBaseAPIResourceList();
-    message.groupVersion = object.groupVersion ?? "";
-    message.resources = object.resources?.map((e) => APIResource.fromPartial(e)) || [];
-    return message;
-  },
+                        message.resources.push(APIResource.decode(reader, reader.uint32()));
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): APIResourceList {
+        return {
+            groupVersion: isSet(object.groupVersion) ? globalThis.String(object.groupVersion) : '',
+            resources: globalThis.Array.isArray(object?.resources)
+                ? object.resources.map((e: any) => APIResource.fromJSON(e))
+                : [],
+        };
+    },
+
+    toJSON(message: APIResourceList): unknown {
+        const obj: any = {};
+        if (message.groupVersion !== undefined && message.groupVersion !== '') {
+            obj.groupVersion = message.groupVersion;
+        }
+        if (message.resources?.length) {
+            obj.resources = message.resources.map((e) => APIResource.toJSON(e));
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<APIResourceList>, I>>(base?: I): APIResourceList {
+        return APIResourceList.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<APIResourceList>, I>>(object: I): APIResourceList {
+        const message = createBaseAPIResourceList();
+        message.groupVersion = object.groupVersion ?? '';
+        message.resources = object.resources?.map((e) => APIResource.fromPartial(e)) || [];
+        return message;
+    },
 };
 
 function createBaseAPIVersions(): APIVersions {
-  return { versions: [], serverAddressByClientCIDRs: [] };
+    return { versions: [], serverAddressByClientCIDRs: [] };
 }
 
 export const APIVersions: MessageFns<APIVersions> = {
-  encode(message: APIVersions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.versions) {
-      writer.uint32(10).string(v!);
-    }
-    for (const v of message.serverAddressByClientCIDRs) {
-      ServerAddressByClientCIDR.encode(v!, writer.uint32(18).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): APIVersions {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseAPIVersions();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.versions.push(reader.string());
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.serverAddressByClientCIDRs.push(ServerAddressByClientCIDR.decode(reader, reader.uint32()));
-            continue;
-          }
+    encode(message: APIVersions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        for (const v of message.versions) {
+            writer.uint32(10).string(v!);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        for (const v of message.serverAddressByClientCIDRs) {
+            ServerAddressByClientCIDR.encode(v!, writer.uint32(18).fork()).join();
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): APIVersions {
-    return {
-      versions: globalThis.Array.isArray(object?.versions) ? object.versions.map((e: any) => globalThis.String(e)) : [],
-      serverAddressByClientCIDRs: globalThis.Array.isArray(object?.serverAddressByClientCIDRs)
-        ? object.serverAddressByClientCIDRs.map((e: any) => ServerAddressByClientCIDR.fromJSON(e))
-        : [],
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): APIVersions {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseAPIVersions();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: APIVersions): unknown {
-    const obj: any = {};
-    if (message.versions?.length) {
-      obj.versions = message.versions;
-    }
-    if (message.serverAddressByClientCIDRs?.length) {
-      obj.serverAddressByClientCIDRs = message.serverAddressByClientCIDRs.map((e) =>
-        ServerAddressByClientCIDR.toJSON(e)
-      );
-    }
-    return obj;
-  },
+                        message.versions.push(reader.string());
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<APIVersions>, I>>(base?: I): APIVersions {
-    return APIVersions.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<APIVersions>, I>>(object: I): APIVersions {
-    const message = createBaseAPIVersions();
-    message.versions = object.versions?.map((e) => e) || [];
-    message.serverAddressByClientCIDRs =
-      object.serverAddressByClientCIDRs?.map((e) => ServerAddressByClientCIDR.fromPartial(e)) || [];
-    return message;
-  },
+                        message.serverAddressByClientCIDRs.push(
+                            ServerAddressByClientCIDR.decode(reader, reader.uint32()),
+                        );
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): APIVersions {
+        return {
+            versions: globalThis.Array.isArray(object?.versions)
+                ? object.versions.map((e: any) => globalThis.String(e))
+                : [],
+            serverAddressByClientCIDRs: globalThis.Array.isArray(object?.serverAddressByClientCIDRs)
+                ? object.serverAddressByClientCIDRs.map((e: any) => ServerAddressByClientCIDR.fromJSON(e))
+                : [],
+        };
+    },
+
+    toJSON(message: APIVersions): unknown {
+        const obj: any = {};
+        if (message.versions?.length) {
+            obj.versions = message.versions;
+        }
+        if (message.serverAddressByClientCIDRs?.length) {
+            obj.serverAddressByClientCIDRs = message.serverAddressByClientCIDRs.map((e) =>
+                ServerAddressByClientCIDR.toJSON(e),
+            );
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<APIVersions>, I>>(base?: I): APIVersions {
+        return APIVersions.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<APIVersions>, I>>(object: I): APIVersions {
+        const message = createBaseAPIVersions();
+        message.versions = object.versions?.map((e) => e) || [];
+        message.serverAddressByClientCIDRs =
+            object.serverAddressByClientCIDRs?.map((e) => ServerAddressByClientCIDR.fromPartial(e)) || [];
+        return message;
+    },
 };
 
 function createBaseApplyOptions(): ApplyOptions {
-  return { dryRun: [], force: false, fieldManager: "" };
+    return { dryRun: [], force: false, fieldManager: '' };
 }
 
 export const ApplyOptions: MessageFns<ApplyOptions> = {
-  encode(message: ApplyOptions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.dryRun) {
-      writer.uint32(10).string(v!);
-    }
-    if (message.force !== undefined && message.force !== false) {
-      writer.uint32(16).bool(message.force);
-    }
-    if (message.fieldManager !== undefined && message.fieldManager !== "") {
-      writer.uint32(26).string(message.fieldManager);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): ApplyOptions {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseApplyOptions();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.dryRun.push(reader.string());
-            continue;
-          }
-          case 2: {
-            if (tag !== 16) {
-              break;
-            }
-
-            message.force = reader.bool();
-            continue;
-          }
-          case 3: {
-            if (tag !== 26) {
-              break;
-            }
-
-            message.fieldManager = reader.string();
-            continue;
-          }
+    encode(message: ApplyOptions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        for (const v of message.dryRun) {
+            writer.uint32(10).string(v!);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.force !== undefined && message.force !== false) {
+            writer.uint32(16).bool(message.force);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        if (message.fieldManager !== undefined && message.fieldManager !== '') {
+            writer.uint32(26).string(message.fieldManager);
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): ApplyOptions {
-    return {
-      dryRun: globalThis.Array.isArray(object?.dryRun) ? object.dryRun.map((e: any) => globalThis.String(e)) : [],
-      force: isSet(object.force) ? globalThis.Boolean(object.force) : false,
-      fieldManager: isSet(object.fieldManager) ? globalThis.String(object.fieldManager) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): ApplyOptions {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseApplyOptions();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: ApplyOptions): unknown {
-    const obj: any = {};
-    if (message.dryRun?.length) {
-      obj.dryRun = message.dryRun;
-    }
-    if (message.force !== undefined && message.force !== false) {
-      obj.force = message.force;
-    }
-    if (message.fieldManager !== undefined && message.fieldManager !== "") {
-      obj.fieldManager = message.fieldManager;
-    }
-    return obj;
-  },
+                        message.dryRun.push(reader.string());
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 16) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<ApplyOptions>, I>>(base?: I): ApplyOptions {
-    return ApplyOptions.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ApplyOptions>, I>>(object: I): ApplyOptions {
-    const message = createBaseApplyOptions();
-    message.dryRun = object.dryRun?.map((e) => e) || [];
-    message.force = object.force ?? false;
-    message.fieldManager = object.fieldManager ?? "";
-    return message;
-  },
+                        message.force = reader.bool();
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 26) {
+                            break;
+                        }
+
+                        message.fieldManager = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): ApplyOptions {
+        return {
+            dryRun: globalThis.Array.isArray(object?.dryRun)
+                ? object.dryRun.map((e: any) => globalThis.String(e))
+                : [],
+            force: isSet(object.force) ? globalThis.Boolean(object.force) : false,
+            fieldManager: isSet(object.fieldManager) ? globalThis.String(object.fieldManager) : '',
+        };
+    },
+
+    toJSON(message: ApplyOptions): unknown {
+        const obj: any = {};
+        if (message.dryRun?.length) {
+            obj.dryRun = message.dryRun;
+        }
+        if (message.force !== undefined && message.force !== false) {
+            obj.force = message.force;
+        }
+        if (message.fieldManager !== undefined && message.fieldManager !== '') {
+            obj.fieldManager = message.fieldManager;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<ApplyOptions>, I>>(base?: I): ApplyOptions {
+        return ApplyOptions.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<ApplyOptions>, I>>(object: I): ApplyOptions {
+        const message = createBaseApplyOptions();
+        message.dryRun = object.dryRun?.map((e) => e) || [];
+        message.force = object.force ?? false;
+        message.fieldManager = object.fieldManager ?? '';
+        return message;
+    },
 };
 
 function createBaseCondition(): Condition {
-  return { type: "", status: "", observedGeneration: 0, lastTransitionTime: undefined, reason: "", message: "" };
+    return {
+        type: '',
+        status: '',
+        observedGeneration: 0,
+        lastTransitionTime: undefined,
+        reason: '',
+        message: '',
+    };
 }
 
 export const Condition: MessageFns<Condition> = {
-  encode(message: Condition, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.type !== undefined && message.type !== "") {
-      writer.uint32(10).string(message.type);
-    }
-    if (message.status !== undefined && message.status !== "") {
-      writer.uint32(18).string(message.status);
-    }
-    if (message.observedGeneration !== undefined && message.observedGeneration !== 0) {
-      writer.uint32(24).int64(message.observedGeneration);
-    }
-    if (message.lastTransitionTime !== undefined) {
-      Time.encode(message.lastTransitionTime, writer.uint32(34).fork()).join();
-    }
-    if (message.reason !== undefined && message.reason !== "") {
-      writer.uint32(42).string(message.reason);
-    }
-    if (message.message !== undefined && message.message !== "") {
-      writer.uint32(50).string(message.message);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): Condition {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseCondition();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.type = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.status = reader.string();
-            continue;
-          }
-          case 3: {
-            if (tag !== 24) {
-              break;
-            }
-
-            message.observedGeneration = longToNumber(reader.int64());
-            continue;
-          }
-          case 4: {
-            if (tag !== 34) {
-              break;
-            }
-
-            message.lastTransitionTime = Time.decode(reader, reader.uint32());
-            continue;
-          }
-          case 5: {
-            if (tag !== 42) {
-              break;
-            }
-
-            message.reason = reader.string();
-            continue;
-          }
-          case 6: {
-            if (tag !== 50) {
-              break;
-            }
-
-            message.message = reader.string();
-            continue;
-          }
+    encode(message: Condition, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.type !== undefined && message.type !== '') {
+            writer.uint32(10).string(message.type);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.status !== undefined && message.status !== '') {
+            writer.uint32(18).string(message.status);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        if (message.observedGeneration !== undefined && message.observedGeneration !== 0) {
+            writer.uint32(24).int64(message.observedGeneration);
+        }
+        if (message.lastTransitionTime !== undefined) {
+            Time.encode(message.lastTransitionTime, writer.uint32(34).fork()).join();
+        }
+        if (message.reason !== undefined && message.reason !== '') {
+            writer.uint32(42).string(message.reason);
+        }
+        if (message.message !== undefined && message.message !== '') {
+            writer.uint32(50).string(message.message);
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): Condition {
-    return {
-      type: isSet(object.type) ? globalThis.String(object.type) : "",
-      status: isSet(object.status) ? globalThis.String(object.status) : "",
-      observedGeneration: isSet(object.observedGeneration) ? globalThis.Number(object.observedGeneration) : 0,
-      lastTransitionTime: isSet(object.lastTransitionTime) ? Time.fromJSON(object.lastTransitionTime) : undefined,
-      reason: isSet(object.reason) ? globalThis.String(object.reason) : "",
-      message: isSet(object.message) ? globalThis.String(object.message) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): Condition {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseCondition();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: Condition): unknown {
-    const obj: any = {};
-    if (message.type !== undefined && message.type !== "") {
-      obj.type = message.type;
-    }
-    if (message.status !== undefined && message.status !== "") {
-      obj.status = message.status;
-    }
-    if (message.observedGeneration !== undefined && message.observedGeneration !== 0) {
-      obj.observedGeneration = Math.round(message.observedGeneration);
-    }
-    if (message.lastTransitionTime !== undefined) {
-      obj.lastTransitionTime = Time.toJSON(message.lastTransitionTime);
-    }
-    if (message.reason !== undefined && message.reason !== "") {
-      obj.reason = message.reason;
-    }
-    if (message.message !== undefined && message.message !== "") {
-      obj.message = message.message;
-    }
-    return obj;
-  },
+                        message.type = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<Condition>, I>>(base?: I): Condition {
-    return Condition.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Condition>, I>>(object: I): Condition {
-    const message = createBaseCondition();
-    message.type = object.type ?? "";
-    message.status = object.status ?? "";
-    message.observedGeneration = object.observedGeneration ?? 0;
-    message.lastTransitionTime = (object.lastTransitionTime !== undefined && object.lastTransitionTime !== null)
-      ? Time.fromPartial(object.lastTransitionTime)
-      : undefined;
-    message.reason = object.reason ?? "";
-    message.message = object.message ?? "";
-    return message;
-  },
+                        message.status = reader.string();
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 24) {
+                            break;
+                        }
+
+                        message.observedGeneration = longToNumber(reader.int64());
+                        continue;
+                    }
+                    case 4: {
+                        if (tag !== 34) {
+                            break;
+                        }
+
+                        message.lastTransitionTime = Time.decode(reader, reader.uint32());
+                        continue;
+                    }
+                    case 5: {
+                        if (tag !== 42) {
+                            break;
+                        }
+
+                        message.reason = reader.string();
+                        continue;
+                    }
+                    case 6: {
+                        if (tag !== 50) {
+                            break;
+                        }
+
+                        message.message = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): Condition {
+        return {
+            type: isSet(object.type) ? globalThis.String(object.type) : '',
+            status: isSet(object.status) ? globalThis.String(object.status) : '',
+            observedGeneration: isSet(object.observedGeneration)
+                ? globalThis.Number(object.observedGeneration)
+                : 0,
+            lastTransitionTime: isSet(object.lastTransitionTime)
+                ? Time.fromJSON(object.lastTransitionTime)
+                : undefined,
+            reason: isSet(object.reason) ? globalThis.String(object.reason) : '',
+            message: isSet(object.message) ? globalThis.String(object.message) : '',
+        };
+    },
+
+    toJSON(message: Condition): unknown {
+        const obj: any = {};
+        if (message.type !== undefined && message.type !== '') {
+            obj.type = message.type;
+        }
+        if (message.status !== undefined && message.status !== '') {
+            obj.status = message.status;
+        }
+        if (message.observedGeneration !== undefined && message.observedGeneration !== 0) {
+            obj.observedGeneration = Math.round(message.observedGeneration);
+        }
+        if (message.lastTransitionTime !== undefined) {
+            obj.lastTransitionTime = Time.toJSON(message.lastTransitionTime);
+        }
+        if (message.reason !== undefined && message.reason !== '') {
+            obj.reason = message.reason;
+        }
+        if (message.message !== undefined && message.message !== '') {
+            obj.message = message.message;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<Condition>, I>>(base?: I): Condition {
+        return Condition.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<Condition>, I>>(object: I): Condition {
+        const message = createBaseCondition();
+        message.type = object.type ?? '';
+        message.status = object.status ?? '';
+        message.observedGeneration = object.observedGeneration ?? 0;
+        message.lastTransitionTime =
+            object.lastTransitionTime !== undefined && object.lastTransitionTime !== null
+                ? Time.fromPartial(object.lastTransitionTime)
+                : undefined;
+        message.reason = object.reason ?? '';
+        message.message = object.message ?? '';
+        return message;
+    },
 };
 
 function createBaseCreateOptions(): CreateOptions {
-  return { dryRun: [], fieldManager: "", fieldValidation: "" };
+    return { dryRun: [], fieldManager: '', fieldValidation: '' };
 }
 
 export const CreateOptions: MessageFns<CreateOptions> = {
-  encode(message: CreateOptions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.dryRun) {
-      writer.uint32(10).string(v!);
-    }
-    if (message.fieldManager !== undefined && message.fieldManager !== "") {
-      writer.uint32(26).string(message.fieldManager);
-    }
-    if (message.fieldValidation !== undefined && message.fieldValidation !== "") {
-      writer.uint32(34).string(message.fieldValidation);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): CreateOptions {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseCreateOptions();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.dryRun.push(reader.string());
-            continue;
-          }
-          case 3: {
-            if (tag !== 26) {
-              break;
-            }
-
-            message.fieldManager = reader.string();
-            continue;
-          }
-          case 4: {
-            if (tag !== 34) {
-              break;
-            }
-
-            message.fieldValidation = reader.string();
-            continue;
-          }
+    encode(message: CreateOptions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        for (const v of message.dryRun) {
+            writer.uint32(10).string(v!);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.fieldManager !== undefined && message.fieldManager !== '') {
+            writer.uint32(26).string(message.fieldManager);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        if (message.fieldValidation !== undefined && message.fieldValidation !== '') {
+            writer.uint32(34).string(message.fieldValidation);
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): CreateOptions {
-    return {
-      dryRun: globalThis.Array.isArray(object?.dryRun) ? object.dryRun.map((e: any) => globalThis.String(e)) : [],
-      fieldManager: isSet(object.fieldManager) ? globalThis.String(object.fieldManager) : "",
-      fieldValidation: isSet(object.fieldValidation) ? globalThis.String(object.fieldValidation) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): CreateOptions {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseCreateOptions();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: CreateOptions): unknown {
-    const obj: any = {};
-    if (message.dryRun?.length) {
-      obj.dryRun = message.dryRun;
-    }
-    if (message.fieldManager !== undefined && message.fieldManager !== "") {
-      obj.fieldManager = message.fieldManager;
-    }
-    if (message.fieldValidation !== undefined && message.fieldValidation !== "") {
-      obj.fieldValidation = message.fieldValidation;
-    }
-    return obj;
-  },
+                        message.dryRun.push(reader.string());
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 26) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<CreateOptions>, I>>(base?: I): CreateOptions {
-    return CreateOptions.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<CreateOptions>, I>>(object: I): CreateOptions {
-    const message = createBaseCreateOptions();
-    message.dryRun = object.dryRun?.map((e) => e) || [];
-    message.fieldManager = object.fieldManager ?? "";
-    message.fieldValidation = object.fieldValidation ?? "";
-    return message;
-  },
+                        message.fieldManager = reader.string();
+                        continue;
+                    }
+                    case 4: {
+                        if (tag !== 34) {
+                            break;
+                        }
+
+                        message.fieldValidation = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): CreateOptions {
+        return {
+            dryRun: globalThis.Array.isArray(object?.dryRun)
+                ? object.dryRun.map((e: any) => globalThis.String(e))
+                : [],
+            fieldManager: isSet(object.fieldManager) ? globalThis.String(object.fieldManager) : '',
+            fieldValidation: isSet(object.fieldValidation) ? globalThis.String(object.fieldValidation) : '',
+        };
+    },
+
+    toJSON(message: CreateOptions): unknown {
+        const obj: any = {};
+        if (message.dryRun?.length) {
+            obj.dryRun = message.dryRun;
+        }
+        if (message.fieldManager !== undefined && message.fieldManager !== '') {
+            obj.fieldManager = message.fieldManager;
+        }
+        if (message.fieldValidation !== undefined && message.fieldValidation !== '') {
+            obj.fieldValidation = message.fieldValidation;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<CreateOptions>, I>>(base?: I): CreateOptions {
+        return CreateOptions.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<CreateOptions>, I>>(object: I): CreateOptions {
+        const message = createBaseCreateOptions();
+        message.dryRun = object.dryRun?.map((e) => e) || [];
+        message.fieldManager = object.fieldManager ?? '';
+        message.fieldValidation = object.fieldValidation ?? '';
+        return message;
+    },
 };
 
 function createBaseDeleteOptions(): DeleteOptions {
-  return {
-    gracePeriodSeconds: 0,
-    preconditions: undefined,
-    orphanDependents: false,
-    propagationPolicy: "",
-    dryRun: [],
-    ignoreStoreReadErrorWithClusterBreakingPotential: false,
-  };
+    return {
+        gracePeriodSeconds: 0,
+        preconditions: undefined,
+        orphanDependents: false,
+        propagationPolicy: '',
+        dryRun: [],
+        ignoreStoreReadErrorWithClusterBreakingPotential: false,
+    };
 }
 
 export const DeleteOptions: MessageFns<DeleteOptions> = {
-  encode(message: DeleteOptions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.gracePeriodSeconds !== undefined && message.gracePeriodSeconds !== 0) {
-      writer.uint32(8).int64(message.gracePeriodSeconds);
-    }
-    if (message.preconditions !== undefined) {
-      Preconditions.encode(message.preconditions, writer.uint32(18).fork()).join();
-    }
-    if (message.orphanDependents !== undefined && message.orphanDependents !== false) {
-      writer.uint32(24).bool(message.orphanDependents);
-    }
-    if (message.propagationPolicy !== undefined && message.propagationPolicy !== "") {
-      writer.uint32(34).string(message.propagationPolicy);
-    }
-    for (const v of message.dryRun) {
-      writer.uint32(42).string(v!);
-    }
-    if (
-      message.ignoreStoreReadErrorWithClusterBreakingPotential !== undefined &&
-      message.ignoreStoreReadErrorWithClusterBreakingPotential !== false
-    ) {
-      writer.uint32(48).bool(message.ignoreStoreReadErrorWithClusterBreakingPotential);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): DeleteOptions {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseDeleteOptions();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 8) {
-              break;
-            }
-
-            message.gracePeriodSeconds = longToNumber(reader.int64());
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.preconditions = Preconditions.decode(reader, reader.uint32());
-            continue;
-          }
-          case 3: {
-            if (tag !== 24) {
-              break;
-            }
-
-            message.orphanDependents = reader.bool();
-            continue;
-          }
-          case 4: {
-            if (tag !== 34) {
-              break;
-            }
-
-            message.propagationPolicy = reader.string();
-            continue;
-          }
-          case 5: {
-            if (tag !== 42) {
-              break;
-            }
-
-            message.dryRun.push(reader.string());
-            continue;
-          }
-          case 6: {
-            if (tag !== 48) {
-              break;
-            }
-
-            message.ignoreStoreReadErrorWithClusterBreakingPotential = reader.bool();
-            continue;
-          }
+    encode(message: DeleteOptions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.gracePeriodSeconds !== undefined && message.gracePeriodSeconds !== 0) {
+            writer.uint32(8).int64(message.gracePeriodSeconds);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.preconditions !== undefined) {
+            Preconditions.encode(message.preconditions, writer.uint32(18).fork()).join();
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        if (message.orphanDependents !== undefined && message.orphanDependents !== false) {
+            writer.uint32(24).bool(message.orphanDependents);
+        }
+        if (message.propagationPolicy !== undefined && message.propagationPolicy !== '') {
+            writer.uint32(34).string(message.propagationPolicy);
+        }
+        for (const v of message.dryRun) {
+            writer.uint32(42).string(v!);
+        }
+        if (
+            message.ignoreStoreReadErrorWithClusterBreakingPotential !== undefined &&
+            message.ignoreStoreReadErrorWithClusterBreakingPotential !== false
+        ) {
+            writer.uint32(48).bool(message.ignoreStoreReadErrorWithClusterBreakingPotential);
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): DeleteOptions {
-    return {
-      gracePeriodSeconds: isSet(object.gracePeriodSeconds) ? globalThis.Number(object.gracePeriodSeconds) : 0,
-      preconditions: isSet(object.preconditions) ? Preconditions.fromJSON(object.preconditions) : undefined,
-      orphanDependents: isSet(object.orphanDependents) ? globalThis.Boolean(object.orphanDependents) : false,
-      propagationPolicy: isSet(object.propagationPolicy) ? globalThis.String(object.propagationPolicy) : "",
-      dryRun: globalThis.Array.isArray(object?.dryRun) ? object.dryRun.map((e: any) => globalThis.String(e)) : [],
-      ignoreStoreReadErrorWithClusterBreakingPotential: isSet(object.ignoreStoreReadErrorWithClusterBreakingPotential)
-        ? globalThis.Boolean(object.ignoreStoreReadErrorWithClusterBreakingPotential)
-        : false,
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): DeleteOptions {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseDeleteOptions();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 8) {
+                            break;
+                        }
 
-  toJSON(message: DeleteOptions): unknown {
-    const obj: any = {};
-    if (message.gracePeriodSeconds !== undefined && message.gracePeriodSeconds !== 0) {
-      obj.gracePeriodSeconds = Math.round(message.gracePeriodSeconds);
-    }
-    if (message.preconditions !== undefined) {
-      obj.preconditions = Preconditions.toJSON(message.preconditions);
-    }
-    if (message.orphanDependents !== undefined && message.orphanDependents !== false) {
-      obj.orphanDependents = message.orphanDependents;
-    }
-    if (message.propagationPolicy !== undefined && message.propagationPolicy !== "") {
-      obj.propagationPolicy = message.propagationPolicy;
-    }
-    if (message.dryRun?.length) {
-      obj.dryRun = message.dryRun;
-    }
-    if (
-      message.ignoreStoreReadErrorWithClusterBreakingPotential !== undefined &&
-      message.ignoreStoreReadErrorWithClusterBreakingPotential !== false
-    ) {
-      obj.ignoreStoreReadErrorWithClusterBreakingPotential = message.ignoreStoreReadErrorWithClusterBreakingPotential;
-    }
-    return obj;
-  },
+                        message.gracePeriodSeconds = longToNumber(reader.int64());
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<DeleteOptions>, I>>(base?: I): DeleteOptions {
-    return DeleteOptions.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<DeleteOptions>, I>>(object: I): DeleteOptions {
-    const message = createBaseDeleteOptions();
-    message.gracePeriodSeconds = object.gracePeriodSeconds ?? 0;
-    message.preconditions = (object.preconditions !== undefined && object.preconditions !== null)
-      ? Preconditions.fromPartial(object.preconditions)
-      : undefined;
-    message.orphanDependents = object.orphanDependents ?? false;
-    message.propagationPolicy = object.propagationPolicy ?? "";
-    message.dryRun = object.dryRun?.map((e) => e) || [];
-    message.ignoreStoreReadErrorWithClusterBreakingPotential =
-      object.ignoreStoreReadErrorWithClusterBreakingPotential ?? false;
-    return message;
-  },
+                        message.preconditions = Preconditions.decode(reader, reader.uint32());
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 24) {
+                            break;
+                        }
+
+                        message.orphanDependents = reader.bool();
+                        continue;
+                    }
+                    case 4: {
+                        if (tag !== 34) {
+                            break;
+                        }
+
+                        message.propagationPolicy = reader.string();
+                        continue;
+                    }
+                    case 5: {
+                        if (tag !== 42) {
+                            break;
+                        }
+
+                        message.dryRun.push(reader.string());
+                        continue;
+                    }
+                    case 6: {
+                        if (tag !== 48) {
+                            break;
+                        }
+
+                        message.ignoreStoreReadErrorWithClusterBreakingPotential = reader.bool();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): DeleteOptions {
+        return {
+            gracePeriodSeconds: isSet(object.gracePeriodSeconds)
+                ? globalThis.Number(object.gracePeriodSeconds)
+                : 0,
+            preconditions: isSet(object.preconditions)
+                ? Preconditions.fromJSON(object.preconditions)
+                : undefined,
+            orphanDependents: isSet(object.orphanDependents)
+                ? globalThis.Boolean(object.orphanDependents)
+                : false,
+            propagationPolicy: isSet(object.propagationPolicy)
+                ? globalThis.String(object.propagationPolicy)
+                : '',
+            dryRun: globalThis.Array.isArray(object?.dryRun)
+                ? object.dryRun.map((e: any) => globalThis.String(e))
+                : [],
+            ignoreStoreReadErrorWithClusterBreakingPotential: isSet(
+                object.ignoreStoreReadErrorWithClusterBreakingPotential,
+            )
+                ? globalThis.Boolean(object.ignoreStoreReadErrorWithClusterBreakingPotential)
+                : false,
+        };
+    },
+
+    toJSON(message: DeleteOptions): unknown {
+        const obj: any = {};
+        if (message.gracePeriodSeconds !== undefined && message.gracePeriodSeconds !== 0) {
+            obj.gracePeriodSeconds = Math.round(message.gracePeriodSeconds);
+        }
+        if (message.preconditions !== undefined) {
+            obj.preconditions = Preconditions.toJSON(message.preconditions);
+        }
+        if (message.orphanDependents !== undefined && message.orphanDependents !== false) {
+            obj.orphanDependents = message.orphanDependents;
+        }
+        if (message.propagationPolicy !== undefined && message.propagationPolicy !== '') {
+            obj.propagationPolicy = message.propagationPolicy;
+        }
+        if (message.dryRun?.length) {
+            obj.dryRun = message.dryRun;
+        }
+        if (
+            message.ignoreStoreReadErrorWithClusterBreakingPotential !== undefined &&
+            message.ignoreStoreReadErrorWithClusterBreakingPotential !== false
+        ) {
+            obj.ignoreStoreReadErrorWithClusterBreakingPotential =
+                message.ignoreStoreReadErrorWithClusterBreakingPotential;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<DeleteOptions>, I>>(base?: I): DeleteOptions {
+        return DeleteOptions.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<DeleteOptions>, I>>(object: I): DeleteOptions {
+        const message = createBaseDeleteOptions();
+        message.gracePeriodSeconds = object.gracePeriodSeconds ?? 0;
+        message.preconditions =
+            object.preconditions !== undefined && object.preconditions !== null
+                ? Preconditions.fromPartial(object.preconditions)
+                : undefined;
+        message.orphanDependents = object.orphanDependents ?? false;
+        message.propagationPolicy = object.propagationPolicy ?? '';
+        message.dryRun = object.dryRun?.map((e) => e) || [];
+        message.ignoreStoreReadErrorWithClusterBreakingPotential =
+            object.ignoreStoreReadErrorWithClusterBreakingPotential ?? false;
+        return message;
+    },
 };
 
 function createBaseDuration(): Duration {
-  return { duration: 0 };
+    return { duration: 0 };
 }
 
 export const Duration: MessageFns<Duration> = {
-  encode(message: Duration, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.duration !== undefined && message.duration !== 0) {
-      writer.uint32(8).int64(message.duration);
-    }
-    return writer;
-  },
+    encode(message: Duration, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.duration !== undefined && message.duration !== 0) {
+            writer.uint32(8).int64(message.duration);
+        }
+        return writer;
+    },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): Duration {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseDuration();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 8) {
-              break;
+    decode(input: BinaryReader | Uint8Array, length?: number): Duration {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseDuration();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 8) {
+                            break;
+                        }
+
+                        message.duration = longToNumber(reader.int64());
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
             }
-
-            message.duration = longToNumber(reader.int64());
-            continue;
-          }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+    },
+
+    fromJSON(object: any): Duration {
+        return { duration: isSet(object.duration) ? globalThis.Number(object.duration) : 0 };
+    },
+
+    toJSON(message: Duration): unknown {
+        const obj: any = {};
+        if (message.duration !== undefined && message.duration !== 0) {
+            obj.duration = Math.round(message.duration);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return obj;
+    },
 
-  fromJSON(object: any): Duration {
-    return { duration: isSet(object.duration) ? globalThis.Number(object.duration) : 0 };
-  },
-
-  toJSON(message: Duration): unknown {
-    const obj: any = {};
-    if (message.duration !== undefined && message.duration !== 0) {
-      obj.duration = Math.round(message.duration);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Duration>, I>>(base?: I): Duration {
-    return Duration.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Duration>, I>>(object: I): Duration {
-    const message = createBaseDuration();
-    message.duration = object.duration ?? 0;
-    return message;
-  },
+    create<I extends Exact<DeepPartial<Duration>, I>>(base?: I): Duration {
+        return Duration.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<Duration>, I>>(object: I): Duration {
+        const message = createBaseDuration();
+        message.duration = object.duration ?? 0;
+        return message;
+    },
 };
 
 function createBaseFieldSelectorRequirement(): FieldSelectorRequirement {
-  return { key: "", operator: "", values: [] };
+    return { key: '', operator: '', values: [] };
 }
 
 export const FieldSelectorRequirement: MessageFns<FieldSelectorRequirement> = {
-  encode(message: FieldSelectorRequirement, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.key !== undefined && message.key !== "") {
-      writer.uint32(10).string(message.key);
-    }
-    if (message.operator !== undefined && message.operator !== "") {
-      writer.uint32(18).string(message.operator);
-    }
-    for (const v of message.values) {
-      writer.uint32(26).string(v!);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): FieldSelectorRequirement {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseFieldSelectorRequirement();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.key = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.operator = reader.string();
-            continue;
-          }
-          case 3: {
-            if (tag !== 26) {
-              break;
-            }
-
-            message.values.push(reader.string());
-            continue;
-          }
+    encode(message: FieldSelectorRequirement, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.key !== undefined && message.key !== '') {
+            writer.uint32(10).string(message.key);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.operator !== undefined && message.operator !== '') {
+            writer.uint32(18).string(message.operator);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        for (const v of message.values) {
+            writer.uint32(26).string(v!);
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): FieldSelectorRequirement {
-    return {
-      key: isSet(object.key) ? globalThis.String(object.key) : "",
-      operator: isSet(object.operator) ? globalThis.String(object.operator) : "",
-      values: globalThis.Array.isArray(object?.values) ? object.values.map((e: any) => globalThis.String(e)) : [],
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): FieldSelectorRequirement {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseFieldSelectorRequirement();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: FieldSelectorRequirement): unknown {
-    const obj: any = {};
-    if (message.key !== undefined && message.key !== "") {
-      obj.key = message.key;
-    }
-    if (message.operator !== undefined && message.operator !== "") {
-      obj.operator = message.operator;
-    }
-    if (message.values?.length) {
-      obj.values = message.values;
-    }
-    return obj;
-  },
+                        message.key = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<FieldSelectorRequirement>, I>>(base?: I): FieldSelectorRequirement {
-    return FieldSelectorRequirement.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<FieldSelectorRequirement>, I>>(object: I): FieldSelectorRequirement {
-    const message = createBaseFieldSelectorRequirement();
-    message.key = object.key ?? "";
-    message.operator = object.operator ?? "";
-    message.values = object.values?.map((e) => e) || [];
-    return message;
-  },
+                        message.operator = reader.string();
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 26) {
+                            break;
+                        }
+
+                        message.values.push(reader.string());
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): FieldSelectorRequirement {
+        return {
+            key: isSet(object.key) ? globalThis.String(object.key) : '',
+            operator: isSet(object.operator) ? globalThis.String(object.operator) : '',
+            values: globalThis.Array.isArray(object?.values)
+                ? object.values.map((e: any) => globalThis.String(e))
+                : [],
+        };
+    },
+
+    toJSON(message: FieldSelectorRequirement): unknown {
+        const obj: any = {};
+        if (message.key !== undefined && message.key !== '') {
+            obj.key = message.key;
+        }
+        if (message.operator !== undefined && message.operator !== '') {
+            obj.operator = message.operator;
+        }
+        if (message.values?.length) {
+            obj.values = message.values;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<FieldSelectorRequirement>, I>>(base?: I): FieldSelectorRequirement {
+        return FieldSelectorRequirement.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<FieldSelectorRequirement>, I>>(
+        object: I,
+    ): FieldSelectorRequirement {
+        const message = createBaseFieldSelectorRequirement();
+        message.key = object.key ?? '';
+        message.operator = object.operator ?? '';
+        message.values = object.values?.map((e) => e) || [];
+        return message;
+    },
 };
 
 function createBaseFieldsV1(): FieldsV1 {
-  return { Raw: new Uint8Array(0) };
+    return { Raw: new Uint8Array(0) };
 }
 
 export const FieldsV1: MessageFns<FieldsV1> = {
-  encode(message: FieldsV1, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.Raw !== undefined && message.Raw.length !== 0) {
-      writer.uint32(10).bytes(message.Raw);
-    }
-    return writer;
-  },
+    encode(message: FieldsV1, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.Raw !== undefined && message.Raw.length !== 0) {
+            writer.uint32(10).bytes(message.Raw);
+        }
+        return writer;
+    },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): FieldsV1 {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseFieldsV1();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
+    decode(input: BinaryReader | Uint8Array, length?: number): FieldsV1 {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseFieldsV1();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
+
+                        message.Raw = reader.bytes();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
             }
-
-            message.Raw = reader.bytes();
-            continue;
-          }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+    },
+
+    fromJSON(object: any): FieldsV1 {
+        return { Raw: isSet(object.Raw) ? bytesFromBase64(object.Raw) : new Uint8Array(0) };
+    },
+
+    toJSON(message: FieldsV1): unknown {
+        const obj: any = {};
+        if (message.Raw !== undefined && message.Raw.length !== 0) {
+            obj.Raw = base64FromBytes(message.Raw);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return obj;
+    },
 
-  fromJSON(object: any): FieldsV1 {
-    return { Raw: isSet(object.Raw) ? bytesFromBase64(object.Raw) : new Uint8Array(0) };
-  },
-
-  toJSON(message: FieldsV1): unknown {
-    const obj: any = {};
-    if (message.Raw !== undefined && message.Raw.length !== 0) {
-      obj.Raw = base64FromBytes(message.Raw);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<FieldsV1>, I>>(base?: I): FieldsV1 {
-    return FieldsV1.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<FieldsV1>, I>>(object: I): FieldsV1 {
-    const message = createBaseFieldsV1();
-    message.Raw = object.Raw ?? new Uint8Array(0);
-    return message;
-  },
+    create<I extends Exact<DeepPartial<FieldsV1>, I>>(base?: I): FieldsV1 {
+        return FieldsV1.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<FieldsV1>, I>>(object: I): FieldsV1 {
+        const message = createBaseFieldsV1();
+        message.Raw = object.Raw ?? new Uint8Array(0);
+        return message;
+    },
 };
 
 function createBaseGetOptions(): GetOptions {
-  return { resourceVersion: "" };
+    return { resourceVersion: '' };
 }
 
 export const GetOptions: MessageFns<GetOptions> = {
-  encode(message: GetOptions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.resourceVersion !== undefined && message.resourceVersion !== "") {
-      writer.uint32(10).string(message.resourceVersion);
-    }
-    return writer;
-  },
+    encode(message: GetOptions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.resourceVersion !== undefined && message.resourceVersion !== '') {
+            writer.uint32(10).string(message.resourceVersion);
+        }
+        return writer;
+    },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): GetOptions {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseGetOptions();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
+    decode(input: BinaryReader | Uint8Array, length?: number): GetOptions {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseGetOptions();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
+
+                        message.resourceVersion = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
             }
-
-            message.resourceVersion = reader.string();
-            continue;
-          }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+    },
+
+    fromJSON(object: any): GetOptions {
+        return {
+            resourceVersion: isSet(object.resourceVersion) ? globalThis.String(object.resourceVersion) : '',
+        };
+    },
+
+    toJSON(message: GetOptions): unknown {
+        const obj: any = {};
+        if (message.resourceVersion !== undefined && message.resourceVersion !== '') {
+            obj.resourceVersion = message.resourceVersion;
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return obj;
+    },
 
-  fromJSON(object: any): GetOptions {
-    return { resourceVersion: isSet(object.resourceVersion) ? globalThis.String(object.resourceVersion) : "" };
-  },
-
-  toJSON(message: GetOptions): unknown {
-    const obj: any = {};
-    if (message.resourceVersion !== undefined && message.resourceVersion !== "") {
-      obj.resourceVersion = message.resourceVersion;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<GetOptions>, I>>(base?: I): GetOptions {
-    return GetOptions.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GetOptions>, I>>(object: I): GetOptions {
-    const message = createBaseGetOptions();
-    message.resourceVersion = object.resourceVersion ?? "";
-    return message;
-  },
+    create<I extends Exact<DeepPartial<GetOptions>, I>>(base?: I): GetOptions {
+        return GetOptions.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<GetOptions>, I>>(object: I): GetOptions {
+        const message = createBaseGetOptions();
+        message.resourceVersion = object.resourceVersion ?? '';
+        return message;
+    },
 };
 
 function createBaseGroupKind(): GroupKind {
-  return { group: "", kind: "" };
+    return { group: '', kind: '' };
 }
 
 export const GroupKind: MessageFns<GroupKind> = {
-  encode(message: GroupKind, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.group !== undefined && message.group !== "") {
-      writer.uint32(10).string(message.group);
-    }
-    if (message.kind !== undefined && message.kind !== "") {
-      writer.uint32(18).string(message.kind);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): GroupKind {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseGroupKind();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.group = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.kind = reader.string();
-            continue;
-          }
+    encode(message: GroupKind, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.group !== undefined && message.group !== '') {
+            writer.uint32(10).string(message.group);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.kind !== undefined && message.kind !== '') {
+            writer.uint32(18).string(message.kind);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): GroupKind {
-    return {
-      group: isSet(object.group) ? globalThis.String(object.group) : "",
-      kind: isSet(object.kind) ? globalThis.String(object.kind) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): GroupKind {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseGroupKind();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: GroupKind): unknown {
-    const obj: any = {};
-    if (message.group !== undefined && message.group !== "") {
-      obj.group = message.group;
-    }
-    if (message.kind !== undefined && message.kind !== "") {
-      obj.kind = message.kind;
-    }
-    return obj;
-  },
+                        message.group = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<GroupKind>, I>>(base?: I): GroupKind {
-    return GroupKind.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GroupKind>, I>>(object: I): GroupKind {
-    const message = createBaseGroupKind();
-    message.group = object.group ?? "";
-    message.kind = object.kind ?? "";
-    return message;
-  },
+                        message.kind = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): GroupKind {
+        return {
+            group: isSet(object.group) ? globalThis.String(object.group) : '',
+            kind: isSet(object.kind) ? globalThis.String(object.kind) : '',
+        };
+    },
+
+    toJSON(message: GroupKind): unknown {
+        const obj: any = {};
+        if (message.group !== undefined && message.group !== '') {
+            obj.group = message.group;
+        }
+        if (message.kind !== undefined && message.kind !== '') {
+            obj.kind = message.kind;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<GroupKind>, I>>(base?: I): GroupKind {
+        return GroupKind.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<GroupKind>, I>>(object: I): GroupKind {
+        const message = createBaseGroupKind();
+        message.group = object.group ?? '';
+        message.kind = object.kind ?? '';
+        return message;
+    },
 };
 
 function createBaseGroupResource(): GroupResource {
-  return { group: "", resource: "" };
+    return { group: '', resource: '' };
 }
 
 export const GroupResource: MessageFns<GroupResource> = {
-  encode(message: GroupResource, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.group !== undefined && message.group !== "") {
-      writer.uint32(10).string(message.group);
-    }
-    if (message.resource !== undefined && message.resource !== "") {
-      writer.uint32(18).string(message.resource);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): GroupResource {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseGroupResource();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.group = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.resource = reader.string();
-            continue;
-          }
+    encode(message: GroupResource, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.group !== undefined && message.group !== '') {
+            writer.uint32(10).string(message.group);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.resource !== undefined && message.resource !== '') {
+            writer.uint32(18).string(message.resource);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): GroupResource {
-    return {
-      group: isSet(object.group) ? globalThis.String(object.group) : "",
-      resource: isSet(object.resource) ? globalThis.String(object.resource) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): GroupResource {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseGroupResource();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: GroupResource): unknown {
-    const obj: any = {};
-    if (message.group !== undefined && message.group !== "") {
-      obj.group = message.group;
-    }
-    if (message.resource !== undefined && message.resource !== "") {
-      obj.resource = message.resource;
-    }
-    return obj;
-  },
+                        message.group = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<GroupResource>, I>>(base?: I): GroupResource {
-    return GroupResource.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GroupResource>, I>>(object: I): GroupResource {
-    const message = createBaseGroupResource();
-    message.group = object.group ?? "";
-    message.resource = object.resource ?? "";
-    return message;
-  },
+                        message.resource = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): GroupResource {
+        return {
+            group: isSet(object.group) ? globalThis.String(object.group) : '',
+            resource: isSet(object.resource) ? globalThis.String(object.resource) : '',
+        };
+    },
+
+    toJSON(message: GroupResource): unknown {
+        const obj: any = {};
+        if (message.group !== undefined && message.group !== '') {
+            obj.group = message.group;
+        }
+        if (message.resource !== undefined && message.resource !== '') {
+            obj.resource = message.resource;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<GroupResource>, I>>(base?: I): GroupResource {
+        return GroupResource.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<GroupResource>, I>>(object: I): GroupResource {
+        const message = createBaseGroupResource();
+        message.group = object.group ?? '';
+        message.resource = object.resource ?? '';
+        return message;
+    },
 };
 
 function createBaseGroupVersion(): GroupVersion {
-  return { group: "", version: "" };
+    return { group: '', version: '' };
 }
 
 export const GroupVersion: MessageFns<GroupVersion> = {
-  encode(message: GroupVersion, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.group !== undefined && message.group !== "") {
-      writer.uint32(10).string(message.group);
-    }
-    if (message.version !== undefined && message.version !== "") {
-      writer.uint32(18).string(message.version);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): GroupVersion {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseGroupVersion();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.group = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.version = reader.string();
-            continue;
-          }
+    encode(message: GroupVersion, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.group !== undefined && message.group !== '') {
+            writer.uint32(10).string(message.group);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.version !== undefined && message.version !== '') {
+            writer.uint32(18).string(message.version);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): GroupVersion {
-    return {
-      group: isSet(object.group) ? globalThis.String(object.group) : "",
-      version: isSet(object.version) ? globalThis.String(object.version) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): GroupVersion {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseGroupVersion();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: GroupVersion): unknown {
-    const obj: any = {};
-    if (message.group !== undefined && message.group !== "") {
-      obj.group = message.group;
-    }
-    if (message.version !== undefined && message.version !== "") {
-      obj.version = message.version;
-    }
-    return obj;
-  },
+                        message.group = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<GroupVersion>, I>>(base?: I): GroupVersion {
-    return GroupVersion.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GroupVersion>, I>>(object: I): GroupVersion {
-    const message = createBaseGroupVersion();
-    message.group = object.group ?? "";
-    message.version = object.version ?? "";
-    return message;
-  },
+                        message.version = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): GroupVersion {
+        return {
+            group: isSet(object.group) ? globalThis.String(object.group) : '',
+            version: isSet(object.version) ? globalThis.String(object.version) : '',
+        };
+    },
+
+    toJSON(message: GroupVersion): unknown {
+        const obj: any = {};
+        if (message.group !== undefined && message.group !== '') {
+            obj.group = message.group;
+        }
+        if (message.version !== undefined && message.version !== '') {
+            obj.version = message.version;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<GroupVersion>, I>>(base?: I): GroupVersion {
+        return GroupVersion.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<GroupVersion>, I>>(object: I): GroupVersion {
+        const message = createBaseGroupVersion();
+        message.group = object.group ?? '';
+        message.version = object.version ?? '';
+        return message;
+    },
 };
 
 function createBaseGroupVersionForDiscovery(): GroupVersionForDiscovery {
-  return { groupVersion: "", version: "" };
+    return { groupVersion: '', version: '' };
 }
 
 export const GroupVersionForDiscovery: MessageFns<GroupVersionForDiscovery> = {
-  encode(message: GroupVersionForDiscovery, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.groupVersion !== undefined && message.groupVersion !== "") {
-      writer.uint32(10).string(message.groupVersion);
-    }
-    if (message.version !== undefined && message.version !== "") {
-      writer.uint32(18).string(message.version);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): GroupVersionForDiscovery {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseGroupVersionForDiscovery();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.groupVersion = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.version = reader.string();
-            continue;
-          }
+    encode(message: GroupVersionForDiscovery, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.groupVersion !== undefined && message.groupVersion !== '') {
+            writer.uint32(10).string(message.groupVersion);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.version !== undefined && message.version !== '') {
+            writer.uint32(18).string(message.version);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): GroupVersionForDiscovery {
-    return {
-      groupVersion: isSet(object.groupVersion) ? globalThis.String(object.groupVersion) : "",
-      version: isSet(object.version) ? globalThis.String(object.version) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): GroupVersionForDiscovery {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseGroupVersionForDiscovery();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: GroupVersionForDiscovery): unknown {
-    const obj: any = {};
-    if (message.groupVersion !== undefined && message.groupVersion !== "") {
-      obj.groupVersion = message.groupVersion;
-    }
-    if (message.version !== undefined && message.version !== "") {
-      obj.version = message.version;
-    }
-    return obj;
-  },
+                        message.groupVersion = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<GroupVersionForDiscovery>, I>>(base?: I): GroupVersionForDiscovery {
-    return GroupVersionForDiscovery.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GroupVersionForDiscovery>, I>>(object: I): GroupVersionForDiscovery {
-    const message = createBaseGroupVersionForDiscovery();
-    message.groupVersion = object.groupVersion ?? "";
-    message.version = object.version ?? "";
-    return message;
-  },
+                        message.version = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): GroupVersionForDiscovery {
+        return {
+            groupVersion: isSet(object.groupVersion) ? globalThis.String(object.groupVersion) : '',
+            version: isSet(object.version) ? globalThis.String(object.version) : '',
+        };
+    },
+
+    toJSON(message: GroupVersionForDiscovery): unknown {
+        const obj: any = {};
+        if (message.groupVersion !== undefined && message.groupVersion !== '') {
+            obj.groupVersion = message.groupVersion;
+        }
+        if (message.version !== undefined && message.version !== '') {
+            obj.version = message.version;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<GroupVersionForDiscovery>, I>>(base?: I): GroupVersionForDiscovery {
+        return GroupVersionForDiscovery.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<GroupVersionForDiscovery>, I>>(
+        object: I,
+    ): GroupVersionForDiscovery {
+        const message = createBaseGroupVersionForDiscovery();
+        message.groupVersion = object.groupVersion ?? '';
+        message.version = object.version ?? '';
+        return message;
+    },
 };
 
 function createBaseGroupVersionKind(): GroupVersionKind {
-  return { group: "", version: "", kind: "" };
+    return { group: '', version: '', kind: '' };
 }
 
 export const GroupVersionKind: MessageFns<GroupVersionKind> = {
-  encode(message: GroupVersionKind, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.group !== undefined && message.group !== "") {
-      writer.uint32(10).string(message.group);
-    }
-    if (message.version !== undefined && message.version !== "") {
-      writer.uint32(18).string(message.version);
-    }
-    if (message.kind !== undefined && message.kind !== "") {
-      writer.uint32(26).string(message.kind);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): GroupVersionKind {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseGroupVersionKind();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.group = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.version = reader.string();
-            continue;
-          }
-          case 3: {
-            if (tag !== 26) {
-              break;
-            }
-
-            message.kind = reader.string();
-            continue;
-          }
+    encode(message: GroupVersionKind, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.group !== undefined && message.group !== '') {
+            writer.uint32(10).string(message.group);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.version !== undefined && message.version !== '') {
+            writer.uint32(18).string(message.version);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        if (message.kind !== undefined && message.kind !== '') {
+            writer.uint32(26).string(message.kind);
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): GroupVersionKind {
-    return {
-      group: isSet(object.group) ? globalThis.String(object.group) : "",
-      version: isSet(object.version) ? globalThis.String(object.version) : "",
-      kind: isSet(object.kind) ? globalThis.String(object.kind) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): GroupVersionKind {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseGroupVersionKind();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: GroupVersionKind): unknown {
-    const obj: any = {};
-    if (message.group !== undefined && message.group !== "") {
-      obj.group = message.group;
-    }
-    if (message.version !== undefined && message.version !== "") {
-      obj.version = message.version;
-    }
-    if (message.kind !== undefined && message.kind !== "") {
-      obj.kind = message.kind;
-    }
-    return obj;
-  },
+                        message.group = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<GroupVersionKind>, I>>(base?: I): GroupVersionKind {
-    return GroupVersionKind.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GroupVersionKind>, I>>(object: I): GroupVersionKind {
-    const message = createBaseGroupVersionKind();
-    message.group = object.group ?? "";
-    message.version = object.version ?? "";
-    message.kind = object.kind ?? "";
-    return message;
-  },
+                        message.version = reader.string();
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 26) {
+                            break;
+                        }
+
+                        message.kind = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): GroupVersionKind {
+        return {
+            group: isSet(object.group) ? globalThis.String(object.group) : '',
+            version: isSet(object.version) ? globalThis.String(object.version) : '',
+            kind: isSet(object.kind) ? globalThis.String(object.kind) : '',
+        };
+    },
+
+    toJSON(message: GroupVersionKind): unknown {
+        const obj: any = {};
+        if (message.group !== undefined && message.group !== '') {
+            obj.group = message.group;
+        }
+        if (message.version !== undefined && message.version !== '') {
+            obj.version = message.version;
+        }
+        if (message.kind !== undefined && message.kind !== '') {
+            obj.kind = message.kind;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<GroupVersionKind>, I>>(base?: I): GroupVersionKind {
+        return GroupVersionKind.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<GroupVersionKind>, I>>(object: I): GroupVersionKind {
+        const message = createBaseGroupVersionKind();
+        message.group = object.group ?? '';
+        message.version = object.version ?? '';
+        message.kind = object.kind ?? '';
+        return message;
+    },
 };
 
 function createBaseGroupVersionResource(): GroupVersionResource {
-  return { group: "", version: "", resource: "" };
+    return { group: '', version: '', resource: '' };
 }
 
 export const GroupVersionResource: MessageFns<GroupVersionResource> = {
-  encode(message: GroupVersionResource, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.group !== undefined && message.group !== "") {
-      writer.uint32(10).string(message.group);
-    }
-    if (message.version !== undefined && message.version !== "") {
-      writer.uint32(18).string(message.version);
-    }
-    if (message.resource !== undefined && message.resource !== "") {
-      writer.uint32(26).string(message.resource);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): GroupVersionResource {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseGroupVersionResource();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.group = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.version = reader.string();
-            continue;
-          }
-          case 3: {
-            if (tag !== 26) {
-              break;
-            }
-
-            message.resource = reader.string();
-            continue;
-          }
+    encode(message: GroupVersionResource, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.group !== undefined && message.group !== '') {
+            writer.uint32(10).string(message.group);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.version !== undefined && message.version !== '') {
+            writer.uint32(18).string(message.version);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        if (message.resource !== undefined && message.resource !== '') {
+            writer.uint32(26).string(message.resource);
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): GroupVersionResource {
-    return {
-      group: isSet(object.group) ? globalThis.String(object.group) : "",
-      version: isSet(object.version) ? globalThis.String(object.version) : "",
-      resource: isSet(object.resource) ? globalThis.String(object.resource) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): GroupVersionResource {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseGroupVersionResource();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: GroupVersionResource): unknown {
-    const obj: any = {};
-    if (message.group !== undefined && message.group !== "") {
-      obj.group = message.group;
-    }
-    if (message.version !== undefined && message.version !== "") {
-      obj.version = message.version;
-    }
-    if (message.resource !== undefined && message.resource !== "") {
-      obj.resource = message.resource;
-    }
-    return obj;
-  },
+                        message.group = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<GroupVersionResource>, I>>(base?: I): GroupVersionResource {
-    return GroupVersionResource.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<GroupVersionResource>, I>>(object: I): GroupVersionResource {
-    const message = createBaseGroupVersionResource();
-    message.group = object.group ?? "";
-    message.version = object.version ?? "";
-    message.resource = object.resource ?? "";
-    return message;
-  },
+                        message.version = reader.string();
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 26) {
+                            break;
+                        }
+
+                        message.resource = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): GroupVersionResource {
+        return {
+            group: isSet(object.group) ? globalThis.String(object.group) : '',
+            version: isSet(object.version) ? globalThis.String(object.version) : '',
+            resource: isSet(object.resource) ? globalThis.String(object.resource) : '',
+        };
+    },
+
+    toJSON(message: GroupVersionResource): unknown {
+        const obj: any = {};
+        if (message.group !== undefined && message.group !== '') {
+            obj.group = message.group;
+        }
+        if (message.version !== undefined && message.version !== '') {
+            obj.version = message.version;
+        }
+        if (message.resource !== undefined && message.resource !== '') {
+            obj.resource = message.resource;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<GroupVersionResource>, I>>(base?: I): GroupVersionResource {
+        return GroupVersionResource.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<GroupVersionResource>, I>>(object: I): GroupVersionResource {
+        const message = createBaseGroupVersionResource();
+        message.group = object.group ?? '';
+        message.version = object.version ?? '';
+        message.resource = object.resource ?? '';
+        return message;
+    },
 };
 
 function createBaseLabelSelector(): LabelSelector {
-  return { matchLabels: {}, matchExpressions: [] };
+    return { matchLabels: {}, matchExpressions: [] };
 }
 
 export const LabelSelector: MessageFns<LabelSelector> = {
-  encode(message: LabelSelector, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    globalThis.Object.entries(message.matchLabels).forEach(([key, value]: [string, string]) => {
-      LabelSelector_MatchLabelsEntry.encode({ key: key as any, value }, writer.uint32(10).fork()).join();
-    });
-    for (const v of message.matchExpressions) {
-      LabelSelectorRequirement.encode(v!, writer.uint32(18).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): LabelSelector {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseLabelSelector();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            const entry1 = LabelSelector_MatchLabelsEntry.decode(reader, reader.uint32());
-            if (entry1.value !== undefined) {
-              message.matchLabels[entry1.key] = entry1.value;
-            }
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.matchExpressions.push(LabelSelectorRequirement.decode(reader, reader.uint32()));
-            continue;
-          }
-        }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
-        }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
-
-  fromJSON(object: any): LabelSelector {
-    return {
-      matchLabels: isObject(object.matchLabels)
-        ? (globalThis.Object.entries(object.matchLabels) as [string, any][]).reduce(
-          (acc: { [key: string]: string }, [key, value]: [string, any]) => {
-            globalThis.Object.defineProperty(acc, key, {
-              value: globalThis.String(value),
-              enumerable: true,
-              configurable: true,
-              writable: true,
-            });
-            return acc;
-          },
-          {},
-        )
-        : {},
-      matchExpressions: globalThis.Array.isArray(object?.matchExpressions)
-        ? object.matchExpressions.map((e: any) => LabelSelectorRequirement.fromJSON(e))
-        : [],
-    };
-  },
-
-  toJSON(message: LabelSelector): unknown {
-    const obj: any = {};
-    if (message.matchLabels) {
-      const entries = globalThis.Object.entries(message.matchLabels) as [string, string][];
-      if (entries.length > 0) {
-        obj.matchLabels = {};
-        entries.forEach(([k, v]) => {
-          obj.matchLabels[k] = v;
+    encode(message: LabelSelector, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        globalThis.Object.entries(message.matchLabels).forEach(([key, value]: [string, string]) => {
+            LabelSelector_MatchLabelsEntry.encode(
+                { key: key as any, value },
+                writer.uint32(10).fork(),
+            ).join();
         });
-      }
-    }
-    if (message.matchExpressions?.length) {
-      obj.matchExpressions = message.matchExpressions.map((e) => LabelSelectorRequirement.toJSON(e));
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<LabelSelector>, I>>(base?: I): LabelSelector {
-    return LabelSelector.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<LabelSelector>, I>>(object: I): LabelSelector {
-    const message = createBaseLabelSelector();
-    message.matchLabels = (globalThis.Object.entries(object.matchLabels ?? {}) as [string, string][]).reduce(
-      (acc: { [key: string]: string }, [key, value]: [string, string]) => {
-        if (value !== undefined) {
-          acc[key] = globalThis.String(value);
+        for (const v of message.matchExpressions) {
+            LabelSelectorRequirement.encode(v!, writer.uint32(18).fork()).join();
         }
-        return acc;
-      },
-      {},
-    );
-    message.matchExpressions = object.matchExpressions?.map((e) => LabelSelectorRequirement.fromPartial(e)) || [];
-    return message;
-  },
+        return writer;
+    },
+
+    decode(input: BinaryReader | Uint8Array, length?: number): LabelSelector {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseLabelSelector();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
+
+                        const entry1 = LabelSelector_MatchLabelsEntry.decode(reader, reader.uint32());
+                        if (entry1.value !== undefined) {
+                            message.matchLabels[entry1.key] = entry1.value;
+                        }
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
+
+                        message.matchExpressions.push(
+                            LabelSelectorRequirement.decode(reader, reader.uint32()),
+                        );
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): LabelSelector {
+        return {
+            matchLabels: isObject(object.matchLabels)
+                ? (globalThis.Object.entries(object.matchLabels) as [string, any][]).reduce(
+                      (acc: { [key: string]: string }, [key, value]: [string, any]) => {
+                          globalThis.Object.defineProperty(acc, key, {
+                              value: globalThis.String(value),
+                              enumerable: true,
+                              configurable: true,
+                              writable: true,
+                          });
+                          return acc;
+                      },
+                      {},
+                  )
+                : {},
+            matchExpressions: globalThis.Array.isArray(object?.matchExpressions)
+                ? object.matchExpressions.map((e: any) => LabelSelectorRequirement.fromJSON(e))
+                : [],
+        };
+    },
+
+    toJSON(message: LabelSelector): unknown {
+        const obj: any = {};
+        if (message.matchLabels) {
+            const entries = globalThis.Object.entries(message.matchLabels) as [string, string][];
+            if (entries.length > 0) {
+                obj.matchLabels = {};
+                entries.forEach(([k, v]) => {
+                    obj.matchLabels[k] = v;
+                });
+            }
+        }
+        if (message.matchExpressions?.length) {
+            obj.matchExpressions = message.matchExpressions.map((e) => LabelSelectorRequirement.toJSON(e));
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<LabelSelector>, I>>(base?: I): LabelSelector {
+        return LabelSelector.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<LabelSelector>, I>>(object: I): LabelSelector {
+        const message = createBaseLabelSelector();
+        message.matchLabels = (
+            globalThis.Object.entries(object.matchLabels ?? {}) as [string, string][]
+        ).reduce((acc: { [key: string]: string }, [key, value]: [string, string]) => {
+            if (value !== undefined) {
+                acc[key] = globalThis.String(value);
+            }
+            return acc;
+        }, {});
+        message.matchExpressions =
+            object.matchExpressions?.map((e) => LabelSelectorRequirement.fromPartial(e)) || [];
+        return message;
+    },
 };
 
 function createBaseLabelSelector_MatchLabelsEntry(): LabelSelector_MatchLabelsEntry {
-  return { key: "", value: "" };
+    return { key: '', value: '' };
 }
 
 export const LabelSelector_MatchLabelsEntry: MessageFns<LabelSelector_MatchLabelsEntry> = {
-  encode(message: LabelSelector_MatchLabelsEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.key !== "") {
-      writer.uint32(10).string(message.key);
-    }
-    if (message.value !== "") {
-      writer.uint32(18).string(message.value);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): LabelSelector_MatchLabelsEntry {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseLabelSelector_MatchLabelsEntry();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.key = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.value = reader.string();
-            continue;
-          }
+    encode(message: LabelSelector_MatchLabelsEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.key !== '') {
+            writer.uint32(10).string(message.key);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.value !== '') {
+            writer.uint32(18).string(message.value);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): LabelSelector_MatchLabelsEntry {
-    return {
-      key: isSet(object.key) ? globalThis.String(object.key) : "",
-      value: isSet(object.value) ? globalThis.String(object.value) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): LabelSelector_MatchLabelsEntry {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseLabelSelector_MatchLabelsEntry();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: LabelSelector_MatchLabelsEntry): unknown {
-    const obj: any = {};
-    if (message.key !== "") {
-      obj.key = message.key;
-    }
-    if (message.value !== "") {
-      obj.value = message.value;
-    }
-    return obj;
-  },
+                        message.key = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<LabelSelector_MatchLabelsEntry>, I>>(base?: I): LabelSelector_MatchLabelsEntry {
-    return LabelSelector_MatchLabelsEntry.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<LabelSelector_MatchLabelsEntry>, I>>(
-    object: I,
-  ): LabelSelector_MatchLabelsEntry {
-    const message = createBaseLabelSelector_MatchLabelsEntry();
-    message.key = object.key ?? "";
-    message.value = object.value ?? "";
-    return message;
-  },
+                        message.value = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): LabelSelector_MatchLabelsEntry {
+        return {
+            key: isSet(object.key) ? globalThis.String(object.key) : '',
+            value: isSet(object.value) ? globalThis.String(object.value) : '',
+        };
+    },
+
+    toJSON(message: LabelSelector_MatchLabelsEntry): unknown {
+        const obj: any = {};
+        if (message.key !== '') {
+            obj.key = message.key;
+        }
+        if (message.value !== '') {
+            obj.value = message.value;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<LabelSelector_MatchLabelsEntry>, I>>(
+        base?: I,
+    ): LabelSelector_MatchLabelsEntry {
+        return LabelSelector_MatchLabelsEntry.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<LabelSelector_MatchLabelsEntry>, I>>(
+        object: I,
+    ): LabelSelector_MatchLabelsEntry {
+        const message = createBaseLabelSelector_MatchLabelsEntry();
+        message.key = object.key ?? '';
+        message.value = object.value ?? '';
+        return message;
+    },
 };
 
 function createBaseLabelSelectorRequirement(): LabelSelectorRequirement {
-  return { key: "", operator: "", values: [] };
+    return { key: '', operator: '', values: [] };
 }
 
 export const LabelSelectorRequirement: MessageFns<LabelSelectorRequirement> = {
-  encode(message: LabelSelectorRequirement, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.key !== undefined && message.key !== "") {
-      writer.uint32(10).string(message.key);
-    }
-    if (message.operator !== undefined && message.operator !== "") {
-      writer.uint32(18).string(message.operator);
-    }
-    for (const v of message.values) {
-      writer.uint32(26).string(v!);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): LabelSelectorRequirement {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseLabelSelectorRequirement();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.key = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.operator = reader.string();
-            continue;
-          }
-          case 3: {
-            if (tag !== 26) {
-              break;
-            }
-
-            message.values.push(reader.string());
-            continue;
-          }
+    encode(message: LabelSelectorRequirement, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.key !== undefined && message.key !== '') {
+            writer.uint32(10).string(message.key);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.operator !== undefined && message.operator !== '') {
+            writer.uint32(18).string(message.operator);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        for (const v of message.values) {
+            writer.uint32(26).string(v!);
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): LabelSelectorRequirement {
-    return {
-      key: isSet(object.key) ? globalThis.String(object.key) : "",
-      operator: isSet(object.operator) ? globalThis.String(object.operator) : "",
-      values: globalThis.Array.isArray(object?.values) ? object.values.map((e: any) => globalThis.String(e)) : [],
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): LabelSelectorRequirement {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseLabelSelectorRequirement();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: LabelSelectorRequirement): unknown {
-    const obj: any = {};
-    if (message.key !== undefined && message.key !== "") {
-      obj.key = message.key;
-    }
-    if (message.operator !== undefined && message.operator !== "") {
-      obj.operator = message.operator;
-    }
-    if (message.values?.length) {
-      obj.values = message.values;
-    }
-    return obj;
-  },
+                        message.key = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<LabelSelectorRequirement>, I>>(base?: I): LabelSelectorRequirement {
-    return LabelSelectorRequirement.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<LabelSelectorRequirement>, I>>(object: I): LabelSelectorRequirement {
-    const message = createBaseLabelSelectorRequirement();
-    message.key = object.key ?? "";
-    message.operator = object.operator ?? "";
-    message.values = object.values?.map((e) => e) || [];
-    return message;
-  },
+                        message.operator = reader.string();
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 26) {
+                            break;
+                        }
+
+                        message.values.push(reader.string());
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): LabelSelectorRequirement {
+        return {
+            key: isSet(object.key) ? globalThis.String(object.key) : '',
+            operator: isSet(object.operator) ? globalThis.String(object.operator) : '',
+            values: globalThis.Array.isArray(object?.values)
+                ? object.values.map((e: any) => globalThis.String(e))
+                : [],
+        };
+    },
+
+    toJSON(message: LabelSelectorRequirement): unknown {
+        const obj: any = {};
+        if (message.key !== undefined && message.key !== '') {
+            obj.key = message.key;
+        }
+        if (message.operator !== undefined && message.operator !== '') {
+            obj.operator = message.operator;
+        }
+        if (message.values?.length) {
+            obj.values = message.values;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<LabelSelectorRequirement>, I>>(base?: I): LabelSelectorRequirement {
+        return LabelSelectorRequirement.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<LabelSelectorRequirement>, I>>(
+        object: I,
+    ): LabelSelectorRequirement {
+        const message = createBaseLabelSelectorRequirement();
+        message.key = object.key ?? '';
+        message.operator = object.operator ?? '';
+        message.values = object.values?.map((e) => e) || [];
+        return message;
+    },
 };
 
 function createBaseList(): List {
-  return { metadata: undefined, items: [] };
+    return { metadata: undefined, items: [] };
 }
 
 export const List: MessageFns<List> = {
-  encode(message: List, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.metadata !== undefined) {
-      ListMeta.encode(message.metadata, writer.uint32(10).fork()).join();
-    }
-    for (const v of message.items) {
-      RawExtension.encode(v!, writer.uint32(18).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): List {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseList();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.metadata = ListMeta.decode(reader, reader.uint32());
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.items.push(RawExtension.decode(reader, reader.uint32()));
-            continue;
-          }
+    encode(message: List, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.metadata !== undefined) {
+            ListMeta.encode(message.metadata, writer.uint32(10).fork()).join();
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        for (const v of message.items) {
+            RawExtension.encode(v!, writer.uint32(18).fork()).join();
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): List {
-    return {
-      metadata: isSet(object.metadata) ? ListMeta.fromJSON(object.metadata) : undefined,
-      items: globalThis.Array.isArray(object?.items) ? object.items.map((e: any) => RawExtension.fromJSON(e)) : [],
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): List {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseList();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: List): unknown {
-    const obj: any = {};
-    if (message.metadata !== undefined) {
-      obj.metadata = ListMeta.toJSON(message.metadata);
-    }
-    if (message.items?.length) {
-      obj.items = message.items.map((e) => RawExtension.toJSON(e));
-    }
-    return obj;
-  },
+                        message.metadata = ListMeta.decode(reader, reader.uint32());
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<List>, I>>(base?: I): List {
-    return List.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<List>, I>>(object: I): List {
-    const message = createBaseList();
-    message.metadata = (object.metadata !== undefined && object.metadata !== null)
-      ? ListMeta.fromPartial(object.metadata)
-      : undefined;
-    message.items = object.items?.map((e) => RawExtension.fromPartial(e)) || [];
-    return message;
-  },
+                        message.items.push(RawExtension.decode(reader, reader.uint32()));
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): List {
+        return {
+            metadata: isSet(object.metadata) ? ListMeta.fromJSON(object.metadata) : undefined,
+            items: globalThis.Array.isArray(object?.items)
+                ? object.items.map((e: any) => RawExtension.fromJSON(e))
+                : [],
+        };
+    },
+
+    toJSON(message: List): unknown {
+        const obj: any = {};
+        if (message.metadata !== undefined) {
+            obj.metadata = ListMeta.toJSON(message.metadata);
+        }
+        if (message.items?.length) {
+            obj.items = message.items.map((e) => RawExtension.toJSON(e));
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<List>, I>>(base?: I): List {
+        return List.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<List>, I>>(object: I): List {
+        const message = createBaseList();
+        message.metadata =
+            object.metadata !== undefined && object.metadata !== null
+                ? ListMeta.fromPartial(object.metadata)
+                : undefined;
+        message.items = object.items?.map((e) => RawExtension.fromPartial(e)) || [];
+        return message;
+    },
 };
 
 function createBaseListMeta(): ListMeta {
-  return { selfLink: "", resourceVersion: "", continue: "", remainingItemCount: 0, shardInfo: undefined };
+    return { selfLink: '', resourceVersion: '', continue: '', remainingItemCount: 0, shardInfo: undefined };
 }
 
 export const ListMeta: MessageFns<ListMeta> = {
-  encode(message: ListMeta, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.selfLink !== undefined && message.selfLink !== "") {
-      writer.uint32(10).string(message.selfLink);
-    }
-    if (message.resourceVersion !== undefined && message.resourceVersion !== "") {
-      writer.uint32(18).string(message.resourceVersion);
-    }
-    if (message.continue !== undefined && message.continue !== "") {
-      writer.uint32(26).string(message.continue);
-    }
-    if (message.remainingItemCount !== undefined && message.remainingItemCount !== 0) {
-      writer.uint32(32).int64(message.remainingItemCount);
-    }
-    if (message.shardInfo !== undefined) {
-      ShardInfo.encode(message.shardInfo, writer.uint32(42).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): ListMeta {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseListMeta();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.selfLink = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.resourceVersion = reader.string();
-            continue;
-          }
-          case 3: {
-            if (tag !== 26) {
-              break;
-            }
-
-            message.continue = reader.string();
-            continue;
-          }
-          case 4: {
-            if (tag !== 32) {
-              break;
-            }
-
-            message.remainingItemCount = longToNumber(reader.int64());
-            continue;
-          }
-          case 5: {
-            if (tag !== 42) {
-              break;
-            }
-
-            message.shardInfo = ShardInfo.decode(reader, reader.uint32());
-            continue;
-          }
+    encode(message: ListMeta, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.selfLink !== undefined && message.selfLink !== '') {
+            writer.uint32(10).string(message.selfLink);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.resourceVersion !== undefined && message.resourceVersion !== '') {
+            writer.uint32(18).string(message.resourceVersion);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        if (message.continue !== undefined && message.continue !== '') {
+            writer.uint32(26).string(message.continue);
+        }
+        if (message.remainingItemCount !== undefined && message.remainingItemCount !== 0) {
+            writer.uint32(32).int64(message.remainingItemCount);
+        }
+        if (message.shardInfo !== undefined) {
+            ShardInfo.encode(message.shardInfo, writer.uint32(42).fork()).join();
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): ListMeta {
-    return {
-      selfLink: isSet(object.selfLink) ? globalThis.String(object.selfLink) : "",
-      resourceVersion: isSet(object.resourceVersion) ? globalThis.String(object.resourceVersion) : "",
-      continue: isSet(object.continue) ? globalThis.String(object.continue) : "",
-      remainingItemCount: isSet(object.remainingItemCount) ? globalThis.Number(object.remainingItemCount) : 0,
-      shardInfo: isSet(object.shardInfo) ? ShardInfo.fromJSON(object.shardInfo) : undefined,
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): ListMeta {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseListMeta();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: ListMeta): unknown {
-    const obj: any = {};
-    if (message.selfLink !== undefined && message.selfLink !== "") {
-      obj.selfLink = message.selfLink;
-    }
-    if (message.resourceVersion !== undefined && message.resourceVersion !== "") {
-      obj.resourceVersion = message.resourceVersion;
-    }
-    if (message.continue !== undefined && message.continue !== "") {
-      obj.continue = message.continue;
-    }
-    if (message.remainingItemCount !== undefined && message.remainingItemCount !== 0) {
-      obj.remainingItemCount = Math.round(message.remainingItemCount);
-    }
-    if (message.shardInfo !== undefined) {
-      obj.shardInfo = ShardInfo.toJSON(message.shardInfo);
-    }
-    return obj;
-  },
+                        message.selfLink = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<ListMeta>, I>>(base?: I): ListMeta {
-    return ListMeta.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ListMeta>, I>>(object: I): ListMeta {
-    const message = createBaseListMeta();
-    message.selfLink = object.selfLink ?? "";
-    message.resourceVersion = object.resourceVersion ?? "";
-    message.continue = object.continue ?? "";
-    message.remainingItemCount = object.remainingItemCount ?? 0;
-    message.shardInfo = (object.shardInfo !== undefined && object.shardInfo !== null)
-      ? ShardInfo.fromPartial(object.shardInfo)
-      : undefined;
-    return message;
-  },
+                        message.resourceVersion = reader.string();
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 26) {
+                            break;
+                        }
+
+                        message.continue = reader.string();
+                        continue;
+                    }
+                    case 4: {
+                        if (tag !== 32) {
+                            break;
+                        }
+
+                        message.remainingItemCount = longToNumber(reader.int64());
+                        continue;
+                    }
+                    case 5: {
+                        if (tag !== 42) {
+                            break;
+                        }
+
+                        message.shardInfo = ShardInfo.decode(reader, reader.uint32());
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): ListMeta {
+        return {
+            selfLink: isSet(object.selfLink) ? globalThis.String(object.selfLink) : '',
+            resourceVersion: isSet(object.resourceVersion) ? globalThis.String(object.resourceVersion) : '',
+            continue: isSet(object.continue) ? globalThis.String(object.continue) : '',
+            remainingItemCount: isSet(object.remainingItemCount)
+                ? globalThis.Number(object.remainingItemCount)
+                : 0,
+            shardInfo: isSet(object.shardInfo) ? ShardInfo.fromJSON(object.shardInfo) : undefined,
+        };
+    },
+
+    toJSON(message: ListMeta): unknown {
+        const obj: any = {};
+        if (message.selfLink !== undefined && message.selfLink !== '') {
+            obj.selfLink = message.selfLink;
+        }
+        if (message.resourceVersion !== undefined && message.resourceVersion !== '') {
+            obj.resourceVersion = message.resourceVersion;
+        }
+        if (message.continue !== undefined && message.continue !== '') {
+            obj.continue = message.continue;
+        }
+        if (message.remainingItemCount !== undefined && message.remainingItemCount !== 0) {
+            obj.remainingItemCount = Math.round(message.remainingItemCount);
+        }
+        if (message.shardInfo !== undefined) {
+            obj.shardInfo = ShardInfo.toJSON(message.shardInfo);
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<ListMeta>, I>>(base?: I): ListMeta {
+        return ListMeta.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<ListMeta>, I>>(object: I): ListMeta {
+        const message = createBaseListMeta();
+        message.selfLink = object.selfLink ?? '';
+        message.resourceVersion = object.resourceVersion ?? '';
+        message.continue = object.continue ?? '';
+        message.remainingItemCount = object.remainingItemCount ?? 0;
+        message.shardInfo =
+            object.shardInfo !== undefined && object.shardInfo !== null
+                ? ShardInfo.fromPartial(object.shardInfo)
+                : undefined;
+        return message;
+    },
 };
 
 function createBaseListOptions(): ListOptions {
-  return {
-    labelSelector: "",
-    fieldSelector: "",
-    watch: false,
-    allowWatchBookmarks: false,
-    resourceVersion: "",
-    resourceVersionMatch: "",
-    timeoutSeconds: 0,
-    limit: 0,
-    continue: "",
-    sendInitialEvents: false,
-    shardSelector: "",
-  };
+    return {
+        labelSelector: '',
+        fieldSelector: '',
+        watch: false,
+        allowWatchBookmarks: false,
+        resourceVersion: '',
+        resourceVersionMatch: '',
+        timeoutSeconds: 0,
+        limit: 0,
+        continue: '',
+        sendInitialEvents: false,
+        shardSelector: '',
+    };
 }
 
 export const ListOptions: MessageFns<ListOptions> = {
-  encode(message: ListOptions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.labelSelector !== undefined && message.labelSelector !== "") {
-      writer.uint32(10).string(message.labelSelector);
-    }
-    if (message.fieldSelector !== undefined && message.fieldSelector !== "") {
-      writer.uint32(18).string(message.fieldSelector);
-    }
-    if (message.watch !== undefined && message.watch !== false) {
-      writer.uint32(24).bool(message.watch);
-    }
-    if (message.allowWatchBookmarks !== undefined && message.allowWatchBookmarks !== false) {
-      writer.uint32(72).bool(message.allowWatchBookmarks);
-    }
-    if (message.resourceVersion !== undefined && message.resourceVersion !== "") {
-      writer.uint32(34).string(message.resourceVersion);
-    }
-    if (message.resourceVersionMatch !== undefined && message.resourceVersionMatch !== "") {
-      writer.uint32(82).string(message.resourceVersionMatch);
-    }
-    if (message.timeoutSeconds !== undefined && message.timeoutSeconds !== 0) {
-      writer.uint32(40).int64(message.timeoutSeconds);
-    }
-    if (message.limit !== undefined && message.limit !== 0) {
-      writer.uint32(56).int64(message.limit);
-    }
-    if (message.continue !== undefined && message.continue !== "") {
-      writer.uint32(66).string(message.continue);
-    }
-    if (message.sendInitialEvents !== undefined && message.sendInitialEvents !== false) {
-      writer.uint32(88).bool(message.sendInitialEvents);
-    }
-    if (message.shardSelector !== undefined && message.shardSelector !== "") {
-      writer.uint32(122).string(message.shardSelector);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): ListOptions {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseListOptions();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.labelSelector = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.fieldSelector = reader.string();
-            continue;
-          }
-          case 3: {
-            if (tag !== 24) {
-              break;
-            }
-
-            message.watch = reader.bool();
-            continue;
-          }
-          case 9: {
-            if (tag !== 72) {
-              break;
-            }
-
-            message.allowWatchBookmarks = reader.bool();
-            continue;
-          }
-          case 4: {
-            if (tag !== 34) {
-              break;
-            }
-
-            message.resourceVersion = reader.string();
-            continue;
-          }
-          case 10: {
-            if (tag !== 82) {
-              break;
-            }
-
-            message.resourceVersionMatch = reader.string();
-            continue;
-          }
-          case 5: {
-            if (tag !== 40) {
-              break;
-            }
-
-            message.timeoutSeconds = longToNumber(reader.int64());
-            continue;
-          }
-          case 7: {
-            if (tag !== 56) {
-              break;
-            }
-
-            message.limit = longToNumber(reader.int64());
-            continue;
-          }
-          case 8: {
-            if (tag !== 66) {
-              break;
-            }
-
-            message.continue = reader.string();
-            continue;
-          }
-          case 11: {
-            if (tag !== 88) {
-              break;
-            }
-
-            message.sendInitialEvents = reader.bool();
-            continue;
-          }
-          case 15: {
-            if (tag !== 122) {
-              break;
-            }
-
-            message.shardSelector = reader.string();
-            continue;
-          }
+    encode(message: ListOptions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.labelSelector !== undefined && message.labelSelector !== '') {
+            writer.uint32(10).string(message.labelSelector);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.fieldSelector !== undefined && message.fieldSelector !== '') {
+            writer.uint32(18).string(message.fieldSelector);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        if (message.watch !== undefined && message.watch !== false) {
+            writer.uint32(24).bool(message.watch);
+        }
+        if (message.allowWatchBookmarks !== undefined && message.allowWatchBookmarks !== false) {
+            writer.uint32(72).bool(message.allowWatchBookmarks);
+        }
+        if (message.resourceVersion !== undefined && message.resourceVersion !== '') {
+            writer.uint32(34).string(message.resourceVersion);
+        }
+        if (message.resourceVersionMatch !== undefined && message.resourceVersionMatch !== '') {
+            writer.uint32(82).string(message.resourceVersionMatch);
+        }
+        if (message.timeoutSeconds !== undefined && message.timeoutSeconds !== 0) {
+            writer.uint32(40).int64(message.timeoutSeconds);
+        }
+        if (message.limit !== undefined && message.limit !== 0) {
+            writer.uint32(56).int64(message.limit);
+        }
+        if (message.continue !== undefined && message.continue !== '') {
+            writer.uint32(66).string(message.continue);
+        }
+        if (message.sendInitialEvents !== undefined && message.sendInitialEvents !== false) {
+            writer.uint32(88).bool(message.sendInitialEvents);
+        }
+        if (message.shardSelector !== undefined && message.shardSelector !== '') {
+            writer.uint32(122).string(message.shardSelector);
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): ListOptions {
-    return {
-      labelSelector: isSet(object.labelSelector) ? globalThis.String(object.labelSelector) : "",
-      fieldSelector: isSet(object.fieldSelector) ? globalThis.String(object.fieldSelector) : "",
-      watch: isSet(object.watch) ? globalThis.Boolean(object.watch) : false,
-      allowWatchBookmarks: isSet(object.allowWatchBookmarks) ? globalThis.Boolean(object.allowWatchBookmarks) : false,
-      resourceVersion: isSet(object.resourceVersion) ? globalThis.String(object.resourceVersion) : "",
-      resourceVersionMatch: isSet(object.resourceVersionMatch) ? globalThis.String(object.resourceVersionMatch) : "",
-      timeoutSeconds: isSet(object.timeoutSeconds) ? globalThis.Number(object.timeoutSeconds) : 0,
-      limit: isSet(object.limit) ? globalThis.Number(object.limit) : 0,
-      continue: isSet(object.continue) ? globalThis.String(object.continue) : "",
-      sendInitialEvents: isSet(object.sendInitialEvents) ? globalThis.Boolean(object.sendInitialEvents) : false,
-      shardSelector: isSet(object.shardSelector) ? globalThis.String(object.shardSelector) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): ListOptions {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseListOptions();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: ListOptions): unknown {
-    const obj: any = {};
-    if (message.labelSelector !== undefined && message.labelSelector !== "") {
-      obj.labelSelector = message.labelSelector;
-    }
-    if (message.fieldSelector !== undefined && message.fieldSelector !== "") {
-      obj.fieldSelector = message.fieldSelector;
-    }
-    if (message.watch !== undefined && message.watch !== false) {
-      obj.watch = message.watch;
-    }
-    if (message.allowWatchBookmarks !== undefined && message.allowWatchBookmarks !== false) {
-      obj.allowWatchBookmarks = message.allowWatchBookmarks;
-    }
-    if (message.resourceVersion !== undefined && message.resourceVersion !== "") {
-      obj.resourceVersion = message.resourceVersion;
-    }
-    if (message.resourceVersionMatch !== undefined && message.resourceVersionMatch !== "") {
-      obj.resourceVersionMatch = message.resourceVersionMatch;
-    }
-    if (message.timeoutSeconds !== undefined && message.timeoutSeconds !== 0) {
-      obj.timeoutSeconds = Math.round(message.timeoutSeconds);
-    }
-    if (message.limit !== undefined && message.limit !== 0) {
-      obj.limit = Math.round(message.limit);
-    }
-    if (message.continue !== undefined && message.continue !== "") {
-      obj.continue = message.continue;
-    }
-    if (message.sendInitialEvents !== undefined && message.sendInitialEvents !== false) {
-      obj.sendInitialEvents = message.sendInitialEvents;
-    }
-    if (message.shardSelector !== undefined && message.shardSelector !== "") {
-      obj.shardSelector = message.shardSelector;
-    }
-    return obj;
-  },
+                        message.labelSelector = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<ListOptions>, I>>(base?: I): ListOptions {
-    return ListOptions.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ListOptions>, I>>(object: I): ListOptions {
-    const message = createBaseListOptions();
-    message.labelSelector = object.labelSelector ?? "";
-    message.fieldSelector = object.fieldSelector ?? "";
-    message.watch = object.watch ?? false;
-    message.allowWatchBookmarks = object.allowWatchBookmarks ?? false;
-    message.resourceVersion = object.resourceVersion ?? "";
-    message.resourceVersionMatch = object.resourceVersionMatch ?? "";
-    message.timeoutSeconds = object.timeoutSeconds ?? 0;
-    message.limit = object.limit ?? 0;
-    message.continue = object.continue ?? "";
-    message.sendInitialEvents = object.sendInitialEvents ?? false;
-    message.shardSelector = object.shardSelector ?? "";
-    return message;
-  },
+                        message.fieldSelector = reader.string();
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 24) {
+                            break;
+                        }
+
+                        message.watch = reader.bool();
+                        continue;
+                    }
+                    case 9: {
+                        if (tag !== 72) {
+                            break;
+                        }
+
+                        message.allowWatchBookmarks = reader.bool();
+                        continue;
+                    }
+                    case 4: {
+                        if (tag !== 34) {
+                            break;
+                        }
+
+                        message.resourceVersion = reader.string();
+                        continue;
+                    }
+                    case 10: {
+                        if (tag !== 82) {
+                            break;
+                        }
+
+                        message.resourceVersionMatch = reader.string();
+                        continue;
+                    }
+                    case 5: {
+                        if (tag !== 40) {
+                            break;
+                        }
+
+                        message.timeoutSeconds = longToNumber(reader.int64());
+                        continue;
+                    }
+                    case 7: {
+                        if (tag !== 56) {
+                            break;
+                        }
+
+                        message.limit = longToNumber(reader.int64());
+                        continue;
+                    }
+                    case 8: {
+                        if (tag !== 66) {
+                            break;
+                        }
+
+                        message.continue = reader.string();
+                        continue;
+                    }
+                    case 11: {
+                        if (tag !== 88) {
+                            break;
+                        }
+
+                        message.sendInitialEvents = reader.bool();
+                        continue;
+                    }
+                    case 15: {
+                        if (tag !== 122) {
+                            break;
+                        }
+
+                        message.shardSelector = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): ListOptions {
+        return {
+            labelSelector: isSet(object.labelSelector) ? globalThis.String(object.labelSelector) : '',
+            fieldSelector: isSet(object.fieldSelector) ? globalThis.String(object.fieldSelector) : '',
+            watch: isSet(object.watch) ? globalThis.Boolean(object.watch) : false,
+            allowWatchBookmarks: isSet(object.allowWatchBookmarks)
+                ? globalThis.Boolean(object.allowWatchBookmarks)
+                : false,
+            resourceVersion: isSet(object.resourceVersion) ? globalThis.String(object.resourceVersion) : '',
+            resourceVersionMatch: isSet(object.resourceVersionMatch)
+                ? globalThis.String(object.resourceVersionMatch)
+                : '',
+            timeoutSeconds: isSet(object.timeoutSeconds) ? globalThis.Number(object.timeoutSeconds) : 0,
+            limit: isSet(object.limit) ? globalThis.Number(object.limit) : 0,
+            continue: isSet(object.continue) ? globalThis.String(object.continue) : '',
+            sendInitialEvents: isSet(object.sendInitialEvents)
+                ? globalThis.Boolean(object.sendInitialEvents)
+                : false,
+            shardSelector: isSet(object.shardSelector) ? globalThis.String(object.shardSelector) : '',
+        };
+    },
+
+    toJSON(message: ListOptions): unknown {
+        const obj: any = {};
+        if (message.labelSelector !== undefined && message.labelSelector !== '') {
+            obj.labelSelector = message.labelSelector;
+        }
+        if (message.fieldSelector !== undefined && message.fieldSelector !== '') {
+            obj.fieldSelector = message.fieldSelector;
+        }
+        if (message.watch !== undefined && message.watch !== false) {
+            obj.watch = message.watch;
+        }
+        if (message.allowWatchBookmarks !== undefined && message.allowWatchBookmarks !== false) {
+            obj.allowWatchBookmarks = message.allowWatchBookmarks;
+        }
+        if (message.resourceVersion !== undefined && message.resourceVersion !== '') {
+            obj.resourceVersion = message.resourceVersion;
+        }
+        if (message.resourceVersionMatch !== undefined && message.resourceVersionMatch !== '') {
+            obj.resourceVersionMatch = message.resourceVersionMatch;
+        }
+        if (message.timeoutSeconds !== undefined && message.timeoutSeconds !== 0) {
+            obj.timeoutSeconds = Math.round(message.timeoutSeconds);
+        }
+        if (message.limit !== undefined && message.limit !== 0) {
+            obj.limit = Math.round(message.limit);
+        }
+        if (message.continue !== undefined && message.continue !== '') {
+            obj.continue = message.continue;
+        }
+        if (message.sendInitialEvents !== undefined && message.sendInitialEvents !== false) {
+            obj.sendInitialEvents = message.sendInitialEvents;
+        }
+        if (message.shardSelector !== undefined && message.shardSelector !== '') {
+            obj.shardSelector = message.shardSelector;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<ListOptions>, I>>(base?: I): ListOptions {
+        return ListOptions.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<ListOptions>, I>>(object: I): ListOptions {
+        const message = createBaseListOptions();
+        message.labelSelector = object.labelSelector ?? '';
+        message.fieldSelector = object.fieldSelector ?? '';
+        message.watch = object.watch ?? false;
+        message.allowWatchBookmarks = object.allowWatchBookmarks ?? false;
+        message.resourceVersion = object.resourceVersion ?? '';
+        message.resourceVersionMatch = object.resourceVersionMatch ?? '';
+        message.timeoutSeconds = object.timeoutSeconds ?? 0;
+        message.limit = object.limit ?? 0;
+        message.continue = object.continue ?? '';
+        message.sendInitialEvents = object.sendInitialEvents ?? false;
+        message.shardSelector = object.shardSelector ?? '';
+        return message;
+    },
 };
 
 function createBaseManagedFieldsEntry(): ManagedFieldsEntry {
-  return {
-    manager: "",
-    operation: "",
-    apiVersion: "",
-    time: undefined,
-    fieldsType: "",
-    fieldsV1: undefined,
-    subresource: "",
-  };
+    return {
+        manager: '',
+        operation: '',
+        apiVersion: '',
+        time: undefined,
+        fieldsType: '',
+        fieldsV1: undefined,
+        subresource: '',
+    };
 }
 
 export const ManagedFieldsEntry: MessageFns<ManagedFieldsEntry> = {
-  encode(message: ManagedFieldsEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.manager !== undefined && message.manager !== "") {
-      writer.uint32(10).string(message.manager);
-    }
-    if (message.operation !== undefined && message.operation !== "") {
-      writer.uint32(18).string(message.operation);
-    }
-    if (message.apiVersion !== undefined && message.apiVersion !== "") {
-      writer.uint32(26).string(message.apiVersion);
-    }
-    if (message.time !== undefined) {
-      Time.encode(message.time, writer.uint32(34).fork()).join();
-    }
-    if (message.fieldsType !== undefined && message.fieldsType !== "") {
-      writer.uint32(50).string(message.fieldsType);
-    }
-    if (message.fieldsV1 !== undefined) {
-      FieldsV1.encode(message.fieldsV1, writer.uint32(58).fork()).join();
-    }
-    if (message.subresource !== undefined && message.subresource !== "") {
-      writer.uint32(66).string(message.subresource);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): ManagedFieldsEntry {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseManagedFieldsEntry();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.manager = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.operation = reader.string();
-            continue;
-          }
-          case 3: {
-            if (tag !== 26) {
-              break;
-            }
-
-            message.apiVersion = reader.string();
-            continue;
-          }
-          case 4: {
-            if (tag !== 34) {
-              break;
-            }
-
-            message.time = Time.decode(reader, reader.uint32());
-            continue;
-          }
-          case 6: {
-            if (tag !== 50) {
-              break;
-            }
-
-            message.fieldsType = reader.string();
-            continue;
-          }
-          case 7: {
-            if (tag !== 58) {
-              break;
-            }
-
-            message.fieldsV1 = FieldsV1.decode(reader, reader.uint32());
-            continue;
-          }
-          case 8: {
-            if (tag !== 66) {
-              break;
-            }
-
-            message.subresource = reader.string();
-            continue;
-          }
+    encode(message: ManagedFieldsEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.manager !== undefined && message.manager !== '') {
+            writer.uint32(10).string(message.manager);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.operation !== undefined && message.operation !== '') {
+            writer.uint32(18).string(message.operation);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        if (message.apiVersion !== undefined && message.apiVersion !== '') {
+            writer.uint32(26).string(message.apiVersion);
+        }
+        if (message.time !== undefined) {
+            Time.encode(message.time, writer.uint32(34).fork()).join();
+        }
+        if (message.fieldsType !== undefined && message.fieldsType !== '') {
+            writer.uint32(50).string(message.fieldsType);
+        }
+        if (message.fieldsV1 !== undefined) {
+            FieldsV1.encode(message.fieldsV1, writer.uint32(58).fork()).join();
+        }
+        if (message.subresource !== undefined && message.subresource !== '') {
+            writer.uint32(66).string(message.subresource);
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): ManagedFieldsEntry {
-    return {
-      manager: isSet(object.manager) ? globalThis.String(object.manager) : "",
-      operation: isSet(object.operation) ? globalThis.String(object.operation) : "",
-      apiVersion: isSet(object.apiVersion) ? globalThis.String(object.apiVersion) : "",
-      time: isSet(object.time) ? Time.fromJSON(object.time) : undefined,
-      fieldsType: isSet(object.fieldsType) ? globalThis.String(object.fieldsType) : "",
-      fieldsV1: isSet(object.fieldsV1) ? FieldsV1.fromJSON(object.fieldsV1) : undefined,
-      subresource: isSet(object.subresource) ? globalThis.String(object.subresource) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): ManagedFieldsEntry {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseManagedFieldsEntry();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: ManagedFieldsEntry): unknown {
-    const obj: any = {};
-    if (message.manager !== undefined && message.manager !== "") {
-      obj.manager = message.manager;
-    }
-    if (message.operation !== undefined && message.operation !== "") {
-      obj.operation = message.operation;
-    }
-    if (message.apiVersion !== undefined && message.apiVersion !== "") {
-      obj.apiVersion = message.apiVersion;
-    }
-    if (message.time !== undefined) {
-      obj.time = Time.toJSON(message.time);
-    }
-    if (message.fieldsType !== undefined && message.fieldsType !== "") {
-      obj.fieldsType = message.fieldsType;
-    }
-    if (message.fieldsV1 !== undefined) {
-      obj.fieldsV1 = FieldsV1.toJSON(message.fieldsV1);
-    }
-    if (message.subresource !== undefined && message.subresource !== "") {
-      obj.subresource = message.subresource;
-    }
-    return obj;
-  },
+                        message.manager = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<ManagedFieldsEntry>, I>>(base?: I): ManagedFieldsEntry {
-    return ManagedFieldsEntry.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ManagedFieldsEntry>, I>>(object: I): ManagedFieldsEntry {
-    const message = createBaseManagedFieldsEntry();
-    message.manager = object.manager ?? "";
-    message.operation = object.operation ?? "";
-    message.apiVersion = object.apiVersion ?? "";
-    message.time = (object.time !== undefined && object.time !== null) ? Time.fromPartial(object.time) : undefined;
-    message.fieldsType = object.fieldsType ?? "";
-    message.fieldsV1 = (object.fieldsV1 !== undefined && object.fieldsV1 !== null)
-      ? FieldsV1.fromPartial(object.fieldsV1)
-      : undefined;
-    message.subresource = object.subresource ?? "";
-    return message;
-  },
+                        message.operation = reader.string();
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 26) {
+                            break;
+                        }
+
+                        message.apiVersion = reader.string();
+                        continue;
+                    }
+                    case 4: {
+                        if (tag !== 34) {
+                            break;
+                        }
+
+                        message.time = Time.decode(reader, reader.uint32());
+                        continue;
+                    }
+                    case 6: {
+                        if (tag !== 50) {
+                            break;
+                        }
+
+                        message.fieldsType = reader.string();
+                        continue;
+                    }
+                    case 7: {
+                        if (tag !== 58) {
+                            break;
+                        }
+
+                        message.fieldsV1 = FieldsV1.decode(reader, reader.uint32());
+                        continue;
+                    }
+                    case 8: {
+                        if (tag !== 66) {
+                            break;
+                        }
+
+                        message.subresource = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): ManagedFieldsEntry {
+        return {
+            manager: isSet(object.manager) ? globalThis.String(object.manager) : '',
+            operation: isSet(object.operation) ? globalThis.String(object.operation) : '',
+            apiVersion: isSet(object.apiVersion) ? globalThis.String(object.apiVersion) : '',
+            time: isSet(object.time) ? Time.fromJSON(object.time) : undefined,
+            fieldsType: isSet(object.fieldsType) ? globalThis.String(object.fieldsType) : '',
+            fieldsV1: isSet(object.fieldsV1) ? FieldsV1.fromJSON(object.fieldsV1) : undefined,
+            subresource: isSet(object.subresource) ? globalThis.String(object.subresource) : '',
+        };
+    },
+
+    toJSON(message: ManagedFieldsEntry): unknown {
+        const obj: any = {};
+        if (message.manager !== undefined && message.manager !== '') {
+            obj.manager = message.manager;
+        }
+        if (message.operation !== undefined && message.operation !== '') {
+            obj.operation = message.operation;
+        }
+        if (message.apiVersion !== undefined && message.apiVersion !== '') {
+            obj.apiVersion = message.apiVersion;
+        }
+        if (message.time !== undefined) {
+            obj.time = Time.toJSON(message.time);
+        }
+        if (message.fieldsType !== undefined && message.fieldsType !== '') {
+            obj.fieldsType = message.fieldsType;
+        }
+        if (message.fieldsV1 !== undefined) {
+            obj.fieldsV1 = FieldsV1.toJSON(message.fieldsV1);
+        }
+        if (message.subresource !== undefined && message.subresource !== '') {
+            obj.subresource = message.subresource;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<ManagedFieldsEntry>, I>>(base?: I): ManagedFieldsEntry {
+        return ManagedFieldsEntry.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<ManagedFieldsEntry>, I>>(object: I): ManagedFieldsEntry {
+        const message = createBaseManagedFieldsEntry();
+        message.manager = object.manager ?? '';
+        message.operation = object.operation ?? '';
+        message.apiVersion = object.apiVersion ?? '';
+        message.time =
+            object.time !== undefined && object.time !== null ? Time.fromPartial(object.time) : undefined;
+        message.fieldsType = object.fieldsType ?? '';
+        message.fieldsV1 =
+            object.fieldsV1 !== undefined && object.fieldsV1 !== null
+                ? FieldsV1.fromPartial(object.fieldsV1)
+                : undefined;
+        message.subresource = object.subresource ?? '';
+        return message;
+    },
 };
 
 function createBaseMicroTime(): MicroTime {
-  return { seconds: 0, nanos: 0 };
+    return { seconds: 0, nanos: 0 };
 }
 
 export const MicroTime: MessageFns<MicroTime> = {
-  encode(message: MicroTime, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.seconds !== undefined && message.seconds !== 0) {
-      writer.uint32(8).int64(message.seconds);
-    }
-    if (message.nanos !== undefined && message.nanos !== 0) {
-      writer.uint32(16).int32(message.nanos);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): MicroTime {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseMicroTime();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 8) {
-              break;
-            }
-
-            message.seconds = longToNumber(reader.int64());
-            continue;
-          }
-          case 2: {
-            if (tag !== 16) {
-              break;
-            }
-
-            message.nanos = reader.int32();
-            continue;
-          }
+    encode(message: MicroTime, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.seconds !== undefined && message.seconds !== 0) {
+            writer.uint32(8).int64(message.seconds);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.nanos !== undefined && message.nanos !== 0) {
+            writer.uint32(16).int32(message.nanos);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): MicroTime {
-    return {
-      seconds: isSet(object.seconds) ? globalThis.Number(object.seconds) : 0,
-      nanos: isSet(object.nanos) ? globalThis.Number(object.nanos) : 0,
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): MicroTime {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseMicroTime();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 8) {
+                            break;
+                        }
 
-  toJSON(message: MicroTime): unknown {
-    const obj: any = {};
-    if (message.seconds !== undefined && message.seconds !== 0) {
-      obj.seconds = Math.round(message.seconds);
-    }
-    if (message.nanos !== undefined && message.nanos !== 0) {
-      obj.nanos = Math.round(message.nanos);
-    }
-    return obj;
-  },
+                        message.seconds = longToNumber(reader.int64());
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 16) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<MicroTime>, I>>(base?: I): MicroTime {
-    return MicroTime.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<MicroTime>, I>>(object: I): MicroTime {
-    const message = createBaseMicroTime();
-    message.seconds = object.seconds ?? 0;
-    message.nanos = object.nanos ?? 0;
-    return message;
-  },
+                        message.nanos = reader.int32();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): MicroTime {
+        return {
+            seconds: isSet(object.seconds) ? globalThis.Number(object.seconds) : 0,
+            nanos: isSet(object.nanos) ? globalThis.Number(object.nanos) : 0,
+        };
+    },
+
+    toJSON(message: MicroTime): unknown {
+        const obj: any = {};
+        if (message.seconds !== undefined && message.seconds !== 0) {
+            obj.seconds = Math.round(message.seconds);
+        }
+        if (message.nanos !== undefined && message.nanos !== 0) {
+            obj.nanos = Math.round(message.nanos);
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<MicroTime>, I>>(base?: I): MicroTime {
+        return MicroTime.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<MicroTime>, I>>(object: I): MicroTime {
+        const message = createBaseMicroTime();
+        message.seconds = object.seconds ?? 0;
+        message.nanos = object.nanos ?? 0;
+        return message;
+    },
 };
 
 function createBaseObjectMeta(): ObjectMeta {
-  return {
-    name: "",
-    generateName: "",
-    namespace: "",
-    selfLink: "",
-    uid: "",
-    resourceVersion: "",
-    generation: 0,
-    creationTimestamp: undefined,
-    deletionTimestamp: undefined,
-    deletionGracePeriodSeconds: 0,
-    labels: {},
-    annotations: {},
-    ownerReferences: [],
-    finalizers: [],
-    managedFields: [],
-  };
+    return {
+        name: '',
+        generateName: '',
+        namespace: '',
+        selfLink: '',
+        uid: '',
+        resourceVersion: '',
+        generation: 0,
+        creationTimestamp: undefined,
+        deletionTimestamp: undefined,
+        deletionGracePeriodSeconds: 0,
+        labels: {},
+        annotations: {},
+        ownerReferences: [],
+        finalizers: [],
+        managedFields: [],
+    };
 }
 
 export const ObjectMeta: MessageFns<ObjectMeta> = {
-  encode(message: ObjectMeta, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.name !== undefined && message.name !== "") {
-      writer.uint32(10).string(message.name);
-    }
-    if (message.generateName !== undefined && message.generateName !== "") {
-      writer.uint32(18).string(message.generateName);
-    }
-    if (message.namespace !== undefined && message.namespace !== "") {
-      writer.uint32(26).string(message.namespace);
-    }
-    if (message.selfLink !== undefined && message.selfLink !== "") {
-      writer.uint32(34).string(message.selfLink);
-    }
-    if (message.uid !== undefined && message.uid !== "") {
-      writer.uint32(42).string(message.uid);
-    }
-    if (message.resourceVersion !== undefined && message.resourceVersion !== "") {
-      writer.uint32(50).string(message.resourceVersion);
-    }
-    if (message.generation !== undefined && message.generation !== 0) {
-      writer.uint32(56).int64(message.generation);
-    }
-    if (message.creationTimestamp !== undefined) {
-      Time.encode(message.creationTimestamp, writer.uint32(66).fork()).join();
-    }
-    if (message.deletionTimestamp !== undefined) {
-      Time.encode(message.deletionTimestamp, writer.uint32(74).fork()).join();
-    }
-    if (message.deletionGracePeriodSeconds !== undefined && message.deletionGracePeriodSeconds !== 0) {
-      writer.uint32(80).int64(message.deletionGracePeriodSeconds);
-    }
-    globalThis.Object.entries(message.labels).forEach(([key, value]: [string, string]) => {
-      ObjectMeta_LabelsEntry.encode({ key: key as any, value }, writer.uint32(90).fork()).join();
-    });
-    globalThis.Object.entries(message.annotations).forEach(([key, value]: [string, string]) => {
-      ObjectMeta_AnnotationsEntry.encode({ key: key as any, value }, writer.uint32(98).fork()).join();
-    });
-    for (const v of message.ownerReferences) {
-      OwnerReference.encode(v!, writer.uint32(106).fork()).join();
-    }
-    for (const v of message.finalizers) {
-      writer.uint32(114).string(v!);
-    }
-    for (const v of message.managedFields) {
-      ManagedFieldsEntry.encode(v!, writer.uint32(138).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): ObjectMeta {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseObjectMeta();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.name = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.generateName = reader.string();
-            continue;
-          }
-          case 3: {
-            if (tag !== 26) {
-              break;
-            }
-
-            message.namespace = reader.string();
-            continue;
-          }
-          case 4: {
-            if (tag !== 34) {
-              break;
-            }
-
-            message.selfLink = reader.string();
-            continue;
-          }
-          case 5: {
-            if (tag !== 42) {
-              break;
-            }
-
-            message.uid = reader.string();
-            continue;
-          }
-          case 6: {
-            if (tag !== 50) {
-              break;
-            }
-
-            message.resourceVersion = reader.string();
-            continue;
-          }
-          case 7: {
-            if (tag !== 56) {
-              break;
-            }
-
-            message.generation = longToNumber(reader.int64());
-            continue;
-          }
-          case 8: {
-            if (tag !== 66) {
-              break;
-            }
-
-            message.creationTimestamp = Time.decode(reader, reader.uint32());
-            continue;
-          }
-          case 9: {
-            if (tag !== 74) {
-              break;
-            }
-
-            message.deletionTimestamp = Time.decode(reader, reader.uint32());
-            continue;
-          }
-          case 10: {
-            if (tag !== 80) {
-              break;
-            }
-
-            message.deletionGracePeriodSeconds = longToNumber(reader.int64());
-            continue;
-          }
-          case 11: {
-            if (tag !== 90) {
-              break;
-            }
-
-            const entry11 = ObjectMeta_LabelsEntry.decode(reader, reader.uint32());
-            if (entry11.value !== undefined) {
-              message.labels[entry11.key] = entry11.value;
-            }
-            continue;
-          }
-          case 12: {
-            if (tag !== 98) {
-              break;
-            }
-
-            const entry12 = ObjectMeta_AnnotationsEntry.decode(reader, reader.uint32());
-            if (entry12.value !== undefined) {
-              message.annotations[entry12.key] = entry12.value;
-            }
-            continue;
-          }
-          case 13: {
-            if (tag !== 106) {
-              break;
-            }
-
-            message.ownerReferences.push(OwnerReference.decode(reader, reader.uint32()));
-            continue;
-          }
-          case 14: {
-            if (tag !== 114) {
-              break;
-            }
-
-            message.finalizers.push(reader.string());
-            continue;
-          }
-          case 17: {
-            if (tag !== 138) {
-              break;
-            }
-
-            message.managedFields.push(ManagedFieldsEntry.decode(reader, reader.uint32()));
-            continue;
-          }
+    encode(message: ObjectMeta, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.name !== undefined && message.name !== '') {
+            writer.uint32(10).string(message.name);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.generateName !== undefined && message.generateName !== '') {
+            writer.uint32(18).string(message.generateName);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
-
-  fromJSON(object: any): ObjectMeta {
-    return {
-      name: isSet(object.name) ? globalThis.String(object.name) : "",
-      generateName: isSet(object.generateName) ? globalThis.String(object.generateName) : "",
-      namespace: isSet(object.namespace) ? globalThis.String(object.namespace) : "",
-      selfLink: isSet(object.selfLink) ? globalThis.String(object.selfLink) : "",
-      uid: isSet(object.uid) ? globalThis.String(object.uid) : "",
-      resourceVersion: isSet(object.resourceVersion) ? globalThis.String(object.resourceVersion) : "",
-      generation: isSet(object.generation) ? globalThis.Number(object.generation) : 0,
-      creationTimestamp: isSet(object.creationTimestamp) ? Time.fromJSON(object.creationTimestamp) : undefined,
-      deletionTimestamp: isSet(object.deletionTimestamp) ? Time.fromJSON(object.deletionTimestamp) : undefined,
-      deletionGracePeriodSeconds: isSet(object.deletionGracePeriodSeconds)
-        ? globalThis.Number(object.deletionGracePeriodSeconds)
-        : 0,
-      labels: isObject(object.labels)
-        ? (globalThis.Object.entries(object.labels) as [string, any][]).reduce(
-          (acc: { [key: string]: string }, [key, value]: [string, any]) => {
-            globalThis.Object.defineProperty(acc, key, {
-              value: globalThis.String(value),
-              enumerable: true,
-              configurable: true,
-              writable: true,
-            });
-            return acc;
-          },
-          {},
-        )
-        : {},
-      annotations: isObject(object.annotations)
-        ? (globalThis.Object.entries(object.annotations) as [string, any][]).reduce(
-          (acc: { [key: string]: string }, [key, value]: [string, any]) => {
-            globalThis.Object.defineProperty(acc, key, {
-              value: globalThis.String(value),
-              enumerable: true,
-              configurable: true,
-              writable: true,
-            });
-            return acc;
-          },
-          {},
-        )
-        : {},
-      ownerReferences: globalThis.Array.isArray(object?.ownerReferences)
-        ? object.ownerReferences.map((e: any) => OwnerReference.fromJSON(e))
-        : [],
-      finalizers: globalThis.Array.isArray(object?.finalizers)
-        ? object.finalizers.map((e: any) => globalThis.String(e))
-        : [],
-      managedFields: globalThis.Array.isArray(object?.managedFields)
-        ? object.managedFields.map((e: any) => ManagedFieldsEntry.fromJSON(e))
-        : [],
-    };
-  },
-
-  toJSON(message: ObjectMeta): unknown {
-    const obj: any = {};
-    if (message.name !== undefined && message.name !== "") {
-      obj.name = message.name;
-    }
-    if (message.generateName !== undefined && message.generateName !== "") {
-      obj.generateName = message.generateName;
-    }
-    if (message.namespace !== undefined && message.namespace !== "") {
-      obj.namespace = message.namespace;
-    }
-    if (message.selfLink !== undefined && message.selfLink !== "") {
-      obj.selfLink = message.selfLink;
-    }
-    if (message.uid !== undefined && message.uid !== "") {
-      obj.uid = message.uid;
-    }
-    if (message.resourceVersion !== undefined && message.resourceVersion !== "") {
-      obj.resourceVersion = message.resourceVersion;
-    }
-    if (message.generation !== undefined && message.generation !== 0) {
-      obj.generation = Math.round(message.generation);
-    }
-    if (message.creationTimestamp !== undefined) {
-      obj.creationTimestamp = Time.toJSON(message.creationTimestamp);
-    }
-    if (message.deletionTimestamp !== undefined) {
-      obj.deletionTimestamp = Time.toJSON(message.deletionTimestamp);
-    }
-    if (message.deletionGracePeriodSeconds !== undefined && message.deletionGracePeriodSeconds !== 0) {
-      obj.deletionGracePeriodSeconds = Math.round(message.deletionGracePeriodSeconds);
-    }
-    if (message.labels) {
-      const entries = globalThis.Object.entries(message.labels) as [string, string][];
-      if (entries.length > 0) {
-        obj.labels = {};
-        entries.forEach(([k, v]) => {
-          obj.labels[k] = v;
+        if (message.namespace !== undefined && message.namespace !== '') {
+            writer.uint32(26).string(message.namespace);
+        }
+        if (message.selfLink !== undefined && message.selfLink !== '') {
+            writer.uint32(34).string(message.selfLink);
+        }
+        if (message.uid !== undefined && message.uid !== '') {
+            writer.uint32(42).string(message.uid);
+        }
+        if (message.resourceVersion !== undefined && message.resourceVersion !== '') {
+            writer.uint32(50).string(message.resourceVersion);
+        }
+        if (message.generation !== undefined && message.generation !== 0) {
+            writer.uint32(56).int64(message.generation);
+        }
+        if (message.creationTimestamp !== undefined) {
+            Time.encode(message.creationTimestamp, writer.uint32(66).fork()).join();
+        }
+        if (message.deletionTimestamp !== undefined) {
+            Time.encode(message.deletionTimestamp, writer.uint32(74).fork()).join();
+        }
+        if (message.deletionGracePeriodSeconds !== undefined && message.deletionGracePeriodSeconds !== 0) {
+            writer.uint32(80).int64(message.deletionGracePeriodSeconds);
+        }
+        globalThis.Object.entries(message.labels).forEach(([key, value]: [string, string]) => {
+            ObjectMeta_LabelsEntry.encode({ key: key as any, value }, writer.uint32(90).fork()).join();
         });
-      }
-    }
-    if (message.annotations) {
-      const entries = globalThis.Object.entries(message.annotations) as [string, string][];
-      if (entries.length > 0) {
-        obj.annotations = {};
-        entries.forEach(([k, v]) => {
-          obj.annotations[k] = v;
+        globalThis.Object.entries(message.annotations).forEach(([key, value]: [string, string]) => {
+            ObjectMeta_AnnotationsEntry.encode({ key: key as any, value }, writer.uint32(98).fork()).join();
         });
-      }
-    }
-    if (message.ownerReferences?.length) {
-      obj.ownerReferences = message.ownerReferences.map((e) => OwnerReference.toJSON(e));
-    }
-    if (message.finalizers?.length) {
-      obj.finalizers = message.finalizers;
-    }
-    if (message.managedFields?.length) {
-      obj.managedFields = message.managedFields.map((e) => ManagedFieldsEntry.toJSON(e));
-    }
-    return obj;
-  },
+        for (const v of message.ownerReferences) {
+            OwnerReference.encode(v!, writer.uint32(106).fork()).join();
+        }
+        for (const v of message.finalizers) {
+            writer.uint32(114).string(v!);
+        }
+        for (const v of message.managedFields) {
+            ManagedFieldsEntry.encode(v!, writer.uint32(138).fork()).join();
+        }
+        return writer;
+    },
 
-  create<I extends Exact<DeepPartial<ObjectMeta>, I>>(base?: I): ObjectMeta {
-    return ObjectMeta.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ObjectMeta>, I>>(object: I): ObjectMeta {
-    const message = createBaseObjectMeta();
-    message.name = object.name ?? "";
-    message.generateName = object.generateName ?? "";
-    message.namespace = object.namespace ?? "";
-    message.selfLink = object.selfLink ?? "";
-    message.uid = object.uid ?? "";
-    message.resourceVersion = object.resourceVersion ?? "";
-    message.generation = object.generation ?? 0;
-    message.creationTimestamp = (object.creationTimestamp !== undefined && object.creationTimestamp !== null)
-      ? Time.fromPartial(object.creationTimestamp)
-      : undefined;
-    message.deletionTimestamp = (object.deletionTimestamp !== undefined && object.deletionTimestamp !== null)
-      ? Time.fromPartial(object.deletionTimestamp)
-      : undefined;
-    message.deletionGracePeriodSeconds = object.deletionGracePeriodSeconds ?? 0;
-    message.labels = (globalThis.Object.entries(object.labels ?? {}) as [string, string][]).reduce(
-      (acc: { [key: string]: string }, [key, value]: [string, string]) => {
-        if (value !== undefined) {
-          acc[key] = globalThis.String(value);
+    decode(input: BinaryReader | Uint8Array, length?: number): ObjectMeta {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
         }
-        return acc;
-      },
-      {},
-    );
-    message.annotations = (globalThis.Object.entries(object.annotations ?? {}) as [string, string][]).reduce(
-      (acc: { [key: string]: string }, [key, value]: [string, string]) => {
-        if (value !== undefined) {
-          acc[key] = globalThis.String(value);
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseObjectMeta();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
+
+                        message.name = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
+
+                        message.generateName = reader.string();
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 26) {
+                            break;
+                        }
+
+                        message.namespace = reader.string();
+                        continue;
+                    }
+                    case 4: {
+                        if (tag !== 34) {
+                            break;
+                        }
+
+                        message.selfLink = reader.string();
+                        continue;
+                    }
+                    case 5: {
+                        if (tag !== 42) {
+                            break;
+                        }
+
+                        message.uid = reader.string();
+                        continue;
+                    }
+                    case 6: {
+                        if (tag !== 50) {
+                            break;
+                        }
+
+                        message.resourceVersion = reader.string();
+                        continue;
+                    }
+                    case 7: {
+                        if (tag !== 56) {
+                            break;
+                        }
+
+                        message.generation = longToNumber(reader.int64());
+                        continue;
+                    }
+                    case 8: {
+                        if (tag !== 66) {
+                            break;
+                        }
+
+                        message.creationTimestamp = Time.decode(reader, reader.uint32());
+                        continue;
+                    }
+                    case 9: {
+                        if (tag !== 74) {
+                            break;
+                        }
+
+                        message.deletionTimestamp = Time.decode(reader, reader.uint32());
+                        continue;
+                    }
+                    case 10: {
+                        if (tag !== 80) {
+                            break;
+                        }
+
+                        message.deletionGracePeriodSeconds = longToNumber(reader.int64());
+                        continue;
+                    }
+                    case 11: {
+                        if (tag !== 90) {
+                            break;
+                        }
+
+                        const entry11 = ObjectMeta_LabelsEntry.decode(reader, reader.uint32());
+                        if (entry11.value !== undefined) {
+                            message.labels[entry11.key] = entry11.value;
+                        }
+                        continue;
+                    }
+                    case 12: {
+                        if (tag !== 98) {
+                            break;
+                        }
+
+                        const entry12 = ObjectMeta_AnnotationsEntry.decode(reader, reader.uint32());
+                        if (entry12.value !== undefined) {
+                            message.annotations[entry12.key] = entry12.value;
+                        }
+                        continue;
+                    }
+                    case 13: {
+                        if (tag !== 106) {
+                            break;
+                        }
+
+                        message.ownerReferences.push(OwnerReference.decode(reader, reader.uint32()));
+                        continue;
+                    }
+                    case 14: {
+                        if (tag !== 114) {
+                            break;
+                        }
+
+                        message.finalizers.push(reader.string());
+                        continue;
+                    }
+                    case 17: {
+                        if (tag !== 138) {
+                            break;
+                        }
+
+                        message.managedFields.push(ManagedFieldsEntry.decode(reader, reader.uint32()));
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
         }
-        return acc;
-      },
-      {},
-    );
-    message.ownerReferences = object.ownerReferences?.map((e) => OwnerReference.fromPartial(e)) || [];
-    message.finalizers = object.finalizers?.map((e) => e) || [];
-    message.managedFields = object.managedFields?.map((e) => ManagedFieldsEntry.fromPartial(e)) || [];
-    return message;
-  },
+    },
+
+    fromJSON(object: any): ObjectMeta {
+        return {
+            name: isSet(object.name) ? globalThis.String(object.name) : '',
+            generateName: isSet(object.generateName) ? globalThis.String(object.generateName) : '',
+            namespace: isSet(object.namespace) ? globalThis.String(object.namespace) : '',
+            selfLink: isSet(object.selfLink) ? globalThis.String(object.selfLink) : '',
+            uid: isSet(object.uid) ? globalThis.String(object.uid) : '',
+            resourceVersion: isSet(object.resourceVersion) ? globalThis.String(object.resourceVersion) : '',
+            generation: isSet(object.generation) ? globalThis.Number(object.generation) : 0,
+            creationTimestamp: isSet(object.creationTimestamp)
+                ? Time.fromJSON(object.creationTimestamp)
+                : undefined,
+            deletionTimestamp: isSet(object.deletionTimestamp)
+                ? Time.fromJSON(object.deletionTimestamp)
+                : undefined,
+            deletionGracePeriodSeconds: isSet(object.deletionGracePeriodSeconds)
+                ? globalThis.Number(object.deletionGracePeriodSeconds)
+                : 0,
+            labels: isObject(object.labels)
+                ? (globalThis.Object.entries(object.labels) as [string, any][]).reduce(
+                      (acc: { [key: string]: string }, [key, value]: [string, any]) => {
+                          globalThis.Object.defineProperty(acc, key, {
+                              value: globalThis.String(value),
+                              enumerable: true,
+                              configurable: true,
+                              writable: true,
+                          });
+                          return acc;
+                      },
+                      {},
+                  )
+                : {},
+            annotations: isObject(object.annotations)
+                ? (globalThis.Object.entries(object.annotations) as [string, any][]).reduce(
+                      (acc: { [key: string]: string }, [key, value]: [string, any]) => {
+                          globalThis.Object.defineProperty(acc, key, {
+                              value: globalThis.String(value),
+                              enumerable: true,
+                              configurable: true,
+                              writable: true,
+                          });
+                          return acc;
+                      },
+                      {},
+                  )
+                : {},
+            ownerReferences: globalThis.Array.isArray(object?.ownerReferences)
+                ? object.ownerReferences.map((e: any) => OwnerReference.fromJSON(e))
+                : [],
+            finalizers: globalThis.Array.isArray(object?.finalizers)
+                ? object.finalizers.map((e: any) => globalThis.String(e))
+                : [],
+            managedFields: globalThis.Array.isArray(object?.managedFields)
+                ? object.managedFields.map((e: any) => ManagedFieldsEntry.fromJSON(e))
+                : [],
+        };
+    },
+
+    toJSON(message: ObjectMeta): unknown {
+        const obj: any = {};
+        if (message.name !== undefined && message.name !== '') {
+            obj.name = message.name;
+        }
+        if (message.generateName !== undefined && message.generateName !== '') {
+            obj.generateName = message.generateName;
+        }
+        if (message.namespace !== undefined && message.namespace !== '') {
+            obj.namespace = message.namespace;
+        }
+        if (message.selfLink !== undefined && message.selfLink !== '') {
+            obj.selfLink = message.selfLink;
+        }
+        if (message.uid !== undefined && message.uid !== '') {
+            obj.uid = message.uid;
+        }
+        if (message.resourceVersion !== undefined && message.resourceVersion !== '') {
+            obj.resourceVersion = message.resourceVersion;
+        }
+        if (message.generation !== undefined && message.generation !== 0) {
+            obj.generation = Math.round(message.generation);
+        }
+        if (message.creationTimestamp !== undefined) {
+            obj.creationTimestamp = Time.toJSON(message.creationTimestamp);
+        }
+        if (message.deletionTimestamp !== undefined) {
+            obj.deletionTimestamp = Time.toJSON(message.deletionTimestamp);
+        }
+        if (message.deletionGracePeriodSeconds !== undefined && message.deletionGracePeriodSeconds !== 0) {
+            obj.deletionGracePeriodSeconds = Math.round(message.deletionGracePeriodSeconds);
+        }
+        if (message.labels) {
+            const entries = globalThis.Object.entries(message.labels) as [string, string][];
+            if (entries.length > 0) {
+                obj.labels = {};
+                entries.forEach(([k, v]) => {
+                    obj.labels[k] = v;
+                });
+            }
+        }
+        if (message.annotations) {
+            const entries = globalThis.Object.entries(message.annotations) as [string, string][];
+            if (entries.length > 0) {
+                obj.annotations = {};
+                entries.forEach(([k, v]) => {
+                    obj.annotations[k] = v;
+                });
+            }
+        }
+        if (message.ownerReferences?.length) {
+            obj.ownerReferences = message.ownerReferences.map((e) => OwnerReference.toJSON(e));
+        }
+        if (message.finalizers?.length) {
+            obj.finalizers = message.finalizers;
+        }
+        if (message.managedFields?.length) {
+            obj.managedFields = message.managedFields.map((e) => ManagedFieldsEntry.toJSON(e));
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<ObjectMeta>, I>>(base?: I): ObjectMeta {
+        return ObjectMeta.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<ObjectMeta>, I>>(object: I): ObjectMeta {
+        const message = createBaseObjectMeta();
+        message.name = object.name ?? '';
+        message.generateName = object.generateName ?? '';
+        message.namespace = object.namespace ?? '';
+        message.selfLink = object.selfLink ?? '';
+        message.uid = object.uid ?? '';
+        message.resourceVersion = object.resourceVersion ?? '';
+        message.generation = object.generation ?? 0;
+        message.creationTimestamp =
+            object.creationTimestamp !== undefined && object.creationTimestamp !== null
+                ? Time.fromPartial(object.creationTimestamp)
+                : undefined;
+        message.deletionTimestamp =
+            object.deletionTimestamp !== undefined && object.deletionTimestamp !== null
+                ? Time.fromPartial(object.deletionTimestamp)
+                : undefined;
+        message.deletionGracePeriodSeconds = object.deletionGracePeriodSeconds ?? 0;
+        message.labels = (globalThis.Object.entries(object.labels ?? {}) as [string, string][]).reduce(
+            (acc: { [key: string]: string }, [key, value]: [string, string]) => {
+                if (value !== undefined) {
+                    acc[key] = globalThis.String(value);
+                }
+                return acc;
+            },
+            {},
+        );
+        message.annotations = (
+            globalThis.Object.entries(object.annotations ?? {}) as [string, string][]
+        ).reduce((acc: { [key: string]: string }, [key, value]: [string, string]) => {
+            if (value !== undefined) {
+                acc[key] = globalThis.String(value);
+            }
+            return acc;
+        }, {});
+        message.ownerReferences = object.ownerReferences?.map((e) => OwnerReference.fromPartial(e)) || [];
+        message.finalizers = object.finalizers?.map((e) => e) || [];
+        message.managedFields = object.managedFields?.map((e) => ManagedFieldsEntry.fromPartial(e)) || [];
+        return message;
+    },
 };
 
 function createBaseObjectMeta_LabelsEntry(): ObjectMeta_LabelsEntry {
-  return { key: "", value: "" };
+    return { key: '', value: '' };
 }
 
 export const ObjectMeta_LabelsEntry: MessageFns<ObjectMeta_LabelsEntry> = {
-  encode(message: ObjectMeta_LabelsEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.key !== "") {
-      writer.uint32(10).string(message.key);
-    }
-    if (message.value !== "") {
-      writer.uint32(18).string(message.value);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): ObjectMeta_LabelsEntry {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseObjectMeta_LabelsEntry();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.key = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.value = reader.string();
-            continue;
-          }
+    encode(message: ObjectMeta_LabelsEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.key !== '') {
+            writer.uint32(10).string(message.key);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.value !== '') {
+            writer.uint32(18).string(message.value);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): ObjectMeta_LabelsEntry {
-    return {
-      key: isSet(object.key) ? globalThis.String(object.key) : "",
-      value: isSet(object.value) ? globalThis.String(object.value) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): ObjectMeta_LabelsEntry {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseObjectMeta_LabelsEntry();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: ObjectMeta_LabelsEntry): unknown {
-    const obj: any = {};
-    if (message.key !== "") {
-      obj.key = message.key;
-    }
-    if (message.value !== "") {
-      obj.value = message.value;
-    }
-    return obj;
-  },
+                        message.key = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<ObjectMeta_LabelsEntry>, I>>(base?: I): ObjectMeta_LabelsEntry {
-    return ObjectMeta_LabelsEntry.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ObjectMeta_LabelsEntry>, I>>(object: I): ObjectMeta_LabelsEntry {
-    const message = createBaseObjectMeta_LabelsEntry();
-    message.key = object.key ?? "";
-    message.value = object.value ?? "";
-    return message;
-  },
+                        message.value = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): ObjectMeta_LabelsEntry {
+        return {
+            key: isSet(object.key) ? globalThis.String(object.key) : '',
+            value: isSet(object.value) ? globalThis.String(object.value) : '',
+        };
+    },
+
+    toJSON(message: ObjectMeta_LabelsEntry): unknown {
+        const obj: any = {};
+        if (message.key !== '') {
+            obj.key = message.key;
+        }
+        if (message.value !== '') {
+            obj.value = message.value;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<ObjectMeta_LabelsEntry>, I>>(base?: I): ObjectMeta_LabelsEntry {
+        return ObjectMeta_LabelsEntry.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<ObjectMeta_LabelsEntry>, I>>(object: I): ObjectMeta_LabelsEntry {
+        const message = createBaseObjectMeta_LabelsEntry();
+        message.key = object.key ?? '';
+        message.value = object.value ?? '';
+        return message;
+    },
 };
 
 function createBaseObjectMeta_AnnotationsEntry(): ObjectMeta_AnnotationsEntry {
-  return { key: "", value: "" };
+    return { key: '', value: '' };
 }
 
 export const ObjectMeta_AnnotationsEntry: MessageFns<ObjectMeta_AnnotationsEntry> = {
-  encode(message: ObjectMeta_AnnotationsEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.key !== "") {
-      writer.uint32(10).string(message.key);
-    }
-    if (message.value !== "") {
-      writer.uint32(18).string(message.value);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): ObjectMeta_AnnotationsEntry {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseObjectMeta_AnnotationsEntry();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.key = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.value = reader.string();
-            continue;
-          }
+    encode(message: ObjectMeta_AnnotationsEntry, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.key !== '') {
+            writer.uint32(10).string(message.key);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.value !== '') {
+            writer.uint32(18).string(message.value);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): ObjectMeta_AnnotationsEntry {
-    return {
-      key: isSet(object.key) ? globalThis.String(object.key) : "",
-      value: isSet(object.value) ? globalThis.String(object.value) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): ObjectMeta_AnnotationsEntry {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseObjectMeta_AnnotationsEntry();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: ObjectMeta_AnnotationsEntry): unknown {
-    const obj: any = {};
-    if (message.key !== "") {
-      obj.key = message.key;
-    }
-    if (message.value !== "") {
-      obj.value = message.value;
-    }
-    return obj;
-  },
+                        message.key = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<ObjectMeta_AnnotationsEntry>, I>>(base?: I): ObjectMeta_AnnotationsEntry {
-    return ObjectMeta_AnnotationsEntry.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ObjectMeta_AnnotationsEntry>, I>>(object: I): ObjectMeta_AnnotationsEntry {
-    const message = createBaseObjectMeta_AnnotationsEntry();
-    message.key = object.key ?? "";
-    message.value = object.value ?? "";
-    return message;
-  },
+                        message.value = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): ObjectMeta_AnnotationsEntry {
+        return {
+            key: isSet(object.key) ? globalThis.String(object.key) : '',
+            value: isSet(object.value) ? globalThis.String(object.value) : '',
+        };
+    },
+
+    toJSON(message: ObjectMeta_AnnotationsEntry): unknown {
+        const obj: any = {};
+        if (message.key !== '') {
+            obj.key = message.key;
+        }
+        if (message.value !== '') {
+            obj.value = message.value;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<ObjectMeta_AnnotationsEntry>, I>>(
+        base?: I,
+    ): ObjectMeta_AnnotationsEntry {
+        return ObjectMeta_AnnotationsEntry.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<ObjectMeta_AnnotationsEntry>, I>>(
+        object: I,
+    ): ObjectMeta_AnnotationsEntry {
+        const message = createBaseObjectMeta_AnnotationsEntry();
+        message.key = object.key ?? '';
+        message.value = object.value ?? '';
+        return message;
+    },
 };
 
 function createBaseOwnerReference(): OwnerReference {
-  return { apiVersion: "", kind: "", name: "", uid: "", controller: false, blockOwnerDeletion: false };
+    return { apiVersion: '', kind: '', name: '', uid: '', controller: false, blockOwnerDeletion: false };
 }
 
 export const OwnerReference: MessageFns<OwnerReference> = {
-  encode(message: OwnerReference, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.apiVersion !== undefined && message.apiVersion !== "") {
-      writer.uint32(42).string(message.apiVersion);
-    }
-    if (message.kind !== undefined && message.kind !== "") {
-      writer.uint32(10).string(message.kind);
-    }
-    if (message.name !== undefined && message.name !== "") {
-      writer.uint32(26).string(message.name);
-    }
-    if (message.uid !== undefined && message.uid !== "") {
-      writer.uint32(34).string(message.uid);
-    }
-    if (message.controller !== undefined && message.controller !== false) {
-      writer.uint32(48).bool(message.controller);
-    }
-    if (message.blockOwnerDeletion !== undefined && message.blockOwnerDeletion !== false) {
-      writer.uint32(56).bool(message.blockOwnerDeletion);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): OwnerReference {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseOwnerReference();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 5: {
-            if (tag !== 42) {
-              break;
-            }
-
-            message.apiVersion = reader.string();
-            continue;
-          }
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.kind = reader.string();
-            continue;
-          }
-          case 3: {
-            if (tag !== 26) {
-              break;
-            }
-
-            message.name = reader.string();
-            continue;
-          }
-          case 4: {
-            if (tag !== 34) {
-              break;
-            }
-
-            message.uid = reader.string();
-            continue;
-          }
-          case 6: {
-            if (tag !== 48) {
-              break;
-            }
-
-            message.controller = reader.bool();
-            continue;
-          }
-          case 7: {
-            if (tag !== 56) {
-              break;
-            }
-
-            message.blockOwnerDeletion = reader.bool();
-            continue;
-          }
+    encode(message: OwnerReference, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.apiVersion !== undefined && message.apiVersion !== '') {
+            writer.uint32(42).string(message.apiVersion);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.kind !== undefined && message.kind !== '') {
+            writer.uint32(10).string(message.kind);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        if (message.name !== undefined && message.name !== '') {
+            writer.uint32(26).string(message.name);
+        }
+        if (message.uid !== undefined && message.uid !== '') {
+            writer.uint32(34).string(message.uid);
+        }
+        if (message.controller !== undefined && message.controller !== false) {
+            writer.uint32(48).bool(message.controller);
+        }
+        if (message.blockOwnerDeletion !== undefined && message.blockOwnerDeletion !== false) {
+            writer.uint32(56).bool(message.blockOwnerDeletion);
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): OwnerReference {
-    return {
-      apiVersion: isSet(object.apiVersion) ? globalThis.String(object.apiVersion) : "",
-      kind: isSet(object.kind) ? globalThis.String(object.kind) : "",
-      name: isSet(object.name) ? globalThis.String(object.name) : "",
-      uid: isSet(object.uid) ? globalThis.String(object.uid) : "",
-      controller: isSet(object.controller) ? globalThis.Boolean(object.controller) : false,
-      blockOwnerDeletion: isSet(object.blockOwnerDeletion) ? globalThis.Boolean(object.blockOwnerDeletion) : false,
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): OwnerReference {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseOwnerReference();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 5: {
+                        if (tag !== 42) {
+                            break;
+                        }
 
-  toJSON(message: OwnerReference): unknown {
-    const obj: any = {};
-    if (message.apiVersion !== undefined && message.apiVersion !== "") {
-      obj.apiVersion = message.apiVersion;
-    }
-    if (message.kind !== undefined && message.kind !== "") {
-      obj.kind = message.kind;
-    }
-    if (message.name !== undefined && message.name !== "") {
-      obj.name = message.name;
-    }
-    if (message.uid !== undefined && message.uid !== "") {
-      obj.uid = message.uid;
-    }
-    if (message.controller !== undefined && message.controller !== false) {
-      obj.controller = message.controller;
-    }
-    if (message.blockOwnerDeletion !== undefined && message.blockOwnerDeletion !== false) {
-      obj.blockOwnerDeletion = message.blockOwnerDeletion;
-    }
-    return obj;
-  },
+                        message.apiVersion = reader.string();
+                        continue;
+                    }
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<OwnerReference>, I>>(base?: I): OwnerReference {
-    return OwnerReference.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<OwnerReference>, I>>(object: I): OwnerReference {
-    const message = createBaseOwnerReference();
-    message.apiVersion = object.apiVersion ?? "";
-    message.kind = object.kind ?? "";
-    message.name = object.name ?? "";
-    message.uid = object.uid ?? "";
-    message.controller = object.controller ?? false;
-    message.blockOwnerDeletion = object.blockOwnerDeletion ?? false;
-    return message;
-  },
+                        message.kind = reader.string();
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 26) {
+                            break;
+                        }
+
+                        message.name = reader.string();
+                        continue;
+                    }
+                    case 4: {
+                        if (tag !== 34) {
+                            break;
+                        }
+
+                        message.uid = reader.string();
+                        continue;
+                    }
+                    case 6: {
+                        if (tag !== 48) {
+                            break;
+                        }
+
+                        message.controller = reader.bool();
+                        continue;
+                    }
+                    case 7: {
+                        if (tag !== 56) {
+                            break;
+                        }
+
+                        message.blockOwnerDeletion = reader.bool();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): OwnerReference {
+        return {
+            apiVersion: isSet(object.apiVersion) ? globalThis.String(object.apiVersion) : '',
+            kind: isSet(object.kind) ? globalThis.String(object.kind) : '',
+            name: isSet(object.name) ? globalThis.String(object.name) : '',
+            uid: isSet(object.uid) ? globalThis.String(object.uid) : '',
+            controller: isSet(object.controller) ? globalThis.Boolean(object.controller) : false,
+            blockOwnerDeletion: isSet(object.blockOwnerDeletion)
+                ? globalThis.Boolean(object.blockOwnerDeletion)
+                : false,
+        };
+    },
+
+    toJSON(message: OwnerReference): unknown {
+        const obj: any = {};
+        if (message.apiVersion !== undefined && message.apiVersion !== '') {
+            obj.apiVersion = message.apiVersion;
+        }
+        if (message.kind !== undefined && message.kind !== '') {
+            obj.kind = message.kind;
+        }
+        if (message.name !== undefined && message.name !== '') {
+            obj.name = message.name;
+        }
+        if (message.uid !== undefined && message.uid !== '') {
+            obj.uid = message.uid;
+        }
+        if (message.controller !== undefined && message.controller !== false) {
+            obj.controller = message.controller;
+        }
+        if (message.blockOwnerDeletion !== undefined && message.blockOwnerDeletion !== false) {
+            obj.blockOwnerDeletion = message.blockOwnerDeletion;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<OwnerReference>, I>>(base?: I): OwnerReference {
+        return OwnerReference.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<OwnerReference>, I>>(object: I): OwnerReference {
+        const message = createBaseOwnerReference();
+        message.apiVersion = object.apiVersion ?? '';
+        message.kind = object.kind ?? '';
+        message.name = object.name ?? '';
+        message.uid = object.uid ?? '';
+        message.controller = object.controller ?? false;
+        message.blockOwnerDeletion = object.blockOwnerDeletion ?? false;
+        return message;
+    },
 };
 
 function createBasePartialObjectMetadata(): PartialObjectMetadata {
-  return { metadata: undefined };
+    return { metadata: undefined };
 }
 
 export const PartialObjectMetadata: MessageFns<PartialObjectMetadata> = {
-  encode(message: PartialObjectMetadata, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.metadata !== undefined) {
-      ObjectMeta.encode(message.metadata, writer.uint32(10).fork()).join();
-    }
-    return writer;
-  },
+    encode(message: PartialObjectMetadata, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.metadata !== undefined) {
+            ObjectMeta.encode(message.metadata, writer.uint32(10).fork()).join();
+        }
+        return writer;
+    },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): PartialObjectMetadata {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBasePartialObjectMetadata();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
+    decode(input: BinaryReader | Uint8Array, length?: number): PartialObjectMetadata {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBasePartialObjectMetadata();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
+
+                        message.metadata = ObjectMeta.decode(reader, reader.uint32());
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
             }
-
-            message.metadata = ObjectMeta.decode(reader, reader.uint32());
-            continue;
-          }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+    },
+
+    fromJSON(object: any): PartialObjectMetadata {
+        return { metadata: isSet(object.metadata) ? ObjectMeta.fromJSON(object.metadata) : undefined };
+    },
+
+    toJSON(message: PartialObjectMetadata): unknown {
+        const obj: any = {};
+        if (message.metadata !== undefined) {
+            obj.metadata = ObjectMeta.toJSON(message.metadata);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return obj;
+    },
 
-  fromJSON(object: any): PartialObjectMetadata {
-    return { metadata: isSet(object.metadata) ? ObjectMeta.fromJSON(object.metadata) : undefined };
-  },
-
-  toJSON(message: PartialObjectMetadata): unknown {
-    const obj: any = {};
-    if (message.metadata !== undefined) {
-      obj.metadata = ObjectMeta.toJSON(message.metadata);
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<PartialObjectMetadata>, I>>(base?: I): PartialObjectMetadata {
-    return PartialObjectMetadata.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PartialObjectMetadata>, I>>(object: I): PartialObjectMetadata {
-    const message = createBasePartialObjectMetadata();
-    message.metadata = (object.metadata !== undefined && object.metadata !== null)
-      ? ObjectMeta.fromPartial(object.metadata)
-      : undefined;
-    return message;
-  },
+    create<I extends Exact<DeepPartial<PartialObjectMetadata>, I>>(base?: I): PartialObjectMetadata {
+        return PartialObjectMetadata.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<PartialObjectMetadata>, I>>(object: I): PartialObjectMetadata {
+        const message = createBasePartialObjectMetadata();
+        message.metadata =
+            object.metadata !== undefined && object.metadata !== null
+                ? ObjectMeta.fromPartial(object.metadata)
+                : undefined;
+        return message;
+    },
 };
 
 function createBasePartialObjectMetadataList(): PartialObjectMetadataList {
-  return { metadata: undefined, items: [] };
+    return { metadata: undefined, items: [] };
 }
 
 export const PartialObjectMetadataList: MessageFns<PartialObjectMetadataList> = {
-  encode(message: PartialObjectMetadataList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.metadata !== undefined) {
-      ListMeta.encode(message.metadata, writer.uint32(10).fork()).join();
-    }
-    for (const v of message.items) {
-      PartialObjectMetadata.encode(v!, writer.uint32(18).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): PartialObjectMetadataList {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBasePartialObjectMetadataList();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.metadata = ListMeta.decode(reader, reader.uint32());
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.items.push(PartialObjectMetadata.decode(reader, reader.uint32()));
-            continue;
-          }
+    encode(message: PartialObjectMetadataList, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.metadata !== undefined) {
+            ListMeta.encode(message.metadata, writer.uint32(10).fork()).join();
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        for (const v of message.items) {
+            PartialObjectMetadata.encode(v!, writer.uint32(18).fork()).join();
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): PartialObjectMetadataList {
-    return {
-      metadata: isSet(object.metadata) ? ListMeta.fromJSON(object.metadata) : undefined,
-      items: globalThis.Array.isArray(object?.items)
-        ? object.items.map((e: any) => PartialObjectMetadata.fromJSON(e))
-        : [],
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): PartialObjectMetadataList {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBasePartialObjectMetadataList();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: PartialObjectMetadataList): unknown {
-    const obj: any = {};
-    if (message.metadata !== undefined) {
-      obj.metadata = ListMeta.toJSON(message.metadata);
-    }
-    if (message.items?.length) {
-      obj.items = message.items.map((e) => PartialObjectMetadata.toJSON(e));
-    }
-    return obj;
-  },
+                        message.metadata = ListMeta.decode(reader, reader.uint32());
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<PartialObjectMetadataList>, I>>(base?: I): PartialObjectMetadataList {
-    return PartialObjectMetadataList.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PartialObjectMetadataList>, I>>(object: I): PartialObjectMetadataList {
-    const message = createBasePartialObjectMetadataList();
-    message.metadata = (object.metadata !== undefined && object.metadata !== null)
-      ? ListMeta.fromPartial(object.metadata)
-      : undefined;
-    message.items = object.items?.map((e) => PartialObjectMetadata.fromPartial(e)) || [];
-    return message;
-  },
+                        message.items.push(PartialObjectMetadata.decode(reader, reader.uint32()));
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): PartialObjectMetadataList {
+        return {
+            metadata: isSet(object.metadata) ? ListMeta.fromJSON(object.metadata) : undefined,
+            items: globalThis.Array.isArray(object?.items)
+                ? object.items.map((e: any) => PartialObjectMetadata.fromJSON(e))
+                : [],
+        };
+    },
+
+    toJSON(message: PartialObjectMetadataList): unknown {
+        const obj: any = {};
+        if (message.metadata !== undefined) {
+            obj.metadata = ListMeta.toJSON(message.metadata);
+        }
+        if (message.items?.length) {
+            obj.items = message.items.map((e) => PartialObjectMetadata.toJSON(e));
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<PartialObjectMetadataList>, I>>(base?: I): PartialObjectMetadataList {
+        return PartialObjectMetadataList.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<PartialObjectMetadataList>, I>>(
+        object: I,
+    ): PartialObjectMetadataList {
+        const message = createBasePartialObjectMetadataList();
+        message.metadata =
+            object.metadata !== undefined && object.metadata !== null
+                ? ListMeta.fromPartial(object.metadata)
+                : undefined;
+        message.items = object.items?.map((e) => PartialObjectMetadata.fromPartial(e)) || [];
+        return message;
+    },
 };
 
 function createBasePatch(): Patch {
-  return {};
+    return {};
 }
 
 export const Patch: MessageFns<Patch> = {
-  encode(_: Patch, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    return writer;
-  },
+    encode(_: Patch, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        return writer;
+    },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): Patch {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBasePatch();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
+    decode(input: BinaryReader | Uint8Array, length?: number): Patch {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBasePatch();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+    },
 
-  fromJSON(_: any): Patch {
-    return {};
-  },
+    fromJSON(_: any): Patch {
+        return {};
+    },
 
-  toJSON(_: Patch): unknown {
-    const obj: any = {};
-    return obj;
-  },
+    toJSON(_: Patch): unknown {
+        const obj: any = {};
+        return obj;
+    },
 
-  create<I extends Exact<DeepPartial<Patch>, I>>(base?: I): Patch {
-    return Patch.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Patch>, I>>(_: I): Patch {
-    const message = createBasePatch();
-    return message;
-  },
+    create<I extends Exact<DeepPartial<Patch>, I>>(base?: I): Patch {
+        return Patch.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<Patch>, I>>(_: I): Patch {
+        const message = createBasePatch();
+        return message;
+    },
 };
 
 function createBasePatchOptions(): PatchOptions {
-  return { dryRun: [], force: false, fieldManager: "", fieldValidation: "" };
+    return { dryRun: [], force: false, fieldManager: '', fieldValidation: '' };
 }
 
 export const PatchOptions: MessageFns<PatchOptions> = {
-  encode(message: PatchOptions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.dryRun) {
-      writer.uint32(10).string(v!);
-    }
-    if (message.force !== undefined && message.force !== false) {
-      writer.uint32(16).bool(message.force);
-    }
-    if (message.fieldManager !== undefined && message.fieldManager !== "") {
-      writer.uint32(26).string(message.fieldManager);
-    }
-    if (message.fieldValidation !== undefined && message.fieldValidation !== "") {
-      writer.uint32(34).string(message.fieldValidation);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): PatchOptions {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBasePatchOptions();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.dryRun.push(reader.string());
-            continue;
-          }
-          case 2: {
-            if (tag !== 16) {
-              break;
-            }
-
-            message.force = reader.bool();
-            continue;
-          }
-          case 3: {
-            if (tag !== 26) {
-              break;
-            }
-
-            message.fieldManager = reader.string();
-            continue;
-          }
-          case 4: {
-            if (tag !== 34) {
-              break;
-            }
-
-            message.fieldValidation = reader.string();
-            continue;
-          }
+    encode(message: PatchOptions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        for (const v of message.dryRun) {
+            writer.uint32(10).string(v!);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.force !== undefined && message.force !== false) {
+            writer.uint32(16).bool(message.force);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        if (message.fieldManager !== undefined && message.fieldManager !== '') {
+            writer.uint32(26).string(message.fieldManager);
+        }
+        if (message.fieldValidation !== undefined && message.fieldValidation !== '') {
+            writer.uint32(34).string(message.fieldValidation);
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): PatchOptions {
-    return {
-      dryRun: globalThis.Array.isArray(object?.dryRun) ? object.dryRun.map((e: any) => globalThis.String(e)) : [],
-      force: isSet(object.force) ? globalThis.Boolean(object.force) : false,
-      fieldManager: isSet(object.fieldManager) ? globalThis.String(object.fieldManager) : "",
-      fieldValidation: isSet(object.fieldValidation) ? globalThis.String(object.fieldValidation) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): PatchOptions {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBasePatchOptions();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: PatchOptions): unknown {
-    const obj: any = {};
-    if (message.dryRun?.length) {
-      obj.dryRun = message.dryRun;
-    }
-    if (message.force !== undefined && message.force !== false) {
-      obj.force = message.force;
-    }
-    if (message.fieldManager !== undefined && message.fieldManager !== "") {
-      obj.fieldManager = message.fieldManager;
-    }
-    if (message.fieldValidation !== undefined && message.fieldValidation !== "") {
-      obj.fieldValidation = message.fieldValidation;
-    }
-    return obj;
-  },
+                        message.dryRun.push(reader.string());
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 16) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<PatchOptions>, I>>(base?: I): PatchOptions {
-    return PatchOptions.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<PatchOptions>, I>>(object: I): PatchOptions {
-    const message = createBasePatchOptions();
-    message.dryRun = object.dryRun?.map((e) => e) || [];
-    message.force = object.force ?? false;
-    message.fieldManager = object.fieldManager ?? "";
-    message.fieldValidation = object.fieldValidation ?? "";
-    return message;
-  },
+                        message.force = reader.bool();
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 26) {
+                            break;
+                        }
+
+                        message.fieldManager = reader.string();
+                        continue;
+                    }
+                    case 4: {
+                        if (tag !== 34) {
+                            break;
+                        }
+
+                        message.fieldValidation = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): PatchOptions {
+        return {
+            dryRun: globalThis.Array.isArray(object?.dryRun)
+                ? object.dryRun.map((e: any) => globalThis.String(e))
+                : [],
+            force: isSet(object.force) ? globalThis.Boolean(object.force) : false,
+            fieldManager: isSet(object.fieldManager) ? globalThis.String(object.fieldManager) : '',
+            fieldValidation: isSet(object.fieldValidation) ? globalThis.String(object.fieldValidation) : '',
+        };
+    },
+
+    toJSON(message: PatchOptions): unknown {
+        const obj: any = {};
+        if (message.dryRun?.length) {
+            obj.dryRun = message.dryRun;
+        }
+        if (message.force !== undefined && message.force !== false) {
+            obj.force = message.force;
+        }
+        if (message.fieldManager !== undefined && message.fieldManager !== '') {
+            obj.fieldManager = message.fieldManager;
+        }
+        if (message.fieldValidation !== undefined && message.fieldValidation !== '') {
+            obj.fieldValidation = message.fieldValidation;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<PatchOptions>, I>>(base?: I): PatchOptions {
+        return PatchOptions.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<PatchOptions>, I>>(object: I): PatchOptions {
+        const message = createBasePatchOptions();
+        message.dryRun = object.dryRun?.map((e) => e) || [];
+        message.force = object.force ?? false;
+        message.fieldManager = object.fieldManager ?? '';
+        message.fieldValidation = object.fieldValidation ?? '';
+        return message;
+    },
 };
 
 function createBasePreconditions(): Preconditions {
-  return { uid: "", resourceVersion: "" };
+    return { uid: '', resourceVersion: '' };
 }
 
 export const Preconditions: MessageFns<Preconditions> = {
-  encode(message: Preconditions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.uid !== undefined && message.uid !== "") {
-      writer.uint32(10).string(message.uid);
-    }
-    if (message.resourceVersion !== undefined && message.resourceVersion !== "") {
-      writer.uint32(18).string(message.resourceVersion);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): Preconditions {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBasePreconditions();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.uid = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.resourceVersion = reader.string();
-            continue;
-          }
+    encode(message: Preconditions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.uid !== undefined && message.uid !== '') {
+            writer.uint32(10).string(message.uid);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.resourceVersion !== undefined && message.resourceVersion !== '') {
+            writer.uint32(18).string(message.resourceVersion);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): Preconditions {
-    return {
-      uid: isSet(object.uid) ? globalThis.String(object.uid) : "",
-      resourceVersion: isSet(object.resourceVersion) ? globalThis.String(object.resourceVersion) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): Preconditions {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBasePreconditions();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: Preconditions): unknown {
-    const obj: any = {};
-    if (message.uid !== undefined && message.uid !== "") {
-      obj.uid = message.uid;
-    }
-    if (message.resourceVersion !== undefined && message.resourceVersion !== "") {
-      obj.resourceVersion = message.resourceVersion;
-    }
-    return obj;
-  },
+                        message.uid = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<Preconditions>, I>>(base?: I): Preconditions {
-    return Preconditions.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Preconditions>, I>>(object: I): Preconditions {
-    const message = createBasePreconditions();
-    message.uid = object.uid ?? "";
-    message.resourceVersion = object.resourceVersion ?? "";
-    return message;
-  },
+                        message.resourceVersion = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): Preconditions {
+        return {
+            uid: isSet(object.uid) ? globalThis.String(object.uid) : '',
+            resourceVersion: isSet(object.resourceVersion) ? globalThis.String(object.resourceVersion) : '',
+        };
+    },
+
+    toJSON(message: Preconditions): unknown {
+        const obj: any = {};
+        if (message.uid !== undefined && message.uid !== '') {
+            obj.uid = message.uid;
+        }
+        if (message.resourceVersion !== undefined && message.resourceVersion !== '') {
+            obj.resourceVersion = message.resourceVersion;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<Preconditions>, I>>(base?: I): Preconditions {
+        return Preconditions.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<Preconditions>, I>>(object: I): Preconditions {
+        const message = createBasePreconditions();
+        message.uid = object.uid ?? '';
+        message.resourceVersion = object.resourceVersion ?? '';
+        return message;
+    },
 };
 
 function createBaseRootPaths(): RootPaths {
-  return { paths: [] };
+    return { paths: [] };
 }
 
 export const RootPaths: MessageFns<RootPaths> = {
-  encode(message: RootPaths, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.paths) {
-      writer.uint32(10).string(v!);
-    }
-    return writer;
-  },
+    encode(message: RootPaths, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        for (const v of message.paths) {
+            writer.uint32(10).string(v!);
+        }
+        return writer;
+    },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): RootPaths {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseRootPaths();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
+    decode(input: BinaryReader | Uint8Array, length?: number): RootPaths {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseRootPaths();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
+
+                        message.paths.push(reader.string());
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
             }
-
-            message.paths.push(reader.string());
-            continue;
-          }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+    },
+
+    fromJSON(object: any): RootPaths {
+        return {
+            paths: globalThis.Array.isArray(object?.paths)
+                ? object.paths.map((e: any) => globalThis.String(e))
+                : [],
+        };
+    },
+
+    toJSON(message: RootPaths): unknown {
+        const obj: any = {};
+        if (message.paths?.length) {
+            obj.paths = message.paths;
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return obj;
+    },
 
-  fromJSON(object: any): RootPaths {
-    return { paths: globalThis.Array.isArray(object?.paths) ? object.paths.map((e: any) => globalThis.String(e)) : [] };
-  },
-
-  toJSON(message: RootPaths): unknown {
-    const obj: any = {};
-    if (message.paths?.length) {
-      obj.paths = message.paths;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<RootPaths>, I>>(base?: I): RootPaths {
-    return RootPaths.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<RootPaths>, I>>(object: I): RootPaths {
-    const message = createBaseRootPaths();
-    message.paths = object.paths?.map((e) => e) || [];
-    return message;
-  },
+    create<I extends Exact<DeepPartial<RootPaths>, I>>(base?: I): RootPaths {
+        return RootPaths.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<RootPaths>, I>>(object: I): RootPaths {
+        const message = createBaseRootPaths();
+        message.paths = object.paths?.map((e) => e) || [];
+        return message;
+    },
 };
 
 function createBaseServerAddressByClientCIDR(): ServerAddressByClientCIDR {
-  return { clientCIDR: "", serverAddress: "" };
+    return { clientCIDR: '', serverAddress: '' };
 }
 
 export const ServerAddressByClientCIDR: MessageFns<ServerAddressByClientCIDR> = {
-  encode(message: ServerAddressByClientCIDR, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.clientCIDR !== undefined && message.clientCIDR !== "") {
-      writer.uint32(10).string(message.clientCIDR);
-    }
-    if (message.serverAddress !== undefined && message.serverAddress !== "") {
-      writer.uint32(18).string(message.serverAddress);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): ServerAddressByClientCIDR {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseServerAddressByClientCIDR();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.clientCIDR = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.serverAddress = reader.string();
-            continue;
-          }
+    encode(message: ServerAddressByClientCIDR, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.clientCIDR !== undefined && message.clientCIDR !== '') {
+            writer.uint32(10).string(message.clientCIDR);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.serverAddress !== undefined && message.serverAddress !== '') {
+            writer.uint32(18).string(message.serverAddress);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): ServerAddressByClientCIDR {
-    return {
-      clientCIDR: isSet(object.clientCIDR) ? globalThis.String(object.clientCIDR) : "",
-      serverAddress: isSet(object.serverAddress) ? globalThis.String(object.serverAddress) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): ServerAddressByClientCIDR {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseServerAddressByClientCIDR();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: ServerAddressByClientCIDR): unknown {
-    const obj: any = {};
-    if (message.clientCIDR !== undefined && message.clientCIDR !== "") {
-      obj.clientCIDR = message.clientCIDR;
-    }
-    if (message.serverAddress !== undefined && message.serverAddress !== "") {
-      obj.serverAddress = message.serverAddress;
-    }
-    return obj;
-  },
+                        message.clientCIDR = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<ServerAddressByClientCIDR>, I>>(base?: I): ServerAddressByClientCIDR {
-    return ServerAddressByClientCIDR.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ServerAddressByClientCIDR>, I>>(object: I): ServerAddressByClientCIDR {
-    const message = createBaseServerAddressByClientCIDR();
-    message.clientCIDR = object.clientCIDR ?? "";
-    message.serverAddress = object.serverAddress ?? "";
-    return message;
-  },
+                        message.serverAddress = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): ServerAddressByClientCIDR {
+        return {
+            clientCIDR: isSet(object.clientCIDR) ? globalThis.String(object.clientCIDR) : '',
+            serverAddress: isSet(object.serverAddress) ? globalThis.String(object.serverAddress) : '',
+        };
+    },
+
+    toJSON(message: ServerAddressByClientCIDR): unknown {
+        const obj: any = {};
+        if (message.clientCIDR !== undefined && message.clientCIDR !== '') {
+            obj.clientCIDR = message.clientCIDR;
+        }
+        if (message.serverAddress !== undefined && message.serverAddress !== '') {
+            obj.serverAddress = message.serverAddress;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<ServerAddressByClientCIDR>, I>>(base?: I): ServerAddressByClientCIDR {
+        return ServerAddressByClientCIDR.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<ServerAddressByClientCIDR>, I>>(
+        object: I,
+    ): ServerAddressByClientCIDR {
+        const message = createBaseServerAddressByClientCIDR();
+        message.clientCIDR = object.clientCIDR ?? '';
+        message.serverAddress = object.serverAddress ?? '';
+        return message;
+    },
 };
 
 function createBaseShardInfo(): ShardInfo {
-  return { selector: "" };
+    return { selector: '' };
 }
 
 export const ShardInfo: MessageFns<ShardInfo> = {
-  encode(message: ShardInfo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.selector !== undefined && message.selector !== "") {
-      writer.uint32(10).string(message.selector);
-    }
-    return writer;
-  },
+    encode(message: ShardInfo, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.selector !== undefined && message.selector !== '') {
+            writer.uint32(10).string(message.selector);
+        }
+        return writer;
+    },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): ShardInfo {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseShardInfo();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
+    decode(input: BinaryReader | Uint8Array, length?: number): ShardInfo {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseShardInfo();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
+
+                        message.selector = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
             }
-
-            message.selector = reader.string();
-            continue;
-          }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+    },
+
+    fromJSON(object: any): ShardInfo {
+        return { selector: isSet(object.selector) ? globalThis.String(object.selector) : '' };
+    },
+
+    toJSON(message: ShardInfo): unknown {
+        const obj: any = {};
+        if (message.selector !== undefined && message.selector !== '') {
+            obj.selector = message.selector;
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return obj;
+    },
 
-  fromJSON(object: any): ShardInfo {
-    return { selector: isSet(object.selector) ? globalThis.String(object.selector) : "" };
-  },
-
-  toJSON(message: ShardInfo): unknown {
-    const obj: any = {};
-    if (message.selector !== undefined && message.selector !== "") {
-      obj.selector = message.selector;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<ShardInfo>, I>>(base?: I): ShardInfo {
-    return ShardInfo.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<ShardInfo>, I>>(object: I): ShardInfo {
-    const message = createBaseShardInfo();
-    message.selector = object.selector ?? "";
-    return message;
-  },
+    create<I extends Exact<DeepPartial<ShardInfo>, I>>(base?: I): ShardInfo {
+        return ShardInfo.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<ShardInfo>, I>>(object: I): ShardInfo {
+        const message = createBaseShardInfo();
+        message.selector = object.selector ?? '';
+        return message;
+    },
 };
 
 function createBaseStatus(): Status {
-  return { metadata: undefined, status: "", message: "", reason: "", details: undefined, code: 0 };
+    return { metadata: undefined, status: '', message: '', reason: '', details: undefined, code: 0 };
 }
 
 export const Status: MessageFns<Status> = {
-  encode(message: Status, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.metadata !== undefined) {
-      ListMeta.encode(message.metadata, writer.uint32(10).fork()).join();
-    }
-    if (message.status !== undefined && message.status !== "") {
-      writer.uint32(18).string(message.status);
-    }
-    if (message.message !== undefined && message.message !== "") {
-      writer.uint32(26).string(message.message);
-    }
-    if (message.reason !== undefined && message.reason !== "") {
-      writer.uint32(34).string(message.reason);
-    }
-    if (message.details !== undefined) {
-      StatusDetails.encode(message.details, writer.uint32(42).fork()).join();
-    }
-    if (message.code !== undefined && message.code !== 0) {
-      writer.uint32(48).int32(message.code);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): Status {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseStatus();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.metadata = ListMeta.decode(reader, reader.uint32());
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.status = reader.string();
-            continue;
-          }
-          case 3: {
-            if (tag !== 26) {
-              break;
-            }
-
-            message.message = reader.string();
-            continue;
-          }
-          case 4: {
-            if (tag !== 34) {
-              break;
-            }
-
-            message.reason = reader.string();
-            continue;
-          }
-          case 5: {
-            if (tag !== 42) {
-              break;
-            }
-
-            message.details = StatusDetails.decode(reader, reader.uint32());
-            continue;
-          }
-          case 6: {
-            if (tag !== 48) {
-              break;
-            }
-
-            message.code = reader.int32();
-            continue;
-          }
+    encode(message: Status, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.metadata !== undefined) {
+            ListMeta.encode(message.metadata, writer.uint32(10).fork()).join();
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.status !== undefined && message.status !== '') {
+            writer.uint32(18).string(message.status);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        if (message.message !== undefined && message.message !== '') {
+            writer.uint32(26).string(message.message);
+        }
+        if (message.reason !== undefined && message.reason !== '') {
+            writer.uint32(34).string(message.reason);
+        }
+        if (message.details !== undefined) {
+            StatusDetails.encode(message.details, writer.uint32(42).fork()).join();
+        }
+        if (message.code !== undefined && message.code !== 0) {
+            writer.uint32(48).int32(message.code);
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): Status {
-    return {
-      metadata: isSet(object.metadata) ? ListMeta.fromJSON(object.metadata) : undefined,
-      status: isSet(object.status) ? globalThis.String(object.status) : "",
-      message: isSet(object.message) ? globalThis.String(object.message) : "",
-      reason: isSet(object.reason) ? globalThis.String(object.reason) : "",
-      details: isSet(object.details) ? StatusDetails.fromJSON(object.details) : undefined,
-      code: isSet(object.code) ? globalThis.Number(object.code) : 0,
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): Status {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseStatus();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: Status): unknown {
-    const obj: any = {};
-    if (message.metadata !== undefined) {
-      obj.metadata = ListMeta.toJSON(message.metadata);
-    }
-    if (message.status !== undefined && message.status !== "") {
-      obj.status = message.status;
-    }
-    if (message.message !== undefined && message.message !== "") {
-      obj.message = message.message;
-    }
-    if (message.reason !== undefined && message.reason !== "") {
-      obj.reason = message.reason;
-    }
-    if (message.details !== undefined) {
-      obj.details = StatusDetails.toJSON(message.details);
-    }
-    if (message.code !== undefined && message.code !== 0) {
-      obj.code = Math.round(message.code);
-    }
-    return obj;
-  },
+                        message.metadata = ListMeta.decode(reader, reader.uint32());
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<Status>, I>>(base?: I): Status {
-    return Status.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Status>, I>>(object: I): Status {
-    const message = createBaseStatus();
-    message.metadata = (object.metadata !== undefined && object.metadata !== null)
-      ? ListMeta.fromPartial(object.metadata)
-      : undefined;
-    message.status = object.status ?? "";
-    message.message = object.message ?? "";
-    message.reason = object.reason ?? "";
-    message.details = (object.details !== undefined && object.details !== null)
-      ? StatusDetails.fromPartial(object.details)
-      : undefined;
-    message.code = object.code ?? 0;
-    return message;
-  },
+                        message.status = reader.string();
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 26) {
+                            break;
+                        }
+
+                        message.message = reader.string();
+                        continue;
+                    }
+                    case 4: {
+                        if (tag !== 34) {
+                            break;
+                        }
+
+                        message.reason = reader.string();
+                        continue;
+                    }
+                    case 5: {
+                        if (tag !== 42) {
+                            break;
+                        }
+
+                        message.details = StatusDetails.decode(reader, reader.uint32());
+                        continue;
+                    }
+                    case 6: {
+                        if (tag !== 48) {
+                            break;
+                        }
+
+                        message.code = reader.int32();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): Status {
+        return {
+            metadata: isSet(object.metadata) ? ListMeta.fromJSON(object.metadata) : undefined,
+            status: isSet(object.status) ? globalThis.String(object.status) : '',
+            message: isSet(object.message) ? globalThis.String(object.message) : '',
+            reason: isSet(object.reason) ? globalThis.String(object.reason) : '',
+            details: isSet(object.details) ? StatusDetails.fromJSON(object.details) : undefined,
+            code: isSet(object.code) ? globalThis.Number(object.code) : 0,
+        };
+    },
+
+    toJSON(message: Status): unknown {
+        const obj: any = {};
+        if (message.metadata !== undefined) {
+            obj.metadata = ListMeta.toJSON(message.metadata);
+        }
+        if (message.status !== undefined && message.status !== '') {
+            obj.status = message.status;
+        }
+        if (message.message !== undefined && message.message !== '') {
+            obj.message = message.message;
+        }
+        if (message.reason !== undefined && message.reason !== '') {
+            obj.reason = message.reason;
+        }
+        if (message.details !== undefined) {
+            obj.details = StatusDetails.toJSON(message.details);
+        }
+        if (message.code !== undefined && message.code !== 0) {
+            obj.code = Math.round(message.code);
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<Status>, I>>(base?: I): Status {
+        return Status.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<Status>, I>>(object: I): Status {
+        const message = createBaseStatus();
+        message.metadata =
+            object.metadata !== undefined && object.metadata !== null
+                ? ListMeta.fromPartial(object.metadata)
+                : undefined;
+        message.status = object.status ?? '';
+        message.message = object.message ?? '';
+        message.reason = object.reason ?? '';
+        message.details =
+            object.details !== undefined && object.details !== null
+                ? StatusDetails.fromPartial(object.details)
+                : undefined;
+        message.code = object.code ?? 0;
+        return message;
+    },
 };
 
 function createBaseStatusCause(): StatusCause {
-  return { reason: "", message: "", field: "" };
+    return { reason: '', message: '', field: '' };
 }
 
 export const StatusCause: MessageFns<StatusCause> = {
-  encode(message: StatusCause, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.reason !== undefined && message.reason !== "") {
-      writer.uint32(10).string(message.reason);
-    }
-    if (message.message !== undefined && message.message !== "") {
-      writer.uint32(18).string(message.message);
-    }
-    if (message.field !== undefined && message.field !== "") {
-      writer.uint32(26).string(message.field);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): StatusCause {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseStatusCause();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.reason = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.message = reader.string();
-            continue;
-          }
-          case 3: {
-            if (tag !== 26) {
-              break;
-            }
-
-            message.field = reader.string();
-            continue;
-          }
+    encode(message: StatusCause, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.reason !== undefined && message.reason !== '') {
+            writer.uint32(10).string(message.reason);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.message !== undefined && message.message !== '') {
+            writer.uint32(18).string(message.message);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        if (message.field !== undefined && message.field !== '') {
+            writer.uint32(26).string(message.field);
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): StatusCause {
-    return {
-      reason: isSet(object.reason) ? globalThis.String(object.reason) : "",
-      message: isSet(object.message) ? globalThis.String(object.message) : "",
-      field: isSet(object.field) ? globalThis.String(object.field) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): StatusCause {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseStatusCause();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: StatusCause): unknown {
-    const obj: any = {};
-    if (message.reason !== undefined && message.reason !== "") {
-      obj.reason = message.reason;
-    }
-    if (message.message !== undefined && message.message !== "") {
-      obj.message = message.message;
-    }
-    if (message.field !== undefined && message.field !== "") {
-      obj.field = message.field;
-    }
-    return obj;
-  },
+                        message.reason = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<StatusCause>, I>>(base?: I): StatusCause {
-    return StatusCause.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<StatusCause>, I>>(object: I): StatusCause {
-    const message = createBaseStatusCause();
-    message.reason = object.reason ?? "";
-    message.message = object.message ?? "";
-    message.field = object.field ?? "";
-    return message;
-  },
+                        message.message = reader.string();
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 26) {
+                            break;
+                        }
+
+                        message.field = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): StatusCause {
+        return {
+            reason: isSet(object.reason) ? globalThis.String(object.reason) : '',
+            message: isSet(object.message) ? globalThis.String(object.message) : '',
+            field: isSet(object.field) ? globalThis.String(object.field) : '',
+        };
+    },
+
+    toJSON(message: StatusCause): unknown {
+        const obj: any = {};
+        if (message.reason !== undefined && message.reason !== '') {
+            obj.reason = message.reason;
+        }
+        if (message.message !== undefined && message.message !== '') {
+            obj.message = message.message;
+        }
+        if (message.field !== undefined && message.field !== '') {
+            obj.field = message.field;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<StatusCause>, I>>(base?: I): StatusCause {
+        return StatusCause.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<StatusCause>, I>>(object: I): StatusCause {
+        const message = createBaseStatusCause();
+        message.reason = object.reason ?? '';
+        message.message = object.message ?? '';
+        message.field = object.field ?? '';
+        return message;
+    },
 };
 
 function createBaseStatusDetails(): StatusDetails {
-  return { name: "", group: "", kind: "", uid: "", causes: [], retryAfterSeconds: 0 };
+    return { name: '', group: '', kind: '', uid: '', causes: [], retryAfterSeconds: 0 };
 }
 
 export const StatusDetails: MessageFns<StatusDetails> = {
-  encode(message: StatusDetails, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.name !== undefined && message.name !== "") {
-      writer.uint32(10).string(message.name);
-    }
-    if (message.group !== undefined && message.group !== "") {
-      writer.uint32(18).string(message.group);
-    }
-    if (message.kind !== undefined && message.kind !== "") {
-      writer.uint32(26).string(message.kind);
-    }
-    if (message.uid !== undefined && message.uid !== "") {
-      writer.uint32(50).string(message.uid);
-    }
-    for (const v of message.causes) {
-      StatusCause.encode(v!, writer.uint32(34).fork()).join();
-    }
-    if (message.retryAfterSeconds !== undefined && message.retryAfterSeconds !== 0) {
-      writer.uint32(40).int32(message.retryAfterSeconds);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): StatusDetails {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseStatusDetails();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.name = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.group = reader.string();
-            continue;
-          }
-          case 3: {
-            if (tag !== 26) {
-              break;
-            }
-
-            message.kind = reader.string();
-            continue;
-          }
-          case 6: {
-            if (tag !== 50) {
-              break;
-            }
-
-            message.uid = reader.string();
-            continue;
-          }
-          case 4: {
-            if (tag !== 34) {
-              break;
-            }
-
-            message.causes.push(StatusCause.decode(reader, reader.uint32()));
-            continue;
-          }
-          case 5: {
-            if (tag !== 40) {
-              break;
-            }
-
-            message.retryAfterSeconds = reader.int32();
-            continue;
-          }
+    encode(message: StatusDetails, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.name !== undefined && message.name !== '') {
+            writer.uint32(10).string(message.name);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.group !== undefined && message.group !== '') {
+            writer.uint32(18).string(message.group);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        if (message.kind !== undefined && message.kind !== '') {
+            writer.uint32(26).string(message.kind);
+        }
+        if (message.uid !== undefined && message.uid !== '') {
+            writer.uint32(50).string(message.uid);
+        }
+        for (const v of message.causes) {
+            StatusCause.encode(v!, writer.uint32(34).fork()).join();
+        }
+        if (message.retryAfterSeconds !== undefined && message.retryAfterSeconds !== 0) {
+            writer.uint32(40).int32(message.retryAfterSeconds);
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): StatusDetails {
-    return {
-      name: isSet(object.name) ? globalThis.String(object.name) : "",
-      group: isSet(object.group) ? globalThis.String(object.group) : "",
-      kind: isSet(object.kind) ? globalThis.String(object.kind) : "",
-      uid: isSet(object.uid) ? globalThis.String(object.uid) : "",
-      causes: globalThis.Array.isArray(object?.causes) ? object.causes.map((e: any) => StatusCause.fromJSON(e)) : [],
-      retryAfterSeconds: isSet(object.retryAfterSeconds) ? globalThis.Number(object.retryAfterSeconds) : 0,
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): StatusDetails {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseStatusDetails();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: StatusDetails): unknown {
-    const obj: any = {};
-    if (message.name !== undefined && message.name !== "") {
-      obj.name = message.name;
-    }
-    if (message.group !== undefined && message.group !== "") {
-      obj.group = message.group;
-    }
-    if (message.kind !== undefined && message.kind !== "") {
-      obj.kind = message.kind;
-    }
-    if (message.uid !== undefined && message.uid !== "") {
-      obj.uid = message.uid;
-    }
-    if (message.causes?.length) {
-      obj.causes = message.causes.map((e) => StatusCause.toJSON(e));
-    }
-    if (message.retryAfterSeconds !== undefined && message.retryAfterSeconds !== 0) {
-      obj.retryAfterSeconds = Math.round(message.retryAfterSeconds);
-    }
-    return obj;
-  },
+                        message.name = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<StatusDetails>, I>>(base?: I): StatusDetails {
-    return StatusDetails.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<StatusDetails>, I>>(object: I): StatusDetails {
-    const message = createBaseStatusDetails();
-    message.name = object.name ?? "";
-    message.group = object.group ?? "";
-    message.kind = object.kind ?? "";
-    message.uid = object.uid ?? "";
-    message.causes = object.causes?.map((e) => StatusCause.fromPartial(e)) || [];
-    message.retryAfterSeconds = object.retryAfterSeconds ?? 0;
-    return message;
-  },
+                        message.group = reader.string();
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 26) {
+                            break;
+                        }
+
+                        message.kind = reader.string();
+                        continue;
+                    }
+                    case 6: {
+                        if (tag !== 50) {
+                            break;
+                        }
+
+                        message.uid = reader.string();
+                        continue;
+                    }
+                    case 4: {
+                        if (tag !== 34) {
+                            break;
+                        }
+
+                        message.causes.push(StatusCause.decode(reader, reader.uint32()));
+                        continue;
+                    }
+                    case 5: {
+                        if (tag !== 40) {
+                            break;
+                        }
+
+                        message.retryAfterSeconds = reader.int32();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): StatusDetails {
+        return {
+            name: isSet(object.name) ? globalThis.String(object.name) : '',
+            group: isSet(object.group) ? globalThis.String(object.group) : '',
+            kind: isSet(object.kind) ? globalThis.String(object.kind) : '',
+            uid: isSet(object.uid) ? globalThis.String(object.uid) : '',
+            causes: globalThis.Array.isArray(object?.causes)
+                ? object.causes.map((e: any) => StatusCause.fromJSON(e))
+                : [],
+            retryAfterSeconds: isSet(object.retryAfterSeconds)
+                ? globalThis.Number(object.retryAfterSeconds)
+                : 0,
+        };
+    },
+
+    toJSON(message: StatusDetails): unknown {
+        const obj: any = {};
+        if (message.name !== undefined && message.name !== '') {
+            obj.name = message.name;
+        }
+        if (message.group !== undefined && message.group !== '') {
+            obj.group = message.group;
+        }
+        if (message.kind !== undefined && message.kind !== '') {
+            obj.kind = message.kind;
+        }
+        if (message.uid !== undefined && message.uid !== '') {
+            obj.uid = message.uid;
+        }
+        if (message.causes?.length) {
+            obj.causes = message.causes.map((e) => StatusCause.toJSON(e));
+        }
+        if (message.retryAfterSeconds !== undefined && message.retryAfterSeconds !== 0) {
+            obj.retryAfterSeconds = Math.round(message.retryAfterSeconds);
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<StatusDetails>, I>>(base?: I): StatusDetails {
+        return StatusDetails.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<StatusDetails>, I>>(object: I): StatusDetails {
+        const message = createBaseStatusDetails();
+        message.name = object.name ?? '';
+        message.group = object.group ?? '';
+        message.kind = object.kind ?? '';
+        message.uid = object.uid ?? '';
+        message.causes = object.causes?.map((e) => StatusCause.fromPartial(e)) || [];
+        message.retryAfterSeconds = object.retryAfterSeconds ?? 0;
+        return message;
+    },
 };
 
 function createBaseTableOptions(): TableOptions {
-  return { includeObject: "" };
+    return { includeObject: '' };
 }
 
 export const TableOptions: MessageFns<TableOptions> = {
-  encode(message: TableOptions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.includeObject !== undefined && message.includeObject !== "") {
-      writer.uint32(10).string(message.includeObject);
-    }
-    return writer;
-  },
+    encode(message: TableOptions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.includeObject !== undefined && message.includeObject !== '') {
+            writer.uint32(10).string(message.includeObject);
+        }
+        return writer;
+    },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): TableOptions {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseTableOptions();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
+    decode(input: BinaryReader | Uint8Array, length?: number): TableOptions {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseTableOptions();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
+
+                        message.includeObject = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
             }
-
-            message.includeObject = reader.string();
-            continue;
-          }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+    },
+
+    fromJSON(object: any): TableOptions {
+        return { includeObject: isSet(object.includeObject) ? globalThis.String(object.includeObject) : '' };
+    },
+
+    toJSON(message: TableOptions): unknown {
+        const obj: any = {};
+        if (message.includeObject !== undefined && message.includeObject !== '') {
+            obj.includeObject = message.includeObject;
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return obj;
+    },
 
-  fromJSON(object: any): TableOptions {
-    return { includeObject: isSet(object.includeObject) ? globalThis.String(object.includeObject) : "" };
-  },
-
-  toJSON(message: TableOptions): unknown {
-    const obj: any = {};
-    if (message.includeObject !== undefined && message.includeObject !== "") {
-      obj.includeObject = message.includeObject;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<TableOptions>, I>>(base?: I): TableOptions {
-    return TableOptions.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<TableOptions>, I>>(object: I): TableOptions {
-    const message = createBaseTableOptions();
-    message.includeObject = object.includeObject ?? "";
-    return message;
-  },
+    create<I extends Exact<DeepPartial<TableOptions>, I>>(base?: I): TableOptions {
+        return TableOptions.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<TableOptions>, I>>(object: I): TableOptions {
+        const message = createBaseTableOptions();
+        message.includeObject = object.includeObject ?? '';
+        return message;
+    },
 };
 
 function createBaseTime(): Time {
-  return { seconds: 0, nanos: 0 };
+    return { seconds: 0, nanos: 0 };
 }
 
 export const Time: MessageFns<Time> = {
-  encode(message: Time, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.seconds !== undefined && message.seconds !== 0) {
-      writer.uint32(8).int64(message.seconds);
-    }
-    if (message.nanos !== undefined && message.nanos !== 0) {
-      writer.uint32(16).int32(message.nanos);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): Time {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseTime();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 8) {
-              break;
-            }
-
-            message.seconds = longToNumber(reader.int64());
-            continue;
-          }
-          case 2: {
-            if (tag !== 16) {
-              break;
-            }
-
-            message.nanos = reader.int32();
-            continue;
-          }
+    encode(message: Time, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.seconds !== undefined && message.seconds !== 0) {
+            writer.uint32(8).int64(message.seconds);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.nanos !== undefined && message.nanos !== 0) {
+            writer.uint32(16).int32(message.nanos);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): Time {
-    return {
-      seconds: isSet(object.seconds) ? globalThis.Number(object.seconds) : 0,
-      nanos: isSet(object.nanos) ? globalThis.Number(object.nanos) : 0,
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): Time {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseTime();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 8) {
+                            break;
+                        }
 
-  toJSON(message: Time): unknown {
-    const obj: any = {};
-    if (message.seconds !== undefined && message.seconds !== 0) {
-      obj.seconds = Math.round(message.seconds);
-    }
-    if (message.nanos !== undefined && message.nanos !== 0) {
-      obj.nanos = Math.round(message.nanos);
-    }
-    return obj;
-  },
+                        message.seconds = longToNumber(reader.int64());
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 16) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<Time>, I>>(base?: I): Time {
-    return Time.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Time>, I>>(object: I): Time {
-    const message = createBaseTime();
-    message.seconds = object.seconds ?? 0;
-    message.nanos = object.nanos ?? 0;
-    return message;
-  },
+                        message.nanos = reader.int32();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): Time {
+        return {
+            seconds: isSet(object.seconds) ? globalThis.Number(object.seconds) : 0,
+            nanos: isSet(object.nanos) ? globalThis.Number(object.nanos) : 0,
+        };
+    },
+
+    toJSON(message: Time): unknown {
+        const obj: any = {};
+        if (message.seconds !== undefined && message.seconds !== 0) {
+            obj.seconds = Math.round(message.seconds);
+        }
+        if (message.nanos !== undefined && message.nanos !== 0) {
+            obj.nanos = Math.round(message.nanos);
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<Time>, I>>(base?: I): Time {
+        return Time.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<Time>, I>>(object: I): Time {
+        const message = createBaseTime();
+        message.seconds = object.seconds ?? 0;
+        message.nanos = object.nanos ?? 0;
+        return message;
+    },
 };
 
 function createBaseTimestamp(): Timestamp {
-  return { seconds: 0, nanos: 0 };
+    return { seconds: 0, nanos: 0 };
 }
 
 export const Timestamp: MessageFns<Timestamp> = {
-  encode(message: Timestamp, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.seconds !== undefined && message.seconds !== 0) {
-      writer.uint32(8).int64(message.seconds);
-    }
-    if (message.nanos !== undefined && message.nanos !== 0) {
-      writer.uint32(16).int32(message.nanos);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): Timestamp {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseTimestamp();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 8) {
-              break;
-            }
-
-            message.seconds = longToNumber(reader.int64());
-            continue;
-          }
-          case 2: {
-            if (tag !== 16) {
-              break;
-            }
-
-            message.nanos = reader.int32();
-            continue;
-          }
+    encode(message: Timestamp, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.seconds !== undefined && message.seconds !== 0) {
+            writer.uint32(8).int64(message.seconds);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.nanos !== undefined && message.nanos !== 0) {
+            writer.uint32(16).int32(message.nanos);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): Timestamp {
-    return {
-      seconds: isSet(object.seconds) ? globalThis.Number(object.seconds) : 0,
-      nanos: isSet(object.nanos) ? globalThis.Number(object.nanos) : 0,
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): Timestamp {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseTimestamp();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 8) {
+                            break;
+                        }
 
-  toJSON(message: Timestamp): unknown {
-    const obj: any = {};
-    if (message.seconds !== undefined && message.seconds !== 0) {
-      obj.seconds = Math.round(message.seconds);
-    }
-    if (message.nanos !== undefined && message.nanos !== 0) {
-      obj.nanos = Math.round(message.nanos);
-    }
-    return obj;
-  },
+                        message.seconds = longToNumber(reader.int64());
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 16) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<Timestamp>, I>>(base?: I): Timestamp {
-    return Timestamp.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Timestamp>, I>>(object: I): Timestamp {
-    const message = createBaseTimestamp();
-    message.seconds = object.seconds ?? 0;
-    message.nanos = object.nanos ?? 0;
-    return message;
-  },
+                        message.nanos = reader.int32();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): Timestamp {
+        return {
+            seconds: isSet(object.seconds) ? globalThis.Number(object.seconds) : 0,
+            nanos: isSet(object.nanos) ? globalThis.Number(object.nanos) : 0,
+        };
+    },
+
+    toJSON(message: Timestamp): unknown {
+        const obj: any = {};
+        if (message.seconds !== undefined && message.seconds !== 0) {
+            obj.seconds = Math.round(message.seconds);
+        }
+        if (message.nanos !== undefined && message.nanos !== 0) {
+            obj.nanos = Math.round(message.nanos);
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<Timestamp>, I>>(base?: I): Timestamp {
+        return Timestamp.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<Timestamp>, I>>(object: I): Timestamp {
+        const message = createBaseTimestamp();
+        message.seconds = object.seconds ?? 0;
+        message.nanos = object.nanos ?? 0;
+        return message;
+    },
 };
 
 function createBaseTypeMeta(): TypeMeta {
-  return { kind: "", apiVersion: "" };
+    return { kind: '', apiVersion: '' };
 }
 
 export const TypeMeta: MessageFns<TypeMeta> = {
-  encode(message: TypeMeta, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.kind !== undefined && message.kind !== "") {
-      writer.uint32(10).string(message.kind);
-    }
-    if (message.apiVersion !== undefined && message.apiVersion !== "") {
-      writer.uint32(18).string(message.apiVersion);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): TypeMeta {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseTypeMeta();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.kind = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.apiVersion = reader.string();
-            continue;
-          }
+    encode(message: TypeMeta, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.kind !== undefined && message.kind !== '') {
+            writer.uint32(10).string(message.kind);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.apiVersion !== undefined && message.apiVersion !== '') {
+            writer.uint32(18).string(message.apiVersion);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): TypeMeta {
-    return {
-      kind: isSet(object.kind) ? globalThis.String(object.kind) : "",
-      apiVersion: isSet(object.apiVersion) ? globalThis.String(object.apiVersion) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): TypeMeta {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseTypeMeta();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: TypeMeta): unknown {
-    const obj: any = {};
-    if (message.kind !== undefined && message.kind !== "") {
-      obj.kind = message.kind;
-    }
-    if (message.apiVersion !== undefined && message.apiVersion !== "") {
-      obj.apiVersion = message.apiVersion;
-    }
-    return obj;
-  },
+                        message.kind = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<TypeMeta>, I>>(base?: I): TypeMeta {
-    return TypeMeta.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<TypeMeta>, I>>(object: I): TypeMeta {
-    const message = createBaseTypeMeta();
-    message.kind = object.kind ?? "";
-    message.apiVersion = object.apiVersion ?? "";
-    return message;
-  },
+                        message.apiVersion = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): TypeMeta {
+        return {
+            kind: isSet(object.kind) ? globalThis.String(object.kind) : '',
+            apiVersion: isSet(object.apiVersion) ? globalThis.String(object.apiVersion) : '',
+        };
+    },
+
+    toJSON(message: TypeMeta): unknown {
+        const obj: any = {};
+        if (message.kind !== undefined && message.kind !== '') {
+            obj.kind = message.kind;
+        }
+        if (message.apiVersion !== undefined && message.apiVersion !== '') {
+            obj.apiVersion = message.apiVersion;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<TypeMeta>, I>>(base?: I): TypeMeta {
+        return TypeMeta.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<TypeMeta>, I>>(object: I): TypeMeta {
+        const message = createBaseTypeMeta();
+        message.kind = object.kind ?? '';
+        message.apiVersion = object.apiVersion ?? '';
+        return message;
+    },
 };
 
 function createBaseUpdateOptions(): UpdateOptions {
-  return { dryRun: [], fieldManager: "", fieldValidation: "" };
+    return { dryRun: [], fieldManager: '', fieldValidation: '' };
 }
 
 export const UpdateOptions: MessageFns<UpdateOptions> = {
-  encode(message: UpdateOptions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.dryRun) {
-      writer.uint32(10).string(v!);
-    }
-    if (message.fieldManager !== undefined && message.fieldManager !== "") {
-      writer.uint32(18).string(message.fieldManager);
-    }
-    if (message.fieldValidation !== undefined && message.fieldValidation !== "") {
-      writer.uint32(26).string(message.fieldValidation);
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): UpdateOptions {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseUpdateOptions();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.dryRun.push(reader.string());
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.fieldManager = reader.string();
-            continue;
-          }
-          case 3: {
-            if (tag !== 26) {
-              break;
-            }
-
-            message.fieldValidation = reader.string();
-            continue;
-          }
+    encode(message: UpdateOptions, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        for (const v of message.dryRun) {
+            writer.uint32(10).string(v!);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.fieldManager !== undefined && message.fieldManager !== '') {
+            writer.uint32(18).string(message.fieldManager);
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        if (message.fieldValidation !== undefined && message.fieldValidation !== '') {
+            writer.uint32(26).string(message.fieldValidation);
+        }
+        return writer;
+    },
 
-  fromJSON(object: any): UpdateOptions {
-    return {
-      dryRun: globalThis.Array.isArray(object?.dryRun) ? object.dryRun.map((e: any) => globalThis.String(e)) : [],
-      fieldManager: isSet(object.fieldManager) ? globalThis.String(object.fieldManager) : "",
-      fieldValidation: isSet(object.fieldValidation) ? globalThis.String(object.fieldValidation) : "",
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): UpdateOptions {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseUpdateOptions();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: UpdateOptions): unknown {
-    const obj: any = {};
-    if (message.dryRun?.length) {
-      obj.dryRun = message.dryRun;
-    }
-    if (message.fieldManager !== undefined && message.fieldManager !== "") {
-      obj.fieldManager = message.fieldManager;
-    }
-    if (message.fieldValidation !== undefined && message.fieldValidation !== "") {
-      obj.fieldValidation = message.fieldValidation;
-    }
-    return obj;
-  },
+                        message.dryRun.push(reader.string());
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<UpdateOptions>, I>>(base?: I): UpdateOptions {
-    return UpdateOptions.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<UpdateOptions>, I>>(object: I): UpdateOptions {
-    const message = createBaseUpdateOptions();
-    message.dryRun = object.dryRun?.map((e) => e) || [];
-    message.fieldManager = object.fieldManager ?? "";
-    message.fieldValidation = object.fieldValidation ?? "";
-    return message;
-  },
+                        message.fieldManager = reader.string();
+                        continue;
+                    }
+                    case 3: {
+                        if (tag !== 26) {
+                            break;
+                        }
+
+                        message.fieldValidation = reader.string();
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): UpdateOptions {
+        return {
+            dryRun: globalThis.Array.isArray(object?.dryRun)
+                ? object.dryRun.map((e: any) => globalThis.String(e))
+                : [],
+            fieldManager: isSet(object.fieldManager) ? globalThis.String(object.fieldManager) : '',
+            fieldValidation: isSet(object.fieldValidation) ? globalThis.String(object.fieldValidation) : '',
+        };
+    },
+
+    toJSON(message: UpdateOptions): unknown {
+        const obj: any = {};
+        if (message.dryRun?.length) {
+            obj.dryRun = message.dryRun;
+        }
+        if (message.fieldManager !== undefined && message.fieldManager !== '') {
+            obj.fieldManager = message.fieldManager;
+        }
+        if (message.fieldValidation !== undefined && message.fieldValidation !== '') {
+            obj.fieldValidation = message.fieldValidation;
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<UpdateOptions>, I>>(base?: I): UpdateOptions {
+        return UpdateOptions.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<UpdateOptions>, I>>(object: I): UpdateOptions {
+        const message = createBaseUpdateOptions();
+        message.dryRun = object.dryRun?.map((e) => e) || [];
+        message.fieldManager = object.fieldManager ?? '';
+        message.fieldValidation = object.fieldValidation ?? '';
+        return message;
+    },
 };
 
 function createBaseVerbs(): Verbs {
-  return { items: [] };
+    return { items: [] };
 }
 
 export const Verbs: MessageFns<Verbs> = {
-  encode(message: Verbs, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    for (const v of message.items) {
-      writer.uint32(10).string(v!);
-    }
-    return writer;
-  },
+    encode(message: Verbs, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        for (const v of message.items) {
+            writer.uint32(10).string(v!);
+        }
+        return writer;
+    },
 
-  decode(input: BinaryReader | Uint8Array, length?: number): Verbs {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseVerbs();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
+    decode(input: BinaryReader | Uint8Array, length?: number): Verbs {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseVerbs();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
+
+                        message.items.push(reader.string());
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
             }
-
-            message.items.push(reader.string());
-            continue;
-          }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+    },
+
+    fromJSON(object: any): Verbs {
+        return {
+            items: globalThis.Array.isArray(object?.items)
+                ? object.items.map((e: any) => globalThis.String(e))
+                : [],
+        };
+    },
+
+    toJSON(message: Verbs): unknown {
+        const obj: any = {};
+        if (message.items?.length) {
+            obj.items = message.items;
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return obj;
+    },
 
-  fromJSON(object: any): Verbs {
-    return { items: globalThis.Array.isArray(object?.items) ? object.items.map((e: any) => globalThis.String(e)) : [] };
-  },
-
-  toJSON(message: Verbs): unknown {
-    const obj: any = {};
-    if (message.items?.length) {
-      obj.items = message.items;
-    }
-    return obj;
-  },
-
-  create<I extends Exact<DeepPartial<Verbs>, I>>(base?: I): Verbs {
-    return Verbs.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<Verbs>, I>>(object: I): Verbs {
-    const message = createBaseVerbs();
-    message.items = object.items?.map((e) => e) || [];
-    return message;
-  },
+    create<I extends Exact<DeepPartial<Verbs>, I>>(base?: I): Verbs {
+        return Verbs.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<Verbs>, I>>(object: I): Verbs {
+        const message = createBaseVerbs();
+        message.items = object.items?.map((e) => e) || [];
+        return message;
+    },
 };
 
 function createBaseWatchEvent(): WatchEvent {
-  return { type: "", object: undefined };
+    return { type: '', object: undefined };
 }
 
 export const WatchEvent: MessageFns<WatchEvent> = {
-  encode(message: WatchEvent, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
-    if (message.type !== undefined && message.type !== "") {
-      writer.uint32(10).string(message.type);
-    }
-    if (message.object !== undefined) {
-      RawExtension.encode(message.object, writer.uint32(18).fork()).join();
-    }
-    return writer;
-  },
-
-  decode(input: BinaryReader | Uint8Array, length?: number): WatchEvent {
-    const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
-    const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
-    if (previousRecursionDepth >= 100) {
-      throw new globalThis.Error("protobuf decode recursion limit exceeded");
-    }
-    (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
-    try {
-      const end = length === undefined ? reader.len : reader.pos + length;
-      const message = createBaseWatchEvent();
-      while (reader.pos < end) {
-        const tag = reader.uint32();
-        switch (tag >>> 3) {
-          case 1: {
-            if (tag !== 10) {
-              break;
-            }
-
-            message.type = reader.string();
-            continue;
-          }
-          case 2: {
-            if (tag !== 18) {
-              break;
-            }
-
-            message.object = RawExtension.decode(reader, reader.uint32());
-            continue;
-          }
+    encode(message: WatchEvent, writer: BinaryWriter = new BinaryWriter()): BinaryWriter {
+        if (message.type !== undefined && message.type !== '') {
+            writer.uint32(10).string(message.type);
         }
-        if ((tag & 7) === 4 || tag === 0) {
-          break;
+        if (message.object !== undefined) {
+            RawExtension.encode(message.object, writer.uint32(18).fork()).join();
         }
-        reader.skip(tag & 7);
-      }
-      return message;
-    } finally {
-      (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
-    }
-  },
+        return writer;
+    },
 
-  fromJSON(object: any): WatchEvent {
-    return {
-      type: isSet(object.type) ? globalThis.String(object.type) : "",
-      object: isSet(object.object) ? RawExtension.fromJSON(object.object) : undefined,
-    };
-  },
+    decode(input: BinaryReader | Uint8Array, length?: number): WatchEvent {
+        const reader = input instanceof BinaryReader ? input : new BinaryReader(input);
+        const previousRecursionDepth = (reader as any).__tsProtoDecodeDepth ?? 0;
+        if (previousRecursionDepth >= 100) {
+            throw new globalThis.Error('protobuf decode recursion limit exceeded');
+        }
+        (reader as any).__tsProtoDecodeDepth = previousRecursionDepth + 1;
+        try {
+            const end = length === undefined ? reader.len : reader.pos + length;
+            const message = createBaseWatchEvent();
+            while (reader.pos < end) {
+                const tag = reader.uint32();
+                switch (tag >>> 3) {
+                    case 1: {
+                        if (tag !== 10) {
+                            break;
+                        }
 
-  toJSON(message: WatchEvent): unknown {
-    const obj: any = {};
-    if (message.type !== undefined && message.type !== "") {
-      obj.type = message.type;
-    }
-    if (message.object !== undefined) {
-      obj.object = RawExtension.toJSON(message.object);
-    }
-    return obj;
-  },
+                        message.type = reader.string();
+                        continue;
+                    }
+                    case 2: {
+                        if (tag !== 18) {
+                            break;
+                        }
 
-  create<I extends Exact<DeepPartial<WatchEvent>, I>>(base?: I): WatchEvent {
-    return WatchEvent.fromPartial(base ?? ({} as any));
-  },
-  fromPartial<I extends Exact<DeepPartial<WatchEvent>, I>>(object: I): WatchEvent {
-    const message = createBaseWatchEvent();
-    message.type = object.type ?? "";
-    message.object = (object.object !== undefined && object.object !== null)
-      ? RawExtension.fromPartial(object.object)
-      : undefined;
-    return message;
-  },
+                        message.object = RawExtension.decode(reader, reader.uint32());
+                        continue;
+                    }
+                }
+                if ((tag & 7) === 4 || tag === 0) {
+                    break;
+                }
+                reader.skip(tag & 7);
+            }
+            return message;
+        } finally {
+            (reader as any).__tsProtoDecodeDepth = previousRecursionDepth;
+        }
+    },
+
+    fromJSON(object: any): WatchEvent {
+        return {
+            type: isSet(object.type) ? globalThis.String(object.type) : '',
+            object: isSet(object.object) ? RawExtension.fromJSON(object.object) : undefined,
+        };
+    },
+
+    toJSON(message: WatchEvent): unknown {
+        const obj: any = {};
+        if (message.type !== undefined && message.type !== '') {
+            obj.type = message.type;
+        }
+        if (message.object !== undefined) {
+            obj.object = RawExtension.toJSON(message.object);
+        }
+        return obj;
+    },
+
+    create<I extends Exact<DeepPartial<WatchEvent>, I>>(base?: I): WatchEvent {
+        return WatchEvent.fromPartial(base ?? ({} as any));
+    },
+    fromPartial<I extends Exact<DeepPartial<WatchEvent>, I>>(object: I): WatchEvent {
+        const message = createBaseWatchEvent();
+        message.type = object.type ?? '';
+        message.object =
+            object.object !== undefined && object.object !== null
+                ? RawExtension.fromPartial(object.object)
+                : undefined;
+        return message;
+    },
 };
 
 function bytesFromBase64(b64: string): Uint8Array {
-  if ((globalThis as any).Buffer) {
-    return Uint8Array.from((globalThis as any).Buffer.from(b64, "base64"));
-  } else {
-    const bin = globalThis.atob(b64);
-    const arr = new Uint8Array(bin.length);
-    for (let i = 0; i < bin.length; ++i) {
-      arr[i] = bin.charCodeAt(i);
+    if ((globalThis as any).Buffer) {
+        return Uint8Array.from((globalThis as any).Buffer.from(b64, 'base64'));
+    } else {
+        const bin = globalThis.atob(b64);
+        const arr = new Uint8Array(bin.length);
+        for (let i = 0; i < bin.length; ++i) {
+            arr[i] = bin.charCodeAt(i);
+        }
+        return arr;
     }
-    return arr;
-  }
 }
 
 function base64FromBytes(arr: Uint8Array): string {
-  if ((globalThis as any).Buffer) {
-    return (globalThis as any).Buffer.from(arr).toString("base64");
-  } else {
-    const bin: string[] = [];
-    arr.forEach((byte) => {
-      bin.push(globalThis.String.fromCharCode(byte));
-    });
-    return globalThis.btoa(bin.join(""));
-  }
+    if ((globalThis as any).Buffer) {
+        return (globalThis as any).Buffer.from(arr).toString('base64');
+    } else {
+        const bin: string[] = [];
+        arr.forEach((byte) => {
+            bin.push(globalThis.String.fromCharCode(byte));
+        });
+        return globalThis.btoa(bin.join(''));
+    }
 }
 
 type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
 
-type DeepPartial<T> = T extends Builtin ? T
-  : T extends globalThis.Array<infer U> ? globalThis.Array<DeepPartial<U>>
-  : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
-  : Partial<T>;
+type DeepPartial<T> = T extends Builtin
+    ? T
+    : T extends globalThis.Array<infer U>
+      ? globalThis.Array<DeepPartial<U>>
+      : T extends ReadonlyArray<infer U>
+        ? ReadonlyArray<DeepPartial<U>>
+        : T extends {}
+          ? { [K in keyof T]?: DeepPartial<T[K]> }
+          : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+type Exact<P, I extends P> = P extends Builtin
+    ? P
+    : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
 
 function longToNumber(int64: { toString(): string }): number {
-  const num = globalThis.Number(int64.toString());
-  if (num > globalThis.Number.MAX_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is larger than Number.MAX_SAFE_INTEGER");
-  }
-  if (num < globalThis.Number.MIN_SAFE_INTEGER) {
-    throw new globalThis.Error("Value is smaller than Number.MIN_SAFE_INTEGER");
-  }
-  return num;
+    const num = globalThis.Number(int64.toString());
+    if (num > globalThis.Number.MAX_SAFE_INTEGER) {
+        throw new globalThis.Error('Value is larger than Number.MAX_SAFE_INTEGER');
+    }
+    if (num < globalThis.Number.MIN_SAFE_INTEGER) {
+        throw new globalThis.Error('Value is smaller than Number.MIN_SAFE_INTEGER');
+    }
+    return num;
 }
 
 function isObject(value: any): boolean {
-  return typeof value === "object" && value !== null;
+    return typeof value === 'object' && value !== null;
 }
 
 function isSet(value: any): boolean {
-  return value !== null && value !== undefined;
+    return value !== null && value !== undefined;
 }
 
 interface MessageFns<T> {
-  encode(message: T, writer?: BinaryWriter): BinaryWriter;
-  decode(input: BinaryReader | Uint8Array, length?: number): T;
-  fromJSON(object: any): T;
-  toJSON(message: T): unknown;
-  create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
-  fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
+    encode(message: T, writer?: BinaryWriter): BinaryWriter;
+    decode(input: BinaryReader | Uint8Array, length?: number): T;
+    fromJSON(object: any): T;
+    toJSON(message: T): unknown;
+    create<I extends Exact<DeepPartial<T>, I>>(base?: I): T;
+    fromPartial<I extends Exact<DeepPartial<T>, I>>(object: I): T;
 }

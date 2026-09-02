@@ -29,7 +29,10 @@ describe('ProtoClient', () => {
             },
             async (url) => {
                 const client = new ProtoClient(makeKubeConfig(url));
-                const result = await client.get((bytes: Uint8Array) => Buffer.from(bytes).toString('utf8'), '/api/v1');
+                const result = await client.get(
+                    (bytes: Uint8Array) => Buffer.from(bytes).toString('utf8'),
+                    '/api/v1',
+                );
 
                 strictEqual(result.object, expectedBody);
                 strictEqual(result.status, null);
