@@ -95,6 +95,32 @@ const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 ...
 ```
 
+## Call APIs with protocol buffers
+
+```javascript
+const k8s = require('@kubernetes/client-node');
+
+const kc = new k8s.KubeConfig();
+kc.loadFromDefault();
+
+const protoClient = new k8s.ProtoClient(kc);
+const result = await protoClient.get(k8s.MetaV1.Status.decode, '/version');
+
+if (result.status) {
+    console.log(result.status.message);
+} else {
+    console.log(result.object);
+}
+```
+
+`ProtoClient` uses Kubernetes protocol-buffer framing (`application/vnd.kubernetes.protobuf`) and
+returns either the decoded object (`result.object`) or a decoded `v1.Status` (`result.status`).
+The bundled protobuf files are generated from Kubernetes proto definitions with:
+
+```bash
+npm run generate:proto
+```
+
 # Documentation
 
 📖 **[View Documentation](https://kubernetes-client.github.io/javascript/)**
