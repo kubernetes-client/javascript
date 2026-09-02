@@ -18,4 +18,6 @@ export * from './object.js';
 export * from './health.js';
 export * from './middleware.js';
 export * from './patch.js';
+export * from './proto-client.js';
+export * from './proto.js';
 export { type ConfigOptions, type User, type Cluster, type Context } from './config_types.js';
