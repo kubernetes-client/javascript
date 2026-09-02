@@ -6,7 +6,7 @@
 
 /* eslint-disable */
 import { BinaryReader, BinaryWriter } from "@bufbuild/protobuf/wire";
-import { RawExtension } from "../../../runtime/generated";
+import { RawExtension } from "../../../runtime/generated.js";
 
 /**
  * APIGroup contains the name, the supported versions, and the preferred version
