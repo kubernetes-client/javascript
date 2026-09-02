@@ -197,8 +197,31 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         return ms + this.randFn() * ListWatch.BACKOFF_JITTER * ms;
     }
 
+    private errorStatusCode(err: any): number | undefined {
+        const statusCode = err?.statusCode ?? err?.code;
+        return typeof statusCode === 'number' ? statusCode : undefined;
+    }
+
+    private isRetryableError(err: any): boolean {
+        const statusCode = this.errorStatusCode(err);
+        return statusCode === undefined || statusCode === 408 || statusCode === 429 || statusCode >= 500;
+    }
+
+    private async waitForRetry(): Promise<boolean> {
+        if (this.reconnectDelayMs === 0) {
+            this.reconnectDelayMs = this.nextBackoffLevelMs();
+        }
+        await this.delayFn(this.withJitter(this.reconnectDelayMs));
+        if (this.stopped) {
+            return false;
+        }
+        this.reconnectDelayMs = this.nextBackoffLevelMs();
+        return true;
+    }
+
     private async doneHandler(err: any): Promise<void> {
         this._stop();
+        let hasBackedOff = false;
         if (
             err &&
             ((err as { statusCode?: number }).statusCode === 410 || (err as { code?: number }).code === 410)
@@ -212,7 +235,10 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
             this.reconnectDelayMs = 0;
         } else if (err) {
             this.callbackCache[ERROR].forEach((elt: ErrorCallback) => elt(err));
-            return;
+            if (!this.isRetryableError(err) || this.stopped || !(await this.waitForRetry())) {
+                return;
+            }
+            hasBackedOff = true;
         }
         if (this.stopped) {
             // do not auto-restart
@@ -220,17 +246,25 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         }
         this.callbackCache[CONNECT].forEach((elt: ErrorCallback) => elt(undefined));
         if (!this.resourceVersion) {
-            let list: KubernetesListObject<T>;
-            try {
-                const promise = this.listFn();
-                list = await promise;
-            } catch (err) {
-                this.callbackCache[ERROR].forEach((elt: ErrorCallback) => elt(err));
-                return;
+            let listed = false;
+            while (!listed) {
+                let list: KubernetesListObject<T>;
+                try {
+                    const promise = this.listFn();
+                    list = await promise;
+                } catch (err) {
+                    this.callbackCache[ERROR].forEach((elt: ErrorCallback) => elt(err));
+                    if (!this.isRetryableError(err) || this.stopped || !(await this.waitForRetry())) {
+                        return;
+                    }
+                    hasBackedOff = true;
+                    continue;
+                }
+                this.objects = deleteItems(this.objects, list.items, this.callbackCache[DELETE].slice());
+                this.addOrUpdateItems(list.items);
+                this.resourceVersion = list.metadata ? list.metadata!.resourceVersion || '' : '';
+                listed = true;
             }
-            this.objects = deleteItems(this.objects, list.items, this.callbackCache[DELETE].slice());
-            this.addOrUpdateItems(list.items);
-            this.resourceVersion = list.metadata ? list.metadata!.resourceVersion || '' : '';
         }
         const queryParams = {
             resourceVersion: this.resourceVersion,
@@ -245,9 +279,12 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         if (this.fieldSelector !== undefined) {
             queryParams.fieldSelector = ObjectSerializer.serialize(this.fieldSelector, 'string');
         }
-        if (this.hasConnected) {
+        if (this.hasConnected && !hasBackedOff) {
             if (this.reconnectDelayMs > 0) {
                 await this.delayFn(this.withJitter(this.reconnectDelayMs));
+            }
+            if (this.stopped) {
+                return;
             }
             this.reconnectDelayMs = this.nextBackoffLevelMs();
         }
