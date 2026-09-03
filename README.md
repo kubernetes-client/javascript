@@ -121,6 +121,9 @@ The bundled protobuf files are generated from Kubernetes proto definitions with:
 npm run generate:proto
 ```
 
+`generate-protobuf.sh` mirrors the comprehensive proto source list from
+`kubernetes-client/gen/proto/generate.sh`.
+
 # Documentation
 
 📖 **[View Documentation](https://kubernetes-client.github.io/javascript/)**
