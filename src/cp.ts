@@ -1,4 +1,5 @@
 import { WritableStreamBuffer } from 'stream-buffers';
+import { finished } from 'node:stream/promises';
 import tar from 'tar-fs';
 
 import { KubeConfig } from './config.js';
@@ -33,21 +34,37 @@ export class Cp {
         command.push(srcPath);
         const writerStream = tar.extract(tgtPath);
         const errStream = new WritableStreamBuffer();
-        this.execInstance.exec(
-            namespace,
-            podName,
-            containerName,
-            command,
-            writerStream,
-            errStream,
-            null,
-            false,
-            async () => {
-                if (errStream.size()) {
-                    throw new Error(`Error from cpFromPod - details: \n ${errStream.getContentsAsString()}`);
-                }
-            },
-        );
+        const remoteDone = new Promise<void>((resolve, reject) => {
+            this.execInstance
+                .exec(
+                    namespace,
+                    podName,
+                    containerName,
+                    command,
+                    writerStream,
+                    errStream,
+                    null,
+                    false,
+                    undefined,
+                    (err: any) => {
+                        if (err) {
+                            reject(err);
+                            return;
+                        }
+                        if (errStream.size()) {
+                            reject(
+                                new Error(
+                                    `Error from cpFromPod - details: \n ${errStream.getContentsAsString()}`,
+                                ),
+                            );
+                            return;
+                        }
+                        resolve();
+                    },
+                )
+                .catch(reject);
+        });
+        await Promise.all([remoteDone, finished(writerStream)]);
     }
 
     /**
@@ -67,20 +84,36 @@ export class Cp {
         const command = ['tar', 'xf', '-', '-C', tgtPath];
         const readStream = tar.pack(srcPath);
         const errStream = new WritableStreamBuffer();
-        this.execInstance.exec(
-            namespace,
-            podName,
-            containerName,
-            command,
-            null,
-            errStream,
-            readStream,
-            false,
-            async () => {
-                if (errStream.size()) {
-                    throw new Error(`Error from cpToPod - details: \n ${errStream.getContentsAsString()}`);
-                }
-            },
-        );
+        const remoteDone = new Promise<void>((resolve, reject) => {
+            this.execInstance
+                .exec(
+                    namespace,
+                    podName,
+                    containerName,
+                    command,
+                    null,
+                    errStream,
+                    readStream,
+                    false,
+                    undefined,
+                    (err: any) => {
+                        if (err) {
+                            reject(err);
+                            return;
+                        }
+                        if (errStream.size()) {
+                            reject(
+                                new Error(
+                                    `Error from cpToPod - details: \n ${errStream.getContentsAsString()}`,
+                                ),
+                            );
+                            return;
+                        }
+                        resolve();
+                    },
+                )
+                .catch(reject);
+        });
+        await Promise.all([remoteDone, finished(readStream)]);
     }
 }
