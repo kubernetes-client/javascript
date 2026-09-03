@@ -1106,7 +1106,7 @@ describe('ListWatchCache', () => {
         ).twice();
     });
 
-    it('does not auto-restart after an error', async () => {
+    it('does not auto-restart after a non-retryable error', async () => {
         const fakeWatch = mock.mock(Watch);
         const list: V1Pod[] = [
             {
@@ -1150,7 +1150,7 @@ describe('ListWatchCache', () => {
 
         const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
 
-        const error = new Error('testing');
+        const error = Object.assign(new Error('Bad Request'), { statusCode: 400 });
         await doneHandler(error);
 
         mock.verify(
@@ -1523,6 +1523,7 @@ describe('ListWatchCache', () => {
             },
         });
 
+        await informer.stop();
         mockAgent.assertNoPendingInterceptors();
     });
 
@@ -1684,6 +1685,98 @@ describe('ListWatchCache', () => {
         await doneHandler(timeoutError);
         strictEqual(watchCalls, 2);
         strictEqual(errorEmitted, false);
+    });
+
+    it('should reconnect with backoff after a retryable watch error', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const listObj = {
+            metadata: { resourceVersion: '12345' } as V1ListMeta,
+            items: [] as V1Namespace[],
+        } as V1NamespaceList;
+        const listFn: ListPromise<V1Namespace> = () => Promise.resolve(listObj);
+
+        let watchCalls = 0;
+        const delays: number[] = [];
+        mock.when(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).thenCall(() => {
+            watchCalls++;
+            return Promise.resolve(new AbortController());
+        });
+
+        const informer = new ListWatch(
+            '/some/path',
+            mock.instance(fakeWatch),
+            listFn,
+            false,
+            undefined,
+            undefined,
+            {
+                delayFn: (ms: number) => {
+                    delays.push(ms);
+                    return Promise.resolve();
+                },
+                randFn: () => 0,
+            },
+        );
+        const errors: Error[] = [];
+        informer.on('error', (err) => errors.push(err));
+        await informer.start();
+
+        const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
+        const error = Object.assign(new Error('Service Unavailable'), { statusCode: 503 });
+        await doneHandler(error);
+
+        strictEqual(watchCalls, 2);
+        deepStrictEqual(delays, [800]);
+        deepStrictEqual(errors, [error]);
+    });
+
+    it('should retry the initial list with backoff after a retryable error', async () => {
+        const fakeWatch = mock.mock(Watch);
+        const listObj = {
+            metadata: { resourceVersion: '12345' } as V1ListMeta,
+            items: [] as V1Namespace[],
+        } as V1NamespaceList;
+        const error = Object.assign(new Error('Too Many Requests'), { code: 429 });
+        let listCalls = 0;
+        const listFn: ListPromise<V1Namespace> = () => {
+            listCalls++;
+            return listCalls === 1 ? Promise.reject(error) : Promise.resolve(listObj);
+        };
+        const delays: number[] = [];
+        let watchCalls = 0;
+        mock.when(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).thenCall(() => {
+            watchCalls++;
+            return Promise.resolve(new AbortController());
+        });
+
+        const informer = new ListWatch(
+            '/some/path',
+            mock.instance(fakeWatch),
+            listFn,
+            false,
+            undefined,
+            undefined,
+            {
+                delayFn: (ms: number) => {
+                    delays.push(ms);
+                    return Promise.resolve();
+                },
+                randFn: () => 0,
+            },
+        );
+        const errors: Error[] = [];
+        informer.on('error', (err) => errors.push(err));
+
+        await informer.start();
+
+        strictEqual(listCalls, 2);
+        strictEqual(watchCalls, 1);
+        deepStrictEqual(delays, [800]);
+        deepStrictEqual(errors, [error]);
     });
 
     it('should not back off between repeated TimeoutErrors', async () => {
@@ -1896,7 +1989,7 @@ describe('delete items', () => {
         strictEqual(await connectPromise, true);
     });
 
-    it('does calls connect after a restart after an error', async () => {
+    it('calls connect after manually restarting from a non-retryable error', async () => {
         const fakeWatch = mock.mock(Watch);
         const list: V1Pod[] = [
             {
@@ -1940,7 +2033,7 @@ describe('delete items', () => {
 
         const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
 
-        const error = new Error('testing');
+        const error = Object.assign(new Error('Bad Request'), { statusCode: 400 });
         await doneHandler(error);
 
         mock.verify(
@@ -1960,7 +2053,7 @@ describe('delete items', () => {
 
     it('should correctly handle errors in the initial list', async () => {
         const fake = mock.mock(Watch);
-        const requestErr = Error('request failed');
+        const requestErr = Object.assign(Error('request failed'), { statusCode: 400 });
         const listFn: ListPromise<V1Namespace> = function (): Promise<V1NamespaceList> {
             return new Promise<V1NamespaceList>((resolve, reject) => {
                 reject(requestErr);
