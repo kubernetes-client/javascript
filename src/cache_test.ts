@@ -1076,23 +1076,17 @@ describe('ListWatchCache', () => {
                 resolve(listObj);
             });
         };
-        const promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                const controller = new AbortController();
-                resolve(controller);
-                return Promise.resolve(controller);
-            });
-        });
+        mock.when(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).thenCall(async () => new AbortController());
 
-        const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
-        await promise;
+        const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
+        await cache.start();
 
         const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
 
         // stop the informer
-        cache.stop();
+        await cache.stop();
 
         await doneHandler(null);
 
@@ -1136,18 +1130,12 @@ describe('ListWatchCache', () => {
                 resolve(listObj);
             });
         };
-        const promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                const controller = new AbortController();
-                resolve(controller);
-                return Promise.resolve(controller);
-            });
-        });
+        mock.when(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).thenCall(async () => new AbortController());
 
-        const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn);
-        await promise;
+        const cache = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
+        await cache.start();
 
         let errorEmitted = false;
         cache.on('error', () => (errorEmitted = true));
@@ -1180,19 +1168,12 @@ describe('ListWatchCache', () => {
                 resolve(listObj);
             });
         };
-        let promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                const controller = new AbortController();
-                resolve(controller);
-                return Promise.resolve(controller);
-            });
-        });
+        mock.when(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).thenCall(async () => new AbortController());
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
 
-        informer.start();
-        await promise;
+        await informer.start();
 
         const [, , watchHandler] = mock.capture(fakeWatch.watch).last();
         watchHandler(
@@ -1207,17 +1188,7 @@ describe('ListWatchCache', () => {
         );
 
         await informer.stop();
-        promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                const controller = new AbortController();
-                resolve(controller);
-                return Promise.resolve(controller);
-            });
-        });
-        informer.start();
-        await promise;
+        await informer.start();
         strictEqual(listCalls, 1);
     });
 
@@ -1238,20 +1209,13 @@ describe('ListWatchCache', () => {
                 resolve(listObj);
             });
         };
-        let promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                const controller = new AbortController();
-                resolve(controller);
-                return Promise.resolve(controller);
-            });
-        });
+        mock.when(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).thenCall(async () => new AbortController());
 
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
 
-        informer.start();
-        await promise;
+        await informer.start();
 
         const [, , watchHandler] = mock.capture(fakeWatch.watch).last();
         watchHandler(
@@ -1270,18 +1234,7 @@ describe('ListWatchCache', () => {
         let errorEmitted = false;
         informer.on('error', () => (errorEmitted = true));
 
-        promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                const controller = new AbortController();
-                resolve(controller);
-                return Promise.resolve(controller);
-            });
-        });
-
-        informer.start();
-        await promise;
+        await informer.start();
 
         const [, , watchHandler2, doneHandler] = mock.capture(fakeWatch.watch).last();
 
@@ -1319,20 +1272,13 @@ describe('ListWatchCache', () => {
                 } as V1NamespaceList);
             });
         };
-        let promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                const controller = new AbortController();
-                resolve(controller);
-                return Promise.resolve(controller);
-            });
-        });
+        mock.when(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).thenCall(async () => new AbortController());
 
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
 
-        informer.start();
-        await promise;
+        await informer.start();
 
         const [, , watchHandler] = mock.capture(fakeWatch.watch).last();
         watchHandler(
@@ -1351,18 +1297,7 @@ describe('ListWatchCache', () => {
         let errorEmitted = false;
         informer.on('error', () => (errorEmitted = true));
 
-        promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                const controller = new AbortController();
-                resolve(controller);
-                return Promise.resolve(controller);
-            });
-        });
-
-        informer.start();
-        await promise;
+        await informer.start();
 
         const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
 
@@ -1394,20 +1329,13 @@ describe('ListWatchCache', () => {
                 resolve(listObj);
             });
         };
-        let promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                const controller = new AbortController();
-                resolve(controller);
-                return Promise.resolve(controller);
-            });
-        });
+        mock.when(
+            fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
+        ).thenCall(async () => new AbortController());
 
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
 
-        informer.start();
-        await promise;
+        await informer.start();
 
         const [, , watchHandler] = mock.capture(fakeWatch.watch).last();
         watchHandler(
@@ -1427,27 +1355,16 @@ describe('ListWatchCache', () => {
         let errorEmitted = false;
         informer.on('error', () => (errorEmitted = true));
 
-        promise = new Promise((resolve) => {
-            mock.when(
-                fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-            ).thenCall(() => {
-                const controller = new AbortController();
-                resolve(controller);
-                return Promise.resolve(controller);
-            });
-        });
-
-        informer.start();
-        await promise;
+        await informer.start();
 
         const [, , watchHandler2, doneHandler] = mock.capture(fakeWatch.watch).last();
         watchHandler2('ERROR', {
             code: 410,
         });
-        doneHandler(undefined);
+        await doneHandler(undefined);
         mock.verify(
             fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
-        ).twice();
+        ).thrice();
         strictEqual(errorEmitted, false);
         strictEqual(listCalls, 2);
     });
