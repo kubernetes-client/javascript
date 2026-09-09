@@ -1,4 +1,4 @@
-import { describe, it } from 'node:test';
+import { describe, it, type TestContext } from 'node:test';
 import { deepStrictEqual, notStrictEqual, ok, strictEqual, throws } from 'node:assert';
 import mock from 'ts-mockito';
 
@@ -1080,7 +1080,9 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new AbortController());
+                const controller = new AbortController();
+                resolve(controller);
+                return Promise.resolve(controller);
             });
         });
 
@@ -1138,7 +1140,9 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new AbortController());
+                const controller = new AbortController();
+                resolve(controller);
+                return Promise.resolve(controller);
             });
         });
 
@@ -1180,7 +1184,9 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new AbortController());
+                const controller = new AbortController();
+                resolve(controller);
+                return Promise.resolve(controller);
             });
         });
         const informer = new ListWatch('/some/path', mock.instance(fakeWatch), listFn, false);
@@ -1205,7 +1211,9 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new AbortController());
+                const controller = new AbortController();
+                resolve(controller);
+                return Promise.resolve(controller);
             });
         });
         informer.start();
@@ -1234,7 +1242,9 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new AbortController());
+                const controller = new AbortController();
+                resolve(controller);
+                return Promise.resolve(controller);
             });
         });
 
@@ -1264,14 +1274,16 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve({});
+                const controller = new AbortController();
+                resolve(controller);
+                return Promise.resolve(controller);
             });
         });
 
         informer.start();
         await promise;
 
-        const [, , , doneHandler] = mock.capture(fakeWatch.watch).last();
+        const [, , watchHandler2, doneHandler] = mock.capture(fakeWatch.watch).last();
 
         const object = {
             kind: 'Status',
@@ -1282,7 +1294,7 @@ describe('ListWatchCache', () => {
             reason: 'Expired',
             code: 410,
         };
-        await watchHandler('ERROR', object, { type: 'ERROR', object });
+        await watchHandler2('ERROR', object, { type: 'ERROR', object });
         await doneHandler(null);
 
         mock.verify(
@@ -1311,7 +1323,9 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve({});
+                const controller = new AbortController();
+                resolve(controller);
+                return Promise.resolve(controller);
             });
         });
 
@@ -1341,7 +1355,9 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new AbortController());
+                const controller = new AbortController();
+                resolve(controller);
+                return Promise.resolve(controller);
             });
         });
 
@@ -1382,7 +1398,9 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new AbortController());
+                const controller = new AbortController();
+                resolve(controller);
+                return Promise.resolve(controller);
             });
         });
 
@@ -1413,7 +1431,9 @@ describe('ListWatchCache', () => {
             mock.when(
                 fakeWatch.watch(mock.anything(), mock.anything(), mock.anything(), mock.anything()),
             ).thenCall(() => {
-                resolve(new AbortController());
+                const controller = new AbortController();
+                resolve(controller);
+                return Promise.resolve(controller);
             });
         });
 
@@ -1778,6 +1798,147 @@ describe('ListWatchCache', () => {
         deepStrictEqual(delays, [800]);
         deepStrictEqual(errors, [error]);
     });
+
+    function deferred<T = void>() {
+        let resolve!: (value: T | PromiseLike<T>) => void;
+        const promise = new Promise<T>((done) => (resolve = done));
+        return { promise, resolve };
+    }
+
+    function lifecycleCache(
+        t: TestContext,
+        options: {
+            list?: ListPromise<V1Namespace>;
+            delay?: () => Promise<void>;
+            connect?: (controller: AbortController) => Promise<AbortController>;
+        } = {},
+    ) {
+        const watches: {
+            controller: AbortController;
+            event: Parameters<Watch['watch']>[2];
+            done: Parameters<Watch['watch']>[3];
+        }[] = [];
+        const watch = new Watch(new KubeConfig());
+        t.mock.method(watch, 'watch', async (_path, _query, event, done) => {
+            const controller = new AbortController();
+            watches.push({ controller, event, done });
+            return options.connect ? options.connect(controller) : controller;
+        });
+        const informer = new ListWatch<V1Namespace>(
+            '/some/path',
+            watch,
+            options.list ?? (async () => ({ metadata: { resourceVersion: '12345' }, items: [] })),
+            false,
+            undefined,
+            undefined,
+            { delayFn: options.delay ?? (() => Promise.resolve()), randFn: () => 0 },
+        );
+        t.after(() => informer.stop());
+        return { informer, watches };
+    }
+
+    it('should discard a pending retry after stopping and starting again', async (t) => {
+        const retryGate = deferred();
+        const retryEntered = deferred();
+        const { informer, watches } = lifecycleCache(t, {
+            delay: () => {
+                retryEntered.resolve();
+                return retryGate.promise;
+            },
+        });
+        await informer.start();
+        const oldWatch = watches[0];
+        const retry = oldWatch.done({ statusCode: 503 });
+        await retryEntered.promise;
+
+        await informer.stop();
+        await informer.start();
+
+        // The old retry must not see the new run's stopped=false as permission to reconnect.
+        retryGate.resolve();
+        await retry;
+        strictEqual(watches.length, 2);
+        strictEqual(oldWatch.controller.signal.aborted, true);
+        strictEqual(watches[1].controller.signal.aborted, false);
+
+        // Late callbacks must not mutate or stop the new run either.
+        oldWatch.event('ADDED', { metadata: { name: 'stale-event', resourceVersion: '99999' } });
+        await oldWatch.done(null);
+        strictEqual(informer.get('stale-event'), undefined);
+        strictEqual(watches[1].controller.signal.aborted, false);
+        await informer.stop();
+        ok(watches.every(({ controller }) => controller.signal.aborted));
+    });
+
+    it('should discard a retried relist that completes after stopping', async (t) => {
+        const pendingList = deferred<V1NamespaceList>();
+        const listEntered = deferred();
+        let listCalls = 0;
+        const { informer, watches } = lifecycleCache(t, {
+            list: async () => {
+                listCalls++;
+                if (listCalls === 1) {
+                    return { metadata: { resourceVersion: '12345' }, items: [] };
+                }
+                if (listCalls === 2) {
+                    throw Object.assign(new Error('Service Unavailable'), { statusCode: 503 });
+                }
+                listEntered.resolve();
+                return pendingList.promise;
+            },
+        });
+        const changes: V1Namespace[] = [];
+        informer.on('change', (obj) => changes.push(obj));
+        await informer.start();
+        const reconnecting = watches[0].done({ statusCode: 410 });
+        await listEntered.promise;
+        await informer.stop();
+
+        // This successful LIST follows a retry, which used to bypass the final stopped check.
+        pendingList.resolve({
+            metadata: { resourceVersion: '23456' },
+            items: [{ metadata: { name: 'late-result', resourceVersion: '23456' } }],
+        });
+        await reconnecting;
+        strictEqual(listCalls, 3);
+        strictEqual(watches.length, 1);
+        strictEqual(watches[0].controller.signal.aborted, true);
+        strictEqual(informer.get('late-result'), undefined);
+        deepStrictEqual(changes, []);
+    });
+
+    for (const restart of [false, true]) {
+        it(`should abort a pending watch that connects after ${restart ? 'restarting' : 'stopping'}`, async (t) => {
+            const pendingWatch = deferred<AbortController>();
+            const watchEntered = deferred();
+            const { informer, watches } = lifecycleCache(t, {
+                connect: async (controller) => {
+                    if (watches.length === 1) {
+                        watchEntered.resolve();
+                        return pendingWatch.promise;
+                    }
+                    return controller;
+                },
+            });
+            const starting = informer.start();
+            await watchEntered.promise;
+            await informer.stop();
+            if (restart) {
+                await informer.start();
+            }
+
+            // stop() could not abort this controller because watch() had not returned it yet.
+            pendingWatch.resolve(watches[0].controller);
+            await starting;
+            strictEqual(watches[0].controller.signal.aborted, true);
+            strictEqual(watches.length, restart ? 2 : 1);
+            if (restart) {
+                strictEqual(watches[1].controller.signal.aborted, false);
+                await informer.stop();
+                strictEqual(watches[1].controller.signal.aborted, true);
+            }
+        });
+    }
 
     it('should not back off between repeated TimeoutErrors', async () => {
         const fakeWatch = mock.mock(Watch);
