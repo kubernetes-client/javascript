@@ -49,6 +49,8 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     private readonly callbackCache: { [key: string]: (ObjectCallback<T> | ErrorCallback)[] } = {};
     private request: AbortController | undefined;
     private stopped: boolean = false;
+    // Stop/start invalidates pending work and callbacks from the previous run.
+    private generation: number = 0;
     private reconnectDelayMs: number = 0;
     private lastBackoffAt: number | undefined;
     private hasConnected: boolean = false;
@@ -92,6 +94,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     }
 
     public async start(): Promise<void> {
+        this.generation++;
         this.stopped = false;
         this.reconnectDelayMs = 0;
         this.lastBackoffAt = undefined;
@@ -100,6 +103,7 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
     }
 
     public async stop(): Promise<void> {
+        this.generation++;
         this.stopped = true;
         this._stop();
     }
@@ -207,19 +211,26 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
         return statusCode === undefined || statusCode === 408 || statusCode === 429 || statusCode >= 500;
     }
 
-    private async waitForRetry(): Promise<boolean> {
+    private isCurrentGeneration(generation: number): boolean {
+        return !this.stopped && generation === this.generation;
+    }
+
+    private async waitForRetry(generation: number): Promise<boolean> {
         if (this.reconnectDelayMs === 0) {
             this.reconnectDelayMs = this.nextBackoffLevelMs();
         }
         await this.delayFn(this.withJitter(this.reconnectDelayMs));
-        if (this.stopped) {
+        if (!this.isCurrentGeneration(generation)) {
             return false;
         }
         this.reconnectDelayMs = this.nextBackoffLevelMs();
         return true;
     }
 
-    private async doneHandler(err: any): Promise<void> {
+    private async doneHandler(err: any, generation: number = this.generation): Promise<void> {
+        if (!this.isCurrentGeneration(generation)) {
+            return;
+        }
         this._stop();
         let hasBackedOff = false;
         if (
@@ -235,16 +246,23 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
             this.reconnectDelayMs = 0;
         } else if (err) {
             this.callbackCache[ERROR].forEach((elt: ErrorCallback) => elt(err));
-            if (!this.isRetryableError(err) || this.stopped || !(await this.waitForRetry())) {
+            if (
+                !this.isRetryableError(err) ||
+                !this.isCurrentGeneration(generation) ||
+                !(await this.waitForRetry(generation))
+            ) {
                 return;
             }
             hasBackedOff = true;
         }
-        if (this.stopped) {
+        if (!this.isCurrentGeneration(generation)) {
             // do not auto-restart
             return;
         }
         this.callbackCache[CONNECT].forEach((elt: ErrorCallback) => elt(undefined));
+        if (!this.isCurrentGeneration(generation)) {
+            return;
+        }
         if (!this.resourceVersion) {
             let listed = false;
             while (!listed) {
@@ -253,12 +271,22 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
                     const promise = this.listFn();
                     list = await promise;
                 } catch (err) {
+                    if (!this.isCurrentGeneration(generation)) {
+                        return;
+                    }
                     this.callbackCache[ERROR].forEach((elt: ErrorCallback) => elt(err));
-                    if (!this.isRetryableError(err) || this.stopped || !(await this.waitForRetry())) {
+                    if (
+                        !this.isRetryableError(err) ||
+                        !this.isCurrentGeneration(generation) ||
+                        !(await this.waitForRetry(generation))
+                    ) {
                         return;
                     }
                     hasBackedOff = true;
                     continue;
+                }
+                if (!this.isCurrentGeneration(generation)) {
+                    return;
                 }
                 this.objects = deleteItems(this.objects, list.items, this.callbackCache[DELETE].slice());
                 this.addOrUpdateItems(list.items);
@@ -283,18 +311,30 @@ export class ListWatch<T extends KubernetesObject> implements ObjectCache<T>, In
             if (this.reconnectDelayMs > 0) {
                 await this.delayFn(this.withJitter(this.reconnectDelayMs));
             }
-            if (this.stopped) {
+            if (!this.isCurrentGeneration(generation)) {
                 return;
             }
             this.reconnectDelayMs = this.nextBackoffLevelMs();
         }
+        if (!this.isCurrentGeneration(generation)) {
+            return;
+        }
         this.hasConnected = true;
-        this.request = await this.watch.watch(
+        const request = await this.watch.watch(
             this.path,
             queryParams,
-            this.watchHandler.bind(this),
-            this.doneHandler.bind(this),
+            (phase, obj, watchObj) => {
+                if (this.isCurrentGeneration(generation)) {
+                    return this.watchHandler(phase, obj, watchObj);
+                }
+            },
+            (err) => this.doneHandler(err, generation),
         );
+        if (!this.isCurrentGeneration(generation)) {
+            request.abort();
+            return;
+        }
+        this.request = request;
     }
 
     private addOrUpdateItems(items: T[]): void {
