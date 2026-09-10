@@ -156,5 +156,43 @@ describe('Exec', () => {
             await closePromise;
             verify(fakeWebSocket.close()).called();
         });
+
+        it('should call done with remote command failures', async () => {
+            const kc = new KubeConfig();
+            const fakeWebSocketInterface: WebSocketInterface = mock(WebSocketHandler);
+            const fakeWebSocket: WebSocket.WebSocket = mock(WebSocket);
+            const exec = new Exec(kc, instance(fakeWebSocketInterface));
+            const errStream = new WritableStreamBuffer();
+
+            const path = `/api/v1/namespaces/ns/pods/pod/exec`;
+            const args = `stdout=false&stderr=true&stdin=false&tty=false&command=cmd&container=container`;
+            when(
+                fakeWebSocketInterface.connect(`${path}?${args}`, null, anyFunction(), anyFunction()),
+            ).thenResolve(instance(fakeWebSocket));
+
+            let doneErr: any;
+            await exec.exec(
+                'ns',
+                'pod',
+                'container',
+                'cmd',
+                null,
+                errStream,
+                null,
+                false,
+                undefined,
+                (err) => {
+                    doneErr = err;
+                },
+            );
+
+            const [, , outputFn] = capture(fakeWebSocketInterface.connect).last();
+            outputFn!(
+                WebSocketHandler.StatusStream,
+                Buffer.from(JSON.stringify({ status: 'Failure', message: 'command failed' })),
+            );
+
+            strictEqual(doneErr.message, 'command failed');
+        });
     });
 });

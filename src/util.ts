@@ -164,6 +164,16 @@ export function normalizeResponseHeaders(response: { headers: { entries(): Itera
     return normalizedHeaders;
 }
 
+export function createDoneOnce(done?: (err: any) => void): (err: any) => void {
+    let doneCalled = false;
+    return (err: any) => {
+        if (!doneCalled) {
+            doneCalled = true;
+            done?.(err);
+        }
+    };
+}
+
 /**
  * Built-in Kubernetes API groups that have generated TypeScript models.
  * Custom resources and third-party API groups (like Knative) are not included.

@@ -348,7 +348,6 @@ describe('Watch', () => {
         );
 
         await donePromise;
-
         deepStrictEqual(receivedTypes, [obj.type]);
         deepStrictEqual(receivedObjects, [obj.object]);
     });
