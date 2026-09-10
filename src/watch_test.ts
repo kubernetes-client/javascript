@@ -6,6 +6,7 @@ import { Cluster, Context, User } from './config_types.js';
 import { Watch } from './watch.js';
 import { IncomingMessage, ServerResponse, createServer } from 'node:http';
 import { AddressInfo } from 'node:net';
+import { deferred } from './test/deferred.js';
 
 const server = 'https://foo.company.com';
 
@@ -110,15 +111,8 @@ describe('Watch', () => {
         let doneCalled = 0;
         let doneErr: any;
 
-        let handledAllObjectsResolve: any;
-        const handledAllObjectsPromise = new Promise((resolve) => {
-            handledAllObjectsResolve = resolve;
-        });
-
-        let doneResolve: any;
-        const donePromise = new Promise((resolve) => {
-            doneResolve = resolve;
-        });
+        const handledAllObjects = deferred();
+        const done = deferred();
 
         await watch.watch(
             path,
@@ -129,24 +123,24 @@ describe('Watch', () => {
                 receivedTypes.push(phase);
                 receivedObjects.push(obj);
                 if (receivedObjects.length === 2) {
-                    handledAllObjectsResolve();
+                    handledAllObjects.resolve();
                 }
             },
             (err: any) => {
                 doneCalled += 1;
                 doneErr = err;
-                doneResolve();
+                done.resolve();
             },
         );
 
-        await handledAllObjectsPromise;
+        await handledAllObjects.promise;
 
         deepStrictEqual(receivedTypes, [obj1.type, obj2.type]);
         deepStrictEqual(receivedObjects, [obj1.object, obj2.object]);
 
         strictEqual(doneCalled, 0);
         response!.destroy();
-        await donePromise;
+        await done.promise;
         strictEqual(doneCalled, 1);
         strictEqual(doneErr?.name, 'TypeError');
         strictEqual(doneErr?.message, 'terminated');
@@ -170,11 +164,7 @@ describe('Watch', () => {
         const watch = new Watch(kc);
 
         let doneCalled = 0;
-        let doneResolve: () => void;
-
-        const donePromise = new Promise<void>((resolve) => {
-            doneResolve = resolve;
-        });
+        const done = deferred();
 
         await watch.watch(
             '/some/path/to/object',
@@ -182,11 +172,11 @@ describe('Watch', () => {
             () => {},
             () => {
                 doneCalled += 1;
-                doneResolve();
+                done.resolve();
             },
         );
 
-        await donePromise;
+        await done.promise;
         strictEqual(doneCalled, 1);
     });
 
@@ -209,15 +199,8 @@ describe('Watch', () => {
         const receivedObjects: string[] = [];
         const doneErr: any[] = [];
 
-        let handledAllObjectsResolve: any;
-        const handledAllObjectsPromise = new Promise((resolve) => {
-            handledAllObjectsResolve = resolve;
-        });
-
-        let doneResolve: any;
-        const donePromise = new Promise((resolve) => {
-            doneResolve = resolve;
-        });
+        const handledAllObjects = deferred();
+        const done = deferred();
 
         await watch.watch(
             path,
@@ -226,16 +209,16 @@ describe('Watch', () => {
                 receivedTypes.push(phase);
                 receivedObjects.push(obj);
                 if (receivedObjects.length === 1) {
-                    handledAllObjectsResolve();
+                    handledAllObjects.resolve();
                 }
             },
             (err: any) => {
                 doneErr.push(err);
-                doneResolve();
+                done.resolve();
             },
         );
 
-        await handledAllObjectsPromise;
+        await handledAllObjects.promise;
 
         deepStrictEqual(receivedTypes, [obj1.type]);
         deepStrictEqual(receivedObjects, [obj1.object]);
@@ -245,7 +228,7 @@ describe('Watch', () => {
         const errIn = new Error('err');
         response!.destroy(errIn);
 
-        await donePromise;
+        await done.promise;
 
         strictEqual(doneErr.length, 1);
         strictEqual(doneErr[0]?.name, 'TypeError');
@@ -272,15 +255,8 @@ describe('Watch', () => {
         const receivedObjects: string[] = [];
         const doneErr: any[] = [];
 
-        let handledAllObjectsResolve: any;
-        const handledAllObjectsPromise = new Promise((resolve) => {
-            handledAllObjectsResolve = resolve;
-        });
-
-        let doneResolve: any;
-        const donePromise = new Promise((resolve) => {
-            doneResolve = resolve;
-        });
+        const handledAllObjects = deferred();
+        const done = deferred();
 
         await watch.watch(
             path,
@@ -289,22 +265,22 @@ describe('Watch', () => {
                 receivedTypes.push(phase);
                 receivedObjects.push(obj);
                 if (receivedObjects.length === 1) {
-                    handledAllObjectsResolve();
+                    handledAllObjects.resolve();
                 }
             },
             (err: any) => {
                 doneErr.push(err);
-                doneResolve();
+                done.resolve();
             },
         );
 
-        await handledAllObjectsPromise;
+        await handledAllObjects.promise;
 
         deepStrictEqual(receivedTypes, [obj1.type]);
         deepStrictEqual(receivedObjects, [obj1.object]);
         strictEqual(doneErr.length, 0);
 
-        await donePromise;
+        await done.promise;
 
         strictEqual(doneErr.length, 1);
         strictEqual(doneErr[0], null);
@@ -330,10 +306,7 @@ describe('Watch', () => {
         const receivedTypes: string[] = [];
         const receivedObjects: string[] = [];
 
-        let doneResolve: any;
-        const donePromise = new Promise((resolve) => {
-            doneResolve = resolve;
-        });
+        const done = deferred();
 
         await watch.watch(
             path,
@@ -343,11 +316,11 @@ describe('Watch', () => {
                 receivedObjects.push(recievedObject);
             },
             () => {
-                doneResolve();
+                done.resolve();
             },
         );
 
-        await donePromise;
+        await done.promise;
 
         deepStrictEqual(receivedTypes, [obj.type]);
         deepStrictEqual(receivedObjects, [obj.object]);
@@ -364,10 +337,7 @@ describe('Watch', () => {
 
         let doneErr: any;
 
-        let doneResolve: () => void;
-        const donePromise = new Promise<void>((resolve) => {
-            doneResolve = resolve;
-        });
+        const done = deferred();
 
         await watch.watch(
             '/some/path/to/object',
@@ -377,11 +347,11 @@ describe('Watch', () => {
             },
             (err: any) => {
                 doneErr = err;
-                doneResolve();
+                done.resolve();
             },
         );
 
-        await donePromise;
+        await done.promise;
 
         strictEqual(doneErr.name, 'TimeoutError');
     });
@@ -410,10 +380,7 @@ describe('Watch', () => {
         const receivedObjects: any[] = [];
         let doneErr: any;
 
-        let doneResolve: () => void;
-        const donePromise = new Promise<void>((resolve) => {
-            doneResolve = resolve;
-        });
+        const done = deferred();
 
         await watch.watch(
             '/some/path/to/object',
@@ -423,11 +390,11 @@ describe('Watch', () => {
             },
             (err: any) => {
                 doneErr = err;
-                doneResolve();
+                done.resolve();
             },
         );
 
-        await donePromise;
+        await done.promise;
 
         // The stream lived well past requestTimeoutMs because every event reset the timeout.
         strictEqual(receivedObjects.length, eventCount);
@@ -447,10 +414,7 @@ describe('Watch', () => {
         const receivedObjects: any[] = [];
         let doneErr: any;
 
-        let doneResolve: () => void;
-        const donePromise = new Promise<void>((resolve) => {
-            doneResolve = resolve;
-        });
+        const done = deferred();
 
         await watch.watch(
             '/some/path/to/object',
@@ -460,11 +424,11 @@ describe('Watch', () => {
             },
             (err: any) => {
                 doneErr = err;
-                doneResolve();
+                done.resolve();
             },
         );
 
-        await donePromise;
+        await done.promise;
 
         deepStrictEqual(receivedObjects, [{ name: 'obj' }]);
         strictEqual(doneErr.name, 'TimeoutError');

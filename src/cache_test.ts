@@ -10,6 +10,7 @@ import { ListPromise } from './informer.js';
 
 import { MockAgent, setGlobalDispatcher, getGlobalDispatcher } from 'undici';
 import { Watch } from './watch.js';
+import { deferred } from './test/deferred.js';
 
 const server = 'https://foo.company.com';
 
@@ -1442,14 +1443,11 @@ describe('ListWatchCache', () => {
 
         await informer.start();
 
-        let doneResolve: any;
-        const donePromise = new Promise((resolve) => {
-            doneResolve = resolve;
-        });
+        const done = deferred<V1Namespace>();
 
-        informer.on('add', doneResolve);
+        informer.on('add', done.resolve);
 
-        const value = await donePromise;
+        const value = await done.promise;
 
         deepStrictEqual(value, {
             metadata: {
@@ -1715,12 +1713,6 @@ describe('ListWatchCache', () => {
         deepStrictEqual(delays, [800]);
         deepStrictEqual(errors, [error]);
     });
-
-    function deferred<T = void>() {
-        let resolve!: (value: T | PromiseLike<T>) => void;
-        const promise = new Promise<T>((done) => (resolve = done));
-        return { promise, resolve };
-    }
 
     function lifecycleCache(
         t: TestContext,
