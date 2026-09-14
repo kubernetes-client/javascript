@@ -37,6 +37,19 @@ export function requestTimeoutMiddleware(milliseconds: number): ObservableMiddle
     };
 }
 
+/** Returns call options that abort a request after the given number of milliseconds. */
+export function setRequestTimeoutOptions(
+    milliseconds: number,
+    opt?: ConfigurationOptions<ObservableMiddleware>,
+): ConfigurationOptions<ObservableMiddleware> {
+    const existingMiddleware = opt?.middleware || [];
+    return {
+        ...opt,
+        middleware: existingMiddleware.concat(requestTimeoutMiddleware(milliseconds)),
+        middlewareMergeStrategy: 'append',
+    };
+}
+
 // Returns ConfigurationOptions that set a header
 export function setHeaderOptions(
     key: string,

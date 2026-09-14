@@ -5,7 +5,7 @@ import { MockAgent, setGlobalDispatcher, getGlobalDispatcher, type Dispatcher } 
 import { CoreV1Api } from './api.js';
 import { KubeConfig } from './config.js';
 import { Cluster, User } from './config_types.js';
-import { requestTimeoutMiddleware } from './middleware.js';
+import { requestTimeoutMiddleware, setRequestTimeoutOptions } from './middleware.js';
 
 describe('FullRequest', () => {
     describe('getPods', () => {
@@ -81,16 +81,9 @@ describe('FullRequest', () => {
                 .reply(200, { kind: 'PodList', apiVersion: 'v1', items: [] })
                 .delay(100);
 
-            await rejects(
-                k8sApi.listNamespacedPod(
-                    { namespace: 'default' },
-                    {
-                        middleware: [requestTimeoutMiddleware(10)],
-                        middlewareMergeStrategy: 'append',
-                    },
-                ),
-                { name: 'TimeoutError' },
-            );
+            await rejects(k8sApi.listNamespacedPod({ namespace: 'default' }, setRequestTimeoutOptions(10)), {
+                name: 'TimeoutError',
+            });
         });
     });
 });

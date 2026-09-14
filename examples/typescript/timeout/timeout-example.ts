@@ -1,4 +1,4 @@
-import { CoreV1Api, KubeConfig, requestTimeoutMiddleware } from '@kubernetes/client-node';
+import { CoreV1Api, KubeConfig, setRequestTimeoutOptions } from '@kubernetes/client-node';
 
 const kc = new KubeConfig();
 kc.loadFromDefault();
@@ -6,13 +6,7 @@ kc.loadFromDefault();
 const k8sApi = kc.makeApiClient(CoreV1Api);
 
 try {
-    const pods = await k8sApi.listNamespacedPod(
-        { namespace: 'default' },
-        {
-            middleware: [requestTimeoutMiddleware(5_000)],
-            middlewareMergeStrategy: 'append',
-        },
-    );
+    const pods = await k8sApi.listNamespacedPod({ namespace: 'default' }, setRequestTimeoutOptions(5_000));
     console.log(`Found ${pods.items.length} pods.`);
 } catch (err) {
     if (err instanceof Error && err.name === 'TimeoutError') {
