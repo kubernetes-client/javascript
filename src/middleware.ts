@@ -18,7 +18,14 @@ export function setHeaderMiddleware(key: string, value: string): ObservableMiddl
     };
 }
 
-export function timeoutMiddlewareMilliseconds(milliseconds: number): ObservableMiddleware {
+/**
+ * Aborts a request after the given number of milliseconds, regardless of request activity.
+ *
+ * Uses Node.js's native AbortSignal.timeout(), whose timer does not keep the process running and
+ * can be reclaimed after the signal is no longer referenced. Streaming response bodies must be
+ * consumed or canceled so the HTTP client can release its abort listeners.
+ */
+export function requestTimeoutMiddleware(milliseconds: number): ObservableMiddleware {
     return {
         pre: (request: RequestContext) => {
             request.setSignal(AbortSignal.timeout(milliseconds));

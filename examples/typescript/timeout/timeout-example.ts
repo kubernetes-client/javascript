@@ -1,4 +1,4 @@
-import { CoreV1Api, KubeConfig, timeoutMiddlewareMilliseconds } from '@kubernetes/client-node';
+import { CoreV1Api, KubeConfig, requestTimeoutMiddleware } from '@kubernetes/client-node';
 
 const kc = new KubeConfig();
 kc.loadFromDefault();
@@ -9,7 +9,7 @@ try {
     const pods = await k8sApi.listNamespacedPod(
         { namespace: 'default' },
         {
-            middleware: [timeoutMiddlewareMilliseconds(5_000)],
+            middleware: [requestTimeoutMiddleware(5_000)],
             middlewareMergeStrategy: 'append',
         },
     );
