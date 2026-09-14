@@ -18,6 +18,18 @@ export function setHeaderMiddleware(key: string, value: string): ObservableMiddl
     };
 }
 
+export function timeoutMiddlewareMilliseconds(milliseconds: number): ObservableMiddleware {
+    return {
+        pre: (request: RequestContext) => {
+            request.setSignal(AbortSignal.timeout(milliseconds));
+            return of(request);
+        },
+        post: (response: ResponseContext) => {
+            return of(response);
+        },
+    };
+}
+
 // Returns ConfigurationOptions that set a header
 export function setHeaderOptions(
     key: string,

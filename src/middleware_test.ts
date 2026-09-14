@@ -1,7 +1,8 @@
 import { describe, it } from 'node:test';
 import { RequestContext, ConfigurationOptions, HttpMethod, ObservableMiddleware } from './gen/index.js';
-import { deepStrictEqual } from 'node:assert';
-import { setHeaderMiddleware, setHeaderOptions } from './middleware.js';
+import { deepStrictEqual, strictEqual } from 'node:assert';
+import { once } from 'node:events';
+import { setHeaderMiddleware, setHeaderOptions, timeoutMiddlewareMilliseconds } from './middleware.js';
 
 describe('Middleware', async () => {
     describe('setHeaderMiddleware', async () => {
@@ -45,6 +46,21 @@ describe('Middleware', async () => {
                 .toPromise();
 
             deepStrictEqual(postMiddlewareRequest.getHeaders(), { 'test-key': 'test-value' });
+        });
+    });
+
+    describe('timeoutMiddlewareMilliseconds', () => {
+        it('should set a timeout signal on the request', async () => {
+            const reqContext = new RequestContext('http://nowhere.com', HttpMethod.GET);
+            const timeoutMiddleware = timeoutMiddlewareMilliseconds(10);
+
+            const postMiddlewareRequest = await timeoutMiddleware.pre(reqContext).toPromise();
+            const signal = postMiddlewareRequest.getSignal();
+
+            strictEqual(signal?.aborted, false);
+            await once(signal!, 'abort');
+            strictEqual(signal?.aborted, true);
+            strictEqual(signal?.reason.name, 'TimeoutError');
         });
     });
 });
