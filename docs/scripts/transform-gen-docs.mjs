@@ -429,6 +429,13 @@ function fixImports(content) {
         .replace(/from\s+\"\"/g, "from '@kubernetes/client-node'");
 }
 
+function addRequestOptionsLinks(content) {
+    return content.replace(
+        /^(> .+\(\)\n)/gm,
+        '$1\nGenerated API methods accept optional [request options](/request-options) as a second argument.\n',
+    );
+}
+
 const MODEL_GROUP_MAP = {
     core: /^V1(Pod|Service|Node|Namespace|ConfigMap|Secret|Endpoint|Event|Binding|Component|LimitRange|PersistentVolume|ReplicationController|ResourceQuota|PodTemplate|ServiceAccount|API)/,
     workloads:
@@ -952,6 +959,7 @@ export function transformMarkdown(content, { className, sidebarPosition, apiGrou
     transformed = normalizeHeadings(transformed);
     transformed = rewriteLinks(transformed, apiGroupMap, warnings);
     transformed = fixImports(transformed);
+    transformed = addRequestOptionsLinks(transformed);
     transformed = truncateExamples(transformed);
     transformed = inlineMinimalBodies(transformed);
     transformed = stripBoilerplate(transformed);

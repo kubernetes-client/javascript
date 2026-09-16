@@ -6,6 +6,14 @@ import type {
 } from './gen/index.js';
 import { of } from './gen/rxjsStub.js';
 
+/**
+ * Per-call options accepted as the optional second argument by generated API methods.
+ *
+ * Use {@link setHeaderOptions} and {@link setRequestTimeoutOptions} for common options, or add
+ * middleware such as {@link requestTimeoutMiddleware} directly for custom composition.
+ */
+export type ApiRequestOptions = ConfigurationOptions<ObservableMiddleware>;
+
 export function setHeaderMiddleware(key: string, value: string): ObservableMiddleware {
     return {
         pre: (request: RequestContext) => {
@@ -38,10 +46,7 @@ export function requestTimeoutMiddleware(milliseconds: number): ObservableMiddle
 }
 
 /** Returns call options that abort a request after the given number of milliseconds. */
-export function setRequestTimeoutOptions(
-    milliseconds: number,
-    opt?: ConfigurationOptions<ObservableMiddleware>,
-): ConfigurationOptions<ObservableMiddleware> {
+export function setRequestTimeoutOptions(milliseconds: number, opt?: ApiRequestOptions): ApiRequestOptions {
     const existingMiddleware = opt?.middleware || [];
     return {
         ...opt,
@@ -51,11 +56,7 @@ export function setRequestTimeoutOptions(
 }
 
 // Returns ConfigurationOptions that set a header
-export function setHeaderOptions(
-    key: string,
-    value: string,
-    opt?: ConfigurationOptions<ObservableMiddleware>,
-): ConfigurationOptions<ObservableMiddleware> {
+export function setHeaderOptions(key: string, value: string, opt?: ApiRequestOptions): ApiRequestOptions {
     const newMiddlware = setHeaderMiddleware(key, value);
     const existingMiddlware = opt?.middleware || [];
     return {
