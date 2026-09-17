@@ -7,6 +7,10 @@ import { KubeConfig } from './config.js';
 import { isResizable, ResizableStream, TerminalSizeQueue } from './terminal-size-queue.js';
 import { WebSocketHandler, WebSocketInterface } from './web-socket-handler.js';
 
+export interface ExecOptions {
+    pingIntervalMs?: number;
+}
+
 export class Exec {
     public 'handler': WebSocketInterface;
 
@@ -39,6 +43,7 @@ export class Exec {
         stdin: stream.Readable | null,
         tty: boolean,
         statusCallback?: (status: V1Status) => void,
+        options?: ExecOptions,
     ): Promise<WebSocket.WebSocket> {
         const query = {
             stdout: stdout != null,
@@ -60,6 +65,13 @@ export class Exec {
             }
             return true;
         });
+        const pingIntervalMs = options?.pingIntervalMs;
+        if (pingIntervalMs !== undefined) {
+            if (!Number.isInteger(pingIntervalMs) || pingIntervalMs <= 0) {
+                throw new Error('pingIntervalMs must be a positive integer');
+            }
+            this.setupPing(conn, pingIntervalMs);
+        }
         if (stdin != null) {
             WebSocketHandler.handleStandardInput(conn, stdin, WebSocketHandler.StdinStream);
         }
@@ -69,5 +81,38 @@ export class Exec {
             this.terminalSizeQueue.handleResizes(stdout as any as ResizableStream);
         }
         return conn;
+    }
+
+    private setupPing(conn: WebSocket.WebSocket, pingIntervalMs: number): void {
+        const socket = conn as WebSocket.WebSocket & {
+            ping?: () => void;
+            on?: (event: string, listener: (...args: unknown[]) => void) => void;
+            removeListener?: (event: string, listener: (...args: unknown[]) => void) => void;
+        };
+        if (typeof socket.ping !== 'function') {
+            return;
+        }
+
+        let awaitingPong = false;
+        const timer = setInterval(() => {
+            if (conn.readyState === WebSocket.OPEN) {
+                if (!awaitingPong) {
+                    awaitingPong = true;
+                    socket.ping!();
+                }
+            }
+        }, pingIntervalMs);
+        const onPong = () => {
+            awaitingPong = false;
+        };
+        const clearKeepAlive = () => {
+            clearInterval(timer);
+            socket.removeListener?.('pong', onPong);
+        };
+        if (typeof socket.on === 'function') {
+            socket.on('pong', onPong);
+            socket.on('close', clearKeepAlive);
+            socket.on('error', clearKeepAlive);
+        }
     }
 }
