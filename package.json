@@ -21,6 +21,7 @@
         "build": "tsc",
         "build-with-tests": "tsc --project tsconfig-with-tests.json && cp 'src/test/echo space.js' dist/test",
         "generate": "./generate-client.sh",
+        "generate:proto": "./generate-protobuf.sh",
         "watch": "tsc --watch",
         "test": "c8 node --test --test-reporter=spec --import tsx src/*_test.ts",
         "test-no-coverage": "node --test --test-reporter=spec --import tsx src/*_test.ts",
@@ -56,6 +57,7 @@
     "author": "Kubernetes Authors",
     "license": "Apache-2.0",
     "dependencies": {
+        "@bufbuild/protobuf": "^2.14.1",
         "@types/js-yaml": "^4.0.1",
         "@types/node": "^26.0.0",
         "@types/stream-buffers": "^3.0.3",
@@ -81,6 +83,7 @@
         "prettier": "^3.0.0",
         "pretty-quick": "^4.0.0",
         "ts-mockito": "^2.3.1",
+        "ts-proto": "^2.12.1",
         "tsx": "^4.21.0",
         "typescript": "~7.0.2"
     },
