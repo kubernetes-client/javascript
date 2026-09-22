@@ -2,6 +2,7 @@ import { describe, it } from 'node:test';
 import { RequestContext, ConfigurationOptions, HttpMethod, ObservableMiddleware } from './gen/index.js';
 import { deepStrictEqual, strictEqual } from 'node:assert';
 import { once } from 'node:events';
+import { setTimeout } from 'node:timers/promises';
 import {
     requestTimeoutMiddleware,
     setHeaderMiddleware,
@@ -63,7 +64,7 @@ describe('Middleware', async () => {
             const signal = postMiddlewareRequest.getSignal();
 
             strictEqual(signal?.aborted, false);
-            await once(signal!, 'abort');
+            await Promise.race([once(signal!, 'abort'), setTimeout(100)]);
             strictEqual(signal?.aborted, true);
             strictEqual(signal?.reason.name, 'TimeoutError');
         });
