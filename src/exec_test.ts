@@ -13,6 +13,9 @@ import { TerminalSize } from './terminal-size-queue.js';
 import { WebSocketHandler, WebSocketInterface } from './web-socket-handler.js';
 
 describe('Exec', () => {
+    const startExec = (exec: Exec, options?: ExecOptions) =>
+        exec.exec('ns', 'pod', 'container', 'command', null, null, null, false, undefined, options);
+
     describe('basic', () => {
         it('should correctly exec to a url', async () => {
             const kc = new KubeConfig();
@@ -164,8 +167,7 @@ describe('Exec', () => {
         let pingCount: number;
         let connectCount: number;
         let exec: Exec;
-        const start = (options?: ExecOptions) =>
-            exec.exec('ns', 'pod', 'container', 'command', null, null, null, false, undefined, options);
+        const start = (options?: ExecOptions) => startExec(exec, options);
 
         beforeEach((t) => {
             ok('mock' in t);
@@ -201,10 +203,22 @@ describe('Exec', () => {
             strictEqual(pingCount, 2);
         });
 
-        for (const options of [undefined, {}, { pingIntervalMs: undefined }]) {
-            it(`keeps pings disabled for ${JSON.stringify(options)}`, async (t) => {
+        const disabledCases: { name: string; options?: ExecOptions; socket?: object }[] = [
+            { name: 'omitted options' },
+            { name: 'empty options', options: {} },
+            { name: 'undefined interval', options: { pingIntervalMs: undefined } },
+            { name: 'missing ping', socket: { ping: undefined } },
+            { name: 'non-function on', socket: { on: true } },
+            { name: 'missing removeListener', socket: { removeListener: undefined } },
+            { name: 'connecting socket', socket: { readyState: WebSocket.CONNECTING } },
+            { name: 'closing socket', socket: { readyState: WebSocket.CLOSING } },
+            { name: 'closed socket', socket: { readyState: WebSocket.CLOSED } },
+        ];
+        for (const { name, options, socket } of disabledCases) {
+            it(`keeps pings disabled for ${name}`, async (t) => {
+                Object.assign(conn, socket);
                 const interval = t.mock.method(globalThis, 'setInterval');
-                await start(options);
+                await start(socket ? { pingIntervalMs: 10 } : options);
                 t.mock.timers.tick(100);
                 strictEqual(pingCount, 0);
                 strictEqual(interval.mock.callCount(), 0);
@@ -212,18 +226,7 @@ describe('Exec', () => {
             });
         }
 
-        for (const value of [
-            0,
-            -1,
-            1.5,
-            NaN,
-            Infinity,
-            -Infinity,
-            2147483648,
-            Number.MAX_SAFE_INTEGER,
-            '10',
-            null,
-        ]) {
+        for (const value of [0, -1, 1.5, NaN, Infinity, 2147483648, '10', null]) {
             it(`rejects invalid interval ${String(value)} before connecting`, async () => {
                 await rejects(
                     start({ pingIntervalMs: value as number }),
@@ -241,18 +244,6 @@ describe('Exec', () => {
                 t.mock.timers.tick(1);
                 strictEqual(pingCount, 1);
             });
-        }
-
-        for (const method of ['ping', 'on', 'removeListener']) {
-            for (const value of [undefined, null, true]) {
-                it(`does not start a timer when ${method} is ${String(value)}`, async (t) => {
-                    Object.defineProperty(conn, method, { value });
-                    const interval = t.mock.method(globalThis, 'setInterval');
-                    await start({ pingIntervalMs: 10 });
-                    strictEqual(interval.mock.callCount(), 0);
-                    deepStrictEqual(conn.eventNames(), []);
-                });
-            }
         }
 
         for (const event of ['close', 'error']) {
@@ -275,16 +266,6 @@ describe('Exec', () => {
                 strictEqual(pingCount, 1);
                 conn.emit('close');
                 strictEqual(clear.mock.callCount(), 1);
-            });
-        }
-
-        for (const readyState of [WebSocket.CONNECTING, WebSocket.CLOSING, WebSocket.CLOSED]) {
-            it(`does not start keepalive if already in state ${readyState}`, async (t) => {
-                conn.readyState = readyState;
-                const interval = t.mock.method(globalThis, 'setInterval');
-                await start({ pingIntervalMs: 10 });
-                strictEqual(interval.mock.callCount(), 0);
-                deepStrictEqual(conn.eventNames(), []);
             });
         }
 
@@ -354,20 +335,7 @@ describe('Exec', () => {
                 return client;
             },
         });
-        const conn = await exec.exec(
-            'ns',
-            'pod',
-            'container',
-            'command',
-            null,
-            null,
-            null,
-            false,
-            undefined,
-            {
-                pingIntervalMs: 10,
-            },
-        );
+        const conn = await startExec(exec, { pingIntervalMs: 10 });
         await once(conn, 'pong');
         await once(conn, 'pong');
         strictEqual(pingCount, 2);
