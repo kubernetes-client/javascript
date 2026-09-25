@@ -10,7 +10,7 @@ on:
             genCommit:
                 type: string
                 required: true
-                default: 'd210d677213d3e55376868edef4be06fb3bf66e5'
+                default: '10e6c21c97abb098cc67f14dfdd02171ce56b115'
                 description: 'The commit to use for the kubernetes-client/gen repo'
 
 permissions: {}
