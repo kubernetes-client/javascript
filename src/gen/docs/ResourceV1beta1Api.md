@@ -267,6 +267,12 @@ const request: ResourceV1beta1ApiCreateNamespacedResourceClaimRequest = {
               },
             },
             count: 1,
+            derivedAttributes: [
+              {
+                expression: "expression_example",
+                name: "name_example",
+              },
+            ],
             deviceClassName: "deviceClassName_example",
             firstAvailable: [
               {
@@ -277,6 +283,12 @@ const request: ResourceV1beta1ApiCreateNamespacedResourceClaimRequest = {
                   },
                 },
                 count: 1,
+                derivedAttributes: [
+                  {
+                    expression: "expression_example",
+                    name: "name_example",
+                  },
+                ],
                 deviceClassName: "deviceClassName_example",
                 name: "name_example",
                 selectors: [
@@ -351,6 +363,9 @@ const request: ResourceV1beta1ApiCreateNamespacedResourceClaimRequest = {
               pool: "pool_example",
               request: "request_example",
               shareID: "shareID_example",
+              skipNodeOperations: [
+                "skipNodeOperations_example",
+              ],
               tolerations: [
                 {
                   effect: "effect_example",
@@ -614,6 +629,12 @@ const request: ResourceV1beta1ApiCreateNamespacedResourceClaimTemplateRequest = 
                 },
               },
               count: 1,
+              derivedAttributes: [
+                {
+                  expression: "expression_example",
+                  name: "name_example",
+                },
+              ],
               deviceClassName: "deviceClassName_example",
               firstAvailable: [
                 {
@@ -624,6 +645,12 @@ const request: ResourceV1beta1ApiCreateNamespacedResourceClaimTemplateRequest = 
                     },
                   },
                   count: 1,
+                  derivedAttributes: [
+                    {
+                      expression: "expression_example",
+                      name: "name_example",
+                    },
+                  ],
                   deviceClassName: "deviceClassName_example",
                   name: "name_example",
                   selectors: [
@@ -832,6 +859,9 @@ const request: ResourceV1beta1ApiCreateResourceSliceRequest = {
             },
             consumesCounters: [
               {
+                compatibilityGroups: [
+                  "compatibilityGroups_example",
+                ],
                 counterSet: "counterSet_example",
                 counters: {
                   "key": {
@@ -840,10 +870,17 @@ const request: ResourceV1beta1ApiCreateResourceSliceRequest = {
                 },
               },
             ],
-            nodeAllocatableResourceMappings: {
+            nodeAllocatableResources: {
               "key": {
-                allocationMultiplier: "allocationMultiplier_example",
-                capacityKey: "capacityKey_example",
+                mapping: {
+                  capacityKey: "capacityKey_example",
+                  capacityMultiplier: "capacityMultiplier_example",
+                  deviceMultiplier: "deviceMultiplier_example",
+                },
+                overhead: {
+                  perContainer: "perContainer_example",
+                  perPod: "perPod_example",
+                },
               },
             },
             nodeName: "nodeName_example",
@@ -909,6 +946,7 @@ const request: ResourceV1beta1ApiCreateResourceSliceRequest = {
           },
         ],
       },
+      partitionTypeAttribute: "partitionTypeAttribute_example",
       perDeviceNodeSelection: true,
       pool: {
         generation: 1,
@@ -924,6 +962,9 @@ const request: ResourceV1beta1ApiCreateResourceSliceRequest = {
           },
           name: "name_example",
         },
+      ],
+      skipNodeOperations: [
+        "skipNodeOperations_example",
       ],
     },
   },
@@ -3275,6 +3316,12 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimRequest = {
               },
             },
             count: 1,
+            derivedAttributes: [
+              {
+                expression: "expression_example",
+                name: "name_example",
+              },
+            ],
             deviceClassName: "deviceClassName_example",
             firstAvailable: [
               {
@@ -3285,6 +3332,12 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimRequest = {
                   },
                 },
                 count: 1,
+                derivedAttributes: [
+                  {
+                    expression: "expression_example",
+                    name: "name_example",
+                  },
+                ],
                 deviceClassName: "deviceClassName_example",
                 name: "name_example",
                 selectors: [
@@ -3359,6 +3412,9 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimRequest = {
               pool: "pool_example",
               request: "request_example",
               shareID: "shareID_example",
+              skipNodeOperations: [
+                "skipNodeOperations_example",
+              ],
               tolerations: [
                 {
                   effect: "effect_example",
@@ -3581,6 +3637,12 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimStatusRequest = {
               },
             },
             count: 1,
+            derivedAttributes: [
+              {
+                expression: "expression_example",
+                name: "name_example",
+              },
+            ],
             deviceClassName: "deviceClassName_example",
             firstAvailable: [
               {
@@ -3591,6 +3653,12 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimStatusRequest = {
                   },
                 },
                 count: 1,
+                derivedAttributes: [
+                  {
+                    expression: "expression_example",
+                    name: "name_example",
+                  },
+                ],
                 deviceClassName: "deviceClassName_example",
                 name: "name_example",
                 selectors: [
@@ -3665,6 +3733,9 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimStatusRequest = {
               pool: "pool_example",
               request: "request_example",
               shareID: "shareID_example",
+              skipNodeOperations: [
+                "skipNodeOperations_example",
+              ],
               tolerations: [
                 {
                   effect: "effect_example",
@@ -3930,6 +4001,12 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimTemplateRequest =
                 },
               },
               count: 1,
+              derivedAttributes: [
+                {
+                  expression: "expression_example",
+                  name: "name_example",
+                },
+              ],
               deviceClassName: "deviceClassName_example",
               firstAvailable: [
                 {
@@ -3940,6 +4017,12 @@ const request: ResourceV1beta1ApiReplaceNamespacedResourceClaimTemplateRequest =
                     },
                   },
                   count: 1,
+                  derivedAttributes: [
+                    {
+                      expression: "expression_example",
+                      name: "name_example",
+                    },
+                  ],
                   deviceClassName: "deviceClassName_example",
                   name: "name_example",
                   selectors: [
@@ -4150,6 +4233,9 @@ const request: ResourceV1beta1ApiReplaceResourceSliceRequest = {
             },
             consumesCounters: [
               {
+                compatibilityGroups: [
+                  "compatibilityGroups_example",
+                ],
                 counterSet: "counterSet_example",
                 counters: {
                   "key": {
@@ -4158,10 +4244,17 @@ const request: ResourceV1beta1ApiReplaceResourceSliceRequest = {
                 },
               },
             ],
-            nodeAllocatableResourceMappings: {
+            nodeAllocatableResources: {
               "key": {
-                allocationMultiplier: "allocationMultiplier_example",
-                capacityKey: "capacityKey_example",
+                mapping: {
+                  capacityKey: "capacityKey_example",
+                  capacityMultiplier: "capacityMultiplier_example",
+                  deviceMultiplier: "deviceMultiplier_example",
+                },
+                overhead: {
+                  perContainer: "perContainer_example",
+                  perPod: "perPod_example",
+                },
               },
             },
             nodeName: "nodeName_example",
@@ -4227,6 +4320,7 @@ const request: ResourceV1beta1ApiReplaceResourceSliceRequest = {
           },
         ],
       },
+      partitionTypeAttribute: "partitionTypeAttribute_example",
       perDeviceNodeSelection: true,
       pool: {
         generation: 1,
@@ -4242,6 +4336,9 @@ const request: ResourceV1beta1ApiReplaceResourceSliceRequest = {
           },
           name: "name_example",
         },
+      ],
+      skipNodeOperations: [
+        "skipNodeOperations_example",
       ],
     },
   },
