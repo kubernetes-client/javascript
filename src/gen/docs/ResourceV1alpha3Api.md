@@ -228,6 +228,7 @@ const request: ResourceV1alpha3ApiCreateResourcePoolStatusRequestRequest = {
       uid: "uid_example",
     },
     spec: {
+      defaultPartitionTypeAttribute: "defaultPartitionTypeAttribute_example",
       driver: "driver_example",
       limit: 1,
       poolName: "poolName_example",
@@ -251,8 +252,28 @@ const request: ResourceV1alpha3ApiCreateResourcePoolStatusRequestRequest = {
           driver: "driver_example",
           generation: 1,
           nodeName: "nodeName_example",
+          partitionSummary: [
+            {
+              allocatable: 1,
+              attribute: "attribute_example",
+              total: 1,
+              type: "type_example",
+            },
+          ],
           poolName: "poolName_example",
           resourceSliceCount: 1,
+          shareableSummary: {
+            capacity: [
+              {
+                available: "available_example",
+                consumed: "consumed_example",
+                name: "name_example",
+                total: "total_example",
+              },
+            ],
+            fullyAvailableDevices: 1,
+            partiallyAvailableDevices: 1,
+          },
           totalDevices: 1,
           unavailableDevices: 1,
           validationError: "validationError_example",
@@ -1802,6 +1823,7 @@ const request: ResourceV1alpha3ApiReplaceResourcePoolStatusRequestRequest = {
       uid: "uid_example",
     },
     spec: {
+      defaultPartitionTypeAttribute: "defaultPartitionTypeAttribute_example",
       driver: "driver_example",
       limit: 1,
       poolName: "poolName_example",
@@ -1825,8 +1847,28 @@ const request: ResourceV1alpha3ApiReplaceResourcePoolStatusRequestRequest = {
           driver: "driver_example",
           generation: 1,
           nodeName: "nodeName_example",
+          partitionSummary: [
+            {
+              allocatable: 1,
+              attribute: "attribute_example",
+              total: 1,
+              type: "type_example",
+            },
+          ],
           poolName: "poolName_example",
           resourceSliceCount: 1,
+          shareableSummary: {
+            capacity: [
+              {
+                available: "available_example",
+                consumed: "consumed_example",
+                name: "name_example",
+                total: "total_example",
+              },
+            ],
+            fullyAvailableDevices: 1,
+            partiallyAvailableDevices: 1,
+          },
           totalDevices: 1,
           unavailableDevices: 1,
           validationError: "validationError_example",
@@ -1949,6 +1991,7 @@ const request: ResourceV1alpha3ApiReplaceResourcePoolStatusRequestStatusRequest 
       uid: "uid_example",
     },
     spec: {
+      defaultPartitionTypeAttribute: "defaultPartitionTypeAttribute_example",
       driver: "driver_example",
       limit: 1,
       poolName: "poolName_example",
@@ -1972,8 +2015,28 @@ const request: ResourceV1alpha3ApiReplaceResourcePoolStatusRequestStatusRequest 
           driver: "driver_example",
           generation: 1,
           nodeName: "nodeName_example",
+          partitionSummary: [
+            {
+              allocatable: 1,
+              attribute: "attribute_example",
+              total: 1,
+              type: "type_example",
+            },
+          ],
           poolName: "poolName_example",
           resourceSliceCount: 1,
+          shareableSummary: {
+            capacity: [
+              {
+                available: "available_example",
+                consumed: "consumed_example",
+                name: "name_example",
+                total: "total_example",
+              },
+            ],
+            fullyAvailableDevices: 1,
+            partiallyAvailableDevices: 1,
+          },
           totalDevices: 1,
           unavailableDevices: 1,
           validationError: "validationError_example",

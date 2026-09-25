@@ -4125,6 +4125,16 @@ const request: CoreV1ApiCreateNamespacedPersistentVolumeClaimRequest = {
         },
       ],
       currentVolumeAttributesClassName: "currentVolumeAttributesClassName_example",
+      healthStatus: {
+        healthConditions: [
+          {
+            message: "message_example",
+            reason: "reason_example",
+            status: "status_example",
+          },
+        ],
+        lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
+      },
       modifyVolumeStatus: {
         status: "status_example",
         targetVolumeAttributesClassName: "targetVolumeAttributesClassName_example",
@@ -4554,6 +4564,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -4580,6 +4591,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -4600,6 +4612,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -4613,6 +4626,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -4643,6 +4657,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -4656,6 +4671,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -4745,6 +4761,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -4758,6 +4775,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -4783,6 +4801,9 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
           ],
           volumeMounts: [
             {
+              bindMountOptions: [
+                "bindMountOptions_example",
+              ],
               mountPath: "mountPath_example",
               mountPropagation: "mountPropagation_example",
               name: "name_example",
@@ -4884,6 +4905,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -4910,6 +4932,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -4930,6 +4953,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -4943,6 +4967,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -4973,6 +4998,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -4986,6 +5012,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -5075,6 +5102,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -5088,6 +5116,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -5114,6 +5143,9 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
           ],
           volumeMounts: [
             {
+              bindMountOptions: [
+                "bindMountOptions_example",
+              ],
               mountPath: "mountPath_example",
               mountPropagation: "mountPropagation_example",
               name: "name_example",
@@ -5124,6 +5156,12 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             },
           ],
           workingDir: "workingDir_example",
+        },
+      ],
+      evictionResponders: [
+        {
+          name: "name_example",
+          priority: 1,
         },
       ],
       hostAliases: [
@@ -5218,6 +5256,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -5244,6 +5283,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -5264,6 +5304,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -5277,6 +5318,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -5307,6 +5349,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -5320,6 +5363,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -5409,6 +5453,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -5422,6 +5467,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -5447,6 +5493,9 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
           ],
           volumeMounts: [
             {
+              bindMountOptions: [
+                "bindMountOptions_example",
+              ],
               mountPath: "mountPath_example",
               mountPropagation: "mountPropagation_example",
               name: "name_example",
@@ -5632,11 +5681,13 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
           },
           configMap: {
             defaultMode: 1,
+            defaultUser: 1,
             items: [
               {
                 key: "key_example",
                 mode: 1,
                 path: "path_example",
+                user: 1,
               },
             ],
             name: "name_example",
@@ -5655,6 +5706,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
           },
           downwardAPI: {
             defaultMode: 1,
+            defaultUser: 1,
             items: [
               {
                 fieldRef: {
@@ -5668,11 +5720,13 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
                   divisor: "divisor_example",
                   resource: "resource_example",
                 },
+                user: 1,
               },
             ],
           },
           emptyDir: {
             medium: "medium_example",
+            mode: 1,
             sizeLimit: "sizeLimit_example",
           },
           ephemeral: {
@@ -5851,6 +5905,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
           },
           projected: {
             defaultMode: 1,
+            defaultUser: 1,
             sources: [
               {
                 clusterTrustBundle: {
@@ -5872,6 +5927,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
                   optional: true,
                   path: "path_example",
                   signerName: "signerName_example",
+                  user: 1,
                 },
                 configMap: {
                   items: [
@@ -5879,6 +5935,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
                       key: "key_example",
                       mode: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   ],
                   name: "name_example",
@@ -5898,6 +5955,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
                         divisor: "divisor_example",
                         resource: "resource_example",
                       },
+                      user: 1,
                     },
                   ],
                 },
@@ -5908,6 +5966,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
                   keyType: "keyType_example",
                   maxExpirationSeconds: 1,
                   signerName: "signerName_example",
+                  user: 1,
                   userAnnotations: {
                     "key": "key_example",
                   },
@@ -5918,6 +5977,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
                       key: "key_example",
                       mode: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   ],
                   name: "name_example",
@@ -5927,6 +5987,7 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
                   audience: "audience_example",
                   expirationSeconds: 1,
                   path: "path_example",
+                  user: 1,
                 },
               },
             ],
@@ -5969,11 +6030,13 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
           },
           secret: {
             defaultMode: 1,
+            defaultUser: 1,
             items: [
               {
                 key: "key_example",
                 mode: 1,
                 path: "path_example",
+                user: 1,
               },
             ],
             optional: true,
@@ -6331,10 +6394,20 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
           containers: [
             "containers_example",
           ],
+          mapping: [
+            {
+              name: "name_example",
+              quantity: "quantity_example",
+            },
+          ],
+          overhead: [
+            {
+              name: "name_example",
+              perContainer: "perContainer_example",
+              perPod: "perPod_example",
+            },
+          ],
           resourceClaimName: "resourceClaimName_example",
-          resources: {
-            "key": "key_example",
-          },
         },
       ],
       nominatedNodeName: "nominatedNodeName_example",
@@ -6370,6 +6443,19 @@ const request: CoreV1ApiCreateNamespacedPodRequest = {
         },
       },
       startTime: new Date('1970-01-01T00:00:00.00Z'),
+      volumeHealth: [
+        {
+          healthConditions: [
+            {
+              message: "message_example",
+              reason: "reason_example",
+              status: "status_example",
+            },
+          ],
+          lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
+          name: "name_example",
+        },
+      ],
     },
   },
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
@@ -7099,6 +7185,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 sleep: {
@@ -7125,6 +7212,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 sleep: {
@@ -7145,6 +7233,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
               },
               failureThreshold: 1,
               grpc: {
+                mode: "mode_example",
                 port: 1,
                 service: "service_example",
               },
@@ -7158,6 +7247,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               initialDelaySeconds: 1,
@@ -7188,6 +7278,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
               },
               failureThreshold: 1,
               grpc: {
+                mode: "mode_example",
                 port: 1,
                 service: "service_example",
               },
@@ -7201,6 +7292,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               initialDelaySeconds: 1,
@@ -7290,6 +7382,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
               },
               failureThreshold: 1,
               grpc: {
+                mode: "mode_example",
                 port: 1,
                 service: "service_example",
               },
@@ -7303,6 +7396,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               initialDelaySeconds: 1,
@@ -7328,6 +7422,9 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
             ],
             volumeMounts: [
               {
+                bindMountOptions: [
+                  "bindMountOptions_example",
+                ],
                 mountPath: "mountPath_example",
                 mountPropagation: "mountPropagation_example",
                 name: "name_example",
@@ -7429,6 +7526,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 sleep: {
@@ -7455,6 +7553,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 sleep: {
@@ -7475,6 +7574,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
               },
               failureThreshold: 1,
               grpc: {
+                mode: "mode_example",
                 port: 1,
                 service: "service_example",
               },
@@ -7488,6 +7588,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               initialDelaySeconds: 1,
@@ -7518,6 +7619,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
               },
               failureThreshold: 1,
               grpc: {
+                mode: "mode_example",
                 port: 1,
                 service: "service_example",
               },
@@ -7531,6 +7633,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               initialDelaySeconds: 1,
@@ -7620,6 +7723,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
               },
               failureThreshold: 1,
               grpc: {
+                mode: "mode_example",
                 port: 1,
                 service: "service_example",
               },
@@ -7633,6 +7737,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               initialDelaySeconds: 1,
@@ -7659,6 +7764,9 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
             ],
             volumeMounts: [
               {
+                bindMountOptions: [
+                  "bindMountOptions_example",
+                ],
                 mountPath: "mountPath_example",
                 mountPropagation: "mountPropagation_example",
                 name: "name_example",
@@ -7669,6 +7777,12 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
               },
             ],
             workingDir: "workingDir_example",
+          },
+        ],
+        evictionResponders: [
+          {
+            name: "name_example",
+            priority: 1,
           },
         ],
         hostAliases: [
@@ -7763,6 +7877,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 sleep: {
@@ -7789,6 +7904,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 sleep: {
@@ -7809,6 +7925,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
               },
               failureThreshold: 1,
               grpc: {
+                mode: "mode_example",
                 port: 1,
                 service: "service_example",
               },
@@ -7822,6 +7939,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               initialDelaySeconds: 1,
@@ -7852,6 +7970,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
               },
               failureThreshold: 1,
               grpc: {
+                mode: "mode_example",
                 port: 1,
                 service: "service_example",
               },
@@ -7865,6 +7984,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               initialDelaySeconds: 1,
@@ -7954,6 +8074,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
               },
               failureThreshold: 1,
               grpc: {
+                mode: "mode_example",
                 port: 1,
                 service: "service_example",
               },
@@ -7967,6 +8088,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               initialDelaySeconds: 1,
@@ -7992,6 +8114,9 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
             ],
             volumeMounts: [
               {
+                bindMountOptions: [
+                  "bindMountOptions_example",
+                ],
                 mountPath: "mountPath_example",
                 mountPropagation: "mountPropagation_example",
                 name: "name_example",
@@ -8177,11 +8302,13 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
             },
             configMap: {
               defaultMode: 1,
+              defaultUser: 1,
               items: [
                 {
                   key: "key_example",
                   mode: 1,
                   path: "path_example",
+                  user: 1,
                 },
               ],
               name: "name_example",
@@ -8200,6 +8327,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
             },
             downwardAPI: {
               defaultMode: 1,
+              defaultUser: 1,
               items: [
                 {
                   fieldRef: {
@@ -8213,11 +8341,13 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                     divisor: "divisor_example",
                     resource: "resource_example",
                   },
+                  user: 1,
                 },
               ],
             },
             emptyDir: {
               medium: "medium_example",
+              mode: 1,
               sizeLimit: "sizeLimit_example",
             },
             ephemeral: {
@@ -8396,6 +8526,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
             },
             projected: {
               defaultMode: 1,
+              defaultUser: 1,
               sources: [
                 {
                   clusterTrustBundle: {
@@ -8417,6 +8548,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                     optional: true,
                     path: "path_example",
                     signerName: "signerName_example",
+                    user: 1,
                   },
                   configMap: {
                     items: [
@@ -8424,6 +8556,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                         key: "key_example",
                         mode: 1,
                         path: "path_example",
+                        user: 1,
                       },
                     ],
                     name: "name_example",
@@ -8443,6 +8576,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                           divisor: "divisor_example",
                           resource: "resource_example",
                         },
+                        user: 1,
                       },
                     ],
                   },
@@ -8453,6 +8587,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                     keyType: "keyType_example",
                     maxExpirationSeconds: 1,
                     signerName: "signerName_example",
+                    user: 1,
                     userAnnotations: {
                       "key": "key_example",
                     },
@@ -8463,6 +8598,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                         key: "key_example",
                         mode: 1,
                         path: "path_example",
+                        user: 1,
                       },
                     ],
                     name: "name_example",
@@ -8472,6 +8608,7 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
                     audience: "audience_example",
                     expirationSeconds: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 },
               ],
@@ -8514,11 +8651,13 @@ const request: CoreV1ApiCreateNamespacedPodTemplateRequest = {
             },
             secret: {
               defaultMode: 1,
+              defaultUser: 1,
               items: [
                 {
                   key: "key_example",
                   mode: 1,
                   path: "path_example",
+                  user: 1,
                 },
               ],
               optional: true,
@@ -9015,6 +9154,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -9041,6 +9181,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -9061,6 +9202,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -9074,6 +9216,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -9104,6 +9247,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -9117,6 +9261,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -9206,6 +9351,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -9219,6 +9365,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -9244,6 +9391,9 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -9345,6 +9495,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -9371,6 +9522,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -9391,6 +9543,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -9404,6 +9557,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -9434,6 +9588,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -9447,6 +9602,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -9536,6 +9692,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -9549,6 +9706,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -9575,6 +9733,9 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -9585,6 +9746,12 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                 },
               ],
               workingDir: "workingDir_example",
+            },
+          ],
+          evictionResponders: [
+            {
+              name: "name_example",
+              priority: 1,
             },
           ],
           hostAliases: [
@@ -9679,6 +9846,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -9705,6 +9873,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -9725,6 +9894,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -9738,6 +9908,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -9768,6 +9939,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -9781,6 +9953,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -9870,6 +10043,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -9883,6 +10057,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -9908,6 +10083,9 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -10093,11 +10271,13 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
               },
               configMap: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 name: "name_example",
@@ -10116,6 +10296,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
               },
               downwardAPI: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     fieldRef: {
@@ -10129,11 +10310,13 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                       divisor: "divisor_example",
                       resource: "resource_example",
                     },
+                    user: 1,
                   },
                 ],
               },
               emptyDir: {
                 medium: "medium_example",
+                mode: 1,
                 sizeLimit: "sizeLimit_example",
               },
               ephemeral: {
@@ -10312,6 +10495,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
               },
               projected: {
                 defaultMode: 1,
+                defaultUser: 1,
                 sources: [
                   {
                     clusterTrustBundle: {
@@ -10333,6 +10517,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                       optional: true,
                       path: "path_example",
                       signerName: "signerName_example",
+                      user: 1,
                     },
                     configMap: {
                       items: [
@@ -10340,6 +10525,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -10359,6 +10545,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                             divisor: "divisor_example",
                             resource: "resource_example",
                           },
+                          user: 1,
                         },
                       ],
                     },
@@ -10369,6 +10556,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      user: 1,
                       userAnnotations: {
                         "key": "key_example",
                       },
@@ -10379,6 +10567,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -10388,6 +10577,7 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
                       audience: "audience_example",
                       expirationSeconds: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   },
                 ],
@@ -10430,11 +10620,13 @@ const request: CoreV1ApiCreateNamespacedReplicationControllerRequest = {
               },
               secret: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 optional: true,
@@ -11184,6 +11376,11 @@ const request: CoreV1ApiCreateNamespacedServiceAccountTokenRequest = {
       uid: "uid_example",
     },
     spec: {
+      attestations: {
+        "key": [
+          "key_example",
+        ],
+      },
       audiences: [
         "audiences_example",
       ],
@@ -11329,6 +11526,11 @@ const request: CoreV1ApiCreateNodeRequest = {
       podCIDRs: [
         "podCIDRs_example",
       ],
+      podPreemptionPolicy: {
+        disableResizePreemption: [
+          "disableResizePreemption_example",
+        ],
+      },
       providerID: "providerID_example",
       taints: [
         {
@@ -11422,6 +11624,7 @@ const request: CoreV1ApiCreateNodeRequest = {
         machineID: "machineID_example",
         operatingSystem: "operatingSystem_example",
         osImage: "osImage_example",
+        runningInUserNamespace: true,
         swap: {
           capacity: 1,
         },
@@ -22152,6 +22355,16 @@ const request: CoreV1ApiReplaceNamespacedPersistentVolumeClaimRequest = {
         },
       ],
       currentVolumeAttributesClassName: "currentVolumeAttributesClassName_example",
+      healthStatus: {
+        healthConditions: [
+          {
+            message: "message_example",
+            reason: "reason_example",
+            status: "status_example",
+          },
+        ],
+        lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
+      },
       modifyVolumeStatus: {
         status: "status_example",
         targetVolumeAttributesClassName: "targetVolumeAttributesClassName_example",
@@ -22342,6 +22555,16 @@ const request: CoreV1ApiReplaceNamespacedPersistentVolumeClaimStatusRequest = {
         },
       ],
       currentVolumeAttributesClassName: "currentVolumeAttributesClassName_example",
+      healthStatus: {
+        healthConditions: [
+          {
+            message: "message_example",
+            reason: "reason_example",
+            status: "status_example",
+          },
+        ],
+        lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
+      },
       modifyVolumeStatus: {
         status: "status_example",
         targetVolumeAttributesClassName: "targetVolumeAttributesClassName_example",
@@ -22773,6 +22996,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -22799,6 +23023,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -22819,6 +23044,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -22832,6 +23058,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -22862,6 +23089,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -22875,6 +23103,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -22964,6 +23193,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -22977,6 +23207,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -23002,6 +23233,9 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
           ],
           volumeMounts: [
             {
+              bindMountOptions: [
+                "bindMountOptions_example",
+              ],
               mountPath: "mountPath_example",
               mountPropagation: "mountPropagation_example",
               name: "name_example",
@@ -23103,6 +23337,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -23129,6 +23364,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -23149,6 +23385,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -23162,6 +23399,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -23192,6 +23430,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -23205,6 +23444,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -23294,6 +23534,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -23307,6 +23548,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -23333,6 +23575,9 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
           ],
           volumeMounts: [
             {
+              bindMountOptions: [
+                "bindMountOptions_example",
+              ],
               mountPath: "mountPath_example",
               mountPropagation: "mountPropagation_example",
               name: "name_example",
@@ -23343,6 +23588,12 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             },
           ],
           workingDir: "workingDir_example",
+        },
+      ],
+      evictionResponders: [
+        {
+          name: "name_example",
+          priority: 1,
         },
       ],
       hostAliases: [
@@ -23437,6 +23688,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -23463,6 +23715,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -23483,6 +23736,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -23496,6 +23750,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -23526,6 +23781,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -23539,6 +23795,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -23628,6 +23885,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -23641,6 +23899,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -23666,6 +23925,9 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
           ],
           volumeMounts: [
             {
+              bindMountOptions: [
+                "bindMountOptions_example",
+              ],
               mountPath: "mountPath_example",
               mountPropagation: "mountPropagation_example",
               name: "name_example",
@@ -23851,11 +24113,13 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
           },
           configMap: {
             defaultMode: 1,
+            defaultUser: 1,
             items: [
               {
                 key: "key_example",
                 mode: 1,
                 path: "path_example",
+                user: 1,
               },
             ],
             name: "name_example",
@@ -23874,6 +24138,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
           },
           downwardAPI: {
             defaultMode: 1,
+            defaultUser: 1,
             items: [
               {
                 fieldRef: {
@@ -23887,11 +24152,13 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
                   divisor: "divisor_example",
                   resource: "resource_example",
                 },
+                user: 1,
               },
             ],
           },
           emptyDir: {
             medium: "medium_example",
+            mode: 1,
             sizeLimit: "sizeLimit_example",
           },
           ephemeral: {
@@ -24070,6 +24337,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
           },
           projected: {
             defaultMode: 1,
+            defaultUser: 1,
             sources: [
               {
                 clusterTrustBundle: {
@@ -24091,6 +24359,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
                   optional: true,
                   path: "path_example",
                   signerName: "signerName_example",
+                  user: 1,
                 },
                 configMap: {
                   items: [
@@ -24098,6 +24367,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
                       key: "key_example",
                       mode: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   ],
                   name: "name_example",
@@ -24117,6 +24387,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
                         divisor: "divisor_example",
                         resource: "resource_example",
                       },
+                      user: 1,
                     },
                   ],
                 },
@@ -24127,6 +24398,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
                   keyType: "keyType_example",
                   maxExpirationSeconds: 1,
                   signerName: "signerName_example",
+                  user: 1,
                   userAnnotations: {
                     "key": "key_example",
                   },
@@ -24137,6 +24409,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
                       key: "key_example",
                       mode: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   ],
                   name: "name_example",
@@ -24146,6 +24419,7 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
                   audience: "audience_example",
                   expirationSeconds: 1,
                   path: "path_example",
+                  user: 1,
                 },
               },
             ],
@@ -24188,11 +24462,13 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
           },
           secret: {
             defaultMode: 1,
+            defaultUser: 1,
             items: [
               {
                 key: "key_example",
                 mode: 1,
                 path: "path_example",
+                user: 1,
               },
             ],
             optional: true,
@@ -24550,10 +24826,20 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
           containers: [
             "containers_example",
           ],
+          mapping: [
+            {
+              name: "name_example",
+              quantity: "quantity_example",
+            },
+          ],
+          overhead: [
+            {
+              name: "name_example",
+              perContainer: "perContainer_example",
+              perPod: "perPod_example",
+            },
+          ],
           resourceClaimName: "resourceClaimName_example",
-          resources: {
-            "key": "key_example",
-          },
         },
       ],
       nominatedNodeName: "nominatedNodeName_example",
@@ -24589,6 +24875,19 @@ const request: CoreV1ApiReplaceNamespacedPodRequest = {
         },
       },
       startTime: new Date('1970-01-01T00:00:00.00Z'),
+      volumeHealth: [
+        {
+          healthConditions: [
+            {
+              message: "message_example",
+              reason: "reason_example",
+              status: "status_example",
+            },
+          ],
+          lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
+          name: "name_example",
+        },
+      ],
     },
   },
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
@@ -25015,6 +25314,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -25041,6 +25341,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -25061,6 +25362,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -25074,6 +25376,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -25104,6 +25407,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -25117,6 +25421,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -25206,6 +25511,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -25219,6 +25525,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -25244,6 +25551,9 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
           ],
           volumeMounts: [
             {
+              bindMountOptions: [
+                "bindMountOptions_example",
+              ],
               mountPath: "mountPath_example",
               mountPropagation: "mountPropagation_example",
               name: "name_example",
@@ -25345,6 +25655,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -25371,6 +25682,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -25391,6 +25703,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -25404,6 +25717,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -25434,6 +25748,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -25447,6 +25762,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -25536,6 +25852,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -25549,6 +25866,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -25575,6 +25893,9 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
           ],
           volumeMounts: [
             {
+              bindMountOptions: [
+                "bindMountOptions_example",
+              ],
               mountPath: "mountPath_example",
               mountPropagation: "mountPropagation_example",
               name: "name_example",
@@ -25585,6 +25906,12 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             },
           ],
           workingDir: "workingDir_example",
+        },
+      ],
+      evictionResponders: [
+        {
+          name: "name_example",
+          priority: 1,
         },
       ],
       hostAliases: [
@@ -25679,6 +26006,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -25705,6 +26033,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -25725,6 +26054,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -25738,6 +26068,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -25768,6 +26099,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -25781,6 +26113,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -25870,6 +26203,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -25883,6 +26217,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -25908,6 +26243,9 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
           ],
           volumeMounts: [
             {
+              bindMountOptions: [
+                "bindMountOptions_example",
+              ],
               mountPath: "mountPath_example",
               mountPropagation: "mountPropagation_example",
               name: "name_example",
@@ -26093,11 +26431,13 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
           },
           configMap: {
             defaultMode: 1,
+            defaultUser: 1,
             items: [
               {
                 key: "key_example",
                 mode: 1,
                 path: "path_example",
+                user: 1,
               },
             ],
             name: "name_example",
@@ -26116,6 +26456,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
           },
           downwardAPI: {
             defaultMode: 1,
+            defaultUser: 1,
             items: [
               {
                 fieldRef: {
@@ -26129,11 +26470,13 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                   divisor: "divisor_example",
                   resource: "resource_example",
                 },
+                user: 1,
               },
             ],
           },
           emptyDir: {
             medium: "medium_example",
+            mode: 1,
             sizeLimit: "sizeLimit_example",
           },
           ephemeral: {
@@ -26312,6 +26655,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
           },
           projected: {
             defaultMode: 1,
+            defaultUser: 1,
             sources: [
               {
                 clusterTrustBundle: {
@@ -26333,6 +26677,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                   optional: true,
                   path: "path_example",
                   signerName: "signerName_example",
+                  user: 1,
                 },
                 configMap: {
                   items: [
@@ -26340,6 +26685,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                       key: "key_example",
                       mode: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   ],
                   name: "name_example",
@@ -26359,6 +26705,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                         divisor: "divisor_example",
                         resource: "resource_example",
                       },
+                      user: 1,
                     },
                   ],
                 },
@@ -26369,6 +26716,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                   keyType: "keyType_example",
                   maxExpirationSeconds: 1,
                   signerName: "signerName_example",
+                  user: 1,
                   userAnnotations: {
                     "key": "key_example",
                   },
@@ -26379,6 +26727,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                       key: "key_example",
                       mode: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   ],
                   name: "name_example",
@@ -26388,6 +26737,7 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
                   audience: "audience_example",
                   expirationSeconds: 1,
                   path: "path_example",
+                  user: 1,
                 },
               },
             ],
@@ -26430,11 +26780,13 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
           },
           secret: {
             defaultMode: 1,
+            defaultUser: 1,
             items: [
               {
                 key: "key_example",
                 mode: 1,
                 path: "path_example",
+                user: 1,
               },
             ],
             optional: true,
@@ -26792,10 +27144,20 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
           containers: [
             "containers_example",
           ],
+          mapping: [
+            {
+              name: "name_example",
+              quantity: "quantity_example",
+            },
+          ],
+          overhead: [
+            {
+              name: "name_example",
+              perContainer: "perContainer_example",
+              perPod: "perPod_example",
+            },
+          ],
           resourceClaimName: "resourceClaimName_example",
-          resources: {
-            "key": "key_example",
-          },
         },
       ],
       nominatedNodeName: "nominatedNodeName_example",
@@ -26831,6 +27193,19 @@ const request: CoreV1ApiReplaceNamespacedPodEphemeralcontainersRequest = {
         },
       },
       startTime: new Date('1970-01-01T00:00:00.00Z'),
+      volumeHealth: [
+        {
+          healthConditions: [
+            {
+              message: "message_example",
+              reason: "reason_example",
+              status: "status_example",
+            },
+          ],
+          lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
+          name: "name_example",
+        },
+      ],
     },
   },
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
@@ -27257,6 +27632,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -27283,6 +27659,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -27303,6 +27680,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -27316,6 +27694,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -27346,6 +27725,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -27359,6 +27739,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -27448,6 +27829,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -27461,6 +27843,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -27486,6 +27869,9 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
           ],
           volumeMounts: [
             {
+              bindMountOptions: [
+                "bindMountOptions_example",
+              ],
               mountPath: "mountPath_example",
               mountPropagation: "mountPropagation_example",
               name: "name_example",
@@ -27587,6 +27973,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -27613,6 +28000,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -27633,6 +28021,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -27646,6 +28035,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -27676,6 +28066,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -27689,6 +28080,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -27778,6 +28170,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -27791,6 +28184,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -27817,6 +28211,9 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
           ],
           volumeMounts: [
             {
+              bindMountOptions: [
+                "bindMountOptions_example",
+              ],
               mountPath: "mountPath_example",
               mountPropagation: "mountPropagation_example",
               name: "name_example",
@@ -27827,6 +28224,12 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
             },
           ],
           workingDir: "workingDir_example",
+        },
+      ],
+      evictionResponders: [
+        {
+          name: "name_example",
+          priority: 1,
         },
       ],
       hostAliases: [
@@ -27921,6 +28324,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -27947,6 +28351,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -27967,6 +28372,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -27980,6 +28386,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -28010,6 +28417,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -28023,6 +28431,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -28112,6 +28521,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -28125,6 +28535,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -28150,6 +28561,9 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
           ],
           volumeMounts: [
             {
+              bindMountOptions: [
+                "bindMountOptions_example",
+              ],
               mountPath: "mountPath_example",
               mountPropagation: "mountPropagation_example",
               name: "name_example",
@@ -28335,11 +28749,13 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
           },
           configMap: {
             defaultMode: 1,
+            defaultUser: 1,
             items: [
               {
                 key: "key_example",
                 mode: 1,
                 path: "path_example",
+                user: 1,
               },
             ],
             name: "name_example",
@@ -28358,6 +28774,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
           },
           downwardAPI: {
             defaultMode: 1,
+            defaultUser: 1,
             items: [
               {
                 fieldRef: {
@@ -28371,11 +28788,13 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
                   divisor: "divisor_example",
                   resource: "resource_example",
                 },
+                user: 1,
               },
             ],
           },
           emptyDir: {
             medium: "medium_example",
+            mode: 1,
             sizeLimit: "sizeLimit_example",
           },
           ephemeral: {
@@ -28554,6 +28973,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
           },
           projected: {
             defaultMode: 1,
+            defaultUser: 1,
             sources: [
               {
                 clusterTrustBundle: {
@@ -28575,6 +28995,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
                   optional: true,
                   path: "path_example",
                   signerName: "signerName_example",
+                  user: 1,
                 },
                 configMap: {
                   items: [
@@ -28582,6 +29003,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
                       key: "key_example",
                       mode: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   ],
                   name: "name_example",
@@ -28601,6 +29023,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
                         divisor: "divisor_example",
                         resource: "resource_example",
                       },
+                      user: 1,
                     },
                   ],
                 },
@@ -28611,6 +29034,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
                   keyType: "keyType_example",
                   maxExpirationSeconds: 1,
                   signerName: "signerName_example",
+                  user: 1,
                   userAnnotations: {
                     "key": "key_example",
                   },
@@ -28621,6 +29045,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
                       key: "key_example",
                       mode: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   ],
                   name: "name_example",
@@ -28630,6 +29055,7 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
                   audience: "audience_example",
                   expirationSeconds: 1,
                   path: "path_example",
+                  user: 1,
                 },
               },
             ],
@@ -28672,11 +29098,13 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
           },
           secret: {
             defaultMode: 1,
+            defaultUser: 1,
             items: [
               {
                 key: "key_example",
                 mode: 1,
                 path: "path_example",
+                user: 1,
               },
             ],
             optional: true,
@@ -29034,10 +29462,20 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
           containers: [
             "containers_example",
           ],
+          mapping: [
+            {
+              name: "name_example",
+              quantity: "quantity_example",
+            },
+          ],
+          overhead: [
+            {
+              name: "name_example",
+              perContainer: "perContainer_example",
+              perPod: "perPod_example",
+            },
+          ],
           resourceClaimName: "resourceClaimName_example",
-          resources: {
-            "key": "key_example",
-          },
         },
       ],
       nominatedNodeName: "nominatedNodeName_example",
@@ -29073,6 +29511,19 @@ const request: CoreV1ApiReplaceNamespacedPodResizeRequest = {
         },
       },
       startTime: new Date('1970-01-01T00:00:00.00Z'),
+      volumeHealth: [
+        {
+          healthConditions: [
+            {
+              message: "message_example",
+              reason: "reason_example",
+              status: "status_example",
+            },
+          ],
+          lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
+          name: "name_example",
+        },
+      ],
     },
   },
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
@@ -29499,6 +29950,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -29525,6 +29977,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -29545,6 +29998,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -29558,6 +30012,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -29588,6 +30043,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -29601,6 +30057,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -29690,6 +30147,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -29703,6 +30161,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -29728,6 +30187,9 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
           ],
           volumeMounts: [
             {
+              bindMountOptions: [
+                "bindMountOptions_example",
+              ],
               mountPath: "mountPath_example",
               mountPropagation: "mountPropagation_example",
               name: "name_example",
@@ -29829,6 +30291,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -29855,6 +30318,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -29875,6 +30339,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -29888,6 +30353,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -29918,6 +30384,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -29931,6 +30398,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -30020,6 +30488,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -30033,6 +30502,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -30059,6 +30529,9 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
           ],
           volumeMounts: [
             {
+              bindMountOptions: [
+                "bindMountOptions_example",
+              ],
               mountPath: "mountPath_example",
               mountPropagation: "mountPropagation_example",
               name: "name_example",
@@ -30069,6 +30542,12 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             },
           ],
           workingDir: "workingDir_example",
+        },
+      ],
+      evictionResponders: [
+        {
+          name: "name_example",
+          priority: 1,
         },
       ],
       hostAliases: [
@@ -30163,6 +30642,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -30189,6 +30669,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               sleep: {
@@ -30209,6 +30690,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -30222,6 +30704,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -30252,6 +30735,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -30265,6 +30749,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -30354,6 +30839,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
             },
             failureThreshold: 1,
             grpc: {
+              mode: "mode_example",
               port: 1,
               service: "service_example",
             },
@@ -30367,6 +30853,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
               ],
               path: "path_example",
               port: "port_example",
+              protocol: "protocol_example",
               scheme: "scheme_example",
             },
             initialDelaySeconds: 1,
@@ -30392,6 +30879,9 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
           ],
           volumeMounts: [
             {
+              bindMountOptions: [
+                "bindMountOptions_example",
+              ],
               mountPath: "mountPath_example",
               mountPropagation: "mountPropagation_example",
               name: "name_example",
@@ -30577,11 +31067,13 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
           },
           configMap: {
             defaultMode: 1,
+            defaultUser: 1,
             items: [
               {
                 key: "key_example",
                 mode: 1,
                 path: "path_example",
+                user: 1,
               },
             ],
             name: "name_example",
@@ -30600,6 +31092,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
           },
           downwardAPI: {
             defaultMode: 1,
+            defaultUser: 1,
             items: [
               {
                 fieldRef: {
@@ -30613,11 +31106,13 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
                   divisor: "divisor_example",
                   resource: "resource_example",
                 },
+                user: 1,
               },
             ],
           },
           emptyDir: {
             medium: "medium_example",
+            mode: 1,
             sizeLimit: "sizeLimit_example",
           },
           ephemeral: {
@@ -30796,6 +31291,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
           },
           projected: {
             defaultMode: 1,
+            defaultUser: 1,
             sources: [
               {
                 clusterTrustBundle: {
@@ -30817,6 +31313,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
                   optional: true,
                   path: "path_example",
                   signerName: "signerName_example",
+                  user: 1,
                 },
                 configMap: {
                   items: [
@@ -30824,6 +31321,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
                       key: "key_example",
                       mode: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   ],
                   name: "name_example",
@@ -30843,6 +31341,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
                         divisor: "divisor_example",
                         resource: "resource_example",
                       },
+                      user: 1,
                     },
                   ],
                 },
@@ -30853,6 +31352,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
                   keyType: "keyType_example",
                   maxExpirationSeconds: 1,
                   signerName: "signerName_example",
+                  user: 1,
                   userAnnotations: {
                     "key": "key_example",
                   },
@@ -30863,6 +31363,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
                       key: "key_example",
                       mode: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   ],
                   name: "name_example",
@@ -30872,6 +31373,7 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
                   audience: "audience_example",
                   expirationSeconds: 1,
                   path: "path_example",
+                  user: 1,
                 },
               },
             ],
@@ -30914,11 +31416,13 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
           },
           secret: {
             defaultMode: 1,
+            defaultUser: 1,
             items: [
               {
                 key: "key_example",
                 mode: 1,
                 path: "path_example",
+                user: 1,
               },
             ],
             optional: true,
@@ -31276,10 +31780,20 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
           containers: [
             "containers_example",
           ],
+          mapping: [
+            {
+              name: "name_example",
+              quantity: "quantity_example",
+            },
+          ],
+          overhead: [
+            {
+              name: "name_example",
+              perContainer: "perContainer_example",
+              perPod: "perPod_example",
+            },
+          ],
           resourceClaimName: "resourceClaimName_example",
-          resources: {
-            "key": "key_example",
-          },
         },
       ],
       nominatedNodeName: "nominatedNodeName_example",
@@ -31315,6 +31829,19 @@ const request: CoreV1ApiReplaceNamespacedPodStatusRequest = {
         },
       },
       startTime: new Date('1970-01-01T00:00:00.00Z'),
+      volumeHealth: [
+        {
+          healthConditions: [
+            {
+              message: "message_example",
+              reason: "reason_example",
+              status: "status_example",
+            },
+          ],
+          lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
+          name: "name_example",
+        },
+      ],
     },
   },
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
@@ -31784,6 +32311,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 sleep: {
@@ -31810,6 +32338,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 sleep: {
@@ -31830,6 +32359,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
               },
               failureThreshold: 1,
               grpc: {
+                mode: "mode_example",
                 port: 1,
                 service: "service_example",
               },
@@ -31843,6 +32373,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               initialDelaySeconds: 1,
@@ -31873,6 +32404,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
               },
               failureThreshold: 1,
               grpc: {
+                mode: "mode_example",
                 port: 1,
                 service: "service_example",
               },
@@ -31886,6 +32418,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               initialDelaySeconds: 1,
@@ -31975,6 +32508,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
               },
               failureThreshold: 1,
               grpc: {
+                mode: "mode_example",
                 port: 1,
                 service: "service_example",
               },
@@ -31988,6 +32522,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               initialDelaySeconds: 1,
@@ -32013,6 +32548,9 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
             ],
             volumeMounts: [
               {
+                bindMountOptions: [
+                  "bindMountOptions_example",
+                ],
                 mountPath: "mountPath_example",
                 mountPropagation: "mountPropagation_example",
                 name: "name_example",
@@ -32114,6 +32652,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 sleep: {
@@ -32140,6 +32679,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 sleep: {
@@ -32160,6 +32700,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
               },
               failureThreshold: 1,
               grpc: {
+                mode: "mode_example",
                 port: 1,
                 service: "service_example",
               },
@@ -32173,6 +32714,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               initialDelaySeconds: 1,
@@ -32203,6 +32745,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
               },
               failureThreshold: 1,
               grpc: {
+                mode: "mode_example",
                 port: 1,
                 service: "service_example",
               },
@@ -32216,6 +32759,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               initialDelaySeconds: 1,
@@ -32305,6 +32849,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
               },
               failureThreshold: 1,
               grpc: {
+                mode: "mode_example",
                 port: 1,
                 service: "service_example",
               },
@@ -32318,6 +32863,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               initialDelaySeconds: 1,
@@ -32344,6 +32890,9 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
             ],
             volumeMounts: [
               {
+                bindMountOptions: [
+                  "bindMountOptions_example",
+                ],
                 mountPath: "mountPath_example",
                 mountPropagation: "mountPropagation_example",
                 name: "name_example",
@@ -32354,6 +32903,12 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
               },
             ],
             workingDir: "workingDir_example",
+          },
+        ],
+        evictionResponders: [
+          {
+            name: "name_example",
+            priority: 1,
           },
         ],
         hostAliases: [
@@ -32448,6 +33003,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 sleep: {
@@ -32474,6 +33030,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 sleep: {
@@ -32494,6 +33051,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
               },
               failureThreshold: 1,
               grpc: {
+                mode: "mode_example",
                 port: 1,
                 service: "service_example",
               },
@@ -32507,6 +33065,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               initialDelaySeconds: 1,
@@ -32537,6 +33096,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
               },
               failureThreshold: 1,
               grpc: {
+                mode: "mode_example",
                 port: 1,
                 service: "service_example",
               },
@@ -32550,6 +33110,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               initialDelaySeconds: 1,
@@ -32639,6 +33200,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
               },
               failureThreshold: 1,
               grpc: {
+                mode: "mode_example",
                 port: 1,
                 service: "service_example",
               },
@@ -32652,6 +33214,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                 ],
                 path: "path_example",
                 port: "port_example",
+                protocol: "protocol_example",
                 scheme: "scheme_example",
               },
               initialDelaySeconds: 1,
@@ -32677,6 +33240,9 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
             ],
             volumeMounts: [
               {
+                bindMountOptions: [
+                  "bindMountOptions_example",
+                ],
                 mountPath: "mountPath_example",
                 mountPropagation: "mountPropagation_example",
                 name: "name_example",
@@ -32862,11 +33428,13 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
             },
             configMap: {
               defaultMode: 1,
+              defaultUser: 1,
               items: [
                 {
                   key: "key_example",
                   mode: 1,
                   path: "path_example",
+                  user: 1,
                 },
               ],
               name: "name_example",
@@ -32885,6 +33453,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
             },
             downwardAPI: {
               defaultMode: 1,
+              defaultUser: 1,
               items: [
                 {
                   fieldRef: {
@@ -32898,11 +33467,13 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                     divisor: "divisor_example",
                     resource: "resource_example",
                   },
+                  user: 1,
                 },
               ],
             },
             emptyDir: {
               medium: "medium_example",
+              mode: 1,
               sizeLimit: "sizeLimit_example",
             },
             ephemeral: {
@@ -33081,6 +33652,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
             },
             projected: {
               defaultMode: 1,
+              defaultUser: 1,
               sources: [
                 {
                   clusterTrustBundle: {
@@ -33102,6 +33674,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                     optional: true,
                     path: "path_example",
                     signerName: "signerName_example",
+                    user: 1,
                   },
                   configMap: {
                     items: [
@@ -33109,6 +33682,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                         key: "key_example",
                         mode: 1,
                         path: "path_example",
+                        user: 1,
                       },
                     ],
                     name: "name_example",
@@ -33128,6 +33702,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                           divisor: "divisor_example",
                           resource: "resource_example",
                         },
+                        user: 1,
                       },
                     ],
                   },
@@ -33138,6 +33713,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                     keyType: "keyType_example",
                     maxExpirationSeconds: 1,
                     signerName: "signerName_example",
+                    user: 1,
                     userAnnotations: {
                       "key": "key_example",
                     },
@@ -33148,6 +33724,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                         key: "key_example",
                         mode: 1,
                         path: "path_example",
+                        user: 1,
                       },
                     ],
                     name: "name_example",
@@ -33157,6 +33734,7 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
                     audience: "audience_example",
                     expirationSeconds: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 },
               ],
@@ -33199,11 +33777,13 @@ const request: CoreV1ApiReplaceNamespacedPodTemplateRequest = {
             },
             secret: {
               defaultMode: 1,
+              defaultUser: 1,
               items: [
                 {
                   key: "key_example",
                   mode: 1,
                   path: "path_example",
+                  user: 1,
                 },
               ],
               optional: true,
@@ -33702,6 +34282,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -33728,6 +34309,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -33748,6 +34330,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -33761,6 +34344,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -33791,6 +34375,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -33804,6 +34389,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -33893,6 +34479,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -33906,6 +34493,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -33931,6 +34519,9 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -34032,6 +34623,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -34058,6 +34650,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -34078,6 +34671,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -34091,6 +34685,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -34121,6 +34716,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -34134,6 +34730,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -34223,6 +34820,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -34236,6 +34834,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -34262,6 +34861,9 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -34272,6 +34874,12 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                 },
               ],
               workingDir: "workingDir_example",
+            },
+          ],
+          evictionResponders: [
+            {
+              name: "name_example",
+              priority: 1,
             },
           ],
           hostAliases: [
@@ -34366,6 +34974,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -34392,6 +35001,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -34412,6 +35022,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -34425,6 +35036,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -34455,6 +35067,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -34468,6 +35081,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -34557,6 +35171,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -34570,6 +35185,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -34595,6 +35211,9 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -34780,11 +35399,13 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
               },
               configMap: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 name: "name_example",
@@ -34803,6 +35424,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
               },
               downwardAPI: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     fieldRef: {
@@ -34816,11 +35438,13 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                       divisor: "divisor_example",
                       resource: "resource_example",
                     },
+                    user: 1,
                   },
                 ],
               },
               emptyDir: {
                 medium: "medium_example",
+                mode: 1,
                 sizeLimit: "sizeLimit_example",
               },
               ephemeral: {
@@ -34999,6 +35623,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
               },
               projected: {
                 defaultMode: 1,
+                defaultUser: 1,
                 sources: [
                   {
                     clusterTrustBundle: {
@@ -35020,6 +35645,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                       optional: true,
                       path: "path_example",
                       signerName: "signerName_example",
+                      user: 1,
                     },
                     configMap: {
                       items: [
@@ -35027,6 +35653,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -35046,6 +35673,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                             divisor: "divisor_example",
                             resource: "resource_example",
                           },
+                          user: 1,
                         },
                       ],
                     },
@@ -35056,6 +35684,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      user: 1,
                       userAnnotations: {
                         "key": "key_example",
                       },
@@ -35066,6 +35695,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -35075,6 +35705,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
                       audience: "audience_example",
                       expirationSeconds: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   },
                 ],
@@ -35117,11 +35748,13 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerRequest = {
               },
               secret: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 optional: true,
@@ -35762,6 +36395,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -35788,6 +36422,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -35808,6 +36443,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -35821,6 +36457,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -35851,6 +36488,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -35864,6 +36502,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -35953,6 +36592,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -35966,6 +36606,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -35991,6 +36632,9 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -36092,6 +36736,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -36118,6 +36763,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -36138,6 +36784,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -36151,6 +36798,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -36181,6 +36829,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -36194,6 +36843,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -36283,6 +36933,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -36296,6 +36947,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -36322,6 +36974,9 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -36332,6 +36987,12 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                 },
               ],
               workingDir: "workingDir_example",
+            },
+          ],
+          evictionResponders: [
+            {
+              name: "name_example",
+              priority: 1,
             },
           ],
           hostAliases: [
@@ -36426,6 +37087,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -36452,6 +37114,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -36472,6 +37135,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -36485,6 +37149,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -36515,6 +37180,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -36528,6 +37194,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -36617,6 +37284,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -36630,6 +37298,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -36655,6 +37324,9 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -36840,11 +37512,13 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
               },
               configMap: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 name: "name_example",
@@ -36863,6 +37537,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
               },
               downwardAPI: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     fieldRef: {
@@ -36876,11 +37551,13 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                       divisor: "divisor_example",
                       resource: "resource_example",
                     },
+                    user: 1,
                   },
                 ],
               },
               emptyDir: {
                 medium: "medium_example",
+                mode: 1,
                 sizeLimit: "sizeLimit_example",
               },
               ephemeral: {
@@ -37059,6 +37736,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
               },
               projected: {
                 defaultMode: 1,
+                defaultUser: 1,
                 sources: [
                   {
                     clusterTrustBundle: {
@@ -37080,6 +37758,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                       optional: true,
                       path: "path_example",
                       signerName: "signerName_example",
+                      user: 1,
                     },
                     configMap: {
                       items: [
@@ -37087,6 +37766,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -37106,6 +37786,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                             divisor: "divisor_example",
                             resource: "resource_example",
                           },
+                          user: 1,
                         },
                       ],
                     },
@@ -37116,6 +37797,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      user: 1,
                       userAnnotations: {
                         "key": "key_example",
                       },
@@ -37126,6 +37808,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -37135,6 +37818,7 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
                       audience: "audience_example",
                       expirationSeconds: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   },
                 ],
@@ -37177,11 +37861,13 @@ const request: CoreV1ApiReplaceNamespacedReplicationControllerStatusRequest = {
               },
               secret: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 optional: true,
@@ -38287,6 +38973,11 @@ const request: CoreV1ApiReplaceNodeRequest = {
       podCIDRs: [
         "podCIDRs_example",
       ],
+      podPreemptionPolicy: {
+        disableResizePreemption: [
+          "disableResizePreemption_example",
+        ],
+      },
       providerID: "providerID_example",
       taints: [
         {
@@ -38380,6 +39071,7 @@ const request: CoreV1ApiReplaceNodeRequest = {
         machineID: "machineID_example",
         operatingSystem: "operatingSystem_example",
         osImage: "osImage_example",
+        runningInUserNamespace: true,
         swap: {
           capacity: 1,
         },
@@ -38535,6 +39227,11 @@ const request: CoreV1ApiReplaceNodeStatusRequest = {
       podCIDRs: [
         "podCIDRs_example",
       ],
+      podPreemptionPolicy: {
+        disableResizePreemption: [
+          "disableResizePreemption_example",
+        ],
+      },
       providerID: "providerID_example",
       taints: [
         {
@@ -38628,6 +39325,7 @@ const request: CoreV1ApiReplaceNodeStatusRequest = {
         machineID: "machineID_example",
         operatingSystem: "operatingSystem_example",
         osImage: "osImage_example",
+        runningInUserNamespace: true,
         swap: {
           capacity: 1,
         },
