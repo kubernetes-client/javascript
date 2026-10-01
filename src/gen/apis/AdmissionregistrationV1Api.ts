@@ -1368,7 +1368,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/mutatingadmissionpolicies/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -1458,7 +1458,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/mutatingadmissionpolicybindings/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -1548,7 +1548,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -1638,7 +1638,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/validatingadmissionpolicies/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -1728,7 +1728,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/validatingadmissionpolicybindings/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -1818,7 +1818,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -2618,7 +2618,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/mutatingadmissionpolicies/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -2716,7 +2716,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/mutatingadmissionpolicybindings/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -2814,7 +2814,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -2912,7 +2912,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/validatingadmissionpolicies/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -3010,7 +3010,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/validatingadmissionpolicybindings/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -3108,7 +3108,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/validatingadmissionpolicies/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -3206,7 +3206,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -3289,7 +3289,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/mutatingadmissionpolicies/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -3333,7 +3333,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/mutatingadmissionpolicybindings/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -3377,7 +3377,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -3421,7 +3421,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/validatingadmissionpolicies/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -3465,7 +3465,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/validatingadmissionpolicybindings/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -3509,7 +3509,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/validatingadmissionpolicies/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -3553,7 +3553,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -3610,7 +3610,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/mutatingadmissionpolicies/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -3691,7 +3691,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/mutatingadmissionpolicybindings/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -3772,7 +3772,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/mutatingwebhookconfigurations/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -3853,7 +3853,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/validatingadmissionpolicies/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -3934,7 +3934,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/validatingadmissionpolicybindings/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -4015,7 +4015,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/validatingadmissionpolicies/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -4096,7 +4096,7 @@ export class AdmissionregistrationV1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/admissionregistration.k8s.io/v1/validatingwebhookconfigurations/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);

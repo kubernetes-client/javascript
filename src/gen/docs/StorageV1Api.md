@@ -32,6 +32,7 @@ Method | HTTP request | Description
 [**listVolumeAttributesClass**](StorageV1Api.md#listVolumeAttributesClass) | **GET** /apis/storage.k8s.io/v1/volumeattributesclasses | 
 [**patchCSIDriver**](StorageV1Api.md#patchCSIDriver) | **PATCH** /apis/storage.k8s.io/v1/csidrivers/{name} | 
 [**patchCSINode**](StorageV1Api.md#patchCSINode) | **PATCH** /apis/storage.k8s.io/v1/csinodes/{name} | 
+[**patchCSINodeStatus**](StorageV1Api.md#patchCSINodeStatus) | **PATCH** /apis/storage.k8s.io/v1/csinodes/{name}/status | 
 [**patchNamespacedCSIStorageCapacity**](StorageV1Api.md#patchNamespacedCSIStorageCapacity) | **PATCH** /apis/storage.k8s.io/v1/namespaces/{namespace}/csistoragecapacities/{name} | 
 [**patchStorageClass**](StorageV1Api.md#patchStorageClass) | **PATCH** /apis/storage.k8s.io/v1/storageclasses/{name} | 
 [**patchVolumeAttachment**](StorageV1Api.md#patchVolumeAttachment) | **PATCH** /apis/storage.k8s.io/v1/volumeattachments/{name} | 
@@ -39,6 +40,7 @@ Method | HTTP request | Description
 [**patchVolumeAttributesClass**](StorageV1Api.md#patchVolumeAttributesClass) | **PATCH** /apis/storage.k8s.io/v1/volumeattributesclasses/{name} | 
 [**readCSIDriver**](StorageV1Api.md#readCSIDriver) | **GET** /apis/storage.k8s.io/v1/csidrivers/{name} | 
 [**readCSINode**](StorageV1Api.md#readCSINode) | **GET** /apis/storage.k8s.io/v1/csinodes/{name} | 
+[**readCSINodeStatus**](StorageV1Api.md#readCSINodeStatus) | **GET** /apis/storage.k8s.io/v1/csinodes/{name}/status | 
 [**readNamespacedCSIStorageCapacity**](StorageV1Api.md#readNamespacedCSIStorageCapacity) | **GET** /apis/storage.k8s.io/v1/namespaces/{namespace}/csistoragecapacities/{name} | 
 [**readStorageClass**](StorageV1Api.md#readStorageClass) | **GET** /apis/storage.k8s.io/v1/storageclasses/{name} | 
 [**readVolumeAttachment**](StorageV1Api.md#readVolumeAttachment) | **GET** /apis/storage.k8s.io/v1/volumeattachments/{name} | 
@@ -46,6 +48,7 @@ Method | HTTP request | Description
 [**readVolumeAttributesClass**](StorageV1Api.md#readVolumeAttributesClass) | **GET** /apis/storage.k8s.io/v1/volumeattributesclasses/{name} | 
 [**replaceCSIDriver**](StorageV1Api.md#replaceCSIDriver) | **PUT** /apis/storage.k8s.io/v1/csidrivers/{name} | 
 [**replaceCSINode**](StorageV1Api.md#replaceCSINode) | **PUT** /apis/storage.k8s.io/v1/csinodes/{name} | 
+[**replaceCSINodeStatus**](StorageV1Api.md#replaceCSINodeStatus) | **PUT** /apis/storage.k8s.io/v1/csinodes/{name}/status | 
 [**replaceNamespacedCSIStorageCapacity**](StorageV1Api.md#replaceNamespacedCSIStorageCapacity) | **PUT** /apis/storage.k8s.io/v1/namespaces/{namespace}/csistoragecapacities/{name} | 
 [**replaceStorageClass**](StorageV1Api.md#replaceStorageClass) | **PUT** /apis/storage.k8s.io/v1/storageclasses/{name} | 
 [**replaceVolumeAttachment**](StorageV1Api.md#replaceVolumeAttachment) | **PUT** /apis/storage.k8s.io/v1/volumeattachments/{name} | 
@@ -259,6 +262,23 @@ const request: StorageV1ApiCreateCSINodeRequest = {
           topologyKeys: [
             "topologyKeys_example",
           ],
+        },
+      ],
+    },
+    status: {
+      storageHealth: [
+        {
+          healthConditions: [
+            {
+              accessMode: "accessMode_example",
+              lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
+              message: "message_example",
+              reason: "reason_example",
+              status: "status_example",
+              volumeMode: "volumeMode_example",
+            },
+          ],
+          name: "name_example",
         },
       ],
     },
@@ -3122,6 +3142,79 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
 
+# **patchCSINodeStatus**
+> V1CSINode patchCSINodeStatus(body)
+
+partially update status of the specified CSINode
+
+### Example
+
+
+```typescript
+import { createConfiguration, StorageV1Api } from '';
+import type { StorageV1ApiPatchCSINodeStatusRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new StorageV1Api(configuration);
+
+const request: StorageV1ApiPatchCSINodeStatusRequest = {
+    // name of the CSINode
+  name: "name_example",
+  
+  body: {},
+    // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
+  pretty: "pretty_example",
+    // When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+  dryRun: "dryRun_example",
+    // fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). (optional)
+  fieldManager: "fieldManager_example",
+    // fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
+    // Force is going to \"force\" Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. (optional)
+  force: true,
+};
+
+const data = await apiInstance.patchCSINodeStatus(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **any**|  |
+ **name** | [**string**] | name of the CSINode | defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
+ **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
+ **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. This field is required for apply requests (application/apply-patch) but optional for non-apply patch types (JsonPatch, MergePatch, StrategicMergePatch). | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
+ **force** | [**boolean**] | Force is going to \&quot;force\&quot; Apply requests. It means user will re-acquire conflicting fields owned by other people. Force flag must be unset for non-apply patch requests. | (optional) defaults to undefined
+
+
+### Return type
+
+**V1CSINode**
+
+### Authorization
+
+[BearerToken](README.md#BearerToken)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/merge-patch+json, application/strategic-merge-patch+json, application/apply-patch+yaml, application/apply-patch+cbor
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**201** | Created |  -  |
+**401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
 # **patchNamespacedCSIStorageCapacity**
 > V1CSIStorageCapacity patchNamespacedCSIStorageCapacity(body)
 
@@ -3570,6 +3663,63 @@ const request: StorageV1ApiReadCSINodeRequest = {
 };
 
 const data = await apiInstance.readCSINode(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **name** | [**string**] | name of the CSINode | defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
+
+
+### Return type
+
+**V1CSINode**
+
+### Authorization
+
+[BearerToken](README.md#BearerToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **readCSINodeStatus**
+> V1CSINode readCSINodeStatus()
+
+read status of the specified CSINode
+
+### Example
+
+
+```typescript
+import { createConfiguration, StorageV1Api } from '';
+import type { StorageV1ApiReadCSINodeStatusRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new StorageV1Api(configuration);
+
+const request: StorageV1ApiReadCSINodeStatusRequest = {
+    // name of the CSINode
+  name: "name_example",
+    // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
+  pretty: "pretty_example",
+};
+
+const data = await apiInstance.readCSINodeStatus(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
@@ -4105,6 +4255,23 @@ const request: StorageV1ApiReplaceCSINodeRequest = {
         },
       ],
     },
+    status: {
+      storageHealth: [
+        {
+          healthConditions: [
+            {
+              accessMode: "accessMode_example",
+              lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
+              message: "message_example",
+              reason: "reason_example",
+              status: "status_example",
+              volumeMode: "volumeMode_example",
+            },
+          ],
+          name: "name_example",
+        },
+      ],
+    },
   },
     // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
   pretty: "pretty_example",
@@ -4117,6 +4284,152 @@ const request: StorageV1ApiReplaceCSINodeRequest = {
 };
 
 const data = await apiInstance.replaceCSINode(request);
+console.log('API called successfully. Returned data:', data);
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **body** | **V1CSINode**|  |
+ **name** | [**string**] | name of the CSINode | defaults to undefined
+ **pretty** | [**string**] | If \&#39;true\&#39;, then the output is pretty printed. Defaults to \&#39;false\&#39; unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). | (optional) defaults to undefined
+ **dryRun** | [**string**] | When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed | (optional) defaults to undefined
+ **fieldManager** | [**string**] | fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. | (optional) defaults to undefined
+ **fieldValidation** | [**string**] | fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. | (optional) defaults to undefined
+
+
+### Return type
+
+**V1CSINode**
+
+### Authorization
+
+[BearerToken](README.md#BearerToken)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json, application/yaml, application/vnd.kubernetes.protobuf, application/cbor
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**201** | Created |  -  |
+**401** | Unauthorized |  -  |
+
+[[Back to top]](#) [[Back to API list]](README.md#documentation-for-api-endpoints) [[Back to Model list]](README.md#documentation-for-models) [[Back to README]](README.md)
+
+# **replaceCSINodeStatus**
+> V1CSINode replaceCSINodeStatus(body)
+
+replace status of the specified CSINode
+
+### Example
+
+
+```typescript
+import { createConfiguration, StorageV1Api } from '';
+import type { StorageV1ApiReplaceCSINodeStatusRequest } from '';
+
+const configuration = createConfiguration();
+const apiInstance = new StorageV1Api(configuration);
+
+const request: StorageV1ApiReplaceCSINodeStatusRequest = {
+    // name of the CSINode
+  name: "name_example",
+  
+  body: {
+    apiVersion: "apiVersion_example",
+    kind: "kind_example",
+    metadata: {
+      annotations: {
+        "key": "key_example",
+      },
+      creationTimestamp: new Date('1970-01-01T00:00:00.00Z'),
+      deletionGracePeriodSeconds: 1,
+      deletionTimestamp: new Date('1970-01-01T00:00:00.00Z'),
+      finalizers: [
+        "finalizers_example",
+      ],
+      generateName: "generateName_example",
+      generation: 1,
+      labels: {
+        "key": "key_example",
+      },
+      managedFields: [
+        {
+          apiVersion: "apiVersion_example",
+          fieldsType: "fieldsType_example",
+          fieldsV1: {},
+          manager: "manager_example",
+          operation: "operation_example",
+          subresource: "subresource_example",
+          time: new Date('1970-01-01T00:00:00.00Z'),
+        },
+      ],
+      name: "name_example",
+      namespace: "namespace_example",
+      ownerReferences: [
+        {
+          apiVersion: "apiVersion_example",
+          blockOwnerDeletion: true,
+          controller: true,
+          kind: "kind_example",
+          name: "name_example",
+          uid: "uid_example",
+        },
+      ],
+      resourceVersion: "resourceVersion_example",
+      selfLink: "selfLink_example",
+      uid: "uid_example",
+    },
+    spec: {
+      drivers: [
+        {
+          allocatable: {
+            count: 1,
+          },
+          name: "name_example",
+          nodeID: "nodeID_example",
+          topologyKeys: [
+            "topologyKeys_example",
+          ],
+        },
+      ],
+    },
+    status: {
+      storageHealth: [
+        {
+          healthConditions: [
+            {
+              accessMode: "accessMode_example",
+              lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
+              message: "message_example",
+              reason: "reason_example",
+              status: "status_example",
+              volumeMode: "volumeMode_example",
+            },
+          ],
+          name: "name_example",
+        },
+      ],
+    },
+  },
+    // If \'true\', then the output is pretty printed. Defaults to \'false\' unless the user-agent indicates a browser or command-line HTTP tool (curl and wget). (optional)
+  pretty: "pretty_example",
+    // When present, indicates that modifications should not be persisted. An invalid or unrecognized dryRun directive will result in an error response and no further processing of the request. Valid values are: - All: all dry run stages will be processed (optional)
+  dryRun: "dryRun_example",
+    // fieldManager is a name associated with the actor or entity that is making these changes. The value must be less than or 128 characters long, and only contain printable characters, as defined by https://golang.org/pkg/unicode/#IsPrint. (optional)
+  fieldManager: "fieldManager_example",
+    // fieldValidation instructs the server on how to handle objects in the request (POST/PUT/PATCH) containing unknown or duplicate fields. Valid values are: - Ignore: This will ignore any unknown fields that are silently dropped from the object, and will ignore all but the last duplicate field that the decoder encounters. This is the default behavior prior to v1.23. - Warn: This will send a warning via the standard warning response header for each unknown field that is dropped from the object, and for each duplicate field that is encountered. The request will still succeed if there are no other errors, and will only persist the last of any duplicate fields. This is the default in v1.23+ - Strict: This will fail the request with a BadRequest error if any unknown fields would be dropped from the object, or if any duplicate fields are present. The error returned from the server will contain all unknown and duplicate fields encountered. (optional)
+  fieldValidation: "fieldValidation_example",
+};
+
+const data = await apiInstance.replaceCSINodeStatus(request);
 console.log('API called successfully. Returned data:', data);
 ```
 
