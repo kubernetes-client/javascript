@@ -268,7 +268,7 @@ export class StoragemigrationV1beta1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/storagemigration.k8s.io/v1beta1/storageversionmigrations/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -503,7 +503,7 @@ export class StoragemigrationV1beta1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/storagemigration.k8s.io/v1beta1/storageversionmigrations/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -601,7 +601,7 @@ export class StoragemigrationV1beta1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/storagemigration.k8s.io/v1beta1/storageversionmigrations/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -684,7 +684,7 @@ export class StoragemigrationV1beta1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/storagemigration.k8s.io/v1beta1/storageversionmigrations/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -728,7 +728,7 @@ export class StoragemigrationV1beta1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/storagemigration.k8s.io/v1beta1/storageversionmigrations/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -785,7 +785,7 @@ export class StoragemigrationV1beta1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/storagemigration.k8s.io/v1beta1/storageversionmigrations/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -866,7 +866,7 @@ export class StoragemigrationV1beta1ApiRequestFactory extends BaseAPIRequestFact
 
         // Path Params
         const localVarPath = '/apis/storagemigration.k8s.io/v1beta1/storageversionmigrations/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
