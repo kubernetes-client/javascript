@@ -132,6 +132,22 @@ npm run build      # generates + builds static site into docs/build/
 npm run serve      # preview the production build at http://localhost:3000
 ```
 
+## Cancelling exec credential authentication
+
+`KubeConfig.applyToHTTPSOptions()` passes an optional `signal` to exec credential
+authentication. For generated API calls, set the signal on `RequestContext`
+before authentication, for example through `BaseServerConfiguration.makeRequestContext()`.
+Setting it in request middleware is too late: middleware runs after authentication.
+The same signal can bound authentication and the subsequent HTTP request.
+
+A cancelled operation rejects after its credential process closes, does not cache
+the cancelled result, and does not project cached credentials onto that request.
+On POSIX, a signal-bound credential process runs in an owned process group, which
+is terminated on cancellation together with children that remain in that group.
+Windows cancellation terminates the direct credential process; process-tree
+termination on Windows is not provided. Calls without a signal retain their
+existing execution and credential caching behavior.
+
 There are several more JS and TS examples in the [examples](https://github.com/kubernetes-client/javascript/tree/main/examples) directory.
 
 # Compatibility
