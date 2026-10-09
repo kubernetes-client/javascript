@@ -51,7 +51,7 @@ export class AutoscalingV2ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -149,7 +149,7 @@ export class AutoscalingV2ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -291,8 +291,8 @@ export class AutoscalingV2ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -534,7 +534,7 @@ export class AutoscalingV2ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -655,8 +655,8 @@ export class AutoscalingV2ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -761,8 +761,8 @@ export class AutoscalingV2ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -852,8 +852,8 @@ export class AutoscalingV2ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -904,8 +904,8 @@ export class AutoscalingV2ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -969,8 +969,8 @@ export class AutoscalingV2ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -1058,8 +1058,8 @@ export class AutoscalingV2ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/autoscaling/v2/namespaces/{namespace}/horizontalpodautoscalers/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
