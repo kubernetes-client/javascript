@@ -268,7 +268,7 @@ export class SchedulingV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/scheduling.k8s.io/v1/priorityclasses/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -503,7 +503,7 @@ export class SchedulingV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/scheduling.k8s.io/v1/priorityclasses/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -586,7 +586,7 @@ export class SchedulingV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/scheduling.k8s.io/v1/priorityclasses/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -643,7 +643,7 @@ export class SchedulingV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/scheduling.k8s.io/v1/priorityclasses/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);

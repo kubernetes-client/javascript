@@ -51,7 +51,7 @@ export class CoordinationV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/coordination.k8s.io/v1/namespaces/{namespace}/leases'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -149,7 +149,7 @@ export class CoordinationV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/coordination.k8s.io/v1/namespaces/{namespace}/leases'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -291,8 +291,8 @@ export class CoordinationV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/coordination.k8s.io/v1/namespaces/{namespace}/leases/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -534,7 +534,7 @@ export class CoordinationV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/coordination.k8s.io/v1/namespaces/{namespace}/leases'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -655,8 +655,8 @@ export class CoordinationV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/coordination.k8s.io/v1/namespaces/{namespace}/leases/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -746,8 +746,8 @@ export class CoordinationV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/coordination.k8s.io/v1/namespaces/{namespace}/leases/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -811,8 +811,8 @@ export class CoordinationV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/coordination.k8s.io/v1/namespaces/{namespace}/leases/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);

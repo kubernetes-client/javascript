@@ -617,6 +617,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -643,6 +644,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -663,6 +665,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -676,6 +679,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -706,6 +710,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -719,6 +724,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -808,6 +814,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -821,6 +828,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -846,6 +854,9 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -947,6 +958,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -973,6 +985,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -993,6 +1006,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -1006,6 +1020,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -1036,6 +1051,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -1049,6 +1065,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -1138,6 +1155,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -1151,6 +1169,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -1177,6 +1196,9 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -1187,6 +1209,12 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                 },
               ],
               workingDir: "workingDir_example",
+            },
+          ],
+          evictionResponders: [
+            {
+              name: "name_example",
+              priority: 1,
             },
           ],
           hostAliases: [
@@ -1281,6 +1309,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -1307,6 +1336,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -1327,6 +1357,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -1340,6 +1371,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -1370,6 +1402,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -1383,6 +1416,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -1472,6 +1506,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -1485,6 +1520,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -1510,6 +1546,9 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -1695,11 +1734,13 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
               },
               configMap: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 name: "name_example",
@@ -1718,6 +1759,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
               },
               downwardAPI: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     fieldRef: {
@@ -1731,11 +1773,13 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                       divisor: "divisor_example",
                       resource: "resource_example",
                     },
+                    user: 1,
                   },
                 ],
               },
               emptyDir: {
                 medium: "medium_example",
+                mode: 1,
                 sizeLimit: "sizeLimit_example",
               },
               ephemeral: {
@@ -1914,6 +1958,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
               },
               projected: {
                 defaultMode: 1,
+                defaultUser: 1,
                 sources: [
                   {
                     clusterTrustBundle: {
@@ -1935,6 +1980,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                       optional: true,
                       path: "path_example",
                       signerName: "signerName_example",
+                      user: 1,
                     },
                     configMap: {
                       items: [
@@ -1942,6 +1988,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -1961,6 +2008,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                             divisor: "divisor_example",
                             resource: "resource_example",
                           },
+                          user: 1,
                         },
                       ],
                     },
@@ -1971,6 +2019,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      user: 1,
                       userAnnotations: {
                         "key": "key_example",
                       },
@@ -1981,6 +2030,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -1990,6 +2040,7 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
                       audience: "audience_example",
                       expirationSeconds: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   },
                 ],
@@ -2032,11 +2083,13 @@ const request: AppsV1ApiCreateNamespacedDaemonSetRequest = {
               },
               secret: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 optional: true,
@@ -2582,6 +2635,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -2608,6 +2662,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -2628,6 +2683,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -2641,6 +2697,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -2671,6 +2728,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -2684,6 +2742,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -2773,6 +2832,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -2786,6 +2846,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -2811,6 +2872,9 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -2912,6 +2976,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -2938,6 +3003,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -2958,6 +3024,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -2971,6 +3038,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -3001,6 +3069,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -3014,6 +3083,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -3103,6 +3173,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -3116,6 +3187,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -3142,6 +3214,9 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -3152,6 +3227,12 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                 },
               ],
               workingDir: "workingDir_example",
+            },
+          ],
+          evictionResponders: [
+            {
+              name: "name_example",
+              priority: 1,
             },
           ],
           hostAliases: [
@@ -3246,6 +3327,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -3272,6 +3354,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -3292,6 +3375,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -3305,6 +3389,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -3335,6 +3420,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -3348,6 +3434,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -3437,6 +3524,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -3450,6 +3538,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -3475,6 +3564,9 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -3660,11 +3752,13 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
               },
               configMap: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 name: "name_example",
@@ -3683,6 +3777,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
               },
               downwardAPI: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     fieldRef: {
@@ -3696,11 +3791,13 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                       divisor: "divisor_example",
                       resource: "resource_example",
                     },
+                    user: 1,
                   },
                 ],
               },
               emptyDir: {
                 medium: "medium_example",
+                mode: 1,
                 sizeLimit: "sizeLimit_example",
               },
               ephemeral: {
@@ -3879,6 +3976,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
               },
               projected: {
                 defaultMode: 1,
+                defaultUser: 1,
                 sources: [
                   {
                     clusterTrustBundle: {
@@ -3900,6 +3998,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                       optional: true,
                       path: "path_example",
                       signerName: "signerName_example",
+                      user: 1,
                     },
                     configMap: {
                       items: [
@@ -3907,6 +4006,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -3926,6 +4026,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                             divisor: "divisor_example",
                             resource: "resource_example",
                           },
+                          user: 1,
                         },
                       ],
                     },
@@ -3936,6 +4037,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      user: 1,
                       userAnnotations: {
                         "key": "key_example",
                       },
@@ -3946,6 +4048,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -3955,6 +4058,7 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
                       audience: "audience_example",
                       expirationSeconds: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   },
                 ],
@@ -3997,11 +4101,13 @@ const request: AppsV1ApiCreateNamespacedDeploymentRequest = {
               },
               secret: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 optional: true,
@@ -4530,6 +4636,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -4556,6 +4663,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -4576,6 +4684,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -4589,6 +4698,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -4619,6 +4729,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -4632,6 +4743,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -4721,6 +4833,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -4734,6 +4847,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -4759,6 +4873,9 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -4860,6 +4977,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -4886,6 +5004,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -4906,6 +5025,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -4919,6 +5039,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -4949,6 +5070,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -4962,6 +5084,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -5051,6 +5174,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -5064,6 +5188,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -5090,6 +5215,9 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -5100,6 +5228,12 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                 },
               ],
               workingDir: "workingDir_example",
+            },
+          ],
+          evictionResponders: [
+            {
+              name: "name_example",
+              priority: 1,
             },
           ],
           hostAliases: [
@@ -5194,6 +5328,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -5220,6 +5355,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -5240,6 +5376,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -5253,6 +5390,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -5283,6 +5421,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -5296,6 +5435,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -5385,6 +5525,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -5398,6 +5539,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -5423,6 +5565,9 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -5608,11 +5753,13 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
               },
               configMap: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 name: "name_example",
@@ -5631,6 +5778,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
               },
               downwardAPI: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     fieldRef: {
@@ -5644,11 +5792,13 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                       divisor: "divisor_example",
                       resource: "resource_example",
                     },
+                    user: 1,
                   },
                 ],
               },
               emptyDir: {
                 medium: "medium_example",
+                mode: 1,
                 sizeLimit: "sizeLimit_example",
               },
               ephemeral: {
@@ -5827,6 +5977,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
               },
               projected: {
                 defaultMode: 1,
+                defaultUser: 1,
                 sources: [
                   {
                     clusterTrustBundle: {
@@ -5848,6 +5999,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                       optional: true,
                       path: "path_example",
                       signerName: "signerName_example",
+                      user: 1,
                     },
                     configMap: {
                       items: [
@@ -5855,6 +6007,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -5874,6 +6027,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                             divisor: "divisor_example",
                             resource: "resource_example",
                           },
+                          user: 1,
                         },
                       ],
                     },
@@ -5884,6 +6038,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      user: 1,
                       userAnnotations: {
                         "key": "key_example",
                       },
@@ -5894,6 +6049,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -5903,6 +6059,7 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
                       audience: "audience_example",
                       expirationSeconds: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   },
                 ],
@@ -5945,11 +6102,13 @@ const request: AppsV1ApiCreateNamespacedReplicaSetRequest = {
               },
               secret: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 optional: true,
@@ -6485,6 +6644,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -6511,6 +6671,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -6531,6 +6692,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -6544,6 +6706,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -6574,6 +6737,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -6587,6 +6751,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -6676,6 +6841,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -6689,6 +6855,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -6714,6 +6881,9 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -6815,6 +6985,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -6841,6 +7012,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -6861,6 +7033,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -6874,6 +7047,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -6904,6 +7078,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -6917,6 +7092,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -7006,6 +7182,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -7019,6 +7196,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -7045,6 +7223,9 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -7055,6 +7236,12 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                 },
               ],
               workingDir: "workingDir_example",
+            },
+          ],
+          evictionResponders: [
+            {
+              name: "name_example",
+              priority: 1,
             },
           ],
           hostAliases: [
@@ -7149,6 +7336,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -7175,6 +7363,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -7195,6 +7384,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -7208,6 +7398,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -7238,6 +7429,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -7251,6 +7443,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -7340,6 +7533,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -7353,6 +7547,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -7378,6 +7573,9 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -7563,11 +7761,13 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
               },
               configMap: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 name: "name_example",
@@ -7586,6 +7786,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
               },
               downwardAPI: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     fieldRef: {
@@ -7599,11 +7800,13 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                       divisor: "divisor_example",
                       resource: "resource_example",
                     },
+                    user: 1,
                   },
                 ],
               },
               emptyDir: {
                 medium: "medium_example",
+                mode: 1,
                 sizeLimit: "sizeLimit_example",
               },
               ephemeral: {
@@ -7782,6 +7985,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
               },
               projected: {
                 defaultMode: 1,
+                defaultUser: 1,
                 sources: [
                   {
                     clusterTrustBundle: {
@@ -7803,6 +8007,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                       optional: true,
                       path: "path_example",
                       signerName: "signerName_example",
+                      user: 1,
                     },
                     configMap: {
                       items: [
@@ -7810,6 +8015,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -7829,6 +8035,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                             divisor: "divisor_example",
                             resource: "resource_example",
                           },
+                          user: 1,
                         },
                       ],
                     },
@@ -7839,6 +8046,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      user: 1,
                       userAnnotations: {
                         "key": "key_example",
                       },
@@ -7849,6 +8057,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -7858,6 +8067,7 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
                       audience: "audience_example",
                       expirationSeconds: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   },
                 ],
@@ -7900,11 +8110,13 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
               },
               secret: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 optional: true,
@@ -8048,6 +8260,16 @@ const request: AppsV1ApiCreateNamespacedStatefulSetRequest = {
               },
             ],
             currentVolumeAttributesClassName: "currentVolumeAttributesClassName_example",
+            healthStatus: {
+              healthConditions: [
+                {
+                  message: "message_example",
+                  reason: "reason_example",
+                  status: "status_example",
+                },
+              ],
+              lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
+            },
             modifyVolumeStatus: {
               status: "status_example",
               targetVolumeAttributesClassName: "targetVolumeAttributesClassName_example",
@@ -12291,6 +12513,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -12317,6 +12540,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -12337,6 +12561,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -12350,6 +12575,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -12380,6 +12606,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -12393,6 +12620,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -12482,6 +12710,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -12495,6 +12724,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -12520,6 +12750,9 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -12621,6 +12854,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -12647,6 +12881,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -12667,6 +12902,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -12680,6 +12916,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -12710,6 +12947,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -12723,6 +12961,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -12812,6 +13051,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -12825,6 +13065,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -12851,6 +13092,9 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -12861,6 +13105,12 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                 },
               ],
               workingDir: "workingDir_example",
+            },
+          ],
+          evictionResponders: [
+            {
+              name: "name_example",
+              priority: 1,
             },
           ],
           hostAliases: [
@@ -12955,6 +13205,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -12981,6 +13232,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -13001,6 +13253,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -13014,6 +13267,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -13044,6 +13298,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -13057,6 +13312,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -13146,6 +13402,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -13159,6 +13416,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -13184,6 +13442,9 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -13369,11 +13630,13 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
               },
               configMap: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 name: "name_example",
@@ -13392,6 +13655,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
               },
               downwardAPI: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     fieldRef: {
@@ -13405,11 +13669,13 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                       divisor: "divisor_example",
                       resource: "resource_example",
                     },
+                    user: 1,
                   },
                 ],
               },
               emptyDir: {
                 medium: "medium_example",
+                mode: 1,
                 sizeLimit: "sizeLimit_example",
               },
               ephemeral: {
@@ -13588,6 +13854,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
               },
               projected: {
                 defaultMode: 1,
+                defaultUser: 1,
                 sources: [
                   {
                     clusterTrustBundle: {
@@ -13609,6 +13876,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                       optional: true,
                       path: "path_example",
                       signerName: "signerName_example",
+                      user: 1,
                     },
                     configMap: {
                       items: [
@@ -13616,6 +13884,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -13635,6 +13904,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                             divisor: "divisor_example",
                             resource: "resource_example",
                           },
+                          user: 1,
                         },
                       ],
                     },
@@ -13645,6 +13915,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      user: 1,
                       userAnnotations: {
                         "key": "key_example",
                       },
@@ -13655,6 +13926,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -13664,6 +13936,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
                       audience: "audience_example",
                       expirationSeconds: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   },
                 ],
@@ -13706,11 +13979,13 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetRequest = {
               },
               secret: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 optional: true,
@@ -14248,6 +14523,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -14274,6 +14550,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -14294,6 +14571,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -14307,6 +14585,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -14337,6 +14616,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -14350,6 +14630,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -14439,6 +14720,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -14452,6 +14734,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -14477,6 +14760,9 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -14578,6 +14864,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -14604,6 +14891,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -14624,6 +14912,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -14637,6 +14926,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -14667,6 +14957,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -14680,6 +14971,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -14769,6 +15061,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -14782,6 +15075,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -14808,6 +15102,9 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -14818,6 +15115,12 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                 },
               ],
               workingDir: "workingDir_example",
+            },
+          ],
+          evictionResponders: [
+            {
+              name: "name_example",
+              priority: 1,
             },
           ],
           hostAliases: [
@@ -14912,6 +15215,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -14938,6 +15242,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -14958,6 +15263,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -14971,6 +15277,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -15001,6 +15308,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -15014,6 +15322,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -15103,6 +15412,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -15116,6 +15426,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -15141,6 +15452,9 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -15326,11 +15640,13 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
               },
               configMap: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 name: "name_example",
@@ -15349,6 +15665,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
               },
               downwardAPI: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     fieldRef: {
@@ -15362,11 +15679,13 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                       divisor: "divisor_example",
                       resource: "resource_example",
                     },
+                    user: 1,
                   },
                 ],
               },
               emptyDir: {
                 medium: "medium_example",
+                mode: 1,
                 sizeLimit: "sizeLimit_example",
               },
               ephemeral: {
@@ -15545,6 +15864,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
               },
               projected: {
                 defaultMode: 1,
+                defaultUser: 1,
                 sources: [
                   {
                     clusterTrustBundle: {
@@ -15566,6 +15886,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                       optional: true,
                       path: "path_example",
                       signerName: "signerName_example",
+                      user: 1,
                     },
                     configMap: {
                       items: [
@@ -15573,6 +15894,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -15592,6 +15914,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                             divisor: "divisor_example",
                             resource: "resource_example",
                           },
+                          user: 1,
                         },
                       ],
                     },
@@ -15602,6 +15925,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      user: 1,
                       userAnnotations: {
                         "key": "key_example",
                       },
@@ -15612,6 +15936,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -15621,6 +15946,7 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
                       audience: "audience_example",
                       expirationSeconds: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   },
                 ],
@@ -15663,11 +15989,13 @@ const request: AppsV1ApiReplaceNamespacedDaemonSetStatusRequest = {
               },
               secret: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 optional: true,
@@ -16215,6 +16543,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -16241,6 +16570,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -16261,6 +16591,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -16274,6 +16605,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -16304,6 +16636,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -16317,6 +16650,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -16406,6 +16740,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -16419,6 +16754,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -16444,6 +16780,9 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -16545,6 +16884,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -16571,6 +16911,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -16591,6 +16932,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -16604,6 +16946,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -16634,6 +16977,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -16647,6 +16991,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -16736,6 +17081,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -16749,6 +17095,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -16775,6 +17122,9 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -16785,6 +17135,12 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                 },
               ],
               workingDir: "workingDir_example",
+            },
+          ],
+          evictionResponders: [
+            {
+              name: "name_example",
+              priority: 1,
             },
           ],
           hostAliases: [
@@ -16879,6 +17235,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -16905,6 +17262,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -16925,6 +17283,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -16938,6 +17297,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -16968,6 +17328,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -16981,6 +17342,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -17070,6 +17432,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -17083,6 +17446,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -17108,6 +17472,9 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -17293,11 +17660,13 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
               },
               configMap: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 name: "name_example",
@@ -17316,6 +17685,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
               },
               downwardAPI: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     fieldRef: {
@@ -17329,11 +17699,13 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                       divisor: "divisor_example",
                       resource: "resource_example",
                     },
+                    user: 1,
                   },
                 ],
               },
               emptyDir: {
                 medium: "medium_example",
+                mode: 1,
                 sizeLimit: "sizeLimit_example",
               },
               ephemeral: {
@@ -17512,6 +17884,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
               },
               projected: {
                 defaultMode: 1,
+                defaultUser: 1,
                 sources: [
                   {
                     clusterTrustBundle: {
@@ -17533,6 +17906,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                       optional: true,
                       path: "path_example",
                       signerName: "signerName_example",
+                      user: 1,
                     },
                     configMap: {
                       items: [
@@ -17540,6 +17914,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -17559,6 +17934,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                             divisor: "divisor_example",
                             resource: "resource_example",
                           },
+                          user: 1,
                         },
                       ],
                     },
@@ -17569,6 +17945,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      user: 1,
                       userAnnotations: {
                         "key": "key_example",
                       },
@@ -17579,6 +17956,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -17588,6 +17966,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
                       audience: "audience_example",
                       expirationSeconds: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   },
                 ],
@@ -17630,11 +18009,13 @@ const request: AppsV1ApiReplaceNamespacedDeploymentRequest = {
               },
               secret: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 optional: true,
@@ -18300,6 +18681,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -18326,6 +18708,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -18346,6 +18729,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -18359,6 +18743,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -18389,6 +18774,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -18402,6 +18788,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -18491,6 +18878,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -18504,6 +18892,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -18529,6 +18918,9 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -18630,6 +19022,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -18656,6 +19049,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -18676,6 +19070,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -18689,6 +19084,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -18719,6 +19115,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -18732,6 +19129,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -18821,6 +19219,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -18834,6 +19233,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -18860,6 +19260,9 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -18870,6 +19273,12 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                 },
               ],
               workingDir: "workingDir_example",
+            },
+          ],
+          evictionResponders: [
+            {
+              name: "name_example",
+              priority: 1,
             },
           ],
           hostAliases: [
@@ -18964,6 +19373,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -18990,6 +19400,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -19010,6 +19421,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -19023,6 +19435,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -19053,6 +19466,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -19066,6 +19480,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -19155,6 +19570,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -19168,6 +19584,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -19193,6 +19610,9 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -19378,11 +19798,13 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
               },
               configMap: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 name: "name_example",
@@ -19401,6 +19823,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
               },
               downwardAPI: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     fieldRef: {
@@ -19414,11 +19837,13 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                       divisor: "divisor_example",
                       resource: "resource_example",
                     },
+                    user: 1,
                   },
                 ],
               },
               emptyDir: {
                 medium: "medium_example",
+                mode: 1,
                 sizeLimit: "sizeLimit_example",
               },
               ephemeral: {
@@ -19597,6 +20022,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
               },
               projected: {
                 defaultMode: 1,
+                defaultUser: 1,
                 sources: [
                   {
                     clusterTrustBundle: {
@@ -19618,6 +20044,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                       optional: true,
                       path: "path_example",
                       signerName: "signerName_example",
+                      user: 1,
                     },
                     configMap: {
                       items: [
@@ -19625,6 +20052,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -19644,6 +20072,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                             divisor: "divisor_example",
                             resource: "resource_example",
                           },
+                          user: 1,
                         },
                       ],
                     },
@@ -19654,6 +20083,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      user: 1,
                       userAnnotations: {
                         "key": "key_example",
                       },
@@ -19664,6 +20094,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -19673,6 +20104,7 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
                       audience: "audience_example",
                       expirationSeconds: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   },
                 ],
@@ -19715,11 +20147,13 @@ const request: AppsV1ApiReplaceNamespacedDeploymentStatusRequest = {
               },
               secret: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 optional: true,
@@ -20250,6 +20684,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -20276,6 +20711,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -20296,6 +20732,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -20309,6 +20746,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -20339,6 +20777,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -20352,6 +20791,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -20441,6 +20881,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -20454,6 +20895,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -20479,6 +20921,9 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -20580,6 +21025,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -20606,6 +21052,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -20626,6 +21073,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -20639,6 +21087,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -20669,6 +21118,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -20682,6 +21132,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -20771,6 +21222,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -20784,6 +21236,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -20810,6 +21263,9 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -20820,6 +21276,12 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                 },
               ],
               workingDir: "workingDir_example",
+            },
+          ],
+          evictionResponders: [
+            {
+              name: "name_example",
+              priority: 1,
             },
           ],
           hostAliases: [
@@ -20914,6 +21376,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -20940,6 +21403,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -20960,6 +21424,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -20973,6 +21438,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -21003,6 +21469,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -21016,6 +21483,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -21105,6 +21573,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -21118,6 +21587,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -21143,6 +21613,9 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -21328,11 +21801,13 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
               },
               configMap: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 name: "name_example",
@@ -21351,6 +21826,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
               },
               downwardAPI: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     fieldRef: {
@@ -21364,11 +21840,13 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                       divisor: "divisor_example",
                       resource: "resource_example",
                     },
+                    user: 1,
                   },
                 ],
               },
               emptyDir: {
                 medium: "medium_example",
+                mode: 1,
                 sizeLimit: "sizeLimit_example",
               },
               ephemeral: {
@@ -21547,6 +22025,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
               },
               projected: {
                 defaultMode: 1,
+                defaultUser: 1,
                 sources: [
                   {
                     clusterTrustBundle: {
@@ -21568,6 +22047,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                       optional: true,
                       path: "path_example",
                       signerName: "signerName_example",
+                      user: 1,
                     },
                     configMap: {
                       items: [
@@ -21575,6 +22055,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -21594,6 +22075,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                             divisor: "divisor_example",
                             resource: "resource_example",
                           },
+                          user: 1,
                         },
                       ],
                     },
@@ -21604,6 +22086,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      user: 1,
                       userAnnotations: {
                         "key": "key_example",
                       },
@@ -21614,6 +22097,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -21623,6 +22107,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
                       audience: "audience_example",
                       expirationSeconds: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   },
                 ],
@@ -21665,11 +22150,13 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetRequest = {
               },
               secret: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 optional: true,
@@ -22322,6 +22809,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -22348,6 +22836,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -22368,6 +22857,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -22381,6 +22871,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -22411,6 +22902,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -22424,6 +22916,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -22513,6 +23006,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -22526,6 +23020,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -22551,6 +23046,9 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -22652,6 +23150,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -22678,6 +23177,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -22698,6 +23198,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -22711,6 +23212,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -22741,6 +23243,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -22754,6 +23257,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -22843,6 +23347,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -22856,6 +23361,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -22882,6 +23388,9 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -22892,6 +23401,12 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                 },
               ],
               workingDir: "workingDir_example",
+            },
+          ],
+          evictionResponders: [
+            {
+              name: "name_example",
+              priority: 1,
             },
           ],
           hostAliases: [
@@ -22986,6 +23501,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -23012,6 +23528,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -23032,6 +23549,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -23045,6 +23563,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -23075,6 +23594,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -23088,6 +23608,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -23177,6 +23698,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -23190,6 +23712,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -23215,6 +23738,9 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -23400,11 +23926,13 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
               },
               configMap: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 name: "name_example",
@@ -23423,6 +23951,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
               },
               downwardAPI: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     fieldRef: {
@@ -23436,11 +23965,13 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                       divisor: "divisor_example",
                       resource: "resource_example",
                     },
+                    user: 1,
                   },
                 ],
               },
               emptyDir: {
                 medium: "medium_example",
+                mode: 1,
                 sizeLimit: "sizeLimit_example",
               },
               ephemeral: {
@@ -23619,6 +24150,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
               },
               projected: {
                 defaultMode: 1,
+                defaultUser: 1,
                 sources: [
                   {
                     clusterTrustBundle: {
@@ -23640,6 +24172,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                       optional: true,
                       path: "path_example",
                       signerName: "signerName_example",
+                      user: 1,
                     },
                     configMap: {
                       items: [
@@ -23647,6 +24180,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -23666,6 +24200,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                             divisor: "divisor_example",
                             resource: "resource_example",
                           },
+                          user: 1,
                         },
                       ],
                     },
@@ -23676,6 +24211,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      user: 1,
                       userAnnotations: {
                         "key": "key_example",
                       },
@@ -23686,6 +24222,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -23695,6 +24232,7 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
                       audience: "audience_example",
                       expirationSeconds: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   },
                 ],
@@ -23737,11 +24275,13 @@ const request: AppsV1ApiReplaceNamespacedReplicaSetStatusRequest = {
               },
               secret: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 optional: true,
@@ -24279,6 +24819,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -24305,6 +24846,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -24325,6 +24867,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -24338,6 +24881,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -24368,6 +24912,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -24381,6 +24926,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -24470,6 +25016,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -24483,6 +25030,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -24508,6 +25056,9 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -24609,6 +25160,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -24635,6 +25187,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -24655,6 +25208,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -24668,6 +25222,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -24698,6 +25253,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -24711,6 +25267,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -24800,6 +25357,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -24813,6 +25371,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -24839,6 +25398,9 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -24849,6 +25411,12 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                 },
               ],
               workingDir: "workingDir_example",
+            },
+          ],
+          evictionResponders: [
+            {
+              name: "name_example",
+              priority: 1,
             },
           ],
           hostAliases: [
@@ -24943,6 +25511,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -24969,6 +25538,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -24989,6 +25559,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -25002,6 +25573,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -25032,6 +25604,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -25045,6 +25618,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -25134,6 +25708,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -25147,6 +25722,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -25172,6 +25748,9 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -25357,11 +25936,13 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
               },
               configMap: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 name: "name_example",
@@ -25380,6 +25961,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
               },
               downwardAPI: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     fieldRef: {
@@ -25393,11 +25975,13 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                       divisor: "divisor_example",
                       resource: "resource_example",
                     },
+                    user: 1,
                   },
                 ],
               },
               emptyDir: {
                 medium: "medium_example",
+                mode: 1,
                 sizeLimit: "sizeLimit_example",
               },
               ephemeral: {
@@ -25576,6 +26160,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
               },
               projected: {
                 defaultMode: 1,
+                defaultUser: 1,
                 sources: [
                   {
                     clusterTrustBundle: {
@@ -25597,6 +26182,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                       optional: true,
                       path: "path_example",
                       signerName: "signerName_example",
+                      user: 1,
                     },
                     configMap: {
                       items: [
@@ -25604,6 +26190,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -25623,6 +26210,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                             divisor: "divisor_example",
                             resource: "resource_example",
                           },
+                          user: 1,
                         },
                       ],
                     },
@@ -25633,6 +26221,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      user: 1,
                       userAnnotations: {
                         "key": "key_example",
                       },
@@ -25643,6 +26232,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -25652,6 +26242,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
                       audience: "audience_example",
                       expirationSeconds: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   },
                 ],
@@ -25694,11 +26285,13 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
               },
               secret: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 optional: true,
@@ -25842,6 +26435,16 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetRequest = {
               },
             ],
             currentVolumeAttributesClassName: "currentVolumeAttributesClassName_example",
+            healthStatus: {
+              healthConditions: [
+                {
+                  message: "message_example",
+                  reason: "reason_example",
+                  status: "status_example",
+                },
+              ],
+              lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
+            },
             modifyVolumeStatus: {
               status: "status_example",
               targetVolumeAttributesClassName: "targetVolumeAttributesClassName_example",
@@ -26491,6 +27094,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -26517,6 +27121,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -26537,6 +27142,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -26550,6 +27156,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -26580,6 +27187,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -26593,6 +27201,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -26682,6 +27291,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -26695,6 +27305,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -26720,6 +27331,9 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -26821,6 +27435,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -26847,6 +27462,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -26867,6 +27483,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -26880,6 +27497,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -26910,6 +27528,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -26923,6 +27542,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -27012,6 +27632,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -27025,6 +27646,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -27051,6 +27673,9 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -27061,6 +27686,12 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                 },
               ],
               workingDir: "workingDir_example",
+            },
+          ],
+          evictionResponders: [
+            {
+              name: "name_example",
+              priority: 1,
             },
           ],
           hostAliases: [
@@ -27155,6 +27786,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -27181,6 +27813,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -27201,6 +27834,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -27214,6 +27848,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -27244,6 +27879,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -27257,6 +27893,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -27346,6 +27983,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -27359,6 +27997,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -27384,6 +28023,9 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -27569,11 +28211,13 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
               },
               configMap: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 name: "name_example",
@@ -27592,6 +28236,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
               },
               downwardAPI: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     fieldRef: {
@@ -27605,11 +28250,13 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                       divisor: "divisor_example",
                       resource: "resource_example",
                     },
+                    user: 1,
                   },
                 ],
               },
               emptyDir: {
                 medium: "medium_example",
+                mode: 1,
                 sizeLimit: "sizeLimit_example",
               },
               ephemeral: {
@@ -27788,6 +28435,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
               },
               projected: {
                 defaultMode: 1,
+                defaultUser: 1,
                 sources: [
                   {
                     clusterTrustBundle: {
@@ -27809,6 +28457,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                       optional: true,
                       path: "path_example",
                       signerName: "signerName_example",
+                      user: 1,
                     },
                     configMap: {
                       items: [
@@ -27816,6 +28465,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -27835,6 +28485,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                             divisor: "divisor_example",
                             resource: "resource_example",
                           },
+                          user: 1,
                         },
                       ],
                     },
@@ -27845,6 +28496,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      user: 1,
                       userAnnotations: {
                         "key": "key_example",
                       },
@@ -27855,6 +28507,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -27864,6 +28517,7 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
                       audience: "audience_example",
                       expirationSeconds: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   },
                 ],
@@ -27906,11 +28560,13 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
               },
               secret: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 optional: true,
@@ -28054,6 +28710,16 @@ const request: AppsV1ApiReplaceNamespacedStatefulSetStatusRequest = {
               },
             ],
             currentVolumeAttributesClassName: "currentVolumeAttributesClassName_example",
+            healthStatus: {
+              healthConditions: [
+                {
+                  message: "message_example",
+                  reason: "reason_example",
+                  status: "status_example",
+                },
+              ],
+              lastTransitionTime: new Date('1970-01-01T00:00:00.00Z'),
+            },
             modifyVolumeStatus: {
               status: "status_example",
               targetVolumeAttributesClassName: "targetVolumeAttributesClassName_example",

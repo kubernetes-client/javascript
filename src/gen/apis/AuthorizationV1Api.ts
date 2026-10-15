@@ -51,7 +51,7 @@ export class AuthorizationV1ApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/apis/authorization.k8s.io/v1/namespaces/{namespace}/localsubjectaccessreviews'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);

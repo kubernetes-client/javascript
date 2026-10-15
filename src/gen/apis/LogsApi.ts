@@ -30,7 +30,7 @@ export class LogsApiRequestFactory extends BaseAPIRequestFactory {
 
         // Path Params
         const localVarPath = '/logs/{logpath}'
-            .replace('{' + 'logpath' + '}', encodeURIComponent(String(logpath)));
+            .replace('{logpath}', encodeURIComponent(String(logpath)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
