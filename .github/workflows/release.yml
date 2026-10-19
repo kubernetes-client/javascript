@@ -41,7 +41,10 @@ jobs:
             - name: Setup Node
               uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
               with:
-                  node-version: '26'
+                  # Pinned to 26.7: Node 26.8.0 rewrote fs.readFile
+                  # (nodejs/node#65327) so that binding.open is no longer called
+                  # from JS, which breaks mock-fs at require time
+                  node-version: '26.7'
                   registry-url: 'https://registry.npmjs.org'
             - name: Install dependencies
               run: npm install
