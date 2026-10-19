@@ -19,3 +19,11 @@ export * from './health.js';
 export * from './middleware.js';
 export * from './patch.js';
 export { type ConfigOptions, type User, type Cluster, type Context } from './config_types.js';
+export {
+    type ExecCredentialPluginPolicy,
+    type ExecCredentialPluginPolicyType,
+    type ExecCredentialPluginAllowlistEntry,
+    ExecCredentialPluginDeniedError,
+    validateExecCredentialPluginPolicy,
+    parseKubercExecCredentialPluginPolicy,
+} from './exec_credential_policy.js';
