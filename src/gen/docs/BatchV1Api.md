@@ -170,6 +170,32 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
             ],
           },
           podReplacementPolicy: "podReplacementPolicy_example",
+          scheduling: {
+            disruptionMode: {
+              all: {},
+              single: {},
+            },
+            resourceClaims: [
+              {
+                name: "name_example",
+                resourceClaimName: "resourceClaimName_example",
+                resourceClaimTemplateName: "resourceClaimTemplateName_example",
+              },
+            ],
+            schedulingConstraints: {
+              topology: [
+                {
+                  key: "key_example",
+                },
+              ],
+            },
+            schedulingPolicy: {
+              basic: {},
+              gang: {
+                minCount: 1,
+              },
+            },
+          },
           selector: {
             matchExpressions: [
               {
@@ -543,6 +569,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                         ],
                         path: "path_example",
                         port: "port_example",
+                        protocol: "protocol_example",
                         scheme: "scheme_example",
                       },
                       sleep: {
@@ -569,6 +596,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                         ],
                         path: "path_example",
                         port: "port_example",
+                        protocol: "protocol_example",
                         scheme: "scheme_example",
                       },
                       sleep: {
@@ -589,6 +617,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -602,6 +631,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -632,6 +662,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -645,6 +676,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -734,6 +766,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -747,6 +780,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -772,6 +806,9 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                   ],
                   volumeMounts: [
                     {
+                      bindMountOptions: [
+                        "bindMountOptions_example",
+                      ],
                       mountPath: "mountPath_example",
                       mountPropagation: "mountPropagation_example",
                       name: "name_example",
@@ -873,6 +910,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                         ],
                         path: "path_example",
                         port: "port_example",
+                        protocol: "protocol_example",
                         scheme: "scheme_example",
                       },
                       sleep: {
@@ -899,6 +937,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                         ],
                         path: "path_example",
                         port: "port_example",
+                        protocol: "protocol_example",
                         scheme: "scheme_example",
                       },
                       sleep: {
@@ -919,6 +958,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -932,6 +972,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -962,6 +1003,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -975,6 +1017,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -1064,6 +1107,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -1077,6 +1121,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -1103,6 +1148,9 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                   ],
                   volumeMounts: [
                     {
+                      bindMountOptions: [
+                        "bindMountOptions_example",
+                      ],
                       mountPath: "mountPath_example",
                       mountPropagation: "mountPropagation_example",
                       name: "name_example",
@@ -1113,6 +1161,12 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                     },
                   ],
                   workingDir: "workingDir_example",
+                },
+              ],
+              evictionResponders: [
+                {
+                  name: "name_example",
+                  priority: 1,
                 },
               ],
               hostAliases: [
@@ -1207,6 +1261,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                         ],
                         path: "path_example",
                         port: "port_example",
+                        protocol: "protocol_example",
                         scheme: "scheme_example",
                       },
                       sleep: {
@@ -1233,6 +1288,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                         ],
                         path: "path_example",
                         port: "port_example",
+                        protocol: "protocol_example",
                         scheme: "scheme_example",
                       },
                       sleep: {
@@ -1253,6 +1309,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -1266,6 +1323,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -1296,6 +1354,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -1309,6 +1368,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -1398,6 +1458,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -1411,6 +1472,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -1436,6 +1498,9 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                   ],
                   volumeMounts: [
                     {
+                      bindMountOptions: [
+                        "bindMountOptions_example",
+                      ],
                       mountPath: "mountPath_example",
                       mountPropagation: "mountPropagation_example",
                       name: "name_example",
@@ -1621,11 +1686,13 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                   },
                   configMap: {
                     defaultMode: 1,
+                    defaultUser: 1,
                     items: [
                       {
                         key: "key_example",
                         mode: 1,
                         path: "path_example",
+                        user: 1,
                       },
                     ],
                     name: "name_example",
@@ -1644,6 +1711,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                   },
                   downwardAPI: {
                     defaultMode: 1,
+                    defaultUser: 1,
                     items: [
                       {
                         fieldRef: {
@@ -1657,11 +1725,13 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                           divisor: "divisor_example",
                           resource: "resource_example",
                         },
+                        user: 1,
                       },
                     ],
                   },
                   emptyDir: {
                     medium: "medium_example",
+                    mode: 1,
                     sizeLimit: "sizeLimit_example",
                   },
                   ephemeral: {
@@ -1840,6 +1910,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                   },
                   projected: {
                     defaultMode: 1,
+                    defaultUser: 1,
                     sources: [
                       {
                         clusterTrustBundle: {
@@ -1861,6 +1932,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                           optional: true,
                           path: "path_example",
                           signerName: "signerName_example",
+                          user: 1,
                         },
                         configMap: {
                           items: [
@@ -1868,6 +1940,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                               key: "key_example",
                               mode: 1,
                               path: "path_example",
+                              user: 1,
                             },
                           ],
                           name: "name_example",
@@ -1887,6 +1960,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                                 divisor: "divisor_example",
                                 resource: "resource_example",
                               },
+                              user: 1,
                             },
                           ],
                         },
@@ -1897,6 +1971,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                           keyType: "keyType_example",
                           maxExpirationSeconds: 1,
                           signerName: "signerName_example",
+                          user: 1,
                           userAnnotations: {
                             "key": "key_example",
                           },
@@ -1907,6 +1982,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                               key: "key_example",
                               mode: 1,
                               path: "path_example",
+                              user: 1,
                             },
                           ],
                           name: "name_example",
@@ -1916,6 +1992,7 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                           audience: "audience_example",
                           expirationSeconds: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       },
                     ],
@@ -1958,11 +2035,13 @@ const request: BatchV1ApiCreateNamespacedCronJobRequest = {
                   },
                   secret: {
                     defaultMode: 1,
+                    defaultUser: 1,
                     items: [
                       {
                         key: "key_example",
                         mode: 1,
                         path: "path_example",
+                        user: 1,
                       },
                     ],
                     optional: true,
@@ -2158,6 +2237,32 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
         ],
       },
       podReplacementPolicy: "podReplacementPolicy_example",
+      scheduling: {
+        disruptionMode: {
+          all: {},
+          single: {},
+        },
+        resourceClaims: [
+          {
+            name: "name_example",
+            resourceClaimName: "resourceClaimName_example",
+            resourceClaimTemplateName: "resourceClaimTemplateName_example",
+          },
+        ],
+        schedulingConstraints: {
+          topology: [
+            {
+              key: "key_example",
+            },
+          ],
+        },
+        schedulingPolicy: {
+          basic: {},
+          gang: {
+            minCount: 1,
+          },
+        },
+      },
       selector: {
         matchExpressions: [
           {
@@ -2531,6 +2636,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -2557,6 +2663,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -2577,6 +2684,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -2590,6 +2698,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -2620,6 +2729,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -2633,6 +2743,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -2722,6 +2833,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -2735,6 +2847,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -2760,6 +2873,9 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -2861,6 +2977,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -2887,6 +3004,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -2907,6 +3025,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -2920,6 +3039,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -2950,6 +3070,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -2963,6 +3084,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -3052,6 +3174,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -3065,6 +3188,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -3091,6 +3215,9 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -3101,6 +3228,12 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                 },
               ],
               workingDir: "workingDir_example",
+            },
+          ],
+          evictionResponders: [
+            {
+              name: "name_example",
+              priority: 1,
             },
           ],
           hostAliases: [
@@ -3195,6 +3328,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -3221,6 +3355,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -3241,6 +3376,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -3254,6 +3390,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -3284,6 +3421,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -3297,6 +3435,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -3386,6 +3525,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -3399,6 +3539,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -3424,6 +3565,9 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -3609,11 +3753,13 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
               },
               configMap: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 name: "name_example",
@@ -3632,6 +3778,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
               },
               downwardAPI: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     fieldRef: {
@@ -3645,11 +3792,13 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                       divisor: "divisor_example",
                       resource: "resource_example",
                     },
+                    user: 1,
                   },
                 ],
               },
               emptyDir: {
                 medium: "medium_example",
+                mode: 1,
                 sizeLimit: "sizeLimit_example",
               },
               ephemeral: {
@@ -3828,6 +3977,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
               },
               projected: {
                 defaultMode: 1,
+                defaultUser: 1,
                 sources: [
                   {
                     clusterTrustBundle: {
@@ -3849,6 +3999,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                       optional: true,
                       path: "path_example",
                       signerName: "signerName_example",
+                      user: 1,
                     },
                     configMap: {
                       items: [
@@ -3856,6 +4007,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -3875,6 +4027,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                             divisor: "divisor_example",
                             resource: "resource_example",
                           },
+                          user: 1,
                         },
                       ],
                     },
@@ -3885,6 +4038,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      user: 1,
                       userAnnotations: {
                         "key": "key_example",
                       },
@@ -3895,6 +4049,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -3904,6 +4059,7 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
                       audience: "audience_example",
                       expirationSeconds: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   },
                 ],
@@ -3946,11 +4102,13 @@ const request: BatchV1ApiCreateNamespacedJobRequest = {
               },
               secret: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 optional: true,
@@ -5564,6 +5722,32 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
             ],
           },
           podReplacementPolicy: "podReplacementPolicy_example",
+          scheduling: {
+            disruptionMode: {
+              all: {},
+              single: {},
+            },
+            resourceClaims: [
+              {
+                name: "name_example",
+                resourceClaimName: "resourceClaimName_example",
+                resourceClaimTemplateName: "resourceClaimTemplateName_example",
+              },
+            ],
+            schedulingConstraints: {
+              topology: [
+                {
+                  key: "key_example",
+                },
+              ],
+            },
+            schedulingPolicy: {
+              basic: {},
+              gang: {
+                minCount: 1,
+              },
+            },
+          },
           selector: {
             matchExpressions: [
               {
@@ -5937,6 +6121,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                         ],
                         path: "path_example",
                         port: "port_example",
+                        protocol: "protocol_example",
                         scheme: "scheme_example",
                       },
                       sleep: {
@@ -5963,6 +6148,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                         ],
                         path: "path_example",
                         port: "port_example",
+                        protocol: "protocol_example",
                         scheme: "scheme_example",
                       },
                       sleep: {
@@ -5983,6 +6169,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -5996,6 +6183,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -6026,6 +6214,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -6039,6 +6228,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -6128,6 +6318,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -6141,6 +6332,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -6166,6 +6358,9 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                   ],
                   volumeMounts: [
                     {
+                      bindMountOptions: [
+                        "bindMountOptions_example",
+                      ],
                       mountPath: "mountPath_example",
                       mountPropagation: "mountPropagation_example",
                       name: "name_example",
@@ -6267,6 +6462,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                         ],
                         path: "path_example",
                         port: "port_example",
+                        protocol: "protocol_example",
                         scheme: "scheme_example",
                       },
                       sleep: {
@@ -6293,6 +6489,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                         ],
                         path: "path_example",
                         port: "port_example",
+                        protocol: "protocol_example",
                         scheme: "scheme_example",
                       },
                       sleep: {
@@ -6313,6 +6510,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -6326,6 +6524,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -6356,6 +6555,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -6369,6 +6569,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -6458,6 +6659,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -6471,6 +6673,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -6497,6 +6700,9 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                   ],
                   volumeMounts: [
                     {
+                      bindMountOptions: [
+                        "bindMountOptions_example",
+                      ],
                       mountPath: "mountPath_example",
                       mountPropagation: "mountPropagation_example",
                       name: "name_example",
@@ -6507,6 +6713,12 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                     },
                   ],
                   workingDir: "workingDir_example",
+                },
+              ],
+              evictionResponders: [
+                {
+                  name: "name_example",
+                  priority: 1,
                 },
               ],
               hostAliases: [
@@ -6601,6 +6813,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                         ],
                         path: "path_example",
                         port: "port_example",
+                        protocol: "protocol_example",
                         scheme: "scheme_example",
                       },
                       sleep: {
@@ -6627,6 +6840,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                         ],
                         path: "path_example",
                         port: "port_example",
+                        protocol: "protocol_example",
                         scheme: "scheme_example",
                       },
                       sleep: {
@@ -6647,6 +6861,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -6660,6 +6875,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -6690,6 +6906,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -6703,6 +6920,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -6792,6 +7010,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -6805,6 +7024,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -6830,6 +7050,9 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                   ],
                   volumeMounts: [
                     {
+                      bindMountOptions: [
+                        "bindMountOptions_example",
+                      ],
                       mountPath: "mountPath_example",
                       mountPropagation: "mountPropagation_example",
                       name: "name_example",
@@ -7015,11 +7238,13 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                   },
                   configMap: {
                     defaultMode: 1,
+                    defaultUser: 1,
                     items: [
                       {
                         key: "key_example",
                         mode: 1,
                         path: "path_example",
+                        user: 1,
                       },
                     ],
                     name: "name_example",
@@ -7038,6 +7263,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                   },
                   downwardAPI: {
                     defaultMode: 1,
+                    defaultUser: 1,
                     items: [
                       {
                         fieldRef: {
@@ -7051,11 +7277,13 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                           divisor: "divisor_example",
                           resource: "resource_example",
                         },
+                        user: 1,
                       },
                     ],
                   },
                   emptyDir: {
                     medium: "medium_example",
+                    mode: 1,
                     sizeLimit: "sizeLimit_example",
                   },
                   ephemeral: {
@@ -7234,6 +7462,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                   },
                   projected: {
                     defaultMode: 1,
+                    defaultUser: 1,
                     sources: [
                       {
                         clusterTrustBundle: {
@@ -7255,6 +7484,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                           optional: true,
                           path: "path_example",
                           signerName: "signerName_example",
+                          user: 1,
                         },
                         configMap: {
                           items: [
@@ -7262,6 +7492,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                               key: "key_example",
                               mode: 1,
                               path: "path_example",
+                              user: 1,
                             },
                           ],
                           name: "name_example",
@@ -7281,6 +7512,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                                 divisor: "divisor_example",
                                 resource: "resource_example",
                               },
+                              user: 1,
                             },
                           ],
                         },
@@ -7291,6 +7523,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                           keyType: "keyType_example",
                           maxExpirationSeconds: 1,
                           signerName: "signerName_example",
+                          user: 1,
                           userAnnotations: {
                             "key": "key_example",
                           },
@@ -7301,6 +7534,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                               key: "key_example",
                               mode: 1,
                               path: "path_example",
+                              user: 1,
                             },
                           ],
                           name: "name_example",
@@ -7310,6 +7544,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                           audience: "audience_example",
                           expirationSeconds: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       },
                     ],
@@ -7352,11 +7587,13 @@ const request: BatchV1ApiReplaceNamespacedCronJobRequest = {
                   },
                   secret: {
                     defaultMode: 1,
+                    defaultUser: 1,
                     items: [
                       {
                         key: "key_example",
                         mode: 1,
                         path: "path_example",
+                        user: 1,
                       },
                     ],
                     optional: true,
@@ -7600,6 +7837,32 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
             ],
           },
           podReplacementPolicy: "podReplacementPolicy_example",
+          scheduling: {
+            disruptionMode: {
+              all: {},
+              single: {},
+            },
+            resourceClaims: [
+              {
+                name: "name_example",
+                resourceClaimName: "resourceClaimName_example",
+                resourceClaimTemplateName: "resourceClaimTemplateName_example",
+              },
+            ],
+            schedulingConstraints: {
+              topology: [
+                {
+                  key: "key_example",
+                },
+              ],
+            },
+            schedulingPolicy: {
+              basic: {},
+              gang: {
+                minCount: 1,
+              },
+            },
+          },
           selector: {
             matchExpressions: [
               {
@@ -7973,6 +8236,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                         ],
                         path: "path_example",
                         port: "port_example",
+                        protocol: "protocol_example",
                         scheme: "scheme_example",
                       },
                       sleep: {
@@ -7999,6 +8263,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                         ],
                         path: "path_example",
                         port: "port_example",
+                        protocol: "protocol_example",
                         scheme: "scheme_example",
                       },
                       sleep: {
@@ -8019,6 +8284,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -8032,6 +8298,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -8062,6 +8329,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -8075,6 +8343,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -8164,6 +8433,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -8177,6 +8447,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -8202,6 +8473,9 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                   ],
                   volumeMounts: [
                     {
+                      bindMountOptions: [
+                        "bindMountOptions_example",
+                      ],
                       mountPath: "mountPath_example",
                       mountPropagation: "mountPropagation_example",
                       name: "name_example",
@@ -8303,6 +8577,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                         ],
                         path: "path_example",
                         port: "port_example",
+                        protocol: "protocol_example",
                         scheme: "scheme_example",
                       },
                       sleep: {
@@ -8329,6 +8604,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                         ],
                         path: "path_example",
                         port: "port_example",
+                        protocol: "protocol_example",
                         scheme: "scheme_example",
                       },
                       sleep: {
@@ -8349,6 +8625,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -8362,6 +8639,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -8392,6 +8670,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -8405,6 +8684,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -8494,6 +8774,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -8507,6 +8788,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -8533,6 +8815,9 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                   ],
                   volumeMounts: [
                     {
+                      bindMountOptions: [
+                        "bindMountOptions_example",
+                      ],
                       mountPath: "mountPath_example",
                       mountPropagation: "mountPropagation_example",
                       name: "name_example",
@@ -8543,6 +8828,12 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                     },
                   ],
                   workingDir: "workingDir_example",
+                },
+              ],
+              evictionResponders: [
+                {
+                  name: "name_example",
+                  priority: 1,
                 },
               ],
               hostAliases: [
@@ -8637,6 +8928,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                         ],
                         path: "path_example",
                         port: "port_example",
+                        protocol: "protocol_example",
                         scheme: "scheme_example",
                       },
                       sleep: {
@@ -8663,6 +8955,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                         ],
                         path: "path_example",
                         port: "port_example",
+                        protocol: "protocol_example",
                         scheme: "scheme_example",
                       },
                       sleep: {
@@ -8683,6 +8976,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -8696,6 +8990,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -8726,6 +9021,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -8739,6 +9035,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -8828,6 +9125,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                     },
                     failureThreshold: 1,
                     grpc: {
+                      mode: "mode_example",
                       port: 1,
                       service: "service_example",
                     },
@@ -8841,6 +9139,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                       ],
                       path: "path_example",
                       port: "port_example",
+                      protocol: "protocol_example",
                       scheme: "scheme_example",
                     },
                     initialDelaySeconds: 1,
@@ -8866,6 +9165,9 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                   ],
                   volumeMounts: [
                     {
+                      bindMountOptions: [
+                        "bindMountOptions_example",
+                      ],
                       mountPath: "mountPath_example",
                       mountPropagation: "mountPropagation_example",
                       name: "name_example",
@@ -9051,11 +9353,13 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                   },
                   configMap: {
                     defaultMode: 1,
+                    defaultUser: 1,
                     items: [
                       {
                         key: "key_example",
                         mode: 1,
                         path: "path_example",
+                        user: 1,
                       },
                     ],
                     name: "name_example",
@@ -9074,6 +9378,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                   },
                   downwardAPI: {
                     defaultMode: 1,
+                    defaultUser: 1,
                     items: [
                       {
                         fieldRef: {
@@ -9087,11 +9392,13 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                           divisor: "divisor_example",
                           resource: "resource_example",
                         },
+                        user: 1,
                       },
                     ],
                   },
                   emptyDir: {
                     medium: "medium_example",
+                    mode: 1,
                     sizeLimit: "sizeLimit_example",
                   },
                   ephemeral: {
@@ -9270,6 +9577,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                   },
                   projected: {
                     defaultMode: 1,
+                    defaultUser: 1,
                     sources: [
                       {
                         clusterTrustBundle: {
@@ -9291,6 +9599,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                           optional: true,
                           path: "path_example",
                           signerName: "signerName_example",
+                          user: 1,
                         },
                         configMap: {
                           items: [
@@ -9298,6 +9607,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                               key: "key_example",
                               mode: 1,
                               path: "path_example",
+                              user: 1,
                             },
                           ],
                           name: "name_example",
@@ -9317,6 +9627,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                                 divisor: "divisor_example",
                                 resource: "resource_example",
                               },
+                              user: 1,
                             },
                           ],
                         },
@@ -9327,6 +9638,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                           keyType: "keyType_example",
                           maxExpirationSeconds: 1,
                           signerName: "signerName_example",
+                          user: 1,
                           userAnnotations: {
                             "key": "key_example",
                           },
@@ -9337,6 +9649,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                               key: "key_example",
                               mode: 1,
                               path: "path_example",
+                              user: 1,
                             },
                           ],
                           name: "name_example",
@@ -9346,6 +9659,7 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                           audience: "audience_example",
                           expirationSeconds: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       },
                     ],
@@ -9388,11 +9702,13 @@ const request: BatchV1ApiReplaceNamespacedCronJobStatusRequest = {
                   },
                   secret: {
                     defaultMode: 1,
+                    defaultUser: 1,
                     items: [
                       {
                         key: "key_example",
                         mode: 1,
                         path: "path_example",
+                        user: 1,
                       },
                     ],
                     optional: true,
@@ -9590,6 +9906,32 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
         ],
       },
       podReplacementPolicy: "podReplacementPolicy_example",
+      scheduling: {
+        disruptionMode: {
+          all: {},
+          single: {},
+        },
+        resourceClaims: [
+          {
+            name: "name_example",
+            resourceClaimName: "resourceClaimName_example",
+            resourceClaimTemplateName: "resourceClaimTemplateName_example",
+          },
+        ],
+        schedulingConstraints: {
+          topology: [
+            {
+              key: "key_example",
+            },
+          ],
+        },
+        schedulingPolicy: {
+          basic: {},
+          gang: {
+            minCount: 1,
+          },
+        },
+      },
       selector: {
         matchExpressions: [
           {
@@ -9963,6 +10305,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -9989,6 +10332,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -10009,6 +10353,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -10022,6 +10367,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -10052,6 +10398,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -10065,6 +10412,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -10154,6 +10502,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -10167,6 +10516,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -10192,6 +10542,9 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -10293,6 +10646,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -10319,6 +10673,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -10339,6 +10694,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -10352,6 +10708,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -10382,6 +10739,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -10395,6 +10753,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -10484,6 +10843,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -10497,6 +10857,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -10523,6 +10884,9 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -10533,6 +10897,12 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                 },
               ],
               workingDir: "workingDir_example",
+            },
+          ],
+          evictionResponders: [
+            {
+              name: "name_example",
+              priority: 1,
             },
           ],
           hostAliases: [
@@ -10627,6 +10997,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -10653,6 +11024,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -10673,6 +11045,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -10686,6 +11059,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -10716,6 +11090,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -10729,6 +11104,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -10818,6 +11194,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -10831,6 +11208,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -10856,6 +11234,9 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -11041,11 +11422,13 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
               },
               configMap: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 name: "name_example",
@@ -11064,6 +11447,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
               },
               downwardAPI: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     fieldRef: {
@@ -11077,11 +11461,13 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                       divisor: "divisor_example",
                       resource: "resource_example",
                     },
+                    user: 1,
                   },
                 ],
               },
               emptyDir: {
                 medium: "medium_example",
+                mode: 1,
                 sizeLimit: "sizeLimit_example",
               },
               ephemeral: {
@@ -11260,6 +11646,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
               },
               projected: {
                 defaultMode: 1,
+                defaultUser: 1,
                 sources: [
                   {
                     clusterTrustBundle: {
@@ -11281,6 +11668,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                       optional: true,
                       path: "path_example",
                       signerName: "signerName_example",
+                      user: 1,
                     },
                     configMap: {
                       items: [
@@ -11288,6 +11676,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -11307,6 +11696,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                             divisor: "divisor_example",
                             resource: "resource_example",
                           },
+                          user: 1,
                         },
                       ],
                     },
@@ -11317,6 +11707,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      user: 1,
                       userAnnotations: {
                         "key": "key_example",
                       },
@@ -11327,6 +11718,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -11336,6 +11728,7 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
                       audience: "audience_example",
                       expirationSeconds: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   },
                 ],
@@ -11378,11 +11771,13 @@ const request: BatchV1ApiReplaceNamespacedJobRequest = {
               },
               secret: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 optional: true,
@@ -11587,6 +11982,32 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
         ],
       },
       podReplacementPolicy: "podReplacementPolicy_example",
+      scheduling: {
+        disruptionMode: {
+          all: {},
+          single: {},
+        },
+        resourceClaims: [
+          {
+            name: "name_example",
+            resourceClaimName: "resourceClaimName_example",
+            resourceClaimTemplateName: "resourceClaimTemplateName_example",
+          },
+        ],
+        schedulingConstraints: {
+          topology: [
+            {
+              key: "key_example",
+            },
+          ],
+        },
+        schedulingPolicy: {
+          basic: {},
+          gang: {
+            minCount: 1,
+          },
+        },
+      },
       selector: {
         matchExpressions: [
           {
@@ -11960,6 +12381,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -11986,6 +12408,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -12006,6 +12429,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -12019,6 +12443,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -12049,6 +12474,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -12062,6 +12488,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -12151,6 +12578,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -12164,6 +12592,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -12189,6 +12618,9 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -12290,6 +12722,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -12316,6 +12749,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -12336,6 +12770,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -12349,6 +12784,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -12379,6 +12815,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -12392,6 +12829,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -12481,6 +12919,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -12494,6 +12933,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -12520,6 +12960,9 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -12530,6 +12973,12 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                 },
               ],
               workingDir: "workingDir_example",
+            },
+          ],
+          evictionResponders: [
+            {
+              name: "name_example",
+              priority: 1,
             },
           ],
           hostAliases: [
@@ -12624,6 +13073,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -12650,6 +13100,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                     ],
                     path: "path_example",
                     port: "port_example",
+                    protocol: "protocol_example",
                     scheme: "scheme_example",
                   },
                   sleep: {
@@ -12670,6 +13121,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -12683,6 +13135,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -12713,6 +13166,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -12726,6 +13180,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -12815,6 +13270,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                 },
                 failureThreshold: 1,
                 grpc: {
+                  mode: "mode_example",
                   port: 1,
                   service: "service_example",
                 },
@@ -12828,6 +13284,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                   ],
                   path: "path_example",
                   port: "port_example",
+                  protocol: "protocol_example",
                   scheme: "scheme_example",
                 },
                 initialDelaySeconds: 1,
@@ -12853,6 +13310,9 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
               ],
               volumeMounts: [
                 {
+                  bindMountOptions: [
+                    "bindMountOptions_example",
+                  ],
                   mountPath: "mountPath_example",
                   mountPropagation: "mountPropagation_example",
                   name: "name_example",
@@ -13038,11 +13498,13 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
               },
               configMap: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 name: "name_example",
@@ -13061,6 +13523,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
               },
               downwardAPI: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     fieldRef: {
@@ -13074,11 +13537,13 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                       divisor: "divisor_example",
                       resource: "resource_example",
                     },
+                    user: 1,
                   },
                 ],
               },
               emptyDir: {
                 medium: "medium_example",
+                mode: 1,
                 sizeLimit: "sizeLimit_example",
               },
               ephemeral: {
@@ -13257,6 +13722,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
               },
               projected: {
                 defaultMode: 1,
+                defaultUser: 1,
                 sources: [
                   {
                     clusterTrustBundle: {
@@ -13278,6 +13744,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                       optional: true,
                       path: "path_example",
                       signerName: "signerName_example",
+                      user: 1,
                     },
                     configMap: {
                       items: [
@@ -13285,6 +13752,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -13304,6 +13772,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                             divisor: "divisor_example",
                             resource: "resource_example",
                           },
+                          user: 1,
                         },
                       ],
                     },
@@ -13314,6 +13783,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                       keyType: "keyType_example",
                       maxExpirationSeconds: 1,
                       signerName: "signerName_example",
+                      user: 1,
                       userAnnotations: {
                         "key": "key_example",
                       },
@@ -13324,6 +13794,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                           key: "key_example",
                           mode: 1,
                           path: "path_example",
+                          user: 1,
                         },
                       ],
                       name: "name_example",
@@ -13333,6 +13804,7 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
                       audience: "audience_example",
                       expirationSeconds: 1,
                       path: "path_example",
+                      user: 1,
                     },
                   },
                 ],
@@ -13375,11 +13847,13 @@ const request: BatchV1ApiReplaceNamespacedJobStatusRequest = {
               },
               secret: {
                 defaultMode: 1,
+                defaultUser: 1,
                 items: [
                   {
                     key: "key_example",
                     mode: 1,
                     path: "path_example",
+                    user: 1,
                   },
                 ],
                 optional: true,

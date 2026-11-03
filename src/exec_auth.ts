@@ -3,6 +3,11 @@ import https from 'node:https';
 
 import { Authenticator } from './auth.js';
 import { User } from './config_types.js';
+import {
+    checkExecCredentialPluginPolicy,
+    ExecCredentialPluginPolicy,
+    validateExecCredentialPluginPolicy,
+} from './exec_credential_policy.js';
 
 import child_process from 'node:child_process';
 
@@ -18,12 +23,33 @@ export interface Credential {
 }
 
 export class ExecAuth implements Authenticator {
-    private readonly tokenCache: { [key: string]: Credential | null } = {};
+    private tokenCache: { [key: string]: Credential | null } = {};
+    private policy?: ExecCredentialPluginPolicy;
     private execFn: (
         command: string,
         args?: readonly string[],
         options?: child_process.SpawnOptionsWithoutStdio,
     ) => child_process.ChildProcessWithoutNullStreams = child_process.spawn;
+
+    /**
+     * @param policy optional application policy restricting which exec credential plugins may run.
+     *     Defaults to allowing all plugins.
+     */
+    constructor(policy?: ExecCredentialPluginPolicy) {
+        this.setPolicy(policy);
+    }
+
+    /**
+     * Sets the policy restricting which exec credential plugins may run.
+     * The policy applies to every subsequent plugin execution, including token refreshes.
+     * Cached credentials are discarded when the policy changes.
+     * @param policy the policy, undefined allows all plugins.
+     */
+    public setPolicy(policy?: ExecCredentialPluginPolicy): void {
+        validateExecCredentialPluginPolicy(policy);
+        this.policy = policy;
+        this.tokenCache = {};
+    }
 
     public isAuthProvider(user: User): boolean {
         if (!user) {
@@ -98,6 +124,7 @@ export class ExecAuth implements Authenticator {
         if (!exec.command) {
             throw new Error('No command was specified for exec authProvider!');
         }
+        const command = checkExecCredentialPluginPolicy(this.policy, exec.command);
         const ownsProcessGroup = signal !== undefined && process.platform !== 'win32';
         let opts: child_process.SpawnOptionsWithoutStdio = {
             detached: ownsProcessGroup,
@@ -113,7 +140,7 @@ export class ExecAuth implements Authenticator {
             let stderrData: string = '';
             let savedError: Error | undefined = undefined;
 
-            const subprocess = this.execFn(exec.command, exec.args, opts);
+            const subprocess = this.execFn(command, exec.args, opts);
             // Cancel the entire owned group on POSIX, before killing only the
             // parent can orphan children holding inherited pipes open. Await
             // close before settling so credential I/O is no longer running.

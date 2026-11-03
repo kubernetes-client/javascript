@@ -95,6 +95,46 @@ const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 ...
 ```
 
+## Exec credential plugin policy
+
+Kubeconfig `exec` credential plugins start local processes. By default all plugins are allowed,
+so only load trusted kubeconfigs. Applications can restrict which plugins may run with the same
+policy that kubectl reads from its [kuberc](https://kubernetes.io/docs/reference/kubectl/kuberc/#credential-plugin-policy)
+file:
+
+```javascript
+const kc = new k8s.KubeConfig();
+kc.loadFromDefault();
+
+// Never run exec plugins
+kc.setExecCredentialPluginPolicy({ credentialPluginPolicy: 'DenyAll' });
+
+// Only run approved plugins, by basename or full path
+kc.setExecCredentialPluginPolicy({
+    credentialPluginPolicy: 'Allowlist',
+    credentialPluginAllowlist: [{ command: 'kubelogin' }, { command: '/usr/local/bin/my-trusted-plugin' }],
+});
+
+// Or use the policy from the user's kuberc file ($KUBERC or ~/.kube/kuberc)
+kc.loadExecCredentialPluginPolicyFromKuberc();
+```
+
+The policy semantics match kubectl:
+
+- An unspecified or empty `credentialPluginPolicy` is the same as `AllowAll`.
+- `credentialPluginAllowlist` is required (and must be non-empty) for `Allowlist`, and is an error for any other
+  policy. Entries must specify a non-empty `command` (the deprecated `name` alias is accepted, but not both).
+- A plugin is allowed if its command exactly matches an allowlist entry, or if both resolve to the same executable
+  using `PATH`. Neither symlinks nor shell globs are resolved.
+- In `Allowlist` mode the resolved full path of the plugin is executed, so the plugin `env` from the kubeconfig cannot
+  change which executable is started. Plugin arguments and environment are not otherwise restricted.
+- Denied plugins throw an `ExecCredentialPluginDeniedError` before any process is started; the policy is checked
+  for the initial execution and every token refresh.
+- `KUBERC=off` or `KUBECTL_KUBERC=false` disables loading the kuberc file.
+
+This policy is a defense-in-depth measure, not a sandbox. Allowing an interpreter or other general purpose launcher
+can permit arbitrary code execution.
+
 # Documentation
 
 📖 **[View Documentation](https://kubernetes-client.github.io/javascript/)**
@@ -120,7 +160,7 @@ npm start          # opens http://localhost:3000 with hot-reload
 
 `npm start` automatically runs the `prestart` hook which generates the API
 reference, SDK docs, and model pages from source before launching the dev
-server.  Changes to hand-written docs (e.g. `docs/docs/examples/`) are
+server. Changes to hand-written docs (e.g. `docs/docs/examples/`) are
 reflected instantly; changes to the generated sources require restarting the
 server.
 

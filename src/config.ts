@@ -28,6 +28,11 @@ import {
     User,
 } from './config_types.js';
 import { ExecAuth } from './exec_auth.js';
+import {
+    ExecCredentialPluginPolicy,
+    parseKubercExecCredentialPluginPolicy,
+    validateExecCredentialPluginPolicy,
+} from './exec_credential_policy.js';
 import { FileAuth } from './file_auth.js';
 import { GoogleCloudPlatformAuth } from './gcp_auth.js';
 import {
@@ -135,10 +140,12 @@ function createSocksConnector(proxyUrl: string, tlsOptions: tls.ConnectionOption
 export interface ApiType {}
 
 export class KubeConfig implements SecurityAuthentication {
+    private execAuth: ExecAuth = new ExecAuth();
+
     private authenticators: Authenticator[] = [
         new AzureAuth(),
         new GoogleCloudPlatformAuth(),
-        new ExecAuth(),
+        this.execAuth,
         new FileAuth(),
         new OpenIDConnectAuth(),
     ];
@@ -156,6 +163,59 @@ export class KubeConfig implements SecurityAuthentication {
     // before you load a kubeconfig file that references them.
     public addAuthenticator(authenticator: Authenticator): void {
         this.custom_authenticators.push(authenticator);
+    }
+
+    /**
+     * Sets the application policy for kubeconfig `exec` credential plugins.
+     * The semantics match the `credentialPluginPolicy` and `credentialPluginAllowlist`
+     * fields of a kubectl kuberc file, see https://kubernetes.io/docs/reference/kubectl/kuberc/
+     * The policy is checked before every plugin execution, including token refreshes.
+     * @param policy the policy, undefined restores the default `AllowAll` behavior.
+     * @throws Error if the policy is misconfigured.
+     */
+    public setExecCredentialPluginPolicy(policy?: ExecCredentialPluginPolicy): void {
+        validateExecCredentialPluginPolicy(policy);
+        this.execAuth.setPolicy(policy);
+    }
+
+    /**
+     * Loads the exec credential plugin policy from a kubectl kuberc file and applies it
+     * with `setExecCredentialPluginPolicy`.
+     *
+     * If `file` is not given, the file is located the same way kubectl does: the `KUBERC`
+     * environment variable if set, otherwise `$HOME/.kube/kuberc`. Setting `KUBERC=off` or
+     * `KUBECTL_KUBERC=false` disables loading, in which case the current policy is unchanged.
+     * A missing default kuberc file is not an error, a missing explicitly specified file is.
+     * @param file optional path to the kuberc file.
+     * @returns the loaded policy, or undefined if no kuberc file was loaded.
+     */
+    public loadExecCredentialPluginPolicyFromKuberc(
+        file?: string,
+        platform: string = process.platform,
+    ): ExecCredentialPluginPolicy | undefined {
+        let kubercFile = file;
+        let required = true;
+        if (!kubercFile) {
+            if (process.env.KUBECTL_KUBERC === 'false' || process.env.KUBERC === 'off') {
+                return undefined;
+            }
+            if (process.env.KUBERC) {
+                kubercFile = process.env.KUBERC;
+            } else {
+                const home = findHomeDir(platform);
+                if (!home) {
+                    return undefined;
+                }
+                kubercFile = path.join(home, '.kube', 'kuberc');
+                required = false;
+            }
+        }
+        if (!required && !fileExists(kubercFile)) {
+            return undefined;
+        }
+        const policy = parseKubercExecCredentialPluginPolicy(fs.readFileSync(kubercFile).toString('utf-8'));
+        this.setExecCredentialPluginPolicy(policy);
+        return policy;
     }
 
     /**

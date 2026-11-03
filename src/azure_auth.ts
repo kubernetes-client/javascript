@@ -90,7 +90,10 @@ export class AzureAuth implements Authenticator {
         const tokenPathKey = '$' + tokenPathKeyInConfig.slice(1, -1);
         const expiryPathKey = '$' + expiryPathKeyInConfig.slice(1, -1);
 
-        config['access-token'] = jsonpath.JSONPath({ path: tokenPathKey, json: resultObj });
-        config.expiry = jsonpath.JSONPath({ path: expiryPathKey, json: resultObj });
+        config['access-token'] = jsonpath.JSONPath({
+            path: tokenPathKey,
+            json: resultObj,
+        }) as Config['access-token'];
+        config.expiry = jsonpath.JSONPath({ path: expiryPathKey, json: resultObj }) as Config['expiry'];
     }
 }

@@ -126,7 +126,7 @@ export class CertificatesV1beta1ApiRequestFactory extends BaseAPIRequestFactory 
 
         // Path Params
         const localVarPath = '/apis/certificates.k8s.io/v1beta1/namespaces/{namespace}/podcertificaterequests'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.POST);
@@ -206,7 +206,7 @@ export class CertificatesV1beta1ApiRequestFactory extends BaseAPIRequestFactory 
 
         // Path Params
         const localVarPath = '/apis/certificates.k8s.io/v1beta1/clustertrustbundles/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -459,7 +459,7 @@ export class CertificatesV1beta1ApiRequestFactory extends BaseAPIRequestFactory 
 
         // Path Params
         const localVarPath = '/apis/certificates.k8s.io/v1beta1/namespaces/{namespace}/podcertificaterequests'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -601,8 +601,8 @@ export class CertificatesV1beta1ApiRequestFactory extends BaseAPIRequestFactory 
 
         // Path Params
         const localVarPath = '/apis/certificates.k8s.io/v1beta1/namespaces/{namespace}/podcertificaterequests/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.DELETE);
@@ -844,7 +844,7 @@ export class CertificatesV1beta1ApiRequestFactory extends BaseAPIRequestFactory 
 
         // Path Params
         const localVarPath = '/apis/certificates.k8s.io/v1beta1/namespaces/{namespace}/podcertificaterequests'
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1071,7 +1071,7 @@ export class CertificatesV1beta1ApiRequestFactory extends BaseAPIRequestFactory 
 
         // Path Params
         const localVarPath = '/apis/certificates.k8s.io/v1beta1/clustertrustbundles/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1176,8 +1176,8 @@ export class CertificatesV1beta1ApiRequestFactory extends BaseAPIRequestFactory 
 
         // Path Params
         const localVarPath = '/apis/certificates.k8s.io/v1beta1/namespaces/{namespace}/podcertificaterequests/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1282,8 +1282,8 @@ export class CertificatesV1beta1ApiRequestFactory extends BaseAPIRequestFactory 
 
         // Path Params
         const localVarPath = '/apis/certificates.k8s.io/v1beta1/namespaces/{namespace}/podcertificaterequests/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PATCH);
@@ -1366,7 +1366,7 @@ export class CertificatesV1beta1ApiRequestFactory extends BaseAPIRequestFactory 
 
         // Path Params
         const localVarPath = '/apis/certificates.k8s.io/v1beta1/clustertrustbundles/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1417,8 +1417,8 @@ export class CertificatesV1beta1ApiRequestFactory extends BaseAPIRequestFactory 
 
         // Path Params
         const localVarPath = '/apis/certificates.k8s.io/v1beta1/namespaces/{namespace}/podcertificaterequests/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1469,8 +1469,8 @@ export class CertificatesV1beta1ApiRequestFactory extends BaseAPIRequestFactory 
 
         // Path Params
         const localVarPath = '/apis/certificates.k8s.io/v1beta1/namespaces/{namespace}/podcertificaterequests/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.GET);
@@ -1527,7 +1527,7 @@ export class CertificatesV1beta1ApiRequestFactory extends BaseAPIRequestFactory 
 
         // Path Params
         const localVarPath = '/apis/certificates.k8s.io/v1beta1/clustertrustbundles/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            .replace('{name}', encodeURIComponent(String(name)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -1615,8 +1615,8 @@ export class CertificatesV1beta1ApiRequestFactory extends BaseAPIRequestFactory 
 
         // Path Params
         const localVarPath = '/apis/certificates.k8s.io/v1beta1/namespaces/{namespace}/podcertificaterequests/{name}'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
@@ -1704,8 +1704,8 @@ export class CertificatesV1beta1ApiRequestFactory extends BaseAPIRequestFactory 
 
         // Path Params
         const localVarPath = '/apis/certificates.k8s.io/v1beta1/namespaces/{namespace}/podcertificaterequests/{name}/status'
-            .replace('{' + 'name' + '}', encodeURIComponent(String(name)))
-            .replace('{' + 'namespace' + '}', encodeURIComponent(String(namespace)));
+            .replace('{name}', encodeURIComponent(String(name)))
+            .replace('{namespace}', encodeURIComponent(String(namespace)));
 
         // Make Request Context
         const requestContext = _config.baseServer.makeRequestContext(localVarPath, HttpMethod.PUT);
