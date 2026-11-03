@@ -3,6 +3,7 @@ import { CoreV1Api, KubeConfig, V1Pod } from '../../index.js';
 import { Watch } from '../../watch.js';
 import { generateName } from './name.js';
 import { withTimeout } from './helpers.js';
+import { deferred } from '../deferred.js';
 
 export default async function watchPods() {
     const kc = new KubeConfig();
@@ -19,15 +20,8 @@ export default async function watchPods() {
 
     const receivedEvents: { type: string; name: string }[] = [];
 
-    let addResolve: () => void;
-    const addPromise = new Promise<void>((resolve) => {
-        addResolve = resolve;
-    });
-
-    let deleteResolve: () => void;
-    const deletePromise = new Promise<void>((resolve) => {
-        deleteResolve = resolve;
-    });
+    const added = deferred();
+    const deleted = deferred();
 
     const controller = await watch.watch(
         `/api/v1/namespaces/${namespace}/pods`,
@@ -37,8 +31,8 @@ export default async function watchPods() {
             console.log(`Watch event: ${phase} ${name}`);
             receivedEvents.push({ type: phase, name });
 
-            if (phase === 'ADDED') addResolve();
-            if (phase === 'DELETED') deleteResolve();
+            if (phase === 'ADDED') added.resolve();
+            if (phase === 'DELETED') deleted.resolve();
         },
         (err: any) => {
             if (err && err.name !== 'AbortError') console.log('Watch done with error:', err);
@@ -56,7 +50,7 @@ export default async function watchPods() {
         };
         await coreV1Client.createNamespacedPod({ namespace, body: pod });
 
-        await withTimeout(addPromise, 15000, 'Timed out waiting for ADDED event');
+        await withTimeout(added.promise, 15000, 'Timed out waiting for ADDED event');
 
         const addEvent = receivedEvents.find((e) => e.type === 'ADDED' && e.name === podName);
         assert.ok(addEvent, 'Should have received ADDED event for pod');
@@ -65,7 +59,7 @@ export default async function watchPods() {
         console.log(`Deleting pod ${podName}`);
         await coreV1Client.deleteNamespacedPod({ name: podName, namespace });
 
-        await withTimeout(deletePromise, 15000, 'Timed out waiting for DELETED event');
+        await withTimeout(deleted.promise, 15000, 'Timed out waiting for DELETED event');
 
         const deleteEvent = receivedEvents.find((e) => e.type === 'DELETED' && e.name === podName);
         assert.ok(deleteEvent, 'Should have received DELETED event for pod');

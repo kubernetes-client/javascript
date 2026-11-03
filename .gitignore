@@ -13,6 +13,7 @@ kubernetes-client-node-*.tgz
 **/*.swp
 .idea/
 docs/*
+!docs/docs/
 .DS_Store
 
 # Docusaurus

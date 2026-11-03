@@ -21,3 +21,11 @@ export * from './patch.js';
 export * from './proto-client.js';
 export * from './proto.js';
 export { type ConfigOptions, type User, type Cluster, type Context } from './config_types.js';
+export {
+    type ExecCredentialPluginPolicy,
+    type ExecCredentialPluginPolicyType,
+    type ExecCredentialPluginAllowlistEntry,
+    ExecCredentialPluginDeniedError,
+    validateExecCredentialPluginPolicy,
+    parseKubercExecCredentialPluginPolicy,
+} from './exec_credential_policy.js';

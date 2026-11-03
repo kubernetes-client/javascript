@@ -16,6 +16,7 @@ const sidebars: SidebarsConfig = {
             collapsed: false,
             items: [
                 'intro',
+                'request-options',
                 {
                     type: 'category',
                     label: 'Examples',
