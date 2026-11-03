@@ -176,40 +176,89 @@ There are several more JS and TS examples in the [examples](https://github.com/k
 
 # Compatibility
 
-Prior to the `0.13.0` release, release versions did not track Kubernetes versions. Starting with the `0.13.0`
-release, we will increment the minor version whenever we update the minor Kubernetes API version
-(e.g. `1.19.x`) that this library is generated from.
+## Package versioning
 
-`request` was migrated to `node-fetch` as the HTTP(S) backend for release `1.0.0` tracked in #754
+The release convention agreed in [#2582](https://github.com/kubernetes-client/javascript/issues/2582#issuecomment-3145057737)
+aligns major client releases with updates to the generated Kubernetes API, while following
+[Semantic Versioning](https://semver.org/):
 
-`node-fetch` was migrated to `undici` which is the native node.js fetch package for release `2.0.0` tracked in #2306
+- **Major:** a new Kubernetes API target is released from `main`. Regeneration can remove exported
+  clients or models and change existing TypeScript contracts. Other incompatible client changes
+  also belong in a major release; check the release notes when upgrading.
+- **Minor:** backward-compatible client features, including selected changes from `main`
+  cherry-picked into the latest active release branch.
+- **Patch:** backward-compatible bug and security fixes selected for release branches.
 
-Generally speaking newer clients will work with older Kubernetes, but compatibility isn't 100% guaranteed.
+Client version numbers do not numerically match Kubernetes version numbers. A major bump signals
+potential application changes, not necessarily a rewrite of the client.
 
-| client version | older versions | 1.28 | 1.29 | 1.30 | 1.31 | 1.32 | 1.33 | 1.34 |
-| -------------- | -------------- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
-| 0.19.x         | -              | ✓    | x    | x    | x    | x    | x    | x    |
-| 0.20.x         | -              | +    | ✓    | x    | x    | x    | x    | x    |
-| 0.21.x         | -              | +    | +    | ✓    | x    | x    | x    | x    |
-| 0.22.x         | -              | +    | +    | +    | ✓    | x    | x    | x    |
-| 1.0.x          | -              | +    | +    | +    | +    | ✓    | x    | x    |
-| 1.1.x          | -              | +    | +    | +    | +    | ✓    | x    | x    |
-| 1.2.x          | -              | +    | +    | +    | +    | +    | ✓    | x    |
-| 1.3.x          | -              | +    | +    | +    | +    | +    | ✓    | x    |
-| 1.4.x          | -              | +    | +    | +    | +    | +    | +    | ✓    |
+### Policy background
 
-Key:
+The older convention, introduced with `0.13.0` and recorded in
+[#548](https://github.com/kubernetes-client/javascript/issues/548), used a minor client bump for a
+new Kubernetes minor version. That convention also appeared in the original
+[1.x migration plan](https://github.com/kubernetes-client/javascript/issues/754#issuecomment-990382658).
 
-- `✓` Exactly the same features / API objects in both javascript-client and the Kubernetes
-  version.
-- `+` javascript-client has features or api objects that may not be present in the
-  Kubernetes cluster, but everything they have in common will work.
-- `-` The Kubernetes cluster has features the javascript-client library can't use
-  (additional API objects, etc).
-- `x` The Kubernetes cluster has no guarantees to support the API client of
-  this version, as it only promises _n_-2 version support. It is not tested,
-  and operations using API versions that have been deprecated and removed in
-  later server versions won't function correctly.
+In August 2025, Brendan Burns proposed:
+
+> Major version increments aligned with k8s version increment.
+
+— [versioning proposal in #2582](https://github.com/kubernetes-client/javascript/issues/2582#issuecomment-3145057737)
+
+Colin Ihrig clarified the compatibility expectation:
+
+> I'm good with following semver, and I agree that aligning K8s releases with majors simplifies things.
+
+— [discussion in #2582](https://github.com/kubernetes-client/javascript/issues/2582#issuecomment-3145216558)
+
+Historical releases and plans have not applied this convention uniformly: the maintainers
+[acknowledged that 1.4.0 still used the old numbering](https://github.com/kubernetes-client/javascript/issues/2582#issuecomment-3366303949),
+and [#2845](https://github.com/kubernetes-client/javascript/issues/2845) initially proposed a later
+Kubernetes update as 2.1.0. The newer release-line split is illustrated by
+[#3087](https://github.com/kubernetes-client/javascript/pull/3087) (Kubernetes 1.37 regeneration on `main`),
+[#3131](https://github.com/kubernetes-client/javascript/pull/3131) (3.0.0 preparation on `main`), and
+[#3130](https://github.com/kubernetes-client/javascript/pull/3130) (2.0.2 preparation on `release-2.0`).
+
+The [1.0.0 release](https://github.com/kubernetes-client/javascript/releases/tag/1.0.0) migrated from
+`request` to `node-fetch` and became ESM-only. The
+[2.0.0 release](https://github.com/kubernetes-client/javascript/releases/tag/2.0.0) migrated from
+`node-fetch` to the npm `undici` package and changed supported Node.js versions.
+
+## Generated Kubernetes API targets
+
+This table identifies the specification used to generate each listed client version. It is not a
+matrix of tested client/server combinations or a guarantee of feature parity with `kubectl`.
+
+| Client version | Generated Kubernetes API target |
+| -------------- | ------------------------------- |
+| 0.19.0         | 1.27                            |
+| 0.20.0         | 1.28                            |
+| 0.21.0         | 1.29                            |
+| 0.22.0         | 1.30                            |
+| 1.0.0          | 1.32                            |
+| 1.1.2          | 1.32                            |
+| 1.2.0          | 1.33                            |
+| 1.3.0          | 1.33                            |
+| 1.4.0          | 1.34                            |
+| 2.0.0–2.0.2    | 1.36                            |
+| `main`         | 1.37 (next major release)       |
+
+Targets are verified from `src/gen/swagger.json` at the corresponding tags. Generation settings
+can differ from shipped output: the 2.0.x tags retain `v1.35.0` in `settings`, but their generated
+schema identifies `release-1.36`, consistent with the 2.0.0 release notes.
+
+## Compatibility with clusters
+
+Application compatibility with the package is separate from compatibility with a Kubernetes server.
+An older client can work with a newer cluster when the APIs it calls remain available; a newer
+client can work with an older cluster when it uses APIs that server supports. Newly added APIs may
+be unavailable on older servers, and deprecated APIs may be removed from newer servers or clients.
+
+Consult the [Kubernetes API deprecation policy](https://kubernetes.io/docs/reference/using-api/deprecation-policy/)
+and the client release notes for the resources and API versions your application uses. The
+[Kubernetes component version-skew policy](https://kubernetes.io/releases/version-skew-policy/)
+does not establish a blanket compatibility guarantee for this npm package. Validate your
+application against the cluster versions you support.
 
 # Known Issues
 
