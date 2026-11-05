@@ -446,9 +446,14 @@ describe('KubeConfig', () => {
         for (const proxyUrl of [undefined, 'http://proxy:8080', 'socks5://proxy:1080']) {
             it(`should pass the minimum TLS version to dispatcher options (${proxyUrl ?? 'direct'})`, () => {
                 const kc = new KubeConfig();
-                const cluster = { name: 'cluster', server: 'https://example.com', proxyUrl };
+                const cluster = {
+                    name: 'cluster',
+                    server: 'https://example.com',
+                    skipTLSVerify: false,
+                    proxyUrl,
+                };
                 const options = kc.createDispatcherOptions(cluster, { minVersion: 'TLSv1.3' });
-                assert.notStrictEqual(options.type, 'none');
+                assert(options.type !== 'none');
                 const tlsOptions = options.type === 'agent' ? options.connect : options.requestTls;
                 strictEqual(tlsOptions.minVersion, 'TLSv1.3');
             });
@@ -456,7 +461,7 @@ describe('KubeConfig', () => {
             it(`should configure the minimum TLS version through authentication (${proxyUrl ?? 'direct'})`, async () => {
                 const kc = new KubeConfig();
                 kc.loadFromClusterAndUser(
-                    { name: 'cluster', server: 'https://example.com', proxyUrl },
+                    { name: 'cluster', server: 'https://example.com', skipTLSVerify: false, proxyUrl },
                     { name: 'user' },
                 );
                 kc.setTLSMinVersion('TLSv1.3');
@@ -464,7 +469,7 @@ describe('KubeConfig', () => {
                 let observedMinVersion: tls.SecureVersion | undefined;
                 mock.method(kc, 'createDispatcherOptions', (cluster, agentOptions) => {
                     const options = createOptions(cluster, agentOptions);
-                    assert.notStrictEqual(options.type, 'none');
+                    assert(options.type !== 'none');
                     const tlsOptions = options.type === 'agent' ? options.connect : options.requestTls;
                     observedMinVersion = tlsOptions.minVersion;
                     return options;
@@ -495,7 +500,7 @@ describe('KubeConfig', () => {
             it(`should preserve the runtime TLS default when unset (${proxyUrl ?? 'direct'})`, () => {
                 const kc = new KubeConfig();
                 const options = kc.createDispatcherOptions(
-                    { name: 'cluster', server: 'https://example.com', proxyUrl },
+                    { name: 'cluster', server: 'https://example.com', skipTLSVerify: false, proxyUrl },
                     {},
                 );
                 if (options.type !== 'none') {

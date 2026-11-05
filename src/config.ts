@@ -141,6 +141,7 @@ export interface ApiType {}
 
 export class KubeConfig implements SecurityAuthentication {
     private execAuth: ExecAuth = new ExecAuth();
+    private tlsMinVersion?: tls.SecureVersion;
 
     private authenticators: Authenticator[] = [
         new AzureAuth(),
@@ -163,6 +164,15 @@ export class KubeConfig implements SecurityAuthentication {
     // before you load a kubeconfig file that references them.
     public addAuthenticator(authenticator: Authenticator): void {
         this.custom_authenticators.push(authenticator);
+    }
+
+    /**
+     * Sets the minimum TLS version for API connections. Configure before making requests.
+     * @param minVersion undefined preserves the Node.js runtime default.
+     */
+    public setTLSMinVersion(minVersion?: tls.SecureVersion): void {
+        this.tlsMinVersion = minVersion;
+        this.agentCache.clear();
     }
 
     /**
@@ -322,6 +332,9 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions.key = opts.key;
         agentOptions.pfx = opts.pfx;
         agentOptions.passphrase = opts.passphrase;
+        if (opts.minVersion !== undefined) {
+            agentOptions.minVersion = opts.minVersion;
+        }
         // Only set rejectUnauthorized if explicitly configured. When not set, fetch will use NODE_TLS_REJECT_UNAUTHORIZED env var
         if (opts.rejectUnauthorized !== undefined) {
             agentOptions.rejectUnauthorized = opts.rejectUnauthorized;
@@ -374,6 +387,9 @@ export class KubeConfig implements SecurityAuthentication {
         agentOptions.key = httpsOptions.key;
         agentOptions.pfx = httpsOptions.pfx;
         agentOptions.passphrase = httpsOptions.passphrase;
+        if (httpsOptions.minVersion !== undefined) {
+            agentOptions.minVersion = httpsOptions.minVersion;
+        }
         // Only set rejectUnauthorized if explicitly configured. When not set, fetch will use NODE_TLS_REJECT_UNAUTHORIZED env var
         if (httpsOptions.rejectUnauthorized !== undefined) {
             agentOptions.rejectUnauthorized = httpsOptions.rejectUnauthorized;
@@ -718,6 +734,7 @@ export class KubeConfig implements SecurityAuthentication {
         if (agentOptions.key !== undefined) tlsOptions.key = agentOptions.key;
         if (agentOptions.pfx !== undefined) tlsOptions.pfx = agentOptions.pfx;
         if (agentOptions.passphrase !== undefined) tlsOptions.passphrase = agentOptions.passphrase;
+        if (agentOptions.minVersion !== undefined) tlsOptions.minVersion = agentOptions.minVersion;
         if (agentOptions.rejectUnauthorized !== undefined)
             tlsOptions.rejectUnauthorized = agentOptions.rejectUnauthorized;
         if ((agentOptions as any).servername !== undefined)
@@ -770,6 +787,9 @@ export class KubeConfig implements SecurityAuthentication {
     }
 
     private applyHTTPSOptions(opts: https.RequestOptions | WebSocket.ClientOptions): void {
+        if (this.tlsMinVersion !== undefined) {
+            opts.minVersion = this.tlsMinVersion;
+        }
         const cluster = this.getCurrentCluster();
         const user = this.getCurrentUser();
         if (!user) {
