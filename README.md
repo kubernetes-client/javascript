@@ -210,6 +210,7 @@ This table lists the Kubernetes API specification used to generate each client v
 | 1.3.0          | 1.33                            |
 | 1.4.0          | 1.34                            |
 | 2.0.0–2.0.2    | 1.36                            |
+| 3.0.0          | 1.37                            |
 
 ## Compatibility with clusters
 
