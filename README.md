@@ -95,6 +95,23 @@ const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
 ...
 ```
 
+## Configure the minimum TLS version
+
+Set the minimum TLS version before making API requests:
+
+```javascript
+const kc = new k8s.KubeConfig();
+kc.loadFromDefault();
+kc.setTLSMinVersion('TLSv1.3');
+const k8sApi = kc.makeApiClient(k8s.CoreV1Api);
+```
+
+`setTLSMinVersion` accepts Node.js TLS version names (`TLSv1`, `TLSv1.1`, `TLSv1.2`, or `TLSv1.3`).
+The setting applies to API-server TLS connections, including direct connections and connections
+through HTTP(S) or SOCKS proxies. It does not configure TLS to the proxy itself.
+When unset, or reset with `kc.setTLSMinVersion(undefined)`, the Node.js runtime default is preserved
+(including command-line TLS settings); the client does not impose its own minimum.
+
 ## Call APIs with protocol buffers
 
 ```javascript
