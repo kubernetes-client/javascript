@@ -20,68 +20,190 @@ export function quantityToScalar(quantity: string): number | bigint {
     if (!quantity) {
         return 0;
     }
+    if (/\s/.test(quantity)) {
+        throw new Error('Unknown quantity ' + quantity);
+    }
     const suffix = findSuffix(quantity);
-    if (suffix === '') {
-        const num = Number(quantity).valueOf();
-        if (isNaN(num)) {
-            throw new Error('Unknown quantity ' + quantity);
-        }
-        return num;
+    if (suffix === '' || suffix === 'n' || suffix === 'u' || suffix === 'm') {
+        return quantityToNumber(quantity, suffix);
+    }
+    const multiplier = integerSuffixMultiplier(suffix);
+    if (multiplier === undefined) {
+        throw new Error(`Unknown suffix: ${suffix}`);
+    }
+    return scaleByIntegerSuffix(quantity, suffix, multiplier);
+}
+
+// k..E and Ki..Ei count whole base units. Scale the mantissa in base 10 with
+// BigInt — significand * multiplier * 10^pow10 — and round a non-zero remainder
+// away from zero, matching resource.Quantity.Value(). Number() is not used here:
+// it cannot represent every integer past MAX_SAFE_INTEGER or every decimal
+// fraction. n/u/m and a bare mantissa stay JS numbers. A power of ten past
+// 10000 is rejected so a pathological exponent cannot allocate an unbounded
+// integer; real suffixes never reach it. findSuffix leaves a scientific
+// exponent in the mantissa (`1.5e3Ki`) and treats a bare `1e3` / `1.5e6` as
+// having no suffix.
+
+const MAX_DECIMAL_EXPONENT = BigInt(10000);
+
+const THOUSAND = BigInt(1000);
+const MILLION = BigInt(1000 * 1000);
+const BILLION = BigInt(1000 * 1000 * 1000);
+const KIBI = BigInt(1024);
+const MEBI = BigInt(1024 * 1024);
+const GIBI = BigInt(1024 * 1024 * 1024);
+
+function integerSuffixMultiplier(suffix: string): bigint | undefined {
+    switch (suffix) {
+        case 'k':
+            return THOUSAND;
+        case 'M':
+            return MILLION;
+        case 'G':
+            return BILLION;
+        case 'T':
+            return BILLION * THOUSAND;
+        case 'P':
+            return BILLION * MILLION;
+        case 'E':
+            return BILLION * BILLION;
+        case 'Ki':
+            return KIBI;
+        case 'Mi':
+            return MEBI;
+        case 'Gi':
+            return GIBI;
+        case 'Ti':
+            return GIBI * KIBI;
+        case 'Pi':
+            return GIBI * MEBI;
+        case 'Ei':
+            return GIBI * GIBI;
+        default:
+            return undefined;
+    }
+}
+
+function quantityToNumber(quantity: string, suffix: string): number {
+    const mantissa = suffix === '' ? quantity : quantity.substring(0, quantity.length - suffix.length);
+    const num = Number(mantissa).valueOf();
+    if (isNaN(num)) {
+        throw new Error('Unknown quantity ' + quantity);
     }
     switch (suffix) {
         case 'n':
-            return Number(quantity.substr(0, quantity.length - 1)).valueOf() / 1_000_000_000.0;
+            return num / 1_000_000_000.0;
         case 'u':
-            return Number(quantity.substr(0, quantity.length - 1)).valueOf() / 1_000_000.0;
+            return num / 1_000_000.0;
         case 'm':
-            return Number(quantity.substr(0, quantity.length - 1)).valueOf() / 1000.0;
-        case 'k':
-            return BigInt(quantity.substr(0, quantity.length - 1)) * BigInt(1000);
-        case 'M':
-            return BigInt(quantity.substr(0, quantity.length - 1)) * BigInt(1000 * 1000);
-        case 'G':
-            return BigInt(quantity.substr(0, quantity.length - 1)) * BigInt(1000 * 1000 * 1000);
-        case 'T':
-            return (
-                BigInt(quantity.substr(0, quantity.length - 1)) * BigInt(1000 * 1000 * 1000) * BigInt(1000)
-            );
-        case 'P':
-            return (
-                BigInt(quantity.substr(0, quantity.length - 1)) *
-                BigInt(1000 * 1000 * 1000) *
-                BigInt(1000 * 1000)
-            );
-        case 'E':
-            return (
-                BigInt(quantity.substr(0, quantity.length - 1)) *
-                BigInt(1000 * 1000 * 1000) *
-                BigInt(1000 * 1000 * 1000)
-            );
-        case 'Ki':
-            return BigInt(quantity.substr(0, quantity.length - 2)) * BigInt(1024);
-        case 'Mi':
-            return BigInt(quantity.substr(0, quantity.length - 2)) * BigInt(1024 * 1024);
-        case 'Gi':
-            return BigInt(quantity.substr(0, quantity.length - 2)) * BigInt(1024 * 1024 * 1024);
-        case 'Ti':
-            return (
-                BigInt(quantity.substr(0, quantity.length - 2)) * BigInt(1024 * 1024 * 1024) * BigInt(1024)
-            );
-        case 'Pi':
-            return (
-                BigInt(quantity.substr(0, quantity.length - 2)) *
-                BigInt(1024 * 1024 * 1024) *
-                BigInt(1024 * 1024)
-            );
-        case 'Ei':
-            return (
-                BigInt(quantity.substr(0, quantity.length - 2)) *
-                BigInt(1024 * 1024 * 1024) *
-                BigInt(1024 * 1024 * 1024)
-            );
+            return num / 1000.0;
         default:
-            throw new Error(`Unknown suffix: ${suffix}`);
+            return num;
     }
+}
+
+interface FixedDecimal {
+    negative: boolean;
+    significand: bigint;
+    // ±significand * 10^pow10
+    pow10: bigint;
+}
+
+function scaleByIntegerSuffix(quantity: string, suffix: string, multiplier: bigint): bigint {
+    const mantissa = quantity.substring(0, quantity.length - suffix.length);
+    const parsed = parseFixedDecimal(mantissa);
+    if (parsed === undefined) {
+        throw new Error('Unknown quantity ' + quantity);
+    }
+    const scaled = multiplyAndScale(parsed.significand, multiplier, parsed.pow10);
+    if (scaled === undefined) {
+        throw new Error('Unknown quantity ' + quantity);
+    }
+    return parsed.negative ? -scaled : scaled;
+}
+
+function parseFixedDecimal(mantissa: string): FixedDecimal | undefined {
+    const match = /^([+-])?(\d*)(?:\.(\d*))?(?:[eE]([+-]?\d+))?$/.exec(mantissa);
+    if (match === null) {
+        return undefined;
+    }
+    const sign = match[1];
+    const intPart = match[2];
+    const fracPart = match[3];
+    const expPart = match[4];
+    if (intPart.length === 0 && (fracPart === undefined || fracPart.length === 0)) {
+        return undefined;
+    }
+    const digits = `${intPart}${fracPart ?? ''}`;
+    const significand = BigInt(digits.replace(/^0+(?=\d)/, ''));
+    const fracDigits = fracPart === undefined ? BigInt(0) : BigInt(fracPart.length);
+    const exponent = parseExponent(expPart);
+    if (exponent === undefined) {
+        return undefined;
+    }
+    return {
+        negative: sign === '-' && significand !== BigInt(0),
+        significand,
+        pow10: exponent - fracDigits,
+    };
+}
+
+function parseExponent(expPart: string | undefined): bigint | undefined {
+    if (expPart === undefined) {
+        return BigInt(0);
+    }
+    const digits = expPart.replace(/^[+-]/, '').replace(/^0+(?=\d)/, '');
+    // 10000 is five digits. Anything longer is past MAX_DECIMAL_EXPONENT, and
+    // constructing that BigInt would itself be the allocation we are avoiding.
+    if (digits.length > 5) {
+        return undefined;
+    }
+    const magnitude = BigInt(digits);
+    return expPart.charAt(0) === '-' ? -magnitude : magnitude;
+}
+
+function multiplyAndScale(significand: bigint, multiplier: bigint, pow10: bigint): bigint | undefined {
+    if (significand === BigInt(0)) {
+        return BigInt(0);
+    }
+    const magnitude = significand * multiplier;
+    if (pow10 >= BigInt(0)) {
+        if (pow10 > MAX_DECIMAL_EXPONENT) {
+            return undefined;
+        }
+        return magnitude * pow10n(pow10);
+    }
+    const denExp = -pow10;
+    // 10^denExp is greater than magnitude, so the quotient is 0 and the
+    // remainder is not. Round away from zero to 1 without building the power.
+    if (denExp >= BigInt(magnitude.toString().length)) {
+        return BigInt(1);
+    }
+    if (denExp > MAX_DECIMAL_EXPONENT) {
+        return undefined;
+    }
+    const denominator = pow10n(denExp);
+    const quotient = magnitude / denominator;
+    const remainder = magnitude % denominator;
+    return remainder === BigInt(0) ? quotient : quotient + BigInt(1);
+}
+
+function pow10n(exp: bigint): bigint {
+    let result = BigInt(1);
+    let base = BigInt(10);
+    let exponent = exp;
+    const zero = BigInt(0);
+    const two = BigInt(2);
+    while (exponent > zero) {
+        if (exponent % two !== zero) {
+            result *= base;
+        }
+        exponent /= two;
+        if (exponent > zero) {
+            base *= base;
+        }
+    }
+    return result;
 }
 
 export class ResourceStatus {
