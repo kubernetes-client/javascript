@@ -443,6 +443,112 @@ describe('KubeConfig', () => {
                 expectedCA.toString(),
             );
         });
+        for (const proxyUrl of [undefined, 'http://proxy:8080', 'socks5://proxy:1080']) {
+            it(`should pass the minimum TLS version to dispatcher options (${proxyUrl ?? 'direct'})`, () => {
+                const kc = new KubeConfig();
+                const cluster = {
+                    name: 'cluster',
+                    server: 'https://example.com',
+                    skipTLSVerify: false,
+                    proxyUrl,
+                };
+                const options = kc.createDispatcherOptions(cluster, { minVersion: 'TLSv1.3' });
+                assert(options.type !== 'none');
+                const tlsOptions = options.type === 'agent' ? options.connect : options.requestTls;
+                strictEqual(tlsOptions.minVersion, 'TLSv1.3');
+            });
+
+            it(`should configure the minimum TLS version through authentication (${proxyUrl ?? 'direct'})`, async () => {
+                const kc = new KubeConfig();
+                kc.loadFromClusterAndUser(
+                    { name: 'cluster', server: 'https://example.com', skipTLSVerify: false, proxyUrl },
+                    { name: 'user' },
+                );
+                kc.setTLSMinVersion('TLSv1.3');
+                const createOptions = kc.createDispatcherOptions.bind(kc);
+                let observedMinVersion: tls.SecureVersion | undefined;
+                mock.method(kc, 'createDispatcherOptions', (cluster, agentOptions) => {
+                    const options = createOptions(cluster, agentOptions);
+                    assert(options.type !== 'none');
+                    const tlsOptions = options.type === 'agent' ? options.connect : options.requestTls;
+                    observedMinVersion = tlsOptions.minVersion;
+                    return options;
+                });
+                const rc = new RequestContext('https://example.com', HttpMethod.GET);
+                await kc.applySecurityAuthentication(rc);
+                try {
+                    strictEqual(observedMinVersion, 'TLSv1.3');
+                } finally {
+                    await rc.getDispatcher()?.close();
+                }
+
+                const opts: https.RequestOptions = {};
+                await kc.applyToHTTPSOptions(opts);
+                strictEqual(opts.minVersion, 'TLSv1.3');
+                strictEqual((opts.agent as https.Agent).options.minVersion, 'TLSv1.3');
+                const destroy = mock.method(opts.agent as https.Agent, 'destroy');
+
+                kc.setTLSMinVersion(undefined);
+                strictEqual(destroy.mock.callCount(), 1);
+                const defaultOpts: https.RequestOptions = {};
+                await kc.applyToHTTPSOptions(defaultOpts);
+                strictEqual(defaultOpts.minVersion, undefined);
+                strictEqual((defaultOpts.agent as https.Agent).options.minVersion, undefined);
+                notStrictEqual(defaultOpts.agent, opts.agent);
+                (opts.agent as https.Agent).destroy();
+                (defaultOpts.agent as https.Agent).destroy();
+            });
+
+            it(`should destroy all cached agents when setting the minimum TLS version (${proxyUrl ?? 'direct'})`, async (t) => {
+                const kc = new KubeConfig();
+                const cluster = {
+                    name: 'cluster',
+                    server: 'https://example.com',
+                    skipTLSVerify: false,
+                    proxyUrl,
+                };
+                const agents: http.Agent[] = [];
+                try {
+                    for (const name of ['user1', 'user2']) {
+                        kc.loadFromClusterAndUser(cluster, { name });
+                        const opts: https.RequestOptions = {};
+                        await kc.applyToHTTPSOptions(opts);
+                        assert(opts.agent instanceof http.Agent);
+                        agents.push(opts.agent);
+                    }
+                    const destroyMocks = agents.map((agent) => t.mock.method(agent, 'destroy'));
+
+                    kc.setTLSMinVersion('TLSv1.3');
+
+                    for (const destroy of destroyMocks) {
+                        strictEqual(destroy.mock.callCount(), 1);
+                    }
+                    const opts: https.RequestOptions = {};
+                    await kc.applyToHTTPSOptions(opts);
+                    assert(opts.agent instanceof http.Agent);
+                    strictEqual(agents.includes(opts.agent), false);
+                    agents.push(opts.agent);
+                } finally {
+                    for (const agent of agents) {
+                        agent.destroy();
+                    }
+                }
+            });
+
+            it(`should preserve the runtime TLS default when unset (${proxyUrl ?? 'direct'})`, () => {
+                const kc = new KubeConfig();
+                const options = kc.createDispatcherOptions(
+                    { name: 'cluster', server: 'https://example.com', skipTLSVerify: false, proxyUrl },
+                    {},
+                );
+                if (options.type !== 'none') {
+                    const tlsOptions = options.type === 'agent' ? options.connect : options.requestTls;
+                    strictEqual(tlsOptions.minVersion, undefined);
+                } else {
+                    strictEqual(proxyUrl, undefined);
+                }
+            });
+        }
         it('should override default 60s keep-alive with 30s for cloud LB compatibility', () => {
             const kc = new KubeConfig();
             kc.loadFromClusterAndUser(
