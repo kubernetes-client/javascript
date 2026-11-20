@@ -30,10 +30,13 @@ spec:
           type: object
           properties:
             foobar:
-                anyOf:
-                - type: integer
-                - type: string
-                x-kubernetes-int-or-string: true
+              anyOf:
+              - type: integer
+              - type: string
+              x-kubernetes-int-or-string: true
+            podTemplate:
+              type: object
+              x-kubernetes-preserve-unknown-fields: true
 `;
         const ns = loadYaml<V1CustomResourceDefinition>(yaml);
 
@@ -46,6 +49,17 @@ spec:
         );
         strictEqual(
             ns.spec.versions[0]!.schema!.openAPIV3Schema!.properties!['foobar']['x-kubernetes-int-or-string'],
+            undefined,
+        );
+        strictEqual(
+            ns.spec.versions[0]!.schema!.openAPIV3Schema!.properties!['podTemplate']
+                .x_kubernetes_preserve_unknown_fields,
+            true,
+        );
+        strictEqual(
+            ns.spec.versions[0]!.schema!.openAPIV3Schema!.properties!['podTemplate'][
+                'x-kubernetes-preserve-unknown-fields'
+            ],
             undefined,
         );
     });
