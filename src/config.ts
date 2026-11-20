@@ -353,7 +353,7 @@ export class KubeConfig implements SecurityAuthentication {
         const user = this.getCurrentUser();
 
         const agentOptions: https.AgentOptions = {};
-        const httpsOptions: https.RequestOptions = {};
+        const httpsOptions: https.RequestOptions = { signal: context.getSignal() };
 
         await this.applyOptions(httpsOptions);
 
