@@ -56,3 +56,4 @@ jobs:
             - name: Create k8s Kind Cluster
               uses: helm/kind-action@ea822c7bf1874f08e5a491df991c228edffc3376 # v1.15.2
             - run: npm run integration-test
+            - run: npm run e2e-test
